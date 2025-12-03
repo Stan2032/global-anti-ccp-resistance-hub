@@ -35,7 +35,6 @@ function App() {
   const [showSecurityWarning, setShowSecurityWarning] = useState(true)
 
   useEffect(() => {
-    // Simulate initial security check and data loading
     const initializeApp = async () => {
       // Check for Tor browser or VPN
       const userAgent = navigator.userAgent.toLowerCase()
@@ -51,18 +50,16 @@ function App() {
       // Load initial data
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 1500)
     }
 
     initializeApp()
   }, [])
 
   const checkVPNStatus = async () => {
-    // Simple VPN detection (in real implementation, this would be more sophisticated)
     try {
       const response = await fetch('https://api.ipify.org?format=json')
       const data = await response.json()
-      // This is a simplified check - real implementation would compare against known VPN IPs
       return false
     } catch (error) {
       return false
@@ -75,7 +72,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-slate-900 text-slate-100">
+      <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col">
         <AnimatePresence>
           {showSecurityWarning && (
             <SecurityWarning 
@@ -85,54 +82,60 @@ function App() {
           )}
         </AnimatePresence>
 
+        {/* Header */}
         <Header 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
           securityLevel={securityLevel}
         />
 
-        <div className="flex">
+        <div className="flex flex-1 overflow-hidden">
+          {/* Sidebar */}
           <Sidebar 
             open={sidebarOpen}
             setOpen={setSidebarOpen}
           />
 
-          <main className="flex-1 min-h-screen">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="container mx-auto px-4 py-8"
-            >
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/directory" element={<ResistanceDirectory />} />
-                <Route path="/intelligence" element={<IntelligenceFeeds />} />
-                <Route path="/campaigns" element={<CampaignHubs />} />
-                <Route path="/community" element={<CommunitySupport />} />
-                <Route path="/communications" element={<SecureComms />} />
-                <Route path="/education" element={<EducationalResources />} />
-                <Route path="/security" element={<SecurityCenter />} />
-                
-                {/* Campaign-specific routes */}
-                <Route path="/campaigns/free-jimmy-lai" element={<FreeJimmyLai />} />
-                <Route path="/campaigns/london-embassy" element={<LondonEmbassy />} />
-                <Route path="/campaigns/hong-kong-support" element={<HongKongSupport />} />
-                <Route path="/campaigns/uyghur-rights" element={<UyghurRights />} />
-                <Route path="/campaigns/tibetan-freedom" element={<TibetanFreedom />} />
-                
-                {/* Redirect unknown routes to dashboard */}
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
-              </Routes>
-            </motion.div>
+          {/* Main Content Area */}
+          <main className="flex-1 overflow-y-auto bg-slate-900">
+            <div className="min-h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+              >
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/directory" element={<ResistanceDirectory />} />
+                  <Route path="/intelligence" element={<IntelligenceFeeds />} />
+                  <Route path="/campaigns" element={<CampaignHubs />} />
+                  <Route path="/community" element={<CommunitySupport />} />
+                  <Route path="/communications" element={<SecureComms />} />
+                  <Route path="/education" element={<EducationalResources />} />
+                  <Route path="/security" element={<SecurityCenter />} />
+                  
+                  {/* Campaign-specific routes */}
+                  <Route path="/campaigns/free-jimmy-lai" element={<FreeJimmyLai />} />
+                  <Route path="/campaigns/london-embassy" element={<LondonEmbassy />} />
+                  <Route path="/campaigns/hong-kong-support" element={<HongKongSupport />} />
+                  <Route path="/campaigns/uyghur-rights" element={<UyghurRights />} />
+                  <Route path="/campaigns/tibetan-freedom" element={<TibetanFreedom />} />
+                  
+                  {/* Redirect unknown routes to dashboard */}
+                  <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                </Routes>
+              </motion.div>
+            </div>
           </main>
         </div>
 
+        {/* Footer */}
         <Footer />
 
         {/* Global Security Indicator */}
-        <div className={`fixed bottom-4 right-4 px-3 py-2 rounded-lg text-xs font-medium ${
+        <div className={`fixed bottom-4 right-4 px-3 py-2 rounded-lg text-xs font-medium shadow-lg z-50 ${
           securityLevel === 'high' 
             ? 'bg-green-900 text-green-100 border border-green-700' 
             : securityLevel === 'medium'
@@ -144,6 +147,14 @@ function App() {
 
         {/* Live Statistics Counter */}
         <LiveStatsCounter />
+
+        {/* Mobile Sidebar Overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
       </div>
     </Router>
   )
@@ -172,18 +183,18 @@ const LiveStatsCounter = () => {
   }, [])
 
   return (
-    <div className="fixed bottom-4 left-4 glass-effect rounded-lg p-3 text-xs">
+    <div className="fixed bottom-4 left-4 glass-effect rounded-lg p-3 text-xs shadow-lg z-50">
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-1">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span>{stats.activeUsers.toLocaleString()} active</span>
+          <span className="text-slate-300">{stats.activeUsers.toLocaleString()} active</span>
         </div>
-        <div className="text-slate-400">|</div>
-        <div>{stats.documentsAnalyzed.toLocaleString()} docs analyzed</div>
-        <div className="text-slate-400">|</div>
-        <div>{stats.campaignsActive} campaigns</div>
-        <div className="text-slate-400">|</div>
-        <div>{stats.countriesReached} countries</div>
+        <div className="text-slate-500">|</div>
+        <div className="text-slate-300">{stats.documentsAnalyzed.toLocaleString()} docs</div>
+        <div className="text-slate-500">|</div>
+        <div className="text-slate-300">{stats.campaignsActive} campaigns</div>
+        <div className="text-slate-500">|</div>
+        <div className="text-slate-300">{stats.countriesReached} countries</div>
       </div>
     </div>
   )
