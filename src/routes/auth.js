@@ -1,126 +1,180 @@
 import express from 'express';
-import { validate, registerSchema, loginSchema } from '../validators/schemas.js';
-import { generateToken, generateRefreshToken } from '../middleware/auth.js';
+import { validate, registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from '../validators/schemas.js';
+import { authenticateToken } from '../middleware/auth.js';
+import * as authService from '../services/authService.js';
 import logger from '../utils/logger.js';
 
 const router = express.Router();
 
-// Register
-router.post('/register', validate(registerSchema), async (req, res) => {
+// ============================================================================
+// REGISTER
+// ============================================================================
+router.post('/register', validate(registerSchema), async (req, res, next) => {
   try {
-    // TODO: Implement user registration
+    const { email, username, password, firstName, lastName } = req.validatedBody;
+    const ipAddress = req.ip;
+    const userAgent = req.get('user-agent');
+
+    const result = await authService.register(
+      { email, username, password, firstName, lastName },
+      ipAddress,
+      userAgent
+    );
+
     res.status(201).json({
       success: true,
-      message: 'Registration endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Registration error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Login
-router.post('/login', validate(loginSchema), async (req, res) => {
+// ============================================================================
+// VERIFY EMAIL
+// ============================================================================
+router.post('/verify-email', async (req, res, next) => {
   try {
-    // TODO: Implement user login
-    res.status(200).json({
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 'MISSING_TOKEN',
+          message: 'Verification token is required'
+        }
+      });
+    }
+
+    const result = await authService.verifyEmail(token);
+
+    res.json({
       success: true,
-      message: 'Login endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Login error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Verify Email
-router.post('/verify-email', async (req, res) => {
+// ============================================================================
+// LOGIN
+// ============================================================================
+router.post('/login', validate(loginSchema), async (req, res, next) => {
   try {
-    // TODO: Implement email verification
-    res.status(200).json({
+    const { email, password } = req.validatedBody;
+    const ipAddress = req.ip;
+    const userAgent = req.get('user-agent');
+
+    const result = await authService.login(email, password, ipAddress, userAgent);
+
+    res.json({
       success: true,
-      message: 'Email verification endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Email verification error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Refresh Token
-router.post('/refresh', async (req, res) => {
+// ============================================================================
+// REFRESH TOKEN
+// ============================================================================
+router.post('/refresh', async (req, res, next) => {
   try {
-    // TODO: Implement token refresh
-    res.status(200).json({
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 'MISSING_TOKEN',
+          message: 'Refresh token is required'
+        }
+      });
+    }
+
+    const ipAddress = req.ip;
+    const userAgent = req.get('user-agent');
+
+    const result = await authService.refreshAccessToken(refreshToken, ipAddress, userAgent);
+
+    res.json({
       success: true,
-      message: 'Token refresh endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Token refresh error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Forgot Password
-router.post('/forgot-password', async (req, res) => {
+// ============================================================================
+// FORGOT PASSWORD
+// ============================================================================
+router.post('/forgot-password', validate(forgotPasswordSchema), async (req, res, next) => {
   try {
-    // TODO: Implement forgot password
-    res.status(200).json({
+    const { email } = req.validatedBody;
+
+    const result = await authService.requestPasswordReset(email);
+
+    res.json({
       success: true,
-      message: 'Forgot password endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Forgot password error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Reset Password
-router.post('/reset-password', async (req, res) => {
+// ============================================================================
+// RESET PASSWORD
+// ============================================================================
+router.post('/reset-password', validate(resetPasswordSchema), async (req, res, next) => {
   try {
-    // TODO: Implement reset password
-    res.status(200).json({
+    const { token, newPassword } = req.validatedBody;
+
+    const result = await authService.resetPassword(token, newPassword);
+
+    res.json({
       success: true,
-      message: 'Reset password endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Reset password error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
-    });
+    next(error);
   }
 });
 
-// Logout
-router.post('/logout', async (req, res) => {
+// ============================================================================
+// LOGOUT
+// ============================================================================
+router.post('/logout', authenticateToken, async (req, res, next) => {
   try {
-    // TODO: Implement logout
-    res.status(200).json({
+    const result = await authService.logout(req.headers.authorization.split(' ')[1]);
+
+    res.json({
       success: true,
-      message: 'Logout endpoint - implementation pending'
+      data: result
     });
   } catch (error) {
-    logger.error('Logout error', { error: error.message });
-    res.status(500).json({
-      success: false,
-      error: { code: 'SERVER_ERROR', message: error.message }
+    next(error);
+  }
+});
+
+// ============================================================================
+// GET CURRENT USER
+// ============================================================================
+router.get('/me', authenticateToken, async (req, res, next) => {
+  try {
+    const { getUserById } = await import('../services/userService.js');
+    const user = await getUserById(req.user.id);
+
+    res.json({
+      success: true,
+      data: user
     });
+  } catch (error) {
+    next(error);
   }
 });
 

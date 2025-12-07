@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "Backend API for Global Anti-CCP Resistance Hub",
   "main": "src/server.js",
-  "type": "module",
+
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --coverage",
+    "test": "jest --coverage --forceExit",
     "test:watch": "jest --watch",
+    "test:auth": "jest src/tests/auth.test.js --forceExit",
     "lint": "eslint src --fix",
-    "migrate": "node src/db/migrate.js",
-    "migrate:rollback": "node src/db/rollback.js",
-    "seed": "node src/db/seed.js"
+    "setup-db": "node scripts/setup-db.js"
   },
   "keywords": [
     "activism",
@@ -52,8 +51,28 @@
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.1.0"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/server.js",
+      "!src/tests/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "testMatch": [
+      "**/src/tests/**/*.test.js"
+    ]
+  },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
-  }
+  },
+  "type": "module"
 }
