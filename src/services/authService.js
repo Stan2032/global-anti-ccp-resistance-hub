@@ -105,7 +105,16 @@ export const verifyEmail = async (token) => {
 export const login = async (email, password, ipAddress, userAgent) => {
   try {
     // Get user
-    const user = await getUserByEmail(email);
+    let user;
+    try {
+      user = await getUserByEmail(email);
+    } catch (error) {
+      if (error.code === 'NOT_FOUND') {
+        // Don't reveal if email exists
+        throw new UnauthorizedError('Invalid email or password');
+      }
+      throw error;
+    }
 
     // Check if account is active
     if (user.status !== 'active') {
