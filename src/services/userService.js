@@ -1,7 +1,7 @@
 import bcryptjs from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import { query } from '../db/connection.js';
-import { set as cacheSet, get as cacheGet, del as cacheDel } from '../cache/redis.js';
+import { set as cacheSet, get as cacheGet, del as cacheDel } from './cacheService.js';
 import logger from '../utils/logger.js';
 import { NotFoundError, ConflictError, ValidationError } from '../middleware/errorHandler.js';
 
