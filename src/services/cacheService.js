@@ -1,20 +1,19 @@
 /**
  * Cache Service - PostgreSQL UNLOGGED Tables
  * 
- * Replaces Redis with PostgreSQL UNLOGGED tables for caching.
+ * High-performance caching layer using PostgreSQL UNLOGGED tables.
  * 
- * Benefits:
- * - No additional service to maintain
- * - Faster writes than normal tables (no WAL)
- * - Better persistence than Redis
+ * Features:
+ * - Fast writes (no WAL overhead)
+ * - TTL support with automatic expiration
+ * - Tag-based cache invalidation
+ * - LRU eviction for memory management
+ * - Bulk operations (mget, mset)
+ * - Pattern-based deletion
+ * - Cache statistics and monitoring
  * - Familiar SQL interface
- * - Transactions support
- * - No memory spikes
- * 
- * Trade-offs:
- * - Slightly slower than Redis for reads
- * - Not distributed (single database)
- * - Requires PostgreSQL tuning for optimal performance
+ * - Transaction support
+ * - Predictable memory usage
  */
 
 import { query } from '../db/connection.js';
@@ -26,7 +25,7 @@ const DEFAULT_TTL = 3600;
 /**
  * Set a cache entry
  * @param {string} key - Cache key
- * @param {any} value - Value to cache (will be JSON stringified)
+ * @param {any} value - Value to cache (any JSON-serializable type)
  * @param {number} ttl - Time to live in seconds (optional)
  * @param {string[]} tags - Tags for cache invalidation (optional)
  * @returns {Promise<boolean>} Success status

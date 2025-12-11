@@ -1,7 +1,7 @@
 /**
  * Cache Service Tests - PostgreSQL UNLOGGED Tables
  * 
- * Tests the new PostgreSQL-based caching system
+ * Tests the PostgreSQL-based caching system
  */
 
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';

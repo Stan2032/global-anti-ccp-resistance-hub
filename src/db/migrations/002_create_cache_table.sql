@@ -1,7 +1,7 @@
 -- ============================================================================
 -- CACHE TABLE MIGRATION
 -- ============================================================================
--- Creates UNLOGGED table for caching to replace Redis
+-- Creates UNLOGGED table for high-performance caching
 -- UNLOGGED tables don't write to WAL = much faster writes
 -- Trade-off: Data lost on crash (acceptable for cache)
 -- ============================================================================
@@ -13,12 +13,12 @@ DROP TABLE IF EXISTS cache CASCADE;
 CREATE UNLOGGED TABLE cache (
     id SERIAL PRIMARY KEY,
     key TEXT UNIQUE NOT NULL,
-    value JSONB NOT NULL,
+    value JSONB NOT NULL,           -- Stores {data: actualValue}
     inserted_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    expires_at TIMESTAMP,
-    tags TEXT[] DEFAULT '{}',
-    hit_count INTEGER DEFAULT 0,
-    last_accessed_at TIMESTAMP
+    expires_at TIMESTAMP,           -- NULL = never expires
+    tags TEXT[] DEFAULT '{}',       -- For tag-based invalidation
+    hit_count INTEGER DEFAULT 0,    -- Access tracking
+    last_accessed_at TIMESTAMP      -- LRU eviction
 );
 
 -- Create indexes for performance
@@ -115,4 +115,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON cache TO resistancehub;
 GRANT USAGE, SELECT ON SEQUENCE cache_id_seq TO resistancehub;
 
 -- Add comment
-COMMENT ON TABLE cache IS 'UNLOGGED cache table for high-performance caching (replaces Redis)';
+COMMENT ON TABLE cache IS 'UNLOGGED cache table for high-performance caching';
