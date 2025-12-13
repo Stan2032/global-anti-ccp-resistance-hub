@@ -1,0 +1,31 @@
+import React from 'react';
+import Layout from './components/layout/Layout';
+import Hero from './components/sections/Hero';
+import Introduction from './components/sections/Introduction';
+import Background from './components/sections/Background';
+import Scale from './components/sections/Scale';
+import Techniques from './components/sections/Techniques';
+import Narratives from './components/sections/Narratives';
+import Influence from './components/sections/Influence';
+import Countermeasures from './components/sections/Countermeasures';
+import Conclusion from './components/sections/Conclusion';
+import './App.css';
+
+function App() {
+  return (
+    <Layout>
+      <Hero />
+      <Introduction />
+      <Background />
+      <Scale />
+      <Techniques />
+      <Narratives />
+      <Influence />
+      <Countermeasures />
+      <Conclusion />
+    </Layout>
+  );
+}
+
+export default App;
+
