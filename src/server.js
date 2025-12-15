@@ -11,6 +11,9 @@ import logger from './utils/logger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { requestLogger } from './middleware/requestLogger.js';
 import { authenticateToken } from './middleware/auth.js';
+import { socketAuthMiddleware } from './middleware/socketAuth.js';
+import { initializeSocketService } from './services/socketService.js';
+import { handleConnection } from './sockets/handlers.js';
 
 // Load environment variables
 dotenv.config();
@@ -96,36 +99,14 @@ app.use((req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Socket.IO event handlers
-io.on('connection', (socket) => {
-  logger.info('User connected', { socketId: socket.id });
+// Initialize Socket.IO service
+initializeSocketService(io);
 
-  // Notification namespace
-  socket.on('subscribe_notifications', (userId) => {
-    socket.join(`user_${userId}`);
-    logger.info('User subscribed to notifications', { userId, socketId: socket.id });
-  });
+// Socket.IO authentication middleware
+io.use(socketAuthMiddleware);
 
-  // Message namespace
-  socket.on('subscribe_channel', (channelId) => {
-    socket.join(`channel_${channelId}`);
-    logger.info('User subscribed to channel', { channelId, socketId: socket.id });
-  });
-
-  // Campaign updates
-  socket.on('subscribe_campaign', (campaignId) => {
-    socket.join(`campaign_${campaignId}`);
-    logger.info('User subscribed to campaign', { campaignId, socketId: socket.id });
-  });
-
-  socket.on('disconnect', () => {
-    logger.info('User disconnected', { socketId: socket.id });
-  });
-
-  socket.on('error', (error) => {
-    logger.error('Socket.IO error', { socketId: socket.id, error: error.message });
-  });
-});
+// Socket.IO connection handler
+io.on('connection', handleConnection);
 
 // Make io accessible to routes
 app.set('io', io);
