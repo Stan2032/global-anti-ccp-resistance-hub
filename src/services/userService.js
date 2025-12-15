@@ -1,12 +1,12 @@
 import bcryptjs from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import { query } from '../db/connection.js';
-import { set as cacheSet, get as cacheGet, del as cacheDel } from './cacheService.js';
+// Cache removed - using direct database queries
 import logger from '../utils/logger.js';
 import { NotFoundError, ConflictError, ValidationError } from '../middleware/errorHandler.js';
 
 const BCRYPT_ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '12');
-const USER_CACHE_TTL = 3600; // 1 hour
+// Cache removed - no longer needed
 
 // ============================================================================
 // USER CREATION
@@ -70,14 +70,7 @@ export const createUser = async (userData) => {
 
 export const getUserById = async (userId) => {
   try {
-    // Try cache first
-    const cached = await cacheGet(`user:${userId}`);
-    if (cached) {
-      logger.debug('User retrieved from cache', { userId });
-      return cached;
-    }
-
-    // Query database
+    // Query database directly
     const result = await query(
       `SELECT id, email, username, first_name, last_name, avatar_url, bio, 
               location, website, organization, expertise_areas, languages,
@@ -104,9 +97,6 @@ export const getUserById = async (userId) => {
     );
 
     user.roles = rolesResult.rows.map(r => r.name);
-
-    // Cache for 1 hour
-    await cacheSet(`user:${userId}`, user, USER_CACHE_TTL);
 
     logger.debug('User retrieved from database', { userId });
     return user;
@@ -209,8 +199,6 @@ export const updateUserProfile = async (userId, profileData) => {
       throw new NotFoundError('User not found');
     }
 
-    // Invalidate cache
-    await cacheDel(`user:${userId}`);
 
     logger.info('User profile updated', { userId });
     return result.rows[0];
@@ -242,8 +230,6 @@ export const updateUserSettings = async (userId, settings) => {
       throw new NotFoundError('User not found');
     }
 
-    // Invalidate cache
-    await cacheDel(`user:${userId}`);
 
     logger.info('User settings updated', { userId });
     return result.rows[0];
@@ -300,8 +286,6 @@ export const updatePassword = async (userId, newPassword) => {
       [userId]
     );
 
-    // Invalidate cache
-    await cacheDel(`user:${userId}`);
 
     logger.info('User password updated', { userId });
     return result.rows[0];
@@ -329,8 +313,6 @@ export const markEmailVerified = async (userId) => {
       throw new NotFoundError('User not found');
     }
 
-    // Invalidate cache
-    await cacheDel(`user:${userId}`);
 
     logger.info('User email verified', { userId });
     return result.rows[0];
@@ -409,8 +391,6 @@ export const softDeleteUser = async (userId) => {
       throw new NotFoundError('User not found');
     }
 
-    // Invalidate cache
-    await cacheDel(`user:${userId}`);
 
     // Revoke all auth tokens
     await query(
