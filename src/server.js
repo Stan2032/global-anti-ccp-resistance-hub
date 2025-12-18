@@ -84,6 +84,7 @@ app.use('/api/v1/modules', (await import('./routes/modules.js')).default);
 app.use('/api/v1/notifications', (await import('./routes/notifications.js')).default);
 app.use('/api/v1/statistics', (await import('./routes/statistics.js')).default);
 app.use('/api/v1/search', (await import('./routes/search.js')).default);
+app.use('/api/v1/feeds', (await import('./routes/feeds.js')).default);
 
 // 404 handler
 app.use((req, res) => {
