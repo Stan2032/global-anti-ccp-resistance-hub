@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import IPACMembers from '../components/IPACMembers';
 import { Users, Search, ExternalLink, Globe, MapPin, Calendar, CheckCircle, Filter } from 'lucide-react';
 
 // Comprehensive organization database
@@ -536,6 +537,11 @@ const ResistanceDirectory = () => {
         <p className="text-slate-500 text-xs mt-1">
           All organizations are independently verified • Click an organization to view details
         </p>
+      </div>
+
+      {/* IPAC Members */}
+      <div className="mt-8">
+        <IPACMembers />
       </div>
 
       {/* Disclaimer */}
