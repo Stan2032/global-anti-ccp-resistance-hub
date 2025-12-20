@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useLiveFeeds, useStatistics } from '../hooks/useLiveData';
+import { useStatistics } from '../hooks/useLiveData';
 import NewsAggregator from '../components/NewsAggregator';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 
 const Dashboard = () => {
-  const { feeds, loading: feedsLoading } = useLiveFeeds(300000);
   const { stats, loading: statsLoading } = useStatistics();
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -14,21 +13,6 @@ const Dashboard = () => {
     const interval = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(interval);
   }, []);
-
-  // Get top 5 most relevant feeds
-  const topFeeds = feeds.slice(0, 5);
-
-  // Format relative time
-  const formatTime = (dateStr) => {
-    const date = new Date(dateStr);
-    const now = new Date();
-    const diffMs = now - date;
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMs / 3600000);
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    return date.toLocaleDateString();
-  };
 
   const statCards = [
     {
@@ -178,56 +162,52 @@ const Dashboard = () => {
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Live Feed */}
+                {/* Intelligence Preview */}
         <div className="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-xl">
           <div className="p-4 border-b border-slate-700 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-lg">📰</span>
-              <h2 className="font-semibold text-white">Live Intelligence Feed</h2>
+              <span className="text-lg">📡</span>
+              <h2 className="font-semibold text-white">Intelligence Overview</h2>
             </div>
-            <div className="flex items-center gap-2">
+            <Link to="/intelligence" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-xs text-green-400">LIVE</span>
-            </div>
+              <span>View Live Feeds →</span>
+            </Link>
           </div>
-          <div className="p-4 space-y-4 max-h-96 overflow-y-auto">
-            {feedsLoading && topFeeds.length === 0 ? (
-              <div className="space-y-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="animate-pulse">
-                    <div className="h-4 bg-slate-700 rounded w-3/4 mb-2"></div>
-                    <div className="h-3 bg-slate-700 rounded w-full"></div>
-                  </div>
-                ))}
+          <div className="p-4">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-400">4</div>
+                <div className="text-xs text-slate-400">Verified Sources</div>
               </div>
-            ) : topFeeds.length > 0 ? (
-              topFeeds.map((feed) => (
-                <a 
-                  key={feed.id}
-                  href={feed.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-3 bg-slate-900/50 rounded-lg hover:bg-slate-700/50 transition-colors"
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="px-2 py-0.5 bg-blue-900/50 text-blue-300 text-xs rounded border border-blue-700">
-                      {feed.source.toUpperCase()}
-                    </span>
-                    <span className="text-xs text-slate-500">{formatTime(feed.pubDate)}</span>
-                    {feed.relevanceScore > 30 && (
-                      <span className="px-1.5 py-0.5 bg-red-900/50 text-red-300 text-xs rounded">HOT</span>
-                    )}
-                  </div>
-                  <h3 className="text-white font-medium text-sm line-clamp-2">{feed.title}</h3>
-                </a>
-              ))
-            ) : (
-              <p className="text-slate-400 text-center py-8">Loading live feeds...</p>
-            )}
-          </div>
-          <div className="p-4 border-t border-slate-700">
-            <Link to="/intelligence" className="text-blue-400 hover:text-blue-300 text-sm font-medium">
-              View all intelligence →
+              <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-green-400">Live</div>
+                <div className="text-xs text-slate-400">RSS Feeds</div>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
+                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <span className="text-sm text-slate-300">ASPI - Australian Strategic Policy Institute</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
+                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <span className="text-sm text-slate-300">ICIJ - Investigative Journalists</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
+                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <span className="text-sm text-slate-300">Radio Free Asia</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
+                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <span className="text-sm text-slate-300">Hong Kong Free Press</span>
+              </div>
+            </div>
+            <Link 
+              to="/intelligence" 
+              className="block w-full mt-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-lg text-sm font-medium transition-colors"
+            >
+              Access Live Intelligence Feeds
             </Link>
           </div>
         </div>
