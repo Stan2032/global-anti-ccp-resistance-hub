@@ -1,0 +1,57 @@
+{
+  "name": "resistance-hub-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Global Anti-CCP Resistance Hub",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --coverage --forceExit",
+    "test:watch": "jest --watch",
+    "test:auth": "jest src/tests/auth.test.js --forceExit",
+    "lint": "eslint src --fix",
+    "setup-db": "node scripts/setup-db.js"
+  },
+  "keywords": [
+    "activism",
+    "resistance",
+    "anti-ccp",
+    "coordination"
+  ],
+  "author": "Resistance Hub Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-rate-limit": "^7.1.5",
+    "geoip-lite": "^1.4.7",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.9.0",
+    "pg": "^8.10.0",
+    "rss-parser": "^3.13.0",
+    "socket.io": "^4.8.1",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "type": "module"
+}
