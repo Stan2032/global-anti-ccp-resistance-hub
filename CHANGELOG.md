@@ -2,6 +2,80 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.10.0] - 2025-12-20
+
+### Accessibility Improvements
+
+#### Skip Links & Keyboard Navigation
+- Skip links for keyboard users to jump to main content and navigation
+- ARIA labels on all interactive elements (buttons, inputs, navigation)
+- Focus management utilities for modals and dialogs
+- Screen reader announcements for dynamic content
+- Accessible tabs, buttons, and progress indicators
+- Focus trap hook for modal dialogs
+- Keyboard navigation hook for list items
+
+### Educational Content Expansion
+
+#### Podcasts Section (12 shows)
+Added curated podcast directory with 12 shows across 7 categories:
+- Analysis & Commentary: Sinica Podcast, The Little Red Podcast, ChinaTalk, China in Africa
+- News & Current Events: China Unscripted, The China Project
+- Hong Kong: Hong Kong Free Press Podcast
+- Uyghur Rights: Uyghur Pulse, Xinjiang Victims Database Podcast
+- Tibet: Tibet Talks
+- Culture & Society: Laowai Talk
+- Chinese Language: Dragonfly FM
+
+Features: Featured podcasts, category filtering, episode counts, listening tips
+
+#### Research Papers Section (15 papers)
+Added academic research and reports database:
+- Genocide Documentation: Newlines Institute Genocide Report, Xinjiang Police Files, China Cables, Uyghur Tribunal Judgment
+- Transnational Repression: Safeguard Defenders 110 Report, Freedom House Reports, Bilateral Policing Agreements
+- Forced Labor: ASPI Uyghurs for Sale
+- Hong Kong: HRW NSL Analysis
+- Tibet: Tibet Action Institute Demographics Report
+- Influence Operations: ASPI Influence Toolkit, Academic Freedom Under Threat
+- Human Rights: China Tribunal Organ Harvesting
+
+Features: Citation counts, page counts, essential reading highlights, search, category filtering
+
+### Performance Optimizations
+
+#### LazyImage Component
+- Intersection observer-based lazy loading
+- Blur placeholder animation
+- Error fallback handling
+- Configurable threshold and root margin
+
+#### LazyBackground Component
+- Background image lazy loading
+- Smooth opacity transitions
+
+#### LazySection Component
+- Lazy rendering of heavy sections
+- Customizable fallback content
+
+#### Performance Utilities
+- Debounce and throttle functions
+- Memoization helper
+- Virtual scroll calculations
+- Performance measurement API wrappers
+- Resource hints (preload, prefetch, preconnect)
+- Local storage with expiration
+- Network status detection
+- Battery status detection
+- Reduced motion preference detection
+
+### Technical Changes
+- Education Center now has 9 tabs: Modules, Resources, Research, Books, Documentaries, Podcasts, Stories, Glossary, Timeline
+- Main navigation has ARIA role="navigation" and aria-label
+- Search input has proper aria-label
+- Notification button has descriptive aria-label
+
+---
+
 ## [2.3.0] - 2025-12-20
 
 ### Major Features Added
