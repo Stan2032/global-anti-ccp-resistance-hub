@@ -2,6 +2,43 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.13.0] - 2025-12-20
+
+### Content & Interactive Features
+
+#### Global Influence Map
+- Interactive regional map showing CCP activities worldwide
+- 6 regions: North America, Europe, Asia-Pacific, Africa, Latin America, Middle East
+- Statistics: Police stations, Confucius Institutes, repression cases, influence level
+- Category filters: All, Police Stations, Confucius Institutes, Transnational Repression, Political Influence, Economic Coercion
+- Threat level indicators (Critical, High, Moderate, Low)
+- Recent incidents timeline for each region
+- Global totals dashboard
+- Added to Regional Threats page
+
+#### Glossary of Terms
+- 21 key terms with definitions
+- Categories: Organizations, Policies & Laws, Regions, CCP Tactics, Key Figures, Concepts
+- Search functionality
+- Importance levels (Critical, High, Medium)
+- Related terms with clickable links
+- Integrated into Education Center
+
+#### FAQ Section
+- 20 frequently asked questions
+- Categories: Getting Started, Safety & Security, Taking Action, Understanding the Issues
+- Expandable accordion interface
+- Links to relevant resources
+- Added as new tab in Education Center
+
+### Technical Additions
+- GlobalInfluenceMap component on Regional Threats page
+- Glossary component with search and filtering
+- FAQ component with accordion UI
+- Education Center now has 10 tabs
+
+---
+
 ## [2.12.0] - 2025-12-20
 
 ### User Experience Enhancements

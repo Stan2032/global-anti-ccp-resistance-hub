@@ -8,6 +8,7 @@ import HongKongStatus from '../components/HongKongStatus';
 import XinjiangStatus from '../components/XinjiangStatus';
 import TibetStatus from '../components/TibetStatus';
 import ChinaTechThreats from '../components/ChinaTechThreats';
+import GlobalInfluenceMap from '../components/GlobalInfluenceMap';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -403,6 +404,11 @@ const RegionalThreats = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Global Influence Map */}
+      <div className="mt-8">
+        <GlobalInfluenceMap />
       </div>
     </div>
   );
