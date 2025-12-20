@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShareButtons from '../components/ShareButtons';
 import PetitionLinks from '../components/PetitionLinks';
+import BoycottList from '../components/BoycottList';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -432,6 +433,11 @@ const TakeAction = () => {
       {/* Petitions Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
         <PetitionLinks />
+      </div>
+
+      {/* Boycott List Section */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+        <BoycottList />
       </div>
 
       {/* Share Section */}
