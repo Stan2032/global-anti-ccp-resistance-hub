@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
 import { SocketProvider } from './contexts/SocketContext'
 
 // Error Boundary Component
@@ -132,9 +132,9 @@ const MobileNav = ({ isOpen, onClose }) => {
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
             return (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 onClick={onClose}
                 className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                   isActive
@@ -144,7 +144,7 @@ const MobileNav = ({ isOpen, onClose }) => {
               >
                 <span className="mr-3 text-xl">{item.icon}</span>
                 {item.name}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -155,13 +155,13 @@ const MobileNav = ({ isOpen, onClose }) => {
             Urgent Campaigns
           </h3>
           <div className="space-y-2">
-            <a href="/campaigns/free-jimmy-lai" className="flex items-center px-4 py-3 rounded-lg bg-red-900/30 border border-red-700 text-red-300 hover:bg-red-900/50">
+            <Link to="/campaigns" className="flex items-center px-4 py-3 rounded-lg bg-red-900/30 border border-red-700 text-red-300 hover:bg-red-900/50">
               <span className="mr-3">❤️</span>
               <div>
                 <div className="font-medium">Free Jimmy Lai</div>
                 <div className="text-xs text-red-400">URGENT - Life sentence</div>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
         
@@ -249,9 +249,9 @@ const DesktopSidebar = () => {
               {section.items.map((item) => {
                 const isActive = location.pathname === item.href;
                 return (
-                  <a
+                  <Link
                     key={item.href}
-                    href={item.href}
+                    to={item.href}
                     className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
@@ -260,7 +260,7 @@ const DesktopSidebar = () => {
                   >
                     <span className="mr-3 text-lg">{item.icon}</span>
                     {item.name}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -275,9 +275,9 @@ const DesktopSidebar = () => {
             <span className="ml-auto px-1.5 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">URGENT</span>
           </div>
           <p className="text-xs text-red-400">Sentenced to life - Dec 15, 2025</p>
-          <a href="/campaigns/free-jimmy-lai" className="mt-2 block text-center py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition-colors">
+          <Link to="/campaigns" className="mt-2 block text-center py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition-colors">
             Take Action
-          </a>
+          </Link>
         </div>
       </nav>
       
