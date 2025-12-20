@@ -9,16 +9,19 @@ const THREATS_DATA = {
     threatLevel: 'SEVERE',
     summary: 'Taiwan faces intensifying military, economic, and diplomatic pressure from the PRC. The PLA continues to build capabilities for a potential invasion while conducting regular military exercises and incursions into Taiwan\'s ADIZ.',
     keyDevelopments: [
-      'Largest naval buildup in East Asian waters in history (December 2025)',
-      'Over 100 naval vessels spotted in South China Sea',
-      'Electromagnetic warfare zone established in South China Sea',
-      'Continued ADIZ incursions averaging 10+ aircraft daily',
-      'Regular "Joint Sword" military exercises simulating blockade'
+      'PLA acquiring Russian airborne equipment for Taiwan invasion (Dec 2025 ISW)',
+      'New "Jiutian" drone carrier can deploy 100 attack drones with 7,000km range',
+      'US $11.1B arms package to Taiwan (Dec 18, 2025)',
+      'China threatens "forceful measures" in response to US arms sales',
+      '2026 NDAA signed with $900.6B defense spending, Taiwan focus',
+      'Taiwan Navy seeking 1,500 unmanned surface vessels for coastal defense',
+      'Continued ADIZ incursions averaging 10+ aircraft daily'
     ],
     scenarios: [
       { name: 'Quarantine/Blockade', probability: 'MEDIUM-HIGH', description: 'Naval and air blockade to strangle Taiwan economically' },
       { name: 'Gray Zone Escalation', probability: 'HIGH', description: 'Continued escalation of ADIZ incursions, cyber attacks' },
-      { name: 'Full Invasion', probability: 'LOW-MEDIUM', description: 'Full-scale amphibious invasion' },
+      { name: 'Airborne Assault', probability: 'MEDIUM', description: 'PLA Airborne Corps seizes airports with Russian equipment' },
+      { name: 'Full Invasion', probability: 'LOW-MEDIUM', description: 'Full-scale amphibious invasion with airborne support' },
       { name: 'Decapitation Strike', probability: 'LOW', description: 'Precision strikes on leadership' }
     ],
     defenseSpending: '$59 billion (2025)',
