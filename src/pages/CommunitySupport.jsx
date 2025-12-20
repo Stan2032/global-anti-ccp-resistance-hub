@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import EventCalendar from '../components/EventCalendar'
 import DiasporaSupport from '../components/DiasporaSupport'
+import ReportSighting from '../components/ReportSighting'
 import { 
   Heart, 
   Users, 
@@ -321,7 +322,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'diaspora', 'calendar'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -560,6 +561,11 @@ const CommunitySupport = () => {
             </motion.div>
           </div>
         </div>
+      )}
+
+      {/* Report Tab */}
+      {activeTab === 'report' && (
+        <ReportSighting />
       )}
 
       {/* Diaspora Tab */}
