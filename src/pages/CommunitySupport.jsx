@@ -6,6 +6,7 @@ import ReportSighting from '../components/ReportSighting'
 import SurvivorStories from '../components/SurvivorStories'
 import SolidarityWall from '../components/SolidarityWall'
 import VolunteerSignup from '../components/VolunteerSignup'
+import EventRSVP from '../components/EventRSVP'
 import { 
   Heart, 
   Users, 
@@ -325,7 +326,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'solidarity', 'signup'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'solidarity', 'signup', 'events'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -594,6 +595,10 @@ const CommunitySupport = () => {
       {/* Volunteer Signup Tab */}
       {activeTab === 'signup' && (
         <VolunteerSignup />
+      )}
+
+      {activeTab === 'events' && (
+        <EventRSVP />
       )}
     </div>
   )

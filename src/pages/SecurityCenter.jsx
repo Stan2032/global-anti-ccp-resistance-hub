@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import IncidentReportForm from '../components/IncidentReportForm'
 import SecurityQuiz from '../components/SecurityQuiz'
+import SafetyChecklist from '../components/SafetyChecklist'
 import { 
   Shield, 
   Lock, 
@@ -319,7 +320,7 @@ const SecurityCenter = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700 overflow-x-auto">
-        {['assessment', 'report', 'tools', 'guides', 'emergency'].map((tab) => (
+        {['assessment', 'report', 'tools', 'guides', 'emergency', 'checklist'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -549,6 +550,11 @@ const SecurityCenter = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Safety Checklist Tab */}
+      {activeTab === 'checklist' && (
+        <SafetyChecklist />
       )}
     </div>
   )

@@ -2,6 +2,75 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.19.0] - 2025-12-20
+
+### New Features
+
+#### Social Media Toolkit (Take Action Page)
+- Ready-to-share content for advocacy campaigns
+- 3 pre-written Twitter/X threads:
+  - Uyghur Genocide 101 (6 tweets)
+  - Hong Kong Crackdown Explained (6 tweets)
+  - CCP Overseas Police Stations (6 tweets)
+- 5 single posts for quick sharing
+- 5 hashtag sets by topic (Uyghur, Hong Kong, Tibet, Taiwan, General)
+- 7 key dates calendar with hashtags
+- Copy-to-clipboard functionality
+- Social media tips for maximum impact
+
+#### Event RSVP System (Community Page)
+- Track and RSVP to upcoming events
+- 6 events including:
+  - Global Day of Action for Jimmy Lai
+  - Uyghur Genocide Awareness Webinar
+  - Tibetan Uprising Day Commemoration
+  - Hong Kong Watch Parliamentary Briefing
+  - Tiananmen Square Vigil
+  - Forced Labor Supply Chain Workshop
+- RSVP tracking with localStorage persistence
+- Set reminders for events
+- Add to Google Calendar integration
+- Filter by upcoming, RSVPs, and reminders
+
+#### Disinformation Tracker (Education Center)
+- Track and debunk CCP propaganda
+- 10 documented false claims with rebuttals:
+  - "Vocational training centers" myth
+  - Hong Kong protesters as "terrorists"
+  - Taiwan "always part of China"
+  - Tibet "peaceful liberation"
+  - COVID-19 origin conspiracy
+  - Police stations as "service centers"
+  - Jimmy Lai as "criminal"
+  - Birth rate decline "voluntary"
+  - Dalai Lama smears
+  - "Western bias" deflection
+- Severity ratings (Critical, High, Medium)
+- Source citations and debunking references
+- Tips for countering disinformation
+
+#### Personal Safety Checklist (Security Center)
+- Comprehensive security checklist for activists
+- 42 items across 6 categories:
+  - Digital Security (10 items)
+  - Communication (6 items)
+  - Physical Safety (6 items)
+  - Travel Safety (6 items)
+  - Legal Preparation (5 items)
+  - Emergency Plan (6 items)
+- Priority levels (Critical, High, Medium)
+- Progress tracking with localStorage
+- Resource links for each item
+- Emergency contacts section
+
+### Technical Additions
+- SocialMediaToolkit component on Take Action page
+- EventRSVP component on Community page (Events tab)
+- DisinfoTracker component on Education page (Disinfo tab)
+- SafetyChecklist component on Security page (Checklist tab)
+
+---
+
 ## [2.18.0] - 2025-12-20
 
 ### New Features
