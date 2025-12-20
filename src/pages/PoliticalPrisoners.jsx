@@ -9,11 +9,11 @@ const PRISONERS_DATA = [
     status: 'IMPRISONED',
     location: 'Stanley Prison, Hong Kong',
     charges: ['National Security Law - Collusion with Foreign Forces', 'Sedition'],
-    sentence: 'Life imprisonment (potential)',
+    sentence: 'GUILTY - Awaiting sentencing (Dec 15, 2025)',
     background: 'Founder of Apple Daily newspaper, pro-democracy media mogul',
     arrestDate: '2020-08-10',
     urgency: 'CRITICAL',
-    age: 77,
+    age: 78,
     healthConcerns: true,
     internationalAttention: 'HIGH',
     image: '/images/prisoners/jimmy-lai.jpg',
@@ -88,6 +88,157 @@ const PRISONERS_DATA = [
     causeOfDeath: 'Liver cancer - denied medical parole until final days',
     legacy: 'Symbol of peaceful resistance to CCP authoritarianism',
     image: '/images/prisoners/liu-xiaobo.jpg'
+  },
+  {
+    name: 'Tonyee Chow Hang-tung',
+    chineseName: '邹幸彤',
+    status: 'IMPRISONED',
+    location: 'Hong Kong',
+    charges: ['National Security Law - Subversion', 'Inciting Subversion'],
+    sentence: '22 months + awaiting trial',
+    background: 'Human rights lawyer, former vice-chairwoman of Hong Kong Alliance, organized Tiananmen vigils',
+    arrestDate: '2021-09-08',
+    urgency: 'CRITICAL',
+    healthConcerns: false,
+    internationalAttention: 'HIGH',
+    image: '/images/prisoners/chow-hang-tung.jpg'
+  },
+  {
+    name: 'Xu Zhiyong',
+    chineseName: '许志永',
+    status: 'IMPRISONED',
+    location: 'Shandong Province',
+    charges: ['Subversion of State Power'],
+    sentence: '14 years',
+    background: 'Legal scholar, founder of New Citizens Movement advocating for civil rights and anti-corruption',
+    arrestDate: '2020-02-15',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    internationalAttention: 'HIGH',
+    image: '/images/prisoners/xu-zhiyong.jpg'
+  },
+  {
+    name: 'Ding Jiaxi',
+    chineseName: '丁家喜',
+    status: 'IMPRISONED',
+    location: 'Shandong Province',
+    charges: ['Subversion of State Power'],
+    sentence: '12 years',
+    background: 'Human rights lawyer, New Citizens Movement activist, defended land rights cases',
+    arrestDate: '2019-12-26',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    tortureDocumented: true,
+    image: '/images/prisoners/ding-jiaxi.jpg'
+  },
+  {
+    name: 'Niu Tengyu',
+    chineseName: '牛腾宇',
+    status: 'IMPRISONED',
+    location: 'Unknown',
+    charges: ['Picking Quarrels', 'Inciting Subversion'],
+    sentence: '14 years',
+    background: 'Young programmer who created software to bypass Great Firewall, shared censored COVID information',
+    arrestDate: '2020-06-01',
+    urgency: 'CRITICAL',
+    age: 29,
+    healthConcerns: true,
+    image: '/images/prisoners/niu-tengyu.jpg'
+  },
+  {
+    name: 'Xu Na',
+    chineseName: '许那',
+    status: 'IMPRISONED',
+    location: 'Beijing',
+    charges: ['Using Cult to Undermine Law'],
+    sentence: '8 years',
+    background: 'Falun Gong practitioner, artist, previously imprisoned for 5 years',
+    arrestDate: '2020-07-19',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    previousDetention: true,
+    image: '/images/prisoners/xu-na.jpg'
+  },
+  {
+    name: 'Meryem Emet',
+    chineseName: '麦尔耶姆·艾麦提',
+    status: 'IMPRISONED',
+    location: 'Xinjiang',
+    charges: ['Separatism'],
+    sentence: '20 years',
+    background: 'Uyghur woman detained for alleged association with relatives abroad',
+    arrestDate: '2018-01-01',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    internationalAttention: 'MEDIUM',
+    image: '/images/prisoners/meryem-emet.jpg'
+  },
+  {
+    name: 'Helchem Pazil',
+    chineseName: '海力其木·帕孜力',
+    status: 'IMPRISONED',
+    location: 'Xinjiang',
+    charges: ['Separatism', 'Religious Extremism'],
+    sentence: '17 years',
+    background: 'Uyghur religious figure detained during mass internment campaign',
+    arrestDate: '2017-01-01',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    image: '/images/prisoners/helchem-pazil.jpg'
+  },
+  {
+    name: 'Lobsang Trinle',
+    chineseName: '洛桑赤列',
+    status: 'IMPRISONED',
+    location: 'Tibet',
+    charges: ['Inciting Separatism'],
+    sentence: '5 years',
+    background: 'Tibetan monk detained for possessing photos of Dalai Lama',
+    arrestDate: '2019-01-01',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    image: '/images/prisoners/lobsang-trinle.jpg'
+  },
+  {
+    name: 'Chang Weiping',
+    chineseName: '常玮平',
+    status: 'IMPRISONED',
+    location: 'Shaanxi Province',
+    charges: ['Subversion of State Power'],
+    sentence: 'Pretrial detention since 2020',
+    background: 'Human rights lawyer who documented torture, part of 709 crackdown',
+    arrestDate: '2020-10-22',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    tortureDocumented: true,
+    image: '/images/prisoners/chang-weiping.jpg'
+  },
+  {
+    name: 'Li Yuhan',
+    chineseName: '李昱函',
+    status: 'IMPRISONED',
+    location: 'Shenyang, Liaoning',
+    charges: ['Picking Quarrels and Provoking Trouble'],
+    sentence: 'Awaiting sentencing',
+    background: 'Human rights lawyer who defended Falun Gong practitioners and 709 lawyers',
+    arrestDate: '2017-10-09',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    age: 76,
+    image: '/images/prisoners/li-yuhan.jpg'
+  },
+  {
+    name: 'Hao Zhiwei',
+    chineseName: '郝志伟',
+    status: 'IMPRISONED',
+    location: 'Henan Province',
+    charges: ['Organizing and Using Cult to Undermine Law'],
+    sentence: '8 years',
+    background: 'Christian house church leader detained for religious activities',
+    arrestDate: '2019-01-01',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    image: '/images/prisoners/hao-zhiwei.jpg'
   }
 ];
 
@@ -364,10 +515,10 @@ const PoliticalPrisoners = () => {
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
             </svg>
             <div>
-              <h3 className="text-red-400 font-semibold">Urgent: Jimmy Lai Trial</h3>
+              <h3 className="text-red-400 font-semibold">BREAKING: Jimmy Lai Found GUILTY (Dec 15, 2025)</h3>
               <p className="text-gray-300 text-sm mt-1">
-                77-year-old media mogul Jimmy Lai faces potential life imprisonment under Hong Kong's National Security Law. 
-                His case is a critical test of press freedom and the "one country, two systems" promise.
+                78-year-old media mogul Jimmy Lai has been convicted of sedition and collusion with foreign forces under Hong Kong's National Security Law. 
+                He faces life imprisonment. His case marks the death of press freedom in Hong Kong.
               </p>
             </div>
           </div>
