@@ -11,7 +11,7 @@
 
 ### High Priority
 - [ ] **Multilingual Support**: Add translations for key pages (Chinese Traditional, Uyghur, Tibetan, Vietnamese, Korean, Japanese)
-- [ ] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation
+- [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
 - [ ] **Accessibility Audit**: Run automated accessibility tests and fix any WCAG 2.1 violations
 - [ ] **Performance Optimization**: Implement code splitting for large components, optimize images
 - [ ] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines
@@ -34,10 +34,10 @@
 
 ### New Features
 - [x] **Interactive Timeline**: Zoomable, filterable timeline of CCP human rights abuses since 1989 ✅
-- [ ] **Case Study Deep Dives**: Detailed pages for major cases (Jimmy Lai, Ilham Tohti, Panchen Lama)
+- [x] **Case Study Deep Dives**: Detailed pages for major cases (Jimmy Lai, Ilham Tohti, Panchen Lama) ✅
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
 - [ ] **Podcast Player**: In-app podcast player for recommended shows
-- [ ] **Reading Progress Tracker**: Track books and articles read in Education Center
+- [x] **Reading Progress Tracker**: Track books and articles read in Education Center ✅
 - [ ] **Campaign Progress Tracker**: Show real-time progress on petitions and campaigns
 - [ ] **Event Map**: Interactive map showing upcoming events worldwide
 - [ ] **Diaspora Directory**: Searchable directory of diaspora organizations by location
@@ -47,7 +47,7 @@
 ### Content Expansion
 - [ ] **Uyghur Forced Labor Database**: Comprehensive list of companies and products
 - [ ] **Confucius Institute Tracker**: Map and status of all CIs worldwide
-- [ ] **CCP Officials Database**: Profiles of key officials involved in repression
+- [x] **CCP Officials Database**: Profiles of key officials involved in repression ✅
 - [ ] **Detention Facility Database**: Satellite imagery and documentation
 - [ ] **Media Bias Guide**: Detailed analysis of media coverage of China
 - [ ] **Historical Documents Archive**: Key speeches, laws, leaked documents
@@ -257,6 +257,10 @@
 3. News Feed Integration
 
 ### Recently Completed
+- ✅ PWA Install Banner with iOS/Android support
+- ✅ Case Study Deep Dives (Jimmy Lai, Ilham Tohti, Panchen Lama)
+- ✅ Reading Progress Tracker with achievements
+- ✅ CCP Officials Database (8 officials, sanctions tracking)
 - ✅ Interactive Timeline with 21 key events (1989-2025)
 - ✅ December 2025 political prisoner updates (Jimmy Lai verdict, Xin Ruoyu, Guan Heng)
 - ✅ Enhanced SEO with structured data schemas

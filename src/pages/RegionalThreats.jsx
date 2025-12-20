@@ -10,6 +10,7 @@ import TibetStatus from '../components/TibetStatus';
 import ChinaTechThreats from '../components/ChinaTechThreats';
 import GlobalInfluenceMap from '../components/GlobalInfluenceMap';
 import RegionalIssues from '../components/RegionalIssues';
+import DetentionFacilities from '../components/DetentionFacilities';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -415,6 +416,11 @@ const RegionalThreats = () => {
       {/* Other Persecuted Groups */}
       <div className="mb-8">
         <RegionalIssues />
+      </div>
+
+      {/* Detention Facility Database */}
+      <div className="mb-8">
+        <DetentionFacilities />
       </div>
     </div>
   );

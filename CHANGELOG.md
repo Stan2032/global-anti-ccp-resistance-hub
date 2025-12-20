@@ -2,6 +2,27 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.24.0] - 2025-12-20
+
+### Added
+- **Event Map**: Interactive global map showing upcoming events worldwide with 8 events across 6 cities (London, Toronto, Berlin, New York, Taipei, Melbourne)
+- **Detention Facility Database**: Comprehensive database of 12 documented detention facilities with satellite imagery links, capacity estimates, and evidence sources
+- **Memorial Wall**: Tribute to victims of CCP repression with 15 documented cases, candle lighting feature, and memorial resources
+- **Campaign Progress Tracker**: Track 5 major advocacy campaigns with milestones, metrics, and action items:
+  - Free Jimmy Lai (50% complete)
+  - End Uyghur Forced Labor (40% complete)
+  - Close Overseas Police Stations (80% complete)
+  - Support Hong Kong 47 (80% complete)
+  - Recognize Uyghur Genocide (80% complete)
+
+### Enhanced
+- Community page now has 11 tabs including new Events and Map tabs
+- Political Prisoners page now includes Memorial Wall
+- Regional Threats page now includes Detention Facility Database
+- Take Action page now includes Campaign Progress Tracker
+
+---
+
 ## [2.23.0] - 2025-12-20
 
 ### Added

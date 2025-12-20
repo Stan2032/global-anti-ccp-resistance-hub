@@ -14,6 +14,7 @@ import DonationGuide from '../components/DonationGuide';
 import LetterCampaign from '../components/LetterCampaign';
 import SocialMediaToolkit from '../components/SocialMediaToolkit';
 import PetitionGenerator from '../components/PetitionGenerator';
+import CampaignProgress from '../components/CampaignProgress';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -504,6 +505,11 @@ const TakeAction = () => {
       {/* Petition Generator */}
       <div>
         <PetitionGenerator />
+      </div>
+
+      {/* Campaign Progress Tracker */}
+      <div className="mt-8">
+        <CampaignProgress />
       </div>
 
       {/* Share Section */}

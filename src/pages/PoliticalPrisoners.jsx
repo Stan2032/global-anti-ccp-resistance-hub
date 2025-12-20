@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
+import MemorialWall from '../components/MemorialWall';
 
 // Political Prisoners Data (embedded for static build)
 const PRISONERS_DATA = [
@@ -1092,6 +1093,11 @@ const PoliticalPrisoners = () => {
         {/* Case Study Deep Dives */}
         <div className="mt-12">
           <CaseStudies />
+        </div>
+
+        {/* Memorial Wall */}
+        <div className="mb-8">
+          <MemorialWall />
         </div>
         
         {/* Resources */}
