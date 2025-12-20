@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ShareButtons from '../components/ShareButtons';
 import PetitionLinks from '../components/PetitionLinks';
 import BoycottList from '../components/BoycottList';
+import ForcedLaborSupplyChain from '../components/ForcedLaborSupplyChain';
 import ContactRepresentatives from '../components/ContactRepresentatives';
 
 const TakeAction = () => {
@@ -444,6 +445,11 @@ const TakeAction = () => {
       {/* Boycott List Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
         <BoycottList />
+      </div>
+
+      {/* Supply Chain Section */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+        <ForcedLaborSupplyChain />
       </div>
 
       {/* Share Section */}
