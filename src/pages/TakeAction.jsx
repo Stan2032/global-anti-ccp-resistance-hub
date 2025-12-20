@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ShareButtons from '../components/ShareButtons';
+import PetitionLinks from '../components/PetitionLinks';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -425,6 +427,26 @@ const TakeAction = () => {
             <p className="text-sm text-slate-400">24/7 emergency line for HRDs</p>
           </a>
         </div>
+      </div>
+
+      {/* Petitions Section */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+        <PetitionLinks />
+      </div>
+
+      {/* Share Section */}
+      <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
+        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <span>📣</span> Spread the Word
+        </h2>
+        <p className="text-slate-400 mb-4">
+          Share this page with your network. Every share helps raise awareness about CCP human rights abuses.
+        </p>
+        <ShareButtons 
+          title="Take Action Against CCP Authoritarianism"
+          text="Join the global movement against CCP human rights abuses. Here's how you can help:"
+          hashtags={['FreeTibet', 'FreeHongKong', 'FreeUyghurs', 'StandWithTaiwan', 'FreeJimmyLai']}
+        />
       </div>
     </div>
   );
