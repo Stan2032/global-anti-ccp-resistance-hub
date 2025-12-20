@@ -1,8 +1,11 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
 import { SocketProvider } from './contexts/SocketContext'
+import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
+import SearchWrapper, { SearchButton } from './components/SearchWrapper'
+import GlobalSearch from './components/GlobalSearch'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -307,12 +310,25 @@ const DesktopSidebar = () => {
 // Main App Layout
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  // Global keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(prev => !prev);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -336,14 +352,10 @@ function AppLayout() {
         {/* Desktop Header */}
         <header className="hidden lg:flex items-center justify-between h-16 px-8 bg-slate-800/50 border-b border-slate-700/50 sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">
-            <input 
-              type="text" 
-              placeholder="Search organizations, campaigns, documents..."
-              aria-label="Search organizations, campaigns, and documents"
-              className="w-96 px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <SearchButton onClick={() => setSearchOpen(true)} className="w-80" />
           </div>
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <button 
               className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg relative"
               aria-label="Notifications - new alerts available"
@@ -392,6 +404,9 @@ function AppLayout() {
           </Suspense>
         </div>
       </main>
+      
+      {/* Global Search Modal */}
+      <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
@@ -402,13 +417,15 @@ function App() {
   
   return (
     <ErrorBoundary>
-      <LanguageProvider>
-        <SocketProvider>
-          <Router basename={basename}>
-            <AppLayout />
-          </Router>
-        </SocketProvider>
-      </LanguageProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <SocketProvider>
+            <Router basename={basename}>
+              <AppLayout />
+            </Router>
+          </SocketProvider>
+        </LanguageProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

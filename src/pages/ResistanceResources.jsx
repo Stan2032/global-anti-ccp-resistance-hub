@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import DataExport from '../components/DataExport';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -248,6 +249,9 @@ const ResistanceResources = () => {
           ))}
         </div>
       </div>
+
+      {/* Data Export Section */}
+      <DataExport />
 
       {/* Footer note */}
       <div className="text-center text-slate-500 text-sm">
