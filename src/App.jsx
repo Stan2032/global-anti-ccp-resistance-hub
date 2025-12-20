@@ -382,10 +382,13 @@ function AppLayout() {
 }
 
 function App() {
+  // Use basename for GitHub Pages deployment
+  const basename = import.meta.env.BASE_URL || '/';
+  
   return (
     <ErrorBoundary>
       <SocketProvider>
-        <Router>
+        <Router basename={basename}>
           <AppLayout />
         </Router>
       </SocketProvider>
