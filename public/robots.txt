@@ -1,0 +1,14 @@
+# Global Anti-CCP Resistance Hub
+# https://stan2032.github.io/global-anti-ccp-resistance-hub/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://stan2032.github.io/global-anti-ccp-resistance-hub/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block sensitive paths (none currently)
+# Disallow: /admin/
