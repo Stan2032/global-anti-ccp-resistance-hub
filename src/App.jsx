@@ -1,6 +1,7 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
 import { SocketProvider } from './contexts/SocketContext'
+import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -90,6 +91,7 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
       </div>
       
       <div className="flex items-center space-x-2">
+        <LanguageSelector />
         <span className="px-2 py-1 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
           SECURE
         </span>
@@ -343,6 +345,7 @@ function AppLayout() {
               </svg>
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
+            <LanguageSelector />
             <span className="px-3 py-1.5 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
               🔒 SECURE
             </span>
@@ -391,11 +394,13 @@ function App() {
   
   return (
     <ErrorBoundary>
-      <SocketProvider>
-        <Router basename={basename}>
-          <AppLayout />
-        </Router>
-      </SocketProvider>
+      <LanguageProvider>
+        <SocketProvider>
+          <Router basename={basename}>
+            <AppLayout />
+          </Router>
+        </SocketProvider>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }
