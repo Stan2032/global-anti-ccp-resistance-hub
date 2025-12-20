@@ -575,7 +575,7 @@ const PoliticalPrisoners = () => {
               <p className="text-gray-400 text-sm">50,000+ prisoner records since 1980</p>
             </a>
             <a
-              href="https://shahit.biz"
+              href="https://shahit.biz/eng/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"

@@ -294,10 +294,10 @@ const Dashboard = () => {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { name: 'Tor Browser', desc: 'Anonymous browsing', icon: '🧅', url: 'https://www.torproject.org/' },
-            { name: 'Signal', desc: 'Encrypted messaging', icon: '💬', url: 'https://signal.org/' },
-            { name: 'ProtonMail', desc: 'Secure email', icon: '📧', url: 'https://proton.me/' },
-            { name: 'Tails OS', desc: 'Secure operating system', icon: '💻', url: 'https://tails.net/' },
+            { name: 'Tor Browser', desc: 'Anonymous browsing', icon: '🧅', url: 'https://www.torproject.org/download/' },
+            { name: 'Signal', desc: 'Encrypted messaging', icon: '💬', url: 'https://signal.org/download/' },
+            { name: 'ProtonMail', desc: 'Secure email', icon: '📧', url: 'https://proton.me/mail' },
+            { name: 'Tails OS', desc: 'Secure operating system', icon: '💻', url: 'https://tails.net/install/' },
           ].map((resource, index) => (
             <a
               key={index}

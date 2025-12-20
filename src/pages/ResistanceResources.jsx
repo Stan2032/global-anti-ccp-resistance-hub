@@ -9,35 +9,35 @@ const RESOURCES = {
     items: [
       {
         name: 'Tor Browser',
-        url: 'https://www.torproject.org/',
+        url: 'https://www.torproject.org/download/',
         description: 'Anonymous browsing through onion routing',
         platforms: ['Windows', 'Mac', 'Linux', 'Android'],
         freeVersion: true
       },
       {
         name: 'Signal',
-        url: 'https://signal.org/',
+        url: 'https://signal.org/download/',
         description: 'End-to-end encrypted messaging',
         platforms: ['iOS', 'Android', 'Desktop'],
         freeVersion: true
       },
       {
         name: 'ProtonVPN',
-        url: 'https://protonvpn.com/',
+        url: 'https://protonvpn.com/download',
         description: 'Swiss-based VPN with no-logs policy',
         platforms: ['All platforms'],
         freeVersion: true
       },
       {
         name: 'Tails OS',
-        url: 'https://tails.boum.org/',
+        url: 'https://tails.net/install/',
         description: 'Portable operating system for privacy',
         platforms: ['USB bootable'],
         freeVersion: true
       },
       {
         name: 'Psiphon',
-        url: 'https://psiphon.ca/',
+        url: 'https://psiphon.ca/download.html',
         description: 'Circumvention tool designed for censored regions',
         platforms: ['Windows', 'Android', 'iOS'],
         freeVersion: true
@@ -86,31 +86,31 @@ const RESOURCES = {
     items: [
       {
         name: 'Amnesty International',
-        url: 'https://www.amnesty.org/',
+        url: 'https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/china/',
         description: 'Global human rights organization',
         focus: 'Political prisoners, death penalty, torture'
       },
       {
         name: 'Human Rights Watch',
-        url: 'https://www.hrw.org/',
+        url: 'https://www.hrw.org/asia/china',
         description: 'Research and advocacy on human rights',
         focus: 'China, Xinjiang, Hong Kong'
       },
       {
         name: 'Uyghur Human Rights Project',
-        url: 'https://uhrp.org/',
+        url: 'https://uhrp.org/issues/',
         description: 'Advocacy for Uyghur rights',
         focus: 'Uyghur genocide, forced labor'
       },
       {
         name: 'Hong Kong Watch',
-        url: 'https://www.hongkongwatch.org/',
+        url: 'https://www.hongkongwatch.org/all-posts',
         description: 'Monitoring human rights in Hong Kong',
         focus: 'National Security Law, press freedom'
       },
       {
         name: 'International Campaign for Tibet',
-        url: 'https://savetibet.org/',
+        url: 'https://savetibet.org/why-tibet/',
         description: 'Advocacy for Tibetan rights',
         focus: 'Religious freedom, cultural preservation'
       },
@@ -197,25 +197,25 @@ const RESOURCES = {
     items: [
       {
         name: 'ASPI - Australian Strategic Policy Institute',
-        url: 'https://www.aspi.org.au/',
+        url: 'https://www.aspi.org.au/program/china-matters',
         description: 'Xinjiang Data Project, CCP influence research',
         focus: 'Security, technology, influence'
       },
       {
         name: 'Jamestown Foundation',
-        url: 'https://jamestown.org/',
+        url: 'https://jamestown.org/programs/cb/',
         description: 'China Brief publication',
         focus: 'Military, security, politics'
       },
       {
         name: 'Center for Strategic & International Studies',
-        url: 'https://www.csis.org/',
+        url: 'https://www.csis.org/programs/china-power-project',
         description: 'China Power Project',
         focus: 'Military capabilities, regional security'
       },
       {
         name: 'Mercator Institute for China Studies',
-        url: 'https://merics.org/',
+        url: 'https://merics.org/en/tracker',
         description: 'European China research',
         focus: 'Politics, economy, society'
       }
