@@ -4,6 +4,7 @@ import WorldThreatMap from '../components/WorldThreatMap';
 import PoliceStationsMap from '../components/PoliceStationsMap';
 import ChinaExitBan from '../components/ChinaExitBan';
 import TaiwanDefenseStatus from '../components/TaiwanDefenseStatus';
+import HongKongStatus from '../components/HongKongStatus';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -302,6 +303,11 @@ const RegionalThreats = () => {
         {/* Taiwan Defense Status */}
         <div className="mb-8">
           <TaiwanDefenseStatus />
+        </div>
+        
+        {/* Hong Kong Status */}
+        <div className="mb-8">
+          <HongKongStatus />
         </div>
         
         {/* Alert Banner */}
