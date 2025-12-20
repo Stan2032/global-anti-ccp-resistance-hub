@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Timeline from '../components/Timeline'
 import { 
   BookOpen, 
   Play, 
@@ -352,7 +353,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources'].map((tab) => (
+        {['modules', 'resources', 'timeline'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -497,6 +498,11 @@ const EducationalResources = () => {
             ))}
           </div>
         </div>
+      )}
+
+      {/* Timeline Tab */}
+      {activeTab === 'timeline' && (
+        <Timeline />
       )}
     </div>
   )
