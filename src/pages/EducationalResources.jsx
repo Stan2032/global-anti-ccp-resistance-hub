@@ -9,6 +9,7 @@ import PodcastList from '../components/PodcastList'
 import ResearchPapers from '../components/ResearchPapers'
 import FAQ from '../components/FAQ'
 import KnowledgeQuiz from '../components/KnowledgeQuiz'
+import LanguageGuide from '../components/LanguageGuide'
 import { 
   BookOpen, 
   Play, 
@@ -361,7 +362,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz'].map((tab) => (
+        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -551,6 +552,11 @@ const EducationalResources = () => {
       {/* Knowledge Quiz Tab */}
       {activeTab === 'quiz' && (
         <KnowledgeQuiz />
+      )}
+
+      {/* Language Phrases Tab */}
+      {activeTab === 'phrases' && (
+        <LanguageGuide />
       )}
     </div>
   )

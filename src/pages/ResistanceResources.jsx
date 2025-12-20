@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DataExport from '../components/DataExport';
 import Bookmarks from '../components/Bookmarks';
+import MediaGallery from '../components/MediaGallery';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -257,6 +258,11 @@ const ResistanceResources = () => {
       {/* Personal Bookmarks */}
       <div className="mt-8">
         <Bookmarks />
+      </div>
+
+      {/* Media Gallery */}
+      <div className="mt-8">
+        <MediaGallery />
       </div>
 
       {/* Footer note */}

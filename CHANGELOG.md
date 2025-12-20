@@ -2,6 +2,64 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.17.0] - 2025-12-20
+
+### New Features
+
+#### Media Gallery (Resources Page)
+- Visual documentation of resistance and repression
+- 18 items across 5 categories:
+  - Hong Kong (4): Umbrella Movement, Lennon Walls, Human Chain, Be Water
+  - Uyghur (3): East Turkestan Flag, Camp Satellite Images, Xinjiang Police Files
+  - Tibet (3): Tibetan Flag, Self-Immolation Memorials, 2008 Protests
+  - Infographics (4): Police Stations Map, Forced Labor Supply Chain, NSL Timeline, Genocide Evidence
+  - Symbols (4): Yellow Umbrella, Wilted Bauhinia, Tank Man, Blank Paper
+- Click-to-expand detail modal
+- Category filtering
+- Tags and significance explanations
+
+#### Sanctions Tracker (Take Action Page)
+- Track international sanctions on CCP officials and entities
+- 18 sanctions from 5 countries:
+  - United States (8): Chen Quanguo, Zhu Hailun, Wang Junzheng, XPCC, Hikvision, Carrie Lam, John Lee, Xinjiang Cotton
+  - United Kingdom (3): Chen Quanguo, Zhu Hailun, Xinjiang PSB
+  - European Union (3): Chen Quanguo, Wang Junzheng, XPCC
+  - Canada (2): Chen Quanguo, Wang Junzheng
+  - Australia (2): Chen Quanguo, Wang Junzheng
+- Filter by country and sanction type
+- Statistics dashboard
+- Links to official sanction lists
+
+#### Language Phrase Guide (Education Center)
+- Solidarity phrases in 5 languages:
+  - Cantonese (6 phrases): Hong Kong slogans and greetings
+  - Uyghur (6 phrases): Independence slogans and basics
+  - Tibetan (6 phrases): Free Tibet slogans and greetings
+  - Mandarin (6 phrases): Democracy concepts and slogans
+  - Taiwanese (6 phrases): Identity and solidarity phrases
+- Native script, romanization, and pronunciation
+- Click to copy functionality
+- Context and usage notes
+
+#### Volunteer Sign-up (Community Page)
+- Comprehensive volunteer application form
+- 10 skill categories (translation, research, social media, etc.)
+- 12 language options
+- 8 areas of interest
+- Availability selection
+- Security notice for sensitive situations
+- Links to partner organizations seeking volunteers
+
+### Technical Additions
+- MediaGallery component on Resources page
+- SanctionsTracker component on Take Action page
+- LanguageGuide component in Education Center (new "phrases" tab)
+- VolunteerSignup component on Community page (new "signup" tab)
+- Education Center now has 12 tabs
+- Community page now has 9 tabs
+
+---
+
 ## [2.16.0] - 2025-12-20
 
 ### New Features

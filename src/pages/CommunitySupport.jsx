@@ -5,6 +5,7 @@ import DiasporaSupport from '../components/DiasporaSupport'
 import ReportSighting from '../components/ReportSighting'
 import SurvivorStories from '../components/SurvivorStories'
 import SolidarityWall from '../components/SolidarityWall'
+import VolunteerSignup from '../components/VolunteerSignup'
 import { 
   Heart, 
   Users, 
@@ -324,7 +325,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'solidarity'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'solidarity', 'signup'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -588,6 +589,11 @@ const CommunitySupport = () => {
       {/* Solidarity Wall Tab */}
       {activeTab === 'solidarity' && (
         <SolidarityWall />
+      )}
+
+      {/* Volunteer Signup Tab */}
+      {activeTab === 'signup' && (
+        <VolunteerSignup />
       )}
     </div>
   )
