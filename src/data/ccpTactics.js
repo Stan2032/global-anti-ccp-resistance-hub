@@ -206,6 +206,141 @@ export const CCP_TACTICS = {
   }
 };
 
+// Additional detailed tactics
+export const ADVANCED_TACTICS = {
+  unitedFrontWork: {
+    title: 'United Front Work Department (UFWD)',
+    description: 'The CCP\'s "magic weapon" for political warfare - a vast network coordinating influence operations globally',
+    subTactics: [
+      {
+        name: 'Diaspora Control',
+        description: 'Controlling overseas Chinese communities through community organizations, media, and social pressure',
+        methods: [
+          'Chinese Students and Scholars Associations (CSSAs) - often funded by embassies',
+          'Hometown associations and clan organizations',
+          'Chinese-language media ownership and advertising pressure',
+          'WeChat groups monitored by CCP operatives'
+        ]
+      },
+      {
+        name: 'Political Influence',
+        description: 'Cultivating relationships with foreign politicians and parties',
+        methods: [
+          'Campaign donations through proxies and front companies',
+          'All-expenses-paid trips to China for officials',
+          'Business opportunities for politicians\' families',
+          'Targeting local and state-level politicians'
+        ]
+      },
+      {
+        name: 'Academic Infiltration',
+        description: 'Penetrating universities and research institutions',
+        methods: [
+          'Thousand Talents Program recruiting researchers',
+          'Confucius Institutes promoting self-censorship',
+          'Funding research with strings attached',
+          'Targeting scientists with dual-use technology access'
+        ]
+      },
+      {
+        name: 'Religious Manipulation',
+        description: 'Controlling religious organizations abroad',
+        methods: [
+          'Buddhist Association of China controlling overseas temples',
+          'Infiltrating Christian churches serving Chinese communities',
+          'Suppressing Falun Gong globally',
+          'Monitoring Uyghur mosques abroad'
+        ]
+      }
+    ],
+    sources: ['ASPI', 'Hoover Institution', 'Jamestown Foundation', 'US-China Economic and Security Review Commission']
+  },
+  cognitiveWarfare: {
+    title: 'Cognitive Warfare & Information Operations',
+    description: 'Systematic efforts to shape global perceptions and undermine democratic discourse',
+    subTactics: [
+      {
+        name: 'Wolf Warrior Diplomacy',
+        description: 'Aggressive diplomatic rhetoric attacking critics',
+        methods: [
+          'Diplomats using Twitter to spread disinformation',
+          'Threatening countries that criticize China',
+          'Demanding apologies for perceived slights',
+          'Coordinated attacks on journalists and researchers'
+        ]
+      },
+      {
+        name: 'Discourse Power (话语权)',
+        description: 'Shaping international narratives and terminology',
+        methods: [
+          'Redefining "human rights" to emphasize economic development',
+          'Promoting "Chinese democracy" as alternative model',
+          'Controlling narratives about Xinjiang, Tibet, Hong Kong',
+          'Influencing UN human rights mechanisms'
+        ]
+      },
+      {
+        name: 'Social Media Manipulation',
+        description: 'Coordinated inauthentic behavior on global platforms',
+        methods: [
+          'Bot networks amplifying pro-CCP content',
+          'Trolling and harassment of critics',
+          'Flooding hashtags to drown out dissent',
+          'TikTok algorithm manipulation'
+        ]
+      },
+      {
+        name: 'Media Capture',
+        description: 'Controlling or influencing foreign media outlets',
+        methods: [
+          'Buying stakes in media companies',
+          'Advertising pressure on critical outlets',
+          'Paid content agreements with newspapers',
+          'Targeting Chinese-language media worldwide'
+        ]
+      }
+    ],
+    sources: ['Stanford Internet Observatory', 'Oxford Internet Institute', 'State Department GEC Report', 'IRSEM']
+  },
+  technologicalControl: {
+    title: 'Technological Control & Export',
+    description: 'Using technology to enable surveillance and control globally',
+    subTactics: [
+      {
+        name: 'Surveillance Technology Export',
+        description: 'Selling surveillance systems to authoritarian regimes',
+        methods: [
+          'Huawei "Safe City" projects in 100+ countries',
+          'Facial recognition systems to Africa, Latin America',
+          'Training foreign police in surveillance techniques',
+          'Exporting social credit system concepts'
+        ]
+      },
+      {
+        name: 'Data Collection',
+        description: 'Harvesting data on foreign citizens',
+        methods: [
+          'TikTok data collection concerns',
+          'BGI Genomics collecting DNA data globally',
+          'Hacking of government and corporate databases',
+          'Smart device data harvesting'
+        ]
+      },
+      {
+        name: 'Critical Infrastructure',
+        description: 'Positioning in strategic technology sectors',
+        methods: [
+          '5G network equipment (Huawei, ZTE)',
+          'Port management systems',
+          'Power grid components',
+          'Undersea cable landing stations'
+        ]
+      }
+    ],
+    sources: ['ASPI', 'CSIS', 'US DoD', 'European Parliament']
+  }
+};
+
 export const COUNTER_TACTICS = {
   personalSecurity: {
     title: 'Personal Security',
