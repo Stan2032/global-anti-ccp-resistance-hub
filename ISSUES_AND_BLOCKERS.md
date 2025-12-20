@@ -4,177 +4,117 @@
 
 ---
 
-## ✅ CURRENT STATUS: Application Fully Functional
+## ✅ DEPLOYMENT STATUS: LIVE
 
-All pages tested and working:
-- Dashboard with real-time statistics
-- Political Prisoners page (6 documented cases)
-- Regional Threats page (Taiwan, SCS, ECS, BRI)
-- Resistance Resources page (VPNs, advocacy, reporting)
-- Intelligence Feeds with live/static toggle
-- All other existing pages functional
+**🌐 Live Site URL:** https://stan2032.github.io/global-anti-ccp-resistance-hub/
+
+The Global Anti-CCP Resistance Hub is now deployed and accessible worldwide via GitHub Pages.
 
 ---
 
-## 🔴 BLOCKERS (Require User Input)
+## ✅ RESOLVED ISSUES
 
-### 1. GitHub Pages Deployment
-**Status:** Blocked - needs environment configuration
-**Error:** "The deployment was rejected or didn't satisfy other protection rules"
-**Details:** 
-- GitHub Actions workflow created and pushed
-- Build step completes successfully
-- Deploy step blocked by environment protection rules
+### 1. GitHub Pages Deployment ✅ RESOLVED
+**Problem:** GitHub Actions workflow blocked by environment protection rules
+**Solution:** Added `branch-3` to allowed deployment branches in github-pages environment settings
+**Result:** Site now automatically deploys on every push to branch-3
 
-**Required Action:** User needs to:
-1. Go to repository Settings → Environments → github-pages
-2. Remove or modify protection rules
-3. Re-run the workflow from Actions tab
+### 2. React Rendering Issue ✅ RESOLVED
+**Problem:** Blank page due to undefined `securityLevel` prop in Header component
+**Solution:** Added default value handling: `securityLevel = 'standard'`
+**Result:** All pages render correctly
 
-### 2. Alternative Deployment Options
-| Platform | Status | Action Required |
-|----------|--------|-----------------|
-| GitHub Pages | Workflow ready | Configure environment |
-| Vercel | Not connected | User OAuth login |
-| Netlify | Not attempted | User OAuth login |
+### 3. Base Path Configuration ✅ RESOLVED
+**Problem:** Assets not loading on GitHub Pages due to incorrect base path
+**Solution:** Hardcoded base path `/global-anti-ccp-resistance-hub/` in vite.config.js
+**Result:** All assets load correctly
 
 ---
 
 ## 🟢 COMPLETED WORK (This Session)
 
 ### New Frontend Pages:
-- [x] **PoliticalPrisoners.jsx** - Profiles of Jimmy Lai, Ilham Tohti, Gao Zhisheng, Zhang Zhan, Gedhun Choekyi Nyima, Liu Xiaobo
-- [x] **RegionalThreats.jsx** - Taiwan invasion scenarios, SCS militarization, ECS disputes, BRI debt traps
-- [x] **ResistanceResources.jsx** - VPN tools, advocacy organizations, reporting channels, emergency contacts
+- [x] **PoliticalPrisoners.jsx** - 17 documented cases with CECC data
+- [x] **RegionalThreats.jsx** - Taiwan, SCS, ECS, BRI threat assessments
+- [x] **ResistanceResources.jsx** - VPN tools, advocacy, reporting channels
+- [x] **CCPTactics.jsx** - Comprehensive CCP tactics educational content
 
 ### Backend Enhancements:
-- [x] **ccpViolationsData.js** - Comprehensive CCP tactics documentation
-- [x] **regionalThreats.js** - Taiwan threat assessment, naval buildup data
-- [x] **intelligence.js** - New API endpoints for threats, prisoners, cyber warfare
+- [x] **ccpViolationsData.js** - Documented CCP human rights violations
+- [x] **regionalThreats.js** - Taiwan threat assessment with ISW intelligence
+- [x] **intelligence.js** - API endpoints for threats, prisoners, cyber warfare
+- [x] **feedService.js** - RSS feed aggregation with relevance scoring
 
 ### Frontend Improvements:
-- [x] Updated **App.jsx** with new routes and error boundary
-- [x] Updated **Sidebar.jsx** with Human Rights section
+- [x] Updated **App.jsx** with error boundary and lazy loading
+- [x] Updated **Sidebar.jsx** with Human Rights and Resources sections
 - [x] Fixed Header component undefined securityLevel bug
 - [x] SocketContext for singleton connections (memory leak fix)
+- [x] LiveFeed, FeedSourceSelector, FeedStats components
 
 ### Documentation:
 - [x] Comprehensive **README.md** with full project documentation
-- [x] API endpoint documentation
-- [x] Security considerations
-
-### Previous Session Work:
-- [x] RSS Feed Service (ICIJ, RFA, HKFP, ASPI)
-- [x] Simplified feed scheduler (no Redis required)
-- [x] Socket.IO real-time broadcasting
-- [x] Database migrations for feed tables
-- [x] LiveFeed, FeedSourceSelector, FeedStats components
+- [x] **WORK_SUMMARY.md** with detailed session summary
 
 ---
 
-## 📊 FEATURE SUMMARY
+## 📊 CONTENT SUMMARY
 
-### Political Prisoners Database
-| Name | Status | Urgency |
-|------|--------|---------|
-| Jimmy Lai | Imprisoned | URGENT |
-| Ilham Tohti | Imprisoned | URGENT |
-| Gao Zhisheng | Disappeared | URGENT |
-| Zhang Zhan | Imprisoned | URGENT |
-| Gedhun Choekyi Nyima | Disappeared | URGENT |
-| Liu Xiaobo | Deceased | - |
+### Political Prisoners Database (17 Profiles)
+| Name | Status | Category |
+|------|--------|----------|
+| Jimmy Lai | Imprisoned (Life) | Press Freedom |
+| Ilham Tohti | Imprisoned (Life) | Uyghur Rights |
+| Gao Zhisheng | Disappeared | Human Rights |
+| Zhang Zhan | Imprisoned | COVID Journalism |
+| Gedhun Choekyi Nyima | Disappeared | Religious Freedom |
+| Liu Xiaobo | Deceased | Democracy |
+| + 11 more from CECC database | Various | Various |
 
 ### Regional Threats Covered
-| Region | Threat Level | Status |
-|--------|--------------|--------|
-| Taiwan | SEVERE | CRITICAL |
-| South China Sea | HIGH | CONTESTED |
-| East China Sea | HIGH | CONTESTED |
-| Belt and Road | MEDIUM | EXPANDING |
+| Region | Threat Level | Latest Intel |
+|--------|--------------|--------------|
+| Taiwan | CRITICAL | Dec 19, 2025 ISW update |
+| South China Sea | HIGH | Ongoing militarization |
+| East China Sea | HIGH | Senkaku tensions |
+| Belt and Road | MEDIUM | Debt trap expansion |
 
-### Resource Categories
-- VPN & Security Tools (Tor, Signal, ProtonVPN, Tails, Psiphon)
-- Documentation Tools (eyeWitness, ProofMode, Wayback Machine)
-- Advocacy Organizations (Amnesty, HRW, UHRP, HK Watch, ICT, CHRD)
-- Reporting Channels (UN HRC, CECC, Xinjiang Victims DB, Safeguard Defenders)
-- Independent Media (RFA, HKFP, China Digital Times, Bitter Winter)
-- Research Institutions (ASPI, Jamestown, CSIS, MERICS)
+### CCP Tactics Documented
+- **Domestic Repression:** Mass surveillance, arbitrary detention, forced labor, organ harvesting, religious persecution
+- **Transnational Repression:** Operation Fox Hunt, overseas police stations, hostage diplomacy, family coercion
+- **Influence Operations:** United Front, media manipulation, academic infiltration, economic coercion
+- **Military Expansion:** Gray zone tactics, island building, ADIZ violations
 
 ---
 
-## 🔧 TECHNICAL NOTES
+## 📋 FUTURE DEVELOPMENT ROADMAP
 
-### Build & Test Commands:
-```bash
-# Frontend build
-cd /home/ubuntu/global-anti-ccp-resistance-hub
-pnpm build
+### High Priority
+1. Deploy backend with PostgreSQL for live RSS feed aggregation
+2. Expand political prisoner database to 100+ profiles
+3. Add real-time news API integration
 
-# Local testing (without base path)
-pnpm vite build --base=/
-npx serve dist -l 8080 -s
+### Medium Priority
+4. Multi-language support (Chinese, Uyghur, Tibetan)
+5. Interactive detention facility maps
+6. Mobile app development
 
-# Backend start
-cd backend
-node src/server.js
-```
-
-### Repository Status:
-- Branch: `branch-3`
-- Latest commit: `ae31287` (Add comprehensive resistance features)
-- PR #1: branch-3 → master (open)
-- All changes pushed to GitHub
-
-### Exposed URLs (temporary):
-- Frontend: https://8080-iwz6ydsx638uavegvwzx2-790435eb.manusvm.computer/
-- Backend: https://3000-iwz6ydsx638uavegvwzx2-790435eb.manusvm.computer/
-
----
-
-## 📋 FUTURE ENHANCEMENTS (Suggestions)
-
-### High Priority:
-1. Add more political prisoner profiles (expand from 6 to 50+)
-2. Integrate real-time news API (NewsAPI, GDELT)
-3. Add global search functionality
-4. Implement user accounts for saved preferences
-
-### Medium Priority:
-5. Multi-language support (Chinese, Uyghur, Tibetan)
-6. Interactive maps for detention facilities
-7. Mobile app (React Native)
+### Low Priority
+7. User accounts for saved preferences
 8. Push notifications for urgent alerts
-
-### Low Priority:
-9. Data visualization dashboards
-10. API rate limiting for public access
-11. TypeScript migration
-12. Automated testing suite
+9. TypeScript migration
 
 ---
 
-## 📞 DEPLOYMENT ASSISTANCE
+## 📞 REPOSITORY STATUS
 
-When user is ready to deploy:
-
-### Option A: GitHub Pages (Recommended)
-1. Go to https://github.com/Stan2032/global-anti-ccp-resistance-hub/settings/pages
-2. Ensure "GitHub Actions" is selected as source
-3. Go to Settings → Environments → github-pages
-4. Remove protection rules or add branch-3 to allowed branches
-5. Re-run workflow from Actions tab
-
-### Option B: Vercel
-1. Go to https://vercel.com/new
-2. Import GitHub repository
-3. Build command: `pnpm build`
-4. Output directory: `dist`
-
-### Option C: Netlify
-1. Go to https://app.netlify.com/drop
-2. Drag and drop the `dist` folder
-3. Or connect GitHub for automatic deploys
+- **Branch:** branch-3
+- **Latest commit:** 3077210 (Fix GitHub Pages base path)
+- **PR #1:** branch-3 → master (pending review)
+- **GitHub Actions:** Workflow running successfully
+- **Live URL:** https://stan2032.github.io/global-anti-ccp-resistance-hub/
 
 ---
 
 *This document tracks progress on the Global Anti-CCP Resistance Hub project.*
+*Last deployment: December 20, 2025*
