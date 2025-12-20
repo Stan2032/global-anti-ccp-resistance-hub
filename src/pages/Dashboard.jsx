@@ -7,6 +7,7 @@ import ImpactMetrics from '../components/ImpactMetrics';
 import CountdownTimer from '../components/CountdownTimer';
 import LiveStatistics from '../components/LiveStatistics';
 import EmergencyAlerts from '../components/EmergencyAlerts';
+import NewsDigest from '../components/NewsDigest';
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -325,6 +326,11 @@ const Dashboard = () => {
       {/* Live Statistics */}
       <div className="mt-8">
         <LiveStatistics />
+      </div>
+
+      {/* News Digest Subscription */}
+      <div className="mt-8">
+        <NewsDigest />
       </div>
 
       {/* Footer */}

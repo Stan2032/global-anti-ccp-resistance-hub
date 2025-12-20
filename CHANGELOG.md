@@ -2,6 +2,64 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.18.0] - 2025-12-20
+
+### New Features
+
+#### Donation Guide (Take Action Page)
+- Comprehensive guide to supporting human rights organizations
+- 17 vetted organizations across 6 categories:
+  - Advocacy (6): UHRP, CFU, HKW, CFHK, HKDC, ICT
+  - Legal Aid (2): Front Line Defenders, Lawyers for Lawyers
+  - Research (3): Safeguard Defenders, Tibet Action Institute, ASPI
+  - Independent Media (2): Radio Free Asia, Hong Kong Free Press
+  - Direct Support (2): Uyghur American Association, China Aid
+- Tax deductibility indicators
+- Impact descriptions and ratings
+- Direct donation links
+
+#### Letter Writing Campaigns (Take Action Page)
+- Ready-to-use letter templates for advocacy
+- 4 active campaigns:
+  - Free Jimmy Lai (Critical)
+  - End Uyghur Forced Labor (High)
+  - Investigate CCP Police Stations (High)
+  - Support Hong Kong 47 (High)
+- Personalization fields (name, location)
+- Copy-to-clipboard functionality
+- Background context and key asks
+- Links to find representatives
+
+#### Company Accountability Tracker (Resources Page)
+- Track corporate complicity in CCP human rights abuses
+- 19 companies across 6 categories:
+  - Fashion (5): Shein, Nike, H&M, Zara, Uniqlo
+  - Technology (4): Apple, Dell, Hikvision, TikTok
+  - Automotive (3): Volkswagen, Tesla, BMW
+  - Retail (3): Amazon, Walmart, Costco
+  - Food (2): Coca-Cola, PepsiCo
+  - Finance (2): BlackRock, MSCI
+- Status ratings: Avoid, Concern, Improving, Good
+- Evidence and source citations
+- Recommended actions
+- Search and category filtering
+
+#### News Digest Subscription (Dashboard)
+- Subscribe to curated news updates
+- Frequency options: Daily, Weekly, Breaking News Only
+- 9 topic categories to customize
+- 3 format options: Summary, Detailed, Links Only
+- Preview of recent digests
+- Alternative news sources
+
+### Technical Additions
+- DonationGuide component on Take Action page
+- LetterCampaign component on Take Action page
+- CompanyTracker component on Resources page
+- NewsDigest component on Dashboard
+
+---
+
 ## [2.17.0] - 2025-12-20
 
 ### New Features

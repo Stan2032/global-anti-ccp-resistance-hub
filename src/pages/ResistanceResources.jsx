@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import DataExport from '../components/DataExport';
 import Bookmarks from '../components/Bookmarks';
 import MediaGallery from '../components/MediaGallery';
+import CompanyTracker from '../components/CompanyTracker';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -263,6 +264,11 @@ const ResistanceResources = () => {
       {/* Media Gallery */}
       <div className="mt-8">
         <MediaGallery />
+      </div>
+
+      {/* Company Accountability Tracker */}
+      <div className="mt-8">
+        <CompanyTracker />
       </div>
 
       {/* Footer note */}

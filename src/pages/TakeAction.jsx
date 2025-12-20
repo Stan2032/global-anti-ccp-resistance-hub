@@ -10,6 +10,8 @@ import QuickFacts from '../components/QuickFacts';
 import ActionTracker from '../components/ActionTracker';
 import ActivistToolkit from '../components/ActivistToolkit';
 import SanctionsTracker from '../components/SanctionsTracker';
+import DonationGuide from '../components/DonationGuide';
+import LetterCampaign from '../components/LetterCampaign';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -480,6 +482,16 @@ const TakeAction = () => {
       {/* Sanctions Tracker */}
       <div className="mt-8">
         <SanctionsTracker />
+      </div>
+
+      {/* Donation Guide */}
+      <div className="mt-8">
+        <DonationGuide />
+      </div>
+
+      {/* Letter Writing Campaigns */}
+      <div className="mt-8">
+        <LetterCampaign />
       </div>
 
       {/* Share Section */}
