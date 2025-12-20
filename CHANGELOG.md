@@ -237,3 +237,31 @@ MIT License - Free to use, modify, and distribute.
 5. Glossary (28 terms with Chinese/pinyin)
 6. Timeline (28 historical events)
 
+
+
+## [2.5.0] - 2025-12-20
+
+### Dashboard Enhancements
+
+#### News Aggregator
+Added curated news section with 8 recent articles from credible sources including Hong Kong Watch, OHCHR, Reuters, Radio Free Asia, and ASPI. Features category filtering (All, Hong Kong, Uyghur, Tibet, Taiwan, Transnational), priority badges (CRITICAL, HIGH, MEDIUM), and live updates indicator.
+
+#### Urgent Case Timer (Compact)
+Live detention counters showing years, days, hours, minutes, seconds for Jimmy Lai, Ilham Tohti, and Chow Hang-tung. Updates every second with "View all" link to Political Prisoners page.
+
+### Security Center Upgrade
+
+#### Comprehensive Security Quiz
+Replaced basic assessment with 10-question interactive quiz covering network security, communications, account security, digital footprint, data security, knowledge, and emergency preparedness. Features progress bar, point-based scoring, security level assessment (EXCELLENT/GOOD/MODERATE/AT RISK), personalized recommendations, and links to EFF, Front Line Defenders, Access Now, and Security in a Box.
+
+### Political Prisoners Page Enhancement
+
+#### Full Urgent Case Timer
+Added full-size detention timers for 4 urgent cases: Jimmy Lai (4+ years), Ilham Tohti (10+ years), Chow Hang-tung (3+ years), and Gedhun Choekyi Nyima (29+ years - longest-held political prisoner). Features take action buttons and copy-to-share functionality with hashtags.
+
+### Technical Improvements
+- All new components use React hooks and modern patterns
+- Privacy-focused design with no data storage
+- Responsive layouts for all screen sizes
+- Accessible color schemes and contrast ratios
+
