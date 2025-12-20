@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import IncidentReportForm from '../components/IncidentReportForm'
 import { 
   Shield, 
   Lock, 
@@ -317,7 +318,7 @@ const SecurityCenter = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700 overflow-x-auto">
-        {['assessment', 'tools', 'guides', 'emergency'].map((tab) => (
+        {['assessment', 'report', 'tools', 'guides', 'emergency'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -441,6 +442,13 @@ const SecurityCenter = () => {
               </div>
             </motion.div>
           )}
+        </div>
+      )}
+
+      {/* Report Tab */}
+      {activeTab === 'report' && (
+        <div className="space-y-6">
+          <IncidentReportForm />
         </div>
       )}
 
