@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import LegalResources from '../components/LegalResources';
 const RESOURCES = {
   vpnSecurity: {
     title: 'VPN & Security Tools',
@@ -432,6 +432,11 @@ const ResistanceResources = () => {
           </div>
         </div>
         
+        {/* Legal Frameworks */}
+        <div className="mb-12">
+          <LegalResources />
+        </div>
+
         {/* Emergency Contacts */}
         <div className="bg-red-900/30 border border-red-700 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4">Emergency Contacts</h2>
