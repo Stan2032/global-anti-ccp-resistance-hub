@@ -2,6 +2,67 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.16.0] - 2025-12-20
+
+### New Features
+
+#### Live Statistics Counter (Dashboard)
+- Animated statistics showing the human cost of CCP repression
+- 8 key metrics with sources:
+  - Political Prisoners: 10,000+
+  - Uyghurs Detained: 1.8M+
+  - Overseas Police Stations: 102+
+  - Confucius Institutes: 407+
+  - HK Political Prisoners: 260+
+  - Forced Returns: 230,000+
+  - Journalists Imprisoned: 44
+  - Organ Harvesting Victims: 65,000+
+- Animated number counters with intersection observer
+- Trend indicators and source citations
+- Context cards explaining data significance
+
+#### Solidarity Wall (Community Page)
+- Message board for global solidarity
+- 8 pre-populated messages from around the world
+- Add your own message with name, location, and cause
+- Filter by cause (Hong Kong, Uyghur, Tibet, Taiwan, General)
+- LocalStorage persistence
+- Statistics showing messages, locations, and causes
+- Inspirational quotes
+
+#### Emergency Alerts (Dashboard)
+- Dismissible alert banners for urgent news
+- 4 current alerts:
+  - Jimmy Lai verdict (Critical)
+  - Uyghur forced labor report (Warning)
+  - Taiwan PLA activity (Info)
+  - Hong Kong 47 sentencing (Critical)
+- Expandable details with action items
+- Links to relevant resources
+- Dismiss functionality with restore option
+
+#### Knowledge Quiz (Education Center)
+- 18 multiple choice questions across 5 categories:
+  - Uyghur Crisis (4 questions)
+  - Hong Kong (4 questions)
+  - Tibet (3 questions)
+  - CCP Tactics (4 questions)
+  - General (3 questions)
+- Category selection before starting
+- Explanations after each answer
+- Score tracking and results
+- Recommendations based on score
+
+### Technical Additions
+- LiveStatistics component with AnimatedCounter
+- SolidarityWall component on Community page (new "solidarity" tab)
+- EmergencyAlerts component at top of Dashboard
+- KnowledgeQuiz component in Education Center (new "quiz" tab)
+- Education Center now has 11 tabs
+- Community page now has 8 tabs
+
+---
+
 ## [2.15.0] - 2025-12-20
 
 ### New Features

@@ -5,6 +5,8 @@ import NewsAggregator from '../components/NewsAggregator';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import ImpactMetrics from '../components/ImpactMetrics';
 import CountdownTimer from '../components/CountdownTimer';
+import LiveStatistics from '../components/LiveStatistics';
+import EmergencyAlerts from '../components/EmergencyAlerts';
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -83,6 +85,9 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
+      {/* Emergency Alerts */}
+      <EmergencyAlerts />
+
       {/* Welcome Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -315,6 +320,11 @@ const Dashboard = () => {
       {/* Important Dates Countdown */}
       <div className="mt-8">
         <CountdownTimer />
+      </div>
+
+      {/* Live Statistics */}
+      <div className="mt-8">
+        <LiveStatistics />
       </div>
 
       {/* Footer */}
