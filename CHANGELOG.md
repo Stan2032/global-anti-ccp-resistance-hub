@@ -366,3 +366,97 @@ The Global Anti-CCP Resistance Hub now includes:
 | Glossary Terms | 28 | With Chinese characters |
 | Security Quiz Questions | 10 | Digital security assessment |
 
+
+
+## [2.8.0] - 2025-12-20
+
+### Community Page Enhancements
+
+#### Diaspora Support Resources
+Added comprehensive support resources for Chinese diaspora, Uyghurs, Tibetans, and Hong Kongers facing CCP pressure abroad:
+
+**Legal Aid (3):**
+- Safeguard Defenders
+- Chinese Human Rights Defenders
+- Front Line Defenders (24/7 emergency: +353 1 210 0489)
+
+**Mental Health (2):**
+- Uyghur Transitional Justice Database
+- Hong Kong Assistance and Resettlement Community
+
+**Immigration Support (3):**
+- Hong Kong Watch
+- Uyghur Human Rights Project
+- Tibet Justice Center
+
+**Digital Security (2):**
+- Access Now Digital Security Helpline
+- Electronic Frontier Foundation
+
+**Community (2):**
+- CSSA Alternatives guidance
+- Citizen Lab
+
+Features:
+- Emergency contact banner for immediate danger
+- Warning signs of transnational repression (8 signs)
+- Safety tips for diaspora (digital & physical)
+- Multi-language support indicators
+
+### Regional Threats Page Enhancements
+
+#### Exit Bans & Hostage Diplomacy Tracker
+Added tracking for 14 documented cases of exit bans and hostage diplomacy:
+
+**Foreign Nationals (4):**
+- Liu Kai (American businessman, 5+ years exit ban)
+- Victor Liu & Cynthia Liu (Americans, released 2021)
+- Dominic Barton family threats
+
+**Activists (3):**
+- Yang Maodong (prevented from seeing dying wife)
+- Xu Zhiyong (14 years for "subversion")
+- Ding Jiaxi (12 years for "subversion")
+
+**Journalists (2):**
+- Haze Fan (Bloomberg, detained)
+- Cheng Lei (Australian, imprisoned)
+
+**Business People (3):**
+- Michael Spavor & Michael Kovrig ("Two Michaels," released 2021)
+- Ian Stones (British, exit ban)
+
+**Uyghurs (2):**
+- Idris Hasan (detained in Morocco)
+- Yidiresi Aishan (deported from Saudi Arabia)
+
+Features:
+- Travel warnings from US, UK, Canada, Australia
+- Category filtering and search
+- Status badges (Exit Ban, Imprisoned, Released, Deported)
+- "What You Can Do" guidance
+- Links to Safeguard Defenders, Dui Hua, CECC
+
+### Updated Platform Statistics
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Resistance Organizations | 24 | Verified human rights and advocacy groups |
+| Political Prisoners | 24 | Documented cases with live detention counters |
+| Overseas Police Stations | 102 | Mapped across 53 countries |
+| Historical Events | 28 | Timeline from 1950 to present |
+| Companies in Boycott Guide | 27 | With ethical alternatives |
+| Essential Books | 21 | Categorized reading list |
+| Documentaries | 19 | With viewing platforms |
+| Sanctioned Officials | 18 | Under Magnitsky sanctions |
+| Exit Ban Cases | 14 | Hostage diplomacy tracking |
+| Media/Propaganda Outlets | 14 | State media and disinfo networks |
+| Diaspora Support Orgs | 12 | Legal, mental health, immigration |
+| Legal Frameworks | 10 | International laws and sanctions |
+| Survivor Stories | 8 | Personal testimonies |
+| Training Modules | 8 | Educational courses |
+| Petition Campaigns | 6 | Active campaigns with progress |
+| Confucius Institutes | 36 | Tracked across 12 countries |
+| Calendar Events | 21 | Annual commemorations |
+| Glossary Terms | 28 | With Chinese characters |
+| Security Quiz Questions | 10 | Digital security assessment |
