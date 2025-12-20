@@ -2,6 +2,7 @@ import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
 import { SocketProvider } from './contexts/SocketContext'
 import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
+import { SkipLinks } from './components/Accessibility'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -231,7 +232,7 @@ const DesktopSidebar = () => {
   ];
 
   return (
-    <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-slate-800 border-r border-slate-700">
+    <aside id="navigation" className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-slate-800 border-r border-slate-700" role="navigation" aria-label="Main navigation">
       {/* Logo */}
       <div className="flex items-center h-16 px-6 border-b border-slate-700">
         <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-red-500 rounded-xl flex items-center justify-center mr-3">
@@ -315,6 +316,9 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      {/* Skip Links for Accessibility */}
+      <SkipLinks />
+      
       {/* Desktop Sidebar */}
       <DesktopSidebar />
       
@@ -328,22 +332,26 @@ function AppLayout() {
       </div>
       
       {/* Main Content */}
-      <main className="lg:pl-64">
+      <main id="main-content" className="lg:pl-64" role="main" aria-label="Main content">
         {/* Desktop Header */}
         <header className="hidden lg:flex items-center justify-between h-16 px-8 bg-slate-800/50 border-b border-slate-700/50 sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">
             <input 
               type="text" 
               placeholder="Search organizations, campaigns, documents..."
+              aria-label="Search organizations, campaigns, and documents"
               className="w-96 px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div className="flex items-center space-x-4">
-            <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg relative">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button 
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg relative"
+              aria-label="Notifications - new alerts available"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" aria-hidden="true"></span>
             </button>
             <LanguageSelector />
             <span className="px-3 py-1.5 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
