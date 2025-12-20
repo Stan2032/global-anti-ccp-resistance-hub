@@ -2,6 +2,52 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.11.0] - 2025-12-20
+
+### Major Platform Enhancements
+
+#### Theme System
+- **Dark Mode** (default): Original design with slate/blue color scheme
+- **Light Mode**: Bright theme for daytime use
+- **High Contrast Mode**: Maximum readability for accessibility
+- Theme persistence via localStorage
+- System preference detection option
+- Theme toggle button in header
+
+#### Global Search (Cmd/Ctrl+K)
+- Instant search across all platform content
+- Searchable: Pages, Political Prisoners, Topics, Actions, Resources
+- Keyboard navigation (↑↓ to navigate, Enter to select, Esc to close)
+- Quick links when no query entered
+- Result type badges (page, prisoner, topic, action, resource)
+- Score-based relevance ranking
+
+#### Data Export for Researchers
+- Export 8 datasets: Political Prisoners, Police Stations, Organizations, Sanctioned Officials, Confucius Institutes, Boycott Companies, Timeline, Exit Bans
+- Formats: JSON, CSV, Markdown
+- CC BY 4.0 license for open research use
+- Metadata included (record counts, last updated, schema)
+- Usage guidelines and attribution format
+
+#### Progressive Web App (PWA)
+- Installable on mobile and desktop
+- Offline fallback page with emergency contacts
+- Service worker for caching and offline support
+- App shortcuts for quick access to key pages
+- Push notification infrastructure
+- Apple Touch Icon support
+
+### Technical Additions
+- ThemeContext with ThemeProvider wrapper
+- GlobalSearch component with useGlobalSearch hook
+- DataExport component on Resources page
+- SearchWrapper and SearchButton utilities
+- PWA manifest.json with shortcuts
+- Service worker (sw.js) with network-first strategy
+- Offline.html fallback page
+
+---
+
 ## [2.10.0] - 2025-12-20
 
 ### Accessibility Improvements
