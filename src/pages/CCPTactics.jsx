@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
 import SanctionedOfficials from '../components/SanctionedOfficials';
+import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const icons = {
@@ -203,6 +204,11 @@ const CCPTactics = () => {
         {/* Sanctioned Officials */}
         <div className="mt-8">
           <SanctionedOfficials />
+        </div>
+
+        {/* Confucius Institutes */}
+        <div className="mt-8">
+          <ConfuciusInstitutes />
         </div>
 
         {/* Sources Footer */}
