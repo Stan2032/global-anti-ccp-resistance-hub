@@ -325,3 +325,44 @@ The platform now includes:
 - Contact representatives tool
 - News aggregator with category filtering
 
+
+
+## [2.7.0] - 2025-12-20
+
+### CCP Tactics Page Enhancements
+
+#### Confucius Institute Tracker
+Added tracking for 36 Confucius Institutes across 12 countries. Shows closed vs active status with closure reasons (security concerns, academic freedom, espionage). Includes region filtering and Take Action guidance with links to NAS, GAO, and ASPI reports.
+
+#### Media & Propaganda Tracker
+Added tracking for 14 CCP media and propaganda operations including state media (CGTN, Xinhua, China Daily, Global Times, People's Daily), social media operations (TikTok, WeChat, 50 Cent Army, Little Pink), disinformation networks (Spamouflage Dragon, Dragonbridge), and captured media (Phoenix TV, SCMP). Features "How to Identify CCP Propaganda" guide with verification tools.
+
+### Community Page Enhancements
+
+#### Resistance Calendar
+Added 21 key dates for commemorations, protests, and solidarity actions throughout the year. Includes critical events (June 4 Tiananmen, December 10 Human Rights Day), major commemorations (Tibetan Uprising Day, Hong Kong anniversaries), solidarity events (Taiwan National Day), and awareness days (World Press Freedom Day). Features month filtering, event type legend, suggested actions, and priority badges.
+
+### Complete Platform Statistics
+
+The Global Anti-CCP Resistance Hub now includes:
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Resistance Organizations | 24 | Verified human rights and advocacy groups |
+| Political Prisoners | 24 | Documented cases with live detention counters |
+| Overseas Police Stations | 102 | Mapped across 53 countries |
+| Historical Events | 28 | Timeline from 1950 to present |
+| Companies in Boycott Guide | 27 | With ethical alternatives |
+| Essential Books | 21 | Categorized reading list |
+| Documentaries | 19 | With viewing platforms |
+| Sanctioned Officials | 18 | Under Magnitsky sanctions |
+| Media/Propaganda Outlets | 14 | State media and disinfo networks |
+| Legal Frameworks | 10 | International laws and sanctions |
+| Survivor Stories | 8 | Personal testimonies |
+| Training Modules | 8 | Educational courses |
+| Petition Campaigns | 6 | Active campaigns with progress |
+| Confucius Institutes | 36 | Tracked across 12 countries |
+| Calendar Events | 21 | Annual commemorations |
+| Glossary Terms | 28 | With Chinese characters |
+| Security Quiz Questions | 10 | Digital security assessment |
+
