@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:14-alpine
+    container_name: resistance-hub-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-resistancehub}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-development}
+      POSTGRES_DB: ${DB_NAME:-resistancehub}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-resistancehub}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - resistance-hub-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: resistance-hub-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - resistance-hub-network
+
+  # Node.js API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resistance-hub-api
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://${DB_USER:-resistancehub}:${DB_PASSWORD:-development}@db:5432/${DB_NAME:-resistancehub}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-key-change-in-production}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev-refresh-secret-key}
+      SMTP_HOST: ${SMTP_HOST:-smtp.mailtrap.io}
+      SMTP_PORT: ${SMTP_PORT:-2525}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      CORS_ORIGIN: http://localhost:5173
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - resistance-hub-network
+    command: npm run dev
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  resistance-hub-network:
+    driver: bridge
