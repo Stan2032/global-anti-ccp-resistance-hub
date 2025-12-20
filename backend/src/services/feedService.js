@@ -120,17 +120,28 @@ class FeedService {
     
     // High-priority keywords related to CCP, human rights violations
     const criticalKeywords = [
-      'ccp', 'china', 'chinese communist party', 'xi jinping',
-      'hong kong', 'uyghur', 'xinjiang', 'tibet', 'taiwan',
-      'human rights', 'genocide', 'persecution', 'repression',
-      'surveillance', 'censorship', 'detention', 'camp',
-      'forced labor', 'organ harvesting', 'tiananmen'
+      'ccp', 'chinese communist party', 'xi jinping', 'prc',
+      'hong kong', 'national security law', 'jimmy lai', 'apple daily',
+      'uyghur', 'xinjiang', 'genocide', 'concentration camp', 'forced sterilization',
+      'tibet', 'dalai lama', 'panchen lama', 'gedhun choekyi nyima',
+      'taiwan', 'pla', 'invasion', 'blockade', 'adiz',
+      'falun gong', 'organ harvesting', 'persecution',
+      'political prisoner', 'detention', 'disappeared',
+      'tiananmen', 'june 4', 'tank man',
+      'south china sea', 'nine dash line', 'artificial island',
+      'belt and road', 'debt trap', 'united front',
+      'confucius institute', 'thousand talents'
     ];
 
     const mediumKeywords = [
-      'beijing', 'protest', 'activist', 'dissident',
+      'beijing', 'protest', 'activist', 'dissident', 'lawyer',
       'freedom', 'democracy', 'authoritarian', 'dictatorship',
-      'propaganda', 'influence', 'espionage'
+      'propaganda', 'influence', 'espionage', 'spy',
+      'censorship', 'great firewall', 'vpn', 'surveillance',
+      'social credit', 'facial recognition', 'mass surveillance',
+      'forced labor', 'cotton', 'supply chain',
+      'transnational repression', 'overseas police station',
+      'wolf warrior', 'hostage diplomacy'
     ];
 
     // Count keyword matches
