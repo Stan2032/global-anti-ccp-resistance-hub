@@ -2,6 +2,69 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.3.0] - 2025-12-20
+
+### Major Features Added
+
+#### Police Stations Map Component
+- Comprehensive visualization of **102+ CCP overseas police stations** across **53 countries**
+- City-level location data for all stations
+- Regional breakdown: Europe (54), Asia Pacific (28), South America (7), North America (5), Africa (4), Middle East (4)
+- Government actions tracking (14+ investigations, Netherlands closures, NYC arrests)
+- Statistics: 230K+ "persuaded" to return to China
+- Interactive regional selection with detailed country breakdowns
+- Sources linked (Safeguard Defenders, Newsweek, Brookings, CNN)
+
+#### Contact Representatives Tool
+- Multi-country support: US, UK, Canada, Australia, EU
+- Direct links to find representatives (House, Senate, MPs, MEPs)
+- 7 pre-written letter templates:
+  - General Human Rights
+  - Uyghur Genocide
+  - Hong Kong Freedom
+  - Tibetan Rights
+  - Taiwan Support
+  - Free Jimmy Lai
+  - Magnitsky Sanctions
+- Copy-to-clipboard functionality
+- Tips for effective advocacy
+
+#### Boycott Guide
+- Database of **27 companies** linked to Uyghur forced labor
+- Categories: Apparel & Fashion, Technology, Automotive, Retail, Food & Beverage
+- Status levels: CRITICAL, HIGH RISK, IMPLICATED, IMPROVED, MONITORING
+- Alternative ethical brands for each company
+- Company responses documented
+- Sources: ASPI Uyghurs for Sale, HRW, UFLPA Entity List
+
+#### Timeline of CCP Repression
+- Interactive timeline with **28 key events** from 1950-2025
+- Category filtering: Hong Kong, Xinjiang, Tibet, Taiwan, Transnational, Domestic
+- Significance levels: CRITICAL, HIGH
+- Expandable event details with sources
+- Color-coded by category
+
+#### Advanced CCP Tactics Data
+- United Front Work Department (UFWD) tactics:
+  - Diaspora Control (CSSAs, hometown associations, WeChat)
+  - Political Influence (donations, trips, business deals)
+  - Academic Infiltration (Thousand Talents, Confucius Institutes)
+  - Religious Manipulation (overseas temples, churches)
+- Cognitive Warfare & Information Operations:
+  - Wolf Warrior Diplomacy
+  - Discourse Power (话语权)
+  - Social Media Manipulation
+  - Media Capture
+- Technological Control & Export:
+  - Surveillance Technology Export
+  - Data Collection operations
+  - Critical Infrastructure control
+
+### Bug Fixes
+- Fixed apostrophe syntax error in ContactRepresentatives Taiwan letter template
+
+---
+
 ## [2.2.0] - 2025-12-20
 
 ### Major Features Added
