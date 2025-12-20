@@ -91,6 +91,11 @@ const SecureCommunications = lazy(() => import('./pages/SecureComms'));
 const EducationCenter = lazy(() => import('./pages/EducationalResources'));
 const SecurityCenter = lazy(() => import('./pages/SecurityCenter'));
 
+// New pages
+const PoliticalPrisoners = lazy(() => import('./pages/PoliticalPrisoners'));
+const RegionalThreats = lazy(() => import('./pages/RegionalThreats'));
+const ResistanceResources = lazy(() => import('./pages/ResistanceResources'));
+
 // Layout Components - import directly since they're needed immediately
 import Header from './components/layout/Header'
 import Sidebar from './components/layout/Sidebar'
@@ -134,6 +139,7 @@ function App() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                   <Suspense fallback={<LoadingScreen />}>
                     <Routes>
+                      {/* Core Pages */}
                       <Route path="/" element={<Dashboard />} />
                       <Route path="/intelligence" element={<IntelligenceFeeds />} />
                       <Route path="/directory" element={<ResistanceDirectory />} />
@@ -142,12 +148,19 @@ function App() {
                       <Route path="/communications" element={<SecureCommunications />} />
                       <Route path="/education" element={<EducationCenter />} />
                       <Route path="/security" element={<SecurityCenter />} />
+                      
+                      {/* New Enhanced Pages */}
+                      <Route path="/prisoners" element={<PoliticalPrisoners />} />
+                      <Route path="/threats" element={<RegionalThreats />} />
+                      <Route path="/resources" element={<ResistanceResources />} />
+                      
+                      {/* Catch-all for undefined routes */}
                       <Route 
-                        path="/threats" 
+                        path="*" 
                         element={
                           <PlaceholderPage 
-                            title="Threat Monitor"
-                            description="Real-time monitoring of surveillance activities and security threats."
+                            title="Page Not Found"
+                            description="The page you're looking for doesn't exist. Please check the URL or navigate using the sidebar."
                           />
                         } 
                       />
