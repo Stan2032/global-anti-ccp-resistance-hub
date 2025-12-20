@@ -51,6 +51,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       title: 'Resources',
       items: [
         { name: 'Resistance Tools', href: '/resources', icon: Wrench, description: 'VPNs, security, advocacy' },
+        { name: 'CCP Tactics', href: '/tactics', icon: Activity, description: 'Know your adversary' },
         { name: 'Education', href: '/education', icon: BookOpen, description: 'Training & guides' },
         { name: 'Security', href: '/security', icon: Lock, description: 'Protection tools' },
       ]

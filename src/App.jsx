@@ -95,6 +95,7 @@ const SecurityCenter = lazy(() => import('./pages/SecurityCenter'));
 const PoliticalPrisoners = lazy(() => import('./pages/PoliticalPrisoners'));
 const RegionalThreats = lazy(() => import('./pages/RegionalThreats'));
 const ResistanceResources = lazy(() => import('./pages/ResistanceResources'));
+const CCPTactics = lazy(() => import('./pages/CCPTactics'));
 
 // Layout Components - import directly since they're needed immediately
 import Header from './components/layout/Header'
@@ -153,6 +154,7 @@ function App() {
                       <Route path="/prisoners" element={<PoliticalPrisoners />} />
                       <Route path="/threats" element={<RegionalThreats />} />
                       <Route path="/resources" element={<ResistanceResources />} />
+                      <Route path="/tactics" element={<CCPTactics />} />
                       
                       {/* Catch-all for undefined routes */}
                       <Route 
