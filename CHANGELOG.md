@@ -183,3 +183,57 @@ This is an open-source project. Contributions welcome via GitHub.
 ## License
 
 MIT License - Free to use, modify, and distribute.
+
+
+## [2.4.0] - 2025-12-20
+
+### Education Center Expansion
+
+#### Documentary List (19 films)
+- Hong Kong: Revolution of Our Times, Inside the Red Brick Wall, Do Not Split, The Hong Konger
+- Uyghur/Xinjiang: China: The Uighur Tragedy, China Undercover, The Xinjiang Police Files
+- Tibet: Tibet: Cry of the Snow Lion, When the Dragon Swallowed the Sun
+- Tiananmen: The Gate of Heavenly Peace, Tank Man
+- Falun Gong: Ask No Questions, Letter from Masanjia
+- Plus COVID, domestic, transnational, and artist documentaries
+- Features: Category filtering, relevance ratings, where to watch, topic tags
+
+#### Reading List (21 books)
+- Uyghur: In the Camps, The War on the Uyghurs, The Uyghurs
+- Hong Kong: Unfree Speech (Joshua Wong), City on Fire, Indelible City
+- Tibet: The Dragon in the Land of Snows, Freedom in Exile
+- CCP/Politics: The Party, The Third Revolution, Red Roulette
+- Surveillance: Surveillance State, We Have Been Harmonized
+- Transnational: Hidden Hand, Silent Invasion
+- Plus Tiananmen, dissidents, Falun Gong books
+- Features: Category filtering, sort options, ISBN lookup, Goodreads/WorldCat links
+
+#### Glossary of Terms (28 definitions)
+- CCP Structure: CCP, Politburo, UFWD, MSS
+- Laws: NSL, Article 23, Re-education Through Labor
+- Xinjiang: Vocational Centers, Strike Hard, Pair Up
+- Hong Kong: One Country Two Systems, Yellow Ribbon, Lennon Wall
+- Taiwan: One China Policy, Anti-Secession Law, Gray Zone
+- Transnational: Fox Hunt, Sky Net, Police Stations
+- Propaganda: Wolf Warrior, Discourse Power, 50 Cent Army, Little Pink
+- Human Rights: RSDL, Organ Harvesting, Charter 08
+- Features: Search in English/Chinese, pinyin, clickable related terms
+
+### CCP Tactics Page Enhancement
+
+#### Sanctioned Officials Database (18 entries)
+- Xinjiang: Chen Quanguo, Zhu Hailun, Wang Junzheng, Chen Mingguo, Wang Mingshan
+- Hong Kong: Carrie Lam, John Lee, Chris Tang, Stephen Lo, Teresa Cheng, Erick Tsang
+- Central: Xia Baolong, Zhang Xiaoming, Luo Huining
+- Tibet: Wu Yingjie, Zhang Hongbo
+- Tech: Hikvision, SenseTime
+- Features: Search, category filtering, sanction flags (US/UK/EU/Canada), dates, details
+
+### Education Center Now Has 6 Tabs
+1. Modules (training courses)
+2. Resources (downloadable guides)
+3. Books (21 essential reads)
+4. Documentaries (19 films)
+5. Glossary (28 terms with Chinese/pinyin)
+6. Timeline (28 historical events)
+
