@@ -239,9 +239,9 @@ const Dashboard = () => {
             </h2>
             <div className="grid grid-cols-2 gap-3">
               {quickActions.map((action, index) => (
-                <a
+                <Link
                   key={index}
-                  href={action.href}
+                  to={action.href}
                   className={`p-3 rounded-lg text-center transition-colors ${
                     action.color === 'red' ? 'bg-red-900/30 hover:bg-red-900/50 border border-red-700' :
                     action.color === 'blue' ? 'bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700' :
@@ -251,7 +251,7 @@ const Dashboard = () => {
                 >
                   <span className="text-2xl block mb-1">{action.icon}</span>
                   <span className="text-xs text-slate-300">{action.title}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -263,9 +263,9 @@ const Dashboard = () => {
             </h2>
             <div className="space-y-3">
               {urgentCampaigns.map((campaign) => (
-                <a
+                <Link
                   key={campaign.id}
-                  href={campaign.link}
+                  to={campaign.link}
                   className="block p-3 bg-slate-900/50 rounded-lg hover:bg-slate-700/50 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -278,7 +278,7 @@ const Dashboard = () => {
                   <div className="text-xs text-slate-500">
                     {campaign.supporters.toLocaleString()} supporters
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
             <Link to="/campaigns" className="block mt-4 text-blue-400 hover:text-blue-300 text-sm font-medium">
