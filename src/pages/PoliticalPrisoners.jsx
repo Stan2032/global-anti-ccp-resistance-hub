@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import UrgentCaseTimer from '../components/UrgentCaseTimer';
 
 // Political Prisoners Data (embedded for static build)
 const PRISONERS_DATA = [
@@ -588,6 +589,11 @@ const PoliticalPrisoners = () => {
           </p>
         </div>
         
+        {/* Detention Timers */}
+        <div className="mb-8">
+          <UrgentCaseTimer />
+        </div>
+
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-slate-800 rounded-lg p-4 text-center">

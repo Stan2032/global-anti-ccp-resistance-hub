@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLiveFeeds, useStatistics } from '../hooks/useLiveData';
 import NewsAggregator from '../components/NewsAggregator';
+import UrgentCaseTimer from '../components/UrgentCaseTimer';
 
 const Dashboard = () => {
   const { feeds, loading: feedsLoading } = useLiveFeeds(300000);
@@ -287,6 +288,11 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* Detention Timer Section */}
+      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+        <UrgentCaseTimer compact={true} />
       </div>
 
       {/* News Aggregator Section */}
