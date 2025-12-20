@@ -4,6 +4,7 @@ import Timeline from '../components/Timeline'
 import DocumentaryList from '../components/DocumentaryList'
 import ReadingList from '../components/ReadingList'
 import GlossaryTerms from '../components/GlossaryTerms'
+import VictimStories from '../components/VictimStories'
 import { 
   BookOpen, 
   Play, 
@@ -356,7 +357,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'books', 'documentaries', 'glossary', 'timeline'].map((tab) => (
+        {['modules', 'resources', 'books', 'documentaries', 'stories', 'glossary', 'timeline'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -511,6 +512,11 @@ const EducationalResources = () => {
       {/* Documentaries Tab */}
       {activeTab === 'documentaries' && (
         <DocumentaryList />
+      )}
+
+      {/* Stories Tab */}
+      {activeTab === 'stories' && (
+        <VictimStories />
       )}
 
       {/* Glossary Tab */}
