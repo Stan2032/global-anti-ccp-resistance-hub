@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WorldThreatMap from '../components/WorldThreatMap';
+import PoliceStationsMap from '../components/PoliceStationsMap';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -284,6 +285,11 @@ const RegionalThreats = () => {
         {/* World Map */}
         <div className="mb-8">
           <WorldThreatMap />
+        </div>
+        
+        {/* Police Stations Map */}
+        <div className="mb-8">
+          <PoliceStationsMap />
         </div>
         
         {/* Alert Banner */}
