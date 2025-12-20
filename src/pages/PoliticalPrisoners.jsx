@@ -9,16 +9,18 @@ const PRISONERS_DATA = [
     chineseName: '黎智英',
     status: 'IMPRISONED',
     location: 'Stanley Prison, Hong Kong',
-    charges: ['National Security Law - Collusion with Foreign Forces', 'Sedition'],
-    sentence: 'GUILTY on all charges - Faces LIFE SENTENCE (Dec 15, 2025)',
-    background: 'Founder of Apple Daily newspaper, pro-democracy media mogul',
+    charges: ['National Security Law - Collusion with Foreign Forces', 'Sedition', 'Conspiracy to Collude with Foreign Forces'],
+    sentence: 'GUILTY on all 3 charges (Dec 15, 2025) - Sentencing pending, faces LIFE IMPRISONMENT',
+    background: 'Founder of Apple Daily newspaper, pro-democracy media mogul. Convicted after landmark 2-year trial. British citizen.',
     arrestDate: '2020-08-10',
+    verdictDate: '2025-12-15',
     urgency: 'CRITICAL',
     age: 78,
     healthConcerns: true,
     internationalAttention: 'HIGH',
+    internationalResponse: 'UK, US, EU condemned verdict. UK Foreign Secretary called for immediate release.',
     image: '/images/prisoners/jimmy-lai.jpg',
-    actions: ['Write to your representative', 'Sign petitions', 'Share on social media']
+    actions: ['Write to your representative', 'Sign petitions', 'Share on social media', 'Contact UK Foreign Office']
   },
   {
     name: 'Ilham Tohti',
@@ -736,6 +738,36 @@ const PRISONERS_DATA = [
     age: 70,
     healthConcerns: true,
     internationalAttention: 'MEDIUM'
+  },
+  // ==================== DECEMBER 2025 UPDATES ====================
+  {
+    name: 'Xin Ruoyu',
+    chineseName: '辛若雨',
+    status: 'DISAPPEARED',
+    location: 'Unknown - "Black Jail"',
+    charges: ['Extrajudicial detention'],
+    sentence: 'No formal charges',
+    background: 'Young mother in her thirties, forcibly disappeared into a Chinese "black jail" around July 2024. Her detention is extrajudicial with no legal basis.',
+    disappearanceDate: '2024-07-01',
+    urgency: 'CRITICAL',
+    healthConcerns: true,
+    internationalAttention: 'MEDIUM',
+    source: 'Forbes Human Rights Day 2025 Report'
+  },
+  {
+    name: 'Guan Heng',
+    chineseName: '关恒',
+    status: 'AT RISK',
+    location: 'US Immigration Detention - Facing Deportation',
+    charges: ['None - Asylum seeker'],
+    sentence: 'N/A',
+    background: 'Citizen journalist from Henan, China. Secretly filmed Uyghur detention camps and released rare video evidence. Fled to US, detained by ICE in August 2025. Faces deportation to Uganda which could lead to return to China.',
+    arrestDate: '2025-08-01',
+    urgency: 'CRITICAL',
+    age: 38,
+    healthConcerns: true,
+    internationalAttention: 'HIGH',
+    source: 'NPR, NYT, CPJ December 2025'
   }
 
 ];
@@ -745,7 +777,8 @@ const StatusBadge = ({ status }) => {
     IMPRISONED: 'bg-red-600',
     DISAPPEARED: 'bg-yellow-600',
     DECEASED: 'bg-gray-600',
-    RELEASED: 'bg-green-600'
+    RELEASED: 'bg-green-600',
+    'AT RISK': 'bg-orange-600'
   };
   
   return (

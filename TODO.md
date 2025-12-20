@@ -249,14 +249,16 @@
 ## 🎯 CURRENT SPRINT
 
 ### In Progress
-1. [ ] Working on next feature from short-term list
+1. [ ] Update political prisoners database with December 2025 cases
 
 ### Up Next
-1. Multilingual support foundation
+1. SEO improvements with meta tags
 2. Update political prisoners database
 3. Performance optimization
 
 ### Recently Completed
+- ✅ Multilingual Support Foundation (English, Traditional Chinese, Uyghur, Tibetan)
+- ✅ Language files and i18n context
 - ✅ Witness Protection Guide
 - ✅ Petition Generator
 - ✅ Regional Issues (Inner Mongolia, Falun Gong, etc.)

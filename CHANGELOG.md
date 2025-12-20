@@ -2,6 +2,34 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.21.0] - 2025-12-20
+
+### Added
+- **Multilingual Support Foundation**: Added comprehensive language files for:
+  - English (en)
+  - Traditional Chinese 繁體中文 (zh-TW)
+  - Uyghur ئۇيغۇرچە (ug) with RTL support
+  - Tibetan བོད་སྐད། (bo)
+- **i18n Context**: Language switching infrastructure with automatic RTL support
+- **December 2025 Political Prisoner Updates**:
+  - Updated Jimmy Lai case with December 15, 2025 guilty verdict on all 3 charges
+  - Added Xin Ruoyu - young mother forcibly disappeared into "black jail" (July 2024)
+  - Added Guan Heng - citizen journalist who filmed Uyghur camps, facing deportation from US
+- **Enhanced SEO Structured Data**:
+  - Dataset schema for Political Prisoners Database
+  - EducationalOrganization schema for Education Center
+  - FAQPage schema with common questions
+  - BreadcrumbList schema for navigation
+- **AT RISK Status**: New status category for individuals facing deportation or imminent danger
+
+### Updated
+- Political Prisoners Database now includes 57+ documented cases
+- CECC 2025 Annual Report references (11,262 political prisoners documented)
+- International response tracking for high-profile cases (UK, US, EU condemnations)
+- TODO.md with comprehensive development roadmap
+
+---
+
 ## [2.20.0] - 2025-12-20
 
 ### New Features

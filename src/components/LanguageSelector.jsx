@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
+import { Globe, Check, ChevronDown } from 'lucide-react';
+
+// Import comprehensive language files
+import enTranslations from '../locales/en.json';
+import zhTWTranslations from '../locales/zh-TW.json';
+import ugTranslations from '../locales/ug.json';
+import boTranslations from '../locales/bo.json';
 
 // Translations for key UI elements and critical content
 const translations = {
