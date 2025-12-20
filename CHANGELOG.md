@@ -625,3 +625,110 @@ Added 15 documented victories against CCP influence:
 | Supply Chain Industries | 5 |
 | Confucius Institutes | 36 |
 | Media Outlets Tracked | 14 |
+
+
+## [2.9.0] - 2025-12-20
+
+### Feature Audit & Quality Fixes
+
+#### Data Consistency Fix
+- Fixed police station data inconsistency between WorldThreatMap and PoliceStationsMap
+- Both components now consistently show **102 stations in 51 countries**
+
+#### Resources Page Refactor
+- Converted from duplicated content to a **clean navigation hub**
+- 6 navigation cards linking to dedicated pages (Security, Take Action, Directory, Education, Intelligence, Community)
+- Retained unique content: Quick Documentation Tools (eyeWitness, ProofMode, Wayback Machine, Archive.today)
+- Emergency contacts section preserved
+
+#### Dashboard Improvement
+- Replaced loading skeleton "Live Intelligence Feed" with **Intelligence Overview**
+- Shows 4 verified sources with "Live RSS Feeds" indicator
+- Clear link to full Intelligence Feeds page
+
+### New Features
+
+#### Political Prisoners Database Expansion
+Added **31 new verified cases** (now **55+ total**):
+
+**Hong Kong 47:**
+- Au Nok-hin, Leung Kwok-hung (Long Hair), Jimmy Sham, Gordon Ng, Tam Tak-chi
+
+**Apple Daily Staff:**
+- Cheung Kim-hung, Ryan Law, Yeung Ching-kee
+
+**Tiananmen Vigil Organizers:**
+- Albert Ho, Lee Cheuk-yan
+
+**612 Humanitarian Relief Fund:**
+- Cardinal Joseph Zen (92 years old), Margaret Ng, Denise Ho, Cyd Ho
+
+**Uyghur:**
+- Gulshan Abbas (20 years), Rahile Dawut (disappeared), Yalqun Rozi, Sanubar Tursun
+
+**Tibetan:**
+- Go Sherab Gyatso (10 years), Kunchok Jinpa (died in custody), Tashi Wangchuk
+
+**Mainland Dissidents:**
+- Wang Quanzhang, Jiang Tianyong, Li Qiaochu, Huang Qi (12 years), Chen Guangcheng
+
+**Stand News:**
+- Chung Pui-kuen, Patrick Lam
+
+**Transnational:**
+- Gui Minhai (Swedish citizen abducted)
+
+#### Report CCP Activity Feature
+New tool in Community page for reporting suspicious CCP activities:
+
+**7 Activity Types:**
+1. Overseas Police Station
+2. Surveillance Activity
+3. Intimidation/Harassment
+4. United Front Activity
+5. Disinformation Campaign
+6. Institutional Infiltration
+7. Other Activity
+
+**Features:**
+- 3-step wizard (Type → Details → Review)
+- Anonymous submission option
+- Security warnings (VPN/Tor recommended)
+- 39 countries supported
+- Links to official reporting channels (FBI, MI5, RCMP, ASIO, Safeguard Defenders)
+
+#### Multi-Language Support
+Added **4 languages** with selector in header:
+- 🇬🇧 English
+- 🇨🇳 Chinese (中文)
+- 🏳️ Uyghur (ئۇيغۇرچە)
+- 🏔️ Tibetan (བོད་སྐད།)
+
+**Features:**
+- RTL (right-to-left) support for Uyghur
+- Language preference saved to localStorage
+- Context-based translation system with useLanguage hook
+
+#### Success Stories Expansion
+Added **10 new victories** (now **25 total**):
+- Jimmy Lai Case Global Attention (Dec 2025)
+- Safeguard Defenders 110 Report (Sep 2022)
+- EU Foreign Agents Transparency (2024)
+- Australia FITS Act (Dec 2018)
+- Chen Guangcheng Escape (Apr 2012)
+- Hikvision/Dahua Entity List (Oct 2019)
+- IPAC Formation (Jun 2020)
+- Uyghur Tribunal Verdict (Dec 2021)
+- Hong Kong 47 Global Solidarity (2021-2024)
+- Apple Daily Archives Preserved (2021-2022)
+
+### Updated Platform Statistics
+
+| Category | Count |
+|----------|-------|
+| Political Prisoners | 55+ |
+| Police Stations | 102 |
+| Success Stories | 25 |
+| Languages | 4 |
+| Interactive Components | 45+ |
+| Countries Tracked | 51+ |
