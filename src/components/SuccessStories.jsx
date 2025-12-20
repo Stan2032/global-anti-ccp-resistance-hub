@@ -147,6 +147,96 @@ const SuccessStories = () => {
       description: 'US imposed sweeping export controls on advanced semiconductors and AI chips to China.',
       outcome: 'Significant slowdown of China AI development',
       lessons: 'Technology controls can be effective leverage'
+    },
+    {
+      title: 'Jimmy Lai Case Global Attention',
+      date: 'December 2025',
+      category: 'awareness',
+      impact: 'CRITICAL',
+      description: "Jimmy Lai's trial and life sentence drew unprecedented global condemnation from world leaders, UN experts, and press freedom organizations.",
+      outcome: 'Massive international spotlight on Hong Kong repression',
+      lessons: 'High-profile cases can galvanize global attention'
+    },
+    {
+      title: 'EU Foreign Agents Transparency',
+      date: '2024',
+      category: 'legislation',
+      impact: 'HIGH',
+      description: 'EU introduced foreign interference transparency measures targeting CCP influence operations.',
+      outcome: 'Increased scrutiny of CCP-linked entities',
+      lessons: 'Transparency requirements expose hidden influence'
+    },
+    {
+      title: 'Australia FITS Act',
+      date: 'December 2018',
+      category: 'legislation',
+      impact: 'HIGH',
+      description: 'Australia passed Foreign Influence Transparency Scheme Act, first Western country to do so.',
+      outcome: 'Model legislation for other democracies',
+      lessons: 'Early action can set precedent for allies'
+    },
+    {
+      title: 'Chen Guangcheng Escape',
+      date: 'April 2012',
+      category: 'releases',
+      impact: 'HIGH',
+      description: 'Blind lawyer Chen Guangcheng escaped house arrest and reached US Embassy, later granted asylum.',
+      outcome: 'Prominent dissident freed, continues advocacy',
+      lessons: 'Individual courage combined with diplomatic support can succeed'
+    },
+    {
+      title: 'Hikvision/Dahua Entity List',
+      date: 'October 2019',
+      category: 'sanctions',
+      impact: 'HIGH',
+      description: 'US added Hikvision, Dahua, and other surveillance companies to Entity List for Xinjiang abuses.',
+      outcome: 'Restricted access to US technology',
+      lessons: 'Export controls can target surveillance enablers'
+    },
+    {
+      title: 'IPAC Formation',
+      date: 'June 2020',
+      category: 'awareness',
+      impact: 'HIGH',
+      description: 'Inter-Parliamentary Alliance on China formed with 250+ legislators from 30+ countries.',
+      outcome: 'Coordinated cross-border legislative action',
+      lessons: 'Parliamentary networks amplify individual efforts'
+    },
+    {
+      title: 'Apple Daily Archives Preserved',
+      date: '2021-2022',
+      category: 'awareness',
+      impact: 'MEDIUM',
+      description: 'Despite forced closure, Apple Daily archives preserved by activists and institutions worldwide.',
+      outcome: 'Historical record of Hong Kong press freedom preserved',
+      lessons: 'Digital preservation can defeat censorship'
+    },
+    {
+      title: 'Uyghur Tribunal Verdict',
+      date: 'December 2021',
+      category: 'awareness',
+      impact: 'HIGH',
+      description: 'Independent Uyghur Tribunal in London found China guilty of genocide against Uyghurs.',
+      outcome: 'Detailed legal findings documenting atrocities',
+      lessons: "People's tribunals can establish facts when official bodies fail"
+    },
+    {
+      title: 'Hong Kong 47 Global Solidarity',
+      date: '2021-2024',
+      category: 'awareness',
+      impact: 'HIGH',
+      description: 'Worldwide solidarity campaigns for Hong Kong 47 defendants kept international attention on case.',
+      outcome: 'Sustained pressure on CCP throughout lengthy trial',
+      lessons: 'Sustained campaigns maintain pressure over years'
+    },
+    {
+      title: 'Safeguard Defenders 110 Report',
+      date: 'September 2022',
+      category: 'awareness',
+      impact: 'CRITICAL',
+      description: 'NGO report exposed 102+ CCP overseas police stations, triggering global investigations.',
+      outcome: '14+ countries launched investigations, multiple closures',
+      lessons: 'Investigative NGO work can drive government action'
     }
   ];
 
