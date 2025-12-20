@@ -184,10 +184,11 @@ class FeedService {
    * Parse and store feed items from a single source
    */
   async pollFeedSource(feedSource) {
-    logger.info(`Polling feed: ${feedSource.name} (${feedSource.feed_url})`);
+    const feedUrl = feedSource.feed_url || feedSource.url;
+    logger.info(`Polling feed: ${feedSource.name} (${feedUrl})`);
 
     try {
-      const feed = await parser.parseURL(feedSource.feed_url);
+      const feed = await parser.parseURL(feedUrl);
       
       let newItemsCount = 0;
       const newItems = [];

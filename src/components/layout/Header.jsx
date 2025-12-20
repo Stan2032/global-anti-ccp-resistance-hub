@@ -17,7 +17,7 @@ import {
   Settings
 } from 'lucide-react'
 
-const Header = ({ sidebarOpen, setSidebarOpen, securityLevel }) => {
+const Header = ({ onMenuToggle, isMenuOpen, securityLevel = 'secure' }) => {
   const [searchOpen, setSearchOpen] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const location = useLocation()
@@ -64,10 +64,10 @@ const Header = ({ sidebarOpen, setSidebarOpen, securityLevel }) => {
           <div className="flex items-center">
             {/* Mobile menu button */}
             <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={onMenuToggle}
               className="md:hidden p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
             >
-              {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
 
             {/* Logo */}
@@ -206,7 +206,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, securityLevel }) => {
               ) : (
                 <AlertTriangle className="w-3 h-3 mr-1" />
               )}
-              {securityLevel.toUpperCase()}
+              {(securityLevel || 'secure').toUpperCase()}
             </div>
 
             {/* Settings */}
@@ -221,7 +221,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, securityLevel }) => {
       </div>
 
       {/* Mobile Navigation Menu */}
-      {sidebarOpen && (
+      {isMenuOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
@@ -237,7 +237,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, securityLevel }) => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  onClick={() => setSidebarOpen(false)}
+                  onClick={onMenuToggle}
                   className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive
                       ? 'bg-blue-600 text-white'

@@ -26,15 +26,8 @@ export const SocketProvider = ({ children, token }) => {
 
   // Initialize socket connection
   useEffect(() => {
-    if (!token) {
-      // Disconnect if token is removed
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-        socketRef.current = null;
-        setIsConnected(false);
-      }
-      return;
-    }
+    // Allow connection without token for public feeds
+    // Token is optional for authenticated features
 
     // Don't reconnect if already connected with same token
     if (socketRef.current?.connected) {
