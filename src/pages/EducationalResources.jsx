@@ -12,7 +12,8 @@ import KnowledgeQuiz from '../components/KnowledgeQuiz'
 import LanguageGuide from '../components/LanguageGuide';
 import DisinfoTracker from '../components/DisinfoTracker';
 import SourceVerification from '../components/SourceVerification';
-import InteractiveTimeline from '../components/InteractiveTimeline';
+import InteractiveTimeline from '../components/InteractiveTimeline'
+import ReadingProgress from '../components/ReadingProgress';
 import { 
   BookOpen, 
   Play, 
@@ -365,7 +366,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources'].map((tab) => (
+        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -568,6 +569,11 @@ const EducationalResources = () => {
 
       {activeTab === 'sources' && (
         <SourceVerification />
+      )}
+
+      {/* Reading Progress Tab */}
+      {activeTab === 'progress' && (
+        <ReadingProgress />
       )}
     </div>
   )

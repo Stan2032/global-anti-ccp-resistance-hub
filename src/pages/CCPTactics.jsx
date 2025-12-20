@@ -4,6 +4,7 @@ import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
 import SanctionedOfficials from '../components/SanctionedOfficials';
 import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
 import MediaManipulation from '../components/MediaManipulation';
+import CCPOfficials from '../components/CCPOfficials';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const icons = {
@@ -201,6 +202,11 @@ const CCPTactics = () => {
 
         {/* Counter Tactics */}
         <CounterTacticsSection />
+
+        {/* CCP Officials Database */}
+        <div className="mt-8">
+          <CCPOfficials />
+        </div>
 
         {/* Sanctioned Officials */}
         <div className="mt-8">

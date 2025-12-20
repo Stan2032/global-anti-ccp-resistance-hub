@@ -8,6 +8,7 @@ import SearchWrapper, { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import Footer from './components/Footer'
 import QuickStartGuide from './components/QuickStartGuide'
+import PWAInstallBanner from './components/PWAInstallBanner'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -415,6 +416,9 @@ function AppLayout() {
       
       {/* Quick Start Guide for new users */}
       <QuickStartGuide />
+      
+      {/* PWA Install Banner */}
+      <PWAInstallBanner />
     </div>
   );
 }

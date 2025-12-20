@@ -2,6 +2,42 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.23.0] - 2025-12-20
+
+### Added
+- **PWA Install Banner**: Prompts users to install the app on mobile/desktop
+  - iOS-specific instructions for Add to Home Screen
+  - Android/Chrome install prompt integration
+  - Dismissible with 7-day cooldown
+  - Benefits display (offline, quick access, no app store)
+
+- **Case Study Deep Dives**: In-depth profiles for major political prisoner cases
+  - Jimmy Lai: Complete timeline, charges, verdict, international response
+  - Ilham Tohti: Sakharov Prize laureate, life sentence for "separatism"
+  - Panchen Lama: 30 years of enforced disappearance
+  - Expandable sections, how to help, verified sources
+
+- **Reading Progress Tracker**: Track your learning journey
+  - 18 reading materials (books, reports, articles)
+  - Progress tracking with page numbers
+  - 6 achievements to unlock
+  - Category and type filtering
+  - Essential readings highlighted
+  - Progress saved in browser
+
+- **CCP Officials Database**: Key officials responsible for human rights abuses
+  - 8 officials profiled (Xi Jinping, Chen Quanguo, Carrie Lam, John Lee, etc.)
+  - Sanctions status from US, UK, EU, Canada
+  - Areas of responsibility and key actions timeline
+  - Searchable and filterable
+
+### Updated
+- Political Prisoners page now includes Case Studies section
+- Education Center now has 15 tabs including Progress tracker
+- CCP Tactics page now includes Officials Database
+
+---
+
 ## [2.22.0] - 2025-12-20
 
 ### Added
