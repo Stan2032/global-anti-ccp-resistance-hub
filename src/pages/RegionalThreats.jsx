@@ -7,6 +7,7 @@ import TaiwanDefenseStatus from '../components/TaiwanDefenseStatus';
 import HongKongStatus from '../components/HongKongStatus';
 import XinjiangStatus from '../components/XinjiangStatus';
 import TibetStatus from '../components/TibetStatus';
+import ChinaTechThreats from '../components/ChinaTechThreats';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -320,6 +321,11 @@ const RegionalThreats = () => {
         {/* Tibet Status */}
         <div className="mb-8">
           <TibetStatus />
+        </div>
+        
+        {/* China Tech Threats */}
+        <div className="mb-8">
+          <ChinaTechThreats />
         </div>
         
         {/* Alert Banner */}
