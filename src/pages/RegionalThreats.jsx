@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WorldThreatMap from '../components/WorldThreatMap';
 import PoliceStationsMap from '../components/PoliceStationsMap';
 import ChinaExitBan from '../components/ChinaExitBan';
+import TaiwanDefenseStatus from '../components/TaiwanDefenseStatus';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -296,6 +297,11 @@ const RegionalThreats = () => {
         {/* Exit Bans & Hostage Diplomacy */}
         <div className="mb-8">
           <ChinaExitBan />
+        </div>
+        
+        {/* Taiwan Defense Status */}
+        <div className="mb-8">
+          <TaiwanDefenseStatus />
         </div>
         
         {/* Alert Banner */}
