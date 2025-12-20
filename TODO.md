@@ -33,7 +33,7 @@
 ## 🟠 MEDIUM-TERM (1-3 months)
 
 ### New Features
-- [ ] **Interactive Timeline**: Zoomable, filterable timeline of CCP human rights abuses since 1949
+- [x] **Interactive Timeline**: Zoomable, filterable timeline of CCP human rights abuses since 1989 ✅
 - [ ] **Case Study Deep Dives**: Detailed pages for major cases (Jimmy Lai, Ilham Tohti, Panchen Lama)
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
 - [ ] **Podcast Player**: In-app podcast player for recommended shows
@@ -249,14 +249,17 @@
 ## 🎯 CURRENT SPRINT
 
 ### In Progress
-1. [ ] Update political prisoners database with December 2025 cases
+1. [ ] Accessibility audit and improvements
 
 ### Up Next
-1. SEO improvements with meta tags
-2. Update political prisoners database
-3. Performance optimization
+1. Performance optimization
+2. Mobile App Banner for PWA
+3. News Feed Integration
 
 ### Recently Completed
+- ✅ Interactive Timeline with 21 key events (1989-2025)
+- ✅ December 2025 political prisoner updates (Jimmy Lai verdict, Xin Ruoyu, Guan Heng)
+- ✅ Enhanced SEO with structured data schemas
 - ✅ Multilingual Support Foundation (English, Traditional Chinese, Uyghur, Tibetan)
 - ✅ Language files and i18n context
 - ✅ Witness Protection Guide

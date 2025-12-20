@@ -2,6 +2,24 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.22.0] - 2025-12-20
+
+### Added
+- **Interactive Timeline**: Comprehensive timeline component with 21 key events from 1989-2025
+  - Events include: Tiananmen Massacre, Panchen Lama abduction, Falun Gong persecution, Umbrella Movement, 709 Crackdown, Xinjiang camps, NSL, Jimmy Lai verdict
+  - Category filtering (Hong Kong, Uyghur, Tibet, Mainland, Falun Gong, Global)
+  - Auto-play mode with 3-second intervals
+  - Zoom controls for timeline visualization
+  - Detailed event cards with casualties, sentences, impact, and sources
+  - Critical event highlighting
+  - Statistics dashboard
+
+### Updated
+- Education Center Timeline tab now uses enhanced InteractiveTimeline component
+- TODO.md with current sprint progress
+
+---
+
 ## [2.21.0] - 2025-12-20
 
 ### Added

@@ -12,6 +12,7 @@ import KnowledgeQuiz from '../components/KnowledgeQuiz'
 import LanguageGuide from '../components/LanguageGuide';
 import DisinfoTracker from '../components/DisinfoTracker';
 import SourceVerification from '../components/SourceVerification';
+import InteractiveTimeline from '../components/InteractiveTimeline';
 import { 
   BookOpen, 
   Play, 
@@ -543,7 +544,7 @@ const EducationalResources = () => {
 
       {/* Timeline Tab */}
       {activeTab === 'timeline' && (
-        <Timeline />
+        <InteractiveTimeline />
       )}
 
       {/* FAQ Tab */}
