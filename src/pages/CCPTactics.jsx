@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
+import SanctionedOfficials from '../components/SanctionedOfficials';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const icons = {
@@ -198,6 +199,11 @@ const CCPTactics = () => {
 
         {/* Counter Tactics */}
         <CounterTacticsSection />
+
+        {/* Sanctioned Officials */}
+        <div className="mt-8">
+          <SanctionedOfficials />
+        </div>
 
         {/* Sources Footer */}
         <div className="mt-8 text-center text-gray-500 text-sm">
