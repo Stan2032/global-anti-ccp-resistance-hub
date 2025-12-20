@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import IncidentReportForm from '../components/IncidentReportForm'
+import SecurityQuiz from '../components/SecurityQuiz'
 import { 
   Shield, 
   Lock, 
@@ -335,6 +336,13 @@ const SecurityCenter = () => {
 
       {/* Assessment Tab */}
       {activeTab === 'assessment' && (
+        <div className="space-y-6">
+          <SecurityQuiz />
+        </div>
+      )}
+
+      {/* Legacy Assessment Tab - Hidden */}
+      {activeTab === 'legacy-assessment' && (
         <div className="space-y-6">
           {!assessmentComplete ? (
             <>
