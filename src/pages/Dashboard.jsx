@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useLiveFeeds, useStatistics } from '../hooks/useLiveData';
 
 const Dashboard = () => {
@@ -136,12 +137,12 @@ const Dashboard = () => {
               under the National Security Law. International condemnation has been swift.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="/prisoners" className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors">
+              <Link to="/prisoners" className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors">
                 View Case Details
-              </a>
-              <a href="/campaigns" className="px-4 py-2 bg-red-900/50 hover:bg-red-900 text-red-200 rounded-lg text-sm font-medium transition-colors border border-red-700">
+              </Link>
+              <Link to="/campaigns" className="px-4 py-2 bg-red-900/50 hover:bg-red-900 text-red-200 rounded-lg text-sm font-medium transition-colors border border-red-700">
                 Join Campaign
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -223,9 +224,9 @@ const Dashboard = () => {
             )}
           </div>
           <div className="p-4 border-t border-slate-700">
-            <a href="/intelligence" className="text-blue-400 hover:text-blue-300 text-sm font-medium">
+            <Link to="/intelligence" className="text-blue-400 hover:text-blue-300 text-sm font-medium">
               View all intelligence →
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -280,9 +281,9 @@ const Dashboard = () => {
                 </a>
               ))}
             </div>
-            <a href="/campaigns" className="block mt-4 text-blue-400 hover:text-blue-300 text-sm font-medium">
+            <Link to="/campaigns" className="block mt-4 text-blue-400 hover:text-blue-300 text-sm font-medium">
               View all campaigns →
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -294,10 +295,10 @@ const Dashboard = () => {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { name: 'Tor Browser', desc: 'Anonymous browsing', icon: '🧅', url: 'https://www.torproject.org/' },
-            { name: 'Signal', desc: 'Encrypted messaging', icon: '💬', url: 'https://signal.org/' },
-            { name: 'ProtonMail', desc: 'Secure email', icon: '📧', url: 'https://proton.me/' },
-            { name: 'Tails OS', desc: 'Secure operating system', icon: '💻', url: 'https://tails.net/' },
+            { name: 'Tor Browser', desc: 'Anonymous browsing', icon: '🧅', url: 'https://www.torproject.org/download/' },
+            { name: 'Signal', desc: 'Encrypted messaging', icon: '💬', url: 'https://signal.org/download/' },
+            { name: 'ProtonMail', desc: 'Secure email', icon: '📧', url: 'https://proton.me/mail' },
+            { name: 'Tails OS', desc: 'Secure operating system', icon: '💻', url: 'https://tails.net/install/' },
           ].map((resource, index) => (
             <a
               key={index}
