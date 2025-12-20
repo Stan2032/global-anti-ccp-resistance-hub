@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
 import SanctionedOfficials from '../components/SanctionedOfficials';
 import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
+import MediaManipulation from '../components/MediaManipulation';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const icons = {
@@ -209,6 +210,11 @@ const CCPTactics = () => {
         {/* Confucius Institutes */}
         <div className="mt-8">
           <ConfuciusInstitutes />
+        </div>
+
+        {/* Media Manipulation */}
+        <div className="mt-8">
+          <MediaManipulation />
         </div>
 
         {/* Sources Footer */}
