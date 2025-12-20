@@ -2,6 +2,39 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.14.0] - 2025-12-20
+
+### New Features
+
+#### Action Tracker (Take Action Page)
+- Personal progress tracking system with gamification elements
+- **25 trackable actions** across 5 categories:
+  - Raise Awareness (5 actions): Share articles, discuss with friends, create posts, attend/organize events
+  - Political Advocacy (5 actions): Sign petitions, email/call/meet representatives, testify at hearings
+  - Economic Action (5 actions): Check labels, avoid forced labor companies, donate, divest, support diaspora businesses
+  - Self-Education (5 actions): Read articles/books, watch documentaries, take courses, learn languages
+  - Direct Support (5 actions): Welcome refugees, volunteer, mentor, provide professional support, host activists
+- **Points system** with 5 levels:
+  - Level 1: Newcomer (0-49 points)
+  - Level 2: Supporter (50-99 points)
+  - Level 3: Activist (100-249 points)
+  - Level 4: Advocate (250-499 points)
+  - Level 5: Champion (500+ points)
+- **8 achievements** to unlock:
+  - First Steps, Getting Started, Committed, Advocate, Champion, Hero
+  - Well-Rounded (all categories), Consistent (7-day streak)
+- Progress persistence via localStorage
+- Category-specific progress bars
+- Celebration animations when completing actions
+- Motivational quotes
+- Reset progress option
+
+### Technical Additions
+- ActionTracker component with localStorage persistence
+- Integrated into Take Action page after Quick Facts section
+
+---
+
 ## [2.13.0] - 2025-12-20
 
 ### Content & Interactive Features

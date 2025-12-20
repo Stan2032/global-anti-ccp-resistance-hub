@@ -7,6 +7,7 @@ import ForcedLaborSupplyChain from '../components/ForcedLaborSupplyChain';
 import ContactRepresentatives from '../components/ContactRepresentatives';
 import SuccessStories from '../components/SuccessStories';
 import QuickFacts from '../components/QuickFacts';
+import ActionTracker from '../components/ActionTracker';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -462,6 +463,11 @@ const TakeAction = () => {
       {/* Quick Facts Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
         <QuickFacts />
+      </div>
+
+      {/* Action Tracker */}
+      <div className="mt-8">
+        <ActionTracker />
       </div>
 
       {/* Share Section */}
