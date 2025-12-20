@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLiveFeeds, useStatistics } from '../hooks/useLiveData';
+import NewsAggregator from '../components/NewsAggregator';
 
 const Dashboard = () => {
   const { feeds, loading: feedsLoading } = useLiveFeeds(300000);
@@ -286,6 +287,11 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* News Aggregator Section */}
+      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+        <NewsAggregator />
       </div>
 
       {/* Resources Section */}
