@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import EventCalendar from '../components/EventCalendar'
 import { 
   Heart, 
   Users, 
@@ -319,7 +320,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'calendar'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -558,6 +559,11 @@ const CommunitySupport = () => {
             </motion.div>
           </div>
         </div>
+      )}
+
+      {/* Calendar Tab */}
+      {activeTab === 'calendar' && (
+        <EventCalendar />
       )}
     </div>
   )
