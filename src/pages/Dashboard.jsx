@@ -87,8 +87,8 @@ const Dashboard = () => {
   ];
 
   const quickActions = [
-    { title: 'Report Incident', icon: '🚨', href: '/security', color: 'red' },
-    { title: 'Join Campaign', icon: '✊', href: '/campaigns', color: 'blue' },
+    { title: 'Take Action', icon: '✊', href: '/take-action', color: 'red' },
+    { title: 'Join Campaign', icon: '🎯', href: '/campaigns', color: 'blue' },
     { title: 'Secure Comms', icon: '🔐', href: '/communications', color: 'green' },
     { title: 'Find Resources', icon: '📚', href: '/resources', color: 'purple' },
   ];

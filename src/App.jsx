@@ -60,6 +60,7 @@ const PoliticalPrisoners = lazy(() => import('./pages/PoliticalPrisoners'));
 const RegionalThreats = lazy(() => import('./pages/RegionalThreats'));
 const ResistanceResources = lazy(() => import('./pages/ResistanceResources'));
 const CCPTactics = lazy(() => import('./pages/CCPTactics'));
+const TakeAction = lazy(() => import('./pages/TakeAction'));
 
 // Simple Mobile-First Header
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
@@ -114,6 +115,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: 'CCP Tactics', href: '/tactics', icon: '📖' },
     { name: 'Education', href: '/education', icon: '🎓' },
     { name: 'Security', href: '/security', icon: '🛡️' },
+    { name: 'Take Action', href: '/take-action', icon: '✊' },
   ];
 
   if (!isOpen) return null;
@@ -209,6 +211,7 @@ const DesktopSidebar = () => {
     {
       title: 'Action',
       items: [
+        { name: 'Take Action', href: '/take-action', icon: '✊' },
         { name: 'Campaigns', href: '/campaigns', icon: '🎯' },
         { name: 'Community', href: '/community', icon: '💬' },
         { name: 'Communications', href: '/communications', icon: '🔐' },
@@ -362,6 +365,7 @@ function AppLayout() {
               <Route path="/threats" element={<RegionalThreats />} />
               <Route path="/resources" element={<ResistanceResources />} />
               <Route path="/tactics" element={<CCPTactics />} />
+              <Route path="/take-action" element={<TakeAction />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center">
