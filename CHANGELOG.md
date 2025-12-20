@@ -580,3 +580,48 @@ Added tracking of 250+ legislators from 30+ countries in the Inter-Parliamentary
 | Supply Chain Industries | 5 |
 | Confucius Institutes | 36 |
 | Media Outlets Tracked | 14 |
+
+
+## [3.1.0] - 2025-12-20
+
+### New Components
+
+#### China Tech Threats Dashboard
+Added comprehensive tracking of surveillance technology and critical infrastructure risks:
+- 8 sanctioned companies (Huawei, Hikvision, SenseTime, etc.)
+- Critical infrastructure risks (5G, ports, power grids, undersea cables)
+- Data collection risks (TikTok, WeChat, BGI Genomics)
+- Global response tracking (8 countries/regions)
+
+#### Success Stories
+Added 15 documented victories against CCP influence:
+- Two Michaels release
+- UFLPA enacted
+- Huawei 5G bans
+- Confucius Institute closures
+- Coordinated Magnitsky sanctions
+- UN Xinjiang report
+- Genocide declarations
+- And more...
+
+### Platform Statistics Update
+
+| Category | Count |
+|----------|-------|
+| Interactive Components | 40+ |
+| Political Prisoners | 24+ |
+| Police Stations | 102 |
+| Sanctioned Officials | 18 |
+| Organizations | 24 |
+| IPAC Legislators | 250+ |
+| Books | 21 |
+| Documentaries | 19 |
+| Glossary Terms | 28 |
+| Timeline Events | 28 |
+| Calendar Events | 21 |
+| Survivor Stories | 8 |
+| Documented Victories | 15 |
+| Tech Companies Tracked | 8 |
+| Supply Chain Industries | 5 |
+| Confucius Institutes | 36 |
+| Media Outlets Tracked | 14 |
