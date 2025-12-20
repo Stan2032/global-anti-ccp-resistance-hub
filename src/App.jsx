@@ -7,6 +7,7 @@ import { SkipLinks } from './components/Accessibility'
 import SearchWrapper, { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import Footer from './components/Footer'
+import QuickStartGuide from './components/QuickStartGuide'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -411,6 +412,9 @@ function AppLayout() {
       
       {/* Global Search Modal */}
       <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      
+      {/* Quick Start Guide for new users */}
+      <QuickStartGuide />
     </div>
   );
 }

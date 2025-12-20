@@ -2,6 +2,71 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.20.0] - 2025-12-20
+
+### New Features
+
+#### Witness Protection Guide (Security Center)
+- Comprehensive guide for at-risk individuals
+- 6 protection levels from basic to emergency
+- 15+ organizations offering protection services
+- Step-by-step protocols for different risk scenarios
+- Resources for asylum seekers, journalists, and activists
+- Emergency contact information
+- Legal protection guidance
+
+#### Petition Generator (Take Action Page)
+- Create custom petitions with 6 templates:
+  - Free Political Prisoner
+  - End Forced Labor
+  - Close Police Stations
+  - Protect Hong Kong
+  - Support Taiwan
+  - Sanction Officials
+- Auto-generated petition text
+- Customizable fields (name, target, demands)
+- Shareable links
+- Copy to clipboard functionality
+
+#### Regional Issues (Regional Threats Page)
+- Coverage of additional persecuted groups:
+  - Inner Mongolia (Mongolian language ban, cultural destruction)
+  - Southern Mongolia (mining, displacement)
+  - Falun Gong (organ harvesting, persecution)
+  - House Christians (church demolitions, arrests)
+  - Chinese Dissidents (lawyers, journalists, activists)
+- 25+ documented cases with sources
+- Key figures and organizations for each group
+- Action items and resources
+
+#### Source Verification Tool (Education Center)
+- Guide to trusted sources with 15+ vetted organizations:
+  - Research: ASPI, Safeguard Defenders, UHRP, HRW, Amnesty, Freedom House
+  - Government: Uyghur Tribunal, CECC, UK Foreign Affairs Committee
+  - Media: RFA, HKFP, The China Project, AP
+  - Academic: Xinjiang Victims Database, Xinjiang Police Files, Dr. Adrian Zenz
+- Unreliable sources warning (Global Times, CGTN, Xinhua, China Daily, The Grayzone)
+- Verification tips and CCP disinformation tactics guide
+- Search and category filtering
+
+#### Quick Start Guide
+- Interactive 7-step onboarding tutorial for new users
+- Progress tracking with localStorage
+- Links to key platform sections
+- Skip option for returning users
+- Help menu with keyboard shortcuts
+
+### Technical Additions
+- WitnessProtection component on Security page (new "protection" tab)
+- PetitionGenerator component on Take Action page
+- RegionalIssues component on Regional Threats page
+- SourceVerification component in Education Center (new "sources" tab)
+- QuickStartGuide component with modal interface
+- Education Center now has 14 tabs
+- Security Center now has 7 tabs
+
+---
+
 ## [2.19.0] - 2025-12-20
 
 ### New Features

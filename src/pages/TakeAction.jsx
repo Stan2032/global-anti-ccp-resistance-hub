@@ -13,6 +13,7 @@ import SanctionsTracker from '../components/SanctionsTracker';
 import DonationGuide from '../components/DonationGuide';
 import LetterCampaign from '../components/LetterCampaign';
 import SocialMediaToolkit from '../components/SocialMediaToolkit';
+import PetitionGenerator from '../components/PetitionGenerator';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -498,6 +499,11 @@ const TakeAction = () => {
       {/* Social Media Toolkit */}
       <div className="mt-8">
         <SocialMediaToolkit />
+      </div>
+
+      {/* Petition Generator */}
+      <div>
+        <PetitionGenerator />
       </div>
 
       {/* Share Section */}

@@ -11,6 +11,7 @@ import FAQ from '../components/FAQ'
 import KnowledgeQuiz from '../components/KnowledgeQuiz'
 import LanguageGuide from '../components/LanguageGuide';
 import DisinfoTracker from '../components/DisinfoTracker';
+import SourceVerification from '../components/SourceVerification';
 import { 
   BookOpen, 
   Play, 
@@ -363,7 +364,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo'].map((tab) => (
+        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -562,6 +563,10 @@ const EducationalResources = () => {
 
       {activeTab === 'disinfo' && (
         <DisinfoTracker />
+      )}
+
+      {activeTab === 'sources' && (
+        <SourceVerification />
       )}
     </div>
   )
