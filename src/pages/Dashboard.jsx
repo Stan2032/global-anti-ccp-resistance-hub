@@ -4,6 +4,7 @@ import { useStatistics } from '../hooks/useLiveData';
 import NewsAggregator from '../components/NewsAggregator';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import ImpactMetrics from '../components/ImpactMetrics';
+import CountdownTimer from '../components/CountdownTimer';
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -310,6 +311,11 @@ const Dashboard = () => {
 
       {/* Impact Metrics */}
       <ImpactMetrics />
+
+      {/* Important Dates Countdown */}
+      <div className="mt-8">
+        <CountdownTimer />
+      </div>
 
       {/* Footer */}
       <div className="text-center text-slate-500 text-sm py-4">

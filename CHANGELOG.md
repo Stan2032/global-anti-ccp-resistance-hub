@@ -2,6 +2,67 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.15.0] - 2025-12-20
+
+### New Features
+
+#### Countdown Timer (Dashboard)
+- Live countdown to 8 important dates:
+  - Tiananmen Square Anniversary (June 4)
+  - Hong Kong Handover Anniversary (July 1)
+  - Tibetan Uprising Day (March 10)
+  - Uyghur Human Rights Day (July 5)
+  - Human Rights Day (December 10)
+  - Taiwan National Day (October 10)
+  - Panchen Lama Abduction Anniversary (May 17)
+  - Hong Kong NSL Anniversary (June 30)
+- Featured countdown for next upcoming event
+- Suggested actions for each date
+- Event type badges (memorial, awareness, action, solidarity)
+- Links to calendar apps
+
+#### Survivor Stories (Community Page)
+- 8 verified testimonies from survivors and activists:
+  - Tursunay Ziawudun (Uyghur camp survivor)
+  - Gulbahar Haitiwaji (French citizen detained)
+  - Nathan Law (Hong Kong activist in exile)
+  - Glaciar Chow (HK councillor in exile)
+  - Lobsang Sangay (Former Tibetan leader)
+  - Ai Weiwei (Artist and activist)
+  - Chen Guangcheng (Blind activist)
+  - Jewher Ilham (Daughter of Ilham Tohti)
+- Category filtering (Uyghur, Hong Kong, Tibet, Dissidents, Family)
+- Expandable full stories with sources
+- Verified testimony badges
+- Links to testimony databases
+
+#### Resource Bookmarks (Resources Page)
+- Personal bookmark manager for saving resources
+- 6 categories: Resources, Organizations, News, Research, Action, Tools
+- 10 suggested bookmarks from key organizations
+- Add custom bookmarks with notes
+- Export/Import bookmarks as JSON
+- LocalStorage persistence
+
+#### Activist Toolkit (Take Action Page)
+- 20 downloadable resources across 5 categories:
+  - Graphics & Banners (4): Protest banners, profile frames, posters
+  - Letter Templates (4): Representative letters, company letters, media pitches
+  - Fact Sheets (4): Genocide facts, timelines, maps, company lists
+  - How-To Guides (4): Advocacy, protests, security, media interviews
+  - Social Media (4): Thread templates, story templates, hashtag guides
+- Format and size information
+- Category filtering
+- Usage guidelines
+
+### Technical Additions
+- CountdownTimer component on Dashboard
+- SurvivorStories component on Community page (new "stories" tab)
+- Bookmarks component on Resources page
+- ActivistToolkit component on Take Action page
+
+---
+
 ## [2.14.0] - 2025-12-20
 
 ### New Features

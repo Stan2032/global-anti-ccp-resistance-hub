@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DataExport from '../components/DataExport';
+import Bookmarks from '../components/Bookmarks';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -252,6 +253,11 @@ const ResistanceResources = () => {
 
       {/* Data Export Section */}
       <DataExport />
+
+      {/* Personal Bookmarks */}
+      <div className="mt-8">
+        <Bookmarks />
+      </div>
 
       {/* Footer note */}
       <div className="text-center text-slate-500 text-sm">

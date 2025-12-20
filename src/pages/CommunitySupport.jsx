@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import EventCalendar from '../components/EventCalendar'
 import DiasporaSupport from '../components/DiasporaSupport'
 import ReportSighting from '../components/ReportSighting'
+import SurvivorStories from '../components/SurvivorStories'
 import { 
   Heart, 
   Users, 
@@ -322,7 +323,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -576,6 +577,11 @@ const CommunitySupport = () => {
       {/* Calendar Tab */}
       {activeTab === 'calendar' && (
         <EventCalendar />
+      )}
+
+      {/* Survivor Stories Tab */}
+      {activeTab === 'stories' && (
+        <SurvivorStories />
       )}
     </div>
   )
