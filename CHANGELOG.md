@@ -460,3 +460,66 @@ Features:
 | Calendar Events | 21 | Annual commemorations |
 | Glossary Terms | 28 | With Chinese characters |
 | Security Quiz Questions | 10 | Digital security assessment |
+
+
+## [2.9.0] - 2025-12-20
+
+### Take Action Page Enhancements
+
+#### Forced Labor Supply Chain Tracker
+Added comprehensive visualization of how Xinjiang forced labor enters global supply chains:
+
+**5 Industries Tracked:**
+- 🧵 Cotton & Textiles (85% of China's cotton from Xinjiang)
+- ☀️ Solar Panels (35% global polysilicon)
+- 🍅 Tomatoes & Food (70% of China's tomatoes)
+- 📱 Electronics (complex supply chains)
+- 🚗 Automotive (materials and components)
+
+**Features:**
+- Visual supply chain stages with risk levels
+- Major brands at risk for each industry
+- Ethical alternatives
+- Relevant legislation (UFLPA, EU directives)
+- Links to ASPI, Coalition to End Forced Labour, CBP
+
+### Regional Threats Page Enhancements
+
+#### Taiwan Defense Status Dashboard
+Added comprehensive cross-strait situation tracking:
+
+**4 Tabs:**
+- Overview: Recent developments, key stats
+- Military Balance: PLA vs Taiwan forces comparison
+- Allied Support: US arms packages ($11.1B+), allied commitments
+- Scenarios: Gray zone, blockade, strikes, invasion probabilities
+
+**Key Features:**
+- Elevated threat level indicator
+- US arms packages timeline
+- Allied countries support tracking
+- Scenario probability assessments
+
+#### Hong Kong Freedom Status Dashboard
+Added comprehensive tracking of freedom erosion:
+
+**4 Tabs:**
+- Overview: Closed organizations, recent developments
+- Repressive Laws: NSL, Article 23 details
+- Arrests & Trials: Major cases tracking
+- Exodus: 500,000+ emigrants, destinations
+
+**Key Stats:**
+- 10,000+ arrested since 2019
+- 291+ charged under NSL
+- 10+ media outlets closed
+- 500,000+ emigrated since 2020
+
+### Updated Platform Statistics
+
+| Category | Count |
+|----------|-------|
+| Supply Chain Industries | 5 |
+| Taiwan Arms Packages | 5+ |
+| Hong Kong Closed Orgs | 9+ |
+| Hong Kong Emigrants | 500,000+ |
