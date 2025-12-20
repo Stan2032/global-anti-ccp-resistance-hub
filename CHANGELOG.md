@@ -2,6 +2,50 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.12.0] - 2025-12-20
+
+### User Experience Enhancements
+
+#### Print-Friendly Styles
+- Optimized CSS for printing reports and prisoner profiles
+- Automatic URL display for links when printed
+- Page break controls for clean document output
+- Hidden navigation and interactive elements in print
+- Source attribution header and footer
+- Emergency contacts always visible in print
+
+#### Quick Facts Widget
+- 8 shareable statistics with sources
+- One-click copy to clipboard for social media
+- Direct Twitter sharing integration
+- Color-coded categories
+- Source links to original reports
+- Usage tips for advocacy
+
+#### Impact Metrics Dashboard
+- Real-time platform statistics
+- Recent victories timeline
+- Progress tracking visualization
+- Call to action messaging
+
+#### Enhanced Footer
+- Organized navigation links
+- Partner organization directory
+- Emergency contacts section
+- Security reminder with VPN/Tor links
+- GitHub and social sharing links
+- CC BY 4.0 and MIT license notices
+- Multilingual solidarity message
+
+### Technical Additions
+- print.css with comprehensive print media queries
+- QuickFacts component on Take Action page
+- ImpactMetrics component on Dashboard
+- Footer component with structured navigation
+- Version updated to v2.12.0
+
+---
+
 ## [2.11.0] - 2025-12-20
 
 ### Major Platform Enhancements

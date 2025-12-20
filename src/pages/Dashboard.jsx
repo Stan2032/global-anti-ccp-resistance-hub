@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStatistics } from '../hooks/useLiveData';
 import NewsAggregator from '../components/NewsAggregator';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
+import ImpactMetrics from '../components/ImpactMetrics';
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -307,9 +308,12 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Impact Metrics */}
+      <ImpactMetrics />
+
       {/* Footer */}
       <div className="text-center text-slate-500 text-sm py-4">
-        <p>Global Resistance Hub v2.1 • Secure • Anonymous • Decentralized</p>
+        <p>Global Resistance Hub v2.11 • Secure • Anonymous • Decentralized</p>
         <p className="mt-1">Together we resist authoritarianism</p>
       </div>
     </div>

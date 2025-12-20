@@ -6,6 +6,7 @@ import LanguageSelector, { LanguageProvider } from './components/LanguageSelecto
 import { SkipLinks } from './components/Accessibility'
 import SearchWrapper, { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
+import Footer from './components/Footer'
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -403,6 +404,9 @@ function AppLayout() {
             </Routes>
           </Suspense>
         </div>
+        
+        {/* Footer */}
+        <Footer />
       </main>
       
       {/* Global Search Modal */}

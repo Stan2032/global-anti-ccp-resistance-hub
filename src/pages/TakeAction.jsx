@@ -6,6 +6,7 @@ import BoycottList from '../components/BoycottList';
 import ForcedLaborSupplyChain from '../components/ForcedLaborSupplyChain';
 import ContactRepresentatives from '../components/ContactRepresentatives';
 import SuccessStories from '../components/SuccessStories';
+import QuickFacts from '../components/QuickFacts';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -456,6 +457,11 @@ const TakeAction = () => {
       {/* Success Stories Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
         <SuccessStories />
+      </div>
+
+      {/* Quick Facts Section */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+        <QuickFacts />
       </div>
 
       {/* Share Section */}
