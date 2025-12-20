@@ -265,3 +265,63 @@ Added full-size detention timers for 4 urgent cases: Jimmy Lai (4+ years), Ilham
 - Responsive layouts for all screen sizes
 - Accessible color schemes and contrast ratios
 
+
+
+## [2.6.0] - 2025-12-20
+
+### Education Center Enhancements
+
+#### Survivor Stories
+Added 8 verified survivor testimonies with full stories, quotes, and sources:
+- Mihrigul Tursun (Uyghur camp survivor)
+- Nathan Law (Hong Kong activist in exile)
+- Sayragul Sauytbay (First to expose camp system)
+- Chen Guangcheng (Blind activist who escaped)
+- Tenzin Tsundue (Tibetan poet and activist)
+- Gui Minhai (Swedish publisher abducted)
+- Jewher Ilham (Daughter of Ilham Tohti)
+- Wang Dan (Tiananmen student leader)
+
+Features category filtering, full story modals, share to Twitter, and copy to share functionality.
+
+### Resources Page Enhancements
+
+#### Legal Frameworks
+Added 10 international legal frameworks for accountability:
+
+Sanctions Laws:
+- UFLPA (US Uyghur Forced Labor Prevention Act)
+- Global Magnitsky Act (US)
+- Hong Kong Human Rights and Democracy Act (US)
+- UK Magnitsky Sanctions Regime
+- EU Human Rights Sanctions Regime
+- Canada Magnitsky Act
+- Australia Autonomous Sanctions Act
+
+International Law:
+- UN Convention on Genocide
+- Universal Declaration of Human Rights
+- ICCPR (signed but not ratified by China)
+
+Features expandable details, enforcement information, official source links, and advocacy guidance.
+
+### Summary of All v2.x Features
+
+The platform now includes:
+- 24 verified resistance organizations
+- 24 documented political prisoners
+- 102 overseas police stations mapped
+- 28 historical events in timeline
+- 27 companies in boycott guide
+- 21 essential books
+- 19 documentaries
+- 18 sanctioned officials
+- 10 legal frameworks
+- 8 survivor stories
+- 8 training modules
+- 6 active petition campaigns
+- Live detention counters
+- Comprehensive security quiz
+- Contact representatives tool
+- News aggregator with category filtering
+
