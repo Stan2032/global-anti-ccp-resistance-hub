@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import WorldThreatMap from '../components/WorldThreatMap';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -278,6 +279,11 @@ const RegionalThreats = () => {
           <p className="text-gray-400">
             Monitoring CCP military expansion, territorial aggression, and influence operations across the Indo-Pacific region.
           </p>
+        </div>
+        
+        {/* World Map */}
+        <div className="mb-8">
+          <WorldThreatMap />
         </div>
         
         {/* Alert Banner */}
