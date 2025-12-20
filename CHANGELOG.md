@@ -523,3 +523,60 @@ Added comprehensive tracking of freedom erosion:
 | Taiwan Arms Packages | 5+ |
 | Hong Kong Closed Orgs | 9+ |
 | Hong Kong Emigrants | 500,000+ |
+
+
+## [3.0.0] - 2025-12-20
+
+### Major Release: Comprehensive Regional Status Dashboards
+
+This release adds extensive regional status tracking for all major areas of CCP repression.
+
+### Regional Threats Page - Complete Overhaul
+
+The Regional Threats page now includes 7 major interactive dashboards:
+
+#### 1. World Threat Map
+Interactive global visualization of CCP influence operations.
+
+#### 2. Police Stations Map
+102 overseas police stations tracked across 53 countries with regional breakdown.
+
+#### 3. Exit Bans & Hostage Diplomacy Tracker
+14 documented cases of foreign nationals and activists prevented from leaving China.
+
+#### 4. Taiwan Defense Status
+Cross-strait military situation with 4 tabs: Overview, Military Balance, Allied Support, Scenarios.
+
+#### 5. Hong Kong Freedom Status
+Tracking freedom erosion with 4 tabs: Overview, Repressive Laws, Arrests & Trials, Exodus.
+
+#### 6. Xinjiang/Uyghur Genocide Status
+Comprehensive genocide documentation with 4 tabs: Overview, Detention Camps, Forced Labor, Cultural Genocide.
+
+#### 7. Tibet Status
+75 years of occupation tracking with 4 tabs: Overview, Repression, Self-Immolations, Cultural Erasure.
+
+### Directory Page Enhancement
+
+#### IPAC Members Tracker
+Added tracking of 250+ legislators from 30+ countries in the Inter-Parliamentary Alliance on China.
+
+### Platform Statistics
+
+| Category | Count |
+|----------|-------|
+| Interactive Components | 35+ |
+| Political Prisoners | 24+ |
+| Police Stations | 102 |
+| Sanctioned Officials | 18 |
+| Organizations | 24 |
+| IPAC Legislators | 250+ |
+| Books | 21 |
+| Documentaries | 19 |
+| Glossary Terms | 28 |
+| Timeline Events | 28 |
+| Calendar Events | 21 |
+| Survivor Stories | 8 |
+| Supply Chain Industries | 5 |
+| Confucius Institutes | 36 |
+| Media Outlets Tracked | 14 |
