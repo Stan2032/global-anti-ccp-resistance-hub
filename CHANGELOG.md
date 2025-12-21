@@ -2,6 +2,40 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.25.0] - 2025-12-21
+
+### Added - Wide Research Integration
+- **Parallel Research Execution**: Used Wide Research mode to research 110 items in parallel
+- **Political Prisoners Database**: 60 cases researched and verified with current status
+  - Updated Jimmy Lai case with December 2025 life sentence verdict
+  - Updated Zhang Zhan with second 4-year sentence (September 2025)
+  - Verified status of all Hong Kong 47 defendants
+  - Added latest news for Xu Zhiyong hunger strike
+  - Updated Nathan Law Singapore deportation news
+- **Recent News Database**: 20 topics researched with latest developments
+  - Jimmy Lai verdict coverage
+  - Hong Kong 47 sentencing updates
+  - UFLPA enforcement actions
+  - Overseas police station investigations
+  - Confucius Institute closures
+- **Police Stations Database**: 30 locations verified with current status
+  - Documented closures in Netherlands, UK, Ireland, Canada
+  - Tracked arrests in NYC (2 arrested April 2023)
+  - Government responses from 20+ countries
+- **Research Dashboard Component**: New interactive dashboard displaying all research data
+  - Overview tab with statistics
+  - Political Prisoners tab with search and filter
+  - Recent News tab with significance ratings
+  - Police Stations tab with status tracking
+- **Data Export**: All research data available in JSON format
+
+### Technical
+- Created `/src/data/` directory for research data storage
+- Added `researchData.js` data loader with statistics
+- Integrated research results into Dashboard page
+
+---
+
 ## [2.24.0] - 2025-12-20
 
 ### Added

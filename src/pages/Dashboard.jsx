@@ -8,6 +8,7 @@ import CountdownTimer from '../components/CountdownTimer';
 import LiveStatistics from '../components/LiveStatistics';
 import EmergencyAlerts from '../components/EmergencyAlerts';
 import NewsDigest from '../components/NewsDigest';
+import ResearchDashboard from '../components/ResearchDashboard';
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -331,6 +332,11 @@ const Dashboard = () => {
       {/* News Digest Subscription */}
       <div className="mt-8">
         <NewsDigest />
+      </div>
+
+      {/* Research Database */}
+      <div className="mt-8">
+        <ResearchDashboard />
       </div>
 
       {/* Footer */}

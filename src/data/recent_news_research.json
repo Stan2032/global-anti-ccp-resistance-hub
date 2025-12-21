@@ -1,0 +1,324 @@
+{
+  "results": [
+    {
+      "input": "Jimmy Lai trial verdict and sentencing December 2024",
+      "output": {
+        "topic": "Jimmy Lai trial verdict and sentencing December 2024",
+        "headline": "Hong Kong court convicts pro-democracy activist and mogul Jimmy Lai",
+        "summary": "A Hong Kong court has convicted pro-democracy activist and media mogul Jimmy Lai on charges of colluding with foreign forces and sedition. This verdict, part of a landmark national security trial, could result in a life sentence for the 78-year-old. The international community has widely condemned the trial and conviction as politically motivated and a significant blow to press freedom in Hong Kong.",
+        "date": "2025-12-15",
+        "source": "NPR",
+        "source_url": "https://www.npr.org/2025/12/15/nx-s1-5642545/hong-kong-pro-democracy-activist-jimmy-lai-sentenced",
+        "significance": "HIGH",
+        "related_prisoners": "Joshua Wong, six other former Apple Daily senior executives",
+        "international_response": "The UK and Taiwan have called for Lai's release. Pro-democracy groups and human rights organizations, including the Committee to Protect Journalists (CPJ), have condemned the verdict as a sham and a blow to press freedom. The United Nations Working Group on Arbitrary Detention has also declared Lai's detention to be unlawful and arbitrary.",
+        "action_needed": "Activists and press freedom organizations are calling for international pressure on the Hong Kong and Chinese authorities to release Jimmy Lai and other political prisoners. Specific actions include signing petitions, contacting government representatives to advocate for sanctions, and supporting organizations that work to protect press freedom."
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong 47 sentencing and appeals 2024",
+      "output": {
+        "topic": "Hong Kong 47 sentencing and appeals 2024",
+        "headline": "Hong Kong 47: Activist ‘Long Hair’ Leung Kwok-hung seeks to overturn conviction, sentence in national security case",
+        "summary": "47 pro-democracy activists were charged with “conspiracy to commit subversion” under the national security law. After a lengthy trial, 45 were jailed in November 2024 for up to a decade. Several, including Leung Kwok-hung, are now appealing their convictions and sentences.",
+        "date": "2024-12-16",
+        "source": "Hong Kong Free Press",
+        "source_url": "https://hongkongfp.com/2024/12/16/hong-kong-47-activist-long-hair-leung-kwok-hung-seeks-to-overturn-conviction-sentence-in-national-security-case/",
+        "significance": "HIGH",
+        "related_prisoners": "Leung Kwok-hung, and the rest of the Hong Kong 47.",
+        "international_response": "The EU parliament has called for the release of the jailed activists and the US has called for sanctions against Hong Kong officials.",
+        "action_needed": "Raise awareness, advocate for the release of prisoners, and support human rights organizations working on Hong Kong."
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur forced labor UFLPA enforcement actions 2024",
+      "output": {
+        "topic": "Uyghur forced labor UFLPA enforcement actions 2024",
+        "headline": "China's Uyghur Persecution Shows 'Broken' Human Rights Promises",
+        "summary": "Recent reports indicate that China's persecution of ethnic Muslim minorities in the Xinjiang region continues with the expansion of coercive state-led labor programs. In response, the U.S. has intensified its enforcement of the Uyghur Forced Labor Prevention Act (UFLPA), blocking a significant number of imports suspected of being produced with forced labor.",
+        "date": "2025-12-11",
+        "source": "Sourcing Journal",
+        "source_url": "https://sourcingjournal.com/topics/labor/china-cecc-congress-forced-labor-uyghur-xinjiang-1234793224/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "The US government has been enforcing the Uyghur Forced Labor Prevention Act (UFLPA), resulting in the denial of over 10,000 shipments worth nearly a billion dollars over three years.",
+        "action_needed": "Support organizations like the Coalition to End Forced Labor in the Uyghur Region and advocate for stronger enforcement of the UFLPA."
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang sanctions updates US UK EU 2024",
+      "output": {
+        "topic": "Xinjiang sanctions updates US UK EU 2024",
+        "headline": "Blacklisted foreign companies persist in app stores, defying U.S. sanctions",
+        "summary": "A watchdog report has found that major US tech companies, Apple and Google, are hosting applications from companies on the US sanctions list, including the Xinjiang Production and Construction Corps (XPCC). The XPCC is a Chinese state-owned enterprise that has been sanctioned for its role in human rights abuses against the Uyghur population in Xinjiang. This defiance of US sanctions highlights a significant gap in enforcement.",
+        "date": "2025-12-10",
+        "source": "The Washington Post",
+        "source_url": "https://www.washingtonpost.com/technology/2025/12/10/us-sanctions-apple-google/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "The US Treasury Department has stated that technology companies should be aware of US sanctions and conduct due diligence to ensure compliance. The article does not mention specific responses from the UK or EU regarding this development.",
+        "action_needed": "Activists can pressure Apple and Google to remove apps of sanctioned entities and advocate for stronger enforcement of sanctions by the US Treasury Department."
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station investigations closures 2024",
+      "output": {
+        "topic": "CCP overseas police station investigations closures 2024",
+        "headline": "New York Resident Pleads Guilty to Operating Secret Police Station of the Chinese Government in Lower Manhattan",
+        "summary": "A New York resident, Chen Jinping, pleaded guilty to conspiring to act as an illegal agent of the Chinese government in connection with operating an undeclared overseas police station in Manhattan for the PRC’s Ministry of Public Security. The station, which closed in the fall of 2022, was the first known of its kind in the United States.",
+        "date": "2024-12-18",
+        "source": "United States Department of Justice",
+        "source_url": "https://www.justice.gov/archives/opa/pr/new-york-resident-pleads-guilty-operating-secret-police-station-chinese-government-lower",
+        "significance": "HIGH",
+        "related_prisoners": "Chen Jinping, Lu Jianwang",
+        "international_response": "The U.S. Department of Justice and the FBI have strongly condemned the PRC's actions, stating that they will not tolerate such violations of U.S. sovereignty and will continue to counteract the malign activities of foreign governments.",
+        "action_needed": "The FBI has created a website for victims to report efforts by foreign governments to stalk, intimidate, or assault people in the United States: www.fbi.gov/investigate/counterintelligence/transnational-repression. Activists can raise awareness about this issue and encourage victims to report incidents to the FBI."
+      },
+      "error": ""
+    },
+    {
+      "input": "Confucius Institute closures worldwide 2024",
+      "output": {
+        "topic": "Confucius Institute closures worldwide 2024",
+        "headline": "US National Science Foundation Restricts Funding for Universities with Confucius Institutes",
+        "summary": "The US National Science Foundation (NSF) has issued a new policy, effective December 8, 2025, that prohibits funding for institutions of higher education (IHEs) that maintain a contract or agreement with a Confucius Institute. This is part of a broader effort to counter foreign influence in US education. While many Confucius Institutes have closed, some have rebranded or their activities are continuing under different names, raising concerns that Chinese government influence persists.",
+        "date": "2025-12-19",
+        "source": "UCSF Office of Sponsored Research, Foundation for Defense of Democracies (FDD)",
+        "source_url": "https://osr.ucsf.edu/news/nsf-update-26-200-supplement-released-to-pappg-24-1, https://www.fdd.org/analysis/2025/12/03/chinas-influence-operation-in-us-education-was-supposed-to-be-shut-down-but-did-closing-the-confucius-institutes-only-make-it-stronger/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "The articles focus on the US response. The FDD article mentions that other Western countries have also been scrutinizing Confucius Institutes.",
+        "action_needed": "Activists can monitor universities for rebranded Confucius Institutes or similar partnerships with Chinese state-affiliated entities. They can also advocate for greater transparency in university funding and partnerships."
+      },
+      "error": ""
+    },
+    {
+      "input": "Taiwan China military tensions 2024",
+      "output": {
+        "topic": "Taiwan China military tensions 2024",
+        "headline": "China tells US to 'immediately' stop arming Taiwan after Washington approves arms package",
+        "summary": "The United States has approved an $11 billion arms package for Taiwan, which includes advanced weaponry such as HIMARS rocket systems, howitzers, and anti-tank missiles. In response, China has demanded that the US immediately cease its military support for the island, escalating the already tense situation across the Taiwan Strait.",
+        "date": "2025-12-18",
+        "source": "France 24",
+        "source_url": "https://www.france24.com/en/asia-pacific/20251218-washington-approves-several-arms-contracts-worth-11-billion-to-taiwan",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "China's foreign ministry urged the United States to 'immediately stop' arming Taiwan, calling it a 'dangerous action.' The US State Department approved the sale, which is now awaiting congressional approval.",
+        "action_needed": "Contact representatives to express support for or opposition to the arms sale."
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibet protests arrests human rights 2024",
+      "output": {
+        "topic": "Tibet protests arrests human rights 2024",
+        "headline": "80 Tibetans Detained, 7 Disappeared After Protesting Gold Mining in Kham Zachuka",
+        "summary": "Chinese authorities detained approximately 80 Tibetans in Kashi Nomadic Village on November 6, 2025, following a protest against a gold mining project. Seven of the detained individuals have reportedly disappeared. Tibetan NGOs have organized protests in response, calling for the release of the detainees and an end to illegal mining in Tibet.",
+        "date": "2025-12-19",
+        "source": "The Tibet Post International",
+        "source_url": "https://www.thetibetpost.com/news/exile/five-tibetan-ngos-protest-china-over-illegal-mining-and-arrest-of-80-innocent-tibetans",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "The Tibetan government-in-exile has urged the international community to pressure China. Five Tibetan NGOs have also issued a set of demands to the international community.",
+        "action_needed": "Activists can raise awareness by sharing information on social media, signing petitions, and contacting their government representatives to urge them to pressure China to release the detained Tibetans and protect Tibet's environment."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chinese dissident arrests releases 2024",
+      "output": {
+        "topic": "Chinese dissident arrests releases 2024",
+        "headline": "China: Veteran Journalist Charged with ‘Picking Quarrels’",
+        "summary": "Chinese authorities have formally charged well-known journalist and author Du Bin with “picking quarrels and provoking trouble.” He was taken into custody on October 15, 2025, and faces up to 5 years in prison. This is the third time he has been detained, but the first time he has been formally charged.",
+        "date": "2025-12-12",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/news/2025/12/12/china-veteran-journalist-charged-with-picking-quarrels",
+        "significance": "HIGH",
+        "related_prisoners": "Du Bin, Zhang Zhan, Dong Yuyu, Huang Xueqin, Jimmy Lai",
+        "international_response": "Human Rights Watch has called for Du Bin's immediate and unconditional release. The UN High Commissioner for Human Rights has previously criticized the charge of 'picking quarrels and provoking troubles' as being at variance with China's international human rights obligations.",
+        "action_needed": "Concerned governments should publicly raise Du Bin’s case with the Chinese government and press for his immediate and unconditional release. Activists can share his story and advocate for his freedom."
+      },
+      "error": ""
+    },
+    {
+      "input": "Transnational repression cases CCP 2024",
+      "output": {
+        "topic": "Transnational repression cases CCP 2024",
+        "headline": "Transnational Repression Grew in 2025—and It Will Only Get Worse",
+        "summary": "China is the world's leading perpetrator of transnational repression, employing tactics like cyber-attacks, surveillance, and harassment against dissidents and their families overseas. A recent escalation involves the use of sexually explicit deepfakes to intimidate activists. Western governments have been criticized for their inadequate response, often prioritizing economic relationships with China over human rights concerns.",
+        "date": "2025-12-19",
+        "source": "Council on Foreign Relations",
+        "source_url": "https://www.cfr.org/expert-brief/transnational-repression-grew-2025-and-it-will-only-get-worse",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "The international response to China's transnational repression has been largely criticized as insufficient. While the US Congress introduced the Transnational Repression Policy Act in 2025, it has not been passed. Many developed countries, including the US and some in Europe, are seen as prioritizing trade and economic ties with China over taking a firm stance against these human rights abuses.",
+        "action_needed": "Activists and governments should publicly condemn these acts, investigate them thoroughly, establish reporting mechanisms for affected communities, ensure transparency in addressing the issue, and provide support for victims, including resources for digital security and mental health."
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong National Security Law prosecutions 2024",
+      "output": {
+        "topic": "Hong Kong National Security Law prosecutions 2024",
+        "headline": "Hong Kong: Jimmy Lai Convicted on Bogus National Security Charges",
+        "summary": "The Hong Kong High Court convicted Jimmy Lai, founder of the now-defunct Apple Daily, on two counts of 'conspiracy to commit collusion with foreign forces' under the National Security Law and one count of 'conspiracy to publish seditious publications.' Human Rights Watch described the conviction as a travesty of justice and a significant blow to press freedom in the city.",
+        "date": "2025-12-15",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/news/2025/12/15/hong-kong-jimmy-lai-convicted-on-bogus-national-security-charges",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, six former Apple Daily executives and editors",
+        "international_response": "Human Rights Watch urged foreign governments to press for Jimmy Lai's immediate release. The United Kingdom was denied consular access to Lai, a British citizen, in violation of the Vienna Convention.",
+        "action_needed": "Lobby foreign governments to pressure Hong Kong authorities for the immediate release of Jimmy Lai and to address the erosion of press freedom."
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur genocide recognition parliaments 2024",
+      "output": {
+        "topic": "Uyghur genocide recognition parliaments 2024",
+        "headline": "UHRP Marks Uyghur Genocide Recognition Day 2025 with Call for Sustained Global Action",
+        "summary": "The Uyghur Human Rights Project (UHRP) marked the fifth Uyghur Genocide Recognition Day with a call for governments, businesses, and civil society to move beyond symbolic gestures and take meaningful, enforceable action to end the ongoing atrocities against the Uyghur people. The statement emphasizes the need for sustained international pressure, including the full enforcement of import bans on goods produced with forced labor and the expansion of targeted sanctions against Chinese officials.",
+        "date": "2025-12-09",
+        "source": "Uyghur Human Rights Project",
+        "source_url": "https://uhrp.org/statement/uyghur-human-rights-project-marks-uyghur-genocide-recognition-day-2025-with-call-for-sustained-global-action/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "Formal determinations of genocide have been made by the United States and legislative bodies in Canada, the United Kingdom, the Netherlands, Belgium, France, Lithuania, Czechia, and Ireland. The UN Office of the High Commissioner for Human Rights (OHCHR) has concluded that China may be committing crimes against humanity.",
+        "action_needed": "Advocate for governments to enforce import bans on goods made with Uyghur forced labor, expand sanctions against Chinese officials, and close loopholes that allow tainted goods into global markets."
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP influence operations foreign interference 2024",
+      "output": {
+        "topic": "CCP influence operations foreign interference 2024",
+        "headline": "China Shifts to Overt Disinformation Operations Against Japan",
+        "summary": "China is shifting from covert to overt disinformation operations against Japan, using state-linked media and diplomatic channels to erode Japan's standing as a regional defense partner. This new strategy involves leveraging AI-powered disinformation and election interference, representing a significant escalation in tactics.",
+        "date": "2025-12-02",
+        "source": "Global Influence Operations Report",
+        "source_url": "https://www.global-influence-ops.com/china-disinformation-operations-against-japan/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "Chinese embassies in Fiji, the Philippines, and Australia have amplified criticism of Japan's historical conduct. The US Congress has also heard testimony regarding the United Front Work Department's influence operations in Southeast Asia.",
+        "action_needed": "Promote media literacy and fact-checking to counter disinformation campaigns."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chinese journalist arrests imprisonments 2024",
+      "output": {
+        "topic": "Chinese journalist arrests imprisonments 2024",
+        "headline": "Hong Kong pro-democracy publisher Jimmy Lai convicted of sedition and collusion",
+        "summary": "A Hong Kong court convicted 78-year-old British citizen and media tycoon Jimmy Lai of sedition and conspiracy to collude with foreign forces under the city's national security law. The pro-democracy advocate faces a potential life sentence, a decision that has been widely condemned as a blow to press freedom in the territory.",
+        "date": "2025-12-15",
+        "source": "The Guardian",
+        "source_url": "https://www.theguardian.com/world/2025/dec/15/uk-condemns-hong-kongs-politically-motivated-targeting-of-jimmy-lai-after-conviction",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, and at least seven other journalists are currently detained in Hong Kong.",
+        "international_response": "The G7, UK, EU, US, and Australia have all condemned the conviction and called for Lai's immediate release. The UK Foreign Office summoned the Chinese Ambassador in response to the verdict.",
+        "action_needed": "Raise the cases of Jimmy Lai and other political prisoners in meetings with Chinese officials, sign petitions, and contact government representatives to advocate for their release."
+      },
+      "error": ""
+    },
+    {
+      "input": "Religious persecution China Christians Muslims 2024",
+      "output": {
+        "topic": "Religious persecution in China: Christians and Muslims (2024)",
+        "headline": "China's Crackdown on Religion Intensifies: Uyghur Documentarian Faces Deportation from US, Christian Jailed for Private Bible Study",
+        "summary": "Recent events highlight China's ongoing persecution of religious minorities. Guan Heng, a Chinese man who documented Uyghur detention camps, is being held by US immigration and faces potential deportation back to China. Meanwhile, Christian Ma Yan was sentenced to nine months in prison for holding a private Bible study, illustrating the 'Sinicization' of Christianity and the criminalization of unauthorized religious activities.",
+        "date": "2025-12-15",
+        "source": "The Guardian, Christian Daily International",
+        "source_url": "https://www.theguardian.com/world/2025/dec/15/china-uyghur-human-rights-ice, https://www.christiandaily.com/news/repression-of-religion-in-china-more-subtle-and-pervasive-report-says",
+        "significance": "HIGH",
+        "related_prisoners": "Guan Heng, Ma Yan",
+        "international_response": "The Tom Lantos Human Rights Commission has issued a statement in support of Guan Heng, warning that he would likely be persecuted if he returned to China and urging that he be given refuge.",
+        "action_needed": "Activists can raise awareness about the cases of Guan Heng and Ma Yan, and advocate for their release and for the protection of religious freedom in China. This can be done by contacting representatives, supporting human rights organizations, and sharing information on social media."
+      },
+      "error": ""
+    },
+    {
+      "input": "Organ harvesting China Falun Gong evidence 2024",
+      "output": {
+        "topic": "Organ harvesting China Falun Gong evidence 2024",
+        "headline": "2025 Annual Report from U.S. Commission on China Puts Falun Gong into Focus",
+        "summary": "On December 10, the Congressional-Executive Commission on China (CECC) released its 2025 Annual Report, spotlighting the Chinese Communist Party’s (CCP) continued persecution of Falun Gong. The report details abuses such as torture and forced organ harvesting, framing them as violations of the Convention Against Torture, which China ratified in 1988.",
+        "date": "2025-12-18",
+        "source": "Faluninfo.net",
+        "source_url": "https://faluninfo.net/2025-annual-report-from-u-s-commission-on-china-puts-falun-gong-into-focus/",
+        "significance": "HIGH",
+        "related_prisoners": "Zuo Hongtao, Gao Xiaoying, Zhao Ying",
+        "international_response": "The U.S. Congressional-Executive Commission on China (CECC) released its 2025 annual report, highlighting the Chinese Communist Party’s (CCP) continued persecution of Falun Gong and related abuses—from torture and forced organ harvesting inside China to harassment and threats reaching the United States.",
+        "action_needed": "Raise awareness of the CECC report and support organizations like Shen Yun Performing Arts."
+      },
+      "error": ""
+    },
+    {
+      "input": "Belt and Road Initiative human rights concerns 2024",
+      "output": {
+        "topic": "Belt and Road Initiative human rights concerns 2024",
+        "headline": "China’s Clean Energy Investments Abroad Are a Boon for Climate, but Human Rights and the Environment Are a Different Story",
+        "summary": "Across the globe, Chinese firms are embarking on an unprecedented effort to build the factories, mines and refineries needed to make EVs, batteries, solar panels and other clean energy technologies. While these investments are helping to reduce global emissions, many projects proceed despite local opposition and evidence of significant environmental, social and human rights impacts, including pollution, violations of labor laws, and threats to endangered species.",
+        "date": "2025-12-17",
+        "source": "Inside Climate News",
+        "source_url": "https://insideclimatenews.org/news/17122025/china-oversea-clean-energy-investments/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "Chinese officials deny violations of rights and emphasize the Belt and Road Initiative’s support for green economic growth. European and U.S. governments have expressed concerns about security risks associated with Chinese investments and the environmental and human rights impacts, but specific policy responses are not detailed.",
+        "action_needed": "Activists are raising awareness about environmental and health risks, filing lawsuits, monitoring pollution, and organizing protests. They also advocate for stronger oversight, local input in permitting processes, and holding Chinese firms accountable for environmental and social impacts."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chinese surveillance technology exports 2024",
+      "output": {
+        "topic": "Chinese surveillance technology exports 2024",
+        "headline": "U.S. Authorities Shut Down Major China-Linked AI Tech Smuggling Network",
+        "summary": "U.S. authorities have dismantled a smuggling ring that was illegally exporting high-performance GPUs, essential for AI and military applications, to China. The network, involving individuals and companies in the US and China, falsified documents to circumvent export controls, with over $50 million in technology and cash seized.",
+        "date": "2025-12-08",
+        "source": "U.S. Department of Justice",
+        "source_url": "https://www.justice.gov/opa/pr/us-authorities-shut-down-major-china-linked-ai-tech-smuggling-network",
+        "significance": "HIGH",
+        "related_prisoners": "Alan Hao Hsu, Benlin Yuan, Fanyue Gong",
+        "international_response": "The U.S. government is taking legal action to protect its technology and national security by prosecuting individuals and companies involved in the illegal export of controlled technologies to China.",
+        "action_needed": "Encourage the tech industry to strengthen internal compliance and report suspicious activities to the authorities."
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong press freedom media closures 2024",
+      "output": {
+        "topic": "Hong Kong press freedom media closures 2024",
+        "headline": "Jimmy Lai convicted in landmark national security trial",
+        "summary": "Hong Kong media tycoon Jimmy Lai was found guilty of conspiring to collude with foreign forces and conspiring to publish seditious publications. The court determined that Lai used his newspaper, Apple Daily, to advocate for sanctions against Hong Kong and China, a verdict widely seen as a major setback for press freedom in the city.",
+        "date": "2025-12-20",
+        "source": "Hong Kong Free Press",
+        "source_url": "https://hongkongfp.com/2025/12/20/hkfp-monitor-dec-20-2025-tracking-hong-kong-govts-reactions-to-foreign-media-jimmy-lais-855-page-ruling/",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai",
+        "international_response": "Governments and human rights organizations, including the UK and Amnesty International, have condemned the conviction as politically motivated and a blow to press freedom.",
+        "action_needed": "Write messages of hope to Jimmy Lai, email Hong Kong authorities to call for his release, and share his campaign on social media using the #FreeJimmyLai hashtag."
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibetan self-immolations protests 2024",
+      "output": {
+        "topic": "Tibetan self-immolations protests 2024",
+        "headline": "Tibetan monk released in poor health after being jailed for sending prayer money for his self-immolated uncle",
+        "summary": "Rachung Gendun, a Tibetan monk, was released on November 16, 2024, in poor health after serving a three-and-a-half-year prison sentence. He was imprisoned for sending money to Tibetan monasteries in exile as a prayer offering for his late uncle, Taphun, who self-immolated in March 2022 in protest against the Chinese government.",
+        "date": "2024-12-23",
+        "source": "Tibet Watch",
+        "source_url": "https://tibetwatch.org/tibetan-monk-released-in-poor-health/",
+        "significance": "HIGH",
+        "related_prisoners": "Rachung Gendun, Taphun",
+        "international_response": "The European Union and the United States have issued statements expressing concern over the human rights situation in Tibet. The EU specifically mentioned the restrictions on freedom of speech, expression, movement, and assembly in Tibetan areas. The US passed the 'Promoting a Resolution to the Tibet-China Dispute Act' in July 2024 to strengthen its Tibet policy.",
+        "action_needed": "Activists can raise awareness about Rachung Gendun's case and the broader issue of Tibetan political prisoners. They can also support organizations like Tibet Watch and Students for a Free Tibet, and urge their governments to continue to press China on its human rights record in Tibet."
+      },
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,514 @@
+{
+  "results": [
+    {
+      "input": "CCP overseas police station United Kingdom London",
+      "output": {
+        "country": "United Kingdom",
+        "city": "London",
+        "address": "Unknown",
+        "status": "CLOSED",
+        "closure_date": "2023-06-06",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The UK government investigated the sites, found no illegal activity, but deemed them unacceptable. The Foreign, Commonwealth and Development Office told the Chinese Embassy that any functions related to such ‘police service stations’ in the UK are unacceptable and that they must not operate in any form. The Chinese Embassy subsequently responded that all such stations have closed permanently.",
+        "linked_to": "Unknown",
+        "latest_news": "On June 6, 2023, the UK government announced that the Chinese embassy had confirmed the permanent closure of all overseas police service stations in the UK following an investigation. On June 22, 2023, the Metropolitan Police announced that their investigation had concluded and no criminal activity had been identified.",
+        "source_url": "https://questions-statements.parliament.uk/written-statements/detail/2023-06-06/hcws822"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Netherlands Amsterdam Rotterdam",
+      "output": {
+        "country": "Netherlands",
+        "city": "Amsterdam, Rotterdam",
+        "address": "Unknown",
+        "status": "CLOSED",
+        "closure_date": "2022-11-02",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Dutch government investigated the reports and ordered the immediate closure of the undeclared police stations.",
+        "linked_to": "Fuzhou, Lishui",
+        "latest_news": "The Dutch government ordered the closure of the Chinese police stations in Amsterdam and Rotterdam in November 2022.",
+        "source_url": "https://www.euronews.com/2022/11/02/netherlands-orders-closure-of-illegal-chinese-police-stations-in-amsterdam-and-rotterdam"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Canada Toronto",
+      "output": {
+        "country": "Canada",
+        "city": "Toronto",
+        "address": "One of the locations is a convenience store in Scarborough, another is a single-storey commercial building in Markham, and the third is a residential home in Markham. Specific addresses are not publicly available.",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Royal Canadian Mounted Police (RCMP) has launched an investigation into the alleged police stations. The Canadian government has expressed deep concerns about the matter.",
+        "linked_to": "Fuzhou",
+        "latest_news": "As of September 2025, the RCMP has closed its investigation into two alleged Chinese police stations in Montreal without laying charges. The status of the investigation in Toronto is not explicitly stated in the provided sources, but it is part of the broader national investigation.",
+        "source_url": "https://www.cbc.ca/news/canada/rcmp-investigating-chinese-police-stations-canada-1.6627166"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Canada Vancouver",
+      "output": {
+        "country": "Canada",
+        "city": "Vancouver",
+        "address": "Wenzhou Friendship Society, Hazelbridge Way, Richmond",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The RCMP is actively investigating reports of criminal activity in relation to the so-called 'police stations.'",
+        "linked_to": "Wenzhou",
+        "latest_news": "Richmond RCMP confirmed the Integrated National Security Enforcement Team was looking into an “alleged” Chinese police station in Richmond. (2022-12-15)",
+        "source_url": "https://www.richmond-news.com/local-news/richmond-rcmp-confirms-investigation-into-alleged-chinese-police-station-6257353"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station United States New York",
+      "output": {
+        "country": "United States",
+        "city": "New York",
+        "address": "107 E Broadway, New York, NY 10002",
+        "status": "CLOSED",
+        "closure_date": "2022-10-01",
+        "arrests_made": "Yes",
+        "arrest_details": "Two American citizens, Lu Jianwang and Chen Jinping, were arrested. Chen Jinping pleaded guilty to conspiring to act as an illegal agent of the Chinese government.",
+        "government_response": "The FBI investigated and raided the station. The Department of Justice charged the operators and 34 Ministry of Public Security officers in China.",
+        "linked_to": "Fuzhou",
+        "latest_news": "On December 18, 2024, Chen Jinping pleaded guilty to conspiring to act as an illegal agent of the Chinese government.",
+        "source_url": "https://www.justice.gov/archives/opa/pr/new-york-resident-pleads-guilty-operating-secret-police-station-chinese-government-lower"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station United States Los Angeles",
+      "output": {
+        "country": "United States",
+        "city": "Los Angeles",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "While no arrests have been made in direct connection to the Los Angeles station, a related case involves the arrest of Yaoning “Mike” Sun in Chino Hills. Sun was charged with acting as an illegal agent of a foreign power and conspiring with John Chen, who was sentenced for acting as an unregistered agent of the People’s Republic of China and bribing an IRS agent.",
+        "government_response": "The U.S. government has expressed deep concern over the presence of these stations. The FBI is actively investigating these operations as part of a broader effort to counter China's transnational repression and influence campaigns within the United States.",
+        "linked_to": "Wenzhou",
+        "latest_news": "As of December 22, 2024, federal prosecutors are investigating an alleged Chinese spy operation in the San Gabriel Valley, which is linked to efforts to gain political influence in the region. This investigation has led to the arrest of a Chino Hills man, Yaoning “Mike” Sun, for acting as an illegal agent of the Chinese government.",
+        "source_url": "https://www.newsweek.com/china-overseas-police-service-center-public-security-bureau-safeguard-defenders-transnational-crime-1764531"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Ireland Dublin",
+      "output": {
+        "country": "Ireland",
+        "city": "Dublin",
+        "address": "Capel Street, Dublin",
+        "status": "CLOSED",
+        "closure_date": "2022-10-27",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The Irish Department of Foreign Affairs ordered the Chinese \"police service station\" to close and cease operations.",
+        "linked_to": "Fuzhou",
+        "latest_news": "The Chinese “police station” in Dublin’s city centre was ordered to close by the Irish government in October 2022.",
+        "source_url": "https://www.bbc.com/news/articles/crgndy37n16o"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station France Paris",
+      "output": {
+        "country": "France",
+        "city": "Paris",
+        "address": "Avenue de Choisy, 13th arrondissement",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The French Ministry of the Interior and the DGSI are monitoring the activities and have stated they will not tolerate practices that violate national sovereignty. A judge has suspended the deportation of a Chinese entrepreneur for their involvement in operating a secret police station.",
+        "linked_to": "Fuzhou",
+        "latest_news": "A French judge suspended the deportation of a Chinese entrepreneur in June 2025 for 'operating secret police station'.",
+        "source_url": "https://www.lemonde.fr/en/france/article/2022/11/02/the-chinese-security-apparatus-is-weaving-its-web-abroad-with-police-offices-in-paris_6002621_7.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Germany Frankfurt Berlin",
+      "output": {
+        "country": "Germany",
+        "city": "Frankfurt",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The German government has confirmed the existence of the station and is investigating. A note of protest has been sent to the Chinese embassy.",
+        "linked_to": "Qingtian",
+        "latest_news": "German authorities are investigating the station as of December 2022.",
+        "source_url": "https://www.politico.eu/article/china-shadow-police-stations-germany/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Spain Madrid Barcelona",
+      "output": {
+        "country": "Spain",
+        "city": "Madrid",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Spanish Ministry of Interior has launched an investigation into the alleged Chinese parapolice centers.",
+        "linked_to": "Both",
+        "latest_news": "The Spanish government is investigating the existence of these stations. (2023-02-14)",
+        "source_url": "https://en.wikipedia.org/wiki/Chinese_police_overseas_service_stations"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Italy Rome Milan",
+      "output": {
+        "country": "Italy",
+        "city": "Rome",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The Italian government is investigating the matter and has held meetings with Chinese officials.",
+        "linked_to": "Qingtian",
+        "latest_news": "Italian authorities are grappling with the contentious issue of Chinese “police stations” operating within the country. An NGO report identifies at least 11 such centres across the country. Experts Oriana Skylar Mastro and Laura Harth warn that these centres serve both economic and political interests, violating national sovereignty. (Decode39, March 28, 2025)",
+        "source_url": "https://decode39.com/10316/delving-into-italys-challenge-with-chinese-secret-overseas-police-stations/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Portugal Lisbon",
+      "output": {
+        "country": "Portugal",
+        "city": "Lisbon",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Portuguese Public Ministry, through the Central Department of Investigation and Criminal Action (DCIAP), has opened an investigation into the activities of the alleged police stations. The government has stated that any such stations would be illegal.",
+        "linked_to": "Qingtian",
+        "latest_news": "As of October 2022, the investigation was ongoing. In May 2023, the Portuguese Minister of Foreign Affairs stated he had received assurances from China that it would not support alleged secret police stations.",
+        "source_url": "https://cnnportugal.iol.pt/china/espionagem/operacoes-secretas-com-ameacas-a-familiares-para-persuadir-cidadaos-a-voltar-a-china-suspeitas-recaem-em-tres-associacoes-que-operam-em-portugal/20221008/633effd30cf2f9a86eb92d97"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Hungary Budapest",
+      "output": {
+        "country": "Hungary",
+        "city": "Budapest",
+        "address": "Golgota Street, District VIII and 37 Cserkesz Street, Kőbánya",
+        "status": "CLOSED",
+        "closure_date": "2022-01-01",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The Hungarian Interior Ministry initially denied the existence of the stations in 2022. In 2024, an agreement for joint police patrols was signed but has not been implemented.",
+        "linked_to": "Both",
+        "latest_news": "The former police station on Golgota Street is now a Chinese Christian church as of August 2025. The 2024 agreement for joint police patrols has not been implemented.",
+        "source_url": "https://dailynewshungary.com/chinese-police-stations-in-hungary-now-church/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Czech Republic Prague",
+      "output": {
+        "country": "Czech Republic",
+        "city": "Prague",
+        "address": "Unknown",
+        "status": "CLOSED",
+        "closure_date": "2022-12-08",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Czech foreign minister, Jan Lipavský, has called on China to explain the existence of two Chinese unofficial \"police stations\" in Prague. The Chinese ambassador assured him that those in the Czech Republic have been closed.",
+        "linked_to": "Both",
+        "latest_news": "China has closed two \"secret police stations\" located in Prague, the Czech foreign minister has said. (2022-12-08)",
+        "source_url": "https://www.euronews.com/2022/12/08/china-closes-two-secret-police-stations-in-prague-says-czech-foreign-minister"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Croatia Zagreb",
+      "output": {
+        "country": "Croatia",
+        "city": "Zagreb",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Croatian Interior Ministry denied the existence of illegal Chinese police stations, stating that Chinese police officers were present for joint patrols to assist tourists.",
+        "linked_to": "Unknown",
+        "latest_news": "As of May 2023, reports from CNN and Safeguard Defenders allege the existence of an illegal Chinese police station in Zagreb, which the Croatian government denies, stating the police presence is for joint patrols to assist tourists.",
+        "source_url": "https://total-croatia-news.com/news/chinese-police-2/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Serbia Belgrade",
+      "output": {
+        "country": "Serbia",
+        "city": "Belgrade",
+        "address": "Unknown",
+        "status": "OPERATING",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Serbian government has not officially commented on the station. An opposition lawmaker has stated they will raise the issue in parliament, but the government is reportedly trying to avoid jeopardizing its relationship with Beijing.",
+        "linked_to": "Qingtian",
+        "latest_news": "In November 2022, an opposition Serbian lawmaker announced their intention to launch a parliamentary inquiry into the activities of the Chinese police station.",
+        "source_url": "https://safeguarddefenders.com/en/blog/chinese-overseas-police-service-stations-tied-illegal-policing-madrid-and-belgrade"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Romania Bucharest",
+      "output": {
+        "country": "Romania",
+        "city": "Bucharest",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "Romania's Interior Ministry (MAI) denied claims of a clandestine Chinese police station on its territory.",
+        "linked_to": "Nantong",
+        "latest_news": "In December 2022, Romania's Interior Ministry denied the existence of a Chinese police station. However, a December 2022 report by Safeguard Defenders lists a Nantong-operated station in Romania.",
+        "source_url": "https://www.romania-insider.com/MAI-denies-claims-romania-hosting-clandestine-chinese-police-station-dec-2022"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Greece Athens",
+      "output": {
+        "country": "Greece",
+        "city": "Athens",
+        "address": "Agisilaou 29-Athens-Greece 104-36",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "Greek police announced in December 2022 that they were investigating a similar operation in downtown Athens.",
+        "linked_to": "Fuzhou",
+        "latest_news": "In December 2022, Greek police initiated an investigation into an unofficial Chinese police station operating in Athens, as reported by Politico in April 2023.",
+        "source_url": "https://www.politico.com/news/2023/04/19/china-police-state-outposts-00092913"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Japan Tokyo",
+      "output": {
+        "country": "Japan",
+        "city": "Tokyo",
+        "address": "Building in Akihabara district",
+        "status": "CLOSED",
+        "closure_date": "2023-05",
+        "arrests_made": "Yes",
+        "arrest_details": "Two former senior officials of the entity were referred to prosecutors over fraudulent COVID-19 relief fund claims.",
+        "government_response": "Tokyo police searched the site of the alleged police station.",
+        "linked_to": "Fuzhou",
+        "latest_news": "Tokyo police searched the alleged Chinese overseas police station in May 2023. The organization vacated the building following the search. (Feb 21, 2024)",
+        "source_url": "https://english.kyodonews.net/articles/-/45919"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station South Korea Seoul",
+      "output": {
+        "country": "South Korea",
+        "city": "Seoul",
+        "address": "Dongfang Mingzhu Restaurant, Songpa-gu, Seoul",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The South Korean government, including the National Intelligence Service and the police, launched a nationwide probe into suspected secret police stations.",
+        "linked_to": "Nantong",
+        "latest_news": "On December 17, 2025, Wang Haijun, the representative of the Dongfang Mingzhu restaurant, received a suspended sentence for customs evasion and other charges. The allegations of operating a secret police station were not prosecuted due to legal limitations.",
+        "source_url": "https://www.chosun.com/english/national-en/2025/12/17/W7QBYUQ675DAXKT4FQWU2A2YJM/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Australia Sydney",
+      "output": {
+        "country": "Australia",
+        "city": "Sydney",
+        "address": "Unknown (cloud-based), previously at a location in Rydalmere.",
+        "status": "OPERATING",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Australian Federal Police (AFP) has stated it has \"no concerns\". The Attorney-General's department is \"taking the allegations... seriously\". The Australian Security Intelligence Organisation (ASIO) is investigating potential security threats. The AFP is discontinuing its police cooperation agreement with China.",
+        "linked_to": "Wenzhou, Hai'an (Nantong)",
+        "latest_news": "As of August 2023, a cloud-based police contact point is operational. While the AFP has no concerns, other government bodies are investigating.",
+        "source_url": "https://www.abc.net.au/news/2023-08-04/china-overseas-police-contact-point-australia-cloud/102683332"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Australia Melbourne",
+      "output": {
+        "country": "Australia",
+        "city": "Melbourne",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Australian Federal Police (AFP) is aware of the reports and has stated that it has a greater awareness of foreign interference threats. The AFP also stopped allowing Chinese police to operate in Australia in 2019.",
+        "linked_to": "Nantong",
+        "latest_news": "As of June 2024, the Australian Federal Police (AFP) has halted its policy of allowing Chinese police to operate in Australia due to foreign interference concerns. This decision was made following a 2019 incident and a greater awareness of foreign interference threats. The AFP has also renewed agreements with Chinese authorities on organized and economic crime.",
+        "source_url": "https://www.abc.net.au/news/2024-06-03/afp-stopped-allowing-chinese-police-to-operate-in-australia/103925174"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station New Zealand Auckland",
+      "output": {
+        "country": "New Zealand",
+        "city": "Auckland",
+        "address": "Great South Road, Epsom, Auckland",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "A multi-agency probe was launched by the New Zealand government. Following the investigation, officials stated they were unconcerned, but the detailed findings were not publicly disclosed.",
+        "linked_to": "Unknown",
+        "latest_news": "As of January 31, 2023, New Zealand's national security officials have concluded their investigation into the alleged Chinese police station and have stated they are unconcerned by their findings. The detailed outcome of the probe has not been made public.",
+        "source_url": "https://www.stuff.co.nz/national/politics/131117783/government-officials-unconcerned-after-probing-claims-of-chinese-police-station-in-nz"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Brazil Sao Paulo",
+      "output": {
+        "country": "Brazil",
+        "city": "Sao Paulo",
+        "address": "Rua Carnot Street 549, Canindé 2, Building No. 4",
+        "status": "UNKNOWN",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "Authorities in Brazil have yet to respond to the reports of PRC overseas police service centers on their territories, as of November 7, 2022.",
+        "linked_to": "Fuzhou",
+        "latest_news": "As of November 7, 2022, the Brazilian government had not officially responded to the presence of the alleged police station.",
+        "source_url": "https://ij-reportika.com/china-opening-chinese-police-stations-outside-its-territory/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Argentina Buenos Aires",
+      "output": {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "address": "Gabriela Mistral 5452",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The Argentine government has launched an investigation into the activities of the alleged clandestine Chinese police station.",
+        "linked_to": "Fuzhou",
+        "latest_news": "Argentina has opened an investigation into the Chinese overseas police station in Buenos Aires. The investigation is ongoing, and no arrests have been made. (2022-11-07)",
+        "source_url": "https://www.rfa.org/english/news/china/police-service-station-concern-11072022041158.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station South Africa Johannesburg",
+      "output": {
+        "country": "South Africa",
+        "city": "Johannesburg",
+        "address": "Unknown",
+        "status": "OPERATING",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "The South African government has not taken any direct action against the center. The 'Chinese Community and Police Cooperation Centre' was established in 2004 with the support of the Chinese Embassy and works in cooperation with the South African Police Service (SAPS). It is registered as a non-profit organization and receives funding from various sources, including the Chinese government and South African government departments.",
+        "linked_to": "Both",
+        "latest_news": "An article from May 2023 clarifies that the center is not a police station but a community service center that assists Chinese nationals and cooperates with local law enforcement. It has been in operation for almost two decades.",
+        "source_url": "https://africachinareporting.com/not-a-police-station-the-chinese-community-and-police-cooperation-centre-in-south-africa/"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Tanzania Dar es Salaam",
+      "output": {
+        "country": "Tanzania",
+        "city": "Dar es Salaam",
+        "address": "Unknown",
+        "status": "OPERATING",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The Tanzanian government and the Chinese Embassy have both denied the existence of a Chinese-run police station in Dar es Salaam.",
+        "linked_to": "Qingtian",
+        "latest_news": "An article from the Pulitzer Center on December 6, 2023, provided a detailed look into a 'Chinese help center' in Dar es Salaam, which is believed to be a front for the police station. The center is reportedly located in a small, gated compound off a main highway.",
+        "source_url": "https://pulitzercenter.org/stories/exclusive-inside-beijing-linked-chinese-help-center-tanzania"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Thailand Bangkok",
+      "output": {
+        "country": "Thailand",
+        "city": "Bangkok",
+        "address": "Unknown",
+        "status": "UNKNOWN",
+        "closure_date": "N/A",
+        "arrests_made": "No",
+        "arrest_details": "N/A",
+        "government_response": "Thai security agencies investigated and found no evidence of secret Chinese police stations in Bangkok's Yaowarat and Huay Kwang areas.",
+        "linked_to": "Unknown",
+        "latest_news": "As of November 19, 2023, Thai security agencies have found no evidence of secret Chinese police stations in Bangkok. A proposed plan for joint patrols with Chinese police was also dropped after public backlash.",
+        "source_url": "https://www.nationthailand.com/thailand/general/40033002"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Indonesia Jakarta",
+      "output": {
+        "country": "Indonesia",
+        "city": "Jakarta",
+        "address": "Unknown",
+        "status": "UNDER INVESTIGATION",
+        "closure_date": "N/A",
+        "arrests_made": "Yes",
+        "arrest_details": "27 Chinese citizens were arrested for running a cybercrime syndicate, posing as Chinese police officers to extort victims in China.",
+        "government_response": "The Indonesian government is deporting the 27 Chinese citizens and coordinating with the Chinese Embassy in Jakarta.",
+        "linked_to": "Nantong",
+        "latest_news": "27 Chinese citizens are facing deportation after a joint operation uncovered a fake police station in a luxury house in Lampung. (2025-11-19)",
+        "source_url": "https://inp.polri.go.id/artikel/fake-chinese-police-station-uncovered-27-chinese-citizens-face-deportation"
+      },
+      "error": ""
+    },
+    {
+      "input": "CCP overseas police station Malaysia Kuala Lumpur",
+      "output": {
+        "country": "Malaysia",
+        "city": "Kuala Lumpur",
+        "address": "Level 6, Hampshire Place Office, Jalan Mayang Sari, 50450 Kuala Lumpur, Malaysia",
+        "status": "UNKNOWN",
+        "closure_date": "N/A",
+        "arrests_made": "Unknown",
+        "arrest_details": "N/A",
+        "government_response": "The Malaysian government has been urged to clarify the extent of foreign law enforcement operating on its territory, but no official statement has been issued regarding the closure of any such stations.",
+        "linked_to": "Fuzhou",
+        "latest_news": "An article from August 2025 suggests the existence of a clandestine Chinese police station in Kuala Lumpur, possibly operating under the guise of a travel agency or an 'Overseas Chinese Service Centre'.",
+        "source_url": "https://murrayhunter.substack.com/p/is-there-a-chinese-police-station"
+      },
+      "error": ""
+    }
+  ]
+}
