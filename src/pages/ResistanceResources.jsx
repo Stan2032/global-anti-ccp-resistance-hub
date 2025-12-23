@@ -4,6 +4,7 @@ import DataExport from '../components/DataExport';
 import Bookmarks from '../components/Bookmarks';
 import MediaGallery from '../components/MediaGallery';
 import CompanyTracker from '../components/CompanyTracker';
+import OrganizationsDirectory from '../components/OrganizationsDirectory';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -269,6 +270,11 @@ const ResistanceResources = () => {
       {/* Company Accountability Tracker */}
       <div className="mt-8">
         <CompanyTracker />
+      </div>
+
+      {/* Organizations Directory */}
+      <div className="mt-8">
+        <OrganizationsDirectory />
       </div>
 
       {/* Footer note */}

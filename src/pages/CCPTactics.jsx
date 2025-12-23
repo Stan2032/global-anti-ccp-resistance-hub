@@ -5,6 +5,7 @@ import SanctionedOfficials from '../components/SanctionedOfficials';
 import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
 import MediaManipulation from '../components/MediaManipulation';
 import CCPOfficials from '../components/CCPOfficials';
+import SanctionedOfficialsTracker from '../components/SanctionedOfficialsTracker';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const icons = {
@@ -211,6 +212,11 @@ const CCPTactics = () => {
         {/* Sanctioned Officials */}
         <div className="mt-8">
           <SanctionedOfficials />
+        </div>
+
+        {/* Sanctioned Officials Tracker (Wide Research Data) */}
+        <div className="mt-8">
+          <SanctionedOfficialsTracker />
         </div>
 
         {/* Confucius Institutes */}

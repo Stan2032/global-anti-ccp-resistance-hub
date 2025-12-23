@@ -1,0 +1,704 @@
+{
+  "results": [
+    {
+      "input": "United States",
+      "output": {
+        "country": "United States",
+        "total_institutes": 4,
+        "closed_count": 104,
+        "universities_closed": "Auburn University at Montgomery, University of Central Arkansas, Arizona State University, University of Arizona, California State University - Long Beach, San Diego State University, San Francisco State University, University of California, Los Angeles, University of California, Santa Barbara, University of California - Davis, Colorado State University, Central Connecticut State University, University of Delaware, Miami Dade College, University of South Florida, University of West Florida, Emory University, Georgia State University, Kennesaw State University, University of Hawaii Manoa",
+        "government_action": "In 2018, Congress restricted federal funding to schools with Confucius Institutes.",
+        "controversies": "Concerns about undue influence from the PRC government, their sources of funding, and the potential for undue PRC influence or risks to national security.",
+        "latest_news": "Confucius Institutes reopen in the US under new names - Jul 2025",
+        "source_url": "https://www.gao.gov/products/gao-24-105981"
+      },
+      "error": ""
+    },
+    {
+      "input": "United Kingdom",
+      "output": {
+        "country": "United Kingdom",
+        "total_institutes": 34,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The UK government has reversed a decision to close Confucius Institutes but is in the process of removing government funding. New free speech regulations from the Office for Students (OfS) may require universities to amend their agreements with the institutes.",
+        "controversies": "Concerns have been raised about academic freedom and free speech, with allegations that Confucius Institutes are part of the Chinese Communist Party's propaganda system and that staff are vetted based on their political attitude.",
+        "latest_news": "New free speech rules in England are threatening the existence of 20 Confucius Institutes - Aug 2025",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Canada",
+      "output": {
+        "country": "Canada",
+        "total_institutes": 8,
+        "closed_count": 5,
+        "universities_closed": "McMaster University, Université de Sherbrooke, Toronto District School Board, New Brunswick (school program)",
+        "government_action": "The government of New Brunswick investigated and subsequently closed the Confucius Institute program in its public schools. Additionally, a public inquiry into foreign interference in Canada has identified Confucius Institutes as a potential tool for the People's Republic of China to exert influence.",
+        "controversies": "Concerns have been raised about the Confucius Institutes being used as a tool for propaganda by the Chinese Communist Party (CCP), including censorship of politically sensitive topics such as the Tiananmen Square massacre and human rights issues in Tibet. There are also concerns about the institutes' hiring practices, which have been accused of discriminating against Falun Gong practitioners. Furthermore, there is evidence of Confucius Institutes rebranding themselves to avoid scrutiny and continue their operations under new names.",
+        "latest_news": "Public Inquiry into Foreign Interference suspects Confucius Institutes of being a tool of the PRC - Nov 2024",
+        "source_url": "https://www.visiontimes.com/2023/01/23/confucius-institutes-rebrand-canada.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Australia",
+      "output": {
+        "country": "Australia",
+        "total_institutes": 7,
+        "closed_count": 6,
+        "universities_closed": "University of Melbourne, University of Queensland, University of Western Australia, University of New South Wales, Royal Melbourne Institute of Technology",
+        "government_action": "The Australian government has increased scrutiny of Confucius Institutes, requiring more transparency from universities and registration on the Foreign Influence Transparency Scheme due to concerns about foreign influence and espionage.",
+        "controversies": "Concerns have been raised about Confucius Institutes being used as propaganda tools for the Chinese government, censoring politically sensitive topics, and posing a risk of espionage and threats to national security.",
+        "latest_news": "Six Australian universities close Chinese government-linked Confucius Institutes - April 2025",
+        "source_url": "https://www.bbc.com/news/articles/czx1dyxyg10o"
+      },
+      "error": ""
+    },
+    {
+      "input": "Germany",
+      "output": {
+        "country": "Germany",
+        "total_institutes": 19,
+        "closed_count": 1,
+        "universities_closed": "University of Hamburg",
+        "government_action": "The German government has expressed concerns about the influence of Confucius Institutes. The Federal Ministry of Education and Research has called for 'clear limits' on their influence, and the Federal Office for the Protection of the Constitution has classified them as instruments of political influence. Discussions about restrictions are ongoing at both the national and EU levels.",
+        "controversies": "Concerns about the Confucius Institutes in Germany include their role as a propaganda tool for the Chinese government, the potential for undermining academic freedom, and instances of censorship. A notable example is the cancellation of a book presentation critical of Xi Jinping at the Confucius Institute at the University of Duisburg-Essen.",
+        "latest_news": "German government considers restrictions on Confucius Institutes - Jul 2023",
+        "source_url": "https://www.dw.com/en/chinas-confucius-institutes-may-face-restrictions-in-germany/a-66158864"
+      },
+      "error": ""
+    },
+    {
+      "input": "France",
+      "output": {
+        "country": "France",
+        "total_institutes": 15,
+        "closed_count": 3,
+        "universities_closed": "University of Lyon, Paris Nanterre University, University of Toulouse",
+        "government_action": "A 2021 report on foreign interference in French universities was published by the French Senate.",
+        "controversies": "Attempts to influence academic content, financial imbalances where host universities spend more than the Chinese side, and allegations of discrimination.",
+        "latest_news": "France: An uneven awakening to the risks posed by China in academic cooperation - Jun 17, 2025",
+        "source_url": "https://ceias.eu/france-an-uneven-awakening-to-the-risks-posed-by-china-in-academic-cooperation/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Japan",
+      "output": {
+        "country": "Japan",
+        "total_institutes": 12,
+        "closed_count": 3,
+        "universities_closed": "Kogakuin University, Hyogo Medical University, Fukuyama University",
+        "government_action": "In 2021, the Japanese government announced a fact-finding investigation into Confucius Institutes at Japanese universities to ensure their operational transparency and that they are not impeding the independent research activities of the universities.",
+        "controversies": "Concerns have been raised that Confucius Institutes may serve as a propaganda tool of the Communist Party of China and pose a security threat. There are also concerns about the institutes hindering the independent research activities of universities.",
+        "latest_news": "Musashino University will close its Confucius Institute in August 2025. Fukuyama University closed its Confucius Institute in March 2024.",
+        "source_url": "https://www.asahi.com/ajw/articles/15091927"
+      },
+      "error": ""
+    },
+    {
+      "input": "South Korea",
+      "output": {
+        "country": "South Korea",
+        "total_institutes": 23,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "No specific government action has been taken, but there is public pressure from groups like the Citizens for Unveiling Confucius Institutes (CUCI) to investigate them.",
+        "controversies": "Concerns have been raised about the institutes serving as a tool for Chinese propaganda, limiting academic freedom by avoiding topics like Taiwan, Tibet, and Tiananmen, and potentially monitoring Chinese students abroad.",
+        "latest_news": "No specific major news in 2024-2025. An August 2024 article discussed the global decline of Confucius Institutes, but without specific details on South Korea.",
+        "source_url": "http://tokiox.com/wp/korea-there-are-23-confucius-institutes/?lang=en"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sweden",
+      "output": {
+        "country": "Sweden",
+        "total_institutes": "",
+        "closed_count": 4,
+        "universities_closed": "Stockholm University, Karlstad University, Blekinge Institute of Technology, Luleå University of Technology",
+        "government_action": "Sweden has closed all Confucius Institutes in the country due to deteriorating relations with China and concerns about the institutes' impact on academic freedom.",
+        "controversies": "Concerns over academic freedom, human rights, and the institutes' ties to the Chinese government, including espionage. The imprisonment of Swedish publisher Gui Minhai in China further strained relations.",
+        "latest_news": "All Confucius Institutes in Sweden were closed by 2020.",
+        "source_url": "https://www.universityworldnews.com/post.php?story=20200513092025679"
+      },
+      "error": ""
+    },
+    {
+      "input": "Netherlands",
+      "output": {
+        "country": "Netherlands",
+        "total_institutes": 2,
+        "closed_count": 1,
+        "universities_closed": "Leiden University",
+        "government_action": "In 2021, the Dutch Minister of Education advised universities and universities of applied sciences to end their collaboration with Confucius Institutes.",
+        "controversies": "Concerns about the erosion of academic freedom, potential for Chinese government influence, and self-censorship among Dutch researchers. A critical report from the Clingendael Institute and a controversial contract for a professor at the University of Groningen have fueled these concerns.",
+        "latest_news": "None",
+        "source_url": "https://dub.uu.nl/en/news/dutch-minister-education-stop-collaborating-confucius-institutes"
+      },
+      "error": ""
+    },
+    {
+      "input": "Belgium",
+      "output": {
+        "country": "Belgium",
+        "total_institutes": 1,
+        "closed_count": 3,
+        "universities_closed": "Vrije Universiteit Brussel, Universite libre de Bruxelles, University of Liege",
+        "government_action": "Belgian state security services investigated and accused the former head of the Confucius Institute at Vrije Universiteit Brussel (VUB) of espionage, resulting in a travel ban.",
+        "controversies": "Concerns about political influence, espionage, and a lack of academic freedom, highlighted by the case of the former director of the VUB Confucius Institute who was accused of spying by Belgian security services.",
+        "latest_news": "The Confucius Institute at the University of Liege closed in 2023, leaving only one operational institute in the country as of October 2024.",
+        "source_url": "https://china-index.io/country/Belgium"
+      },
+      "error": ""
+    },
+    {
+      "input": "Italy",
+      "output": {
+        "country": "Italy",
+        "total_institutes": 12,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The European Parliament recommended European universities to reconsider their cooperation with Confucius Institutes, designating them as Chinese lobby platforms.",
+        "controversies": "Concerns have been raised about potential risks of deepening cooperation with China through the Confucius Institute, including risks of self-censorship, kowtowing to Chinese wishes, and academic sponsorship by Chinese companies raising concerns about Italy's security interests. Other concerns include transnational repression, influence peddling, and phenomena of evasion and money laundering involving Chinese crime in Italy.",
+        "latest_news": "Italy looks to expand local Confucius Institute as other countries sever ties - Mar 2023",
+        "source_url": "https://decode39.com/6068/italy-confucius-institute/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Spain",
+      "output": {
+        "country": "Spain",
+        "total_institutes": 12,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "In September 2024, the Spanish government signed a memorandum of understanding with China for educational cooperation. No investigations have been reported.",
+        "controversies": "Concerns about limited academic freedom, including the cancellation of a Taiwanese cultural event at the University of Salamanca due to pressure from the Chinese embassy, and a public statement from the director of the Confucius Institute in Madrid refusing a Falun Gong exhibition. There are also concerns about a lack of transparency in agreements.",
+        "latest_news": "A new Confucius Institute was inaugurated at the University of Salamanca in May 2025.",
+        "source_url": "https://academytracker.ceias.eu/articles/1Rdtp8XM47LmufwPLFzjwL"
+      },
+      "error": ""
+    },
+    {
+      "input": "Portugal",
+      "output": {
+        "country": "Portugal",
+        "total_institutes": 5,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "The 'Braga incident' in 2014, where the head of Hanban, Xu Lin, ordered the removal of pages from the conference program of the European Association for Chinese Studies that mentioned Taiwanese institutions. This led to widespread criticism of censorship and academic freedom.",
+        "latest_news": "Confucius Institute at the University of Lisbon awarded 'Global Model' title - Jun 2023",
+        "source_url": "https://en.wikipedia.org/wiki/Braga_incident"
+      },
+      "error": ""
+    },
+    {
+      "input": "Denmark",
+      "output": {
+        "country": "Denmark",
+        "total_institutes": 1,
+        "closed_count": 3,
+        "universities_closed": "Copenhagen Business School, Aalborg University, Royal Danish Academy of Music",
+        "government_action": "No specific government action, but closures were initiated by universities due to mistrust of China's motives.",
+        "controversies": "Suspicions of serving as a propaganda arm for the Chinese government and attempting to reframe Western perceptions about China.",
+        "latest_news": "University World News reports most Confucius Institutes in Denmark closed - June 2022",
+        "source_url": "https://www.universityworldnews.com/post.php?story=20220623082301227"
+      },
+      "error": ""
+    },
+    {
+      "input": "Norway",
+      "output": {
+        "country": "Norway",
+        "total_institutes": "",
+        "closed_count": 1,
+        "universities_closed": "University of Bergen, Western Norway University of Applied Sciences",
+        "government_action": "None",
+        "controversies": "The Confucius Institute in Bergen was criticized for being a propaganda tool for the Chinese government and controlled by China's Hanban. The decision to close the institute was finalized after the Chinese government replaced the partner institution with the China University of Political Science and Law, which has close ties to the Chinese Communist Party.",
+        "latest_news": "Norway Closes Confucius Institute - Mar 2021",
+        "source_url": "https://chinascope.org/archives/26211"
+      },
+      "error": ""
+    },
+    {
+      "input": "Finland",
+      "output": {
+        "country": "Finland",
+        "total_institutes": "",
+        "closed_count": 1,
+        "universities_closed": "University of Helsinki",
+        "government_action": "None",
+        "controversies": "Concerns about Chinese soft power, espionage, censorship, and suppression of academic freedom.",
+        "latest_news": "University of Helsinki closes Confucius Institute - June 2022",
+        "source_url": "https://www.universityworldnews.com/post.php?story=20220623082301227"
+      },
+      "error": ""
+    },
+    {
+      "input": "Switzerland",
+      "output": {
+        "country": "Switzerland",
+        "total_institutes": 1,
+        "closed_count": 1,
+        "universities_closed": "University of Basel",
+        "government_action": "No specific government actions or investigations regarding Confucius Institutes were found in the search results.",
+        "controversies": "General concerns about the institutes being propaganda instruments of the Chinese Communist Party and limiting academic freedom have been raised, but no major controversies specific to Switzerland were found.",
+        "latest_news": "University of Basel closes its Confucius Institute - 2020",
+        "source_url": "https://inthenameofconfuciusmovie.com/cutting-ties-with-confucius-institutes/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Austria",
+      "output": {
+        "country": "Austria",
+        "total_institutes": 2,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The Green party has suggested a review of the cooperations, and the Neos party is pushing for more scrutiny, but the Ministry of Education has so far not taken any action, citing university autonomy.",
+        "controversies": "Concerns about Chinese government propaganda, influence on academic freedom, and potential espionage. Criticisms from groups representing persecuted minorities in China.",
+        "latest_news": "Confucius Institute in Austria celebrates 15th anniversary - Nov 2025",
+        "source_url": "https://www.diepresse.com/5942529/in-oesterreich-waechst-das-misstrauen-gegen-chinas-konfuzius-institute-an-unis"
+      },
+      "error": ""
+    },
+    {
+      "input": "Ireland",
+      "output": {
+        "country": "Ireland",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The Irish government views the presence of Confucius Institutes as a matter for individual universities to decide, while emphasizing the need to maintain academic integrity and independence.",
+        "controversies": "Uighur activist called for the closure of UCD's Confucius Institute, citing it as a 'soft power' arm of the Chinese government used for 'transnational oppression' and to suppress dissent.",
+        "latest_news": "Dáil Éireann debate confirms three Confucius Institutes in Ireland - Jan 2025",
+        "source_url": "https://www.oireachtas.ie/en/debates/question/2025-01-22/1719/"
+      },
+      "error": ""
+    },
+    {
+      "input": "New Zealand",
+      "output": {
+        "country": "New Zealand",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The New Zealand government has not launched any formal investigations into Confucius Institutes. The Minister for Universities has stated that universities have a high level of autonomy but are required to maintain standards of integrity.",
+        "controversies": "Concerns have been raised by academics and commentators regarding academic freedom, foreign interference, the promotion of a specific political narrative, and the siphoning of resources from New Zealand institutions. There are calls for universities to review their ties with the institutes.",
+        "latest_news": "Spotlight falls on New Zealand’s Confucius Institutes in wake of Australian closures - Apr 2025",
+        "source_url": "https://www.rnz.co.nz/news/chinese/557780/spotlight-falls-on-new-zealand-s-confucius-institutes-in-wake-of-australian-closures"
+      },
+      "error": ""
+    },
+    {
+      "input": "India",
+      "output": {
+        "country": "India",
+        "total_institutes": 2,
+        "closed_count": 5,
+        "universities_closed": "University of Mumbai, Vellore Institute of Technology",
+        "government_action": "In 2022, the Indian government concluded a review of 7 Confucius Institutes and 54 MoUs with Chinese institutions, mandating Foreign Contribution (Regulation) Act (FCRA) clearance for all such collaborations.",
+        "controversies": "Concerns about Chinese influence operations targeting Indian academia and civil society, lack of academic freedom, and the potential for aligning host universities with Chinese political agendas.",
+        "latest_news": "Indian government mandates FCRA clearance for universities with Confucius Institutes - Jan 2025",
+        "source_url": "https://orcasia.org/episodesofexchanges/25/confucius-institutes-and-sister-city-agreements"
+      },
+      "error": ""
+    },
+    {
+      "input": "Thailand",
+      "output": {
+        "country": "Thailand",
+        "total_institutes": 16,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "Research indicates 16 Confucius Institutes successfully operating in Thailand - Feb 2024",
+        "source_url": "https://so03.tci-thaijo.org/index.php/jopag/article/view/268646"
+      },
+      "error": ""
+    },
+    {
+      "input": "Indonesia",
+      "output": {
+        "country": "Indonesia",
+        "total_institutes": 8,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The Indonesian government requested that Confucius Institutes be renamed to 'Pusat Bahasa Mandarin' (Mandarin Language Centers) to avoid association with Confucianism as an official religion in Indonesia.",
+        "controversies": "Concerns about Chinese government influence, internal university politics, and anti-Chinese sentiment.",
+        "latest_news": "Confucius Institute Indonesia Communication Forum established - May 2025; First Confucius Institute on Sumatra island established - Oct 2025",
+        "source_url": "https://indonesiaatmelbourne.unimelb.edu.au/chinas-confucius-institutes-in-indonesia-walking-a-fine-line/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Malaysia",
+      "output": {
+        "country": "Malaysia",
+        "total_institutes": 7,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "Universiti Tunku Abdul Rahman (UTAR) launched a Confucius Institute - May 2024",
+        "source_url": "https://www.iseas.edu.sg/articles-commentaries/iseas-perspective/2022-120-china-educated-malaysians-and-chinas-educational-outreach-to-malaysia-by-ngeow-chow-bing-and-fan-pik-shy/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Philippines",
+      "output": {
+        "country": "Philippines",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "Retired Supreme Court Justice Antonio Carpio called for the shutdown of Confucius Institutes in 2020.",
+        "controversies": "Concerns have been raised about the institutes being used for espionage and propaganda, and for spreading historical falsehoods about the nine-dash line.",
+        "latest_news": "A Philstar article in July 2024 confirmed four active Confucius Institutes.",
+        "source_url": "https://www.philstar.com/opinion/2024/07/27/2373252/confuciusconfusion"
+      },
+      "error": ""
+    },
+    {
+      "input": "Singapore",
+      "output": {
+        "country": "Singapore",
+        "total_institutes": 2,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "Crestar Confucius Classroom was officially promoted to Crestar Confucius Institute in 2025.",
+        "source_url": "https://www.ntu.edu.sg/ci, https://hsk-crestar.com.sg/confucius-institute-crestar/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Vietnam",
+      "output": {
+        "country": "Vietnam",
+        "total_institutes": 1,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Concerns were raised by scholars and activists during the initial establishment of the Confucius Institute, with critics believing its purpose was to promote the Chinese Communist Party and influence attitudes towards China.",
+        "latest_news": "Hanoi University Confucius Institute test site recorded 9,898 test registrations in the first quarter of 2025 - Apr 2025",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Brazil",
+      "output": {
+        "country": "Brazil",
+        "total_institutes": 14,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "While there are global controversies about Confucius Institutes being propaganda instruments, sources suggest that in Brazil their focus is on language and culture promotion.",
+        "latest_news": "Brazil establishes a national network of Confucius Institutes - Sep 2025",
+        "source_url": "https://aila.info/confucius-institutes-in-brazil/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Mexico",
+      "output": {
+        "country": "Mexico",
+        "total_institutes": 7,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Concerns have been raised globally about Confucius Institutes' relationship with the Chinese government, leading to criticisms about undermining academic freedom and advancing the Chinese government's political agendas. However, no specific major controversies have been reported in Mexico.",
+        "latest_news": "The Chinese Embassy in Mexico listed contact information for the Confucius Institute at the Autonomous University of Chihuahua in May 2025.",
+        "source_url": "https://embamex.sre.gob.mx/china/index.php/es/la-embajada/asuntos-educativos"
+      },
+      "error": ""
+    },
+    {
+      "input": "Argentina",
+      "output": {
+        "country": "Argentina",
+        "total_institutes": 5,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Faculty unions and student organizations in several universities have raised concerns about transparency in funding and the potential for cultural bias in programming. These concerns, however, are typically addressed within institutional forums, rather than through national-level controversy.",
+        "latest_news": "Confucius Institutes in Argentina and China’s Soft Power Strategy - Jul 2025",
+        "source_url": "https://www.e-ir.info/2025/07/08/confucius-institutes-in-argentina-and-chinas-soft-power-strategy/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Chile",
+      "output": {
+        "country": "Chile",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "No specific controversies reported in Chile, but general concerns about academic freedom and the relationship with the Chinese Communist Party have been raised globally.",
+        "latest_news": "A study on the role of Confucius Institutes in Chile was published in July 2024.",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Colombia",
+      "output": {
+        "country": "Colombia",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Concerns have been raised about Confucius Institutes being used as a tool for propaganda and strategic interference by the Chinese government in Latin America. General criticisms of Confucius Institutes worldwide include concerns about their influence on academic freedom and their handling of politically sensitive topics.",
+        "latest_news": "Delegation from Universidad de los Andes visited Nankai University in China - Dec 2025",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Peru",
+      "output": {
+        "country": "Peru",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "General concerns about censorship and propaganda have been raised globally. In Peru, a painting exhibit was reportedly canceled at a university hosting a Confucius Institute.",
+        "latest_news": "The Confucius Institutes at Ricardo Palma University, Pontifical Catholic University of Peru, University of Piura, and Catholic University of Santa María are all active with recent news and events in late 2025. For example, the Confucius Institute at the Pontifical Catholic University of Peru has news from December 2025.",
+        "source_url": "https://confucio.pucp.edu.pe/"
+      },
+      "error": ""
+    },
+    {
+      "input": "South Africa",
+      "output": {
+        "country": "South Africa",
+        "total_institutes": 6,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Concerns have been raised about Confucius Institutes globally, including allegations of interference in academic freedom, censorship of topics like Taiwan, Tiananmen Square, and Tibet, and monitoring of Chinese students abroad. These concerns are not specific to South Africa but are part of a broader global discussion.",
+        "latest_news": "None",
+        "source_url": "https://irr.org.za/media/are-confucius-institutes-what-they2019re-cracked-up-to-be-newsi"
+      },
+      "error": ""
+    },
+    {
+      "input": "Nigeria",
+      "output": {
+        "country": "Nigeria",
+        "total_institutes": 2,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "While no specific controversies in Nigeria were found, Confucius Institutes globally have faced scrutiny for being perceived as tools of Chinese soft power, leading to closures in some countries. However, in many African nations, they are viewed more positively as enablers of economic growth.",
+        "latest_news": "None",
+        "source_url": "https://www.scirp.org/journal/paperinformation?paperid=134163"
+      },
+      "error": ""
+    },
+    {
+      "input": "Kenya",
+      "output": {
+        "country": "Kenya",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "No specific controversies reported in Kenya, but general concerns about Chinese government influence and academic freedom have been raised globally.",
+        "latest_news": "Kenyatta University Confucius Institute celebrates Chinese New Year 2025 - Jan 2025",
+        "source_url": "https://confucius.ku.ac.ke/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Egypt",
+      "output": {
+        "country": "Egypt",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "No specific controversies reported in Egypt. However, there is an awareness and rejection of the negative views held by some Western nations.",
+        "latest_news": "Egyptian Confucius Institute director expresses that West's negative views on Chinese culture are unacceptable - Mar 2024",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Morocco",
+      "output": {
+        "country": "Morocco",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "Business relations between Morocco and China: a rapidly expanding partnership - Mar 2025",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Israel",
+      "output": {
+        "country": "Israel",
+        "total_institutes": 2,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Concerns have been raised about potential 'undue influence' from the Chinese government and the institutes being 'under fire'. A court case in 2008 involved Tel Aviv University regarding the institute.",
+        "latest_news": "No major news in 2024-2025. Most recent relevant news is from 2019-2020.",
+        "source_url": "https://www.haaretz.com/israel-news/2019-04-20/ty-article/.premium/chinese-institutes-on-campuses-are-under-fire-israeli-scholars-deny-undue-influence/0000017f-ef9c-dc28-a17f-ffbf8ffe0000"
+      },
+      "error": ""
+    },
+    {
+      "input": "Turkey",
+      "output": {
+        "country": "Turkey",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "The Confucius Institute at Middle East Technical University successfully hosted the “Taste of Culture – Chinese Cuisine Tasting Day” event. - 19/12/2025",
+        "source_url": "https://ci.metu.edu.tr/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Poland",
+      "output": {
+        "country": "Poland",
+        "total_institutes": 4,
+        "closed_count": 2,
+        "universities_closed": "University of Gdansk",
+        "government_action": "None",
+        "controversies": "Concerns about Chinese influence and propaganda, as well as the use of the institutes as a tool for promoting China's interests.",
+        "latest_news": "Poland closed two of its six Confucius Institutes between 2022 and 2024 - Sep 2024",
+        "source_url": "https://chinaobservers.eu/the-demise-of-confucius-institutes-retreating-or-rebranding/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Czech Republic",
+      "output": {
+        "country": "Czech Republic",
+        "total_institutes": 1,
+        "closed_count": 1,
+        "universities_closed": "Palacký University",
+        "government_action": "The Ministry of the Interior and civil society organizations are making continuous efforts to protect the Czech academic community from China's influence.",
+        "controversies": "Concerns have been raised about Confucius Institutes being used for propaganda, censorship of sensitive topics, intellectual property theft, surveillance of students, and espionage.",
+        "latest_news": "The Czech Republic shut down one of its two Confucius Institutes in 2023 - Sep 2024",
+        "source_url": "https://chinaobservers.eu/the-demise-of-confucius-institutes-retreating-or-rebranding/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Hungary",
+      "output": {
+        "country": "Hungary",
+        "total_institutes": 5,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "The Hungarian government is supportive of Confucius Institutes and has a favorable relationship with Beijing. There are no investigations or negative actions.",
+        "controversies": "While there is some public and media skepticism towards China, there are no major controversies surrounding the Confucius Institutes themselves. The Hungarian government's positive stance minimizes any potential issues.",
+        "latest_news": "Hungary continues to have a strong relationship with China, and Confucius Institutes are well-received, unlike in many other European countries (2024-2025).",
+        "source_url": "https://chinaobservers.eu/the-demise-of-confucius-institutes-retreating-or-rebranding/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Romania",
+      "output": {
+        "country": "Romania",
+        "total_institutes": 5,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "A member of the Romanian parliament, Pavel Popescu, questioned the Ministry of Education about the relationship between Ovidius University and the Confucius Institute, citing concerns about data protection and the nature of the institute's activities.",
+        "controversies": "Concerns raised about data protection and the nature of the activities of the Confucius Institute at Ovidius University.",
+        "latest_news": "Romania opens fifth Confucius Institute - Apr 2024",
+        "source_url": "https://ceias.eu/romania-balancing-the-rising-interest-and-challenges-of-china-as-an-academic-partner/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Greece",
+      "output": {
+        "country": "Greece",
+        "total_institutes": 4,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "Greece lacks a specific institutional framework for overseeing academic collaborations with China, including Confucius Institutes. There is no formal government action or investigation reported. The responsibility for risk assessment falls on individual researchers and institutions.",
+        "controversies": "Concerns have been raised about the lack of transparency and institutional framework for academic collaborations with China, which could lead to risks related to research security and academic autonomy. A report highlighted that 34% of collaborations between Greek academic institutions and China involve universities linked to the Chinese military-industrial complex, with a significant portion of these being high-risk.",
+        "latest_news": "Announcement of Chinese Language Teaching for the winter semester 29/9/2025 to 16/1/2026 - July 2025",
+        "source_url": "https://greekcitytimes.com/2025/09/22/chinas-growing-soft-power/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Russia",
+      "output": {
+        "country": "Russia",
+        "total_institutes": 19,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "In 2015, prosecutors in Blagoveshchensk requested the closure of a Confucius Institute due to registration issues. However, the Russian government has also shown support for international education, which has facilitated the operation of Confucius Institutes.",
+        "controversies": "Concerns have been raised about the 'dual function' of Confucius Institutes, with some viewing them as a 'Trojan horse' for Chinese strategic goals beyond culture and education. In 2015, prosecutors in Blagoveshchensk sought to close an institute for registration violations, though the outcome is unclear.",
+        "latest_news": "Joint meeting of Russian Confucius Institutes - Jan 2024",
+        "source_url": "https://www.digmandarin.com/confucius-institutes-around-the-world.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Pakistan",
+      "output": {
+        "country": "Pakistan",
+        "total_institutes": 5,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "There is a debate about the role of Confucius Institutes in Pakistan. Some view them as a tool for Chinese propaganda and spying, while others see them as a means of cultural exchange. The United States has labeled them a 'foreign mission'.",
+        "latest_news": "Chinese embassy clarifies all Confucius Institutes operational in Pakistan - May 2022",
+        "source_url": "https://moderndiplomacy.eu/2022/06/20/chinas-sharp-power-the-confucious-institutes-in-pakistan/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Bangladesh",
+      "output": {
+        "country": "Bangladesh",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "None",
+        "latest_news": "University of Rajshahi unveils new Confucius Institute - Dec 2025",
+        "source_url": "https://www.newagebd.net/post/campus-bites/285523/ru-holds-confucius-institutes-unveiling-ceremony"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sri Lanka",
+      "output": {
+        "country": "Sri Lanka",
+        "total_institutes": 3,
+        "closed_count": "",
+        "universities_closed": "None",
+        "government_action": "None",
+        "controversies": "Confucius Institutes in Sri Lanka are linked to China's Belt and Road Initiative (BRI), which has led to controversies. Incidents such as the omission of the Tamil language from a Chinese-donated plaque and the use of Mandarin on public signage have raised concerns about cultural imposition.",
+        "latest_news": "No specific news found for the 2024-2025 period.",
+        "source_url": "https://www.icwa.in/show_content.php?lang=1&level=1&ls_id=11746&lid=7154"
+      },
+      "error": ""
+    }
+  ]
+}

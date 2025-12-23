@@ -1,0 +1,344 @@
+{
+  "results": [
+    {
+      "input": "Chen Quanguo - Xinjiang Party Secretary",
+      "output": {
+        "name": "Chen Quanguo",
+        "position": "Xinjiang Party Secretary",
+        "responsibility_area": "Xinjiang",
+        "us_sanctions": "Yes - July 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "Yes - December 2024",
+        "australia_sanctions": "No",
+        "key_abuses": "Implemented a comprehensive surveillance, detention, and indoctrination program in Xinjiang targeting Uyghurs and other ethnic minorities. Oversaw the construction of mass detention camps where torture and abuse were reported. He also intensified security operations in Tibet to tighten control over Tibetan ethnic minorities.",
+        "current_status": "Retired",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1055"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zhu Hailun - Xinjiang Security Chief",
+      "output": {
+        "name": "Zhu Hailun",
+        "position": "Vice Chairman of the Standing Committee of the People's Congress of Xinjiang",
+        "responsibility_area": "Xinjiang",
+        "us_sanctions": "Yes - July 9, 2020",
+        "uk_sanctions": "Yes - March 22, 2021",
+        "eu_sanctions": "Yes - March 22, 2021",
+        "canada_sanctions": "Yes - March 22, 2021",
+        "australia_sanctions": "No",
+        "key_abuses": "Zhu Hailun is held responsible for serious human rights violations in Xinjiang, particularly the large-scale arbitrary detentions of Uyghurs and other Muslim ethnic minorities. He was a key political figure in overseeing and implementing a comprehensive program of surveillance, detention, and indoctrination. He has been described as the 'architect' of this program.",
+        "current_status": "Retired",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1055"
+      },
+      "error": ""
+    },
+    {
+      "input": "Wang Junzheng - XPCC Secretary",
+      "output": {
+        "name": "Wang Junzheng",
+        "position": "Party Secretary of the Tibet Autonomous Region",
+        "responsibility_area": "Xinjiang",
+        "us_sanctions": "Yes - March 2021",
+        "uk_sanctions": "Yes - March 2021",
+        "eu_sanctions": "Yes - March 2021",
+        "canada_sanctions": "Yes - March 2021",
+        "australia_sanctions": "No",
+        "key_abuses": "Wang Junzheng is linked to serious human rights abuses against ethnic minorities in Xinjiang, including arbitrary detention and severe physical abuse. These abuses occurred during his tenure as Secretary of the Party Committee of the Xinjiang Production and Construction Corps (XPCC).",
+        "current_status": "Active in Tibet",
+        "source_url": "https://home.treasury.gov/news/press-releases/jy0070"
+      },
+      "error": ""
+    },
+    {
+      "input": "Wang Mingshan - Xinjiang Public Security Director",
+      "output": {
+        "name": "Wang Mingshan",
+        "position": "Deputy Director of the Standing Committee of the Party Committee of the Xinjiang Uyghur Autonomous Region",
+        "responsibility_area": "Xinjiang",
+        "us_sanctions": "Yes - July 2020",
+        "uk_sanctions": "Yes - March 2021",
+        "eu_sanctions": "Yes - March 2021",
+        "canada_sanctions": "Yes - March 2021",
+        "australia_sanctions": "No",
+        "key_abuses": "As the former Director of the Xinjiang Public Security Bureau, Wang Mingshan was responsible for the implementation of a large-scale surveillance, detention, and indoctrination program targeting Uyghurs and other Muslim minorities. He oversaw the use of the 'Integrated Joint Operations Platform,' a big data system used to track and detain individuals, leading to arbitrary detentions and other severe human rights abuses.",
+        "current_status": "Active in Xinjiang",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1055"
+      },
+      "error": ""
+    },
+    {
+      "input": "Carrie Lam - Hong Kong Chief Executive",
+      "output": {
+        "name": "Carrie Lam",
+        "position": "Former Chief Executive of Hong Kong",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 7, 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As Chief Executive of Hong Kong, Carrie Lam was sanctioned for her role in implementing Beijing's policies that suppress freedom and democratic processes. She pushed for an extradition bill to mainland China, which triggered widespread protests, and was involved in the implementation of the National Security Law, which undermines Hong Kong's autonomy.",
+        "current_status": "Retired, living in Hong Kong",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "John Lee - Hong Kong Chief Executive",
+      "output": {
+        "name": "John Lee",
+        "position": "Chief Executive of Hong Kong",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "John Lee is accused of undermining Hong Kong's autonomy and restricting the freedom of its residents. He played a key role in the implementation of the National Security Law, which has been used to crack down on dissent and political opposition.",
+        "current_status": "Active in Hong Kong",
+        "source_url": "https://www.opensanctions.org/entities/Q9051824/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Teresa Cheng - Hong Kong Justice Secretary",
+      "output": {
+        "name": "Teresa Cheng",
+        "position": "Hong Kong Justice Secretary",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As Hong Kong's Secretary for Justice, Teresa Cheng was a key figure in the implementation of the National Security Law, which has been criticized for undermining the city's autonomy and suppressing freedoms of expression and assembly.",
+        "current_status": "Active as secretary-general of the International Organization for Mediation.",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Erick Tsang - Hong Kong Secretary for Constitutional Affairs",
+      "output": {
+        "name": "Erick Tsang",
+        "position": "Secretary for Constitutional and Mainland Affairs",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 7, 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Undermining Hong Kong's autonomy and restricting the freedom of expression or assembly of the citizens of Hong Kong.",
+        "current_status": "Active in Hong Kong",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Chris Tang - Hong Kong Security Secretary",
+      "output": {
+        "name": "Chris Tang",
+        "position": "Secretary for Security",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Chris Tang is sanctioned by the U.S. for his role in undermining Hong Kong's autonomy and restricting the freedom of expression or assembly of its citizens. As the former Commissioner of Police, he was responsible for the crackdown on pro-democracy protests, including the siege of Hong Kong Polytechnic University and the arrest of hundreds of protesters. He has been a vocal supporter of the National Security Law, which has been used to suppress dissent and political opposition in Hong Kong.",
+        "current_status": "Active in Hong Kong",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xia Baolong - Hong Kong Affairs Director",
+      "output": {
+        "name": "Xia Baolong",
+        "position": "Director of the Hong Kong and Macao Affairs Office of the State Council",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 7, 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Designated for being a leader or official of a government entity that has engaged in, or whose members have engaged in, actions or policies that threaten the peace, security, stability, or autonomy of Hong Kong.",
+        "current_status": "Active in Beijing",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Luo Huining - Hong Kong Liaison Office Director",
+      "output": {
+        "name": "Luo Huining",
+        "position": "Hong Kong Liaison Office Director",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Undermining Hong Kong's autonomy and restricting the freedom of expression or assembly of the citizens of Hong Kong. He was designated by the U.S. for being a leader of a government entity whose members have engaged in actions or policies that threaten the peace, security, stability, or autonomy of Hong Kong.",
+        "current_status": "Active in Beijing, leading a party campaign to study and implement Xi Jinping's political ideology.",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zheng Yanxiong - Hong Kong National Security Office",
+      "output": {
+        "name": "Zheng Yanxiong",
+        "position": "Former Director of the Liaison Office of the Central People's Government in the Hong Kong SAR",
+        "responsibility_area": "Hong Kong",
+        "us_sanctions": "Yes - August 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As the inaugural Director of the Office for Safeguarding National Security in Hong Kong, he was responsible for implementing the National Security Law, which has been used to undermine Hong Kong's autonomy and restrict the freedom of expression and assembly.",
+        "current_status": "Removed from Hong Kong posts in May 2025, new role unconfirmed.",
+        "source_url": "https://home.treasury.gov/news/press-releases/sm1088"
+      },
+      "error": ""
+    },
+    {
+      "input": "Wu Yingjie - Tibet Party Secretary",
+      "output": {
+        "name": "Wu Yingjie",
+        "position": "Tibet Autonomous Region (TAR) Party Secretary (2016-2021)",
+        "responsibility_area": "Tibet",
+        "us_sanctions": "Yes - December 9, 2022",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "Yes - December 10, 2024",
+        "australia_sanctions": "No",
+        "key_abuses": "During his tenure as TAR Party Secretary, Wu Yingjie directed stability policies that resulted in serious human rights abuses, including extrajudicial killings, physical abuse, arbitrary arrests, mass detentions, forced sterilization, coerced abortion, restrictions on religious and political freedoms, and the torture of prisoners.",
+        "current_status": "Under investigation for corruption in China, sentenced to a suspended death sentence.",
+        "source_url": "https://home.treasury.gov/news/press-releases/jy1155"
+      },
+      "error": ""
+    },
+    {
+      "input": "Pema Thinley - Tibet Government Chairman",
+      "output": {
+        "name": "Pema Thinley",
+        "position": "Vice-Chairperson, 13th National People's Congress Standing Committee",
+        "responsibility_area": "Tibet",
+        "us_sanctions": "Yes - December 2020",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Pema Thinley, also known as Padma Choling, was sanctioned by the U.S. for his role in undermining Hong Kong's autonomy and restricting the freedoms of its residents. He was also a leading figure in the harsh crackdown against the 2008 protests in Lhasa, Tibet.",
+        "current_status": "Active in Beijing",
+        "source_url": "https://www.opensanctions.org/entities/Q967949/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zhang Yuxin - Tibet Military Region Commander",
+      "output": {
+        "name": "Zhang Yuxin",
+        "position": "Tibet Military Region Commander",
+        "responsibility_area": "Tibet",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Information not found. The provided name and title do not appear to correspond to a single individual. Research indicates the current commander of the Tibet Military Region is Wang Kai, and no public records of sanctions or human rights abuses associated with a 'Zhang Yuxin' in that role were found.",
+        "current_status": "Unknown",
+        "source_url": "https://en.wikipedia.org/wiki/Tibet_Military_District"
+      },
+      "error": ""
+    },
+    {
+      "input": "Chen Mingguo - Taiwan Affairs Office",
+      "output": {
+        "name": "Chen Mingguo",
+        "position": "Former Director of the Xinjiang Public Security Bureau",
+        "responsibility_area": "Xinjiang",
+        "us_sanctions": "Yes - March 2021",
+        "uk_sanctions": "Yes - March 2021",
+        "eu_sanctions": "Yes - March 2021",
+        "canada_sanctions": "Yes - March 2021",
+        "australia_sanctions": "No",
+        "key_abuses": "As Director of the Xinjiang Public Security Bureau, Chen Mingguo is held responsible for serious human rights abuses, including arbitrary detentions and degrading treatment inflicted upon Uyghurs and people from other Muslim ethnic minorities in the Xinjiang Uyghur Autonomous Region.",
+        "current_status": "Unknown",
+        "source_url": "https://home.treasury.gov/news/press-releases/jy0070"
+      },
+      "error": ""
+    },
+    {
+      "input": "Liu Jianchao - CCP International Liaison",
+      "output": {
+        "name": "Liu Jianchao",
+        "position": "Head of the International Department of the Chinese Communist Party",
+        "responsibility_area": "General",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "Liu Jianchao is a key figure in China's 'Operation Fox Hunt,' a global campaign of transnational repression. He is accused of overseeing the kidnapping, trapping, and 'persuasion to return' of thousands of overseas Chinese, in violation of international human rights standards and the sovereignty of other nations.",
+        "current_status": "Detained and under investigation in China since July 2025.",
+        "source_url": "https://bitterwinter.org/liu-jianchao-human-rights-violator-received-with-honors-in-uk/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Wang Yi - Foreign Minister",
+      "output": {
+        "name": "Wang Yi",
+        "position": "Member of the Political Bureau of the CPC Central Committee, Director of the Office of the Central Commission for Foreign Affairs, and Foreign Minister",
+        "responsibility_area": "General",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As Foreign Minister, Wang Yi is the international face of the CCP and is responsible for defending and implementing its policies, including those related to human rights abuses in Xinjiang, Hong Kong, and Tibet. He has been a vocal critic of other countries for raising human rights concerns and has actively worked to counter international pressure on China.",
+        "current_status": "Active in Beijing",
+        "source_url": "https://www.gov.uk/government/news/uk-holds-china-state-affiliated-organisations-and-individuals-responsible-for-malicious-cyber-activity"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zhao Kezhi - Public Security Minister",
+      "output": {
+        "name": "Zhao Kezhi",
+        "position": "Minister of Public Security",
+        "responsibility_area": "General",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As Minister of Public Security, Zhao Kezhi was responsible for the mass internment and surveillance of Uyghurs in Xinjiang, including the 'strike hard' campaign and the creation of a DNA database. He was also involved in the suppression of protests in Hong Kong and oversaw the 'Residential Surveillance at a Designated Location' (RSDL) system, a form of secret detention that has been described as amounting to torture.",
+        "current_status": "Retired",
+        "source_url": "https://safeguarddefenders.com/en/blog/eu-parliament-calls-sanctions-chief-chinese-police-and-others"
+      },
+      "error": ""
+    },
+    {
+      "input": "Guo Shengkun - Political-Legal Affairs Commission",
+      "output": {
+        "name": "Guo Shengkun",
+        "position": "Secretary of the Central Political and Legal Affairs Commission",
+        "responsibility_area": "General",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "As Secretary of the Central Political and Legal Affairs Commission, Guo Shengkun oversaw the Chinese Communist Party's security and legal apparatus. The European Parliament has called for sanctions against him for his role in the systematic human rights violations in the Xinjiang Uyghur Autonomous Region.",
+        "current_status": "Retired",
+        "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:52022IP0237"
+      },
+      "error": ""
+    }
+  ]
+}

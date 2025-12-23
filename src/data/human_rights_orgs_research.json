@@ -1,0 +1,804 @@
+{
+  "results": [
+    {
+      "input": "Uyghur Human Rights Project",
+      "output": {
+        "organization": "Uyghur Human Rights Project",
+        "focus_area": "Uyghur",
+        "org_type": "Advocacy, Research",
+        "founded_year": "2004",
+        "headquarters": "Washington DC, USA",
+        "website": "https://uhrp.org/",
+        "donation_url": "https://uhrp.org/donate/",
+        "key_work": "Published over 80 reports and 400+ statements, and was nominated for the Nobel Peace Prize in 2022. Their research and advocacy on the Uyghur crisis are widely cited by policymakers and international media.",
+        "credibility": "High",
+        "latest_news": "UHRP Marks Uyghur Genocide Recognition Day 2025 with Call for Sustained Global Action (Dec 9, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Campaign for Uyghurs",
+      "output": {
+        "organization": "Campaign for Uyghurs",
+        "focus_area": "Uyghur",
+        "org_type": "Advocacy",
+        "founded_year": "2017",
+        "headquarters": "Washington DC, USA",
+        "website": "https://campaignforuyghurs.org/",
+        "donation_url": "https://campaignforuyghurs.org/zh/%e6%94%af%e6%8c%81%e6%88%91%e4%bb%ac/",
+        "key_work": "Instrumental in advocating for and the passage of the Uyghur Human Rights Policy Act and the Uyghur Forced Labor Prevention Act. Published the report “Genocide in East Turkistan”. Founder of the Uyghur Caucus in the US Congress.",
+        "credibility": "High",
+        "latest_news": "CFU was again nominated for a Nobel Peace Prize by Representatives John Moolenaar, Chairman of the House Select Committee on the Chinese Communist Party, and Raja Krishnamoorthi, Ranking Member of the same committee, in recognition of our continued efforts to advocate for justice and human rights for the Uyghur people. (February 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "World Uyghur Congress",
+      "output": {
+        "organization": "World Uyghur Congress",
+        "focus_area": "Uyghur",
+        "org_type": "Advocacy",
+        "founded_year": "2004",
+        "headquarters": "Munich, Germany",
+        "website": "https://www.uyghurcongress.org/en/",
+        "donation_url": "N/A",
+        "key_work": "The World Uyghur Congress (WUC) is an international organization of exiled Uyghur groups that works to \"promote the right of the Uyghur people to use peaceful, nonviolent, and democratic means to determine the political future of East Turkestan.\" In 2019, the WUC received the Democracy Award for its advocacy work.",
+        "credibility": "High",
+        "latest_news": "In October 2024, Turghunjan Alawudun was elected as the new president of the World Uyghur Congress, succeeding Dolkun Isa."
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur American Association",
+      "output": {
+        "organization": "Uyghur American Association",
+        "focus_area": "Uyghur",
+        "org_type": "Advocacy",
+        "founded_year": "1998",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.uyghuraa.org/",
+        "donation_url": "https://www.uyghuraa.org/donate",
+        "key_work": "The Uyghur American Association (UAA) is a leading voice for the Uyghur community in the United States. It advocates for the human rights and self-determination of the Uyghur people. Key work includes raising awareness about the ongoing genocide in East Turkistan (Xinjiang), lobbying the U.S. government and international bodies, and preserving Uyghur culture and heritage.",
+        "credibility": "High",
+        "latest_news": "The Chinese government has facilitated the mass transfer of Uyghur and other ethnic minority citizens from the far west region of Xinjiang to factories across the country under a central government policy known as ‘Xinjiang Aid’ (援疆). (March 1, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong Watch",
+      "output": {
+        "organization": "Hong Kong Watch",
+        "focus_area": "Hong Kong",
+        "org_type": "Advocacy",
+        "founded_year": "2017",
+        "headquarters": "London, United Kingdom",
+        "website": "https://www.hongkongwatch.org/",
+        "donation_url": "https://www.hongkongwatch.org/donate",
+        "key_work": "Hong Kong Watch's key work includes research reports on topics like the exploitation of Hong Kong's special status and transnational repression. They also run advocacy campaigns on issues such as the British National (Overseas) visa, the Mandatory Provident Fund (MPF), and sanctions against human rights violators.",
+        "credibility": "High",
+        "latest_news": "Civil society organisations urge UK PM to stand up for Jimmy Lai (Dec 15, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Committee for Freedom in Hong Kong Foundation",
+      "output": {
+        "organization": "Committee for Freedom in Hong Kong Foundation",
+        "focus_area": "Hong Kong",
+        "org_type": "Advocacy",
+        "founded_year": "2022",
+        "headquarters": "Washington DC, USA",
+        "website": "https://thecfhk.org/",
+        "donation_url": "https://thecfhk.org/donate/",
+        "key_work": "The organization campaigns for the release of political prisoners in Hong Kong and has published several reports, including 'Backdoor to the Battlefield: How Hong Kong Funnels Canadian Technology into Russia’s War Machine' and '‘We Were Made to Suffer’: Systemic Abuse and Political Control Inside Hong Kong’s Prisons'.",
+        "credibility": "High",
+        "latest_news": "Global Outrage at Jimmy Lai’s Guilty Verdict (December 19, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong Democracy Council",
+      "output": {
+        "organization": "Hong Kong Democracy Council",
+        "focus_area": "Hong Kong",
+        "org_type": "Advocacy",
+        "founded_year": "2019",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.hkdc.us/",
+        "donation_url": "https://www.hkdc.us/donate",
+        "key_work": "HKDC's work focuses on educational outreach, community empowerment, and policy advocacy. They provide critical information to the public, media, and policymakers to raise international support for Hong Kong's democracy and human rights. They also engage with stakeholders to advocate for policies that promote freedom in Hong Kong.",
+        "credibility": "High",
+        "latest_news": "HKDC Denounces AI-Generated Explicit Images Targeting Carmen Lau (December 11, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Stand with Hong Kong",
+      "output": {
+        "organization": "Stand with Hong Kong",
+        "focus_area": "Hong Kong",
+        "org_type": "Advocacy",
+        "founded_year": "2019",
+        "headquarters": "United Kingdom, United States, European Union",
+        "website": "https://www.standwithhk.org/",
+        "donation_url": "N/A",
+        "key_work": "An independent, grassroots, crowdfunded advocacy group that fights for freedom and democracy for Hong Kong. They raise awareness of the situation on the ground, advocate for democracy and freedom, and promote Hong Kong's unique cultural identity. They have submitted evidence to the UK Parliament and have released reports on sanctionable actions by authorities in Hong Kong.",
+        "credibility": "High",
+        "latest_news": "In December 2025, a Hong Kong court convicted pro-democracy activist Jimmy Lai. During the trial, it was mentioned that Lai had conspired with the advocacy group Stand with Hong Kong."
+      },
+      "error": ""
+    },
+    {
+      "input": "International Campaign for Tibet",
+      "output": {
+        "organization": "International Campaign for Tibet",
+        "focus_area": "Tibet",
+        "org_type": "Advocacy",
+        "founded_year": "1988",
+        "headquarters": "Washington DC, USA",
+        "website": "https://savetibet.org/",
+        "donation_url": "https://act.savetibet.org/page/45604/donate/1",
+        "key_work": "The International Campaign for Tibet has been instrumental in the passage of significant legislation in the United States, including the Reciprocal Access to Tibet Act and the Tibetan Policy Act. The organization actively supports the release and rehabilitation of Tibetan political prisoners and runs programs like the Tibetan Youth Leadership Program and the Rowell Fund for Tibet to empower the Tibetan community.",
+        "credibility": "High",
+        "latest_news": "US congressional report confirms serious rights abuses in Tibet under CCP rule - December 19, 2025"
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibet Action Institute",
+      "output": {
+        "organization": "Tibet Action Institute",
+        "focus_area": "Tibet",
+        "org_type": "Advocacy",
+        "founded_year": "2009",
+        "headquarters": "Cambridge, MA, USA",
+        "website": "https://tibetaction.net/",
+        "donation_url": "https://tibetaction.net/help-us-reach-50k/",
+        "key_work": "Tibet Action Institute combines digital communication with strategic nonviolent action to advance the Tibetan freedom movement. They provide training, education, and technology programs to equip Tibetans with tools for human rights and freedom in Tibet. They have launched education and training programs to help Tibetans capitalize on new information and communication technologies and defend against cyber attacks and surveillance from China.",
+        "credibility": "High",
+        "latest_news": "In 2025, Tibet Action Institute secured two frontpage media stories, briefed over 100 officials, trained over 5,000 Tibetans, and stopped cyber espionage."
+      },
+      "error": ""
+    },
+    {
+      "input": "Students for a Free Tibet",
+      "output": {
+        "organization": "Students for a Free Tibet",
+        "focus_area": "Tibet",
+        "org_type": "Advocacy",
+        "founded_year": "1994",
+        "headquarters": "New York, USA",
+        "website": "https://studentsforafreetibet.org/",
+        "donation_url": "https://secure3.convio.net/sft/site/Donation2?df_id=4709&mfc_pref=T&4709.donation=form1",
+        "key_work": "Students for a Free Tibet (SFT) is a global grassroots network of students and activists working in solidarity with the Tibetan people for human rights and freedom. SFT uses education, grassroots organizing, and nonviolent direct action to campaign for Tibet's independence.",
+        "credibility": "High",
+        "latest_news": "Fear Mounts over Imminent Cremation of Tibetan Buddhist Leader Who Died In Detention in Vietnam After Reportedly Escaping Chinese-Occupied Tibet (April 17, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Free Tibet",
+      "output": {
+        "organization": "Free Tibet",
+        "focus_area": "Tibet",
+        "org_type": "Advocacy",
+        "founded_year": "1987",
+        "headquarters": "London, United Kingdom",
+        "website": "https://freetibet.org/",
+        "donation_url": "https://secure.freetibet.org/donate-free-tibet",
+        "key_work": "Free Tibet campaigns for an end to China's occupation of Tibet and for international recognition of Tibetans' right to freedom. They work to expose human rights abuses, lead international campaigns, and build a global movement to resist the occupation.",
+        "credibility": "High",
+        "latest_news": "UN QUESTIONS VIETNAM AND CHINA OVER TIBETAN LAMA’S DEATH 9th October 2025"
+      },
+      "error": ""
+    },
+    {
+      "input": "Safeguard Defenders",
+      "output": {
+        "organization": "Safeguard Defenders",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "2016",
+        "headquarters": "Madrid, Spain",
+        "website": "https://safeguarddefenders.com/en",
+        "donation_url": "https://safeguarddefenders.com/en/donate",
+        "key_work": "Safeguard Defenders is known for its investigations into China's human rights abuses, including the report '110 Overseas' on Chinese overseas police service stations. Other key work includes reports on forced disappearances ('The People's Republic of the Disappeared') and forced confessions ('Trial By Media'). The organization also provides support to human rights defenders in Asia.",
+        "credibility": "High",
+        "latest_news": "China Travel Magazine: Dissident Edition (June 2, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Chinese Human Rights Defenders",
+      "output": {
+        "organization": "Chinese Human Rights Defenders",
+        "focus_area": "General China",
+        "org_type": "Coalition",
+        "founded_year": "2005",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.nchrd.org/",
+        "donation_url": "https://www.nchrd.org/donate-now/",
+        "key_work": "CHRD monitors, documents, and reports on the human rights situation in China. They provide grants, training, and support to grassroots activists. Key reports include investigations into arbitrary detention, collective punishment, and gender-based violence.",
+        "credibility": "High",
+        "latest_news": "Alert: Chinese authorities target writer, artist for critical cultural expression (December 17, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Human Rights in China",
+      "output": {
+        "organization": "Human Rights in China",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1989",
+        "headquarters": "New York, USA",
+        "website": "https://www.hrichina.org/",
+        "donation_url": "https://new.hrichina.org/donate",
+        "key_work": "HRIC's work includes extensive research and publications on human rights in China, such as reports on media censorship and the National Security Law in Hong Kong. They also engage in advocacy at the UN and support civil society actors in China.",
+        "credibility": "High",
+        "latest_news": "Man who filmed Uyghur concentration camps now fights for his own freedom in the United States (December 12, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "China Aid",
+      "output": {
+        "organization": "China Aid",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "2002",
+        "headquarters": "Midland, USA",
+        "website": "https://chinaaid.org/",
+        "donation_url": "https://chinaaid.org/give/",
+        "key_work": "ChinaAid focuses on exposing religious freedom and human rights abuses in China. They provide legal assistance to victims of religious persecution, train leaders to defend their rights, and advocate for religious freedom internationally. They also publish annual reports on the persecution of Christians in China.",
+        "credibility": "High",
+        "latest_news": "Blockade Behind the Fireworks: A Thousand Police arrest Hundreds of Christians in a Small Town in Zhejiang (December 19, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Amnesty International China",
+      "output": {
+        "organization": "Amnesty International",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1961",
+        "headquarters": "London, United Kingdom",
+        "website": "https://www.amnesty.org/en/",
+        "donation_url": "https://www.amnesty.org/en/donate/",
+        "key_work": "Amnesty International researches and campaigns against human rights abuses in China, including the use of repressive laws, the crackdown on activists and lawyers, and the situation in Xinjiang and Hong Kong. They publish reports, and urgent actions, and advocate for the release of prisoners of conscience.",
+        "credibility": "High",
+        "latest_news": "Reports on the conviction of #MeToo and labour activists, the ongoing detention of human rights lawyers, and the new national security law in Hong Kong (2024-2025)."
+      },
+      "error": ""
+    },
+    {
+      "input": "Human Rights Watch China",
+      "output": {
+        "organization": "Human Rights Watch",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1978",
+        "headquarters": "New York, USA",
+        "website": "https://www.hrw.org/asia/china-and-tibet",
+        "donation_url": "https://donate.hrw.org/",
+        "key_work": "Human Rights Watch (HRW) investigates and reports on a wide range of human rights abuses in China, including the persecution of Uyghurs and other Turkic Muslims in Xinjiang, the crackdown on civil liberties in Hong Kong, and the suppression of human rights defenders, journalists, and academics. They have published numerous reports on these topics, such as 'China: Crimes Against Humanity in Xinjiang' and 'China: Building a ‘Patriots Only’ Hong Kong.'",
+        "credibility": "High",
+        "latest_news": "Hong Kong: Jimmy Lai Convicted on Bogus National Security Charges (December 15, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Freedom House China",
+      "output": {
+        "organization": "Freedom House",
+        "focus_area": "General China",
+        "org_type": "Research",
+        "founded_year": "1941",
+        "headquarters": "Washington DC, USA",
+        "website": "https://freedomhouse.org/",
+        "donation_url": "https://www.freedomhouse.org/donate",
+        "key_work": "Freedom House is known for its annual reports, Freedom in the World and Freedom on the Net, which assess the state of political rights and civil liberties globally. Their work on China includes detailed country reports, analysis of internet freedom, and tracking of transnational repression. They also provide direct assistance to human rights defenders.",
+        "credibility": "High",
+        "latest_news": "Chinese government impunity for crackdown on lawyers fuels decade of repression - July 7, 2025"
+      },
+      "error": ""
+    },
+    {
+      "input": "Reporters Without Borders China",
+      "output": {
+        "organization": "Reporters Without Borders",
+        "focus_area": "Media",
+        "org_type": "Advocacy",
+        "founded_year": "1985",
+        "headquarters": "Paris, France",
+        "website": "https://rsf.org/en",
+        "donation_url": "https://donate.rsf.org/",
+        "key_work": "Key work includes the annual World Press Freedom Index, which measures media freedom in 180 countries, and investigative reports such as 'The Great Leap Backwards of Journalism in China,' which reveals the regime's repression of journalism.",
+        "credibility": "High",
+        "latest_news": "China: United Nations experts recognise detention of Swedish publisher Gui Minhai as arbitrary — and demand his release (04.12.2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "PEN International China",
+      "output": {
+        "organization": "Independent Chinese PEN Center",
+        "focus_area": "Media",
+        "org_type": "Advocacy",
+        "founded_year": "2001",
+        "headquarters": "Manassas, VA, USA",
+        "website": "https://www.chinesepen.org/english/",
+        "donation_url": "https://www.pen-international.org/donate",
+        "key_work": "The Independent Chinese PEN Center (ICPC) advocates for freedom of expression for writers in China. Key activities include awarding the \"Freedom to Write Award\" to recognize and support writers, campaigning for the release of imprisoned writers, and publishing online journals of their work.",
+        "credibility": "High",
+        "latest_news": "Independent Writing, Independent Spirit – In Memory of Mr. Fu Guoyong, A Conscientious Writer (July 12, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Front Line Defenders",
+      "output": {
+        "organization": "Front Line Defenders",
+        "focus_area": "General China",
+        "org_type": "Direct Support",
+        "founded_year": "2001",
+        "headquarters": "Dublin, Ireland",
+        "website": "https://www.frontlinedefenders.org/",
+        "donation_url": "https://www.frontlinedefenders.org/en/donate",
+        "key_work": "Provides rapid and practical support to human rights defenders at risk through grants, capacity building, visibility, networking, and advocacy. They also have a 24-hour emergency phone line.",
+        "credibility": "High",
+        "latest_news": "Court rules to dissolve Genç LGBTİ+ Association (19 December 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "International Service for Human Rights",
+      "output": {
+        "organization": "International Service for Human Rights",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1984",
+        "headquarters": "Geneva, Switzerland",
+        "website": "https://ishr.ch/",
+        "donation_url": "https://ishr.ch/action/support-us/donate/",
+        "key_work": "The International Service for Human Rights (ISHR) works to support human rights defenders, strengthen human rights systems, and lead and participate in coalitions for human rights change. They provide training and advocacy support to defenders, and work to ensure accountability for human rights violations.",
+        "credibility": "High",
+        "latest_news": "UN Reform: States must resist drastic cuts to human rights during hasty budget talks (20 December 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Coalition to End Forced Organ Harvesting",
+      "output": {
+        "organization": "The International Coalition to End Transplant Abuse in China",
+        "focus_area": "General China",
+        "org_type": "Coalition",
+        "founded_year": "2017",
+        "headquarters": "Sydney, Australia",
+        "website": "https://endtransplantabuse.org/",
+        "donation_url": "https://endtransplantabuse.org/donate-now/",
+        "key_work": "Initiated the China Tribunal, an independent tribunal that investigated forced organ harvesting in China. Co-published the 2016 report 'Bloody Harvest/The Slaughter: An Update,' a comprehensive examination of transplant abuse in China. Advocates for legislation to combat forced organ harvesting, such as the Stop Forced Organ Harvesting Act.",
+        "credibility": "High",
+        "latest_news": "The Stop Forced Organ Harvesting Act of 2025 passed in the US House of Representatives in May 2025. A global petition urging governments to act against forced organ harvesting surpassed half a million signatures in December 2025."
+      },
+      "error": ""
+    },
+    {
+      "input": "Doctors Against Forced Organ Harvesting",
+      "output": {
+        "organization": "Doctors Against Forced Organ Harvesting",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "2006",
+        "headquarters": "Washington DC, USA",
+        "website": "https://dafoh.org/",
+        "donation_url": "https://dafoh.org/support-dafoh/",
+        "key_work": "Doctors Against Forced Organ Harvesting (DAFOH) is a medical organization that advocates against forced organ harvesting in China. The organization was nominated for the Nobel Peace Prize in 2016 for its decade-long efforts to raise awareness about this issue. DAFOH has contributed to transplant-related legislation and resolutions in several countries, including the US, and actively engages with the medical community and policymakers through publications, conferences, and media outreach.",
+        "credibility": "High",
+        "latest_news": "In 2024, DAFOH was nominated for the Nobel Peace Prize. Also in 2024, China implemented a new regulation on organ donation and transplantation. In 2025, DAFOH, along with the International Coalition to End Transplant Abuse in China (ETAC), launched a petition to urge governments to take action against forced organ harvesting in China."
+      },
+      "error": ""
+    },
+    {
+      "input": "Falun Dafa Information Center",
+      "output": {
+        "organization": "Falun Dafa Information Center",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1999",
+        "headquarters": "New York, USA",
+        "website": "https://faluninfo.net/",
+        "donation_url": "N/A",
+        "key_work": "The Falun Dafa Information Center documents human rights abuses against Falun Gong practitioners in China, including torture, forced organ harvesting, and deaths in custody. They publish reports, analysis, and personal accounts to raise awareness and advocate for an end to the persecution. The center also engages in outreach to governments, NGOs, and media worldwide.",
+        "credibility": "Medium",
+        "latest_news": "Chinese Man Harasses Falun Gong Rally in Philadelphia, Hot Mic Exchange Renews Calls for U.S. Action Against Beijing’s Forced Organ Harvesting (September 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Taiwan Foundation for Democracy",
+      "output": {
+        "organization": "Taiwan Foundation for Democracy",
+        "focus_area": "Taiwan",
+        "org_type": "Research",
+        "founded_year": "2003",
+        "headquarters": "Taipei, Taiwan",
+        "website": "https://www.tfd.org.tw/en",
+        "donation_url": "N/A",
+        "key_work": "The Taiwan Foundation for Democracy promotes democratic education and international exchanges. It publishes research such as the 'China Human Rights Report' and 'Taiwan Democracy Quarterly', and hosts the annual 'Asia Democracy and Human Rights Award' to honor individuals and organizations for their contributions to democracy and human rights in Asia.",
+        "credibility": "High",
+        "latest_news": "2025/12/11 2025 Asia Democracy and Human Rights Award Ceremony"
+      },
+      "error": ""
+    },
+    {
+      "input": "Taiwan Association for Human Rights",
+      "output": {
+        "organization": "Taiwan Association for Human Rights",
+        "focus_area": "Taiwan",
+        "org_type": "Advocacy",
+        "founded_year": "1984",
+        "headquarters": "Taipei, Taiwan",
+        "website": "https://www.tahr.org.tw/",
+        "donation_url": "https://www.tahr.org.tw/civicrm/contribute/transact?reset=1&id=59",
+        "key_work": "TAHR provides individual case support, including litigation for death row inmates and legal resources for those affected by inappropriate government policies. The organization's main agenda includes policy monitoring and advocacy, focusing on international human rights conventions, freedom of expression, right to housing, right to privacy, and migrants' rights. They also engage in human rights promotion, education, and training.",
+        "credibility": "High",
+        "latest_news": "Constitutional Court is sick, Ministry of Justice takes the opportunity to make trouble? -Civil groups oppose the evil law of \"life imprisonment\" (2025-10-31)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Formosa Foundation",
+      "output": {
+        "organization": "Formosa Foundation",
+        "focus_area": "Taiwan",
+        "org_type": "Advocacy",
+        "founded_year": "2001",
+        "headquarters": "Los Angeles, USA",
+        "website": "N/A",
+        "donation_url": "N/A",
+        "key_work": "The original Formosa Foundation's key work was its Ambassador Program, which trained over 300 student ambassadors to advocate for Taiwan in the U.S. Congress. The organization also supported the film 'Formosa Betrayed' to raise awareness of Taiwan's struggle for democracy. The original foundation ceased operations in 2016. A new organization with the same name is currently active in the Marshall Islands, focused on charitable work.",
+        "credibility": "Medium",
+        "latest_news": "A new Formosa Foundation, chaired by Mr. Samuel Lin, has been active in the Marshall Islands. In December 2025, the foundation donated toys to children at Majuro Hospital. In March 2024, it donated waiting chairs and luggage carts to the hospital and airport."
+      },
+      "error": ""
+    },
+    {
+      "input": "Taiwan Human Rights Network",
+      "output": {
+        "organization": "Taiwan Association for Human Rights",
+        "focus_area": "Taiwan",
+        "org_type": "Advocacy",
+        "founded_year": "1984",
+        "headquarters": "Taipei, Taiwan",
+        "website": "https://www.tahr.org.tw",
+        "donation_url": "https://www.tahr.org.tw/civicrm/contribute/transact?reset=1&id=59",
+        "key_work": "TAHR provides individual case support for death row inmates, monitors and advocates for policies on freedom of expression, housing rights, privacy, and migrant rights. They also engage in human rights education and training, and collaborate with international human rights organizations like FIDH and Forum Asia.",
+        "credibility": "High",
+        "latest_news": "TAHR continues its advocacy for the Refugee Act and monitors the implementation of recent amendments to the Immigration Act. (2024)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Radio Free Asia",
+      "output": {
+        "organization": "Radio Free Asia",
+        "focus_area": "Media",
+        "org_type": "Media",
+        "founded_year": "1996",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.rfa.org/",
+        "donation_url": "https://www.daffy.org/charities/521968145-radio-free-asia-washington-dc",
+        "key_work": "Radio Free Asia provides uncensored news and information to countries in Asia with restricted media. It has won numerous awards for its journalism, including for its coverage of the Rohingya crisis in Myanmar and the repression of Uyghurs in Xinjiang.",
+        "credibility": "High",
+        "latest_news": "Radio Free Asia has suspended its operations for the first time in its nearly thirty year history as a result of massive government cuts (Nov 7, 2025)."
+      },
+      "error": ""
+    },
+    {
+      "input": "Voice of America Chinese",
+      "output": {
+        "organization": "Voice of America Chinese",
+        "focus_area": "General China",
+        "org_type": "Media",
+        "founded_year": "1942",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.voachinese.com/",
+        "donation_url": "N/A",
+        "key_work": "Voice of America (VOA) is a U.S. government-funded international broadcaster. It was established in 1942 to provide news and information to countries with censored media. VOA Chinese provides news and information related to China, the U.S., and the world.",
+        "credibility": "High",
+        "latest_news": "TikTok signs agreement to sell US business to US investors (2025-12-18)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong Free Press",
+      "output": {
+        "organization": "Hong Kong Free Press",
+        "focus_area": "Hong Kong",
+        "org_type": "Media",
+        "founded_year": "2015",
+        "headquarters": "Hong Kong",
+        "website": "https://hongkongfp.com/",
+        "donation_url": "https://hongkongfp.com/support-hong-kong-free-press/",
+        "key_work": "HKFP is an impartial, non-profit, award-winning English-language newspaper. It was nominated for a Nobel Peace Prize in 2021. It provides balanced coverage guided by a comprehensive Ethics Code and is certified by the Journalism Trust Initiative.",
+        "credibility": "High",
+        "latest_news": "Tai Po fire: Death toll climbs to 161 as forensic tests show remains belonged to 2 people, all missing now accounted for - 21 December 2025"
+      },
+      "error": ""
+    },
+    {
+      "input": "The China Project",
+      "output": {
+        "organization": "The China Project",
+        "focus_area": "General China",
+        "org_type": "Media",
+        "founded_year": "2016",
+        "headquarters": "New York, USA",
+        "website": "https://thechinaproject.com/",
+        "donation_url": "N/A",
+        "key_work": "The China Project was a news, information, and business services platform that published articles, investigative reports, and podcasts, including the well-regarded Sinica Podcast. It aimed to provide comprehensive coverage of China's business, technology, politics, culture, and society.",
+        "credibility": "High",
+        "latest_news": "The China Project ceased operations in November 2023 due to a lack of funding."
+      },
+      "error": ""
+    },
+    {
+      "input": "ChinaFile",
+      "output": {
+        "organization": "ChinaFile",
+        "focus_area": "Media",
+        "org_type": "Media",
+        "founded_year": "2014",
+        "headquarters": "New York, USA",
+        "website": "https://www.chinafile.com/",
+        "donation_url": "https://asiasociety.org/support/chinafile",
+        "key_work": "ChinaFile is an online magazine that publishes reporting, analysis, and commentary on a wide range of issues related to China. It also runs The China NGO Project, which provides information and analysis on non-governmental organizations in China.",
+        "credibility": "High",
+        "latest_news": "ChinaFile regularly publishes articles and conversations on current events in China. Recent topics include \"Chips and Soybeans\" (September 30, 2025) and \"Is This a New World Order?\" (September 6, 2025)."
+      },
+      "error": ""
+    },
+    {
+      "input": "SupChina",
+      "output": {
+        "organization": "The China Project (formerly SupChina)",
+        "focus_area": "General China",
+        "org_type": "Media",
+        "founded_year": "2016",
+        "headquarters": "New York, USA",
+        "website": "https://thechinaproject.com/",
+        "donation_url": "N/A",
+        "key_work": "The China Project (formerly SupChina) was a news and information platform that produced articles, investigative reports, and a podcast network, including the well-regarded Sinica Podcast. They also hosted conferences such as NEXTChina and The China Project Women’s Conference.",
+        "credibility": "High",
+        "latest_news": "The China Project shut down in November 2023 due to funding issues."
+      },
+      "error": ""
+    },
+    {
+      "input": "Citizen Lab",
+      "output": {
+        "organization": "The Citizen Lab",
+        "focus_area": "Research",
+        "org_type": "Research",
+        "founded_year": "2001",
+        "headquarters": "Toronto, Canada",
+        "website": "https://citizenlab.ca/",
+        "donation_url": "https://engage.utoronto.ca/site/SPageServer?pagename=donate#/department/91",
+        "key_work": "The Citizen Lab investigates digital espionage, internet filtering, and surveillance. Key reports include investigations into mercenary spyware, AI-enabled influence operations, and analysis of data-sharing legislation.",
+        "credibility": "High",
+        "latest_news": "PRISONBREAK – An AI-Enabled Influence Operation Aimed at Overthrowing the Iranian Regime (October 2, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Australian Strategic Policy Institute",
+      "output": {
+        "organization": "Australian Strategic Policy Institute",
+        "focus_area": "Research",
+        "org_type": "Research",
+        "founded_year": "2001",
+        "headquarters": "Canberra, Australia",
+        "website": "https://www.aspi.org.au/",
+        "donation_url": "https://www.aspi.org.au/43312-2/aspi-usa-donate/",
+        "key_work": "ASPI produces expert and timely advice for Australian and global leaders on strategic policy, national security, cyber, technology, and foreign interference issues. Key reports include 'The party’s AI: How China’s new AI systems are reshaping human rights' and 'Pressure points: Taiwan and the Taiwan Strait'.",
+        "credibility": "High",
+        "latest_news": "Coming soon: ASPI’s 2025 Critical Technology Tracker update (10 November 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang Victims Database",
+      "output": {
+        "organization": "Xinjiang Victims Database",
+        "focus_area": "Uyghur",
+        "org_type": "Research",
+        "founded_year": "2018",
+        "headquarters": "N/A",
+        "website": "https://shahit.biz/",
+        "donation_url": "https://www.gofundme.com/f/xinjiang-victims-database-work, https://donorbox.org/xinjiang-victims-database-work",
+        "key_work": "The Xinjiang Victims Database documents the cases of tens of thousands of individuals who have been detained, disappeared, or subjected to forced labor in Xinjiang. The project aims to create a comprehensive record of the human rights abuses in the region to hold the Chinese government accountable and provide a basis for future legal action and reparations.",
+        "credibility": "High",
+        "latest_news": "US drops plan to deport Chinese national who exposed Xinjiang abuses, rights activists say (December 22, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur Tribunal",
+      "output": {
+        "organization": "Uyghur Tribunal",
+        "focus_area": "Uyghur",
+        "org_type": "Legal",
+        "founded_year": "2020",
+        "headquarters": "London, UK",
+        "website": "https://uyghurtribunal.com/",
+        "donation_url": "https://www.crowdfunder.co.uk/fund-the-second-hearings-of-the-uyghur-tribunal",
+        "key_work": "The Uyghur Tribunal is an independent people's tribunal that investigated whether the People's Republic of China has committed international crimes, including genocide, against the Uyghur people. The tribunal delivered its summary judgment on December 9, 2021, concluding that the PRC has committed genocide.",
+        "credibility": "High",
+        "latest_news": "No news available for 2024-2025. The latest news on the website is from December 2021."
+      },
+      "error": ""
+    },
+    {
+      "input": "China Tribunal",
+      "output": {
+        "organization": "China Tribunal",
+        "focus_area": "Legal",
+        "org_type": "Legal",
+        "founded_year": "2019",
+        "headquarters": "London, United Kingdom",
+        "website": "https://chinatribunal.com/",
+        "donation_url": "N/A",
+        "key_work": "The China Tribunal's key work is its final judgment, released in March 2020, which concluded that forced organ harvesting from prisoners of conscience has been taking place in China for many years and continues to this day. The tribunal was chaired by Sir Geoffrey Nice QC, who previously led the prosecution of Slobodan Milošević.",
+        "credibility": "High",
+        "latest_news": "No recent news found for 2024-2025. The last major activity was the release of their final judgment in 2020."
+      },
+      "error": ""
+    },
+    {
+      "input": "Congressional-Executive Commission on China",
+      "output": {
+        "organization": "Congressional-Executive Commission on China",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "2000",
+        "headquarters": "Washington, DC, USA",
+        "website": "https://www.cecc.gov/",
+        "donation_url": "N/A",
+        "key_work": "The Commission's key work includes monitoring human rights and the development of the rule of law in China and submitting an annual report to the President and the Congress.",
+        "credibility": "High",
+        "latest_news": "Chairs’ Statement Condemning Jimmy Lai’s Conviction (December 15, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Victims of Communism Memorial Foundation",
+      "output": {
+        "organization": "Victims of Communism Memorial Foundation",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1993",
+        "headquarters": "Washington, D.C., USA",
+        "website": "https://victimsofcommunism.org/",
+        "donation_url": "https://vocmuseum.org/donate/",
+        "key_work": "The Victims of Communism Memorial Foundation (VOC) is an educational, research, and human rights nonprofit organization devoted to commemorating the more than 100 million people killed by communism around the world and to pursuing the freedom of those still living under totalitarian regimes. The Foundation was authorized in 1993 by a unanimous Act of Congress signed as Public Law 103-199 by President William J. Clinton on December 17, 1993. On June 12, 2007, President George W. Bush dedicated the Victims of Communism Memorial statue in Washington, D.C.",
+        "credibility": "High",
+        "latest_news": "The Victims of Communism Memorial Foundation hosted the 10th annual China Forum on September 25, 2024. The foundation will also host the Roll Call of Nations on April 24, 2025, and the next China Forum in 2025."
+      },
+      "error": ""
+    },
+    {
+      "input": "National Endowment for Democracy",
+      "output": {
+        "organization": "National Endowment for Democracy",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "1983",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.ned.org/",
+        "donation_url": "N/A",
+        "key_work": "NED is a private, nonprofit foundation that gives over 2,000 grants annually to non-governmental groups in over 100 countries. Key initiatives include the World Movement for Democracy, the International Forum for Democratic Studies, the Journal of Democracy, and the Center for International Media Assistance. They also have thematic priorities like protecting human rights and challenging authoritarian censorship.",
+        "credibility": "High",
+        "latest_news": "NED 2025 Democracy Awards Honor Champions of Faith, Freedom,... (November 06, 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "International Federation for Human Rights",
+      "output": {
+        "organization": "International Federation for Human Rights",
+        "focus_area": "General China",
+        "org_type": "Coalition",
+        "founded_year": "1922",
+        "headquarters": "Paris, France",
+        "website": "https://www.fidh.org/en/",
+        "donation_url": "https://don.fidh.org/permanente/~mon-don",
+        "key_work": "The organization's work on China includes advocating for the release of detained human rights defenders, reporting on human rights violations, and engaging with international bodies like the EU to address these issues. They have a specific focus on the '709' crackdown and the case of Gui Minhai. They also work on issues related to Chinese business operations in other countries.",
+        "credibility": "High",
+        "latest_news": "Recent activities include statements on the arbitrary detention of a Swedish publisher in China, calls for the release of Jimmy Lai in Hong Kong, and urging the EU to prioritize human rights in its relationship with China."
+      },
+      "error": ""
+    },
+    {
+      "input": "World Organisation Against Torture",
+      "output": {
+        "organization": "World Organisation Against Torture",
+        "focus_area": "Legal",
+        "org_type": "Coalition",
+        "founded_year": "1985",
+        "headquarters": "Geneva, Switzerland",
+        "website": "https://www.omct.org/en",
+        "donation_url": "https://www.omct.org/en/donate",
+        "key_work": "The World Organisation Against Torture (OMCT) is the largest global network of non-governmental organizations actively fighting against torture, summary executions, forced disappearances, and other forms of cruel, inhuman, or degrading treatment. Their key work involves assisting victims, protecting human rights defenders at risk, and advocating for legal and policy reforms with governments and international bodies.",
+        "credibility": "High",
+        "latest_news": "Funding for Human Rights Defenders Stagnates Despite Rising Global Threats, New Analysis Shows (04.12.2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Global Centre for the Responsibility to Protect",
+      "output": {
+        "organization": "Global Centre for the Responsibility to Protect",
+        "focus_area": "General China",
+        "org_type": "Advocacy",
+        "founded_year": "2008",
+        "headquarters": "New York, USA",
+        "website": "https://www.globalr2p.org/",
+        "donation_url": "https://www.globalr2p.org/support-ourmission-to-prevent-mass-atrocities/",
+        "key_work": "The Global Centre for the Responsibility to Protect produces a variety of publications, including annual reports, country analyses, and atrocity alerts, to inform and guide policymakers and the public on mass atrocity prevention. Their work aims to uphold the Responsibility to Protect (R2P) norm.",
+        "credibility": "High",
+        "latest_news": "Populations at Risk, November 2025 (14 November 2025); 2024 Impact Report (6 February 2025)."
+      },
+      "error": ""
+    },
+    {
+      "input": "No Business With Genocide",
+      "output": {
+        "organization": "No Business With Genocide",
+        "focus_area": "General China",
+        "org_type": "Coalition",
+        "founded_year": "N/A",
+        "headquarters": "Washington DC, USA",
+        "website": "https://www.nobusinesswithgenocide.org/",
+        "donation_url": "https://actionnetwork.org/fundraising/end-genocide-now",
+        "key_work": "No Business With Genocide is a coalition-led campaign to end genocide worldwide by pressuring corporations to cease business with regimes committing mass atrocities. Key campaigns include the International Campaign for the Rohingya, Campaign for a New Myanmar, and the Coalition to End Forced Labor in the Uyghur Region.",
+        "credibility": "High",
+        "latest_news": "On February 27, 2025, No Business With Genocide condemned the Thai government's forced deportation of 40 Uyghur men to China, citing violations of international law."
+      },
+      "error": ""
+    },
+    {
+      "input": "End Uyghur Forced Labour Coalition",
+      "output": {
+        "organization": "Coalition to End Forced Labour in the Uyghur Region",
+        "focus_area": "Uyghur",
+        "org_type": "Coalition",
+        "founded_year": "2020",
+        "headquarters": "N/A",
+        "website": "https://enduyghurforcedlabour.org/",
+        "donation_url": "N/A",
+        "key_work": "The coalition's primary initiative is its 'Call to Action,' which urges companies to completely divest from the Uyghur Region. This includes severing ties with any suppliers connected to the forced labor system. The coalition also publishes reports and statements to raise awareness and pressure governments and corporations to act.",
+        "credibility": "High",
+        "latest_news": "Conducting Human Rights Due Diligence in relation to State Imposed Forced Labour (November 2025)"
+      },
+      "error": ""
+    },
+    {
+      "input": "Coalition to End Transplant Abuse in China",
+      "output": {
+        "organization": "International Coalition to End Transplant Abuse in China",
+        "focus_area": "General China",
+        "org_type": "Coalition",
+        "founded_year": "2017",
+        "headquarters": "Cabramatta, Australia",
+        "website": "https://endtransplantabuse.org/",
+        "donation_url": "https://endtransplantabuse.org/donate-now/",
+        "key_work": "Initiated the China Tribunal, an independent people's tribunal to inquire into forced organ harvesting from prisoners of conscience in China. The organization also publishes research, engages in advocacy, and raises public awareness through various events and publications, including reports like 'Bloody Harvest' and 'The Slaughter'.",
+        "credibility": "High",
+        "latest_news": "WATCH: 7NEWS The Issue Podcast – “Fighting Against the Horror of Forced Organ Harvesting” with David Matas (December 4, 2025)"
+      },
+      "error": ""
+    }
+  ]
+}

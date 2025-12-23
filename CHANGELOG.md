@@ -2,6 +2,32 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.26.0] - 2025-12-23
+
+### Added - Wide Research Integration (Batch 2)
+- **Confucius Institute Tracker**: 50 countries researched in parallel
+  - Total institutes per country with closure tracking
+  - Government actions and university responses
+  - Filter by status (Open, Closed, Under Review) and region
+  - Statistics dashboard with global totals
+- **Organizations Directory**: 50 human rights organizations researched
+  - Contact information and donation links
+  - Focus areas and credibility ratings
+  - Key reports and leadership profiles
+  - Category filtering (Advocacy, Research, Legal, Media, Direct Support)
+- **Sanctioned Officials Tracker**: 20 officials with detailed sanctions data
+  - US, UK, EU, Canada, Australia sanctions status
+  - Key abuses documented with sources
+  - Current positions and status tracking
+  - Multi-country sanction comparison
+
+### Research Data
+- 120 new parallel research subtasks completed
+- Data integrated into Regional Threats, Resources, and CCP Tactics pages
+- JSON research files stored in /src/data/
+
+---
+
 ## [2.25.0] - 2025-12-21
 
 ### Added - Wide Research Integration

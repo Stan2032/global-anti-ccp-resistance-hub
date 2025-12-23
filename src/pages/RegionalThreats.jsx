@@ -11,6 +11,7 @@ import ChinaTechThreats from '../components/ChinaTechThreats';
 import GlobalInfluenceMap from '../components/GlobalInfluenceMap';
 import RegionalIssues from '../components/RegionalIssues';
 import DetentionFacilities from '../components/DetentionFacilities';
+import ConfuciusInstituteTracker from '../components/ConfuciusInstituteTracker';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -421,6 +422,11 @@ const RegionalThreats = () => {
       {/* Detention Facility Database */}
       <div className="mb-8">
         <DetentionFacilities />
+      </div>
+      
+      {/* Confucius Institute Tracker */}
+      <div className="mb-8">
+        <ConfuciusInstituteTracker />
       </div>
     </div>
   );
