@@ -2,6 +2,34 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.27.0] - 2025-12-24
+
+### Added - Wide Research Batch 3
+- **Detention Facilities Tracker (Enhanced)**: 20 regions researched in parallel
+  - Detailed facility information including capacity, evidence, and satellite imagery links
+  - Regional filtering and search functionality
+  - Statistics dashboard showing total facilities and capacity
+  - ASPI Xinjiang Data Project integration
+- **Forced Labor Tracker**: 30 companies researched in parallel
+  - Company status ratings (Avoid, Concern, Improving, Good)
+  - Evidence and source citations for each company
+  - Industry filtering and search
+  - UFLPA enforcement tracking
+  - Recommended consumer actions
+- **Academic Experts Directory**: 25 leading scholars researched in parallel
+  - Expertise areas (Xinjiang, Tibet, Hong Kong, China Politics)
+  - Key works and media presence
+  - CCP targeting documentation
+  - Twitter links and profile sources
+  - Credibility verification
+
+### Research Data
+- 75 items researched in parallel across 3 categories
+- All data verified from credible sources
+- Integrated into Regional Threats and Resources pages
+
+---
+
 ## [2.26.0] - 2025-12-23
 
 ### Added - Wide Research Integration (Batch 2)

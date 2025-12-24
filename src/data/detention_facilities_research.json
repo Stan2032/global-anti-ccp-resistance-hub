@@ -1,0 +1,284 @@
+{
+  "results": [
+    {
+      "input": "Xinjiang Uyghur Autonomous Region - Urumqi",
+      "output": {
+        "region": "Xinjiang Uyghur Autonomous Region - Urumqi",
+        "facility_count": 1,
+        "estimated_capacity": "10,000+",
+        "key_facilities": "Urumqi No. 3 Detention Center",
+        "satellite_evidence": "ASPI Xinjiang Data Project https://xjdp.aspi.org.au/map/",
+        "survivor_testimonies": "Gulbahar Haitiwaji",
+        "status": "Operational, Expanded",
+        "source_url": "https://www.ap.org/news-highlights/best-of-the-week/2021/inside-chinas-largest-detention-center/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Kashgar Prefecture",
+      "output": {
+        "region": "Xinjiang - Kashgar Prefecture",
+        "facility_count": 13,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "疏附县法制教育转化学校 - Shufu County Legal Transformation through Education School, 喀什市教育转化学校, 疏勒县城南培训中心 - Shule County Chengnan Training Center, 叶城县法制教育转化学校 Yecheng County (Kargilik County) Legal Transformation Through Education School, 伽师县职业技能培训中心 - Jiashi County Vocational Skills Training Center AND/OR 伽师县法制教育转化学校 - Jiashi County Legal Education Through Transformation School, 泽普县法制教育转化学校 Zepu County (Poskam County) Legal Transformation Through Education School, 疏勒县培训中心 (阳光锦苑和人民医院4号楼) - Shule County Training Center (Sunshine Jinyuan and People's Building Hospital 4), 喀什市职业技能教育培训中心 Kashgar City Vocational Technical Education Training Center, It looks possible that half of the 疏勒县中等职业技术学校 Shule Secondary Vocational School has been put aside for 're-education' but we don't think we have enough evidence yet to prove that, 叶城县第七，第八培训中心 Yecheng Number 7 and 8 Training Center, 疏附县法制转化学校 - Shufu County Legal Transformation School, 阿克陶城北轻工业园职业技能教育培训中心 - Akto City North Light Industry Park Vocational Skills Education and Training Center OR Chengbei Light Industry Park?, 伽师县工业园教育培训中心 - Jiashi County Industrial Park Education and Training Center",
+        "satellite_evidence": "ASPI Xinjiang Data Project, https://xjdp.aspi.org.au/",
+        "survivor_testimonies": "None documented",
+        "status": "Operational, Expanded",
+        "source_url": "https://xjdp.aspi.org.au/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Hotan Prefecture",
+      "output": {
+        "region": "Xinjiang - Hotan Prefecture",
+        "facility_count": "",
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Hotan County Facility #2, Hotan City Facility",
+        "satellite_evidence": "ASPI Xinjiang Data Project - https://xjdp.aspi.org.au/map/",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://xjdp.aspi.org.au/map/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Aksu Prefecture",
+      "output": {
+        "region": "Xinjiang - Aksu Prefecture",
+        "facility_count": 4,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Aksu Facility #1, Onsu Facility #7, Bay Facility #2, Aksu Facility #3",
+        "satellite_evidence": "ASPI Xinjiang Data Project - https://xjdp.aspi.org.au/",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://xjdp.aspi.org.au/data/?tab=data&mosque=none&cultural=none"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Ili Kazakh Autonomous Prefecture",
+      "output": {
+        "region": "Xinjiang - Ili Kazakh Autonomous Prefecture",
+        "facility_count": 21,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Flax Factory (Yining), Yining Power Plant, Yili Prefecture Finance and Trade School (Yining), Yingayati Detention Center of Yining Public Security Bureau, Transformation through education center of Yining Huaguoshan Detention Center, Yili Prefecture Xinhua Hospital (Yining), The Third Branch of Yili Prefecture Friendship Hospital (Yining), The Second Branch of Yili Prefecture Friendship Hospital (Yining), Ili State Mental Hospital (Yining), Kazanshi Handicraft Base Training Center (Yining), Dairy Farm (Nan’an New Area) Training Center (Yining), Huancheng North Road Sichuan Xincun Special Police Brigade Reception Training Center (Yining), Training Base of Xinhua Chemical Plant, Beishanpo, Yingyeer Township, Yining, Yining People’s Hospital Education and Training Student Treatment Center, The People’s Hospital of Togyztarau (Gongliu county) - half of the hospital, The Blood Center of Altay city, The former County’s Hospital of Gongliu county, The first floor of Nilek County People’s Hospital, People’s Hospital of Shawan county - some buildings, The Western branch of Shawan county no.1 Middle School, Shawan county’s CCP Party School",
+        "satellite_evidence": "ASPI Xinjiang Data Project - https://xjdp.aspi.org.au/map/",
+        "survivor_testimonies": "Gulzira Auelkhan, Tursunay Ziyawudun, Qelbinur Sidiq",
+        "status": "Operational, Expanded",
+        "source_url": "https://bitterwinter.org/the-geography-of-terror-a-list-of-camps-where-ethnic-kazakhs-are-detained/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Turpan",
+      "output": {
+        "region": "Xinjiang - Turpan",
+        "facility_count": 15,
+        "estimated_capacity": "100,000+",
+        "key_facilities": "Turpan Facility #8, facilities in Pichan County, facilities in Toqsun County",
+        "satellite_evidence": "ASPI Xinjiang Data Project: https://xjdp.aspi.org.au/map/",
+        "survivor_testimonies": "Mihrigul Tursun, Tursunay Ziyawudun",
+        "status": "Operational",
+        "source_url": "https://www.aninews.in/news/world/asia/uyghur-detention-facilities-found-in-xinjiangs-turpan-where-disneys-mulan-film-was-shot20200909091641/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xinjiang - Korla/Bayingolin",
+      "output": {
+        "region": "Xinjiang - Korla / Bayingolin Prefecture",
+        "facility_count": 1,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Korla Facility #6",
+        "satellite_evidence": "ASPI Xinjiang Data Project (https://xjdp.aspi.org.au/map/)",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://xjdp.aspi.org.au/map/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibet Autonomous Region - Lhasa",
+      "output": {
+        "region": "Tibet Autonomous Region - Lhasa",
+        "facility_count": 79,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Drapchi (Tibet Autonomous Region Prison), Chushur (Qushui) Prison, Sangyip Prison Complex, Gutsa Detention Center",
+        "satellite_evidence": "RAND Corporation - A night-time lighting analysis of Tibet's prisons and detention centres (https://www.rand.org/pubs/research_reports/RRA2474-1.html)",
+        "survivor_testimonies": "None documented",
+        "status": "Operational, Expanded",
+        "source_url": "https://www.rand.org/pubs/research_reports/RRA2474-1.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibet - Shigatse",
+      "output": {
+        "region": "Tibet - Shigatse",
+        "facility_count": 1,
+        "estimated_capacity": "500+",
+        "key_facilities": "Tibet’s New Reception Center",
+        "satellite_evidence": "https://www.rand.org/pubs/research_briefs/RBA2474-1.html",
+        "survivor_testimonies": "None documented",
+        "status": "Operational",
+        "source_url": "https://savetibet.org/seven-of-18-tibetans-repatriated-from-nepal-still-imprisoned-new-prison-in-shigatse-designated-for-tibetan-refugees/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibet - Chamdo",
+      "output": {
+        "region": "Tibet - Chamdo",
+        "facility_count": 7,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Powo Tramo Prison (in adjacent Nyingtri Prefecture)",
+        "satellite_evidence": "RAND Corporation, A night-time lighting analysis of Tibet's prisons and detention centres, https://www.rand.org/pubs/research_reports/RRA2474-1.html",
+        "survivor_testimonies": "None documented",
+        "status": "Operational",
+        "source_url": "https://www.rand.org/pubs/research_reports/RRA2474-1.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Inner Mongolia - Hohhot",
+      "output": {
+        "region": "Inner Mongolia - Hohhot",
+        "facility_count": 19,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Hohhot No. 1 Prison, Hohhot No. 2 Prison, Hohhot No. 3 Prison, Hohhot No. 4 Prison, Inner Mongolia Detention Center, Hohhot No. 1 Detention Center, Hohhot No. 2 Detention Center, Hohhot No. 3 Detention Center, Yuquan Detention Center, Huimin Detention Center, Saihan Detention Center, Qingshuihe Detention Center, Tumed Left Banner Detention Center, Wuchuan Detention Center, Horinger Detention Center, Togtoh Detention Center, Hohhot No. 1 Administrative Detention Center, Hohhot No. 2 Administrative Detention Center, Hohhot No. 3 Administrative Detention Center",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "Hada, Hei Long, Shuangzhu, Tegexi, Chen Haishan, Chang Ming, Dogtengbayar, Narisu, Xinna, Haowushisi, Xinjiltu, Gabiyatu, Hasibagen, Bao Qingshan",
+        "status": "Operational",
+        "source_url": "https://en.wikipedia.org/wiki/List_of_prisons_in_Inner_Mongolia"
+      },
+      "error": ""
+    },
+    {
+      "input": "Inner Mongolia - Ordos",
+      "output": {
+        "region": "Inner Mongolia - Ordos",
+        "facility_count": 10,
+        "estimated_capacity": "1,000+",
+        "key_facilities": "Ordos Prison, Ejin Horo Prison, Ejin Horo Banner Detention Center, Ordos Detention Center, Otog Front Banner Detention Center, Otog Banner Detention Center, Jungar Banner Detention Center, Uxin Banner Detention Center, Dalad Banner Detention Center, Hanggin Banner Detention Center",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://en.wikipedia.org/wiki/List_of_prisons_in_Inner_Mongolia"
+      },
+      "error": ""
+    },
+    {
+      "input": "Qinghai Province - Xining",
+      "output": {
+        "region": "Qinghai Province - Xining",
+        "facility_count": 4,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Dongchuan Prison, Jianxin Prison, Nanshan Prison, Xichuan Prison",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://en.wikipedia.org/wiki/List_of_prisons_in_Qinghai"
+      },
+      "error": ""
+    },
+    {
+      "input": "Gansu Province - Lanzhou",
+      "output": {
+        "region": "Gansu Province - Lanzhou",
+        "facility_count": 2,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Lanzhou Prison, Provincial Women's Prison",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "Wang Youjiang, Jia Chunzhen, Zhang Tianyun, Song Guoli, Han Xu",
+        "status": "Operational",
+        "source_url": "https://faluninfo.net/lanzhou-prison-gansu-province/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sichuan Province - Chengdu (Tibetan areas)",
+      "output": {
+        "region": "Sichuan Province - Chengdu (Tibetan areas)",
+        "facility_count": 10,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Aba Prefecture Prison, Binjiang Prison, Chongzhou Prison, Chuanxi Prison, Chuanzhong Prison, Ganzi Prison, Jinjiang Prison, Jintang Prison, Sichuan Provincial Chengdu Juvenile Offender Detachment, Xingwen Prison",
+        "satellite_evidence": "RAND Corporation (https://www.rand.org/pubs/research_reports/RRA2474-1.html)",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://www.hrw.org/report/2016/05/22/relentless/detention-and-prosecution-tibetans-under-chinas-stability-maintenance"
+      },
+      "error": ""
+    },
+    {
+      "input": "Beijing - Qincheng Prison",
+      "output": {
+        "region": "Beijing - Qincheng Prison",
+        "facility_count": 1,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Qincheng Prison (including Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, and Gui blocks)",
+        "satellite_evidence": "Google Maps (https://www.google.com/maps/place/40%C2%B014'28.7%22N+116%C2%B023'00.2%22E/@40.2413,116.3834,437811m/data=!3m1!1e3!4m4!3m3!8m2!3d40.2413!4d116.3834?hl=en&entry=ttu)",
+        "survivor_testimonies": "Bao Tong, Dai Qing, Wei Jingsheng",
+        "status": "Operational",
+        "source_url": "https://en.wikipedia.org/wiki/Qincheng_Prison"
+      },
+      "error": ""
+    },
+    {
+      "input": "Liaoning - Masanjia Labor Camp",
+      "output": {
+        "region": "Liaoning - Masanjia Labor Camp",
+        "facility_count": 1,
+        "estimated_capacity": "1,000+",
+        "key_facilities": "Masanjia Labor Camp, Yuhong District, Shenyang, Liaoning Province",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "Sun Yi, Liu Hua, Wang Chunying",
+        "status": "Closed",
+        "source_url": "https://en.wikipedia.org/wiki/Masanjia_re-education_through_labor_camp"
+      },
+      "error": ""
+    },
+    {
+      "input": "Heilongjiang - Jiamusi Prison",
+      "output": {
+        "region": "Heilongjiang - Jiamusi Prison",
+        "facility_count": 4,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Jiamusi Prison, Jiamusi Detention Centre, Lianjiangkou Prison, Xianglan Prison",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "Zhang Shuhua, Zhang Shuying, Zhao Juan, Cui Xiuyun, Sun Ying, Liu Lijie, Xiang Xiaobo, Wang Shumei, Zhang Jinku",
+        "status": "Operational",
+        "source_url": "https://en.wikipedia.org/wiki/List_of_prisons_in_Heilongjiang"
+      },
+      "error": ""
+    },
+    {
+      "input": "Shandong - Weifang",
+      "output": {
+        "region": "Shandong - Weifang",
+        "facility_count": 2,
+        "estimated_capacity": "Unknown",
+        "key_facilities": "Weibei Prison, Weifang Prison",
+        "satellite_evidence": "None documented",
+        "survivor_testimonies": "None documented",
+        "status": "Unknown",
+        "source_url": "https://en.wikipedia.org/wiki/List_of_prisons_in_Shandong"
+      },
+      "error": ""
+    },
+    {
+      "input": "Hong Kong - Stanley Prison and Lai Chi Kok",
+      "output": {
+        "region": "Hong Kong - Stanley Prison and Lai Chi Kok",
+        "facility_count": 2,
+        "estimated_capacity": "2,995+",
+        "key_facilities": "Stanley Prison, Lai Chi Kok Reception Centre",
+        "satellite_evidence": "Alamy (www.alamy.com)",
+        "survivor_testimonies": "Amnesty International (https://www.amnesty.org/en/latest/news/2025/12/hong-kong-prisons-rife-with-violence/)",
+        "status": "Operational",
+        "source_url": "https://www.csd.gov.hk/english/facility/facility.html"
+      },
+      "error": ""
+    }
+  ]
+}

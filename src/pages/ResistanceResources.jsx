@@ -5,6 +5,8 @@ import Bookmarks from '../components/Bookmarks';
 import MediaGallery from '../components/MediaGallery';
 import CompanyTracker from '../components/CompanyTracker';
 import OrganizationsDirectory from '../components/OrganizationsDirectory';
+import ForcedLaborTracker from '../components/ForcedLaborTracker';
+import AcademicExperts from '../components/AcademicExperts';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -275,6 +277,16 @@ const ResistanceResources = () => {
       {/* Organizations Directory */}
       <div className="mt-8">
         <OrganizationsDirectory />
+      </div>
+
+      {/* Wide Research: Forced Labor Tracker */}
+      <div className="mt-8">
+        <ForcedLaborTracker />
+      </div>
+
+      {/* Wide Research: Academic Experts */}
+      <div className="mt-8">
+        <AcademicExperts />
       </div>
 
       {/* Footer note */}

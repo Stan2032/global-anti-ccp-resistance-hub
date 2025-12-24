@@ -12,6 +12,7 @@ import GlobalInfluenceMap from '../components/GlobalInfluenceMap';
 import RegionalIssues from '../components/RegionalIssues';
 import DetentionFacilities from '../components/DetentionFacilities';
 import ConfuciusInstituteTracker from '../components/ConfuciusInstituteTracker';
+import DetentionFacilitiesTracker from '../components/DetentionFacilitiesTracker';
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -427,6 +428,11 @@ const RegionalThreats = () => {
       {/* Confucius Institute Tracker */}
       <div className="mb-8">
         <ConfuciusInstituteTracker />
+      </div>
+
+      {/* Wide Research: Detention Facilities Tracker */}
+      <div className="mb-8">
+        <DetentionFacilitiesTracker />
       </div>
     </div>
   );

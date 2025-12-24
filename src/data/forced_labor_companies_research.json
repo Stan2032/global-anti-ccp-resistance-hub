@@ -1,0 +1,424 @@
+{
+  "results": [
+    {
+      "input": "Nike",
+      "output": {
+        "company": "Nike, Inc.",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer",
+        "evidence": "The Australian Strategic Policy Institute's (ASPI) 'Uyghurs for Sale' report identified Nike as a beneficiary of forced labor transfer programs. The report detailed that the Qingdao Taekwang Shoes Co. Ltd. factory, a major Nike supplier, employed Uyghur workers under coercive conditions.",
+        "company_response": "Nike has stated that it does not source products from the Xinjiang Uyghur Autonomous Region (XUAR) and has conducted diligence on its suppliers in China. The company has also lobbied against the Uyghur Forced Labor Prevention Act.",
+        "uflpa_actions": "While no specific Withhold Release Orders against Nike have been publicly announced, the company has received letters from the House Select Committee on the CCP regarding concerns about forced labor in its supply chain.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Apple",
+      "output": {
+        "company": "Apple Inc.",
+        "industry": "Technology",
+        "connection_type": "Component manufacturing and assembly",
+        "evidence": "The ASPI \"Uyghurs for Sale\" report identified multiple Apple suppliers, including O-Film and Foxconn, as using Uyghur forced labor. The report details the transfer of workers from Xinjiang and the coercive conditions of their employment.",
+        "company_response": "Apple has stated that they have investigated the claims and found \"no evidence of any forced labour on Apple production lines.\" They claim to conduct surprise audits of their suppliers and have a \"zero tolerance\" policy for forced labor.",
+        "uflpa_actions": "The UFLPA Entity List includes companies in Apple's supply chain. Complaints have been filed with U.S. Customs and Border Protection regarding Apple's potential violations of the act.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Samsung",
+      "output": {
+        "company": "Samsung Electronics Co., Ltd.",
+        "industry": "Electronics",
+        "connection_type": "Supply chain links to factories using forced labor.",
+        "evidence": "The ASPI report \"Uyghurs for Sale\" identifies two suppliers to Samsung, O-Film Technology and Highbroad Advanced Material, as using Uyghur forced labor.",
+        "company_response": "Samsung deferred to the Responsible Business Alliance (RBA) statement, which indicated that member companies are conducting due diligence and investigations into the allegations.",
+        "uflpa_actions": "No specific UFLPA enforcement actions against Samsung were found in the search results.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "BMW",
+      "output": {
+        "company": "BMW Group",
+        "industry": "Automotive",
+        "connection_type": "Supply chain link to a banned supplier of electronic components (LAN transformers).",
+        "evidence": "A U.S. Senate Finance Committee investigation found that BMW imported at least 8,000 Mini Cooper vehicles containing components from Sichuan Jingweida Technology Group (JWD), a supplier on the UFLPA Entity List.",
+        "company_response": "BMW informed the U.S. Senate Finance Committee that it had voluntarily disclosed to U.S. Customs and Border Protection that vehicles and spare parts with components from a banned supplier had entered the U.S. market. The company stated it would take action to halt the imports.",
+        "uflpa_actions": "The supplier, Sichuan Jingweida Technology Group (JWD), was added to the UFLPA Entity List in December 2023. BMW continued to import vehicles with JWD components until at least April 2024.",
+        "status": "Concern",
+        "source_url": "https://www.finance.senate.gov/chairmans-news/automakers-shipped-cars-and-parts-made-by-chinese-company-banned-for-forced-labor-to-the-united-states-car-companies-are-failing-to-police-their-supply-chains-for-chinese-components-made-with-forced-labor-finance-committee-majority-staff-investigation-finds"
+      },
+      "error": ""
+    },
+    {
+      "input": "Volkswagen",
+      "output": {
+        "company": "Volkswagen AG",
+        "industry": "Automotive",
+        "connection_type": "Supply chain links to forced labor in the Uyghur Region, including a joint venture plant in Xinjiang and parts from sub-suppliers.",
+        "evidence": "The ASPI \"Uyghurs for Sale\" report identified Volkswagen as a beneficiary of forced labor transfer programs. Human Rights Watch has reported on flawed audits and links to aluminum producers in Xinjiang using coercive labor. U.S. Customs and Border Protection impounded vehicles containing a part from a supplier on the UFLPA entity list.",
+        "company_response": "Volkswagen initially commissioned an audit that found no evidence of forced labor, but the audit was criticized for its limited scope. After a sub-supplier was linked to forced labor, the company stated it would replace the part in affected vehicles. In late 2024, Volkswagen announced it would sell its stake in the controversial Xinjiang plant.",
+        "uflpa_actions": "In February 2024, thousands of Volkswagen Group vehicles (including Porsche, Bentley, and Audi) were impounded by U.S. Customs and Border Protection (CBP) because they contained a component from a supplier on the UFLPA Entity List.",
+        "status": "Concern",
+        "source_url": "https://www.hrw.org/news/2024/05/27/volkswagen-address-uyghur-forced-labor"
+      },
+      "error": ""
+    },
+    {
+      "input": "Mercedes-Benz",
+      "output": {
+        "company": "Mercedes-Benz Group AG",
+        "industry": "Automotive",
+        "connection_type": "Supply chain links to companies using Uyghur forced labor, specifically through the supplier Highbroad (electronics) and potential exposure through aluminum sourcing from Xinjiang.",
+        "evidence": "The Australian Strategic Policy Institute's (ASPI) \"Uyghurs for Sale\" report names Mercedes-Benz as a company potentially benefiting from forced labor through its supplier, Highbroad. Human Rights Watch's \"Asleep at the Wheel\" report details the risk of forced labor in the aluminum supply chain from Xinjiang, implicating the auto industry. The European Center for Constitutional and Human Rights (ECCHR) has filed a legal complaint in Germany against Mercedes-Benz for failing to uphold supply chain due diligence obligations.",
+        "company_response": "Mercedes-Benz has a public policy on human rights, has appointed a Human Rights Officer, and has stated its commitment to supply chain transparency. The company has also announced a partnership with Yunnan Aluminum for \"low-carbon\" aluminum, which they claim will involve increased transparency. No specific public response to the ECCHR complaint has been found.",
+        "uflpa_actions": "No specific UFLPA enforcement actions against Mercedes-Benz have been found. However, the Senate Finance Committee is investigating the auto industry's links to forced labor in Xinjiang.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "H&M",
+      "output": {
+        "company": "H&M Group (Hennes & Mauritz AB)",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer",
+        "evidence": "A report by Sheffield Hallam University and the Uyghur Rights Monitor identified H&M as being at high risk of sourcing from the Xinjiang region. The ASPI 'Uyghurs for Sale' report also listed H&M as one of 82 companies potentially benefiting from abusive labor transfer programs.",
+        "company_response": "In 2020, H&M expressed concern over reports of forced labor in Xinjiang, leading to a boycott in China. The company stated it prohibits forced labor and ended its relationship with a Chinese yarn producer accused of using forced labor. H&M maintains its commitment to China while working on supply chain transparency.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zara (Inditex)",
+      "output": {
+        "company": "Zara (Inditex)",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer.",
+        "evidence": "Allegations are based on reports from the Australian Strategic Policy Institute (ASPI) and Sheffield Hallam University, which identified Zara as a brand benefiting from Uyghur forced labor through its supply chain. The Canadian Ombudsperson for Responsible Enterprise (CORE) has also launched an investigation into the allegations.",
+        "company_response": "Inditex initially issued a statement of zero-tolerance for forced labor and denied commercial relations with any factory in Xinjiang. This statement was later removed. The company has also declined to participate in mediation with the Canadian Ombudsperson for Responsible Enterprise (CORE).",
+        "uflpa_actions": "No specific UFLPA enforcement actions against Zara have been publicly disclosed. However, the UFLPA creates a rebuttable presumption that all goods from the Xinjiang region are made with forced labor and are prohibited from importation into the United States.",
+        "status": "Concern",
+        "source_url": "https://gflc.ca/zara-and-the-uyghur-crisis-is-there-forced-labour-in-inditexs-supply-chains/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Uniqlo (Fast Retailing)",
+      "output": {
+        "company": "Uniqlo (Fast Retailing Co., Ltd.)",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and potential use of transferred labor.",
+        "evidence": "The Australian Strategic Policy Institute's (ASPI) 'Uyghurs for Sale' report identified Uniqlo as one of 82 companies potentially benefiting from abusive labor transfer programs. In May 2021, U.S. Customs and Border Protection (CBP) seized a shipment of Uniqlo shirts on the grounds that the cotton was suspected of having been produced by the Xinjiang Production and Construction Corps (XPCC).",
+        "company_response": "Uniqlo's CEO and official company statements assert that the company does not use cotton from Xinjiang and that no Uniqlo products are manufactured in the region. The company also stated it had no business relationship with the two factories linked to it in the ASPI report.",
+        "uflpa_actions": "A shipment of Uniqlo shirts was seized by U.S. Customs and Border Protection (CBP) in 2021 under a Withhold Release Order (WRO) related to cotton from the Xinjiang Production and Construction Corps (XPCC), a precursor to the more comprehensive UFLPA.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Gap",
+      "output": {
+        "company": "Gap Inc.",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer.",
+        "evidence": "Jewish World Watch and the ASPI \"Uyghurs for Sale\" report link Gap to Uyghur forced labor through suppliers such as Youngor Textile Holdings and Qingdao Jifa Group.",
+        "company_response": "Gap Inc. has stated that they do not source any garments from the XUAR region and have strict policies against the use of involuntary labor. They are taking steps to better understand how their global supply chain may be indirectly impacted.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://jww.org/uyghurs-china-forced-labor-companies/?companyname=Gap"
+      },
+      "error": ""
+    },
+    {
+      "input": "Adidas",
+      "output": {
+        "company": "Adidas AG",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer",
+        "evidence": "ASPI's 'Uyghurs for Sale' report, isotope analysis by German researchers, and a letter from the US House Select Committee on the CCP.",
+        "company_response": "Adidas has stated it does not have a direct contractual relationship with any supplier in Xinjiang and had no active relationship with Hao Yuanpeng Clothing Co. Ltd. The company has published modern slavery statements and supplier lists to increase transparency.",
+        "uflpa_actions": "The US House Select Committee on the CCP sent a letter to Adidas in May 2023 requesting information on their UFLPA compliance.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Puma",
+      "output": {
+        "company": "Puma SE",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain and factory labor transfer.",
+        "evidence": "Isotope analysis found Xinjiang cotton in Puma products (The Guardian). ASPI report \"Uyghurs for Sale\" links Puma to Haoyuanpeng Clothing Manufacturing, a company using forced labor transfers.",
+        "company_response": "Puma denies direct or indirect relationships with Xinjiang manufacturers and states its supplier, Huafu, has assured them no forced labor is used in the facilities that supply Puma's suppliers.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "SHEIN",
+      "output": {
+        "company": "SHEIN",
+        "industry": "Apparel",
+        "connection_type": "Cotton supply chain",
+        "evidence": "Laboratory testing by Bloomberg found that SHEIN garments contained cotton from the Xinjiang region. Research from the investigative firm Leigh Day has also identified probable links between a SHEIN-backed industrial park and Xinjiang-based cotton and textile manufacturers.",
+        "company_response": "SHEIN states it has a 'zero-tolerance policy for forced labour' and is 'committed to respecting human rights.' The company did not dispute laboratory findings of Xinjiang cotton in its products but said it takes steps to comply with local laws and regulations. A company lawyer refused to confirm or deny the use of Xinjiang cotton to UK MPs.",
+        "uflpa_actions": "While there are no public records of specific UFLPA enforcement actions against SHEIN, the company is under scrutiny from US lawmakers regarding its compliance with the act. The UFLPA establishes a rebuttable presumption that all goods from Xinjiang are made with forced labor and are banned from importation.",
+        "status": "Concern",
+        "source_url": "https://www.business-humanrights.org/en/latest-news/china-laboratory-results-finds-shein-garment-samples-shipped-to-the-us-contain-cotton-sourced-from-xinjiang/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Temu/Pinduoduo",
+      "output": {
+        "company": "Temu (Pinduoduo Inc.)",
+        "industry": "Retail",
+        "connection_type": "High risk of products made with forced labor in its supply chain due to a lack of audits and a business model that exploits the de minimis loophole to avoid UFLPA scrutiny.",
+        "evidence": "The U.S. House Select Committee on the CCP's interim report, 'Fast Fashion and the Uyghur Genocide,' states that Temu has no system to ensure UFLPA compliance and does not prohibit sales from the Xinjiang region. The ASPI 'Uyghurs for Sale' report, while not naming Temu, details the broader context of forced labor in Chinese supply chains.",
+        "company_response": "According to the U.S. House Select Committee on the CCP, Temu claims the UFLPA does not directly apply to its activities as an online platform operator and relies on its suppliers' boilerplate terms and conditions that prohibit forced labor.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://selectcommitteeontheccp.house.gov/sites/evo-subsites/selectcommitteeontheccp.house.gov/files/evo-media-document/fast-fashion-and-the-uyghur-genocide-interim-findings.pdf"
+      },
+      "error": ""
+    },
+    {
+      "input": "Amazon (private label)",
+      "output": {
+        "company": "Amazon.com, Inc.",
+        "industry": "Retail",
+        "connection_type": "Supply chain links to factories using forced labor for private label products and Amazon devices.",
+        "evidence": "Reports from the Tech Transparency Project and the Australian Strategic Policy Institute (ASPI) have identified several Amazon suppliers with links to Uyghur forced labor. These include Luxshare Precision Industry, AcBel Polytech, Lens Technology, GoerTek, and Hefei BOE Optoelectronics.",
+        "company_response": "Amazon has not issued a public statement in response to the specific allegations, and the Business & Human Rights Resource Centre notes that Amazon did not respond to their inquiries regarding the Uyghur Forced Labor Prevention Act (UFLPA).",
+        "uflpa_actions": "No specific UFLPA enforcement actions taken directly against Amazon have been publicly disclosed.",
+        "status": "Concern",
+        "source_url": "https://www.techtransparencyproject.org/articles/amazon-suppliers-tied-forced-labor-xinjiang"
+      },
+      "error": ""
+    },
+    {
+      "input": "Walmart",
+      "output": {
+        "company": "Walmart Inc.",
+        "industry": "Retail",
+        "connection_type": "Supply chain links to Xinjiang, including apparel and seafood.",
+        "evidence": "Reports from the Business & Human Rights Resource Centre and an investigation by the Canadian Ombudsperson for Responsible Enterprise (CORE) allege connections to forced labor in Walmart's supply chain. While the ASPI 'Uyghurs for Sale' report does not explicitly name Walmart, it details the broader issue of forced labor in supply chains of major retailers.",
+        "company_response": "Walmart has stated that its investigation into Uyghur forced labor in its supply chain is ongoing. The company asserts a zero-tolerance policy for human rights abuses and expects its suppliers to adhere to the same standards, but has not provided a specific response to the allegations.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.business-humanrights.org/en/latest-news/walmart-response-to-uyghur-forced-labour-migrant-worker-abuse-in-seafood-supply-chains/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Costco",
+      "output": {
+        "company": "Costco Wholesale Corporation",
+        "industry": "Retail",
+        "connection_type": "Apparel and electronics supply chains",
+        "evidence": "Investigative journalism by NBC News revealed Costco sold baby pajamas made by Hetian Taida, a company sanctioned for using forced labor. A letter from the Congressional-Executive Commission on China (CECC) raised concerns about Costco selling products from Hikvision and Dahua, companies implicated in human rights abuses in Xinjiang. Reports from ASPI and the Helena Kennedy Centre also link Costco to forced labor in the region.",
+        "company_response": "Costco stated they believed the pajamas were made in a different factory from the one subject to a CBP detention order. The CEO did not explicitly deny forced labor accusations in a 2021 shareholder meeting.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.nbcnews.com/news/world/company-making-costco-baby-pajamas-flagged-forced-labor-n1063626"
+      },
+      "error": ""
+    },
+    {
+      "input": "Target",
+      "output": {
+        "company": "Target Corporation",
+        "industry": "Retail",
+        "connection_type": "Cotton supply chain",
+        "evidence": "Target Australia sourced cotton from a mill owned by Huafu Fashion Co in Xinjiang. A worker at a Huafu mill reported being part of a secret training program to remove extremist thoughts. (Source: ABC News, Four Corners)",
+        "company_response": "Target Australia stated it was conducting a review of the situation and later stopped sourcing cotton from Xinjiang.",
+        "uflpa_actions": "None",
+        "status": "Improving",
+        "source_url": "https://www.abc.net.au/news/2019-07-15/uyghur-forced-labour-xinjiang-china/11298750"
+      },
+      "error": ""
+    },
+    {
+      "input": "Dell",
+      "output": {
+        "company": "Dell Technologies Inc.",
+        "industry": "Technology",
+        "connection_type": "Supply chain links to factories using forced labor transfers of Uyghur workers.",
+        "evidence": "The ASPI report \"Uyghurs for Sale\" identified Dell as one of 82 companies potentially benefiting from Uyghur forced labor. The report links Dell to suppliers like Foxconn and Highbroad, which have been implicated in using forced labor.",
+        "company_response": "Dell stated it would investigate the findings of the ASPI report and has referred to its Supplier Principles, which prohibit forced labor.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale/"
+      },
+      "error": ""
+    },
+    {
+      "input": "HP",
+      "output": {
+        "company": "HP Inc.",
+        "industry": "Technology",
+        "connection_type": "Supply chain links to factories using forced labor",
+        "evidence": "ASPI's 'Uyghurs for Sale' report and the U.S. government's UFLPA Entity List. Specific suppliers implicated include Hefei Bitland Information Technology, Sichuan Jingweida Technology Group, O-Film Technology, and Foxconn Technology.",
+        "company_response": "HP issued a statement in October 2022 to the Business & Human Rights Resource Centre, stating its commitment to respecting human rights and prohibiting involuntary labor. The statement did not directly address the specific allegations in the ASPI report.",
+        "uflpa_actions": "Two alleged HP suppliers, Hefei Bitland Information Technology and Sichuan Jingweida Technology Group, are on the UFLPA Entity List, indicating they are entities the U.S. government has identified as being involved in forced labor.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sony",
+      "output": {
+        "company": "Sony Group Corporation",
+        "industry": "Electronics",
+        "connection_type": "Indirect supply chain links through suppliers, as identified in the ASPI \"Uyghurs for Sale\" report.",
+        "evidence": "The Australian Strategic Policy Institute's (ASPI) \"Uyghurs for Sale\" report lists Sony as one of 82 companies potentially benefiting from Uyghur forced labor through its supply chain. The report identifies Foxconn and Highbroad as Sony suppliers implicated in using forced labor.",
+        "company_response": "Sony has issued a statement expressing its commitment to human rights and its supplier code of conduct, which prohibits forced labor. The company has stated that it will take countermeasures against suppliers found in major violation, including termination of business. Sony is also a member of the Responsible Business Alliance (RBA) and is working with stakeholders to address the issue.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Panasonic",
+      "output": {
+        "company": "Panasonic Corporation",
+        "industry": "Electronics",
+        "connection_type": "Indirect sourcing from suppliers using forced labor, participation in state-sponsored labor transfer programs disguised as \"poverty alleviation.\"",
+        "evidence": "Listed in the ASPI \"Uyghurs for Sale\" report as a company benefiting from forced labor. The Globalworks Lund AB report details the company's participation in \"poverty alleviation\" programs.",
+        "company_response": "Panasonic has stated it has no direct contractual relationship with the implicated suppliers but cannot rule out connections further down the supply chain. The company acknowledged its participation in \"poverty alleviation\" programs, framing it as a social contribution initiative.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sharp",
+      "output": {
+        "company": "Sharp Corporation",
+        "industry": "Electronics",
+        "connection_type": "Supply chain connection to a supplier (O-Film) that has participated in Uyghur forced labor transfer programs.",
+        "evidence": "Sharp is listed as a customer of O-Film Technology Co. Ltd. in the Australian Strategic Policy Institute (ASPI) report \"Uyghurs for Sale.\" O-Film has been identified as a company that uses Uyghur forced labor.",
+        "company_response": "No public response found",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Huawei",
+      "output": {
+        "company": "Huawei Technologies Co., Ltd.",
+        "industry": "Technology",
+        "connection_type": "Supply chain links to factories using forced labor transfers of Uyghur workers.",
+        "evidence": "The Australian Strategic Policy Institute's (ASPI) 'Uyghurs for Sale' report identifies Huawei as a company benefiting from abusive labor transfer programs. The report cites evidence from open-source documents, satellite imagery, and media reporting, linking Huawei's suppliers, including O-Film and BOE Technology Group, to the use of Uyghur forced labor.",
+        "company_response": "Huawei has a group-wide policy against modern slavery and states that it audits its suppliers. The company has also publicly stated that it does not condone the use of its technologies to discriminate against or oppress members of any community.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Xiaomi",
+      "output": {
+        "company": "Xiaomi Corp.",
+        "industry": "Electronics",
+        "connection_type": "Supply chain links to factories using forced labor transfers of Uyghur workers.",
+        "evidence": "Listed in the Australian Strategic Policy Institute (ASPI) 'Uyghurs for Sale' report as one of 82 companies potentially benefiting from Uyghur forced labor. The report indicates that some brands are linked with multiple factories, but does not specify which factories are linked to Xiaomi.",
+        "company_response": "No public response found directly addressing the allegations in the ASPI report. The company's ESG and sustainability reports provide general statements on supply chain management and human rights but do not offer specific details regarding the forced labor accusations.",
+        "uflpa_actions": "None. Xiaomi is not on the UFLPA Entity List as of the latest update.",
+        "status": "Concern",
+        "source_url": "https://www.aspi.org.au/report/uyghurs-sale"
+      },
+      "error": ""
+    },
+    {
+      "input": "Lenovo",
+      "output": {
+        "company": "Lenovo Group Limited",
+        "industry": "Electronics",
+        "connection_type": "Factory labor transfer",
+        "evidence": "The Intercept and the Australian Strategic Policy Institute (ASPI) reported that Lenovo is a customer of Hefei Bitland Information Technology, a manufacturer that has participated in a state-sponsored labor transfer program of Uyghur workers. The ASPI report, 'Uyghurs for Sale,' identified Lenovo as one of the companies benefiting from this program.",
+        "company_response": "Lenovo has not made a specific public statement addressing the allegations concerning Hefei Bitland. The company has a general Anti-Slavery and Human Trafficking Statement that outlines its commitment to human rights and ethical sourcing, but it does not mention the specific issue of Uyghur forced labor.",
+        "uflpa_actions": "Hefei Bitland was added to the U.S. Commerce Department's Entity List in July 2020. No specific UFLPA enforcement actions against Lenovo itself have been publicly documented.",
+        "status": "Concern",
+        "source_url": "https://theintercept.com/2020/08/21/school-laptops-lenovo-chromebooks-china-uyghur/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Coca-Cola",
+      "output": {
+        "company": "The Coca-Cola Company",
+        "industry": "Food & Beverage",
+        "connection_type": "Sugar supply chain",
+        "evidence": "A report from the Congressional-Executive Commission on China (CECC) states that COFCO Tunhe, a company that has supplied sugar to Coca-Cola, has been linked to forced labor in Xinjiang. Multiple news outlets have also reported that Coca-Cola lobbied against the Uyghur Forced Labor Prevention Act.",
+        "company_response": "Coca-Cola has stated that it \"strictly prohibits any type of forced labor in our supply chain\" and that its supplier, COFCO Tunhe, \"successfully completed an audit in 2019.\"",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://www.cecc.gov/sites/evo-subsites/www.cecc.gov/files/CBP%20Attachment.pdf"
+      },
+      "error": ""
+    },
+    {
+      "input": "PepsiCo",
+      "output": {
+        "company": "PepsiCo, Inc.",
+        "industry": "Food & Beverage",
+        "connection_type": "Supply chain links to Chenguang Biotech, a company sanctioned under the UFLPA for using forced labor.",
+        "evidence": "Jewish World Watch and Table.Media have reported on PepsiCo's supply chain links to Xinjiang. A key supplier, Chenguang Biotech, was added to the UFLPA Entity List by the U.S. Department of Homeland Security.",
+        "company_response": "No specific public response addressing the allegations was found. The company's 'Modern Slavery & Human Trafficking Statement' was inaccessible during the research.",
+        "uflpa_actions": "Chenguang Biotech Group Co., Ltd. and its subsidiary were added to the UFLPA Entity List on August 1, 2023, effectively banning the importation of their products into the United States.",
+        "status": "Concern",
+        "source_url": "https://www.dhs.gov/archive/news/2023/08/01/dhs-announces-two-additional-prc-based-companies-result-forced-labor-enforcement"
+      },
+      "error": ""
+    },
+    {
+      "input": "Nestle",
+      "output": {
+        "company": "Nestlé S.A.",
+        "industry": "Food & Beverage",
+        "connection_type": "Indirect supply chain links to agricultural products (tomatoes) from Xinjiang.",
+        "evidence": "The company is named in the Victims of Communism Memorial Foundation report, 'Forced Labor, Coercive Land-Use Transfers, and Forced Assimilation in Xinjiang’s Agricultural Production,' as having indirect supply chain links to Xinjiang. Radio Free Asia also reported on these findings.",
+        "company_response": "No public response found regarding the specific allegations in the Victims of Communism Memorial Foundation report.",
+        "uflpa_actions": "None",
+        "status": "Concern",
+        "source_url": "https://victimsofcommunism.org/forced-labor-coercive-land-use-transfers-and-forced-assimilation-in-xinjiangs-agricultural-production/"
+      },
+      "error": ""
+    },
+    {
+      "input": "General Motors",
+      "output": {
+        "company": "General Motors Company",
+        "industry": "Automotive",
+        "connection_type": "Supply chain links for steel, aluminum, and other automotive components from companies in the Uyghur Region and those participating in labor transfer programs.",
+        "evidence": "Evidence from Human Rights Watch, the Australian Strategic Policy Institute (ASPI), and Sheffield Hallam University implicates General Motors. The Sheffield Hallam University report specifically names suppliers like Baowu Steel, Xinjiang Nonferrous Metals Group, Jingwei Group, and CATL as having connections to both General Motors and forced labor in the Uyghur Region.",
+        "company_response": "General Motors has issued general statements about its commitment to a forced-labor-free supply chain and its due diligence processes. However, reports indicate that the company has not provided specific details about its supply chain mapping or its Chinese joint ventures in response to direct inquiries.",
+        "uflpa_actions": "No specific Withhold Release Orders or Findings from U.S. Customs and Border Protection directly name General Motors or its key suppliers. However, the company is at high risk of UFLPA violations due to its supply chain connections to the Uyghur Region.",
+        "status": "Concern",
+        "source_url": "https://www.shuforcedlabour.org/drivingforce"
+      },
+      "error": ""
+    }
+  ]
+}
