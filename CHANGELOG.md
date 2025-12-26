@@ -1,6 +1,48 @@
-# Changelog
+# CHANGELOG
 
 All notable changes to the Global Anti-CCP Resistance Hub.
+
+## [2.29.0] - 2025-12-26
+
+### Added - New Resource Components
+- **Video Testimonials Component**: Embedded video testimonies from survivors
+  - Featured testimonies from Sayragul Sauytbay, Mihrigul Tursun, Tursunay Ziyawudun
+  - Documentary excerpts from major films
+  - Organized by category (Survivor, Documentary, Witness, Expert)
+  - Direct YouTube embeds for immediate viewing
+  - Content warnings for sensitive material
+  
+- **Diaspora Directory Component**: Community resources for diaspora groups
+  - 12 diaspora communities covered (Uyghur, Hong Kong, Tibetan, Chinese, Mongolian, etc.)
+  - Support organizations and contact information
+  - Key issues and challenges for each community
+  - Resources for legal aid, mental health, advocacy
+  - Geographic distribution and population estimates
+  
+- **Media Bias Guide Component**: Comprehensive guide to evaluating news sources
+  - 16 news sources analyzed with credibility ratings
+  - Categories: Trustworthy, Use with Caution, CCP Propaganda, Problematic
+  - Detailed strengths and weaknesses for each source
+  - Funding transparency and bias indicators
+  - Tips for evaluating sources and spotting propaganda
+  - Search and filter functionality
+  
+- **Historical Documents Archive Component**: Key documents exposing CCP abuses
+  - 15+ critical documents including leaked files and official records
+  - Categories: Leaked Documents, Official Documents, Speeches, International Reports
+  - Xinjiang Police Files, China Cables, Karakax List
+  - UN reports, tribunal judgments, research reports
+  - Downloadable documents with verification status
+  - Significance ratings (Critical/High/Medium)
+  - Document metadata (pages, language, date, source)
+
+### Integration
+- All new components integrated into Resources page
+- Responsive design with dark theme consistency
+- Search and filtering capabilities across all components
+- External links to primary sources and documents
+
+---
 
 ## [2.28.0] - 2025-12-25
 

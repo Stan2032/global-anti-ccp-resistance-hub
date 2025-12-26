@@ -7,6 +7,8 @@ import CompanyTracker from '../components/CompanyTracker';
 import OrganizationsDirectory from '../components/OrganizationsDirectory';
 import ForcedLaborTracker from '../components/ForcedLaborTracker';
 import AcademicExperts from '../components/AcademicExperts';
+import MediaBiasGuide from '../components/MediaBiasGuide';
+import HistoricalDocuments from '../components/HistoricalDocuments';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -287,6 +289,16 @@ const ResistanceResources = () => {
       {/* Wide Research: Academic Experts */}
       <div className="mt-8">
         <AcademicExperts />
+      </div>
+
+      {/* Media Bias Guide */}
+      <div className="mt-8">
+        <MediaBiasGuide />
+      </div>
+
+      {/* Historical Documents Archive */}
+      <div className="mt-8">
+        <HistoricalDocuments />
       </div>
 
       {/* Footer note */}
