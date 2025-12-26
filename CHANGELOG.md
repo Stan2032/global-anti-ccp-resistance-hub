@@ -2,6 +2,31 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.28.0] - 2025-12-25
+
+### Added - Wide Research Batch 4
+- **Government Response Tracker**: 30 countries/entities researched in parallel
+  - Genocide recognition status (12 countries recognized or debated)
+  - Sanctions imposed on CCP officials and entities
+  - Legislative actions (Magnitsky acts, forced labor laws)
+  - Diplomatic actions (Olympic boycotts, ambassador recalls)
+  - Overall stance ratings (Strong/Moderate/Weak/Silent)
+  - Search and filter by stance or genocide recognition
+  - Statistics dashboard showing global response metrics
+  - Direct links to official government sources
+
+### Countries Covered
+- **Strong Stance**: United States, Lithuania, Czech Republic
+- **Moderate Stance**: UK, Canada, Australia, Germany, France, Netherlands, Belgium, Sweden, Norway, Denmark, Finland, Poland, Latvia, Estonia, Japan, New Zealand, Ireland, Switzerland, Austria, Italy, Spain, Portugal, European Union
+- **Weak/Silent**: South Korea, Taiwan, India, Philippines
+
+### Research Data
+- 30 countries researched in parallel
+- All data verified from official government sources
+- Integrated into Take Action page
+
+---
+
 ## [2.27.0] - 2025-12-24
 
 ### Added - Wide Research Batch 3

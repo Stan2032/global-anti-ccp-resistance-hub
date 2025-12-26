@@ -1,0 +1,394 @@
+{
+  "results": [
+    {
+      "input": "United States",
+      "output": {
+        "country": "United States",
+        "genocide_recognition": "Yes - Declared by Secretary of State Mike Pompeo on January 19, 2021",
+        "sanctions_imposed": "Multiple sanctions and visa restrictions on CCP officials and entities over Xinjiang and Hong Kong, including a coordinated action with allies on March 22, 2021, and Treasury sanctions on July 9, 2020.",
+        "legislative_actions": "Uyghur Human Rights Policy Act (June 2020); Uyghur Forced Labor Prevention Act (Dec 2021).",
+        "diplomatic_actions": "Diplomatic boycott of the Beijing 2022 Winter Olympic and Paralympic Games (Dec 2021).",
+        "overall_stance": "Strong - The US was the first country to officially declare the situation a genocide (Jan 2021) and has implemented comprehensive legislative, sanction, and diplomatic measures, including the Uyghur Forced Labor Prevention Act and a diplomatic boycott of the 2022 Beijing Olympics.",
+        "source_url": "https://2017-2021.state.gov/determination-of-the-secretary-of-state-on-atrocities-in-xinjiang/"
+      },
+      "error": ""
+    },
+    {
+      "input": "United Kingdom",
+      "output": {
+        "country": "United Kingdom",
+        "genocide_recognition": "Debated - Parliament voted in favor of recognition (April 2021), but the Government maintains that only a competent international court can make a formal determination",
+        "sanctions_imposed": "Magnitsky-style sanctions (asset freezes and travel bans) imposed on 4 officials and 1 entity (Xinjiang Production and Construction Corps Public Security Bureau) on March 22, 2021",
+        "legislative_actions": "New guidance and fines for non-compliance with the Modern Slavery Act 2015 for businesses operating in Xinjiang (January 2021). The \"Genocide Amendment\" to the Customs Bill was debated but defeated.",
+        "diplomatic_actions": "Diplomatic boycott of the Beijing 2022 Winter Olympics (December 8, 2021)",
+        "overall_stance": "Moderate - Imposed sanctions and led a diplomatic boycott, but the Government has refused to formally recognize the Uyghur genocide despite a parliamentary vote.",
+        "source_url": "https://www.gov.uk/government/news/uk-announces-sanctions-against-chinese-officials-over-human-rights-abuses-in-xinjiang"
+      },
+      "error": ""
+    },
+    {
+      "input": "Canada",
+      "output": {
+        "country": "Canada",
+        "genocide_recognition": "Debated - House of Commons passed a non-binding motion on Feb 22, 2021, recognizing the treatment of Uyghurs as genocide, but the government has not officially adopted the position.",
+        "sanctions_imposed": "Magnitsky-style sanctions on 4 officials and 1 entity (March 22, 2021) under the Special Economic Measures Act for human rights violations in Xinjiang.",
+        "legislative_actions": "Fighting Against Forced Labour and Child Labour in Supply Chains Act (Bill S-211), in force Jan 1, 2024.",
+        "diplomatic_actions": "Diplomatic boycott of the 2022 Beijing Winter Olympics (Dec 8, 2021)",
+        "overall_stance": "Moderate - Has taken legislative action (forced labor law), imposed sanctions, and conducted a diplomatic boycott, but the government has not officially adopted the parliamentary motion recognizing the Uyghur situation as genocide.",
+        "source_url": "https://www.canada.ca/en/global-affairs/news/2021/03/canada-joins-international-partners-in-imposing-new-sanctions-in-response-to-human-rights-violations-in-xinjiang.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Australia",
+      "output": {
+        "country": "Australia",
+        "genocide_recognition": "Debated - Government has not officially recognized the situation as genocide, despite parliamentary debate and a rejected motion in March 2021",
+        "sanctions_imposed": "None - Despite the passage of Magnitsky-style legislation in December 2021, no sanctions have been imposed on CCP officials or entities for human rights abuses as of late 2025",
+        "legislative_actions": "Autonomous Sanctions Amendment (Magnitsky-style and Other Thematic Sanctions) Act 2021 (Dec 2021)",
+        "diplomatic_actions": "Diplomatic boycott of the 2022 Beijing Winter Olympics (Dec 2021)",
+        "overall_stance": "Moderate - Publicly condemns human rights abuses and joined the diplomatic boycott of the 2022 Olympics, but has refrained from official genocide recognition and has not yet applied targeted Magnitsky-style sanctions on CCP officials, balancing human rights concerns with the stabilization of bilateral relations",
+        "source_url": "https://www.abc.net.au/news/2025-03-07/australia-magnitsky-style-laws-could-lead-human-rights-in-asia/105012104"
+      },
+      "error": ""
+    },
+    {
+      "input": "Germany",
+      "output": {
+        "country": "Germany",
+        "genocide_recognition": "No - The German government's \"Strategy on China\" (July 2023) refers to \"serious human rights violations\" but avoids the term \"genocide.\"",
+        "sanctions_imposed": "Magnitsky sanctions on 4 officials and 1 entity (March 2021) as part of the EU Global Human Rights Sanctions Regime.",
+        "legislative_actions": "Supply Chain Due Diligence Act (LkSG) (June 2021, effective Jan 2023), which requires companies to address human rights and environmental risks in their supply chains, including forced labor.",
+        "diplomatic_actions": "Diplomatic boycott of Beijing Winter Olympics 2022 (Chancellor Olaf Scholz did not attend); Delivered a joint statement on behalf of 39 countries at the UN (Oct 7, 2020) expressing deep concerns about Xinjiang and Hong Kong.",
+        "overall_stance": "Moderate - Strong rhetoric and a significant domestic law (LkSG) to address supply chain abuses, but relies on EU for sanctions and avoids official genocide recognition, balancing human rights concerns with economic ties.",
+        "source_url": "https://www.auswaertiges-amt.de/resource/blob/2608580/49d50fecc479304c3da2e2079c55e106/china-strategie-en-data.pdf"
+      },
+      "error": ""
+    },
+    {
+      "input": "France",
+      "output": {
+        "country": "France",
+        "genocide_recognition": "Yes - Non-binding resolution adopted by the National Assembly (lower house of parliament) on January 20, 2022. The government did not formally adopt the position.",
+        "sanctions_imposed": "None. France relies on the European Union's collective sanctions regime, which imposed sanctions on four Chinese officials and one entity in March 2021. France has not imposed national sanctions.",
+        "legislative_actions": "None. A criminal probe was launched by the national prosecutor's office in February 2021 against four multinational companies for alleged concealment of forced Uyghur labor, which is a judicial, not legislative, action.",
+        "diplomatic_actions": "Summoned Chinese ambassador over \"unacceptable\" insults and threats aimed at French lawmakers and a researcher (March 2021). President Macron refused to join the diplomatic boycott of the Beijing 2022 Winter Olympics (December 2021).",
+        "overall_stance": "Moderate - France balances human rights advocacy (parliamentary resolution, ambassador summoning) with a pragmatic approach to China, prioritizing \"strategic autonomy\" and a common EU stance over unilateral, strong action (e.g., refusal to join the Beijing Olympics diplomatic boycott).",
+        "source_url": "https://www.france24.com/en/europe/20220120-french-lawmakers-officially-recognise-china-s-treatment-of-uyghurs-as-genocide"
+      },
+      "error": ""
+    },
+    {
+      "input": "Netherlands",
+      "output": {
+        "country": "Netherlands",
+        "genocide_recognition": "Yes - Parliament passed a non-binding motion on February 25, 2021, making it the first European legislature to recognize the treatment of Uyghurs as genocide.",
+        "sanctions_imposed": "None - The Netherlands does not impose independent national sanctions, but implements the EU sanctions on four Chinese officials and one entity (March 22, 2021).",
+        "legislative_actions": "None - The Netherlands does not have a national Magnitsky-style law, but it was a key proponent of the EU Global Human Rights Sanctions Regime (Dec 2020).",
+        "diplomatic_actions": "Did not send an official diplomatic delegation to the Beijing 2022 Winter Olympics (Jan 14, 2022), officially citing COVID-19 restrictions, not a human rights boycott.",
+        "overall_stance": "Moderate - Parliament took a strong symbolic step with a genocide motion, but the government relies on EU-level sanctions and avoided a formal diplomatic boycott of the Olympics.",
+        "source_url": "https://www.reuters.com/article/world/dutch-parliament-chinas-treatment-of-uighurs-is-genocide-idUSKBN2AP2CH/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Belgium",
+      "output": {
+        "country": "Belgium",
+        "genocide_recognition": "Debated - Parliament recognized China's treatment of Uyghurs as \"crimes against humanity\" and warned of a \"serious risk of genocide\" (June 15, 2021)",
+        "sanctions_imposed": "None (Relies on EU-level sanctions)",
+        "legislative_actions": "None (Relies on EU-level legislation)",
+        "diplomatic_actions": "Diplomatic boycott of the Beijing 2022 Winter Olympics (Dec 2021); Summoned Chinese Ambassador after China sanctioned Belgian lawmaker Samuel Cogolati (Mar 2021); Summoned Chinese envoy over alleged cyberattack on parliamentarians (Apr 2024)",
+        "overall_stance": "Moderate - Parliament has taken a strong stance on human rights, but the government's actions are largely aligned with the broader EU position, indicating a moderate, coordinated approach.",
+        "source_url": "https://www.rfa.org/english/news/uyghur/genocide-declarations-06152021171101.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Sweden",
+      "output": {
+        "country": "Sweden",
+        "genocide_recognition": "Debated - No official government or parliamentary recognition, despite continuous calls from human rights groups.",
+        "sanctions_imposed": "None - Sweden applies EU sanctions (March 2021) but has not imposed independent national sanctions on CCP officials or entities.",
+        "legislative_actions": "None - Sweden has not passed national legislation like a forced labor import ban.",
+        "diplomatic_actions": "Government representatives did not attend the Beijing Winter Olympics 2022 (Jan 2022), officially due to COVID-19, but in the context of wider diplomatic boycotts.",
+        "overall_stance": "Weak - The government has avoided independent national sanctions and legislative action, and its diplomatic non-attendance at the Beijing 2022 Olympics was officially attributed to COVID-19, not human rights. Sweden primarily acts through the EU framework.",
+        "source_url": "https://scandasia.com/the-swedish-government-will-not-be-represented-at-beijing-winter-olympics-due-to-covid-19/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Norway",
+      "output": {
+        "country": "Norway",
+        "genocide_recognition": "Debated - Government expresses \"grave concern\" at UNHRC (June 2021) but avoids the term 'genocide'",
+        "sanctions_imposed": "None",
+        "legislative_actions": "Transparency Act (Åpenhetsloven) passed June 10, 2021, entered into force July 1, 2022",
+        "diplomatic_actions": "De facto diplomatic boycott of Beijing 2022 Winter Olympics (Feb 2022); Co-signed UNHRC joint statement on Xinjiang (June 2021)",
+        "overall_stance": "Moderate - Balances strong rhetoric on human rights at the UN and domestic supply chain legislation (Transparency Act) with a commitment to maintaining dialogue and avoiding direct sanctions or genocide recognition.",
+        "source_url": "https://www.norway.no/en/missions/wto-un/nig/statements/hr/hrc/hrc47/hrc47jSTXinjiang/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Denmark",
+      "output": {
+        "country": "Denmark",
+        "genocide_recognition": "No",
+        "sanctions_imposed": "Adopted EU sanctions on 4 officials and 1 entity (March 2021)",
+        "legislative_actions": "None",
+        "diplomatic_actions": "Diplomatic boycott of Beijing 2022 Winter Olympics (Jan 2022)",
+        "overall_stance": "Moderate - Adopted EU sanctions and joined the diplomatic boycott of the Beijing 2022 Olympics, but has not made an independent genocide recognition or passed national legislation.",
+        "source_url": "https://www.reuters.com/lifestyle/sports/denmark-join-diplomatic-boycott-beijing-olympics-over-human-rights-2022-01-14/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Finland",
+      "output": {
+        "country": "Finland",
+        "genocide_recognition": "No - Finland has not officially recognized the Uyghur situation as genocide. Foreign Minister Pekka Haavisto has expressed concern and stated Finland is awaiting the UN High Commissioner for Human Rights report (May 2022).",
+        "sanctions_imposed": "None - Finland has not imposed national sanctions. As an EU member, it is bound by the EU's Global Human Rights Sanctions Regime, which was used to sanction four Chinese officials and one entity in March 2021. Finland implements these EU-level sanctions.",
+        "legislative_actions": "None - Finland relies on the European Union's legislative framework. No specific national legislation like a Magnitsky Act or a forced labor law targeting CCP abuses has been identified.",
+        "diplomatic_actions": "None - Finland did not join the diplomatic boycott of the Beijing 2022 Winter Olympics. Science and Culture Minister Antti Kurvinen attended the games (Jan 2022).",
+        "overall_stance": "Weak - Finland's stance is characterized by verbal expressions of concern at the EU and UN level, but a reluctance to take independent, strong diplomatic or legislative action, as evidenced by its decision not to join the Beijing Olympics diplomatic boycott.",
+        "source_url": "https://yle.fi/a/3-12275294"
+      },
+      "error": ""
+    },
+    {
+      "input": "Czech Republic",
+      "output": {
+        "country": "Czech Republic",
+        "genocide_recognition": "Yes - The Senate voted unanimously on a motion recognizing the abuses against Uyghurs as crimes against humanity and genocide (June 2021).",
+        "sanctions_imposed": "None - The Czech Republic implements EU sanctions, but no specific unilateral sanctions on CCP officials or entities have been confirmed under the national Sanctions Act.",
+        "legislative_actions": "Sanctions Act (Czech Magnitsky Act) entered into force (Jan 2023), creating a national mechanism to sanction human rights abusers.",
+        "diplomatic_actions": "Co-signed a Joint Statement on the Human Rights Situation in China at the UN (Nov 2025); Senate urged the government to diplomatically boycott the Beijing 2022 Winter Olympics (Jun 2021), but the government did not join the boycott.",
+        "overall_stance": "Strong - Legislative and upper house of parliament have taken a strong stance (genocide recognition, Magnitsky Act), though the executive branch's actions have been more moderate (e.g., not joining the 2022 Olympic boycott).",
+        "source_url": "https://mzv.gov.cz/un.newyork/en/news_events/joint_statement_on_the_human_rights.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Poland",
+      "output": {
+        "country": "Poland",
+        "genocide_recognition": "No",
+        "sanctions_imposed": "None (Poland is bound by EU sanctions, but has not imposed national sanctions).",
+        "legislative_actions": "National Cybersecurity Certification Act amendment (2024) to implement the EU's NIS2 Directive, which allows for the designation of high-risk suppliers like Huawei and ZTE, effectively banning them from 5G networks (2020).",
+        "diplomatic_actions": "President Andrzej Duda attended the Beijing 2022 Winter Olympics (Jan 2022), ignoring the diplomatic boycott initiated by the United States and other countries over human rights abuses.",
+        "overall_stance": "Weak - Poland has prioritized economic and political engagement (e.g., President Duda's attendance at the 2022 Beijing Olympics) over human rights concerns, despite aligning with the EU's \"de-risking\" strategy on economic and security grounds.",
+        "source_url": "https://www.reuters.com/lifestyle/sports/polands-president-attend-beijing-olympics-amidst-us-boycott-2022-01-18/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Lithuania",
+      "output": {
+        "country": "Lithuania",
+        "genocide_recognition": "Yes - Parliament resolution on May 20, 2021, recognizing the treatment of Uyghurs as \"genocide\" and calling for a UN investigation.",
+        "sanctions_imposed": "None - Lithuania has not imposed independent sanctions on CCP officials or entities under its national Magnitsky Act in the 2020-2025 period. (Note: Lithuania is subject to EU sanctions).",
+        "legislative_actions": "National version of the Magnitsky Act passed in 2017, which allows for sanctions against human rights abusers, but no specific application against CCP officials found in the 2020-2025 period.",
+        "diplomatic_actions": "Diplomatic boycott of the Beijing 2022 Winter Olympics (Dec 2021); Withdrawal from the \"17+1\" cooperation forum with China (May 2021); Establishment of a Taiwanese Representative Office in Vilnius (Nov 2021).",
+        "overall_stance": "Strong - Lithuania has taken a leading and highly visible stance against the CCP, particularly through its support for Taiwan and its early recognition of the Uyghur genocide, which resulted in significant economic coercion from Beijing.",
+        "source_url": "https://www.reuters.com/world/china/lithuanian-parliament-latest-call-chinas-treatment-uyghurs-genocide-2021-05-20/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Latvia",
+      "output": {
+        "country": "Latvia",
+        "genocide_recognition": "No",
+        "sanctions_imposed": "None. Latvia is bound by EU sanctions, but has not imposed national sanctions on CCP officials or entities.",
+        "legislative_actions": "None. Latvia is a member of the EU, which adopted a Global Human Rights Sanctions Regime in 2020, but Latvia has not passed a specific national law targeting CCP abuses.",
+        "diplomatic_actions": "Ceased participation in the China-led '17+1' cooperation framework (Aug 11, 2022). The official statement cited a focus on EU-China cooperation based on mutual benefit, respect for international law, human rights, and the international rules-based order.",
+        "overall_stance": "Moderate - Demonstrated a clear diplomatic shift away from China's regional influence by withdrawing from the 17+1 format, but has not taken independent national actions on sanctions or genocide recognition.",
+        "source_url": "https://www.mfa.gov.lv/en/article/latvia-ceases-its-participation-cooperation-framework-central-and-eastern-european-countries-and-china"
+      },
+      "error": ""
+    },
+    {
+      "input": "Estonia",
+      "output": {
+        "country": "Estonia",
+        "genocide_recognition": "No - Government officials have condemned human rights abuses and joined international statements, but the Parliament (Riigikogu) has not passed a resolution or made an official government statement recognizing the situation as genocide.",
+        "sanctions_imposed": "None - Estonia supports and implements the EU's global human rights sanctions regime, but has not imposed national sanctions on CCP officials or entities.",
+        "legislative_actions": "None - Estonia relies on the EU's global human rights sanctions regime and has not passed a national Magnitsky-style act or forced labor law targeting China.",
+        "diplomatic_actions": "Diplomatic boycott of the Beijing 2022 Winter Olympics (Jan 2022); Joined joint statements at the UN condemning human rights violations in Xinjiang and Hong Kong (Oct 2020, Oct 2021); Summoned Chinese Ambassador to protest sanctions on EU officials (Mar 2021)",
+        "overall_stance": "Moderate - Strong condemnation of human rights abuses and active participation in EU-level and multilateral diplomatic actions, but a lack of independent national sanctions or formal genocide recognition.",
+        "source_url": "https://vm.ee/en/news/ministry-foreign-affairs-summons-chinese-ambassador-launch-strong-protest-sanctions-imposed"
+      },
+      "error": ""
+    },
+    {
+      "input": "Japan",
+      "output": {
+        "country": "Japan",
+        "genocide_recognition": "Debated - Parliament adopted a \"Resolution Regarding the Serious Human Rights Situation in Xinjiang Uighur and Other Areas\" (Feb 1, 2022), but avoided using the term 'genocide'.",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None - No Magnitsky-style sanctions law or specific forced labor law related to Xinjiang has been enacted.",
+        "diplomatic_actions": "Diplomatic boycott of Beijing Olympics 2022 (Dec 2021) by not sending a government delegation; strong statements of concern on Hong Kong and Xinjiang.",
+        "overall_stance": "Moderate - Japan has taken symbolic diplomatic action (de facto Olympic boycott) and passed a strong parliamentary resolution on human rights in Xinjiang, but has refrained from using the term 'genocide' and has not enacted a Magnitsky-style sanctions law or imposed targeted sanctions.",
+        "source_url": "https://www.reuters.com/world/asia-pacific/japan-parliament-adopts-resolution-human-rights-china-2022-02-01/"
+      },
+      "error": ""
+    },
+    {
+      "input": "South Korea",
+      "output": {
+        "country": "South Korea",
+        "genocide_recognition": "No - Has consistently avoided official recognition or strong condemnation to maintain economic and diplomatic ties with China.",
+        "sanctions_imposed": "None - Sanctions imposed on Chinese nationals and Hong Kong entities in April 2025 were explicitly for involvement in North Korea's illicit activities, not CCP human rights abuses.",
+        "legislative_actions": "None - The mandatory Human Rights and Environmental Due Diligence Bill (HREDD) was reintroduced in 2025 but has not been enacted into law.",
+        "diplomatic_actions": "None - Did not participate in the diplomatic boycott of the 2022 Beijing Winter Olympics (Jan 2022) and generally avoids co-signing joint statements at the UN condemning China's human rights record.",
+        "overall_stance": "Weak - The government prioritizes economic and security ties with China, resulting in a cautious and largely silent approach to CCP human rights abuses.",
+        "source_url": "https://www.csis.org/blogs/new-perspectives-asia/why-south-korea-hesitant-boycott-2022-beijing-winter-olympics"
+      },
+      "error": ""
+    },
+    {
+      "input": "Taiwan",
+      "output": {
+        "country": "Taiwan",
+        "genocide_recognition": "Yes - Legislative Yuan resolution passed on December 27, 2022, recognizing crimes against humanity and genocide against the Uyghur people.",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None. A Magnitsky-style sanctions regime bill and a bill prohibiting the importation of goods made with forced labor were introduced in the Legislative Yuan, but their final passage is unconfirmed as of late 2025.",
+        "diplomatic_actions": "Diplomatic boycott of the 2022 Beijing Winter Olympics (Jan 2022), with Taiwan ruling out sending officials to the games.",
+        "overall_stance": "Moderate - Taiwan's Legislative Yuan was the first in Asia to pass a resolution recognizing the Uyghur situation as genocide (Dec 2022), and it enacted a diplomatic boycott of the 2022 Beijing Olympics. However, formal sanctions on CCP officials and a forced labor import ban bill remain unpassed as of late 2025.",
+        "source_url": "https://asiafreedominstitute.org/news/4791/"
+      },
+      "error": ""
+    },
+    {
+      "input": "New Zealand",
+      "output": {
+        "country": "New Zealand",
+        "genocide_recognition": "Debated - Parliament passed a motion on May 5, 2021, unanimously declaring that \"severe human rights abuses\" were occurring against the Uyghur people in Xinjiang, but explicitly removed the word \"genocide\" from the motion.",
+        "sanctions_imposed": "None - New Zealand has not imposed any autonomous sanctions on CCP officials or entities related to human rights abuses, despite welcoming sanctions imposed by allies (March 2021).",
+        "legislative_actions": "None - The Autonomous Sanctions Bill and the Modern Slavery Bill, which could provide a framework for such actions, are still pending/under debate as of late 2025.",
+        "diplomatic_actions": "Ministerial-level officials did not attend the Beijing Winter Olympics 2022, citing COVID-19 and logistics, but avoiding the term 'diplomatic boycott' (Dec 2021).",
+        "overall_stance": "Weak - New Zealand has consistently condemned human rights abuses in joint statements and at the UN but has refrained from taking any independent, punitive actions (sanctions, genocide recognition, diplomatic boycott) to avoid jeopardizing its trade relationship with China.",
+        "source_url": "https://www.rnz.co.nz/news/political/441906/uyghur-muslims-parliament-unanimously-urges-action-stops-short-of-genocide-declaration"
+      },
+      "error": ""
+    },
+    {
+      "input": "Ireland",
+      "output": {
+        "country": "Ireland",
+        "genocide_recognition": "No - Ireland follows the practice of recognising genocide only where established by a final decision of a court in Ireland, a judgment of an international court, or where there is international consensus. To date, this has not been the case as regards the situation in Xinjiang (Official statement June 2022).",
+        "sanctions_imposed": "Magnitsky sanctions on 4 Chinese persons and 1 entity for their role in Xinjiang, implemented as part of the EU Global Human Rights Sanctions Regime (March 22, 2021). Ireland does not impose unilateral sanctions.",
+        "legislative_actions": "EU Forced Labour Regulation (Regulation (EU) 2024/3015) entered into force in Dec 2024 and will apply from Dec 2027. Ireland is fully committed to implementing this EU-wide law. No specific national Magnitsky-style or forced labor law passed.",
+        "diplomatic_actions": "Raised concerns with Chinese Foreign Minister Wang Yi in May 2021; Joined a cross-regional statement at the 76th UN General Assembly (Oct 2021); Joined an EU group statement at the 48th UN Human Rights Council (Sep 2021); Called for full, meaningful, and unfettered access for the UN High Commissioner for Human Rights to Xinjiang (2022). No diplomatic boycott of the Beijing 2022 Winter Olympics.",
+        "overall_stance": "Moderate - Ireland consistently raises human rights concerns through EU and UN multilateral frameworks, supports EU sanctions, and is implementing the EU Forced Labour Regulation, but avoids unilateral actions like genocide recognition or national sanctions.",
+        "source_url": "https://www.oireachtas.ie/en/debates/question/2022-06-01/115/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Switzerland",
+      "output": {
+        "country": "Switzerland",
+        "genocide_recognition": "No - The Swiss government has not used the term 'genocide' but has called for an end to the persecution of Uyghurs and respect for their rights (FDFA statement July 2023).",
+        "sanctions_imposed": "None - The Federal Council decided in December 2022 not to mirror the EU's 2021 sanctions on Chinese officials/entities over human rights abuses.",
+        "legislative_actions": "None - A parliamentary motion for a Magnitsky-style law was rejected by the House of Representatives in September 2022.",
+        "diplomatic_actions": "Regular working meeting with the Chinese ambassador to raise concerns over the UN Xinjiang report (September 8, 2022).",
+        "overall_stance": "Weak - Prioritizes \"critical and constructive dialogue\" and economic ties; explicitly rejected mirroring EU sanctions and a Magnitsky-style law.",
+        "source_url": "https://www.eda.admin.ch/eda/en/fdfa/fdfa/aktuell/newsuebersicht/2023/07/dialog-menschenrechte-china.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Austria",
+      "output": {
+        "country": "Austria",
+        "genocide_recognition": "Debated - Parliament passed a resolution condemning systematic persecution (April 2021), but avoided the term 'genocide'.",
+        "sanctions_imposed": "None (Relies on EU Global Human Rights Sanctions Regime, March 2021)",
+        "legislative_actions": "None (Relies on EU-level legislation, such as the Corporate Sustainability Due Diligence Directive (CSDDD))",
+        "diplomatic_actions": "No high-ranking politicians attended the Beijing 2022 Winter Olympics (Dec 2021), but the government officially denied it was a diplomatic boycott.",
+        "overall_stance": "Moderate - Strong rhetoric and participation in EU measures, but avoids independent national actions like genocide recognition or official diplomatic boycott.",
+        "source_url": "https://www.parlament.gv.at/PAKT/VHG/XXVII/I/I_00780/fnameorig_940231.html"
+      },
+      "error": ""
+    },
+    {
+      "input": "Italy",
+      "output": {
+        "country": "Italy",
+        "genocide_recognition": "Debated - Parliament passed a resolution condemning human rights abuses in Xinjiang (May 2021) but explicitly avoided the term 'genocide'.",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None",
+        "diplomatic_actions": "Summoned the Chinese ambassador in March 2021 following China's response to EU sanctions; Did not join the diplomatic boycott of the Beijing 2022 Winter Olympics.",
+        "overall_stance": "Weak - The government avoided the 'genocide' label and did not join the Beijing Olympics diplomatic boycott, indicating a prioritization of economic ties, despite the Parliament condemning abuses and the Foreign Ministry summoning the Chinese ambassador.",
+        "source_url": "https://www.politico.eu/article/italy-debate-on-charges-of-china-genocide-puts-pressure-on-draghi-coalition/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Spain",
+      "output": {
+        "country": "Spain",
+        "genocide_recognition": "No. The Spanish government has not officially recognized the Uyghur situation as genocide. The Spanish Parliament has not passed a motion to this effect. Spain's official position is to follow the EU's common line.",
+        "sanctions_imposed": "None. Spain has not imposed independent sanctions on CCP officials or entities. Spain is bound by the EU's sanctions on four Chinese officials and one entity (March 2021) but has not taken any unilateral action.",
+        "legislative_actions": "None. Spain has not passed independent legislation such as a Magnitsky Act or a forced labor law targeting CCP abuses. Spain's policy is to support and implement EU-level measures.",
+        "diplomatic_actions": "None. Spain did not join the diplomatic boycott of the 2022 Beijing Winter Olympics, with a Chinese Foreign Ministry spokesperson listing Spain as a country whose political figures would attend (Jan 2022). Spain's policy is to follow the EU's common line.",
+        "overall_stance": "Weak - Spain's policy is described as \"Europeanist, balanced, pragmatic and cautious,\" avoiding systematic jeopardizing of the bilateral relationship. It follows the EU's common line on human rights and has not taken any significant independent action.",
+        "source_url": "https://www.realinstitutoelcano.org/en/analyses/spains-informal-china-policy-a-coherent-and-europeanist-approach/"
+      },
+      "error": ""
+    },
+    {
+      "input": "Portugal",
+      "output": {
+        "country": "Portugal",
+        "genocide_recognition": "No",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None",
+        "diplomatic_actions": "No political representation sent to the Beijing 2022 Winter Olympics (Jan 2022), but officially attributed to domestic political reasons and 'non-confrontational diplomacy', not a diplomatic boycott.",
+        "overall_stance": "Weak - Prioritizes 'non-confrontational diplomacy' with China and has taken no independent national action (sanctions, legislative, or genocide recognition).",
+        "source_url": "https://macaubusiness.com/portugal-no-political-enovys-at-opening-closing-of-beijing-winter-olympics/"
+      },
+      "error": ""
+    },
+    {
+      "input": "India",
+      "output": {
+        "country": "India",
+        "genocide_recognition": "No - India has not officially recognized the Uyghur situation as genocide and has abstained from relevant UN votes.",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None",
+        "diplomatic_actions": "Diplomatic boycott of Beijing Winter Olympics Opening and Closing Ceremonies (Feb 2022). The action was taken in response to China's selection of a PLA commander involved in the 2020 border clash as a torchbearer, not explicitly human rights abuses.",
+        "overall_stance": "Weak - India's response is primarily driven by the border dispute and a policy of strategic autonomy. It has not taken action on genocide recognition, sanctions, or human rights-specific legislation.",
+        "source_url": "https://www.cnn.com/2022/02/03/china/india-diplomatic-boycott-beijing-olympics-intl-hnk"
+      },
+      "error": ""
+    },
+    {
+      "input": "Philippines",
+      "output": {
+        "country": "Philippines",
+        "genocide_recognition": "No",
+        "sanctions_imposed": "None",
+        "legislative_actions": "None",
+        "diplomatic_actions": "None",
+        "overall_stance": "Silent - The government has not taken any official action (recognition, sanctions, legislation, or diplomatic protest) against the CCP's human rights abuses, prioritizing economic and territorial issues with China.",
+        "source_url": "https://muse.jhu.edu/pub/70/article/925579"
+      },
+      "error": ""
+    },
+    {
+      "input": "European Union",
+      "output": {
+        "country": "European Union",
+        "genocide_recognition": "Debated - European Parliament resolution (June 9, 2022) stated violations 'amount to crimes against humanity and provide serious indications of a possible genocide,' but the Council/Commission has not formally recognized it.",
+        "sanctions_imposed": "Magnitsky-style sanctions on 4 officials and 1 entity (asset freeze and travel ban) under the EU Global Human Rights Sanctions Regime (March 22, 2021).",
+        "legislative_actions": "Regulation prohibiting products made with forced labour from entering the EU market (November 19, 2024).",
+        "diplomatic_actions": "European Parliament called for a diplomatic boycott of the Beijing 2022 Winter Olympics (July 8, 2021); no unified EU-wide diplomatic boycott was adopted.",
+        "overall_stance": "Moderate - Imposed sanctions and passed a forced labor law, but avoided a unified diplomatic boycott and formal 'genocide' recognition to balance human rights concerns with economic ties.",
+        "source_url": "https://www.consilium.europa.eu/en/press/press-releases/2021/03/22/eu-imposes-further-sanctions-over-serious-violations-of-human-rights-around-the-world/"
+      },
+      "error": ""
+    }
+  ]
+}

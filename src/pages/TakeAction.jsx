@@ -15,6 +15,7 @@ import LetterCampaign from '../components/LetterCampaign';
 import SocialMediaToolkit from '../components/SocialMediaToolkit';
 import PetitionGenerator from '../components/PetitionGenerator';
 import CampaignProgress from '../components/CampaignProgress';
+import GovernmentResponseTracker from '../components/GovernmentResponseTracker';
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -510,6 +511,11 @@ const TakeAction = () => {
       {/* Campaign Progress Tracker */}
       <div className="mt-8">
         <CampaignProgress />
+      </div>
+
+      {/* Government Response Tracker */}
+      <div>
+        <GovernmentResponseTracker />
       </div>
 
       {/* Share Section */}
