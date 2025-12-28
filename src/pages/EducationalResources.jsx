@@ -14,6 +14,8 @@ import DisinfoTracker from '../components/DisinfoTracker';
 import SourceVerification from '../components/SourceVerification';
 import InteractiveTimeline from '../components/InteractiveTimeline'
 import ReadingProgress from '../components/ReadingProgress';
+import PodcastPlayer from '../components/PodcastPlayer';
+import AcademicCitationGenerator from '../components/AcademicCitationGenerator';
 import { 
   BookOpen, 
   Play, 
@@ -366,7 +368,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress'].map((tab) => (
+        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress', 'citations'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -530,7 +532,7 @@ const EducationalResources = () => {
 
       {/* Podcasts Tab */}
       {activeTab === 'podcasts' && (
-        <PodcastList />
+        <PodcastPlayer />
       )}
 
       {/* Stories Tab */}
@@ -574,6 +576,11 @@ const EducationalResources = () => {
       {/* Reading Progress Tab */}
       {activeTab === 'progress' && (
         <ReadingProgress />
+      )}
+
+      {/* Citation Generator Tab */}
+      {activeTab === 'citations' && (
+        <AcademicCitationGenerator />
       )}
     </div>
   )

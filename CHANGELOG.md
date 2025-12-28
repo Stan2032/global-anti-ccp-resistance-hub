@@ -2,6 +2,50 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.30.0] - 2025-12-28
+
+### Added - Education & Legal Resources
+- **Podcast Player Component**: Enhanced podcast library for Education Center
+  - 8 curated podcasts covering China, Xinjiang, Hong Kong, Tibet
+  - Episode listings with duration and descriptions
+  - Category filtering (News & Analysis, Xinjiang, Hong Kong, Tibet, etc.)
+  - Direct play links and RSS feed subscriptions
+  - Recommended podcasts highlighted
+  - Search functionality across titles and descriptions
+  
+- **Legal Resources Hub Component**: Country-specific legal information
+  - 6 countries/regions covered (US, Canada, UK, Australia, Germany, International)
+  - Topics: Asylum, Immigration, Transnational Repression, BN(O) Visa, Protection Visa
+  - 20+ legal resources with guides, directories, and legal documents
+  - Emergency contact information for each country
+  - Step-by-step guides for asylum applications
+  - How to report CCP harassment to authorities
+  - Language support indicators for each resource
+  
+- **Academic Citation Generator Component**: Research paper citation tool
+  - 10 key sources pre-formatted for citations
+  - 4 citation styles: APA, MLA, Chicago, Harvard
+  - One-click copy to clipboard functionality
+  - Sources include: UN reports, leaked documents, books, articles, documentaries
+  - Direct links to original sources
+  - Citation best practices guide
+  - Links to additional citation tools (Zotero, Mendeley, Purdue OWL)
+
+### Integration
+- Podcast Player replaces PodcastList in Education Center
+- Academic Citation Generator added as new tab in Education Center
+- Legal Resources Hub added to Resources page
+- All components feature search, filtering, and responsive design
+- Consistent dark theme styling across all new components
+
+### Technical Improvements
+- Build successful with all new components
+- Total platform now includes 110+ components
+- Education Center expanded to 16 tabs
+- Resources page expanded with 3 major new sections
+
+---
+
 ## [2.29.0] - 2025-12-26
 
 ### Added - New Resource Components

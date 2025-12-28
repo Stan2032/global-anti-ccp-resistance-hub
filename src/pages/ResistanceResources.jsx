@@ -9,6 +9,7 @@ import ForcedLaborTracker from '../components/ForcedLaborTracker';
 import AcademicExperts from '../components/AcademicExperts';
 import MediaBiasGuide from '../components/MediaBiasGuide';
 import HistoricalDocuments from '../components/HistoricalDocuments';
+import LegalResourcesHub from '../components/LegalResourcesHub';
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -299,6 +300,11 @@ const ResistanceResources = () => {
       {/* Historical Documents Archive */}
       <div className="mt-8">
         <HistoricalDocuments />
+      </div>
+
+      {/* Legal Resources Hub */}
+      <div className="mt-8">
+        <LegalResourcesHub />
       </div>
 
       {/* Footer note */}
