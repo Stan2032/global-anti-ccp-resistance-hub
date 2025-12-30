@@ -236,17 +236,127 @@ export const simulatedLiveData = {
   ]
 }
 
+// RSS Feed Parser
+const parseRSSFeed = async (feedUrl) => {
+  try {
+    // Use CORS proxy to fetch RSS feeds
+    const corsProxy = 'https://api.allorigins.win/raw?url=';
+    const response = await fetch(corsProxy + encodeURIComponent(feedUrl), {
+      timeout: 10000
+    });
+    
+    if (!response.ok) {
+      console.warn(`Failed to fetch feed: ${feedUrl}`);
+      return [];
+    }
+    
+    const text = await response.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(text, 'text/xml');
+    
+    // Check for parsing errors
+    const parseError = xmlDoc.querySelector('parsererror');
+    if (parseError) {
+      console.warn(`Failed to parse feed: ${feedUrl}`);
+      return [];
+    }
+    
+    // Parse RSS items
+    const items = xmlDoc.querySelectorAll('item, entry');
+    const feedItems = [];
+    
+    items.forEach((item, index) => {
+      if (index >= 5) return; // Limit to 5 items per feed
+      
+      const title = item.querySelector('title')?.textContent || '';
+      const description = item.querySelector('description, summary')?.textContent || '';
+      const link = item.querySelector('link')?.textContent || item.querySelector('link')?.getAttribute('href') || '';
+      const pubDate = item.querySelector('pubDate, published')?.textContent || new Date().toISOString();
+      
+      if (title) {
+        feedItems.push({
+          id: `rss_${Date.now()}_${index}`,
+          title: title.trim(),
+          description: description.trim().substring(0, 200) + '...',
+          timestamp: new Date(pubDate).toISOString(),
+          source: feedUrl,
+          link: link,
+          severity: 'medium',
+          verification: 'verified'
+        });
+      }
+    });
+    
+    return feedItems;
+  } catch (error) {
+    console.error(`Error fetching RSS feed ${feedUrl}:`, error);
+    return [];
+  }
+};
+
 // Data aggregation and processing functions
 export const dataProcessor = {
   // Aggregate data from multiple sources
   aggregateFeeds: async () => {
-    // In a real implementation, this would fetch from actual RSS feeds
-    // For now, return simulated data
-    return {
-      news: simulatedLiveData.recentLeaks.slice(0, 5),
-      threats: simulatedLiveData.threatAlerts,
-      campaigns: simulatedLiveData.campaignUpdates,
-      lastUpdated: new Date().toISOString()
+    try {
+      // Fetch from actual RSS feeds
+      const newsPromises = liveDataFeeds.newsFeeds.map(feed => 
+        parseRSSFeed(feed.url).then(items => 
+          items.map(item => ({
+            ...item,
+            region: feed.region,
+            source: feed.name
+          }))
+        )
+      );
+      
+      const humanRightsPromises = liveDataFeeds.humanRightsFeeds.map(feed => 
+        parseRSSFeed(feed.url).then(items => 
+          items.map(item => ({
+            ...item,
+            region: feed.region,
+            source: feed.name,
+            severity: 'high'
+          }))
+        )
+      );
+      
+      // Wait for all feeds with timeout
+      const timeout = new Promise((resolve) => 
+        setTimeout(() => resolve([]), 15000)
+      );
+      
+      const [newsResults, humanRightsResults] = await Promise.race([
+        Promise.all([
+          Promise.all(newsPromises),
+          Promise.all(humanRightsPromises)
+        ]),
+        timeout
+      ]);
+      
+      // Flatten results
+      const allNews = newsResults ? newsResults.flat() : [];
+      const allHumanRights = humanRightsResults ? humanRightsResults.flat() : [];
+      
+      // Combine with simulated data if RSS feeds fail
+      const newsData = allNews.length > 0 ? allNews : simulatedLiveData.recentLeaks.slice(0, 5);
+      const threatData = allHumanRights.length > 0 ? allHumanRights : simulatedLiveData.threatAlerts;
+      
+      return {
+        news: newsData,
+        threats: threatData,
+        campaigns: simulatedLiveData.campaignUpdates,
+        lastUpdated: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('Error aggregating feeds:', error);
+      // Fallback to simulated data
+      return {
+        news: simulatedLiveData.recentLeaks.slice(0, 5),
+        threats: simulatedLiveData.threatAlerts,
+        campaigns: simulatedLiveData.campaignUpdates,
+        lastUpdated: new Date().toISOString()
+      };
     }
   },
 
