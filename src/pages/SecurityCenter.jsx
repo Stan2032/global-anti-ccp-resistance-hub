@@ -4,6 +4,8 @@ import IncidentReportForm from '../components/IncidentReportForm'
 import SecurityQuiz from '../components/SecurityQuiz'
 import SafetyChecklist from '../components/SafetyChecklist'
 import WitnessProtection from '../components/WitnessProtection'
+import OfflineModeManager from '../components/OfflineModeManager'
+import WhistleblowerPortal from '../components/WhistleblowerPortal'
 import { 
   Shield, 
   Lock, 
@@ -321,7 +323,7 @@ const SecurityCenter = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700 overflow-x-auto">
-        {['assessment', 'report', 'tools', 'guides', 'emergency', 'checklist', 'protection'].map((tab) => (
+        {['assessment', 'report', 'tools', 'guides', 'emergency', 'checklist', 'protection', 'offline', 'whistleblower'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -561,6 +563,16 @@ const SecurityCenter = () => {
       {/* Witness Protection Tab */}
       {activeTab === 'protection' && (
         <WitnessProtection />
+      )}
+
+      {/* Offline Mode Tab */}
+      {activeTab === 'offline' && (
+        <OfflineModeManager />
+      )}
+
+      {/* Whistleblower Portal Tab */}
+      {activeTab === 'whistleblower' && (
+        <WhistleblowerPortal />
       )}
     </div>
   )

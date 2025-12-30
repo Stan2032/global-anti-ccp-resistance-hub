@@ -8,6 +8,7 @@ import SolidarityWall from '../components/SolidarityWall'
 import VolunteerSignup from '../components/VolunteerSignup'
 import EventRSVP from '../components/EventRSVP'
 import EventMap from '../components/EventMap'
+import VictimMemorialWall from '../components/VictimMemorialWall'
 import { 
   Heart, 
   Users, 
@@ -327,7 +328,7 @@ const CommunitySupport = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'solidarity', 'signup', 'events', 'map'].map((tab) => (
+        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'memorial', 'solidarity', 'signup', 'events', 'map'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -586,6 +587,11 @@ const CommunitySupport = () => {
       {/* Survivor Stories Tab */}
       {activeTab === 'stories' && (
         <SurvivorStories />
+      )}
+
+      {/* Victim Memorial Tab */}
+      {activeTab === 'memorial' && (
+        <VictimMemorialWall />
       )}
 
       {/* Solidarity Wall Tab */}

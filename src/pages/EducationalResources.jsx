@@ -16,6 +16,7 @@ import InteractiveTimeline from '../components/InteractiveTimeline'
 import ReadingProgress from '../components/ReadingProgress';
 import PodcastPlayer from '../components/PodcastPlayer';
 import AcademicCitationGenerator from '../components/AcademicCitationGenerator';
+import AIDisinfoDetector from '../components/AIDisinfoDetector';
 import { 
   BookOpen, 
   Play, 
@@ -368,7 +369,7 @@ const EducationalResources = () => {
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress', 'citations'].map((tab) => (
+        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress', 'citations', 'detector'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -581,6 +582,11 @@ const EducationalResources = () => {
       {/* Citation Generator Tab */}
       {activeTab === 'citations' && (
         <AcademicCitationGenerator />
+      )}
+
+      {/* AI Disinfo Detector Tab */}
+      {activeTab === 'detector' && (
+        <AIDisinfoDetector />
       )}
     </div>
   )

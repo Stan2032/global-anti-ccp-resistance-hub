@@ -2,6 +2,67 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [2.31.0] - 2025-12-30
+
+### Added - Security & Memorial Features
+- **Victim Memorial Wall Component**: Honoring victims of CCP persecution
+  - 15 documented victims across 6 categories (Uyghur, Hong Kong, Tibet, Tiananmen, Dissident, Falun Gong)
+  - Detailed victim profiles with dates, locations, causes of death
+  - Search and filter by category
+  - Verified sources for each victim
+  - Statistics dashboard showing victim counts by category
+  - Links to memorial organizations (Tiananmen Mothers, UHRP, ICT)
+  - Information about incomplete documentation due to CCP censorship
+  
+- **Offline Mode Manager Component**: Offline access capabilities
+  - Service worker integration for offline functionality
+  - Cache status monitoring and management
+  - Storage usage tracking with quota management
+  - Critical pages auto-cached for offline access
+  - Enable/disable offline mode with one click
+  - Clear cache functionality
+  - Instructions for using offline mode
+  - Why offline mode matters (censorship, network disruptions, privacy)
+  
+- **Whistleblower Portal Component**: Secure document submission guidance
+  - 4-step guided process for secure submissions
+  - Security checklist (Tor, VPN, device security, no personal info)
+  - 6 trusted submission organizations (ICIJ, The Intercept, NYT, RFA, HRW, Amnesty)
+  - Document type guidance (internal docs, police files, financial records, evidence)
+  - Final checklist before submission
+  - Links to secure submission portals (SecureDrop, Tor-enabled)
+  - Critical security warnings throughout
+  - Resources for source protection and anonymity
+  
+- **AI Disinformation Detector Component**: CCP propaganda pattern analysis
+  - Text analysis for 6 propaganda patterns (Denial, Whataboutism, Deflection, Euphemism, Victim Blaming, False Equivalence)
+  - Risk score calculation (0-100)
+  - Flagged keywords and phrases highlighting
+  - Detected pattern breakdown with confidence scores
+  - Recommendations based on risk level
+  - Example texts for testing
+  - Propaganda patterns reference guide
+  - Links to resources on CCP propaganda tactics
+
+### Integration
+- Victim Memorial Wall added to Community Support page (new 'memorial' tab)
+- Offline Mode Manager added to Security Center (new 'offline' tab)
+- Whistleblower Portal added to Security Center (new 'whistleblower' tab)
+- AI Disinformation Detector added to Education Center (new 'detector' tab)
+- All components fully integrated with tab navigation
+- Consistent UI/UX across all new features
+
+### Technical Improvements
+- Build successful with all 4 new major components
+- Total platform now includes 115+ components
+- Education Center expanded to 17 tabs
+- Security Center expanded to 9 tabs
+- Community Support expanded to 12 tabs
+- Service worker foundation laid for offline capabilities
+- Pattern matching algorithm for propaganda detection
+
+---
+
 ## [2.30.0] - 2025-12-28
 
 ### Added - Education & Legal Resources
