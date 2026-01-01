@@ -57,6 +57,60 @@ export const liveDataFeeds = {
           type: 'Primary Source'
         }
       ]
+    },
+    {
+      id: 'rfa_uyghur',
+      name: 'Radio Free Asia - Uyghur',
+      url: 'https://www.rfa.org/english/news/uyghur/rss.xml',
+      description: 'News coverage of Uyghur issues and Xinjiang',
+      category: 'news',
+      region: 'Xinjiang',
+      updateFrequency: 'daily',
+      credibility: 'high',
+      sources: [
+        {
+          title: 'RFA Uyghur Service',
+          url: 'https://www.rfa.org/english/news/uyghur',
+          type: 'Primary Source',
+          description: 'Dedicated coverage of Uyghur human rights'
+        }
+      ]
+    },
+    {
+      id: 'rfa_tibet',
+      name: 'Radio Free Asia - Tibet',
+      url: 'https://www.rfa.org/english/news/tibet/rss.xml',
+      description: 'News coverage of Tibet and Tibetan issues',
+      category: 'news',
+      region: 'Tibet',
+      updateFrequency: 'daily',
+      credibility: 'high',
+      sources: [
+        {
+          title: 'RFA Tibet Service',
+          url: 'https://www.rfa.org/english/news/tibet',
+          type: 'Primary Source',
+          description: 'Dedicated coverage of Tibet'
+        }
+      ]
+    },
+    {
+      id: 'taiwan_news',
+      name: 'Taiwan News',
+      url: 'https://www.taiwannews.com.tw/en/rss',
+      description: 'Independent news from Taiwan perspective',
+      category: 'news',
+      region: 'Taiwan',
+      updateFrequency: 'hourly',
+      credibility: 'high',
+      sources: [
+        {
+          title: 'Taiwan News Official Website',
+          url: 'https://www.taiwannews.com.tw/',
+          type: 'Primary Source',
+          description: 'English-language news from Taiwan'
+        }
+      ]
     }
   ],
 
@@ -146,95 +200,8 @@ export const liveDataFeeds = {
   ]
 }
 
-// Real-time data simulation for demonstration
-export const simulatedLiveData = {
-  recentLeaks: [
-    {
-      id: 'leak_001',
-      timestamp: new Date().toISOString(),
-      title: 'Internal CCP Documents on Hong Kong Surveillance',
-      description: 'Leaked communications reveal expanded surveillance operations targeting overseas Hong Kong activists',
-      severity: 'high',
-      source: 'Anonymous whistleblower',
-      verification: 'pending',
-      region: 'Hong Kong',
-      tags: ['surveillance', 'hong-kong', 'activists'],
-      sources: [
-        {
-          title: 'China: Hikvision cameras help track Uyghurs',
-          url: 'https://www.business-humanrights.org/en/latest-news/china-hikvision-cameras-help-track-uyghurs-and-other-ethnic-groups-in-xinjiang-report-finds/',
-          type: 'News Report',
-          organization: 'Business & Human Rights Resource Centre'
-        }
-      ]
-    },
-    {
-      id: 'leak_002',
-      timestamp: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
-      title: 'Xinjiang Detention Facility Expansion Plans',
-      description: 'Construction contracts reveal plans for new detention facilities in Xinjiang region',
-      severity: 'critical',
-      source: 'ICIJ Network',
-      verification: 'verified',
-      region: 'Xinjiang',
-      tags: ['xinjiang', 'detention', 'construction'],
-      sources: [
-        {
-          title: 'China\'s Algorithms of Repression',
-          url: 'https://www.hrw.org/report/2019/05/01/chinas-algorithms-repression/reverse-engineering-xinjiang-police-mass',
-          organization: 'Human Rights Watch',
-          type: 'NGO Report',
-          date: '2019-05-01'
-        }
-      ]
-    }
-  ],
-
-  threatAlerts: [
-    {
-      id: 'threat_001',
-      timestamp: new Date().toISOString(),
-      title: 'Increased Digital Surveillance Activity',
-      description: 'Unusual network scanning activity detected targeting resistance organizations',
-      severity: 'medium',
-      region: 'Global',
-      affectedOrganizations: ['Hong Kong Democracy Council', 'World Uyghur Congress'],
-      recommendations: [
-        'Enable additional VPN protection',
-        'Review communication security protocols',
-        'Monitor for unusual account activity'
-      ],
-      sources: [
-        {
-          title: 'How China is using AI to extend censorship and surveillance',
-          url: 'https://www.washingtonpost.com/world/2025/12/01/china-ai-censorship-surveillance/',
-          publication: 'Washington Post',
-          type: 'News Report',
-          date: '2025-12-01'
-        }
-      ]
-    }
-  ],
-
-  campaignUpdates: [
-    {
-      id: 'campaign_001',
-      timestamp: new Date().toISOString(),
-      campaignId: 'free-jimmy-lai',
-      title: 'International Pressure Mounts for Jimmy Lai Release',
-      description: 'UK Parliament members call for immediate action on Jimmy Lai case',
-      type: 'political_support',
-      impact: 'high',
-      sources: [
-        {
-          title: 'Support Jimmy Lai Campaign',
-          url: 'https://supportjimmylai.com/press/',
-          type: 'Campaign Website'
-        }
-      ]
-    }
-  ]
-}
+// NO SIMULATED DATA - All data comes from real RSS feeds
+// If RSS feeds fail, we show empty state with clear error message
 
 // RSS Feed Parser
 const parseRSSFeed = async (feedUrl) => {
@@ -338,24 +305,37 @@ export const dataProcessor = {
       const allNews = newsResults ? newsResults.flat() : [];
       const allHumanRights = humanRightsResults ? humanRightsResults.flat() : [];
       
-      // Combine with simulated data if RSS feeds fail
-      const newsData = allNews.length > 0 ? allNews : simulatedLiveData.recentLeaks.slice(0, 5);
-      const threatData = allHumanRights.length > 0 ? allHumanRights : simulatedLiveData.threatAlerts;
+      // NO FALLBACK TO FAKE DATA - Show empty state if feeds fail
+      const newsData = allNews;
+      const threatData = allHumanRights;
       
       return {
         news: newsData,
         threats: threatData,
-        campaigns: simulatedLiveData.campaignUpdates,
-        lastUpdated: new Date().toISOString()
+        campaigns: [], // No campaign data source yet - show empty
+        lastUpdated: new Date().toISOString(),
+        status: (newsData.length === 0 && threatData.length === 0) ? 'feeds_unavailable' : 'operational',
+        feedsLoaded: {
+          news: newsData.length,
+          threats: threatData.length,
+          total: newsData.length + threatData.length
+        }
       };
     } catch (error) {
       console.error('Error aggregating feeds:', error);
-      // Fallback to simulated data
+      // NO FALLBACK TO FAKE DATA - Return empty with error status
       return {
-        news: simulatedLiveData.recentLeaks.slice(0, 5),
-        threats: simulatedLiveData.threatAlerts,
-        campaigns: simulatedLiveData.campaignUpdates,
-        lastUpdated: new Date().toISOString()
+        news: [],
+        threats: [],
+        campaigns: [],
+        lastUpdated: new Date().toISOString(),
+        status: 'error',
+        error: error.message || 'Failed to load RSS feeds',
+        feedsLoaded: {
+          news: 0,
+          threats: 0,
+          total: 0
+        }
       };
     }
   },
@@ -378,24 +358,43 @@ export const dataProcessor = {
     return categories
   },
 
-  // Generate real-time statistics
-  generateStats: () => {
-    const now = new Date()
-    const baseStats = {
-      activeMonitoring: 247,
-      documentsProcessed: 15683,
-      threatsDetected: 156,
-      organizationsTracked: 89
+  // Generate statistics from actual feed data
+  generateStats: (feedData) => {
+    if (!feedData) {
+      return {
+        activeMonitoring: 0,
+        documentsProcessed: 0,
+        threatsDetected: 0,
+        organizationsTracked: 0,
+        lastUpdate: new Date().toISOString(),
+        dataSource: 'No data available'
+      };
     }
 
-    // Add small random variations to simulate real-time updates
+    // Calculate actual statistics from real RSS feed data
+    const allItems = [
+      ...(feedData.news || []),
+      ...(feedData.threats || []),
+      ...(feedData.campaigns || [])
+    ];
+
+    const threats = (feedData.threats || []).filter(
+      t => t.severity === 'high' || t.severity === 'critical'
+    );
+
+    const sources = new Set(
+      allItems.map(item => item.source).filter(Boolean)
+    );
+
     return {
-      activeMonitoring: baseStats.activeMonitoring + Math.floor(Math.random() * 5),
-      documentsProcessed: baseStats.documentsProcessed + Math.floor(Math.random() * 3),
-      threatsDetected: baseStats.threatsDetected + (Math.random() > 0.9 ? 1 : 0),
-      organizationsTracked: baseStats.organizationsTracked,
-      lastUpdate: now.toISOString()
-    }
+      activeMonitoring: allItems.length,
+      documentsProcessed: (feedData.news || []).length,
+      threatsDetected: threats.length,
+      organizationsTracked: sources.size,
+      lastUpdate: feedData.lastUpdated || new Date().toISOString(),
+      dataSource: 'Real RSS Feeds',
+      feedStatus: feedData.status || 'unknown'
+    };
   }
 }
 
@@ -434,7 +433,6 @@ export const feedValidator = {
 
 export default {
   liveDataFeeds,
-  simulatedLiveData,
   dataProcessor,
   feedValidator
 }

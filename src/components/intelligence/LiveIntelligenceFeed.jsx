@@ -17,8 +17,9 @@ import {
   ExternalLink
 } from 'lucide-react'
 
-import { dataProcessor, simulatedLiveData, feedValidator } from '../../data/liveDataSources'
+import { dataProcessor, feedValidator } from '../../data/liveDataSources'
 import SourceCitation from '../ui/SourceCitation'
+import { FeedUnavailable, NoVerifiedData } from '../ui/EmptyState'
 
 const LiveIntelligenceFeed = () => {
   const [feedData, setFeedData] = useState({
@@ -245,8 +246,25 @@ const LiveIntelligenceFeed = () => {
 
       {/* Live Feed Items */}
       <div className="space-y-4">
+        {/* Show empty state if no data */}
+        {filteredItems.length === 0 && !isLoading && (
+          <FeedUnavailable 
+            feedName="RSS feeds" 
+            onRetry={refreshFeeds}
+          />
+        )}
+
+        {/* Show loading state */}
+        {isLoading && filteredItems.length === 0 && (
+          <div className="flex items-center justify-center py-12">
+            <RefreshCw className="w-8 h-8 text-blue-400 animate-spin" />
+            <span className="ml-3 text-slate-400">Loading feeds from verified sources...</span>
+          </div>
+        )}
+
+        {/* Show feed items */}
         <AnimatePresence>
-          {filteredItems.map((item, index) => (
+          {filteredItems.length > 0 && filteredItems.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
