@@ -69,6 +69,7 @@ const RegionalThreats = lazy(() => import('./pages/RegionalThreats'));
 const ResistanceResources = lazy(() => import('./pages/ResistanceResources'));
 const CCPTactics = lazy(() => import('./pages/CCPTactics'));
 const TakeAction = lazy(() => import('./pages/TakeAction'));
+const DataSources = lazy(() => import('./pages/DataSources'));
 
 // Simple Mobile-First Header
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
@@ -125,6 +126,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: 'Education', href: '/education', icon: '🎓' },
     { name: 'Security', href: '/security', icon: '🛡️' },
     { name: 'Take Action', href: '/take-action', icon: '✊' },
+    { name: 'Data Sources', href: '/data-sources', icon: '📊' },
   ];
 
   if (!isOpen) return null;
@@ -392,6 +394,7 @@ function AppLayout() {
               <Route path="/resources" element={<ResistanceResources />} />
               <Route path="/tactics" element={<CCPTactics />} />
               <Route path="/take-action" element={<TakeAction />} />
+              <Route path="/data-sources" element={<DataSources />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center">
