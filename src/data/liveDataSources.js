@@ -203,64 +203,36 @@ export const liveDataFeeds = {
 // NO SIMULATED DATA - All data comes from real RSS feeds
 // If RSS feeds fail, we show empty state with clear error message
 
-// RSS Feed Parser
+// RSS Feed Parser using RSS2JSON API (CORS-friendly)
 const parseRSSFeed = async (feedUrl) => {
   try {
-    // Use CORS proxy with /get endpoint (includes proper CORS headers)
-    const corsProxy = 'https://api.allorigins.win/get?url=';
-    const response = await fetch(corsProxy + encodeURIComponent(feedUrl), {
-      timeout: 10000
-    });
+    // Use RSS2JSON API - properly supports CORS
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+    const response = await fetch(apiUrl);
     
     if (!response.ok) {
       console.warn(`Failed to fetch feed: ${feedUrl}`);
       return [];
     }
     
-    // AllOrigins /get endpoint returns JSON with {contents: "xml string"}
-    const json = await response.json();
-    const text = json.contents;
+    const data = await response.json();
     
-    if (!text) {
-      console.warn(`No content in feed: ${feedUrl}`);
+    if (data.status !== 'ok' || !data.items) {
+      console.warn(`Invalid feed data: ${feedUrl}`);
       return [];
     }
     
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(text, 'text/xml');
-    
-    // Check for parsing errors
-    const parseError = xmlDoc.querySelector('parsererror');
-    if (parseError) {
-      console.warn(`Failed to parse feed: ${feedUrl}`);
-      return [];
-    }
-    
-    // Parse RSS items
-    const items = xmlDoc.querySelectorAll('item, entry');
-    const feedItems = [];
-    
-    items.forEach((item, index) => {
-      if (index >= 5) return; // Limit to 5 items per feed
-      
-      const title = item.querySelector('title')?.textContent || '';
-      const description = item.querySelector('description, summary')?.textContent || '';
-      const link = item.querySelector('link')?.textContent || item.querySelector('link')?.getAttribute('href') || '';
-      const pubDate = item.querySelector('pubDate, published')?.textContent || new Date().toISOString();
-      
-      if (title) {
-        feedItems.push({
-          id: `rss_${Date.now()}_${index}`,
-          title: title.trim(),
-          description: description.trim().substring(0, 200) + '...',
-          timestamp: new Date(pubDate).toISOString(),
-          source: feedUrl,
-          link: link,
-          severity: 'medium',
-          verification: 'verified'
-        });
-      }
-    });
+    // Convert RSS2JSON format to our format
+    const feedItems = data.items.slice(0, 5).map((item, index) => ({
+      id: `rss_${Date.now()}_${index}`,
+      title: item.title || '',
+      description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 200) + '...',
+      timestamp: item.pubDate || new Date().toISOString(),
+      source: data.feed?.title || feedUrl,
+      link: item.link || '',
+      severity: 'medium',
+      verification: 'verified'
+    }));
     
     return feedItems;
   } catch (error) {
