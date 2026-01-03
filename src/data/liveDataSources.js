@@ -206,8 +206,8 @@ export const liveDataFeeds = {
 // RSS Feed Parser
 const parseRSSFeed = async (feedUrl) => {
   try {
-    // Use CORS proxy to fetch RSS feeds
-    const corsProxy = 'https://api.allorigins.win/raw?url=';
+    // Use CORS proxy with /get endpoint (includes proper CORS headers)
+    const corsProxy = 'https://api.allorigins.win/get?url=';
     const response = await fetch(corsProxy + encodeURIComponent(feedUrl), {
       timeout: 10000
     });
@@ -217,7 +217,15 @@ const parseRSSFeed = async (feedUrl) => {
       return [];
     }
     
-    const text = await response.text();
+    // AllOrigins /get endpoint returns JSON with {contents: "xml string"}
+    const json = await response.json();
+    const text = json.contents;
+    
+    if (!text) {
+      console.warn(`No content in feed: ${feedUrl}`);
+      return [];
+    }
+    
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
     
