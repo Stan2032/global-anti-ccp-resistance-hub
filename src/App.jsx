@@ -112,21 +112,21 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
 const MobileNav = ({ isOpen, onClose }) => {
   const location = useLocation();
   
+  // Simplified navigation - consolidated from 14 to 10 pages
   const navItems = [
     { name: 'Dashboard', href: '/', icon: '📊' },
     { name: 'Intelligence', href: '/intelligence', icon: '📰' },
     { name: 'Directory', href: '/directory', icon: '👥' },
     { name: 'Political Prisoners', href: '/prisoners', icon: '⛓️' },
-    { name: 'Regional Threats', href: '/threats', icon: '⚠️' },
-    { name: 'Campaigns', href: '/campaigns', icon: '🎯' },
+    { name: 'Take Action', href: '/take-action', icon: '✊' },
+    // Removed: Campaigns (merged into Take Action)
     { name: 'Community', href: '/community', icon: '💬' },
-    { name: 'Communications', href: '/communications', icon: '🔐' },
+    // Removed: Communications (merged into Community)
     { name: 'Resources', href: '/resources', icon: '🛠️' },
-    { name: 'CCP Tactics', href: '/tactics', icon: '📖' },
+    // Removed: CCP Tactics (merged into Resources)
     { name: 'Education', href: '/education', icon: '🎓' },
     { name: 'Security', href: '/security', icon: '🛡️' },
-    { name: 'Take Action', href: '/take-action', icon: '✊' },
-    { name: 'Data Sources', href: '/data-sources', icon: '📊' },
+    { name: 'Data Sources', href: '/data-sources', icon: '🔍' },
   ];
 
   if (!isOpen) return null;

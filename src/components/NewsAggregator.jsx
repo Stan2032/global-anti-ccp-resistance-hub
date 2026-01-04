@@ -1,12 +1,36 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { dataProcessor } from '../data/liveDataSources';
 
 const NewsAggregator = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Curated news items (would be replaced with live RSS in production)
-  const curatedNews = [
+  // Fetch real RSS feed data
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      try {
+        const feedData = await dataProcessor.aggregateFeeds();
+        // Combine news and threats into single feed
+        const allNews = [...(feedData.news || []), ...(feedData.threats || [])];
+        setNews(allNews);
+      } catch (error) {
+        console.error('Failed to load news:', error);
+        setNews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchNews();
+  }, []);
+
+  // NO HARDCODED DATA - All news comes from RSS feeds
+  // Removed 10+ hardcoded news items - now using real RSS feeds
+  
+  /*
+  OLD HARDCODED DATA REMOVED:
     {
       id: 1,
       title: 'Jimmy Lai Found Guilty on All Charges, Faces Life Sentence',
@@ -87,15 +111,8 @@ const NewsAggregator = () => {
       summary: 'New research reveals China is accelerating exports of surveillance technology to African nations, raising human rights concerns.',
       url: 'https://www.aspi.org.au/'
     }
-  ];
-
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
-      setNews(curatedNews);
-      setLoading(false);
-    }, 500);
-  }, []);
+  */
+  // ^^^ All hardcoded data removed - now using real RSS feeds from dataProcessor
 
   const categories = [
     { id: 'all', name: 'All News', icon: '📰' },

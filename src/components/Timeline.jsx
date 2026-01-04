@@ -14,31 +14,9 @@ const Timeline = () => {
     { key: 'domestic', label: 'Domestic', color: 'red' },
   ];
 
+  // Historical timeline - major documented events
+  // Recent news removed (use RSS feeds instead)
   const events = [
-    {
-      date: '2025-12-15',
-      title: 'Jimmy Lai Found Guilty',
-      category: 'hongkong',
-      description: 'Hong Kong media tycoon Jimmy Lai convicted on all charges under National Security Law. Faces possible life sentence.',
-      significance: 'CRITICAL',
-      sources: ['BBC', 'CNN', 'HRW']
-    },
-    {
-      date: '2024-11-19',
-      title: 'Hong Kong 47 Sentenced',
-      category: 'hongkong',
-      description: '45 pro-democracy activists sentenced to prison terms ranging from 4 to 10 years for "conspiracy to commit subversion."',
-      significance: 'CRITICAL',
-      sources: ['BBC', 'HKFP']
-    },
-    {
-      date: '2024-03-19',
-      title: 'Article 23 Passed',
-      category: 'hongkong',
-      description: 'Hong Kong passes Article 23 national security law, further criminalizing dissent with penalties up to life imprisonment.',
-      significance: 'HIGH',
-      sources: ['Reuters', 'SCMP']
-    },
     {
       date: '2022-09-01',
       title: 'UN Xinjiang Report Released',

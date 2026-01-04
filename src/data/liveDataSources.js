@@ -241,55 +241,106 @@ const parseRSSFeed = async (feedUrl) => {
   }
 };
 
+// Cache for RSS feed data (5 minute cache)
+const RSS_CACHE_KEY = 'rss_feed_cache';
+const RSS_CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+const getCachedFeeds = () => {
+  try {
+    const cached = localStorage.getItem(RSS_CACHE_KEY);
+    if (!cached) return null;
+    
+    const { data, timestamp } = JSON.parse(cached);
+    const age = Date.now() - timestamp;
+    
+    if (age < RSS_CACHE_DURATION) {
+      console.log(`Using cached RSS data (${Math.round(age / 1000)}s old)`);
+      return data;
+    }
+    
+    // Cache expired
+    localStorage.removeItem(RSS_CACHE_KEY);
+    return null;
+  } catch (error) {
+    console.error('Error reading RSS cache:', error);
+    return null;
+  }
+};
+
+const setCachedFeeds = (data) => {
+  try {
+    localStorage.setItem(RSS_CACHE_KEY, JSON.stringify({
+      data,
+      timestamp: Date.now()
+    }));
+  } catch (error) {
+    console.error('Error caching RSS data:', error);
+  }
+};
+
 // Data aggregation and processing functions
 export const dataProcessor = {
-  // Aggregate data from multiple sources
+  // Aggregate data from multiple sources with caching and parallel fetching
   aggregateFeeds: async () => {
     try {
-      // Fetch from actual RSS feeds
-      const newsPromises = liveDataFeeds.newsFeeds.map(feed => 
-        parseRSSFeed(feed.url).then(items => 
-          items.map(item => ({
-            ...item,
-            region: feed.region,
-            source: feed.name
-          }))
-        )
-      );
+      // Check cache first
+      const cached = getCachedFeeds();
+      if (cached) {
+        return cached;
+      }
       
-      const humanRightsPromises = liveDataFeeds.humanRightsFeeds.map(feed => 
-        parseRSSFeed(feed.url).then(items => 
-          items.map(item => ({
-            ...item,
-            region: feed.region,
-            source: feed.name,
-            severity: 'high'
-          }))
-        )
-      );
+      console.log('Fetching fresh RSS data...');
       
-      // Wait for all feeds with timeout
+      // Fetch ALL feeds in parallel (not sequential)
+      const allFeedPromises = [
+        ...liveDataFeeds.newsFeeds.map(feed => 
+          parseRSSFeed(feed.url)
+            .then(items => items.map(item => ({
+              ...item,
+              region: feed.region,
+              source: feed.name
+            })))
+            .catch(err => {
+              console.warn(`Failed to fetch ${feed.name}:`, err);
+              return [];
+            })
+        ),
+        ...liveDataFeeds.humanRightsFeeds.map(feed => 
+          parseRSSFeed(feed.url)
+            .then(items => items.map(item => ({
+              ...item,
+              region: feed.region,
+              source: feed.name,
+              severity: 'high'
+            })))
+            .catch(err => {
+              console.warn(`Failed to fetch ${feed.name}:`, err);
+              return [];
+            })
+        )
+      ];
+      
+      // Wait for all feeds with 10 second timeout (reduced from 15)
       const timeout = new Promise((resolve) => 
-        setTimeout(() => resolve([]), 15000)
+        setTimeout(() => {
+          console.warn('RSS fetch timeout after 10s');
+          resolve([]);
+        }, 10000)
       );
       
-      const [newsResults, humanRightsResults] = await Promise.race([
-        Promise.all([
-          Promise.all(newsPromises),
-          Promise.all(humanRightsPromises)
-        ]),
+      const results = await Promise.race([
+        Promise.all(allFeedPromises),
         timeout
       ]);
       
-      // Flatten results
-      const allNews = newsResults ? newsResults.flat() : [];
-      const allHumanRights = humanRightsResults ? humanRightsResults.flat() : [];
+      // Flatten and separate news vs human rights feeds
+      const allItems = Array.isArray(results) ? results.flat() : [];
+      const newsData = allItems.filter(item => item.severity !== 'high');
+      const threatData = allItems.filter(item => item.severity === 'high');
       
-      // NO FALLBACK TO FAKE DATA - Show empty state if feeds fail
-      const newsData = allNews;
-      const threatData = allHumanRights;
+      console.log(`Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
       
-      return {
+      const feedData = {
         news: newsData,
         threats: threatData,
         campaigns: [], // No campaign data source yet - show empty
@@ -298,9 +349,14 @@ export const dataProcessor = {
         feedsLoaded: {
           news: newsData.length,
           threats: threatData.length,
-          total: newsData.length + threatData.length
+          total: allItems.length
         }
       };
+      
+      // Cache the results
+      setCachedFeeds(feedData);
+      
+      return feedData;
     } catch (error) {
       console.error('Error aggregating feeds:', error);
       // NO FALLBACK TO FAKE DATA - Return empty with error status
