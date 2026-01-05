@@ -25,8 +25,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'New Balance (USA-made 990 series)',
-        'Red Wing Boots (USA)',
-        'Danner Boots (USA-made lines)',
+        'Mizuno (Japan)',
+        'Onitsuka Tiger (Japan)',
+        'Moonstar (Japan)',
       ],
       response: 'Denied direct sourcing from Xinjiang'
     },
@@ -39,8 +40,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'New Balance (USA-made lines)',
-        'Brooks (some USA production)',
-        'Softstar (Oregon, USA)',
+        'Mizuno (Japan)',
+        'Sessile (France)',
+        'Komrads (Portugal)',
       ],
       response: 'Committed to phase out Xinjiang cotton'
     },
@@ -53,8 +55,9 @@ const ForcedLabourList = () => {
       status: 'IMPROVED',
       alternatives: [
         'American Giant (USA)',
-        'Los Angeles Apparel (USA)',
-        'Buck Mason (USA)',
+        'Nudie Jeans (Sweden/Italy)',
+        'Organic Basics (Denmark/Portugal)',
+        'Saint James (France)',
       ],
       response: 'Banned Xinjiang cotton in 2021, faced China backlash'
     },
@@ -67,8 +70,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'Raleigh Denim (North Carolina, USA)',
-        'American Trench (USA)',
-        'Flint and Tinder (USA)',
+        'Nudie Jeans (Sweden/Italy)',
+        'Mud Jeans (Netherlands/Tunisia)',
+        'OrSlow (Japan)',
       ],
       response: 'Limited transparency on supply chain'
     },
@@ -81,8 +85,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'American Giant (USA)',
-        'Royal Apparel (USA - organic)',
-        'Pact (Fair Trade certified)',
+        'Muji (Japan-made lines)',
+        'Le Slip Français (France)',
+        'Trigema (Germany)',
       ],
       response: 'Denied using Xinjiang cotton'
     },
@@ -95,8 +100,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'Buck Mason (USA)',
-        'American Giant (USA)',
         'Carhartt (USA-made lines)',
+        'Barbour (UK)',
+        'Finisterre (UK)',
       ],
       response: 'Investigating supply chain'
     },
@@ -124,9 +130,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
       status: 'IMPLICATED',
       alternatives: [
-        'Framework Laptop (modular, repairable)',
-        'System76 (Colorado, USA - Linux)',
-        'Fairphone (ethical, repairable)',
+        'Framework Laptop (USA-designed, Taiwan assembly)',
+        'System76 (Colorado, USA)',
+        'Fairphone (Netherlands - ethical)',
+        'Fujitsu (Japan - some models)',
       ],
       response: 'Auditing suppliers, removed some from supply chain'
     },
@@ -138,8 +145,9 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
       status: 'IMPLICATED',
       alternatives: [
-        'Fairphone (Netherlands - ethical)',
-        'Framework Laptop (for computers)',
+        'Fairphone (Netherlands)',
+        'Sony Xperia (Japan - some models)',
+        'LG (South Korea - verify production)',
       ],
       response: 'Investigating allegations'
     },
@@ -151,8 +159,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
       status: 'IMPLICATED',
       alternatives: [
-        'Framework Laptop (modular, USA-designed)',
-        'System76 (Colorado, USA)',
+        'Framework Laptop (USA-designed)',
+        'System76 (USA)',
+        'Fujitsu (Japan)',
+        'Lenovo ThinkPad (some models - verify)',
       ],
       response: 'Committed to supply chain audits'
     },
@@ -164,8 +174,9 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
       status: 'IMPLICATED',
       alternatives: [
-        'Framework Laptop',
+        'Framework Laptop (USA)',
         'System76 (USA)',
+        'Panasonic Toughbook (Japan)',
       ],
       response: 'Investigating supply chain'
     },
@@ -177,9 +188,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://ipvm.com/reports/huawei-xinjiang',
       status: 'CRITICAL',
       alternatives: [
-        'Samsung (non-China)',
+        'Samsung (South Korea - verify production)',
         'Google Pixel (USA-designed)',
-        'Any non-Chinese brand',
+        'Sony Xperia (Japan)',
+        'Fairphone (Netherlands)',
       ],
       response: 'Denied involvement, on US Entity List'
     },
@@ -194,6 +206,7 @@ const ForcedLabourList = () => {
         'Axis Communications (Sweden)',
         'Bosch (Germany)',
         'Hanwha (South Korea)',
+        'Panasonic (Japan)',
       ],
       response: 'On US Entity List since 2019'
     },
@@ -220,8 +233,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.hrw.org/report/2024/11/18/asleep-wheel/car-companies-complicity-forced-labor-chinas-xinjiang-uyghur',
       status: 'CRITICAL',
       alternatives: [
-        'Mazda (Japan-centric production)',
-        'Subaru (Japan/USA plants)',
+        'Mazda (Japan)',
+        'Subaru (Japan/USA)',
+        'Lexus (Japan)',
+        'Polestar (Sweden)',
       ],
       response: 'Defended Xinjiang factory, claimed no forced labor'
     },
@@ -233,8 +248,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.hrw.org/report/2024/11/18/asleep-wheel/car-companies-complicity-forced-labor-chinas-xinjiang-uyghur',
       status: 'IMPLICATED',
       alternatives: [
-        'Mazda',
-        'Subaru',
+        'Mazda (Japan)',
+        'Subaru (Japan/USA)',
+        'Hyundai (South Korea)',
+        'Renault (France)',
       ],
       response: 'Investigating supply chain'
     },
@@ -246,8 +263,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.hrw.org/report/2024/11/18/asleep-wheel/car-companies-complicity-forced-labor-chinas-xinjiang-uyghur',
       status: 'IMPLICATED',
       alternatives: [
-        'Mazda',
+        'Mazda (Japan)',
         'Volvo (Sweden)',
+        'Genesis (South Korea)',
+        'Alfa Romeo (Italy)',
       ],
       response: 'Committed to due diligence'
     },
@@ -261,7 +280,8 @@ const ForcedLabourList = () => {
       alternatives: [
         'Rivian (USA)',
         'Lucid (USA)',
-        'Ford F-150 Lightning (USA)',
+        'Polestar (Sweden)',
+        'Hyundai Ioniq (South Korea)',
       ],
       response: 'Opened Xinjiang showroom despite criticism'
     },
@@ -274,7 +294,9 @@ const ForcedLabourList = () => {
       status: 'IMPLICATED',
       alternatives: [
         'Ford (USA)',
-        'Mazda',
+        'Mazda (Japan)',
+        'Kia (South Korea)',
+        'Fiat (Italy)',
       ],
       response: 'Investigating supply chain'
     },
