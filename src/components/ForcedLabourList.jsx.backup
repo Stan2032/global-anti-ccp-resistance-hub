@@ -132,6 +132,7 @@ const ForcedLabourList = () => {
       alternatives: [
         'Framework Laptop (USA-designed, Taiwan assembly)',
         'System76 (Colorado, USA)',
+        'Fairphone (Netherlands - ethical)',
         'Fujitsu (Japan - some models)',
       ],
       response: 'Auditing suppliers, removed some from supply chain'
@@ -144,8 +145,9 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
       status: 'IMPLICATED',
       alternatives: [
+        'Fairphone (Netherlands)',
         'Sony Xperia (Japan - some models)',
-        'Framework Laptop (modular, repairable)',
+        'LG (South Korea - verify production)',
       ],
       response: 'Investigating allegations'
     },
@@ -160,6 +162,7 @@ const ForcedLabourList = () => {
         'Framework Laptop (USA-designed)',
         'System76 (USA)',
         'Fujitsu (Japan)',
+        'Lenovo ThinkPad (some models - verify)',
       ],
       response: 'Committed to supply chain audits'
     },
@@ -185,9 +188,10 @@ const ForcedLabourList = () => {
       sourceUrl: 'https://ipvm.com/reports/huawei-xinjiang',
       status: 'CRITICAL',
       alternatives: [
+        'Samsung (South Korea - verify production)',
         'Google Pixel (USA-designed)',
         'Sony Xperia (Japan)',
-        'Framework Laptop (modular phone alternative)',
+        'Fairphone (Netherlands)',
       ],
       response: 'Denied involvement, on US Entity List'
     },
@@ -232,6 +236,7 @@ const ForcedLabourList = () => {
         'Mazda (Japan)',
         'Subaru (Japan/USA)',
         'Lexus (Japan)',
+        'Polestar (Sweden)',
       ],
       response: 'Defended Xinjiang factory, claimed no forced labor'
     },
@@ -275,6 +280,7 @@ const ForcedLabourList = () => {
       alternatives: [
         'Rivian (USA)',
         'Lucid (USA)',
+        'Polestar (Sweden)',
         'Hyundai Ioniq (South Korea)',
       ],
       response: 'Opened Xinjiang showroom despite criticism'
@@ -414,16 +420,11 @@ const ForcedLabourList = () => {
                   })}
                   className="text-green-400 hover:text-green-300 font-semibold text-sm"
                 >
-                  {showAlternatives[company.name] ? '▼ Hide' : '▶'} Ethical Alternatives (Democratic Countries Only)
+                  {showAlternatives[company.name] ? '▼ Hide' : '▶'} Ethical Alternatives (No China Manufacturing)
                 </button>
                 
                 {showAlternatives[company.name] && (
                   <div className="mt-2 pl-4 border-l-2 border-green-600">
-                    <div className="bg-blue-900/20 border border-blue-700 rounded p-2 mb-2">
-                      <p className="text-xs text-blue-300">
-                        <strong>China Exposure Ratings:</strong> 🟢 Zero (100% no China) | 🟡 Minimal (&lt;10% China components) | 🔴 Significant (avoid)
-                      </p>
-                    </div>
                     <ul className="space-y-1">
                       {company.alternatives.map((alt, i) => (
                         <li key={i} className="text-green-400 text-sm">
@@ -432,9 +433,7 @@ const ForcedLabourList = () => {
                       ))}
                     </ul>
                     <p className="text-xs text-slate-400 mt-2">
-                      <strong>⚠️ Verification Required:</strong> Some alternatives listed may still have Chinese components. 
-                      See <a href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/blob/master/CHINA_EXPOSURE_CRITERIA.md" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">China Exposure Criteria</a> for details.
-                      Always verify current manufacturing locations before purchase.
+                      Note: Always verify current manufacturing locations before purchase.
                     </p>
                   </div>
                 )}
