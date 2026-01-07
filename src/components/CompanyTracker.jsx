@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const CompanyTracker = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
-    { id: 'all', name: 'All Companies', icon: '🏢' },
-    { id: 'fashion', name: 'Fashion & Apparel', icon: '👕' },
-    { id: 'tech', name: 'Technology', icon: '💻' },
-    { id: 'auto', name: 'Automotive', icon: '🚗' },
-    { id: 'retail', name: 'Retail', icon: '🛒' },
-    { id: 'food', name: 'Food & Beverage', icon: '🍔' },
-    { id: 'finance', name: 'Finance', icon: '💰' },
+    { id: 'all', name: 'All Companies' },
+    { id: 'fashion', name: 'Fashion & Apparel' },
+    { id: 'tech', name: 'Technology' },
+    { id: 'auto', name: 'Automotive' },
+    { id: 'retail', name: 'Retail' },
+    { id: 'food', name: 'Food & Beverage' },
+    { id: 'finance', name: 'Finance' },
   ];
 
   const companies = [
@@ -411,11 +412,7 @@ const CompanyTracker = () => {
 
       {/* Disclaimer */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-xs text-slate-500">
-        <p>
-          <strong>Disclaimer:</strong> This tracker is based on publicly available research and reports. 
-          Company situations may change. Always verify current information before making decisions. 
-          This is not legal or financial advice.
-        </p>
+        <GlobalDisclaimer type="changing" />
       </div>
     </div>
   );

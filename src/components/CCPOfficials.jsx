@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 
 const officials = [

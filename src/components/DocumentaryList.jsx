@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const DocumentaryList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');

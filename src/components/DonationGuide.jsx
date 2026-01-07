@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const DonationGuide = () => {
   const [activeCategory, setActiveCategory] = useState('all');

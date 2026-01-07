@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Heart, Share2, BookOpen, Clock, Globe, FileText } from 'lucide-react';
 
 const caseStudies = [

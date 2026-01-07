@@ -356,7 +356,7 @@ Sincerely,
               copied ? 'bg-green-600 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'
             }`}
           >
-            {copied ? '✓ Copied!' : '📋 Copy Letter'}
+            {copied ? '✓ Copied!' : 'Copy Letter'}
           </button>
         </div>
         
@@ -375,13 +375,13 @@ Sincerely,
         </div>
         
         <p className="text-xs text-slate-500 mt-3">
-          💡 Tip: Personalize this letter with your own experiences and concerns. Personal letters are more impactful than form letters.
+          Tip: Personalize this letter with your own experiences and concerns. Personal letters are more impactful than form letters.
         </p>
       </div>
 
       {/* Tips */}
       <div className="bg-green-900/20 border border-green-700/50 rounded-lg p-4">
-        <h3 className="text-lg font-semibold text-white mb-3">📝 Tips for Effective Advocacy</h3>
+        <h3 className="text-lg font-semibold text-white mb-3">Tips for Effective Advocacy</h3>
         <ul className="space-y-2 text-sm text-slate-300">
           <li className="flex items-start gap-2">
             <span className="text-green-400">✓</span>
