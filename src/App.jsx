@@ -114,19 +114,16 @@ const MobileNav = ({ isOpen, onClose }) => {
   
   // Simplified navigation - consolidated from 14 to 10 pages
   const navItems = [
-    { name: 'Dashboard', href: '/', icon: '📊' },
-    { name: 'Intelligence', href: '/intelligence', icon: '📰' },
-    { name: 'Directory', href: '/directory', icon: '👥' },
-    { name: 'Political Prisoners', href: '/prisoners', icon: '⛓️' },
-    { name: 'Take Action', href: '/take-action', icon: '✊' },
-    // Removed: Campaigns (merged into Take Action)
-    { name: 'Community', href: '/community', icon: '💬' },
-    // Removed: Communications (merged into Community)
-    { name: 'Resources', href: '/resources', icon: '🛠️' },
-    // Removed: CCP Tactics (merged into Resources)
-    { name: 'Education', href: '/education', icon: '🎓' },
-    { name: 'Security', href: '/security', icon: '🛡️' },
-    { name: 'Data Sources', href: '/data-sources', icon: '🔍' },
+    { name: 'Dashboard', href: '/' },
+    { name: 'Intelligence', href: '/intelligence' },
+    { name: 'Directory', href: '/directory' },
+    { name: 'Political Prisoners', href: '/prisoners' },
+    { name: 'Take Action', href: '/take-action' },
+    { name: 'Community', href: '/community' },
+    { name: 'Resources', href: '/resources' },
+    { name: 'Education', href: '/education' },
+    { name: 'Security', href: '/security' },
+    { name: 'Data Sources', href: '/data-sources' },
   ];
 
   if (!isOpen) return null;
@@ -155,7 +152,6 @@ const MobileNav = ({ isOpen, onClose }) => {
                     : 'text-slate-300 hover:bg-slate-700 active:bg-slate-600'
                 }`}
               >
-                <span className="mr-3 text-xl">{item.icon}</span>
                 {item.name}
               </Link>
             );
@@ -207,34 +203,31 @@ const DesktopSidebar = () => {
     {
       title: 'Main',
       items: [
-        { name: 'Dashboard', href: '/', icon: '📊' },
-        { name: 'Intelligence', href: '/intelligence', icon: '📰' },
-        { name: 'Directory', href: '/directory', icon: '👥' },
+        { name: 'Dashboard', href: '/' },
+        { name: 'Intelligence', href: '/intelligence' },
+        { name: 'Directory', href: '/directory' },
       ]
     },
     {
       title: 'Human Rights',
       items: [
-        { name: 'Political Prisoners', href: '/prisoners', icon: '⛓️' },
-        { name: 'Regional Threats', href: '/threats', icon: '⚠️' },
+        { name: 'Political Prisoners', href: '/prisoners' },
       ]
     },
     {
       title: 'Action',
       items: [
-        { name: 'Take Action', href: '/take-action', icon: '✊' },
-        { name: 'Campaigns', href: '/campaigns', icon: '🎯' },
-        { name: 'Community', href: '/community', icon: '💬' },
-        { name: 'Communications', href: '/communications', icon: '🔐' },
+        { name: 'Take Action', href: '/take-action' },
+        { name: 'Community', href: '/community' },
       ]
     },
     {
       title: 'Resources',
       items: [
-        { name: 'Tools', href: '/resources', icon: '🛠️' },
-        { name: 'CCP Tactics', href: '/tactics', icon: '📖' },
-        { name: 'Education', href: '/education', icon: '🎓' },
-        { name: 'Security', href: '/security', icon: '🛡️' },
+        { name: 'Tools', href: '/resources' },
+        { name: 'Education', href: '/education' },
+        { name: 'Security', href: '/security' },
+        { name: 'Data Sources', href: '/data-sources' },
       ]
     }
   ];
@@ -272,7 +265,6 @@ const DesktopSidebar = () => {
                         : 'text-slate-300 hover:bg-slate-700 hover:text-white'
                     }`}
                   >
-                    <span className="mr-3 text-lg">{item.icon}</span>
                     {item.name}
                   </Link>
                 );

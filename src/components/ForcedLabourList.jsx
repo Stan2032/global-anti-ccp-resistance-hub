@@ -324,7 +324,7 @@ const ForcedLabourList = () => {
         </p>
         
         <div className="bg-yellow-900/20 border border-yellow-800 rounded-lg p-4 mb-4">
-          <h3 className="font-bold text-yellow-400 mb-2">⚠️ Important Disclaimer</h3>
+          <h3 className="font-bold text-yellow-400 mb-2">Important Disclaimer</h3>
           <p className="text-sm text-slate-300">
             <strong>Complete avoidance of China-made products is extremely difficult</strong>, especially for electronics 
             where Chinese components are ubiquitous. The alternatives listed prioritize brands with:

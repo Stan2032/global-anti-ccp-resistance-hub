@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import IPACMembers from '../components/IPACMembers';
+import GlobalDisclaimer from '../components/ui/GlobalDisclaimer';
 import { Users, Search, ExternalLink, Globe, MapPin, Calendar, CheckCircle, Filter } from 'lucide-react';
 
 // Comprehensive organization database
@@ -545,11 +546,7 @@ const ResistanceDirectory = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4">
-        <p className="text-yellow-300 text-sm">
-          <strong>Note:</strong> This directory is for informational purposes. Always verify organizations independently before sharing sensitive information or making donations.
-        </p>
-      </div>
+      <GlobalDisclaimer type="sensitive" />
     </div>
   );
 };
