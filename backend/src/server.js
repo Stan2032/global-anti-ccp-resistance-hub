@@ -78,6 +78,7 @@ app.use('/api/v1/auth', (await import('./routes/auth.js')).default);
 app.use('/api/v1/users', (await import('./routes/users.js')).default);
 app.use('/api/v1/organizations', (await import('./routes/organizations.js')).default);
 app.use('/api/v1/campaigns', (await import('./routes/campaigns.js')).default);
+app.use('/api/v1/admin', (await import('./routes/admin.js')).default);
 app.use('/api/v1/intelligence', (await import('./routes/intelligence.js')).default);
 app.use('/api/v1/support-requests', (await import('./routes/supportRequests.js')).default);
 app.use('/api/v1/channels', (await import('./routes/channels.js')).default);
