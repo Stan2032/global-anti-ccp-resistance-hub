@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ROUTE_LABELS = {
@@ -23,11 +23,10 @@ const ROUTE_LABELS = {
  */
 export default function RouteAnnouncer() {
   const { pathname } = useLocation();
-  const [announcement, setAnnouncement] = useState('');
 
-  useEffect(() => {
+  const announcement = useMemo(() => {
     const label = ROUTE_LABELS[pathname] || 'Page';
-    setAnnouncement(`Navigated to ${label}`);
+    return `Navigated to ${label}`;
   }, [pathname]);
 
   return (

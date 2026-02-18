@@ -276,15 +276,9 @@ const DesktopSidebar = () => {
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const location = useLocation();
 
   // Update document title based on current route
   useDocumentTitle();
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
 
   // Global keyboard shortcut for search
   useEffect(() => {
