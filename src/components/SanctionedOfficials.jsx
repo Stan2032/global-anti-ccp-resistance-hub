@@ -75,12 +75,20 @@ function parseSanctionValue(value) {
 
 function inferSourceType(url) {
   if (!url) return 'Government';
-  if (url.includes('treasury.gov') || url.includes('gov.uk') || url.includes('eur-lex.europa.eu'))
-    return 'Government';
-  if (url.includes('opensanctions.org') || url.includes('safeguarddefenders.com'))
-    return 'NGO Report';
-  if (url.includes('bitterwinter.org'))
-    return 'News Report';
+  try {
+    const hostname = new URL(url).hostname;
+    if (hostname.endsWith('.treasury.gov') || hostname === 'home.treasury.gov'
+      || hostname.endsWith('.gov.uk') || hostname.endsWith('.europa.eu')
+      || hostname.endsWith('.federalregister.gov'))
+      return 'Government';
+    if (hostname === 'www.opensanctions.org' || hostname === 'opensanctions.org'
+      || hostname === 'safeguarddefenders.com' || hostname === 'www.safeguarddefenders.com')
+      return 'NGO Report';
+    if (hostname === 'bitterwinter.org' || hostname === 'www.bitterwinter.org')
+      return 'News Report';
+  } catch {
+    // Invalid URL — fall through to default
+  }
   return 'Government';
 }
 
