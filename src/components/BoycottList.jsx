@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SourcesList } from './ui/SourceAttribution';
 
 const BoycottList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -396,21 +397,43 @@ const BoycottList = () => {
 
       {/* Sources */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-        <h3 className="font-semibold text-white mb-2">Sources & Further Reading</h3>
-        <div className="grid gap-2 md:grid-cols-2 text-sm">
-          <a href="https://www.aspi.org.au/report/uyghurs-sale" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            ASPI: Uyghurs for Sale
-          </a>
-          <a href="https://www.hrw.org/report/2024/02/01/asleep-wheel" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            HRW: Asleep at the Wheel
-          </a>
-          <a href="https://enduyghurforcedlabour.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            Coalition to End Forced Labour
-          </a>
-          <a href="https://www.dhs.gov/uflpa-entity-list" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            US UFLPA Entity List
-          </a>
-        </div>
+        <SourcesList
+          sources={[
+            {
+              name: 'ASPI: Uyghurs for Sale',
+              url: 'https://www.aspi.org.au/report/uyghurs-sale',
+              type: 'NGO Report',
+              organization: 'Australian Strategic Policy Institute',
+              verified: true,
+              description: 'Landmark 2020 report identifying 83 companies benefiting from Uyghur forced labor transfer programs.',
+            },
+            {
+              name: 'HRW: Asleep at the Wheel',
+              url: 'https://www.hrw.org/report/2024/02/01/asleep-wheel',
+              type: 'Human Rights Report',
+              organization: 'Human Rights Watch',
+              verified: true,
+              description: 'Investigation into automotive industry exposure to Xinjiang forced labor, particularly through aluminum supply chains.',
+            },
+            {
+              name: 'Coalition to End Forced Labour in the Uyghur Region',
+              url: 'https://enduyghurforcedlabour.org/',
+              type: 'NGO Report',
+              organization: 'Coalition to End Forced Labour',
+              verified: true,
+              description: 'Coalition of over 400 organizations calling on brands to exit the Uyghur Region.',
+            },
+            {
+              name: 'US UFLPA Entity List',
+              url: 'https://www.dhs.gov/uflpa-entity-list',
+              type: 'Government Document',
+              organization: 'U.S. Department of Homeland Security',
+              verified: true,
+              description: 'Official list of entities producing goods with forced labor under the Uyghur Forced Labor Prevention Act.',
+            },
+          ]}
+          title="Sources & Further Reading"
+        />
       </div>
     </div>
   );

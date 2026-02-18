@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown, ExternalLink } from 'lucide-react';
+import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
+import { SourcesList } from './ui/SourceAttribution';
 
 const victims = [
   // Tiananmen Square
@@ -417,45 +418,35 @@ export default function MemorialWall() {
 
       {/* Resources */}
       <div className="p-6 border-t border-slate-700">
-        <h3 className="text-sm font-semibold text-white mb-3">Memorial Resources</h3>
-        <div className="grid md:grid-cols-3 gap-3">
-          <a
-            href="http://www.tiananmenmother.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
-          >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
-            <div>
-              <p className="text-sm text-white">Tiananmen Mothers</p>
-              <p className="text-xs text-slate-400">Documenting 1989 victims</p>
-            </div>
-          </a>
-          <a
-            href="https://shahit.biz/eng/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
-          >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
-            <div>
-              <p className="text-sm text-white">Xinjiang Victims Database</p>
-              <p className="text-xs text-slate-400">35,000+ documented cases</p>
-            </div>
-          </a>
-          <a
-            href="https://savetibet.org/resources/self-immolations-by-tibetans/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
-          >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
-            <div>
-              <p className="text-sm text-white">ICT Self-Immolation List</p>
-              <p className="text-xs text-slate-400">Tibetan self-immolations</p>
-            </div>
-          </a>
-        </div>
+        <SourcesList
+          sources={[
+            {
+              name: 'Tiananmen Mothers',
+              url: 'http://www.tiananmenmother.org/',
+              type: 'NGO Report',
+              organization: 'Tiananmen Mothers',
+              verified: true,
+              description: 'Documenting victims of the 1989 Tiananmen Square massacre.',
+            },
+            {
+              name: 'Xinjiang Victims Database',
+              url: 'https://shahit.biz/eng/',
+              type: 'NGO Report',
+              organization: 'Shahit.biz',
+              verified: true,
+              description: '35,000+ documented cases of Uyghur victims of persecution.',
+            },
+            {
+              name: 'ICT Self-Immolation List',
+              url: 'https://savetibet.org/resources/self-immolations-by-tibetans/',
+              type: 'NGO Report',
+              organization: 'International Campaign for Tibet',
+              verified: true,
+              description: 'Comprehensive list of Tibetan self-immolation protests.',
+            },
+          ]}
+          title="Memorial Resources"
+        />
       </div>
 
       {/* Detail Modal */}
