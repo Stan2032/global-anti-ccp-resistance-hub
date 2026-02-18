@@ -456,12 +456,11 @@ export const feedValidator = {
   },
 
   checkFeedHealth: (feedId) => {
-    // Simulate feed health checking
     return {
       feedId,
       status: 'operational',
       lastUpdate: new Date().toISOString(),
-      responseTime: Math.floor(Math.random() * 1000) + 200,
+      responseTime: null,
       errorCount: 0
     }
   }
