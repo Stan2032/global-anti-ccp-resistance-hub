@@ -149,15 +149,6 @@ router.put('/:id', authenticateToken, validate(updateCampaignSchema), async (req
         }
       });
     }
-    if (error.message === 'Campaign not found') {
-      return res.status(404).json({
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
     next(error);
   }
 });
@@ -192,16 +183,7 @@ router.delete('/:id', authenticateToken, async (req, res, next) => {
       message: 'Campaign deleted successfully'
     });
   } catch (error) {
-    if (error.message === 'Campaign not found or already deleted') {
-      return res.status(404).json({
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-    if (error.message === 'Campaign not found') {
+    if (error.message === 'Campaign not found or already deleted' || error.message === 'Campaign not found') {
       return res.status(404).json({
         success: false,
         error: {
