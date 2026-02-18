@@ -235,6 +235,13 @@ const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Ma
 const statuses = ['All Statuses', 'Active', 'Closed', 'Unknown'];
 
 // Process research data into source attribution format
+const MAX_DESCRIPTION_LENGTH = 100;
+
+const truncateDescription = (text, maxLength) => {
+  if (!text) return 'See source';
+  return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+};
+
 const processResearchSources = () => {
   const sources = [];
   const seen = new Set();
@@ -302,7 +309,7 @@ const processResearchSources = () => {
         organization,
         verified: type === 'Government Document' || type === 'Academic Research' || 
                  organization.includes('ASPI') || organization.includes('RAND'),
-        description: `Facility count: ${data.facility_count || 'Unknown'}. Key facilities: ${data.key_facilities?.substring(0, 100) || 'See source'}${data.key_facilities?.length > 100 ? '...' : ''}`,
+        description: `Facility count: ${data.facility_count || 'Unknown'}. Key facilities: ${truncateDescription(data.key_facilities, MAX_DESCRIPTION_LENGTH)}`,
         date: 'Accessed 2024'
       });
     }
