@@ -55,22 +55,32 @@ const CompanyTracker = () => {
         let sourceOrg = '';
         let sourceType = 'Human Rights Report';
         
-        if (data.source_url?.includes('aspi.org.au')) {
-          sourceName = 'ASPI - Uyghurs for Sale';
-          sourceOrg = 'Australian Strategic Policy Institute';
-          sourceType = 'NGO Report';
-        } else if (data.source_url?.includes('cbp.gov')) {
-          sourceName = 'US CBP UFLPA Enforcement';
-          sourceOrg = 'U.S. Customs and Border Protection';
-          sourceType = 'Government Document';
-        } else if (data.source_url?.includes('congress.gov')) {
-          sourceName = 'Congressional Report';
-          sourceOrg = 'U.S. Congress';
-          sourceType = 'Government Document';
-        } else if (data.source_url?.includes('shu.ac.uk')) {
-          sourceName = 'Sheffield Hallam University Report';
-          sourceOrg = 'Sheffield Hallam University';
-          sourceType = 'Academic Research';
+        // More precise URL matching using URL object
+        if (data.source_url) {
+          try {
+            const url = new URL(data.source_url);
+            const hostname = url.hostname.toLowerCase();
+            
+            if (hostname === 'www.aspi.org.au' || hostname === 'aspi.org.au') {
+              sourceName = 'ASPI - Uyghurs for Sale';
+              sourceOrg = 'Australian Strategic Policy Institute';
+              sourceType = 'NGO Report';
+            } else if (hostname === 'www.cbp.gov' || hostname === 'cbp.gov') {
+              sourceName = 'US CBP UFLPA Enforcement';
+              sourceOrg = 'U.S. Customs and Border Protection';
+              sourceType = 'Government Document';
+            } else if (hostname === 'www.congress.gov' || hostname === 'congress.gov') {
+              sourceName = 'Congressional Report';
+              sourceOrg = 'U.S. Congress';
+              sourceType = 'Government Document';
+            } else if (hostname === 'www.shu.ac.uk' || hostname === 'shu.ac.uk') {
+              sourceName = 'Sheffield Hallam University Report';
+              sourceOrg = 'Sheffield Hallam University';
+              sourceType = 'Academic Research';
+            }
+          } catch {
+            // Invalid URL, use defaults
+          }
         }
         
         return {
