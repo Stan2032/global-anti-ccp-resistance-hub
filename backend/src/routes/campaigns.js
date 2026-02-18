@@ -7,7 +7,7 @@ import * as campaignService from '../services/campaignService.js';
 const router = express.Router();
 
 // ============================================================================
-// PUBLIC ROUTES
+// PUBLIC ROUTES (specific paths before parameterized)
 // ============================================================================
 
 /**
@@ -39,23 +39,6 @@ router.get('/', async (req, res, next) => {
 });
 
 /**
- * GET /api/v1/campaigns/:id
- * Get single campaign by ID or slug (public access)
- */
-router.get('/:id', async (req, res, next) => {
-  try {
-    const campaign = await campaignService.getCampaignByIdOrSlug(req.params.id);
-
-    res.json({
-      success: true,
-      data: campaign
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-/**
  * GET /api/v1/campaigns/:id/members
  * Get campaign members (public access)
  */
@@ -73,6 +56,23 @@ router.get('/:id/members', async (req, res, next) => {
     res.json({
       success: true,
       data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/**
+ * GET /api/v1/campaigns/:id
+ * Get single campaign by ID or slug (public access)
+ */
+router.get('/:id', async (req, res, next) => {
+  try {
+    const campaign = await campaignService.getCampaignByIdOrSlug(req.params.id);
+
+    res.json({
+      success: true,
+      data: campaign
     });
   } catch (error) {
     next(error);

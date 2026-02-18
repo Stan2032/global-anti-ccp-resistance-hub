@@ -46,7 +46,8 @@ const ensureUniqueSlug = async (baseSlug, excludeId = null) => {
  */
 const calculateProgress = (currentValue, targetValue) => {
   if (!targetValue || targetValue === 0) return 0;
-  return Math.min(100, Math.round((currentValue / targetValue) * 100 * 100) / 100);
+  // Returns percentage with 2 decimal places
+  return Math.min(100, Math.round((currentValue / targetValue) * 10000) / 100);
 };
 
 /**

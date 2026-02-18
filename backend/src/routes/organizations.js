@@ -7,8 +7,97 @@ import * as organizationService from '../services/organizationService.js';
 const router = express.Router();
 
 // ============================================================================
-// PUBLIC ROUTES
+// MODERATOR/ADMIN ROUTES (specific paths first)
 // ============================================================================
+
+/**
+ * GET /api/v1/organizations/admin/pending-reviews
+ * Get pending organization suggestions (moderators/admins only)
+ */
+router.get('/admin/pending-reviews', authenticateToken, requireRole(['moderator', 'admin']), async (req, res, next) => {
+  try {
+    const filters = {
+      page: parseInt(req.query.page) || 1,
+      limit: parseInt(req.query.limit) || 30,
+      status: req.query.status || 'pending',
+      change_type: req.query.change_type
+    };
+
+    const result = await organizationService.getPendingSuggestions(filters);
+
+    res.json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/**
+ * POST /api/v1/organizations/admin/review/:suggestionId
+ * Review organization suggestion (moderators/admins only)
+ */
+router.post('/admin/review/:suggestionId', authenticateToken, requireRole(['moderator', 'admin']), async (req, res, next) => {
+  try {
+    const { decision, review_notes } = req.body;
+
+    if (!decision || !['approved', 'rejected'].includes(decision)) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 'INVALID_DECISION',
+          message: 'Decision must be either approved or rejected'
+        }
+      });
+    }
+
+    const result = await organizationService.reviewSuggestion(
+      req.params.suggestionId,
+      decision,
+      review_notes,
+      req.user.id
+    );
+
+    res.json({
+      success: true,
+      data: result,
+      message: `Suggestion ${decision} successfully`
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// ============================================================================
+// PUBLIC ROUTES (general routes before parameterized)
+// ============================================================================
+
+/**
+ * GET /api/v1/organizations/search
+ * Search organizations (public access)
+ */
+router.get('/search', async (req, res, next) => {
+  try {
+    const filters = {
+      page: parseInt(req.query.page) || 1,
+      limit: parseInt(req.query.limit) || 30,
+      search: req.query.q || req.query.search,
+      organization_type: req.query.type,
+      country: req.query.country,
+      verification_status: 'verified'
+    };
+
+    const result = await organizationService.getAllOrganizations(filters);
+
+    res.json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 /**
  * GET /api/v1/organizations
@@ -141,67 +230,8 @@ router.post('/suggest-new', authenticateToken, validate(organizationSchema), asy
 });
 
 // ============================================================================
-// MODERATOR/ADMIN ROUTES
+// ADMIN ROUTES (CRUD operations)
 // ============================================================================
-
-/**
- * GET /api/v1/organizations/pending-reviews
- * Get pending organization suggestions (moderators/admins only)
- */
-router.get('/admin/pending-reviews', authenticateToken, requireRole(['moderator', 'admin']), async (req, res, next) => {
-  try {
-    const filters = {
-      page: parseInt(req.query.page) || 1,
-      limit: parseInt(req.query.limit) || 30,
-      status: req.query.status || 'pending',
-      change_type: req.query.change_type
-    };
-
-    const result = await organizationService.getPendingSuggestions(filters);
-
-    res.json({
-      success: true,
-      data: result
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-/**
- * POST /api/v1/organizations/admin/review/:suggestionId
- * Review organization suggestion (moderators/admins only)
- */
-router.post('/admin/review/:suggestionId', authenticateToken, requireRole(['moderator', 'admin']), async (req, res, next) => {
-  try {
-    const { decision, review_notes } = req.body;
-
-    if (!decision || !['approved', 'rejected'].includes(decision)) {
-      return res.status(400).json({
-        success: false,
-        error: {
-          code: 'INVALID_DECISION',
-          message: 'Decision must be either approved or rejected'
-        }
-      });
-    }
-
-    const result = await organizationService.reviewSuggestion(
-      req.params.suggestionId,
-      decision,
-      review_notes,
-      req.user.id
-    );
-
-    res.json({
-      success: true,
-      data: result,
-      message: `Suggestion ${decision} successfully`
-    });
-  } catch (error) {
-    next(error);
-  }
-});
 
 /**
  * POST /api/v1/organizations

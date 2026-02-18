@@ -7,52 +7,11 @@ import * as userService from '../services/userService.js';
 const router = express.Router();
 
 // ============================================================================
-// PUBLIC ROUTES
+// AUTHENTICATED ROUTES (specific paths first)
 // ============================================================================
 
 /**
- * GET /api/v1/users/:id
- * Get public user profile
- */
-router.get('/:id', async (req, res, next) => {
-  try {
-    const user = await userService.getUserById(req.params.id);
-
-    // Return only public information
-    const publicProfile = {
-      id: user.id,
-      username: user.username,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      avatar_url: user.avatar_url,
-      bio: user.bio,
-      organization: user.organization,
-      expertise_areas: user.expertise_areas,
-      created_at: user.created_at
-    };
-
-    // Include additional info if privacy level is public
-    if (user.privacy_level === 'public') {
-      publicProfile.location = user.location;
-      publicProfile.website = user.website;
-      publicProfile.languages = user.languages;
-    }
-
-    res.json({
-      success: true,
-      data: publicProfile
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// ============================================================================
-// AUTHENTICATED ROUTES
-// ============================================================================
-
-/**
- * GET /api/v1/users/me
+ * GET /api/v1/users/me/profile
  * Get current user's full profile
  */
 router.get('/me/profile', authenticateToken, async (req, res, next) => {
@@ -188,6 +147,47 @@ router.get('/', authenticateToken, requireRole(['admin', 'moderator']), async (r
     res.json({
       success: true,
       data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// ============================================================================
+// PUBLIC ROUTES (parameterized routes last)
+// ============================================================================
+
+/**
+ * GET /api/v1/users/:id
+ * Get public user profile
+ */
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await userService.getUserById(req.params.id);
+
+    // Return only public information
+    const publicProfile = {
+      id: user.id,
+      username: user.username,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      avatar_url: user.avatar_url,
+      bio: user.bio,
+      organization: user.organization,
+      expertise_areas: user.expertise_areas,
+      created_at: user.created_at
+    };
+
+    // Include additional info if privacy level is public
+    if (user.privacy_level === 'public') {
+      publicProfile.location = user.location;
+      publicProfile.website = user.website;
+      publicProfile.languages = user.languages;
+    }
+
+    res.json({
+      success: true,
+      data: publicProfile
     });
   } catch (error) {
     next(error);
