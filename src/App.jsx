@@ -7,45 +7,12 @@ import { SkipLinks } from './components/Accessibility'
 import SearchWrapper, { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import useDocumentTitle from './hooks/useDocumentTitle'
+import ErrorBoundary from './components/ErrorBoundary'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+import RouteAnnouncer from './components/RouteAnnouncer'
 import QuickStartGuide from './components/QuickStartGuide'
 import PWAInstallBanner from './components/PWAInstallBanner'
-
-// Error Boundary Component
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="bg-slate-900 min-h-screen flex items-center justify-center flex-col text-white p-8">
-          <h1 className="text-2xl font-bold mb-4 text-red-500">Something went wrong</h1>
-          <p className="text-slate-400 max-w-md text-center mb-6">
-            {this.state.error?.message || 'An unexpected error occurred'}
-          </p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
-          >
-            Reload Page
-          </button>
-        </div>
-      );
-    }
-    return this.props.children;
-  }
-}
 
 // Loading component
 const LoadingScreen = () => (
@@ -335,6 +302,12 @@ function AppLayout() {
     <div className="min-h-screen bg-slate-900">
       {/* Skip Links for Accessibility */}
       <SkipLinks />
+      
+      {/* Scroll to top and focus main content on route change */}
+      <ScrollToTop />
+      
+      {/* Announce route changes to screen readers */}
+      <RouteAnnouncer />
       
       {/* Desktop Sidebar */}
       <DesktopSidebar />
