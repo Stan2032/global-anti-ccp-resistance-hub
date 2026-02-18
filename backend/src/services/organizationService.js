@@ -236,7 +236,7 @@ export const updateOrganization = async (id, updates, userId) => {
     }
 
     // If slug is being updated, check for conflicts
-    if (filteredUpdates.slug && filteredUpdates.slug !== existing.slug) {
+    if (filteredUpdates.slug) {
       const existingSlug = await query(
         'SELECT id FROM organizations WHERE slug = $1 AND id != $2',
         [filteredUpdates.slug, id]

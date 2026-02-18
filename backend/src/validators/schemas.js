@@ -87,7 +87,7 @@ export const organizationSchema = Joi.object({
   website: Joi.string().uri().max(500).allow(null, ''),
   focus: Joi.array().items(Joi.string()).default([]),
   verified: Joi.boolean().default(false),
-  established: Joi.number().integer().min(1900).max(new Date().getFullYear()).allow(null),
+  established: Joi.number().integer().min(1900).allow(null),
   logo_url: Joi.string().uri().max(500).allow(null, ''),
   email: Joi.string().email().max(255).allow(null, ''),
   phone: Joi.string().max(20).allow(null, ''),

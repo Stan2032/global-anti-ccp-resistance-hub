@@ -100,14 +100,25 @@ router.get('/stats', async (req, res, next) => {
 });
 
 // GET /api/v1/organizations/:id - Get organization by ID
-router.get('/:id', async (req, res, next) => {
+router.get('/:id(\\d+)', async (req, res, next) => {
   try {
     const { id } = req.params;
+    const organization = await getOrganizationById(parseInt(id));
 
-    // Check if id is a number (ID) or string (slug)
-    const organization = /^\d+$/.test(id)
-      ? await getOrganizationById(parseInt(id))
-      : await getOrganizationBySlug(id);
+    res.json({
+      success: true,
+      data: organization
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET /api/v1/organizations/by-slug/:slug - Get organization by slug
+router.get('/by-slug/:slug', async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+    const organization = await getOrganizationBySlug(slug);
 
     res.json({
       success: true,
