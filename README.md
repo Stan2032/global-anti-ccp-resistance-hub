@@ -6,7 +6,12 @@
 > - ❌ Cache system missing (documented but files not present)  
 > - ⚠️ Test claims unverified (cannot run without environment setup)
 > 
-> **Read the investigation:** [Summary](INVESTIGATION_SUMMARY.md) | [Full Audit](FABRICATION_GAP_AUDIT.md) | [Agent Log](AGENTS.md) | [Handoff Guide](LLM_MODEL_SWAP.md)
+> **For Developers/Agents:**
+> - 🚀 **[Start Here: Agent Handoff Prompt](AGENT_HANDOFF_PROMPT.md)** - Complete context for next agent (27KB)
+> - 📊 [Investigation Summary](INVESTIGATION_SUMMARY.md) - Quick overview
+> - 📋 [Full Audit Report](FABRICATION_GAP_AUDIT.md) - Detailed findings
+> - 🤖 [Agent Work Log](AGENTS.md) - Work history and protocols
+> - 🔄 [Handoff Best Practices](LLM_MODEL_SWAP.md) - Model handoff guide
 
 ---
 
