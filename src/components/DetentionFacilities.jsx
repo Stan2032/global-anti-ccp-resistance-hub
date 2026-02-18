@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown, ChevronUp } from 'lucide-react';
+import { SourcesList } from './ui/SourceAttribution';
+import detentionResearchData from '../data/detention_facilities_research.json';
 
 const facilities = [
   // Xinjiang
@@ -231,6 +233,85 @@ const facilities = [
 const regions = ['All Regions', 'Xinjiang', 'Tibet', 'Hong Kong', 'Mainland China'];
 const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Maximum Security Prison', 'Secret Detention'];
 const statuses = ['All Statuses', 'Active', 'Closed', 'Unknown'];
+
+// Process research data into source attribution format
+const processResearchSources = () => {
+  const sources = [];
+  const seen = new Set();
+  
+  detentionResearchData.results.forEach(result => {
+    const data = result.output;
+    if (data.source_url && !seen.has(data.source_url)) {
+      seen.add(data.source_url);
+      
+      // Determine source type and organization
+      let type = 'Research Report';
+      let organization = '';
+      let name = data.region;
+      
+      if (data.source_url.includes('aspi.org.au')) {
+        type = 'NGO Report';
+        organization = 'Australian Strategic Policy Institute (ASPI)';
+        name = 'ASPI Xinjiang Data Project';
+      } else if (data.source_url.includes('rand.org')) {
+        type = 'Academic Research';
+        organization = 'RAND Corporation';
+        name = 'Tibet Prison Analysis';
+      } else if (data.source_url.includes('ap.org')) {
+        type = 'News Report';
+        organization = 'Associated Press';
+        name = `AP Investigation: ${data.region}`;
+      } else if (data.source_url.includes('savetibet.org')) {
+        type = 'NGO Report';
+        organization = 'International Campaign for Tibet';
+        name = `Tibet Report: ${data.region}`;
+      } else if (data.source_url.includes('wikipedia.org')) {
+        type = 'Reference';
+        organization = 'Wikipedia';
+        name = data.region;
+      } else if (data.source_url.includes('hrw.org')) {
+        type = 'Human Rights Report';
+        organization = 'Human Rights Watch';
+        name = `HRW Report: ${data.region}`;
+      } else if (data.source_url.includes('bitterwinter.org')) {
+        type = 'News Report';
+        organization = 'Bitter Winter';
+        name = data.region;
+      } else if (data.source_url.includes('csd.gov.hk')) {
+        type = 'Government Document';
+        organization = 'Hong Kong Correctional Services Department';
+        name = 'Hong Kong Prison Facilities';
+      } else if (data.source_url.includes('amnesty.org')) {
+        type = 'Human Rights Report';
+        organization = 'Amnesty International';
+        name = 'Hong Kong Prison Conditions';
+      } else if (data.source_url.includes('aninews.in')) {
+        type = 'News Report';
+        organization = 'ANI News';
+        name = data.region;
+      } else if (data.source_url.includes('faluninfo.net')) {
+        type = 'News Report';
+        organization = 'Falun Dafa Info Center';
+        name = data.region;
+      }
+      
+      sources.push({
+        name,
+        url: data.source_url,
+        type,
+        organization,
+        verified: type === 'Government Document' || type === 'Academic Research' || 
+                 organization.includes('ASPI') || organization.includes('RAND'),
+        description: `Facility count: ${data.facility_count || 'Unknown'}. Key facilities: ${data.key_facilities?.substring(0, 100) || 'See source'}${data.key_facilities?.length > 100 ? '...' : ''}`,
+        date: 'Accessed 2024'
+      });
+    }
+  });
+  
+  return sources;
+};
+
+const researchSources = processResearchSources();
 
 export default function DetentionFacilities() {
   const [selectedRegion, setSelectedRegion] = useState('All Regions');
@@ -566,6 +647,15 @@ export default function DetentionFacilities() {
             </div>
           </a>
         </div>
+      </div>
+
+      {/* Research Sources */}
+      <div className="mt-6">
+        <SourcesList 
+          sources={researchSources} 
+          title="Research & Data Sources"
+          compact={false}
+        />
       </div>
     </div>
   );
