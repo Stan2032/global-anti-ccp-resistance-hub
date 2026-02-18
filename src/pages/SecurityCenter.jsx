@@ -30,6 +30,7 @@ const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assessment')
   const [assessmentComplete, setAssessmentComplete] = useState(false)
   const [securityScore, setSecurityScore] = useState(0)
+  const [answers, setAnswers] = useState({})
 
   const [securityTools] = useState([
     {
@@ -210,8 +211,17 @@ const SecurityCenter = () => {
     }
   ])
 
+  const handleAnswer = (questionId, answer) => {
+    setAnswers(prev => ({ ...prev, [questionId]: answer }))
+  }
+
   const handleAssessment = () => {
-    const score = Math.floor(Math.random() * 30) + 60
+    let score = 0
+    for (const q of assessmentQuestions) {
+      const answer = answers[q.id]
+      if (answer === 'yes') score += q.weight
+      else if (answer === 'unsure') score += Math.round(q.weight * 0.5)
+    }
     setSecurityScore(score)
     setAssessmentComplete(true)
   }
@@ -370,13 +380,13 @@ const SecurityCenter = () => {
                         <span className="text-xs text-slate-400">{q.category}</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <button className="px-4 py-2 bg-green-900 hover:bg-green-800 text-green-100 rounded-lg transition-colors text-sm font-medium">
+                        <button onClick={() => handleAnswer(q.id, 'yes')} className={`px-4 py-2 ${answers[q.id] === 'yes' ? 'bg-green-700 ring-2 ring-green-400' : 'bg-green-900 hover:bg-green-800'} text-green-100 rounded-lg transition-colors text-sm font-medium`}>
                           Yes
                         </button>
-                        <button className="px-4 py-2 bg-red-900 hover:bg-red-800 text-red-100 rounded-lg transition-colors text-sm font-medium">
+                        <button onClick={() => handleAnswer(q.id, 'no')} className={`px-4 py-2 ${answers[q.id] === 'no' ? 'bg-red-700 ring-2 ring-red-400' : 'bg-red-900 hover:bg-red-800'} text-red-100 rounded-lg transition-colors text-sm font-medium`}>
                           No
                         </button>
-                        <button className="px-4 py-2 bg-slate-600 hover:bg-slate-500 text-slate-100 rounded-lg transition-colors text-sm font-medium">
+                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-slate-500 ring-2 ring-slate-300' : 'bg-slate-600 hover:bg-slate-500'} text-slate-100 rounded-lg transition-colors text-sm font-medium`}>
                           Unsure
                         </button>
                       </div>
@@ -431,7 +441,7 @@ const SecurityCenter = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setAssessmentComplete(false)}
+                  onClick={() => { setAssessmentComplete(false); setAnswers({}) }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                 >
                   Retake Assessment
