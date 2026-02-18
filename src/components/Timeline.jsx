@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SourcesList } from './ui/SourceAttribution';
 
 const Timeline = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -316,6 +317,55 @@ const Timeline = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Source Organizations */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+        <SourcesList
+          sources={[
+            {
+              name: 'UN OHCHR Xinjiang Assessment',
+              url: 'https://www.ohchr.org/en/documents/country-reports/ohchr-assessment-human-rights-concerns-xinjiang-uyghur-autonomous-region',
+              type: 'Government Document',
+              organization: 'UN Office of the High Commissioner for Human Rights',
+              verified: true,
+              description: 'Official UN assessment of human rights violations in Xinjiang.',
+            },
+            {
+              name: 'Safeguard Defenders: Overseas Police Stations',
+              url: 'https://safeguarddefenders.com/en/blog/110-overseas-chinese-transnational-policing-gone-wild',
+              type: 'NGO Report',
+              organization: 'Safeguard Defenders',
+              verified: true,
+              description: 'Investigation documenting CCP overseas police stations in 53 countries.',
+            },
+            {
+              name: 'Human Rights Watch: China',
+              url: 'https://www.hrw.org/asia/china-and-tibet',
+              type: 'Human Rights Report',
+              organization: 'Human Rights Watch',
+              verified: true,
+              description: 'Comprehensive documentation of human rights abuses across China.',
+            },
+            {
+              name: 'International Campaign for Tibet',
+              url: 'https://savetibet.org/',
+              type: 'NGO Report',
+              organization: 'International Campaign for Tibet',
+              verified: true,
+              description: 'Documentation of Tibet under Chinese occupation since 1950.',
+            },
+            {
+              name: 'ICIJ: China Cables',
+              url: 'https://www.icij.org/investigations/china-cables/',
+              type: 'News Report',
+              organization: 'International Consortium of Investigative Journalists',
+              verified: true,
+              description: 'Leaked classified Chinese government documents on Xinjiang detention camps.',
+            },
+          ]}
+          title="Primary Source Organizations"
+        />
       </div>
     </div>
   );
