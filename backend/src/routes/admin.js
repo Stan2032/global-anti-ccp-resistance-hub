@@ -1,7 +1,7 @@
 import express from 'express';
 import logger from '../utils/logger.js';
 import { authenticateToken, requireRole } from '../middleware/auth.js';
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 import { listUsers } from '../services/userService.js';
 
 const router = express.Router();

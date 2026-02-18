@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 import { generateToken, generateRefreshToken, verifyRefreshToken } from '../middleware/auth.js';
 import { createUser, getUserByEmail, verifyPassword, markEmailVerified } from './userService.js';
 import { sendVerificationEmail, sendPasswordResetEmail } from './emailService.js';

@@ -4,12 +4,12 @@
  */
 import dotenv from 'dotenv';
 import logger from '../utils/logger.js';
+import * as pgConnection from './connection.js';
 
 dotenv.config();
 
 const DATABASE_URL = process.env.DATABASE_URL || '';
-const isProduction = process.env.NODE_ENV === 'production';
-const useSQLite = DATABASE_URL.startsWith('sqlite://') || !isProduction;
+const useSQLite = DATABASE_URL.startsWith('sqlite://');
 
 let db;
 
@@ -227,15 +227,14 @@ if (useSQLite) {
   };
   
 } else {
-  // Use PostgreSQL for production
-  import('./connection.js').then(module => {
-    db = {
-      query: module.query,
-      getClient: module.getClient,
-      closePool: module.closePool,
-      pool: module.default
-    };
-  });
+  // Use PostgreSQL
+  logger.info('Using PostgreSQL database');
+  db = {
+    query: pgConnection.query,
+    getClient: pgConnection.getClient,
+    closePool: pgConnection.closePool,
+    pool: pgConnection.default
+  };
 }
 
 export default db;

@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 // Cache removed - using direct database queries
 import logger from '../utils/logger.js';
 import { NotFoundError, ConflictError, ValidationError } from '../middleware/errorHandler.js';
@@ -109,10 +109,14 @@ export const getUserById = async (userId) => {
 export const getUserByEmail = async (email) => {
   try {
     const result = await query(
-      `SELECT id, email, username, password_hash, first_name, last_name,
-              status, email_verified, two_factor_enabled
-       FROM users
-       WHERE email = $1 AND deleted_at IS NULL`,
+      `SELECT u.id, u.email, u.username, u.password_hash, u.first_name, u.last_name,
+              u.status, u.email_verified, u.two_factor_enabled,
+              array_agg(r.name) FILTER (WHERE r.name IS NOT NULL) as roles
+       FROM users u
+       LEFT JOIN user_roles ur ON u.id = ur.user_id AND (ur.expires_at IS NULL OR ur.expires_at > NOW())
+       LEFT JOIN roles r ON ur.role_id = r.id
+       WHERE u.email = $1 AND u.deleted_at IS NULL
+       GROUP BY u.id`,
       [email]
     );
 
@@ -120,7 +124,10 @@ export const getUserByEmail = async (email) => {
       throw new NotFoundError('User not found');
     }
 
-    return result.rows[0];
+    const user = result.rows[0];
+    user.roles = user.roles || [];
+    
+    return user;
   } catch (error) {
     logger.error('Failed to get user by email', { email, error: error.message });
     throw error;

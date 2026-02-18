@@ -87,7 +87,8 @@ export const requireRole = (roles) => {
   };
 };
 
-export const generateToken = (user, expiresIn = process.env.JWT_EXPIRY) => {
+export const generateToken = (user, expiresIn) => {
+  const expiry = expiresIn || parseInt(process.env.JWT_EXPIRY || process.env.JWT_EXPIRES_IN || '3600');
   return jwt.sign(
     {
       id: user.id,
@@ -96,18 +97,19 @@ export const generateToken = (user, expiresIn = process.env.JWT_EXPIRY) => {
       roles: user.roles || ['user']
     },
     process.env.JWT_SECRET,
-    { expiresIn: parseInt(expiresIn) }
+    { expiresIn: expiry }
   );
 };
 
 export const generateRefreshToken = (user) => {
+  const expiry = parseInt(process.env.JWT_REFRESH_EXPIRY || '604800');
   return jwt.sign(
     {
       id: user.id,
       type: 'refresh'
     },
-    process.env.JWT_REFRESH_SECRET,
-    { expiresIn: parseInt(process.env.JWT_REFRESH_EXPIRY) }
+    process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET,
+    { expiresIn: expiry }
   );
 };
 

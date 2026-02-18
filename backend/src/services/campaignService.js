@@ -1,4 +1,4 @@
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 import logger from '../utils/logger.js';
 import { NotFoundError, ConflictError, ValidationError, ForbiddenError } from '../middleware/errorHandler.js';
 
