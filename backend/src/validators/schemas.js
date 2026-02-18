@@ -75,39 +75,60 @@ export const updateSettingsSchema = Joi.object({
 // Organization schemas
 export const createOrganizationSchema = Joi.object({
   name: Joi.string().max(255).required().messages(messages),
+  slug: Joi.string().pattern(/^[a-z0-9-]+$/).max(255).required().messages({
+    ...messages,
+    'string.pattern.base': 'Slug must contain only lowercase letters, numbers, and hyphens'
+  }),
   description: Joi.string().required().messages(messages),
+  logo_url: Joi.string().uri().max(500),
   website: Joi.string().uri().max(500),
-  email: Joi.string().email(),
-  country: Joi.string().length(2),
-  type: Joi.string().max(100),
-  focusAreas: Joi.array().items(Joi.string()),
-  primaryContactName: Joi.string().max(255),
-  primaryContactEmail: Joi.string().email(),
-  primaryContactPhone: Joi.string().max(20)
+  email: Joi.string().email().max(255),
+  phone: Joi.string().max(20),
+  headquarters_country: Joi.string().max(100),
+  headquarters_city: Joi.string().max(100),
+  operating_countries: Joi.array().items(Joi.string().max(100)),
+  founded_year: Joi.number().integer().min(1800).max(new Date().getFullYear()),
+  organization_type: Joi.string().max(100),
+  focus_areas: Joi.array().items(Joi.string()),
+  twitter_handle: Joi.string().max(100),
+  facebook_page: Joi.string().max(255),
+  instagram_handle: Joi.string().max(100),
+  primary_contact_name: Joi.string().max(255),
+  primary_contact_email: Joi.string().email().max(255),
+  primary_contact_phone: Joi.string().max(20)
 });
 
 export const updateOrganizationSchema = createOrganizationSchema.fork(
-  ['name', 'description'],
+  ['name', 'slug', 'description'],
   schema => schema.optional()
 );
 
 // Campaign schemas
 export const createCampaignSchema = Joi.object({
   title: Joi.string().max(255).required().messages(messages),
+  slug: Joi.string().pattern(/^[a-z0-9-]+$/).max(255).required().messages({
+    ...messages,
+    'string.pattern.base': 'Slug must contain only lowercase letters, numbers, and hyphens'
+  }),
   description: Joi.string().required().messages(messages),
-  campaignType: Joi.string().max(100),
+  long_description: Joi.string(),
+  banner_image_url: Joi.string().uri().max(500),
+  campaign_type: Joi.string().max(100),
   status: Joi.string().valid('active', 'paused', 'completed', 'archived'),
   priority: Joi.string().valid('critical', 'high', 'medium', 'low'),
-  goalDescription: Joi.string(),
-  targetMetric: Joi.string().max(255),
-  targetValue: Joi.number().integer().min(0),
-  startDate: Joi.date().required().messages(messages),
-  endDate: Joi.date().min(Joi.ref('startDate')),
-  targetCountries: Joi.array().items(Joi.string().length(2))
+  goal_description: Joi.string(),
+  target_metric: Joi.string().max(255),
+  target_value: Joi.number().integer().min(0),
+  start_date: Joi.date().required().messages(messages),
+  end_date: Joi.date().min(Joi.ref('start_date')),
+  primary_organization_id: Joi.number().integer(),
+  target_countries: Joi.array().items(Joi.string().max(100)),
+  twitter_hashtag: Joi.string().max(100),
+  facebook_event_url: Joi.string().uri().max(500)
 });
 
 export const updateCampaignSchema = createCampaignSchema.fork(
-  ['title', 'description', 'startDate'],
+  ['title', 'slug', 'description', 'start_date'],
   schema => schema.optional()
 );
 
