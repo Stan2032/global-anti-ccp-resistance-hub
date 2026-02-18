@@ -140,6 +140,45 @@ export const updateOrganizationSchema = createOrganizationSchema.fork(
 );
 
 // Campaign schemas
+export const campaignSchema = Joi.object({
+  title: Joi.string().max(255).required().messages(messages),
+  description: Joi.string().required().messages(messages),
+  long_description: Joi.string().allow('').optional(),
+  banner_image_url: Joi.string().uri().max(500).allow(null, '').optional(),
+  campaign_type: Joi.string().max(100).allow(null, '').optional(),
+  status: Joi.string().valid('active', 'paused', 'completed', 'archived').optional(),
+  priority: Joi.string().valid('critical', 'high', 'medium', 'low').optional(),
+  goal_description: Joi.string().allow('').optional(),
+  target_metric: Joi.string().max(255).allow(null, '').optional(),
+  target_value: Joi.number().integer().min(0).allow(null).optional(),
+  start_date: Joi.date().required().messages(messages),
+  end_date: Joi.date().min(Joi.ref('start_date')).allow(null).optional(),
+  primary_organization_id: Joi.number().integer().allow(null).optional(),
+  target_countries: Joi.array().items(Joi.string().max(100)).optional(),
+  twitter_hashtag: Joi.string().max(100).allow(null, '').optional(),
+  facebook_event_url: Joi.string().uri().max(500).allow(null, '').optional()
+});
+
+export const campaignUpdateSchema = Joi.object({
+  title: Joi.string().max(255).optional(),
+  description: Joi.string().optional(),
+  long_description: Joi.string().allow('').optional(),
+  banner_image_url: Joi.string().uri().max(500).allow(null, '').optional(),
+  campaign_type: Joi.string().max(100).allow(null, '').optional(),
+  status: Joi.string().valid('active', 'paused', 'completed', 'archived').optional(),
+  priority: Joi.string().valid('critical', 'high', 'medium', 'low').optional(),
+  goal_description: Joi.string().allow('').optional(),
+  target_metric: Joi.string().max(255).allow(null, '').optional(),
+  target_value: Joi.number().integer().min(0).allow(null).optional(),
+  current_value: Joi.number().integer().min(0).allow(null).optional(),
+  start_date: Joi.date().optional(),
+  end_date: Joi.date().allow(null).optional(),
+  primary_organization_id: Joi.number().integer().allow(null).optional(),
+  target_countries: Joi.array().items(Joi.string().max(100)).optional(),
+  twitter_hashtag: Joi.string().max(100).allow(null, '').optional(),
+  facebook_event_url: Joi.string().uri().max(500).allow(null, '').optional()
+});
+
 export const createCampaignSchema = Joi.object({
   title: Joi.string().max(255).required().messages(messages),
   description: Joi.string().required().messages(messages),
