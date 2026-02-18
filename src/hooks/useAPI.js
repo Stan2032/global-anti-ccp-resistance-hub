@@ -18,12 +18,12 @@ export function useOrganizations(initialFilters = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchOrganizations = useCallback(async (filters = initialFilters) => {
+  const fetchOrganizations = useCallback(async (filters) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await apiClient.organizations.list(filters);
+      const response = await apiClient.organizations.list(filters || initialFilters);
       setOrganizations(response.data.organizations);
       setPagination(response.data.pagination);
     } catch (err) {
@@ -32,7 +32,7 @@ export function useOrganizations(initialFilters = {}) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [initialFilters]);
 
   useEffect(() => {
     fetchOrganizations();
@@ -97,12 +97,12 @@ export function useCampaigns(initialFilters = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchCampaigns = useCallback(async (filters = initialFilters) => {
+  const fetchCampaigns = useCallback(async (filters) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await apiClient.campaigns.list(filters);
+      const response = await apiClient.campaigns.list(filters || initialFilters);
       setCampaigns(response.data.campaigns);
       setPagination(response.data.pagination);
     } catch (err) {
@@ -111,7 +111,7 @@ export function useCampaigns(initialFilters = {}) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [initialFilters]);
 
   useEffect(() => {
     fetchCampaigns();
@@ -172,14 +172,14 @@ export function useCampaignMembers(campaignId, initialFilters = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchMembers = useCallback(async (filters = initialFilters) => {
+  const fetchMembers = useCallback(async (filters) => {
     if (!campaignId) return;
 
     setLoading(true);
     setError(null);
 
     try {
-      const response = await apiClient.campaigns.getMembers(campaignId, filters);
+      const response = await apiClient.campaigns.getMembers(campaignId, filters || initialFilters);
       setMembers(response.data.members);
       setPagination(response.data.pagination);
     } catch (err) {
@@ -188,7 +188,7 @@ export function useCampaignMembers(campaignId, initialFilters = {}) {
     } finally {
       setLoading(false);
     }
-  }, [campaignId]);
+  }, [campaignId, initialFilters]);
 
   useEffect(() => {
     fetchMembers();

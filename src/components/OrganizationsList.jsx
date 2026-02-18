@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useOrganizations, useMutation } from '../hooks/useAPI';
-import apiClient from '../services/apiClient';
+import { useOrganizations } from '../hooks/useAPI';
 
 /**
  * Organizations List Component
@@ -14,7 +13,6 @@ export default function OrganizationsList() {
   });
 
   const { organizations, pagination, loading, error, refresh } = useOrganizations(filters);
-  const createOrg = useMutation(apiClient.organizations.create);
 
   const handleSearch = (e) => {
     setFilters({ ...filters, search: e.target.value, page: 1 });

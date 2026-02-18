@@ -47,8 +47,10 @@ export const createOrganization = async (orgData) => {
       RETURNING *`,
       [
         name, slug, description, logo_url, website, email, phone,
-        headquarters_country, headquarters_city, operating_countries || [],
-        founded_year, organization_type, focus_areas || [],
+        headquarters_country, headquarters_city, 
+        Array.isArray(operating_countries) ? operating_countries : [],
+        founded_year, organization_type, 
+        Array.isArray(focus_areas) ? focus_areas : [],
         twitter_handle, facebook_page, instagram_handle,
         primary_contact_name, primary_contact_email, primary_contact_phone
       ]

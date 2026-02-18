@@ -47,7 +47,8 @@ export const createCampaign = async (campaignData, userId) => {
         campaign_type, status || 'active', priority || 'medium', 
         goal_description, target_metric, target_value,
         start_date, end_date, userId, primary_organization_id,
-        target_countries || [], twitter_hashtag, facebook_event_url
+        Array.isArray(target_countries) ? target_countries : [], 
+        twitter_hashtag, facebook_event_url
       ]
     );
 

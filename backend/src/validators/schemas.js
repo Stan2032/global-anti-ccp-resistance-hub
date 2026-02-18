@@ -87,7 +87,7 @@ export const createOrganizationSchema = Joi.object({
   headquarters_country: Joi.string().max(100),
   headquarters_city: Joi.string().max(100),
   operating_countries: Joi.array().items(Joi.string().max(100)),
-  founded_year: Joi.number().integer().min(1800).max(new Date().getFullYear()),
+  founded_year: Joi.number().integer().min(1800).max(2100),
   organization_type: Joi.string().max(100),
   focus_areas: Joi.array().items(Joi.string()),
   twitter_handle: Joi.string().max(100),
