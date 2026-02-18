@@ -116,37 +116,37 @@ export const getAllCampaigns = async (filters = {}, pagination = {}) => {
   try {
     const offset = (page - 1) * limit;
     const params = [];
-    const conditions = ['deleted_at IS NULL'];
+    const conditions = ['c.deleted_at IS NULL'];
     let paramCount = 0;
 
     // Add filters
     if (status) {
       paramCount++;
-      conditions.push(`status = $${paramCount}`);
+      conditions.push(`c.status = $${paramCount}`);
       params.push(status);
     }
 
     if (campaignType) {
       paramCount++;
-      conditions.push(`campaign_type = $${paramCount}`);
+      conditions.push(`c.campaign_type = $${paramCount}`);
       params.push(campaignType);
     }
 
     if (priority) {
       paramCount++;
-      conditions.push(`priority = $${paramCount}`);
+      conditions.push(`c.priority = $${paramCount}`);
       params.push(priority);
     }
 
     if (country) {
       paramCount++;
-      conditions.push(`$${paramCount} = ANY(target_countries)`);
+      conditions.push(`$${paramCount} = ANY(c.target_countries)`);
       params.push(country);
     }
 
     if (search) {
       paramCount++;
-      conditions.push(`(title ILIKE $${paramCount} OR description ILIKE $${paramCount})`);
+      conditions.push(`(c.title ILIKE $${paramCount} OR c.description ILIKE $${paramCount})`);
       params.push(`%${search}%`);
     }
 
@@ -154,7 +154,7 @@ export const getAllCampaigns = async (filters = {}, pagination = {}) => {
 
     // Get total count
     const countResult = await query(
-      `SELECT COUNT(*) FROM campaigns WHERE ${whereClause}`,
+      `SELECT COUNT(*) FROM campaigns c WHERE ${whereClause}`,
       params
     );
     const total = parseInt(countResult.rows[0].count);
@@ -172,7 +172,7 @@ export const getAllCampaigns = async (filters = {}, pagination = {}) => {
        LEFT JOIN users u ON c.created_by = u.id
        LEFT JOIN organizations o ON c.primary_organization_id = o.id
        WHERE ${whereClause}
-       ORDER BY ${sortColumn} ${sortDirection}
+       ORDER BY c.${sortColumn} ${sortDirection}
        LIMIT $${paramCount + 1} OFFSET $${paramCount + 2}`,
       [...params, limit, offset]
     );
