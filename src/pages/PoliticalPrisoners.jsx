@@ -38,13 +38,42 @@ const mapJsonToComponentFormat = (jsonResults) => {
     const source = {
       name: output.source_url ? new URL(output.source_url).hostname.replace('www.', '') : 'Unknown',
       url: output.source_url,
-      type: output.source_url ? (
-        output.source_url.includes('hrw.org') ? 'NGO Report' :
-        output.source_url.includes('amnesty') ? 'NGO Report' :
-        output.source_url.includes('bbc.com') || output.source_url.includes('reuters') ? 'News Report' :
-        output.source_url.includes('.gov') ? 'Government' :
-        'News Report'
-      ) : 'Unknown',
+      type: output.source_url ? (() => {
+        const hostname = new URL(output.source_url).hostname.toLowerCase();
+        
+        // Whitelist of known credible sources by type
+        const ngoSources = new Set([
+          'www.hrw.org', 'hrw.org',
+          'www.amnesty.org', 'amnesty.org',
+          'www.frontlinedefenders.org', 'frontlinedefenders.org',
+          'pen.org', 'www.pen-international.org',
+          'chinaaid.org', 'www.article19.org',
+          'www.hongkongwatch.org', 'savetibet.org',
+          'southmongolia.org', 'www.ibanet.org'
+        ]);
+        
+        const newsSources = new Set([
+          'www.bbc.com', 'bbc.com',
+          'www.reuters.com', 'reuters.com',
+          'www.theguardian.com', 'theguardian.com',
+          'apnews.com', 'www.aljazeera.com',
+          'hongkongfp.com', 'www.npr.org',
+          'www.voanews.com', 'www.rfa.org',
+          'thechinaproject.com', 'aninews.in',
+          'news.artnet.com', 'www.pillarcatholic.com'
+        ]);
+        
+        const govSources = new Set([
+          'humanrightscommission.house.gov',
+          'www.ohchr.org'
+        ]);
+        
+        if (ngoSources.has(hostname)) return 'NGO Report';
+        if (newsSources.has(hostname)) return 'News Report';
+        if (govSources.has(hostname)) return 'Government';
+        
+        return 'News Report'; // Default fallback
+      })() : 'Unknown',
       verified: output.confidence === 'HIGH',
       description: output.latest_news || '',
       date: new Date().toISOString().split('T')[0]
