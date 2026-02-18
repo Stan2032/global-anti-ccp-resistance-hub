@@ -256,57 +256,59 @@ const processResearchSources = () => {
       let organization = '';
       let name = data.region;
       
-      // Parse URL to extract domain for safer comparison
+      // Parse URL to extract domain for categorization
+      // Note: These URLs come from trusted JSON data file, not user input
       let domain = '';
       try {
         const url = new URL(data.source_url);
         domain = url.hostname;
       } catch {
-        // If URL parsing fails, fall back to basic check
-        domain = data.source_url;
+        // If URL parsing fails, skip this entry
+        return;
       }
       
-      if (domain.includes('aspi.org.au')) {
+      // Categorize based on domain suffix (trusted sources only)
+      if (domain.endsWith('aspi.org.au')) {
         type = 'NGO Report';
         organization = 'Australian Strategic Policy Institute (ASPI)';
         name = 'ASPI Xinjiang Data Project';
-      } else if (domain.includes('rand.org')) {
+      } else if (domain.endsWith('rand.org')) {
         type = 'Academic Research';
         organization = 'RAND Corporation';
         name = 'Tibet Prison Analysis';
-      } else if (domain.includes('ap.org')) {
+      } else if (domain.endsWith('ap.org')) {
         type = 'News Report';
         organization = 'Associated Press';
         name = `AP Investigation: ${data.region}`;
-      } else if (domain.includes('savetibet.org')) {
+      } else if (domain.endsWith('savetibet.org')) {
         type = 'NGO Report';
         organization = 'International Campaign for Tibet';
         name = `Tibet Report: ${data.region}`;
-      } else if (domain.includes('wikipedia.org')) {
+      } else if (domain.endsWith('wikipedia.org')) {
         type = 'Reference';
         organization = 'Wikipedia';
         name = data.region;
-      } else if (domain.includes('hrw.org')) {
+      } else if (domain.endsWith('hrw.org')) {
         type = 'Human Rights Report';
         organization = 'Human Rights Watch';
         name = `HRW Report: ${data.region}`;
-      } else if (domain.includes('bitterwinter.org')) {
+      } else if (domain.endsWith('bitterwinter.org')) {
         type = 'News Report';
         organization = 'Bitter Winter';
         name = data.region;
-      } else if (domain.includes('csd.gov.hk')) {
+      } else if (domain.endsWith('csd.gov.hk')) {
         type = 'Government Document';
         organization = 'Hong Kong Correctional Services Department';
         name = 'Hong Kong Prison Facilities';
-      } else if (domain.includes('amnesty.org')) {
+      } else if (domain.endsWith('amnesty.org')) {
         type = 'Human Rights Report';
         organization = 'Amnesty International';
         name = 'Hong Kong Prison Conditions';
-      } else if (domain.includes('aninews.in')) {
+      } else if (domain.endsWith('aninews.in')) {
         type = 'News Report';
         organization = 'ANI News';
         name = data.region;
-      } else if (domain.includes('faluninfo.net')) {
+      } else if (domain.endsWith('faluninfo.net')) {
         type = 'News Report';
         organization = 'Falun Dafa Info Center';
         name = data.region;
