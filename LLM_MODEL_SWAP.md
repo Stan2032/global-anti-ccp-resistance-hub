@@ -211,10 +211,53 @@ New model should:
    - Documented findings and recommendations
    - Completed experiment documentation
 
+## Appendix B: Model Handoff Prompt Template
+
+When switching to a new LLM model (e.g., Opus 4.6) mid-session, use this prompt template to ensure smooth context transfer:
+
+```markdown
+# Context Handoff for [Model Name]
+
+I'm continuing work on an ongoing task. Please review the context below and continue as you deem best:
+
+## Current Task
+[Brief description of the main objective]
+
+## Work Completed So Far
+1. [Key accomplishment 1]
+2. [Key accomplishment 2]
+3. [Key accomplishment 3]
+
+## Current State
+- **Last Commit**: [Run: git log --oneline -1]
+- **Files Modified**: [Run: git status --short]
+- **Progress Checklist**: [Reference to latest progress report]
+
+## What's Next
+[Explicit next steps or "continue as you see fit" with context]
+
+## Key Context
+- Repository: [repo name and purpose]
+- Branch: [current branch]
+- Related Documentation: [list relevant docs created/modified]
+
+## Instructions
+1. Review recent commits: `git log --oneline -5`
+2. Check current progress in [specific file or commit]
+3. Continue the work following established patterns
+4. Maintain consistency with previous decisions documented in [location]
+
+Please confirm your understanding of the task and proposed approach before proceeding.
+```
+
+### Example Handoff Prompt for This Experiment
+
+See `LLM_MODEL_SWAP_HANDOFF_PROMPT.md` for a ready-to-use prompt template for continuing this specific experiment.
+
 ## Document Status
 
-- **Version**: 1.0
-- **Status**: Complete
+- **Version**: 1.1
+- **Status**: Complete with handoff template
 - **Last Updated**: February 18, 2026
 - **Next Review**: After additional swap experiments
 
