@@ -4,47 +4,15 @@ import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
-import SearchWrapper, { SearchButton } from './components/SearchWrapper'
+import { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
+import useDocumentTitle from './hooks/useDocumentTitle'
+import ErrorBoundary from './components/ErrorBoundary'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+import RouteAnnouncer from './components/RouteAnnouncer'
 import QuickStartGuide from './components/QuickStartGuide'
 import PWAInstallBanner from './components/PWAInstallBanner'
-
-// Error Boundary Component
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="bg-slate-900 min-h-screen flex items-center justify-center flex-col text-white p-8">
-          <h1 className="text-2xl font-bold mb-4 text-red-500">Something went wrong</h1>
-          <p className="text-slate-400 max-w-md text-center mb-6">
-            {this.state.error?.message || 'An unexpected error occurred'}
-          </p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
-          >
-            Reload Page
-          </button>
-        </div>
-      );
-    }
-    return this.props.children;
-  }
-}
 
 // Loading component
 const LoadingScreen = () => (
@@ -134,10 +102,14 @@ const MobileNav = ({ isOpen, onClose }) => {
       <div 
         className="fixed inset-0 bg-black/60 z-40 lg:hidden"
         onClick={onClose}
+        aria-hidden="true"
       />
       
       {/* Slide-out menu */}
-      <nav className="fixed top-14 left-0 bottom-0 w-72 bg-slate-800 z-50 overflow-y-auto lg:hidden transform transition-transform duration-200">
+      <nav
+        className="fixed top-14 left-0 bottom-0 w-72 bg-slate-800 z-50 overflow-y-auto lg:hidden transform transition-transform duration-200"
+        aria-label="Mobile navigation"
+      >
         <div className="p-4 space-y-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
@@ -146,6 +118,7 @@ const MobileNav = ({ isOpen, onClose }) => {
                 key={item.href}
                 to={item.href}
                 onClick={onClose}
+                aria-current={isActive ? 'page' : undefined}
                 className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white'
@@ -259,6 +232,7 @@ const DesktopSidebar = () => {
                   <Link
                     key={item.href}
                     to={item.href}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
@@ -308,12 +282,9 @@ const DesktopSidebar = () => {
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const location = useLocation();
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
+  // Update document title based on current route
+  useDocumentTitle();
 
   // Global keyboard shortcut for search
   useEffect(() => {
@@ -331,6 +302,12 @@ function AppLayout() {
     <div className="min-h-screen bg-slate-900">
       {/* Skip Links for Accessibility */}
       <SkipLinks />
+      
+      {/* Scroll to top and focus main content on route change */}
+      <ScrollToTop />
+      
+      {/* Announce route changes to screen readers */}
+      <RouteAnnouncer />
       
       {/* Desktop Sidebar */}
       <DesktopSidebar />
@@ -389,12 +366,20 @@ function AppLayout() {
               <Route path="/data-sources" element={<DataSources />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
-                  <div className="text-center">
-                    <h1 className="text-4xl font-bold text-white mb-4">404</h1>
-                    <p className="text-slate-400 mb-6">Page not found</p>
-                    <Link to="/" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                      Go Home
-                    </Link>
+                  <div className="text-center max-w-md">
+                    <h1 className="text-6xl font-bold text-white mb-2">404</h1>
+                    <h2 className="text-xl font-semibold text-slate-300 mb-4">Page not found</h2>
+                    <p className="text-slate-400 mb-8">
+                      The page you're looking for doesn't exist or has been moved to a different location.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <Link to="/" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                        Go to Dashboard
+                      </Link>
+                      <Link to="/data-sources" className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors">
+                        View Data Sources
+                      </Link>
+                    </div>
                   </div>
                 </div>
               } />

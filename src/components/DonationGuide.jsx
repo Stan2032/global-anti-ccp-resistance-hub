@@ -447,14 +447,7 @@ const DonationGuide = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-xs text-slate-500">
-        <p>
-          <strong>Disclaimer:</strong> This guide is for informational purposes only. We do not receive 
-          any compensation from listed organizations. Always verify an organization's current status 
-          and tax-deductibility before donating. Ratings are based on publicly available information 
-          about impact, transparency, and reputation.
-        </p>
-      </div>
+      <GlobalDisclaimer type="sensitive" compact />
     </div>
   );
 };

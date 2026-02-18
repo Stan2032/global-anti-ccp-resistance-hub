@@ -144,13 +144,25 @@ code {
   background: #64748b;
 }
 
-/* Smooth transitions */
-* {
-  transition: all 0.2s ease-in-out;
+/* Smooth transitions - scoped to interactive elements only for performance */
+a, button, input, select, textarea,
+[role="button"], [tabindex] {
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+    opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Focus styles */
+/* Focus styles - only show the visible outline for keyboard users */
 *:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }

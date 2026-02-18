@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, Info, ExternalLink, Search } from 'lucide-react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const MediaBiasGuide = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -247,9 +248,7 @@ const MediaBiasGuide = () => {
         <p className="text-slate-300 text-sm mb-2">
           This guide helps you evaluate the reliability of news sources covering China. Always cross-reference multiple sources and check primary documents when possible.
         </p>
-        <p className="text-slate-300 text-sm">
-          <strong>Key Principle:</strong> Even trustworthy sources can make mistakes. Always verify important claims with multiple independent sources.
-        </p>
+        <GlobalDisclaimer type="verify" compact />
       </div>
 
       {/* Search and Filter */}

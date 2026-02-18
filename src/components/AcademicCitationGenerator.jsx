@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Copy, CheckCircle, FileText, ExternalLink } from 'lucide-react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const AcademicCitationGenerator = () => {
   const [citationStyle, setCitationStyle] = useState('APA');
@@ -195,9 +196,7 @@ const AcademicCitationGenerator = () => {
           Select your preferred citation style below, then click the copy button next to any citation. 
           All citations are pre-formatted for major academic styles.
         </p>
-        <p className="text-slate-300 text-sm">
-          <strong>Tip:</strong> Always verify citations with your institution's style guide, as requirements may vary.
-        </p>
+        <GlobalDisclaimer type="verify" compact />
       </div>
 
       {/* Citation Style Selector */}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const ForcedLabourList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -431,11 +432,7 @@ const ForcedLabourList = () => {
                         </li>
                       ))}
                     </ul>
-                    <p className="text-xs text-slate-400 mt-2">
-                      <strong>⚠️ Verification Required:</strong> Some alternatives listed may still have Chinese components. 
-                      See <a href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/blob/master/CHINA_EXPOSURE_CRITERIA.md" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">China Exposure Criteria</a> for details.
-                      Always verify current manufacturing locations before purchase.
-                    </p>
+                    <GlobalDisclaimer type="verify" compact />
                   </div>
                 )}
               </div>

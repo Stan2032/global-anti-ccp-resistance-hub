@@ -64,17 +64,18 @@ This platform serves as a centralized resource for:
 ## Technology Stack
 
 ### Frontend
-- React 18 with Vite
+- React 19 with Vite
 - TailwindCSS for styling
 - Framer Motion for animations
 - Socket.IO client for real-time updates
-- React Router for navigation
+- React Router v7 for navigation
+- Lucide React for icons
 
 ### Backend
 - Node.js with Express
 - Socket.IO for WebSocket connections
 - RSS Parser for feed aggregation
-- SQLite/PostgreSQL for data storage
+- PostgreSQL for data storage
 
 ## Installation
 
@@ -85,17 +86,24 @@ This platform serves as a centralized resource for:
 ### Frontend Setup
 ```bash
 cd global-anti-ccp-resistance-hub
-pnpm install
-pnpm dev
+cp .env.example .env    # Configure environment variables
+npm install
+npm run dev
+```
+
+### Running Tests
+```bash
+npm test                # Run all frontend tests
+npm run test:watch      # Watch mode
 ```
 
 ### Backend Setup
 ```bash
 cd backend
-pnpm install
+npm install
 cp .env.example .env
 # Configure your environment variables
-pnpm start
+npm start
 ```
 
 ## API Endpoints
@@ -168,6 +176,8 @@ We welcome contributions from researchers, developers, and activists.
 - Mobile app development
 - Integration with additional data sources
 - Accessibility improvements
+
+Please see [STYLE_GUIDE.md](STYLE_GUIDE.md) for visual design and component conventions.
 
 ## License
 
