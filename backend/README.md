@@ -144,7 +144,7 @@ src/
 
 ## API Endpoints
 
-### Authentication
+### Authentication (✅ Fully Implemented)
 - `POST /api/v1/auth/register` - Register new user
 - `POST /api/v1/auth/login` - Login user
 - `POST /api/v1/auth/refresh` - Refresh access token
@@ -152,63 +152,72 @@ src/
 - `POST /api/v1/auth/forgot-password` - Request password reset
 - `POST /api/v1/auth/reset-password` - Reset password
 - `POST /api/v1/auth/logout` - Logout user
+- `GET /api/v1/auth/me` - Get current user
 
-### Users
-- `GET /api/v1/users/me` - Get current user
-- `GET /api/v1/users/:id` - Get user by ID
-- `PUT /api/v1/users/:id` - Update user profile
-- `GET /api/v1/users/:id/settings` - Get user settings
-- `PUT /api/v1/users/:id/settings` - Update user settings
+### Users (✅ Fully Implemented)
+- `GET /api/v1/users/profile` - Get own profile
+- `PUT /api/v1/users/profile` - Update own profile
+- `PUT /api/v1/users/settings` - Update user settings
+- `GET /api/v1/users/:id` - Get user by ID (admin/moderator only)
+- `GET /api/v1/users/username/:username` - Get public profile by username
+- `GET /api/v1/users` - List users (admin/moderator only)
+- `DELETE /api/v1/users/:id` - Delete user (admin only)
 
-### Organizations
-- `GET /api/v1/organizations` - List organizations
-- `POST /api/v1/organizations` - Create organization
-- `GET /api/v1/organizations/:id` - Get organization
-- `PUT /api/v1/organizations/:id` - Update organization
-- `DELETE /api/v1/organizations/:id` - Delete organization
+### Organizations (✅ Fully Implemented)
+- `GET /api/v1/organizations` - List organizations with filters (search, verification status, type, country, focus area)
+- `GET /api/v1/organizations/search` - Search organizations
+- `GET /api/v1/organizations/:id` - Get organization by ID or slug
+- `POST /api/v1/organizations` - Create organization (authenticated)
+- `PUT /api/v1/organizations/:id` - Update organization (admin only)
+- `DELETE /api/v1/organizations/:id` - Delete organization (admin only)
+- `POST /api/v1/organizations/:id/verify` - Verify organization (admin only)
 
-### Campaigns
-- `GET /api/v1/campaigns` - List campaigns
-- `POST /api/v1/campaigns` - Create campaign
-- `GET /api/v1/campaigns/:id` - Get campaign
-- `PUT /api/v1/campaigns/:id` - Update campaign
-- `POST /api/v1/campaigns/:id/join` - Join campaign
-- `DELETE /api/v1/campaigns/:id/leave` - Leave campaign
+### Campaigns (✅ Fully Implemented)
+- `GET /api/v1/campaigns` - List campaigns with filters (search, status, type, priority, country, organization)
+- `GET /api/v1/campaigns/:id` - Get campaign by ID or slug
+- `GET /api/v1/campaigns/:id/members` - Get campaign members
+- `POST /api/v1/campaigns` - Create campaign (authenticated)
+- `PUT /api/v1/campaigns/:id` - Update campaign (creator or admin)
+- `DELETE /api/v1/campaigns/:id` - Delete campaign (creator or admin)
+- `POST /api/v1/campaigns/:id/join` - Join campaign (authenticated)
+- `POST /api/v1/campaigns/:id/leave` - Leave campaign (authenticated)
+- `POST /api/v1/campaigns/:id/progress` - Update campaign progress (creator or admin)
 
-### Intelligence
-- `GET /api/v1/intelligence` - List intelligence reports
-- `POST /api/v1/intelligence` - Create report
-- `GET /api/v1/intelligence/:id` - Get report
+### Intelligence (✅ Partially Implemented - Mock Data)
+- `GET /api/v1/intelligence/sources` - List intelligence sources
+- `GET /api/v1/intelligence/databases` - Research databases
+- `GET /api/v1/intelligence/tactics` - CCP tactics documentation
+- `GET /api/v1/intelligence/prisoners` - Political prisoners list
+- `GET /api/v1/intelligence/prisoners/:name` - Specific prisoner details
+- `GET /api/v1/intelligence/officials` - Sanctioned CCP officials
+- `GET /api/v1/intelligence/threats/*` - Regional threat assessments
+- `POST /api/v1/intelligence/analyze` - Analyze text for CCP relevance
 
-### Support Requests
-- `GET /api/v1/support-requests` - List requests
-- `POST /api/v1/support-requests` - Create request
-- `POST /api/v1/support-requests/:id/offer-help` - Offer help
+### Feeds (✅ Fully Implemented)
+- `GET /api/v1/feeds` - List feed items with filters
+- `GET /api/v1/feeds/sources` - List feed sources
+- `GET /api/v1/feeds/stats` - Feed statistics
+- `GET /api/v1/feeds/:id` - Get single feed item
+- `POST /api/v1/feeds/:id/share` - Track share event
+- `POST /api/v1/feeds/poll` - Trigger immediate poll (admin)
 
-### Channels
-- `GET /api/v1/channels` - List channels
-- `POST /api/v1/channels` - Create channel
-- `POST /api/v1/channels/:id/join` - Join channel
-- `GET /api/v1/channels/:id/messages` - Get messages
-- `POST /api/v1/channels/:id/messages` - Send message
+### Support Requests (⏳ Stub Only)
+- Endpoints defined but not yet implemented
 
-### Modules
-- `GET /api/v1/modules` - List modules
-- `POST /api/v1/modules/:id/enroll` - Enroll in module
-- `GET /api/v1/modules/:id/progress` - Get progress
+### Channels (⏳ Stub Only)
+- Endpoints defined but not yet implemented
 
-### Notifications
-- `GET /api/v1/notifications` - List notifications
-- `POST /api/v1/notifications/:id/read` - Mark as read
-- `DELETE /api/v1/notifications/:id` - Delete notification
+### Modules (⏳ Stub Only)
+- Endpoints defined but not yet implemented
 
-### Statistics
-- `GET /api/v1/statistics` - Get all statistics
-- `GET /api/v1/statistics/organizations` - Organization stats
-- `GET /api/v1/statistics/campaigns` - Campaign stats
+### Notifications (⏳ Stub Only)
+- Endpoints defined but not yet implemented
 
-### Search
-- `GET /api/v1/search?q=query` - Global search
+### Statistics (⏳ Stub Only)
+- Endpoints defined but not yet implemented
+
+### Search (⏳ Stub Only)
+- Endpoints defined but not yet implemented
 
 ## Environment Variables
 
@@ -224,22 +233,76 @@ Key variables:
 
 ## Database
 
+### Development Mode (In-Memory Mock Database)
+
+For development and testing without PostgreSQL, the backend automatically uses an in-memory mock database when:
+- `DATABASE_URL` starts with `sqlite://`, or
+- `NODE_ENV` is not set to `production`
+
+This allows you to run the backend without setting up PostgreSQL:
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+The mock database includes:
+- All table structures
+- Pre-seeded feed sources (ICIJ, Radio Free Asia, Hong Kong Free Press, ASPI)
+- Basic CRUD operations support
+- Support for authentication and feed operations
+
+**Note:** Data is lost when the server restarts in mock mode.
+
+### Production Mode (PostgreSQL)
+
+For production with PostgreSQL:
+
+1. Set up PostgreSQL database:
+```bash
+createdb resistance_hub
+```
+
+2. Update `.env` with PostgreSQL connection:
+```env
+NODE_ENV=production
+DATABASE_URL=postgresql://username:password@localhost:5432/resistance_hub
+```
+
+3. Run migrations:
+```bash
+npm run setup-db
+```
+
+This will:
+- Create all tables
+- Set up indexes
+- Insert default roles
+- Seed initial feed sources
+
 ### Migrations
 
 ```bash
-# Run migrations
-npm run migrate
+# Run all migrations
+npm run setup-db
 
-# Rollback migrations
-npm run migrate:rollback
-
-# Seed database
-npm run seed
+# Or manually run migrations
+node scripts/setup-db.js
 ```
 
 ### Schema
 
-See `PHASE_0_DATABASE_SCHEMA.md` for complete database design.
+Complete database schema includes:
+- **Users & Auth**: users, roles, user_roles, auth_tokens
+- **Organizations**: organizations with verification workflow
+- **Campaigns**: campaigns, campaign_members with progress tracking
+- **Intelligence**: intelligence_reports, feed_sources, feed_items
+- **Community**: support_requests, help_offers, channels, channel_members, messages
+- **Education**: modules, module_enrollments
+- **System**: notifications, audit_logs, analytics_events, files
+
+See migration files in `src/db/migrations/` for complete schema.
 
 ## Security
 
