@@ -8,5 +8,11 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: 'all'
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/test/setup.js',
+    include: ['src/**/*.test.{js,jsx,ts,tsx}'],
   }
 })

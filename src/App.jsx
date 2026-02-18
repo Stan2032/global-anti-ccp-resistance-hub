@@ -6,6 +6,7 @@ import LanguageSelector, { LanguageProvider } from './components/LanguageSelecto
 import { SkipLinks } from './components/Accessibility'
 import SearchWrapper, { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
+import useDocumentTitle from './hooks/useDocumentTitle'
 import Footer from './components/Footer'
 import QuickStartGuide from './components/QuickStartGuide'
 import PWAInstallBanner from './components/PWAInstallBanner'
@@ -310,6 +311,9 @@ function AppLayout() {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
+  // Update document title based on current route
+  useDocumentTitle();
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -389,12 +393,20 @@ function AppLayout() {
               <Route path="/data-sources" element={<DataSources />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
-                  <div className="text-center">
-                    <h1 className="text-4xl font-bold text-white mb-4">404</h1>
-                    <p className="text-slate-400 mb-6">Page not found</p>
-                    <Link to="/" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                      Go Home
-                    </Link>
+                  <div className="text-center max-w-md">
+                    <h1 className="text-6xl font-bold text-white mb-2">404</h1>
+                    <h2 className="text-xl font-semibold text-slate-300 mb-4">Page not found</h2>
+                    <p className="text-slate-400 mb-8">
+                      The page you're looking for doesn't exist or has been moved to a different location.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <Link to="/" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                        Go to Dashboard
+                      </Link>
+                      <Link to="/data-sources" className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors">
+                        View Data Sources
+                      </Link>
+                    </div>
                   </div>
                 </div>
               } />
