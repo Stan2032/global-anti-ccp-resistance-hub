@@ -28,30 +28,16 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 - [x] Created `EmptyState.jsx` component
 - [x] Fixed RSS feed aggregation (no fake fallbacks)
 - [x] Created comprehensive DATA_SOURCES.md
+- [x] **C1.1** ✅ Refactored PoliticalPrisoners.jsx (60 prisoners, 100% sources, security fix)
+- [x] **C1.2** ✅ Refactored DetentionFacilities.jsx (20 regions, 17 unique sources, hybrid approach)
 
 #### Next Actions (Can Execute Now)
-- [x] **C1.1** ✅ COMPLETED - Refactor PoliticalPrisoners.jsx to use `political_prisoners_research.json`
-  - Component: 1,149 lines → refactored to use JSON data
-  - JSON file: 60 prisoners with source URLs (up from ~25 hardcoded)
-  - SourceAttribution added to cards and modals
-  - Security fix: URL sanitization vulnerability
-  - **Completed:** 2026-02-18
-  - **Result:** 100% data transparency, all prisoners have verified sources
-
-- [ ] **C1.2** Refactor DetentionFacilities.jsx to use `detention_facilities_research.json`
-  - Component: 572 lines hardcoded
-  - JSON file has proper source URLs
-  - Link to ASPI satellite imagery
-  - **Time:** 3-4 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE - Next priority
-
 - [ ] **C1.3** Refactor CCPOfficials.jsx to use `sanctioned_officials_research.json`
   - Component: 526 lines hardcoded
   - Link to official sanction lists
   - **Time:** 2-3 hours
   - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+  - **Agent Decision:** EXECUTE - Next priority
 
 - [ ] **C1.4** Refactor CompanyTracker.jsx to use `forced_labor_companies_research.json`
   - Component: 424 lines
