@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Brain, AlertTriangle, CheckCircle, Search, ExternalLink, TrendingUp, Eye } from 'lucide-react';
+import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const AIDisinfoDetector = () => {
   const [inputText, setInputText] = useState('');
@@ -149,9 +150,7 @@ const AIDisinfoDetector = () => {
           This tool analyzes text for common CCP propaganda patterns including denial, whataboutism, deflection, euphemisms, and victim blaming. 
           It provides a risk score based on detected patterns.
         </p>
-        <p className="text-slate-300 text-sm">
-          <strong>Note:</strong> This is a pattern-matching tool, not a replacement for critical thinking. Always verify information with multiple credible sources.
-        </p>
+        <GlobalDisclaimer type="verify" compact />
       </div>
 
       {/* Input Area */}
