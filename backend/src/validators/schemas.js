@@ -115,21 +115,44 @@ export const organizationFilterSchema = Joi.object({
 export const createCampaignSchema = Joi.object({
   title: Joi.string().max(255).required().messages(messages),
   description: Joi.string().required().messages(messages),
+  longDescription: Joi.string(),
+  bannerImageUrl: Joi.string().uri().max(500),
   campaignType: Joi.string().max(100),
-  status: Joi.string().valid('active', 'paused', 'completed', 'archived'),
-  priority: Joi.string().valid('critical', 'high', 'medium', 'low'),
+  status: Joi.string().valid('active', 'paused', 'completed', 'archived').default('active'),
+  priority: Joi.string().valid('critical', 'high', 'medium', 'low').default('medium'),
   goalDescription: Joi.string(),
   targetMetric: Joi.string().max(255),
   targetValue: Joi.number().integer().min(0),
   startDate: Joi.date().required().messages(messages),
   endDate: Joi.date().min(Joi.ref('startDate')),
-  targetCountries: Joi.array().items(Joi.string().length(2))
+  primaryOrganizationId: Joi.number().integer(),
+  targetCountries: Joi.array().items(Joi.string().max(100)),
+  twitterHashtag: Joi.string().max(100),
+  facebookEventUrl: Joi.string().uri().max(500)
 });
 
 export const updateCampaignSchema = createCampaignSchema.fork(
   ['title', 'description', 'startDate'],
   schema => schema.optional()
 );
+
+export const campaignFilterSchema = Joi.object({
+  search: Joi.string().max(255),
+  status: Joi.string().valid('active', 'paused', 'completed', 'archived'),
+  campaignType: Joi.string().max(100),
+  priority: Joi.string().valid('critical', 'high', 'medium', 'low'),
+  country: Joi.string().max(100),
+  organizationId: Joi.number().integer(),
+  createdBy: Joi.number().integer(),
+  page: Joi.number().integer().min(1).default(1),
+  limit: Joi.number().integer().min(1).max(100).default(20),
+  sortBy: Joi.string().valid('created_at', 'updated_at', 'title', 'start_date', 'end_date', 'member_count', 'progress_percentage').default('created_at'),
+  sortOrder: Joi.string().valid('ASC', 'DESC').default('DESC')
+});
+
+export const updateProgressSchema = Joi.object({
+  currentValue: Joi.number().integer().min(0).required().messages(messages)
+});
 
 // Intelligence schemas
 export const createIntelligenceSchema = Joi.object({
