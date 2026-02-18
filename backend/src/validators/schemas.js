@@ -78,9 +78,17 @@ export const createOrganizationSchema = Joi.object({
   description: Joi.string().required().messages(messages),
   website: Joi.string().uri().max(500),
   email: Joi.string().email(),
-  country: Joi.string().length(2),
-  type: Joi.string().max(100),
+  phone: Joi.string().max(20),
+  headquartersCountry: Joi.string().max(100),
+  headquartersCity: Joi.string().max(100),
+  operatingCountries: Joi.array().items(Joi.string().max(100)),
+  foundedYear: Joi.number().integer().min(1800).max(new Date().getFullYear()),
+  organizationType: Joi.string().max(100),
   focusAreas: Joi.array().items(Joi.string()),
+  logoUrl: Joi.string().uri().max(500),
+  twitterHandle: Joi.string().max(100),
+  facebookPage: Joi.string().max(255),
+  instagramHandle: Joi.string().max(100),
   primaryContactName: Joi.string().max(255),
   primaryContactEmail: Joi.string().email(),
   primaryContactPhone: Joi.string().max(20)
@@ -90,6 +98,18 @@ export const updateOrganizationSchema = createOrganizationSchema.fork(
   ['name', 'description'],
   schema => schema.optional()
 );
+
+export const organizationFilterSchema = Joi.object({
+  search: Joi.string().max(255),
+  verificationStatus: Joi.string().valid('unverified', 'pending', 'verified', 'rejected'),
+  organizationType: Joi.string().max(100),
+  country: Joi.string().max(100),
+  focusArea: Joi.string().max(100),
+  page: Joi.number().integer().min(1).default(1),
+  limit: Joi.number().integer().min(1).max(100).default(20),
+  sortBy: Joi.string().valid('created_at', 'updated_at', 'name', 'member_count', 'trust_score').default('created_at'),
+  sortOrder: Joi.string().valid('ASC', 'DESC').default('DESC')
+});
 
 // Campaign schemas
 export const createCampaignSchema = Joi.object({
