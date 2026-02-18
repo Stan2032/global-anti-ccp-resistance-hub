@@ -4,7 +4,7 @@ import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
-import SearchWrapper, { SearchButton } from './components/SearchWrapper'
+import { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import useDocumentTitle from './hooks/useDocumentTitle'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -102,10 +102,14 @@ const MobileNav = ({ isOpen, onClose }) => {
       <div 
         className="fixed inset-0 bg-black/60 z-40 lg:hidden"
         onClick={onClose}
+        aria-hidden="true"
       />
       
       {/* Slide-out menu */}
-      <nav className="fixed top-14 left-0 bottom-0 w-72 bg-slate-800 z-50 overflow-y-auto lg:hidden transform transition-transform duration-200">
+      <nav
+        className="fixed top-14 left-0 bottom-0 w-72 bg-slate-800 z-50 overflow-y-auto lg:hidden transform transition-transform duration-200"
+        aria-label="Mobile navigation"
+      >
         <div className="p-4 space-y-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
@@ -114,6 +118,7 @@ const MobileNav = ({ isOpen, onClose }) => {
                 key={item.href}
                 to={item.href}
                 onClick={onClose}
+                aria-current={isActive ? 'page' : undefined}
                 className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white'
@@ -227,6 +232,7 @@ const DesktopSidebar = () => {
                   <Link
                     key={item.href}
                     to={item.href}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
