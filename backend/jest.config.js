@@ -1,6 +1,7 @@
 export default {
   testEnvironment: 'node',
   transform: {},
+  extensionsToTreatAsEsm: ['.js'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
@@ -9,5 +10,8 @@ export default {
     'src/**/*.js',
     '!src/server.js',
     '!src/tests/**'
-  ]
+  ],
+  globals: {
+    'NODE_ENV': 'test'
+  }
 };

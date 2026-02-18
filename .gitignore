@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Test coverage
+coverage
+*.lcov
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backend specific
+backend/node_modules
+backend/dist
+backend/coverage
+backend/test.db
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

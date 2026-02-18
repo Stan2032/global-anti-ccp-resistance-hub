@@ -73,6 +73,54 @@ export const updateSettingsSchema = Joi.object({
 });
 
 // Organization schemas
+export const organizationSchema = Joi.object({
+  name: Joi.string().max(255).required().messages(messages),
+  description: Joi.string().allow('').optional(),
+  logo_url: Joi.string().uri().max(500).allow(null, '').optional(),
+  website: Joi.string().uri().max(500).allow(null, '').optional(),
+  email: Joi.string().email().allow(null, '').optional(),
+  phone: Joi.string().max(20).allow(null, '').optional(),
+  headquarters_country: Joi.string().max(100).allow(null, '').optional(),
+  headquarters_city: Joi.string().max(100).allow(null, '').optional(),
+  operating_countries: Joi.array().items(Joi.string().max(100)).optional(),
+  founded_year: Joi.number().integer().min(1800).max(new Date().getFullYear()).allow(null).optional(),
+  organization_type: Joi.string().max(100).allow(null, '').optional(),
+  focus_areas: Joi.array().items(Joi.string().max(100)).optional(),
+  twitter_handle: Joi.string().max(100).allow(null, '').optional(),
+  facebook_page: Joi.string().max(255).allow(null, '').optional(),
+  instagram_handle: Joi.string().max(100).allow(null, '').optional(),
+  primary_contact_name: Joi.string().max(255).allow(null, '').optional(),
+  primary_contact_email: Joi.string().email().allow(null, '').optional(),
+  primary_contact_phone: Joi.string().max(20).allow(null, '').optional()
+});
+
+export const organizationUpdateSchema = Joi.object({
+  name: Joi.string().max(255).optional(),
+  description: Joi.string().allow('').optional(),
+  logo_url: Joi.string().uri().max(500).allow(null, '').optional(),
+  website: Joi.string().uri().max(500).allow(null, '').optional(),
+  email: Joi.string().email().allow(null, '').optional(),
+  phone: Joi.string().max(20).allow(null, '').optional(),
+  headquarters_country: Joi.string().max(100).allow(null, '').optional(),
+  headquarters_city: Joi.string().max(100).allow(null, '').optional(),
+  operating_countries: Joi.array().items(Joi.string().max(100)).optional(),
+  founded_year: Joi.number().integer().min(1800).max(new Date().getFullYear()).allow(null).optional(),
+  organization_type: Joi.string().max(100).allow(null, '').optional(),
+  focus_areas: Joi.array().items(Joi.string().max(100)).optional(),
+  twitter_handle: Joi.string().max(100).allow(null, '').optional(),
+  facebook_page: Joi.string().max(255).allow(null, '').optional(),
+  instagram_handle: Joi.string().max(100).allow(null, '').optional(),
+  primary_contact_name: Joi.string().max(255).allow(null, '').optional(),
+  primary_contact_email: Joi.string().email().allow(null, '').optional(),
+  primary_contact_phone: Joi.string().max(20).allow(null, '').optional(),
+  verification_status: Joi.string().valid('unverified', 'pending', 'verified', 'rejected').optional()
+});
+
+export const organizationSuggestionSchema = Joi.object({
+  proposed_changes: Joi.object().required().messages(messages),
+  reason: Joi.string().max(1000).allow('').optional()
+});
+
 export const createOrganizationSchema = Joi.object({
   name: Joi.string().max(255).required().messages(messages),
   description: Joi.string().required().messages(messages),
