@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown, ChevronUp } from 'lucide-react';
+import { SourcesList } from './ui/SourceAttribution';
+import detentionResearchData from '../data/detention_facilities_research.json';
 
 const facilities = [
   // Xinjiang
@@ -231,6 +233,90 @@ const facilities = [
 const regions = ['All Regions', 'Xinjiang', 'Tibet', 'Hong Kong', 'Mainland China'];
 const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Maximum Security Prison', 'Secret Detention'];
 const statuses = ['All Statuses', 'Active', 'Closed', 'Unknown'];
+
+// Process research data into source attribution format
+const MAX_DESCRIPTION_LENGTH = 100;
+
+// Trusted source domain mappings for categorization
+const TRUSTED_SOURCES = {
+  'xjdp.aspi.org.au': { type: 'NGO Report', org: 'Australian Strategic Policy Institute (ASPI)', name: 'ASPI Xinjiang Data Project' },
+  'www.rand.org': { type: 'Academic Research', org: 'RAND Corporation', name: 'Tibet Prison Analysis' },
+  'www.ap.org': { type: 'News Report', org: 'Associated Press', nameTemplate: 'AP Investigation: {region}' },
+  'savetibet.org': { type: 'NGO Report', org: 'International Campaign for Tibet', nameTemplate: 'Tibet Report: {region}' },
+  'en.wikipedia.org': { type: 'Reference', org: 'Wikipedia', nameTemplate: '{region}' },
+  'www.hrw.org': { type: 'Human Rights Report', org: 'Human Rights Watch', nameTemplate: 'HRW Report: {region}' },
+  'bitterwinter.org': { type: 'News Report', org: 'Bitter Winter', nameTemplate: '{region}' },
+  'www.csd.gov.hk': { type: 'Government Document', org: 'Hong Kong Correctional Services Department', name: 'Hong Kong Prison Facilities' },
+  'www.amnesty.org': { type: 'Human Rights Report', org: 'Amnesty International', name: 'Hong Kong Prison Conditions' },
+  'www.aninews.in': { type: 'News Report', org: 'ANI News', nameTemplate: '{region}' },
+  'faluninfo.net': { type: 'News Report', org: 'Falun Dafa Info Center', nameTemplate: '{region}' }
+};
+
+const truncateDescription = (text, maxLength) => {
+  if (!text) return 'See source';
+  return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+};
+
+const categorizeDomain = (domain, region) => {
+  // Check exact domain match first
+  if (TRUSTED_SOURCES[domain]) {
+    const source = TRUSTED_SOURCES[domain];
+    return {
+      type: source.type,
+      organization: source.org,
+      name: source.name || (source.nameTemplate ? source.nameTemplate.replace('{region}', region) : region),
+      verified: source.type === 'Government Document' || source.type === 'Academic Research' || 
+               source.org.includes('ASPI') || source.org.includes('RAND')
+    };
+  }
+  
+  // Fallback for generic sources
+  return {
+    type: 'Research Report',
+    organization: '',
+    name: region,
+    verified: false
+  };
+};
+
+const processResearchSources = () => {
+  const sources = [];
+  const seen = new Set();
+  
+  detentionResearchData.results.forEach(result => {
+    const data = result.output;
+    if (data.source_url && !seen.has(data.source_url)) {
+      seen.add(data.source_url);
+      
+      // Parse URL to extract domain (trusted data source, not user input)
+      let domain = '';
+      try {
+        const url = new URL(data.source_url);
+        domain = url.hostname;
+      } catch {
+        // If URL parsing fails, skip this entry
+        return;
+      }
+      
+      // Categorize using exact domain matching
+      const category = categorizeDomain(domain, data.region);
+      
+      sources.push({
+        name: category.name,
+        url: data.source_url,
+        type: category.type,
+        organization: category.organization,
+        verified: category.verified,
+        description: `Facility count: ${data.facility_count || 'Unknown'}. Key facilities: ${truncateDescription(data.key_facilities, MAX_DESCRIPTION_LENGTH)}`,
+        date: 'Accessed 2024'
+      });
+    }
+  });
+  
+  return sources;
+};
+
+const researchSources = processResearchSources();
 
 export default function DetentionFacilities() {
   const [selectedRegion, setSelectedRegion] = useState('All Regions');
@@ -566,6 +652,15 @@ export default function DetentionFacilities() {
             </div>
           </a>
         </div>
+      </div>
+
+      {/* Research Sources */}
+      <div className="mt-6">
+        <SourcesList 
+          sources={researchSources} 
+          title="Research & Data Sources"
+          compact={false}
+        />
       </div>
     </div>
   );

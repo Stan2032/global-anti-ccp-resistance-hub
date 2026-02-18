@@ -1,8 +1,135 @@
 import React, { useState } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
+import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
 import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+import sanctionedOfficialsData from '../data/sanctioned_officials_research.json';
 
-const officials = [
+// Helper function to map JSON sanction data to component format
+const mapSanctionData = (jsonOfficial) => {
+  const sanctionedBy = [];
+  if (jsonOfficial.us_sanctions && jsonOfficial.us_sanctions.toLowerCase().startsWith('yes')) {
+    sanctionedBy.push('USA');
+  }
+  if (jsonOfficial.uk_sanctions && jsonOfficial.uk_sanctions.toLowerCase().startsWith('yes')) {
+    sanctionedBy.push('UK');
+  }
+  if (jsonOfficial.eu_sanctions && jsonOfficial.eu_sanctions.toLowerCase().startsWith('yes')) {
+    sanctionedBy.push('EU');
+  }
+  if (jsonOfficial.canada_sanctions && jsonOfficial.canada_sanctions.toLowerCase().startsWith('yes')) {
+    sanctionedBy.push('Canada');
+  }
+  if (jsonOfficial.australia_sanctions && jsonOfficial.australia_sanctions.toLowerCase().startsWith('yes')) {
+    sanctionedBy.push('Australia');
+  }
+  return sanctionedBy;
+};
+
+// Helper function to determine level based on responsibility area
+const getOfficialLevel = (responsibilityArea) => {
+  if (responsibilityArea === 'National' || responsibilityArea === 'General') {
+    return 'National';
+  }
+  return 'Provincial';
+};
+
+// Helper function to determine category based on responsibility area
+const getOfficialCategory = (responsibilityArea) => {
+  const categoryMap = {
+    'Hong Kong': 'Regional',
+    'Tibet': 'Regional',
+    'Xinjiang': 'Regional',
+    'General': 'Leadership'
+  };
+  return categoryMap[responsibilityArea] || 'Security';
+};
+
+// Helper function to get source name based on sanctions
+const getSourceName = (sanctionedBy) => {
+  const sourceMap = {
+    'USA': 'US Treasury OFAC',
+    'UK': 'UK Foreign Office',
+    'EU': 'EU Sanctions',
+    'Canada': 'Canada Global Affairs'
+  };
+  
+  for (const country of ['USA', 'UK', 'EU', 'Canada']) {
+    if (sanctionedBy.includes(country)) {
+      return sourceMap[country];
+    }
+  }
+  return 'Official Sanctions List';
+};
+
+// Helper function to extract year from sanction data
+const extractSanctionYear = (official) => {
+  const sanctionFields = [
+    official.us_sanctions,
+    official.uk_sanctions,
+    official.eu_sanctions,
+    official.canada_sanctions
+  ];
+  
+  for (const field of sanctionFields) {
+    if (field) {
+      const yearMatch = field.match(/\b(20\d{2})\b/);
+      if (yearMatch) {
+        return yearMatch[1];
+      }
+    }
+  }
+  return null;
+};
+
+// Chinese name mapping for JSON officials
+const CHINESE_NAMES = {
+  'zhu hailun': '朱海仑',
+  'wang mingshan': '王明山',
+  'wang junzheng': '王君正',
+  'teresa cheng': '鄭若驊',
+  'erick tsang': '曾國衞',
+  'chris tang': '鄧炳強',
+  'xia baolong': '夏寶龍',
+  'luo huining': '駱惠寧',
+  'zheng yanxiong': '鄭雁雄',
+  'wu yingjie': '吳英傑',
+  'pema thinley': '帕巴拉·格列朗傑',
+  'chen mingguo': '陳明國'
+};
+
+// Map JSON officials to component format
+const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
+  const official = result.output;
+  const sanctionedBy = mapSanctionData(official);
+  
+  return {
+    id: official.name.toLowerCase().replace(/\s+/g, '-'),
+    name: official.name,
+    chineseName: '', // Not in JSON, will be supplemented from hardcoded data if available
+    position: official.position,
+    level: getOfficialLevel(official.responsibility_area),
+    region: official.responsibility_area === 'General' ? 'National' : official.responsibility_area,
+    category: getOfficialCategory(official.responsibility_area),
+    birthYear: null, // Not in JSON
+    inPowerSince: null, // Not in JSON
+    sanctioned: sanctionedBy.length > 0,
+    sanctionedBy: sanctionedBy,
+    photo: '👤',
+    responsibility: official.key_abuses ? [official.key_abuses] : [],
+    keyActions: [], // Not in JSON
+    sources: official.source_url ? [{
+      name: getSourceName(sanctionedBy),
+      url: official.source_url,
+      type: 'Government',
+      verified: true,
+      date: extractSanctionYear(official)
+    }] : [],
+    currentStatus: official.current_status
+  };
+});
+
+// Original hardcoded officials data with more detail
+const hardcodedOfficials = [
   {
     id: 'xi-jinping',
     name: 'Xi Jinping',
@@ -221,6 +348,94 @@ const officials = [
   },
 ];
 
+// Merge JSON data with hardcoded data
+// Use JSON for sanction info and sources, but keep detailed info from hardcoded
+const officials = hardcodedOfficials.map(hardcoded => {
+  const jsonMatch = jsonOfficials.find(json => 
+    json.name.toLowerCase() === hardcoded.name.toLowerCase() ||
+    json.id === hardcoded.id
+  );
+  
+  if (jsonMatch) {
+    return {
+      ...hardcoded,
+      sanctioned: jsonMatch.sanctioned || hardcoded.sanctioned,
+      sanctionedBy: jsonMatch.sanctionedBy.length > 0 ? jsonMatch.sanctionedBy : hardcoded.sanctionedBy,
+      sources: jsonMatch.sources.length > 0 ? [...jsonMatch.sources, ...hardcoded.sources.map(s => 
+        typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
+      )] : hardcoded.sources.map(s => 
+        typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
+      ),
+      currentStatus: jsonMatch.currentStatus,
+      responsibility: jsonMatch.responsibility[0] ? 
+        [jsonMatch.responsibility[0], ...hardcoded.responsibility] : 
+        hardcoded.responsibility
+    };
+  }
+  
+  // Convert old source format to new format
+  return {
+    ...hardcoded,
+    sources: hardcoded.sources.map(s => 
+      typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
+    )
+  };
+});
+
+// Add any JSON officials not in hardcoded data
+const unmatchedJsonOfficials = jsonOfficials.filter(json => 
+  !hardcodedOfficials.find(hardcoded => 
+    hardcoded.name.toLowerCase() === json.name.toLowerCase() ||
+    hardcoded.id === json.id
+  )
+);
+
+// Supplement Chinese names for JSON officials
+unmatchedJsonOfficials.forEach(official => {
+  const key = official.name.toLowerCase();
+  if (CHINESE_NAMES[key]) {
+    official.chineseName = CHINESE_NAMES[key];
+  }
+});
+
+officials.push(...unmatchedJsonOfficials);
+
+// Government sanction list sources
+const sanctionSources = [
+  {
+    name: 'US Treasury OFAC - Specially Designated Nationals List',
+    url: 'https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn-human-readable-lists',
+    type: 'Government',
+    verified: true,
+    organization: 'U.S. Department of the Treasury',
+    description: 'Official list of individuals and entities sanctioned by the United States for human rights abuses, including officials responsible for repression in Xinjiang, Hong Kong, and Tibet.'
+  },
+  {
+    name: 'UK Foreign Office - Sanctions List',
+    url: 'https://www.gov.uk/government/collections/financial-sanctions-regime-specific-consolidated-lists-and-releases',
+    type: 'Government',
+    verified: true,
+    organization: 'UK Foreign, Commonwealth & Development Office',
+    description: 'UK government sanctions list including individuals responsible for serious human rights violations.'
+  },
+  {
+    name: 'EU Sanctions Map',
+    url: 'https://www.sanctionsmap.eu/',
+    type: 'Government',
+    verified: true,
+    organization: 'European Union',
+    description: 'European Union consolidated list of persons, groups and entities subject to EU financial sanctions.'
+  },
+  {
+    name: 'Global Affairs Canada - Sanctions',
+    url: 'https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/index.aspx',
+    type: 'Government',
+    verified: true,
+    organization: 'Government of Canada',
+    description: 'Canadian autonomous sanctions against individuals and entities responsible for grave breaches of international peace and security.'
+  }
+];
+
 export default function CCPOfficials() {
   const [searchQuery, setSearchQuery] = useState('');
   const [regionFilter, setRegionFilter] = useState('all');
@@ -384,14 +599,33 @@ export default function CCPOfficials() {
 
         {/* Sources */}
         <div className="p-6">
-          <h3 className="text-sm font-semibold text-slate-400 mb-2">Sources</h3>
-          <div className="flex flex-wrap gap-2">
-            {official.sources.map((source, i) => (
-              <span key={i} className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">
-                {source}
-              </span>
-            ))}
-          </div>
+          <SourcesList 
+            sources={official.sources.filter(s => s.url && s.url !== '#')} 
+            title="Official Sources & Documentation"
+            compact={false}
+          />
+          
+          {/* Additional references */}
+          {official.sources.some(s => !s.url || s.url === '#') && (
+            <div className="mt-4">
+              <h3 className="text-sm font-semibold text-slate-400 mb-2">Additional References</h3>
+              <div className="flex flex-wrap gap-2">
+                {official.sources.filter(s => !s.url || s.url === '#').map((source, i) => (
+                  <span key={i} className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">
+                    {source.name || source}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Current Status */}
+          {official.currentStatus && (
+            <div className="mt-4 p-3 bg-slate-900/50 rounded-lg border border-slate-700">
+              <h3 className="text-xs font-semibold text-slate-400 mb-1">Current Status</h3>
+              <p className="text-sm text-slate-300">{official.currentStatus}</p>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -521,6 +755,18 @@ export default function CCPOfficials() {
           Information is compiled from government sanctions lists, human rights reports, and verified news sources. 
           Sanctions status reflects designations by the US, UK, EU, Canada, and Australia.
         </p>
+      </div>
+      
+      {/* Official Sanction List Sources */}
+      <div className="mt-6">
+        <h3 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+          <Shield className="w-5 h-5 text-blue-400" />
+          Official Government Sanction Lists
+        </h3>
+        <p className="text-sm text-slate-400 mb-4">
+          Sanction information is sourced from official government databases. Click below to verify sanctions on official government websites:
+        </p>
+        <SourcesList sources={sanctionSources} title="" compact={false} />
       </div>
     </div>
   );
