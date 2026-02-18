@@ -1,5 +1,20 @@
 # Global Anti-CCP Resistance Hub
 
+> **⚠️ Repository Audit Notice (February 18, 2026)**  
+> A comprehensive audit was conducted to verify work claims. **Key findings:**
+> - ✅ Most work verified (90% of documented features exist)
+> - ❌ Cache system missing (documented but files not present)  
+> - ⚠️ Test claims unverified (cannot run without environment setup)
+> 
+> **For Developers/Agents:**
+> - 🚀 **[Start Here: Agent Handoff Prompt](AGENT_HANDOFF_PROMPT.md)** - Complete context for next agent (27KB)
+> - 📊 [Investigation Summary](INVESTIGATION_SUMMARY.md) - Quick overview
+> - 📋 [Full Audit Report](FABRICATION_GAP_AUDIT.md) - Detailed findings
+> - 🤖 [Agent Work Log](AGENTS.md) - Work history and protocols
+> - 🔄 [Handoff Best Practices](LLM_MODEL_SWAP.md) - Model handoff guide
+
+---
+
 A comprehensive platform for documenting CCP human rights violations, supporting resistance movements, and providing tools for activists and researchers fighting against Chinese Communist Party authoritarianism.
 
 ## Mission

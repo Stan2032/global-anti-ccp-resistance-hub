@@ -1,0 +1,617 @@
+{
+  "handoff": {
+    "version": "1.0",
+    "date": "2026-02-18T13:48:39Z",
+    "repository": "Stan2032/global-anti-ccp-resistance-hub",
+    "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+    "previous_agent": "GitHub Copilot SWE (Investigation)",
+    "state": "POST_AUDIT",
+    "trust_level": "MODERATE",
+    "verification_rate": 0.90
+  },
+  
+  "critical_reads": [
+    "INVESTIGATION_SUMMARY.md",
+    "FABRICATION_GAP_AUDIT.md",
+    "AGENT_HANDOFF_PROMPT.md",
+    "AGENTS.md",
+    "LLM_MODEL_SWAP.md"
+  ],
+  
+  "repository_metrics": {
+    "total_commits": 5,
+    "total_files": 304,
+    "lines_of_code": 111864,
+    "bulk_commit": "f680d69",
+    "bulk_commit_date": "2026-01-06",
+    "bulk_commit_files": 303,
+    "investigation_commits": 4,
+    "branches": ["copilot/investigate-fabrication-gap"]
+  },
+  
+  "verified_components": {
+    "backend_infrastructure": {
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "location": "/backend/src/",
+      "files": {
+        "server.js": true,
+        "db/connection.js": true,
+        "db/database.js": true,
+        "db/runMigrations.js": true,
+        "middleware/auth.js": true,
+        "middleware/errorHandler.js": true,
+        "middleware/requestLogger.js": true,
+        "middleware/socketAuth.js": true,
+        "services/authService.js": true,
+        "services/userService.js": true,
+        "services/emailService.js": true,
+        "services/feedService.js": true,
+        "services/feedScheduler.js": true,
+        "services/socketService.js": true,
+        "routes/auth.js": true,
+        "routes/intelligence.js": true,
+        "routes/feeds.js": true,
+        "validators/schemas.js": true,
+        "utils/logger.js": true,
+        "tests/auth.test.js": true,
+        "data/ccpViolationsData.js": true,
+        "data/regionalThreats.js": true
+      }
+    },
+    "database_migrations": {
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "location": "/backend/src/db/migrations/",
+      "files": {
+        "001_create_initial_schema.sql": true,
+        "002_create_feed_tables.sql": true
+      }
+    },
+    "authentication_system": {
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "implementation": "JWT + bcryptjs",
+      "features": ["registration", "email_verification", "login", "password_reset", "token_refresh", "logout"]
+    },
+    "frontend_application": {
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "location": "/src/",
+      "framework": "React",
+      "pages_count": 14,
+      "components_count": 100,
+      "key_pages": [
+        "Dashboard.jsx",
+        "PoliticalPrisoners.jsx",
+        "RegionalThreats.jsx",
+        "ResistanceResources.jsx",
+        "CCPTactics.jsx",
+        "CampaignHubs.jsx",
+        "CommunitySupport.jsx",
+        "DataSources.jsx",
+        "EducationalResources.jsx",
+        "IntelligenceFeeds.jsx",
+        "ResistanceDirectory.jsx",
+        "SecureComms.jsx",
+        "SecurityCenter.jsx",
+        "TakeAction.jsx"
+      ]
+    },
+    "docker_configuration": {
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "files": {
+        "backend/Dockerfile": true,
+        "backend/docker-compose.yml": true
+      }
+    },
+    "documentation": {
+      "status": "VERIFIED",
+      "confidence": "MEDIUM",
+      "notes": "Extensive but contains some aspirational claims",
+      "location": "/.the-road-we-traveled/",
+      "file_count": 20
+    }
+  },
+  
+  "missing_components": {
+    "cache_system": {
+      "status": "DOCUMENTED_BUT_MISSING",
+      "severity": "CRITICAL",
+      "missing_files": [
+        "backend/src/services/cacheService.js",
+        "backend/src/tests/cache.test.js",
+        "CACHE_SYSTEM.md"
+      ],
+      "documented_in": [
+        ".the-road-we-traveled/WORK_COMPLETED_SUMMARY.md"
+      ],
+      "claimed_features": [
+        "PostgreSQL UNLOGGED tables",
+        "TTL support",
+        "Tag-based invalidation",
+        "LRU eviction",
+        "20 passing tests"
+      ],
+      "impact": "Other code may reference non-existent service",
+      "actions": [
+        "OPTION_A: Implement missing files",
+        "OPTION_B: Remove all cache documentation",
+        "OPTION_C: Mark as planned but not implemented"
+      ]
+    },
+    "test_environment": {
+      "status": "UNVERIFIABLE",
+      "severity": "HIGH",
+      "reason": "Dependencies not installed, database not running",
+      "claimed_results": "37/37 tests passing (100%)",
+      "actual_status": "Cannot run tests",
+      "missing": [
+        "backend/node_modules/",
+        "PostgreSQL database setup"
+      ],
+      "actions": [
+        "cd backend && npm install",
+        "Setup PostgreSQL database",
+        "Run migrations",
+        "Execute: npm test",
+        "Document actual results"
+      ]
+    },
+    "documentation_references": {
+      "status": "BROKEN",
+      "severity": "LOW",
+      "issues": [
+        "Branch 'branch-3' does not exist",
+        "CACHE_SYSTEM.md referenced but missing",
+        "Commit history implies 7 commits but only 1 bulk commit exists"
+      ],
+      "actions": [
+        "Update documentation to remove non-existent references",
+        "Correct branch references",
+        "Clarify commit history"
+      ]
+    }
+  },
+  
+  "dependencies": {
+    "backend": {
+      "installed": false,
+      "location": "/backend/node_modules/",
+      "package_manager": "npm",
+      "install_command": "cd backend && npm install",
+      "key_dependencies": {
+        "express": "^4.18.2",
+        "pg": "^8.10.0",
+        "jsonwebtoken": "^9.0.0",
+        "bcryptjs": "^2.4.3",
+        "joi": "^17.11.0",
+        "nodemailer": "^6.9.0",
+        "winston": "^3.11.0",
+        "socket.io": "^4.8.1"
+      }
+    },
+    "frontend": {
+      "installed": false,
+      "location": "/node_modules/",
+      "package_manager": "npm",
+      "install_command": "npm install",
+      "key_dependencies": {
+        "react": "^18.2.0",
+        "react-router-dom": "^6.20.0",
+        "tailwindcss": "^3.4.0",
+        "vite": "^5.0.0"
+      }
+    }
+  },
+  
+  "known_issues": {
+    "total": 47,
+    "breakdown": {
+      "critical": 3,
+      "high": 10,
+      "medium": 18,
+      "low": 6
+    },
+    "source": ".the-road-we-traveled/FUNCTIONAL_AUDIT_FINDINGS.md",
+    "examples": [
+      "Notification system button has no onClick handler",
+      "VPN/Tor detection uses Math.random() (SECURITY RISK)",
+      "Many interactive elements non-functional",
+      "Forms don't submit",
+      "Search doesn't work",
+      "Statistics are hardcoded"
+    ]
+  },
+  
+  "priority_actions": [
+    {
+      "priority": 1,
+      "severity": "CRITICAL",
+      "task": "resolve_cache_system",
+      "description": "Decide fate of cache system",
+      "options": [
+        "implement_missing_files",
+        "remove_documentation",
+        "mark_as_planned"
+      ],
+      "estimated_hours": 8
+    },
+    {
+      "priority": 1,
+      "severity": "CRITICAL",
+      "task": "setup_test_environment",
+      "description": "Install dependencies and verify tests",
+      "steps": [
+        "cd backend && npm install",
+        "Setup PostgreSQL database",
+        "Run migrations: npm run migrate",
+        "Run tests: npm test",
+        "Document actual results",
+        "Update WORK_COMPLETED_SUMMARY.md"
+      ],
+      "estimated_hours": 4
+    },
+    {
+      "priority": 1,
+      "severity": "CRITICAL",
+      "task": "fix_security_issues",
+      "description": "Fix critical security issues from audit",
+      "issues": [
+        "VPN/Tor fake detection (src/components/SecurityCenter.jsx)",
+        "Other critical security issues"
+      ],
+      "estimated_hours": 4
+    },
+    {
+      "priority": 2,
+      "severity": "HIGH",
+      "task": "setup_ci_cd",
+      "description": "Set up CI/CD pipeline",
+      "goals": [
+        "Automated testing on push",
+        "Build verification",
+        "Prevent unverified claims"
+      ],
+      "estimated_hours": 8
+    },
+    {
+      "priority": 2,
+      "severity": "HIGH",
+      "task": "fix_documentation",
+      "description": "Update broken documentation references",
+      "actions": [
+        "Remove cache system references OR implement",
+        "Fix branch references",
+        "Correct commit history claims"
+      ],
+      "estimated_hours": 2
+    },
+    {
+      "priority": 3,
+      "severity": "MEDIUM",
+      "task": "fix_non_functional_elements",
+      "description": "Fix non-functional interactive elements",
+      "items": [
+        "Notification system",
+        "Forms that don't submit",
+        "Search functionality",
+        "Statistics calculation"
+      ],
+      "estimated_hours": 40
+    },
+    {
+      "priority": 3,
+      "severity": "MEDIUM",
+      "task": "implement_phase_2",
+      "description": "Implement Phase 2 from MASTER_TODO_LIST.md",
+      "features": [
+        "User profile management",
+        "User settings",
+        "Admin user management"
+      ],
+      "estimated_hours": 56
+    }
+  ],
+  
+  "environment_setup": {
+    "backend": {
+      "location": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub/backend",
+      "steps": [
+        "cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub/backend",
+        "npm install",
+        "cp .env.example .env",
+        "# Edit .env with actual values",
+        "# Setup PostgreSQL database",
+        "npm run migrate",
+        "npm test",
+        "npm start"
+      ],
+      "env_vars_required": [
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "JWT_REFRESH_SECRET",
+        "EMAIL_HOST",
+        "EMAIL_PORT",
+        "EMAIL_USER",
+        "EMAIL_PASS"
+      ]
+    },
+    "frontend": {
+      "location": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+      "steps": [
+        "cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+        "npm install",
+        "npm run dev"
+      ]
+    }
+  },
+  
+  "api_endpoints": {
+    "authentication": {
+      "base_path": "/api/auth",
+      "endpoints": [
+        "POST /register",
+        "POST /verify-email",
+        "POST /login",
+        "POST /forgot-password",
+        "POST /reset-password",
+        "POST /refresh",
+        "POST /logout",
+        "GET /profile"
+      ]
+    },
+    "intelligence": {
+      "base_path": "/api/intelligence",
+      "endpoints": [
+        "GET /reports",
+        "GET /prisoners",
+        "GET /threats",
+        "GET /tactics",
+        "POST /report"
+      ]
+    },
+    "feeds": {
+      "base_path": "/api/feeds",
+      "endpoints": [
+        "GET /",
+        "POST /refresh",
+        "GET /:id"
+      ]
+    },
+    "placeholder_routes": {
+      "status": "EXIST_BUT_INCOMPLETE",
+      "routes": [
+        "/api/campaigns",
+        "/api/channels",
+        "/api/modules",
+        "/api/notifications",
+        "/api/organizations",
+        "/api/search",
+        "/api/statistics",
+        "/api/support-requests",
+        "/api/users"
+      ]
+    }
+  },
+  
+  "database_schema": {
+    "tables": [
+      "users",
+      "roles",
+      "user_roles",
+      "organizations",
+      "campaigns",
+      "intelligence_reports",
+      "support_requests",
+      "channels",
+      "messages",
+      "modules",
+      "module_enrollments",
+      "notifications",
+      "auth_tokens",
+      "audit_logs",
+      "files",
+      "analytics_events",
+      "rss_feeds",
+      "feed_items",
+      "feed_errors"
+    ],
+    "migration_files": [
+      "backend/src/db/migrations/001_create_initial_schema.sql",
+      "backend/src/db/migrations/002_create_feed_tables.sql"
+    ]
+  },
+  
+  "testing": {
+    "backend": {
+      "framework": "jest",
+      "test_files": [
+        "backend/src/tests/auth.test.js"
+      ],
+      "missing_tests": [
+        "backend/src/tests/cache.test.js"
+      ],
+      "claimed_results": {
+        "total": 37,
+        "passing": 37,
+        "coverage": "100%",
+        "status": "UNVERIFIED"
+      },
+      "actual_status": "CANNOT_RUN",
+      "reason": "Dependencies not installed"
+    },
+    "frontend": {
+      "framework": "NONE",
+      "status": "NO_TEST_INFRASTRUCTURE"
+    }
+  },
+  
+  "security": {
+    "implemented": {
+      "jwt_authentication": true,
+      "password_hashing": "bcryptjs cost 12",
+      "input_validation": "Joi schemas",
+      "cors_protection": true,
+      "helmet_headers": true,
+      "audit_logging": true
+    },
+    "critical_issues": [
+      {
+        "severity": "CRITICAL",
+        "issue": "VPN/Tor fake detection",
+        "location": "src/components/SecurityCenter.jsx",
+        "description": "Uses Math.random() to generate fake status",
+        "impact": "False sense of security for users",
+        "action": "Implement real detection or remove feature"
+      }
+    ],
+    "missing": [
+      "CSRF protection",
+      "Rate limiting on all endpoints",
+      "Input validation on frontend forms"
+    ]
+  },
+  
+  "commit_strategy": {
+    "do": [
+      "Make small, incremental commits",
+      "Use descriptive commit messages",
+      "Test before committing",
+      "Use conventional commit format"
+    ],
+    "dont": [
+      "Make bulk commits (303 files at once)",
+      "Commit without testing",
+      "Commit node_modules or build artifacts",
+      "Commit secrets or credentials"
+    ],
+    "format": "type(scope): description\\n\\n- Detail 1\\n- Detail 2",
+    "types": ["feat", "fix", "docs", "style", "refactor", "test", "chore"]
+  },
+  
+  "handoff_protocols": {
+    "before_starting": [
+      "Read FABRICATION_GAP_AUDIT.md",
+      "Read INVESTIGATION_SUMMARY.md",
+      "Read AGENT_HANDOFF_PROMPT.md",
+      "Understand verified vs missing components",
+      "Set up development environment",
+      "Review known issues"
+    ],
+    "during_work": [
+      "Use incremental commits",
+      "Test changes immediately",
+      "Update documentation",
+      "Use status indicators",
+      "Don't claim completion without verification"
+    ],
+    "before_handoff": [
+      "Verify all changes work",
+      "Run all tests",
+      "Update documentation",
+      "Document complete vs incomplete",
+      "List known issues",
+      "Provide clear next steps"
+    ]
+  },
+  
+  "status_indicators": {
+    "COMPLETED": "✅ Verified working in current repository",
+    "NOT_IMPLEMENTED": "❌ Doesn't exist or doesn't work",
+    "IN_PROGRESS": "🔄 Partially complete, work ongoing",
+    "PLANNED": "📋 Documented but not started",
+    "UNVERIFIED": "⚠️ Exists but not recently tested",
+    "CRITICAL": "🔴 Must address immediately",
+    "IMPORTANT": "🟡 Should address soon",
+    "MINOR": "🟢 Can address later"
+  },
+  
+  "quick_commands": {
+    "review_investigation": [
+      "cat INVESTIGATION_SUMMARY.md",
+      "cat FABRICATION_GAP_AUDIT.md",
+      "cat AGENT_HANDOFF_PROMPT.md"
+    ],
+    "setup_backend": [
+      "cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub/backend",
+      "npm install",
+      "cp .env.example .env",
+      "npm run migrate",
+      "npm test",
+      "npm start"
+    ],
+    "setup_frontend": [
+      "cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+      "npm install",
+      "npm run dev"
+    ],
+    "verify_state": [
+      "git log --oneline -10",
+      "ls -la backend/src/services/cacheService.js",
+      "ls backend/node_modules",
+      "ls node_modules"
+    ]
+  },
+  
+  "warnings": {
+    "known_traps": [
+      "Cache system documented but missing - don't try to use cacheService",
+      "Test claims unverified - don't trust '37/37 passing' until you run them",
+      "Many UI elements non-functional - buttons/forms may not work",
+      "Commit history misleading - only 1 bulk commit, docs imply many",
+      "Branch references wrong - branch-3 doesn't exist",
+      "Statistics hardcoded - not calculated from real data",
+      "VPN detection fake - uses Math.random()"
+    ],
+    "before_trusting_docs": [
+      "Verify files actually exist",
+      "Run tests yourself",
+      "Check commit history with git log",
+      "Test interactive elements manually",
+      "Review investigation documents",
+      "Distinguish verified from unverified"
+    ]
+  },
+  
+  "success_criteria": {
+    "succeeding": [
+      "All dependencies install without errors",
+      "Database migrations run successfully",
+      "Tests run and pass (or fail with known issues)",
+      "Backend server starts without errors",
+      "Frontend dev server starts without errors",
+      "Can navigate between pages",
+      "Authentication flow works",
+      "No console errors in browser",
+      "Documentation matches actual state",
+      "Commits are small and incremental"
+    ],
+    "not_succeeding": [
+      "Can't install dependencies",
+      "Tests won't run at all",
+      "Server crashes on start",
+      "Many console errors",
+      "Features don't work as documented",
+      "Making bulk commits",
+      "Documentation out of sync",
+      "No tests for new features"
+    ]
+  },
+  
+  "meta": {
+    "handoff_format": "JSON",
+    "version": "1.0",
+    "created": "2026-02-18T13:48:39Z",
+    "purpose": "Machine-readable context for AI agents",
+    "human_readable_version": "AGENT_HANDOFF_PROMPT.md",
+    "related_documents": [
+      "FABRICATION_GAP_AUDIT.md",
+      "INVESTIGATION_SUMMARY.md",
+      "AGENTS.md",
+      "LLM_MODEL_SWAP.md",
+      "INVESTIGATION_COMPLETE.txt"
+    ]
+  }
+}
