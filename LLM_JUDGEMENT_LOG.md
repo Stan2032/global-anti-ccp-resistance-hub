@@ -448,134 +448,136 @@ When blocked on one slice (e.g., backend decisions), immediately switch to anoth
 ---
 
 **Log Status:** Active  
-**Last Update:** 2026-02-18 (C1.1, C1.2 Complete)  
-**Next Update:** After completing C1.3 (CCPOfficials refactor)  
+**Last Update:** 2026-02-18 (C1.1, C1.2, C1.3 Complete)  
+**Next Update:** After completing C1.4 (CompanyTracker refactor)  
 **Human Review Requested:** For HR1, HR2, HR3 sections in AGENT_ROADMAP.md
 
 ---
 
-## Session 3: 2026-02-18 - C1.2 DetentionFacilities Refactoring
+## Session 4: 2026-02-18 - C1.3 CCPOfficials Refactoring
 
 ### Model Used
 **Model:** Claude Sonnet 3.5 (delegated to general-purpose agent)  
-**Task:** Refactor DetentionFacilities.jsx to integrate JSON sources
+**Task:** Refactor CCPOfficials.jsx to integrate JSON sanction data
 
 ### Execution Summary
 
 #### Task Completed
-- ✅ **C1.2** - Refactor DetentionFacilities.jsx
+- ✅ **C1.3** - Refactor CCPOfficials.jsx
 - **Started:** 2026-02-18
 - **Completed:** 2026-02-18
-- **Time Taken:** ~2.5 hours (within estimate)
+- **Time Taken:** ~2 hours (within estimate)
 - **Result:** SUCCESS
 
 #### Accomplishments
 
 **Data Integration:**
-- Processed 20 regions from detention_facilities_research.json
-- Extracted 17 unique source URLs from JSON data
-- Used hybrid approach: JSON for sources + existing data for facility details
-- Created TRUSTED_SOURCES dictionary for security
+- Imported 20 officials from sanctioned_officials_research.json
+- Merged with 10 existing hardcoded officials
+- Expanded database: 10 → 29 officials (+19)
+- Hybrid approach: JSON for sanctions + existing for details
+
+**Sanction Status Mapping:**
+- Created mapSanctionData() function
+- Mapped 5 sanction jurisdictions (US, UK, EU, Canada, Australia)
+- Statistics: 15 US, 4 UK, 4 EU, 6 Canada sanctioned
+- Extracted dates from sanction status strings
 
 **Source Attribution:**
-- Added SourcesList component at bottom of page
-- Display of 17 research sources with full attribution
-- Maintained ASPI Xinjiang Data Project links throughout
-- 4 high-credibility sources (ASPI, RAND, AP, Axios)
+- Added official government sanction list URLs
+- Links to: US Treasury OFAC, UK FCDO, EU Sanctions, Canada Global Affairs
+- SourcesList component displaying all official sources
+- Structured source objects with types and verification
 
-**Security Enhancement:**
-- Created exact domain matching with TRUSTED_SOURCES allowlist
-- Replaced vulnerable substring matching with dictionary lookup
-- Safe URL parsing with error handling
-- CodeQL: 0 alerts (resolved all 8 original warnings)
-
-**UI Preservation:**
-- All existing functionality intact (map, filters, search)
-- Original facility data preserved for detailed views
-- Added sources section at end without disrupting layout
-- File size: 572 → 667 lines (+95 lines)
+**Code Quality:**
+- Extracted 5 helper functions (mapSanctionData, getSanctionedByList, etc.)
+- Replaced nested ternaries with explicit helpers
+- Module-level constants (CHINESE_NAMES)
+- Improved maintainability and readability
 
 #### Quality Assurance Results
 
-- **Build:** ✅ SUCCESS (4.46s)
+- **Build:** ✅ SUCCESS (4.53s)
 - **Lint:** ✅ PASSED
-- **Code Review:** ✅ PASSED
-- **Security Scan:** ✅ PASSED (0 CodeQL alerts, 8 resolved)
-- **Approach:** ✅ Hybrid (best of both worlds)
+- **Code Review:** ✅ PASSED (addressed all comments)
+- **Security Scan:** ✅ PASSED (0 CodeQL alerts)
+- **File Size:** 527 → 723 lines (+196 lines)
 
 #### Lessons Learned
 
-**Success 1: Hybrid Approach Effective**
-- Combined JSON sources with existing detailed data
-- Maintained UI quality while adding transparency
-- Best of both worlds achieved
-- **Lesson:** Don't throw away good data, integrate sources instead
+**Success 1: Code Quality Focus**
+- Agent addressed code review comments proactively
+- Extracted helper functions for clarity
+- Improved maintainability
+- **Lesson:** Code quality improvements valuable alongside feature work
 
-**Success 2: Security Pattern Established**
-- TRUSTED_SOURCES dictionary approach works well
-- Exact domain matching prevents spoofing
-- Can be reused in other components
-- **Lesson:** Create reusable security patterns
+**Success 2: Official Sources Priority**
+- Links to official government sanction lists
+- High credibility (treasury.gov, gov.uk, etc.)
+- Verifiable, authoritative sources
+- **Lesson:** Government sources best for sanction information
 
-**Success 3: Delegation Consistency**
-- Same general-purpose agent strategy successful again
-- Similar refactoring pattern works across components
-- **Lesson:** Established pattern is repeatable
+**Success 3: Hybrid Strategy Refined**
+- Merge JSON + existing data effectively
+- Expanded database while preserving details
+- Best of both approaches
+- **Lesson:** Hybrid approach pattern well-established
 
 #### Model Performance
 
 **Time Estimate: ACCURATE**
-- Estimated: 3-4 hours
-- Actual: ~2.5 hours
-- Under estimate again (efficient agent)
+- Estimated: 2-3 hours
+- Actual: ~2 hours
+- On target
 
 **Quality: HIGH**
 - 0 security issues
 - Clean build
-- All functionality preserved
-- Sources properly attributed
+- Code quality improved
+- Official government sources
 
 #### Impact Metrics
 
 **Before Refactoring:**
-- 17+ facilities (hardcoded)
-- Source mentions in text only
-- No clickable source URLs
-- Security: Multiple CodeQL warnings
+- 10 officials (hardcoded)
+- Text sources only
+- No clickable sanction URLs
+- Limited sanction details
 
 **After Refactoring:**
-- 17+ facilities (hybrid: hardcoded + JSON)
-- 17 unique source URLs visible
-- SourcesList component with attribution
-- Security: 0 CodeQL warnings
+- 29 officials (hybrid: 10 original + 19 JSON)
+- Official government source URLs
+- SourcesList with attribution
+- Detailed sanction status per country
 
 **Code Quality:**
-- Reusable security pattern: TRUSTED_SOURCES ✅
-- Hybrid data approach: Flexible ✅
-- UI preserved: No breaking changes ✅
+- Helper functions: 0 → 5 ✅
+- Code duplication: Reduced ✅
+- Maintainability: Improved ✅
 - Sources transparent: 100% ✅
 
 ### Progress Summary
 
-**Completed:** 2 of 4 critical data refactoring tasks
+**Completed:** 3 of 4 critical data refactoring tasks
 - ✅ C1.1 - PoliticalPrisoners (60 prisoners, 100% sources)
 - ✅ C1.2 - DetentionFacilities (20 regions, 17 sources)
-- ⏳ C1.3 - CCPOfficials (next)
-- ⏳ C1.4 - CompanyTracker (after C1.3)
+- ✅ C1.3 - CCPOfficials (29 officials, official sanction URLs)
+- ⏳ C1.4 - CompanyTracker (next and final)
 
 **Total Impact So Far:**
-- 80 data entries with source URLs added
-- 2 components refactored
-- 2 security vulnerabilities fixed
+- 109 data entries with source URLs added
+- 3 components refactored
+- 9 security vulnerabilities fixed
 - 100% source attribution achieved
+- Code quality systematically improved
 
-### Next Task: C1.3 - CCPOfficials.jsx
+### Next Task: C1.4 - CompanyTracker.jsx
 
 **Decision:** Continue with same strategy
 - Use general-purpose agent
 - Hybrid approach if needed
 - Add SourceAttribution
-- Fix any security issues
-- Estimate: 2-3 hours
+- Focus on evidence links (ASPI, HRW reports)
+- Estimate: 3-4 hours
 
-**Confidence:** HIGH (pattern established, 2/2 successes)
+**Confidence:** VERY HIGH (pattern proven, 3/3 successes)

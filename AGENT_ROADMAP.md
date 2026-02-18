@@ -30,21 +30,15 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 - [x] Created comprehensive DATA_SOURCES.md
 - [x] **C1.1** ✅ Refactored PoliticalPrisoners.jsx (60 prisoners, 100% sources, security fix)
 - [x] **C1.2** ✅ Refactored DetentionFacilities.jsx (20 regions, 17 unique sources, hybrid approach)
+- [x] **C1.3** ✅ Refactored CCPOfficials.jsx (29 officials, official sanction URLs, code quality improvements)
 
 #### Next Actions (Can Execute Now)
-- [ ] **C1.3** Refactor CCPOfficials.jsx to use `sanctioned_officials_research.json`
-  - Component: 526 lines hardcoded
-  - Link to official sanction lists
-  - **Time:** 2-3 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE - Next priority
-
 - [ ] **C1.4** Refactor CompanyTracker.jsx to use `forced_labor_companies_research.json`
   - Component: 424 lines
   - Add evidence links display
   - **Time:** 3-4 hours
   - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+  - **Agent Decision:** EXECUTE - Final critical data refactoring task
 
 ---
 
