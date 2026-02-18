@@ -161,19 +161,25 @@ src/
 - `PUT /api/v1/users/:id/settings` - Update user settings
 
 ### Organizations
-- `GET /api/v1/organizations` - List organizations
-- `POST /api/v1/organizations` - Create organization
-- `GET /api/v1/organizations/:id` - Get organization
-- `PUT /api/v1/organizations/:id` - Update organization
-- `DELETE /api/v1/organizations/:id` - Delete organization
+- `GET /api/v1/organizations` - List organizations (with filters: page, limit, verification_status, organization_type, headquarters_country, search)
+- `POST /api/v1/organizations` - Create organization (requires auth)
+- `GET /api/v1/organizations/:id` - Get organization by ID
+- `GET /api/v1/organizations/slug/:slug` - Get organization by slug
+- `PUT /api/v1/organizations/:id` - Update organization (requires auth)
+- `PATCH /api/v1/organizations/:id/verification` - Update verification status (requires auth)
+- `DELETE /api/v1/organizations/:id` - Delete organization (requires auth)
 
 ### Campaigns
-- `GET /api/v1/campaigns` - List campaigns
-- `POST /api/v1/campaigns` - Create campaign
-- `GET /api/v1/campaigns/:id` - Get campaign
-- `PUT /api/v1/campaigns/:id` - Update campaign
-- `POST /api/v1/campaigns/:id/join` - Join campaign
-- `DELETE /api/v1/campaigns/:id/leave` - Leave campaign
+- `GET /api/v1/campaigns` - List campaigns (with filters: page, limit, status, campaign_type, priority, organization_id, search)
+- `POST /api/v1/campaigns` - Create campaign (requires auth)
+- `GET /api/v1/campaigns/:id` - Get campaign by ID
+- `GET /api/v1/campaigns/slug/:slug` - Get campaign by slug
+- `PUT /api/v1/campaigns/:id` - Update campaign (requires auth, creator only)
+- `DELETE /api/v1/campaigns/:id` - Delete campaign (requires auth, creator only)
+- `POST /api/v1/campaigns/:id/join` - Join campaign (requires auth)
+- `POST /api/v1/campaigns/:id/leave` - Leave campaign (requires auth)
+- `GET /api/v1/campaigns/:id/members` - Get campaign members (with filters: page, limit, role, status)
+- `PATCH /api/v1/campaigns/:id/progress` - Update campaign progress (requires auth)
 
 ### Intelligence
 - `GET /api/v1/intelligence` - List intelligence reports
