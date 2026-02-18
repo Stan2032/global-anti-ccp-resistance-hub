@@ -81,16 +81,19 @@ if (useSQLite) {
     feed_items: [],
     users: [],
     campaigns: [],
+    organizations: [],
     roles: [
       { id: 1, name: 'admin', description: 'Administrator', permissions: ['*'], is_system: true },
       { id: 2, name: 'moderator', description: 'Moderator', permissions: ['users:read', 'users:update'], is_system: true },
-      { id: 3, name: 'user', description: 'Regular User', permissions: ['profile:read', 'profile:update'], is_system: true }
+      { id: 3, name: 'user', description: 'Regular User', permissions: ['profile:read', 'profile:update'], is_system: true },
+      { id: 4, name: 'organizer', description: 'Campaign Organizer', permissions: ['campaigns:create', 'campaigns:update'], is_system: true }
     ],
     user_roles: [],
     auth_tokens: [],
     _nextUserId: 1,
     _nextTokenId: 1,
-    _nextUserRoleId: 1
+    _nextUserRoleId: 1,
+    _nextOrganizationId: 1
   };
 
   // Mock query function that simulates PostgreSQL responses
@@ -370,6 +373,148 @@ if (useSQLite) {
           token.revoked = true;
           token.revoked_at = new Date().toISOString();
           return { rows: [], rowCount: 1 };
+        }
+        return { rows: [], rowCount: 0 };
+      }
+      
+      // SELECT queries for organizations
+      if (normalizedQuery.includes('select') && normalizedQuery.includes('organizations')) {
+        let results = [...storage.organizations].filter(o => !o.deleted_at);
+        
+        // Handle COUNT queries
+        if (normalizedQuery.includes('count(*)')) {
+          let count = results.length;
+          
+          // Apply filters for count
+          if (normalizedQuery.includes('verified = true')) {
+            count = results.filter(o => o.verified === true).length;
+          }
+          if (normalizedQuery.includes('status =') && params.length > 0) {
+            count = results.filter(o => o.status === params[0]).length;
+          }
+          
+          const stats = {
+            total: count,
+            verified: results.filter(o => o.verified === true).length,
+            active: results.filter(o => o.status === 'active').length,
+            categories: new Set(results.map(o => o.category)).size,
+            regions: new Set(results.map(o => o.region)).size,
+            count: count.toString()
+          };
+          
+          return { rows: [stats], rowCount: 1 };
+        }
+        
+        // Handle WHERE clauses for regular SELECT
+        if (normalizedQuery.includes('where')) {
+          // ID filter
+          if (normalizedQuery.includes('id =') && params.length > 0) {
+            results = results.filter(o => o.id === params[0]);
+          }
+          
+          // Slug filter
+          if (normalizedQuery.includes('slug =') && params.length > 0) {
+            results = results.filter(o => o.slug === params[0]);
+          }
+          
+          // Status filter
+          if (normalizedQuery.includes('status =') && params.length > 0) {
+            const statusParam = params.find(p => typeof p === 'string' && ['active', 'inactive', 'deleted'].includes(p));
+            if (statusParam) {
+              results = results.filter(o => o.status === statusParam);
+            }
+          }
+          
+          // Category filter
+          if (normalizedQuery.includes('category =') && params.length > 1) {
+            results = results.filter(o => o.category === params[1]);
+          }
+          
+          // Region filter
+          if (normalizedQuery.includes('region =') && params.length > 2) {
+            results = results.filter(o => o.region === params[2]);
+          }
+          
+          // Verified filter
+          if (normalizedQuery.includes('verified =')) {
+            const verifiedParam = params.find(p => typeof p === 'boolean');
+            if (verifiedParam !== undefined) {
+              results = results.filter(o => o.verified === verifiedParam);
+            }
+          }
+          
+          // Search filter (ILIKE)
+          if (normalizedQuery.includes('ilike')) {
+            const searchParam = params.find(p => typeof p === 'string' && p.includes('%'));
+            if (searchParam) {
+              const searchTerm = searchParam.replace(/%/g, '').toLowerCase();
+              results = results.filter(o => 
+                o.name?.toLowerCase().includes(searchTerm) ||
+                o.description?.toLowerCase().includes(searchTerm) ||
+                o.acronym?.toLowerCase().includes(searchTerm)
+              );
+            }
+          }
+        }
+        
+        // Handle LIMIT and OFFSET
+        const limitMatch = normalizedQuery.match(/limit\s+\$(\d+)/);
+        const offsetMatch = normalizedQuery.match(/offset\s+\$(\d+)/);
+        
+        if (limitMatch && params.length >= parseInt(limitMatch[1])) {
+          const limit = params[parseInt(limitMatch[1]) - 1];
+          const offset = offsetMatch && params.length >= parseInt(offsetMatch[1]) 
+            ? params[parseInt(offsetMatch[1]) - 1] 
+            : 0;
+          results = results.slice(offset, offset + limit);
+        }
+        
+        return { rows: results, rowCount: results.length };
+      }
+      
+      // INSERT into organizations
+      if (normalizedQuery.includes('insert') && normalizedQuery.includes('organizations')) {
+        const newOrg = {
+          id: storage._nextOrganizationId++,
+          name: params[0],
+          slug: params[1],
+          description: params[2],
+          acronym: params[3],
+          category: params[4],
+          region: params[5],
+          headquarters: params[6],
+          website: params[7],
+          focus: params[8] || [],
+          verified: params[9] || false,
+          established: params[10],
+          logo_url: params[11],
+          email: params[12],
+          phone: params[13],
+          twitter: params[14],
+          facebook: params[15],
+          instagram: params[16],
+          created_by: params[17],
+          status: params[18] || 'active',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          deleted_at: null
+        };
+        storage.organizations.push(newOrg);
+        return { rows: [newOrg], rowCount: 1 };
+      }
+      
+      // UPDATE organizations
+      if (normalizedQuery.includes('update') && normalizedQuery.includes('organizations')) {
+        const id = params[params.length - 1];
+        const org = storage.organizations.find(o => o.id === id);
+        if (org) {
+          // Update fields dynamically based on SET clause
+          if (normalizedQuery.includes('deleted_at = now()')) {
+            org.deleted_at = new Date().toISOString();
+            org.status = 'deleted';
+          }
+          org.updated_at = new Date().toISOString();
+          return { rows: [org], rowCount: 1 };
         }
         return { rows: [], rowCount: 0 };
       }

@@ -73,23 +73,39 @@ export const updateSettingsSchema = Joi.object({
 });
 
 // Organization schemas
-export const createOrganizationSchema = Joi.object({
+export const organizationSchema = Joi.object({
   name: Joi.string().max(255).required().messages(messages),
+  slug: Joi.string().pattern(/^[a-z0-9-]+$/).max(255).required().messages({
+    ...messages,
+    'string.pattern.base': 'Slug must contain only lowercase letters, numbers, and hyphens'
+  }),
   description: Joi.string().required().messages(messages),
-  website: Joi.string().uri().max(500),
-  email: Joi.string().email(),
-  country: Joi.string().length(2),
-  type: Joi.string().max(100),
-  focusAreas: Joi.array().items(Joi.string()),
-  primaryContactName: Joi.string().max(255),
-  primaryContactEmail: Joi.string().email(),
-  primaryContactPhone: Joi.string().max(20)
+  acronym: Joi.string().max(50).allow(null, ''),
+  category: Joi.string().max(100).required().messages(messages),
+  region: Joi.string().max(100).required().messages(messages),
+  headquarters: Joi.string().max(255).allow(null, ''),
+  website: Joi.string().uri().max(500).allow(null, ''),
+  focus: Joi.array().items(Joi.string()).default([]),
+  verified: Joi.boolean().default(false),
+  established: Joi.number().integer().min(1900).max(new Date().getFullYear()).allow(null),
+  logo_url: Joi.string().uri().max(500).allow(null, ''),
+  email: Joi.string().email().max(255).allow(null, ''),
+  phone: Joi.string().max(20).allow(null, ''),
+  twitter: Joi.string().max(100).allow(null, ''),
+  facebook: Joi.string().max(255).allow(null, ''),
+  instagram: Joi.string().max(100).allow(null, '')
 });
 
-export const updateOrganizationSchema = createOrganizationSchema.fork(
-  ['name', 'description'],
+export const organizationUpdateSchema = organizationSchema.fork(
+  ['name', 'slug', 'description', 'category', 'region'],
   schema => schema.optional()
-);
+).append({
+  status: Joi.string().valid('active', 'inactive', 'deleted')
+});
+
+// Legacy schemas for compatibility
+export const createOrganizationSchema = organizationSchema;
+export const updateOrganizationSchema = organizationUpdateSchema;
 
 // Campaign schemas
 export const createCampaignSchema = Joi.object({
