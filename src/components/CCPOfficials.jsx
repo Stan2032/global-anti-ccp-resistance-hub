@@ -25,6 +25,78 @@ const mapSanctionData = (jsonOfficial) => {
   return sanctionedBy;
 };
 
+// Helper function to determine level based on responsibility area
+const getOfficialLevel = (responsibilityArea) => {
+  if (responsibilityArea === 'National' || responsibilityArea === 'General') {
+    return 'National';
+  }
+  return 'Provincial';
+};
+
+// Helper function to determine category based on responsibility area
+const getOfficialCategory = (responsibilityArea) => {
+  const categoryMap = {
+    'Hong Kong': 'Regional',
+    'Tibet': 'Regional',
+    'Xinjiang': 'Regional',
+    'General': 'Leadership'
+  };
+  return categoryMap[responsibilityArea] || 'Security';
+};
+
+// Helper function to get source name based on sanctions
+const getSourceName = (sanctionedBy) => {
+  const sourceMap = {
+    'USA': 'US Treasury OFAC',
+    'UK': 'UK Foreign Office',
+    'EU': 'EU Sanctions',
+    'Canada': 'Canada Global Affairs'
+  };
+  
+  for (const country of ['USA', 'UK', 'EU', 'Canada']) {
+    if (sanctionedBy.includes(country)) {
+      return sourceMap[country];
+    }
+  }
+  return 'Official Sanctions List';
+};
+
+// Helper function to extract year from sanction data
+const extractSanctionYear = (official) => {
+  const sanctionFields = [
+    official.us_sanctions,
+    official.uk_sanctions,
+    official.eu_sanctions,
+    official.canada_sanctions
+  ];
+  
+  for (const field of sanctionFields) {
+    if (field) {
+      const yearMatch = field.match(/\b(20\d{2})\b/);
+      if (yearMatch) {
+        return yearMatch[1];
+      }
+    }
+  }
+  return null;
+};
+
+// Chinese name mapping for JSON officials
+const CHINESE_NAMES = {
+  'zhu hailun': '朱海仑',
+  'wang mingshan': '王明山',
+  'wang junzheng': '王君正',
+  'teresa cheng': '鄭若驊',
+  'erick tsang': '曾國衞',
+  'chris tang': '鄧炳強',
+  'xia baolong': '夏寶龍',
+  'luo huining': '駱惠寧',
+  'zheng yanxiong': '鄭雁雄',
+  'wu yingjie': '吳英傑',
+  'pema thinley': '帕巴拉·格列朗傑',
+  'chen mingguo': '陳明國'
+};
+
 // Map JSON officials to component format
 const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
   const official = result.output;
@@ -35,12 +107,9 @@ const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
     name: official.name,
     chineseName: '', // Not in JSON, will be supplemented from hardcoded data if available
     position: official.position,
-    level: official.responsibility_area === 'National' ? 'National' : official.responsibility_area === 'General' ? 'National' : 'Provincial',
+    level: getOfficialLevel(official.responsibility_area),
     region: official.responsibility_area === 'General' ? 'National' : official.responsibility_area,
-    category: official.responsibility_area === 'Hong Kong' ? 'Regional' : 
-              official.responsibility_area === 'Tibet' ? 'Regional' :
-              official.responsibility_area === 'Xinjiang' ? 'Regional' :
-              official.responsibility_area === 'General' ? 'Leadership' : 'Security',
+    category: getOfficialCategory(official.responsibility_area),
     birthYear: null, // Not in JSON
     inPowerSince: null, // Not in JSON
     sanctioned: sanctionedBy.length > 0,
@@ -49,16 +118,11 @@ const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
     responsibility: official.key_abuses ? [official.key_abuses] : [],
     keyActions: [], // Not in JSON
     sources: official.source_url ? [{
-      name: sanctionedBy.includes('USA') ? 'US Treasury OFAC' :
-            sanctionedBy.includes('UK') ? 'UK Foreign Office' :
-            sanctionedBy.includes('EU') ? 'EU Sanctions' :
-            sanctionedBy.includes('Canada') ? 'Canada Global Affairs' : 'Official Sanctions List',
+      name: getSourceName(sanctionedBy),
       url: official.source_url,
       type: 'Government',
       verified: true,
-      date: official.us_sanctions && official.us_sanctions.includes('2020') ? '2020' :
-            official.us_sanctions && official.us_sanctions.includes('2021') ? '2021' :
-            official.us_sanctions && official.us_sanctions.includes('2022') ? '2022' : null
+      date: extractSanctionYear(official)
     }] : [],
     currentStatus: official.current_status
   };
@@ -328,23 +392,9 @@ const unmatchedJsonOfficials = jsonOfficials.filter(json =>
 
 // Supplement Chinese names for JSON officials
 unmatchedJsonOfficials.forEach(official => {
-  const chineseNames = {
-    'zhu hailun': '朱海仑',
-    'wang mingshan': '王明山',
-    'wang junzheng': '王君正',
-    'teresa cheng': '鄭若驊',
-    'erick tsang': '曾國衞',
-    'chris tang': '鄧炳強',
-    'xia baolong': '夏寶龍',
-    'luo huining': '駱惠寧',
-    'zheng yanxiong': '鄭雁雄',
-    'wu yingjie': '吳英傑',
-    'pema thinley': '帕巴拉·格列朗傑',
-    'chen mingguo': '陳明國'
-  };
   const key = official.name.toLowerCase();
-  if (chineseNames[key]) {
-    official.chineseName = chineseNames[key];
+  if (CHINESE_NAMES[key]) {
+    official.chineseName = CHINESE_NAMES[key];
   }
 });
 
