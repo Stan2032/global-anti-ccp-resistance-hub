@@ -3,9 +3,108 @@ import { motion } from 'framer-motion';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
+import SourceAttribution from '../components/ui/SourceAttribution';
+import politicalPrisonersData from '../data/political_prisoners_research.json';
 
-// Political Prisoners Data (embedded for static build)
-const PRISONERS_DATA = [
+// Mapping function to convert JSON data to component format
+const mapJsonToComponentFormat = (jsonResults) => {
+  return jsonResults.map((item) => {
+    const output = item.output;
+    
+    // Map status
+    let status = output.status;
+    if (status === 'DETAINED') status = 'IMPRISONED';
+    
+    // Determine urgency based on status and health
+    let urgency = 'MEDIUM';
+    if (status === 'IMPRISONED' || status === 'DISAPPEARED') {
+      urgency = 'CRITICAL';
+    }
+    
+    // Parse sentence to extract charges if available
+    const charges = output.sentence ? [output.sentence] : [];
+    
+    // Create background from available information
+    const background = item.input.split(' - ').slice(1).join(' - ') || output.latest_news || 'Political prisoner';
+    
+    // Determine health concerns
+    const healthConcerns = output.health_status && 
+      (output.health_status.toLowerCase().includes('deteriorating') ||
+       output.health_status.toLowerCase().includes('poor') ||
+       output.health_status.toLowerCase().includes('torture') ||
+       output.health_status.toLowerCase().includes('malnutrition'));
+    
+    // Create source object for SourceAttribution component
+    const source = {
+      name: output.source_url ? new URL(output.source_url).hostname.replace('www.', '') : 'Unknown',
+      url: output.source_url,
+      type: output.source_url ? (() => {
+        const hostname = new URL(output.source_url).hostname.toLowerCase();
+        
+        // Whitelist of known credible sources by type
+        const ngoSources = new Set([
+          'www.hrw.org', 'hrw.org',
+          'www.amnesty.org', 'amnesty.org',
+          'www.frontlinedefenders.org', 'frontlinedefenders.org',
+          'pen.org', 'www.pen-international.org',
+          'chinaaid.org', 'www.article19.org',
+          'www.hongkongwatch.org', 'savetibet.org',
+          'southmongolia.org', 'www.ibanet.org'
+        ]);
+        
+        const newsSources = new Set([
+          'www.bbc.com', 'bbc.com',
+          'www.reuters.com', 'reuters.com',
+          'www.theguardian.com', 'theguardian.com',
+          'apnews.com', 'www.aljazeera.com',
+          'hongkongfp.com', 'www.npr.org',
+          'www.voanews.com', 'www.rfa.org',
+          'thechinaproject.com', 'aninews.in',
+          'news.artnet.com', 'www.pillarcatholic.com'
+        ]);
+        
+        const govSources = new Set([
+          'humanrightscommission.house.gov',
+          'www.ohchr.org'
+        ]);
+        
+        if (ngoSources.has(hostname)) return 'NGO Report';
+        if (newsSources.has(hostname)) return 'News Report';
+        if (govSources.has(hostname)) return 'Government';
+        
+        return 'News Report'; // Default fallback
+      })() : 'Unknown',
+      verified: output.confidence === 'HIGH',
+      description: output.latest_news || '',
+      date: new Date().toISOString().split('T')[0]
+    };
+    
+    return {
+      name: output.prisoner_name,
+      chineseName: '', // Not provided in JSON
+      status: status,
+      location: output.location,
+      charges: charges,
+      sentence: output.sentence,
+      background: background,
+      arrestDate: '', // Not provided in JSON
+      urgency: urgency,
+      healthConcerns: healthConcerns,
+      internationalAttention: output.international_response ? 'HIGH' : 'MEDIUM',
+      internationalResponse: output.international_response,
+      latestNews: output.latest_news,
+      healthStatus: output.health_status,
+      source: source, // Add source object
+      confidence: output.confidence
+    };
+  });
+};
+
+// Convert JSON data to component format
+const PRISONERS_FROM_JSON = mapJsonToComponentFormat(politicalPrisonersData.results);
+
+// Original hardcoded prisoners data (preserved for reference and unique cases)
+const PRISONERS_DATA_ORIGINAL = [
   {
     name: 'Jimmy Lai',
     chineseName: '黎智英',
@@ -774,13 +873,18 @@ const PRISONERS_DATA = [
 
 ];
 
+// Merge JSON data with original hardcoded data
+// Primary source is JSON data, with original data as reference
+const PRISONERS_DATA = PRISONERS_FROM_JSON;
+
 const StatusBadge = ({ status }) => {
   const colors = {
     IMPRISONED: 'bg-red-600',
     DISAPPEARED: 'bg-yellow-600',
     DECEASED: 'bg-gray-600',
     RELEASED: 'bg-green-600',
-    'AT RISK': 'bg-orange-600'
+    'AT RISK': 'bg-orange-600',
+    EXILE: 'bg-blue-600'
   };
   
   return (
@@ -854,6 +958,12 @@ const PrisonerCard = ({ prisoner, onClick }) => {
                 </span>
               ))}
             </div>
+          </div>
+        )}
+        
+        {prisoner.source && prisoner.source.url && (
+          <div className="mt-4 pt-4 border-t border-slate-700">
+            <SourceAttribution source={prisoner.source} compact={true} />
           </div>
         )}
       </div>
@@ -954,6 +1064,34 @@ const PrisonerModal = ({ prisoner, onClose }) => {
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Legacy</h3>
                 <p className="text-gray-200">{prisoner.legacy}</p>
+              </div>
+            )}
+            
+            {prisoner.latestNews && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest News</h3>
+                <p className="text-gray-200">{prisoner.latestNews}</p>
+              </div>
+            )}
+            
+            {prisoner.internationalResponse && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
+                <p className="text-gray-200">{prisoner.internationalResponse}</p>
+              </div>
+            )}
+            
+            {prisoner.healthStatus && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Health Status</h3>
+                <p className="text-gray-200">{prisoner.healthStatus}</p>
+              </div>
+            )}
+            
+            {prisoner.source && prisoner.source.url && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2">Source Information</h3>
+                <SourceAttribution source={prisoner.source} compact={false} />
               </div>
             )}
           </div>
@@ -1064,7 +1202,7 @@ const PoliticalPrisoners = () => {
         
         {/* Filter */}
         <div className="flex gap-2 mb-6 flex-wrap">
-          {['ALL', 'IMPRISONED', 'DISAPPEARED', 'DECEASED'].map(status => (
+          {['ALL', 'IMPRISONED', 'DISAPPEARED', 'DECEASED', 'AT RISK', 'EXILE', 'RELEASED'].map(status => (
             <button
               key={status}
               onClick={() => setFilter(status)}
