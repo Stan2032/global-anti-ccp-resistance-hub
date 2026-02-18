@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../server.js';
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 import logger from '../utils/logger.js';
 
 describe('Authentication Endpoints', () => {

@@ -80,7 +80,17 @@ if (useSQLite) {
     ],
     feed_items: [],
     users: [],
-    campaigns: []
+    campaigns: [],
+    roles: [
+      { id: 1, name: 'admin', description: 'Administrator', permissions: ['*'], is_system: true },
+      { id: 2, name: 'moderator', description: 'Moderator', permissions: ['users:read', 'users:update'], is_system: true },
+      { id: 3, name: 'user', description: 'Regular User', permissions: ['profile:read', 'profile:update'], is_system: true }
+    ],
+    user_roles: [],
+    auth_tokens: [],
+    _nextUserId: 1,
+    _nextTokenId: 1,
+    _nextUserRoleId: 1
   };
 
   // Mock query function that simulates PostgreSQL responses
@@ -202,6 +212,166 @@ if (useSQLite) {
       // SUM queries
       if (normalizedQuery.includes('sum(')) {
         return { rows: [{ sum: 0 }], rowCount: 1 };
+      }
+      
+      // SELECT queries for users
+      if (normalizedQuery.includes('select') && normalizedQuery.includes('users')) {
+        let results = [...storage.users].filter(u => !u.deleted_at);
+        
+        // Check for email filter
+        if (normalizedQuery.includes('where email =') && params.length > 0) {
+          results = results.filter(u => u.email === params[0]);
+        }
+        
+        // Check for username filter
+        if (normalizedQuery.includes('where username =') && params.length > 0) {
+          results = results.filter(u => u.username === params[0]);
+        }
+        
+        // Check for id filter
+        if (normalizedQuery.includes('where id =') && params.length > 0) {
+          results = results.filter(u => u.id === params[0]);
+        }
+        
+        return { rows: results, rowCount: results.length };
+      }
+      
+      // INSERT into users
+      if (normalizedQuery.includes('insert') && normalizedQuery.includes('users')) {
+        const newUser = {
+          id: storage._nextUserId++,
+          email: params[0],
+          username: params[1],
+          password_hash: params[2],
+          first_name: params[3],
+          last_name: params[4],
+          status: params[5] || 'active',
+          email_verified: false,
+          email_verified_at: null,
+          avatar_url: null,
+          bio: null,
+          location: null,
+          website: null,
+          organization: null,
+          expertise_areas: [],
+          languages: [],
+          two_factor_enabled: false,
+          privacy_level: 'private',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          deleted_at: null
+        };
+        storage.users.push(newUser);
+        return { rows: [newUser], rowCount: 1 };
+      }
+      
+      // UPDATE users
+      if (normalizedQuery.includes('update') && normalizedQuery.includes('users')) {
+        const userId = params[params.length - 1];
+        const user = storage.users.find(u => u.id === userId);
+        if (user) {
+          if (normalizedQuery.includes('email_verified')) {
+            user.email_verified = true;
+            user.email_verified_at = new Date().toISOString();
+          }
+          if (normalizedQuery.includes('last_login')) {
+            user.last_login = new Date().toISOString();
+          }
+          user.updated_at = new Date().toISOString();
+          return { rows: [user], rowCount: 1 };
+        }
+        return { rows: [], rowCount: 0 };
+      }
+      
+      // DELETE from users
+      if (normalizedQuery.includes('delete') && normalizedQuery.includes('users')) {
+        if (normalizedQuery.includes('where email =') && params.length > 0) {
+          const index = storage.users.findIndex(u => u.email === params[0]);
+          if (index !== -1) {
+            storage.users.splice(index, 1);
+          }
+        }
+        return { rows: [], rowCount: 1 };
+      }
+      
+      // SELECT queries for roles
+      if (normalizedQuery.includes('select') && normalizedQuery.includes('roles')) {
+        let results = [...storage.roles];
+        
+        if (normalizedQuery.includes('where name =') && params.length > 0) {
+          results = results.filter(r => r.name === params[0]);
+        }
+        
+        return { rows: results, rowCount: results.length };
+      }
+      
+      // INSERT into user_roles
+      if (normalizedQuery.includes('insert') && normalizedQuery.includes('user_roles')) {
+        // Handle INSERT INTO user_roles (user_id, role_id) SELECT $1, id FROM roles WHERE name = 'user'
+        const userId = params[0];
+        const role = storage.roles.find(r => r.name === 'user');
+        if (role) {
+          const newUserRole = {
+            id: storage._nextUserRoleId++,
+            user_id: userId,
+            role_id: role.id,
+            assigned_at: new Date().toISOString(),
+            assigned_by: null,
+            expires_at: null
+          };
+          storage.user_roles.push(newUserRole);
+          return { rows: [newUserRole], rowCount: 1 };
+        }
+        return { rows: [], rowCount: 0 };
+      }
+      
+      // INSERT into auth_tokens
+      if (normalizedQuery.includes('insert') && normalizedQuery.includes('auth_tokens')) {
+        const newToken = {
+          id: storage._nextTokenId++,
+          user_id: params[0],
+          token_type: params[1],
+          token_hash: params[2],
+          expires_at: params[3],
+          ip_address: params[4],
+          user_agent: params[5],
+          revoked: false,
+          revoked_at: null,
+          created_at: new Date().toISOString()
+        };
+        storage.auth_tokens.push(newToken);
+        return { rows: [newToken], rowCount: 1 };
+      }
+      
+      // SELECT from auth_tokens
+      if (normalizedQuery.includes('select') && normalizedQuery.includes('auth_tokens')) {
+        let results = [...storage.auth_tokens];
+        
+        // Filter by token_type and token_hash
+        if (normalizedQuery.includes('token_type =') && normalizedQuery.includes('token_hash =')) {
+          const tokenType = params[0];
+          const tokenHash = params[1];
+          results = results.filter(t => 
+            t.token_type === tokenType && 
+            t.token_hash === tokenHash &&
+            !t.revoked &&
+            new Date(t.expires_at) > new Date()
+          );
+        }
+        
+        return { rows: results, rowCount: results.length };
+      }
+      
+      // UPDATE auth_tokens
+      if (normalizedQuery.includes('update') && normalizedQuery.includes('auth_tokens')) {
+        const tokenHash = params[params.length - 1];
+        const token = storage.auth_tokens.find(t => t.token_hash === tokenHash);
+        if (token) {
+          token.revoked = true;
+          token.revoked_at = new Date().toISOString();
+          return { rows: [], rowCount: 1 };
+        }
+        return { rows: [], rowCount: 0 };
       }
       
       // Default empty result

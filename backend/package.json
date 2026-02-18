@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --coverage --forceExit",
-    "test:watch": "jest --watch",
-    "test:auth": "jest src/tests/auth.test.js --forceExit",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --forceExit",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:auth": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/tests/auth.test.js --forceExit",
     "lint": "eslint src --fix",
     "setup-db": "node scripts/setup-db.js"
   },

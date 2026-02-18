@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import { query } from '../db/connection.js';
+import { query } from '../db/database.js';
 // Cache removed - using direct database queries
 import logger from '../utils/logger.js';
 import { NotFoundError, ConflictError, ValidationError } from '../middleware/errorHandler.js';

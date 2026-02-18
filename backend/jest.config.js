@@ -9,5 +9,5 @@ export default {
     'src/**/*.js',
     '!src/server.js',
     '!src/tests/**'
-  ]
+  ],
 };
