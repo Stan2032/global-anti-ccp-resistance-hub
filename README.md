@@ -1,5 +1,15 @@
 # Global Anti-CCP Resistance Hub
 
+> **⚠️ Repository Audit Notice (February 18, 2026)**  
+> A comprehensive audit was conducted to verify work claims. **Key findings:**
+> - ✅ Most work verified (90% of documented features exist)
+> - ❌ Cache system missing (documented but files not present)  
+> - ⚠️ Test claims unverified (cannot run without environment setup)
+> 
+> **Read the investigation:** [Summary](INVESTIGATION_SUMMARY.md) | [Full Audit](FABRICATION_GAP_AUDIT.md) | [Agent Log](AGENTS.md) | [Handoff Guide](LLM_MODEL_SWAP.md)
+
+---
+
 A comprehensive platform for documenting CCP human rights violations, supporting resistance movements, and providing tools for activists and researchers fighting against Chinese Communist Party authoritarianism.
 
 ## Mission
