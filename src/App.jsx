@@ -147,20 +147,16 @@ const MobileNav = ({ isOpen, onClose }) => {
           </div>
         </div>
         
-        {/* Status */}
+        {/* Security Tips */}
         <div className="p-4 border-t border-slate-700">
           <div className="bg-slate-900 rounded-lg p-3 text-xs">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-slate-400">Connection</span>
-              <span className="text-green-400 flex items-center">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></span>
-                Secure
-              </span>
+              <span className="text-slate-400">Security</span>
+              <Link to="/security" className="text-blue-400 hover:text-blue-300">
+                View Guide
+              </Link>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Live Feeds</span>
-              <span className="text-green-400">Active</span>
-            </div>
+            <p className="text-slate-500 text-xs">Use VPN or Tor for added safety</p>
           </div>
         </div>
       </nav>
@@ -265,13 +261,12 @@ const DesktopSidebar = () => {
       <div className="p-4 border-t border-slate-700">
         <div className="bg-slate-900 rounded-lg p-3 text-xs">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-slate-400">Status</span>
-            <span className="text-green-400 flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></span>
-              Online
-            </span>
+            <span className="text-slate-400">Security</span>
+            <Link to="/security" className="text-blue-400 hover:text-blue-300">
+              Guide
+            </Link>
           </div>
-          <div className="text-slate-500 text-center mt-2">v2.1 • Secure • Anonymous</div>
+          <div className="text-slate-500 text-center mt-2">v2.1 • Open Source</div>
         </div>
       </div>
     </aside>
