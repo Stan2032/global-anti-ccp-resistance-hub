@@ -1530,3 +1530,44 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 
 ### Agent Assignment Note
 **Best agent for React Compiler fixes:** Opus 4.6 — requires deep understanding of React rendering model, hooks rules, and when compiler warnings are false positives vs genuine issues. Sonnet 4.5 might over-correct by removing legitimate patterns.
+
+---
+
+## Session 22 (Opus 4.6, 2026-02-19)
+
+### Task: Timeline data extraction, README update, documentation finalization
+
+### Actions Taken
+1. **Extract InteractiveTimeline data to JSON** — Created `src/data/timeline_events.json` (21 events, 318 lines). Component reduced from 591→331 lines (44% reduction). Categories kept inline (contain Tailwind CSS classes).
+2. **Update README.md** — Removed outdated Feb 18 audit notice. Added Security Tools, Accessibility, Internationalization sections. Updated tech stack, security approach, contributing guidelines.
+3. **Update AGENT_ROADMAP.md** — Added D2 (README) and D3 (timeline extraction) sections. Updated attribution to Sessions 6-22.
+4. **Security scan** — CodeQL: 0 alerts.
+
+### Key Decisions
+1. **Timeline categories kept inline** — They contain Tailwind CSS class names (`bg-yellow-500`, etc.) which can't go in JSON without losing code-level integration. Only the event data (pure facts) went to JSON.
+2. **README audit notice removed entirely** — All issues from the Feb 18 audit have been resolved in Sessions 6-21. Keeping it would be misleading.
+3. **README now links to AGENT_ROADMAP** — Instead of multiple obsolete handoff docs, the single roadmap serves as the source of truth for agent context.
+
+### Cumulative Progress Summary (Sessions 6-22)
+
+| Category | Metric | Before | After |
+|----------|--------|--------|-------|
+| Tests | Count | 113 | 165 |
+| Dead code | Lines removed | 0 | ~5,400 |
+| Emojis | Decorative removed | 0 | 656 |
+| Accessibility | ARIA attributes | 36 | 208 |
+| Lint errors | Count | 289 | 11 |
+| Source entries | COUNT | 142 | 164 |
+| i18n locales | Count | 0 | 5 |
+| Security claims | Misleading removed | 0 | 8+ |
+| Components over 500 lines | Count | 15+ | 14 |
+| Data files (JSON) | Count | ~8 | 9 |
+
+### What's Left (Human-Blocked Only)
+- HR1: Backend serverless implementation (when owner is ready)
+- HR3.3: Email service decision (deferred)
+- L2.3: Volunteer translations for sensitive content
+- Cloudflare deployment: Domain configuration
+
+### Agent Assignment Note
+**Best agent for README updates:** Opus 4.6 — needs comprehensive knowledge of all changes across 16+ sessions to accurately represent capabilities. Sonnet 4.5 could handle if given a specific list of changes to document.
