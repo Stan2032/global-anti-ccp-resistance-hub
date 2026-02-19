@@ -466,6 +466,33 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
+### D4: Data Extraction — SecurityCenter
+**Status:** ✅ COMPLETE (Session 23)  
+**Priority:** LOW - Code organization  
+**Agent:** Opus 4.6 (best: systematic data extraction)
+
+- [x] Create src/data/security_center_data.json (5 arrays: tools, tests, questions, contacts, guides)
+- [x] Import JSON data in SecurityCenter.jsx
+- [x] Component reduced from 792→589 lines (26% reduction)
+- [x] Removed 5 unnecessary useState wrappers for static data
+
+---
+
+### E1: Route Error Boundary
+**Status:** ✅ COMPLETE (Session 23)  
+**Priority:** MEDIUM - Critical for censored-region users  
+**Agent:** Opus 4.6 (best: error handling + UX judgment for activist platform)
+
+- [x] Created RouteErrorBoundary.jsx — catches chunk-load errors within page layout
+- [x] Detects ChunkLoadError, dynamic import failures, Failed to fetch
+- [x] Shows context-specific "Failed to load page" for network issues
+- [x] Preserves navigation (vs top-level ErrorBoundary which replaces entire app)
+- [x] Wrapped Suspense in App.jsx with RouteErrorBoundary
+- [x] Added 5 tests (children render, error UI, chunk detection, accessible buttons)
+- [x] Build passes (4.75s), 170/170 tests pass
+
+---
+
 ## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
 
 ### HR1: Backend Architecture

@@ -1571,3 +1571,40 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 
 ### Agent Assignment Note
 **Best agent for README updates:** Opus 4.6 — needs comprehensive knowledge of all changes across 16+ sessions to accurately represent capabilities. Sonnet 4.5 could handle if given a specific list of changes to document.
+
+---
+
+## Session 23: 2026-02-19 — Route Error Boundary + SecurityCenter Data Extraction
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Mode:** Autonomous agent  
+**Task:** Continue autonomous improvements — error handling, data extraction
+
+### Actions Taken
+1. **RouteErrorBoundary created** — Catches chunk-load errors inside the page layout, preserving navigation. Critical for users in censored regions where network failures can prevent lazy chunks from loading.
+2. **SecurityCenter data extraction** — Moved 5 static data arrays (tools, tests, questions, contacts, guides) to `security_center_data.json`. Component reduced 792→589 lines (26%).
+3. **Meta tag TODO comment** — Added deployment URL update note to index.html.
+4. **False positive investigation** — Verified `useDocumentTitle` is centralized (App.jsx:285), all 14 routes covered. No per-page hook needed.
+
+### Key Decisions
+1. **RouteErrorBoundary vs top-level ErrorBoundary** — Top-level catches errors but replaces entire app (losing navigation). Route-level catches within the layout so users can navigate elsewhere or retry. Both are now active.
+2. **Chunk-load detection heuristics** — Check for `ChunkLoadError`, `Loading chunk`, `dynamically imported module`, and `Failed to fetch`. Covers Vite, Webpack, and generic fetch failures.
+3. **Meta tag URLs left as-is** — Can't use env vars in static HTML without a build-time replacement step. Added TODO comment; URLs update when deploying to custom domain.
+
+### Cumulative Progress Summary (Sessions 6-23)
+
+| Category | Metric | Before | After |
+|----------|--------|--------|-------|
+| Tests | Count | 113 | 170 |
+| Dead code | Lines removed | 0 | ~5,600 |
+| Emojis | Decorative removed | 0 | 656 |
+| Accessibility | ARIA attributes | 36 | 208 |
+| Lint errors | Count | 289 | 11 |
+| Source entries | Count | 142 | 164 |
+| i18n locales | Count | 0 | 5 |
+| Data files (JSON) | Count | ~8 | 11 |
+| Error boundaries | Count | 1 | 2 |
+
+### Agent Assignment Note
+**Best agent for error boundary work:** Opus 4.6 — requires understanding of React error boundary lifecycle, lazy loading failure modes, and UX judgment for activist platform users in censored regions.
