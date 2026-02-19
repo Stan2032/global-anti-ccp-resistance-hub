@@ -306,7 +306,7 @@
     "category": "hongkong",
     "significance": "critical",
     "description": "Jimmy Lai convicted on all charges after landmark 2-year trial.",
-    "details": "The 78-year-old British citizen was found guilty of conspiracy to collude with foreign forces and sedition. He faces life imprisonment. The verdict was condemned by the UK, US, and EU.",
+    "details": "The 78-year-old British citizen was found guilty of conspiracy to collude with foreign forces and sedition. The verdict was condemned by the UK, US, EU, G7, and Australia.",
     "sentence": "Convicted Dec 15, 2025; sentenced to 20 years on Feb 9, 2026",
     "impact": "International condemnation, calls for sanctions",
     "sources": [
@@ -314,6 +314,24 @@
       "CNN",
       "Reuters",
       "UK Foreign Office"
+    ]
+  },
+  {
+    "id": 22,
+    "date": "2026-02-09",
+    "title": "Jimmy Lai Sentenced to 20 Years",
+    "category": "hongkong",
+    "significance": "critical",
+    "description": "Jimmy Lai sentenced to 20 years in prison — the harshest sentence yet under Hong Kong's National Security Law.",
+    "details": "The 78-year-old British citizen was sentenced to 20 years for conspiracy to collude with foreign forces and sedition. Not eligible for parole until his late 90s, making it effectively a life sentence. The sentencing drew condemnation from the G7, UK, US, EU, Australia, and press freedom organizations worldwide.",
+    "sentence": "20 years imprisonment",
+    "impact": "Harshest NSL sentence to date, global calls for release",
+    "sources": [
+      "Human Rights Watch",
+      "US State Department",
+      "Committee to Protect Journalists",
+      "BBC",
+      "CNBC"
     ]
   }
 ]

@@ -28,9 +28,9 @@ const campaigns = [
       governmentStatements: 45,
     },
     recentUpdates: [
+      { date: '2026-02-09', text: 'Jimmy Lai sentenced to 20 years in prison' },
       { date: '2025-12-15', text: 'Jimmy Lai found guilty on all charges' },
       { date: '2025-12-16', text: 'UK Foreign Secretary condemns verdict' },
-      { date: '2025-12-17', text: 'US State Department calls for release' },
     ],
     actions: [
       { name: 'Sign petition', url: 'https://www.change.org/p/free-jimmy-lai', type: 'petition' },
