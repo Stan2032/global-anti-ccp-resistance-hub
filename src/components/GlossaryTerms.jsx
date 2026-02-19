@@ -267,6 +267,7 @@ const GlossaryTerms = () => {
       {/* Search */}
       <div className="relative">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search terms in English or Chinese..."
           value={searchQuery}

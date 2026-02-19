@@ -215,6 +215,7 @@ const Glossary = () => {
         </div>
         <div className="relative">
           <input
+            aria-label="Search terms..."
             type="text"
             placeholder="Search terms..."
             value={searchTerm}

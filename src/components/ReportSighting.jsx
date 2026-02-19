@@ -272,6 +272,7 @@ const ReportSighting = () => {
                       City/Region
                     </label>
                     <input
+                      aria-label="e.g., London, New York"
                       type="text"
                       value={formData.city}
                       onChange={(e) => handleInputChange('city', e.target.value)}
@@ -286,6 +287,7 @@ const ReportSighting = () => {
                     Date of Observation
                   </label>
                   <input
+                    aria-label="Input field"
                     type="date"
                     value={formData.date}
                     onChange={(e) => handleInputChange('date', e.target.value)}
@@ -400,6 +402,7 @@ const ReportSighting = () => {
                       Contact Information (optional)
                     </label>
                     <input
+                      aria-label="Secure email or Signal number"
                       type="text"
                       value={formData.contact}
                       onChange={(e) => handleInputChange('contact', e.target.value)}

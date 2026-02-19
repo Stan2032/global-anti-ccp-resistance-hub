@@ -185,6 +185,7 @@ const SolidarityWall = () => {
               <div>
                 <label className="block text-sm text-slate-400 mb-1">Name (optional)</label>
                 <input
+                  aria-label="Name (optional)"
                   type="text"
                   value={newMessage.name}
                   onChange={(e) => setNewMessage({ ...newMessage, name: e.target.value })}
@@ -195,6 +196,7 @@ const SolidarityWall = () => {
               <div>
                 <label className="block text-sm text-slate-400 mb-1">Location (optional)</label>
                 <input
+                  aria-label="Location (optional)"
                   type="text"
                   value={newMessage.location}
                   onChange={(e) => setNewMessage({ ...newMessage, location: e.target.value })}

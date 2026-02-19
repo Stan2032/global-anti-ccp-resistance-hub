@@ -274,6 +274,7 @@ const ResearchPapers = () => {
       {/* Search */}
       <div className="relative">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search papers by title, author, or topic..."
           value={searchQuery}

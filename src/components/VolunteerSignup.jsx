@@ -159,6 +159,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Name *</label>
               <input
+                aria-label="Name *"
                 type="text"
                 required
                 value={formData.name}
@@ -170,6 +171,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Email *</label>
               <input
+                aria-label="Email *"
                 type="email"
                 required
                 value={formData.email}
@@ -181,6 +183,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Location</label>
               <input
+                aria-label="Location"
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}

@@ -213,6 +213,7 @@ const IncidentReportForm = () => {
                   Location (City, Country)
                 </label>
                 <input
+                  aria-label="Location"
                   type="text"
                   name="location"
                   value={formData.location}
@@ -226,6 +227,7 @@ const IncidentReportForm = () => {
                   Date of Incident
                 </label>
                 <input
+                  aria-label="Date of Incident"
                   type="date"
                   name="date"
                   value={formData.date}
@@ -255,6 +257,7 @@ const IncidentReportForm = () => {
                 Perpetrators (if known)
               </label>
               <input
+                aria-label="Perpetrators"
                 type="text"
                 name="perpetrators"
                 value={formData.perpetrators}
@@ -269,6 +272,7 @@ const IncidentReportForm = () => {
                 Evidence Available
               </label>
               <input
+                aria-label="Evidence"
                 type="text"
                 name="evidence"
                 value={formData.evidence}
@@ -312,6 +316,7 @@ const IncidentReportForm = () => {
                   Contact Email (optional)
                 </label>
                 <input
+                  aria-label="Contact Email"
                   type="email"
                   name="contactEmail"
                   value={formData.contactEmail}

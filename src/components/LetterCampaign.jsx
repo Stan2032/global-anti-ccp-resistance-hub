@@ -197,6 +197,7 @@ Sincerely,
           <div>
             <label className="block text-xs text-slate-400 mb-1">Your Name</label>
             <input
+              aria-label="Your Name"
               type="text"
               value={customizations.name}
               onChange={(e) => setCustomizations({ ...customizations, name: e.target.value })}
@@ -207,6 +208,7 @@ Sincerely,
           <div>
             <label className="block text-xs text-slate-400 mb-1">Your Location</label>
             <input
+              aria-label="Your Location"
               type="text"
               value={customizations.location}
               onChange={(e) => setCustomizations({ ...customizations, location: e.target.value })}

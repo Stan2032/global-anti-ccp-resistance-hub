@@ -396,6 +396,7 @@ const EducationalResources = () => {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
               <input
+                aria-label="Search"
                 type="text"
                 placeholder="Search courses..."
                 value={searchQuery}

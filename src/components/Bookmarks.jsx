@@ -92,6 +92,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Title</label>
               <input
+                aria-label="Title"
                 type="text"
                 value={newBookmark.title}
                 onChange={(e) => setNewBookmark({ ...newBookmark, title: e.target.value })}
@@ -102,6 +103,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">URL</label>
               <input
+                aria-label="URL"
                 type="url"
                 value={newBookmark.url}
                 onChange={(e) => setNewBookmark({ ...newBookmark, url: e.target.value })}
@@ -124,6 +126,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Notes (optional)</label>
               <input
+                aria-label="Notes (optional)"
                 type="text"
                 value={newBookmark.notes}
                 onChange={(e) => setNewBookmark({ ...newBookmark, notes: e.target.value })}
@@ -291,6 +294,7 @@ const Bookmarks = () => {
         <label className="text-slate-400 hover:text-slate-300 cursor-pointer">
           Import Bookmarks
           <input
+            aria-label="Input field"
             type="file"
             accept=".json"
             className="hidden"

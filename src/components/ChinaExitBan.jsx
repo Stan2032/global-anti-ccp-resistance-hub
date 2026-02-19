@@ -236,6 +236,7 @@ const ChinaExitBan = () => {
       {/* Search and Filter */}
       <div className="flex flex-col md:flex-row gap-4">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search cases..."
           value={searchTerm}

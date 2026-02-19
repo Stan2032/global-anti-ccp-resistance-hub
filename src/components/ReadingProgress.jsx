@@ -336,6 +336,7 @@ export default function ReadingProgress() {
                   </button>
                   {!itemProgress.completed && (
                     <input
+                      aria-label="Input field"
                       type="number"
                       min="0"
                       max={material.pages}

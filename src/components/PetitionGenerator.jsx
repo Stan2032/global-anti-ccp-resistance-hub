@@ -294,6 +294,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               
               {petition.target === 'Other (specify)' && (
                 <input
+                  aria-label="Enter target name..."
                   type="text"
                   placeholder="Enter target name..."
                   value={petition.targetCustom}
@@ -338,6 +339,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
 
           {petition.issue === 'other' && (
             <input
+              aria-label="Describe the issue..."
               type="text"
               placeholder="Describe the issue..."
               value={petition.issueCustom}
@@ -394,6 +396,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
             <h4 className="text-sm font-medium text-slate-300">Add custom demand:</h4>
             <div className="flex space-x-2">
               <input
+                aria-label="Enter your demand..."
                 type="text"
                 placeholder="Enter your demand..."
                 value={petition.customDemand}
@@ -443,6 +446,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
 
           <div className="grid md:grid-cols-2 gap-3">
             <input
+              aria-label="Your name (optional)"
               type="text"
               placeholder="Your name (optional)"
               value={petition.yourName}
@@ -450,6 +454,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
             <input
+              aria-label="Your organization (optional)"
               type="text"
               placeholder="Your organization (optional)"
               value={petition.yourOrg}

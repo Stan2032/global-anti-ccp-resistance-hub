@@ -276,6 +276,7 @@ const CompanyTracker = () => {
       <div className="space-y-3">
         <div>
           <input
+            aria-label="Search"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

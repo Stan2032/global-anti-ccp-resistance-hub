@@ -218,6 +218,7 @@ const SanctionedOfficials = () => {
       {/* Search */}
       <div className="relative">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search by name, position, or Chinese characters..."
           value={searchQuery}
