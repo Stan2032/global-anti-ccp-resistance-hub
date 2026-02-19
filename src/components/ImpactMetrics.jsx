@@ -1,4 +1,5 @@
 import React from 'react';
+import { Globe, Link2, Building2, Trophy } from 'lucide-react';
 
 const ImpactMetrics = () => {
   const metrics = [
@@ -7,7 +8,7 @@ const ImpactMetrics = () => {
       value: 53,
       change: '+7',
       changeLabel: 'newly identified',
-      icon: '🌍',
+      Icon: Globe,
       color: 'red'
     },
     {
@@ -15,7 +16,7 @@ const ImpactMetrics = () => {
       value: 53,
       change: '+12',
       changeLabel: 'this year',
-      icon: '⛓️',
+      Icon: Link2,
       color: 'orange'
     },
     {
@@ -23,7 +24,7 @@ const ImpactMetrics = () => {
       value: 24,
       change: 'Verified',
       changeLabel: 'and active',
-      icon: '🏛️',
+      Icon: Building2,
       color: 'blue'
     },
     {
@@ -31,7 +32,7 @@ const ImpactMetrics = () => {
       value: 25,
       change: '+5',
       changeLabel: 'in 2024',
-      icon: '🏆',
+      Icon: Trophy,
       color: 'green'
     }
   ];
@@ -78,7 +79,7 @@ const ImpactMetrics = () => {
         {metrics.map((metric, index) => (
           <div key={index} className="bg-slate-900/50 rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-2xl">{metric.icon}</span>
+              <metric.Icon className="w-6 h-6 text-slate-300" />
               <span className={`px-2 py-0.5 rounded text-xs font-medium ${colorClasses[metric.color]}`}>
                 {metric.change}
               </span>
@@ -93,7 +94,7 @@ const ImpactMetrics = () => {
       {/* Recent Victories */}
       <div className="border-t border-slate-700 pt-4">
         <h3 className="text-sm font-semibold text-slate-300 mb-3 flex items-center">
-          <span className="mr-2">🏆</span> Recent Victories
+          <Trophy className="w-4 h-4 mr-2" /> Recent Victories
         </h3>
         <div className="space-y-3">
           {recentVictories.map((victory, index) => (

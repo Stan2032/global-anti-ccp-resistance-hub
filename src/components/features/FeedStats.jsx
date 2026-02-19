@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Newspaper, CalendarDays, BarChart3, Eye } from 'lucide-react';
 
 /**
  * FeedStats Component
@@ -65,28 +66,28 @@ const FeedStats = ({ className = '' }) => {
     {
       label: 'Total Items',
       value: formatNumber(stats.feeds?.total_items),
-      icon: '📰',
+      Icon: Newspaper,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       label: 'Today',
       value: formatNumber(stats.feeds?.items_today),
-      icon: '📅',
+      Icon: CalendarDays,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
       label: 'This Week',
       value: formatNumber(stats.feeds?.items_this_week),
-      icon: '📊',
+      Icon: BarChart3,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
     },
     {
       label: 'Total Views',
       value: formatNumber(stats.feeds?.total_views),
-      icon: '👁️',
+      Icon: Eye,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
@@ -105,7 +106,7 @@ const FeedStats = ({ className = '' }) => {
             className={`${item.bgColor} rounded-lg p-4`}
           >
             <div className="flex items-center gap-2 mb-1">
-              <span>{item.icon}</span>
+              <item.Icon className="w-4 h-4" />
               <span className="text-sm text-gray-600">{item.label}</span>
             </div>
             <div className={`text-2xl font-bold ${item.color}`}>

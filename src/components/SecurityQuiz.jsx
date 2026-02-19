@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ClipboardList, AlertTriangle, Link as LinkIcon, Lock } from 'lucide-react';
 
 const SecurityQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -180,7 +181,7 @@ const SecurityQuiz = () => {
 
         {/* Recommendations */}
         <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-white mb-4">📋 Personalized Recommendations</h3>
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> Personalized Recommendations</h3>
           <div className="space-y-4">
             {questions.map((q, index) => {
               const userPoints = answers[index] || 0;
@@ -189,7 +190,7 @@ const SecurityQuiz = () => {
               return needsImprovement ? (
                 <div key={q.id} className="bg-slate-900/50 rounded-lg p-4 border-l-4 border-yellow-500">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-yellow-500">⚠️</span>
+                    <AlertTriangle className="w-4 h-4 text-yellow-500" />
                     <span className="text-sm text-yellow-400 font-medium">{q.category}</span>
                   </div>
                   <p className="text-slate-300 text-sm">{q.recommendation}</p>
@@ -201,7 +202,7 @@ const SecurityQuiz = () => {
 
         {/* Resources */}
         <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-white mb-4">🔗 Security Resources</h3>
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><LinkIcon className="w-5 h-5" /> Security Resources</h3>
           <div className="grid md:grid-cols-2 gap-4">
             <a href="https://ssd.eff.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors">
               <h4 className="font-semibold text-white">EFF Surveillance Self-Defense</h4>
@@ -274,7 +275,7 @@ const SecurityQuiz = () => {
       {/* Security Notice */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4">
         <p className="text-sm text-yellow-300">
-          <span className="font-semibold">🔒 Privacy Notice:</span> Your answers are not stored or transmitted. 
+          <span className="font-semibold flex items-center gap-1"><Lock className="w-4 h-4" /> Privacy Notice:</span> Your answers are not stored or transmitted. 
           This assessment runs entirely in your browser.
         </p>
       </div>
