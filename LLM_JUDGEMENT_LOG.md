@@ -1350,3 +1350,41 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 - L2.3: Recruit volunteer translators (cannot be automated)
 - HR1: Implement serverless functions (when owner is ready)
 - HR3.3: Email service selection (deferred)
+
+---
+
+## Session 17: 2026-02-19 - Deep Cleanup, i18n Navigation, Testing
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Task:** Deep code audit, dead code removal, i18n wiring, test coverage
+
+### Actions Taken
+
+1. **Fixed last misleading "SECURE" badge** — Mobile header still had a false "SECURE" badge from before Session 9's cleanup. Replaced with "Security" link to /security page, matching the desktop sidebar pattern.
+
+2. **Removed 770 lines of dead prisoner data** — PoliticalPrisoners.jsx had a `PRISONERS_DATA_ORIGINAL` array (lines 107-877) left behind when the JSON data source was adopted. This dead code was never referenced (`PRISONERS_DATA = PRISONERS_FROM_JSON`). Component went from 1,294 → 525 lines.
+
+3. **Wired navigation to i18n** — App.jsx's MobileNav and DesktopSidebar were using hardcoded English strings despite the LanguageProvider/t() system existing. Added `useLanguage` import and replaced all 10 nav items + 4 section titles with `t('nav.xxx')` calls. Navigation now translates when language is switched.
+
+4. **Added 5 missing locale keys** — `dataSources`, `main`, `humanRights`, `action`, `resourcesSection` added programmatically to all 5 locale files (en, zh-CN, zh-TW, ug, bo).
+
+5. **Added 18 i18n locale tests** — Validates key consistency across all 5 locales, checks for empty values, verifies translations actually differ from English. Test count: 124 → 142.
+
+6. **Deleted 2 more dead code files** — `layout/Footer.jsx` (App.jsx uses `components/Footer`) and `features/LiveFeed.jsx` (317 lines, zero imports). Removed empty `layout/` and `features/` directories.
+
+### Key Decisions
+
+- **Don't change vite base path yet** — `base: '/global-anti-ccp-resistance-hub/'` is correct for current GitHub Pages deployment. Added comment noting it should change to `/` when deploying to Cloudflare Pages.
+- **GitHub Pages URLs not updated** — Multiple components reference `stan2032.github.io/global-anti-ccp-resistance-hub/`. These should be updated when a Cloudflare Pages domain is established, not before.
+- **Locale files are correct** — All 5 locale files contain only UI navigation labels and button text (machine-translatable per owner approval). Sensitive content (testimonies, legal advice, security guides) remains in JSX and is NOT machine-translated.
+
+### Cumulative Progress Update
+
+| Task | Status | Agent | Session |
+|------|--------|-------|---------|
+| Dead code removal | ✅ 15 files + 770 inline lines (4,648 lines total) | Opus 4.6 | 13, 17 |
+| i18n navigation wiring | ✅ All nav items use t() | Opus 4.6 | 17 |
+| i18n tests | ✅ 18 tests added (key consistency) | Opus 4.6 | 17 |
+| Test suite | 142/142 passing | | |
+| Build time | 4.80s | | |

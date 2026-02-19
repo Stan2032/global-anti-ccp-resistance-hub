@@ -290,36 +290,39 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ---
 
 ### L3: Dead Code Removal
-**Status:** ✅ COMPLETE (2026-02-19, Session 13)  
+**Status:** ✅ COMPLETE (2026-02-19, Sessions 13+17)  
 **Priority:** LOW - Code quality  
-**Agent Action:** Audited in Session 10, deleted in Session 13 (owner approved via problem statement)  
+**Agent Action:** Audited in Session 10, deleted in Sessions 13+17 (owner approved via problem statement)  
 **Best Agent:** Opus 4.6 (audit and judgment on what's safe to delete)
 
-**12 dead code files deleted (3,401 lines removed):**
-| Component | Status | Notes |
-|-----------|--------|-------|
-| `src/components/BoycottList.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/DiasporaDirectory.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/LazyImage.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/VideoTestimonials.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/features/FeedSourceSelector.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/features/FeedStats.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/intelligence/LiveIntelligenceFeed.jsx` | ✅ Deleted | Zero imports, never used |
-| `src/components/layout/Header.jsx` | ✅ Deleted | App.jsx uses inline header; had fake securityLevel code |
-| `src/components/layout/Sidebar.jsx` | ✅ Deleted | App.jsx uses inline sidebar |
-| `src/components/ui/SecurityWarning.jsx` | ✅ Deleted | Rewritten in Session 8, orphaned (never imported) |
-| `src/data/realSources.js` | ✅ Deleted | Zero references anywhere |
-| `src/utils/performance.js` | ✅ Deleted | Only referenced by dead LazyImage.jsx |
+**15 dead code files deleted (4,648 lines removed):**
+| Component | Status | Session | Notes |
+|-----------|--------|---------|-------|
+| `src/components/BoycottList.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/DiasporaDirectory.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/LazyImage.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/VideoTestimonials.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/features/FeedSourceSelector.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/features/FeedStats.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/intelligence/LiveIntelligenceFeed.jsx` | ✅ Deleted | 13 | Zero imports, never used |
+| `src/components/layout/Header.jsx` | ✅ Deleted | 13 | App.jsx uses inline header; had fake securityLevel code |
+| `src/components/layout/Sidebar.jsx` | ✅ Deleted | 13 | App.jsx uses inline sidebar |
+| `src/components/ui/SecurityWarning.jsx` | ✅ Deleted | 13 | Rewritten in Session 8, orphaned |
+| `src/data/realSources.js` | ✅ Deleted | 13 | Zero references anywhere |
+| `src/utils/performance.js` | ✅ Deleted | 13 | Only referenced by dead LazyImage.jsx |
+| `src/components/layout/Footer.jsx` | ✅ Deleted | 17 | App.jsx uses components/Footer, not layout/Footer |
+| `src/components/features/LiveFeed.jsx` | ✅ Deleted | 17 | Zero imports (317 lines dead code) |
+| `PRISONERS_DATA_ORIGINAL` in PoliticalPrisoners | ✅ Deleted | 17 | 770 lines of dead hardcoded data replaced by JSON import |
 
-**Verification:** Build passes (4.95s), 124/124 tests pass after deletion. Empty `intelligence/` directory also removed.
+**Verification:** Build passes (4.80s), 142/142 tests pass after deletion. Empty `intelligence/`, `layout/`, `features/` directories removed.
 
 ---
 
 ### L2: Multilingual Support
-**Status:** Foundation Started  
+**Status:** Infrastructure Complete, Navigation Wired  
 **Priority:** LOW - Infrastructure ready, awaiting volunteer translators  
 **From:** TODO.md Short-Term High Priority  
-**Agent Decision:** Infrastructure COMPLETE, content awaits volunteers
+**Agent Decision:** Infrastructure COMPLETE, navigation WIRED, content awaits volunteers
 
 **Owner Decision (Session 16):** Wait for native volunteers, machine translate nav/basic words only. Do NOT translate sensitive subjects without human translators.
 
@@ -334,6 +337,13 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - Split single `zh` entry into `zh-CN` (Simplified) and `zh-TW` (Traditional)
   - Navigation and basic UI words machine-translated (per owner approval)
   - 5 languages now available: English, 简体中文, 繁體中文, ئۇيغۇرچە, བོད་སྐད།
+
+- [x] **L2.4** Wire App.jsx navigation to use t() ✅ (Session 17)
+  - MobileNav: All 10 nav items use `t('nav.xxx')` for translated labels
+  - DesktopSidebar: All nav items + section titles use `t('nav.xxx')`
+  - Added 5 missing nav keys to all 5 locale files
+  - Added 18 i18n locale tests verifying key consistency across all languages
+  - **Agent:** Opus 4.6
 
 - [ ] **L2.3** Recruit volunteer translators for sensitive content
   - Testimonies, legal info, safety guides MUST be human-translated
@@ -482,6 +492,6 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-14), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-17), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
-**Next Review:** All autonomous tasks COMPLETE. Remaining tasks (C2.1-C2.3, HR1-HR3, L2) blocked on human decisions.
+**Next Review:** All autonomous tasks COMPLETE. Remaining tasks (HR1.1-3, HR3.3, L2.3) blocked on human decisions or volunteer recruitment.

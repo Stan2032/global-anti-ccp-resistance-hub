@@ -93,7 +93,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: t('nav.resources'), href: '/resources' },
     { name: t('nav.education'), href: '/education' },
     { name: t('nav.security'), href: '/security' },
-    { name: t('nav.dataSources') || 'Data Sources', href: '/data-sources' },
+    { name: t('nav.dataSources'), href: '/data-sources' },
   ];
 
   if (!isOpen) return null;
@@ -173,7 +173,7 @@ const DesktopSidebar = () => {
   
   const sections = [
     {
-      title: t('nav.main') || 'Main',
+      title: t('nav.main'),
       items: [
         { name: t('nav.dashboard'), href: '/' },
         { name: t('nav.intelligence'), href: '/intelligence' },
@@ -181,25 +181,25 @@ const DesktopSidebar = () => {
       ]
     },
     {
-      title: t('nav.humanRights') || 'Human Rights',
+      title: t('nav.humanRights'),
       items: [
         { name: t('nav.prisoners'), href: '/prisoners' },
       ]
     },
     {
-      title: t('nav.action') || 'Action',
+      title: t('nav.action'),
       items: [
         { name: t('nav.takeAction'), href: '/take-action' },
         { name: t('nav.community'), href: '/community' },
       ]
     },
     {
-      title: t('nav.resourcesSection') || 'Resources',
+      title: t('nav.resourcesSection'),
       items: [
-        { name: t('nav.resources') || 'Tools', href: '/resources' },
+        { name: t('nav.resources'), href: '/resources' },
         { name: t('nav.education'), href: '/education' },
         { name: t('nav.security'), href: '/security' },
-        { name: t('nav.dataSources') || 'Data Sources', href: '/data-sources' },
+        { name: t('nav.dataSources'), href: '/data-sources' },
       ]
     }
   ];
