@@ -78,7 +78,7 @@ export default function useWebRTCLeakCheck() {
       setLeakedIPs(ips)
       setIsLeaking(publicIPs.length > 0)
       setStatus('complete')
-    } catch (err) {
+    } catch {
       setStatus('error')
     } finally {
       if (pc) {

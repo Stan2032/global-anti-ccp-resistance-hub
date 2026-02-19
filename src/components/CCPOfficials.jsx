@@ -98,7 +98,7 @@ const CHINESE_NAMES = {
 };
 
 // Map JSON officials to component format
-const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
+const jsonOfficials = sanctionedOfficialsData.results.map((result) => {
   const official = result.output;
   const sanctionedBy = mapSanctionData(official);
   

@@ -65,7 +65,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
 };
 
 const LiveStatistics = () => {
-  const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [lastUpdated] = useState(new Date());
 
   const statistics = [
     {

@@ -3,7 +3,7 @@ import { Siren, AlertTriangle } from 'lucide-react';
 
 const PoliceStationsMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
+  const [_showDetails, setShowDetails] = useState(false);
 
   // Data from Safeguard Defenders reports and Newsweek compilation
   const policeStationsData = {

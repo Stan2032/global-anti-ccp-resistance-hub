@@ -140,7 +140,7 @@ export const useTheme = () => {
 
 // Theme Toggle Button Component
 export const ThemeToggle = ({ className = '' }) => {
-  const { resolvedTheme, toggleTheme, themeConfig } = useTheme();
+  const { toggleTheme, themeConfig } = useTheme();
 
   return (
     <button

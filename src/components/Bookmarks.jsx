@@ -307,7 +307,7 @@ const Bookmarks = () => {
                   try {
                     const imported = JSON.parse(event.target.result);
                     setBookmarks([...bookmarks, ...imported]);
-                  } catch (err) {
+                  } catch {
                     alert('Invalid bookmark file');
                   }
                 };

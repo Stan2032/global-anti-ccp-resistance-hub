@@ -21,7 +21,7 @@ import {
 import { Link } from 'react-router-dom'
 
 const CampaignHubs = () => {
-  const [activeTab, setActiveTab] = useState('active')
+  const [activeTab] = useState('active')
   const [selectedCampaign, setSelectedCampaign] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 

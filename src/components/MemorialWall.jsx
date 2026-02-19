@@ -224,7 +224,6 @@ export default function MemorialWall() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVictim, setSelectedVictim] = useState(null);
-  const [showLightCandle, setShowLightCandle] = useState(false);
   const [candlesLit, setCandlesLit] = useState(() => {
     const saved = localStorage.getItem('memorial-candles');
     return saved ? JSON.parse(saved) : [];

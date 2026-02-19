@@ -232,7 +232,6 @@ const facilities = [
 
 const regions = ['All Regions', 'Xinjiang', 'Tibet', 'Hong Kong', 'Mainland China'];
 const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Maximum Security Prison', 'Secret Detention'];
-const statuses = ['All Statuses', 'Active', 'Closed', 'Unknown'];
 
 // Process research data into source attribution format
 const MAX_DESCRIPTION_LENGTH = 100;

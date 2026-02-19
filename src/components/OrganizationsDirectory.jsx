@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Users, Globe, Heart, Search, Filter, ExternalLink, 
   Star, Building, Newspaper, Scale, BookOpen, 
@@ -56,7 +56,6 @@ const OrganizationsDirectory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [focusFilter, setFocusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [selectedOrg, setSelectedOrg] = useState(null);
 
   const organizations = orgsData.results.map(r => r.output);
 

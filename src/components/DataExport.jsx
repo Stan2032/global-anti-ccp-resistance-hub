@@ -150,23 +150,25 @@ const DataExport = () => {
         filename = `resistance-hub-export-${Date.now()}.json`;
         mimeType = 'application/json';
         break;
-      case 'csv':
+      case 'csv': {
         // Generate CSV for each dataset
-        const csvParts = Object.entries(data).map(([key, value]) => {
+        const csvParts = Object.entries(data).map(([, value]) => {
           return `# ${value.metadata.name}\n# ${value.metadata.description}\n# Records: ${value.metadata.records}\n# Last Updated: ${value.metadata.lastUpdated}\n\n${value.schema.join(',')}\n[Data rows would appear here]`;
         });
         content = csvParts.join('\n\n---\n\n');
         filename = `resistance-hub-export-${Date.now()}.csv`;
         mimeType = 'text/csv';
         break;
-      case 'markdown':
-        const mdParts = Object.entries(data).map(([key, value]) => {
+      }
+      case 'markdown': {
+        const mdParts = Object.entries(data).map(([, value]) => {
           return `# ${value.metadata.name}\n\n${value.metadata.description}\n\n- **Records:** ${value.metadata.records}\n- **Last Updated:** ${value.metadata.lastUpdated}\n- **Source:** ${value.metadata.source}\n- **License:** ${value.metadata.license}\n\n## Schema\n\n| Field |\n|-------|\n${value.schema.map(f => `| ${f} |`).join('\n')}\n`;
         });
         content = `# Resistance Hub Data Export\n\nExported: ${new Date().toISOString()}\n\n---\n\n${mdParts.join('\n---\n\n')}`;
         filename = `resistance-hub-export-${Date.now()}.md`;
         mimeType = 'text/markdown';
         break;
+      }
       default:
         content = JSON.stringify(data, null, 2);
         filename = `resistance-hub-export-${Date.now()}.json`;

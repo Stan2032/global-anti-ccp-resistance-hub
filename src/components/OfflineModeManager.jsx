@@ -64,7 +64,7 @@ const OfflineModeManager = () => {
     try {
       // Register service worker if not already registered
       if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.register('/sw.js');
+        const _registration = await navigator.serviceWorker.register('/sw.js');
         // Service Worker registered successfully
         
         // Trigger cache of critical resources

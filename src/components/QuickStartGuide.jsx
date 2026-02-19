@@ -90,7 +90,7 @@ const QuickStartGuide = () => {
     localStorage.setItem('quickStartDismissed', 'true');
   };
 
-  const resetGuide = () => {
+  const _resetGuide = () => {
     setDismissed(false);
     setIsOpen(true);
     setCurrentStep(0);

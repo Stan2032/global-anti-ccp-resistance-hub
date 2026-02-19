@@ -6,7 +6,7 @@ const ActionTracker = () => {
     const saved = localStorage.getItem('completedActions');
     return saved ? JSON.parse(saved) : [];
   });
-  const [streak, setStreak] = useState(0);
+  const [streak] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
 
   const actionCategories = [
