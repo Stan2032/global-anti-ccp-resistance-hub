@@ -45,7 +45,12 @@
     "resources": "Resources",
     "tactics": "CCP Tactics",
     "education": "Education",
-    "security": "Security"
+    "security": "Security",
+    "dataSources": "Data Sources",
+    "main": "Main",
+    "humanRights": "Human Rights",
+    "action": "Action",
+    "resourcesSection": "Resources"
   },
   "header": {
     "title": "Global Resistance Hub",

@@ -45,7 +45,12 @@
     "resources": "资源",
     "tactics": "中共策略",
     "education": "教育",
-    "security": "安全"
+    "security": "安全",
+    "dataSources": "数据来源",
+    "main": "主要",
+    "humanRights": "人权",
+    "action": "行动",
+    "resourcesSection": "资源"
   },
   "header": {
     "title": "全球抗争中心",

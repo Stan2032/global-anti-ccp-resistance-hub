@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react
 import { Heart } from 'lucide-react'
 import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
-import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
+import LanguageSelector, { LanguageProvider, useLanguage } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
 import { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
@@ -80,19 +80,20 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
 // Mobile Navigation Menu
 const MobileNav = ({ isOpen, onClose }) => {
   const location = useLocation();
+  const { t } = useLanguage();
   
   // Simplified navigation - consolidated from 14 to 10 pages
   const navItems = [
-    { name: 'Dashboard', href: '/' },
-    { name: 'Intelligence', href: '/intelligence' },
-    { name: 'Directory', href: '/directory' },
-    { name: 'Political Prisoners', href: '/prisoners' },
-    { name: 'Take Action', href: '/take-action' },
-    { name: 'Community', href: '/community' },
-    { name: 'Resources', href: '/resources' },
-    { name: 'Education', href: '/education' },
-    { name: 'Security', href: '/security' },
-    { name: 'Data Sources', href: '/data-sources' },
+    { name: t('nav.dashboard'), href: '/' },
+    { name: t('nav.intelligence'), href: '/intelligence' },
+    { name: t('nav.directory'), href: '/directory' },
+    { name: t('nav.prisoners'), href: '/prisoners' },
+    { name: t('nav.takeAction'), href: '/take-action' },
+    { name: t('nav.community'), href: '/community' },
+    { name: t('nav.resources'), href: '/resources' },
+    { name: t('nav.education'), href: '/education' },
+    { name: t('nav.security'), href: '/security' },
+    { name: t('nav.dataSources') || 'Data Sources', href: '/data-sources' },
   ];
 
   if (!isOpen) return null;
@@ -168,36 +169,37 @@ const MobileNav = ({ isOpen, onClose }) => {
 // Desktop Sidebar
 const DesktopSidebar = () => {
   const location = useLocation();
+  const { t } = useLanguage();
   
   const sections = [
     {
-      title: 'Main',
+      title: t('nav.main') || 'Main',
       items: [
-        { name: 'Dashboard', href: '/' },
-        { name: 'Intelligence', href: '/intelligence' },
-        { name: 'Directory', href: '/directory' },
+        { name: t('nav.dashboard'), href: '/' },
+        { name: t('nav.intelligence'), href: '/intelligence' },
+        { name: t('nav.directory'), href: '/directory' },
       ]
     },
     {
-      title: 'Human Rights',
+      title: t('nav.humanRights') || 'Human Rights',
       items: [
-        { name: 'Political Prisoners', href: '/prisoners' },
+        { name: t('nav.prisoners'), href: '/prisoners' },
       ]
     },
     {
-      title: 'Action',
+      title: t('nav.action') || 'Action',
       items: [
-        { name: 'Take Action', href: '/take-action' },
-        { name: 'Community', href: '/community' },
+        { name: t('nav.takeAction'), href: '/take-action' },
+        { name: t('nav.community'), href: '/community' },
       ]
     },
     {
-      title: 'Resources',
+      title: t('nav.resourcesSection') || 'Resources',
       items: [
-        { name: 'Tools', href: '/resources' },
-        { name: 'Education', href: '/education' },
-        { name: 'Security', href: '/security' },
-        { name: 'Data Sources', href: '/data-sources' },
+        { name: t('nav.resources') || 'Tools', href: '/resources' },
+        { name: t('nav.education'), href: '/education' },
+        { name: t('nav.security'), href: '/security' },
+        { name: t('nav.dataSources') || 'Data Sources', href: '/data-sources' },
       ]
     }
   ];
