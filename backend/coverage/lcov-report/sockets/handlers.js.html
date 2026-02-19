@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for routes/campaigns.js</title>
+    <title>Code coverage report for sockets/handlers.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> campaigns.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">sockets</a> handlers.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/98</span>
+                <span class='fraction'>0/141</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/43</span>
+                <span class='fraction'>0/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/98</span>
+                <span class='fraction'>0/126</span>
             </div>
         
             
@@ -382,24 +382,51 @@
 <a name='L317'></a><a href='#L317'>317</a>
 <a name='L318'></a><a href='#L318'>318</a>
 <a name='L319'></a><a href='#L319'>319</a>
-<a name='L320'></a><a href='#L320'>320</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a>
+<a name='L325'></a><a href='#L325'>325</a>
+<a name='L326'></a><a href='#L326'>326</a>
+<a name='L327'></a><a href='#L327'>327</a>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -410,28 +437,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -443,59 +474,67 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -504,57 +543,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -562,47 +588,51 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -612,12 +642,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -635,17 +670,25 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -658,18 +701,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -679,8 +718,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -688,8 +728,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -697,329 +735,351 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import express from 'express';
-import { validate, validateQuery, createCampaignSchema, updateCampaignSchema, campaignFilterSchema, updateProgressSchema } from '../validators/schemas.js';
-import { authenticateToken, requireRole, optionalAuth } from '../middleware/auth.js';
-import * as campaignService from '../services/campaignService.js';
-import logger from '../utils/logger.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '../utils/logger.js';
+import * as socketService from '../services/socketService.js';
 &nbsp;
-const router = <span class="cstat-no" title="statement not covered" >express.Router();</span>
+/**
+ * Socket.IO Event Handlers
+ * Handles all socket events from clients including feed subscriptions
+ */
+&nbsp;
+/**
+ * Handle socket connection
+ */
+export const handleConnection = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User connected', { </span>
+    socketId: socket.id, 
+    userId: socket.userId 
+  });
+&nbsp;
+  // Auto-subscribe user to their personal notification room
+<span class="cstat-no" title="statement not covered" >  socket.join(`user:${socket.userId}`);</span>
+  
+  // Auto-subscribe to global feed updates
+<span class="cstat-no" title="statement not covered" >  socket.join('feed:global');</span>
+  
+  // Broadcast user online status
+<span class="cstat-no" title="statement not covered" >  socketService.broadcastUserOnline(socket.userId, {</span>
+    socketId: socket.id
+  });
+&nbsp;
+  // Set up event handlers
+<span class="cstat-no" title="statement not covered" >  setupEventHandlers(socket);</span>
+};
+&nbsp;
+/**
+ * Setup all event handlers for a socket
+ */
+const setupEventHandlers = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket) =&gt; {</span>
+  // Feed subscriptions
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:subscribe', <span class="fstat-no" title="function not covered" >(o</span>ptions) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedSubscribe(socket, options))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:unsubscribe', <span class="fstat-no" title="function not covered" >(o</span>ptions) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedUnsubscribe(socket, options))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:subscribe:source', <span class="fstat-no" title="function not covered" >(s</span>ourceId) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedSourceSubscribe(socket, sourceId))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:unsubscribe:source', <span class="fstat-no" title="function not covered" >(s</span>ourceId) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedSourceUnsubscribe(socket, sourceId))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:subscribe:category', <span class="fstat-no" title="function not covered" >(c</span>ategory) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedCategorySubscribe(socket, category))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('feed:unsubscribe:category', <span class="fstat-no" title="function not covered" >(c</span>ategory) =&gt; <span class="cstat-no" title="statement not covered" >handleFeedCategoryUnsubscribe(socket, category))</span>;</span>
+&nbsp;
+  // Campaign subscriptions
+<span class="cstat-no" title="statement not covered" >  socket.on('campaign:subscribe', <span class="fstat-no" title="function not covered" >(c</span>ampaignId) =&gt; <span class="cstat-no" title="statement not covered" >handleCampaignSubscribe(socket, campaignId))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('campaign:unsubscribe', <span class="fstat-no" title="function not covered" >(c</span>ampaignId) =&gt; <span class="cstat-no" title="statement not covered" >handleCampaignUnsubscribe(socket, campaignId))</span>;</span>
+  
+  // Channel subscriptions
+<span class="cstat-no" title="statement not covered" >  socket.on('channel:subscribe', <span class="fstat-no" title="function not covered" >(c</span>hannelId) =&gt; <span class="cstat-no" title="statement not covered" >handleChannelSubscribe(socket, channelId))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('channel:unsubscribe', <span class="fstat-no" title="function not covered" >(c</span>hannelId) =&gt; <span class="cstat-no" title="statement not covered" >handleChannelUnsubscribe(socket, channelId))</span>;</span>
+  
+  // Region subscriptions
+<span class="cstat-no" title="statement not covered" >  socket.on('region:subscribe', <span class="fstat-no" title="function not covered" >(r</span>egionCode) =&gt; <span class="cstat-no" title="statement not covered" >handleRegionSubscribe(socket, regionCode))</span>;</span>
+<span class="cstat-no" title="statement not covered" >  socket.on('region:unsubscribe', <span class="fstat-no" title="function not covered" >(r</span>egionCode) =&gt; <span class="cstat-no" title="statement not covered" >handleRegionUnsubscribe(socket, regionCode))</span>;</span>
+  
+  // Presence
+<span class="cstat-no" title="statement not covered" >  socket.on('presence:update', <span class="fstat-no" title="function not covered" >(s</span>tatus) =&gt; <span class="cstat-no" title="statement not covered" >handlePresenceUpdate(socket, status))</span>;</span>
+  
+  // Disconnect
+<span class="cstat-no" title="statement not covered" >  socket.on('disconnect', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleDisconnect(socket))</span>;</span>
+  
+  // Error handling
+<span class="cstat-no" title="statement not covered" >  socket.on('error', <span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >handleError(socket, error))</span>;</span>
+};
 &nbsp;
 // ============================================================================
-// GET ALL CAMPAIGNS (with filters)
+// FEED HANDLERS
 // ============================================================================
-<span class="cstat-no" title="statement not covered" >router.get('/', optionalAuth, validateQuery(campaignFilterSchema), <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const filters = <span class="cstat-no" title="statement not covered" >req.validatedQuery;</span>
-    const result = <span class="cstat-no" title="statement not covered" >await campaignService.getCampaigns(filters);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      data: result.campaigns,
-      pagination: result.pagination
+const handleFeedSubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, options = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; {</span>
+  const { sourceId, category, all } = <span class="cstat-no" title="statement not covered" >options;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (all || (!sourceId &amp;&amp; !category)) {</span>
+    // Subscribe to all feeds
+<span class="cstat-no" title="statement not covered" >    socket.join('feed:global');</span>
+<span class="cstat-no" title="statement not covered" >    logger.info('User subscribed to all feeds', { </span>
+      userId: socket.userId,
+      socketId: socket.id 
     });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('feed:subscribed', { type: 'global' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
-});
 &nbsp;
-// ============================================================================
-// GET CAMPAIGN BY ID OR SLUG
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.get('/:id', optionalAuth, <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-&nbsp;
-    // Check if it's a numeric ID or slug
-    const campaign = <span class="cstat-no" title="statement not covered" >/^\d+$/.test(id)</span>
-      ? await campaignService.getCampaignById(parseInt(id))
-      : await campaignService.getCampaignBySlug(id);
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      data: campaign
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign not found') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(404).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >  if (sourceId) {</span>
+<span class="cstat-no" title="statement not covered" >    handleFeedSourceSubscribe(socket, sourceId);</span>
   }
-});
 &nbsp;
-// ============================================================================
-// GET CAMPAIGN MEMBERS
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.get('/:id/members', <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const { role, status, page = <span class="branch-0 cbranch-no" title="branch not covered" >1,</span> limit = <span class="branch-0 cbranch-no" title="branch not covered" >50 </span>} = <span class="cstat-no" title="statement not covered" >req.query;</span>
-&nbsp;
-    const result = <span class="cstat-no" title="statement not covered" >await campaignService.getCampaignMembers(parseInt(id), {</span>
-      role,
-      status,
-      page: parseInt(page),
-      limit: parseInt(limit)
-    });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      data: result.members,
-      pagination: result.pagination
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >  if (category) {</span>
+<span class="cstat-no" title="statement not covered" >    handleFeedCategorySubscribe(socket, category);</span>
   }
-});
+};
 &nbsp;
-// ============================================================================
-// CREATE CAMPAIGN (authenticated users)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.post('/', authenticateToken, validate(createCampaignSchema), <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const campaignData = <span class="cstat-no" title="statement not covered" >req.validatedBody;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
+const handleFeedUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, options = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; {</span>
+  const { sourceId, category, all } = <span class="cstat-no" title="statement not covered" >options;</span>
 &nbsp;
-    const campaign = <span class="cstat-no" title="statement not covered" >await campaignService.createCampaign(campaignData, userId);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.status(201).json({</span>
-      success: true,
-      data: campaign,
-      message: 'Campaign created successfully'
+<span class="cstat-no" title="statement not covered" >  if (all) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.leave('feed:global');</span>
+<span class="cstat-no" title="statement not covered" >    logger.info('User unsubscribed from all feeds', { </span>
+      userId: socket.userId,
+      socketId: socket.id 
     });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign with this title already exists') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(409).json({</span>
-        success: false,
-        error: {
-          code: 'DUPLICATE',
-          message: error.message
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('feed:unsubscribed', { type: 'global' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
-});
 &nbsp;
-// ============================================================================
-// UPDATE CAMPAIGN (creator or admin)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.put('/:id', authenticateToken, validate(updateCampaignSchema), <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const updates = <span class="cstat-no" title="statement not covered" >req.validatedBody;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
-&nbsp;
-    // Check if user is the creator or admin
-    const campaign = <span class="cstat-no" title="statement not covered" >await campaignService.getCampaignById(parseInt(id));</span>
-    const isCreator = <span class="cstat-no" title="statement not covered" >campaign.created_by === userId;</span>
-    const isAdmin = <span class="cstat-no" title="statement not covered" >req.user.roles &amp;&amp; req.user.roles.includes('admin');</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!isCreator &amp;&amp; !isAdmin) {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
-        success: false,
-        error: {
-          code: 'FORBIDDEN',
-          message: 'Only campaign creator or admin can update this campaign'
-        }
-      });
-    }
-&nbsp;
-    const updatedCampaign = <span class="cstat-no" title="statement not covered" >await campaignService.updateCampaign(parseInt(id), updates, userId);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      data: updatedCampaign,
-      message: 'Campaign updated successfully'
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign not found or already deleted') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(404).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >  if (sourceId) {</span>
+<span class="cstat-no" title="statement not covered" >    handleFeedSourceUnsubscribe(socket, sourceId);</span>
   }
-});
 &nbsp;
-// ============================================================================
-// DELETE CAMPAIGN (creator or admin)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.delete('/:id', authenticateToken, <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
-&nbsp;
-    // Check if user is the creator or admin
-    const campaign = <span class="cstat-no" title="statement not covered" >await campaignService.getCampaignById(parseInt(id));</span>
-    const isCreator = <span class="cstat-no" title="statement not covered" >campaign.created_by === userId;</span>
-    const isAdmin = <span class="cstat-no" title="statement not covered" >req.user.roles &amp;&amp; req.user.roles.includes('admin');</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!isCreator &amp;&amp; !isAdmin) {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
-        success: false,
-        error: {
-          code: 'FORBIDDEN',
-          message: 'Only campaign creator or admin can delete this campaign'
-        }
-      });
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    await campaignService.deleteCampaign(parseInt(id), userId);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      message: 'Campaign deleted successfully'
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign not found or already deleted' || error.message === 'Campaign not found') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(404).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+<span class="cstat-no" title="statement not covered" >  if (category) {</span>
+<span class="cstat-no" title="statement not covered" >    handleFeedCategoryUnsubscribe(socket, category);</span>
   }
-});
+};
 &nbsp;
-// ============================================================================
-// JOIN CAMPAIGN (authenticated users)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.post('/:id/join', authenticateToken, <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
-    const { role = <span class="branch-0 cbranch-no" title="branch not covered" >'supporter' </span>} = <span class="cstat-no" title="statement not covered" >req.body;</span>
-&nbsp;
-    const result = <span class="cstat-no" title="statement not covered" >await campaignService.joinCampaign(parseInt(id), userId, role);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      message: result.message
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign is not active') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        success: false,
-        error: {
-          code: 'INVALID_STATUS',
-          message: 'Cannot join an inactive campaign'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Already a member of this campaign') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(409).json({</span>
-        success: false,
-        error: {
-          code: 'ALREADY_MEMBER',
-          message: error.message
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign not found') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(404).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+const handleFeedSourceSubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, sourceId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!sourceId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Source ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
-});
 &nbsp;
-// ============================================================================
-// LEAVE CAMPAIGN (authenticated users)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.post('/:id/leave', authenticateToken, <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
+  const roomName = <span class="cstat-no" title="statement not covered" >`feed:source:${sourceId}`;</span>
+<span class="cstat-no" title="statement not covered" >  socket.join(roomName);</span>
+  
+<span class="cstat-no" title="statement not covered" >  logger.info('User subscribed to feed source', { </span>
+    userId: socket.userId, 
+    sourceId,
+    socketId: socket.id 
+  });
 &nbsp;
-    const result = <span class="cstat-no" title="statement not covered" >await campaignService.leaveCampaign(parseInt(id), userId);</span>
+<span class="cstat-no" title="statement not covered" >  socket.emit('feed:source:subscribed', { sourceId });</span>
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      message: result.message
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Not a member of this campaign') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_MEMBER',
-          message: error.message
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+const handleFeedSourceUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, sourceId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!sourceId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Source ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
-});
 &nbsp;
-// ============================================================================
-// UPDATE CAMPAIGN PROGRESS (creator or admin)
-// ============================================================================
-<span class="cstat-no" title="statement not covered" >router.post('/:id/progress', authenticateToken, validate(updateProgressSchema), <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-    const { currentValue } = <span class="cstat-no" title="statement not covered" >req.validatedBody;</span>
-    const userId = <span class="cstat-no" title="statement not covered" >req.user.id;</span>
+  const roomName = <span class="cstat-no" title="statement not covered" >`feed:source:${sourceId}`;</span>
+<span class="cstat-no" title="statement not covered" >  socket.leave(roomName);</span>
+  
+<span class="cstat-no" title="statement not covered" >  logger.info('User unsubscribed from feed source', { </span>
+    userId: socket.userId, 
+    sourceId,
+    socketId: socket.id 
+  });
 &nbsp;
-    // Check if user is the creator or admin
-    const campaign = <span class="cstat-no" title="statement not covered" >await campaignService.getCampaignById(parseInt(id));</span>
-    const isCreator = <span class="cstat-no" title="statement not covered" >campaign.created_by === userId;</span>
-    const isAdmin = <span class="cstat-no" title="statement not covered" >req.user.roles &amp;&amp; req.user.roles.includes('admin');</span>
+<span class="cstat-no" title="statement not covered" >  socket.emit('feed:source:unsubscribed', { sourceId });</span>
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!isCreator &amp;&amp; !isAdmin) {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
-        success: false,
-        error: {
-          code: 'FORBIDDEN',
-          message: 'Only campaign creator or admin can update progress'
-        }
-      });
-    }
-&nbsp;
-    const updatedCampaign = <span class="cstat-no" title="statement not covered" >await campaignService.updateCampaignProgress(parseInt(id), currentValue, userId);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json({</span>
-      success: true,
-      data: updatedCampaign,
-      message: 'Campaign progress updated successfully'
-    });
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    if (error.message === 'Campaign not found') {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(404).json({</span>
-        success: false,
-        error: {
-          code: 'NOT_FOUND',
-          message: 'Campaign not found'
-        }
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(error);</span>
+const handleFeedCategorySubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, category) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!category) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Category required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
-});
 &nbsp;
-export default router;
+  const roomName = <span class="cstat-no" title="statement not covered" >`feed:category:${category}`;</span>
+<span class="cstat-no" title="statement not covered" >  socket.join(roomName);</span>
+  
+<span class="cstat-no" title="statement not covered" >  logger.info('User subscribed to feed category', { </span>
+    userId: socket.userId, 
+    category,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('feed:category:subscribed', { category });</span>
+};
+&nbsp;
+const handleFeedCategoryUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, category) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!category) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Category required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const roomName = <span class="cstat-no" title="statement not covered" >`feed:category:${category}`;</span>
+<span class="cstat-no" title="statement not covered" >  socket.leave(roomName);</span>
+  
+<span class="cstat-no" title="statement not covered" >  logger.info('User unsubscribed from feed category', { </span>
+    userId: socket.userId, 
+    category,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('feed:category:unsubscribed', { category });</span>
+};
+&nbsp;
+// ============================================================================
+// CAMPAIGN HANDLERS
+// ============================================================================
+&nbsp;
+const handleCampaignSubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, campaignId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!campaignId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Campaign ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.join(`campaign:${campaignId}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User subscribed to campaign', { </span>
+    userId: socket.userId, 
+    campaignId,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('campaign:subscribed', { campaignId });</span>
+};
+&nbsp;
+const handleCampaignUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, campaignId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!campaignId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Campaign ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.leave(`campaign:${campaignId}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User unsubscribed from campaign', { </span>
+    userId: socket.userId, 
+    campaignId,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('campaign:unsubscribed', { campaignId });</span>
+};
+&nbsp;
+// ============================================================================
+// CHANNEL HANDLERS
+// ============================================================================
+&nbsp;
+const handleChannelSubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, channelId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!channelId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Channel ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.join(`channel:${channelId}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User subscribed to channel', { </span>
+    userId: socket.userId, 
+    channelId,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('channel:subscribed', { channelId });</span>
+};
+&nbsp;
+const handleChannelUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, channelId) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!channelId) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Channel ID required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.leave(`channel:${channelId}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User unsubscribed from channel', { </span>
+    userId: socket.userId, 
+    channelId,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('channel:unsubscribed', { channelId });</span>
+};
+&nbsp;
+// ============================================================================
+// REGION HANDLERS
+// ============================================================================
+&nbsp;
+const handleRegionSubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, regionCode) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!regionCode) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Region code required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.join(`region:${regionCode}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User subscribed to region', { </span>
+    userId: socket.userId, 
+    regionCode,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('region:subscribed', { regionCode });</span>
+};
+&nbsp;
+const handleRegionUnsubscribe = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, regionCode) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!regionCode) {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('error', { message: 'Region code required' });</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.leave(`region:${regionCode}`);</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User unsubscribed from region', { </span>
+    userId: socket.userId, 
+    regionCode,
+    socketId: socket.id 
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socket.emit('region:unsubscribed', { regionCode });</span>
+};
+&nbsp;
+// ============================================================================
+// PRESENCE HANDLERS
+// ============================================================================
+&nbsp;
+const handlePresenceUpdate = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, status) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  logger.debug('User presence updated', { </span>
+    userId: socket.userId, 
+    status,
+    socketId: socket.id 
+  });
+&nbsp;
+  // Broadcast presence to relevant rooms
+<span class="cstat-no" title="statement not covered" >  socket.broadcast.emit('user:presence', {</span>
+    userId: socket.userId,
+    status,
+    timestamp: new Date().toISOString()
+  });
+};
+&nbsp;
+// ============================================================================
+// DISCONNECT HANDLER
+// ============================================================================
+&nbsp;
+const handleDisconnect = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  logger.info('User disconnected', { </span>
+    socketId: socket.id, 
+    userId: socket.userId 
+  });
+&nbsp;
+  // Broadcast user offline status
+<span class="cstat-no" title="statement not covered" >  socketService.broadcastUserOffline(socket.userId);</span>
+};
+&nbsp;
+// ============================================================================
+// ERROR HANDLER
+// ============================================================================
+&nbsp;
+const handleError = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ocket, error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  logger.error('Socket error', { </span>
+    socketId: socket.id, 
+    userId: socket.userId,
+    error: error.message || error 
+  });
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
