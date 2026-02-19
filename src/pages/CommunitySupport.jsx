@@ -171,6 +171,10 @@ const CommunitySupport = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedRequest(request.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedRequest(request.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedRequest === request.id}
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedRequest === request.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'

@@ -912,6 +912,10 @@ const PrisonerCard = ({ prisoner, onClick }) => {
       whileHover={{ scale: 1.02 }}
       className="bg-slate-800 rounded-lg overflow-hidden shadow-lg cursor-pointer border border-slate-700 hover:border-red-500 transition-all"
       onClick={() => onClick(prisoner)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(prisoner) } }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${prisoner.name}`}
     >
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
@@ -981,6 +985,9 @@ const PrisonerModal = ({ prisoner, onClose }) => {
       exit={{ opacity: 0 }}
       className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Details for ${prisoner.name}`}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}

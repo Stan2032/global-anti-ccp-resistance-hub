@@ -183,6 +183,10 @@ const SecureComms = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedChannel(channel.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedChannel(channel.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedChannel === channel.id}
       className={`p-4 rounded-lg border cursor-pointer transition-all ${
         selectedChannel === channel.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'

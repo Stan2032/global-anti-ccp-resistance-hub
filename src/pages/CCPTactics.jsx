@@ -23,6 +23,10 @@ const CategoryCard = ({ category, isSelected, onClick }) => {
         isSelected ? 'border-red-500' : 'border-slate-700 hover:border-slate-500'
       }`}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isSelected}
     >
       <div className="text-4xl mb-3">{(() => { const IconComp = Icons[category.key] || ClipboardList; return <IconComp className="w-8 h-8 text-slate-300" />; })()}</div>
       <h3 className="text-xl font-bold text-white mb-2">{category.title}</h3>
@@ -42,6 +46,10 @@ const TacticDetail = ({ tactic }) => {
       <div 
         className="flex justify-between items-start cursor-pointer"
         onClick={() => setExpanded(!expanded)}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!expanded) } }}
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded}
       >
         <div>
           <h4 className="text-lg font-semibold text-white">{tactic.name}</h4>

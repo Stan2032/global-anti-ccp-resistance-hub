@@ -224,6 +224,10 @@ const EducationalResources = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedModule(module.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedModule(module.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedModule === module.id}
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedModule === module.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'

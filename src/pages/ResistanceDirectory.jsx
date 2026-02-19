@@ -141,6 +141,10 @@ const ResistanceDirectory = () => {
           <div
             key={org.id}
             onClick={() => setSelectedOrg(selectedOrg?.id === org.id ? null : org)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedOrg(selectedOrg?.id === org.id ? null : org) } }}
+            role="button"
+            tabIndex={0}
+            aria-expanded={selectedOrg?.id === org.id}
             className={`bg-slate-800 border rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 ${
               selectedOrg?.id === org.id ? 'border-blue-500 ring-1 ring-blue-500' : 'border-slate-700'
             }`}
