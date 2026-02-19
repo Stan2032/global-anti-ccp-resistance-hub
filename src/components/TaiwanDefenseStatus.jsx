@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BookOpen } from 'lucide-react';
 
 const TaiwanDefenseStatus = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -384,7 +385,7 @@ const TaiwanDefenseStatus = () => {
 
       {/* Resources */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">📚 Taiwan Defense Resources</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Taiwan Defense Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a
             href="https://www.csis.org/programs/china-power-project"

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Globe, Scale, CalendarDays, ScrollText, Tag, Megaphone, BookOpen } from 'lucide-react';
+import SourceAttribution from './ui/SourceAttribution';
+import { resolveSource } from '../utils/sourceLinks';
 
 const LAW_LINKS = {
   'Global Magnitsky Act': 'https://www.congress.gov/bill/114th-congress/senate-bill/284',
@@ -18,7 +20,7 @@ const SanctionsTracker = () => {
   const [activeType, setActiveType] = useState('all');
 
   const countries = [
-    { id: 'all', name: 'All Countries', flag: '🌍' },
+    { id: 'all', name: 'All Countries', Icon: Globe },
     { id: 'us', name: 'United States', flag: '🇺🇸' },
     { id: 'uk', name: 'United Kingdom', flag: '🇬🇧' },
     { id: 'eu', name: 'European Union', flag: '🇪🇺' },
@@ -272,7 +274,7 @@ const SanctionsTracker = () => {
       <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl p-6 border border-red-700/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <span className="text-3xl mr-3">⚖️</span>
+            <Scale className="w-8 h-8 text-red-400 mr-3" />
             <div>
               <h2 className="text-2xl font-bold text-white">Global Sanctions Tracker</h2>
               <p className="text-slate-400">Monitoring international sanctions on CCP officials and entities</p>
@@ -320,7 +322,7 @@ const SanctionsTracker = () => {
                     : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                 }`}
               >
-                <span>{country.flag}</span>
+                {country.Icon ? <country.Icon className="w-4 h-4" /> : <span>{country.flag}</span>}
                 <span>{country.name}</span>
               </button>
             ))}
@@ -371,7 +373,7 @@ const SanctionsTracker = () => {
                   <p className="text-sm text-slate-300 mb-2">{sanction.reason}</p>
                   <div className="flex flex-wrap gap-2 text-xs">
                     <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
-                      📅 {sanction.date}
+                      <CalendarDays className="w-3 h-3 inline" /> {sanction.date}
                     </span>
                     {LAW_LINKS[sanction.law] ? (
                       <a
@@ -380,16 +382,16 @@ const SanctionsTracker = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center space-x-1 px-2 py-0.5 bg-slate-800 rounded text-blue-400 hover:text-blue-300 transition-colors"
                       >
-                        <span>📜 {sanction.law}</span>
+                        <span className="flex items-center gap-1"><ScrollText className="w-3 h-3" /> {sanction.law}</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     ) : (
                       <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
-                        📜 {sanction.law}
+                        <ScrollText className="w-3 h-3 inline" /> {sanction.law}
                       </span>
                     )}
                     <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
-                      🏷️ {sanction.type}
+                      <Tag className="w-3 h-3 inline" /> {sanction.type}
                     </span>
                   </div>
                 </div>
@@ -401,7 +403,7 @@ const SanctionsTracker = () => {
 
       {/* Call to Action */}
       <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">📢 Advocate for More Sanctions</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Megaphone className="w-5 h-5" /> Advocate for More Sanctions</h3>
         <p className="text-sm text-slate-300 mb-3">
           Many officials responsible for human rights abuses remain unsanctioned. Contact your representatives 
           to advocate for expanded sanctions.
@@ -426,20 +428,16 @@ const SanctionsTracker = () => {
 
       {/* Sources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Sources</h3>
-        <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.treasury.gov/ofac" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            US Treasury OFAC
-          </a>
-          <a href="https://www.gov.uk/government/collections/uk-sanctions-list" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            UK Sanctions List
-          </a>
-          <a href="https://www.sanctionsmap.eu" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            EU Sanctions Map
-          </a>
-          <a href="https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/china-chine.aspx" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            Canada Sanctions
-          </a>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Sources</h3>
+        <div className="grid md:grid-cols-2 gap-2">
+          {['US Treasury OFAC', 'UK Sanctions List', 'EU Sanctions Map', 'Canada Sanctions - China'].map((name, i) => {
+            const resolved = resolveSource(name);
+            return resolved.url ? (
+              <SourceAttribution key={i} source={resolved} compact />
+            ) : (
+              <span key={i} className="text-sm text-slate-400">{name}</span>
+            );
+          })}
         </div>
       </div>
     </div>

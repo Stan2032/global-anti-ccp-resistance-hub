@@ -1,13 +1,15 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
+import { Heart } from 'lucide-react'
 import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
-import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
+import LanguageSelector, { LanguageProvider, useLanguage } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
 import { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import useDocumentTitle from './hooks/useDocumentTitle'
 import ErrorBoundary from './components/ErrorBoundary'
+import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
@@ -68,9 +70,9 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
       
       <div className="flex items-center space-x-2">
         <LanguageSelector />
-        <span className="px-2 py-1 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
-          SECURE
-        </span>
+        <Link to="/security" className="px-2 py-1 bg-slate-700/50 text-slate-300 text-xs font-medium rounded-full border border-slate-600 hover:bg-slate-600 hover:text-white transition-colors">
+          Security
+        </Link>
       </div>
     </div>
   </header>
@@ -79,19 +81,20 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
 // Mobile Navigation Menu
 const MobileNav = ({ isOpen, onClose }) => {
   const location = useLocation();
+  const { t } = useLanguage();
   
   // Simplified navigation - consolidated from 14 to 10 pages
   const navItems = [
-    { name: 'Dashboard', href: '/' },
-    { name: 'Intelligence', href: '/intelligence' },
-    { name: 'Directory', href: '/directory' },
-    { name: 'Political Prisoners', href: '/prisoners' },
-    { name: 'Take Action', href: '/take-action' },
-    { name: 'Community', href: '/community' },
-    { name: 'Resources', href: '/resources' },
-    { name: 'Education', href: '/education' },
-    { name: 'Security', href: '/security' },
-    { name: 'Data Sources', href: '/data-sources' },
+    { name: t('nav.dashboard'), href: '/' },
+    { name: t('nav.intelligence'), href: '/intelligence' },
+    { name: t('nav.directory'), href: '/directory' },
+    { name: t('nav.prisoners'), href: '/prisoners' },
+    { name: t('nav.takeAction'), href: '/take-action' },
+    { name: t('nav.community'), href: '/community' },
+    { name: t('nav.resources'), href: '/resources' },
+    { name: t('nav.education'), href: '/education' },
+    { name: t('nav.security'), href: '/security' },
+    { name: t('nav.dataSources'), href: '/data-sources' },
   ];
 
   if (!isOpen) return null;
@@ -138,7 +141,7 @@ const MobileNav = ({ isOpen, onClose }) => {
           </h3>
           <div className="space-y-2">
             <Link to="/campaigns" className="flex items-center px-4 py-3 rounded-lg bg-red-900/30 border border-red-700 text-red-300 hover:bg-red-900/50">
-              <span className="mr-3">❤️</span>
+              <Heart className="w-4 h-4 mr-3 text-red-400" />
               <div>
                 <div className="font-medium">Free Jimmy Lai</div>
                 <div className="text-xs text-red-400">URGENT - Life sentence</div>
@@ -147,20 +150,16 @@ const MobileNav = ({ isOpen, onClose }) => {
           </div>
         </div>
         
-        {/* Status */}
+        {/* Security Tips */}
         <div className="p-4 border-t border-slate-700">
           <div className="bg-slate-900 rounded-lg p-3 text-xs">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-slate-400">Connection</span>
-              <span className="text-green-400 flex items-center">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></span>
-                Secure
-              </span>
+              <span className="text-slate-400">Security</span>
+              <Link to="/security" className="text-blue-400 hover:text-blue-300">
+                View Guide
+              </Link>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Live Feeds</span>
-              <span className="text-green-400">Active</span>
-            </div>
+            <p className="text-slate-500 text-xs">Use VPN or Tor for added safety</p>
           </div>
         </div>
       </nav>
@@ -171,36 +170,37 @@ const MobileNav = ({ isOpen, onClose }) => {
 // Desktop Sidebar
 const DesktopSidebar = () => {
   const location = useLocation();
+  const { t } = useLanguage();
   
   const sections = [
     {
-      title: 'Main',
+      title: t('nav.main'),
       items: [
-        { name: 'Dashboard', href: '/' },
-        { name: 'Intelligence', href: '/intelligence' },
-        { name: 'Directory', href: '/directory' },
+        { name: t('nav.dashboard'), href: '/' },
+        { name: t('nav.intelligence'), href: '/intelligence' },
+        { name: t('nav.directory'), href: '/directory' },
       ]
     },
     {
-      title: 'Human Rights',
+      title: t('nav.humanRights'),
       items: [
-        { name: 'Political Prisoners', href: '/prisoners' },
+        { name: t('nav.prisoners'), href: '/prisoners' },
       ]
     },
     {
-      title: 'Action',
+      title: t('nav.action'),
       items: [
-        { name: 'Take Action', href: '/take-action' },
-        { name: 'Community', href: '/community' },
+        { name: t('nav.takeAction'), href: '/take-action' },
+        { name: t('nav.community'), href: '/community' },
       ]
     },
     {
-      title: 'Resources',
+      title: t('nav.resourcesSection'),
       items: [
-        { name: 'Tools', href: '/resources' },
-        { name: 'Education', href: '/education' },
-        { name: 'Security', href: '/security' },
-        { name: 'Data Sources', href: '/data-sources' },
+        { name: t('nav.resources'), href: '/resources' },
+        { name: t('nav.education'), href: '/education' },
+        { name: t('nav.security'), href: '/security' },
+        { name: t('nav.dataSources'), href: '/data-sources' },
       ]
     }
   ];
@@ -250,7 +250,7 @@ const DesktopSidebar = () => {
         {/* Urgent Campaign */}
         <div className="mt-4 p-3 bg-red-900/30 border border-red-700 rounded-lg">
           <div className="flex items-center mb-2">
-            <span className="text-red-400 text-lg mr-2">❤️</span>
+            <Heart className="w-5 h-5 text-red-400 mr-2" />
             <span className="text-sm font-semibold text-red-300">Free Jimmy Lai</span>
             <span className="ml-auto px-1.5 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">URGENT</span>
           </div>
@@ -265,13 +265,12 @@ const DesktopSidebar = () => {
       <div className="p-4 border-t border-slate-700">
         <div className="bg-slate-900 rounded-lg p-3 text-xs">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-slate-400">Status</span>
-            <span className="text-green-400 flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></span>
-              Online
-            </span>
+            <span className="text-slate-400">Security</span>
+            <Link to="/security" className="text-blue-400 hover:text-blue-300">
+              Guide
+            </Link>
           </div>
-          <div className="text-slate-500 text-center mt-2">v2.1 • Secure • Anonymous</div>
+          <div className="text-slate-500 text-center mt-2">v2.1 • Open Source</div>
         </div>
       </div>
     </aside>
@@ -330,24 +329,25 @@ function AppLayout() {
           </div>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <button 
+            <Link 
+              to="/intelligence"
               className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg relative"
-              aria-label="Notifications - new alerts available"
+              aria-label="View intelligence feeds"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" aria-hidden="true"></span>
-            </button>
+            </Link>
             <LanguageSelector />
-            <span className="px-3 py-1.5 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
-              🔒 SECURE
-            </span>
+            <Link to="/security" className="px-3 py-1.5 bg-slate-700/50 text-slate-300 text-xs font-medium rounded-full border border-slate-600 hover:bg-slate-600 hover:text-white transition-colors">
+              Security Guide
+            </Link>
           </div>
         </header>
         
         {/* Page Content */}
         <div className="p-4 sm:p-6 lg:p-8">
+          <RouteErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -385,6 +385,7 @@ function AppLayout() {
               } />
             </Routes>
           </Suspense>
+          </RouteErrorBoundary>
         </div>
         
         {/* Footer */}

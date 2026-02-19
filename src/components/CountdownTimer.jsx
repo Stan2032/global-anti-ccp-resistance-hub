@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Flame, Mountain, Landmark, Heart, Link2, Scale, CalendarDays, CalendarPlus } from 'lucide-react';
 
 const CountdownTimer = () => {
   const [now, setNow] = useState(new Date());
@@ -14,7 +15,7 @@ const CountdownTimer = () => {
       name: 'Tiananmen Square Anniversary',
       date: new Date('2025-06-04T00:00:00'),
       description: '36th anniversary of the 1989 Tiananmen Square Massacre',
-      icon: '🕯️',
+      Icon: Flame,
       type: 'memorial',
       actions: ['Light a candle', 'Share survivor stories', 'Contact representatives'],
     },
@@ -32,7 +33,7 @@ const CountdownTimer = () => {
       name: 'Tibetan Uprising Day',
       date: new Date('2025-03-10T00:00:00'),
       description: '66th anniversary of the 1959 Tibetan uprising',
-      icon: '🏔️',
+      Icon: Mountain,
       type: 'memorial',
       actions: ['Fly Tibetan flag', 'Support ICT', 'Contact representatives'],
     },
@@ -41,7 +42,7 @@ const CountdownTimer = () => {
       name: 'Uyghur Human Rights Day',
       date: new Date('2025-07-05T00:00:00'),
       description: 'Commemorating the 2009 Ürümqi protests',
-      icon: '🕌',
+      Icon: Landmark,
       type: 'memorial',
       actions: ['Support UHRP', 'Share Uyghur stories', 'Check supply chains'],
     },
@@ -50,7 +51,7 @@ const CountdownTimer = () => {
       name: 'Human Rights Day',
       date: new Date('2025-12-10T00:00:00'),
       description: 'Universal Declaration of Human Rights anniversary',
-      icon: '✊',
+      Icon: Heart,
       type: 'action',
       actions: ['Contact representatives', 'Donate to orgs', 'Share on social media'],
     },
@@ -68,7 +69,7 @@ const CountdownTimer = () => {
       name: 'Panchen Lama Abduction Anniversary',
       date: new Date('2025-05-17T00:00:00'),
       description: '30 years since Gedhun Choekyi Nyima was abducted',
-      icon: '⛓️',
+      Icon: Link2,
       type: 'memorial',
       actions: ['Demand his release', 'Contact representatives', 'Share his story'],
     },
@@ -77,7 +78,7 @@ const CountdownTimer = () => {
       name: 'Hong Kong NSL Anniversary',
       date: new Date('2025-06-30T00:00:00'),
       description: '5 years since the National Security Law was imposed',
-      icon: '⚖️',
+      Icon: Scale,
       type: 'awareness',
       actions: ['Document impact', 'Support political prisoners', 'Advocate for sanctions'],
     },
@@ -138,7 +139,7 @@ const CountdownTimer = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center mb-2">
-          <span className="text-3xl mr-3">📅</span>
+          <CalendarDays className="w-8 h-8 text-blue-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Important Dates</h2>
             <p className="text-slate-400">Upcoming anniversaries and days of action</p>
@@ -154,7 +155,7 @@ const CountdownTimer = () => {
         <div className={`${typeColors[sortedDates[0].type].bg} rounded-xl border ${typeColors[sortedDates[0].type].border} p-6`}>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
-              <span className="text-4xl mr-3">{sortedDates[0].icon}</span>
+              {(() => { const IconComp = sortedDates[0].Icon; return IconComp ? <IconComp className="w-10 h-10" /> : <span className="text-4xl mr-3">{sortedDates[0].icon}</span>; })()}
               <div>
                 <span className={`text-xs font-medium px-2 py-0.5 rounded ${typeColors[sortedDates[0].type].badge} text-white mb-1 inline-block`}>
                   NEXT UP
@@ -214,7 +215,7 @@ const CountdownTimer = () => {
             <div key={event.id} className={`${colors.bg} rounded-xl border ${colors.border} p-4`}>
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center">
-                  <span className="text-2xl mr-2">{event.icon}</span>
+                  {(() => { const IconComp = event.Icon; return IconComp ? <IconComp className="w-6 h-6 mr-2" /> : <span className="text-2xl mr-2">{event.icon}</span>; })()}
                   <div>
                     <h3 className="font-bold text-white text-sm">{event.name}</h3>
                     <p className="text-xs text-slate-400">{event.description}</p>
@@ -251,7 +252,7 @@ const CountdownTimer = () => {
 
       {/* Add to Calendar */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📆 Add to Your Calendar</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><CalendarPlus className="w-5 h-5" /> Add to Your Calendar</h3>
         <p className="text-sm text-slate-400 mb-3">
           Never miss an important date. Add these events to your calendar to receive reminders.
         </p>

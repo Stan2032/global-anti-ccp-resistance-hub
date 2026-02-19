@@ -2,12 +2,12 @@
   "name": "Global Anti-CCP Resistance Hub",
   "short_name": "Resistance Hub",
   "description": "A comprehensive platform for documenting CCP human rights abuses and coordinating global resistance efforts",
-  "start_url": "/global-anti-ccp-resistance-hub/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "orientation": "portrait-primary",
-  "scope": "/global-anti-ccp-resistance-hub/",
+  "scope": "./",
   "icons": [
     {
       "src": "icon-192.png",
@@ -31,21 +31,21 @@
       "name": "Political Prisoners",
       "short_name": "Prisoners",
       "description": "View documented political prisoners",
-      "url": "/global-anti-ccp-resistance-hub/prisoners",
+      "url": "./prisoners",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Take Action",
       "short_name": "Action",
       "description": "Ways to help and get involved",
-      "url": "/global-anti-ccp-resistance-hub/take-action",
+      "url": "./take-action",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Security Center",
       "short_name": "Security",
       "description": "Digital security guidance",
-      "url": "/global-anti-ccp-resistance-hub/security",
+      "url": "./security",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ]

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Check, Clock, Award, TrendingUp, RotateCcw, ExternalLink, Star, Filter } from 'lucide-react';
+import { BookOpen, Check, Clock, Award, TrendingUp, RotateCcw, ExternalLink, Star, Filter, Library, GraduationCap, Trophy, Book, FileText, Newspaper } from 'lucide-react';
 
 const readingMaterials = [
   // Books
@@ -27,12 +27,12 @@ const readingMaterials = [
 ];
 
 const achievements = [
-  { id: 'first-read', name: 'First Steps', description: 'Complete your first reading', icon: '📖', requirement: 1 },
-  { id: 'five-reads', name: 'Dedicated Learner', description: 'Complete 5 readings', icon: '📚', requirement: 5 },
-  { id: 'ten-reads', name: 'Scholar', description: 'Complete 10 readings', icon: '🎓', requirement: 10 },
-  { id: 'all-essential', name: 'Essential Knowledge', description: 'Complete all essential readings', icon: '⭐', requirement: 'essential' },
-  { id: 'category-master', name: 'Category Expert', description: 'Complete all readings in one category', icon: '🏆', requirement: 'category' },
-  { id: 'book-worm', name: 'Book Worm', description: 'Complete 5 books', icon: '📕', requirement: 'books-5' },
+  { id: 'first-read', name: 'First Steps', description: 'Complete your first reading', Icon: BookOpen, requirement: 1 },
+  { id: 'five-reads', name: 'Dedicated Learner', description: 'Complete 5 readings', Icon: Library, requirement: 5 },
+  { id: 'ten-reads', name: 'Scholar', description: 'Complete 10 readings', Icon: GraduationCap, requirement: 10 },
+  { id: 'all-essential', name: 'Essential Knowledge', description: 'Complete all essential readings', Icon: Star, requirement: 'essential' },
+  { id: 'category-master', name: 'Category Expert', description: 'Complete all readings in one category', Icon: Trophy, requirement: 'category' },
+  { id: 'book-worm', name: 'Book Worm', description: 'Complete 5 books', Icon: Book, requirement: 'books-5' },
 ];
 
 export default function ReadingProgress() {
@@ -53,12 +53,6 @@ export default function ReadingProgress() {
       setEarnedAchievements(JSON.parse(savedAchievements));
     }
   }, []);
-
-  // Save progress to localStorage
-  useEffect(() => {
-    localStorage.setItem('reading-progress', JSON.stringify(progress));
-    checkAchievements();
-  }, [progress]);
 
   const checkAchievements = () => {
     const completedCount = Object.values(progress).filter(p => p.completed).length;
@@ -103,6 +97,12 @@ export default function ReadingProgress() {
       localStorage.setItem('reading-achievements', JSON.stringify(newAchievements));
     }
   };
+
+  // Save progress to localStorage
+  useEffect(() => {
+    localStorage.setItem('reading-progress', JSON.stringify(progress));
+    checkAchievements();
+  }, [progress]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleCompleted = (id) => {
     setProgress(prev => ({
@@ -158,10 +158,10 @@ export default function ReadingProgress() {
 
   const getTypeIcon = (type) => {
     switch (type) {
-      case 'book': return '📕';
-      case 'report': return '📄';
-      case 'article': return '📰';
-      default: return '📖';
+      case 'book': return <Book className="w-5 h-5 text-red-400" />;
+      case 'report': return <FileText className="w-5 h-5 text-blue-400" />;
+      case 'article': return <Newspaper className="w-5 h-5 text-green-400" />;
+      default: return <BookOpen className="w-5 h-5 text-slate-400" />;
     }
   };
 
@@ -227,7 +227,7 @@ export default function ReadingProgress() {
                 className="flex items-center gap-2 px-3 py-1.5 bg-yellow-900/30 rounded-full"
                 title={achievement.description}
               >
-                <span>{achievement.icon}</span>
+                <achievement.Icon className="w-4 h-4 text-yellow-400" />
                 <span className="text-sm text-yellow-300">{achievement.name}</span>
               </div>
             ))}
@@ -240,6 +240,7 @@ export default function ReadingProgress() {
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4 text-slate-400" />
           <select
+            aria-label="Filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
@@ -250,6 +251,7 @@ export default function ReadingProgress() {
           </select>
         </div>
         <select
+          aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
@@ -289,7 +291,7 @@ export default function ReadingProgress() {
               }`}
             >
               <div className="flex items-start gap-4">
-                <div className="text-2xl">{getTypeIcon(material.type)}</div>
+                <div className="flex items-center">{getTypeIcon(material.type)}</div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className={`font-semibold ${itemProgress.completed ? 'text-green-400' : 'text-white'}`}>
@@ -336,6 +338,7 @@ export default function ReadingProgress() {
                   </button>
                   {!itemProgress.completed && (
                     <input
+                      aria-label="Current page number"
                       type="number"
                       min="0"
                       max={material.pages}
@@ -367,7 +370,7 @@ export default function ReadingProgress() {
 
       {/* Tips */}
       <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700 rounded-lg">
-        <h3 className="text-sm font-semibold text-blue-400 mb-2">📚 Reading Tips</h3>
+        <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-2"><Library className="w-4 h-4" /> Reading Tips</h3>
         <ul className="text-sm text-slate-400 space-y-1">
           <li>• Start with ⭐ essential readings for foundational knowledge</li>
           <li>• Reports are shorter and great for quick learning</li>

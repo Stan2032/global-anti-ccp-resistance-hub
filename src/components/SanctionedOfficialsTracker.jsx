@@ -127,6 +127,7 @@ const SanctionedOfficialsTracker = () => {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search by name or position..."
             value={searchTerm}
@@ -135,6 +136,7 @@ const SanctionedOfficialsTracker = () => {
           />
         </div>
         <select
+          aria-label="Area filter"
           value={areaFilter}
           onChange={(e) => setAreaFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -159,6 +161,10 @@ const SanctionedOfficialsTracker = () => {
               <div 
                 className="p-4 cursor-pointer hover:bg-slate-700/50 transition-colors"
                 onClick={() => setExpandedOfficial(expandedOfficial === idx ? null : idx)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedOfficial(expandedOfficial === idx ? null : idx) } }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expandedOfficial === idx}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">

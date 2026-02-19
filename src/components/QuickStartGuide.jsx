@@ -1,76 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
 
 const QuickStartGuide = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState([]);
-  const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    // Check if user has seen the guide before
+  const [isOpen, setIsOpen] = useState(() => {
     const hasSeenGuide = localStorage.getItem('quickStartDismissed');
+    return hasSeenGuide !== 'true';
+  });
+  const [currentStep, setCurrentStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState(() => {
     const savedSteps = localStorage.getItem('quickStartCompleted');
-    
-    if (hasSeenGuide === 'true') {
-      setDismissed(true);
-    } else {
-      setIsOpen(true);
-    }
-    
-    if (savedSteps) {
-      setCompletedSteps(JSON.parse(savedSteps));
-    }
-  }, []);
+    return savedSteps ? JSON.parse(savedSteps) : [];
+  });
+  const [dismissed, setDismissed] = useState(() => {
+    return localStorage.getItem('quickStartDismissed') === 'true';
+  });
 
   const steps = [
     {
       id: 1,
       title: 'Welcome to the Resistance Hub',
       description: 'This platform is your central resource for activism against CCP authoritarianism. Let\'s get you started with a quick tour.',
-      icon: '👋',
+      Icon: Hand,
       action: null,
     },
     {
       id: 2,
       title: 'Explore the Dashboard',
       description: 'The Dashboard shows breaking news, live statistics, and urgent alerts. It\'s your home base for staying informed.',
-      icon: '📊',
+      Icon: BarChart3,
       action: { label: 'Go to Dashboard', path: '/' },
     },
     {
       id: 3,
       title: 'Learn About the Issues',
       description: 'Visit the Education Center to understand the Uyghur genocide, Hong Kong crackdown, Tibetan oppression, and more.',
-      icon: '📚',
+      Icon: BookOpen,
       action: { label: 'Education Center', path: '/education' },
     },
     {
       id: 4,
       title: 'Take Action',
       description: 'Ready to help? Sign petitions, contact representatives, and join campaigns on the Take Action page.',
-      icon: '✊',
+      Icon: Megaphone,
       action: { label: 'Take Action', path: '/take-action' },
     },
     {
       id: 5,
       title: 'Stay Secure',
       description: 'If you\'re at risk, visit the Security Center for digital security tools and safety guidelines.',
-      icon: '🔐',
+      Icon: Lock,
       action: { label: 'Security Center', path: '/security' },
     },
     {
       id: 6,
       title: 'Join the Community',
       description: 'Connect with other activists, find events, and get support on the Community page.',
-      icon: '🤝',
+      Icon: Handshake,
       action: { label: 'Community', path: '/community' },
     },
     {
       id: 7,
       title: 'You\'re Ready!',
       description: 'You now know the basics. Remember: every action matters. Use the keyboard shortcut Cmd/Ctrl+K to search anytime.',
-      icon: '🎉',
+      Icon: PartyPopper,
       action: null,
     },
   ];
@@ -89,7 +82,7 @@ const QuickStartGuide = () => {
     localStorage.setItem('quickStartDismissed', 'true');
   };
 
-  const resetGuide = () => {
+  const _resetGuide = () => {
     setDismissed(false);
     setIsOpen(true);
     setCurrentStep(0);
@@ -121,7 +114,7 @@ const QuickStartGuide = () => {
         className="fixed bottom-4 right-4 z-40 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors"
         title="Quick Start Guide"
       >
-        <span className="text-xl">❓</span>
+        <HelpCircle className="w-5 h-5" />
       </button>
     );
   }
@@ -166,8 +159,8 @@ const QuickStartGuide = () => {
             </div>
 
             {/* Icon */}
-            <div className="text-5xl mb-4 text-center">
-              {step.icon}
+            <div className="mb-4 text-center flex justify-center">
+              <step.Icon className="w-12 h-12 text-blue-400" />
             </div>
 
             {/* Title & Description */}
@@ -254,7 +247,7 @@ export const HelpMenu = () => {
     {
       title: 'Quick Start Guide',
       description: 'New here? Take a quick tour',
-      icon: '🚀',
+      Icon: Rocket,
       action: () => {
         localStorage.removeItem('quickStartDismissed');
         window.location.reload();
@@ -263,25 +256,25 @@ export const HelpMenu = () => {
     {
       title: 'Keyboard Shortcuts',
       description: 'Cmd/Ctrl+K to search',
-      icon: '⌨️',
+      Icon: Keyboard,
       action: null,
     },
     {
       title: 'Report an Issue',
       description: 'Found a bug? Let us know',
-      icon: '🐛',
+      Icon: Bug,
       url: 'https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues',
     },
     {
       title: 'Security Tips',
       description: 'Stay safe while using this platform',
-      icon: '🔐',
+      Icon: Lock,
       path: '/security',
     },
     {
       title: 'FAQ',
       description: 'Common questions answered',
-      icon: '❓',
+      Icon: HelpCircle,
       path: '/education',
     },
   ];
@@ -293,7 +286,7 @@ export const HelpMenu = () => {
         className="p-2 text-slate-400 hover:text-white transition-colors"
         title="Help"
       >
-        <span className="text-xl">❓</span>
+        <HelpCircle className="w-5 h-5" />
       </button>
 
       {isOpen && (
@@ -314,7 +307,7 @@ export const HelpMenu = () => {
                     className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="text-xl">{item.icon}</span>
+                    <item.Icon className="w-5 h-5" />
                     <div>
                       <h4 className="text-white font-medium text-sm">{item.title}</h4>
                       <p className="text-slate-400 text-xs">{item.description}</p>
@@ -327,7 +320,7 @@ export const HelpMenu = () => {
                     className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="text-xl">{item.icon}</span>
+                    <item.Icon className="w-5 h-5" />
                     <div>
                       <h4 className="text-white font-medium text-sm">{item.title}</h4>
                       <p className="text-slate-400 text-xs">{item.description}</p>
@@ -342,7 +335,7 @@ export const HelpMenu = () => {
                     }}
                     className="w-full flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors text-left"
                   >
-                    <span className="text-xl">{item.icon}</span>
+                    <item.Icon className="w-5 h-5" />
                     <div>
                       <h4 className="text-white font-medium text-sm">{item.title}</h4>
                       <p className="text-slate-400 text-xs">{item.description}</p>
@@ -353,7 +346,7 @@ export const HelpMenu = () => {
                     key={idx}
                     className="flex items-start space-x-3 p-3 rounded-lg"
                   >
-                    <span className="text-xl">{item.icon}</span>
+                    <item.Icon className="w-5 h-5" />
                     <div>
                       <h4 className="text-white font-medium text-sm">{item.title}</h4>
                       <p className="text-slate-400 text-xs">{item.description}</p>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Globe, Megaphone, Scale, FlaskConical, Newspaper, Handshake, Heart, Lightbulb } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 const DonationGuide = () => {
@@ -6,12 +7,12 @@ const DonationGuide = () => {
   const [activeCause, setActiveCause] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Organizations', icon: '🌍' },
-    { id: 'advocacy', name: 'Advocacy', icon: '📢' },
-    { id: 'legal', name: 'Legal Aid', icon: '⚖️' },
-    { id: 'research', name: 'Research', icon: '🔬' },
-    { id: 'media', name: 'Independent Media', icon: '📰' },
-    { id: 'direct', name: 'Direct Support', icon: '🤝' },
+    { id: 'all', name: 'All Organizations', Icon: Globe },
+    { id: 'advocacy', name: 'Advocacy', Icon: Megaphone },
+    { id: 'legal', name: 'Legal Aid', Icon: Scale },
+    { id: 'research', name: 'Research', Icon: FlaskConical },
+    { id: 'media', name: 'Independent Media', Icon: Newspaper },
+    { id: 'direct', name: 'Direct Support', Icon: Handshake },
   ];
 
   const causes = [
@@ -295,7 +296,7 @@ const DonationGuide = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6 border border-green-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">💝</span>
+          <Heart className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Donation Guide</h2>
             <p className="text-slate-400">Support organizations fighting for human rights</p>
@@ -348,7 +349,7 @@ const DonationGuide = () => {
                     : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                 }`}
               >
-                <span>{cat.icon}</span>
+                <cat.Icon className="w-4 h-4" />
                 <span>{cat.name}</span>
               </button>
             ))}
@@ -397,8 +398,8 @@ const DonationGuide = () => {
               <p className="text-sm text-slate-400 mb-3">{org.description}</p>
               
               <div className="flex items-center space-x-2 mb-3 text-xs">
-                <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">
-                  {categoryInfo?.icon} {categoryInfo?.name}
+                <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300 inline-flex items-center gap-1">
+                  {categoryInfo?.Icon && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}
                 </span>
                 {org.taxDeductible && (
                   <span className="px-2 py-0.5 bg-green-900/30 rounded text-green-400">
@@ -416,9 +417,9 @@ const DonationGuide = () => {
                   href={org.donateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
+                  className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1"
                 >
-                  💝 Donate
+                  <Heart className="w-4 h-4" /> Donate
                 </a>
                 <a
                   href={org.website}
@@ -436,7 +437,7 @@ const DonationGuide = () => {
 
       {/* Tips */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">💡 Donation Tips</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-yellow-400" /> Donation Tips</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <strong>Monthly donations</strong> provide stable funding for ongoing work</li>
           <li>• <strong>Check tax deductibility</strong> based on your country of residence</li>

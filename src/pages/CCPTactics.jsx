@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Lock, Globe, Radio, Swords, ClipboardList, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
 import SanctionedOfficials from '../components/SanctionedOfficials';
@@ -8,11 +9,11 @@ import CCPOfficials from '../components/CCPOfficials';
 import SanctionedOfficialsTracker from '../components/SanctionedOfficialsTracker';
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
-  const icons = {
-    domesticRepression: '🔒',
-    transnationalRepression: '🌐',
-    influenceOperations: '📡',
-    militaryExpansion: '⚔️'
+  const Icons = {
+    domesticRepression: Lock,
+    transnationalRepression: Globe,
+    influenceOperations: Radio,
+    militaryExpansion: Swords
   };
 
   return (
@@ -22,8 +23,12 @@ const CategoryCard = ({ category, isSelected, onClick }) => {
         isSelected ? 'border-red-500' : 'border-slate-700 hover:border-slate-500'
       }`}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isSelected}
     >
-      <div className="text-4xl mb-3">{icons[category.key] || '📋'}</div>
+      <div className="text-4xl mb-3">{(() => { const IconComp = Icons[category.key] || ClipboardList; return <IconComp className="w-8 h-8 text-slate-300" />; })()}</div>
       <h3 className="text-xl font-bold text-white mb-2">{category.title}</h3>
       <p className="text-gray-400 text-sm">{category.description}</p>
       <div className="mt-3 text-sm text-gray-500">
@@ -41,6 +46,10 @@ const TacticDetail = ({ tactic }) => {
       <div 
         className="flex justify-between items-start cursor-pointer"
         onClick={() => setExpanded(!expanded)}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!expanded) } }}
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded}
       >
         <div>
           <h4 className="text-lg font-semibold text-white">{tactic.name}</h4>
@@ -156,7 +165,7 @@ const CCPTactics = () => {
         {/* Warning Banner */}
         <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 mb-8">
           <div className="flex items-start">
-            <span className="text-yellow-500 text-xl mr-3">⚠️</span>
+            <AlertTriangle className="w-5 h-5 text-yellow-500 mr-3 flex-shrink-0" />
             <div>
               <h3 className="text-yellow-400 font-semibold">Educational Content</h3>
               <p className="text-gray-300 text-sm">

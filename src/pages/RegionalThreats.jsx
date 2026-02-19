@@ -133,6 +133,10 @@ const ThreatCard = ({ threat, isSelected, onClick }) => {
         isSelected ? 'border-red-500' : 'border-slate-700 hover:border-slate-500'
       }`}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isSelected}
     >
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-xl font-bold text-white">{threat.name}</h3>

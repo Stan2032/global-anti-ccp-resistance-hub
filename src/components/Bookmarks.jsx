@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Library, BookOpen, Landmark, Newspaper, FlaskConical, Megaphone, Wrench, Bookmark, Pin } from 'lucide-react';
 
 const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState(() => {
@@ -14,13 +15,13 @@ const Bookmarks = () => {
   }, [bookmarks]);
 
   const categories = [
-    { id: 'all', name: 'All Bookmarks', icon: '📚' },
-    { id: 'resource', name: 'Resources', icon: '📖' },
-    { id: 'organization', name: 'Organizations', icon: '🏛️' },
-    { id: 'news', name: 'News Sources', icon: '📰' },
-    { id: 'research', name: 'Research', icon: '🔬' },
-    { id: 'action', name: 'Take Action', icon: '✊' },
-    { id: 'tool', name: 'Tools', icon: '🛠️' },
+    { id: 'all', name: 'All Bookmarks', Icon: Library },
+    { id: 'resource', name: 'Resources', Icon: BookOpen },
+    { id: 'organization', name: 'Organizations', Icon: Landmark },
+    { id: 'news', name: 'News Sources', Icon: Newspaper },
+    { id: 'research', name: 'Research', Icon: FlaskConical },
+    { id: 'action', name: 'Take Action', Icon: Megaphone },
+    { id: 'tool', name: 'Tools', Icon: Wrench },
   ];
 
   const suggestedBookmarks = [
@@ -65,7 +66,7 @@ const Bookmarks = () => {
       <div className="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-xl p-6 border border-yellow-700/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <span className="text-3xl mr-3">🔖</span>
+            <Bookmark className="w-8 h-8 text-yellow-400 mr-3" />
             <div>
               <h2 className="text-2xl font-bold text-white">Your Bookmarks</h2>
               <p className="text-slate-400">Save and organize important resources</p>
@@ -91,6 +92,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Title</label>
               <input
+                aria-label="Title"
                 type="text"
                 value={newBookmark.title}
                 onChange={(e) => setNewBookmark({ ...newBookmark, title: e.target.value })}
@@ -101,6 +103,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">URL</label>
               <input
+                aria-label="URL"
                 type="url"
                 value={newBookmark.url}
                 onChange={(e) => setNewBookmark({ ...newBookmark, url: e.target.value })}
@@ -111,18 +114,20 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Category</label>
               <select
+                aria-label="Category"
                 value={newBookmark.category}
                 onChange={(e) => setNewBookmark({ ...newBookmark, category: e.target.value })}
                 className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-yellow-500"
               >
                 {categories.filter(c => c.id !== 'all').map(cat => (
-                  <option key={cat.id} value={cat.id}>{cat.icon} {cat.name}</option>
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
                 ))}
               </select>
             </div>
             <div>
               <label className="block text-sm text-slate-400 mb-1">Notes (optional)</label>
               <input
+                aria-label="Notes (optional)"
                 type="text"
                 value={newBookmark.notes}
                 onChange={(e) => setNewBookmark({ ...newBookmark, notes: e.target.value })}
@@ -161,7 +166,7 @@ const Bookmarks = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <cat.Icon className="w-4 h-4" />
             <span>{cat.name}</span>
             {cat.id !== 'all' && (
               <span className="text-xs opacity-70">
@@ -183,7 +188,7 @@ const Bookmarks = () => {
                 className="bg-slate-800/50 rounded-lg border border-slate-700 p-4 flex items-center justify-between group hover:border-slate-600 transition-colors"
               >
                 <div className="flex items-center space-x-3">
-                  <span className="text-xl">{categoryInfo?.icon}</span>
+                  {categoryInfo?.Icon && <categoryInfo.Icon className="w-5 h-5 text-slate-400" />}
                   <div>
                     <a 
                       href={bookmark.url}
@@ -217,7 +222,7 @@ const Bookmarks = () => {
         </div>
       ) : (
         <div className="text-center py-12 bg-slate-800/50 rounded-xl border border-slate-700">
-          <span className="text-4xl mb-4 block">🔖</span>
+          <Bookmark className="w-10 h-10 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400 mb-2">No bookmarks yet</p>
           <p className="text-sm text-slate-500">Start by adding suggested resources below</p>
         </div>
@@ -225,7 +230,7 @@ const Bookmarks = () => {
 
       {/* Suggested Bookmarks */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-4">📌 Suggested Resources</h3>
+        <h3 className="font-medium text-white mb-4 flex items-center gap-2"><Pin className="w-4 h-4" /> Suggested Resources</h3>
         <div className="grid md:grid-cols-2 gap-3">
           {suggestedBookmarks.map((suggestion, idx) => {
             const alreadyBookmarked = isBookmarked(suggestion.url);
@@ -241,7 +246,7 @@ const Bookmarks = () => {
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <span>{categoryInfo?.icon}</span>
+                  {categoryInfo?.Icon && <categoryInfo.Icon className="w-4 h-4 text-slate-400" />}
                   <div>
                     <a 
                       href={suggestion.url}
@@ -290,6 +295,7 @@ const Bookmarks = () => {
         <label className="text-slate-400 hover:text-slate-300 cursor-pointer">
           Import Bookmarks
           <input
+            aria-label="Select bookmarks file"
             type="file"
             accept=".json"
             className="hidden"
@@ -301,7 +307,7 @@ const Bookmarks = () => {
                   try {
                     const imported = JSON.parse(event.target.result);
                     setBookmarks([...bookmarks, ...imported]);
-                  } catch (err) {
+                  } catch {
                     alert('Invalid bookmark file');
                   }
                 };

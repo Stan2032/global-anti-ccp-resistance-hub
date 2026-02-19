@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Scale, Ban, Globe, ClipboardList } from 'lucide-react';
 
 const LegalResources = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -207,9 +208,9 @@ Key provisions:
   ];
 
   const categories = [
-    { id: 'all', name: 'All Frameworks', icon: '⚖️' },
-    { id: 'sanctions', name: 'Sanctions Laws', icon: '🚫' },
-    { id: 'international', name: 'International Law', icon: '🌐' },
+    { id: 'all', name: 'All Frameworks', Icon: Scale },
+    { id: 'sanctions', name: 'Sanctions Laws', Icon: Ban },
+    { id: 'international', name: 'International Law', Icon: Globe },
   ];
 
   const filteredFrameworks = selectedCategory === 'all'
@@ -220,7 +221,7 @@ Key provisions:
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">⚖️ Legal Frameworks & Resources</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Scale className="w-6 h-6" /> Legal Frameworks & Resources</h2>
         <p className="text-slate-300">
           International laws, sanctions regimes, and legal tools for holding the CCP accountable for human rights abuses.
         </p>
@@ -238,7 +239,7 @@ Key provisions:
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             }`}
           >
-            <span>{cat.icon}</span>
+            <span><cat.Icon className="w-4 h-4" /></span>
             {cat.name}
           </button>
         ))}
@@ -275,6 +276,10 @@ Key provisions:
             <div
               className="p-6 cursor-pointer hover:bg-slate-700/50 transition-colors"
               onClick={() => setExpandedItem(expandedItem === framework.id ? null : framework.id)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedItem(expandedItem === framework.id ? null : framework.id) } }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expandedItem === framework.id}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -326,7 +331,7 @@ Key provisions:
 
       {/* How to Use Section */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-white mb-4">📋 How to Use These Laws</h3>
+        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> How to Use These Laws</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold text-white mb-2">For Advocacy</h4>

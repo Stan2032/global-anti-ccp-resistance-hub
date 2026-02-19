@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PenLine, Megaphone } from 'lucide-react';
 
 const PetitionLinks = () => {
   const [expandedPetition, setExpandedPetition] = useState(null);
@@ -91,7 +92,7 @@ const PetitionLinks = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <span>✍️</span> Active Petitions
+          <PenLine className="w-5 h-5" /> Active Petitions
         </h2>
         <span className="text-sm text-slate-400">{petitions.length} campaigns</span>
       </div>
@@ -165,7 +166,7 @@ const PetitionLinks = () => {
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-700/50 rounded-lg p-4 mt-6">
         <div className="flex items-center gap-3">
-          <span className="text-3xl">📢</span>
+          <Megaphone className="w-8 h-8 text-slate-300" />
           <div>
             <h3 className="font-bold text-white">Your Voice Matters</h3>
             <p className="text-sm text-slate-300">

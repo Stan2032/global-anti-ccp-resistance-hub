@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Target, Megaphone } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import researchData from '../data/sanctioned_officials_research.json';
 
@@ -187,7 +187,7 @@ const SanctionedOfficials = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🎯 Sanctioned CCP Officials</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Target className="w-6 h-6 text-red-400" /> Sanctioned CCP Officials</h2>
         <p className="text-slate-300">
           {officials.length} officials and entities tracked for human rights abuses — sourced from government sanctions databases.
         </p>
@@ -218,6 +218,7 @@ const SanctionedOfficials = () => {
       {/* Search */}
       <div className="relative">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search by name, position, or Chinese characters..."
           value={searchQuery}
@@ -325,7 +326,7 @@ const SanctionedOfficials = () => {
 
       {/* Call to Action */}
       <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-        <h3 className="font-semibold text-white mb-2">📢 Advocate for More Sanctions</h3>
+        <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><Megaphone className="w-5 h-5 text-red-400" /> Advocate for More Sanctions</h3>
         <p className="text-sm text-slate-300 mb-3">
           Many CCP officials responsible for human rights abuses remain unsanctioned. Contact your representatives to demand action.
         </p>

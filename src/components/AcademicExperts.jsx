@@ -90,6 +90,7 @@ const AcademicExperts = () => {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search by name, affiliation, or work..."
             value={searchTerm}
@@ -98,6 +99,7 @@ const AcademicExperts = () => {
           />
         </div>
         <select
+          aria-label="Expertise filter"
           value={expertiseFilter}
           onChange={(e) => setExpertiseFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"

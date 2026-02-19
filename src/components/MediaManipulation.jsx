@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Monitor, Landmark, Smartphone, Bot, Drama, Radio, BarChart3, Globe, Search } from 'lucide-react';
 
 const MediaManipulation = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -144,11 +145,11 @@ const MediaManipulation = () => {
   ];
 
   const categories = [
-    { id: 'all', name: 'All Media', icon: '📺' },
-    { id: 'state_media', name: 'State Media', icon: '🏛️' },
-    { id: 'social_media', name: 'Social Media', icon: '📱' },
-    { id: 'disinfo_network', name: 'Disinfo Networks', icon: '🤖' },
-    { id: 'captured_media', name: 'Captured Media', icon: '🎭' },
+    { id: 'all', name: 'All Media', Icon: Monitor },
+    { id: 'state_media', name: 'State Media', Icon: Landmark },
+    { id: 'social_media', name: 'Social Media', Icon: Smartphone },
+    { id: 'disinfo_network', name: 'Disinfo Networks', Icon: Bot },
+    { id: 'captured_media', name: 'Captured Media', Icon: Drama },
   ];
 
   const filteredMedia = selectedCategory === 'all'
@@ -168,7 +169,7 @@ const MediaManipulation = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/50 to-red-900/50 border border-purple-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">📡 CCP Media & Propaganda Tracker</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Radio className="w-6 h-6" /> CCP Media & Propaganda Tracker</h2>
         <p className="text-slate-300">
           Track CCP state media, social media manipulation, and disinformation networks operating globally.
         </p>
@@ -206,7 +207,7 @@ const MediaManipulation = () => {
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             }`}
           >
-            <span>{cat.icon}</span>
+            <cat.Icon className="w-4 h-4" />
             {cat.name}
           </button>
         ))}
@@ -229,8 +230,8 @@ const MediaManipulation = () => {
             <p className="text-slate-300 text-sm mb-4">{media.description}</p>
             
             <div className="flex items-center gap-4 text-sm text-slate-400 mb-4">
-              <span>📊 {media.reach}</span>
-              <span>🌍 {media.countries.join(', ')}</span>
+              <span className="flex items-center gap-1"><BarChart3 className="w-3 h-3" /> {media.reach}</span>
+              <span className="flex items-center gap-1"><Globe className="w-3 h-3" /> {media.countries.join(', ')}</span>
             </div>
             
             <div className="border-t border-slate-700 pt-4">
@@ -249,7 +250,7 @@ const MediaManipulation = () => {
 
       {/* How to Identify */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-white mb-4">🔍 How to Identify CCP Propaganda</h3>
+        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><Search className="w-5 h-5" /> How to Identify CCP Propaganda</h3>
         <div className="grid md:grid-cols-3 gap-6">
           <div>
             <h4 className="font-semibold text-white mb-2">Red Flags:</h4>

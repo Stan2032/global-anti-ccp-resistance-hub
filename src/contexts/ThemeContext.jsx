@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
 
 const ThemeContext = createContext(null);
 
@@ -13,7 +14,7 @@ export const THEMES = {
 const themeColors = {
   dark: {
     name: 'Dark Mode',
-    icon: '🌙',
+    Icon: Moon,
     bg: 'bg-slate-900',
     bgSecondary: 'bg-slate-800',
     text: 'text-white',
@@ -23,7 +24,7 @@ const themeColors = {
   },
   light: {
     name: 'Light Mode',
-    icon: '☀️',
+    Icon: Sun,
     bg: 'bg-gray-50',
     bgSecondary: 'bg-white',
     text: 'text-gray-900',
@@ -33,7 +34,7 @@ const themeColors = {
   },
   'high-contrast': {
     name: 'High Contrast',
-    icon: '◐',
+    Icon: Contrast,
     bg: 'bg-black',
     bgSecondary: 'bg-gray-900',
     text: 'text-white',
@@ -54,9 +55,16 @@ export const ThemeProvider = ({ children }) => {
     return THEMES.DARK;
   });
 
-  const [resolvedTheme, setResolvedTheme] = useState(THEMES.DARK);
+  const [resolvedTheme, setResolvedTheme] = useState(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('resistance-hub-theme') || THEMES.DARK;
+    if (savedTheme === THEMES.SYSTEM) {
+      return mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT;
+    }
+    return savedTheme;
+  });
 
-  // Handle system theme preference
+  // Handle system theme preference changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
@@ -66,7 +74,7 @@ export const ThemeProvider = ({ children }) => {
       }
     };
 
-    // Set initial resolved theme
+    // Update resolved theme when theme setting changes
     if (theme === THEMES.SYSTEM) {
       setResolvedTheme(mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT);
     } else {
@@ -139,7 +147,7 @@ export const useTheme = () => {
 
 // Theme Toggle Button Component
 export const ThemeToggle = ({ className = '' }) => {
-  const { resolvedTheme, toggleTheme, themeConfig } = useTheme();
+  const { toggleTheme, themeConfig } = useTheme();
 
   return (
     <button
@@ -149,7 +157,7 @@ export const ThemeToggle = ({ className = '' }) => {
       title={`Theme: ${themeConfig.name}`}
     >
       <span className="text-lg" aria-hidden="true">
-        {themeConfig.icon}
+        {themeConfig.Icon ? <themeConfig.Icon className="w-4 h-4" /> : themeConfig.icon}
       </span>
     </button>
   );
@@ -161,10 +169,10 @@ export const ThemeSelector = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const themes = [
-    { id: THEMES.DARK, name: 'Dark Mode', icon: '🌙' },
-    { id: THEMES.LIGHT, name: 'Light Mode', icon: '☀️' },
-    { id: THEMES.HIGH_CONTRAST, name: 'High Contrast', icon: '◐' },
-    { id: THEMES.SYSTEM, name: 'System Default', icon: '💻' },
+    { id: THEMES.DARK, name: 'Dark Mode', Icon: Moon },
+    { id: THEMES.LIGHT, name: 'Light Mode', Icon: Sun },
+    { id: THEMES.HIGH_CONTRAST, name: 'High Contrast', Icon: Contrast },
+    { id: THEMES.SYSTEM, name: 'System Default', Icon: Monitor },
   ];
 
   return (
@@ -207,7 +215,7 @@ export const ThemeSelector = ({ className = '' }) => {
                       : 'text-slate-300 hover:bg-slate-700'
                   }`}
                 >
-                  <span aria-hidden="true">{t.icon}</span>
+                  <span aria-hidden="true">{t.Icon ? <t.Icon className="w-4 h-4" /> : t.icon}</span>
                   <span className="text-sm">{t.name}</span>
                   {theme === t.id && (
                     <svg className="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">

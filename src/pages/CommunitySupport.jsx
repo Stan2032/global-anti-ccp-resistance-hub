@@ -25,7 +25,8 @@ import {
   TrendingUp,
   Award,
   ChevronRight,
-  Zap
+  Zap,
+  Star
 } from 'lucide-react'
 
 const CommunitySupport = () => {
@@ -170,6 +171,10 @@ const CommunitySupport = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedRequest(request.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedRequest(request.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedRequest === request.id}
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedRequest === request.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
@@ -231,7 +236,7 @@ const CommunitySupport = () => {
                   i < Math.floor(volunteer.rating) ? 'text-yellow-400' : 'text-slate-600'
                 }`}
               >
-                ★
+                <Star className="w-3 h-3 fill-current" />
               </span>
             ))}
           </div>
@@ -351,6 +356,7 @@ const CommunitySupport = () => {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
               <input
+                aria-label="Search"
                 type="text"
                 placeholder="Search requests..."
                 value={searchQuery}

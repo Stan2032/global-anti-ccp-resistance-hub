@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Library, AlertOctagon, Mountain, Target, BookOpen, Trophy, Star, Sprout, Brain } from 'lucide-react';
 
 const KnowledgeQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -10,12 +11,12 @@ const KnowledgeQuiz = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Topics', icon: '📚' },
-    { id: 'uyghur', name: 'Uyghur Crisis', icon: '🕌' },
+    { id: 'all', name: 'All Topics', Icon: Library },
+    { id: 'uyghur', name: 'Uyghur Crisis', Icon: AlertOctagon },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
-    { id: 'tactics', name: 'CCP Tactics', icon: '🎯' },
-    { id: 'general', name: 'General', icon: '📖' },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
+    { id: 'tactics', name: 'CCP Tactics', Icon: Target },
+    { id: 'general', name: 'General', Icon: BookOpen },
   ];
 
   const allQuestions = [
@@ -189,10 +190,10 @@ const KnowledgeQuiz = () => {
 
   const getScoreMessage = () => {
     const percentage = (score / questions.length) * 100;
-    if (percentage >= 90) return { emoji: '🏆', message: 'Expert! You have excellent knowledge of CCP human rights abuses.' };
-    if (percentage >= 70) return { emoji: '⭐', message: 'Well done! You have good understanding of these issues.' };
-    if (percentage >= 50) return { emoji: '📚', message: 'Good start! Consider exploring our Education Center to learn more.' };
-    return { emoji: '🌱', message: 'Keep learning! Visit our Education Center to deepen your understanding.' };
+    if (percentage >= 90) return { Icon: Trophy, message: 'Expert! You have excellent knowledge of CCP human rights abuses.' };
+    if (percentage >= 70) return { Icon: Star, message: 'Well done! You have good understanding of these issues.' };
+    if (percentage >= 50) return { Icon: Library, message: 'Good start! Consider exploring our Education Center to learn more.' };
+    return { Icon: Sprout, message: 'Keep learning! Visit our Education Center to deepen your understanding.' };
   };
 
   if (!quizStarted) {
@@ -200,7 +201,7 @@ const KnowledgeQuiz = () => {
       <div className="space-y-6">
         <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50">
           <div className="flex items-center mb-4">
-            <span className="text-3xl mr-3">🧠</span>
+            <Brain className="w-8 h-8 text-indigo-400 mr-3" />
             <div>
               <h2 className="text-2xl font-bold text-white">Knowledge Quiz</h2>
               <p className="text-slate-400">Test your understanding of CCP human rights abuses</p>
@@ -224,7 +225,7 @@ const KnowledgeQuiz = () => {
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                   }`}
                 >
-                  <span>{cat.icon}</span>
+                  {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
                   <span>{cat.name}</span>
                 </button>
               ))}
@@ -247,11 +248,11 @@ const KnowledgeQuiz = () => {
   }
 
   if (showResult) {
-    const { emoji, message } = getScoreMessage();
+    const { Icon: ResultIcon, message } = getScoreMessage();
     return (
       <div className="space-y-6">
         <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50 text-center">
-          <span className="text-6xl mb-4 block">{emoji}</span>
+          <div className="mb-4 flex justify-center"><ResultIcon className="w-16 h-16 text-indigo-400" /></div>
           <h2 className="text-2xl font-bold text-white mb-2">Quiz Complete!</h2>
           <p className="text-4xl font-bold text-indigo-400 mb-2">
             {score} / {questions.length}
@@ -303,7 +304,7 @@ const KnowledgeQuiz = () => {
       {/* Question */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center space-x-2 mb-4">
-          <span>{categoryInfo?.icon}</span>
+          {categoryInfo?.Icon ? <categoryInfo.Icon className="w-4 h-4 text-slate-300" /> : <span>{categoryInfo?.icon}</span>}
           <span className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-300">
             {categoryInfo?.name}
           </span>

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {
+  Search, FileText, RefreshCw, Calendar, AlertTriangle, ScanEye, Lightbulb,
+} from 'lucide-react';
 
 const SourceVerification = () => {
   const [activeTab, setActiveTab] = useState('sources');
@@ -198,32 +201,32 @@ const SourceVerification = () => {
     {
       title: 'Check the Source',
       description: 'Is it from a CCP state media outlet? Is the author credible? What is their track record?',
-      icon: '🔍',
+      Icon: Search,
     },
     {
       title: 'Look for Primary Documents',
       description: 'The best evidence comes from leaked CCP documents, satellite imagery, and firsthand testimony.',
-      icon: '📄',
+      Icon: FileText,
     },
     {
       title: 'Cross-Reference',
       description: 'Verify claims across multiple independent sources. Be wary of single-source stories.',
-      icon: '🔄',
+      Icon: RefreshCw,
     },
     {
       title: 'Check Dates',
       description: 'Is the information current? Has it been updated or corrected?',
-      icon: '📅',
+      Icon: Calendar,
     },
     {
       title: 'Beware of Whataboutism',
       description: 'CCP propaganda often deflects by pointing to other countries\' issues rather than addressing claims.',
-      icon: '⚠️',
+      Icon: AlertTriangle,
     },
     {
       title: 'Understand CCP Tactics',
       description: 'The CCP uses denial, deflection, and discrediting of sources. Learn to recognize these patterns.',
-      icon: '🎭',
+      Icon: ScanEye,
     },
   ];
 
@@ -259,7 +262,7 @@ const SourceVerification = () => {
         {[
           { id: 'sources', name: 'Trusted Sources', icon: '✓' },
           { id: 'avoid', name: 'Sources to Avoid', icon: '✗' },
-          { id: 'tips', name: 'Verification Tips', icon: '💡' },
+          { id: 'tips', name: 'Verification Tips', Icon: Lightbulb },
         ].map(tab => (
           <button
             key={tab.id}
@@ -270,7 +273,7 @@ const SourceVerification = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{tab.icon}</span>
+            <span>{tab.Icon ? <tab.Icon className="w-4 h-4" /> : tab.icon}</span>
             <span>{tab.name}</span>
           </button>
         ))}
@@ -282,13 +285,14 @@ const SourceVerification = () => {
           {/* Search */}
           <div className="relative">
             <input
+              aria-label="Search"
               type="text"
               placeholder="Search sources by name or topic..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 pl-10 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
             />
-            <span className="absolute left-3 top-3.5 text-slate-500">🔍</span>
+            <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
           </div>
 
           {/* Sources by Category */}
@@ -342,7 +346,7 @@ const SourceVerification = () => {
       {activeTab === 'avoid' && (
         <div className="space-y-4">
           <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4 mb-4">
-            <h3 className="font-medium text-red-300 mb-2">⚠️ Warning</h3>
+            <h3 className="font-medium text-red-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Warning</h3>
             <p className="text-sm text-slate-300">
               These sources are known to spread CCP propaganda or disinformation. 
               Information from these sources should be treated with extreme skepticism.
@@ -375,7 +379,7 @@ const SourceVerification = () => {
             {verificationTips.map((tip, idx) => (
               <div key={idx} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
                 <div className="flex items-center space-x-3 mb-2">
-                  <span className="text-2xl">{tip.icon}</span>
+                  <span className="text-2xl">{tip.Icon ? <tip.Icon className="w-6 h-6" /> : tip.icon}</span>
                   <h4 className="font-medium text-white">{tip.title}</h4>
                 </div>
                 <p className="text-sm text-slate-400">{tip.description}</p>

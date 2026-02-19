@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Megaphone, Monitor, Flame, Landmark, BookOpen, Calendar, Bell, ClipboardList, Inbox, MapPin, Globe, Building2, ExternalLink, FileText } from 'lucide-react';
 
 const EventRSVP = () => {
   const [rsvps, setRsvps] = useState(() => {
@@ -112,12 +113,12 @@ const EventRSVP = () => {
   };
 
   const typeIcons = {
-    protest: '✊',
-    webinar: '💻',
-    commemoration: '🕯️',
-    briefing: '🏛️',
-    vigil: '🕯️',
-    workshop: '📚',
+    protest: Megaphone,
+    webinar: Monitor,
+    commemoration: Flame,
+    briefing: Landmark,
+    vigil: Flame,
+    workshop: BookOpen,
   };
 
   const toggleRSVP = (eventId) => {
@@ -170,7 +171,7 @@ const EventRSVP = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-6 border border-purple-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📅</span>
+          <Calendar className="w-8 h-8 text-purple-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Events & Actions</h2>
             <p className="text-slate-400">RSVP to events and set reminders</p>
@@ -201,10 +202,10 @@ const EventRSVP = () => {
       {/* Filters */}
       <div className="flex flex-wrap gap-2">
         {[
-          { id: 'upcoming', name: 'Upcoming', icon: '📅' },
+          { id: 'upcoming', name: 'Upcoming', Icon: Calendar },
           { id: 'rsvp', name: 'My RSVPs', icon: '✅' },
-          { id: 'reminders', name: 'My Reminders', icon: '🔔' },
-          { id: 'all', name: 'All Events', icon: '📋' },
+          { id: 'reminders', name: 'My Reminders', Icon: Bell },
+          { id: 'all', name: 'All Events', Icon: ClipboardList },
         ].map(filter => (
           <button
             key={filter.id}
@@ -215,7 +216,7 @@ const EventRSVP = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{filter.icon}</span>
+            <span>{filter.Icon ? <filter.Icon className="w-4 h-4" /> : filter.icon}</span>
             <span>{filter.name}</span>
           </button>
         ))}
@@ -225,7 +226,7 @@ const EventRSVP = () => {
       <div className="space-y-4">
         {filteredEvents.length === 0 ? (
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-8 text-center">
-            <span className="text-4xl mb-4 block">📭</span>
+            <Inbox className="w-10 h-10 text-slate-500 mb-4 mx-auto" />
             <p className="text-slate-400">No events found in this category.</p>
           </div>
         ) : (
@@ -236,7 +237,7 @@ const EventRSVP = () => {
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-start space-x-3">
-                  <span className="text-2xl">{typeIcons[event.type]}</span>
+                  {(() => { const TypeIcon = typeIcons[event.type]; return <TypeIcon className="w-6 h-6" />; })()}
                   <div>
                     <h3 className="font-bold text-white">{event.title}</h3>
                     <p className="text-sm text-slate-400">{event.organizer}</p>
@@ -260,16 +261,16 @@ const EventRSVP = () => {
 
               <div className="flex flex-wrap items-center gap-2 mb-3 text-xs">
                 <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
-                  📍 {event.location}
+                  <MapPin className="w-3 h-3 inline mr-1" /> {event.location}
                 </span>
                 {event.virtual && (
                   <span className="px-2 py-0.5 bg-blue-900/50 rounded text-blue-400">
-                    🌐 Virtual
+                    <Globe className="w-3 h-3 inline mr-1" /> Virtual
                   </span>
                 )}
                 {event.cities && (
                   <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
-                    🏙️ {event.cities.length} cities
+                    <Building2 className="w-3 h-3 inline mr-1" /> {event.cities.length} cities
                   </span>
                 )}
                 <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
@@ -296,13 +297,13 @@ const EventRSVP = () => {
                       : 'bg-slate-700 hover:bg-slate-600 text-white'
                   }`}
                 >
-                  {reminders.includes(event.id) ? '🔔 Reminder Set' : '🔔 Set Reminder'}
+                  {reminders.includes(event.id) ? <><Bell className="w-3 h-3 inline mr-1" /> Reminder Set</> : <><Bell className="w-3 h-3 inline mr-1" /> Set Reminder</>}
                 </button>
                 <button
                   onClick={() => addToCalendar(event)}
                   className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm transition-colors"
                 >
-                  📅 Add to Calendar
+                  <Calendar className="w-3 h-3 inline mr-1" /> Add to Calendar
                 </button>
                 {event.link && (
                   <a
@@ -311,7 +312,7 @@ const EventRSVP = () => {
                     rel="noopener noreferrer"
                     className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm transition-colors"
                   >
-                    🔗 More Info
+                    <ExternalLink className="w-3 h-3 inline mr-1" /> More Info
                   </a>
                 )}
               </div>
@@ -322,7 +323,7 @@ const EventRSVP = () => {
 
       {/* Submit Event */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📝 Submit an Event</h3>
+        <h3 className="font-medium text-white mb-2"><FileText className="w-4 h-4 inline mr-1" /> Submit an Event</h3>
         <p className="text-sm text-slate-400 mb-3">
           Know of an upcoming event that should be listed here? Let us know!
         </p>

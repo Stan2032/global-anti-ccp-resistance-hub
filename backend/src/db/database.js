@@ -109,7 +109,7 @@ if (useSQLite) {
         
         // Handle source_id filter
         if (normalizedQuery.includes('source_id =') && params.length > 0) {
-          const sourceIdIndex = normalizedQuery.indexOf('source_id =');
+          const _sourceIdIndex = normalizedQuery.indexOf('source_id =');
           results = results.filter(item => item.source_id === params[0]);
         }
         

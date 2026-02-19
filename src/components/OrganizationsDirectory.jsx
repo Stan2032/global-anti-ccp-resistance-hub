@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Users, Globe, Heart, Search, Filter, ExternalLink, 
   Star, Building, Newspaper, Scale, BookOpen, 
@@ -56,7 +56,6 @@ const OrganizationsDirectory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [focusFilter, setFocusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [selectedOrg, setSelectedOrg] = useState(null);
 
   const organizations = orgsData.results.map(r => r.output);
 
@@ -115,6 +114,7 @@ const OrganizationsDirectory = () => {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search organizations..."
             value={searchTerm}
@@ -123,6 +123,7 @@ const OrganizationsDirectory = () => {
           />
         </div>
         <select
+          aria-label="Focus filter"
           value={focusFilter}
           onChange={(e) => setFocusFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -133,6 +134,7 @@ const OrganizationsDirectory = () => {
           ))}
         </select>
         <select
+          aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -179,7 +181,7 @@ const OrganizationsDirectory = () => {
 
                 {org.latest_news && (
                   <p className="text-blue-400 text-xs">
-                    📰 {org.latest_news}
+                    <span className="flex items-center gap-1"><Newspaper className="w-3 h-3" /> {org.latest_news}</span>
                   </p>
                 )}
 

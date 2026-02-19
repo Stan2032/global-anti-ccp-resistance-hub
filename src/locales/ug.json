@@ -45,7 +45,12 @@
     "resources": "مەنبەلەر",
     "tactics": "جۇڭگو كومۇنىستىك پارتىيىسى تاكتىكىسى",
     "education": "مائارىپ",
-    "security": "بىخەتەرلىك"
+    "security": "بىخەتەرلىك",
+    "dataSources": "سانلىق مەنبە",
+    "main": "ئاساسىي",
+    "humanRights": "ئىنسان ھوقۇقى",
+    "action": "ھەرىكەت",
+    "resourcesSection": "مەنبەلەر"
   },
   "header": {
     "title": "دۇنيا قارشىلىق مەركىزى",

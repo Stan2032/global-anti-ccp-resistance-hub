@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
 
 const SafetyChecklist = () => {
   const [checkedItems, setCheckedItems] = useState(() => {
@@ -12,12 +13,12 @@ const SafetyChecklist = () => {
   }, [checkedItems]);
 
   const categories = [
-    { id: 'digital', name: 'Digital Security', icon: '💻' },
-    { id: 'physical', name: 'Physical Safety', icon: '🛡️' },
-    { id: 'communication', name: 'Communication', icon: '📱' },
-    { id: 'travel', name: 'Travel Safety', icon: '✈️' },
-    { id: 'legal', name: 'Legal Preparation', icon: '⚖️' },
-    { id: 'emergency', name: 'Emergency Plan', icon: '🚨' },
+    { id: 'digital', name: 'Digital Security', Icon: Monitor },
+    { id: 'physical', name: 'Physical Safety', Icon: Shield },
+    { id: 'communication', name: 'Communication', Icon: Smartphone },
+    { id: 'travel', name: 'Travel Safety', Icon: Plane },
+    { id: 'legal', name: 'Legal Preparation', Icon: Scale },
+    { id: 'emergency', name: 'Emergency Plan', Icon: Siren },
   ];
 
   const checklistItems = {
@@ -338,7 +339,7 @@ const SafetyChecklist = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🛡️</span>
+          <Shield className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Personal Safety Checklist</h2>
             <p className="text-slate-400">Protect yourself while advocating for human rights</p>
@@ -383,7 +384,7 @@ const SafetyChecklist = () => {
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
-              <span>{cat.icon}</span>
+              <cat.Icon className="w-4 h-4" />
               <span>{cat.name}</span>
               <span className="text-xs opacity-75">({catCompleted}/{catItems.length})</span>
             </button>
@@ -462,7 +463,7 @@ const SafetyChecklist = () => {
 
       {/* Emergency Contacts */}
       <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-3">🚨 Emergency Resources</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><Siren className="w-5 h-5 text-red-400" /> Emergency Resources</h3>
         <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div>
             <p className="text-slate-400 text-xs mb-1">Front Line Defenders</p>

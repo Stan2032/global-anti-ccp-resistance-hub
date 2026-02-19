@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText } from 'lucide-react';
 import { dataProcessor } from '../data/liveDataSources';
 
 const NewsAggregator = () => {
@@ -115,12 +116,12 @@ const NewsAggregator = () => {
   // ^^^ All hardcoded data removed - now using real RSS feeds from dataProcessor
 
   const categories = [
-    { id: 'all', name: 'All News', icon: '📰' },
-    { id: 'hongkong', name: 'Hong Kong', icon: '🏙️' },
-    { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'all', name: 'All News', Icon: Newspaper },
+    { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
+    { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'transnational', name: 'Transnational', icon: '🌐' },
+    { id: 'transnational', name: 'Transnational', Icon: Globe },
   ];
 
   const filteredNews = selectedCategory === 'all' 
@@ -136,9 +137,9 @@ const NewsAggregator = () => {
     }
   };
 
-  const getCategoryIcon = (category) => {
+  const getCategoryInfo = (category) => {
     const cat = categories.find(c => c.id === category);
-    return cat ? cat.icon : '📄';
+    return cat || { Icon: FileText };
   };
 
   if (loading) {
@@ -158,7 +159,7 @@ const NewsAggregator = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          📡 Latest Intelligence
+          <Radio className="w-5 h-5" /> Latest Intelligence
         </h2>
         <span className="text-xs text-green-400 flex items-center gap-1">
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -178,7 +179,7 @@ const NewsAggregator = () => {
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             }`}
           >
-            <span>{cat.icon}</span>
+            {cat.Icon ? <cat.Icon className="w-3 h-3" /> : <span>{cat.icon}</span>}
             {cat.name}
           </button>
         ))}
@@ -197,7 +198,7 @@ const NewsAggregator = () => {
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg">{getCategoryIcon(item.category)}</span>
+                  {(() => { const info = getCategoryInfo(item.category); return info.Icon ? <info.Icon className="w-5 h-5" /> : <span className="text-lg">{info.icon}</span>; })()}
                   <span className={`px-2 py-0.5 rounded text-xs font-medium ${getPriorityColor(item.priority)}`}>
                     {item.priority}
                   </span>

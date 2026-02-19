@@ -207,14 +207,14 @@ export default function EventMap() {
 
   const isUpcoming = (dateStr) => new Date(dateStr) >= new Date();
 
-  // Simple map visualization using CSS grid
-  const MapView = () => (
+  // Simple map visualization using CSS grid — rendered inline to avoid component-in-render
+  const mapView = viewMode === 'map' ? (
     <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700">
       <div className="grid grid-cols-3 gap-4 mb-6">
         {/* North America */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌎 North America
+            <Globe className="w-4 h-4" /> North America
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'North America').map(event => (
@@ -239,7 +239,7 @@ export default function EventMap() {
         {/* Europe */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌍 Europe
+            <Globe className="w-4 h-4" /> Europe
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'Europe').map(event => (
@@ -264,7 +264,7 @@ export default function EventMap() {
         {/* Asia-Pacific */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌏 Asia-Pacific
+            <Globe className="w-4 h-4" /> Asia-Pacific
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'Asia-Pacific').map(event => (
@@ -297,7 +297,7 @@ export default function EventMap() {
         ))}
       </div>
     </div>
-  );
+  ) : null;
 
   return (
     <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
@@ -348,6 +348,7 @@ export default function EventMap() {
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
         <select
+          aria-label="Filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -357,6 +358,7 @@ export default function EventMap() {
           ))}
         </select>
         <select
+          aria-label="Region filter"
           value={selectedCause}
           onChange={(e) => setSelectedCause(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -366,6 +368,7 @@ export default function EventMap() {
           ))}
         </select>
         <select
+          aria-label="Type filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -377,7 +380,7 @@ export default function EventMap() {
       </div>
 
       {/* Map View */}
-      {viewMode === 'map' && <MapView />}
+      {mapView}
 
       {/* List View */}
       {viewMode === 'list' && (
@@ -537,7 +540,7 @@ export default function EventMap() {
 
       {/* Tips */}
       <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700 rounded-lg">
-        <h3 className="text-sm font-semibold text-blue-400 mb-2">📍 Organizing an Event?</h3>
+        <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-1"><MapPin className="w-4 h-4" /> Organizing an Event?</h3>
         <p className="text-sm text-slate-400">
           Contact us to have your event listed on this map. We feature rallies, vigils, marches, 
           briefings, and other activism events supporting human rights in China.

@@ -99,6 +99,7 @@ const IntelligenceFeeds = () => {
         {/* Search */}
         <div className="flex-1">
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search articles..."
             value={searchQuery}

@@ -2,7 +2,6 @@ import express from 'express';
 import { validate, validateQuery, createOrganizationSchema, updateOrganizationSchema, organizationFilterSchema } from '../validators/schemas.js';
 import { authenticateToken, requireRole } from '../middleware/auth.js';
 import * as organizationService from '../services/organizationService.js';
-import logger from '../utils/logger.js';
 
 const router = express.Router();
 

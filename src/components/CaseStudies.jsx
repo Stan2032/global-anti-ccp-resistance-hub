@@ -7,7 +7,7 @@ const caseStudies = [
     id: 'jimmy-lai',
     name: 'Jimmy Lai',
     chineseName: '黎智英',
-    photo: '👤',
+    photo: null,
     status: 'IMPRISONED',
     urgency: 'CRITICAL',
     category: 'Hong Kong',
@@ -73,7 +73,7 @@ const caseStudies = [
     id: 'ilham-tohti',
     name: 'Ilham Tohti',
     chineseName: '伊力哈木·土赫提',
-    photo: '👤',
+    photo: null,
     status: 'IMPRISONED',
     urgency: 'CRITICAL',
     category: 'Uyghur',
@@ -132,7 +132,7 @@ const caseStudies = [
     id: 'panchen-lama',
     name: 'Gedhun Choekyi Nyima',
     chineseName: '根敦确吉尼玛',
-    photo: '👤',
+    photo: null,
     status: 'DISAPPEARED',
     urgency: 'CRITICAL',
     category: 'Tibet',
@@ -227,8 +227,8 @@ export default function CaseStudies() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-slate-700 rounded-xl flex items-center justify-center text-4xl">
-              {caseData.photo}
+            <div className="w-20 h-20 bg-slate-700 rounded-xl flex items-center justify-center">
+              {caseData.photo ? <span className="text-4xl">{caseData.photo}</span> : <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
@@ -369,7 +369,7 @@ export default function CaseStudies() {
             <div className="mt-4 space-y-2">
               {caseData.internationalResponse.map((response, i) => (
                 <div key={i} className="flex items-start gap-3 bg-slate-900/50 rounded-lg p-3">
-                  <span className="text-lg">🌐</span>
+                  <Globe className="w-5 h-5 text-slate-300" />
                   <div>
                     <p className="text-white font-medium">{response.country}</p>
                     <p className="text-sm text-slate-400">{response.response}</p>
@@ -453,8 +453,8 @@ export default function CaseStudies() {
             className="bg-slate-900/50 rounded-lg p-4 text-left hover:bg-slate-900/70 transition-colors border border-slate-700 hover:border-slate-600"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-2xl">
-                {caseData.photo}
+              <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">
+                {caseData.photo ? <span className="text-2xl">{caseData.photo}</span> : <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div>
                 <div className="flex items-center gap-2">

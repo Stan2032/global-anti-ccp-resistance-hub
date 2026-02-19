@@ -232,7 +232,6 @@ const facilities = [
 
 const regions = ['All Regions', 'Xinjiang', 'Tibet', 'Hong Kong', 'Mainland China'];
 const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Maximum Security Prison', 'Secret Detention'];
-const statuses = ['All Statuses', 'Active', 'Closed', 'Unknown'];
 
 // Process research data into source attribution format
 const MAX_DESCRIPTION_LENGTH = 100;
@@ -536,6 +535,7 @@ export default function DetentionFacilities() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search facilities..."
             value={searchQuery}
@@ -544,6 +544,7 @@ export default function DetentionFacilities() {
           />
         </div>
         <select
+          aria-label="Region filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -553,6 +554,7 @@ export default function DetentionFacilities() {
           ))}
         </select>
         <select
+          aria-label="Region filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckCircle, Globe, FileText, Search, ShieldCheck, Wrench, AlertTriangle, Phone, Mail } from 'lucide-react';
 import DataExport from '../components/DataExport';
 import Bookmarks from '../components/Bookmarks';
 import MediaGallery from '../components/MediaGallery';
@@ -17,7 +18,7 @@ const ResistanceResources = () => {
     {
       title: 'Security & Privacy',
       description: 'Protect yourself with VPNs, encrypted messaging, and digital security tools',
-      icon: '🔐',
+      Icon: Shield,
       link: '/security',
       linkText: 'Go to Security Center',
       highlights: ['Tor Browser', 'Signal', 'ProtonVPN', 'Tails OS', 'Security Quiz'],
@@ -26,7 +27,7 @@ const ResistanceResources = () => {
     {
       title: 'Take Action',
       description: 'Contact representatives, sign petitions, boycott complicit companies',
-      icon: '✊',
+      Icon: Megaphone,
       link: '/take-action',
       linkText: 'Go to Take Action',
       highlights: ['Contact Representatives', 'Sign Petitions', 'Boycott Guide', 'Success Stories'],
@@ -35,7 +36,7 @@ const ResistanceResources = () => {
     {
       title: 'Organizations Directory',
       description: 'Find verified human rights organizations and advocacy groups',
-      icon: '🏛️',
+      Icon: Landmark,
       link: '/directory',
       linkText: 'Browse Directory',
       highlights: ['24 Organizations', 'IPAC Members', 'NGOs', 'Research Institutes'],
@@ -44,7 +45,7 @@ const ResistanceResources = () => {
     {
       title: 'Educational Resources',
       description: 'Books, documentaries, courses, and glossary of key terms',
-      icon: '📚',
+      Icon: BookOpen,
       link: '/education',
       linkText: 'Go to Education Center',
       highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
@@ -53,7 +54,7 @@ const ResistanceResources = () => {
     {
       title: 'Intelligence & News',
       description: 'Live feeds from verified sources tracking CCP activities',
-      icon: '📡',
+      Icon: Radio,
       link: '/intelligence',
       linkText: 'View Intelligence Feeds',
       highlights: ['Live RSS Feeds', 'ASPI', 'ICIJ', 'Radio Free Asia'],
@@ -62,7 +63,7 @@ const ResistanceResources = () => {
     {
       title: 'Community Support',
       description: 'Connect with diaspora support networks and find local resources',
-      icon: '🤝',
+      Icon: Handshake,
       link: '/community',
       linkText: 'Join Community',
       highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
@@ -76,37 +77,37 @@ const ResistanceResources = () => {
       name: 'eyeWitness to Atrocities',
       url: 'https://www.eyewitness.global/',
       description: 'Document human rights abuses with verified metadata',
-      icon: '📸'
+      icon: Camera
     },
     {
       name: 'ProofMode',
       url: 'https://proofmode.org/',
       description: 'Add verification data to photos and videos',
-      icon: '✓'
+      icon: CheckCircle
     },
     {
       name: 'Wayback Machine',
       url: 'https://web.archive.org/',
       description: 'Archive web pages before they are censored',
-      icon: '🕸️'
+      icon: Globe
     },
     {
       name: 'Archive.today',
       url: 'https://archive.today/',
       description: 'Create permanent snapshots of web pages',
-      icon: '📄'
+      icon: FileText
     },
     {
       name: 'Have I Been Pwned',
       url: 'https://haveibeenpwned.com/',
       description: 'Check if your email has been compromised',
-      icon: '🔍'
+      icon: Search
     },
     {
       name: 'PrivacyTools.io',
       url: 'https://www.privacytools.io/',
       description: 'Comprehensive privacy tool recommendations',
-      icon: '🛡️'
+      icon: ShieldCheck
     }
   ];
 
@@ -149,7 +150,7 @@ const ResistanceResources = () => {
       {/* Security Notice */}
       <div className="bg-yellow-900/30 border border-yellow-700/50 rounded-lg p-4">
         <div className="flex items-start gap-3">
-          <span className="text-2xl">⚠️</span>
+          <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
           <div>
             <h3 className="font-bold text-yellow-400">Security First</h3>
             <p className="text-sm text-yellow-200/80">
@@ -172,7 +173,7 @@ const ResistanceResources = () => {
           >
             <div className={`bg-gradient-to-r ${section.color} p-4`}>
               <div className="flex items-center gap-3">
-                <span className="text-3xl">{section.icon}</span>
+                <section.Icon className="w-8 h-8 text-white" />
                 <h2 className="text-xl font-bold text-white">{section.title}</h2>
               </div>
             </div>
@@ -199,7 +200,7 @@ const ResistanceResources = () => {
       {/* Quick Documentation Tools - Unique to this page */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <span>🛠️</span> Quick Documentation Tools
+          <Wrench className="w-5 h-5" /> Quick Documentation Tools
         </h2>
         <p className="text-slate-400 text-sm mb-4">
           Essential tools for documenting and preserving evidence of human rights violations.
@@ -213,7 +214,7 @@ const ResistanceResources = () => {
               rel="noopener noreferrer"
               className="flex items-start gap-3 p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
             >
-              <span className="text-xl">{tool.icon}</span>
+              <tool.icon className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-white text-sm">{tool.name}</div>
                 <div className="text-xs text-slate-400">{tool.description}</div>
@@ -226,7 +227,7 @@ const ResistanceResources = () => {
       {/* Emergency Contacts */}
       <div className="bg-red-900/30 border border-red-700/50 rounded-xl p-6">
         <h2 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
-          <span>🚨</span> Emergency Contacts
+          <AlertTriangle className="w-5 h-5" /> Emergency Contacts
         </h2>
         <p className="text-slate-300 text-sm mb-4">
           If you or someone you know is in immediate danger from CCP transnational repression, contact these organizations immediately.
@@ -238,12 +239,12 @@ const ResistanceResources = () => {
               <p className="text-xs text-slate-400 mb-2">{contact.description}</p>
               {contact.phone && (
                 <a href={`tel:${contact.phone}`} className="block text-red-400 text-sm font-mono mb-1">
-                  📞 {contact.phone}
+                  <Phone className="w-3 h-3 inline mr-1" />{contact.phone}
                 </a>
               )}
               {contact.email && (
                 <a href={`mailto:${contact.email}`} className="block text-blue-400 text-sm font-mono mb-1">
-                  ✉️ {contact.email}
+                  <Mail className="w-3 h-3 inline mr-1" />{contact.email}
                 </a>
               )}
               <a

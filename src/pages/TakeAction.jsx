@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
 import PetitionLinks from '../components/PetitionLinks';
 import ForcedLabourList from '../components/ForcedLabourList';
@@ -34,7 +35,7 @@ const TakeAction = () => {
     {
       number: 1,
       title: 'DONATE TO VERIFIED ORGANIZATIONS',
-      icon: '💰',
+      Icon: Heart,
       color: 'blue',
       description: 'Support organizations fighting for human rights in China. Every dollar helps fund research, advocacy, and direct assistance to victims.',
       links: [
@@ -48,7 +49,7 @@ const TakeAction = () => {
     {
       number: 2,
       title: 'CONTACT YOUR REPRESENTATIVES',
-      icon: '🏛️',
+      Icon: Landmark,
       color: 'red',
       description: 'Urge your elected officials to take action on China human rights. Your voice matters - legislators track constituent contacts.',
       links: [
@@ -62,7 +63,7 @@ const TakeAction = () => {
     {
       number: 3,
       title: 'SIGN ACTIVE PETITIONS',
-      icon: '✍️',
+      Icon: PenLine,
       color: 'green',
       description: 'Add your name to campaigns demanding action. Petitions with large numbers of signatures get attention from policymakers and media.',
       links: [
@@ -76,7 +77,7 @@ const TakeAction = () => {
     {
       number: 4,
       title: 'BOYCOTT COMPLICIT COMPANIES',
-      icon: '🚫',
+      Icon: Ban,
       color: 'orange',
       description: 'Avoid products made with forced labor or by companies complicit in surveillance. Your purchasing power sends a message.',
       links: [
@@ -89,7 +90,7 @@ const TakeAction = () => {
     {
       number: 5,
       title: 'REPORT CCP HARASSMENT',
-      icon: '🚨',
+      Icon: AlertTriangle,
       color: 'red',
       description: 'If you or someone you know has experienced CCP intimidation, surveillance, or harassment, report it to help document transnational repression.',
       links: [
@@ -103,7 +104,7 @@ const TakeAction = () => {
     {
       number: 6,
       title: 'SPREAD AWARENESS',
-      icon: '📢',
+      Icon: Megaphone,
       color: 'purple',
       description: 'Share information about CCP human rights abuses with your network. Education is the first step toward action.',
       links: [
@@ -116,7 +117,7 @@ const TakeAction = () => {
     {
       number: 7,
       title: 'SUPPORT DIASPORA COMMUNITIES',
-      icon: '🤝',
+      Icon: Handshake,
       color: 'teal',
       description: 'Stand with Uyghur, Tibetan, Hong Kong, and Chinese diaspora communities. Attend events, amplify their voices, and offer solidarity.',
       links: [
@@ -129,7 +130,7 @@ const TakeAction = () => {
     {
       number: 8,
       title: 'STAY INFORMED & SECURE',
-      icon: '🔐',
+      Icon: Shield,
       color: 'slate',
       description: 'Follow trusted news sources and protect your digital security. The CCP targets activists with surveillance and hacking.',
       links: [
@@ -185,7 +186,7 @@ const TakeAction = () => {
       {/* Security Notice */}
       <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
         <div className="flex items-start gap-3">
-          <span className="text-2xl">⚠️</span>
+          <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
           <div>
             <h3 className="font-semibold text-yellow-300 mb-1">Security Notice</h3>
             <p className="text-yellow-200 text-sm">
@@ -211,6 +212,8 @@ const TakeAction = () => {
               <button
                 onClick={() => setExpandedAction(expandedAction === action.number ? null : action.number)}
                 className="w-full p-6 text-left flex items-start gap-4 hover:bg-slate-700/50 transition-colors"
+                aria-expanded={expandedAction === action.number}
+                aria-controls={`action-panel-${action.number}`}
               >
                 <div className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center text-3xl font-bold ${
                   action.color === 'blue' ? 'bg-blue-900/50 text-blue-400' :
@@ -225,7 +228,7 @@ const TakeAction = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-2xl">{action.icon}</span>
+                    <action.Icon className="w-6 h-6" />
                     <h3 className="text-lg font-bold text-white">{action.title}</h3>
                   </div>
                   <p className="text-slate-400 text-sm">{action.description}</p>
@@ -235,16 +238,17 @@ const TakeAction = () => {
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               
               {expandedAction === action.number && (
-                <div className="px-6 pb-6 border-t border-slate-700 pt-4">
+                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-slate-700 pt-4" role="region" aria-label={action.title}>
                   {action.stats && (
                     <div className="mb-4 p-3 bg-slate-900/50 rounded-lg">
-                      <span className="text-sm text-slate-300">📊 {action.stats}</span>
+                      <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
                     </div>
                   )}
                   
@@ -293,7 +297,7 @@ const TakeAction = () => {
                           className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
@@ -306,7 +310,7 @@ const TakeAction = () => {
                           className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
@@ -333,12 +337,13 @@ const TakeAction = () => {
               <span className="text-green-300">✓ Thank you for subscribing! Check your email to confirm.</span>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3" aria-label="Newsletter subscription">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                aria-label="Email address for newsletter"
                 className="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
@@ -521,7 +526,7 @@ const TakeAction = () => {
       {/* Share Section */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <span>📣</span> Spread the Word
+          <Megaphone className="w-5 h-5" /> Spread the Word
         </h2>
         <p className="text-slate-400 mb-4">
           Share this page with your network. Every share helps raise awareness about CCP human rights abuses.

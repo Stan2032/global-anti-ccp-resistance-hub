@@ -346,6 +346,7 @@ const ForcedLabourList = () => {
       {/* Search and Filter */}
       <div className="mb-6 space-y-4">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search companies..."
           value={searchQuery}

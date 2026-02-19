@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import {
+  ClipboardList, Building2, Mountain, Bug, Globe, Siren, Lightbulb, BookOpen, PenSquare,
+} from 'lucide-react';
 
 const DisinfoTracker = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All', icon: '📋' },
-    { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
+    { id: 'all', name: 'All', Icon: ClipboardList },
+    { id: 'uyghur', name: 'Uyghur', Icon: Building2 },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'covid', name: 'COVID-19', icon: '🦠' },
-    { id: 'general', name: 'General', icon: '🌐' },
+    { id: 'covid', name: 'COVID-19', Icon: Bug },
+    { id: 'general', name: 'General', Icon: Globe },
   ];
 
   const disinfoAlerts = [
@@ -147,7 +150,7 @@ const DisinfoTracker = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl p-6 border border-red-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🚨</span>
+          <Siren className="w-8 h-8 mr-3 text-red-400" />
           <div>
             <h2 className="text-2xl font-bold text-white">Disinformation Tracker</h2>
             <p className="text-slate-400">Identify and counter CCP propaganda</p>
@@ -191,7 +194,7 @@ const DisinfoTracker = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <span>{cat.Icon ? <cat.Icon className="w-4 h-4" /> : cat.icon}</span>
             <span>{cat.name}</span>
           </button>
         ))}
@@ -256,7 +259,7 @@ const DisinfoTracker = () => {
 
       {/* How to Counter Disinfo */}
       <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-3">💡 How to Counter Disinformation</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> How to Counter Disinformation</h3>
         <ul className="text-sm text-slate-300 space-y-2">
           <li>• <strong>Don't amplify</strong> - Avoid sharing false claims, even to debunk them</li>
           <li>• <strong>Lead with truth</strong> - State facts first, then mention the false claim</li>
@@ -268,7 +271,7 @@ const DisinfoTracker = () => {
 
       {/* Resources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Fact-Checking Resources</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Fact-Checking Resources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.aspi.org.au/program/international-cyber-policy-centre" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             ASPI - CCP Influence Tracking
@@ -287,7 +290,7 @@ const DisinfoTracker = () => {
 
       {/* Report Disinfo */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📝 Report Disinformation</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><PenSquare className="w-5 h-5" /> Report Disinformation</h3>
         <p className="text-sm text-slate-400 mb-3">
           Spotted CCP disinformation that should be tracked? Submit it for review.
         </p>

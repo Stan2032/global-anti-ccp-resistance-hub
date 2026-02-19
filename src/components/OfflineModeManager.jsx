@@ -8,24 +8,6 @@ const OfflineModeManager = () => {
   const [storageUsed, setStorageUsed] = useState(0);
   const [storageQuota, setStorageQuota] = useState(0);
 
-  useEffect(() => {
-    // Monitor online/offline status
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    // Check cache status
-    checkCacheStatus();
-    checkStorageUsage();
-
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
-
   const checkCacheStatus = async () => {
     try {
       if ('caches' in window) {
@@ -60,11 +42,29 @@ const OfflineModeManager = () => {
     }
   };
 
+  useEffect(() => {
+    // Monitor online/offline status
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    // Check cache status
+    checkCacheStatus();
+    checkStorageUsage();
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const enableOfflineMode = async () => {
     try {
       // Register service worker if not already registered
       if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.register('/sw.js');
+        const _registration = await navigator.serviceWorker.register('/sw.js');
         // Service Worker registered successfully
         
         // Trigger cache of critical resources

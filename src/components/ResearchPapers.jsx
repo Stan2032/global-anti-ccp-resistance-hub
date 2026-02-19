@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BookOpen, Search, FileText, BarChart3, MailX, PenLine } from 'lucide-react';
 
 const ResearchPapers = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -244,7 +245,7 @@ const ResearchPapers = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-900/50 to-teal-900/50 rounded-xl p-6 border border-emerald-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📚</span>
+          <BookOpen className="w-8 h-8 text-emerald-400" />
           <div>
             <h2 className="text-2xl font-bold text-white">Research Papers & Reports</h2>
             <p className="text-slate-400">Academic research, investigative reports, and legal analyses</p>
@@ -273,13 +274,14 @@ const ResearchPapers = () => {
       {/* Search */}
       <div className="relative">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search papers by title, author, or topic..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
         />
-        <span className="absolute left-3 top-3.5 text-slate-500">🔍</span>
+        <Search className="absolute left-3 top-3.5 text-slate-500 w-5 h-5" />
       </div>
 
       {/* Category Filter */}
@@ -359,8 +361,8 @@ const ResearchPapers = () => {
             </div>
             <div className="flex items-center justify-between pt-3 border-t border-slate-700">
               <div className="flex items-center space-x-4 text-xs text-slate-400">
-                <span>📄 {paper.pages} pages</span>
-                <span>📊 {paper.citations} citations</span>
+                <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {paper.pages} pages</span>
+                <span className="flex items-center gap-1"><BarChart3 className="w-3 h-3" /> {paper.citations} citations</span>
               </div>
               <a 
                 href={paper.url}
@@ -377,14 +379,14 @@ const ResearchPapers = () => {
 
       {filteredPapers.length === 0 && (
         <div className="text-center py-12">
-          <span className="text-4xl mb-4 block">📭</span>
+          <MailX className="w-10 h-10 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">No papers found matching your criteria</p>
         </div>
       )}
 
       {/* Citation Guide */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-        <h3 className="text-lg font-bold text-white mb-4">📝 How to Use These Resources</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><PenLine className="w-5 h-5" /> How to Use These Resources</h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
           <div className="space-y-2">
             <h4 className="font-medium text-white">For Advocacy:</h4>

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Megaphone, Landmark, Heart, BookOpen, Handshake, Sprout, Leaf, TreePine, Trophy, Crown, Target, Flame, Star, Award } from 'lucide-react';
 
 const ActionTracker = () => {
   const [completedActions, setCompletedActions] = useState(() => {
     const saved = localStorage.getItem('completedActions');
     return saved ? JSON.parse(saved) : [];
   });
-  const [streak, setStreak] = useState(0);
+  const [streak] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
 
   const actionCategories = [
     {
       id: 'awareness',
       name: 'Raise Awareness',
-      icon: '📢',
+      Icon: Megaphone,
       color: 'blue',
       actions: [
         { id: 'share-social', name: 'Share an article on social media', points: 5 },
@@ -25,7 +26,7 @@ const ActionTracker = () => {
     {
       id: 'advocacy',
       name: 'Political Advocacy',
-      icon: '🏛️',
+      Icon: Landmark,
       color: 'purple',
       actions: [
         { id: 'sign-petition', name: 'Sign a petition', points: 5 },
@@ -38,7 +39,7 @@ const ActionTracker = () => {
     {
       id: 'economic',
       name: 'Economic Action',
-      icon: '💰',
+      Icon: Heart,
       color: 'green',
       actions: [
         { id: 'check-labels', name: 'Check product labels for origin', points: 5 },
@@ -51,7 +52,7 @@ const ActionTracker = () => {
     {
       id: 'education',
       name: 'Self-Education',
-      icon: '📚',
+      Icon: BookOpen,
       color: 'yellow',
       actions: [
         { id: 'read-article', name: 'Read an in-depth article', points: 5 },
@@ -64,7 +65,7 @@ const ActionTracker = () => {
     {
       id: 'support',
       name: 'Direct Support',
-      icon: '🤝',
+      Icon: Handshake,
       color: 'red',
       actions: [
         { id: 'welcome-refugee', name: 'Welcome a refugee to your community', points: 30 },
@@ -77,14 +78,14 @@ const ActionTracker = () => {
   ];
 
   const achievements = [
-    { id: 'first-action', name: 'First Steps', description: 'Complete your first action', icon: '🌱', requirement: 1 },
-    { id: 'five-actions', name: 'Getting Started', description: 'Complete 5 actions', icon: '🌿', requirement: 5 },
-    { id: 'ten-actions', name: 'Committed', description: 'Complete 10 actions', icon: '🌳', requirement: 10 },
-    { id: 'twenty-five', name: 'Advocate', description: 'Complete 25 actions', icon: '⭐', requirement: 25 },
-    { id: 'fifty', name: 'Champion', description: 'Complete 50 actions', icon: '🏆', requirement: 50 },
-    { id: 'hundred', name: 'Hero', description: 'Complete 100 actions', icon: '👑', requirement: 100 },
-    { id: 'all-categories', name: 'Well-Rounded', description: 'Complete actions in all categories', icon: '🎯', requirement: 'all-categories' },
-    { id: 'week-streak', name: 'Consistent', description: 'Take action 7 days in a row', icon: '🔥', requirement: 'streak-7' },
+    { id: 'first-action', name: 'First Steps', description: 'Complete your first action', Icon: Sprout, requirement: 1 },
+    { id: 'five-actions', name: 'Getting Started', description: 'Complete 5 actions', Icon: Leaf, requirement: 5 },
+    { id: 'ten-actions', name: 'Committed', description: 'Complete 10 actions', Icon: TreePine, requirement: 10 },
+    { id: 'twenty-five', name: 'Advocate', description: 'Complete 25 actions', Icon: Star, requirement: 25 },
+    { id: 'fifty', name: 'Champion', description: 'Complete 50 actions', Icon: Trophy, requirement: 50 },
+    { id: 'hundred', name: 'Hero', description: 'Complete 100 actions', Icon: Crown, requirement: 100 },
+    { id: 'all-categories', name: 'Well-Rounded', description: 'Complete actions in all categories', Icon: Target, requirement: 'all-categories' },
+    { id: 'week-streak', name: 'Consistent', description: 'Take action 7 days in a row', Icon: Flame, requirement: 'streak-7' },
   ];
 
   useEffect(() => {
@@ -166,7 +167,7 @@ const ActionTracker = () => {
       {/* Celebration Animation */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
-          <div className="text-6xl animate-bounce">🎉</div>
+          <Star className="w-16 h-16 text-yellow-400 animate-bounce" />
         </div>
       )}
 
@@ -187,7 +188,7 @@ const ActionTracker = () => {
         <div className="bg-slate-900/50 rounded-lg p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
-              <span className="text-2xl">🎖️</span>
+              <Award className="w-6 h-6 text-slate-300" />
               <div>
                 <div className="font-medium text-white">Level {levelInfo.level}: {levelInfo.name}</div>
                 <div className="text-xs text-slate-400">{getCompletedCount()} actions completed</div>
@@ -213,7 +214,7 @@ const ActionTracker = () => {
       {/* Achievements */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
         <h3 className="font-bold text-white mb-3 flex items-center">
-          <span className="mr-2">🏆</span> Achievements ({unlockedAchievements.length}/{achievements.length})
+          <Trophy className="w-5 h-5 mr-2" /> Achievements ({unlockedAchievements.length}/{achievements.length})
         </h3>
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
           {achievements.map(achievement => {
@@ -228,7 +229,7 @@ const ActionTracker = () => {
                 }`}
                 title={`${achievement.name}: ${achievement.description}`}
               >
-                <span className="text-2xl">{achievement.icon}</span>
+                <achievement.Icon className="w-6 h-6 text-slate-300" />
                 <div className="text-xs text-slate-400 mt-1 truncate">{achievement.name}</div>
               </div>
             );
@@ -249,7 +250,7 @@ const ActionTracker = () => {
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2">
-                  <span className="text-2xl">{category.icon}</span>
+                  <category.Icon className="w-6 h-6 text-slate-300" />
                   <h3 className="font-bold text-white">{category.name}</h3>
                 </div>
                 <div className="flex items-center space-x-2">

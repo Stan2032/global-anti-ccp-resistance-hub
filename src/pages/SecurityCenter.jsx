@@ -6,6 +6,8 @@ import SafetyChecklist from '../components/SafetyChecklist'
 import WitnessProtection from '../components/WitnessProtection'
 import OfflineModeManager from '../components/OfflineModeManager'
 import WhistleblowerPortal from '../components/WhistleblowerPortal'
+import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
+import securityData from '../data/security_center_data.json'
 import { 
   Shield, 
   Lock, 
@@ -23,7 +25,13 @@ import {
   Phone,
   AlertCircle,
   ChevronRight,
-  Zap
+  Zap,
+  ExternalLink,
+  Play,
+  Loader2,
+  ShieldCheck,
+  ShieldAlert,
+  ShieldQuestion
 } from 'lucide-react'
 
 const SecurityCenter = () => {
@@ -32,185 +40,13 @@ const SecurityCenter = () => {
   const [securityScore, setSecurityScore] = useState(0)
   const [categoryBreakdown, setCategoryBreakdown] = useState({ network: 0, device: 0, opsec: 0 })
   const [answers, setAnswers] = useState({})
+  const { status: webrtcStatus, leakedIPs, isLeaking, runCheck: runWebRTCCheck } = useWebRTCLeakCheck()
 
-  const [securityTools] = useState([
-    {
-      id: 1,
-      name: 'Tor Browser',
-      description: 'Anonymous browsing and access to .onion sites',
-      status: 'essential',
-      download: 'https://www.torproject.org/download/',
-      features: ['Anonymous IP masking', 'Encrypted connections', 'Protection from tracking']
-    },
-    {
-      id: 2,
-      name: 'ProtonVPN',
-      description: 'Secure VPN with no-log policy',
-      status: 'essential',
-      download: 'https://protonvpn.com/',
-      features: ['Military-grade encryption', 'No activity logs', 'Kill switch protection']
-    },
-    {
-      id: 3,
-      name: 'Signal',
-      description: 'End-to-end encrypted messaging',
-      status: 'essential',
-      download: 'https://signal.org/download/',
-      features: ['E2E encryption', 'Voice/video calls', 'Disappearing messages']
-    },
-    {
-      id: 4,
-      name: 'Tails OS',
-      description: 'Secure operating system for sensitive work',
-      status: 'advanced',
-      download: 'https://tails.boum.org/',
-      features: ['Amnesic system', 'No traces left', 'Tor integrated']
-    },
-    {
-      id: 5,
-      name: 'KeePass',
-      description: 'Offline password manager',
-      status: 'essential',
-      download: 'https://keepass.info/',
-      features: ['Strong encryption', 'Offline storage', 'Auto-fill support']
-    },
-    {
-      id: 6,
-      name: 'VeraCrypt',
-      description: 'Full disk and partition encryption',
-      status: 'advanced',
-      download: 'https://www.veracrypt.fr/',
-      features: ['AES-256 encryption', 'Hidden volumes', 'Plausible deniability']
-    }
-  ])
-
-  const [assessmentQuestions] = useState([
-    {
-      id: 1,
-      question: 'Do you use a VPN or Tor for all internet activity?',
-      category: 'network',
-      weight: 15
-    },
-    {
-      id: 2,
-      question: 'Is your device encrypted with full-disk encryption?',
-      category: 'device',
-      weight: 15
-    },
-    {
-      id: 3,
-      question: 'Do you use unique, strong passwords for each account?',
-      category: 'passwords',
-      weight: 10
-    },
-    {
-      id: 4,
-      question: 'Do you have two-factor authentication enabled on critical accounts?',
-      category: 'authentication',
-      weight: 15
-    },
-    {
-      id: 5,
-      question: 'Do you use end-to-end encrypted messaging for sensitive communications?',
-      category: 'communications',
-      weight: 15
-    },
-    {
-      id: 6,
-      question: 'Do you regularly update your operating system and software?',
-      category: 'updates',
-      weight: 10
-    },
-    {
-      id: 7,
-      question: 'Do you disable location services and camera/microphone when not needed?',
-      category: 'device',
-      weight: 10
-    },
-    {
-      id: 8,
-      question: 'Do you avoid using personal information in usernames and profiles?',
-      category: 'opsec',
-      weight: 10
-    }
-  ])
-
-  const [emergencyContacts] = useState([
-    {
-      id: 1,
-      name: 'International Consortium of Investigative Journalists',
-      type: 'Document Submission',
-      contact: 'https://www.icij.org/leak/',
-      description: 'Secure document submission for journalists'
-    },
-    {
-      id: 2,
-      name: 'Amnesty International',
-      type: 'Human Rights Reporting',
-      contact: 'https://www.amnesty.org/en/contact-us/',
-      description: 'Report human rights violations'
-    },
-    {
-      id: 3,
-      name: 'Human Rights Watch',
-      type: 'Evidence Submission',
-      contact: 'https://www.hrw.org/about/contact',
-      description: 'Submit evidence of human rights abuses'
-    },
-    {
-      id: 4,
-      name: 'Freedom House',
-      type: 'Urgent Assistance',
-      contact: 'https://freedomhouse.org/contact',
-      description: 'Emergency support for activists at risk'
-    },
-    {
-      id: 5,
-      name: 'International Federation for Human Rights',
-      type: 'Emergency Protection',
-      contact: 'https://www.fidh.org/en/about-us/contact',
-      description: 'Emergency protection for threatened activists'
-    }
-  ])
-
-  const [securityGuides] = useState([
-    {
-      id: 1,
-      title: 'Device Security Hardening',
-      topics: ['OS Configuration', 'Firewall Setup', 'Antivirus/Malware Protection', 'USB Security'],
-      difficulty: 'Intermediate'
-    },
-    {
-      id: 2,
-      title: 'Network Security Fundamentals',
-      topics: ['VPN Configuration', 'Tor Usage', 'DNS Privacy', 'Traffic Analysis Prevention'],
-      difficulty: 'Intermediate'
-    },
-    {
-      id: 3,
-      title: 'Operational Security (OPSEC)',
-      topics: ['Information Compartmentalization', 'Cover Stories', 'Counter-Surveillance', 'Secure Meetings'],
-      difficulty: 'Advanced'
-    },
-    {
-      id: 4,
-      title: 'Digital Forensics Awareness',
-      topics: ['Data Recovery Prevention', 'Metadata Removal', 'Secure Deletion', 'Evidence Preservation'],
-      difficulty: 'Advanced'
-    },
-    {
-      id: 5,
-      title: 'Social Engineering Defense',
-      topics: ['Phishing Recognition', 'Pretexting', 'Credential Harvesting', 'Verification Protocols'],
-      difficulty: 'Beginner'
-    },
-    {
-      id: 6,
-      title: 'Crisis Response Procedures',
-      topics: ['Device Lockdown', 'Account Recovery', 'Evidence Destruction', 'Safe House Protocols'],
-      difficulty: 'Advanced'
-    }
-  ])
+  const securityTools = securityData.securityTools
+  const connectionTestTools = securityData.connectionTestTools
+  const assessmentQuestions = securityData.assessmentQuestions
+  const emergencyContacts = securityData.emergencyContacts
+  const securityGuides = securityData.securityGuides
 
   const handleAnswer = (questionId, answer) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }))
@@ -514,6 +350,141 @@ const SecurityCenter = () => {
             {securityTools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />
             ))}
+          </div>
+
+          {/* WebRTC Leak Test — runs entirely in your browser */}
+          <div className="mt-8 border-t border-slate-700 pt-8">
+            <div className="flex items-center gap-2 mb-2">
+              {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
+              {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
+              {(webrtcStatus === 'idle' || webrtcStatus === 'unsupported' || webrtcStatus === 'error') && <ShieldQuestion className="w-5 h-5 text-slate-400" />}
+              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />}
+              <h3 className="text-xl font-bold text-white">WebRTC Leak Test</h3>
+            </div>
+            <p className="text-slate-400 text-sm mb-4">
+              WebRTC can expose your real IP address even when using a VPN. This test runs
+              entirely in your browser — no data is sent to any server.
+            </p>
+
+            {webrtcStatus === 'idle' && (
+              <button
+                onClick={runWebRTCCheck}
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors"
+              >
+                <Play className="w-4 h-4" />
+                Run WebRTC Leak Test
+              </button>
+            )}
+
+            {webrtcStatus === 'running' && (
+              <div className="flex items-center gap-2 text-blue-400">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span className="text-sm">Checking for WebRTC leaks...</span>
+              </div>
+            )}
+
+            {webrtcStatus === 'unsupported' && (
+              <div className="bg-slate-800 border border-slate-600 rounded-lg p-4">
+                <p className="text-slate-400 text-sm">
+                  Your browser does not support WebRTC, which means it cannot leak your IP through this method.
+                  This is actually a good thing for privacy.
+                </p>
+              </div>
+            )}
+
+            {webrtcStatus === 'error' && (
+              <div className="bg-slate-800 border border-yellow-700 rounded-lg p-4">
+                <p className="text-yellow-400 text-sm">
+                  Could not complete the WebRTC leak test. Your browser may be blocking WebRTC
+                  (which is good for privacy) or an unexpected error occurred.
+                </p>
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-2 text-blue-400 hover:text-blue-300 text-sm underline"
+                >
+                  Try again
+                </button>
+              </div>
+            )}
+
+            {webrtcStatus === 'complete' && (
+              <div className={`rounded-lg p-4 border ${isLeaking ? 'bg-red-900/30 border-red-700' : 'bg-green-900/30 border-green-700'}`}>
+                <div className="flex items-center gap-2 mb-3">
+                  {isLeaking ? (
+                    <>
+                      <ShieldAlert className="w-5 h-5 text-red-400" />
+                      <span className="text-red-300 font-semibold">WebRTC is leaking your IP address</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-5 h-5 text-green-400" />
+                      <span className="text-green-300 font-semibold">No public IP leak detected</span>
+                    </>
+                  )}
+                </div>
+
+                {leakedIPs.length > 0 && (
+                  <div className="space-y-1 mb-3">
+                    <p className="text-slate-400 text-xs font-medium">Detected addresses:</p>
+                    {leakedIPs.map((ip, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm">
+                        <span className={`px-1.5 py-0.5 rounded text-xs ${ip.type === 'public' ? 'bg-red-800 text-red-200' : 'bg-slate-700 text-slate-300'}`}>
+                          {ip.type}
+                        </span>
+                        <code className="text-slate-300 font-mono text-xs">{ip.address}</code>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {isLeaking && (
+                  <div className="mt-3 pt-3 border-t border-red-800">
+                    <p className="text-red-200 text-sm font-medium mb-2">How to fix this:</p>
+                    <ul className="text-slate-400 text-sm space-y-1">
+                      <li>• <strong>Firefox:</strong> Go to <code className="text-slate-300">about:config</code> and set <code className="text-slate-300">media.peerconnection.enabled</code> to <code className="text-slate-300">false</code></li>
+                      <li>• <strong>Chrome:</strong> Install the <a href="https://chrome.google.com/webstore/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">WebRTC Leak Prevent</a> extension</li>
+                      <li>• <strong>Tor Browser:</strong> WebRTC is disabled by default — use Tor Browser for maximum protection</li>
+                    </ul>
+                  </div>
+                )}
+
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-3 text-blue-400 hover:text-blue-300 text-sm underline"
+                >
+                  Run test again
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Verify Your Connection */}
+          <div className="mt-8 border-t border-slate-700 pt-8">
+            <h3 className="text-xl font-bold text-white mb-2">Verify Your Connection</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              This platform cannot detect whether you are using a VPN or Tor. Use these reputable 
+              third-party tools to self-test whether your connection is properly secured.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {connectionTestTools.map((tool) => (
+                <a
+                  key={tool.id}
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-800 rounded-lg border border-slate-700 p-4 hover:border-blue-500 transition-colors group"
+                >
+                  <div className="flex items-start justify-between">
+                    <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
+                      {tool.name}
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors flex-shrink-0 mt-0.5" />
+                  </div>
+                  <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
+                  <p className="text-slate-500 text-xs mt-2">Provider: {tool.provider}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}

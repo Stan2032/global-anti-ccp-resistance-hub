@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Mountain, BarChart3, BookOpen } from 'lucide-react';
 
 const XinjiangStatus = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -54,7 +55,7 @@ const XinjiangStatus = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/50 to-cyan-900/50 border border-blue-700 rounded-xl p-6">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-4xl">🏔️</span>
+          <Mountain className="w-10 h-10 text-blue-400" />
           <div>
             <h2 className="text-2xl font-bold text-white">Xinjiang / East Turkistan Status</h2>
             <p className="text-slate-300">Tracking the Uyghur genocide and mass detention</p>
@@ -160,7 +161,7 @@ const XinjiangStatus = () => {
           
           <div className="bg-blue-900/30 border border-blue-700 rounded-xl p-4">
             <p className="text-blue-300 text-sm">
-              📊 View satellite imagery at{' '}
+              <BarChart3 className="w-4 h-4 inline mr-1" /> View satellite imagery at{' '}
               <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="underline">
                 ASPI Xinjiang Data Project
               </a>
@@ -231,7 +232,7 @@ const XinjiangStatus = () => {
 
       {/* Resources */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">📚 Xinjiang Resources</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Xinjiang Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
             <h4 className="text-white font-semibold">ASPI Xinjiang Data</h4>

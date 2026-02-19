@@ -85,6 +85,7 @@ const GovernmentResponseTracker = () => {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search countries, sanctions, or legislation..."
             value={searchTerm}
@@ -95,6 +96,7 @@ const GovernmentResponseTracker = () => {
 
         <div className="flex flex-wrap gap-3">
           <select
+            aria-label="Stance filter"
             value={stanceFilter}
             onChange={(e) => setStanceFilter(e.target.value)}
             className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
@@ -107,6 +109,7 @@ const GovernmentResponseTracker = () => {
           </select>
 
           <select
+            aria-label="Genocide filter"
             value={genocideFilter}
             onChange={(e) => setGenocideFilter(e.target.value)}
             className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"

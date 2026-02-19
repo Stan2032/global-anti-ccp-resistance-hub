@@ -183,6 +183,10 @@ const SecureComms = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedChannel(channel.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedChannel(channel.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedChannel === channel.id}
       className={`p-4 rounded-lg border cursor-pointer transition-all ${
         selectedChannel === channel.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
@@ -309,6 +313,7 @@ const SecureComms = () => {
             <div className="relative">
               <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
               <input
+                aria-label="Search"
                 type="text"
                 placeholder="Search channels..."
                 className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
@@ -380,6 +385,7 @@ const SecureComms = () => {
                 <div className="p-4 border-t border-slate-700">
                   <div className="flex items-center space-x-2">
                     <input
+                      aria-label="Type encrypted message..."
                       type="text"
                       value={messageInput}
                       onChange={(e) => setMessageInput(e.target.value)}

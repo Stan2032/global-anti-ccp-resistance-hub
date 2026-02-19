@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield, Square } from 'lucide-react';
 
 const WitnessProtection = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -6,12 +7,12 @@ const WitnessProtection = () => {
   const [riskAnswers, setRiskAnswers] = useState({});
 
   const sections = [
-    { id: 'overview', name: 'Overview', icon: '📋' },
-    { id: 'assessment', name: 'Risk Assessment', icon: '⚠️' },
-    { id: 'immediate', name: 'Immediate Steps', icon: '🚨' },
-    { id: 'relocation', name: 'Relocation', icon: '✈️' },
-    { id: 'legal', name: 'Legal Protection', icon: '⚖️' },
-    { id: 'organizations', name: 'Organizations', icon: '🤝' },
+    { id: 'overview', name: 'Overview', Icon: ClipboardList },
+    { id: 'assessment', name: 'Risk Assessment', Icon: AlertTriangle },
+    { id: 'immediate', name: 'Immediate Steps', Icon: Siren },
+    { id: 'relocation', name: 'Relocation', Icon: Plane },
+    { id: 'legal', name: 'Legal Protection', Icon: Scale },
+    { id: 'organizations', name: 'Organizations', Icon: Handshake },
   ];
 
   const riskQuestions = [
@@ -187,7 +188,7 @@ const WitnessProtection = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 rounded-xl p-6 border border-purple-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🛡️</span>
+          <Shield className="w-8 h-8 text-purple-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Witness Protection Guide</h2>
             <p className="text-slate-400">Resources for at-risk activists and witnesses</p>
@@ -195,7 +196,7 @@ const WitnessProtection = () => {
         </div>
         <div className="bg-red-900/30 border border-red-700/50 rounded-lg p-3 mt-4">
           <p className="text-sm text-red-200">
-            <strong>⚠️ Important:</strong> If you are in immediate danger, contact local emergency services 
+            <strong className="inline-flex items-center gap-1"><AlertTriangle className="w-4 h-4" /> Important:</strong> If you are in immediate danger, contact local emergency services 
             or Front Line Defenders' 24/7 emergency line: <strong>+353 1 210 0489</strong>
           </p>
         </div>
@@ -213,7 +214,7 @@ const WitnessProtection = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{section.icon}</span>
+            <section.Icon className="w-4 h-4" />
             <span>{section.name}</span>
           </button>
         ))}
@@ -382,7 +383,7 @@ const WitnessProtection = () => {
       {activeSection === 'immediate' && (
         <div className="space-y-4">
           <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-5">
-            <h3 className="text-lg font-semibold text-red-300 mb-3">🚨 If You're in Immediate Danger</h3>
+            <h3 className="text-lg font-semibold text-red-300 mb-3 flex items-center gap-2"><Siren className="w-5 h-5" /> If You're in Immediate Danger</h3>
             <ol className="space-y-3 text-slate-300">
               <li className="flex items-start">
                 <span className="bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">1</span>
@@ -408,7 +409,7 @@ const WitnessProtection = () => {
           </div>
 
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
-            <h3 className="text-lg font-semibold text-white mb-3">📋 First 48 Hours Checklist</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> First 48 Hours Checklist</h3>
             <div className="space-y-2">
               {[
                 'Secure all devices - change passwords, enable 2FA',
@@ -423,7 +424,7 @@ const WitnessProtection = () => {
                 'Consult with a lawyer about your options',
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center space-x-3 p-2 bg-slate-900/50 rounded">
-                  <span className="text-purple-400">☐</span>
+                  <Square className="w-4 h-4 text-purple-400" />
                   <span className="text-slate-300 text-sm">{item}</span>
                 </div>
               ))}
@@ -471,7 +472,7 @@ const WitnessProtection = () => {
           </div>
 
           <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-            <h3 className="font-medium text-yellow-300 mb-2">⚠️ Important Considerations</h3>
+            <h3 className="font-medium text-yellow-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Important Considerations</h3>
             <ul className="text-sm text-slate-300 space-y-1">
               <li>• <strong>Avoid countries with extradition treaties with China</strong></li>
               <li>• Consider proximity to China and CCP influence</li>

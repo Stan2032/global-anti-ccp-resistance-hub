@@ -178,7 +178,7 @@ router.post('/:id/share', async (req, res) => {
         const token = authHeader.substring(7);
         const decoded = jwt.default.verify(token, process.env.JWT_SECRET);
         userId = decoded.userId;
-      } catch (err) {
+      } catch {
         // Not authenticated, continue as anonymous
       }
     }

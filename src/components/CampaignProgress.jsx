@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Target, TrendingUp, Users, Calendar, CheckCircle, Clock, AlertTriangle, ChevronRight, ExternalLink, Share2 } from 'lucide-react';
 
 const campaigns = [

@@ -143,7 +143,7 @@ const WhistleblowerPortal = () => {
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
-            <h3 className="text-red-400 font-bold mb-2">⚠️ CRITICAL SECURITY WARNING</h3>
+            <h3 className="text-red-400 font-bold mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> CRITICAL SECURITY WARNING</h3>
             <div className="space-y-2 text-sm text-slate-300">
               <p><strong>This page is for INFORMATION ONLY.</strong> Do NOT submit sensitive documents through this website.</p>
               <p><strong>If you are in China or under CCP surveillance:</strong></p>
@@ -228,6 +228,7 @@ const WhistleblowerPortal = () => {
 
           <div className="flex items-center gap-3 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
             <input
+              aria-label="I understand the security protocols"
               type="checkbox"
               id="security-agreement"
               checked={agreedToTerms}

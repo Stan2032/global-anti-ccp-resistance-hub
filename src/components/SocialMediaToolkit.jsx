@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { MessageCircle, FileText, Hash, Image, Calendar, Smartphone, Clipboard, Lightbulb } from 'lucide-react';
 
 const SocialMediaToolkit = () => {
   const [activeCategory, setActiveCategory] = useState('threads');
   const [copiedId, setCopiedId] = useState(null);
 
   const categories = [
-    { id: 'threads', name: 'Twitter/X Threads', icon: '🧵' },
-    { id: 'posts', name: 'Single Posts', icon: '📝' },
-    { id: 'hashtags', name: 'Hashtags', icon: '#️⃣' },
-    { id: 'graphics', name: 'Share Graphics', icon: '🖼️' },
-    { id: 'dates', name: 'Key Dates', icon: '📅' },
+    { id: 'threads', name: 'Twitter/X Threads', Icon: MessageCircle },
+    { id: 'posts', name: 'Single Posts', Icon: FileText },
+    { id: 'hashtags', name: 'Hashtags', Icon: Hash },
+    { id: 'graphics', name: 'Share Graphics', Icon: Image },
+    { id: 'dates', name: 'Key Dates', Icon: Calendar },
   ];
 
   const threads = [
@@ -141,7 +142,7 @@ const SocialMediaToolkit = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📱</span>
+          <Smartphone className="w-8 h-8 text-blue-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Social Media Toolkit</h2>
             <p className="text-slate-400">Ready-to-share content for advocacy</p>
@@ -165,7 +166,7 @@ const SocialMediaToolkit = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <cat.Icon className="w-4 h-4" />
             <span>{cat.name}</span>
           </button>
         ))}
@@ -185,7 +186,7 @@ const SocialMediaToolkit = () => {
                   onClick={() => copyThread(thread)}
                   className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors"
                 >
-                  {copiedId === thread.id ? '✓ Copied!' : '📋 Copy Thread'}
+                  {copiedId === thread.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy Thread</>}
                 </button>
               </div>
               <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
@@ -215,7 +216,7 @@ const SocialMediaToolkit = () => {
                   onClick={() => copyToClipboard(post.text, post.id)}
                   className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
                 >
-                  {copiedId === post.id ? '✓ Copied!' : '📋 Copy'}
+                  {copiedId === post.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy</>}
                 </button>
               </div>
               <p className="text-sm text-slate-300 whitespace-pre-wrap">{post.text}</p>
@@ -236,7 +237,7 @@ const SocialMediaToolkit = () => {
                   onClick={() => copyToClipboard(set.hashtags.join(' '), set.id)}
                   className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
                 >
-                  {copiedId === set.id ? '✓ Copied!' : '📋 Copy All'}
+                  {copiedId === set.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy All</>}
                 </button>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -262,7 +263,7 @@ const SocialMediaToolkit = () => {
             <div key={idx} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 flex items-center justify-between">
               <div>
                 <div className="flex items-center space-x-3">
-                  <span className="text-2xl">📅</span>
+                  <Calendar className="w-6 h-6 text-blue-400" />
                   <div>
                     <h3 className="font-bold text-white">{item.date}</h3>
                     <p className="text-sm text-slate-400">{item.event}</p>
@@ -274,7 +275,7 @@ const SocialMediaToolkit = () => {
                 onClick={() => copyToClipboard(item.hashtags, `date-${idx}`)}
                 className="text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white rounded transition-colors"
               >
-                {copiedId === `date-${idx}` ? '✓' : '📋'}
+                {copiedId === `date-${idx}` ? '✓' : <Clipboard className="w-3 h-3" />}
               </button>
             </div>
           ))}
@@ -284,7 +285,7 @@ const SocialMediaToolkit = () => {
       {/* Graphics placeholder */}
       {activeCategory === 'graphics' && (
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6 text-center">
-          <span className="text-4xl mb-4 block">🖼️</span>
+          <Image className="w-10 h-10 text-slate-400 mb-4 mx-auto" />
           <h3 className="font-bold text-white mb-2">Share Graphics Coming Soon</h3>
           <p className="text-sm text-slate-400">
             Downloadable infographics, profile frames, and shareable images will be available here.
@@ -297,7 +298,7 @@ const SocialMediaToolkit = () => {
 
       {/* Tips */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">💡 Social Media Tips</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-1"><Lightbulb className="w-4 h-4 text-yellow-400" /> Social Media Tips</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <strong>Personalize</strong> the content with your own words for more impact</li>
           <li>• <strong>Tag relevant accounts</strong> like journalists, politicians, and organizations</li>

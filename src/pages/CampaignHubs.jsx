@@ -21,7 +21,7 @@ import {
 import { Link } from 'react-router-dom'
 
 const CampaignHubs = () => {
-  const [activeTab, setActiveTab] = useState('active')
+  const [activeTab] = useState('active')
   const [selectedCampaign, setSelectedCampaign] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -159,6 +159,10 @@ const CampaignHubs = () => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedCampaign(campaign.id)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedCampaign(campaign.id) } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selectedCampaign === campaign.id}
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedCampaign === campaign.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
@@ -272,6 +276,7 @@ const CampaignHubs = () => {
       <div className="relative">
         <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search campaigns..."
           value={searchQuery}

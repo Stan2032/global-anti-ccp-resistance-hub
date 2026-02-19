@@ -86,6 +86,7 @@ const ResistanceDirectory = () => {
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
           <input
+            aria-label="Search"
             type="text"
             placeholder="Search organizations..."
             value={searchQuery}
@@ -96,6 +97,7 @@ const ResistanceDirectory = () => {
         <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-slate-400" />
           <select
+            aria-label="Filter"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -141,6 +143,10 @@ const ResistanceDirectory = () => {
           <div
             key={org.id}
             onClick={() => setSelectedOrg(selectedOrg?.id === org.id ? null : org)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedOrg(selectedOrg?.id === org.id ? null : org) } }}
+            role="button"
+            tabIndex={0}
+            aria-expanded={selectedOrg?.id === org.id}
             className={`bg-slate-800 border rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 ${
               selectedOrg?.id === org.id ? 'border-blue-500 ring-1 ring-blue-500' : 'border-slate-700'
             }`}

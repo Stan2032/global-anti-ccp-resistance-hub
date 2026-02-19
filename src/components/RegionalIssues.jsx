@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Mountain, Wheat, Building2, Building, Church, Circle, Map, Handshake } from 'lucide-react';
 
 const RegionalIssues = () => {
   const [activeRegion, setActiveRegion] = useState('inner-mongolia');
@@ -7,7 +8,7 @@ const RegionalIssues = () => {
     {
       id: 'inner-mongolia',
       name: 'Inner Mongolia',
-      flag: '🏔️',
+      Icon: Mountain,
       nativeName: 'Өвөр Монгол',
       population: '24 million',
       ethnicGroup: 'Mongols (4.2 million)',
@@ -53,7 +54,7 @@ const RegionalIssues = () => {
     {
       id: 'manchuria',
       name: 'Manchuria',
-      flag: '🌾',
+      Icon: Wheat,
       nativeName: '满洲',
       population: '109 million (Northeast China)',
       ethnicGroup: 'Manchu (10 million)',
@@ -92,7 +93,7 @@ const RegionalIssues = () => {
     {
       id: 'guangdong',
       name: 'Cantonese Regions',
-      flag: '🏙️',
+      Icon: Building2,
       nativeName: '廣東話地區',
       population: '80+ million speakers',
       ethnicGroup: 'Cantonese speakers',
@@ -128,7 +129,7 @@ const RegionalIssues = () => {
     {
       id: 'shanghai',
       name: 'Shanghainese',
-      flag: '🌆',
+      Icon: Building,
       nativeName: '上海话',
       population: '14 million speakers',
       ethnicGroup: 'Wu Chinese speakers',
@@ -156,7 +157,7 @@ const RegionalIssues = () => {
     {
       id: 'christian',
       name: 'Christians',
-      flag: '✝️',
+      Icon: Church,
       nativeName: 'Chinese Christians',
       population: '68-100 million',
       ethnicGroup: 'Various ethnic groups',
@@ -203,7 +204,7 @@ const RegionalIssues = () => {
     {
       id: 'falungong',
       name: 'Falun Gong',
-      flag: '☯️',
+      Icon: Circle,
       nativeName: '法轮功',
       population: '70+ million (pre-persecution)',
       ethnicGroup: 'Various ethnic groups',
@@ -261,7 +262,7 @@ const RegionalIssues = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-xl p-6 border border-amber-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🗺️</span>
+          <Map className="w-8 h-8 text-amber-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Other Persecuted Groups</h2>
             <p className="text-slate-400">Beyond Uyghurs, Tibetans, and Hong Kongers</p>
@@ -285,7 +286,7 @@ const RegionalIssues = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{region.flag}</span>
+            <region.Icon className="w-4 h-4" />
             <span>{region.name}</span>
           </button>
         ))}
@@ -299,7 +300,7 @@ const RegionalIssues = () => {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <span className="text-2xl">{activeRegionData.flag}</span>
+                  <activeRegionData.Icon className="w-6 h-6" />
                   {activeRegionData.name}
                   {activeRegionData.nativeName && (
                     <span className="text-sm font-normal text-slate-400">({activeRegionData.nativeName})</span>
@@ -409,7 +410,7 @@ const RegionalIssues = () => {
 
       {/* Call to Action */}
       <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-amber-300 mb-2">🤝 How You Can Help</h3>
+        <h3 className="font-medium text-amber-300 mb-2 flex items-center gap-2"><Handshake className="w-5 h-5" /> How You Can Help</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• Share information about these lesser-known persecuted groups</li>
           <li>• Support organizations working on these issues</li>

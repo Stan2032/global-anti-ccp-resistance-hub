@@ -1,8 +1,7 @@
 import express from 'express';
 import { validate, validateQuery, createCampaignSchema, updateCampaignSchema, campaignFilterSchema, updateProgressSchema } from '../validators/schemas.js';
-import { authenticateToken, requireRole, optionalAuth } from '../middleware/auth.js';
+import { authenticateToken, optionalAuth } from '../middleware/auth.js';
 import * as campaignService from '../services/campaignService.js';
-import logger from '../utils/logger.js';
 
 const router = express.Router();
 

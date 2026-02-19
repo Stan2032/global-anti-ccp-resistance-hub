@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Mail, PenLine, Send, Clock, Copy, Lightbulb, BookOpen } from 'lucide-react';
 
 const LetterCampaign = () => {
   const [activeCampaign, setActiveCampaign] = useState(null);
@@ -177,7 +178,7 @@ Sincerely,
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">✉️</span>
+          <Mail className="w-8 h-8 mr-3 text-blue-400" />
           <div>
             <h2 className="text-2xl font-bold text-white">Letter Writing Campaigns</h2>
             <p className="text-slate-400">Ready-to-use templates for advocacy</p>
@@ -191,11 +192,12 @@ Sincerely,
 
       {/* Customization */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-3">✏️ Personalize Your Letters</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><PenLine className="w-5 h-5" /> Personalize Your Letters</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs text-slate-400 mb-1">Your Name</label>
             <input
+              aria-label="Your Name"
               type="text"
               value={customizations.name}
               onChange={(e) => setCustomizations({ ...customizations, name: e.target.value })}
@@ -206,6 +208,7 @@ Sincerely,
           <div>
             <label className="block text-xs text-slate-400 mb-1">Your Location</label>
             <input
+              aria-label="Your Location"
               type="text"
               value={customizations.location}
               onChange={(e) => setCustomizations({ ...customizations, location: e.target.value })}
@@ -241,8 +244,8 @@ Sincerely,
                   </div>
                   <p className="text-sm text-slate-400">{campaign.description}</p>
                   <div className="flex items-center space-x-4 mt-2 text-xs text-slate-500">
-                    <span>📬 Target: {campaign.target}</span>
-                    <span>⏰ {campaign.deadline}</span>
+                    <span className="flex items-center gap-1"><Send className="w-3 h-3" /> Target: {campaign.target}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {campaign.deadline}</span>
                   </div>
                 </div>
                 <span className="text-slate-400 text-xl">
@@ -278,7 +281,7 @@ Sincerely,
                       onClick={() => copyLetter(campaign.letterTemplate)}
                       className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
                     >
-                      {copiedLetter ? '✓ Copied!' : '📋 Copy Letter'}
+                      {copiedLetter ? '✓ Copied!' : <span className="flex items-center gap-1"><Copy className="w-3 h-3" /> Copy Letter</span>}
                     </button>
                   </div>
                   <pre className="bg-slate-900 rounded-lg p-4 text-xs text-slate-300 whitespace-pre-wrap overflow-x-auto max-h-64 overflow-y-auto">
@@ -288,7 +291,7 @@ Sincerely,
 
                 {/* Tips */}
                 <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-3">
-                  <h4 className="text-sm font-medium text-white mb-1">💡 Tips for Effectiveness</h4>
+                  <h4 className="text-sm font-medium text-white mb-1 flex items-center gap-1"><Lightbulb className="w-4 h-4" /> Tips for Effectiveness</h4>
                   <ul className="text-xs text-slate-300 space-y-1">
                     <li>• Personalize the letter with your own words and experiences</li>
                     <li>• Be respectful but firm in your requests</li>
@@ -304,7 +307,7 @@ Sincerely,
 
       {/* Resources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Find Your Representatives</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Find Your Representatives</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             🇺🇸 US House Representatives

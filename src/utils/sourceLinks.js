@@ -151,6 +151,116 @@ const SOURCE_REGISTRY = {
     url: 'https://www.news.cn/',
     type: 'News Report',
     verified: false
+  },
+  'European Parliament': {
+    url: 'https://www.europarl.europa.eu/',
+    type: 'Government',
+    verified: true
+  },
+  'Chinese Human Rights Defenders': {
+    url: 'https://www.nchrd.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'ASPI': {
+    url: 'https://www.aspi.org.au/',
+    type: 'Research Paper',
+    verified: true
+  },
+  'Xinjiang Police Files': {
+    url: 'https://www.xinjiangpolicefiles.org/',
+    type: 'Government',
+    verified: true
+  },
+  'Dr. Adrian Zenz': {
+    url: 'https://adrianzenz.medium.com/',
+    type: 'Academic Research',
+    verified: true
+  },
+  'Hong Kong Watch': {
+    url: 'https://www.hongkongwatch.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'CNN': {
+    url: 'https://www.cnn.com/',
+    type: 'News Report',
+    verified: true
+  },
+  'UK Foreign Office': {
+    url: 'https://www.gov.uk/government/organisations/foreign-commonwealth-development-office',
+    type: 'Government',
+    verified: true
+  },
+  'Safeguard Defenders': {
+    url: 'https://safeguarddefenders.com/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'FBI': {
+    url: 'https://www.fbi.gov/',
+    type: 'Government',
+    verified: true
+  },
+  'Uyghur Tribunal': {
+    url: 'https://uyghurtribunal.com/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Nobel Committee': {
+    url: 'https://www.nobelprize.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'US Treasury OFAC': {
+    url: 'https://ofac.treasury.gov/',
+    type: 'Government',
+    verified: true
+  },
+  'UK Sanctions List': {
+    url: 'https://www.gov.uk/government/collections/uk-sanctions-list',
+    type: 'Government',
+    verified: true
+  },
+  'EU Sanctions Map': {
+    url: 'https://www.sanctionsmap.eu/',
+    type: 'Government',
+    verified: true
+  },
+  'Canada Sanctions - China': {
+    url: 'https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/china-chine.aspx',
+    type: 'Government',
+    verified: true
+  },
+  'Tiananmen Mothers': {
+    url: 'https://www.tiananmenmother.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Human Rights in China': {
+    url: 'https://www.hrichina.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Wall Street Journal': {
+    url: 'https://www.wsj.com/',
+    type: 'News Report',
+    verified: true
+  },
+  'Free Tibet': {
+    url: 'https://freetibet.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Stand News': {
+    url: 'https://www.thestandnews.com/',
+    type: 'News Report',
+    verified: true
+  },
+  'Nobel Prize Committee': {
+    url: 'https://www.nobelprize.org/',
+    type: 'NGO Report',
+    verified: true
   }
 };
 

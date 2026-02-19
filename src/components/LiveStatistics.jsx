@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {
+  Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
+  BarChart3, TrendingUp, Search, AlertTriangle, BookOpen,
+} from 'lucide-react';
 
 const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decimals = 0 }) => {
   const [count, setCount] = useState(0);
@@ -61,7 +65,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
 };
 
 const LiveStatistics = () => {
-  const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [lastUpdated] = useState(new Date());
 
   const statistics = [
     {
@@ -69,7 +73,7 @@ const LiveStatistics = () => {
       label: 'Political Prisoners',
       value: 10000,
       suffix: '+',
-      icon: '⛓️',
+      Icon: Link,
       color: 'red',
       description: 'Documented political prisoners in China',
       source: 'CECC, Dui Hua Foundation',
@@ -81,7 +85,7 @@ const LiveStatistics = () => {
       value: 1.8,
       suffix: 'M+',
       decimals: 1,
-      icon: '🕌',
+      Icon: Building2,
       color: 'purple',
       description: 'Estimated Uyghurs in detention camps',
       source: 'Adrian Zenz, ASPI',
@@ -92,7 +96,7 @@ const LiveStatistics = () => {
       label: 'Overseas Police Stations',
       value: 102,
       suffix: '+',
-      icon: '🚔',
+      Icon: ShieldAlert,
       color: 'orange',
       description: 'CCP police stations in 53 countries',
       source: 'Safeguard Defenders',
@@ -103,7 +107,7 @@ const LiveStatistics = () => {
       label: 'Confucius Institutes',
       value: 407,
       suffix: '+',
-      icon: '🏛️',
+      Icon: Landmark,
       color: 'yellow',
       description: 'Propaganda centers worldwide',
       source: 'NAS, ASPI',
@@ -125,7 +129,7 @@ const LiveStatistics = () => {
       label: 'Forced Returns',
       value: 230000,
       suffix: '+',
-      icon: '✈️',
+      Icon: Plane,
       color: 'red',
       description: 'People "persuaded" to return to China',
       source: 'Safeguard Defenders',
@@ -136,7 +140,7 @@ const LiveStatistics = () => {
       label: 'Journalists Imprisoned',
       value: 44,
       suffix: '',
-      icon: '📰',
+      Icon: Newspaper,
       color: 'gray',
       description: 'China: World\'s worst jailer of journalists',
       source: 'CPJ',
@@ -147,7 +151,7 @@ const LiveStatistics = () => {
       label: 'Organ Harvesting Victims',
       value: 65000,
       suffix: '+',
-      icon: '💔',
+      Icon: HeartCrack,
       color: 'red',
       description: 'Estimated annual forced organ extractions',
       source: 'China Tribunal',
@@ -170,7 +174,7 @@ const LiveStatistics = () => {
       <div className="bg-gradient-to-r from-red-900/30 to-slate-900 rounded-xl p-6 border border-red-700/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <span className="text-3xl mr-3">📊</span>
+            <BarChart3 className="w-8 h-8 mr-3 text-red-400" />
             <div>
               <h2 className="text-2xl font-bold text-white">The Human Cost</h2>
               <p className="text-slate-400">Real-time statistics on CCP repression</p>
@@ -198,7 +202,7 @@ const LiveStatistics = () => {
               className={`${colors.bg} rounded-xl border ${colors.border} p-4 hover:scale-105 transition-transform`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-2xl">{stat.icon}</span>
+                <span className="text-2xl">{stat.Icon ? <stat.Icon className="w-6 h-6" /> : stat.icon}</span>
                 <span className={`text-xs px-2 py-0.5 rounded ${colors.bg} ${colors.text}`}>
                   {stat.trend}
                 </span>
@@ -226,7 +230,7 @@ const LiveStatistics = () => {
       {/* Context */}
       <div className="grid md:grid-cols-3 gap-4">
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-2">📈 Why These Numbers Matter</h3>
+          <h3 className="font-medium text-white mb-2 flex items-center gap-2"><TrendingUp className="w-5 h-5" /> Why These Numbers Matter</h3>
           <p className="text-sm text-slate-400">
             Statistics help document the scale of CCP repression. They provide evidence for 
             sanctions, legal cases, and policy changes. Every number represents accountability.
@@ -234,7 +238,7 @@ const LiveStatistics = () => {
         </div>
         
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-2">🔍 Data Verification</h3>
+          <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Search className="w-5 h-5" /> Data Verification</h3>
           <p className="text-sm text-slate-400">
             All statistics are compiled from reputable sources including government reports, 
             academic research, and established human rights organizations.
@@ -242,7 +246,7 @@ const LiveStatistics = () => {
         </div>
         
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-2">⚠️ Underreported Reality</h3>
+          <h3 className="font-medium text-white mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Underreported Reality</h3>
           <p className="text-sm text-slate-400">
             These numbers are likely underestimates. China's opacity means many cases go 
             undocumented. The true scale of repression may be significantly higher.
@@ -252,7 +256,7 @@ const LiveStatistics = () => {
 
       {/* Sources */}
       <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">📚 Data Sources</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Data Sources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.cecc.gov" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Congressional-Executive Commission on China (CECC)

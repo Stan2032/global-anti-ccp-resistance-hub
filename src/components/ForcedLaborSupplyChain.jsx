@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Shirt, Sun, Leaf, Smartphone, Car, Link2, ScrollText, BookOpen } from 'lucide-react';
 
 const ForcedLaborSupplyChain = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('all');
@@ -7,7 +8,7 @@ const ForcedLaborSupplyChain = () => {
   const supplyChainData = {
     cotton: {
       industry: 'Cotton & Textiles',
-      icon: '🧵',
+      Icon: Shirt,
       xinjiangShare: '85%',
       description: 'Xinjiang produces 85% of China\'s cotton and 20% of the world\'s supply. Forced labor is documented at every stage.',
       stages: [
@@ -23,7 +24,7 @@ const ForcedLaborSupplyChain = () => {
     },
     polysilicon: {
       industry: 'Solar Panels',
-      icon: '☀️',
+      Icon: Sun,
       xinjiangShare: '35%',
       description: 'Xinjiang produces 35% of global polysilicon, a key component in solar panels. Major forced labor concerns.',
       stages: [
@@ -39,7 +40,7 @@ const ForcedLaborSupplyChain = () => {
     },
     tomatoes: {
       industry: 'Tomatoes & Food',
-      icon: '🍅',
+      Icon: Leaf,
       xinjiangShare: '70%',
       description: 'Xinjiang produces 70% of China\'s tomatoes and supplies major global food brands.',
       stages: [
@@ -55,7 +56,7 @@ const ForcedLaborSupplyChain = () => {
     },
     electronics: {
       industry: 'Electronics',
-      icon: '📱',
+      Icon: Smartphone,
       xinjiangShare: 'Varies',
       description: 'Electronics supply chains are complex. Forced labor documented in component manufacturing and assembly.',
       stages: [
@@ -71,7 +72,7 @@ const ForcedLaborSupplyChain = () => {
     },
     automotive: {
       industry: 'Automotive',
-      icon: '🚗',
+      Icon: Car,
       xinjiangShare: 'Varies',
       description: 'Auto parts supply chains include Xinjiang-sourced materials including aluminum, cotton for interiors, and electronics.',
       stages: [
@@ -114,7 +115,7 @@ const ForcedLaborSupplyChain = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🔗 Forced Labor Supply Chains</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Link2 className="w-6 h-6" /> Forced Labor Supply Chains</h2>
         <p className="text-slate-300">
           Track how Xinjiang forced labor enters global supply chains. Understand the risks at each stage.
         </p>
@@ -140,7 +141,7 @@ const ForcedLaborSupplyChain = () => {
 
       {/* UFLPA Notice */}
       <div className="bg-blue-900/30 border border-blue-700 rounded-xl p-4">
-        <h3 className="font-bold text-white mb-2">📜 Uyghur Forced Labor Prevention Act (UFLPA)</h3>
+        <h3 className="font-bold text-white mb-2 flex items-center gap-2"><ScrollText className="w-5 h-5" /> Uyghur Forced Labor Prevention Act (UFLPA)</h3>
         <p className="text-slate-300 text-sm">
           Since June 2022, the US presumes all goods from Xinjiang are made with forced labor and bans their import.
           Companies must prove their supply chains are clean to import goods.
@@ -180,7 +181,7 @@ const ForcedLaborSupplyChain = () => {
             <div className="p-6 border-b border-slate-700">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl">{data.icon}</span>
+                  <data.Icon className="w-10 h-10" />
                   <div>
                     <h3 className="text-xl font-bold text-white">{data.industry}</h3>
                     <p className="text-slate-400 text-sm">Xinjiang share: {data.xinjiangShare}</p>
@@ -277,7 +278,7 @@ const ForcedLaborSupplyChain = () => {
 
       {/* Resources */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-white mb-4">📚 Supply Chain Resources</h3>
+        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Supply Chain Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a
             href="https://www.aspi.org.au/report/uyghurs-sale"
