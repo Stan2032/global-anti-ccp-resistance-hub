@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { Image, Mountain, BarChart3, Megaphone, Umbrella, Palette, Handshake, Droplets, Flag, Satellite, Folder, Shield, Flame, Zap, Map, Link2, Calendar, ClipboardList, Flower2, User, FileText } from 'lucide-react';
 
 const MediaGallery = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedItem, setSelectedItem] = useState(null);
 
   const categories = [
-    { id: 'all', name: 'All Media', icon: '🖼️' },
+    { id: 'all', name: 'All Media', Icon: Image },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
     { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
-    { id: 'infographic', name: 'Infographics', icon: '📊' },
-    { id: 'symbol', name: 'Symbols', icon: '✊' },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
+    { id: 'infographic', name: 'Infographics', Icon: BarChart3 },
+    { id: 'symbol', name: 'Symbols', Icon: Megaphone },
   ];
 
   const mediaItems = [
@@ -22,7 +23,7 @@ const MediaGallery = () => {
       description: 'Protesters using umbrellas as shields against tear gas during the 2014 Occupy Central movement',
       year: '2014',
       type: 'photo',
-      icon: '☂️',
+      Icon: Umbrella,
       significance: 'The umbrella became a symbol of peaceful resistance in Hong Kong',
       tags: ['protest', 'umbrella', 'occupy'],
     },
@@ -33,7 +34,7 @@ const MediaGallery = () => {
       description: 'Colorful post-it note walls with messages of hope and resistance appeared across Hong Kong',
       year: '2019',
       type: 'photo',
-      icon: '🎨',
+      Icon: Palette,
       significance: 'Named after the John Lennon Wall in Prague, these became symbols of free expression',
       tags: ['art', 'messages', 'democracy'],
     },
@@ -44,7 +45,7 @@ const MediaGallery = () => {
       description: 'Hong Kong Way - 40km human chain across the city on the 30th anniversary of the Baltic Way',
       year: '2019',
       type: 'photo',
-      icon: '🤝',
+      Icon: Handshake,
       significance: 'Estimated 210,000 people formed a chain across Hong Kong',
       tags: ['solidarity', 'chain', 'anniversary'],
     },
@@ -55,7 +56,7 @@ const MediaGallery = () => {
       description: 'Protesters practicing "be water" tactics - fluid, formless, and adaptive',
       year: '2019',
       type: 'photo',
-      icon: '💧',
+      Icon: Droplets,
       significance: 'Inspired by Bruce Lee\'s philosophy, protesters adapted quickly to police movements',
       tags: ['tactics', 'bruce lee', 'movement'],
     },
@@ -68,7 +69,7 @@ const MediaGallery = () => {
       description: 'The blue flag with white crescent and star represents Uyghur identity and aspirations',
       year: 'Historical',
       type: 'symbol',
-      icon: '🏳️',
+      Icon: Flag,
       significance: 'Symbol of Uyghur national identity, banned in China',
       tags: ['flag', 'identity', 'symbol'],
     },
@@ -79,7 +80,7 @@ const MediaGallery = () => {
       description: 'Satellite imagery showing the construction and expansion of detention facilities',
       year: '2018-2020',
       type: 'evidence',
-      icon: '🛰️',
+      Icon: Satellite,
       significance: 'ASPI documented over 380 detention facilities using satellite imagery',
       tags: ['evidence', 'satellite', 'camps'],
     },
@@ -90,7 +91,7 @@ const MediaGallery = () => {
       description: 'Leaked photos showing detained Uyghurs, including children and elderly',
       year: '2022',
       type: 'evidence',
-      icon: '📁',
+      Icon: Folder,
       significance: 'First visual evidence of mass detention, leaked by hackers',
       tags: ['leak', 'evidence', 'detention'],
     },
@@ -103,7 +104,7 @@ const MediaGallery = () => {
       description: 'The snow lion flag represents Tibetan independence and cultural identity',
       year: 'Historical',
       type: 'symbol',
-      icon: '🦁',
+      Icon: Shield,
       significance: 'Displaying this flag in Tibet can result in imprisonment',
       tags: ['flag', 'snow lion', 'independence'],
     },
@@ -114,7 +115,7 @@ const MediaGallery = () => {
       description: 'Memorial images honoring Tibetans who self-immolated in protest',
       year: '2009-present',
       type: 'memorial',
-      icon: '🕯️',
+      Icon: Flame,
       significance: 'Over 160 Tibetans have self-immolated since 2009',
       tags: ['memorial', 'sacrifice', 'protest'],
     },
@@ -125,7 +126,7 @@ const MediaGallery = () => {
       description: 'Global protests during the 2008 Beijing Olympics torch relay',
       year: '2008',
       type: 'photo',
-      icon: '🔥',
+      Icon: Zap,
       significance: 'Brought international attention to Tibet during the Olympics',
       tags: ['olympics', 'torch', 'global'],
     },
@@ -138,7 +139,7 @@ const MediaGallery = () => {
       description: 'Visual map showing the global spread of CCP police stations',
       year: '2022',
       type: 'infographic',
-      icon: '🗺️',
+      Icon: Map,
       significance: '102+ stations documented in 53 countries',
       tags: ['map', 'police', 'global'],
     },
@@ -149,7 +150,7 @@ const MediaGallery = () => {
       description: 'Infographic showing how Uyghur forced labor enters global supply chains',
       year: '2020',
       type: 'infographic',
-      icon: '🔗',
+      Icon: Link2,
       significance: 'Documents connections between detention and major brands',
       tags: ['supply chain', 'brands', 'labor'],
     },
@@ -160,7 +161,7 @@ const MediaGallery = () => {
       description: 'Timeline showing the impact of Hong Kong\'s National Security Law',
       year: '2020-2024',
       type: 'infographic',
-      icon: '📅',
+      Icon: Calendar,
       significance: 'Documents the systematic dismantling of Hong Kong freedoms',
       tags: ['timeline', 'nsl', 'impact'],
     },
@@ -171,7 +172,7 @@ const MediaGallery = () => {
       description: 'Visual summary of evidence supporting genocide determination',
       year: '2021',
       type: 'infographic',
-      icon: '📋',
+      Icon: ClipboardList,
       significance: 'Compiled from Newlines Institute report and Uyghur Tribunal',
       tags: ['genocide', 'evidence', 'legal'],
     },
@@ -184,7 +185,7 @@ const MediaGallery = () => {
       description: 'Symbol of Hong Kong\'s pro-democracy movement',
       year: '2014',
       type: 'symbol',
-      icon: '☂️',
+      Icon: Umbrella,
       significance: 'Represents peaceful resistance and protection',
       tags: ['umbrella', 'yellow', 'democracy'],
     },
@@ -195,7 +196,7 @@ const MediaGallery = () => {
       description: 'The wilted bauhinia represents Hong Kong\'s fading freedoms',
       year: '2019',
       type: 'symbol',
-      icon: '🥀',
+      Icon: Flower2,
       significance: 'Contrast to the official Hong Kong emblem',
       tags: ['flower', 'freedom', 'hong kong'],
     },
@@ -206,7 +207,7 @@ const MediaGallery = () => {
       description: 'The iconic image of a man standing before tanks at Tiananmen',
       year: '1989',
       type: 'symbol',
-      icon: '🧍',
+      Icon: User,
       significance: 'One of the most iconic images of peaceful resistance',
       tags: ['tiananmen', 'courage', 'iconic'],
     },
@@ -217,7 +218,7 @@ const MediaGallery = () => {
       description: 'White A4 paper became a symbol of protest against censorship',
       year: '2022',
       type: 'symbol',
-      icon: '📄',
+      Icon: FileText,
       significance: 'Used in protests against zero-COVID and censorship',
       tags: ['censorship', 'protest', 'white paper'],
     },
@@ -242,7 +243,7 @@ const MediaGallery = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🖼️</span>
+          <Image className="w-8 h-8 text-slate-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Media Gallery</h2>
             <p className="text-slate-400">Visual documentation of resistance and repression</p>
@@ -266,7 +267,7 @@ const MediaGallery = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
             <span>{cat.name}</span>
             <span className="text-xs opacity-70">
               ({mediaItems.filter(i => cat.id === 'all' || i.category === cat.id).length})
@@ -287,7 +288,7 @@ const MediaGallery = () => {
               onClick={() => setSelectedItem(item)}
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-4xl">{item.icon}</span>
+                <item.Icon className="w-10 h-10 text-slate-300" />
                 <div className="text-right">
                   <span className="text-xs px-2 py-0.5 bg-slate-800 rounded text-slate-300">
                     {item.type}
@@ -300,8 +301,8 @@ const MediaGallery = () => {
               <p className="text-sm text-slate-400 mb-2 line-clamp-2">{item.description}</p>
               
               <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-500">
-                  {categoryInfo?.icon} {categoryInfo?.name}
+                <span className="text-xs text-slate-500 flex items-center gap-1">
+                  {categoryInfo?.Icon ? <categoryInfo.Icon className="w-3 h-3" /> : categoryInfo?.icon} {categoryInfo?.name}
                 </span>
                 <span className="text-xs text-indigo-400">View details →</span>
               </div>
@@ -321,7 +322,7 @@ const MediaGallery = () => {
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
-              <span className="text-5xl">{selectedItem.icon}</span>
+              <selectedItem.Icon className="w-12 h-12 text-slate-300" />
               <button 
                 onClick={() => setSelectedItem(null)}
                 className="text-slate-400 hover:text-white"
@@ -354,7 +355,7 @@ const MediaGallery = () => {
 
       {/* Usage Note */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📋 Using These Images</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-1"><ClipboardList className="w-4 h-4" /> Using These Images</h3>
         <p className="text-sm text-slate-400">
           These descriptions represent historical events and symbols. When sharing visual content, 
           always credit original sources and photographers. Many images are available through 

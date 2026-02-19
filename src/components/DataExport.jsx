@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link2, ShieldAlert, Users, Ban, Building, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
 
 const DataExport = () => {
   const [selectedDatasets, setSelectedDatasets] = useState([]);
@@ -14,7 +15,7 @@ const DataExport = () => {
       records: 53,
       lastUpdated: '2025-12-20',
       fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
-      icon: '⛓️'
+      Icon: Link2
     },
     {
       id: 'police_stations',
@@ -23,7 +24,7 @@ const DataExport = () => {
       records: 102,
       lastUpdated: '2025-12-20',
       fields: ['country', 'city', 'status', 'source', 'government_action'],
-      icon: '🚔'
+      Icon: ShieldAlert
     },
     {
       id: 'organizations',
@@ -32,7 +33,7 @@ const DataExport = () => {
       records: 24,
       lastUpdated: '2025-12-20',
       fields: ['name', 'category', 'focus_area', 'website', 'location', 'description'],
-      icon: '👥'
+      Icon: Users
     },
     {
       id: 'sanctions',
@@ -41,7 +42,7 @@ const DataExport = () => {
       records: 18,
       lastUpdated: '2025-12-20',
       fields: ['name', 'position', 'sanctions', 'reason', 'date'],
-      icon: '🚫'
+      Icon: Ban
     },
     {
       id: 'confucius',
@@ -50,7 +51,7 @@ const DataExport = () => {
       records: 36,
       lastUpdated: '2025-12-20',
       fields: ['university', 'country', 'status', 'closure_date', 'reason'],
-      icon: '🏫'
+      Icon: Building
     },
     {
       id: 'companies',
@@ -59,7 +60,7 @@ const DataExport = () => {
       records: 27,
       lastUpdated: '2025-12-20',
       fields: ['name', 'industry', 'status', 'evidence', 'alternatives'],
-      icon: '🏭'
+      Icon: Factory
     },
     {
       id: 'timeline',
@@ -68,7 +69,7 @@ const DataExport = () => {
       records: 28,
       lastUpdated: '2025-12-20',
       fields: ['date', 'title', 'description', 'category', 'significance', 'sources'],
-      icon: '📅'
+      Icon: Calendar
     },
     {
       id: 'exit_bans',
@@ -77,14 +78,14 @@ const DataExport = () => {
       records: 14,
       lastUpdated: '2025-12-20',
       fields: ['name', 'nationality', 'status', 'duration', 'reason'],
-      icon: '🚷'
+      Icon: UserX
     }
   ];
 
   const formats = [
     { id: 'json', name: 'JSON', description: 'JavaScript Object Notation - best for developers', icon: '{ }' },
-    { id: 'csv', name: 'CSV', description: 'Comma Separated Values - best for spreadsheets', icon: '📊' },
-    { id: 'markdown', name: 'Markdown', description: 'Formatted text - best for documentation', icon: '📝' },
+    { id: 'csv', name: 'CSV', description: 'Comma Separated Values - best for spreadsheets', Icon: BarChart3 },
+    { id: 'markdown', name: 'Markdown', description: 'Formatted text - best for documentation', Icon: FileText },
   ];
 
   const toggleDataset = (id) => {
@@ -197,7 +198,7 @@ const DataExport = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-cyan-900/50 to-blue-900/50 rounded-xl p-6 border border-cyan-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📤</span>
+          <Upload className="w-8 h-8 text-slate-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Data Export for Researchers</h2>
             <p className="text-slate-400">Download structured data for research and analysis</p>
@@ -246,7 +247,7 @@ const DataExport = () => {
               }`}
             >
               <div className="flex items-start">
-                <span className="text-2xl mr-3">{dataset.icon}</span>
+                <dataset.Icon className="w-6 h-6 text-slate-300 mr-3 shrink-0" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h4 className="font-medium text-white">{dataset.name}</h4>
@@ -289,7 +290,7 @@ const DataExport = () => {
               }`}
             >
               <div className="flex items-center mb-2">
-                <span className="text-xl mr-2">{format.icon}</span>
+                {format.Icon ? <format.Icon className="w-5 h-5 mr-2" /> : <span className="text-xl mr-2">{format.icon}</span>}
                 <span className="font-medium text-white">{format.name}</span>
               </div>
               <p className="text-xs text-slate-400">{format.description}</p>
@@ -349,7 +350,7 @@ const DataExport = () => {
 
       {/* Usage Guidelines */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-        <h3 className="text-lg font-bold text-white mb-4">📋 Usage Guidelines</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-1"><ClipboardList className="w-5 h-5" /> Usage Guidelines</h3>
         <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
           <div>
             <h4 className="font-medium text-white mb-2">Recommended Uses</h4>

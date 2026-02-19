@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, FileText, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock } from 'lucide-react';
 
 const NewsDigest = () => {
   const [email, setEmail] = useState('');
@@ -16,15 +17,15 @@ const NewsDigest = () => {
   ];
 
   const topics = [
-    { id: 'all', name: 'All Topics', icon: '🌍' },
-    { id: 'uyghur', name: 'Uyghur Rights', icon: '🕌' },
+    { id: 'all', name: 'All Topics', Icon: Globe },
+    { id: 'uyghur', name: 'Uyghur Rights', Icon: Building2 },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'dissidents', name: 'Chinese Dissidents', icon: '✊' },
-    { id: 'sanctions', name: 'Sanctions & Policy', icon: '⚖️' },
-    { id: 'forced-labor', name: 'Forced Labor', icon: '⛓️' },
-    { id: 'transnational', name: 'Transnational Repression', icon: '🌐' },
+    { id: 'dissidents', name: 'Chinese Dissidents', Icon: Megaphone },
+    { id: 'sanctions', name: 'Sanctions & Policy', Icon: Scale },
+    { id: 'forced-labor', name: 'Forced Labor', Icon: Link2 },
+    { id: 'transnational', name: 'Transnational Repression', Icon: Globe2 },
   ];
 
   const formats = [
@@ -87,7 +88,7 @@ const NewsDigest = () => {
     return (
       <div className="space-y-6">
         <div className="bg-green-900/30 border border-green-700/50 rounded-xl p-8 text-center">
-          <span className="text-5xl mb-4 block">📬</span>
+          <Inbox className="w-12 h-12 text-green-400 mb-4 mx-auto" />
           <h2 className="text-2xl font-bold text-white mb-2">You're Subscribed!</h2>
           <p className="text-slate-300 mb-4">
             Thank you for subscribing to the Resistance News Digest. You'll receive your first 
@@ -98,9 +99,9 @@ const NewsDigest = () => {
           <div className="bg-slate-800/50 rounded-lg p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Your Preferences:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>📅 Frequency: {frequencies.find(f => f.id === preferences.frequency)?.name}</li>
-              <li>📑 Format: {formats.find(f => f.id === preferences.format)?.name}</li>
-              <li>🏷️ Topics: {preferences.topics.includes('all') ? 'All Topics' : 
+              <li className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Frequency: {frequencies.find(f => f.id === preferences.frequency)?.name}</li>
+              <li className="flex items-center gap-1"><FileText className="w-3.5 h-3.5" /> Format: {formats.find(f => f.id === preferences.format)?.name}</li>
+              <li className="flex items-center gap-1"><Tag className="w-3.5 h-3.5" /> Topics: {preferences.topics.includes('all') ? 'All Topics' : 
                 preferences.topics.map(t => topics.find(topic => topic.id === t)?.name).join(', ')}</li>
             </ul>
           </div>
@@ -120,7 +121,7 @@ const NewsDigest = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-xl p-6 border border-blue-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📰</span>
+          <Newspaper className="w-8 h-8 text-slate-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Resistance News Digest</h2>
             <p className="text-slate-400">Stay informed with curated news and analysis</p>
@@ -134,7 +135,7 @@ const NewsDigest = () => {
 
       {/* Recent Digests Preview */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-3">📋 Recent Digests</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-1"><ClipboardList className="w-4 h-4" /> Recent Digests</h3>
         <div className="space-y-3">
           {recentDigests.map((digest, idx) => (
             <div key={idx} className="bg-slate-900/50 rounded-lg p-3">
@@ -156,7 +157,7 @@ const NewsDigest = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Email */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-3">📧 Email Address</h3>
+          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Mail className="w-4 h-4" /> Email Address</h3>
           <input
             type="email"
             required
@@ -172,7 +173,7 @@ const NewsDigest = () => {
 
         {/* Frequency */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-3">📅 Frequency</h3>
+          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Calendar className="w-4 h-4" /> Frequency</h3>
           <div className="grid md:grid-cols-3 gap-3">
             {frequencies.map(freq => (
               <button
@@ -194,7 +195,7 @@ const NewsDigest = () => {
 
         {/* Topics */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-3">🏷️ Topics of Interest</h3>
+          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Tag className="w-4 h-4" /> Topics of Interest</h3>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
             {topics.map(topic => (
               <button
@@ -207,7 +208,7 @@ const NewsDigest = () => {
                     : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
                 }`}
               >
-                <span>{topic.icon}</span>
+                {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.icon}</span>}
                 <span>{topic.name}</span>
               </button>
             ))}
@@ -216,7 +217,7 @@ const NewsDigest = () => {
 
         {/* Format */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-3">📑 Format Preference</h3>
+          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><FileText className="w-4 h-4" /> Format Preference</h3>
           <div className="grid md:grid-cols-3 gap-3">
             {formats.map(format => (
               <button
@@ -247,7 +248,7 @@ const NewsDigest = () => {
 
       {/* Alternative Sources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Other Ways to Stay Informed</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-1"><BookOpen className="w-4 h-4" /> Other Ways to Stay Informed</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Radio Free Asia
@@ -266,7 +267,7 @@ const NewsDigest = () => {
 
       {/* Security Note */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">🔒 Security Note</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-1"><Lock className="w-4 h-4" /> Security Note</h3>
         <p className="text-sm text-slate-300">
           If you're in a sensitive situation, consider using a secure email provider like ProtonMail 
           and accessing this content through Tor or a VPN. Your subscription information is kept confidential.
