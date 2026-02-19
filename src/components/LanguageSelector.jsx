@@ -3,6 +3,7 @@ import { Globe, Check, ChevronDown, Flag, Mountain } from 'lucide-react';
 
 // Import comprehensive language files
 import enTranslations from '../locales/en.json';
+import zhCNTranslations from '../locales/zh-CN.json';
 import zhTWTranslations from '../locales/zh-TW.json';
 import ugTranslations from '../locales/ug.json';
 import boTranslations from '../locales/bo.json';
@@ -12,6 +13,7 @@ const translations = {
   en: {
     name: 'English',
     flag: '🇬🇧',
+    localeData: enTranslations,
     nav: {
       dashboard: 'Dashboard',
       intelligence: 'Intelligence',
@@ -65,9 +67,10 @@ const translations = {
       tortureDocumented: 'Torture Documented'
     }
   },
-  zh: {
-    name: '中文',
+  'zh-CN': {
+    name: '简体中文',
     flag: '🇨🇳',
+    localeData: zhCNTranslations,
     nav: {
       dashboard: '仪表板',
       intelligence: '情报',
@@ -121,10 +124,68 @@ const translations = {
       tortureDocumented: '有酷刑记录'
     }
   },
+  'zh-TW': {
+    name: '繁體中文',
+    flag: '🇹🇼',
+    localeData: zhTWTranslations,
+    nav: {
+      dashboard: '儀表板',
+      intelligence: '情報',
+      directory: '目錄',
+      prisoners: '政治犯',
+      threats: '區域威脅',
+      takeAction: '採取行動',
+      campaigns: '運動',
+      community: '社群',
+      tactics: '中共策略',
+      education: '教育',
+      security: '安全',
+      resources: '資源'
+    },
+    common: {
+      search: '搜尋',
+      filter: '篩選',
+      all: '全部',
+      critical: '危急',
+      high: '高',
+      medium: '中',
+      low: '低',
+      learnMore: '了解更多',
+      takeAction: '採取行動',
+      share: '分享',
+      donate: '捐款',
+      signPetition: '簽署請願書',
+      contactRep: '聯繫代表',
+      viewDetails: '查看詳情',
+      close: '關閉',
+      submit: '提交',
+      cancel: '取消',
+      back: '返回',
+      next: '下一步'
+    },
+    alerts: {
+      securityWarning: '安全警告',
+      useVPN: '為了您的安全，我們建議使用VPN或Tor瀏覽器。',
+      inChina: '如果您在中國，請格外小心。',
+      emergency: '緊急聯繫',
+      reportIncident: '報告事件'
+    },
+    prisoners: {
+      title: '政治犯資料庫',
+      detained: '被拘留',
+      imprisoned: '被監禁',
+      disappeared: '失蹤',
+      released: '已釋放',
+      deceased: '已故',
+      healthConcerns: '健康問題',
+      tortureDocumented: '有酷刑記錄'
+    }
+  },
   ug: {
     name: 'ئۇيغۇرچە',
     FlagIcon: Flag,
     rtl: true,
+    localeData: ugTranslations,
     nav: {
       dashboard: 'باشقۇرۇش تاختىسى',
       intelligence: 'ئىستخبارات',
@@ -181,6 +242,7 @@ const translations = {
   bo: {
     name: 'བོད་སྐད།',
     FlagIcon: Mountain,
+    localeData: boTranslations,
     nav: {
       dashboard: 'ལས་ཁུངས།',
       intelligence: 'གསང་བའི་གནས་ཚུལ།',
@@ -265,14 +327,42 @@ export const LanguageProvider = ({ children }) => {
     }
   }, [language]);
 
-  // Translation function
+  // Translation function — checks inline translations first, then locale JSON files
   const t = (key) => {
     const keys = key.split('.');
+    // 1. Try inline translations for current language
     let value = translations[language];
     for (const k of keys) {
       value = value?.[k];
     }
-    return value || translations.en[keys[0]]?.[keys[1]] || key;
+    // 2. If not found inline, try locale JSON file
+    if (!value && translations[language]?.localeData) {
+      let localeValue = translations[language].localeData;
+      for (const k of keys) {
+        localeValue = localeValue?.[k];
+      }
+      value = localeValue;
+    }
+    // 3. Skip volunteer-needed markers — fall back to English
+    if (value === '__VOLUNTEER_TRANSLATION_NEEDED__') {
+      value = null;
+    }
+    // 4. Fall back to English inline, then English locale file
+    if (!value) {
+      let enValue = translations.en;
+      for (const k of keys) {
+        enValue = enValue?.[k];
+      }
+      value = enValue;
+    }
+    if (!value && enTranslations) {
+      let enLocale = enTranslations;
+      for (const k of keys) {
+        enLocale = enLocale?.[k];
+      }
+      value = enLocale;
+    }
+    return value || key;
   };
 
   return (
