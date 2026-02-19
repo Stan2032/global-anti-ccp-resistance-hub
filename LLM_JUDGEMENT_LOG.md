@@ -1,7 +1,8 @@
 # LLM Judgement Log
 **Purpose:** Track AI model decisions, switches, improvements, and recommendations  
 **Started:** 2026-02-18  
-**Current Model:** Claude Sonnet 3.5 (2024-10-22)
+**Current Model:** Claude Opus 4.6 (Session 6, 2026-02-19)  
+**Previous Models:** Claude Sonnet 3.5 (Sessions 1-5)
 
 ---
 
@@ -653,3 +654,97 @@ With all CRITICAL data tasks complete, moving to HIGH priority:
 - No blockers encountered
 - Significant value can still be added
 - Pattern proven reliable
+
+---
+
+## Session 6: 2026-02-19 - H1.1/H1.2 Source Attribution Expansion (Opus 4.6)
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Context Window:** 200K tokens  
+**Mode:** Autonomous agent (GitHub Copilot coding agent)  
+**Task:** Continue high-priority tasks from AGENT_ROADMAP.md - source attribution expansion
+
+---
+
+### 1. Discovery Phase
+
+#### What I Found
+- **H1.1 (Timeline):** InteractiveTimeline already imported SourceAttribution and used resolveSource() — the issue was missing source registry entries. 13 source names in timeline events had no URL mapping.
+- **H1.2 (SanctionsTracker):** No SourceAttribution integration at all. Plain HTML `<a>` links for sources section.
+- **H2.1 (GlobalDisclaimer):** Already exists and is adopted by 10 components. Only 3 inline disclaimers remain, all domain-specific (legal, tool). Initial estimate of "12+ duplicates" was overstated.
+
+#### Decision: Correct Estimates
+- H1.1 was 30 min not 1 hour (just needed registry entries)
+- H1.2 was 20 min not 1 hour (clean import + replace pattern)
+- H2.1 was already done (existed as component, well-adopted)
+- H2.2 only needs 1 hour not 3 hours (only 3 files, not 20)
+
+---
+
+### 2. Execution Summary
+
+#### H1.1: Timeline Source Registry Expansion ✅
+- **Added 13 sources:** European Parliament, Chinese Human Rights Defenders, ASPI, Xinjiang Police Files, Dr. Adrian Zenz, Hong Kong Watch, CNN, UK Foreign Office, Safeguard Defenders, FBI, Uyghur Tribunal, Nobel Committee
+- **Result:** All 27 timeline source names now resolve to clickable SourceAttribution links
+- **Pattern:** Added entries to SOURCE_REGISTRY in sourceLinks.js (centralized approach)
+- **Test:** Added comprehensive test verifying all timeline sources resolve
+
+#### H1.2: SanctionsTracker Source Attribution ✅
+- **Added 4 government sources:** US Treasury OFAC, UK Sanctions List, EU Sanctions Map, Canada Sanctions - China
+- **Replaced:** Plain `<a>` links with `<SourceAttribution compact />` components
+- **Pattern:** Import SourceAttribution + resolveSource, map source names to components
+- **Test:** Added test verifying sanctions sources resolve to Government type
+
+#### Verification
+- Build: ✅ 4.40s
+- Tests: ✅ 123/123 pass (12 sourceLinks tests including 2 new)
+- Security: No new vulnerabilities introduced
+- Code quality: Minimal surgical changes (3 files modified)
+
+---
+
+### 3. Agent Assignment Observations
+
+**Which agent should do which task and why:**
+
+| Task Type | Best Agent | Why |
+|-----------|-----------|-----|
+| Source registry expansion (H1.x) | Opus 4.6 | Requires verifying source URLs, cross-referencing organizations, understanding credibility |
+| CSS/typography changes (M1.x) | Sonnet 4.5 | Mechanical find-and-replace across many files, low complexity |
+| Emoji reduction (M2.x) | Sonnet 4.5 | Straightforward removal, no judgment needed |
+| Component refactoring (H2.x) | Sonnet 4.5 | Replacing inline disclaimers with existing component calls |
+| Statistics consolidation (H2.3) | Opus 4.6 | Requires creating central data module, updating cross-references |
+| Security fixes (C2.x) | Opus 4.6 | Security-critical, requires deep understanding of threat model |
+| Page consolidation (M3.x) | Opus 4.6 | Requires routing changes, component merging, understanding UX flow |
+| Documentation updates | Sonnet 4.5 | Text-focused, lower complexity |
+| Test writing | Opus 4.6 | Requires understanding test patterns, edge cases |
+
+**Key Insight:** The pattern of "add source to registry → component automatically renders it" is extremely efficient. Future source additions should follow this centralized approach rather than modifying individual components.
+
+---
+
+### 4. Updated Documentation Status
+
+- **AGENT_ROADMAP.md:** Updated with H1.1/H1.2 completion, agent assignments, accurate H2 status
+- **LLM_JUDGEMENT_LOG.md:** This session entry
+- **Tests:** 2 new test cases added
+- **Build:** All passing
+
+---
+
+### 5. Next Steps Recommendation
+
+**Immediate (for next agent session):**
+1. H1.3: Add SourceAttribution to VictimMemorialWall (Opus 4.6, 2 hours)
+2. H1.4: Verify DATA_SOURCES route exists and is navigable (Sonnet 4.5, 30 min)
+3. H2.2: Replace 3 remaining inline disclaimers (Sonnet 4.5, 1 hour)
+
+**Medium-term:**
+4. H2.3: Consolidate repeated statistics (Opus 4.6, 2 hours)
+5. M1.1-M1.3: Typography improvements (Sonnet 4.5, 5 hours)
+6. M2.1-M2.2: Emoji reduction (Sonnet 4.5, 2.5 hours)
+
+**Blocked:**
+- C2: VPN/Tor detection - awaiting human security architecture decision
+- HR1: Backend deployment - awaiting human infrastructure decision

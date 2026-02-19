@@ -74,55 +74,87 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ## 🟠 HIGH PRIORITY: Data Quality & Transparency
 
 ### H1: Source Attribution Throughout Site
-**Status:** Foundation Complete, Integration In Progress  
+**Status:** H1.1 & H1.2 Complete (2026-02-19), H1.3-H1.4 In Progress  
 **Priority:** HIGH - Critical for credibility  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Can execute autonomously  
+**Best Agent:** Opus 4.6 (multi-file refactoring, source verification)  
+**Backup Agent:** Sonnet 4.5 (can handle if pattern is clear)
 
-- [ ] **H1.1** Add SourceAttribution to Timeline component
-  - **Time:** 1 hour
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+- [x] **H1.1** Add SourceAttribution to Timeline component ✅ (2026-02-19)
+  - **Time:** 30 min (faster than estimated - pattern already existed)
+  - **Approach:** Added 13 missing sources to SOURCE_REGISTRY in sourceLinks.js
+  - **Result:** All 27 timeline source names now resolve to clickable links
+  - **Agent:** Opus 4.6 (chosen: required verifying source URLs across multiple organizations)
+  - **Subtasks completed:**
+    - [x] Identified all unresolved source names in InteractiveTimeline
+    - [x] Added European Parliament, Chinese Human Rights Defenders, ASPI, Xinjiang Police Files, Dr. Adrian Zenz, Hong Kong Watch, CNN, UK Foreign Office, Safeguard Defenders, FBI, Uyghur Tribunal, Nobel Committee
+    - [x] Added test case verifying all timeline sources resolve
+    - [x] Build passes, 123/123 tests pass
 
-- [ ] **H1.2** Add SourceAttribution to SanctionsTracker
-  - **Time:** 1 hour
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+- [x] **H1.2** Add SourceAttribution to SanctionsTracker ✅ (2026-02-19)
+  - **Time:** 20 min (faster than estimated)
+  - **Approach:** Imported SourceAttribution, replaced hardcoded links with component
+  - **Result:** 4 government sources now use consistent SourceAttribution rendering
+  - **Agent:** Opus 4.6 (chosen: component integration + source registry additions)
+  - **Subtasks completed:**
+    - [x] Added imports (SourceAttribution, resolveSource) to SanctionsTracker
+    - [x] Added US Treasury OFAC, UK Sanctions List, EU Sanctions Map, Canada Sanctions to registry
+    - [x] Replaced plain <a> links with SourceAttribution compact components
+    - [x] Added test case verifying sanctions sources resolve
 
 - [ ] **H1.3** Add SourceAttribution to VictimMemorialWall
   - **Time:** 2 hours
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Best Agent:** Opus 4.6 (sensitive data handling, source verification)
+  - **Subtasks:**
+    - [ ] Explore VictimMemorialWall component structure
+    - [ ] Identify data sources for victims
+    - [ ] Add source fields to victim data
+    - [ ] Integrate SourceAttribution component
+    - [ ] Test and verify
 
 - [ ] **H1.4** Integrate DATA_SOURCES.md into navigation
   - **Time:** 30 minutes
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Best Agent:** Sonnet 4.5 (simple config/routing change)
+  - **Subtasks:**
+    - [ ] Check if DataSources route already exists (it does: /data-sources)
+    - [ ] Verify DataSources page displays content from DATA_SOURCES.md
+    - [ ] Add link in navigation if not already present
 
 ---
 
 ### H2: Remove Redundant Content
-**Status:** Not Started  
-**Priority:** HIGH - UX improvement  
+**Status:** Partially Complete - GlobalDisclaimer already adopted by 10 components  
+**Priority:** MEDIUM (downgraded - less severe than initially estimated)  
 **From:** SITE_CLEANUP_TODO.md Priority 3  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Can execute autonomously  
+**Note:** Initial estimate of "12+ repeated disclaimers" was overstated. Audit (2026-02-19) found only 3 inline disclaimers remain, and these are domain-specific (legal, tool-specific) which may be intentional.
 
-- [ ] **H2.1** Create GlobalDisclaimer component
-  - Consolidate 12+ repeated disclaimers
-  - **Time:** 2 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+- [x] **H2.1** Create GlobalDisclaimer component ✅ (Already existed)
+  - GlobalDisclaimer already exists at src/components/ui/GlobalDisclaimer.jsx
+  - Supports 4 types: verify, sensitive, changing, security
+  - Already adopted by 10 components
+  - **Agent:** N/A (already done by prior work)
 
-- [ ] **H2.2** Remove duplicate disclaimers from components
-  - ~20 components affected
-  - **Time:** 3 hours
-  - **Blocker:** Depends on H2.1
-  - **Agent Decision:** EXECUTE after H2.1
+- [ ] **H2.2** Remove remaining inline disclaimers
+  - Only 3 components still have inline disclaimers:
+    - ForcedLabourList.jsx (lines ~327-342, "Important Disclaimer")
+    - AIDisinfoDetector.jsx (lines ~395-400, tool-specific disclaimer)
+    - LegalResourcesHub.jsx (legal disclaimer - may need to remain specialized)
+  - **Time:** 1 hour (reduced from 3 hours - much less work than estimated)
+  - **Blocker:** None, but legal disclaimer may intentionally need custom text
+  - **Best Agent:** Sonnet 4.5 (straightforward component replacement)
+  - **Agent Decision:** EXECUTE with care for legal disclaimer
 
 - [ ] **H2.3** Create single source-of-truth for repeated statistics
   - "1 million Uyghurs" appears 8+ times
   - Link instead of repeating
   - **Time:** 2 hours
   - **Blocker:** None
+  - **Best Agent:** Opus 4.6 (requires cross-file audit and refactoring)
   - **Agent Decision:** EXECUTE
 
 ---
@@ -133,7 +165,9 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 **Status:** Not Started  
 **Priority:** MEDIUM - Significant UX impact  
 **From:** SITE_CLEANUP_TODO.md Priority 1  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Can execute autonomously  
+**Best Agent:** Sonnet 4.5 (CSS-only changes, low complexity, high volume)  
+**Why:** These are mechanical find-and-replace CSS class changes across many files - ideal for a fast agent with good pattern matching.
 
 - [ ] **M1.1** Increase base font sizes globally
   - Change text-sm → text-base
@@ -141,6 +175,11 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - **Time:** 2 hours
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Subtasks:**
+    - [ ] Audit all components using text-sm for body content
+    - [ ] Replace text-sm → text-base in body content (not labels/captions)
+    - [ ] Replace text-xs → text-sm in labels/metadata
+    - [ ] Visual regression check
 
 - [ ] **M1.2** Improve text contrast
   - Update slate-400 → slate-300
@@ -148,12 +187,14 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - **Time:** 2 hours
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Best Agent:** Sonnet 4.5 (mechanical CSS change)
 
 - [ ] **M1.3** Add better line-height
   - Add leading-relaxed to paragraphs
   - **Time:** 1 hour
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Best Agent:** Sonnet 4.5 (mechanical CSS change)
 
 ---
 
@@ -161,7 +202,9 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 **Status:** Not Started  
 **Priority:** MEDIUM - Professional appearance  
 **From:** SITE_CLEANUP_TODO.md Priority 2  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Can execute autonomously  
+**Best Agent:** Sonnet 4.5 (find-and-replace, straightforward)  
+**Why:** Mechanical removal of decorative emojis is a low-risk, high-volume task.
 
 - [ ] **M2.1** Remove decorative navigation emojis
   - Dashboard 📊 → Dashboard
@@ -169,6 +212,10 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - **Time:** 30 minutes
   - **Blocker:** None
   - **Agent Decision:** EXECUTE
+  - **Subtasks:**
+    - [ ] Identify all navigation items with decorative emojis
+    - [ ] Remove emojis from nav items
+    - [ ] Verify navigation still looks good
 
 - [ ] **M2.2** Keep only functional emojis (status indicators)
   - Keep: 🟢🟡🔴 ⚠️ ✅
