@@ -212,6 +212,8 @@ const TakeAction = () => {
               <button
                 onClick={() => setExpandedAction(expandedAction === action.number ? null : action.number)}
                 className="w-full p-6 text-left flex items-start gap-4 hover:bg-slate-700/50 transition-colors"
+                aria-expanded={expandedAction === action.number}
+                aria-controls={`action-panel-${action.number}`}
               >
                 <div className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center text-3xl font-bold ${
                   action.color === 'blue' ? 'bg-blue-900/50 text-blue-400' :
@@ -236,13 +238,14 @@ const TakeAction = () => {
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               
               {expandedAction === action.number && (
-                <div className="px-6 pb-6 border-t border-slate-700 pt-4">
+                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-slate-700 pt-4" role="region" aria-label={action.title}>
                   {action.stats && (
                     <div className="mb-4 p-3 bg-slate-900/50 rounded-lg">
                       <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
@@ -294,7 +297,7 @@ const TakeAction = () => {
                           className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
@@ -307,7 +310,7 @@ const TakeAction = () => {
                           className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
@@ -334,12 +337,13 @@ const TakeAction = () => {
               <span className="text-green-300">✓ Thank you for subscribing! Check your email to confirm.</span>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3" aria-label="Newsletter subscription">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                aria-label="Email address for newsletter"
                 className="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
