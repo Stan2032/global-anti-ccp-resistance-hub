@@ -9,6 +9,7 @@ import { SearchButton } from './components/SearchWrapper'
 import GlobalSearch from './components/GlobalSearch'
 import useDocumentTitle from './hooks/useDocumentTitle'
 import ErrorBoundary from './components/ErrorBoundary'
+import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
@@ -346,6 +347,7 @@ function AppLayout() {
         
         {/* Page Content */}
         <div className="p-4 sm:p-6 lg:p-8">
+          <RouteErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -383,6 +385,7 @@ function AppLayout() {
               } />
             </Routes>
           </Suspense>
+          </RouteErrorBoundary>
         </div>
         
         {/* Footer */}
