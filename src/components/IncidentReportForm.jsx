@@ -242,6 +242,7 @@ const IncidentReportForm = () => {
                 Description of Incident *
               </label>
               <textarea
+                aria-label="Description"
                 name="description"
                 value={formData.description}
                 onChange={handleChange}

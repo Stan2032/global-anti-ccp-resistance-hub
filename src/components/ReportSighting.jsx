@@ -243,6 +243,7 @@ const ReportSighting = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 {selectedType?.Icon && <selectedType.Icon className="w-8 h-8" />}
+                  aria-label="Type filter"
                 <div>
                   <h3 className="text-lg font-semibold text-white">{selectedType?.label}</h3>
                   <p className="text-sm text-gray-400">{selectedType?.description}</p>
@@ -256,6 +257,7 @@ const ReportSighting = () => {
                       Country *
                     </label>
                     <select
+                      aria-label="Country"
                       value={formData.country}
                       onChange={(e) => handleInputChange('country', e.target.value)}
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
@@ -300,6 +302,7 @@ const ReportSighting = () => {
                     Description *
                   </label>
                   <textarea
+                    aria-label="Please describe what you observed in detail. Inclu"
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Please describe what you observed in detail. Include specific locations, times, individuals involved (if known), and any other relevant information."
@@ -314,6 +317,7 @@ const ReportSighting = () => {
                     Evidence/Documentation
                   </label>
                   <textarea
+                    aria-label="Describe any photos, videos, documents, or other e"
                     value={formData.evidence}
                     onChange={(e) => handleInputChange('evidence', e.target.value)}
                     placeholder="Describe any photos, videos, documents, or other evidence you have. Do NOT upload files here - use secure channels like SecureDrop if available."

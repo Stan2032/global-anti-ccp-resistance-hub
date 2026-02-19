@@ -124,6 +124,7 @@ const OrganizationsDirectory = () => {
           />
         </div>
         <select
+          aria-label="focus Filter filter"
           value={focusFilter}
           onChange={(e) => setFocusFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -134,6 +135,7 @@ const OrganizationsDirectory = () => {
           ))}
         </select>
         <select
+          aria-label="type Filter filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"

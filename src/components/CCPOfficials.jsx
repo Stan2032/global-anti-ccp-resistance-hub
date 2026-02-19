@@ -675,6 +675,7 @@ export default function CCPOfficials() {
           />
         </div>
         <select
+          aria-label="region Filter filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -684,6 +685,7 @@ export default function CCPOfficials() {
           ))}
         </select>
         <select
+          aria-label="Region filter"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"

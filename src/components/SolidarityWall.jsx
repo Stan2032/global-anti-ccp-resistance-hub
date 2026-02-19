@@ -171,6 +171,7 @@ const SolidarityWall = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Your Message *</label>
               <textarea
+                aria-label="Share Your Message of Solidarity"
                 value={newMessage.text}
                 onChange={(e) => setNewMessage({ ...newMessage, text: e.target.value })}
                 placeholder="Write your message of support..."
@@ -207,6 +208,7 @@ const SolidarityWall = () => {
               <div>
                 <label className="block text-sm text-slate-400 mb-1">Cause</label>
                 <select
+                  aria-label="Cause"
                   value={newMessage.cause}
                   onChange={(e) => setNewMessage({ ...newMessage, cause: e.target.value })}
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500"

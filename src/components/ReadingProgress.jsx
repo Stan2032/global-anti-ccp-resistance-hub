@@ -240,6 +240,7 @@ export default function ReadingProgress() {
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4 text-slate-400" />
           <select
+            aria-label="Filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
@@ -250,6 +251,7 @@ export default function ReadingProgress() {
           </select>
         </div>
         <select
+          aria-label="type Filter filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"

@@ -545,6 +545,7 @@ export default function DetentionFacilities() {
           />
         </div>
         <select
+          aria-label="Region filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -554,6 +555,7 @@ export default function DetentionFacilities() {
           ))}
         </select>
         <select
+          aria-label="Region filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"

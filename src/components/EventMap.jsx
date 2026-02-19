@@ -348,6 +348,7 @@ export default function EventMap() {
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
         <select
+          aria-label="Filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -357,6 +358,7 @@ export default function EventMap() {
           ))}
         </select>
         <select
+          aria-label="Region filter"
           value={selectedCause}
           onChange={(e) => setSelectedCause(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
@@ -366,6 +368,7 @@ export default function EventMap() {
           ))}
         </select>
         <select
+          aria-label="Type filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"

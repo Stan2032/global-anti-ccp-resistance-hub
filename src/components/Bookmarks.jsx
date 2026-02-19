@@ -114,6 +114,7 @@ const Bookmarks = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Category</label>
               <select
+                aria-label="Category"
                 value={newBookmark.category}
                 onChange={(e) => setNewBookmark({ ...newBookmark, category: e.target.value })}
                 className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-yellow-500"

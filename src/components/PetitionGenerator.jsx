@@ -436,6 +436,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-slate-300">Optional: Add background context</h4>
             <textarea
+              aria-label="Optional: Add background context"
               placeholder="Add any specific background information or context..."
               value={petition.background}
               onChange={(e) => setPetition({...petition, background: e.target.value})}

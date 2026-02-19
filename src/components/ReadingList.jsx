@@ -303,6 +303,7 @@ const ReadingList = () => {
 
         {/* Sort */}
         <select
+          aria-label="Sort"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
           className="bg-slate-800 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm"

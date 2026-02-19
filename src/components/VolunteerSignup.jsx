@@ -194,6 +194,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Availability *</label>
               <select
+                aria-label="Availability *"
                 required
                 value={formData.availability}
                 onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
@@ -280,6 +281,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Relevant Experience</label>
               <textarea
+                aria-label="Tell Us More"
                 value={formData.experience}
                 onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                 placeholder="Tell us about any relevant experience (activism, research, etc.)"
@@ -290,6 +292,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Why do you want to volunteer?</label>
               <textarea
+                aria-label="Why do you want to volunteer?"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="What motivates you to get involved?"

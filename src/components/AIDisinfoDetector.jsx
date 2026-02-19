@@ -157,6 +157,7 @@ const AIDisinfoDetector = () => {
       <div className="mb-6">
         <label className="block text-sm text-slate-400 mb-2">Paste text to analyze:</label>
         <textarea
+          aria-label="Paste text to analyze:"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Paste article text, social media post, or any content you want to analyze for propaganda patterns..."
