@@ -6,6 +6,7 @@ import SafetyChecklist from '../components/SafetyChecklist'
 import WitnessProtection from '../components/WitnessProtection'
 import OfflineModeManager from '../components/OfflineModeManager'
 import WhistleblowerPortal from '../components/WhistleblowerPortal'
+import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import { 
   Shield, 
   Lock, 
@@ -24,7 +25,12 @@ import {
   AlertCircle,
   ChevronRight,
   Zap,
-  ExternalLink
+  ExternalLink,
+  Play,
+  Loader2,
+  ShieldCheck,
+  ShieldAlert,
+  ShieldQuestion
 } from 'lucide-react'
 
 const SecurityCenter = () => {
@@ -33,6 +39,7 @@ const SecurityCenter = () => {
   const [securityScore, setSecurityScore] = useState(0)
   const [categoryBreakdown, setCategoryBreakdown] = useState({ network: 0, device: 0, opsec: 0 })
   const [answers, setAnswers] = useState({})
+  const { status: webrtcStatus, leakedIPs, isLeaking, runCheck: runWebRTCCheck } = useWebRTCLeakCheck()
 
   const [securityTools] = useState([
     {
@@ -546,6 +553,112 @@ const SecurityCenter = () => {
             {securityTools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />
             ))}
+          </div>
+
+          {/* WebRTC Leak Test — runs entirely in your browser */}
+          <div className="mt-8 border-t border-slate-700 pt-8">
+            <div className="flex items-center gap-2 mb-2">
+              {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
+              {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
+              {(webrtcStatus === 'idle' || webrtcStatus === 'unsupported' || webrtcStatus === 'error') && <ShieldQuestion className="w-5 h-5 text-slate-400" />}
+              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />}
+              <h3 className="text-xl font-bold text-white">WebRTC Leak Test</h3>
+            </div>
+            <p className="text-slate-400 text-sm mb-4">
+              WebRTC can expose your real IP address even when using a VPN. This test runs
+              entirely in your browser — no data is sent to any server.
+            </p>
+
+            {webrtcStatus === 'idle' && (
+              <button
+                onClick={runWebRTCCheck}
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors"
+              >
+                <Play className="w-4 h-4" />
+                Run WebRTC Leak Test
+              </button>
+            )}
+
+            {webrtcStatus === 'running' && (
+              <div className="flex items-center gap-2 text-blue-400">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span className="text-sm">Checking for WebRTC leaks...</span>
+              </div>
+            )}
+
+            {webrtcStatus === 'unsupported' && (
+              <div className="bg-slate-800 border border-slate-600 rounded-lg p-4">
+                <p className="text-slate-400 text-sm">
+                  Your browser does not support WebRTC, which means it cannot leak your IP through this method.
+                  This is actually a good thing for privacy.
+                </p>
+              </div>
+            )}
+
+            {webrtcStatus === 'error' && (
+              <div className="bg-slate-800 border border-yellow-700 rounded-lg p-4">
+                <p className="text-yellow-400 text-sm">
+                  Could not complete the WebRTC leak test. Your browser may be blocking WebRTC
+                  (which is good for privacy) or an unexpected error occurred.
+                </p>
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-2 text-blue-400 hover:text-blue-300 text-sm underline"
+                >
+                  Try again
+                </button>
+              </div>
+            )}
+
+            {webrtcStatus === 'complete' && (
+              <div className={`rounded-lg p-4 border ${isLeaking ? 'bg-red-900/30 border-red-700' : 'bg-green-900/30 border-green-700'}`}>
+                <div className="flex items-center gap-2 mb-3">
+                  {isLeaking ? (
+                    <>
+                      <ShieldAlert className="w-5 h-5 text-red-400" />
+                      <span className="text-red-300 font-semibold">WebRTC is leaking your IP address</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-5 h-5 text-green-400" />
+                      <span className="text-green-300 font-semibold">No public IP leak detected</span>
+                    </>
+                  )}
+                </div>
+
+                {leakedIPs.length > 0 && (
+                  <div className="space-y-1 mb-3">
+                    <p className="text-slate-400 text-xs font-medium">Detected addresses:</p>
+                    {leakedIPs.map((ip, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm">
+                        <span className={`px-1.5 py-0.5 rounded text-xs ${ip.type === 'public' ? 'bg-red-800 text-red-200' : 'bg-slate-700 text-slate-300'}`}>
+                          {ip.type}
+                        </span>
+                        <code className="text-slate-300 font-mono text-xs">{ip.address}</code>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {isLeaking && (
+                  <div className="mt-3 pt-3 border-t border-red-800">
+                    <p className="text-red-200 text-sm font-medium mb-2">How to fix this:</p>
+                    <ul className="text-slate-400 text-sm space-y-1">
+                      <li>• <strong>Firefox:</strong> Go to <code className="text-slate-300">about:config</code> and set <code className="text-slate-300">media.peerconnection.enabled</code> to <code className="text-slate-300">false</code></li>
+                      <li>• <strong>Chrome:</strong> Install the <a href="https://chrome.google.com/webstore/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">WebRTC Leak Prevent</a> extension</li>
+                      <li>• <strong>Tor Browser:</strong> WebRTC is disabled by default — use Tor Browser for maximum protection</li>
+                    </ul>
+                  </div>
+                )}
+
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-3 text-blue-400 hover:text-blue-300 text-sm underline"
+                >
+                  Run test again
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Verify Your Connection */}
