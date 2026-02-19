@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Search, Radio, Newspaper, Building2, FileText } from 'lucide-react';
 
 /**
  * FeedSourceSelector Component
@@ -32,12 +33,13 @@ const FeedSourceSelector = ({ selectedSource, onSourceChange, className = '' }) 
   // Source icons/logos
   const getSourceIcon = (slug) => {
     const icons = {
-      'icij': '🔍',
-      'rfa': '📻',
-      'hkfp': '📰',
-      'aspi': '🏛️',
+      'icij': Search,
+      'rfa': Radio,
+      'hkfp': Newspaper,
+      'aspi': Building2,
     };
-    return icons[slug] || '📄';
+    const IconComp = icons[slug] || FileText;
+    return <IconComp className="w-4 h-4" />;
   };
 
   // Source colors
@@ -98,7 +100,7 @@ const FeedSourceSelector = ({ selectedSource, onSourceChange, className = '' }) 
             getSourceStyle(source.slug, selectedSource === source.id)
           }`}
         >
-          <span>{getSourceIcon(source.slug)}</span>
+          {getSourceIcon(source.slug)}
           <span>{source.name}</span>
           {source.items_this_week > 0 && (
             <span className={`px-1.5 py-0.5 rounded text-xs ${

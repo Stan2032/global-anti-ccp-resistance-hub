@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Globe, GraduationCap, Megaphone, AlertTriangle } from 'lucide-react';
 
 const ConfuciusInstitutes = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
@@ -65,10 +66,10 @@ const ConfuciusInstitutes = () => {
   ];
 
   const regions = [
-    { id: 'all', name: 'All Regions', icon: '🌍' },
+    { id: 'all', name: 'All Regions', Icon: Globe },
     { id: 'north_america', name: 'North America', icon: '🇺🇸' },
     { id: 'europe', name: 'Europe', icon: '🇪🇺' },
-    { id: 'asia_pacific', name: 'Asia Pacific', icon: '🌏' },
+    { id: 'asia_pacific', name: 'Asia Pacific', Icon: Globe },
   ];
 
   const filteredInstitutes = institutes.filter(inst => {
@@ -85,15 +86,15 @@ const ConfuciusInstitutes = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-yellow-900/50 to-red-900/50 border border-yellow-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🎓 Confucius Institute Tracker</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><GraduationCap className="w-6 h-6" /> Confucius Institute Tracker</h2>
         <p className="text-slate-300">
           Confucius Institutes are Chinese government-funded cultural centers at universities worldwide. 
           Many have been closed due to concerns about academic freedom, espionage, and CCP propaganda.
         </p>
         <div className="mt-4 p-4 bg-yellow-900/30 rounded-lg">
           <p className="text-yellow-400 text-sm">
-            ⚠️ <strong>Why it matters:</strong> Confucius Institutes have been linked to self-censorship on China topics, 
-            surveillance of Chinese students, and restrictions on discussing Taiwan, Tibet, and Tiananmen.
+            <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" /><span><strong>Why it matters:</strong> Confucius Institutes have been linked to self-censorship on China topics, 
+            surveillance of Chinese students, and restrictions on discussing Taiwan, Tibet, and Tiananmen.</span></span>
           </p>
         </div>
       </div>
@@ -131,7 +132,7 @@ const ConfuciusInstitutes = () => {
                   : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
               }`}
             >
-              <span>{region.icon}</span>
+              {region.Icon ? <region.Icon className="w-4 h-4" /> : <span>{region.icon}</span>}
               {region.name}
             </button>
           ))}
@@ -183,7 +184,7 @@ const ConfuciusInstitutes = () => {
 
       {/* Take Action */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-white mb-4">📢 Take Action</h3>
+        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><Megaphone className="w-5 h-5" /> Take Action</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold text-white mb-2">If Your University Has One:</h4>
