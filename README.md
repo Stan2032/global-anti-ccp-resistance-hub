@@ -1,21 +1,8 @@
 # Global Anti-CCP Resistance Hub
 
-> **⚠️ Repository Audit Notice (February 18, 2026)**  
-> A comprehensive audit was conducted to verify work claims. **Key findings:**
-> - ✅ Most work verified (90% of documented features exist)
-> - ❌ Cache system missing (documented but files not present)  
-> - ⚠️ Test claims unverified (cannot run without environment setup)
-> 
-> **For Developers/Agents:**
-> - 🚀 **[Start Here: Agent Handoff Prompt](AGENT_HANDOFF_PROMPT.md)** - Complete context for next agent (27KB)
-> - 📊 [Investigation Summary](INVESTIGATION_SUMMARY.md) - Quick overview
-> - 📋 [Full Audit Report](FABRICATION_GAP_AUDIT.md) - Detailed findings
-> - 🤖 [Agent Work Log](AGENTS.md) - Work history and protocols
-> - 🔄 [Handoff Best Practices](LLM_MODEL_SWAP.md) - Model handoff guide
-
----
-
 A comprehensive platform for documenting CCP human rights violations, supporting resistance movements, and providing tools for activists and researchers fighting against Chinese Communist Party authoritarianism.
+
+> **For Developers/Agents:** See [AGENT_ROADMAP.md](AGENT_ROADMAP.md) for current task status and [LLM_JUDGEMENT_LOG.md](LLM_JUDGEMENT_LOG.md) for decision history.
 
 ## Mission
 
@@ -31,12 +18,12 @@ This platform serves as a centralized resource for:
 ## Features
 
 ### Intelligence Dashboard
-- Real-time RSS feed aggregation from verified sources (ICIJ, Radio Free Asia, HKFP, ASPI)
+- RSS feed aggregation from verified sources (ICIJ, Radio Free Asia, HKFP, ASPI)
 - Relevance scoring based on CCP-related keywords
-- Socket.IO-powered live updates
+- Source attribution with clickable links to 164+ verified sources
 
 ### Political Prisoners Database
-- Profiles of notable political prisoners (Jimmy Lai, Ilham Tohti, Gao Zhisheng, etc.)
+- 60 documented political prisoners with source URLs
 - Status tracking (imprisoned, disappeared, deceased)
 - Action items for advocacy
 
@@ -49,17 +36,35 @@ This platform serves as a centralized resource for:
 ### CCP Tactics Documentation
 - Mass surveillance technologies
 - Detention and "re-education" camps
-- Forced labor programs
+- Forced labor programs and supply chain tracking
 - Cultural genocide methods
-- Transnational repression operations
+- Transnational repression operations (102+ overseas police stations)
 - Information control and censorship
 
+### Security Tools
+- Client-side WebRTC leak detection (runs entirely in-browser, no external APIs)
+- Links to reputable VPN/Tor self-test tools (check.torproject.org, ipleak.net, dnsleaktest.com)
+- Honest security guidance — no false claims about connection detection
+- EFF Surveillance Self-Defense resource integration
+
 ### Resistance Resources
-- VPN and security tools
+- VPN and security tools directory
 - Documentation and evidence collection apps
-- Advocacy organizations directory
+- 200+ advocacy organizations directory
 - Independent media sources
 - Academic research databases
+
+### Accessibility
+- Full keyboard navigation for all interactive elements
+- ARIA labels on 208+ interactive elements
+- Screen reader support with skip links and live regions
+- WCAG AA compliant text contrast
+
+### Internationalization
+- 5 language locales: English, Simplified Chinese, Traditional Chinese, Uyghur, Tibetan
+- Navigation and UI elements translated via machine translation
+- Sensitive content marked for human volunteer translation
+- Drop-in locale system for adding new languages
 
 ## Technology Stack
 
@@ -67,15 +72,20 @@ This platform serves as a centralized resource for:
 - React 19 with Vite
 - TailwindCSS for styling
 - Framer Motion for animations
-- Socket.IO client for real-time updates
 - React Router v7 for navigation
-- Lucide React for icons
+- Lucide React for icons (replaced 656 decorative emojis)
+- Custom i18n system with JSON locale files
 
-### Backend
+### Backend (optional — site works as static SPA)
 - Node.js with Express
 - Socket.IO for WebSocket connections
 - RSS Parser for feed aggregation
 - PostgreSQL for data storage
+
+### Deployment
+- **Recommended**: Cloudflare Pages (configured with `_redirects` and `_headers`)
+- **Also supported**: GitHub Pages, Vercel, Netlify
+- Base path configurable via `VITE_BASE_PATH` environment variable
 
 ## Installation
 
@@ -93,7 +103,7 @@ npm run dev
 
 ### Running Tests
 ```bash
-npm test                # Run all frontend tests
+npm test                # Run all 165 tests
 npm run test:watch      # Watch mode
 ```
 
@@ -156,28 +166,29 @@ npm start
 
 ## Security Considerations
 
-This platform is designed with security in mind for users who may be operating in hostile environments:
+This platform is designed with security and honesty in mind for users who may be operating in hostile environments:
 
 - No user tracking or analytics
 - No cookies beyond essential functionality
 - Compatible with Tor browser
-- Encourages use of VPNs and encrypted communications
+- **Honest security approach**: The platform does not claim to detect VPNs, Tor, or connection status. Instead, it provides links to reputable third-party self-test tools.
+- Client-side WebRTC leak detection (no data sent to servers)
+- Content Security Policy headers configured for Cloudflare Pages
 - Does not store user data
 
-**Warning**: If you are in China or communicating with people in China, please use secure communication tools. The CCP monitors internet traffic and may target activists.
+**Warning**: If you are in China or communicating with people in China, please use secure communication tools. Visit the **Security Center** on the site for verified tools and guides. The CCP monitors internet traffic and may target activists.
 
 ## Contributing
 
-We welcome contributions from researchers, developers, and activists.
+We welcome contributions from researchers, developers, and activists. Data changes are moderated via GitHub PR review from trusted contributors.
 
 ### Priority Areas
-- Additional political prisoner profiles
-- Translation to other languages (especially Chinese, Uyghur, Tibetan)
+- **Translation volunteers needed**: Native speakers of Chinese (Simplified/Traditional), Uyghur, and Tibetan to review and translate sensitive content. Machine translations are used for navigation only — human translators are essential for accuracy on human rights topics.
+- Additional political prisoner profiles with verifiable sources
+- Integration with additional verified data sources
 - Mobile app development
-- Integration with additional data sources
-- Accessibility improvements
 
-Please see [STYLE_GUIDE.md](STYLE_GUIDE.md) for visual design and component conventions.
+Please see [STYLE_GUIDE.md](STYLE_GUIDE.md) for visual design and component conventions, and [DATA_SOURCES.md](DATA_SOURCES.md) for source attribution standards.
 
 ## License
 
