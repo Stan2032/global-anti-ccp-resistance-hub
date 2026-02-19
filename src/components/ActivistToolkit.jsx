@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { Package, Palette, FileText, BarChart3, BookOpen, Smartphone, Wrench, Image, Download } from 'lucide-react';
 
 const ActivistToolkit = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Resources', icon: '📦' },
-    { id: 'graphics', name: 'Graphics & Banners', icon: '🎨' },
-    { id: 'templates', name: 'Letter Templates', icon: '📝' },
-    { id: 'factsheets', name: 'Fact Sheets', icon: '📊' },
-    { id: 'guides', name: 'How-To Guides', icon: '📖' },
-    { id: 'social', name: 'Social Media', icon: '📱' },
+    { id: 'all', name: 'All Resources', Icon: Package },
+    { id: 'graphics', name: 'Graphics & Banners', Icon: Palette },
+    { id: 'templates', name: 'Letter Templates', Icon: FileText },
+    { id: 'factsheets', name: 'Fact Sheets', Icon: BarChart3 },
+    { id: 'guides', name: 'How-To Guides', Icon: BookOpen },
+    { id: 'social', name: 'Social Media', Icon: Smartphone },
   ];
 
   const resources = [
@@ -23,7 +24,7 @@ const ActivistToolkit = () => {
       size: '2MB',
       dimensions: '1920x1080',
       downloadUrl: '#',
-      preview: '🖼️',
+      Preview: Image,
     },
     {
       id: 2,
@@ -34,7 +35,7 @@ const ActivistToolkit = () => {
       size: '500KB',
       dimensions: '1080x1080',
       downloadUrl: '#',
-      preview: '🖼️',
+      Preview: Image,
     },
     {
       id: 3,
@@ -45,7 +46,7 @@ const ActivistToolkit = () => {
       size: '3MB',
       dimensions: 'A3',
       downloadUrl: '#',
-      preview: '🖼️',
+      Preview: Image,
     },
     {
       id: 4,
@@ -56,7 +57,7 @@ const ActivistToolkit = () => {
       size: '5MB',
       dimensions: 'Multiple',
       downloadUrl: '#',
-      preview: '🖼️',
+      Preview: Image,
     },
     
     // Letter Templates
@@ -68,7 +69,7 @@ const ActivistToolkit = () => {
       format: 'DOCX',
       size: '50KB',
       downloadUrl: '#',
-      preview: '📄',
+      Preview: FileText,
     },
     {
       id: 6,
@@ -78,7 +79,7 @@ const ActivistToolkit = () => {
       format: 'DOCX',
       size: '45KB',
       downloadUrl: '#',
-      preview: '📄',
+      Preview: FileText,
     },
     {
       id: 7,
@@ -88,7 +89,7 @@ const ActivistToolkit = () => {
       format: 'DOCX',
       size: '40KB',
       downloadUrl: '#',
-      preview: '📄',
+      Preview: FileText,
     },
     {
       id: 8,
@@ -98,7 +99,7 @@ const ActivistToolkit = () => {
       format: 'DOCX',
       size: '35KB',
       downloadUrl: '#',
-      preview: '📄',
+      Preview: FileText,
     },
     
     // Fact Sheets
@@ -111,7 +112,7 @@ const ActivistToolkit = () => {
       size: '1MB',
       pages: 2,
       downloadUrl: '#',
-      preview: '📊',
+      Preview: BarChart3,
     },
     {
       id: 10,
@@ -122,7 +123,7 @@ const ActivistToolkit = () => {
       size: '2MB',
       pages: 4,
       downloadUrl: '#',
-      preview: '📊',
+      Preview: BarChart3,
     },
     {
       id: 11,
@@ -133,7 +134,7 @@ const ActivistToolkit = () => {
       size: '3MB',
       pages: 1,
       downloadUrl: '#',
-      preview: '📊',
+      Preview: BarChart3,
     },
     {
       id: 12,
@@ -144,7 +145,7 @@ const ActivistToolkit = () => {
       size: '1.5MB',
       pages: 3,
       downloadUrl: '#',
-      preview: '📊',
+      Preview: BarChart3,
     },
     
     // How-To Guides
@@ -157,7 +158,7 @@ const ActivistToolkit = () => {
       size: '500KB',
       pages: 5,
       downloadUrl: '#',
-      preview: '📖',
+      Preview: BookOpen,
     },
     {
       id: 14,
@@ -168,7 +169,7 @@ const ActivistToolkit = () => {
       size: '1MB',
       pages: 10,
       downloadUrl: '#',
-      preview: '📖',
+      Preview: BookOpen,
     },
     {
       id: 15,
@@ -179,7 +180,7 @@ const ActivistToolkit = () => {
       size: '2MB',
       pages: 15,
       downloadUrl: '#',
-      preview: '📖',
+      Preview: BookOpen,
     },
     {
       id: 16,
@@ -190,7 +191,7 @@ const ActivistToolkit = () => {
       size: '800KB',
       pages: 8,
       downloadUrl: '#',
-      preview: '📖',
+      Preview: BookOpen,
     },
     
     // Social Media
@@ -202,7 +203,7 @@ const ActivistToolkit = () => {
       format: 'TXT',
       size: '20KB',
       downloadUrl: '#',
-      preview: '📱',
+      Preview: Smartphone,
     },
     {
       id: 18,
@@ -212,7 +213,7 @@ const ActivistToolkit = () => {
       format: 'ZIP',
       size: '10MB',
       downloadUrl: '#',
-      preview: '📱',
+      Preview: Smartphone,
     },
     {
       id: 19,
@@ -223,7 +224,7 @@ const ActivistToolkit = () => {
       size: '200KB',
       pages: 2,
       downloadUrl: '#',
-      preview: '📱',
+      Preview: Smartphone,
     },
     {
       id: 20,
@@ -234,7 +235,7 @@ const ActivistToolkit = () => {
       size: '500KB',
       pages: 12,
       downloadUrl: '#',
-      preview: '📱',
+      Preview: Smartphone,
     },
   ];
 
@@ -249,7 +250,7 @@ const ActivistToolkit = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🧰</span>
+          <Wrench className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Activist Toolkit</h2>
             <p className="text-slate-400">Downloadable resources for advocacy and awareness</p>
@@ -273,7 +274,7 @@ const ActivistToolkit = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <cat.Icon className="w-4 h-4" />
             <span>{cat.name}</span>
             <span className="text-xs opacity-70">
               ({resources.filter(r => cat.id === 'all' || r.category === cat.id).length})
@@ -293,7 +294,7 @@ const ActivistToolkit = () => {
               className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 hover:border-green-600/50 transition-colors"
             >
               <div className="flex items-start justify-between mb-3">
-                <span className="text-3xl">{resource.preview}</span>
+                <resource.Preview className="w-8 h-8 text-slate-400" />
                 <span className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-300">
                   {resource.format}
                 </span>
@@ -303,14 +304,14 @@ const ActivistToolkit = () => {
               <p className="text-sm text-slate-400 mb-3">{resource.description}</p>
               
               <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
-                <span>{categoryInfo?.icon} {categoryInfo?.name}</span>
+                <span className="flex items-center gap-1">{categoryInfo && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}</span>
                 <span>{resource.size}</span>
               </div>
               
               <button
                 className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
               >
-                <span>⬇️</span>
+                <Download className="w-4 h-4" />
                 <span>Download</span>
               </button>
             </div>

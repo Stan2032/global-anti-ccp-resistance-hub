@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Megaphone, Mountain, Building, Link2, Target, Landmark } from 'lucide-react';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -14,13 +15,13 @@ const ContactRepresentatives = () => {
   ];
 
   const topics = [
-    { id: 'general', name: 'General Human Rights', icon: '✊' },
-    { id: 'uyghur', name: 'Uyghur Genocide', icon: '🏔️' },
-    { id: 'hongkong', name: 'Hong Kong Freedom', icon: '🗽' },
-    { id: 'tibet', name: 'Tibetan Rights', icon: '🏔️' },
-    { id: 'taiwan', name: 'Taiwan Support', icon: '🇹🇼' },
-    { id: 'jimmylai', name: 'Free Jimmy Lai', icon: '⛓️' },
-    { id: 'sanctions', name: 'Magnitsky Sanctions', icon: '🎯' },
+    { id: 'general', name: 'General Human Rights', Icon: Megaphone },
+    { id: 'uyghur', name: 'Uyghur Genocide', Icon: Mountain },
+    { id: 'hongkong', name: 'Hong Kong Freedom', Icon: Building },
+    { id: 'tibet', name: 'Tibetan Rights', Icon: Mountain },
+    { id: 'taiwan', name: 'Taiwan Support', flag: '🇹🇼' },
+    { id: 'jimmylai', name: 'Free Jimmy Lai', Icon: Link2 },
+    { id: 'sanctions', name: 'Magnitsky Sanctions', Icon: Target },
   ];
 
   const contactLinks = {
@@ -276,7 +277,7 @@ Sincerely,
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🏛️ Contact Your Representatives</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Landmark className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
           about CCP human rights abuses.
@@ -339,7 +340,7 @@ Sincerely,
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
-              <span>{topic.icon}</span>
+              {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.flag}</span>}
               {topic.name}
             </button>
           ))}
