@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, Landmark, Mountain, Megaphone, Link2, Globe2, Newspaper, PartyPopper, UserPlus, Flame, FileText, Wrench, Heart, MessageCircle, Lock } from 'lucide-react';
 
 const VolunteerSignup = () => {
   const [formData, setFormData] = useState({
@@ -15,16 +16,16 @@ const VolunteerSignup = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const skillOptions = [
-    { id: 'translation', name: 'Translation', icon: '🌐' },
-    { id: 'writing', name: 'Writing/Editing', icon: '✍️' },
-    { id: 'research', name: 'Research', icon: '🔍' },
-    { id: 'social-media', name: 'Social Media', icon: '📱' },
-    { id: 'graphic-design', name: 'Graphic Design', icon: '🎨' },
-    { id: 'video-editing', name: 'Video Editing', icon: '🎬' },
-    { id: 'web-dev', name: 'Web Development', icon: '💻' },
-    { id: 'legal', name: 'Legal/Policy', icon: '⚖️' },
-    { id: 'organizing', name: 'Event Organizing', icon: '📋' },
-    { id: 'outreach', name: 'Community Outreach', icon: '🤝' },
+    { id: 'translation', name: 'Translation', Icon: Globe },
+    { id: 'writing', name: 'Writing/Editing', Icon: PenTool },
+    { id: 'research', name: 'Research', Icon: Search },
+    { id: 'social-media', name: 'Social Media', Icon: Smartphone },
+    { id: 'graphic-design', name: 'Graphic Design', Icon: Palette },
+    { id: 'video-editing', name: 'Video Editing', Icon: Clapperboard },
+    { id: 'web-dev', name: 'Web Development', Icon: Laptop },
+    { id: 'legal', name: 'Legal/Policy', Icon: Scale },
+    { id: 'organizing', name: 'Event Organizing', Icon: ClipboardList },
+    { id: 'outreach', name: 'Community Outreach', Icon: Handshake },
   ];
 
   const languageOptions = [
@@ -43,14 +44,14 @@ const VolunteerSignup = () => {
   ];
 
   const interestOptions = [
-    { id: 'uyghur', name: 'Uyghur Rights', icon: '🕌' },
+    { id: 'uyghur', name: 'Uyghur Rights', Icon: Landmark },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'dissidents', name: 'Chinese Dissidents', icon: '✊' },
-    { id: 'forced-labor', name: 'Forced Labor', icon: '⛓️' },
-    { id: 'transnational', name: 'Transnational Repression', icon: '🌍' },
-    { id: 'press-freedom', name: 'Press Freedom', icon: '📰' },
+    { id: 'dissidents', name: 'Chinese Dissidents', Icon: Megaphone },
+    { id: 'forced-labor', name: 'Forced Labor', Icon: Link2 },
+    { id: 'transnational', name: 'Transnational Repression', Icon: Globe2 },
+    { id: 'press-freedom', name: 'Press Freedom', Icon: Newspaper },
   ];
 
   const availabilityOptions = [
@@ -80,7 +81,7 @@ const VolunteerSignup = () => {
     return (
       <div className="space-y-6">
         <div className="bg-green-900/30 border border-green-700/50 rounded-xl p-8 text-center">
-          <span className="text-5xl mb-4 block">🎉</span>
+          <PartyPopper className="w-12 h-12 text-green-400 mb-4 mx-auto" />
           <h2 className="text-2xl font-bold text-white mb-2">Thank You for Volunteering!</h2>
           <p className="text-slate-300 mb-4">
             Your information has been recorded. We'll be in touch soon with opportunities 
@@ -118,7 +119,7 @@ const VolunteerSignup = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6 border border-green-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🙋</span>
+          <UserPlus className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Volunteer With Us</h2>
             <p className="text-slate-400">Join the global movement for human rights</p>
@@ -132,7 +133,7 @@ const VolunteerSignup = () => {
 
       {/* Current Needs */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">🔥 Current Priority Needs</h3>
+        <h3 className="font-medium text-white mb-2"><Flame className="w-4 h-4 inline mr-1 text-yellow-400" /> Current Priority Needs</h3>
         <div className="grid md:grid-cols-3 gap-2">
           <div className="bg-slate-800/50 rounded-lg p-2 text-sm">
             <span className="text-yellow-400 font-medium">Translators</span>
@@ -153,7 +154,7 @@ const VolunteerSignup = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Info */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-4">📝 Basic Information</h3>
+          <h3 className="font-medium text-white mb-4"><FileText className="w-4 h-4 inline mr-1" /> Basic Information</h3>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm text-slate-400 mb-1">Name *</label>
@@ -206,7 +207,7 @@ const VolunteerSignup = () => {
 
         {/* Skills */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-4">🛠️ Skills (select all that apply)</h3>
+          <h3 className="font-medium text-white mb-4"><Wrench className="w-4 h-4 inline mr-1" /> Skills (select all that apply)</h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
             {skillOptions.map(skill => (
               <button
@@ -219,7 +220,7 @@ const VolunteerSignup = () => {
                     : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
                 }`}
               >
-                <span>{skill.icon}</span>
+                <skill.Icon className="w-4 h-4" />
                 <span>{skill.name}</span>
               </button>
             ))}
@@ -228,7 +229,7 @@ const VolunteerSignup = () => {
 
         {/* Languages */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-4">🌐 Languages (select all you speak)</h3>
+          <h3 className="font-medium text-white mb-4"><Globe className="w-4 h-4 inline mr-1" /> Languages (select all you speak)</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {languageOptions.map(lang => (
               <button
@@ -249,7 +250,7 @@ const VolunteerSignup = () => {
 
         {/* Interests */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-4">❤️ Areas of Interest</h3>
+          <h3 className="font-medium text-white mb-4"><Heart className="w-4 h-4 inline mr-1 text-red-400" /> Areas of Interest</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {interestOptions.map(interest => (
               <button
@@ -262,7 +263,7 @@ const VolunteerSignup = () => {
                     : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
                 }`}
               >
-                <span>{interest.icon}</span>
+                {interest.Icon ? <interest.Icon className="w-4 h-4" /> : <span>{interest.icon}</span>}
                 <span>{interest.name}</span>
               </button>
             ))}
@@ -271,7 +272,7 @@ const VolunteerSignup = () => {
 
         {/* Experience & Message */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-          <h3 className="font-medium text-white mb-4">💬 Tell Us More</h3>
+          <h3 className="font-medium text-white mb-4"><MessageCircle className="w-4 h-4 inline mr-1" /> Tell Us More</h3>
           <div className="space-y-4">
             <div>
               <label className="block text-sm text-slate-400 mb-1">Relevant Experience</label>
@@ -298,7 +299,7 @@ const VolunteerSignup = () => {
 
         {/* Security Notice */}
         <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4">
-          <h3 className="font-medium text-red-400 mb-2">🔒 Security Notice</h3>
+          <h3 className="font-medium text-red-400 mb-2"><Lock className="w-4 h-4 inline mr-1" /> Security Notice</h3>
           <p className="text-sm text-slate-300">
             Your information will be handled securely. If you are in a sensitive situation, 
             consider using a pseudonym and secure email. We will never share your information 
@@ -317,7 +318,7 @@ const VolunteerSignup = () => {
 
       {/* Partner Organizations */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">🤝 Partner Organizations Also Seeking Volunteers</h3>
+        <h3 className="font-medium text-white mb-2"><Handshake className="w-4 h-4 inline mr-1" /> Partner Organizations Also Seeking Volunteers</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Uyghur Human Rights Project

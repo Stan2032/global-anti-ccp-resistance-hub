@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Ban, AlertTriangle, Megaphone } from 'lucide-react';
 
 const ChinaExitBan = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -176,7 +177,7 @@ const ChinaExitBan = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/50 to-orange-900/50 border border-red-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🚫 Exit Bans & Hostage Diplomacy</h2>
+        <h2 className="text-2xl font-bold text-white mb-2"><Ban className="w-6 h-6 inline mr-1" /> Exit Bans & Hostage Diplomacy</h2>
         <p className="text-slate-300">
           Tracking foreign nationals and Chinese citizens prevented from leaving China or detained abroad at China's request.
         </p>
@@ -202,7 +203,7 @@ const ChinaExitBan = () => {
 
       {/* Warning */}
       <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
-        <h3 className="font-bold text-white mb-2">⚠️ Travel Warning</h3>
+        <h3 className="font-bold text-white mb-2"><AlertTriangle className="w-4 h-4 inline mr-1 text-yellow-400" /> Travel Warning</h3>
         <p className="text-slate-300 text-sm">
           China uses exit bans as a tool of coercion. Foreign nationals, especially those with Chinese heritage, 
           business disputes, or connections to activists, face heightened risk. The US, UK, Canada, and Australia 
@@ -284,7 +285,7 @@ const ChinaExitBan = () => {
 
       {/* What You Can Do */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-white mb-4">📢 What You Can Do</h3>
+        <h3 className="text-xl font-bold text-white mb-4"><Megaphone className="w-5 h-5 inline mr-1" /> What You Can Do</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <div>
             <h4 className="font-semibold text-white mb-2">Before Travel:</h4>
