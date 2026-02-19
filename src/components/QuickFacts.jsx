@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BarChart3, Megaphone } from 'lucide-react';
 
 const QuickFacts = () => {
   const [copiedId, setCopiedId] = useState(null);
@@ -120,7 +121,7 @@ const QuickFacts = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📊</span>
+          <BarChart3 className="w-8 h-8 text-slate-300" />
           <div>
             <h2 className="text-2xl font-bold text-white">Quick Facts</h2>
             <p className="text-slate-400">Shareable statistics to spread awareness</p>
@@ -187,7 +188,7 @@ const QuickFacts = () => {
 
       {/* Usage Tips */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-        <h3 className="text-lg font-bold text-white mb-4">📢 How to Use These Facts</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Megaphone className="w-5 h-5" /> How to Use These Facts</h3>
         <div className="grid md:grid-cols-3 gap-4 text-sm">
           <div className="space-y-2">
             <h4 className="font-medium text-slate-300">Social Media</h4>

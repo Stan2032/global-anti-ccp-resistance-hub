@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Siren, Phone, Mail, Lock } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -92,7 +93,7 @@ const Footer = () => {
 
           {/* Emergency Contacts */}
           <div>
-            <h3 className="text-red-400 font-semibold mb-4">🚨 Emergency</h3>
+            <h3 className="text-red-400 font-semibold mb-4 flex items-center gap-2"><Siren className="w-4 h-4" /> Emergency</h3>
             <div className="space-y-3">
               {footerLinks.emergency.map((contact, index) => (
                 <div key={index} className="text-sm">
@@ -102,7 +103,7 @@ const Footer = () => {
                       href={`tel:${contact.phone}`}
                       className="text-red-400 hover:text-red-300"
                     >
-                      📞 {contact.phone}
+                      <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> {contact.phone}</span>
                     </a>
                   )}
                   {contact.email && (
@@ -110,7 +111,7 @@ const Footer = () => {
                       href={`mailto:${contact.email}`}
                       className="text-blue-400 hover:text-blue-300"
                     >
-                      ✉️ {contact.email}
+                      <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {contact.email}</span>
                     </a>
                   )}
                 </div>
@@ -122,7 +123,7 @@ const Footer = () => {
         {/* Security Notice */}
         <div className="bg-slate-800/50 rounded-lg p-4 mb-8">
           <div className="flex items-start space-x-3">
-            <span className="text-xl">🔒</span>
+            <Lock className="w-5 h-5 text-slate-300" />
             <div className="text-sm">
               <p className="text-slate-300 font-medium">Security First</p>
               <p className="text-slate-400">

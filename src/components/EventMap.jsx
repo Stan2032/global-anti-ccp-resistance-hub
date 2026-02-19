@@ -214,7 +214,7 @@ export default function EventMap() {
         {/* North America */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌎 North America
+            <Globe className="w-4 h-4" /> North America
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'North America').map(event => (
@@ -239,7 +239,7 @@ export default function EventMap() {
         {/* Europe */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌍 Europe
+            <Globe className="w-4 h-4" /> Europe
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'Europe').map(event => (
@@ -264,7 +264,7 @@ export default function EventMap() {
         {/* Asia-Pacific */}
         <div className="bg-slate-800 rounded-lg p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            🌏 Asia-Pacific
+            <Globe className="w-4 h-4" /> Asia-Pacific
           </h3>
           <div className="space-y-2">
             {filteredEvents.filter(e => e.region === 'Asia-Pacific').map(event => (
@@ -537,7 +537,7 @@ export default function EventMap() {
 
       {/* Tips */}
       <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700 rounded-lg">
-        <h3 className="text-sm font-semibold text-blue-400 mb-2">📍 Organizing an Event?</h3>
+        <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-1"><MapPin className="w-4 h-4" /> Organizing an Event?</h3>
         <p className="text-sm text-slate-400">
           Contact us to have your event listed on this map. We feature rallies, vigils, marches, 
           briefings, and other activism events supporting human rights in China.
