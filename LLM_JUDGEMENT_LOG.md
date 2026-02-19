@@ -1297,3 +1297,56 @@ Found 12 components that are never imported:
 - HR2: Content moderation policy
 - HR3: API key and service selection
 - L2: Multilingual support (needs translators)
+
+---
+
+## Session 16 (2026-02-19): Owner Answers → Implementation Sprint
+**Model:** Opus 4.6  
+**Duration:** ~45 minutes  
+**Context:** Owner answered all 10 questions from QUESTIONS_FOR_OWNER.md
+
+### Decisions Received
+1. **No geolocation** — confirmed, no privacy-invasive features
+2. **Implement WebRTC leak detection** — built client-side in useWebRTCLeakCheck hook
+3. **User submissions deferred** — consider later
+4. **GitHub PRs for moderation** — safest for human rights platform
+5. **Stay static, add serverless later** — phase approach
+6. **Research best backend** — researched, updated recommendation: Cloudflare Pages Functions + Supabase
+7. **Cloudflare Pages for hosting** — configured _redirects + _headers
+8. **Email service deferred**
+9. **i18n: machine translate nav only, wait for volunteers for sensitive content**
+
+### Implementation
+- **WebRTC Leak Detection:** Created `useWebRTCLeakCheck` hook using RTCPeerConnection ICE candidates. Runs entirely in-browser, zero external APIs. Shows leaked IPs with private/public labels and browser-specific remediation.
+- **Cloudflare Pages:** Added `_redirects` (SPA routing) and `_headers` (security headers: CSP, X-Frame-Options, etc.)
+- **i18n Enhancement:** Rather than adding react-i18next (would duplicate existing system), enhanced existing LanguageSelector with:
+  - zh-CN (Simplified Chinese) locale — 226-line full translation file
+  - zh/zh-TW split into proper zh-CN and zh-TW entries
+  - Locale JSON files wired into t() function via `localeData` property
+  - `__VOLUNTEER_TRANSLATION_NEEDED__` markers auto-fallback to English
+- **Backend Research:** Researched Cloudflare vs Vercel vs Supabase. Updated recommendation from Vercel+Supabase to Cloudflare Pages Functions + Supabase (consistency, DDoS protection, censorship resistance).
+
+### Key Judgment: Avoid Duplicate Systems
+When I discovered the existing LanguageSelector + LanguageProvider + locale JSONs, I removed my newly installed react-i18next and instead enhanced the existing system. This avoided introducing a competing i18n system that future developers would need to reconcile.
+
+### Updated Cumulative Progress (Sessions 6-16)
+
+| Task | Status | Agent |
+|------|--------|-------|
+| H1.1-H1.4 Source Attribution | ✅ COMPLETE | Opus 4.6 |
+| H2.2 Inline Disclaimers | ✅ COMPLETE | Opus 4.6 |
+| M1.2 Text Contrast | ✅ COMPLETE | Opus 4.6 |
+| C2.3 WebRTC Leak Detection | ✅ COMPLETE | Opus 4.6 |
+| C2.4-C2.5 Security Honesty | ✅ COMPLETE | Opus 4.6 |
+| M2 Emoji Reduction (656 replaced) | ✅ COMPLETE | Opus 4.6 |
+| L3 Dead Code (12 files, 3401 lines) | ✅ COMPLETE | Opus 4.6 |
+| L1 Accessibility (15 elements) | ✅ COMPLETE | Opus 4.6 |
+| L2 i18n Infrastructure | ✅ COMPLETE | Opus 4.6 |
+| Q4.1 Cloudflare Pages Config | ✅ COMPLETE | Opus 4.6 |
+| Q3.2 Backend Research | ✅ COMPLETE | Opus 4.6 |
+| **Total** | **11/11 categories** | |
+
+### Remaining
+- L2.3: Recruit volunteer translators (cannot be automated)
+- HR1: Implement serverless functions (when owner is ready)
+- HR3.3: Email service selection (deferred)

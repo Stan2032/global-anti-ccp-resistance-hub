@@ -1,12 +1,65 @@
 # Questions for Owner — Items Requiring Human Decisions
 
 **Created:** 2026-02-19 (Session 15, Opus 4.6)  
-**Context:** All autonomous tasks are complete. The following items are blocked on human input.  
-**Format:** Each question includes context, options, my recommendation, and what I can do once answered.
+**Updated:** 2026-02-19 (Session 16, Opus 4.6) — All answers received and implemented  
+**Status:** ✅ ALL QUESTIONS ANSWERED
 
 ---
 
-## 1. Security: VPN/Tor Detection (C2.1–C2.3)
+## Answers Summary
+
+| Question | Owner's Answer | Implementation Status |
+|----------|---------------|----------------------|
+| Q1.1: IP Geolocation | **A) No geolocation** | ✅ No changes needed |
+| Q1.2: WebRTC Leak Detection | **B) Implement it** | ✅ Built in SecurityCenter (useWebRTCLeakCheck hook) |
+| Q2.1: User Submissions | **A) Consider later** | ✅ Deferred |
+| Q2.2: Data Moderation | **GitHub PRs from trusted contributors** | ✅ Documented in CONTRIBUTING guidelines |
+| Q3.1: Backend Architecture | **A) Stay static now, B) serverless later** | ✅ Documented; see Backend Recommendation below |
+| Q3.2: Tech Stack | **Research best fit** | ✅ See Backend Recommendation below |
+| Q4.1: Deployment Target | **Cloudflare Pages** | ✅ _redirects + _headers configured |
+| Q4.2: Email Service | **Unsure, defer** | ✅ Deferred |
+| Q5.1: Languages | **Wait for volunteers; machine translate nav/basic only** | ✅ zh-CN added, i18n enhanced with __VOLUNTEER_TRANSLATION_NEEDED__ fallback |
+
+---
+
+## Backend Recommendation (Q3.2 Research)
+
+### Recommended: Cloudflare Pages Functions + Supabase
+
+Since you've chosen **Cloudflare Pages** for hosting, the natural backend evolution is:
+
+**Phase 1 (Current):** Static site on Cloudflare Pages — ✅ Done
+
+**Phase 2 (When needed):** Add Cloudflare Pages Functions for:
+- Contact form submissions → write to Supabase
+- Incident report storage → Supabase with row-level security
+- Basic API endpoints → edge functions in `/functions` directory
+
+**Phase 3 (If user accounts needed):** Add Supabase Auth + Database:
+- Supabase provides: PostgreSQL, Auth (OAuth/email), file storage, real-time
+- All free tier, open source core
+
+### Why This Over Vercel + Supabase (Original Recommendation)
+
+| Factor | Cloudflare + Supabase | Vercel + Supabase |
+|--------|----------------------|-------------------|
+| **Consistency** | Same platform for hosting + functions | Two platforms to manage |
+| **Edge performance** | 300+ PoPs, ~10-50ms cold start | 70+ PoPs, ~50-150ms cold start |
+| **Free tier** | Unlimited bandwidth, 100K func/day | 100GB bandwidth, 100K func/day |
+| **Over-engineering risk** | Lower — functions live alongside static site | Higher — separate deployment pipeline |
+| **DDoS protection** | Built-in (critical for activist site) | Add-on |
+| **Censorship resistance** | Best-in-class (Cloudflare's network) | Good but not designed for this |
+
+### Implementation When Ready
+
+```
+functions/
+  api/
+    submit-report.js    ← Cloudflare Pages Function
+    contact.js          ← Cloudflare Pages Function
+```
+
+Each function is ~20 lines connecting to Supabase. No Docker, no server management, no ops overhead.
 
 ### Current State
 - All **fake** VPN/Tor detection has been removed (it used `Math.random()`)

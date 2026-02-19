@@ -1,6 +1,6 @@
 # Agent Roadmap - Consolidated Task Prioritization
 **Purpose:** Agent-facing roadmap for autonomous progression and task execution  
-**Last Updated:** 2026-02-19 (Session 13)  
+**Last Updated:** 2026-02-19 (Session 16)  
 **Status:** Active Development
 
 ---
@@ -56,21 +56,15 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 3. Added "Verify Your Connection" section with 4 reputable third-party self-test tools
 4. Deleted orphaned SecurityWarning.jsx and Header.jsx (layout) dead code
 
-**Tasks Still Needing Human Input (Optional Enhancements):**
-- [ ] **C2.1** Choose IP geolocation API provider (MaxMind vs alternatives)
-  - **Decision Required:** Free vs paid tier
-  - **Impact:** Privacy implications, cost
-  - **Agent Action:** DEFER - Await owner decision
+**Owner Decisions (2026-02-19, Session 16):**
+- **C2.1** No IP geolocation — CLOSED ✅
+- **C2.2** No server-side detection — CLOSED ✅  
+- [x] **C2.3** WebRTC leak detection — IMPLEMENTED ✅ (Session 16)
+  - Built `useWebRTCLeakCheck` hook — runs entirely in-browser, no external APIs
+  - Detects local and public IPs via RTCPeerConnection ICE candidates
+  - Shows clear pass/fail status with remediation steps
+  - **Agent:** Opus 4.6 (security-critical, required understanding of WebRTC/ICE protocols)
 
-- [ ] **C2.2** Determine security detection strategy
-  - **Decision Required:** Client-side vs server-side detection
-  - **Impact:** User privacy, accuracy
-  - **Agent Action:** DEFER - Security policy needed
-
-**Autonomous Tasks (After Human Decisions):**
-- [ ] **C2.3** Implement WebRTC leak detection (client-side)
-  - Can execute once detection strategy approved
-  
 - [x] **C2.4** Add honest security warnings ✅ (2026-02-19, Session 8-9)
   - Rewrote SecurityWarning component to remove false VPN/Tor detection claims
   - Added explicit disclaimer: "This platform cannot detect whether you are using a VPN or Tor"
@@ -323,79 +317,65 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ### L2: Multilingual Support
 **Status:** Foundation Started  
-**Priority:** LOW - Future enhancement  
+**Priority:** LOW - Infrastructure ready, awaiting volunteer translators  
 **From:** TODO.md Short-Term High Priority  
-**Agent Decision:** DEFER - Requires translation resources
+**Agent Decision:** Infrastructure COMPLETE, content awaits volunteers
 
-- [ ] **L2.1** Complete i18n infrastructure
-  - **Blocker:** Needs translations (human input)
-  - **Agent Action:** DEFER
+**Owner Decision (Session 16):** Wait for native volunteers, machine translate nav/basic words only. Do NOT translate sensitive subjects without human translators.
 
-- [ ] **L2.2** Add language files
-  - **Blocker:** Needs native speakers
-  - **Agent Action:** DEFER
+- [x] **L2.1** i18n infrastructure ✅ (Session 16)
+  - Existing LanguageSelector + LanguageProvider system enhanced
+  - Locale JSON files wired into translation function via `localeData` property
+  - `__VOLUNTEER_TRANSLATION_NEEDED__` markers automatically fall back to English
+  - t() function cascades: inline → locale JSON → English fallback
+  
+- [x] **L2.2** Add zh-CN (Simplified Chinese) ✅ (Session 16)
+  - Created `src/locales/zh-CN.json` — full 226-line locale file
+  - Split single `zh` entry into `zh-CN` (Simplified) and `zh-TW` (Traditional)
+  - Navigation and basic UI words machine-translated (per owner approval)
+  - 5 languages now available: English, 简体中文, 繁體中文, ئۇيغۇرچە, བོད་སྐད།
+
+- [ ] **L2.3** Recruit volunteer translators for sensitive content
+  - Testimonies, legal info, safety guides MUST be human-translated
+  - **Agent Action:** Cannot do — requires human volunteers
+  - **Status:** Awaiting native speakers
 
 ---
 
-## ⏸️ NEEDS HUMAN REVIEW: Blocked or Ambiguous Tasks
+## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
 
-### HR1: Backend Implementation Tasks
-**Status:** Not Started  
-**From:** IMPLEMENTATION_ROADMAP.md Phases 2-4  
-**Blocker:** No backend exists yet  
-**Agent Decision:** DEFER - Requires architecture decisions
+### HR1: Backend Architecture
+**Status:** ✅ DECIDED (Session 16)  
+**Owner Decision:** A) Stay static for now, B) add serverless later
 
-**Tasks Requiring Owner Input:**
-- [ ] **HR1.1** Choose backend framework and database
-  - Node.js + Express + PostgreSQL?
-  - Alternatives?
-  - **Decision Required:** Technology stack
-  
-- [ ] **HR1.2** Choose authentication strategy
-  - JWT? OAuth? Both?
-  - **Decision Required:** Security requirements
+**Recommended Stack (researched Session 16):** Cloudflare Pages Functions + Supabase
+- Keeps hosting + functions on same platform (Cloudflare)
+- Supabase for DB/Auth/Storage when needed (free tier, open source)
+- No over-engineering: functions deploy alongside static site
+- Best DDoS protection and censorship resistance for activist platform
 
-- [ ] **HR1.3** Choose hosting strategy
-  - AWS? DigitalOcean? Vercel?
-  - **Decision Required:** Budget and scalability needs
-
-**Agent Recommendation:** Frontend improvements should be prioritized while backend architecture is decided. Backend implementation estimated at 380 hours (12 weeks).
+**Next Steps (when ready):**
+- [ ] **HR1.1** Create `/functions/api/` directory structure for Cloudflare Pages Functions
+- [ ] **HR1.2** Set up Supabase project (when DB/Auth needed)
+- [ ] **HR1.3** Implement first serverless function (contact form or incident report)
 
 ---
 
-### HR2: Content Policy Decisions
-**Status:** Needs Clarification  
-**Blocker:** Moderation and governance policy unclear  
-**Agent Decision:** DEFER - Await policy guidance
+### HR2: Content Policy
+**Status:** ✅ DECIDED (Session 16)  
+**Owner Decision:** GitHub PRs from trusted contributors; consider user submissions later
 
-**Questions for Owner:**
-- [ ] **HR2.1** Moderation policy for user-generated content
-  - How should community contributions be moderated?
-  - Who has moderation authority?
-  
-- [ ] **HR2.2** Data governance for new submissions
-  - What verification process for new prisoners/facilities?
-  - Who approves new data?
-
-**Agent Recommendation:** Create MODERATION_POLICY.md and DATA_GOVERNANCE.md documents to clarify these decisions.
+- [x] Moderation via GitHub PR review process
+- [ ] Future: Consider email-based submissions
 
 ---
 
-### HR3: API Key and Service Decisions
-**Status:** Needs Selection  
-**Blocker:** Requires paid service decisions  
-**Agent Decision:** DEFER - Budget implications
+### HR3: Service Decisions
+**Status:** ✅ PARTIALLY DECIDED (Session 16)  
 
-**Services Needing Selection:**
-- [ ] **HR3.1** IP Geolocation API
-  - Options: MaxMind (free/paid), IP2Location, ipapi
-  - **Decision Required:** Free tier sufficient? Budget for paid?
-  
-- [ ] **HR3.2** Email Service
-  - Options: SendGrid, Mailgun, AWS SES
-  - **Decision Required:** Expected volume? Budget?
-
-**Agent Recommendation:** Start with free tiers where available, document upgrade triggers.
+- [x] **HR3.1** Hosting: Cloudflare Pages ✅ (configured with _redirects + _headers)
+- [x] **HR3.2** IP Geolocation: NOT NEEDED (owner decided no geolocation)
+- [ ] **HR3.3** Email Service: Deferred for future decision
 
 ---
 
