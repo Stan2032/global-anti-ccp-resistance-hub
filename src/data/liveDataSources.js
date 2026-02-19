@@ -51,7 +51,8 @@ export const liveDataFeeds = {
       region: 'China/Hong Kong',
       updateFrequency: 'hourly',
       credibility: 'medium',
-      note: 'Pro-Beijing editorial stance but credible reporting',
+      biasRisk: 'medium',
+      note: 'Alibaba-owned (since 2015); editorial stance has shifted toward pro-Beijing. Use only for factual event reporting. Do not rely on for analysis of CCP policies, Xinjiang, Tibet, or Hong Kong protests.',
       sources: [
         {
           title: 'SCMP RSS Feeds',

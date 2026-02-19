@@ -493,6 +493,39 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
+### V1: Source Bias Audit & CCP Propaganda Assessment
+**Status:** ✅ COMPLETE (Session 24, 2026-02-19)  
+**Priority:** HIGH - Data integrity and credibility protection  
+**Agent:** Opus 4.6 (required: understanding of CCP information warfare, Spamouflage tactics, and ability to distinguish CCP attacks on credible researchers from legitimate criticism)
+
+#### Problem
+- No bias risk assessment existed for sources in the registry
+- Stand News URL was pointing to defunct site (shut down Dec 2021)
+- Xinhua was marked `verified: false` but had no explanation
+- SCMP had no bias warning despite Alibaba ownership and pro-Beijing editorial drift
+- Dr. Adrian Zenz, ASPI, and Safeguard Defenders had no notes explaining they are credible despite being targets of CCP disinformation
+
+#### Completed
+- [x] Created `SOURCE_BIAS_AUDIT.md` — comprehensive 8-section guide:
+  - CCP state media blacklist (Xinhua, CGTN, Global Times, People's Daily, China Daily)
+  - Spamouflage/DRAGONBRIDGE detection guide
+  - Registry-wide bias risk assessment for all 50+ sources
+  - Claims verification protocol for new data
+  - Documentation of sources credible BECAUSE they are CCP-targeted (Zenz, ASPI, Safeguard Defenders)
+- [x] Added `biasRisk` field to all SOURCE_REGISTRY entries (`none`/`low`/`medium`/`ccp`)
+- [x] Added `notes` field with context for flagged/targeted sources
+- [x] Fixed Stand News defunct URL → Wayback Machine archive
+- [x] Added explicit `biasRisk: 'ccp'` + explanatory notes for Xinhua
+- [x] Added `biasRisk: 'medium'` + usage guidance for SCMP
+- [x] Updated `liveDataSources.js` SCMP entry with `biasRisk: 'medium'`
+- [x] Updated `DATA_SOURCES.md` with "Propaganda & Source Bias Assessment" section
+- [x] Updated `resolveSource()` to expose `biasRisk` and `notes` fields
+- [x] Added 10 bias risk tests to `sourceLinks.test.js` (13 → 23 tests)
+- [x] Audited all primary data JSON files — zero CCP state media sources found
+- [x] Build: ✅ Tests: ✅ 180/180 pass
+
+---
+
 ## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
 
 ### HR1: Backend Architecture

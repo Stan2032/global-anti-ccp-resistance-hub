@@ -93,6 +93,91 @@ describe('sourceLinks', () => {
         expect(result.verified).toBe(true);
       }
     });
+
+    // --- Bias risk field tests ---
+
+    it('should expose biasRisk field on resolved sources', () => {
+      const result = resolveSource('Amnesty International');
+      expect(result).toHaveProperty('biasRisk');
+      expect(result.biasRisk).toBe('none');
+    });
+
+    it('should expose notes field on resolved sources', () => {
+      const result = resolveSource('Amnesty International');
+      expect(result).toHaveProperty('notes');
+    });
+
+    it('should flag Xinhua as CCP-level bias risk', () => {
+      const result = resolveSource('Xinhua');
+      expect(result.biasRisk).toBe('ccp');
+      expect(result.verified).toBe(false);
+      expect(result.notes).toBeTruthy();
+    });
+
+    it('should flag South China Morning Post with medium bias risk', () => {
+      const result = resolveSource('South China Morning Post');
+      expect(result.biasRisk).toBe('medium');
+      expect(result.notes).toBeTruthy();
+    });
+
+    it('should give Dr. Adrian Zenz a none bias risk with explanatory notes', () => {
+      const result = resolveSource('Dr. Adrian Zenz');
+      expect(result.biasRisk).toBe('none');
+      expect(result.notes).toContain('CCP');
+    });
+
+    it('should give ASPI a none bias risk', () => {
+      const result = resolveSource('ASPI');
+      expect(result.biasRisk).toBe('none');
+    });
+
+    it('should give Safeguard Defenders a none bias risk', () => {
+      const result = resolveSource('Safeguard Defenders');
+      expect(result.biasRisk).toBe('none');
+    });
+
+    it('should default biasRisk to none for unknown sources', () => {
+      const result = resolveSource('Unknown Source XYZ');
+      expect(result.biasRisk).toBe('none');
+      expect(result.notes).toBeNull();
+    });
+
+    it('should give Stand News a valid archive URL and none bias risk', () => {
+      const result = resolveSource('Stand News');
+      expect(result.biasRisk).toBe('none');
+      expect(result.url).toContain('web.archive.org');
+      expect(result.notes).toContain('shut down');
+    });
+
+    it('should only have valid biasRisk values across all registry entries', () => {
+      const validValues = new Set(['none', 'low', 'medium', 'ccp']);
+      // Import default SOURCE_REGISTRY for exhaustive check
+      const allSources = [
+        'Amnesty International', 'Human Rights Watch', 'Radio Free Asia',
+        'Uyghur Human Rights Project', 'International Campaign for Tibet',
+        'UN Committee on the Rights of the Child', 'Falun Dafa Information Center',
+        'China Tribunal', 'Hong Kong Free Press', 'ASPI - Australian Strategic Policy Institute',
+        'Tibet Action Institute', 'Tiananmen Papers', 'UN Human Rights Council',
+        'Congressional-Executive Commission on China', 'Reporters Without Borders',
+        'Freedom House', 'PEN International', 'Committee to Protect Journalists',
+        'BBC', 'Reuters', 'The Guardian', 'South China Morning Post',
+        'New York Times', 'Associated Press', 'ICIJ', 'Global Magnitsky Act',
+        'UK Sanctions Act 2018', 'EU Common Foreign and Security Policy',
+        'Xinhua', 'European Parliament', 'Chinese Human Rights Defenders',
+        'ASPI', 'Xinjiang Police Files', 'Dr. Adrian Zenz', 'Hong Kong Watch',
+        'CNN', 'UK Foreign Office', 'Safeguard Defenders', 'FBI',
+        'Uyghur Tribunal', 'Nobel Committee', 'US Treasury OFAC',
+        'UK Sanctions List', 'EU Sanctions Map', 'Canada Sanctions - China',
+        'Tiananmen Mothers', 'Human Rights in China', 'Wall Street Journal',
+        'Free Tibet', 'Stand News', 'Nobel Prize Committee'
+      ];
+      for (const name of allSources) {
+        const result = resolveSource(name);
+        expect(validValues.has(result.biasRisk),
+          `${name} has invalid biasRisk: ${result.biasRisk}`
+        ).toBe(true);
+      }
+    });
   });
 
   describe('resolveSources', () => {

@@ -1,7 +1,7 @@
 # LLM Judgement Log
 **Purpose:** Track AI model decisions, switches, improvements, and recommendations  
 **Started:** 2026-02-18  
-**Current Model:** Claude Opus 4.6 (Session 6, 2026-02-19)  
+**Current Model:** Claude Opus 4.6 (Session 24, 2026-02-19)  
 **Previous Models:** Claude Sonnet 3.5 (Sessions 1-5)
 
 ---
@@ -1608,3 +1608,154 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 
 ### Agent Assignment Note
 **Best agent for error boundary work:** Opus 4.6 — requires understanding of React error boundary lifecycle, lazy loading failure modes, and UX judgment for activist platform users in censored regions.
+
+---
+
+## Session 24: 2026-02-19 - Source Bias Audit & CCP Propaganda Assessment (Opus 4.6)
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Context Window:** 200K tokens  
+**Mode:** Autonomous agent (GitHub Copilot coding agent)  
+**Task:** Data verification — ensure all sources are free of CCP propaganda/influence (Spamouflage, state media, paid proxies)
+
+---
+
+### 1. Problem Statement Focus
+
+This session had a specific mandate: **verify data accuracy and ensure sources are not tainted by CCP propaganda or influence** via:
+- CCP state media (Xinhua, CGTN, Global Times, People's Daily, China Daily)
+- Spamouflage/DRAGONBRIDGE coordinated influence operations
+- CCP-owned or CCP-influenced sites
+- People paid by the CCP
+- Others with motivations to support the CCP authoritarian regime
+
+---
+
+### 2. Audit Findings
+
+#### Data Files Audited
+- `political_prisoners_research.json` (60 entries) → **Clean**
+- `detention_facilities_research.json` (20 entries) → **Clean**
+- `forced_labor_companies_research.json` (30 entries) → **Clean**
+- `sanctioned_officials_research.json` (20 entries) → **Clean**
+- `police_stations_research.json` (30 entries) → **Clean**
+- `academic_experts_research.json` → **Clean** (already includes `ccp_targeting` field)
+- `timeline_events.json` (21 events) → **Clean** (0 CCP sources, all have 2-4 sources)
+- `security_center_data.json` → **Clean**
+
+**Result:** Zero instances of CCP state media used as evidence in primary data files. ✅
+
+#### Source Registry Issues Found
+
+| Issue | Action Taken |
+|-------|-------------|
+| `Xinhua` had `verified: false` but no explanation | Added `biasRisk: 'ccp'` + detailed `notes` field |
+| `South China Morning Post` had `verified: true` with no bias warning | Added `biasRisk: 'medium'` + detailed `notes` field |
+| `Stand News` had defunct URL (site shut down Dec 2021) | Updated to Wayback Machine archive URL |
+| No bias risk field anywhere in registry | Added `biasRisk` to all 50+ entries |
+| `Dr. Adrian Zenz` had no note about CCP targeting | Added `notes` explaining he's a credible researcher targeted by CCP disinformation |
+| `ASPI` had no note about CCP targeting | Added `notes` explaining their satellite-based verification methodology |
+| `Safeguard Defenders` had no note about CCP targeting | Added `notes` explaining their research was validated by government actions |
+
+---
+
+### 3. Deliverables
+
+**New document:** `SOURCE_BIAS_AUDIT.md` (comprehensive, 8 sections):
+1. Why this document exists (CCP information warfare overview)
+2. Known CCP state media blacklist (Xinhua, CGTN, Global Times, People's Daily, China Daily, etc.)
+3. CCP-influenced sources (SCMP assessment)
+4. Sources TARGETED by CCP disinformation (verified credible: Zenz, ASPI, Safeguard Defenders, Xinjiang Police Files)
+5. Spamouflage/DRAGONBRIDGE detection guide
+6. Platform source registry assessment (all 50+ sources assessed)
+7. Claims verification red flags
+8. Verification protocol for new data
+
+**Updated `sourceLinks.js`:**
+- Added `biasRisk` field to all entries (`none`/`low`/`medium`/`ccp`)
+- Added `notes` field with context for flagged sources
+- Fixed Stand News defunct URL → Wayback Machine archive
+- Added explicit CCP state media explanation for Xinhua
+- Clarified Dr. Adrian Zenz, ASPI, Safeguard Defenders credibility despite CCP attacks
+
+**Updated `liveDataSources.js`:**
+- Added `biasRisk: 'medium'` to SCMP entry
+- Updated SCMP `note` field with specific usage guidance
+
+**Updated `DATA_SOURCES.md`:**
+- Added "Propaganda & Source Bias Assessment" section
+- Documents CCP information warfare context
+- Explains sources targeted by CCP (Zenz, ASPI, Safeguard Defenders)
+- Documents bias risk levels
+- Links to SOURCE_BIAS_AUDIT.md
+
+**Updated `sourceLinks.test.js`:**
+- Added 10 new bias risk tests (23 total, up from 13)
+- Tests verify `biasRisk` and `notes` fields exist on all resolved sources
+- Tests verify Xinhua = 'ccp', SCMP = 'medium', independent sources = 'none'
+- Tests verify valid `biasRisk` values across entire registry
+- Tests verify Stand News archive URL
+
+---
+
+### 4. Verification
+
+- Build: ✅ (tested)
+- Tests: ✅ 180/180 pass (170 → 180, +10 new tests)
+- Security: No new vulnerabilities
+- Code quality: 5 files modified + 2 new files created
+
+---
+
+### 5. Key Insights for Future Agents
+
+#### Critical Rule: CCP Attacks ≠ Credibility Problems
+
+A common mistake would be to treat CCP propaganda attacks on researchers (Zenz, ASPI, Safeguard Defenders) as legitimate criticism and apply "both sides" framing. This is WRONG and plays into CCP information warfare strategy.
+
+The pattern is:
+1. Credible researcher publishes verified findings about human rights abuses
+2. CCP state media (Global Times, Xinhua, CGTN) launches coordinated attack campaign
+3. Uninformed observers apply false equivalence ("both sides have claims")
+4. CCP narrative spreads without needing to provide actual evidence
+
+**Correct response:** When CCP targets a researcher, verify their methodology independently. If verified, note the CCP targeting as additional evidence of the research's accuracy.
+
+#### South China Morning Post Usage Policy
+
+SCMP should NOT be used as a source for:
+- Claims about Xinjiang, Tibet, or Hong Kong protest legitimacy
+- Analysis of CCP policies
+- Characterization of activists or dissidents
+
+SCMP CAN be used for:
+- Factual court proceeding records
+- Government announcement reporting
+- Basic factual news events
+
+Always cross-reference SCMP claims with HRW, Amnesty, BBC, Reuters, or AP.
+
+#### Spamouflage Detection
+
+If a claim supporting CCP narrative positions appears across multiple unknown websites simultaneously and cannot be traced to a verifiable primary source, it is likely Spamouflage content. See SOURCE_BIAS_AUDIT.md Section 4 for full detection guide.
+
+---
+
+### 6. Next Steps Recommendation
+
+**Immediate (for next agent):**
+1. **Q-BIAS-1:** Consider adding visible bias risk indicator to SourceAttribution component for medium/ccp sources — this would warn users when viewing SCMP links
+2. **Q-BIAS-2:** Consider adding "How We Assess Sources" page linking to SOURCE_BIAS_AUDIT.md
+3. Continue monitoring for new CCP-influenced sources being added to the registry
+
+**Ongoing:**
+- Any new source added to SOURCE_REGISTRY must include `biasRisk` field
+- New data entries must pass the verification protocol in SOURCE_BIAS_AUDIT.md Section 7
+
+### Agent Assignment Note
+**Best agent for bias/propaganda assessment:** Opus 4.6 — requires:
+- Understanding of CCP information warfare tactics
+- Knowledge of which researchers are CCP-targeted vs genuinely compromised
+- Ability to distinguish Spamouflage attacks from legitimate criticism
+- Context for why RFA (US gov-funded) is appropriate despite state funding
