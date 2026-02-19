@@ -186,12 +186,12 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ---
 
 ### M2: Emoji Reduction
-**Status:** In Progress (2026-02-19) — Dashboard complete, 934 → ~917 emojis  
+**Status:** In Progress (2026-02-19) — Dashboard, TakeAction, ResistanceResources complete  
 **Priority:** MEDIUM - Professional appearance  
 **From:** SITE_CLEANUP_TODO.md Priority 2  
 **Agent Action:** Executing incrementally  
 **Best Agent:** Opus 4.6 (requires judgment on which to keep vs remove + Lucide icon replacement)  
-**Note:** Original estimate was 170 emojis. Actual count is 934 across 90 files. Full removal is impractical in one session.
+**Note:** Original estimate was 170 emojis. Actual count is 934 across 90 files. ~46 emojis replaced so far across 3 pages.
 
 - [x] **M2.1** Replace Dashboard emojis with Lucide icons ✅ (2026-02-19)
   - 17 emoji strings replaced with Lucide React icon components
@@ -201,12 +201,21 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - Resources: 🧅→Shield, 💬→MessageSquare, 📧→Mail, 💻→Monitor
   - **Agent:** Opus 4.6 (required understanding of icon semantics and Lucide API)
 
-- [ ] **M2.2** Keep only functional emojis (status indicators)
+- [x] **M2.2a** Replace TakeAction emojis with Lucide icons ✅ (2026-02-19)
+  - 12 emojis replaced: 💰→Heart, 🏛️→Landmark, ✍️→PenLine, 🚫→Ban, 🚨→AlertTriangle, 📢→Megaphone, 🤝→Handshake, 🔐→Shield, ⚠️→AlertTriangle, 📊→BarChart3, 📣→Megaphone
+  - ✓ checkmark kept (functional status indicator)
+  - **Agent:** Opus 4.6
+
+- [x] **M2.2b** Replace ResistanceResources emojis with Lucide icons ✅ (2026-02-19)
+  - 17 emojis replaced: 🔐→Shield, ✊→Megaphone, 🏛️→Landmark, 📚→BookOpen, 📡→Radio, 🤝→Handshake, 📸→Camera, ✓→CheckCircle, 🕸️→Globe, 📄→FileText, 🔍→Search, 🛡️→ShieldCheck, 🛠️→Wrench, 🚨→AlertTriangle, ⚠️→AlertTriangle, 📞→Phone, ✉️→Mail
+  - **Agent:** Opus 4.6
+
+- [ ] **M2.2c** Continue emoji reduction in remaining pages
   - Keep: 🟢🟡🔴 ⚠️ ✅ ✓ ✗ ❌ (status), 🇺🇸🇬🇧🇨🇦 (flags — convey info)
-  - Remove: Decorative emojis (~350 remaining)
+  - Remove: Decorative emojis (~300 remaining across ~87 files)
   - **Time:** Multiple sessions — too many files for one pass
   - **Best Agent:** Sonnet 4.5 for mechanical removal in individual components
-  - **Strategy:** Prioritize high-traffic pages first
+  - **Strategy:** Prioritize high-traffic pages (EducationalResources, CommunitySupport next)
 
 ---
 
@@ -234,20 +243,54 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ## 🟢 LOWER PRIORITY: Features & Enhancements
 
 ### L1: Accessibility Improvements
-**Status:** Not Started  
+**Status:** In Progress (2026-02-19)  
 **Priority:** LOW - Important but not blocking  
 **From:** TODO.md, SITE_CLEANUP_TODO.md  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Executing incrementally
 
-- [ ] **L1.1** Add ARIA labels to interactive elements
-  - **Time:** 4 hours
+- [x] **L1.1a** Add ARIA labels to TakeAction interactive elements ✅ (2026-02-19)
+  - Added aria-expanded/aria-controls to expandable action cards
+  - Added role="region"/aria-label to expanded panels
+  - Added aria-hidden to decorative SVGs
+  - Added aria-label to newsletter form and email input
+  - **Agent:** Opus 4.6
+
+- [ ] **L1.1b** Add ARIA labels to remaining pages
+  - **Time:** 3 hours
   - **Blocker:** None
-  - **Agent Decision:** EXECUTE when higher priorities complete
+  - **Best Agent:** Sonnet 4.5 (mechanical, follows pattern from L1.1a)
 
 - [ ] **L1.2** Improve keyboard navigation
   - **Time:** 3 hours
   - **Blocker:** None
-  - **Agent Decision:** EXECUTE when higher priorities complete
+  - **Best Agent:** Sonnet 4.5
+
+---
+
+### L3: Dead Code Audit
+**Status:** ✅ AUDIT COMPLETE (2026-02-19) — 12 unused components identified  
+**Priority:** LOW - Code quality  
+**Agent Action:** Documented — removal deferred to avoid breaking future features  
+**Best Agent:** Opus 4.6 (audit), Sonnet 4.5 (removal if approved)
+
+**Truly unused components (never imported anywhere):**
+| Component | Lines | Notes |
+|-----------|-------|-------|
+| `src/components/BoycottList.jsx` | - | Only self-reference |
+| `src/components/DiasporaDirectory.jsx` | - | Only self-reference |
+| `src/components/LazyImage.jsx` | - | Only self-reference |
+| `src/components/VideoTestimonials.jsx` | - | Only self-reference |
+| `src/components/features/FeedSourceSelector.jsx` | - | Only self-reference |
+| `src/components/features/FeedStats.jsx` | - | Only self-reference |
+| `src/components/intelligence/LiveIntelligenceFeed.jsx` | - | Only self-reference |
+| `src/components/layout/Header.jsx` | - | App.jsx uses inline header |
+| `src/components/layout/Sidebar.jsx` | - | App.jsx uses inline sidebar |
+| `src/components/ui/SecurityWarning.jsx` | - | Rewritten in Session 8, still orphaned |
+| `src/data/realSources.js` | - | 0 references anywhere |
+| `src/utils/performance.js` | - | Only in LazyImage comment |
+
+**Note:** These files are NOT imported by any other file. However, some may have been planned for future use. Removal should be coordinated with project owner.
+**Recommendation:** Flag for human review before deletion.
 
 ---
 
