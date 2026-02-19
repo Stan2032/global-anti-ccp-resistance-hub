@@ -25,7 +25,7 @@
   - [x] Fix age errors (77 → 78) across 5 files
   - [x] Update sentence from "faces life" to "20 years" across 20+ files
   - [x] Update status from "GUILTY - AWAITING SENTENCING" to "SENTENCED - 20 YEARS"
-  - [ ] Add February 9, 2026 sentencing as new timeline event
+  - [x] Add February 9, 2026 sentencing as new timeline event ✅
   - [ ] Monitor for appeal proceedings
 
 ### Data Verification (Opus 4.6 — requires CCP propaganda detection capability)
