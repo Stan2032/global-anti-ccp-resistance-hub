@@ -204,6 +204,22 @@ See Section 1 above for full breakdown with sources.
 | "His privacy should be respected" | His "privacy" = enforced disappearance of a child | [USCIRF](https://www.uscirf.gov/religious-prisoners-conscience/forb-victims-database/gedhun-choekyi-nyima) |
 | CCP installed Gyaltsen Norbu as "real" Panchen Lama | Rejected by Tibetan Buddhists as illegitimate; selected by CCP | [ICT](https://savetibet.org/) |
 
+### 8.3a Zhang Zhan (张展)
+
+| CCP Narrative | Reality | Source |
+|--------------|---------|--------|
+| "Convicted for picking quarrels and provoking trouble" | Citizen journalist who reported on COVID-19 in Wuhan when CCP was suppressing information | [OHCHR](https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing) |
+| "She violated public order" | Her "crime" was going to Wuhan and posting videos showing quarantine conditions | [Amnesty](https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/) |
+| "Second conviction is for new offenses" | Second sentence for continued social media posts critical of government — same vague "picking quarrels" charge | [CPJ](https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/) |
+
+### 8.3b Ren Zhiqiang (任志强)
+
+| CCP Narrative | Reality | Source |
+|--------------|---------|--------|
+| "Convicted for corruption, bribery, and embezzlement" | CCP party member and businessman jailed after calling Xi Jinping a "clown" for COVID-19 handling in a widely-shared essay | [VOA](https://www.voanews.com/a/jailed-chinese-businessman-s-daughter-asks-xi-jinping-to-release-her-father/7815141.html) |
+| "Fair trial for genuine financial crimes" | Closed trial with no public evidence; charges appeared only after political criticism of Xi | [China Digital Times](https://chinadigitaltimes.net/2024/10/translation-in-open-letter-to-xi-jinping-ren-xinyi-pleads-for-medical-parole-for-her-father-ren-zhiqiang/) |
+| "Receiving appropriate medical treatment" | Age 73 with severe prostate disease, asthma, denied adequate medical care; daughter begging for medical parole | [DevDiscourse](https://www.devdiscourse.com/article/international/3116350-daughter-of-jailed-tycoon-ren-zhiqiang-pleads-for-urgent-medical-care) |
+
 ### 8.4 Liu Xiaobo (刘晓波)
 
 | CCP Narrative | Reality | Source |
@@ -255,8 +271,14 @@ See Section 1 above for full breakdown with sources.
   - Confirmed Canada sanctions on Chen Quanguo (Dec 2024) via canada.ca official source
   - Confirmed US Confucius Institutes data (4 remaining, 104 closed, rebranding concerns) via GAO
   - Added sourcing attribution for Falun Gong death toll (FDIC named cases + China Tribunal pattern confirmation)
-  - Updated political_prisoners_research.json: Zhang Zhan, Xu Zhiyong, Gui Minhai entries with verified source URLs
+  - Updated political_prisoners_research.json: Zhang Zhan, Xu Zhiyong, Gui Minhai, Ren Zhiqiang entries with verified source URLs
   - Confirmed Joshua Wong June 2025 NSL collusion charges via Amnesty, HKFP
+  - Confirmed Darren Byler (SFU) and Jo Smith Finley (Newcastle) academic affiliations current
+  - Confirmed Claudia Mo release (April 29, 2025) via HKFP, Straits Times, DimSumDaily
+  - Confirmed Jimmy Sham release (May 30, 2025) via HKFP, Straits Times
+  - Confirmed Tony Chung UK asylum (August 2025) via Independent, Taipei Times, Straits Times
+  - Confirmed Ren Zhiqiang health deterioration via VOA, China Digital Times, DevDiscourse
+  - Added CCP narrative breakdowns for Zhang Zhan and Ren Zhiqiang with direct source links
 
 ---
 

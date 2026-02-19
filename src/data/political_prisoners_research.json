@@ -863,12 +863,16 @@
         "prisoner_name": "Ren Zhiqiang",
         "status": "DETAINED",
         "location": "Beijing",
-        "sentence": "18 years for corruption, bribery, embezzlement of public funds, and abuse of power",
-        "latest_news": "Oct 2024: Daughter Ren Xinyi publicly appealed to Xi Jinping for her father's release on medical parole.",
-        "health_status": "Deteriorating, suffering from untreated asthma and prostate disease.",
-        "international_response": "Appeals for medical parole from family and human rights advocates.",
+        "sentence": "18 years for corruption, bribery, embezzlement of public funds, and abuse of power (widely seen as retaliation for criticizing Xi Jinping's COVID-19 handling)",
+        "latest_news": "Oct 2024: Daughter Ren Xinyi published open letter to Xi Jinping pleading for medical parole. Health reportedly dire at age 73. No indication of release.",
+        "health_status": "Severe deterioration. Serious prostate disease requiring surgery pre-incarceration, asthma, denied adequate medical care. Needs frequent bathroom access at night.",
+        "international_response": "VOA, China Digital Times, and human rights advocates have covered daughter's appeal. Zhang Xin (wife of SOHO China founder) expressed support.",
         "source_url": "https://www.voanews.com/a/jailed-chinese-businessman-s-daughter-asks-xi-jinping-to-release-her-father/7815141.html",
-        "confidence": "HIGH"
+        "additional_sources": [
+          "https://chinadigitaltimes.net/2024/10/translation-in-open-letter-to-xi-jinping-ren-xinyi-pleads-for-medical-parole-for-her-father-ren-zhiqiang/"
+        ],
+        "confidence": "HIGH",
+        "last_verified": "2026-02-19"
       },
       "error": ""
     },
