@@ -264,27 +264,34 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ## 🟢 LOWER PRIORITY: Features & Enhancements
 
 ### L1: Accessibility Improvements
-**Status:** In Progress (2026-02-19)  
+**Status:** ✅ COMPLETE (2026-02-19, Session 14)  
 **Priority:** LOW - Important but not blocking  
 **From:** TODO.md, SITE_CLEANUP_TODO.md  
-**Agent Action:** Executing incrementally
+**Agent Action:** Executed — all clickable non-button elements now have keyboard support
 
-- [x] **L1.1a** Add ARIA labels to TakeAction interactive elements ✅ (2026-02-19)
+- [x] **L1.1a** Add ARIA labels to TakeAction interactive elements ✅ (2026-02-19, Session 10)
   - Added aria-expanded/aria-controls to expandable action cards
   - Added role="region"/aria-label to expanded panels
   - Added aria-hidden to decorative SVGs
   - Added aria-label to newsletter form and email input
   - **Agent:** Opus 4.6
 
-- [ ] **L1.1b** Add ARIA labels to remaining pages
-  - **Time:** 3 hours
-  - **Blocker:** None
-  - **Best Agent:** Sonnet 4.5 (mechanical, follows pattern from L1.1a)
+- [x] **L1.1b** Add ARIA labels to remaining pages ✅ (2026-02-19, Session 14)
+  - Added role/tabIndex/onKeyDown/aria-pressed to 10 page-level card components:
+    EducationalResources ModuleCard, CommunitySupport RequestCard, CampaignHubs CampaignCard,
+    ResistanceDirectory org cards, CCPTactics CategoryCard + TacticDetail,
+    PoliticalPrisoners PrisonerCard + PrisonerModal, RegionalThreats ThreatCard, SecureComms ChannelCard
+  - Added role/tabIndex/onKeyDown/aria-expanded to 4 component-level expandable sections:
+    ForcedLaborTracker, SanctionedOfficialsTracker, Timeline, LegalResources
+  - Fixed generic Card component to conditionally add keyboard support when onClick provided
+  - Total ARIA attributes: 36 → 104 (3x improvement)
+  - **Agent:** Opus 4.6 (faster than expected — all followed same pattern)
 
-- [ ] **L1.2** Improve keyboard navigation
-  - **Time:** 3 hours
-  - **Blocker:** None
-  - **Best Agent:** Sonnet 4.5
+- [x] **L1.2** Improve keyboard navigation ✅ (2026-02-19, Session 14)
+  - All 15 clickable non-button elements now support Enter/Space keyboard activation
+  - All toggle elements communicate state via aria-expanded/aria-pressed
+  - PrisonerModal has role="dialog" aria-modal="true"
+  - **Agent:** Opus 4.6 (combined with L1.1b for efficiency)
 
 ---
 
@@ -495,6 +502,6 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-12), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-14), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
-**Next Review:** L1.1b ARIA labels, M2 remaining emoji reduction (lower-traffic pages)
+**Next Review:** All autonomous tasks COMPLETE. Remaining tasks (C2.1-C2.3, HR1-HR3, L2) blocked on human decisions.
