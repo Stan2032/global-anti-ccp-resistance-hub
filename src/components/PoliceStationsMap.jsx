@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Siren, AlertTriangle } from 'lucide-react';
 
 const PoliceStationsMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -126,7 +127,7 @@ const PoliceStationsMap = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 border border-red-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🚨 CCP Overseas Police Stations</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Siren className="w-6 h-6 text-red-400" /> CCP Overseas Police Stations</h2>
         <p className="text-slate-300 mb-4">
           The Chinese Communist Party operates at least <span className="text-red-400 font-bold">{totalStations} police service stations</span> in{' '}
           <span className="text-red-400 font-bold">{totalCountries} countries</span>, conducting transnational repression operations.
@@ -159,29 +160,29 @@ const PoliceStationsMap = () => {
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Monitor and surveil Chinese diaspora communities</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Pressure dissidents to return to China</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Threaten family members still in China</span>
             </div>
           </div>
           <div className="space-y-2">
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Collect intelligence on activists and critics</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Conduct "administrative tasks" as cover</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-red-400">⚠️</span>
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">Operate from restaurants, shops, and homes</span>
             </div>
           </div>
@@ -284,7 +285,7 @@ const PoliceStationsMap = () => {
 
       {/* Call to Action */}
       <div className="bg-red-900/20 border border-red-700/50 rounded-lg p-4">
-        <h3 className="font-semibold text-white mb-2">🚨 What You Can Do</h3>
+        <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><Siren className="w-5 h-5 text-red-400" /> What You Can Do</h3>
         <ul className="space-y-2 text-sm text-slate-300">
           <li className="flex items-start gap-2">
             <span className="text-red-400">→</span>

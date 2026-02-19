@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MessageCircle, Landmark, Mountain, Heart, Flame, PenLine, AlertTriangle, MapPin } from 'lucide-react';
 
 const SolidarityWall = () => {
   const [messages, setMessages] = useState(() => {
@@ -90,12 +91,12 @@ const SolidarityWall = () => {
   }, [messages]);
 
   const causes = [
-    { id: 'all', name: 'All Messages', icon: '💬' },
+    { id: 'all', name: 'All Messages', Icon: MessageCircle },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'uyghur', name: 'Uyghurs', icon: '🕌' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'uyghur', name: 'Uyghurs', Icon: Landmark },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'general', name: 'General', icon: '✊' },
+    { id: 'general', name: 'General', Icon: Heart },
   ];
 
   const addMessage = () => {
@@ -142,7 +143,7 @@ const SolidarityWall = () => {
       <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-6 border border-purple-700/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <span className="text-3xl mr-3">🕯️</span>
+            <Flame className="w-8 h-8 text-amber-400 mr-3" />
             <div>
               <h2 className="text-2xl font-bold text-white">Solidarity Wall</h2>
               <p className="text-slate-400">Messages of support from around the world</p>
@@ -150,9 +151,9 @@ const SolidarityWall = () => {
           </div>
           <button
             onClick={() => setShowForm(!showForm)}
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-1"
           >
-            ✍️ Add Your Voice
+            <PenLine className="w-4 h-4" /> Add Your Voice
           </button>
         </div>
         <p className="text-sm text-slate-300">
@@ -209,7 +210,7 @@ const SolidarityWall = () => {
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500"
                 >
                   {causes.filter(c => c.id !== 'all').map(cause => (
-                    <option key={cause.id} value={cause.id}>{cause.icon} {cause.name}</option>
+                    <option key={cause.id} value={cause.id}>{cause.icon || ''} {cause.name}</option>
                   ))}
                 </select>
               </div>
@@ -232,8 +233,8 @@ const SolidarityWall = () => {
             </div>
           </div>
           
-          <p className="text-xs text-slate-500 mt-4">
-            ⚠️ Messages are stored locally in your browser. Do not include personal information 
+          <p className="text-xs text-slate-500 mt-4 flex items-start gap-1">
+            <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" /> Messages are stored locally in your browser. Do not include personal information 
             that could identify you if you are at risk.
           </p>
         </div>
@@ -251,7 +252,7 @@ const SolidarityWall = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cause.icon}</span>
+            {cause.Icon ? <cause.Icon className="w-4 h-4" /> : <span>{cause.icon}</span>}
             <span>{cause.name}</span>
           </button>
         ))}
@@ -268,7 +269,7 @@ const SolidarityWall = () => {
               className={`rounded-xl border p-4 ${causeColors[message.cause]}`}
             >
               <div className="flex items-start justify-between mb-3">
-                <span className="text-2xl">{causeInfo?.icon}</span>
+                {causeInfo?.Icon ? <causeInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{causeInfo?.icon}</span>}
                 <span className="text-xs text-slate-500">{formatDate(message.timestamp)}</span>
               </div>
               
@@ -279,7 +280,7 @@ const SolidarityWall = () => {
                   — {message.name}
                 </div>
                 <div className="text-slate-500 text-xs">
-                  📍 {message.location}
+                  <MapPin className="w-3 h-3 inline" /> {message.location}
                 </div>
               </div>
             </div>

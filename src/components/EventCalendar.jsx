@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Flame, Heart, Handshake, Megaphone, CalendarDays, Smartphone } from 'lucide-react';
 
 const EventCalendar = () => {
   const [selectedMonth, setSelectedMonth] = useState('all');
@@ -223,11 +224,11 @@ const EventCalendar = () => {
 
   const getTypeIcon = (type) => {
     switch (type) {
-      case 'commemoration': return '🕯️';
-      case 'protest': return '✊';
-      case 'solidarity': return '🤝';
-      case 'awareness': return '📢';
-      default: return '📅';
+      case 'commemoration': return Flame;
+      case 'protest': return Heart;
+      case 'solidarity': return Handshake;
+      case 'awareness': return Megaphone;
+      default: return CalendarDays;
     }
   };
 
@@ -235,7 +236,7 @@ const EventCalendar = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">📅 Resistance Calendar</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><CalendarDays className="w-6 h-6" /> Resistance Calendar</h2>
         <p className="text-slate-300">
           Key dates for commemorations, protests, and solidarity actions throughout the year.
         </p>
@@ -290,7 +291,7 @@ const EventCalendar = () => {
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{getTypeIcon(event.type)}</span>
+                {(() => { const TypeIcon = getTypeIcon(event.type); return <TypeIcon className="w-6 h-6" />; })()}
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-red-400 font-mono text-sm">{event.date}</span>
@@ -328,7 +329,7 @@ const EventCalendar = () => {
 
       {/* Add to Calendar */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">📲 Stay Updated</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Smartphone className="w-5 h-5" /> Stay Updated</h3>
         <p className="text-slate-300 text-sm mb-4">
           Add these events to your calendar to never miss an important date.
         </p>

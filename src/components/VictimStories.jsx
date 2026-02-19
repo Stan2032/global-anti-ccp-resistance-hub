@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
 
 const VictimStories = () => {
   const [selectedStory, setSelectedStory] = useState(null);
@@ -160,33 +161,33 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
   ];
 
   const categories = [
-    { id: 'all', name: 'All Stories', icon: '📖' },
-    { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
-    { id: 'hongkong', name: 'Hong Kong', icon: '🏙️' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
+    { id: 'all', name: 'All Stories', Icon: BookOpen },
+    { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
+    { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'domestic', name: 'Domestic', icon: '🇨🇳' },
-    { id: 'transnational', name: 'Transnational', icon: '🌐' },
+    { id: 'transnational', name: 'Transnational', Icon: Globe },
   ];
 
   const filteredStories = selectedCategory === 'all'
     ? stories
     : stories.filter(s => s.category === selectedCategory);
 
-  const getCategoryIcon = (category) => {
+  const getCategoryInfo = (category) => {
     const cat = categories.find(c => c.id === category);
-    return cat ? cat.icon : '📖';
+    return cat || categories[0];
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">📖 Survivor Stories</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Survivor Stories</h2>
         <p className="text-slate-300">
           Personal testimonies from survivors of CCP persecution. Their courage in speaking out helps expose the truth.
         </p>
         <p className="text-sm text-yellow-400 mt-2">
-          ⚠️ Some accounts contain descriptions of torture and trauma.
+          <AlertTriangle className="w-4 h-4 inline" /> Some accounts contain descriptions of torture and trauma.
         </p>
       </div>
 
@@ -202,7 +203,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             }`}
           >
-            <span>{cat.icon}</span>
+            {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
             {cat.name}
           </button>
         ))}
@@ -219,7 +220,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-2xl">{getCategoryIcon(story.category)}</span>
+                  {(() => { const catInfo = getCategoryInfo(story.category); return catInfo.Icon ? <catInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{catInfo.icon}</span>; })()}
                   <span className="text-xs text-slate-500">{story.year}</span>
                   {story.verified && (
                     <span className="text-xs bg-green-600 text-white px-2 py-0.5 rounded">VERIFIED</span>
@@ -237,7 +238,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             </blockquote>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-500">📍 {story.location}</span>
+              <span className="text-xs text-slate-500 flex items-center gap-1"><MapPin className="w-3 h-3" /> {story.location}</span>
               <button className="text-red-400 hover:text-red-300 text-sm font-medium">
                 Read full story →
               </button>
@@ -261,7 +262,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-2xl">{getCategoryIcon(selectedStory.category)}</span>
+                    {(() => { const catInfo = getCategoryInfo(selectedStory.category); return catInfo.Icon ? <catInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{catInfo.icon}</span>; })()}
                     {selectedStory.verified && (
                       <span className="text-xs bg-green-600 text-white px-2 py-0.5 rounded">VERIFIED</span>
                     )}

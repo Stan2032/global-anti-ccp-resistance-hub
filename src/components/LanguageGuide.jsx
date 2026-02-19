@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Landmark, Mountain, Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
 
 const LanguageGuide = () => {
   const [activeLanguage, setActiveLanguage] = useState('cantonese');
@@ -6,8 +7,8 @@ const LanguageGuide = () => {
 
   const languages = [
     { id: 'cantonese', name: 'Cantonese', flag: '🇭🇰', region: 'Hong Kong' },
-    { id: 'uyghur', name: 'Uyghur', flag: '🕌', region: 'East Turkestan' },
-    { id: 'tibetan', name: 'Tibetan', flag: '🏔️', region: 'Tibet' },
+    { id: 'uyghur', name: 'Uyghur', Icon: Landmark, region: 'East Turkestan' },
+    { id: 'tibetan', name: 'Tibetan', Icon: Mountain, region: 'Tibet' },
     { id: 'mandarin', name: 'Mandarin', flag: '🇨🇳', region: 'China' },
     { id: 'taiwanese', name: 'Taiwanese', flag: '🇹🇼', region: 'Taiwan' },
   ];
@@ -259,7 +260,7 @@ const LanguageGuide = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🗣️</span>
+          <Languages className="w-8 h-8 text-blue-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Solidarity Phrase Guide</h2>
             <p className="text-slate-400">Learn key phrases to show support in native languages</p>
@@ -283,7 +284,7 @@ const LanguageGuide = () => {
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span className="text-lg">{lang.flag}</span>
+            {lang.Icon ? <lang.Icon className="w-5 h-5" /> : <span className="text-lg">{lang.flag}</span>}
             <span>{lang.name}</span>
           </button>
         ))}
@@ -292,7 +293,7 @@ const LanguageGuide = () => {
       {/* Current Language Info */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
         <div className="flex items-center space-x-3">
-          <span className="text-4xl">{currentLanguage?.flag}</span>
+          {currentLanguage?.Icon ? <currentLanguage.Icon className="w-10 h-10" /> : <span className="text-4xl">{currentLanguage?.flag}</span>}
           <div>
             <h3 className="font-bold text-white">{currentLanguage?.name}</h3>
             <p className="text-sm text-slate-400">Region: {currentLanguage?.region}</p>
@@ -315,7 +316,7 @@ const LanguageGuide = () => {
                 onClick={() => copyToClipboard(phrase.native, index)}
                 className="text-xs text-blue-400 hover:text-blue-300"
               >
-                {copiedPhrase === index ? '✓ Copied!' : '📋 Copy'}
+                {copiedPhrase === index ? '✓ Copied!' : <><ClipboardCopy className="w-3 h-3 inline" /> Copy</>}
               </button>
             </div>
             
@@ -329,7 +330,7 @@ const LanguageGuide = () => {
 
       {/* Usage Tips */}
       <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">💡 Tips for Using These Phrases</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5 text-yellow-400" /> Tips for Using These Phrases</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• Pronunciation matters - try to learn from native speakers when possible</li>
           <li>• Context is important - some slogans may be sensitive in certain situations</li>
@@ -341,7 +342,7 @@ const LanguageGuide = () => {
 
       {/* Resources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Learn More</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Learn More</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://cantonese.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Cantonese.org - Learn Cantonese

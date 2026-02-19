@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { User, Clock, MapPin, Cake } from 'lucide-react';
 
 const UrgentCaseTimer = ({ compact = false }) => {
   const [timers, setTimers] = useState({});
@@ -14,7 +15,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Stanley Prison, Hong Kong',
       age: 77,
       description: 'Media tycoon and founder of Apple Daily. Found guilty on Dec 19, 2024. Faces life sentence.',
-      image: '👤',
+      image: 'user',
       actionUrl: '/prisoners',
       hashtag: '#FreeJimmyLai'
     },
@@ -28,7 +29,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Urumqi Prison, Xinjiang',
       age: 55,
       description: 'Uyghur economist and professor. Sentenced to life for "separatism". Sakharov Prize winner.',
-      image: '👤',
+      image: 'user',
       actionUrl: '/prisoners',
       hashtag: '#FreeIlhamTohti'
     },
@@ -42,7 +43,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Hong Kong',
       age: 38,
       description: 'Human rights lawyer and Tiananmen vigil organizer. Multiple sentences totaling over 6 years.',
-      image: '👤',
+      image: 'user',
       actionUrl: '/prisoners',
       hashtag: '#FreeChowHangTung'
     },
@@ -56,7 +57,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Unknown, China',
       age: 35,
       description: 'Recognized as 11th Panchen Lama by Dalai Lama at age 6. Disappeared 3 days later. Longest-held political prisoner.',
-      image: '👤',
+      image: 'user',
       actionUrl: '/prisoners',
       hashtag: '#FreePanchenLama'
     }
@@ -94,7 +95,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-white flex items-center gap-2">
-            <span className="text-red-500">⏱️</span> Time in Detention
+            <Clock className="w-4 h-4 text-red-500" /> Time in Detention
           </h3>
           <a href="/prisoners" className="text-xs text-red-400 hover:text-red-300">View all →</a>
         </div>
@@ -139,7 +140,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-red-900/30 to-slate-900 border border-red-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">⏱️ Time in Detention</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Clock className="w-6 h-6" /> Time in Detention</h2>
         <p className="text-slate-300">
           Live counters showing how long political prisoners have been detained. Every second counts.
         </p>
@@ -198,11 +199,11 @@ const UrgentCaseTimer = ({ compact = false }) => {
               <div className="space-y-2 text-sm">
                 <p className="text-slate-300">{prisoner.description}</p>
                 <div className="flex items-center gap-2 text-slate-400">
-                  <span>📍</span>
+                  <MapPin className="w-4 h-4" />
                   <span>{prisoner.location}</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-400">
-                  <span>🎂</span>
+                  <Cake className="w-4 h-4" />
                   <span>Age: {prisoner.age}</span>
                 </div>
               </div>

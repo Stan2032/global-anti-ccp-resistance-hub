@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
 
 const EmergencyAlerts = () => {
   const [dismissedAlerts, setDismissedAlerts] = useState(() => {
@@ -15,7 +16,7 @@ const EmergencyAlerts = () => {
     {
       id: 'jimmy-lai-verdict',
       type: 'critical',
-      title: '🚨 URGENT: Jimmy Lai Sentenced to Life in Prison',
+      title: 'URGENT: Jimmy Lai Sentenced to Life in Prison',
       summary: 'Hong Kong media tycoon Jimmy Lai found guilty on all charges under NSL',
       details: `On December 19, 2024, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. He faces a potential life sentence. This verdict represents a devastating blow to press freedom in Hong Kong.
 
@@ -34,7 +35,7 @@ ACTION NEEDED:
     {
       id: 'uyghur-forced-labor',
       type: 'warning',
-      title: '⚠️ New Report: 57 Global Brands Linked to Uyghur Forced Labor',
+      title: 'New Report: 57 Global Brands Linked to Uyghur Forced Labor',
       summary: 'Updated ASPI report identifies additional companies in forced labor supply chains',
       details: `The Australian Strategic Policy Institute has released an updated report identifying 57 major global brands with links to Uyghur forced labor in their supply chains.
 
@@ -57,7 +58,7 @@ WHAT YOU CAN DO:
     {
       id: 'taiwan-military',
       type: 'info',
-      title: 'ℹ️ Taiwan Reports Increased PLA Activity Near Strait',
+      title: 'Taiwan Reports Increased PLA Activity Near Strait',
       summary: 'Taiwan defense ministry reports 47 PLA aircraft detected in past 24 hours',
       details: `Taiwan's Ministry of National Defense has reported increased People's Liberation Army activity near the Taiwan Strait, with 47 aircraft and 12 naval vessels detected in the past 24 hours.
 
@@ -80,7 +81,7 @@ STAY INFORMED:
     {
       id: 'hk-47-sentencing',
       type: 'critical',
-      title: '🚨 Hong Kong 47: Mass Sentencing Underway',
+      title: 'Hong Kong 47: Mass Sentencing Underway',
       summary: '45 pro-democracy activists sentenced in largest NSL case',
       details: `The Hong Kong 47 case has concluded with 45 activists receiving sentences ranging from 4 to 10 years in prison. This is the largest prosecution under the National Security Law.
 
@@ -109,19 +110,19 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
     critical: {
       bg: 'bg-red-900/50',
       border: 'border-red-600',
-      icon: '🚨',
+      Icon: Siren,
       badge: 'bg-red-600',
     },
     warning: {
       bg: 'bg-yellow-900/50',
       border: 'border-yellow-600',
-      icon: '⚠️',
+      Icon: AlertTriangle,
       badge: 'bg-yellow-600',
     },
     info: {
       bg: 'bg-blue-900/50',
       border: 'border-blue-600',
-      icon: 'ℹ️',
+      Icon: Info,
       badge: 'bg-blue-600',
     },
   };
@@ -201,7 +202,7 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                       rel="noopener noreferrer"
                       className="text-sm px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-blue-400 rounded-lg transition-colors"
                     >
-                      🔗 {link.name}
+                      <ExternalLink className="w-3 h-3 inline" /> {link.name}
                     </a>
                   ))}
                 </div>
