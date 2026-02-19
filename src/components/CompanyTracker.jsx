@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Building2, Ban, AlertTriangle, TrendingUp, BarChart3, BookOpen, Search, Landmark, Briefcase, Handshake } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
 import forcedLaborData from '../data/forced_labor_companies_research.json';
@@ -198,19 +199,19 @@ const CompanyTracker = () => {
     avoid: {
       color: 'bg-red-900/30 border-red-700/50',
       badge: 'bg-red-900/50 text-red-400',
-      label: '🚫 Avoid',
+      label: 'Avoid', Icon: Ban,
       description: 'Documented serious concerns, recommend avoiding',
     },
     concern: {
       color: 'bg-orange-900/30 border-orange-700/50',
       badge: 'bg-orange-900/50 text-orange-400',
-      label: '⚠️ Concern',
+      label: 'Concern', Icon: AlertTriangle,
       description: 'Documented concerns, needs improvement',
     },
     improving: {
       color: 'bg-yellow-900/30 border-yellow-700/50',
       badge: 'bg-yellow-900/50 text-yellow-400',
-      label: '📈 Improving',
+      label: 'Improving', Icon: TrendingUp,
       description: 'Taking steps to address issues',
     },
     good: {
@@ -239,7 +240,7 @@ const CompanyTracker = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🏢</span>
+          <Building2 className="w-8 h-8 text-orange-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Company Accountability Tracker</h2>
             <p className="text-slate-400">Track corporate complicity in CCP human rights abuses</p>
@@ -313,7 +314,8 @@ const CompanyTracker = () => {
             >
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-bold text-white">{company.name}</h3>
-                <span className={`text-xs px-2 py-0.5 rounded ${status.badge}`}>
+                <span className={`text-xs px-2 py-0.5 rounded ${status.badge} flex items-center gap-1`}>
+                  {status.Icon && <status.Icon className="w-3 h-3" />}
                   {status.label}
                 </span>
               </div>
@@ -326,7 +328,7 @@ const CompanyTracker = () => {
                 {/* Show UFLPA actions if available */}
                 {company.uflpaActions && (
                   <div className="bg-blue-900/20 border border-blue-700/30 rounded p-2 mt-2">
-                    <p className="text-blue-300"><strong>🏛️ UFLPA Actions:</strong></p>
+                    <p className="text-blue-300 flex items-center gap-1"><Landmark className="w-3 h-3" /><strong>UFLPA Actions:</strong></p>
                     <p className="mt-1">{company.uflpaActions}</p>
                   </div>
                 )}
@@ -334,7 +336,7 @@ const CompanyTracker = () => {
                 {/* Show company response if available */}
                 {company.companyResponse && isExpanded && (
                   <div className="bg-yellow-900/20 border border-yellow-700/30 rounded p-2 mt-2">
-                    <p className="text-yellow-300"><strong>💼 Company Response:</strong></p>
+                    <p className="text-yellow-300 flex items-center gap-1"><Briefcase className="w-3 h-3" /><strong>Company Response:</strong></p>
                     <p className="mt-1">{company.companyResponse}</p>
                   </div>
                 )}
@@ -370,11 +372,11 @@ const CompanyTracker = () => {
 
       {/* Legend */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-3">📊 Status Legend</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Status Legend</h3>
         <div className="grid md:grid-cols-2 gap-2">
           {Object.entries(statusInfo).map(([key, info]) => (
             <div key={key} className="flex items-center space-x-2">
-              <span className={`text-xs px-2 py-0.5 rounded ${info.badge}`}>{info.label}</span>
+              <span className={`text-xs px-2 py-0.5 rounded ${info.badge} flex items-center gap-1`}>{info.Icon && <info.Icon className="w-3 h-3" />}{info.label}</span>
               <span className="text-xs text-slate-400">{info.description}</span>
             </div>
           ))}
@@ -384,14 +386,14 @@ const CompanyTracker = () => {
       {/* Resources */}
       <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
         <h3 className="font-medium text-white mb-3 flex items-center">
-          <span className="text-xl mr-2">📚</span>
+          <BookOpen className="w-5 h-5 text-blue-400 mr-2" />
           Key Research Sources
         </h3>
         
         {/* Prominent ASPI Report */}
         <div className="mb-4 bg-blue-900/30 border border-blue-600/50 rounded-lg p-3">
           <div className="flex items-start space-x-2">
-            <span className="text-2xl">🔍</span>
+            <Search className="w-6 h-6 text-blue-400" />
             <div className="flex-1">
               <h4 className="font-semibold text-white mb-1">Primary Source: ASPI "Uyghurs for Sale"</h4>
               <p className="text-sm text-slate-300 mb-2">
@@ -413,7 +415,7 @@ const CompanyTracker = () => {
 
         <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div className="bg-slate-800/50 rounded-lg p-3">
-            <h5 className="text-white font-medium mb-1">🏛️ UFLPA Enforcement</h5>
+            <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Landmark className="w-4 h-4" /> UFLPA Enforcement</h5>
             <p className="text-slate-400 text-xs mb-2">
               US Customs enforcement of the Uyghur Forced Labor Prevention Act
             </p>
@@ -423,7 +425,7 @@ const CompanyTracker = () => {
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-3">
-            <h5 className="text-white font-medium mb-1">📊 Sheffield Hallam</h5>
+            <h5 className="text-white font-medium mb-1 flex items-center gap-1"><BarChart3 className="w-4 h-4" /> Sheffield Hallam</h5>
             <p className="text-slate-400 text-xs mb-2">
               "In Broad Daylight" - Comprehensive supply chain research
             </p>
@@ -433,7 +435,7 @@ const CompanyTracker = () => {
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-3">
-            <h5 className="text-white font-medium mb-1">🤝 Coalition</h5>
+            <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Handshake className="w-4 h-4" /> Coalition</h5>
             <p className="text-slate-400 text-xs mb-2">
               Coalition to End Forced Labour in the Uyghur Region
             </p>
@@ -443,7 +445,7 @@ const CompanyTracker = () => {
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-3">
-            <h5 className="text-white font-medium mb-1">🏛️ Congressional Reports</h5>
+            <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Landmark className="w-4 h-4" /> Congressional Reports</h5>
             <p className="text-slate-400 text-xs mb-2">
               US Congress research and investigations
             </p>
