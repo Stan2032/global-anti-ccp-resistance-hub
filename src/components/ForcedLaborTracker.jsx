@@ -147,6 +147,10 @@ const ForcedLaborTracker = () => {
               <div 
                 className="p-4 cursor-pointer hover:bg-slate-700/50 transition-colors"
                 onClick={() => setExpandedCompany(expandedCompany === idx ? null : idx)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedCompany(expandedCompany === idx ? null : idx) } }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expandedCompany === idx}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">

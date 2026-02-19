@@ -276,6 +276,10 @@ Key provisions:
             <div
               className="p-6 cursor-pointer hover:bg-slate-700/50 transition-colors"
               onClick={() => setExpandedItem(expandedItem === framework.id ? null : framework.id)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedItem(expandedItem === framework.id ? null : framework.id) } }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expandedItem === framework.id}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">

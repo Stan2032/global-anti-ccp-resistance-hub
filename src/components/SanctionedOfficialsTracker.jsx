@@ -159,6 +159,10 @@ const SanctionedOfficialsTracker = () => {
               <div 
                 className="p-4 cursor-pointer hover:bg-slate-700/50 transition-colors"
                 onClick={() => setExpandedOfficial(expandedOfficial === idx ? null : idx)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedOfficial(expandedOfficial === idx ? null : idx) } }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expandedOfficial === idx}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">

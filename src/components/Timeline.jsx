@@ -284,6 +284,10 @@ const Timeline = () => {
               key={index}
               className={`relative pl-12 ${getCategoryColor(event.category)} border-l-4 rounded-r-lg p-4 cursor-pointer hover:bg-opacity-20 transition-colors`}
               onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedEvent(expandedEvent === index ? null : index) } }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expandedEvent === index}
             >
               {/* Timeline Dot */}
               <div className={`absolute left-2 top-6 w-4 h-4 rounded-full ${getSignificanceColor(event.significance)} border-2 border-slate-900`} />

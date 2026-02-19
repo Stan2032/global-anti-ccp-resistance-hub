@@ -19,6 +19,9 @@ const Card = ({
     <motion.div
       className={`${baseClasses} ${hoverClasses} ${clickableClasses} transition-all duration-200 ${className}`}
       onClick={onClick}
+      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(e) } } : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       whileHover={hover ? { y: -2 } : {}}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       {...props}
