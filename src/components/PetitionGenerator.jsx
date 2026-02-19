@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Landmark, Building2, GraduationCap, Globe, Monitor, FileText, Clipboard, Send, BookOpen } from 'lucide-react';
 
 const PetitionGenerator = () => {
   const [step, setStep] = useState(1);
@@ -18,11 +19,11 @@ const PetitionGenerator = () => {
   const [copied, setCopied] = useState(false);
 
   const petitionTypes = [
-    { id: 'government', name: 'Government Official', icon: '🏛️' },
-    { id: 'company', name: 'Corporation/Company', icon: '🏢' },
-    { id: 'university', name: 'University/Institution', icon: '🎓' },
-    { id: 'international', name: 'International Body', icon: '🌐' },
-    { id: 'media', name: 'Media Organization', icon: '📺' },
+    { id: 'government', name: 'Government Official', Icon: Landmark },
+    { id: 'company', name: 'Corporation/Company', Icon: Building2 },
+    { id: 'university', name: 'University/Institution', Icon: GraduationCap },
+    { id: 'international', name: 'International Body', Icon: Globe },
+    { id: 'media', name: 'Media Organization', Icon: Monitor },
   ];
 
   const targetOptions = {
@@ -214,7 +215,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-xl p-6 border border-blue-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📝</span>
+          <FileText className="w-8 h-8 text-blue-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Petition Generator</h2>
             <p className="text-slate-400">Create professional petitions for your advocacy campaigns</p>
@@ -266,7 +267,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                     : 'bg-slate-800/50 border-slate-700 hover:border-slate-600'
                 }`}
               >
-                <span className="text-2xl">{type.icon}</span>
+                <type.Icon className="w-6 h-6 text-slate-300" />
                 <h4 className="font-medium text-white mt-2">{type.name}</h4>
               </button>
             ))}
@@ -488,7 +489,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                   : 'bg-blue-600 hover:bg-blue-700 text-white'
               }`}
             >
-              {copied ? '✓ Copied!' : '📋 Copy to Clipboard'}
+              {copied ? '✓ Copied!' : <span className="flex items-center gap-1"><Clipboard className="w-4 h-4" /> Copy to Clipboard</span>}
             </button>
           </div>
           
@@ -499,7 +500,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
           </div>
 
           <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-            <h4 className="font-medium text-blue-300 mb-2">📤 Next Steps</h4>
+            <h4 className="font-medium text-blue-300 mb-2 flex items-center gap-2"><Send className="w-4 h-4" /> Next Steps</h4>
             <ul className="text-sm text-slate-300 space-y-1">
               <li>• Copy the petition and paste into an email or document</li>
               <li>• Collect signatures from supporters</li>
@@ -543,7 +544,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
 
       {/* Templates */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-3">📚 Petition Tips</h3>
+        <h3 className="font-medium text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4" /> Petition Tips</h3>
         <ul className="text-sm text-slate-400 space-y-1">
           <li>• Be specific and clear about your demands</li>
           <li>• Include verifiable facts and sources</li>
