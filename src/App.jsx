@@ -69,9 +69,9 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
       
       <div className="flex items-center space-x-2">
         <LanguageSelector />
-        <span className="px-2 py-1 bg-green-900/50 text-green-400 text-xs font-medium rounded-full border border-green-700">
-          SECURE
-        </span>
+        <Link to="/security" className="px-2 py-1 bg-slate-700/50 text-slate-300 text-xs font-medium rounded-full border border-slate-600 hover:bg-slate-600 hover:text-white transition-colors">
+          Security
+        </Link>
       </div>
     </div>
   </header>
