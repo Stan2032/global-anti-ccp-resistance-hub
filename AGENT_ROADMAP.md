@@ -390,6 +390,42 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
+### L5: Deployment Configuration
+**Status:** ✅ COMPLETE (Session 20)  
+**Priority:** LOW - Infrastructure readiness  
+**Agent:** Opus 4.6 (best: configuration and infrastructure tasks)
+
+- [x] **L5.1** Make base path configurable via `VITE_BASE_PATH` env var
+  - Default: `/global-anti-ccp-resistance-hub/` (GitHub Pages)
+  - Cloudflare Pages: set `VITE_BASE_PATH=/` in build settings
+- [x] **L5.2** Update manifest.json to use relative paths (`./`)
+  - Works on any base path without configuration changes
+- [x] **L5.3** Document VITE_BASE_PATH and VITE_SITE_URL in .env.example
+- [x] **L5.4** Add TODO notes to robots.txt and sitemap.xml for domain updates
+
+**Next Steps (when deploying to Cloudflare):**
+- [ ] Set `VITE_BASE_PATH=/` in Cloudflare Pages build environment
+- [ ] Update robots.txt sitemap URL to new domain
+- [ ] Update sitemap.xml URLs to new domain
+- [ ] Update OG/Twitter meta tag URLs in index.html
+
+---
+
+### T1: Test Coverage Expansion
+**Status:** ✅ COMPLETE (Session 20)  
+**Priority:** LOW - Quality assurance  
+**Agent:** Opus 4.6 (best: systematic test creation)
+
+- [x] **T1.1** WebRTC leak check hook tests (9 tests)
+  - Hook initialization, unsupported browser
+  - IP classification regex: private IPv4 ranges, private IPv6, public IPs
+- [x] **T1.2** Accessibility component tests (14 tests)
+  - SkipLinks, VisuallyHidden, LiveRegion, AccessibleProgress, AccessibleAlert
+
+**Test coverage:** 142 → 165 tests (12 test files for 124 components)
+
+---
+
 ## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
 
 ### HR1: Backend Architecture
@@ -535,6 +571,6 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-18), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-20), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
 **Next Review:** All autonomous tasks COMPLETE. Remaining tasks (HR1.1-3, HR3.3, L2.3) blocked on human decisions or volunteer recruitment.

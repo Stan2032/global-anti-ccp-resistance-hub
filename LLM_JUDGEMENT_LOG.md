@@ -1465,3 +1465,40 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 
 ### Agent Assignment Note
 **Best agent for lint fixes:** Opus 4.6 or Sonnet 4.5 — mechanical changes across many files, requires understanding of ESLint rules and JSX semantics to distinguish real errors from false positives.
+
+---
+
+## Session 20 (2026-02-19) — Opus 4.6
+**Task:** Deployment config fix, test coverage expansion
+
+### Actions
+
+1. **Found deployment misconfiguration** — All URLs hardcoded to `stan2032.github.io/global-anti-ccp-resistance-hub/` despite owner choosing Cloudflare Pages
+2. **Made base path configurable** via `VITE_BASE_PATH` env var — backward compatible with GH Pages, easy switch to Cloudflare
+3. **Updated manifest.json** to relative paths (`./`) — works on any base path
+4. **Added 23 new tests** in 2 test files:
+   - WebRTC hook: 9 tests (init, unsupported, IP classification regex)
+   - Accessibility: 14 tests (SkipLinks, VisuallyHidden, LiveRegion, AccessibleProgress, AccessibleAlert)
+5. **Updated documentation** — Added L5, T1 sections to AGENT_ROADMAP
+
+### Key Decisions
+
+1. **Did NOT change OG/Twitter URLs** — can't update until Cloudflare domain is known. Added TODO notes instead.
+2. **Used relative paths in manifest.json** — `./` works on both `/global-anti-ccp-resistance-hub/` and `/` base paths.
+3. **Simplified WebRTC tests** — full RTCPeerConnection mocking in jsdom is impractical (async ICE gathering, timers). Tested the core IP classification regex directly instead, which validates the security-critical logic.
+4. **Tested actual component behavior** — LiveRegion always uses `role="status"` regardless of priority. Test matches reality, not assumptions.
+
+### Cumulative Progress
+
+| Category | Sessions 1-5 | Sessions 6-20 | Total |
+|----------|-------------|--------------|-------|
+| Tests | 113 | 52 | 165 |
+| Dead code removed | 0 | ~5,418 lines | ~5,418 lines |
+| Emojis removed | 0 | 656 | 656 |
+| ARIA attributes | 36 | 172 | 208 |
+| Lint errors fixed | 0 | 237 | 237 |
+| Source entries | 142 | 22 | 164 |
+| i18n locales | 0 | 5 | 5 |
+
+### Agent Assignment Note
+**Best agent for test writing:** Opus 4.6 — requires understanding component behavior, mocking strategies, and security implications. Sonnet 4.5 could handle simpler render-and-check tests.
