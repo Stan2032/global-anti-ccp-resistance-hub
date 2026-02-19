@@ -334,6 +334,45 @@ See [SIMULATED_DATA_CLEANUP_TODO.md](./SIMULATED_DATA_CLEANUP_TODO.md) for detai
 
 ---
 
+## Propaganda & Source Bias Assessment
+
+### CCP Information Warfare — What We Guard Against
+
+The Chinese Communist Party (CCP) operates the world's most sophisticated state-sponsored propaganda apparatus. We actively assess all sources against the following threats:
+
+**CCP State Media (Never Cited as Evidence)**
+- Xinhua News Agency — official CCP news organ
+- CGTN (China Global Television Network) — international propaganda broadcaster
+- Global Times — CCP-linked nationalist tabloid
+- People's Daily / China Daily — official CCP publications
+
+**Spamouflage / DRAGONBRIDGE**  
+CCP-linked covert influence operation (documented by Meta, Google/Mandiant, Stanford Internet Observatory). Uses fake social media accounts to seed pro-CCP narratives, attack credible researchers, and discredit human rights reporting.
+
+**Sources Targeted by CCP Disinformation (Verified Credible)**  
+The CCP actively campaigns against credible researchers. Being targeted by CCP propaganda is itself evidence of credibility:
+- **Dr. Adrian Zenz** — Senior Fellow, Victims of Communism Memorial Foundation. CCP has run 100+ Global Times attack articles against him. His Xinjiang estimates are corroborated by ASPI satellite data, the Xinjiang Police Files, BBC, BuzzFeed News, and US State Department reports.
+- **ASPI (Australian Strategic Policy Institute)** — Their Xinjiang Data Project is based on verifiable satellite imagery. CCP attacks on ASPI are documented disinformation.
+- **Safeguard Defenders** — Their overseas police station research was validated when multiple governments confirmed and closed stations.
+
+**Source with Known CCP Ownership**  
+- **South China Morning Post** — Owned by Alibaba Group since 2015. Has shifted toward pro-Beijing editorial stance. Used only for factual news reporting (court records, government statements). Never cited for analysis of CCP policies or human rights.
+
+For full bias assessment methodology, see [SOURCE_BIAS_AUDIT.md](./SOURCE_BIAS_AUDIT.md).
+
+### Bias Risk Levels
+
+All sources in our registry are assessed with a bias risk level:
+
+| Level | Meaning |
+|-------|---------|
+| **None** | Independent, credible, no known CCP influence |
+| **Low** | Minor concern (e.g. disclosed state funding, single-community advocacy); use with awareness |
+| **Medium** | Known CCP ownership/influence or editorial slant; cross-reference required |
+| **CCP** | CCP state media or direct CCP propaganda — NEVER cited as evidence |
+
+---
+
 ## Contact
 
 For questions about data sources or methodology:
@@ -342,6 +381,6 @@ For questions about data sources or methodology:
 
 ---
 
-**Last Updated:** December 30, 2025
+**Last Updated:** February 19, 2026
 
 **Data Verification Status:** Ongoing - We continuously verify and update sources
