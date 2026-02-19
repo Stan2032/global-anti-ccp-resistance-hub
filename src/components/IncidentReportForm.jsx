@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AlertTriangle, Lock, Globe, ShieldCheck } from 'lucide-react';
 
 const IncidentReportForm = () => {
   const [formData, setFormData] = useState({
@@ -121,7 +122,7 @@ const IncidentReportForm = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/50 to-slate-900 p-6 border-b border-slate-700">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <span>🚨</span> Report CCP Harassment or Transnational Repression
+          <AlertTriangle className="w-5 h-5" /> Report CCP Harassment or Transnational Repression
         </h2>
         <p className="text-slate-400 mt-1">
           Your report helps document patterns of CCP interference worldwide
@@ -131,7 +132,7 @@ const IncidentReportForm = () => {
       {/* Security Notice */}
       <div className="bg-green-900/20 border-b border-green-700/50 p-4">
         <div className="flex items-start gap-3">
-          <span className="text-green-400 text-xl">🔒</span>
+          <Lock className="w-5 h-5 text-green-400" />
           <div>
             <h3 className="font-semibold text-green-300 text-sm">Your Security Matters</h3>
             <p className="text-green-200/70 text-xs mt-1">
@@ -399,7 +400,7 @@ const IncidentReportForm = () => {
               disabled={!formData.consent || !formData.description}
               className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
             >
-              <span>🔒</span> Submit Securely
+              <Lock className="w-4 h-4" /> Submit Securely
             </button>
           )}
         </div>
@@ -409,13 +410,13 @@ const IncidentReportForm = () => {
       <div className="bg-slate-900/50 p-4 border-t border-slate-700">
         <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
           <span className="flex items-center gap-1">
-            <span>🔒</span> End-to-end encrypted
+            <Lock className="w-3 h-3" /> End-to-end encrypted
           </span>
           <span className="flex items-center gap-1">
-            <span>🌐</span> Tor-compatible
+            <Globe className="w-3 h-3" /> Tor-compatible
           </span>
           <span className="flex items-center gap-1">
-            <span>🛡️</span> No logs retained
+            <ShieldCheck className="w-3 h-3" /> No logs retained
           </span>
         </div>
       </div>
