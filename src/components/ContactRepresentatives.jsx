@@ -208,7 +208,7 @@ Sincerely,
       subject: 'Urgent: Free Jimmy Lai - Hong Kong Press Freedom Hero',
       body: `Dear [Representative Name],
 
-I am writing to urge immediate action to secure the release of Jimmy Lai, the 77-year-old Hong Kong media entrepreneur and democracy advocate.
+I am writing to urge immediate action to secure the release of Jimmy Lai, the 78-year-old Hong Kong media entrepreneur and democracy advocate.
 
 Jimmy Lai:
 • Founded Apple Daily, Hong Kong's largest pro-democracy newspaper

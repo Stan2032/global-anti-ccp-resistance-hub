@@ -36,7 +36,7 @@ const NewsDigest = () => {
 
   const recentDigests = [
     {
-      date: '2024-12-15',
+      date: '2025-12-15',
       title: 'Weekly Roundup: Jimmy Lai Verdict & Global Response',
       highlights: [
         'Jimmy Lai found guilty, faces life sentence',

@@ -150,7 +150,7 @@ export async function fetchPoliticalPrisoners() {
       name: 'Jimmy Lai',
       chineseName: '黎智英',
       status: 'imprisoned',
-      sentence: 'Life imprisonment',
+      sentence: 'Convicted — faces life imprisonment, sentencing pending',
       dateDetained: '2020-08-10',
       dateConvicted: '2025-12-15',
       category: 'Press Freedom',

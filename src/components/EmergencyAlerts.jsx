@@ -16,16 +16,16 @@ const EmergencyAlerts = () => {
     {
       id: 'jimmy-lai-verdict',
       type: 'critical',
-      title: 'URGENT: Jimmy Lai Sentenced to Life in Prison',
+      title: 'URGENT: Jimmy Lai Convicted — Faces Life Sentence',
       summary: 'Hong Kong media tycoon Jimmy Lai found guilty on all charges under NSL',
-      details: `On December 19, 2024, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. He faces a potential life sentence. This verdict represents a devastating blow to press freedom in Hong Kong.
+      details: `On December 15, 2025, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. He faces a potential life sentence. This verdict represents a devastating blow to press freedom in Hong Kong.
 
 ACTION NEEDED:
 • Contact your representatives to demand his release
 • Share his story on social media with #FreeJimmyLai
 • Support the Committee for Freedom in Hong Kong
 • Sign petitions calling for sanctions on HK officials`,
-      date: '2024-12-19',
+      date: '2025-12-15',
       links: [
         { name: 'Free Jimmy Lai Campaign', url: 'https://www.freejimmylai.com' },
         { name: 'Hong Kong Watch', url: 'https://www.hongkongwatch.org' },

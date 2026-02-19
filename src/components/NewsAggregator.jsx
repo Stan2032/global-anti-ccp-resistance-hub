@@ -36,7 +36,7 @@ const NewsAggregator = () => {
       id: 1,
       title: 'Jimmy Lai Found Guilty on All Charges, Faces Life Sentence',
       source: 'Hong Kong Watch',
-      date: '2024-12-19',
+      date: '2025-12-15',
       category: 'hongkong',
       priority: 'CRITICAL',
       summary: 'Media tycoon and pro-democracy activist Jimmy Lai has been found guilty of sedition and collusion with foreign forces under Hong Kong\'s National Security Law.',

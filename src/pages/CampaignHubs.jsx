@@ -37,8 +37,8 @@ const CampaignHubs = () => {
       countries: 67,
       startDate: '2020-08-10',
       goal: 'Secure Jimmy Lai\'s release and overturn unjust conviction',
-      impact: 'Jimmy Lai, 77, faces life imprisonment under Hong Kong\'s National Security Law for his pro-democracy advocacy',
-      nextMilestone: 'Trial verdict expected Q1 2025',
+      impact: 'Jimmy Lai, 78, faces life imprisonment under Hong Kong\'s National Security Law for his pro-democracy advocacy',
+      nextMilestone: 'Sentencing expected 2026',
       actions: [
         'Sign international petition',
         'Contact your government representative',

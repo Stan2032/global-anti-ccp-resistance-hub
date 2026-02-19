@@ -60,7 +60,7 @@ const SocialMediaToolkit = () => {
       id: 'post-1',
       title: 'Jimmy Lai Verdict',
       topic: 'hongkong',
-      text: '🚨 BREAKING: Hong Kong media mogul Jimmy Lai has been sentenced to LIFE in prison for "collusion with foreign forces."\n\nHis crime? Publishing a newspaper that told the truth.\n\nThis is what happens when authoritarianism goes unchecked.\n\n#FreeJimmyLai #StandWithHongKong',
+      text: '🚨 BREAKING: Hong Kong media mogul Jimmy Lai has been convicted and faces LIFE in prison for "collusion with foreign forces."\n\nHis crime? Publishing a newspaper that told the truth.\n\nThis is what happens when authoritarianism goes unchecked.\n\n#FreeJimmyLai #StandWithHongKong',
     },
     {
       id: 'post-2',
