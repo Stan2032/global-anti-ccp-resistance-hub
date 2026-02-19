@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Building2 } from 'lucide-react';
 
 const IPACMembers = () => {
   const [selectedCountry, setSelectedCountry] = useState('all');
@@ -113,7 +114,7 @@ const IPACMembers = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-blue-700 rounded-xl p-6">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-4xl">🏛️</span>
+          <Building2 className="w-10 h-10 text-slate-300" />
           <div>
             <h2 className="text-2xl font-bold text-white">Inter-Parliamentary Alliance on China (IPAC)</h2>
             <p className="text-slate-300">{ipacData.overview.description}</p>

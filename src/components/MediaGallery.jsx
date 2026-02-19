@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Mountain, BarChart3, Megaphone, Umbrella, Palette, Handshake, Droplets, Flag, Satellite, Folder, Shield, Flame, Zap, Map, Link2, Calendar, ClipboardList, Flower2, User, FileText } from 'lucide-react';
+import { Image, Mountain, BarChart3, Megaphone, Umbrella, Palette, Handshake, Droplets, Flag, Satellite, Folder, Shield, Flame, Zap, Map, Link2, Calendar, ClipboardList, Flower2, User, FileText, Landmark } from 'lucide-react';
 
 const MediaGallery = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -8,7 +8,7 @@ const MediaGallery = () => {
   const categories = [
     { id: 'all', name: 'All Media', Icon: Image },
     { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
+    { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
     { id: 'tibet', name: 'Tibet', Icon: Mountain },
     { id: 'infographic', name: 'Infographics', Icon: BarChart3 },
     { id: 'symbol', name: 'Symbols', Icon: Megaphone },

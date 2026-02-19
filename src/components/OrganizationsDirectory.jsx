@@ -179,7 +179,7 @@ const OrganizationsDirectory = () => {
 
                 {org.latest_news && (
                   <p className="text-blue-400 text-xs">
-                    📰 {org.latest_news}
+                    <span className="flex items-center gap-1"><Newspaper className="w-3 h-3" /> {org.latest_news}</span>
                   </p>
                 )}
 

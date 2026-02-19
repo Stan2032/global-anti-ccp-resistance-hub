@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SourcesList } from './ui/SourceAttribution';
+import { CalendarDays } from 'lucide-react';
 
 const Timeline = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -244,7 +245,7 @@ const Timeline = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
-        <h2 className="text-2xl font-bold text-white mb-2">📅 Timeline of CCP Repression</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><CalendarDays className="w-6 h-6" /> Timeline of CCP Repression</h2>
         <p className="text-slate-400">
           Key events documenting the Chinese Communist Party's human rights abuses from 1950 to present.
         </p>

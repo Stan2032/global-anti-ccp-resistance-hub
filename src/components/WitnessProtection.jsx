@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield } from 'lucide-react';
+import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield, Square } from 'lucide-react';
 
 const WitnessProtection = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -424,7 +424,7 @@ const WitnessProtection = () => {
                 'Consult with a lawyer about your options',
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center space-x-3 p-2 bg-slate-900/50 rounded">
-                  <span className="text-purple-400">☐</span>
+                  <Square className="w-4 h-4 text-purple-400" />
                   <span className="text-slate-300 text-sm">{item}</span>
                 </div>
               ))}

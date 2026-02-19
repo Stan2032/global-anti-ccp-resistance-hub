@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { HelpCircle } from 'lucide-react';
 
 const FAQ = () => {
   const [openQuestion, setOpenQuestion] = useState(null);
@@ -151,7 +152,7 @@ const FAQ = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">❓</span>
+          <HelpCircle className="w-8 h-8 text-slate-300" />
           <div>
             <h2 className="text-2xl font-bold text-white">Frequently Asked Questions</h2>
             <p className="text-slate-400">Common questions for newcomers and activists</p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SourcesList } from './ui/SourceAttribution';
+import { Ban } from 'lucide-react';
 
 const BoycottList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -292,7 +293,7 @@ const BoycottList = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🚫 Boycott Guide: Companies Linked to Forced Labor</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Ban className="w-6 h-6" /> Boycott Guide: Companies Linked to Forced Labor</h2>
         <p className="text-slate-300">
           These companies have been implicated in reports by ASPI, Human Rights Watch, and other organizations 
           for supply chain links to Uyghur forced labor. Consider alternatives when possible.

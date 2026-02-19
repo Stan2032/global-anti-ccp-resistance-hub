@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
+import { Film } from 'lucide-react';
 
 const DocumentaryList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -263,7 +264,7 @@ const DocumentaryList = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🎬 Essential Documentaries</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Film className="w-6 h-6" /> Essential Documentaries</h2>
         <p className="text-slate-300">
           {documentaries.length} documentaries covering CCP human rights abuses, from Hong Kong protests to the Uyghur genocide.
         </p>

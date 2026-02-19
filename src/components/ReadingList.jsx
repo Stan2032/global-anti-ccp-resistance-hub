@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BookOpen } from 'lucide-react';
 
 const ReadingList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -275,7 +276,7 @@ const ReadingList = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-900/30 to-orange-900/30 border border-amber-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">📚 Essential Reading List</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Essential Reading List</h2>
         <p className="text-slate-300">
           {books.length} essential books for understanding CCP human rights abuses, from academic works to survivor testimonies.
         </p>
@@ -387,7 +388,7 @@ const ReadingList = () => {
 
       {/* Reading Tips */}
       <div className="bg-amber-900/20 border border-amber-700/50 rounded-lg p-4">
-        <h3 className="font-semibold text-white mb-2">📖 Reading Tips</h3>
+        <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Reading Tips</h3>
         <ul className="space-y-1 text-sm text-slate-300">
           <li>• Start with books marked <span className="text-red-400">CRITICAL</span> for foundational understanding</li>
           <li>• Use WorldCat to find books at your local library</li>

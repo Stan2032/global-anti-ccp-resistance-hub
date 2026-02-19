@@ -238,7 +238,7 @@ const PodcastPlayer = () => {
 
       {/* Listening Guide */}
       <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 mb-6">
-        <h3 className="text-purple-400 font-bold mb-2">🎧 Recommended Listening</h3>
+        <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2"><Headphones className="w-5 h-5" /> Recommended Listening</h3>
         <p className="text-slate-300 text-sm mb-2">
           Start with these highly-rated podcasts for comprehensive coverage of CCP human rights abuses.
         </p>

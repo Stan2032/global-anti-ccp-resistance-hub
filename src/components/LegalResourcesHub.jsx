@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Scale, Search, ExternalLink, AlertTriangle, CheckCircle, FileText, Phone } from 'lucide-react';
+import { Scale, Search, ExternalLink, AlertTriangle, CheckCircle, FileText, Phone, Mail } from 'lucide-react';
 
 const LegalResourcesHub = () => {
   const [selectedCountry, setSelectedCountry] = useState('all');
@@ -507,12 +507,12 @@ const LegalResourcesHub = () => {
                       <div className="text-xs text-slate-400 mb-2">{contact.description}</div>
                       {contact.phone && (
                         <a href={`tel:${contact.phone}`} className="block text-red-400 text-sm font-mono mb-1">
-                          📞 {contact.phone}
+                          <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> {contact.phone}</span>
                         </a>
                       )}
                       {contact.email && (
                         <div className="text-blue-400 text-sm font-mono">
-                          ✉️ {contact.email}
+                          <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {contact.email}</span>
                         </div>
                       )}
                     </div>

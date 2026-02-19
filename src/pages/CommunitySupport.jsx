@@ -25,7 +25,8 @@ import {
   TrendingUp,
   Award,
   ChevronRight,
-  Zap
+  Zap,
+  Star
 } from 'lucide-react'
 
 const CommunitySupport = () => {
@@ -231,7 +232,7 @@ const CommunitySupport = () => {
                   i < Math.floor(volunteer.rating) ? 'text-yellow-400' : 'text-slate-600'
                 }`}
               >
-                ★
+                <Star className="w-3 h-3 fill-current" />
               </span>
             ))}
           </div>

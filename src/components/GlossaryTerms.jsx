@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BookOpen } from 'lucide-react';
 
 const GlossaryTerms = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -257,7 +258,7 @@ const GlossaryTerms = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-700/50 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">📖 Glossary of Terms</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Glossary of Terms</h2>
         <p className="text-slate-300">
           {terms.length} key terms for understanding CCP policies, structures, and human rights abuses.
         </p>

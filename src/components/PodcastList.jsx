@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Headphones, Search, Newspaper, Building2, Landmark, Mountain, Theater, Mic, Radio, RefreshCw, MapPin, Lightbulb } from 'lucide-react';
+import { Headphones, Search, Newspaper, Building2, Landmark, Mountain, Theater, Mic, Radio, RefreshCw, MapPin, Lightbulb, Star } from 'lucide-react';
 
 const PodcastList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -312,7 +312,7 @@ const PodcastList = () => {
                 </div>
                 <div className="ml-4 text-right">
                   <div className="flex items-center text-yellow-400 mb-1">
-                    <span className="mr-1">★</span>
+                    <Star className="w-3 h-3 mr-1 fill-current" />
                     <span className="text-sm">{podcast.rating}</span>
                   </div>
                   <span className="text-xs text-slate-500">{podcast.language}</span>

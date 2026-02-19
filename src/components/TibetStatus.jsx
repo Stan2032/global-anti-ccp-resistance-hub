@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Mountain, AlertTriangle, BookOpen } from 'lucide-react';
 
 const TibetStatus = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -68,7 +69,7 @@ const TibetStatus = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-700 rounded-xl p-6">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-4xl">🏔️</span>
+          <Mountain className="w-10 h-10 text-orange-400" />
           <div>
             <h2 className="text-2xl font-bold text-white">Tibet Status</h2>
             <p className="text-slate-300">75 years of occupation and resistance</p>
@@ -208,8 +209,7 @@ const TibetStatus = () => {
           
           <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
             <p className="text-yellow-300 text-sm">
-              ⚠️ These acts of protest reflect the desperation of Tibetans under occupation. 
-              Most called for Tibetan freedom and the return of the Dalai Lama.
+              <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-300 flex-shrink-0 mt-0.5" /><span>These acts of protest reflect the desperation of Tibetans under occupation. Most called for Tibetan freedom and the return of the Dalai Lama.</span></span>
             </p>
           </div>
         </div>
@@ -246,7 +246,7 @@ const TibetStatus = () => {
 
       {/* Resources */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">📚 Tibet Resources</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Tibet Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a href="https://savetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
             <h4 className="text-white font-semibold">ICT</h4>

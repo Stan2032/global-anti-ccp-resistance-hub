@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
+import { Heart } from 'lucide-react'
 import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider } from './components/LanguageSelector'
@@ -138,7 +139,7 @@ const MobileNav = ({ isOpen, onClose }) => {
           </h3>
           <div className="space-y-2">
             <Link to="/campaigns" className="flex items-center px-4 py-3 rounded-lg bg-red-900/30 border border-red-700 text-red-300 hover:bg-red-900/50">
-              <span className="mr-3">❤️</span>
+              <Heart className="w-4 h-4 mr-3 text-red-400" />
               <div>
                 <div className="font-medium">Free Jimmy Lai</div>
                 <div className="text-xs text-red-400">URGENT - Life sentence</div>
@@ -246,7 +247,7 @@ const DesktopSidebar = () => {
         {/* Urgent Campaign */}
         <div className="mt-4 p-3 bg-red-900/30 border border-red-700 rounded-lg">
           <div className="flex items-center mb-2">
-            <span className="text-red-400 text-lg mr-2">❤️</span>
+            <Heart className="w-5 h-5 text-red-400 mr-2" />
             <span className="text-sm font-semibold text-red-300">Free Jimmy Lai</span>
             <span className="ml-auto px-1.5 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">URGENT</span>
           </div>

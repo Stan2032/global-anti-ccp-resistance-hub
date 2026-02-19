@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Globe } from 'lucide-react';
 
 const GlobalInfluenceMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -141,7 +142,7 @@ const GlobalInfluenceMap = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🗺️</span>
+          <Globe className="w-8 h-8 text-slate-300" />
           <div>
             <h2 className="text-2xl font-bold text-white">Global CCP Influence Map</h2>
             <p className="text-slate-400">Track CCP activities and influence operations worldwide</p>
