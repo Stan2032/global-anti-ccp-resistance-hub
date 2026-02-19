@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Check, ChevronDown } from 'lucide-react';
+import { Globe, Check, ChevronDown, Flag, Mountain } from 'lucide-react';
 
 // Import comprehensive language files
 import enTranslations from '../locales/en.json';
@@ -123,7 +123,7 @@ const translations = {
   },
   ug: {
     name: 'ئۇيغۇرچە',
-    flag: '🏳️',
+    FlagIcon: Flag,
     rtl: true,
     nav: {
       dashboard: 'باشقۇرۇش تاختىسى',
@@ -180,7 +180,7 @@ const translations = {
   },
   bo: {
     name: 'བོད་སྐད།',
-    flag: '🏔️',
+    FlagIcon: Mountain,
     nav: {
       dashboard: 'ལས་ཁུངས།',
       intelligence: 'གསང་བའི་གནས་ཚུལ།',
@@ -284,7 +284,8 @@ export const LanguageProvider = ({ children }) => {
       availableLanguages: Object.keys(translations).map(code => ({
         code,
         name: translations[code].name,
-        flag: translations[code].flag
+        flag: translations[code].flag,
+        FlagIcon: translations[code].FlagIcon
       }))
     }}>
       {children}
@@ -305,7 +306,7 @@ const LanguageSelector = () => {
         className="flex items-center gap-2 px-3 py-2 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors"
       >
         <Globe className="w-4 h-4 text-gray-400" />
-        <span className="text-lg">{currentLang.flag}</span>
+        <span className="text-lg">{currentLang.FlagIcon ? <currentLang.FlagIcon className="w-5 h-5" /> : currentLang.flag}</span>
         <span className="text-sm text-gray-300 hidden sm:inline">{currentLang.name}</span>
       </button>
 
@@ -329,7 +330,7 @@ const LanguageSelector = () => {
                   lang.code === availableLanguages[availableLanguages.length - 1].code ? 'rounded-b-lg' : ''
                 }`}
               >
-                <span className="text-xl">{lang.flag}</span>
+                <span className="text-xl">{lang.FlagIcon ? <lang.FlagIcon className="w-5 h-5" /> : lang.flag}</span>
                 <span className="text-gray-200">{lang.name}</span>
                 {language === lang.code && (
                   <span className="ml-auto text-green-400">✓</span>
