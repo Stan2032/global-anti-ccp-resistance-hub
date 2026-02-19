@@ -63,6 +63,24 @@ describe('sourceLinks', () => {
       }
     });
 
+    it('should resolve all VictimMemorialWall source names', () => {
+      const victimSources = [
+        'Radio Free Asia', 'Uyghur Human Rights Project',
+        'Hong Kong Free Press', 'Stand News',
+        'South China Morning Post', 'Hong Kong Watch',
+        'International Campaign for Tibet', 'Free Tibet',
+        'Human Rights Watch', 'Tiananmen Mothers',
+        'Human Rights in China', 'Nobel Prize Committee',
+        'Amnesty International', 'Chinese Human Rights Defenders',
+        'Falun Dafa Information Center', 'Wall Street Journal'
+      ];
+      for (const name of victimSources) {
+        const result = resolveSource(name);
+        expect(result.url).not.toBeNull();
+        expect(result.name).toBe(name);
+      }
+    });
+
     it('should resolve SanctionsTracker source names', () => {
       const sanctionSources = [
         'US Treasury OFAC', 'UK Sanctions List',

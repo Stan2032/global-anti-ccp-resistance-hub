@@ -231,6 +231,36 @@ const SOURCE_REGISTRY = {
     url: 'https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/china-chine.aspx',
     type: 'Government',
     verified: true
+  },
+  'Tiananmen Mothers': {
+    url: 'https://www.tiananmenmother.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Human Rights in China': {
+    url: 'https://www.hrichina.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Wall Street Journal': {
+    url: 'https://www.wsj.com/',
+    type: 'News Report',
+    verified: true
+  },
+  'Free Tibet': {
+    url: 'https://freetibet.org/',
+    type: 'NGO Report',
+    verified: true
+  },
+  'Stand News': {
+    url: 'https://www.thestandnews.com/',
+    type: 'News Report',
+    verified: true
+  },
+  'Nobel Prize Committee': {
+    url: 'https://www.nobelprize.org/',
+    type: 'NGO Report',
+    verified: true
   }
 };
 

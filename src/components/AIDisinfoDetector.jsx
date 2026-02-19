@@ -392,12 +392,8 @@ const AIDisinfoDetector = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="mt-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
-        <h3 className="text-yellow-400 font-bold mb-2">Disclaimer</h3>
-        <p className="text-slate-300 text-sm">
-          This tool uses pattern matching and keyword analysis. It is not perfect and should not be the sole basis for determining if content is propaganda. 
-          Always use critical thinking, verify sources, and consult multiple perspectives when evaluating information.
-        </p>
+      <div className="mt-6">
+        <GlobalDisclaimer type="verify" />
       </div>
     </div>
   );
