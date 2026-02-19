@@ -289,7 +289,7 @@ const ReportSighting = () => {
                     Date of Observation
                   </label>
                   <input
-                    aria-label="Input field"
+                    aria-label="Date of Observation"
                     type="date"
                     value={formData.date}
                     onChange={(e) => handleInputChange('date', e.target.value)}
@@ -302,7 +302,7 @@ const ReportSighting = () => {
                     Description *
                   </label>
                   <textarea
-                    aria-label="Please describe what you observed in detail. Inclu"
+                    aria-label="Description of observation"
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Please describe what you observed in detail. Include specific locations, times, individuals involved (if known), and any other relevant information."
@@ -317,7 +317,7 @@ const ReportSighting = () => {
                     Evidence/Documentation
                   </label>
                   <textarea
-                    aria-label="Describe any photos, videos, documents, or other e"
+                    aria-label="Evidence and documentation"
                     value={formData.evidence}
                     onChange={(e) => handleInputChange('evidence', e.target.value)}
                     placeholder="Describe any photos, videos, documents, or other evidence you have. Do NOT upload files here - use secure channels like SecureDrop if available."

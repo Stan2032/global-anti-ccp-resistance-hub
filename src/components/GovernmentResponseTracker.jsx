@@ -96,7 +96,7 @@ const GovernmentResponseTracker = () => {
 
         <div className="flex flex-wrap gap-3">
           <select
-            aria-label="stance Filter filter"
+            aria-label="Stance filter"
             value={stanceFilter}
             onChange={(e) => setStanceFilter(e.target.value)}
             className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
@@ -109,7 +109,7 @@ const GovernmentResponseTracker = () => {
           </select>
 
           <select
-            aria-label="genocide Filter filter"
+            aria-label="Genocide filter"
             value={genocideFilter}
             onChange={(e) => setGenocideFilter(e.target.value)}
             className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"

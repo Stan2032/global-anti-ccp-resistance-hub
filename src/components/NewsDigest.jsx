@@ -159,7 +159,7 @@ const NewsDigest = () => {
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Mail className="w-4 h-4" /> Email Address</h3>
           <input
-            aria-label="Input field"
+            aria-label="Email Address"
             type="email"
             required
             value={email}

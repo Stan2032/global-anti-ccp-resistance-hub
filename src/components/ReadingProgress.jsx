@@ -251,7 +251,7 @@ export default function ReadingProgress() {
           </select>
         </div>
         <select
-          aria-label="type Filter filter"
+          aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
           className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
@@ -338,7 +338,7 @@ export default function ReadingProgress() {
                   </button>
                   {!itemProgress.completed && (
                     <input
-                      aria-label="Input field"
+                      aria-label="Current page number"
                       type="number"
                       min="0"
                       max={material.pages}

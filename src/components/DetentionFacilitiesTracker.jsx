@@ -114,7 +114,7 @@ const DetentionFacilitiesTracker = () => {
           />
         </div>
         <select
-          aria-label="region Filter filter"
+          aria-label="Region filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
           className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"

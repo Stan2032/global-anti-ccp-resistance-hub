@@ -1388,3 +1388,39 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 | i18n tests | ✅ 18 tests added (key consistency) | Opus 4.6 | 17 |
 | Test suite | 142/142 passing | | |
 | Build time | 4.80s | | |
+
+---
+
+## Session 18 (2026-02-19) — Comprehensive Form Accessibility
+
+**Agent:** Opus 4.6  
+**Duration:** ~15 minutes  
+**Focus:** Form element accessibility (L1.3)
+
+### Actions Taken
+
+1. **Investigated false positive** — Initial grep showed 131 `target="_blank"` links missing `rel="noopener noreferrer"`, but multi-line analysis confirmed ALL have it on adjacent lines. No action needed.
+
+2. **Added aria-label to 60 input elements** — Programmatic fix across 41 components. Labels context-aware: inferred from nearby `<label>` text, placeholder text, or `name` attribute. Search inputs → "Search", form fields → descriptive labels matching visible labels.
+
+3. **Added aria-label to 38 select/textarea elements** — Across 22 components. Fixed 16 generic "Select option" labels → specific labels (Region/Type/Status/Category filter). Fixed misplaced stray aria-label in MediaGallery caused by script matching `<selectedItem>` as `<select>`.
+
+4. **Quality improvements** — Removed redundant aria-label from radio button already wrapped in `<label>`. Improved "Date" → "Date of Incident" for better screen reader context. Fixed ReportSighting "Select option" → "Country".
+
+### Key Insights
+
+- **Programmatic a11y fixes work well** but need manual verification afterward — the `<selectedItem>` false positive shows why.
+- **The codebase is security-sound** — ALL external links have `rel="noopener noreferrer"`, no `dangerouslySetInnerHTML`, no bare `console.log` (all debug-gated or error handlers).
+- **15 components over 500 lines remain** — but most are data-heavy (CCPOfficials 83% data, DetentionFacilities 99% data). Extracting data to JSON would help but is complex and risky. Better left for a dedicated refactoring session.
+
+### Accessibility Progress
+
+| Metric | Before Session 18 | After Session 18 |
+|--------|-------------------|------------------|
+| aria-* attributes | 104 | 163 |
+| role= attributes | 29 | 29 |
+| tabIndex= attributes | 16 | 16 |
+| **Total a11y attrs** | **149** | **208** |
+| Unlabeled inputs | 67 | 0 |
+| Unlabeled selects | 30 | 0 |
+| Unlabeled textareas | 8 | 0 |

@@ -295,7 +295,7 @@ const Bookmarks = () => {
         <label className="text-slate-400 hover:text-slate-300 cursor-pointer">
           Import Bookmarks
           <input
-            aria-label="Input field"
+            aria-label="Select bookmarks file"
             type="file"
             accept=".json"
             className="hidden"

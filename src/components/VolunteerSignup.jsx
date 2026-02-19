@@ -281,7 +281,7 @@ const VolunteerSignup = () => {
             <div>
               <label className="block text-sm text-slate-400 mb-1">Relevant Experience</label>
               <textarea
-                aria-label="Tell Us More"
+                aria-label="Relevant Experience"
                 value={formData.experience}
                 onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                 placeholder="Tell us about any relevant experience (activism, research, etc.)"

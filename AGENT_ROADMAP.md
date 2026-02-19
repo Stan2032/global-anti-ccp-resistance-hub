@@ -278,7 +278,7 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - Added role/tabIndex/onKeyDown/aria-expanded to 4 component-level expandable sections:
     ForcedLaborTracker, SanctionedOfficialsTracker, Timeline, LegalResources
   - Fixed generic Card component to conditionally add keyboard support when onClick provided
-  - Total ARIA attributes: 36 → 104 (3x improvement)
+  - Total ARIA attributes: 36 → 104 (3x improvement by Session 14)
   - **Agent:** Opus 4.6 (faster than expected — all followed same pattern)
 
 - [x] **L1.2** Improve keyboard navigation ✅ (2026-02-19, Session 14)
@@ -286,6 +286,16 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - All toggle elements communicate state via aria-expanded/aria-pressed
   - PrisonerModal has role="dialog" aria-modal="true"
   - **Agent:** Opus 4.6 (combined with L1.1b for efficiency)
+
+- [x] **L1.3** Form element accessibility ✅ (2026-02-19, Session 18)
+  - Added aria-label to 60 `<input>` elements across 41 components
+  - Added aria-label to 38 `<select>`/`<textarea>` elements across 22 components
+  - Context-aware labels inferred from: nearby `<label>` text, placeholder, variable names
+  - Fixed misplaced stray aria-label in MediaGallery (script bug with `<selectedItem>`)
+  - 0 remaining unlabeled form elements
+  - Total ARIA attributes: 36 → 163 (4.5x improvement)
+  - Total accessibility attributes (aria + role + tabIndex): 208
+  - **Agent:** Opus 4.6 (programmatic fix with manual verification)
 
 ---
 
@@ -477,13 +487,18 @@ This roadmap will be updated:
 
 **Code Quality:**
 - [ ] 50% reduction in code duplication
-- [ ] All components under 500 lines
+- [ ] All components under 500 lines (15 over, mostly data-heavy)
 - [ ] Consistent component patterns
 
 **UX Quality:**
-- [ ] Improved text readability (WCAG AA compliant)
+- [x] Improved text readability (WCAG AA compliant — contrast ≥5.5:1)
 - [x] Reduced visual clutter (emojis: 934 → 278, 70% removed — remaining are intentional flags/status/content)
 - [ ] Simplified navigation (pages: 14 → 8)
+
+**Accessibility:**
+- [x] All form elements have aria-labels (163 aria-* attributes, up from 36)
+- [x] All interactive non-button elements have keyboard support
+- [x] Total accessibility attributes: 208 (aria + role + tabIndex)
 
 **Documentation:**
 - [ ] All agent decisions logged
@@ -492,6 +507,6 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-17), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-18), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
 **Next Review:** All autonomous tasks COMPLETE. Remaining tasks (HR1.1-3, HR3.3, L2.3) blocked on human decisions or volunteer recruitment.

@@ -228,7 +228,7 @@ const WhistleblowerPortal = () => {
 
           <div className="flex items-center gap-3 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
             <input
-              aria-label="Input field"
+              aria-label="I understand the security protocols"
               type="checkbox"
               id="security-agreement"
               checked={agreedToTerms}
