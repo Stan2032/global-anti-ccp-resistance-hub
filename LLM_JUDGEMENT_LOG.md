@@ -1424,3 +1424,44 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 | Unlabeled inputs | 67 | 0 |
 | Unlabeled selects | 30 | 0 |
 | Unlabeled textareas | 8 | 0 |
+
+---
+
+## Session 19 — Opus 4.6 (2026-02-19, ~19:00 UTC)
+
+### Focus: Comprehensive Lint Error Cleanup
+
+**Model:** Opus 4.6  
+**Duration:** ~30 min  
+**Actions:** 36 lint errors fixed across 28 files, ESLint config restructured
+
+### Approach
+
+1. **Ran full ESLint audit** — 289 total errors (69 frontend, 214 backend, 6 config)
+2. **Categorized errors:**
+   - Genuinely fixable: 36 (unused imports, variables, params)
+   - False positives: 17 (motion/Component used in JSX but not detected by ESLint)
+   - Structural: ~35 (React Compiler purity warnings, react-refresh export patterns)
+3. **Fixed all genuinely fixable errors** in two passes (frontend then backend)
+4. **Restructured ESLint config** for multi-environment support
+
+### Key Decisions
+
+1. **motion imports are NOT unused** — `motion.div` JSX namespace usage is a known ESLint false positive. Verified every file actually uses `<motion.div>`, `<motion.span>`, etc.
+2. **Component prop aliases are NOT unused** — `as: Component = 'span'` used as `<Component>` in JSX
+3. **React Compiler errors left unfixed** — these are structural issues (impure render functions, refs during render) that require deeper refactoring, not simple fixes
+4. **Backend ESLint now multi-layered** — separate configs for source files (Node.js globals), test files (Jest globals), and frontend tests (browser + node globals)
+
+### Results
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Total lint errors | 289 | 52 |
+| Frontend no-unused-vars | 22 | 0 (17 false positives) |
+| Backend no-undef (process) | 170+ | 0 |
+| Backend no-unused-vars | 18 | 0 |
+| Backend test globals | 139 | 0 |
+| **Reduction** | — | **82%** |
+
+### Agent Assignment Note
+**Best agent for lint fixes:** Opus 4.6 or Sonnet 4.5 — mechanical changes across many files, requires understanding of ESLint rules and JSX semantics to distinguish real errors from false positives.

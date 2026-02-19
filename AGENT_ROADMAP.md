@@ -362,6 +362,34 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
+### L4: Code Quality / Lint Cleanup
+**Status:** ✅ COMPLETE (Session 19)  
+**Priority:** LOW - Code quality improvement  
+**Agent:** Opus 4.6 (best: mechanical code fixes across many files)
+
+- [x] **L4.1** Fix 18 frontend lint errors (Session 19)
+  - Removed 3 unused useEffect imports
+  - Removed 5 unused state variables (setStreak, setLastUpdated, showLightCandle, selectedOrg, setActiveTab)
+  - Fixed 2 no-case-declarations (DataExport — add braces to case blocks)
+  - Fixed 4 unused callback params (optional catch, elided destructuring)
+  - Prefixed 3 unused-but-needed vars with underscore
+
+- [x] **L4.2** Fix 18 backend lint errors (Session 19)
+  - Removed 4 unused logger imports (auth, campaigns, organizations, users routes)
+  - Removed unused requireRole and uuidv4 imports
+  - Removed unused decoded variable (authService)
+  - Prefixed 5 unused params with underscore (_ipAddress, _userAgent, _token, _next, _success)
+  - Used optional catch binding where error param unused
+
+- [x] **L4.3** Configure ESLint for multi-environment support (Session 19)
+  - Added backend-specific config with Node.js globals
+  - Added Jest globals for backend test files
+  - Added separate config for frontend test files
+
+**Results:** Lint errors **289 → 52** (82% reduction). Remaining 52 = 17 false positives (motion/Component JSX namespace usage) + 35 structural (React Compiler purity, react-refresh export patterns).
+
+---
+
 ## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
 
 ### HR1: Backend Architecture
