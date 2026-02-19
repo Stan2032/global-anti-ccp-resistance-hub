@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Users, Building2, Target, Link2, AlertTriangle, Zap, Radio, Megaphone, Lock, BookOpen, MessageSquare, Mail, Monitor, Shield } from 'lucide-react';
 import { useStatistics } from '../hooks/useLiveData';
 import NewsAggregator from '../components/NewsAggregator';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
@@ -24,28 +25,28 @@ const Dashboard = () => {
     {
       title: 'Verified Organizations',
       value: stats?.verifiedOrganizations || 847,
-      icon: '👥',
+      icon: Users,
       color: 'blue',
       change: '+12 this week',
     },
     {
       title: 'Detention Facilities',
       value: stats?.detentionFacilities || 1200,
-      icon: '🏢',
+      icon: Building2,
       color: 'red',
       change: 'Documented',
     },
     {
       title: 'Active Campaigns',
       value: stats?.activeCampaigns || 156,
-      icon: '🎯',
+      icon: Target,
       color: 'green',
       change: '+5 new',
     },
     {
       title: 'Political Prisoners',
       value: stats?.politicalPrisoners || '10,000+',
-      icon: '⛓️',
+      icon: AlertTriangle,
       color: 'orange',
       change: 'Tracked',
     },
@@ -79,10 +80,10 @@ const Dashboard = () => {
   ];
 
   const quickActions = [
-    { title: 'Take Action', icon: '✊', href: '/take-action', color: 'red' },
-    { title: 'Join Campaign', icon: '🎯', href: '/campaigns', color: 'blue' },
-    { title: 'Secure Comms', icon: '🔐', href: '/communications', color: 'green' },
-    { title: 'Find Resources', icon: '📚', href: '/resources', color: 'purple' },
+    { title: 'Take Action', Icon: Megaphone, href: '/take-action', color: 'red' },
+    { title: 'Join Campaign', Icon: Target, href: '/campaigns', color: 'blue' },
+    { title: 'Secure Comms', Icon: Lock, href: '/communications', color: 'green' },
+    { title: 'Find Resources', Icon: BookOpen, href: '/resources', color: 'purple' },
   ];
 
   return (
@@ -121,7 +122,7 @@ const Dashboard = () => {
       {/* Critical Alert */}
       <div className="bg-red-900/30 border border-red-700 rounded-xl p-4 sm:p-6">
         <div className="flex items-start gap-4">
-          <div className="text-3xl">🚨</div>
+          <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to Life</h2>
@@ -151,7 +152,7 @@ const Dashboard = () => {
             className="bg-slate-800 border border-slate-700 rounded-xl p-4 sm:p-6"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-2xl">{stat.icon}</span>
+              <stat.icon className="w-6 h-6 text-slate-400" />
               <span className={`text-xs px-2 py-0.5 rounded-full ${
                 stat.color === 'blue' ? 'bg-blue-900/50 text-blue-300' :
                 stat.color === 'red' ? 'bg-red-900/50 text-red-300' :
@@ -175,7 +176,7 @@ const Dashboard = () => {
         <div className="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-xl">
           <div className="p-4 border-b border-slate-700 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-lg">📡</span>
+              <Radio className="w-5 h-5 text-blue-400" />
               <h2 className="font-semibold text-white">Intelligence Overview</h2>
             </div>
             <Link to="/intelligence" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm">
@@ -226,7 +227,7 @@ const Dashboard = () => {
           {/* Quick Actions Card */}
           <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
             <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <span>⚡</span> Quick Actions
+              <Zap className="w-5 h-5 text-yellow-400" /> Quick Actions
             </h2>
             <div className="grid grid-cols-2 gap-3">
               {quickActions.map((action, index) => (
@@ -240,7 +241,7 @@ const Dashboard = () => {
                     'bg-purple-900/30 hover:bg-purple-900/50 border border-purple-700'
                   }`}
                 >
-                  <span className="text-2xl block mb-1">{action.icon}</span>
+                  <action.Icon className="w-6 h-6 mx-auto mb-1 text-slate-300" />
                   <span className="text-xs text-slate-300">{action.title}</span>
                 </Link>
               ))}
@@ -250,7 +251,7 @@ const Dashboard = () => {
           {/* Urgent Campaigns */}
           <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
             <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <span>🎯</span> Urgent Campaigns
+              <Target className="w-5 h-5 text-red-400" /> Urgent Campaigns
             </h2>
             <div className="space-y-3">
               {urgentCampaigns.map((campaign) => (
@@ -292,14 +293,14 @@ const Dashboard = () => {
       {/* Resources Section */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
         <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-          <span>🔗</span> Essential Resources
+          <Link2 className="w-5 h-5 text-blue-400" /> Essential Resources
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { name: 'Tor Browser', desc: 'Anonymous browsing', icon: '🧅', url: 'https://www.torproject.org/download/' },
-            { name: 'Signal', desc: 'Encrypted messaging', icon: '💬', url: 'https://signal.org/download/' },
-            { name: 'ProtonMail', desc: 'Secure email', icon: '📧', url: 'https://proton.me/mail' },
-            { name: 'Tails OS', desc: 'Secure operating system', icon: '💻', url: 'https://tails.net/install/' },
+            { name: 'Tor Browser', desc: 'Anonymous browsing', Icon: Shield, url: 'https://www.torproject.org/download/' },
+            { name: 'Signal', desc: 'Encrypted messaging', Icon: MessageSquare, url: 'https://signal.org/download/' },
+            { name: 'ProtonMail', desc: 'Secure email', Icon: Mail, url: 'https://proton.me/mail' },
+            { name: 'Tails OS', desc: 'Secure operating system', Icon: Monitor, url: 'https://tails.net/install/' },
           ].map((resource, index) => (
             <a
               key={index}
@@ -308,7 +309,7 @@ const Dashboard = () => {
               rel="noopener noreferrer"
               className="p-4 bg-slate-900/50 rounded-lg hover:bg-slate-700/50 transition-colors text-center"
             >
-              <span className="text-2xl block mb-2">{resource.icon}</span>
+              <resource.Icon className="w-6 h-6 mx-auto mb-2 text-slate-400" />
               <span className="font-medium text-white text-sm block">{resource.name}</span>
               <span className="text-xs text-slate-400">{resource.desc}</span>
             </a>
