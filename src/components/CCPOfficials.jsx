@@ -114,7 +114,7 @@ const jsonOfficials = sanctionedOfficialsData.results.map((result, index) => {
     inPowerSince: null, // Not in JSON
     sanctioned: sanctionedBy.length > 0,
     sanctionedBy: sanctionedBy,
-    photo: '👤',
+    photo: null,
     responsibility: official.key_abuses ? [official.key_abuses] : [],
     keyActions: [], // Not in JSON
     sources: official.source_url ? [{
@@ -141,7 +141,7 @@ const hardcodedOfficials = [
     birthYear: 1953,
     inPowerSince: 2012,
     sanctioned: false,
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Ultimate authority over all CCP policies including Xinjiang, Hong Kong, Tibet',
       'Architect of "Xi Jinping Thought" and constitutional changes removing term limits',
@@ -169,7 +169,7 @@ const hardcodedOfficials = [
     inPowerSince: 2016,
     sanctioned: true,
     sanctionedBy: ['USA', 'UK', 'EU', 'Canada'],
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Architect of mass internment camp system in Xinjiang',
       'Implemented "vocational training centers" holding 1-3 million Uyghurs',
@@ -197,7 +197,7 @@ const hardcodedOfficials = [
     inPowerSince: 2017,
     sanctioned: true,
     sanctionedBy: ['USA'],
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Introduced extradition bill sparking 2019 protests',
       'Oversaw implementation of National Security Law',
@@ -225,7 +225,7 @@ const hardcodedOfficials = [
     inPowerSince: 2022,
     sanctioned: true,
     sanctionedBy: ['USA'],
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Former Security Secretary who oversaw 2019 protest crackdown',
       'Implemented Article 23 national security legislation',
@@ -252,7 +252,7 @@ const hardcodedOfficials = [
     inPowerSince: 2021,
     sanctioned: true,
     sanctionedBy: ['USA', 'EU', 'UK', 'Canada'],
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Former Deputy Secretary of Xinjiang during camp expansion',
       'Now implementing similar policies in Tibet',
@@ -279,7 +279,7 @@ const hardcodedOfficials = [
     inPowerSince: 2016,
     sanctioned: true,
     sanctionedBy: ['USA', 'UK'],
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Head of Xinjiang Political and Legal Affairs Commission',
       'Oversaw security apparatus and detention system',
@@ -305,7 +305,7 @@ const hardcodedOfficials = [
     birthYear: 1953,
     inPowerSince: 2017,
     sanctioned: false,
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Oversaw national police and security apparatus',
       'Responsible for transnational repression operations',
@@ -331,7 +331,7 @@ const hardcodedOfficials = [
     birthYear: 1953,
     inPowerSince: 2013,
     sanctioned: false,
-    photo: '👤',
+    photo: null,
     responsibility: [
       'Chief diplomat defending CCP human rights record',
       'Promotes "wolf warrior" diplomacy',
@@ -482,7 +482,7 @@ export default function CCPOfficials() {
           
           <div className="flex items-start gap-4">
             <div className="w-20 h-20 bg-slate-700 rounded-xl flex items-center justify-center text-4xl">
-              {official.photo}
+              {official.photo || <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
@@ -537,7 +537,7 @@ export default function CCPOfficials() {
             <div className="flex flex-wrap gap-2">
               {official.sanctionedBy.map((country, i) => (
                 <span key={i} className="px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg text-red-300">
-                  {country === 'USA' ? '🇺🇸' : country === 'UK' ? '🇬🇧' : country === 'EU' ? '🇪🇺' : country === 'Canada' ? '🇨🇦' : '🌐'} {country}
+                  {country === 'USA' ? '🇺🇸' : country === 'UK' ? '🇬🇧' : country === 'EU' ? '🇪🇺' : country === 'Canada' ? '🇨🇦' : <Globe className="w-4 h-4 inline-block" />} {country}
                 </span>
               ))}
             </div>
@@ -715,7 +715,7 @@ export default function CCPOfficials() {
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-2xl">
-                {official.photo}
+                {official.photo || <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
