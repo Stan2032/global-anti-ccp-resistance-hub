@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useSocketContext } from '../contexts/SocketContext';
 
+const DEBUG = import.meta.env.DEV;
+
 /**
  * Base socket hook - uses shared context connection
  * No longer creates individual connections (prevents memory leaks)
@@ -25,17 +27,17 @@ export const useCampaignSocket = (campaignId) => {
 
     // Handle campaign updates
     const handleUpdate = (data) => {
-      console.log('[Campaign] Update received:', data);
+      if (DEBUG) console.log('[Campaign] Update received:', data);
       setCampaignData(prev => ({ ...prev, ...data }));
     };
 
     const handleMemberJoined = (data) => {
-      console.log('[Campaign] Member joined:', data);
+      if (DEBUG) console.log('[Campaign] Member joined:', data);
       setMembers(prev => [...prev, data.user]);
     };
 
     const handleMemberLeft = (data) => {
-      console.log('[Campaign] Member left:', data);
+      if (DEBUG) console.log('[Campaign] Member left:', data);
       setMembers(prev => prev.filter(m => m.id !== data.userId));
     };
 
@@ -67,7 +69,7 @@ export const useNotifications = () => {
     if (!isConnected) return;
 
     const handleNotification = (notification) => {
-      console.log('[Notification] Received:', notification);
+      if (DEBUG) console.log('[Notification] Received:', notification);
       setNotifications(prev => [notification, ...prev].slice(0, 100)); // Keep last 100
       setUnreadCount(prev => prev + 1);
     };
@@ -143,7 +145,7 @@ export const useLiveFeed = (options = {}) => {
 
     // Handle new feed items
     const handleNewFeed = (feedItem) => {
-      console.log('[Feed] New item:', feedItem.title);
+      if (DEBUG) console.log('[Feed] New item:', feedItem.title);
       setFeedItems(prev => {
         // Check for duplicates
         if (prev.some(item => item.id === feedItem.id)) {
@@ -156,7 +158,7 @@ export const useLiveFeed = (options = {}) => {
 
     // Handle batch updates
     const handleBatch = (data) => {
-      console.log('[Feed] Batch received:', data.count, 'items');
+      if (DEBUG) console.log('[Feed] Batch received:', data.count, 'items');
       setFeedItems(prev => {
         const existingIds = new Set(prev.map(item => item.id));
         const newItems = data.items.filter(item => !existingIds.has(item.id));
@@ -166,7 +168,7 @@ export const useLiveFeed = (options = {}) => {
 
     // Handle feed updates (view count, etc.)
     const handleFeedUpdate = (update) => {
-      console.log('[Feed] Update:', update);
+      if (DEBUG) console.log('[Feed] Update:', update);
       setFeedItems(prev =>
         prev.map(item => item.id === update.id ? { ...item, ...update } : item)
       );
@@ -179,7 +181,7 @@ export const useLiveFeed = (options = {}) => {
 
     // Handle breaking news
     const handleBreaking = (feedItem) => {
-      console.log('[Feed] BREAKING:', feedItem.title);
+      if (DEBUG) console.log('[Feed] BREAKING:', feedItem.title);
       // Could trigger a notification or highlight
       setFeedItems(prev => {
         if (prev.some(item => item.id === feedItem.id)) {
@@ -265,7 +267,7 @@ export const useLiveStats = () => {
     if (!isConnected) return;
 
     const handleStatsUpdate = (newStats) => {
-      console.log('[Stats] Update:', newStats);
+      if (DEBUG) console.log('[Stats] Update:', newStats);
       setStats(newStats);
     };
 
@@ -339,12 +341,12 @@ export const useSupportRequests = () => {
     if (!isConnected) return;
 
     const handleNewRequest = (request) => {
-      console.log('[Support] New request:', request);
+      if (DEBUG) console.log('[Support] New request:', request);
       setRequests(prev => [request, ...prev]);
     };
 
     const handleRequestUpdate = (update) => {
-      console.log('[Support] Update:', update);
+      if (DEBUG) console.log('[Support] Update:', update);
       setRequests(prev =>
         prev.map(req => req.id === update.id ? { ...req, ...update } : req)
       );

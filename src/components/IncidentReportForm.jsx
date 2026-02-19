@@ -40,7 +40,6 @@ const IncidentReportForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In production, this would send to a secure backend
-    console.log('Incident Report:', formData);
     setSubmitted(true);
   };
 

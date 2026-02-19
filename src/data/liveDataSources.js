@@ -1,6 +1,8 @@
 // Live Data Sources Configuration
 // Real-time intelligence feeds and monitoring systems
 
+const DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
+
 export const liveDataFeeds = {
   // News RSS Feeds
   newsFeeds: [
@@ -254,7 +256,7 @@ const getCachedFeeds = () => {
     const age = Date.now() - timestamp;
     
     if (age < RSS_CACHE_DURATION) {
-      console.log(`Using cached RSS data (${Math.round(age / 1000)}s old)`);
+      if (DEBUG) console.log(`Using cached RSS data (${Math.round(age / 1000)}s old)`);
       return data;
     }
     
@@ -289,7 +291,7 @@ export const dataProcessor = {
         return cached;
       }
       
-      console.log('Fetching fresh RSS data...');
+      if (DEBUG) console.log('Fetching fresh RSS data...');
       
       // Fetch ALL feeds in parallel (not sequential)
       const allFeedPromises = [
@@ -338,7 +340,7 @@ export const dataProcessor = {
       const newsData = allItems.filter(item => item.severity !== 'high');
       const threatData = allItems.filter(item => item.severity === 'high');
       
-      console.log(`Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
+      if (DEBUG) console.log(`Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
       
       const feedData = {
         news: newsData,

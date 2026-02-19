@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState, useRef, useCallb
 import { io } from 'socket.io-client';
 
 const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const DEBUG = import.meta.env.DEV;
 
 /**
  * Socket Context
@@ -34,7 +35,7 @@ export const SocketProvider = ({ children, token }) => {
       return;
     }
 
-    console.log('[SocketContext] Initializing connection...');
+    if (DEBUG) console.log('[SocketContext] Initializing connection...');
 
     const socket = io(SOCKET_URL, {
       auth: { token },
@@ -50,13 +51,13 @@ export const SocketProvider = ({ children, token }) => {
 
     // Connection handlers
     socket.on('connect', () => {
-      console.log('[SocketContext] Connected:', socket.id);
+      if (DEBUG) console.log('[SocketContext] Connected:', socket.id);
       setIsConnected(true);
       setConnectionError(null);
     });
 
     socket.on('disconnect', (reason) => {
-      console.log('[SocketContext] Disconnected:', reason);
+      if (DEBUG) console.log('[SocketContext] Disconnected:', reason);
       setIsConnected(false);
     });
 
@@ -73,7 +74,7 @@ export const SocketProvider = ({ children, token }) => {
 
     // Cleanup on unmount
     return () => {
-      console.log('[SocketContext] Cleaning up connection');
+      if (DEBUG) console.log('[SocketContext] Cleaning up connection');
       socket.disconnect();
       socketRef.current = null;
     };
@@ -119,7 +120,7 @@ export const SocketProvider = ({ children, token }) => {
     
     const event = `${type}:subscribe`;
     socketRef.current.emit(event, id);
-    console.log(`[SocketContext] Subscribed to ${type}:${id}`);
+    if (DEBUG) console.log(`[SocketContext] Subscribed to ${type}:${id}`);
   }, [isConnected]);
 
   // Unsubscribe from a room/channel
@@ -128,7 +129,7 @@ export const SocketProvider = ({ children, token }) => {
     
     const event = `${type}:unsubscribe`;
     socketRef.current.emit(event, id);
-    console.log(`[SocketContext] Unsubscribed from ${type}:${id}`);
+    if (DEBUG) console.log(`[SocketContext] Unsubscribed from ${type}:${id}`);
   }, [isConnected]);
 
   const value = {

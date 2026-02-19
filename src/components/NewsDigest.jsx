@@ -80,7 +80,6 @@ const NewsDigest = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In a real app, this would submit to a backend
-    console.log('Newsletter subscription:', { email, preferences });
     setSubscribed(true);
   };
 
