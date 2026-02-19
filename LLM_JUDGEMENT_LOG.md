@@ -1502,3 +1502,31 @@ When I discovered the existing LanguageSelector + LanguageProvider + locale JSON
 
 ### Agent Assignment Note
 **Best agent for test writing:** Opus 4.6 — requires understanding component behavior, mocking strategies, and security implications. Sonnet 4.5 could handle simpler render-and-check tests.
+
+---
+
+## Session 21 (Opus 4.6, 2026-02-19)
+
+### Task: Fix remaining lint errors — React Compiler patterns and false positives
+
+**Context:** Session 19 reduced lint errors from 289 to 52. This session targets the remaining 43 (after test-file config fix).
+
+### Actions Taken
+1. **ConfuciusInstituteTracker:** Replace useState+useEffect with useMemo for derived static data — eliminates cascading render
+2. **QuickStartGuide:** Replace useEffect setState with lazy useState initializers — zero useEffect needed
+3. **PWAInstallBanner:** Same lazy initializer pattern + proper timer cleanup with clearTimeout
+4. **EventMap:** Inline MapView JSX to avoid component-created-during-render anti-pattern
+5. **OfflineModeManager/ReadingProgress:** Move function declarations before useEffect calls that reference them
+6. **ThemeContext:** Lazy initializer for resolvedTheme using window.matchMedia
+7. **ESLint config:** Add motion$ to varsIgnorePattern, [A-Z] to argsIgnorePattern, downgrade react-refresh
+
+### Results
+- Lint errors: **43 → 11** (74% reduction this session, **289 → 11** cumulative = 96%)
+- Remaining 11 are inherent React Compiler structural patterns:
+  - 5 × Date.now() in event handlers (not actually render-time — false positive)
+  - 3 × async setState in effects (standard async effect pattern)
+  - 2 × socket ref access in context provider (necessary for socket.io pattern)
+  - 1 × setState for theme changes in effect (intentional — syncs resolved theme)
+
+### Agent Assignment Note
+**Best agent for React Compiler fixes:** Opus 4.6 — requires deep understanding of React rendering model, hooks rules, and when compiler warnings are false positives vs genuine issues. Sonnet 4.5 might over-correct by removing legitimate patterns.
