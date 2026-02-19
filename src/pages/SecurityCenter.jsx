@@ -30,6 +30,7 @@ const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assessment')
   const [assessmentComplete, setAssessmentComplete] = useState(false)
   const [securityScore, setSecurityScore] = useState(0)
+  const [categoryBreakdown, setCategoryBreakdown] = useState({ network: 0, device: 0, opsec: 0 })
   const [answers, setAnswers] = useState({})
 
   const [securityTools] = useState([
@@ -217,11 +218,37 @@ const SecurityCenter = () => {
 
   const handleAssessment = () => {
     let score = 0
+    const categoryScores = {}
+    const categoryMaxes = {}
+
     for (const q of assessmentQuestions) {
+      const cat = q.category
+      if (!categoryMaxes[cat]) categoryMaxes[cat] = 0
+      if (!categoryScores[cat]) categoryScores[cat] = 0
+      categoryMaxes[cat] += q.weight
+
       const answer = answers[q.id]
-      if (answer === 'yes') score += q.weight
-      else if (answer === 'unsure') score += Math.round(q.weight * 0.5)
+      if (answer === 'yes') {
+        score += q.weight
+        categoryScores[cat] += q.weight
+      } else if (answer === 'unsure') {
+        const partial = Math.round(q.weight * 0.5)
+        score += partial
+        categoryScores[cat] += partial
+      }
     }
+
+    // Map categories to display groups
+    const networkMax = (categoryMaxes['network'] || 0)
+    const deviceMax = (categoryMaxes['device'] || 0)
+    const opsecMax = (categoryMaxes['passwords'] || 0) + (categoryMaxes['authentication'] || 0) + (categoryMaxes['communications'] || 0) + (categoryMaxes['updates'] || 0) + (categoryMaxes['opsec'] || 0)
+
+    setCategoryBreakdown({
+      network: networkMax > 0 ? Math.round((categoryScores['network'] || 0) / networkMax * 100) : 0,
+      device: deviceMax > 0 ? Math.round((categoryScores['device'] || 0) / deviceMax * 100) : 0,
+      opsec: opsecMax > 0 ? Math.round(((categoryScores['passwords'] || 0) + (categoryScores['authentication'] || 0) + (categoryScores['communications'] || 0) + (categoryScores['updates'] || 0) + (categoryScores['opsec'] || 0)) / opsecMax * 100) : 0
+    })
+
     setSecurityScore(score)
     setAssessmentComplete(true)
   }
@@ -451,15 +478,15 @@ const SecurityCenter = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
                 <div className="bg-slate-700 rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Network Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">85%</p>
+                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.network}%</p>
                 </div>
                 <div className="bg-slate-700 rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Device Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">72%</p>
+                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.device}%</p>
                 </div>
                 <div className="bg-slate-700 rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Operational Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">65%</p>
+                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.opsec}%</p>
                 </div>
               </div>
             </motion.div>

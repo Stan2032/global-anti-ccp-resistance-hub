@@ -73,7 +73,6 @@ const VolunteerSignup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In a real app, this would submit to a backend
-    console.log('Volunteer signup:', formData);
     setSubmitted(true);
   };
 

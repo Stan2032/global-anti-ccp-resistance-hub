@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Flame, Search, Calendar, MapPin, ExternalLink, Filter } from 'lucide-react';
+import SourceAttribution from './ui/SourceAttribution';
+import { resolveSource } from '../utils/sourceLinks';
 
 const VictimMemorialWall = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -377,11 +379,16 @@ const VictimMemorialWall = () => {
                   <div className="pt-3 border-t border-slate-700/50">
                     <div className="text-xs text-slate-500 mb-2">Sources:</div>
                     <div className="flex flex-wrap gap-2">
-                      {victim.sources.map((source, sIndex) => (
-                        <span key={sIndex} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-400">
-                          {source}
-                        </span>
-                      ))}
+                      {victim.sources.map((source, sIndex) => {
+                        const resolved = resolveSource(source);
+                        return resolved.url ? (
+                          <SourceAttribution key={sIndex} source={resolved} compact />
+                        ) : (
+                          <span key={sIndex} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-400">
+                            {source}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

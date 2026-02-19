@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, Play, Pause, ZoomIn, ZoomOut, Filter, Info, ExternalLink } from 'lucide-react';
+import SourceAttribution from './ui/SourceAttribution';
+import { resolveSource } from '../utils/sourceLinks';
 
 const timelineEvents = [
   // 1989
@@ -522,11 +524,16 @@ export default function InteractiveTimeline() {
             <div>
               <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
               <div className="flex flex-wrap gap-2">
-                {selectedEvent.sources.map((source, i) => (
-                  <span key={i} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
-                    {source}
-                  </span>
-                ))}
+                {selectedEvent.sources.map((source, i) => {
+                  const resolved = resolveSource(source);
+                  return resolved.url ? (
+                    <SourceAttribution key={i} source={resolved} compact />
+                  ) : (
+                    <span key={i} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
+                      {source}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}

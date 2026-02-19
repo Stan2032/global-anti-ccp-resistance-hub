@@ -92,7 +92,6 @@ const ReportSighting = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In a real implementation, this would send to a secure backend
-    console.log('Report submitted:', formData);
     setSubmitted(true);
   };
 

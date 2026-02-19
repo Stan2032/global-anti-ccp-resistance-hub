@@ -1,4 +1,17 @@
 import React, { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
+
+const LAW_LINKS = {
+  'Global Magnitsky Act': 'https://www.congress.gov/bill/114th-congress/senate-bill/284',
+  'Executive Order 13936': 'https://www.federalregister.gov/documents/2020/07/17/2020-15646/the-presidents-executive-order-on-hong-kong-normalization',
+  'UFLPA': 'https://www.cbp.gov/trade/forced-labor/UFLPA',
+  'Entity List': 'https://www.bis.doc.gov/index.php/policy-guidance/lists-of-parties-of-concern/entity-list',
+  'Hong Kong Autonomy Act': 'https://www.congress.gov/bill/116th-congress/house-bill/7440',
+  'UK Magnitsky Sanctions': 'https://www.legislation.gov.uk/uksi/2020/1272/contents',
+  'EU Global Human Rights Sanctions': 'https://www.consilium.europa.eu/en/policies/sanctions/',
+  'Special Economic Measures Act': 'https://laws-lois.justice.gc.ca/eng/acts/s-14.5/',
+  'Autonomous Sanctions Act': 'https://www.legislation.gov.au/Series/C2011A00038',
+};
 
 const SanctionsTracker = () => {
   const [activeCountry, setActiveCountry] = useState('all');
@@ -360,9 +373,21 @@ const SanctionsTracker = () => {
                     <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
                       📅 {sanction.date}
                     </span>
-                    <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
-                      📜 {sanction.law}
-                    </span>
+                    {LAW_LINKS[sanction.law] ? (
+                      <a
+                        href={LAW_LINKS[sanction.law]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-slate-800 rounded text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        <span>📜 {sanction.law}</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
+                        📜 {sanction.law}
+                      </span>
+                    )}
                     <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
                       🏷️ {sanction.type}
                     </span>
