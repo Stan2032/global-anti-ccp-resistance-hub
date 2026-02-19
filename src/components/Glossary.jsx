@@ -1,17 +1,18 @@
 import React, { useState, useMemo } from 'react';
+import { BookOpen, Landmark, ScrollText, Map, AlertTriangle, User, Lightbulb, Search } from 'lucide-react';
 
 const Glossary = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Terms', icon: '📖' },
-    { id: 'organizations', name: 'Organizations', icon: '🏛️' },
-    { id: 'policies', name: 'Policies & Laws', icon: '📜' },
-    { id: 'regions', name: 'Regions', icon: '🗺️' },
-    { id: 'tactics', name: 'CCP Tactics', icon: '⚠️' },
-    { id: 'people', name: 'Key Figures', icon: '👤' },
-    { id: 'concepts', name: 'Concepts', icon: '💡' },
+    { id: 'all', name: 'All Terms', Icon: BookOpen },
+    { id: 'organizations', name: 'Organizations', Icon: Landmark },
+    { id: 'policies', name: 'Policies & Laws', Icon: ScrollText },
+    { id: 'regions', name: 'Regions', Icon: Map },
+    { id: 'tactics', name: 'CCP Tactics', Icon: AlertTriangle },
+    { id: 'people', name: 'Key Figures', Icon: User },
+    { id: 'concepts', name: 'Concepts', Icon: Lightbulb },
   ];
 
   const terms = [
@@ -206,7 +207,7 @@ const Glossary = () => {
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">📖</span>
+          <BookOpen className="w-8 h-8 text-slate-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Glossary of Terms</h2>
             <p className="text-slate-400">Key terminology for understanding CCP threats</p>
@@ -235,7 +236,7 @@ const Glossary = () => {
               activeCategory === cat.id ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <cat.Icon className="w-4 h-4" />
             <span>{cat.name}</span>
           </button>
         ))}
@@ -274,7 +275,7 @@ const Glossary = () => {
 
       {filteredTerms.length === 0 && (
         <div className="text-center py-12">
-          <span className="text-4xl mb-4 block">🔍</span>
+          <Search className="w-10 h-10 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">No terms found matching "{searchTerm}"</p>
           <button onClick={() => { setSearchTerm(''); setActiveCategory('all'); }} className="mt-4 text-blue-400 hover:text-blue-300">
             Clear filters
