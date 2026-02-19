@@ -145,7 +145,7 @@ const Glossary = () => {
       term: 'Jimmy Lai',
       fullName: 'Lai Chee-ying',
       category: 'people',
-      definition: 'Hong Kong media mogul convicted on all charges in December 2025 under the National Security Law, faces life imprisonment.',
+      definition: 'Hong Kong media mogul sentenced to 20 years on February 9, 2026 under the National Security Law.',
       related: ['Hong Kong', 'Apple Daily', 'NSL'],
       importance: 'critical'
     },

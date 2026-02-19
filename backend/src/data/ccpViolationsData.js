@@ -263,7 +263,7 @@ export const NOTABLE_PRISONERS = [
     status: 'IMPRISONED',
     location: 'Stanley Prison, Hong Kong',
     charges: ['National Security Law - Collusion with Foreign Forces', 'Sedition'],
-    sentence: 'Convicted — faces life imprisonment, sentencing pending',
+    sentence: 'Sentenced to 20 years (Feb 9, 2026)',
     background: 'Founder of Apple Daily newspaper, pro-democracy media mogul',
     arrestDate: '2020-08-10',
     urgency: 'CRITICAL',

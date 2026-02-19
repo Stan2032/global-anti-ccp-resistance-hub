@@ -37,7 +37,7 @@ const CampaignHubs = () => {
       countries: 67,
       startDate: '2020-08-10',
       goal: 'Secure Jimmy Lai\'s release and overturn unjust conviction',
-      impact: 'Jimmy Lai, 78, faces life imprisonment under Hong Kong\'s National Security Law for his pro-democracy advocacy',
+      impact: 'Jimmy Lai, 78, sentenced to 20 years under Hong Kong\'s National Security Law for his pro-democracy advocacy',
       nextMilestone: 'Sentencing expected 2026',
       actions: [
         'Sign international petition',
@@ -374,9 +374,9 @@ const CampaignHubs = () => {
             <div className="flex items-start space-x-4">
               <AlertCircle className="w-8 h-8 text-red-400 flex-shrink-0" />
               <div>
-                <h3 className="text-red-100 font-semibold">Critical: Jimmy Lai Trial</h3>
+                <h3 className="text-red-100 font-semibold">Critical: Jimmy Lai Sentenced</h3>
                 <p className="text-red-200 text-sm mt-2">
-                  77-year-old Hong Kong media mogul faces life imprisonment. International pressure mounting as trial continues.
+                  78-year-old Hong Kong media mogul sentenced to 20 years in prison. International condemnation continues.
                 </p>
                 <Link
                   to="/campaigns/free-jimmy-lai"

@@ -214,7 +214,7 @@ Jimmy Lai:
 • Founded Apple Daily, Hong Kong's largest pro-democracy newspaper
 • Has been imprisoned since December 2020
 • Was just convicted on December 15, 2025 under the National Security Law
-• Faces possible life imprisonment for exercising press freedom
+• Sentenced to 20 years in prison for exercising press freedom
 • Is a British citizen being denied consular access
 
 His "crime" was publishing a newspaper that criticized the Chinese Communist Party.

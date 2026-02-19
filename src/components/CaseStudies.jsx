@@ -28,6 +28,7 @@ const caseStudies = [
       { date: '2021-12-13', event: 'NSL trial begins' },
       { date: '2023-12-18', event: 'Trial resumes after delays' },
       { date: '2025-12-15', event: 'Found GUILTY on all charges' },
+      { date: '2026-02-09', event: 'Sentenced to 20 years in prison' },
     ],
     charges: [
       { charge: 'Conspiracy to collude with foreign forces', law: 'NSL Article 29', maxSentence: 'Life imprisonment' },
@@ -37,7 +38,7 @@ const caseStudies = [
     verdict: {
       date: '2025-12-15',
       outcome: 'GUILTY on all 3 charges',
-      sentencing: 'Pending - faces life imprisonment',
+      sentencing: '20 years in prison (Feb 9, 2026)',
       judge: 'Three designated NSL judges without jury',
     },
     significance: [

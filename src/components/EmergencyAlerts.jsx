@@ -16,9 +16,9 @@ const EmergencyAlerts = () => {
     {
       id: 'jimmy-lai-verdict',
       type: 'critical',
-      title: 'URGENT: Jimmy Lai Convicted — Faces Life Sentence',
-      summary: 'Hong Kong media tycoon Jimmy Lai found guilty on all charges under NSL',
-      details: `On December 15, 2025, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. He faces a potential life sentence. This verdict represents a devastating blow to press freedom in Hong Kong.
+      title: 'URGENT: Jimmy Lai Sentenced to 20 Years in Prison',
+      summary: 'Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL',
+      details: `On December 15, 2025, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL. This verdict represents a devastating blow to press freedom in Hong Kong.
 
 ACTION NEEDED:
 • Contact your representatives to demand his release
