@@ -43,6 +43,38 @@ describe('sourceLinks', () => {
       const result = resolveSource('Xinhua');
       expect(result.verified).toBe(false);
     });
+
+    it('should resolve all InteractiveTimeline source names', () => {
+      const timelineSources = [
+        'Tiananmen Papers', 'Amnesty International', 'Human Rights Watch',
+        'International Campaign for Tibet', 'UN Committee on the Rights of the Child',
+        'Falun Dafa Information Center', 'China Tribunal', 'Radio Free Asia',
+        'Hong Kong Free Press', 'PEN International', 'European Parliament',
+        'Chinese Human Rights Defenders', 'ASPI', 'Xinjiang Police Files',
+        'Dr. Adrian Zenz', 'BBC', 'Reuters', 'New York Times',
+        'Committee to Protect Journalists', 'Reporters Without Borders',
+        'Hong Kong Watch', 'CNN', 'UK Foreign Office',
+        'Safeguard Defenders', 'FBI', 'Uyghur Tribunal', 'Nobel Committee'
+      ];
+      for (const name of timelineSources) {
+        const result = resolveSource(name);
+        expect(result.url).not.toBeNull();
+        expect(result.name).toBe(name);
+      }
+    });
+
+    it('should resolve SanctionsTracker source names', () => {
+      const sanctionSources = [
+        'US Treasury OFAC', 'UK Sanctions List',
+        'EU Sanctions Map', 'Canada Sanctions - China'
+      ];
+      for (const name of sanctionSources) {
+        const result = resolveSource(name);
+        expect(result.url).not.toBeNull();
+        expect(result.type).toBe('Government');
+        expect(result.verified).toBe(true);
+      }
+    });
   });
 
   describe('resolveSources', () => {

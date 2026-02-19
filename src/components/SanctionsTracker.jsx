@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
+import SourceAttribution from './ui/SourceAttribution';
+import { resolveSource } from '../utils/sourceLinks';
 
 const LAW_LINKS = {
   'Global Magnitsky Act': 'https://www.congress.gov/bill/114th-congress/senate-bill/284',
@@ -426,20 +428,16 @@ const SanctionsTracker = () => {
 
       {/* Sources */}
       <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
-        <h3 className="font-medium text-white mb-2">📚 Sources</h3>
-        <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.treasury.gov/ofac" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            US Treasury OFAC
-          </a>
-          <a href="https://www.gov.uk/government/collections/uk-sanctions-list" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            UK Sanctions List
-          </a>
-          <a href="https://www.sanctionsmap.eu" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            EU Sanctions Map
-          </a>
-          <a href="https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/china-chine.aspx" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            Canada Sanctions
-          </a>
+        <h3 className="font-medium text-white mb-3">📚 Sources</h3>
+        <div className="grid md:grid-cols-2 gap-2">
+          {['US Treasury OFAC', 'UK Sanctions List', 'EU Sanctions Map', 'Canada Sanctions - China'].map((name, i) => {
+            const resolved = resolveSource(name);
+            return resolved.url ? (
+              <SourceAttribution key={i} source={resolved} compact />
+            ) : (
+              <span key={i} className="text-sm text-slate-400">{name}</span>
+            );
+          })}
         </div>
       </div>
     </div>
