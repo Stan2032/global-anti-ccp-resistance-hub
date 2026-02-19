@@ -1,53 +1,54 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Siren, Video, AlertTriangle, Theater, Smartphone, Landmark, ClipboardList, Search, Shield, Globe } from 'lucide-react';
 
 const SIGHTING_TYPES = [
   {
     id: 'police_station',
     label: 'Overseas Police Station',
-    icon: '🚔',
+    Icon: Siren,
     description: 'Suspected CCP police service center or "110 overseas" operation',
     fields: ['address', 'operating_hours', 'signage', 'activities_observed']
   },
   {
     id: 'surveillance',
     label: 'Surveillance Activity',
-    icon: '📹',
+    Icon: Video,
     description: 'Suspected monitoring, photography, or tracking of diaspora',
     fields: ['location', 'description', 'targets', 'frequency']
   },
   {
     id: 'intimidation',
     label: 'Intimidation/Harassment',
-    icon: '⚠️',
+    Icon: AlertTriangle,
     description: 'Threats, harassment, or pressure on individuals or family',
     fields: ['incident_type', 'description', 'threats_made', 'family_targeted']
   },
   {
     id: 'united_front',
     label: 'United Front Activity',
-    icon: '🎭',
+    Icon: Theater,
     description: 'Suspected UFWD operations, CSSAs, or influence campaigns',
     fields: ['organization', 'activity_type', 'funding_sources', 'connections']
   },
   {
     id: 'disinformation',
     label: 'Disinformation Campaign',
-    icon: '📱',
+    Icon: Smartphone,
     description: 'Coordinated propaganda, bot networks, or fake accounts',
     fields: ['platform', 'content_type', 'accounts_involved', 'narrative']
   },
   {
     id: 'infiltration',
     label: 'Institutional Infiltration',
-    icon: '🏛️',
+    Icon: Landmark,
     description: 'CCP influence in universities, businesses, or government',
     fields: ['institution', 'type', 'individuals', 'evidence']
   },
   {
     id: 'other',
     label: 'Other Activity',
-    icon: '📋',
+    Icon: ClipboardList,
     description: 'Any other suspicious CCP-related activity',
     fields: ['description', 'evidence', 'concerns']
   }
@@ -126,7 +127,7 @@ const ReportSighting = () => {
           and protect diaspora communities worldwide.
         </p>
         <div className="bg-slate-800 rounded-lg p-4 mb-6 text-left">
-          <h4 className="text-yellow-400 font-semibold mb-2">⚠️ Important Security Reminder</h4>
+          <h4 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Important Security Reminder</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Clear your browser history if using a shared device</li>
             <li>• Consider using Tor for future reports</li>
@@ -156,7 +157,7 @@ const ReportSighting = () => {
     <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-900 to-orange-900 p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">🔍 Report CCP Activity</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Search className="w-6 h-6" /> Report CCP Activity</h2>
         <p className="text-gray-200">
           Help document transnational repression and CCP influence operations
         </p>
@@ -165,7 +166,7 @@ const ReportSighting = () => {
       {/* Security Notice */}
       <div className="bg-yellow-900/30 border-b border-yellow-700 p-4">
         <div className="flex items-start gap-3">
-          <span className="text-2xl">🛡️</span>
+          <Shield className="w-6 h-6 text-yellow-400" />
           <div>
             <h4 className="font-semibold text-yellow-400">Security First</h4>
             <p className="text-sm text-gray-300">
@@ -222,7 +223,7 @@ const ReportSighting = () => {
                     className="p-4 bg-slate-700 rounded-lg text-left hover:bg-slate-600 hover:border-red-500 border border-transparent transition-all"
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">{type.icon}</span>
+                      <type.Icon className="w-6 h-6" />
                       <span className="font-semibold text-white">{type.label}</span>
                     </div>
                     <p className="text-sm text-gray-400">{type.description}</p>
@@ -241,7 +242,7 @@ const ReportSighting = () => {
               exit={{ opacity: 0, x: 20 }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{selectedType?.icon}</span>
+                {selectedType?.Icon && <selectedType.Icon className="w-8 h-8" />}
                 <div>
                   <h3 className="text-lg font-semibold text-white">{selectedType?.label}</h3>
                   <p className="text-sm text-gray-400">{selectedType?.description}</p>
@@ -464,8 +465,8 @@ const ReportSighting = () => {
           <a href="https://www.asio.gov.au/report-suspicious-activity" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             🇦🇺 ASIO
           </a>
-          <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-            🌐 Safeguard Defenders
+          <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline inline-flex items-center gap-1">
+            <Globe className="w-4 h-4" /> Safeguard Defenders
           </a>
         </div>
       </div>

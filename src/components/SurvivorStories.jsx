@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquare, User } from 'lucide-react';
 
 const SurvivorStories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [expandedStory, setExpandedStory] = useState(null);
 
   const categories = [
-    { id: 'all', name: 'All Stories', icon: '📖' },
-    { id: 'uyghur', name: 'Uyghur', icon: '🕌' },
-    { id: 'hongkong', name: 'Hong Kong', icon: '🏙️' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
-    { id: 'dissident', name: 'Dissidents', icon: '✊' },
-    { id: 'family', name: 'Family Members', icon: '👨‍👩‍👧' },
+    { id: 'all', name: 'All Stories', Icon: BookOpen },
+    { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
+    { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
+    { id: 'dissident', name: 'Dissidents', Icon: Megaphone },
+    { id: 'family', name: 'Family Members', Icon: Users },
   ];
 
   const stories = [
@@ -20,7 +21,7 @@ const SurvivorStories = () => {
       category: 'uyghur',
       location: 'Xinjiang → United States',
       year: '2018-2019',
-      image: '👩',
+      ImageIcon: User,
       summary: 'Survived 9 months in Xinjiang detention camps',
       fullStory: `Tursunay Ziawudun was detained in Xinjiang's internment camps for nine months in 2018. She testified before the UK Parliament and US Congress about systematic rape and torture in the camps. Her testimony was crucial in documenting the sexual violence faced by Uyghur women.
 
@@ -37,7 +38,7 @@ She now lives in the United States and continues to advocate for Uyghur rights, 
       category: 'uyghur',
       location: 'France → Xinjiang → France',
       year: '2017-2019',
-      image: '👩',
+      ImageIcon: User,
       summary: 'French citizen detained for 2 years in Xinjiang camps',
       fullStory: `Gulbahar Haitiwaji, a French citizen of Uyghur origin, was lured back to China in 2017 under the pretense of signing retirement papers. She was detained for over two years in the camps.
 
@@ -54,7 +55,7 @@ She described forced political indoctrination, being forced to renounce her fait
       category: 'hongkong',
       location: 'Hong Kong → United Kingdom',
       year: '2020-present',
-      image: '👨',
+      ImageIcon: User,
       summary: 'Former Hong Kong legislator in exile',
       fullStory: `Nathan Law was one of the leaders of the 2014 Umbrella Movement and became the youngest legislator in Hong Kong's history at age 23. After the National Security Law was imposed in 2020, he fled to the UK.
 
@@ -71,7 +72,7 @@ Despite the personal cost, he remains committed to speaking out: "I cannot be si
       category: 'hongkong',
       location: 'Hong Kong → Canada',
       year: '2021-present',
-      image: '👩',
+      ImageIcon: User,
       summary: 'Former district councillor forced into exile',
       fullStory: `Glaciar Chow was a pro-democracy district councillor in Hong Kong. After the National Security Law, she was forced to resign and flee to Canada.
 
@@ -88,7 +89,7 @@ She now works to support Hong Kong refugees and advocates for international acti
       category: 'tibet',
       location: 'Tibet → India → United States',
       year: '1968-present',
-      image: '👨',
+      ImageIcon: User,
       summary: 'Former President of the Central Tibetan Administration',
       fullStory: `Lobsang Sangay was born in a Tibetan refugee settlement in India. He became the first elected Sikyong (President) of the Central Tibetan Administration, serving from 2011-2021.
 
@@ -105,7 +106,7 @@ His family fled Tibet after the 1959 uprising, and he has never been able to vis
       category: 'dissident',
       location: 'China → Germany → UK → Portugal',
       year: '2011-present',
-      image: '👨',
+      ImageIcon: User,
       summary: 'World-renowned artist and activist',
       fullStory: `Ai Weiwei is one of China's most famous contemporary artists and a vocal critic of the CCP. In 2011, he was detained for 81 days without charge, an experience he later documented in his art.
 
@@ -122,7 +123,7 @@ His work documents human rights abuses, including the refugee crisis and the Xin
       category: 'dissident',
       location: 'Shandong → United States',
       year: '2012-present',
-      image: '👨',
+      ImageIcon: User,
       summary: 'Blind activist who escaped house arrest',
       fullStory: `Chen Guangcheng, known as "the barefoot lawyer," is a self-taught legal advocate who exposed forced abortions under China's one-child policy. Despite being blind, he documented thousands of cases.
 
@@ -139,7 +140,7 @@ His escape, climbing walls and evading guards despite his blindness, became a sy
       category: 'family',
       location: 'China → United States',
       year: '2013-present',
-      image: '👩',
+      ImageIcon: User,
       summary: 'Daughter of imprisoned Uyghur economist Ilham Tohti',
       fullStory: `Jewher Ilham is the daughter of Ilham Tohti, the Uyghur economist sentenced to life in prison in 2014 for "separatism." She was 19 when she last saw her father at the Beijing airport.
 
@@ -163,7 +164,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-xl p-6 border border-purple-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">💬</span>
+          <MessageSquare className="w-8 h-8 text-purple-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Survivor Stories</h2>
             <p className="text-slate-400">Voices of those who have experienced CCP repression</p>
@@ -188,7 +189,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            <span>{cat.icon}</span>
+            <span>{cat.Icon && <cat.Icon className="w-4 h-4" />}</span>
             <span>{cat.name}</span>
           </button>
         ))}
@@ -208,7 +209,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center">
-                    <span className="text-4xl mr-3">{story.image}</span>
+                    <span className="text-4xl mr-3"><story.ImageIcon className="w-10 h-10 text-slate-400" /></span>
                     <div>
                       <div className="flex items-center space-x-2">
                         <h3 className="font-bold text-white">{story.name}</h3>
@@ -220,8 +221,8 @@ She has dedicated her life to advocating for her father's release, speaking at t
                       <p className="text-xs text-slate-500">{story.year}</p>
                     </div>
                   </div>
-                  <span className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-300">
-                    {categoryInfo?.icon} {categoryInfo?.name}
+                  <span className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-300 inline-flex items-center gap-1">
+                    {categoryInfo?.Icon && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}
                   </span>
                 </div>
 
@@ -279,7 +280,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
       {/* Resources */}
       <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
-        <h3 className="font-medium text-white mb-2">📚 More Testimonies</h3>
+        <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> More Testimonies</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <a href="https://xinjiangvictimsdb.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Xinjiang Victims Database</a> - 35,000+ documented cases</li>
           <li>• <a href="https://www.uyghurtribunal.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Uyghur Tribunal</a> - Legal testimonies and judgment</li>

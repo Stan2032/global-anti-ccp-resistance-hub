@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Headphones, Search, Newspaper, Building2, Landmark, Mountain, Theater, Mic, Radio, RefreshCw, MapPin, Lightbulb } from 'lucide-react';
 
 const PodcastList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -188,13 +189,13 @@ const PodcastList = () => {
   ];
 
   const categories = [
-    { id: 'all', name: 'All Podcasts', icon: '🎧' },
-    { id: 'analysis', name: 'Analysis & Commentary', icon: '🔍' },
-    { id: 'news', name: 'News & Current Events', icon: '📰' },
-    { id: 'hongkong', name: 'Hong Kong', icon: '🏙️' },
-    { id: 'uyghur', name: 'Uyghur Rights', icon: '🕌' },
-    { id: 'tibet', name: 'Tibet', icon: '🏔️' },
-    { id: 'culture', name: 'Culture & Society', icon: '🎭' }
+    { id: 'all', name: 'All Podcasts', Icon: Headphones },
+    { id: 'analysis', name: 'Analysis & Commentary', Icon: Search },
+    { id: 'news', name: 'News & Current Events', Icon: Newspaper },
+    { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
+    { id: 'uyghur', name: 'Uyghur Rights', Icon: Landmark },
+    { id: 'tibet', name: 'Tibet', Icon: Mountain },
+    { id: 'culture', name: 'Culture & Society', Icon: Theater }
   ];
 
   const filteredPodcasts = selectedCategory === 'all' 
@@ -208,7 +209,7 @@ const PodcastList = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 rounded-xl p-6 border border-purple-700/50">
         <div className="flex items-center mb-4">
-          <span className="text-3xl mr-3">🎙️</span>
+          <Mic className="w-8 h-8 text-purple-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Podcasts & Audio</h2>
             <p className="text-slate-400">Listen and learn from expert voices on China and human rights</p>
@@ -281,7 +282,7 @@ const PodcastList = () => {
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
             }`}
           >
-            <span className="mr-2">{cat.icon}</span>
+            <span className="mr-2"><cat.Icon className="w-4 h-4 inline" /></span>
             {cat.name}
           </button>
         ))}
@@ -320,9 +321,9 @@ const PodcastList = () => {
               
               <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-700">
                 <div className="flex items-center space-x-4 text-xs text-slate-400">
-                  <span>📻 {podcast.episodes} episodes</span>
-                  <span>🔄 {podcast.frequency}</span>
-                  <span>📍 {podcast.platform}</span>
+                  <span className="inline-flex items-center gap-1"><Radio className="w-3 h-3" /> {podcast.episodes} episodes</span>
+                  <span className="inline-flex items-center gap-1"><RefreshCw className="w-3 h-3" /> {podcast.frequency}</span>
+                  <span className="inline-flex items-center gap-1"><MapPin className="w-3 h-3" /> {podcast.platform}</span>
                 </div>
                 <span className={`transform transition-transform ${expandedPodcast === podcast.id ? 'rotate-90' : ''}`}>
                   ▶
@@ -347,7 +348,7 @@ const PodcastList = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
                   >
-                    🎧 Listen Now
+                    <Headphones className="w-4 h-4 inline mr-1" /> Listen Now
                   </a>
                 </div>
               </div>
@@ -358,7 +359,7 @@ const PodcastList = () => {
 
       {/* Listening Tips */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-        <h3 className="text-lg font-bold text-white mb-4">💡 Listening Tips</h3>
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Listening Tips</h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
           <div className="flex items-start">
             <span className="text-green-400 mr-2">✓</span>
