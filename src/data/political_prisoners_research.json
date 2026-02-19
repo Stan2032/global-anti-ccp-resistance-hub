@@ -46,17 +46,22 @@
       "error": ""
     },
     {
-      "input": "Zhang Zhan - Citizen journalist, reported on Wuhan COVID, 4 years",
+      "input": "Zhang Zhan - Citizen journalist, reported on Wuhan COVID, 4 years + second 4 years",
       "output": {
         "prisoner_name": "Zhang Zhan",
         "status": "DETAINED",
-        "location": "Pudong New District Detention Centre, Shanghai",
-        "sentence": "4 years for picking quarrels and provoking trouble",
-        "latest_news": "Sep 2025: Sentenced to a second four-year prison term.",
-        "health_status": "Deteriorating, suffering from severe malnutrition.",
-        "international_response": "The EU, US, Amnesty International, and RSF have condemned her detention and called for her release.",
-        "source_url": "https://www.reuters.com/world/china/chinese-covid-whistleblower-sentenced-4-more-years-jail-group-says-2025-09-21/",
-        "confidence": "HIGH"
+        "location": "Shanghai, China",
+        "sentence": "4 years (first, Dec 2020) + 4 years (second, Sep 2025) for picking quarrels and provoking trouble",
+        "latest_news": "Sep 2025: Sentenced to a second four-year prison term by Shanghai Pudong New Area People's Court. Re-arrested Aug 2024 shortly after release from first sentence.",
+        "health_status": "Critically deteriorating. History of prolonged hunger strikes causing severe malnutrition. Forced-feeding tube observed during family visit Oct 2024.",
+        "international_response": "OHCHR called second sentencing 'deeply disturbing'. Amnesty International, CPJ, RSF, EU, US all condemned. She is regarded as a prisoner of conscience.",
+        "source_url": "https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing",
+        "additional_sources": [
+          "https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/",
+          "https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/"
+        ],
+        "confidence": "HIGH",
+        "last_verified": "2026-02-19"
       },
       "error": ""
     },
@@ -95,13 +100,19 @@
       "output": {
         "prisoner_name": "Xu Zhiyong",
         "status": "DETAINED",
-        "location": "Lunan prison, Shandong province",
-        "sentence": "14 years for subversion of state power",
-        "latest_news": "Oct 2024: On hunger strike to protest inhumane treatment in prison.",
-        "health_status": "On hunger strike, health is a concern.",
-        "international_response": "UN High Commissioner for Human Rights criticized the sentence.",
-        "source_url": "https://www.theguardian.com/world/2024/oct/31/xu-zhiyong-hunger-strike-china-prison",
-        "confidence": "HIGH"
+        "location": "Lunan Prison, Shandong province",
+        "sentence": "14 years for subversion of state power (sentenced April 2023)",
+        "latest_news": "Oct 2024: Began hunger strike on Oct 4 to protest inhumane treatment. Lost 5-6 kg in less than a month. Forced-feeding tube observed during family visit. Referred to only as 'Prisoner No. 003'. Promised to suspend strike late Oct, but health remains critical concern.",
+        "health_status": "Critical. Severe weight loss from hunger strike. Denied adequate medical care, family/lawyer access restricted. Constant psychological harassment by fellow inmates.",
+        "international_response": "HRW, Amnesty, Asian Lawyers Network, US Embassy, and international legal community demanded release. Joint statement by 40+ organizations Nov 2024. He is regarded as China's most significant living dissident since Liu Xiaobo.",
+        "source_url": "https://www.hrw.org/news/2024/11/20/concerns-grow-health-detained-chinese-lawyer",
+        "additional_sources": [
+          "https://www.independent.co.uk/asia/china/xu-zhiyong-shandong-jail-hunger-strike-b2635543.html",
+          "https://www.nchrd.org/2024/10/leading-human-rights-lawyer-xu-zhiyong-on-hunger-strike-in-chinese-prison-family-says/",
+          "https://chinachange.org/2024/10/24/urgent-citizens-movement-leader-xu-zhiyong-on-hunger-strike-in-protest-of-inhumane-treatment-in-prison/"
+        ],
+        "confidence": "HIGH",
+        "last_verified": "2026-02-19"
       },
       "error": ""
     },
@@ -226,17 +237,23 @@
       "error": ""
     },
     {
-      "input": "Gui Minhai - Swedish-Chinese bookseller, 10 years",
+      "input": "Gui Minhai - Swedish-Chinese bookseller, 10 years (sentence ends Feb 2030)",
       "output": {
         "prisoner_name": "Gui Minhai",
         "status": "DETAINED",
-        "location": "Unknown",
-        "sentence": "10 years for espionage",
-        "latest_news": "Dec 2025: UN working group calls for his immediate release, calling his detention \"arbitrary\". China rejects the call.",
-        "health_status": "Unknown",
-        "international_response": "UN Working Group on Arbitrary Detention and Sweden have called for his release.",
+        "location": "Unknown — Chinese authorities refuse to disclose",
+        "sentence": "10 years for 'illegally providing intelligence to foreign countries' (sentenced Feb 2020 by Ningbo Intermediate People's Court). Sentence due to end February 2030.",
+        "latest_news": "Oct 2025: 10th anniversary of kidnapping marked by Safeguard Defenders. Dec 2025: UN Working Group on Arbitrary Detention calls for immediate release, declaring detention 'arbitrary'. China rejects the call.",
+        "health_status": "Unknown. No consular access granted to Sweden. No family contact since sentencing. Daughter Angela Gui has had no communication with him.",
+        "international_response": "UN Working Group on Arbitrary Detention, Sweden, EU, Amnesty International, NCHRD, Fortify Rights, Safeguard Defenders all demand release. China claims he 'voluntarily' renounced Swedish citizenship — disputed by Sweden as coerced.",
         "source_url": "https://hongkongfp.com/2025/12/14/china-defends-jailing-chinese-swedish-bookseller-gui-minhai-after-un-group-urges-release/",
-        "confidence": "HIGH"
+        "additional_sources": [
+          "https://www.amnesty.org/en/latest/news/2025/10/china-hong-kong-bookseller-gui-minhai-must-be-released-after-decade-of-cruel-secrecy/",
+          "https://www.nchrd.org/2025/10/china-end-decade-long-disappearance-of-swedish-publisher-gui-minhai/",
+          "https://safeguarddefenders.com/en/blog/10-years-gui-minhais-kidnapping"
+        ],
+        "confidence": "HIGH",
+        "last_verified": "2026-02-19"
       },
       "error": ""
     },

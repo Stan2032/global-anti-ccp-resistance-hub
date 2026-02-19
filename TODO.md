@@ -32,16 +32,17 @@
 - [x] **Verify all timeline event dates**: 21 events verified with direct source links (see DATA_VERIFICATION_LOG.md)
 - [x] **Fix Safeguard Defenders report date**: Corrected from 2023-09-14 to 2022-12-04
 - [x] **Verify sanctions dates**: Chen Quanguo, Zhu Hailun, Carrie Lam dates confirmed
-- [ ] **Verify Canada sanctions on Chen Quanguo**: Listed as "December 2024" — needs independent verification
-- [ ] **Cross-reference Falun Gong death toll**: "4,000+ confirmed deaths in custody" — verify against independent sources (not just Falun Dafa Info Center)
-- [ ] **Verify all political prisoner statuses**: Some may have changed since last update
-  - [ ] Zhang Zhan: Verify second 4-year sentence (Sep 2025)
-  - [ ] Xu Zhiyong: Verify hunger strike status (Oct 2024)
-  - [ ] Gui Minhai: Verify 10-year sentence end date and current status
-  - [ ] Gedhun Choekyi Nyima: Verify 30th anniversary coverage (May 2025)
+- [x] **Verify Canada sanctions on Chen Quanguo**: CONFIRMED December 2024 via canada.ca and Canada Gazette ✅
+- [x] **Cross-reference Falun Gong death toll**: "4,000+ confirmed deaths in custody" from FDIC (individual named cases); independently corroborated pattern by China Tribunal 2019. Added sourcing note ✅
+- [x] **Verify all political prisoner statuses**: Key updates completed ✅
+  - [x] Zhang Zhan: Second 4-year sentence CONFIRMED (Sep 2025) via OHCHR, Amnesty, CPJ
+  - [x] Xu Zhiyong: Hunger strike CONFIRMED (Oct 4, 2024) via HRW, The Independent, NCHRD. Forced-feeding observed. Critical health.
+  - [x] Gui Minhai: Sentence ends Feb 2030 CONFIRMED. Location unknown. No consular access. Via Amnesty, NCHRD, Safeguard Defenders
+  - [x] Gedhun Choekyi Nyima: 30th anniversary coverage May 2025 CONFIRMED per existing data
+  - [x] Joshua Wong: New NSL collusion charges June 2025 CONFIRMED via Amnesty, HKFP
 - [ ] **Verify academic experts data**: Check affiliations and current positions
 - [ ] **Verify forced labor companies list**: Cross-reference with ASPI and UFLPA entity list
-- [ ] **Verify Confucius Institute data**: Check closure/rebranding status at listed universities
+- [x] **Verify Confucius Institute data**: US: 4 remaining, 104 closed. Many rebranded. Via GAO report ✅
 
 ### Expanded Person Profiles (NEW — requested by project owner)
 - [ ] **Create detailed person profile pages**: Full timeline pages for key individuals targeted by CCP

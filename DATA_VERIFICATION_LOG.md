@@ -163,11 +163,23 @@
 
 - [ ] Exact start date of Xinjiang mass internment (currently April 1, 2017 — approximate)
 - [ ] Causeway Bay Booksellers first disappearance date (currently Oct 15, 2015 — approximately correct, first was Oct 14)
-- [ ] Falun Gong death toll in custody (currently "4,000+ confirmed" — from Falun Dafa Info Center; cross-reference needed)
+- [x] Falun Gong death toll in custody — "4,000+ confirmed" is from Falun Dafa Info Center (FDIC), documenting individual named cases. The pattern of deaths (including forced organ harvesting) was independently confirmed by the China Tribunal (2019, Sir Geoffrey Nice QC). Added sourcing note to timeline_events.json. ✅
 - [ ] Tiananmen casualty estimates (currently "300-3,000+" — range is accurate per multiple sources)
 - [ ] White Paper Protests — date is Nov 26 for mass protests, Ürümqi fire was Nov 24
-- [ ] Canada sanctions on Chen Quanguo date (listed as "December 2024" — needs verification)
+- [x] Canada sanctions on Chen Quanguo date — **CONFIRMED**: December 2024, under Special Economic Measures (People's Republic of China) Regulations. 8 senior CCP officials sanctioned. Sources: [canada.ca](https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html), [Canada Gazette](https://gazette.gc.ca/rp-pr/p2/2024/2024-12-18/html/sor-dors253-eng.html) ✅
 - [ ] Political prisoner health statuses (many listed as "Unknown" — reasonable given CCP opacity)
+
+### Newly Verified (Session 25, 2026-02-19)
+
+| Claim | Status | Sources |
+|-------|--------|---------|
+| Zhang Zhan second 4-year sentence (Sep 2025) | ✅ CONFIRMED | [OHCHR](https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing), [Amnesty](https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/), [CPJ](https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/) |
+| Xu Zhiyong hunger strike (Oct 4, 2024) | ✅ CONFIRMED | [HRW](https://www.hrw.org/news/2024/11/20/concerns-grow-health-detained-chinese-lawyer), [The Independent](https://www.independent.co.uk/asia/china/xu-zhiyong-shandong-jail-hunger-strike-b2635543.html), [NCHRD](https://www.nchrd.org/2024/10/leading-human-rights-lawyer-xu-zhiyong-on-hunger-strike-in-chinese-prison-family-says/) |
+| Gui Minhai sentence ends Feb 2030 | ✅ CONFIRMED | [Amnesty](https://www.amnesty.org/en/latest/news/2025/10/china-hong-kong-bookseller-gui-minhai-must-be-released-after-decade-of-cruel-secrecy/), [NCHRD](https://www.nchrd.org/2025/10/china-end-decade-long-disappearance-of-swedish-publisher-gui-minhai/), [Safeguard Defenders](https://safeguarddefenders.com/en/blog/10-years-gui-minhais-kidnapping) |
+| Canada sanctions on Chen Quanguo (Dec 2024) | ✅ CONFIRMED | [canada.ca](https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html), [Canada Gazette](https://gazette.gc.ca/rp-pr/p2/2024/2024-12-18/html/sor-dors253-eng.html) |
+| US Confucius Institutes: ~4 remaining, 104 closed | ✅ CONFIRMED | [GAO](https://www.gao.gov/products/gao-24-105981), [NAS Appendix I](https://www.nas.org/storage/app/media/Reports/After%20Confucius%20Institutes/Appendices/After%20Confucius%20Institutes%20Appendix%201.pdf) |
+| Many closed CIs rebranded/retained partnerships | ✅ CONFIRMED | [China Observers](https://chinaobservers.eu/the-demise-of-confucius-institutes-retreating-or-rebranding/) |
+| Joshua Wong new NSL collusion charges (June 2025) | ✅ CONFIRMED | [Amnesty](https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/), [HKFP](https://hongkongfp.com/2025/06/06/breaking-jailed-hong-kong-activist-joshua-wong-charged-with-conspiring-to-collude-with-foreign-forces/) |
 
 ---
 
@@ -235,6 +247,16 @@ See Section 1 above for full breakdown with sources.
   - Created CCP narrative control breakdowns for 7 subjects
   - Verified 5 sanctioned officials' dates
   - Listed 7 items still requiring verification
+
+- 2026-02-19 (Session 25): Continued verification (Opus 4.6)
+  - Verified Zhang Zhan second 4-year sentence with OHCHR, Amnesty, CPJ sources
+  - Verified Xu Zhiyong hunger strike with HRW, Independent, NCHRD sources
+  - Verified Gui Minhai sentence end date (Feb 2030) with Amnesty, NCHRD, Safeguard Defenders
+  - Confirmed Canada sanctions on Chen Quanguo (Dec 2024) via canada.ca official source
+  - Confirmed US Confucius Institutes data (4 remaining, 104 closed, rebranding concerns) via GAO
+  - Added sourcing attribution for Falun Gong death toll (FDIC named cases + China Tribunal pattern confirmation)
+  - Updated political_prisoners_research.json: Zhang Zhan, Xu Zhiyong, Gui Minhai entries with verified source URLs
+  - Confirmed Joshua Wong June 2025 NSL collusion charges via Amnesty, HKFP
 
 ---
 
