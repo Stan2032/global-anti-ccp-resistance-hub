@@ -186,56 +186,48 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ---
 
 ### M2: Emoji Reduction
-**Status:** Not Started  
+**Status:** In Progress (2026-02-19) — Dashboard complete, 934 → ~917 emojis  
 **Priority:** MEDIUM - Professional appearance  
 **From:** SITE_CLEANUP_TODO.md Priority 2  
-**Agent Action:** Can execute autonomously  
-**Best Agent:** Sonnet 4.5 (find-and-replace, straightforward)  
-**Why:** Mechanical removal of decorative emojis is a low-risk, high-volume task.
+**Agent Action:** Executing incrementally  
+**Best Agent:** Opus 4.6 (requires judgment on which to keep vs remove + Lucide icon replacement)  
+**Note:** Original estimate was 170 emojis. Actual count is 934 across 90 files. Full removal is impractical in one session.
 
-- [ ] **M2.1** Remove decorative navigation emojis
-  - Dashboard 📊 → Dashboard
-  - 8 items to update
-  - **Time:** 30 minutes
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
-  - **Subtasks:**
-    - [ ] Identify all navigation items with decorative emojis
-    - [ ] Remove emojis from nav items
-    - [ ] Verify navigation still looks good
+- [x] **M2.1** Replace Dashboard emojis with Lucide icons ✅ (2026-02-19)
+  - 17 emoji strings replaced with Lucide React icon components
+  - Stat cards: 👥→Users, 🏢→Building2, 🎯→Target, ⛓️→AlertTriangle
+  - Quick actions: ✊→Megaphone, 🎯→Target, 🔐→Lock, 📚→BookOpen
+  - Section headers: 🚨→AlertTriangle, 📡→Radio, ⚡→Zap, 🔗→Link2
+  - Resources: 🧅→Shield, 💬→MessageSquare, 📧→Mail, 💻→Monitor
+  - **Agent:** Opus 4.6 (required understanding of icon semantics and Lucide API)
 
 - [ ] **M2.2** Keep only functional emojis (status indicators)
-  - Keep: 🟢🟡🔴 ⚠️ ✅
-  - Remove: All decorative emojis
-  - Target: 170 → 30 emojis
-  - **Time:** 2 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+  - Keep: 🟢🟡🔴 ⚠️ ✅ ✓ ✗ ❌ (status), 🇺🇸🇬🇧🇨🇦 (flags — convey info)
+  - Remove: Decorative emojis (~350 remaining)
+  - **Time:** Multiple sessions — too many files for one pass
+  - **Best Agent:** Sonnet 4.5 for mechanical removal in individual components
+  - **Strategy:** Prioritize high-traffic pages first
 
 ---
 
 ### M3: Page Consolidation
-**Status:** Partially Complete  
-**Priority:** MEDIUM - Simplifies navigation  
+**Status:** DEPRIORITIZED (2026-02-19)  
+**Priority:** LOW (downgraded from MEDIUM)  
 **From:** SITE_WIDE_TODO.md Priority 3  
-**Agent Action:** Can execute autonomously
+**Agent Action:** Deferred — analysis shows merging would create oversized components  
+**Note:** TakeAction is already 539 lines with 16 imported components. Merging CampaignHubs (413 lines) would create a 950+ line component, violating the <500 line goal. Better to keep as separate deep-link pages.
 
-- [x] Removed 4 pages from navigation (Campaigns, Communications, CCP Tactics, Regional Threats)
+- [x] Removed 4 pages from navigation (Campaigns, Communications, CCP Tactics, Regional Threats) ✅
 
-- [ ] **M3.1** Merge Take Action + Campaigns
-  - Move CampaignProgress to Take Action
-  - Remove CampaignHubs.jsx
-  - Update internal links
-  - **Time:** 3 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+- [ ] **M3.1** Merge Take Action + Campaigns — DEPRIORITIZED
+  - **Analysis:** TakeAction already imports CampaignProgress component. Full merger would exceed 500-line limit.
+  - **Recommendation:** Keep CampaignHubs as deep-linked page. The `/campaigns` route is linked from Dashboard and TakeAction.
+  - **Best Agent:** N/A (not recommended to execute)
 
-- [ ] **M3.2** Merge Community + Communications
-  - Move SecureComms to Community
-  - Remove SecureComms.jsx
-  - **Time:** 2 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
+- [ ] **M3.2** Merge Community + Communications — DEPRIORITIZED
+  - **Analysis:** CommunitySupport (619 lines) + SecureComms (480 lines) = 1,099 lines. Far exceeds limits.
+  - **Recommendation:** Keep as separate pages. SecureComms is already linked from Community.
+  - **Best Agent:** N/A (not recommended to execute)
 
 ---
 
