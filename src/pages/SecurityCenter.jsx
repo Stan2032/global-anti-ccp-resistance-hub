@@ -23,7 +23,8 @@ import {
   Phone,
   AlertCircle,
   ChevronRight,
-  Zap
+  Zap,
+  ExternalLink
 } from 'lucide-react'
 
 const SecurityCenter = () => {
@@ -63,7 +64,7 @@ const SecurityCenter = () => {
       name: 'Tails OS',
       description: 'Secure operating system for sensitive work',
       status: 'advanced',
-      download: 'https://tails.boum.org/',
+      download: 'https://tails.net/',
       features: ['Amnesic system', 'No traces left', 'Tor integrated']
     },
     {
@@ -83,6 +84,37 @@ const SecurityCenter = () => {
       features: ['AES-256 encryption', 'Hidden volumes', 'Plausible deniability']
     }
   ])
+
+  const connectionTestTools = [
+    {
+      id: 1,
+      name: 'Tor Project Connection Check',
+      url: 'https://check.torproject.org/',
+      description: 'Official Tor Project tool — confirms whether your browser is connected through the Tor network',
+      provider: 'The Tor Project'
+    },
+    {
+      id: 2,
+      name: 'IPLeak.net',
+      url: 'https://ipleak.net/',
+      description: 'Checks for IP address leaks, DNS leaks, and WebRTC leaks that could expose your real location',
+      provider: 'IPLeak.net (open source)'
+    },
+    {
+      id: 3,
+      name: 'DNS Leak Test',
+      url: 'https://dnsleaktest.com/',
+      description: 'Tests whether your DNS queries are being sent through your VPN or leaking to your ISP',
+      provider: 'DNSLeakTest.com'
+    },
+    {
+      id: 4,
+      name: 'Mullvad Connection Check',
+      url: 'https://mullvad.net/en/check',
+      description: 'Comprehensive check for IP, DNS leaks, and WebRTC — works with any VPN, not just Mullvad',
+      provider: 'Mullvad VPN AB'
+    }
+  ]
 
   const [assessmentQuestions] = useState([
     {
@@ -514,6 +546,35 @@ const SecurityCenter = () => {
             {securityTools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />
             ))}
+          </div>
+
+          {/* Verify Your Connection */}
+          <div className="mt-8 border-t border-slate-700 pt-8">
+            <h3 className="text-xl font-bold text-white mb-2">Verify Your Connection</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              This platform cannot detect whether you are using a VPN or Tor. Use these reputable 
+              third-party tools to self-test whether your connection is properly secured.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {connectionTestTools.map((tool) => (
+                <a
+                  key={tool.id}
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-800 rounded-lg border border-slate-700 p-4 hover:border-blue-500 transition-colors group"
+                >
+                  <div className="flex items-start justify-between">
+                    <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
+                      {tool.name}
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors flex-shrink-0 mt-0.5" />
+                  </div>
+                  <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
+                  <p className="text-slate-500 text-xs mt-2">Provider: {tool.provider}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}
