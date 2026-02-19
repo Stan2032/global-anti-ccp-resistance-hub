@@ -1,14 +1,12 @@
 # Global Anti-CCP Resistance Hub
-# https://stan2032.github.io/global-anti-ccp-resistance-hub/
+# Update URLs below when deploying to custom domain
 
 User-agent: *
 Allow: /
 
 # Sitemap location
+# TODO: Update to custom domain URL when deployed to Cloudflare Pages
 Sitemap: https://stan2032.github.io/global-anti-ccp-resistance-hub/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
-
-# Block sensitive paths (none currently)
-# Disallow: /admin/
