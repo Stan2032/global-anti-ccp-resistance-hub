@@ -1,52 +1,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { AlertTriangle, Shield, Eye, X, ExternalLink } from 'lucide-react'
+import { AlertTriangle, Shield, ExternalLink, X } from 'lucide-react'
 
-const SecurityWarning = ({ securityLevel, onClose }) => {
-  const getSecurityInfo = () => {
-    switch (securityLevel) {
-      case 'high':
-        return {
-          color: 'green',
-          icon: Shield,
-          title: 'High Security Detected',
-          message: 'You appear to be using Tor or a VPN. Your connection is well-protected.',
-          recommendations: [
-            'Continue using your current security setup',
-            'Avoid logging into personal accounts',
-            'Clear browser data after each session'
-          ]
-        }
-      case 'medium':
-        return {
-          color: 'yellow',
-          icon: AlertTriangle,
-          title: 'Medium Security Level',
-          message: 'Your connection may be monitored. Consider enhancing your security.',
-          recommendations: [
-            'Use a VPN service for better protection',
-            'Consider using Tor Browser',
-            'Avoid accessing sensitive information'
-          ]
-        }
-      default:
-        return {
-          color: 'red',
-          icon: Eye,
-          title: 'Security Risk Detected',
-          message: 'Your connection is not secure. Take immediate action to protect yourself.',
-          recommendations: [
-            'Use Tor Browser immediately',
-            'Connect through a VPN',
-            'Do not access sensitive content'
-          ]
-        }
-    }
-  }
-
-  const securityInfo = getSecurityInfo()
-  const Icon = securityInfo.icon
-
+/**
+ * SecurityWarning - Displays general security guidance for users
+ * 
+ * NOTE: This component does NOT detect VPN/Tor usage. It provides
+ * honest security recommendations without claiming to know the
+ * user's connection status. Any actual security detection would
+ * require server-side IP analysis (see C2 in AGENT_ROADMAP.md).
+ * 
+ * @param {Function} onClose - callback to dismiss the warning
+ */
+const SecurityWarning = ({ onClose }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -58,26 +24,14 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className={`bg-slate-800 rounded-lg border-2 ${
-          securityInfo.color === 'green' 
-            ? 'border-green-500' 
-            : securityInfo.color === 'yellow'
-            ? 'border-yellow-500'
-            : 'border-red-500'
-        } max-w-md w-full p-6`}
+        className="bg-slate-800 rounded-lg border-2 border-yellow-500 max-w-md w-full p-6"
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <Icon className={`w-6 h-6 mr-3 ${
-              securityInfo.color === 'green' 
-                ? 'text-green-400' 
-                : securityInfo.color === 'yellow'
-                ? 'text-yellow-400'
-                : 'text-red-400'
-            }`} />
+            <Shield className="w-6 h-6 mr-3 text-yellow-400" />
             <h3 className="text-lg font-semibold text-white">
-              {securityInfo.title}
+              Security Reminder
             </h3>
           </div>
           <button
@@ -88,9 +42,11 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
           </button>
         </div>
 
-        {/* Message */}
+        {/* Honest message */}
         <p className="text-slate-300 mb-4">
-          {securityInfo.message}
+          This platform contains sensitive information about human rights abuses. 
+          We cannot verify your connection security from the browser. Please take 
+          steps to protect yourself.
         </p>
 
         {/* Recommendations */}
@@ -99,13 +55,35 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
             Security Recommendations:
           </h4>
           <ul className="space-y-1">
-            {securityInfo.recommendations.map((rec, index) => (
-              <li key={index} className="text-sm text-slate-400 flex items-start">
-                <span className="w-1 h-1 bg-slate-500 rounded-full mt-2 mr-2 flex-shrink-0" />
-                {rec}
-              </li>
-            ))}
+            <li className="text-sm text-slate-400 flex items-start">
+              <span className="w-1 h-1 bg-slate-500 rounded-full mt-2 mr-2 flex-shrink-0" />
+              Use Tor Browser or a reputable VPN service
+            </li>
+            <li className="text-sm text-slate-400 flex items-start">
+              <span className="w-1 h-1 bg-slate-500 rounded-full mt-2 mr-2 flex-shrink-0" />
+              Avoid logging into personal accounts while browsing
+            </li>
+            <li className="text-sm text-slate-400 flex items-start">
+              <span className="w-1 h-1 bg-slate-500 rounded-full mt-2 mr-2 flex-shrink-0" />
+              Clear browser data after each session
+            </li>
+            <li className="text-sm text-slate-400 flex items-start">
+              <span className="w-1 h-1 bg-slate-500 rounded-full mt-2 mr-2 flex-shrink-0" />
+              Use end-to-end encrypted messaging for sensitive communications
+            </li>
           </ul>
+        </div>
+
+        {/* Honest disclaimer */}
+        <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-3 mb-4">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-slate-300">
+              This platform cannot detect whether you are using a VPN or Tor. 
+              We provide these recommendations as general security guidance. 
+              You are responsible for your own operational security.
+            </p>
+          </div>
         </div>
 
         {/* Security Resources */}
@@ -124,13 +102,22 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
               Download Tor Browser
             </a>
             <a
-              href="https://tails.boum.org/"
+              href="https://tails.net/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Tails Operating System
+            </a>
+            <a
+              href="https://ssd.eff.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              EFF Surveillance Self-Defense
             </a>
           </div>
         </div>
@@ -139,13 +126,7 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
         <div className="flex space-x-3 mt-6">
           <button
             onClick={onClose}
-            className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-              securityInfo.color === 'green'
-                ? 'bg-green-600 hover:bg-green-700 text-white'
-                : securityInfo.color === 'yellow'
-                ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
-                : 'bg-red-600 hover:bg-red-700 text-white'
-            }`}
+            className="flex-1 px-4 py-2 rounded-lg font-medium transition-colors bg-blue-600 hover:bg-blue-700 text-white"
           >
             I Understand
           </button>
@@ -159,7 +140,7 @@ const SecurityWarning = ({ securityLevel, onClose }) => {
 
         {/* Disclaimer */}
         <p className="text-xs text-slate-500 mt-4 text-center">
-          This platform is designed to support legitimate resistance against authoritarian oppression.
+          This platform supports legitimate resistance against authoritarian oppression.
           Always prioritize your personal safety and legal compliance.
         </p>
       </motion.div>

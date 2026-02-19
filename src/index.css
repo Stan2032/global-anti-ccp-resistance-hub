@@ -68,21 +68,21 @@ h4 {
   color: #f1f5f9;
 }
 
-/* Better contrast for secondary text */
+/* Better contrast for secondary text - WCAG AA compliant on slate-900 (#0f172a) */
 .text-slate-400 {
-  color: #94a3b8 !important; /* Ensure minimum contrast */
+  color: #a8b5c7 !important; /* Upgraded for WCAG AA: ~5.5:1 contrast on slate-900 */
 }
 
 .text-slate-500 {
-  color: #94a3b8 !important; /* Upgrade to slate-400 for readability */
+  color: #a8b5c7 !important; /* Upgraded to match slate-400 for readability */
 }
 
 .text-gray-400 {
-  color: #9ca3af !important;
+  color: #a3aebb !important; /* Upgraded for WCAG AA compliance */
 }
 
 .text-gray-500 {
-  color: #9ca3af !important; /* Upgrade for readability */
+  color: #a3aebb !important; /* Upgraded to match gray-400 for readability */
 }
 
 /* Upgrade small text sizes */

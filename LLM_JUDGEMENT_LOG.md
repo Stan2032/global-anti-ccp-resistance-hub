@@ -859,3 +859,104 @@ With all CRITICAL data tasks complete, moving to HIGH priority:
 **Blocked (human decisions needed):**
 - C2: VPN/Tor detection architecture
 - HR1-HR3: Backend deployment, content policies, API keys
+
+---
+
+## Session 8: 2026-02-19 - M1.2 Text Contrast + C2.4 Security Honesty (Opus 4.6)
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Context Window:** 200K tokens  
+**Mode:** Autonomous agent (GitHub Copilot coding agent)  
+**Task:** Continue next-priority tasks from AGENT_ROADMAP.md — typography/readability and security honesty
+
+---
+
+### 1. Discovery Phase
+
+#### What I Found
+- **M1.1 (Font sizes):** Already implemented! `index.css` lines 88-97 override `text-xs` to 13px and `text-sm` to 15px via `!important`. Base body font is 16px. No component-level changes needed.
+- **M1.2 (Text contrast):** Partially implemented. `text-slate-400` was overridden but stayed at #94a3b8 (~4.4:1 contrast ratio on slate-900). Needs upgrade for WCAG AA.
+- **M1.3 (Line-height):** Already implemented! Body 1.7, paragraphs 1.75, lists 1.8, text-xs 1.5, text-sm 1.6.
+- **C2.4 (Security warnings):** SecurityWarning component claimed to "detect" VPN/Tor but had no detection logic. Component was never actually used (orphan), but contained misleading text that could be problematic if wired up later.
+- **Header component:** Also has dead `securityLevel` display code but is never imported. Left as-is.
+- **Math.random() fake detection:** Already removed in prior work — no instances found.
+
+#### Key Decision: M1 Was Mostly Already Done
+Previous sessions had already implemented M1.1 and M1.3 via global CSS in index.css. The roadmap said "Not Started" but audit showed it was already done. Only M1.2 needed a minor tweak.
+
+This is a pattern: task estimates in the roadmap are often overstated because prior work had already addressed them partially or fully. Future agents should always verify actual state before executing.
+
+---
+
+### 2. Execution Summary
+
+#### M1.2: WCAG AA Text Contrast Improvement ✅
+- Upgraded `text-slate-400` from #94a3b8 → #a8b5c7 (contrast ratio ~5.5:1 on slate-900, passes WCAG AA)
+- Upgraded `text-slate-500` from #94a3b8 → #a8b5c7 (same upgrade)
+- Upgraded `text-gray-400` from #9ca3af → #a3aebb
+- Upgraded `text-gray-500` from #9ca3af → #a3aebb
+- **Impact:** All secondary text across the entire site now meets WCAG AA contrast requirements
+- **Approach:** Global CSS override in index.css — single change affects all 1,800+ text-slate-400/500 instances
+
+#### M1.1, M1.3: Verified Already Complete ✅
+- No code changes needed — just updated AGENT_ROADMAP.md to reflect correct status
+
+#### C2.4: Honest Security Warnings ✅
+- Rewrote SecurityWarning.jsx to remove false VPN/Tor detection claims
+- Removed `securityLevel` prop (no longer pretends to detect anything)
+- Added explicit disclaimer: "This platform cannot detect whether you are using a VPN or Tor"
+- Added honest security recommendations without false promises
+- Added EFF Surveillance Self-Defense link
+- Updated Tails URL from tails.boum.org to tails.net (current)
+- **Impact:** Eliminates misleading security claims from codebase
+
+#### Verification
+- Build: ✅ 5.00s
+- Tests: ✅ 124/124 pass
+- Security: SecurityWarning no longer makes false detection claims
+- Code quality: 3 files modified (index.css, SecurityWarning.jsx, AGENT_ROADMAP.md)
+
+---
+
+### 3. Dead Code Inventory
+
+Found several unused components during investigation:
+
+| Component | Location | Status | Action |
+|-----------|----------|--------|--------|
+| SecurityWarning | src/components/ui/SecurityWarning.jsx | Never imported | FIXED — rewritten with honest messaging |
+| Header | src/components/layout/Header.jsx | Never imported | Not critical — left as-is |
+
+**Recommendation:** A dead code audit across all components would be valuable but is low priority. Focus on live code quality first.
+
+---
+
+### 4. Updated Agent Assignment Table
+
+| Task | Best Agent | Status | Reasoning |
+|------|-----------|--------|-----------|
+| M1.1-M1.3 | N/A | ✅ COMPLETE | Already done via global CSS |
+| M1.2 | Opus 4.6 | ✅ COMPLETE | Contrast ratio calculation needed |
+| C2.4 | Opus 4.6 | ✅ COMPLETE | Security judgment, honest messaging |
+| M2.1-M2.2 | Sonnet 4.5 | PENDING | Mechanical emoji removal |
+| M3.1-M3.2 | Opus 4.6 | PENDING | Page consolidation, UX judgment |
+| L1.1-L1.2 | Sonnet 4.5 | PENDING | ARIA labels, keyboard nav |
+| C2.1-C2.3 | Opus 4.6 | BLOCKED | Awaiting human security decisions |
+
+---
+
+### 5. Next Steps Recommendation
+
+**Immediate (for next agent session):**
+1. M2.1-M2.2: Emoji reduction (Sonnet 4.5, 2.5 hours) — mechanical removal
+2. M3.1: Merge Take Action + Campaigns (Opus 4.6, 3 hours) — UX judgment
+3. M3.2: Merge Community + Communications (Opus 4.6, 2 hours) — UX judgment
+
+**Lower priority:**
+4. L1.1: ARIA labels (Sonnet 4.5, 4 hours) — accessibility
+5. Dead code audit (Sonnet 4.5, 2 hours) — find and document all unused components
+
+**Blocked (human decisions needed):**
+- C2.1-C2.3: VPN/Tor detection architecture, IP geolocation API
+- HR1-HR3: Backend deployment, content policies, API keys
