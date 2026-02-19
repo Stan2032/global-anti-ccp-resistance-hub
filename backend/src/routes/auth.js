@@ -2,7 +2,6 @@ import express from 'express';
 import { validate, registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from '../validators/schemas.js';
 import { authenticateToken } from '../middleware/auth.js';
 import * as authService from '../services/authService.js';
-import logger from '../utils/logger.js';
 
 const router = express.Router();
 

@@ -175,13 +175,12 @@ export const login = async (email, password, ipAddress, userAgent) => {
 // TOKEN REFRESH
 // ============================================================================
 
-export const refreshAccessToken = async (refreshToken, ipAddress, userAgent) => {
+export const refreshAccessToken = async (refreshToken, _ipAddress, _userAgent) => {
   try {
     // Verify refresh token
-    let decoded;
     try {
-      decoded = verifyRefreshToken(refreshToken);
-    } catch (error) {
+      verifyRefreshToken(refreshToken);
+    } catch {
       throw new UnauthorizedError('Invalid or expired refresh token');
     }
 
@@ -325,7 +324,7 @@ export const resetPassword = async (token, newPassword) => {
 // LOGOUT
 // ============================================================================
 
-export const logout = async (token) => {
+export const logout = async (_token) => {
   try {
     // Revoke token by adding to blacklist (for JWT)
     // In a production system, you might want to store revoked tokens in Redis

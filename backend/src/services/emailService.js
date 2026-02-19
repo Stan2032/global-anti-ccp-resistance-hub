@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Verify connection
-transporter.verify((error, success) => {
+transporter.verify((error, _success) => {
   if (error) {
     logger.error('Email service error', { error: error.message });
   } else {

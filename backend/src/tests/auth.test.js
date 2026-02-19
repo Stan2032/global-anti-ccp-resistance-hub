@@ -12,9 +12,9 @@ describe('Authentication Endpoints', () => {
     lastName: 'User'
   };
 
-  let accessToken;
-  let refreshToken;
-  let userId;
+  let _accessToken;
+  let _refreshToken;
+  let _userId;
 
   // Clean up before tests
   beforeAll(async () => {
@@ -51,7 +51,7 @@ describe('Authentication Endpoints', () => {
       expect(response.body.data.user.email).toBe(testUser.email);
       expect(response.body.data.user.username).toBe(testUser.username);
 
-      userId = response.body.data.user.id;
+      _userId = response.body.data.user.id;
     });
 
     it('should reject duplicate email', async () => {
