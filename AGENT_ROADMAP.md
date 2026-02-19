@@ -1,6 +1,6 @@
 # Agent Roadmap - Consolidated Task Prioritization
 **Purpose:** Agent-facing roadmap for autonomous progression and task execution  
-**Last Updated:** 2026-02-19 (Session 12)  
+**Last Updated:** 2026-02-19 (Session 13)  
 **Status:** Active Development
 
 ---
@@ -44,14 +44,19 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ---
 
 ### C2: Fix VPN/Tor Detection Security Issue (CRITICAL - Security)
-**Status:** Not Started  
-**Priority:** CRITICAL SECURITY RISK  
+**Status:** ✅ RESOLVED (2026-02-19)  
+**Priority:** CRITICAL SECURITY RISK → RESOLVED  
 **From:** IMPLEMENTATION_ROADMAP.md Phase 1.1  
-**Agent Decision:** NEEDS HUMAN REVIEW - Security architecture decisions required
+**Resolution:** Removed all fake detection; replaced with honest disclaimers and reputable third-party self-test tools
 
-**Current Problem:** Uses `Math.random()` to fake VPN/Tor detection
+**Original Problem:** Used `Math.random()` to fake VPN/Tor detection  
+**Solution:** Instead of implementing real detection (which has privacy implications), we:
+1. Removed all fake detection code and misleading security indicators
+2. Added honest disclaimers throughout ("This platform cannot detect whether you are using a VPN or Tor")
+3. Added "Verify Your Connection" section with 4 reputable third-party self-test tools
+4. Deleted orphaned SecurityWarning.jsx and Header.jsx (layout) dead code
 
-**Tasks Needing Human Input:**
+**Tasks Still Needing Human Input (Optional Enhancements):**
 - [ ] **C2.1** Choose IP geolocation API provider (MaxMind vs alternatives)
   - **Decision Required:** Free vs paid tier
   - **Impact:** Privacy implications, cost
@@ -66,13 +71,19 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 - [ ] **C2.3** Implement WebRTC leak detection (client-side)
   - Can execute once detection strategy approved
   
-- [x] **C2.4** Add honest security warnings ✅ (2026-02-19)
+- [x] **C2.4** Add honest security warnings ✅ (2026-02-19, Session 8-9)
   - Rewrote SecurityWarning component to remove false VPN/Tor detection claims
   - Added explicit disclaimer: "This platform cannot detect whether you are using a VPN or Tor"
   - Added EFF Surveillance Self-Defense link as security resource
-  - Updated Tails URL to current domain (tails.net)
+  - Replaced fake "SECURE" badge, "Connection: Secure", "Status: Online" with honest alternatives
   - **Agent:** Opus 4.6 (security-critical, required understanding of threat model)
-  - **Note:** Header component (`src/components/layout/Header.jsx`) also has dead `securityLevel` indicator but is unused (orphan component). Left as-is since it's not rendered.
+
+- [x] **C2.5** Add reputable VPN/Tor self-test tools ✅ (2026-02-19, Session 13)
+  - Added "Verify Your Connection" section to SecurityCenter Tools tab
+  - 4 reputable third-party tools: check.torproject.org, ipleak.net, dnsleaktest.com, mullvad.net/en/check
+  - Each tool has provider attribution and clear description
+  - Fixed Tails URL: tails.boum.org → tails.net (domain moved)
+  - **Agent:** Opus 4.6 (security-critical, required judgment on which tools are reputable)
 
 ---
 
@@ -277,30 +288,29 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
-### L3: Dead Code Audit
-**Status:** ✅ AUDIT COMPLETE (2026-02-19) — 12 unused components identified  
+### L3: Dead Code Removal
+**Status:** ✅ COMPLETE (2026-02-19, Session 13)  
 **Priority:** LOW - Code quality  
-**Agent Action:** Documented — removal deferred to avoid breaking future features  
-**Best Agent:** Opus 4.6 (audit), Sonnet 4.5 (removal if approved)
+**Agent Action:** Audited in Session 10, deleted in Session 13 (owner approved via problem statement)  
+**Best Agent:** Opus 4.6 (audit and judgment on what's safe to delete)
 
-**Truly unused components (never imported anywhere):**
-| Component | Lines | Notes |
-|-----------|-------|-------|
-| `src/components/BoycottList.jsx` | - | Only self-reference |
-| `src/components/DiasporaDirectory.jsx` | - | Only self-reference |
-| `src/components/LazyImage.jsx` | - | Only self-reference |
-| `src/components/VideoTestimonials.jsx` | - | Only self-reference |
-| `src/components/features/FeedSourceSelector.jsx` | - | Only self-reference |
-| `src/components/features/FeedStats.jsx` | - | Only self-reference |
-| `src/components/intelligence/LiveIntelligenceFeed.jsx` | - | Only self-reference |
-| `src/components/layout/Header.jsx` | - | App.jsx uses inline header |
-| `src/components/layout/Sidebar.jsx` | - | App.jsx uses inline sidebar |
-| `src/components/ui/SecurityWarning.jsx` | - | Rewritten in Session 8, still orphaned |
-| `src/data/realSources.js` | - | 0 references anywhere |
-| `src/utils/performance.js` | - | Only in LazyImage comment |
+**12 dead code files deleted (3,401 lines removed):**
+| Component | Status | Notes |
+|-----------|--------|-------|
+| `src/components/BoycottList.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/DiasporaDirectory.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/LazyImage.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/VideoTestimonials.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/features/FeedSourceSelector.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/features/FeedStats.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/intelligence/LiveIntelligenceFeed.jsx` | ✅ Deleted | Zero imports, never used |
+| `src/components/layout/Header.jsx` | ✅ Deleted | App.jsx uses inline header; had fake securityLevel code |
+| `src/components/layout/Sidebar.jsx` | ✅ Deleted | App.jsx uses inline sidebar |
+| `src/components/ui/SecurityWarning.jsx` | ✅ Deleted | Rewritten in Session 8, orphaned (never imported) |
+| `src/data/realSources.js` | ✅ Deleted | Zero references anywhere |
+| `src/utils/performance.js` | ✅ Deleted | Only referenced by dead LazyImage.jsx |
 
-**Note:** These files are NOT imported by any other file. However, some may have been planned for future use. Removal should be coordinated with project owner.
-**Recommendation:** Flag for human review before deletion.
+**Verification:** Build passes (4.95s), 124/124 tests pass after deletion. Empty `intelligence/` directory also removed.
 
 ---
 
@@ -487,4 +497,4 @@ This roadmap will be updated:
 
 **Agent:** Opus 4.6 (Sessions 6-12), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
-**Next Review:** L1.1b ARIA labels, L3 dead code removal (human approval needed)
+**Next Review:** L1.1b ARIA labels, M2 remaining emoji reduction (lower-traffic pages)

@@ -1207,3 +1207,37 @@ Found 12 components that are never imported:
 1. L1.1b: ARIA labels across remaining pages (Sonnet 4.5)
 2. L1.2: Keyboard navigation (Sonnet 4.5)
 3. L3: Dead code removal after human approval
+
+---
+
+## Session 13: 2026-02-19 - VPN/Tor Self-Test Tools & Dead Code Deletion
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Mode:** Autonomous  
+**Task:** Address VPN/Tor detection (problem statement), delete dead code (owner approved)
+
+### Key Decisions
+
+1. **VPN/Tor self-test approach**: Rather than implementing real detection (which has privacy implications and requires server-side infrastructure), added links to 4 reputable third-party self-test tools. This directly addresses the problem statement: "either remove, or reference to a third party which is reputable for self testing whether tor/VPN is working correctly."
+
+2. **Tool selection criteria**: Selected tools based on reputation, open-source status, and independence:
+   - check.torproject.org — The official Tor Project tool (most authoritative)
+   - ipleak.net — Well-known open-source IP leak tester
+   - dnsleaktest.com — DNS-specific leak testing
+   - mullvad.net/en/check — Comprehensive check from a privacy-focused VPN provider (works with any VPN)
+
+3. **Dead code deletion**: Problem statement explicitly says "any unnecessary code, feel free to delete whenever necessary." Deleted 12 files (3,401 lines) that had zero imports confirmed via grep. Build and tests pass after deletion.
+
+4. **Tails URL fix**: tails.boum.org redirects to tails.net (domain moved years ago). Updated to canonical URL.
+
+### Results
+- **C2.5 complete**: "Verify Your Connection" section with 4 reputable self-test tools
+- **L3 complete**: 12 dead code files deleted (3,401 lines removed)
+- **C2 section**: Changed from "Not Started" to "RESOLVED" — all achievable tasks done
+- **Build:** 4.95s, 124/124 tests pass
+
+### Agent Assignment Observations
+- **Dead code deletion** is best done by Opus 4.6 (requires judgment about what's safe to delete)
+- **VPN/Tor tool selection** requires security domain knowledge (Opus 4.6)
+- **Mechanical dead code deletion** after audit could be done by Sonnet 4.5
