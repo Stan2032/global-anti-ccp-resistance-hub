@@ -748,3 +748,114 @@ With all CRITICAL data tasks complete, moving to HIGH priority:
 **Blocked:**
 - C2: VPN/Tor detection - awaiting human security architecture decision
 - HR1: Backend deployment - awaiting human infrastructure decision
+
+---
+
+## Session 7: 2026-02-19 - H1.3/H1.4/H2.2 Completion (Opus 4.6)
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Context Window:** 200K tokens  
+**Mode:** Autonomous agent (GitHub Copilot coding agent)  
+**Task:** Complete remaining H1 and H2 tasks from AGENT_ROADMAP.md
+
+---
+
+### 1. Discovery Phase
+
+#### What I Found
+- **H1.3 (VictimMemorialWall):** Component already imported SourceAttribution and resolveSource — it was already fully integrated. Only needed 6 new SOURCE_REGISTRY entries. "Historical records" is a generic reference with no single URL — correctly left unresolved.
+- **H1.4 (DataSources route):** Already complete. Route `/data-sources` exists in App.jsx, navigation links in header (2 locations) and footer, RouteAnnouncer mapping present.
+- **H2.2 (Inline disclaimers):** AIDisinfoDetector's disclaimer was generic "verify info" — replaced with GlobalDisclaimer. ForcedLabourList's disclaimer has supply chain-specific bullet points — should stay domain-specific. LegalResourcesHub has legal-specific text — should stay as-is for compliance.
+- **H2.3 (Repeated statistics):** Analysis shows "1 million" appears in 7 different natural-language contexts that aren't true duplicates. Deprioritized — creating constants would over-engineer.
+
+---
+
+### 2. Execution Summary
+
+#### H1.3: VictimMemorialWall Source Registry ✅
+- **Added 6 sources:** Tiananmen Mothers, Human Rights in China, Wall Street Journal, Free Tibet, Stand News, Nobel Prize Committee
+- **Result:** 16/17 source names resolve (1 generic "Historical records" correctly unresolved)
+- **Test:** Added comprehensive test verifying all 16 sources resolve
+- **Insight:** VictimMemorialWall was already well-integrated — only needed registry entries
+
+#### H1.4: DataSources Navigation ✅ (Already Complete)
+- Route, navigation links, footer link, RouteAnnouncer all present
+- No changes needed — verified and marked complete
+
+#### H2.2: Inline Disclaimers ✅ (1/3 replaced, 2/3 intentionally kept)
+- AIDisinfoDetector: Replaced inline disclaimer → `<GlobalDisclaimer type="verify" />`
+- ForcedLabourList: KEPT — domain-specific supply chain guidance with bullet points
+- LegalResourcesHub: KEPT — legal compliance text, flagged for human review
+
+#### H2.3: Repeated Statistics — DEPRIORITIZED
+- "1 million" appears in 7 different contexts (marchers, detainees, copies, bounties, children)
+- Not true duplicates — each is unique prose context
+- Creating constants would reduce readability without adding value
+
+#### Verification
+- Build: ✅ 4.83s
+- Tests: ✅ 124/124 pass (1 new test: VictimMemorialWall sources)
+- Security: No new vulnerabilities introduced
+- Code quality: Minimal surgical changes (3 files modified)
+
+---
+
+### 3. Key Insights for Future Agents
+
+**Pattern Recognition:**
+1. Many tasks in the original TODO lists were overstated. Actual work is often 2-5x faster than estimated because:
+   - Components already had partial integration
+   - The centralized SOURCE_REGISTRY pattern makes adding sources trivial
+   - GlobalDisclaimer was already well-adopted (10 components)
+   
+2. Domain-specific disclaimers should NOT be replaced with generic ones. They serve different purposes:
+   - ForcedLabourList: Guides users on supply chain avoidance with specific criteria
+   - LegalResourcesHub: Legal compliance language
+   - These aren't "redundant" — they're "specialized"
+
+3. "Repeated statistics" aren't always duplicates. "1 million" appears in 7 contexts — they're natural-language prose references, not copy-paste duplication.
+
+**Agent Assignment Update:**
+
+| Task | Agent | Status | Reason |
+|------|-------|--------|--------|
+| H1.1-H1.4 | Opus 4.6 | ✅ COMPLETE | Source verification across organizations |
+| H2.1-H2.2 | Opus 4.6 | ✅ COMPLETE | Judgment needed on what to replace vs keep |
+| H2.3 | N/A | DEPRIORITIZED | Over-engineering, not real duplication |
+| M1.1-M1.3 | Sonnet 4.5 | PENDING | Mechanical CSS changes |
+| M2.1-M2.2 | Sonnet 4.5 | PENDING | Mechanical emoji removal |
+| M3.1-M3.2 | Opus 4.6 | PENDING | Page consolidation requires UX judgment |
+| C2 | Opus 4.6 | BLOCKED | Awaiting human security decisions |
+
+---
+
+### 4. H1 Section Complete — Summary
+
+**SOURCE_REGISTRY now contains 43 verified sources covering:**
+- 12 NGO organizations (Amnesty, HRW, ICT, Free Tibet, etc.)
+- 10 news organizations (BBC, Reuters, NYT, WSJ, SCMP, etc.)
+- 8 government bodies (US Treasury, UK Sanctions, EU Sanctions, etc.)
+- 6 research/academic sources (ASPI, China Tribunal, Adrian Zenz, etc.)
+- 4 specialized (Xinjiang Police Files, FBI, Nobel Committee, etc.)
+- 3 regional (Hong Kong Free Press, Stand News, Radio Free Asia)
+
+**3 components use resolveSource:** InteractiveTimeline, SanctionsTracker, VictimMemorialWall
+**4 test cases verify source resolution:** Timeline (27), Sanctions (4), Memorial (16), general (6)
+**Total tests:** 124/124 passing
+
+---
+
+### 5. Next Steps Recommendation
+
+**Immediate (for next agent session):**
+1. M1.1-M1.3: Typography improvements (Sonnet 4.5, 5 hours) — mechanical CSS work
+2. M2.1-M2.2: Emoji reduction (Sonnet 4.5, 2.5 hours) — straightforward removal
+
+**Medium-term:**
+3. M3.1: Merge Take Action + Campaigns (Opus 4.6, 3 hours) — UX judgment
+4. M3.2: Merge Community + Communications (Opus 4.6, 2 hours) — UX judgment
+
+**Blocked (human decisions needed):**
+- C2: VPN/Tor detection architecture
+- HR1-HR3: Backend deployment, content policies, API keys

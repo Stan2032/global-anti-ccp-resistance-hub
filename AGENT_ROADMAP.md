@@ -74,9 +74,9 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 ## 🟠 HIGH PRIORITY: Data Quality & Transparency
 
 ### H1: Source Attribution Throughout Site
-**Status:** H1.1 & H1.2 Complete (2026-02-19), H1.3-H1.4 In Progress  
+**Status:** ✅ COMPLETE (2026-02-19)  
 **Priority:** HIGH - Critical for credibility  
-**Agent Action:** Can execute autonomously  
+**Agent Action:** Executed autonomously  
 **Best Agent:** Opus 4.6 (multi-file refactoring, source verification)  
 **Backup Agent:** Sonnet 4.5 (can handle if pattern is clear)
 
@@ -102,36 +102,31 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
     - [x] Replaced plain <a> links with SourceAttribution compact components
     - [x] Added test case verifying sanctions sources resolve
 
-- [ ] **H1.3** Add SourceAttribution to VictimMemorialWall
-  - **Time:** 2 hours
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
-  - **Best Agent:** Opus 4.6 (sensitive data handling, source verification)
-  - **Subtasks:**
-    - [ ] Explore VictimMemorialWall component structure
-    - [ ] Identify data sources for victims
-    - [ ] Add source fields to victim data
-    - [ ] Integrate SourceAttribution component
-    - [ ] Test and verify
+- [x] **H1.3** Add SourceAttribution to VictimMemorialWall ✅ (2026-02-19)
+  - **Time:** 20 min (faster than estimated - component already used SourceAttribution)
+  - **Approach:** VictimMemorialWall already imported SourceAttribution and resolveSource. Only needed to add 6 missing registry entries.
+  - **Result:** All 16 victim sources now resolve to clickable links (1 generic "Historical records" intentionally unresolved)
+  - **Agent:** Opus 4.6 (chosen: source verification across human rights organizations)
+  - **Subtasks completed:**
+    - [x] Identified 7 unresolved source names (6 real organizations + 1 generic)
+    - [x] Added Tiananmen Mothers, Human Rights in China, Wall Street Journal, Free Tibet, Stand News, Nobel Prize Committee to registry
+    - [x] "Historical records" correctly stays unresolved (generic reference, no single URL)
+    - [x] Added test case verifying all 16 VictimMemorialWall sources resolve
+    - [x] Build passes, 124/124 tests pass
 
-- [ ] **H1.4** Integrate DATA_SOURCES.md into navigation
-  - **Time:** 30 minutes
-  - **Blocker:** None
-  - **Agent Decision:** EXECUTE
-  - **Best Agent:** Sonnet 4.5 (simple config/routing change)
-  - **Subtasks:**
-    - [ ] Check if DataSources route already exists (it does: /data-sources)
-    - [ ] Verify DataSources page displays content from DATA_SOURCES.md
-    - [ ] Add link in navigation if not already present
+- [x] **H1.4** Integrate DATA_SOURCES.md into navigation ✅ (Already complete)
+  - **Finding:** Route `/data-sources` already existed with full navigation integration
+  - **Verification:** Confirmed route (App.jsx:366), header nav links (App.jsx:94, 203), footer link (App.jsx:379), RouteAnnouncer mapping
+  - **Agent:** N/A (already done by prior work)
 
 ---
 
 ### H2: Remove Redundant Content
-**Status:** Partially Complete - GlobalDisclaimer already adopted by 10 components  
+**Status:** Mostly Complete (2026-02-19) — 2 of 3 inline disclaimers addressed  
 **Priority:** MEDIUM (downgraded - less severe than initially estimated)  
 **From:** SITE_CLEANUP_TODO.md Priority 3  
 **Agent Action:** Can execute autonomously  
-**Note:** Initial estimate of "12+ repeated disclaimers" was overstated. Audit (2026-02-19) found only 3 inline disclaimers remain, and these are domain-specific (legal, tool-specific) which may be intentional.
+**Note:** Initial estimate of "12+ repeated disclaimers" was overstated. Audit (2026-02-19) found only 3 inline disclaimers remain, 1 replaced, 2 are domain-specific (should stay as-is).
 
 - [x] **H2.1** Create GlobalDisclaimer component ✅ (Already existed)
   - GlobalDisclaimer already exists at src/components/ui/GlobalDisclaimer.jsx
@@ -139,23 +134,20 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
   - Already adopted by 10 components
   - **Agent:** N/A (already done by prior work)
 
-- [ ] **H2.2** Remove remaining inline disclaimers
-  - Only 3 components still have inline disclaimers:
-    - ForcedLabourList.jsx (lines ~327-342, "Important Disclaimer")
-    - AIDisinfoDetector.jsx (lines ~395-400, tool-specific disclaimer)
-    - LegalResourcesHub.jsx (legal disclaimer - may need to remain specialized)
-  - **Time:** 1 hour (reduced from 3 hours - much less work than estimated)
-  - **Blocker:** None, but legal disclaimer may intentionally need custom text
-  - **Best Agent:** Sonnet 4.5 (straightforward component replacement)
-  - **Agent Decision:** EXECUTE with care for legal disclaimer
+- [x] **H2.2** Remove remaining inline disclaimers ✅ (2026-02-19, partially)
+  - **Result:** 1 of 3 replaced; 2 intentionally kept as domain-specific
+  - **Agent:** Opus 4.6
+  - **Subtasks completed:**
+    - [x] AIDisinfoDetector.jsx: Replaced inline disclaimer with `<GlobalDisclaimer type="verify" />`
+    - [x] ForcedLabourList.jsx: **KEPT** — domain-specific disclaimer about supply chain complexity with bullet points; cannot be genericized without losing critical information
+    - [x] LegalResourcesHub.jsx: **KEPT** — legal disclaimer may need specialized text for legal compliance; flagged for human review
+  - **Decision Rationale:** Domain-specific disclaimers serve different purposes than generic "verify" disclaimers. Replacing them would lose important context about supply chain avoidance and legal limitations.
 
 - [ ] **H2.3** Create single source-of-truth for repeated statistics
-  - "1 million Uyghurs" appears 8+ times
-  - Link instead of repeating
-  - **Time:** 2 hours
-  - **Blocker:** None
-  - **Best Agent:** Opus 4.6 (requires cross-file audit and refactoring)
-  - **Agent Decision:** EXECUTE
+  - **Status:** DEPRIORITIZED (2026-02-19)
+  - **Analysis:** Audit found "1 million" appears in 7 different natural-language contexts (Hong Kong marchers, Uyghur detainees, Apple Daily copies, bounties, Tibetan children). These aren't duplicates — they're prose references in different contexts. Creating a constant would over-engineer and reduce readability.
+  - **Recommendation:** Leave as-is. Each instance is in a unique prose context.
+  - **Best Agent:** N/A (not recommended to execute)
 
 ---
 
