@@ -55,9 +55,16 @@ export const ThemeProvider = ({ children }) => {
     return THEMES.DARK;
   });
 
-  const [resolvedTheme, setResolvedTheme] = useState(THEMES.DARK);
+  const [resolvedTheme, setResolvedTheme] = useState(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('resistance-hub-theme') || THEMES.DARK;
+    if (savedTheme === THEMES.SYSTEM) {
+      return mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT;
+    }
+    return savedTheme;
+  });
 
-  // Handle system theme preference
+  // Handle system theme preference changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
@@ -67,7 +74,7 @@ export const ThemeProvider = ({ children }) => {
       }
     };
 
-    // Set initial resolved theme
+    // Update resolved theme when theme setting changes
     if (theme === THEMES.SYSTEM) {
       setResolvedTheme(mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT);
     } else {

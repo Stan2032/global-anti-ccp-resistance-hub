@@ -207,8 +207,8 @@ export default function EventMap() {
 
   const isUpcoming = (dateStr) => new Date(dateStr) >= new Date();
 
-  // Simple map visualization using CSS grid
-  const MapView = () => (
+  // Simple map visualization using CSS grid — rendered inline to avoid component-in-render
+  const mapView = viewMode === 'map' ? (
     <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700">
       <div className="grid grid-cols-3 gap-4 mb-6">
         {/* North America */}
@@ -297,7 +297,7 @@ export default function EventMap() {
         ))}
       </div>
     </div>
-  );
+  ) : null;
 
   return (
     <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
@@ -380,7 +380,7 @@ export default function EventMap() {
       </div>
 
       {/* Map View */}
-      {viewMode === 'map' && <MapView />}
+      {mapView}
 
       {/* List View */}
       {viewMode === 'list' && (

@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
 
 const QuickStartGuide = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState([]);
-  const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    // Check if user has seen the guide before
+  const [isOpen, setIsOpen] = useState(() => {
     const hasSeenGuide = localStorage.getItem('quickStartDismissed');
+    return hasSeenGuide !== 'true';
+  });
+  const [currentStep, setCurrentStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState(() => {
     const savedSteps = localStorage.getItem('quickStartCompleted');
-    
-    if (hasSeenGuide === 'true') {
-      setDismissed(true);
-    } else {
-      setIsOpen(true);
-    }
-    
-    if (savedSteps) {
-      setCompletedSteps(JSON.parse(savedSteps));
-    }
-  }, []);
+    return savedSteps ? JSON.parse(savedSteps) : [];
+  });
+  const [dismissed, setDismissed] = useState(() => {
+    return localStorage.getItem('quickStartDismissed') === 'true';
+  });
 
   const steps = [
     {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Building, MapPin, AlertTriangle, CheckCircle, 
   XCircle, Search, Filter, ExternalLink, Globe,
@@ -39,13 +39,6 @@ const ConfuciusInstituteTracker = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [stats, setStats] = useState({
-    totalInstitutes: 0,
-    totalClosed: 0,
-    countriesWithCI: 0,
-    countriesFullyClosed: 0
-  });
-
   const institutes = confuciusData.results.map(r => ({
     ...r.output,
     totalInstitutes: typeof r.output.total_institutes === 'number' ? r.output.total_institutes : 0,
@@ -53,14 +46,13 @@ const ConfuciusInstituteTracker = () => {
                  (r.output.closed_count === '' ? 0 : parseInt(r.output.closed_count) || 0)
   }));
 
-  useEffect(() => {
+  const stats = useMemo(() => {
     const totalInstitutes = institutes.reduce((sum, i) => sum + i.totalInstitutes + i.closedCount, 0);
     const totalClosed = institutes.reduce((sum, i) => sum + i.closedCount, 0);
     const countriesWithCI = institutes.filter(i => i.totalInstitutes > 0 || i.closedCount > 0).length;
     const countriesFullyClosed = institutes.filter(i => i.closedCount > 0 && i.totalInstitutes === 0).length;
-    
-    setStats({ totalInstitutes, totalClosed, countriesWithCI, countriesFullyClosed });
-  }, []);
+    return { totalInstitutes, totalClosed, countriesWithCI, countriesFullyClosed };
+  }, [institutes]);
 
   const filteredInstitutes = institutes.filter(i => {
     const matchesSearch = i.country?.toLowerCase().includes(searchTerm.toLowerCase());

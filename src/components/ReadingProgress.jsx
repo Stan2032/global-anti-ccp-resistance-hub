@@ -54,12 +54,6 @@ export default function ReadingProgress() {
     }
   }, []);
 
-  // Save progress to localStorage
-  useEffect(() => {
-    localStorage.setItem('reading-progress', JSON.stringify(progress));
-    checkAchievements();
-  }, [progress]);
-
   const checkAchievements = () => {
     const completedCount = Object.values(progress).filter(p => p.completed).length;
     const completedIds = Object.keys(progress).filter(id => progress[id]?.completed);
@@ -103,6 +97,12 @@ export default function ReadingProgress() {
       localStorage.setItem('reading-achievements', JSON.stringify(newAchievements));
     }
   };
+
+  // Save progress to localStorage
+  useEffect(() => {
+    localStorage.setItem('reading-progress', JSON.stringify(progress));
+    checkAchievements();
+  }, [progress]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleCompleted = (id) => {
     setProgress(prev => ({
