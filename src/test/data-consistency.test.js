@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 
@@ -183,6 +183,100 @@ describe('Critical date consistency across data files', () => {
       const zz = data.results.find((r) => r.output.prisoner_name === 'Zhang Zhan');
       expect(zz).toBeDefined();
       expect(zz.output.sentence).toMatch(/second|2025|4 years.*4 years/i);
+    });
+  });
+
+  describe('Session 29: Verified prisoner data accuracy', () => {
+    let prisoners;
+    beforeAll(() => {
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+    });
+
+    it('Ilham Tohti sentencing date is September 23, 2014', () => {
+      const tohti = prisoners.results.find((r) => r.output.prisoner_name === 'Ilham Tohti');
+      expect(tohti).toBeDefined();
+      expect(tohti.output.sentence).toMatch(/September 23, 2014/);
+    });
+
+    it('Gao Zhisheng last seen August 13, 2017', () => {
+      const gao = prisoners.results.find((r) => r.output.prisoner_name === 'Gao Zhisheng');
+      expect(gao).toBeDefined();
+      expect(gao.output.latest_news).toMatch(/August 13, 2017/);
+    });
+
+    it('Gedhun Choekyi Nyima recognized May 14, abducted May 17, 1995', () => {
+      const gcn = prisoners.results.find((r) => r.output.prisoner_name === 'Gedhun Choekyi Nyima');
+      expect(gcn).toBeDefined();
+      expect(gcn.output.latest_news).toMatch(/May 14, 1995/);
+      expect(gcn.output.latest_news).toMatch(/May 17, 1995/);
+    });
+
+    it('Ren Zhiqiang sentence is 18 years', () => {
+      const ren = prisoners.results.find((r) => r.output.prisoner_name === 'Ren Zhiqiang');
+      expect(ren).toBeDefined();
+      expect(ren.output.sentence).toMatch(/18 years/);
+    });
+
+    it('Rahile Dawut life sentence confirmed via secret 2018 trial', () => {
+      const rd = prisoners.results.find((r) => r.output.prisoner_name === 'Rahile Dawut');
+      expect(rd).toBeDefined();
+      expect(rd.output.sentence).toMatch(/life/i);
+      expect(rd.output.latest_news).toMatch(/2018/);
+    });
+
+    it('Gui Minhai 10-year sentence at Ningbo court, Feb 2020', () => {
+      const gm = prisoners.results.find((r) => r.output.prisoner_name === 'Gui Minhai');
+      expect(gm).toBeDefined();
+      expect(gm.output.sentence).toMatch(/10 years/);
+      expect(gm.output.sentence).toMatch(/Ningbo/i);
+    });
+
+    it('Sophia Huang Xueqin 5-year sentence verified', () => {
+      const hxq = prisoners.results.find((r) => r.output.prisoner_name === 'Sophia Huang Xueqin');
+      expect(hxq).toBeDefined();
+      expect(hxq.output.sentence).toMatch(/5 years/);
+    });
+
+    it('Ekpar Asat 15-year sentence verified', () => {
+      const ea = prisoners.results.find((r) => r.output.prisoner_name === 'Ekpar Asat');
+      expect(ea).toBeDefined();
+      expect(ea.output.sentence).toMatch(/15 years/);
+    });
+
+    it('verified prisoners have last_verified dates', () => {
+      const verifiedNames = [
+        'Jimmy Lai', 'Ilham Tohti', 'Gao Zhisheng', 'Gedhun Choekyi Nyima',
+        'Ren Zhiqiang', 'Rahile Dawut', 'Gui Minhai', 'Ekpar Asat',
+        'Sophia Huang Xueqin', 'Wang Jianbing', 'Gulshan Abbas', 'Qin Yongmin'
+      ];
+      for (const name of verifiedNames) {
+        const p = prisoners.results.find((r) => r.output.prisoner_name === name);
+        expect(p, `${name} should exist`).toBeDefined();
+        expect(p.output.last_verified, `${name} should have last_verified`).toBeDefined();
+      }
+    });
+
+    it('timeline Ilham Tohti entry includes sentencing date', () => {
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
+      const tohti = events.find((e) => e.title === 'Ilham Tohti Arrested');
+      expect(tohti).toBeDefined();
+      expect(tohti.sentence).toMatch(/September 23, 2014/);
+    });
+
+    it('Falun Gong timeline references April 25, 1999 Zhongnanhai protest', () => {
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
+      const fg = events.find((e) => e.title === 'Falun Gong Persecution Begins');
+      expect(fg).toBeDefined();
+      expect(fg.details).toMatch(/April 25, 1999/);
+    });
+
+    it('Causeway Bay entry includes individual disappearance dates', () => {
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
+      const cb = events.find((e) => e.title === 'Causeway Bay Booksellers Abducted');
+      expect(cb).toBeDefined();
+      expect(cb.details).toMatch(/October 14/);
+      expect(cb.details).toMatch(/October 17/);
+      expect(cb.details).toMatch(/December 30/);
     });
   });
 });

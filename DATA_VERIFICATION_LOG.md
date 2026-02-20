@@ -170,6 +170,17 @@
 | Xinjiang Papers title (Timeline.jsx) | "Xinjiang Camps Confirmed" (vague) | "Xinjiang Papers Leaked" (accurate) | Timeline.jsx |
 | Timeline event ordering | 3 pairs of events out of chronological order | Reordered to correct reverse chronological sequence | Timeline.jsx |
 
+### Session 29 Corrections (2026-02-20)
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Ilham Tohti sentencing date | Not mentioned in data | "September 23, 2014" added | timeline_events.json, political_prisoners_research.json |
+| Gao Zhisheng last seen date | Not mentioned | "Last seen August 13, 2017" added | political_prisoners_research.json |
+| Gedhun Choekyi Nyima dates | Only abduction date, no recognition date | "recognized May 14, 1995; abducted May 17, 1995" | political_prisoners_research.json |
+| Causeway Bay individual dates | Only generic description | Added Lui Bo (Oct 14), Gui Minhai (Oct 17), Lee Bo (Dec 30) | timeline_events.json |
+| Falun Gong context | Details didn't mention Zhongnanhai protest | Added "April 25, 1999 gathering" context | timeline_events.json |
+| 16 prisoner records missing last_verified | No verification dates | Added last_verified: 2026-02-20 with source notes | political_prisoners_research.json |
+
 ### Previously Correct (Verified)
 
 - Tiananmen Square: June 4, 1989 ✅
@@ -177,7 +188,7 @@
 - Ilham Tohti arrest: January 15, 2014 ✅
 - Liu Xiaobo death: July 13, 2017 ✅
 - Hong Kong 47 sentencing: November 19, 2024 ✅
-- Causeway Bay Booksellers: October 15, 2015 ✅ (Confirmed Session 28)
+- Causeway Bay Booksellers: October 15, 2015 ✅ (Timeline date — first disappearance was Oct 14 for Lui Bo; Gui Minhai Oct 17; Lee Bo Dec 30. Timeline uses Oct 15 as representative date.)
 
 ---
 
@@ -344,6 +355,31 @@ See Section 1 above for full breakdown with sources.
   - **VERIFIED: All 5 previously verified sanctioned officials dates consistent** — Chen Quanguo, Zhu Hailun, Wang Junzheng, Wang Mingshan, Carrie Lam.
   - **VERIFIED: SCMP RSS feed in liveDataSources.js** — Properly flagged with `biasRisk: 'medium'` and editorial warning about Alibaba ownership.
   - **Extended test suite**: Added 9 new tests (18 total in data-consistency.test.js): CCP source URL exclusion across ALL data files; sanctioned officials date verification; international response date verification; Zhang Zhan second sentence verification. Full suite: 198 tests, all passing.
+
+- 2026-02-20 (Session 29): Deep political prisoner data verification — 16 prisoners verified with independent sources (Opus 4.6)
+  - **UPDATED: Ilham Tohti sentencing date** — Added "September 23, 2014" sentencing date to both timeline_events.json and political_prisoners_research.json. Verified via Front Line Defenders, NCHRD, UHRP, CPJ. Previously only stated "Life for separatism" without date.
+  - **UPDATED: Gao Zhisheng last seen date** — Added "Last seen August 13, 2017" to latest_news field. Verified via NCHRD, USCIRF, ChinaAid, Lawyers for Lawyers, Tom Lantos Commission.
+  - **UPDATED: Gedhun Choekyi Nyima dates** — Added recognition date (May 14, 1995) and abduction date (May 17, 1995) to latest_news. Verified via HRW, USCIRF, TCHRD, Wikipedia.
+  - **UPDATED: Causeway Bay Booksellers individual dates** — Added Lui Bo (Oct 14), Gui Minhai (Oct 17), Lee Bo (Dec 30) disappearance dates to timeline details. Verified via Wikipedia, NCHRD, Safeguard Defenders, PEN International.
+  - **UPDATED: Falun Gong Zhongnanhai context** — Added April 25, 1999 Zhongnanhai peaceful appeal context to timeline details. Verified via Falun Dafa Information Center, Taipei Times.
+  - **VERIFIED with last_verified dates added for 16 prisoners:**
+    - Jimmy Lai: 20-year sentence (Feb 9, 2026) — BBC, HRW, CPJ, US State Dept
+    - Ilham Tohti: Life (Sep 23, 2014) — Front Line Defenders, NCHRD, UHRP, CPJ
+    - Gao Zhisheng: DISAPPEARED (last seen Aug 13, 2017) — NCHRD, USCIRF, ChinaAid
+    - Gedhun Choekyi Nyima: DISAPPEARED (since May 17, 1995) — HRW, USCIRF, TCHRD
+    - Ren Zhiqiang: 18 years (Sep 2020) — Al Jazeera, BBC, TIME, NBC, The Diplomat
+    - Rahile Dawut: Life (secret trial Dec 2018, confirmed Sep 2023) — HRW, Dui Hua, UHRP, VOA
+    - Gui Minhai: 10 years (Feb 2020, Ningbo court) — Amnesty, Politico, NCHRD
+    - Ekpar Asat: 15 years (learned Jan 2020) — Tom Lantos, USCIRF, Amnesty
+    - Sophia Huang Xueqin: 5 years (June 2024) — RSF, NBC News, DW, Al Jazeera
+    - Wang Jianbing: 3.5 years (June 2024, released Mar 2025) — Amnesty
+    - Gulshan Abbas: 20 years — OHCHR, USCIRF
+    - Qin Yongmin: 13 years (July 11, 2018) — Front Line Defenders, PEN, HRW, NCHRD
+    - Joshua Wong: 4 years 8 months — HKFP, Amnesty
+    - Benny Tai: 10 years — HKFP, Amnesty
+    - Zhang Zhan: 4+4 years — OHCHR, Amnesty, CPJ (previously verified Session 25)
+    - Xu Zhiyong: 14 years (April 2023) — HRW (previously verified Session 25)
+  - **Extended test suite**: Added 12 new tests (30 total in data-consistency.test.js): Ilham Tohti sentencing date, Gao Zhisheng last seen, Gedhun Choekyi Nyima dates, Ren Zhiqiang 18 years, Rahile Dawut life sentence/trial date, Gui Minhai 10 years/Ningbo, Huang Xueqin 5 years, Ekpar Asat 15 years, last_verified presence for 12 key prisoners, timeline Ilham Tohti sentencing date, Falun Gong Zhongnanhai context, Causeway Bay individual dates. Full suite: 210 tests, all passing.
 
 ---
 

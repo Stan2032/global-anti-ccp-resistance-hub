@@ -11,7 +11,9 @@
         "health_status": "Deteriorating, according to his son.",
         "international_response": "UK, US, and human rights groups condemned the verdict and called for his release.",
         "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Conviction Dec 15, 2025 and sentencing Feb 9, 2026 to 20 years verified via BBC, HRW, CPJ, US State Dept."
       },
       "error": ""
     },
@@ -21,12 +23,14 @@
         "prisoner_name": "Ilham Tohti",
         "status": "DETAINED",
         "location": "No. 1 Prison, Urumqi",
-        "sentence": "Life for separatism",
+        "sentence": "Life imprisonment for separatism (sentenced September 23, 2014)",
         "latest_news": "Sep 2024: Prison guard sentenced for disclosing information about Tohti's health.",
         "health_status": "Unknown",
         "international_response": "EU, US, and human rights organizations call for his release; awarded Sakharov Prize, Václav Havel Human Rights Prize, and others.",
         "source_url": "https://www.hrw.org/news/2024/09/23/china-free-uyghur-economist-ilham-tohti-life-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrest date (Jan 15, 2014) and sentencing date (Sep 23, 2014) verified via Front Line Defenders, NCHRD, UHRP, CPJ. Sakharov Prize confirmed 2019."
       },
       "error": ""
     },
@@ -37,11 +41,13 @@
         "status": "DISAPPEARED",
         "location": "Shaanxi province, China",
         "sentence": "No official sentence",
-        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts.",
+        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts. Last seen August 13, 2017.",
         "health_status": "Unknown, reports of past torture",
         "international_response": "US, EU, and multiple NGOs have called for his release. Awarded the Shahbaz Bhatti Freedom Award.",
         "source_url": "https://humanrightscommission.house.gov/DFP/Countries/China/Gao-Zhisheng",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Last seen date (Aug 13, 2017) verified via NCHRD, USCIRF, ChinaAid, Lawyers for Lawyers, Tom Lantos Commission."
       },
       "error": ""
     },
@@ -157,7 +163,8 @@
         "health_status": "Unknown",
         "international_response": "The UK, US, and Australia condemned the verdict and sentencing in the Hong Kong 47 trial.",
         "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -202,7 +209,8 @@
         "health_status": "Unknown",
         "international_response": "The UK, US, and Australia condemned the verdict. The UK called it a criminalization of political dissent, the US called the trial 'politically motivated', and Australia expressed grave concern.",
         "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -253,7 +261,8 @@
           "https://safeguarddefenders.com/en/blog/10-years-gui-minhais-kidnapping"
         ],
         "confidence": "HIGH",
-        "last_verified": "2026-02-19"
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Feb 2020, 10 years at Ningbo court verified via Amnesty, Politico, NCHRD, Safeguard Defenders."
       },
       "error": ""
     },
@@ -264,11 +273,13 @@
         "status": "DISAPPEARED",
         "location": "Unknown",
         "sentence": "Not applicable, disappeared since 1995",
-        "latest_news": "May 2025: 30th anniversary of his disappearance, with renewed calls for his release from the US State Department and human rights organizations.",
+        "latest_news": "May 2025: 30th anniversary of his disappearance (recognized May 14, 1995; abducted May 17, 1995), with renewed calls for his release from the US State Department and human rights organizations.",
         "health_status": "Unknown. Chinese authorities claim he is 'living normally' but have provided no evidence.",
         "international_response": "US State Department, Human Rights Watch, European Parliament, and UN have repeatedly called for his release. Awarded the 2025 Democracy Service Medal by the National Endowment for Democracy.",
         "source_url": "https://www.hrw.org/news/2025/05/15/china/tibet-panchen-lama-forcibly-disappeared-30-years",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Recognition date (May 14, 1995) and abduction date (May 17, 1995) verified via HRW, USCIRF, TCHRD, Wikipedia."
       },
       "error": ""
     },
@@ -418,7 +429,9 @@
         "health_status": "Deteriorating, subjected to ill-treatment in detention.",
         "international_response": "The United States, Amnesty International, and other human rights organizations have condemned the sentence and called for her immediate release.",
         "source_url": "https://www.aljazeera.com/news/2024/6/14/chinese-metoo-activist-jailed-for-five-years-for-subversion",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced June 2024 to 5 years verified via RSF, NBC News, DW, Al Jazeera."
       },
       "error": ""
     },
@@ -433,7 +446,9 @@
         "health_status": "Health issues developed during solitary confinement have worsened, and he has been denied access to medicine.",
         "international_response": "Amnesty International and the US State Department have called for his release. The UN Working Group on Arbitrary Detention determined his detention was arbitrary.",
         "source_url": "https://www.amnesty.org/en/latest/news/2025/03/china-authorities-must-ensure-labour-activists-wang-jianbings-full-freedom-after-unjust-imprisonment/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced June 2024 to 3.5 years, released March 2025 verified via Amnesty International."
       },
       "error": ""
     },
@@ -508,7 +523,9 @@
         "health_status": "Deteriorating; reportedly forced to perform hard manual labor and suffering from high blood pressure.",
         "international_response": "Front Line Defenders and Reporters Without Borders (RSF) have condemned his sentence and called for his immediate release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/case-history-qin-yongmin",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced July 11, 2018 to 13 years for subversion verified via Front Line Defenders, PEN, HRW, NCHRD."
       },
       "error": ""
     },
@@ -568,7 +585,9 @@
         "health_status": "Unknown",
         "international_response": "US State Department #WithoutJustCause campaign, UN WGAD calls for release, EU calls for release.",
         "source_url": "http://humanrightscommission.house.gov/DFP/Countries/China/Ekpar-Asat",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained April 2016, sentence learned January 2020, 15 years verified via Tom Lantos Commission, USCIRF, Amnesty."
       },
       "error": ""
     },
@@ -583,7 +602,9 @@
         "health_status": "Unknown",
         "international_response": "Human Rights Watch, the Dui Hua Foundation, and academic institutions including Cambridge, Cornell, and Harvard have called for her release. The UN has also urged China to end the repression of Uyghur culture.",
         "source_url": "https://www.hrw.org/news/2023/09/22/chinese-court-imposes-life-sentence-uyghur-scholar",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Disappeared Dec 2017, secret trial Dec 2018, life sentence confirmed Sep 2023 via Dui Hua Foundation, HRW, UHRP, VOA."
       },
       "error": ""
     },
@@ -673,7 +694,9 @@
         "health_status": "High blood pressure, migraines, back problems, osteoporosis",
         "international_response": "UN experts and the US Commission on International Religious Freedom (USCIRF) have issued statements calling for her release. Rep. Ro Khanna (D-CA) advocates for her as part of the Tom Lantos Human Rights Commission's Defending Freedoms Project.",
         "source_url": "https://www.ohchr.org/en/press-releases/2024/06/china-authorities-must-provide-information-imprisoned-uyghur-doctor",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "20-year sentence verified via OHCHR, USCIRF. Health concerns documented. Sister Rushan Abbas is founder of Campaign for Uyghurs."
       },
       "error": ""
     },
