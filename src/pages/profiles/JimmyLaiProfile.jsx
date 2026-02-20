@@ -362,6 +362,7 @@ export default function JimmyLaiProfile() {
                   role="button"
                   tabIndex={0}
                   aria-expanded={expandedEvent === i}
+                  aria-label={`${event.year}: ${event.title}`}
                   onKeyDown={(e) => e.key === 'Enter' && setExpandedEvent(expandedEvent === i ? null : i)}
                 >
                   <div className="flex items-start justify-between">
