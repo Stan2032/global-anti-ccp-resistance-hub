@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 51, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 52, Opus 4.6)
 > 
 > **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
 > See `_agents/README.md` for folder structure and quick start guide.
@@ -454,7 +454,7 @@
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
 8. **Satellite TODOs** — See "Related TODO Files" section above for SIMULATED_DATA_CLEANUP_TODO.md, SITE_CLEANUP_TODO.md, SITE_WIDE_TODO.md
 
-### Current State Summary (as of Session 51, Feb 20, 2026)
+### Current State Summary (as of Session 52, Feb 20, 2026)
 - **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
@@ -511,6 +511,7 @@
 | 49 | Feb 20 | Opus 4.6 | Final consolidation: annotated 3 satellite TODOs, added Related TODO Files section |
 | 50 | Feb 20 | Opus 4.6 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS, fixed duplicate aria-label build warning |
 | 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder, updated cross-references |
+| 52 | Feb 20 | Opus 4.6 | Final cross-reference cleanup: fixed stale paths in AGENT_HANDOFF.json |
 
 ---
 

@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "2.0",
-    "date": "2026-02-20T13:40:00Z",
+    "version": "2.1",
+    "date": "2026-02-20T14:20:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Opus 4.6 (Sessions 35-48)",
+    "previous_agent": "Opus 4.6 (Sessions 35-52)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.98,
@@ -27,7 +27,7 @@
     "profile_pages_built": 5,
     "data_entries_sourced": 142,
     "lazy_loaded_components": 81,
-    "sessions_completed": 48
+    "sessions_completed": 52
   },
 
   "resolved_since_v1": {
@@ -145,7 +145,9 @@
   "file_structure_highlights": {
     "profile_pages": "src/pages/profiles/",
     "data_files": "src/data/",
-    "agent_thoughts": "agent-thoughts/",
+    "agent_workspace": "_agents/",
+    "agent_thoughts": "_agents/thoughts/",
+    "agent_archive": "_agents/archive/",
     "locale_files": "src/locales/",
     "test_files": "src/test/",
     "hooks": "src/hooks/",
