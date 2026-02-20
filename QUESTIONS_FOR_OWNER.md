@@ -1,80 +1,67 @@
 # Questions for Owner — Items Requiring Human Decisions
 
 **Created:** 2026-02-19 (Session 15, Opus 4.6)  
-**Updated:** 2026-02-20 (Session 41, Opus 4.6) — Original Q1-Q5 all answered; 5 new decisions pending  
-**Status:** ⏳ 5 DECISIONS PENDING (see below)
+**Updated:** 2026-02-20 (Session 42, Opus 4.6) — All D1-D5 answered and implemented  
+**Status:** ✅ ALL QUESTIONS ANSWERED
 
 ---
 
-## 🔴 CURRENT PENDING DECISIONS (5 items)
+## 📌 STANDING INSTRUCTIONS (from Owner, Session 42)
 
-> These were identified during data verification (Sessions 33-34) and require your input before agents can proceed. Answer with the number and your choice (e.g. "D1: Yes, both" or "D3: Skip").
+> **"For future reference, if you wish to add a person to the site, as long as you deem appropriate and researched well and it fits everything we have been working towards, then please add them as you wish without asking me."**
 
-### D1. Zhang Yuxin — Bad Data in Sanctioned Officials
-
-Our `sanctioned_officials_research.json` has an entry for "Zhang Yuxin — Tibet Military Region Commander" that says **"Information not found."** This name/role combination doesn't match any real sanctioned individual. The actual current commander is Wang Kai.
-
-**Options:**
-- **A) Remove the entry entirely** — cleanest approach
-- **B) Replace with Che Dalha** — current TAR Party Secretary, continues repressive policies
-- **C) Replace with Zhang Qingli** — former TAR Party Secretary during the 2008 crackdown, well-documented abuses
-- **D) Replace with both** Che Dalha and Zhang Qingli (remove Zhang Yuxin, add two real entries)
-
-**Agent recommendation:** Option D — both are documented, verified officials involved in Tibetan repression. **Best agent: Opus 4.6** (requires source verification against CCP narratives).
+This means agents no longer need owner approval to add individuals to the political prisoner database, sanctioned officials list, or other person data — provided:
+1. The person is well-researched with Tier 1-2 sources (see source tiers in `agent-thoughts/SESSION_34_VERIFICATION_NOTES.md`)
+2. The addition fits the project's goals (documenting CCP human rights abuses)
+3. Sources are verified against CCP propaganda/influence
+4. Dates are cross-checked for accuracy
 
 ---
 
-### D2. Du Bin — Add to Political Prisoner Database?
+## ✅ DECISIONS D1-D5 — ANSWERED AND IMPLEMENTED (Session 42)
 
-Du Bin is a journalist and author arrested **October 15, 2025**, formally charged **December 12, 2025** with "picking quarrels and provoking trouble" (a catch-all charge the CCP uses against dissidents). This is his third detention but first formal charge. He faces up to 5 years.
+> Owner answered all 5 on 2026-02-20. All implemented in Session 42.
 
-**Source:** Human Rights Watch (Tier 1 source). Already in our `recent_news_research.json` but NOT in the political prisoner database.
+| # | Decision | Owner's Answer | Implementation |
+|---|----------|---------------|----------------|
+| D1 | Zhang Yuxin bad data | **D) Replace with both Che Dalha + Zhang Qingli** | ✅ Replaced in sanctioned_officials_research.json |
+| D2 | Du Bin — add to prisoners? | **A) Yes** | ✅ Added to political_prisoners_research.json |
+| D3 | Rachung Gendun — add to prisoners? | **A) Yes** | ✅ Added to political_prisoners_research.json |
+| D4 | Profile page priority | **Agent's choice** (Jimmy Lai recommended) | ✅ Planning underway |
+| D5 | Track policy proposal | **A) Yes** | ✅ Added to US entry in international_responses_research.json |
 
-**Options:**
-- **A) Yes, add him** — he's a documented political prisoner with verified HRW sourcing
-- **B) No, skip** — keep database focused on current scope
+### D1. Zhang Yuxin — Bad Data in Sanctioned Officials ✅ RESOLVED
 
-**Agent recommendation:** Option A — clear-cut political prisoner case. **Best agent: Opus 4.6**.
-
----
-
-### D3. Rachung Gendun — Add to Political Prisoner Database?
-
-Rachung Gendun is a Tibetan monk imprisoned for 3.5 years for sending prayer money to monasteries in exile for his uncle Taphun, who self-immolated in March 2022. Released **November 16, 2024** in poor health.
-
-**Source:** Tibet Watch (Tier 2 source). Already in our `recent_news_research.json` but NOT in the political prisoner database.
-
-**Options:**
-- **A) Yes, add him** — documents religious persecution and self-immolation response pattern
-- **B) No, skip** — he's already released, keep database focused on currently detained
-
-**Agent recommendation:** Option A — even released prisoners document patterns of persecution. **Best agent: Opus 4.6**.
+> **Owner's answer:** Option D — Replace with both Che Dalha and Zhang Qingli.  
+> **Implemented:** Session 42. Zhang Yuxin entry removed; Che Dalha (current TAR Party Secretary) and Zhang Qingli (former TAR Party Secretary during 2008 crackdown) added with verified source links.
 
 ---
 
-### D4. Profile Page Priority — Which Person First?
+### D2. Du Bin — Add to Political Prisoner Database? ✅ RESOLVED
 
-The TODO lists 6+ detailed person profile pages to build (Jimmy Lai, Ilham Tohti, Gedhun Choekyi Nyima, Liu Xiaobo, Joshua Wong, Gui Minhai, plus extras). Which should be built first?
-
-**Options:**
-- **A) Jimmy Lai** — most recent sentencing (Feb 9, 2026), most verified data, highest current media attention
-- **B) Ilham Tohti** — life sentence, Sakharov Prize winner, represents Uyghur persecution
-- **C) Gedhun Choekyi Nyima** — 30 years disappeared, represents Tibetan persecution
-- **D) Your own priority order**
-
-**Agent recommendation:** Option A (Jimmy Lai) — most data already verified, most timely. **Best agent: Opus 4.6 (content/verification) + Sonnet 4.5 (UI/layout)**.
+> **Owner's answer:** Option A — Yes, add him.  
+> **Implemented:** Session 42. Added to political_prisoners_research.json with HRW source. Arrested Oct 15, 2025; charged Dec 12, 2025.
 
 ---
 
-### D5. Office of Political Prisoner Advocacy — Track This Policy Proposal?
+### D3. Rachung Gendun — Add to Political Prisoner Database? ✅ RESOLVED
 
-The Olivia Enos article (Forbes) proposes creating a dedicated US State Department office for political prisoner advocacy, led by a special envoy of ambassador rank. This is a significant policy proposal that could affect how the US government coordinates pressure on the CCP.
+> **Owner's answer:** Option A — Yes, add him.  
+> **Implemented:** Session 42. Added to political_prisoners_research.json with Tibet Watch source. Released Nov 16, 2024 in poor health after 3.5 years.
 
-**Options:**
-- **A) Yes, track it** — add to international responses / policy tracking data
-- **B) No, skip** — it's a proposal, not enacted policy; wait until it progresses
+---
 
-**Agent recommendation:** Option A — it's worth tracking as a "policy development to watch." **Best agent: Opus 4.6**.
+### D4. Profile Page Priority — Which Person First? ✅ RESOLVED
+
+> **Owner's answer:** Agent's choice — any order.  
+> **Plan:** Jimmy Lai first (most recent sentencing, most verified data), then Ilham Tohti, then others.
+
+---
+
+### D5. Office of Political Prisoner Advocacy — Track This Policy Proposal? ✅ RESOLVED
+
+> **Owner's answer:** Option A — Yes, track it.  
+> **Implemented:** Session 42. Added as `pending_proposals` field on the US entry in international_responses_research.json.
 
 ---
 

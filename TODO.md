@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 41, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 42, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -312,15 +312,16 @@
 
 ---
 
-## ⏳ PENDING OWNER DECISIONS (5 items — see QUESTIONS_FOR_OWNER.md for full details)
+## ✅ OWNER DECISIONS — ALL RESOLVED (Session 42)
 
-> Answer with D1-D5 choices. See `QUESTIONS_FOR_OWNER.md` → "CURRENT PENDING DECISIONS" section for full options and agent recommendations.
+> All D1-D5 answered and implemented. See `QUESTIONS_FOR_OWNER.md` for details.
+> **Standing instruction:** Agents may add individuals to the database without asking, as long as well-researched with verified sources and consistent with project goals.
 
-1. **D1 — Zhang Yuxin bad data**: Remove/replace "Information not found" entry in sanctioned officials? Options: A) Remove, B) Replace with Che Dalha, C) Replace with Zhang Qingli, D) Both B+C
-2. **D2 — Du Bin**: Add journalist (arrested Oct 15, 2025, HRW source) to political prisoner database? Yes/No
-3. **D3 — Rachung Gendun**: Add Tibetan monk (released Nov 2024, Tibet Watch source) to database? Yes/No
-4. **D4 — Profile page priority**: Which person profile first? Jimmy Lai / Ilham Tohti / Panchen Lama / your choice
-5. **D5 — Policy tracking**: Track the "Office of Political Prisoner Advocacy" US policy proposal? Yes/No
+1. ~~**D1 — Zhang Yuxin bad data**~~ → ✅ Replaced with Che Dalha + Zhang Qingli
+2. ~~**D2 — Du Bin**~~ → ✅ Added to political prisoner database
+3. ~~**D3 — Rachung Gendun**~~ → ✅ Added to political prisoner database
+4. ~~**D4 — Profile page priority**~~ → ✅ Jimmy Lai first (agent's choice)
+5. ~~**D5 — Policy tracking**~~ → ✅ Added to US international responses
 
 ---
 
@@ -334,6 +335,7 @@
 1. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
 
 ### Recently Completed
+- ✅ D1-D5 owner decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
 - ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6
 - ✅ Performance optimization Phase 2: lazy-loaded 28 more sub-components across Dashboard, CommunitySupport, CCPTactics, SecurityCenter — Session 39, Opus 4.6
 - ✅ Performance optimization: lazy-loaded 53 sub-components across TakeAction, EducationalResources, RegionalThreats, ResistanceResources — Session 38, Opus 4.6
