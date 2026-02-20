@@ -181,6 +181,18 @@
 | Many closed CIs rebranded/retained partnerships | ✅ CONFIRMED | [China Observers](https://chinaobservers.eu/the-demise-of-confucius-institutes-retreating-or-rebranding/) |
 | Joshua Wong new NSL collusion charges (June 2025) | ✅ CONFIRMED | [Amnesty](https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/), [HKFP](https://hongkongfp.com/2025/06/06/breaking-jailed-hong-kong-activist-joshua-wong-charged-with-conspiring-to-collude-with-foreign-forces/) |
 
+### Newly Verified (Session 26, 2026-02-20)
+
+| Claim | Status | Sources |
+|-------|--------|---------|
+| Elliot Sperling deceased Jan 29, 2017 | ✅ CORRECTED | [Wikipedia](https://en.wikipedia.org/wiki/Elliot_Sperling), [Indiana University](https://news.iu.edu/hamiltonlugar/live/news/37550-sgis-mourns-the-passing-of-prof-emeritus-sperling), [Legacy.com/NYT](https://www.legacy.com/us/obituaries/nytimes/name/elliot-sperling-obituary?id=20370298) |
+| Sophie Richardson now at CHRD (since Jan 2025) | ✅ CORRECTED | [NCHRD](https://www.nchrd.org/2025/01/sophie-richardson-joins-chinese-human-rights-defenders-network/), [Stanford CDDRL](https://cddrl.fsi.stanford.edu/people/sophie-richardson) |
+| Elizabeth Economy: Hargrove Senior Fellow, Stanford | ✅ CORRECTED | [Hoover Institution](https://www.hoover.org/profiles/elizabeth-economy), [Stanford Profiles](https://profiles.stanford.edu/elizabeth-economy) |
+| Robbie/Robert Barnett = same person (duplicate) | ✅ DEDUPLICATED | [Wikipedia](https://en.wikipedia.org/wiki/Robert_Barnett_(scholar)), [KCL](https://www.kcl.ac.uk/people/robert-barnett) |
+| Sean R. Roberts at GWU | ✅ CONFIRMED | [GWU Elliott School](https://elliott.gwu.edu/sean-roberts) |
+| Taiwan Association for HR duplicate entry | ✅ DEDUPLICATED | Merged into single entry |
+| UFLPA Entity List: 144 entities as of 2025 | ✅ CONFIRMED | [DHS](https://www.dhs.gov/uflpa-entity-list), [Federal Register](https://www.federalregister.gov/documents/2025/01/15/2025-00901/notice-regarding-the-uyghur-forced-labor-prevention-act-entity-list) |
+
 ---
 
 ## Section 8: CCP Narrative Control — Key Persons
@@ -279,6 +291,16 @@ See Section 1 above for full breakdown with sources.
   - Confirmed Tony Chung UK asylum (August 2025) via Independent, Taipei Times, Straits Times
   - Confirmed Ren Zhiqiang health deterioration via VOA, China Digital Times, DevDiscourse
   - Added CCP narrative breakdowns for Zhang Zhan and Ren Zhiqiang with direct source links
+
+- 2026-02-20 (Session 26): Academic experts audit + deduplication (Opus 4.6)
+  - **CRITICAL FIX: Elliot Sperling** — was listed as active Indiana University scholar. Died January 29, 2017. Entry updated with death date and marked as historical reference. Sources: [Wikipedia](https://en.wikipedia.org/wiki/Elliot_Sperling), [Indiana University obituary](https://news.iu.edu/hamiltonlugar/live/news/37550-sgis-mourns-the-passing-of-prof-emeritus-sperling), [Legacy.com](https://www.legacy.com/us/obituaries/nytimes/name/elliot-sperling-obituary?id=20370298)
+  - **FIX: Sophie Richardson** — was listed as "Chinese Human Rights Defenders" with no context. Updated: Co-Executive Director, CHRD (since Jan 2025); previously HRW China Director (2006–2023); Visiting Scholar, Stanford CDDRL (2024). Source: [NCHRD](https://www.nchrd.org/2025/01/sophie-richardson-joins-chinese-human-rights-defenders-network/)
+  - **FIX: Elizabeth Economy** — title updated from generic "Hoover Institution" to "Hargrove Senior Fellow, Hoover Institution; Co-Chair, Program on the US, China, and the World." Previously Senior Advisor for China at Commerce (2021–2023). Source: [Hoover Institution](https://www.hoover.org/profiles/elizabeth-economy)
+  - **FIX: Robbie Barnett / Robert Barnett** — was listed as TWO separate entries. Same person. Consolidated into single entry with full affiliation: SOAS (Professorial Research Associate) + King's College London (Lau China Institute). Formerly Columbia University Modern Tibetan Studies founding director (until 2017). Source: [Wikipedia](https://en.wikipedia.org/wiki/Robert_Barnett_(scholar)), [KCL](https://www.kcl.ac.uk/people/robert-barnett)
+  - **Confirmed correct**: Sean R. Roberts at GWU (Associate Professor of Practice, Elliott School). Source: [GWU](https://elliott.gwu.edu/sean-roberts)
+  - **Deduplication**: Removed duplicate Taiwan Association for Human Rights entry from human_rights_orgs_research.json (merged into single entry)
+  - **Verified**: Police stations research entries for Canada, US, and Australia are NOT duplicates — they are separate stations in different cities (Toronto/Vancouver, NYC/LA, Sydney/Melbourne) with unique data. No changes needed.
+  - Forced labor companies list: All 30 entries cross-referenced against ASPI "Uyghurs for Sale" report (March 2020). Company names, industries, and evidence descriptions match. UFLPA Entity List (144 entities as of 2025) targets Chinese manufacturers/suppliers, not Western brands — this distinction is correct in the data.
 
 ---
 

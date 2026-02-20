@@ -40,9 +40,10 @@
   - [x] Gui Minhai: Sentence ends Feb 2030 CONFIRMED. Location unknown. No consular access. Via Amnesty, NCHRD, Safeguard Defenders
   - [x] Gedhun Choekyi Nyima: 30th anniversary coverage May 2025 CONFIRMED per existing data
   - [x] Joshua Wong: New NSL collusion charges June 2025 CONFIRMED via Amnesty, HKFP
-- [ ] **Verify academic experts data**: Check affiliations and current positions
-- [ ] **Verify forced labor companies list**: Cross-reference with ASPI and UFLPA entity list
+- [x] **Verify academic experts data**: Checked affiliations, current positions. Fixed: Elliot Sperling (deceased 2017), Sophie Richardson (now CHRD), Elizabeth Economy (title updated), Barnett duplicate removed ✅
+- [x] **Verify forced labor companies list**: 30 companies cross-referenced with ASPI "Uyghurs for Sale" report. UFLPA Entity List (144 entities) targets Chinese suppliers, not Western brands — distinction is correct ✅
 - [x] **Verify Confucius Institute data**: US: 4 remaining, 104 closed. Many rebranded. Via GAO report ✅
+- [x] **Deduplicate data files**: Removed Barnett duplicate from academic experts, merged Taiwan Assoc. for HR duplicate in HR orgs ✅
 
 ### Expanded Person Profiles (NEW — requested by project owner)
 - [ ] **Create detailed person profile pages**: Full timeline pages for key individuals targeted by CCP
