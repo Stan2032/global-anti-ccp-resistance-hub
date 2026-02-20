@@ -196,7 +196,7 @@ const ResistanceResources = () => {
               </div>
               <Link
                 to={section.link}
-                className="block w-full text-center py-2 bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg text-white font-medium transition-colors"
+                className="block w-full text-center py-2 bg-[#1c2a35] hover:bg-[#111820] rounded-lg text-white font-medium transition-colors"
               >
                 {section.linkText} →
               </Link>

@@ -351,7 +351,7 @@ const DataSources = () => {
                 href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1c2a35] hover:bg-[#1c2a35] text-white font-medium rounded transition-colors"
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium rounded transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Report on GitHub</span>

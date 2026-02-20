@@ -385,7 +385,7 @@ const RegionalThreats = () => {
               href="https://www.csis.org/programs/china-power-project"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CSIS China Power</h3>
               <p className="text-gray-400 text-sm">Interactive analysis of China's military capabilities</p>
@@ -394,7 +394,7 @@ const RegionalThreats = () => {
               href="https://xjdp.aspi.org.au"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ASPI Xinjiang Data</h3>
               <p className="text-gray-400 text-sm">Satellite imagery of detention facilities</p>
@@ -403,7 +403,7 @@ const RegionalThreats = () => {
               href="https://understandingwar.org/research/china-taiwan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ISW China-Taiwan</h3>
               <p className="text-gray-400 text-sm">Daily updates on cross-strait tensions</p>
@@ -412,7 +412,7 @@ const RegionalThreats = () => {
               href="https://amti.csis.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Asia Maritime Initiative</h3>
               <p className="text-gray-400 text-sm">South China Sea monitoring</p>

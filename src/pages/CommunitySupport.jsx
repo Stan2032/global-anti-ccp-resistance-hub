@@ -447,7 +447,7 @@ const CommunitySupport = () => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full bg-[#1c2a35] hover:bg-[#1c2a35] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
                         >
                           <MessageCircle className="w-5 h-5" />
                           <span>Message</span>
