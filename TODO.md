@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 39, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 40, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -14,7 +14,7 @@
 - [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
 - [ ] **Accessibility Audit**: Run automated accessibility tests and fix any WCAG 2.1 violations
 - [x] **Performance Optimization**: Implement code splitting for large components ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles now under 50KB)
-- [ ] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines
+- [x] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines ✅ (index.html already had OG/Twitter/structured data; Session 40 added per-route meta descriptions for all 14 pages)
 
 ### Content Updates
 - [x] **Update Political Prisoners Database**: Add recent arrests and releases (December 2025) ✅
@@ -332,9 +332,9 @@
 
 ### Up Next
 1. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
 
 ### Recently Completed
+- ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6
 - ✅ Performance optimization Phase 2: lazy-loaded 28 more sub-components across Dashboard, CommunitySupport, CCPTactics, SecurityCenter — Session 39, Opus 4.6
 - ✅ Performance optimization: lazy-loaded 53 sub-components across TakeAction, EducationalResources, RegionalThreats, ResistanceResources — Session 38, Opus 4.6
 - ✅ Add "illustrative targets" disclaimer to fake community statistics (CommunitySupport page) — Session 37, Opus 4.6

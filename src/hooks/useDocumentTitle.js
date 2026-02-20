@@ -1,30 +1,78 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const ROUTE_TITLES = {
-  '/': 'Dashboard',
-  '/intelligence': 'Intelligence Feeds',
-  '/directory': 'Resistance Directory',
-  '/campaigns': 'Campaign Hubs',
-  '/community': 'Community Support',
-  '/communications': 'Secure Communications',
-  '/education': 'Education Center',
-  '/security': 'Security Center',
-  '/prisoners': 'Political Prisoners',
-  '/threats': 'Regional Threats',
-  '/resources': 'Resistance Resources',
-  '/tactics': 'CCP Tactics',
-  '/take-action': 'Take Action',
-  '/data-sources': 'Data Sources',
+const ROUTE_META = {
+  '/': {
+    title: 'Dashboard',
+    description: 'Global coordination hub tracking CCP human rights abuses, political prisoners, and resistance movements worldwide.',
+  },
+  '/intelligence': {
+    title: 'Intelligence Feeds',
+    description: 'Live news aggregation from verified sources covering CCP human rights abuses, Hong Kong, Tibet, Xinjiang, and Taiwan.',
+  },
+  '/directory': {
+    title: 'Resistance Directory',
+    description: 'Directory of verified human rights organizations fighting CCP authoritarianism worldwide.',
+  },
+  '/campaigns': {
+    title: 'Campaign Hubs',
+    description: 'Active campaigns for human rights in China, Hong Kong, Tibet, and Xinjiang. Join petitions, letter-writing, and awareness efforts.',
+  },
+  '/community': {
+    title: 'Community Support',
+    description: 'Connect with diaspora communities, find support resources, and join solidarity efforts against CCP repression.',
+  },
+  '/communications': {
+    title: 'Secure Communications',
+    description: 'Secure communication tools and guides for activists operating under CCP surveillance and censorship.',
+  },
+  '/education': {
+    title: 'Education Center',
+    description: 'Educational resources about CCP human rights abuses including documentaries, books, research papers, and interactive courses.',
+  },
+  '/security': {
+    title: 'Security Center',
+    description: 'Digital security tools, VPN guides, and privacy resources for activists at risk of CCP surveillance.',
+  },
+  '/prisoners': {
+    title: 'Political Prisoners',
+    description: 'Database of political prisoners detained by the CCP including Jimmy Lai, Ilham Tohti, and 60+ verified cases with source links.',
+  },
+  '/threats': {
+    title: 'Regional Threats',
+    description: 'Tracking CCP military expansion, territorial aggression, overseas police stations, and influence operations across the Indo-Pacific.',
+  },
+  '/resources': {
+    title: 'Resistance Resources',
+    description: 'Comprehensive toolkit for activists: company trackers, forced labor data, academic experts, legal resources, and media bias guides.',
+  },
+  '/tactics': {
+    title: 'CCP Tactics',
+    description: 'Documented CCP tactics: transnational repression, surveillance, media manipulation, Confucius Institutes, and sanctions tracker.',
+  },
+  '/take-action': {
+    title: 'Take Action',
+    description: 'Eight concrete ways to fight CCP authoritarianism: petitions, boycotts, contacting representatives, and more.',
+  },
+  '/data-sources': {
+    title: 'Data Sources',
+    description: 'Transparency page listing all data sources used by the platform including HRW, Amnesty, ASPI, and government records.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
+const BASE_DESCRIPTION = 'Join the global movement against CCP authoritarianism. Track political prisoners, access live intelligence, and take action to defend human rights.';
 
 export default function useDocumentTitle() {
   const location = useLocation();
 
   useEffect(() => {
-    const pageTitle = ROUTE_TITLES[location.pathname];
-    document.title = pageTitle ? `${pageTitle} | ${BASE_TITLE}` : BASE_TITLE;
+    const meta = ROUTE_META[location.pathname];
+    document.title = meta ? `${meta.title} | ${BASE_TITLE}` : BASE_TITLE;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute('content', meta?.description || BASE_DESCRIPTION);
+    }
   }, [location.pathname]);
 }
