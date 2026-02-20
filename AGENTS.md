@@ -59,7 +59,60 @@ If needed, create purpose-limited sub-agents for specific domains:
 | Security reviews        | Opus 4.6         |                | Yes              |
 | Policies/moderation     | Human            |                | Required         |
 
+## Known Issues & Troubleshooting
+
+### CodeQL Testing Limitation (Discovered: 2026-02-20)
+
+**Issue:** The `codeql_checker` tool reports "No code changes detected" when running on branches with only documentation changes, leading to ambiguous "0 fails" output that can be misinterpreted as security validation.
+
+**Root Cause:** CodeQL is designed to analyze only changed code files (diff-based analysis for efficiency). When no JavaScript/TypeScript/Python/Java code files are modified, CodeQL skips analysis entirely.
+
+**Impact:** 
+- Agents may incorrectly believe code has been security-validated when no analysis actually ran
+- Creates false sense of security for documentation-only PRs
+- Wastes time re-running a tool that won't produce results
+
+**Identification:** Watch for this exact message from `codeql_checker`:
+```
+No code changes detected for languages that CodeQL can analyze, so no analysis was performed.
+```
+
+**Current Workarounds:**
+1. **Pre-check before running CodeQL:**
+   ```bash
+   git diff origin/master --name-only | grep -E '\.(js|jsx|ts|tsx|py|java)$'
+   ```
+   If this returns no files, CodeQL won't run.
+
+2. **Alternative security validation for documentation-only changes:**
+   - Run `npm audit` for dependency vulnerabilities
+   - Run ESLint with security rules
+   - Manual code review of changed areas
+   - Note in PR description: "No CodeQL analysis (documentation-only changes)"
+
+3. **Periodic full security baseline:**
+   - Schedule quarterly full security audits
+   - Document security baseline in project docs
+   - Track "last full scan" date
+
+**🚀 CHALLENGE FOR OPUS 4.6:**
+This limitation needs a better solution. Potential approaches to investigate:
+- Force full codebase analysis option
+- Hybrid approach: diff analysis + periodic full scans  
+- Alternative security scanning tools that don't require diffs
+- Custom wrapper that validates code changes exist before calling CodeQL
+
+See LLM_JUDGEMENT_LOG.md Session 25 for detailed investigation findings and inspiration.
+
+**Agent Responsibilities:**
+- **Opus 4.6:** Primary investigator - find a workaround or better solution
+- **Sonnet 4.5:** Documented the issue, supports testing solutions
+- **All agents:** Don't misinterpret "0 fails" - always verify analysis actually ran
+
+---
+
 ## Change Log
+- [2026-02-20] Added CodeQL troubleshooting section (Sonnet 4.5, Session 25)
 - [2026-02-18] Initial AGENTS.md version (Opus 4.6, following agents.md methodology)
 
 ---
