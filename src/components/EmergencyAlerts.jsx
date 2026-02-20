@@ -109,26 +109,31 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
   const typeStyles = {
     critical: {
       bg: 'bg-red-900/20',
-      border: 'border-l-2 border-red-500 border-t border-r border-b border-t-[#1c2a35] border-r-[#1c2a35] border-b-[#1c2a35]',
+      border: 'border-l-2 border-l-red-500',
       Icon: Siren,
       badge: 'bg-red-600',
+      prefixColor: 'text-red-700',
       prefix: '!!',
     },
     warning: {
       bg: 'bg-yellow-900/15',
-      border: 'border-l-2 border-yellow-500 border-t border-r border-b border-t-[#1c2a35] border-r-[#1c2a35] border-b-[#1c2a35]',
+      border: 'border-l-2 border-l-yellow-500',
       Icon: AlertTriangle,
       badge: 'bg-yellow-600',
+      prefixColor: 'text-yellow-700',
       prefix: '!~',
     },
     info: {
       bg: 'bg-cyan-900/15',
-      border: 'border-l-2 border-[#22d3ee] border-t border-r border-b border-t-[#1c2a35] border-r-[#1c2a35] border-b-[#1c2a35]',
+      border: 'border-l-2 border-l-[#22d3ee]',
       Icon: Info,
       badge: 'bg-[#22d3ee]/80',
+      prefixColor: 'text-cyan-700',
       prefix: '--',
     },
   };
+
+  const alertBorderBase = 'border-t border-r border-b border-[#1c2a35]';
 
   if (activeAlerts.length === 0) {
     return null;
@@ -143,14 +148,14 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
         return (
           <div 
             key={alert.id}
-            className={`${styles.bg} ${styles.border} overflow-hidden`}
+            className={`${styles.bg} ${styles.border} ${alertBorderBase} overflow-hidden`}
           >
             {/* Header */}
             <div className="p-4">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
-                    <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">{styles.prefix}</span>
+                    <span className={`font-mono ${styles.prefixColor} text-xs select-none`} aria-hidden="true">{styles.prefix}</span>
                     <span className={`text-xs font-mono font-bold px-2 py-0.5 ${styles.badge} text-white uppercase`}>
                       {alert.type}
                     </span>
@@ -172,6 +177,7 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                 <button
                   onClick={() => setExpandedAlert(isExpanded ? null : alert.id)}
                   className="text-sm text-[#4afa82] hover:text-[#7dffaa] font-mono"
+                  aria-label={isExpanded ? 'Collapse alert details' : 'Expand alert details'}
                 >
                   {isExpanded ? '$ collapse ↑' : '$ expand --details →'}
                 </button>

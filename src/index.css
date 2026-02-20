@@ -240,6 +240,17 @@ a, button, input, select, textarea,
   50% { opacity: 0; }
 }
 
+/* Respect prefers-reduced-motion for animations */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink::after,
+  .animate-blink {
+    animation: none;
+  }
+  .animate-pulse {
+    animation: none;
+  }
+}
+
 /* Gradient text — terminal variant */
 .gradient-text {
   background: linear-gradient(135deg, #4afa82, #22d3ee);
