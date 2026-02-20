@@ -5,7 +5,8 @@ import { useStatistics } from '../hooks/useLiveData';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span>
+    <span className="font-mono text-[#4afa82] text-sm animate-blink ml-0.5">█</span>
   </div>
 );
 
@@ -98,18 +99,19 @@ const Dashboard = () => {
       {/* Emergency Alerts */}
       <Suspense fallback={<SectionLoader />}><EmergencyAlerts /></Suspense>
 
-      {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      {/* Welcome Header — terminal style */}
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-              Global Resistance Dashboard
+              resistance_dashboard
             </h1>
-            <p className="text-slate-400">
-              Coordinating worldwide resistance against CCP authoritarianism
+            <p className="text-slate-400 font-mono text-sm">
+              <span className="text-[#1c2a35] mr-1" aria-hidden="true">──</span>
+              coordinating worldwide resistance against CCP authoritarianism
             </p>
           </div>
-          <div className="text-right">
+          <div className="text-right font-mono">
             <div className="text-sm text-slate-400">
               {currentTime.toLocaleDateString('en-US', { 
                 weekday: 'long', 
@@ -119,112 +121,112 @@ const Dashboard = () => {
               })}
             </div>
             <div className="flex items-center justify-end gap-2 mt-1">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-xs text-green-400">All systems operational</span>
+              <span className="w-2 h-2 bg-[#4afa82] rounded-full animate-pulse"></span>
+              <span className="text-xs text-[#4afa82]">systems: online</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Critical Alert */}
-      <div className="bg-red-900/30 border border-red-700 rounded-xl p-4 sm:p-6">
+      {/* Critical Alert — terminal urgent */}
+      <div className="bg-red-900/15 border-l-2 border-l-red-500 border border-[#1c2a35] p-4 sm:p-6">
         <div className="flex items-start gap-4">
           <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
+              <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">!!</span>
               <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to 20 Years</h2>
-              <span className="px-2 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">BREAKING</span>
+              <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-mono animate-pulse">CRITICAL</span>
             </div>
             <p className="text-red-200 text-sm mb-3">
               Hong Kong media mogul and pro-democracy activist Jimmy Lai was sentenced to 20 years in prison on February 9, 2026, 
               under the National Security Law. International condemnation has been swift.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/prisoners" className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors">
-                View Case Details
+              <Link to="/prisoners" className="px-4 py-2 bg-red-900/40 hover:bg-red-900/60 text-red-200 font-mono text-sm font-medium transition-colors border border-red-900/50 hover:border-red-500">
+                $ view_case --details
               </Link>
-              <Link to="/campaigns" className="px-4 py-2 bg-red-900/50 hover:bg-red-900 text-red-200 rounded-lg text-sm font-medium transition-colors border border-red-700">
-                Join Campaign
+              <Link to="/campaigns" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-red-300 font-mono text-sm font-medium transition-colors border border-[#1c2a35] hover:border-red-500">
+                $ join_campaign
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stats Grid */}
+      {/* Stats Grid — terminal data display */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((stat, index) => (
           <div 
             key={index}
-            className="bg-slate-800 border border-slate-700 rounded-xl p-4 sm:p-6"
+            className="bg-[#111820] border border-[#1c2a35] hover:border-[#2a9a52] p-4 sm:p-6 transition-colors"
           >
             <div className="flex items-center justify-between mb-3">
-              <stat.icon className="w-6 h-6 text-slate-400" />
-              <span className={`text-xs px-2 py-0.5 rounded-full ${
-                stat.color === 'blue' ? 'bg-blue-900/50 text-blue-300' :
-                stat.color === 'red' ? 'bg-red-900/50 text-red-300' :
-                stat.color === 'green' ? 'bg-green-900/50 text-green-300' :
-                'bg-orange-900/50 text-orange-300'
+              <stat.icon className="w-5 h-5 text-slate-500" />
+              <span className={`text-xs font-mono px-2 py-0.5 ${
+                stat.color === 'blue' ? 'bg-cyan-900/30 text-[#22d3ee]' :
+                stat.color === 'red' ? 'bg-red-900/30 text-red-400' :
+                stat.color === 'green' ? 'bg-[#4afa82]/10 text-[#4afa82]' :
+                'bg-yellow-900/30 text-[#fbbf24]'
               }`}>
                 {stat.change}
               </span>
             </div>
-            <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
+            <div className="text-2xl sm:text-3xl font-bold text-white font-mono mb-1">
               {statsLoading ? '...' : (typeof stat.value === 'number' ? stat.value.toLocaleString() : stat.value)}
             </div>
-            <div className="text-sm text-slate-400">{stat.title}</div>
+            <div className="text-sm text-slate-400 font-mono">
+              <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>
+              {stat.title}
+            </div>
           </div>
         ))}
       </div>
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Intelligence Preview */}
-        <div className="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-xl">
-          <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+        {/* Intelligence Preview */}
+        <div className="lg:col-span-2 bg-[#111820] border border-[#1c2a35]">
+          <div className="p-4 border-b border-[#1c2a35] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Radio className="w-5 h-5 text-blue-400" />
-              <h2 className="font-semibold text-white">Intelligence Overview</h2>
+              <Radio className="w-5 h-5 text-[#22d3ee]" />
+              <h2 className="font-semibold text-white">intelligence_overview</h2>
             </div>
-            <Link to="/intelligence" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span>View Live Feeds →</span>
+            <Link to="/intelligence" className="flex items-center gap-2 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
+              <span className="w-2 h-2 bg-[#4afa82] rounded-full animate-pulse"></span>
+              <span>$ feeds --live →</span>
             </Link>
           </div>
           <div className="p-4">
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="bg-slate-900/50 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-blue-400">4</div>
-                <div className="text-xs text-slate-400">Verified Sources</div>
+              <div className="bg-[#0a0e14] p-4 text-center border border-[#1c2a35]">
+                <div className="text-2xl font-bold text-[#22d3ee] font-mono">4</div>
+                <div className="text-xs text-slate-400 font-mono">verified_sources</div>
               </div>
-              <div className="bg-slate-900/50 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-green-400">Live</div>
-                <div className="text-xs text-slate-400">RSS Feeds</div>
+              <div className="bg-[#0a0e14] p-4 text-center border border-[#1c2a35]">
+                <div className="text-2xl font-bold text-[#4afa82] font-mono">Live</div>
+                <div className="text-xs text-slate-400 font-mono">rss_feeds</div>
               </div>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
-                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                <span className="text-sm text-slate-300">ASPI - Australian Strategic Policy Institute</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
-                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                <span className="text-sm text-slate-300">ICIJ - Investigative Journalists</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
-                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                <span className="text-sm text-slate-300">Radio Free Asia</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-slate-900/30 rounded">
-                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                <span className="text-sm text-slate-300">Hong Kong Free Press</span>
-              </div>
+            <div className="space-y-1">
+              {[
+                'ASPI - Australian Strategic Policy Institute',
+                'ICIJ - Investigative Journalists',
+                'Radio Free Asia',
+                'Hong Kong Free Press'
+              ].map((source, i) => (
+                <div key={i} className="flex items-center gap-2 p-2 bg-[#0a0e14]/50">
+                  <span className="text-[#1c2a35] font-mono text-xs select-none" aria-hidden="true">▸</span>
+                  <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
+                  <span className="text-sm text-slate-300 font-mono">{source}</span>
+                </div>
+              ))}
             </div>
             <Link 
               to="/intelligence" 
-              className="block w-full mt-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-lg text-sm font-medium transition-colors"
+              className="block w-full mt-4 py-2 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] text-center font-mono text-sm font-medium transition-colors border border-[#4afa82]/30 hover:border-[#4afa82]"
             >
-              Access Live Intelligence Feeds
+              $ access --live-feeds
             </Link>
           </div>
         </div>
@@ -232,75 +234,71 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="space-y-6">
           {/* Quick Actions Card */}
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
+          <div className="bg-[#111820] border border-[#1c2a35] p-4">
             <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-yellow-400" /> Quick Actions
+              <Zap className="w-5 h-5 text-[#fbbf24]" /> quick_actions
             </h2>
             <div className="grid grid-cols-2 gap-3">
               {quickActions.map((action, index) => (
                 <Link
                   key={index}
                   to={action.href}
-                  className={`p-3 rounded-lg text-center transition-colors ${
-                    action.color === 'red' ? 'bg-red-900/30 hover:bg-red-900/50 border border-red-700' :
-                    action.color === 'blue' ? 'bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700' :
-                    action.color === 'green' ? 'bg-green-900/30 hover:bg-green-900/50 border border-green-700' :
-                    'bg-purple-900/30 hover:bg-purple-900/50 border border-purple-700'
-                  }`}
+                  className="p-3 text-center transition-colors bg-[#0a0e14] border border-[#1c2a35] hover:border-[#2a9a52]"
                 >
-                  <action.Icon className="w-6 h-6 mx-auto mb-1 text-slate-300" />
-                  <span className="text-xs text-slate-300">{action.title}</span>
+                  <action.Icon className="w-5 h-5 mx-auto mb-1 text-slate-400" />
+                  <span className="text-xs text-slate-300 font-mono">{action.title}</span>
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Urgent Campaigns */}
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
+          <div className="bg-[#111820] border border-[#1c2a35] p-4">
             <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5 text-red-400" /> Urgent Campaigns
+              <Target className="w-5 h-5 text-red-400" /> urgent_campaigns
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {urgentCampaigns.map((campaign) => (
                 <Link
                   key={campaign.id}
                   to={campaign.link}
-                  className="block p-3 bg-slate-900/50 rounded-lg hover:bg-slate-700/50 transition-colors"
+                  className="block p-3 bg-[#0a0e14] hover:bg-[#0a0e14]/80 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-medium text-white text-sm">{campaign.title}</span>
+                    <span className="font-medium text-white text-sm font-mono">{campaign.title}</span>
                     {campaign.urgent && (
-                      <span className="px-1.5 py-0.5 bg-red-600 text-white text-xs rounded">URGENT</span>
+                      <span className="px-1.5 py-0.5 bg-red-600 text-white text-xs font-mono">!</span>
                     )}
                   </div>
                   <p className="text-xs text-slate-400 mb-2">{campaign.description}</p>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-xs text-slate-500 font-mono">
+                    <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>
                     {campaign.supporters.toLocaleString()} supporters
                   </div>
                 </Link>
               ))}
             </div>
-            <Link to="/campaigns" className="block mt-4 text-blue-400 hover:text-blue-300 text-sm font-medium">
-              View all campaigns →
+            <Link to="/campaigns" className="block mt-4 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
+              $ list --all-campaigns →
             </Link>
           </div>
         </div>
       </div>
 
       {/* Detention Timer Section */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <Suspense fallback={<SectionLoader />}><UrgentCaseTimer compact={true} /></Suspense>
       </div>
 
       {/* News Aggregator Section */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
       </div>
 
       {/* Resources Section */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-          <Link2 className="w-5 h-5 text-blue-400" /> Essential Resources
+          <Link2 className="w-5 h-5 text-[#22d3ee]" /> essential_tools
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
@@ -314,10 +312,10 @@ const Dashboard = () => {
               href={resource.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-slate-900/50 rounded-lg hover:bg-slate-700/50 transition-colors text-center"
+              className="p-4 bg-[#0a0e14] hover:bg-[#0a0e14]/80 transition-colors text-center border border-[#1c2a35] hover:border-[#2a9a52]"
             >
-              <resource.Icon className="w-6 h-6 mx-auto mb-2 text-slate-400" />
-              <span className="font-medium text-white text-sm block">{resource.name}</span>
+              <resource.Icon className="w-5 h-5 mx-auto mb-2 text-slate-400" />
+              <span className="font-medium text-white text-sm font-mono block">{resource.name}</span>
               <span className="text-xs text-slate-400">{resource.desc}</span>
             </a>
           ))}
@@ -348,9 +346,9 @@ const Dashboard = () => {
       </div>
 
       {/* Footer */}
-      <div className="text-center text-slate-500 text-sm py-4">
-        <p>Global Resistance Hub v2.11 • Secure • Anonymous • Decentralized</p>
-        <p className="mt-1">Together we resist authoritarianism</p>
+      <div className="text-center text-slate-500 text-sm py-4 font-mono">
+        <p>resistance_hub v2.11 <span className="text-[#1c2a35]">│</span> secure <span className="text-[#1c2a35]">│</span> anonymous <span className="text-[#1c2a35]">│</span> decentralized</p>
+        <p className="mt-1 text-[#1c2a35]">// together we resist authoritarianism</p>
       </div>
     </div>
   );
