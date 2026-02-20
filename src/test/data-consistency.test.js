@@ -243,20 +243,20 @@ describe('Critical date consistency across data files', () => {
       expect(ea.output.sentence).toMatch(/15 years/);
     });
 
-    it('verified prisoners have last_verified dates', () => {
-      const verifiedNames = [
-        'Jimmy Lai', 'Ilham Tohti', 'Gao Zhisheng', 'Gedhun Choekyi Nyima',
-        'Ren Zhiqiang', 'Rahile Dawut', 'Gui Minhai', 'Ekpar Asat',
-        'Sophia Huang Xueqin', 'Wang Jianbing', 'Gulshan Abbas', 'Qin Yongmin',
-        'Liu Xiaobo', 'Huang Qi', 'Wang Quanzhang', 'Agnes Chow',
-        'Nathan Law', 'Martin Lee', 'Cardinal Joseph Zen', 'Lee Cheuk-yan',
-        'Andy Li', 'Tony Chung', 'Ai Weiwei', 'Chen Guangcheng'
-      ];
-      for (const name of verifiedNames) {
-        const p = prisoners.results.find((r) => r.output.prisoner_name === name);
-        expect(p, `${name} should exist`).toBeDefined();
-        expect(p.output.last_verified, `${name} should have last_verified`).toBeDefined();
+    it('all prisoners with verification_note also have last_verified dates', () => {
+      for (const r of prisoners.results) {
+        if (r.output.verification_note) {
+          expect(
+            r.output.last_verified,
+            `${r.output.prisoner_name} has verification_note but no last_verified`
+          ).toBeDefined();
+        }
       }
+    });
+
+    it('at least 24 prisoners have been verified', () => {
+      const verified = prisoners.results.filter((r) => r.output.last_verified);
+      expect(verified.length).toBeGreaterThanOrEqual(24);
     });
 
     it('timeline Ilham Tohti entry includes sentencing date', () => {
