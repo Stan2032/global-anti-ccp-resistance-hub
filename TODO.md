@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 43, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 44, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -60,13 +60,15 @@
     - [x] CCP narrative control breakdown with sourced rebuttals
     - [x] International response timeline
     - [x] All source links (HRW, CPJ, BBC, US State Dept, HKFP, etc.)
-  - [ ] **Ilham Tohti profile page**: From academic career to life sentence
-    - [ ] Academic work at Minzu University
-    - [ ] Uighurbiz.net and advocacy for Han-Uyghur dialogue
-    - [ ] January 15, 2014: Arrested
-    - [ ] September 23, 2014: Sentenced to life
-    - [ ] Sakharov Prize (2019), other awards
-    - [ ] CCP "separatist" narrative vs reality (dialogue advocate)
+  - [x] **Ilham Tohti profile page**: From academic career to life sentence ✅ (Session 44)
+    - [x] Academic work at Minzu University
+    - [x] Uighurbiz.net and advocacy for Han-Uyghur dialogue
+    - [x] January 15, 2014: Arrested
+    - [x] September 23, 2014: Sentenced to life
+    - [x] Sakharov Prize (2019), Václav Havel Prize (2019), Martin Ennals Award (2016), PEN Award (2014)
+    - [x] CCP "separatist" narrative vs reality (dialogue advocate)
+    - [x] 7 students also persecuted
+    - [x] 9 Tier 1 sources (HRW, Amnesty, European Parliament, PEN, Front Line Defenders, USCIRF, Scholars at Risk, PEN America, UN OHCHR)
   - [ ] **Gedhun Choekyi Nyima (Panchen Lama) profile page**
     - [ ] Recognition by Dalai Lama (May 14, 1995)
     - [ ] Abduction (May 17, 1995)
@@ -332,10 +334,11 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Ilham Tohti profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Gedhun Choekyi Nyima (Panchen Lama) profile page
+1. Gedhun Choekyi Nyima (Panchen Lama) profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. Liu Xiaobo profile page (posthumous)
 
 ### Recently Completed
+- ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
 - ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6
 - ✅ D1-D5 owner decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
 - ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6

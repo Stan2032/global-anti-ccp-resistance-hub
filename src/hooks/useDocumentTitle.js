@@ -62,6 +62,10 @@ const ROUTE_META = {
     title: 'Jimmy Lai — Profile',
     description: 'Detailed profile of Jimmy Lai (黎智英): Apple Daily founder sentenced to 20 years under Hong Kong NSL. Complete timeline, charges, CCP narrative analysis, and verified sources.',
   },
+  '/profiles/ilham-tohti': {
+    title: 'Ilham Tohti — Profile',
+    description: 'Detailed profile of Ilham Tohti (伊力哈木·土赫提): Uyghur economist sentenced to life for "separatism" despite advocating dialogue. Sakharov Prize laureate. Timeline, charges, CCP narrative analysis.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
