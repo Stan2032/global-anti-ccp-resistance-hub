@@ -1,12 +1,86 @@
 # Questions for Owner — Items Requiring Human Decisions
 
 **Created:** 2026-02-19 (Session 15, Opus 4.6)  
-**Updated:** 2026-02-19 (Session 16, Opus 4.6) — All answers received and implemented  
-**Status:** ✅ ALL QUESTIONS ANSWERED
+**Updated:** 2026-02-20 (Session 41, Opus 4.6) — Original Q1-Q5 all answered; 5 new decisions pending  
+**Status:** ⏳ 5 DECISIONS PENDING (see below)
 
 ---
 
-## Answers Summary
+## 🔴 CURRENT PENDING DECISIONS (5 items)
+
+> These were identified during data verification (Sessions 33-34) and require your input before agents can proceed. Answer with the number and your choice (e.g. "D1: Yes, both" or "D3: Skip").
+
+### D1. Zhang Yuxin — Bad Data in Sanctioned Officials
+
+Our `sanctioned_officials_research.json` has an entry for "Zhang Yuxin — Tibet Military Region Commander" that says **"Information not found."** This name/role combination doesn't match any real sanctioned individual. The actual current commander is Wang Kai.
+
+**Options:**
+- **A) Remove the entry entirely** — cleanest approach
+- **B) Replace with Che Dalha** — current TAR Party Secretary, continues repressive policies
+- **C) Replace with Zhang Qingli** — former TAR Party Secretary during the 2008 crackdown, well-documented abuses
+- **D) Replace with both** Che Dalha and Zhang Qingli (remove Zhang Yuxin, add two real entries)
+
+**Agent recommendation:** Option D — both are documented, verified officials involved in Tibetan repression. **Best agent: Opus 4.6** (requires source verification against CCP narratives).
+
+---
+
+### D2. Du Bin — Add to Political Prisoner Database?
+
+Du Bin is a journalist and author arrested **October 15, 2025**, formally charged **December 12, 2025** with "picking quarrels and provoking trouble" (a catch-all charge the CCP uses against dissidents). This is his third detention but first formal charge. He faces up to 5 years.
+
+**Source:** Human Rights Watch (Tier 1 source). Already in our `recent_news_research.json` but NOT in the political prisoner database.
+
+**Options:**
+- **A) Yes, add him** — he's a documented political prisoner with verified HRW sourcing
+- **B) No, skip** — keep database focused on current scope
+
+**Agent recommendation:** Option A — clear-cut political prisoner case. **Best agent: Opus 4.6**.
+
+---
+
+### D3. Rachung Gendun — Add to Political Prisoner Database?
+
+Rachung Gendun is a Tibetan monk imprisoned for 3.5 years for sending prayer money to monasteries in exile for his uncle Taphun, who self-immolated in March 2022. Released **November 16, 2024** in poor health.
+
+**Source:** Tibet Watch (Tier 2 source). Already in our `recent_news_research.json` but NOT in the political prisoner database.
+
+**Options:**
+- **A) Yes, add him** — documents religious persecution and self-immolation response pattern
+- **B) No, skip** — he's already released, keep database focused on currently detained
+
+**Agent recommendation:** Option A — even released prisoners document patterns of persecution. **Best agent: Opus 4.6**.
+
+---
+
+### D4. Profile Page Priority — Which Person First?
+
+The TODO lists 6+ detailed person profile pages to build (Jimmy Lai, Ilham Tohti, Gedhun Choekyi Nyima, Liu Xiaobo, Joshua Wong, Gui Minhai, plus extras). Which should be built first?
+
+**Options:**
+- **A) Jimmy Lai** — most recent sentencing (Feb 9, 2026), most verified data, highest current media attention
+- **B) Ilham Tohti** — life sentence, Sakharov Prize winner, represents Uyghur persecution
+- **C) Gedhun Choekyi Nyima** — 30 years disappeared, represents Tibetan persecution
+- **D) Your own priority order**
+
+**Agent recommendation:** Option A (Jimmy Lai) — most data already verified, most timely. **Best agent: Opus 4.6 (content/verification) + Sonnet 4.5 (UI/layout)**.
+
+---
+
+### D5. Office of Political Prisoner Advocacy — Track This Policy Proposal?
+
+The Olivia Enos article (Forbes) proposes creating a dedicated US State Department office for political prisoner advocacy, led by a special envoy of ambassador rank. This is a significant policy proposal that could affect how the US government coordinates pressure on the CCP.
+
+**Options:**
+- **A) Yes, track it** — add to international responses / policy tracking data
+- **B) No, skip** — it's a proposal, not enacted policy; wait until it progresses
+
+**Agent recommendation:** Option A — it's worth tracking as a "policy development to watch." **Best agent: Opus 4.6**.
+
+---
+
+## ✅ PREVIOUSLY ANSWERED (Sessions 15-16) — Archived for Reference
+
+### Answers Summary
 
 | Question | Owner's Answer | Implementation Status |
 |----------|---------------|----------------------|
@@ -94,12 +168,21 @@ This is a client-side feature that could warn users if their browser is leaking 
 ## 2. Content Policy (HR2)
 
 ### Current State
-The site currently has no user-generated content — all data is hardcoded in components. But several features imply future UGC: VolunteerSignup, IncidentReportForm, SolidarityWall, LetterCampaign.
+> **⚠️ AMENDED (Session 41):** The descriptions below reflect the state as of Session 15 (Feb 19, 2026). Since then:
+> - Session 36 added "Coming Soon" notices to all non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest)
+> - Session 36 removed false security claims ("End-to-end encrypted", "No logs retained") from IncidentReportForm
+> - Session 36 replaced misleading success messages with honest notices + links to real organizations
+> - Forms no longer "just show a success message" — they now honestly say "Coming Soon"
+
+~~The site currently has no user-generated content — all data is hardcoded in components. But several features imply future UGC: VolunteerSignup, IncidentReportForm, SolidarityWall, LetterCampaign.~~
+
+**Current state (Session 41):** Forms now display "Coming Soon — Backend Not Yet Implemented" notices with links to real human rights organizations. No fake success messages.
 
 ### Questions
 
-**Q2.1: What is the plan for user-submitted content?**  
-Currently these forms have no backend — they just show a success message without actually sending data anywhere.
+**Q2.1: What is the plan for user-submitted content?** *(✅ ANSWERED: Option A — "Consider later")*  
+~~Currently these forms have no backend — they just show a success message without actually sending data anywhere.~~  
+**Update (Session 36):** Forms now show "Coming Soon" notices instead of fake success messages. Option A was implemented.
 
 | Option | What happens |
 |--------|-------------|
@@ -147,7 +230,7 @@ Only relevant if you answered B or C above.
 | **Node.js + Express + PostgreSQL** | Maximum control, well-documented, huge community |
 | **Python + FastAPI + PostgreSQL** | If you prefer Python; good for data-heavy features |
 
-**My recommendation:** Vercel serverless + Supabase — it's the lowest-friction path from your current Vite setup and has a generous free tier.
+**My recommendation:** ~~Vercel serverless + Supabase — it's the lowest-friction path from your current Vite setup and has a generous free tier.~~ **Update:** Owner chose Cloudflare Pages. Recommendation updated to Cloudflare Pages Functions + Supabase (see Backend Recommendation section above).
 
 ---
 
@@ -177,7 +260,15 @@ If yes: SendGrid free tier (100 emails/day) is the easiest starting point.
 ## 5. Multilingual Support (L2)
 
 ### Current State
-All content is in English. The site has a `LanguageGuide` component but no i18n infrastructure.
+> **⚠️ AMENDED (Session 41):** The description below was written in Session 15. Since then:
+> - i18n infrastructure was built (LanguageContext, t() function, locale files)
+> - 5 language files exist: en.json, zh-CN.json, zh-TW.json, ug.json, bo.json (231 keys each)
+> - Navigation and common UI strings are translated
+> - Content pages remain English-only pending volunteer translators
+
+~~All content is in English. The site has a `LanguageGuide` component but no i18n infrastructure.~~
+
+**Current state (Session 41):** i18n foundation is built with 5 locale files (English, Simplified Chinese, Traditional Chinese, Uyghur, Tibetan). Navigation wired to t() function. Full content translation awaiting volunteer native speakers.
 
 ### Questions
 
@@ -200,18 +291,20 @@ Machine translation (e.g., Google Translate API) is an option but produces poor 
 
 ## Summary: What I Can Do Immediately After Each Answer
 
-| Question | If you answer... | I can immediately... |
-|----------|-----------------|---------------------|
-| Q1.1 | "No geolocation" | Nothing needed (current state is correct) |
-| Q1.1 | "Client-side API" | Implement ip-api.com integration (~30 min) |
-| Q1.2 | "Yes, add WebRTC check" | Build client-side leak detector (~30 min) |
-| Q2.1 | "Keep as demo" | Add "Coming soon" notes to forms (~10 min) |
-| Q2.1 | "Email submissions" | Implement after Q4.2 is answered |
-| Q3.1 | "Stay static" | Focus on remaining frontend improvements |
-| Q3.1 | "Add serverless API" | Scaffold Vercel functions (~2 hours) |
-| Q4.1 | Any option | Configure deployment (~30 min) |
-| Q5.1 | Any languages | Set up i18n infrastructure (~1 hour) |
-| Q5.2 | "Yes, volunteers" | Create translation template files |
+> **⚠️ AMENDED (Session 41):** This table was written in Session 15. Most items have since been implemented. Strikethrough = already done.
+
+| Question | If you answer... | I can immediately... | Status |
+|----------|-----------------|---------------------|--------|
+| Q1.1 | "No geolocation" | Nothing needed (current state is correct) | ✅ Done — owner chose A |
+| Q1.1 | "Client-side API" | Implement ip-api.com integration (~30 min) | N/A — owner chose A |
+| Q1.2 | "Yes, add WebRTC check" | Build client-side leak detector (~30 min) | ✅ Done — built useWebRTCLeakCheck hook |
+| Q2.1 | "Keep as demo" | Add "Coming soon" notes to forms (~10 min) | ✅ Done — Session 36 |
+| Q2.1 | "Email submissions" | Implement after Q4.2 is answered | N/A — deferred |
+| Q3.1 | "Stay static" | Focus on remaining frontend improvements | ✅ Done — owner chose A |
+| Q3.1 | "Add serverless API" | Scaffold Cloudflare functions (~2 hours) | Phase 2 when ready |
+| Q4.1 | Any option | Configure deployment (~30 min) | ✅ Done — Cloudflare Pages chosen, _redirects + _headers configured |
+| Q5.1 | Any languages | Set up i18n infrastructure (~1 hour) | ✅ Done — 5 locale files built |
+| Q5.2 | "Yes, volunteers" | Create translation template files | ✅ Done — locale files ready for volunteer translators |
 
 ---
 

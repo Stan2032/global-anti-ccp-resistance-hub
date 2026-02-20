@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 40, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 41, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -312,15 +312,15 @@
 
 ---
 
-## ⏳ PENDING OWNER DECISIONS (from Sessions 33-34)
+## ⏳ PENDING OWNER DECISIONS (5 items — see QUESTIONS_FOR_OWNER.md for full details)
 
-> These items were identified by Opus 4.6 during data verification and require owner approval before proceeding. See `agent-thoughts/SESSION_34_VERIFICATION_NOTES.md` for full context.
+> Answer with D1-D5 choices. See `QUESTIONS_FOR_OWNER.md` → "CURRENT PENDING DECISIONS" section for full options and agent recommendations.
 
-1. **Zhang Yuxin sanctioned officials entry**: Remove "Information not found" entry? Replace with Che Dalha (current TAR Party Secretary) or Zhang Qingli (former TAR Secretary during 2008)?
-2. **Du Bin**: Add journalist Du Bin (arrested Oct 15, 2025, charged Dec 12, 2025 with "picking quarrels") to political prisoner database? Source: HRW. **Best agent: Opus 4.6**
-3. **Rachung Gendun**: Add Tibetan monk (jailed for sending prayer money for self-immolated uncle, released Nov 2024 in poor health) to database? Source: Tibet Watch. **Best agent: Opus 4.6**
-4. **Profile page priority**: Which person profile to build first? Recommendation: Jimmy Lai (most recent sentencing, most verified data). **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-5. **Office of Political Prisoner Advocacy**: Track this US policy proposal (from Olivia Enos article) in our data?
+1. **D1 — Zhang Yuxin bad data**: Remove/replace "Information not found" entry in sanctioned officials? Options: A) Remove, B) Replace with Che Dalha, C) Replace with Zhang Qingli, D) Both B+C
+2. **D2 — Du Bin**: Add journalist (arrested Oct 15, 2025, HRW source) to political prisoner database? Yes/No
+3. **D3 — Rachung Gendun**: Add Tibetan monk (released Nov 2024, Tibet Watch source) to database? Yes/No
+4. **D4 — Profile page priority**: Which person profile first? Jimmy Lai / Ilham Tohti / Panchen Lama / your choice
+5. **D5 — Policy tracking**: Track the "Office of Political Prisoner Advocacy" US policy proposal? Yes/No
 
 ---
 
