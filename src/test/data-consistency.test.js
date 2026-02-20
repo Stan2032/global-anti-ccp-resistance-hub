@@ -247,7 +247,10 @@ describe('Critical date consistency across data files', () => {
       const verifiedNames = [
         'Jimmy Lai', 'Ilham Tohti', 'Gao Zhisheng', 'Gedhun Choekyi Nyima',
         'Ren Zhiqiang', 'Rahile Dawut', 'Gui Minhai', 'Ekpar Asat',
-        'Sophia Huang Xueqin', 'Wang Jianbing', 'Gulshan Abbas', 'Qin Yongmin'
+        'Sophia Huang Xueqin', 'Wang Jianbing', 'Gulshan Abbas', 'Qin Yongmin',
+        'Liu Xiaobo', 'Huang Qi', 'Wang Quanzhang', 'Agnes Chow',
+        'Nathan Law', 'Martin Lee', 'Cardinal Joseph Zen', 'Lee Cheuk-yan',
+        'Andy Li', 'Tony Chung', 'Ai Weiwei', 'Chen Guangcheng'
       ];
       for (const name of verifiedNames) {
         const p = prisoners.results.find((r) => r.output.prisoner_name === name);
@@ -277,6 +280,71 @@ describe('Critical date consistency across data files', () => {
       expect(cb.details).toMatch(/October 14/);
       expect(cb.details).toMatch(/October 17/);
       expect(cb.details).toMatch(/December 30/);
+    });
+  });
+
+  describe('Session 30: Extended prisoner verification', () => {
+    let prisoners;
+    beforeAll(() => {
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+    });
+
+    it('Liu Xiaobo sentenced December 25, 2009 and died July 13, 2017', () => {
+      const lxb = prisoners.results.find((r) => r.output.prisoner_name === 'Liu Xiaobo');
+      expect(lxb).toBeDefined();
+      expect(lxb.output.sentence).toMatch(/December 25, 2009/);
+      expect(lxb.output.sentence).toMatch(/July 13, 2017/);
+      expect(lxb.output.status).toBe('DECEASED');
+    });
+
+    it('Huang Qi sentenced July 29, 2019, 12 years', () => {
+      const hq = prisoners.results.find((r) => r.output.prisoner_name === 'Huang Qi');
+      expect(hq).toBeDefined();
+      expect(hq.output.sentence).toMatch(/July 29, 2019/);
+      expect(hq.output.sentence).toMatch(/12 years/);
+    });
+
+    it('Wang Quanzhang sentenced Jan 28, 2019, released Apr 5, 2020', () => {
+      const wq = prisoners.results.find((r) => r.output.prisoner_name === 'Wang Quanzhang');
+      expect(wq).toBeDefined();
+      expect(wq.output.sentence).toMatch(/January 28, 2019/);
+      expect(wq.output.sentence).toMatch(/April 5, 2020/);
+      expect(wq.output.status).toBe('RELEASED');
+    });
+
+    it('Lee Cheuk-yan total sentence is 20 months (not 14)', () => {
+      const lcy = prisoners.results.find((r) => r.output.prisoner_name === 'Lee Cheuk-yan');
+      expect(lcy).toBeDefined();
+      expect(lcy.output.sentence).toMatch(/20 months/);
+      expect(lcy.output.sentence).not.toMatch(/14 months/);
+    });
+
+    it('Cardinal Joseph Zen arrested May 11, 2022, fined November 2022', () => {
+      const cjz = prisoners.results.find((r) => r.output.prisoner_name === 'Cardinal Joseph Zen');
+      expect(cjz).toBeDefined();
+      expect(cjz.output.sentence).toMatch(/May 11, 2022/);
+      expect(cjz.output.sentence).toMatch(/November 2022/);
+    });
+
+    it('Andy Li guilty plea August 19, 2021, sentencing deferred', () => {
+      const al = prisoners.results.find((r) => r.output.prisoner_name === 'Andy Li');
+      expect(al).toBeDefined();
+      expect(al.output.sentence).toMatch(/August 19, 2021/);
+      expect(al.output.sentence).toMatch(/deferred/i);
+    });
+
+    it('Tony Chung sentenced November 2021, youngest NSL sentence', () => {
+      const tc = prisoners.results.find((r) => r.output.prisoner_name === 'Tony Chung');
+      expect(tc).toBeDefined();
+      expect(tc.output.sentence).toMatch(/3 years and 7 months/);
+      expect(tc.output.sentence).toMatch(/November 2021/);
+    });
+
+    it('Martin Lee suspended sentence April 2021', () => {
+      const ml = prisoners.results.find((r) => r.output.prisoner_name === 'Martin Lee');
+      expect(ml).toBeDefined();
+      expect(ml.output.sentence).toMatch(/suspended/i);
+      expect(ml.output.sentence).toMatch(/April 2021/);
     });
   });
 });

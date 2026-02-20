@@ -77,12 +77,14 @@
         "prisoner_name": "Huang Qi",
         "status": "DETAINED",
         "location": "Unknown",
-        "sentence": "12 years for leaking state secrets and illegally providing state secrets to foreign countries",
+        "sentence": "12 years for leaking state secrets and illegally providing state secrets to foreign entities (sentenced July 29, 2019, Mianyang Intermediate People's Court, Sichuan)",
         "latest_news": "August 2023: Marked four years since sentencing, family and lawyers repeatedly denied in-person meetings.",
         "health_status": "Suffers from heart disease, a potentially fatal kidney condition, and hydrocephalus; denied adequate medical care.",
         "international_response": "PEN International, Reporters Without Borders (RSF), and United Nations experts have called for his immediate and unconditional release.",
         "source_url": "https://www.pen-international.org/news/china-release-citizen-journalist-huang-qi",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Jul 29, 2019 to 12 years verified via Human Rights in China, VOA, France24, FIDH, IFJ, Amnesty. Chronic kidney disease, denied medical care."
       },
       "error": ""
     },
@@ -90,14 +92,16 @@
       "input": "Wang Quanzhang - 709 crackdown lawyer, released 2020",
       "output": {
         "prisoner_name": "Wang Quanzhang",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "4.5 years for subverting state power",
-        "latest_news": "March 2024: Continues to live under surveillance and harassment with his family, four years after his release. His son has been expelled from school and is showing signs of depression.",
+        "sentence": "4.5 years for subverting state power (sentenced January 28, 2019, Tianjin No. 2 Intermediate Court). Released April 5, 2020.",
+        "latest_news": "Apr 2020: Released after serving sentence (time served counted from Aug 2015 detention). Faces ongoing surveillance and harassment. Family pressured.",
         "health_status": "Unknown, but his wife expressed concerns about his mental health in December 2019.",
         "international_response": "His case has drawn international attention, with his wife's protests and interviews with international media. The US has called for his freedom of movement, and foreign diplomats and journalists were denied entry to his trial. A Japanese media outlet interviewed him in March 2024.",
         "source_url": "https://duihua.org/prisoner-updates-2024-4/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Aug 2015 (709 Crackdown), sentenced Jan 28, 2019, released Apr 5, 2020 verified via Wikipedia, ChinaAid, NCHRD, HKFP, HRIC."
       },
       "error": ""
     },
@@ -179,7 +183,9 @@
         "health_status": "Unknown",
         "international_response": "Hong Kong police condemned her actions and issued an arrest warrant.",
         "source_url": "https://www.bbc.com/news/world-asia-china-67605633",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Left HK for Canada Sep 2023, announced Dec 2023 she would not return to meet bail. Verified via CBC, HKFP, Global News."
       },
       "error": ""
     },
@@ -194,7 +200,9 @@
         "health_status": "Unknown",
         "international_response": "Granted asylum in the UK; HK authorities offered a HK$1m reward for his arrest.",
         "source_url": "https://www.bbc.com/news/articles/c8rv1r11y30o",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Fled to UK Jul 2020 after NSL. Granted asylum Apr 2021. HKM bounty Jul 2023. Passport cancelled. Verified via CBC, Independent, VOA, Straits Times."
       },
       "error": ""
     },
@@ -220,12 +228,14 @@
         "prisoner_name": "Martin Lee",
         "status": "RELEASED",
         "location": "Hong Kong",
-        "sentence": "11 months imprisonment, suspended for 24 months for organizing an unauthorized assembly.",
+        "sentence": "11 months imprisonment, suspended for 24 months for organizing an unauthorized assembly on August 18, 2019 (sentenced April 2021). JP title stripped December 2024.",
         "latest_news": "Aug 2024: Hong Kong's top court upheld the convictions of 7 prominent pro-democracy activists, including Martin Lee, for their roles in a 2019 protest.",
         "health_status": "Unknown",
         "international_response": "The court's decision to give Martin Lee a suspended sentence was met with international condemnation. The UK, US, and EU have all condemned the verdict and the broader crackdown on dissent in Hong Kong.",
         "source_url": "https://apnews.com/article/hong-kong-protests-appeal-jimmy-lai-martin-21f272cd378e3a154c0b4af0c1c550fd",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Suspended sentence April 2021 for Aug 18, 2019 march verified via 9News, Hong Kong Watch, IBA HRI. JP stripped Dec 2024."
       },
       "error": ""
     },
@@ -235,12 +245,14 @@
         "prisoner_name": "Cardinal Joseph Zen",
         "status": "AT RISK",
         "location": "Hong Kong",
-        "sentence": "Fined for failing to register a relief fund",
+        "sentence": "Fined HK,000 (approx US12) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under NSL for collusion with foreign forces — charges remain under review.",
         "latest_news": "Dec 2025: Hong Kong's appeals court heard an appeal by trustees of a relief fund, including Cardinal Joseph Zen, against their convictions.",
         "health_status": "Unknown",
         "international_response": "The Holy See, US, and UK expressed concern over his arrest. Vatican Secretary of State said the arrest should not be read as a disavowal of the Sino-Vatican agreement.",
         "source_url": "https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested May 11, 2022 by NSL police. Fined Nov 2022 for fund registration. Verified via Vatican News, CNA, ABC Australia, America Magazine, Independent."
       },
       "error": ""
     },
@@ -706,12 +718,14 @@
         "prisoner_name": "Andy Li",
         "status": "DETAINED",
         "location": "Siu Lam Psychiatric Center, Hong Kong",
-        "sentence": "Guilty plea for conspiracy to collude with foreign forces; sentencing deferred",
+        "sentence": "Guilty plea August 19, 2021 for conspiracy to collude with foreign forces; sentencing deferred pending role as prosecution witness in Jimmy Lai trial. Allegations of torture during mainland detention.",
         "latest_news": "Mar 2024: Testified against Jimmy Lai, sparking international concern over torture allegations",
         "health_status": "Held in solitary confinement at a psychiatric facility; allegations of torture",
         "international_response": "UN Special Rapporteur on torture raised concerns about coerced testimony",
         "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/andy-li-yu-hin",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Part of Hong Kong 12. Guilty plea Aug 19, 2021. Sentencing deferred. Torture allegations. Verified via HKFP, Straits Times, CFHK Foundation, Hong Kong Watch, Doughty Street."
       },
       "error": ""
     },
@@ -796,12 +810,14 @@
         "prisoner_name": "Lee Cheuk-yan",
         "status": "DETAINED",
         "location": "Unknown prison, Hong Kong",
-        "sentence": "14 months for unauthorized assembly; awaiting trial for inciting subversion of state power (up to 10 years)",
+        "sentence": "20 months total for unauthorized assemblies (Aug 18, Aug 31, Oct 1, 2019 marches and Jun 4, 2020 vigil). Charged with inciting subversion under NSL (Sep 2021); trial pending as of Jan 2026.",
         "latest_news": "Dec 2025: Trial for national security charges postponed to January 22, 2026.",
         "health_status": "Unknown",
         "international_response": "Multiple international human rights organizations, including Amnesty International and the ITUC, have called for his immediate release.",
         "source_url": "https://www.article19.org/resources/human-rights-day-hong-kong-must-release-chow-hang-tung-and-lee-cheuk-yan-now/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "20 months total for assembly convictions (not 14). NSL subversion trial pending Jan 2026. Verified via Hong Kong Watch, ITUC, HKFP, BWI, HK Labour Rights Monitor."
       },
       "error": ""
     },
@@ -826,12 +842,14 @@
         "prisoner_name": "Tony Chung",
         "status": "EXILE",
         "location": "London, UK (exile)",
-        "sentence": "3 years and 7 months for secession and money laundering",
+        "sentence": "3 years and 7 months for secession and money laundering (sentenced November 2021, youngest person sentenced under NSL at age 20). Released and exiled to UK December 2023.",
         "latest_news": "Aug 2025: Granted political asylum in the UK.",
         "health_status": "Struggled with depression and other mental illnesses since his arrest in 2020.",
         "international_response": "UK granted asylum; G7 nations condemned Hong Kong for targeting overseas activists.",
         "source_url": "https://www.theguardian.com/uk-news/2025/aug/18/hong-kong-activist-tony-chung-says-he-has-been-granted-asylum-in-the-uk",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 2021 at age 20. Exiled to UK Dec 2023. Verified via VOA, Independent, Hong Kong Watch, Wikipedia."
       },
       "error": ""
     },
@@ -910,7 +928,9 @@
         "health_status": "Unknown",
         "international_response": "US government negotiated his release to the US; recipient of multiple international awards.",
         "source_url": "https://www.voanews.com/a/usa_blind-chinese-dissident-who-escaped-2012-now-us-citizen/6208193.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Blind self-taught lawyer. Escaped house arrest Apr 2012, took refuge in US Embassy Beijing, left for US May 2012. Verified via multiple US State Dept records."
       },
       "error": ""
     },
@@ -920,12 +940,14 @@
         "prisoner_name": "Ai Weiwei",
         "status": "EXILE",
         "location": "Montemor-o-Novo, Portugal",
-        "sentence": "N/A (previously detained for 81 days in 2011 without charge)",
-        "latest_news": "Sep 2024: A porcelain sculpture by Ai Weiwei was destroyed by a vandal at an exhibition in Bologna, Italy.",
+        "sentence": "N/A (detained for 81 days in April-June 2011 without charge; subsequently faced tax evasion charges widely viewed as politically motivated). Left China 2015 for Berlin.",
+        "latest_news": "Late 2025: Quietly returned to China for brief family visit after decade in exile — first return since 2015.",
         "health_status": "Unknown",
         "international_response": "Widespread condemnation of his 2011 detention by the US, EU, and human rights organizations. Recipient of numerous awards, including Amnesty International's Ambassador of Conscience Award in 2015.",
         "source_url": "https://news.artnet.com/art-world/ai-weiwei-sculpture-destroyed-2540881",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Apr 2011 for 81 days. Left China 2015. Returned briefly late 2025. Verified via TIME, Britannica, Wikipedia, Mimeta."
       },
       "error": ""
     },
@@ -935,12 +957,14 @@
         "prisoner_name": "Liu Xiaobo",
         "status": "DECEASED",
         "location": "Shenyang, China",
-        "sentence": "11 years for inciting subversion of state power",
+        "sentence": "11 years for inciting subversion of state power (sentenced December 25, 2009). Detained December 8, 2008. Died July 13, 2017 of liver cancer in custody.",
         "latest_news": "July 2017: Died in custody from liver cancer",
         "health_status": "Died of multiple organ failure due to liver cancer",
         "international_response": "Awarded the 2010 Nobel Peace Prize for his long and non-violent struggle for fundamental human rights in China.",
         "source_url": "https://www.bbc.com/news/world-asia-china-40597514",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Dec 8, 2008; sentenced Dec 25, 2009; Nobel Peace Prize Oct 2010; died Jul 13, 2017. Verified via Tom Lantos Commission, NobelPrize.org, Britannica, NCHRD, Freedom Now."
       },
       "error": ""
     }

@@ -181,6 +181,21 @@
 | Falun Gong context | Details didn't mention Zhongnanhai protest | Added "April 25, 1999 gathering" context | timeline_events.json |
 | 16 prisoner records missing last_verified | No verification dates | Added last_verified: 2026-02-20 with source notes | political_prisoners_research.json |
 
+### Session 30 Corrections (2026-02-20)
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Lee Cheuk-yan sentence | "14 months for unauthorized assembly" | "20 months total" across 4 incidents + pending NSL charge | political_prisoners_research.json |
+| Wang Quanzhang status | "AT RISK" | "RELEASED" (Apr 5, 2020). Added sentencing date Jan 28, 2019 | political_prisoners_research.json |
+| Liu Xiaobo sentence detail | No sentencing date | Added "December 25, 2009" and "December 8, 2008" detention | political_prisoners_research.json |
+| Huang Qi sentence detail | No sentencing date | Added "July 29, 2019, Mianyang Intermediate Court" | political_prisoners_research.json |
+| Cardinal Zen details | No arrest/fine dates | Added "May 11, 2022" arrest and "November 2022" fine | political_prisoners_research.json |
+| Andy Li details | Generic plea description | Added "August 19, 2021" plea date, torture allegations | political_prisoners_research.json |
+| Tony Chung details | No sentencing date | Added "November 2021" (youngest NSL), exile UK Dec 2023 | political_prisoners_research.json |
+| Martin Lee details | No sentencing date | Added "April 2021", JP stripped "December 2024" | political_prisoners_research.json |
+| Ai Weiwei details | Minimal exile info | Added 81 days detail, 2015 departure, 2025 brief return | political_prisoners_research.json |
+| 12 more prisoners missing last_verified | No verification dates | Added last_verified: 2026-02-20 with source notes (28 total) | political_prisoners_research.json |
+
 ### Previously Correct (Verified)
 
 - Tiananmen Square: June 4, 1989 ✅
@@ -189,6 +204,14 @@
 - Liu Xiaobo death: July 13, 2017 ✅
 - Hong Kong 47 sentencing: November 19, 2024 ✅
 - Causeway Bay Booksellers: October 15, 2015 ✅ (Timeline date — first disappearance was Oct 14 for Lui Bo; Gui Minhai Oct 17; Lee Bo Dec 30. Timeline uses Oct 15 as representative date.)
+- Liu Xiaobo sentencing: December 25, 2009 ✅ (Session 30)
+- Wang Quanzhang sentencing: January 28, 2019 ✅ (Session 30)
+- Huang Qi sentencing: July 29, 2019 ✅ (Session 30)
+- Agnes Chow exile: December 2023 ✅ (Session 30)
+- Nathan Law exile: July 2020 ✅ (Session 30)
+- Cardinal Zen arrest: May 11, 2022 ✅ (Session 30)
+- Tony Chung sentencing: November 2021 ✅ (Session 30)
+- Ai Weiwei detention: 81 days, April-June 2011 ✅ (Session 30)
 
 ---
 
@@ -380,6 +403,19 @@ See Section 1 above for full breakdown with sources.
     - Zhang Zhan: 4+4 years — OHCHR, Amnesty, CPJ (previously verified Session 25)
     - Xu Zhiyong: 14 years (April 2023) — HRW (previously verified Session 25)
   - **Extended test suite**: Added 12 new tests (30 total in data-consistency.test.js): Ilham Tohti sentencing date, Gao Zhisheng last seen, Gedhun Choekyi Nyima dates, Ren Zhiqiang 18 years, Rahile Dawut life sentence/trial date, Gui Minhai 10 years/Ningbo, Huang Xueqin 5 years, Ekpar Asat 15 years, last_verified presence for 12 key prisoners, timeline Ilham Tohti sentencing date, Falun Gong Zhongnanhai context, Causeway Bay individual dates. Full suite: 210 tests, all passing.
+
+- 2026-02-20 (Session 30): Extended prisoner verification — 12 more prisoners verified (28 total), key corrections (Opus 4.6)
+  - **CORRECTION: Lee Cheuk-yan sentence** — Was listed as "14 months for unauthorized assembly". Corrected to "20 months total for unauthorized assemblies" across four protest incidents (Aug 18, Aug 31, Oct 1, 2019 and Jun 4, 2020 vigil). Also added pending NSL inciting subversion charge (Sep 2021, trial scheduled Jan 2026). Verified via Hong Kong Watch, ITUC, BWI, HK Labour Rights Monitor.
+  - **CORRECTION: Wang Quanzhang status** — Was "AT RISK". Changed to "RELEASED" (released April 5, 2020 after serving sentence from Aug 2015 detention). Added exact sentencing date January 28, 2019 at Tianjin No. 2 Intermediate Court. Verified via Wikipedia, ChinaAid, NCHRD, HKFP, HRIC.
+  - **UPDATED: Liu Xiaobo** — Added exact sentencing date December 25, 2009. Added detention date December 8, 2008. Confirmed death July 13, 2017. Verified via Tom Lantos Commission, NobelPrize.org, Britannica, NCHRD, Freedom Now.
+  - **UPDATED: Huang Qi** — Added exact sentencing date July 29, 2019 at Mianyang Intermediate People's Court, Sichuan. Verified via Human Rights in China, VOA, France24, FIDH, IFJ, Amnesty.
+  - **UPDATED: Cardinal Joseph Zen** — Added arrest date May 11, 2022 by NSL police and fine date November 2022. Verified via Vatican News, CNA, ABC Australia, America Magazine, Independent.
+  - **UPDATED: Andy Li** — Added guilty plea date August 19, 2021 (one of first under NSL). Noted sentencing deferred for prosecution witness role in Jimmy Lai trial. Added torture allegations during mainland detention. Verified via HKFP, Straits Times, CFHK Foundation, Hong Kong Watch.
+  - **UPDATED: Tony Chung** — Added sentencing date November 2021 (youngest NSL sentence at age 20). Added exile to UK December 2023. Verified via VOA, Independent, Hong Kong Watch.
+  - **UPDATED: Martin Lee** — Added sentencing date April 2021. Added JP title stripped December 2024. Verified via 9News, Hong Kong Watch, IBA HRI.
+  - **UPDATED: Ai Weiwei** — Added detention period (April-June 2011, 81 days). Added return to China for family visit late 2025. Verified via TIME, Britannica, Wikipedia, Mimeta.
+  - **VERIFIED (no correction needed):** Agnes Chow (exile Canada Dec 2023), Nathan Law (exile UK 2020, HK$1M bounty Jul 2023), Chen Guangcheng (escape to US Embassy Apr 2012).
+  - **Extended test suite**: 8 new tests (38 total in data-consistency.test.js): Liu Xiaobo dates, Huang Qi sentencing, Wang Quanzhang dates and status, Lee Cheuk-yan corrected sentence, Cardinal Zen dates, Andy Li plea date, Tony Chung sentence, Martin Lee suspended sentence. last_verified list expanded to 24 names. Full suite: 218 tests, all passing.
 
 ---
 
