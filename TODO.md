@@ -80,10 +80,16 @@
     - [x] 10 sources (9 Tier 1, 1 Tier 2), zero CCP state media
     - [x] Chadrel Rinpoche persecution documented
     - [x] Purple color theme (religious/spiritual differentiation)
-  - [ ] **Liu Xiaobo profile page** (posthumous)
-    - [ ] Charter 08 and Nobel Peace Prize
-    - [ ] 11-year sentence and death in custody (July 13, 2017)
-    - [ ] Liu Xia (wife) house arrest and eventual exile
+  - [x] **Liu Xiaobo profile page** (posthumous) ✅ (Session 46)
+    - [x] Charter 08 and Nobel Peace Prize
+    - [x] 22-event timeline from 1955 birth to 2018 Liu Xia exile
+    - [x] 11-year sentence and death in custody (July 13, 2017)
+    - [x] Liu Xia (wife) house arrest and eventual exile — dedicated section
+    - [x] CCP narrative analysis: 4 claims debunked (criminal not prisoner, best medical care, Nobel blasphemy, voluntary sea burial)
+    - [x] "I Have No Enemies" quote on Legacy tab
+    - [x] Ossietzky parallel (first Nobel laureate to die in custody since 1938)
+    - [x] 11 sources (9 Tier 1, 2 Tier 2), zero CCP state media
+    - [x] Memorial color theme (dark gray with gold Nobel accents)
   - [ ] **Joshua Wong profile page**
     - [ ] Scholarism movement and Umbrella Revolution
     - [ ] Multiple arrests and sentences
@@ -339,10 +345,12 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Liu Xiaobo profile page (posthumous) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Joshua Wong profile page
+1. Joshua Wong profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. Gui Minhai profile page
+3. Consider: Profile index page at `/profiles` listing all profiles with status indicators
 
 ### Recently Completed
+- ✅ Liu Xiaobo memorial profile page: dedicated /profiles/liu-xiaobo route with 22-event timeline, Charter 08 & Charges tab, CCP narrative analysis (4 claims debunked), Legacy & Impact tab, Liu Xia persecution section, "I Have No Enemies" quote, Ossietzky parallel, 11 sources, memorial color theme — Session 46, Opus 4.6
 - ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
 - ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
 - ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6

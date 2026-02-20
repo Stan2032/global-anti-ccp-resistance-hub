@@ -70,6 +70,10 @@ const ROUTE_META = {
     title: 'Gedhun Choekyi Nyima — 11th Panchen Lama Profile',
     description: 'Detailed profile of Gedhun Choekyi Nyima (根敦确吉尼玛): 11th Panchen Lama, abducted at age 6 in 1995, disappeared for 30+ years. World\'s longest-running child enforced disappearance. Timeline, CCP narrative analysis, and sources.',
   },
+  '/profiles/liu-xiaobo': {
+    title: 'Liu Xiaobo — Memorial Profile',
+    description: 'Memorial profile of Liu Xiaobo (刘晓波): Nobel Peace Prize laureate, Charter 08 author, imprisoned for 11 years for writing about democracy. Died in state custody July 13, 2017. First Nobel laureate to die in custody since Carl von Ossietzky (1938). Timeline, CCP narrative analysis, and verified sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
