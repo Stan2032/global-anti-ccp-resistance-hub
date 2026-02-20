@@ -154,7 +154,7 @@ const SuccessStories = () => {
       date: 'December 2025',
       category: 'awareness',
       impact: 'CRITICAL',
-      description: "Jimmy Lai's trial and life sentence drew unprecedented global condemnation from world leaders, UN experts, and press freedom organizations.",
+      description: "Jimmy Lai's trial, conviction, and 20-year sentence drew unprecedented global condemnation from world leaders, UN experts, and press freedom organizations.",
       outcome: 'Massive international spotlight on Hong Kong repression',
       lessons: 'High-profile cases can galvanize global attention'
     },

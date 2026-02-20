@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: December 20, 2025
+> Last Updated: February 19, 2026
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -17,10 +17,76 @@
 - [ ] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines
 
 ### Content Updates
-- [ ] **Update Political Prisoners Database**: Add recent arrests and releases (December 2025)
+- [x] **Update Political Prisoners Database**: Add recent arrests and releases (December 2025) ✅
 - [ ] **News Feed Integration**: Add more RSS feeds from trusted sources
 - [ ] **Update Sanctions List**: Add any new sanctions from US, EU, UK, Canada, Australia
-- [ ] **Jimmy Lai Case Updates**: Track ongoing legal developments
+- [x] **Jimmy Lai Case Updates**: Updated with Feb 9, 2026 sentencing (20 years) ✅
+  - [x] Fix conviction date errors (2024 → 2025, Dec 19 → Dec 15) across 6 files
+  - [x] Fix age errors (77 → 78) across 5 files
+  - [x] Update sentence from "faces life" to "20 years" across 20+ files
+  - [x] Update status from "GUILTY - AWAITING SENTENCING" to "SENTENCED - 20 YEARS"
+  - [x] Add February 9, 2026 sentencing as new timeline event ✅
+  - [ ] Monitor for appeal proceedings
+
+### Data Verification (Opus 4.6 — requires CCP propaganda detection capability)
+- [x] **Verify all timeline event dates**: 21 events verified with direct source links (see DATA_VERIFICATION_LOG.md)
+- [x] **Fix Safeguard Defenders report date**: Corrected from 2023-09-14 to 2022-12-04
+- [x] **Verify sanctions dates**: Chen Quanguo, Zhu Hailun, Carrie Lam dates confirmed
+- [x] **Verify Canada sanctions on Chen Quanguo**: CONFIRMED December 2024 via canada.ca and Canada Gazette ✅
+- [x] **Cross-reference Falun Gong death toll**: "4,000+ confirmed deaths in custody" from FDIC (individual named cases); independently corroborated pattern by China Tribunal 2019. Added sourcing note ✅
+- [x] **Verify all political prisoner statuses**: Key updates completed ✅
+  - [x] Zhang Zhan: Second 4-year sentence CONFIRMED (Sep 2025) via OHCHR, Amnesty, CPJ
+  - [x] Xu Zhiyong: Hunger strike CONFIRMED (Oct 4, 2024) via HRW, The Independent, NCHRD. Forced-feeding observed. Critical health.
+  - [x] Gui Minhai: Sentence ends Feb 2030 CONFIRMED. Location unknown. No consular access. Via Amnesty, NCHRD, Safeguard Defenders
+  - [x] Gedhun Choekyi Nyima: 30th anniversary coverage May 2025 CONFIRMED per existing data
+  - [x] Joshua Wong: New NSL collusion charges June 2025 CONFIRMED via Amnesty, HKFP
+- [x] **Verify academic experts data**: Checked affiliations, current positions. Fixed: Elliot Sperling (deceased 2017), Sophie Richardson (now CHRD), Elizabeth Economy (title updated), Barnett duplicate removed ✅
+- [x] **Verify forced labor companies list**: 30 companies cross-referenced with ASPI "Uyghurs for Sale" report. UFLPA Entity List (144 entities) targets Chinese suppliers, not Western brands — distinction is correct ✅
+- [x] **Verify Confucius Institute data**: US: 4 remaining, 104 closed. Many rebranded. Via GAO report ✅
+- [x] **Deduplicate data files**: Removed Barnett duplicate from academic experts, merged Taiwan Assoc. for HR duplicate in HR orgs ✅
+
+### Expanded Person Profiles (NEW — requested by project owner)
+- [ ] **Create detailed person profile pages**: Full timeline pages for key individuals targeted by CCP
+  - [ ] **Jimmy Lai profile page**: Complete timeline from birth to sentencing
+    - [ ] Early life and business career
+    - [ ] Apple Daily founding (1995) and editorial stance
+    - [ ] 2014 Umbrella Movement involvement
+    - [ ] 2019 protest coverage and CCP targeting begins
+    - [ ] August 10, 2020: Arrested under NSL
+    - [ ] 2021: Apple Daily forced to close (June 24)
+    - [ ] 2022-2025: Trial proceedings (156 days)
+    - [ ] December 15, 2025: Found guilty on all charges
+    - [ ] February 9, 2026: Sentenced to 20 years
+    - [ ] CCP narrative control breakdown with sourced rebuttals
+    - [ ] International response timeline
+    - [ ] All source links (HRW, CPJ, BBC, US State Dept, HKFP, etc.)
+  - [ ] **Ilham Tohti profile page**: From academic career to life sentence
+    - [ ] Academic work at Minzu University
+    - [ ] Uighurbiz.net and advocacy for Han-Uyghur dialogue
+    - [ ] January 15, 2014: Arrested
+    - [ ] September 23, 2014: Sentenced to life
+    - [ ] Sakharov Prize (2019), other awards
+    - [ ] CCP "separatist" narrative vs reality (dialogue advocate)
+  - [ ] **Gedhun Choekyi Nyima (Panchen Lama) profile page**
+    - [ ] Recognition by Dalai Lama (May 14, 1995)
+    - [ ] Abduction (May 17, 1995)
+    - [ ] 30 years of enforced disappearance
+    - [ ] CCP's installation of Gyaltsen Norbu
+    - [ ] International advocacy efforts
+  - [ ] **Liu Xiaobo profile page** (posthumous)
+    - [ ] Charter 08 and Nobel Peace Prize
+    - [ ] 11-year sentence and death in custody (July 13, 2017)
+    - [ ] Liu Xia (wife) house arrest and eventual exile
+  - [ ] **Joshua Wong profile page**
+    - [ ] Scholarism movement and Umbrella Revolution
+    - [ ] Multiple arrests and sentences
+    - [ ] Hong Kong 47 case (4 years 8 months)
+  - [ ] **Gui Minhai profile page**
+    - [ ] Causeway Bay Books and cross-border abduction from Thailand
+    - [ ] Swedish citizenship and diplomatic crisis
+    - [ ] 10-year espionage sentence
+  - [ ] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+  - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
 
 ### Bug Fixes & Polish
 - [ ] **Test all forms**: Ensure all copy-to-clipboard functions work across browsers

@@ -56,7 +56,7 @@ const Dashboard = () => {
     {
       id: 1,
       title: 'Free Jimmy Lai',
-      description: 'Hong Kong media mogul sentenced to life on Dec 15, 2025',
+      description: 'Hong Kong media mogul sentenced to 20 years on Feb 9, 2026',
       urgent: true,
       supporters: 125000,
       link: '/campaigns',
@@ -125,11 +125,11 @@ const Dashboard = () => {
           <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to Life</h2>
+              <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to 20 Years</h2>
               <span className="px-2 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">BREAKING</span>
             </div>
             <p className="text-red-200 text-sm mb-3">
-              Hong Kong media mogul and pro-democracy activist Jimmy Lai was sentenced to life imprisonment on December 15, 2025, 
+              Hong Kong media mogul and pro-democracy activist Jimmy Lai was sentenced to 20 years in prison on February 9, 2026, 
               under the National Security Law. International condemnation has been swift.
             </p>
             <div className="flex flex-wrap gap-3">

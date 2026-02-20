@@ -9,7 +9,7 @@ const campaigns = [
     status: 'active',
     priority: 'critical',
     category: 'Political Prisoner',
-    description: 'Campaign for the release of media mogul Jimmy Lai, sentenced under Hong Kong\'s National Security Law',
+    description: 'Campaign for the release of media mogul Jimmy Lai, convicted under Hong Kong\'s National Security Law',
     goal: 'Secure release of Jimmy Lai',
     startDate: '2020-08-10',
     targetDate: '2025-12-31',
@@ -28,9 +28,9 @@ const campaigns = [
       governmentStatements: 45,
     },
     recentUpdates: [
-      { date: '2024-12-15', text: 'Jimmy Lai found guilty on all charges' },
-      { date: '2024-12-16', text: 'UK Foreign Secretary condemns verdict' },
-      { date: '2024-12-17', text: 'US State Department calls for release' },
+      { date: '2026-02-09', text: 'Jimmy Lai sentenced to 20 years in prison' },
+      { date: '2025-12-15', text: 'Jimmy Lai found guilty on all charges' },
+      { date: '2025-12-16', text: 'UK Foreign Secretary condemns verdict' },
     ],
     actions: [
       { name: 'Sign petition', url: 'https://www.change.org/p/free-jimmy-lai', type: 'petition' },

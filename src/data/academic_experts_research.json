@@ -141,30 +141,17 @@
       "error": ""
     },
     {
-      "input": "Robbie Barnett - Tibet studies",
+      "input": "Robert (Robbie) Barnett - Tibet studies",
       "output": {
-        "name": "Robbie Barnett",
-        "affiliation": "SOAS, University of London; King's College, London",
-        "expertise": "Tibet",
-        "key_works": "Conflicting Memories: Tibetan History under Mao Retold, Tibetan Modernities: Notes from the Field, Lhasa: Streets with Memories, Resistance and Reform in Tibet",
-        "media_presence": "Frequent commentator for BBC, CNN, NPR, The New York Times, and The Washington Post.",
-        "twitter": "@RobbieBarnett",
-        "ccp_targeting": "None documented",
-        "source_url": "https://www.kcl.ac.uk/people/robert-barnett"
-      },
-      "error": ""
-    },
-    {
-      "input": "Robert Barnett - Tibet media",
-      "output": {
-        "name": "Robert Barnett",
-        "affiliation": "SOAS, University of London; King's College, London",
+        "name": "Robert (Robbie) Barnett",
+        "affiliation": "SOAS, University of London (Professorial Research Associate); King's College London (Affiliate Lecturer, Lau China Institute). Formerly founding director, Modern Tibetan Studies Program, Columbia University (until 2017).",
         "expertise": "Tibet",
         "key_works": "Conflicting Memories: Tibetan History under Mao Retold, Tibetan Modernities: Notes from the Field, Lhasa: Streets with Memories, Resistance and Reform in Tibet, Forbidden Memory: Tibet in the Cultural Revolution",
         "media_presence": "Frequent commentator for BBC, CNN, NPR, CBS, The New York Times, the Washington Post, The New York Review of Books, and other media.",
         "twitter": "@RobbieBarnett",
         "ccp_targeting": "None documented",
-        "source_url": "https://en.wikipedia.org/wiki/Robert_Barnett_(scholar)"
+        "source_url": "https://en.wikipedia.org/wiki/Robert_Barnett_(scholar)",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -183,16 +170,18 @@
       "error": ""
     },
     {
-      "input": "Elliot Sperling - Tibet studies (deceased)",
+      "input": "Elliot Sperling - Tibet studies (deceased January 29, 2017)",
       "output": {
-        "name": "Elliot Sperling",
-        "affiliation": "Indiana University",
+        "name": "Elliot Sperling (1951–2017)",
+        "affiliation": "Indiana University (Professor Emeritus, deceased January 29, 2017)",
         "expertise": "Tibet",
         "key_works": "The Tibet-China Conflict: History and Polemics, Early Ming Policy toward Tibet: An Examination of the Proposition that the Early Ming Emperors Adopted a \\'Divide and Rule\\' Policy toward Tibet",
         "media_presence": "Testified before the US Congressional-Executive Commission on China, the Senate Committee on Foreign Relations, and the House of Representatives Committee on International Relations. Published commentaries in the New York Times and the Los Angeles Times.",
         "twitter": "None",
         "ccp_targeting": "Barred from entering China in 2014 for his advocacy for Uyghur scholar Ilham Tohti.",
-        "source_url": "https://en.wikipedia.org/wiki/Elliot_Sperling"
+        "note": "DECEASED: Died January 29, 2017 of a heart attack. His work remains essential to Tibetan studies. Listed for historical reference.",
+        "source_url": "https://en.wikipedia.org/wiki/Elliot_Sperling",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -312,7 +301,7 @@
       "input": "Elizabeth Economy - China environment/policy",
       "output": {
         "name": "Elizabeth Economy",
-        "affiliation": "Hoover Institution, Stanford University",
+        "affiliation": "Hargrove Senior Fellow, Hoover Institution, Stanford University; Co-Chair, Program on the US, China, and the World. Previously: Senior Advisor for China, US Department of Commerce (2021-2023).",
         "expertise": "China Politics",
         "key_works": "The World According to China, The Third Revolution: Xi Jinping and the New Chinese State, By All Means Necessary: How China’s Resource Quest Is Changing the World, The River Runs Black: The Environmental Challenge to China’s Future",
         "media_presence": "Frequent guest on nationally broadcast television and radio programs, has testified before Congress on numerous occasions, and regularly consults for US government agencies and companies. Named one of the “10 Names That Matter on China Policy” by Politico Magazine. Testified before the Senate Foreign Relations Committee on “Advancing Effective U.S. Policy for Strategic Competition with China in the Twenty-First Century” on March 17, 2021.",
@@ -337,16 +326,17 @@
       "error": ""
     },
     {
-      "input": "Sophie Richardson - Human Rights Watch China",
+      "input": "Sophie Richardson - CHRD Co-Executive Director (formerly HRW China Director)",
       "output": {
         "name": "Sophie Richardson",
-        "affiliation": "Chinese Human Rights Defenders",
+        "affiliation": "Co-Executive Director, Network of Chinese Human Rights Defenders (CHRD) (since January 2025). Previously: China Director, Human Rights Watch (2006–2023); Visiting Scholar, Center on Democracy, Development and the Rule of Law, Stanford University (2024).",
         "expertise": "Human Rights",
         "key_works": "China, Cambodia, and the Five Principles of Peaceful Coexistence, extensive publications on human rights, and testimonies to the Canadian Parliament, European Parliament, and the United States Senate and House of Representatives.",
         "media_presence": "Testified to the Canadian Parliament, European Parliament, and the United States Senate and House of Representatives.",
         "twitter": "@SophieDRich",
         "ccp_targeting": "Sanctioned by the Chinese government in July 2021; targeted by state-media outlets such as the Global Times.",
-        "source_url": "https://cddrl.fsi.stanford.edu/people/sophie-richardson"
+        "source_url": "https://www.nchrd.org/2025/01/sophie-richardson-joins-chinese-human-rights-defenders-network/",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     }

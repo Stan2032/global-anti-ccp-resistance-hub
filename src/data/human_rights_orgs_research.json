@@ -442,9 +442,10 @@
         "headquarters": "Taipei, Taiwan",
         "website": "https://www.tahr.org.tw/",
         "donation_url": "https://www.tahr.org.tw/civicrm/contribute/transact?reset=1&id=59",
-        "key_work": "TAHR provides individual case support, including litigation for death row inmates and legal resources for those affected by inappropriate government policies. The organization's main agenda includes policy monitoring and advocacy, focusing on international human rights conventions, freedom of expression, right to housing, right to privacy, and migrants' rights. They also engage in human rights promotion, education, and training.",
+        "key_work": "TAHR provides individual case support, including litigation for death row inmates and legal resources for those affected by inappropriate government policies. The organization monitors and advocates for policies including international human rights conventions, freedom of expression, right to housing, right to privacy, and migrants' rights. They collaborate with international human rights organizations like FIDH and Forum Asia, engage in human rights promotion, education, and training, and advocate for the Refugee Act.",
         "credibility": "High",
-        "latest_news": "Constitutional Court is sick, Ministry of Justice takes the opportunity to make trouble? -Civil groups oppose the evil law of \"life imprisonment\" (2025-10-31)"
+        "latest_news": "TAHR continues its advocacy for the Refugee Act and monitors the implementation of recent amendments to the Immigration Act. (2024)",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -461,22 +462,6 @@
         "key_work": "The original Formosa Foundation's key work was its Ambassador Program, which trained over 300 student ambassadors to advocate for Taiwan in the U.S. Congress. The organization also supported the film 'Formosa Betrayed' to raise awareness of Taiwan's struggle for democracy. The original foundation ceased operations in 2016. A new organization with the same name is currently active in the Marshall Islands, focused on charitable work.",
         "credibility": "Medium",
         "latest_news": "A new Formosa Foundation, chaired by Mr. Samuel Lin, has been active in the Marshall Islands. In December 2025, the foundation donated toys to children at Majuro Hospital. In March 2024, it donated waiting chairs and luggage carts to the hospital and airport."
-      },
-      "error": ""
-    },
-    {
-      "input": "Taiwan Human Rights Network",
-      "output": {
-        "organization": "Taiwan Association for Human Rights",
-        "focus_area": "Taiwan",
-        "org_type": "Advocacy",
-        "founded_year": "1984",
-        "headquarters": "Taipei, Taiwan",
-        "website": "https://www.tahr.org.tw",
-        "donation_url": "https://www.tahr.org.tw/civicrm/contribute/transact?reset=1&id=59",
-        "key_work": "TAHR provides individual case support for death row inmates, monitors and advocates for policies on freedom of expression, housing rights, privacy, and migrant rights. They also engage in human rights education and training, and collaborate with international human rights organizations like FIDH and Forum Asia.",
-        "credibility": "High",
-        "latest_news": "TAHR continues its advocacy for the Refugee Act and monitors the implementation of recent amendments to the Immigration Act. (2024)"
       },
       "error": ""
     },

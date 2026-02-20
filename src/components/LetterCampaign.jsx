@@ -17,8 +17,8 @@ const LetterCampaign = () => {
       target: 'Your Government Representatives',
       urgency: 'critical',
       deadline: 'Ongoing',
-      description: 'Demand action to secure the release of Hong Kong media tycoon Jimmy Lai, sentenced to life in prison under the National Security Law.',
-      background: 'Jimmy Lai, 77, founder of Apple Daily, has been imprisoned since 2020. On December 19, 2024, he was found guilty of "conspiracy to collude with foreign forces" and faces life in prison. He is a British citizen.',
+      description: 'Demand action to secure the release of Hong Kong media tycoon Jimmy Lai, sentenced to 20 years under the National Security Law.',
+      background: 'Jimmy Lai, 78, founder of Apple Daily, has been imprisoned since 2020. On December 15, 2025, he was found guilty of "conspiracy to collude with foreign forces." On February 9, 2026, he was sentenced to 20 years in prison. He is a British citizen.',
       asks: [
         'Publicly condemn the verdict',
         'Impose sanctions on Hong Kong officials responsible',
@@ -27,9 +27,9 @@ const LetterCampaign = () => {
       ],
       letterTemplate: `Dear [Representative],
 
-I am writing to urge you to take immediate action regarding the unjust imprisonment of Jimmy Lai, the 77-year-old founder of Apple Daily newspaper in Hong Kong.
+I am writing to urge you to take immediate action regarding the unjust imprisonment of Jimmy Lai, the 78-year-old founder of Apple Daily newspaper in Hong Kong.
 
-On December 19, 2024, Mr. Lai was found guilty of "conspiracy to collude with foreign forces" under Hong Kong's National Security Law and faces a potential life sentence. This verdict represents a devastating blow to press freedom and demonstrates the complete erosion of Hong Kong's promised autonomy.
+On December 15, 2025, Mr. Lai was found guilty of "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL. This represents a devastating blow to press freedom and demonstrates the complete erosion of Hong Kong's promised autonomy.
 
 Mr. Lai is a [British/American] citizen who has spent his life advocating for democracy and press freedom. His only "crime" was publishing a newspaper that told the truth about the Chinese Communist Party.
 

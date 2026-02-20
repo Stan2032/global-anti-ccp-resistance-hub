@@ -36,10 +36,10 @@ const NewsDigest = () => {
 
   const recentDigests = [
     {
-      date: '2024-12-15',
+      date: '2025-12-15',
       title: 'Weekly Roundup: Jimmy Lai Verdict & Global Response',
       highlights: [
-        'Jimmy Lai found guilty, faces life sentence',
+        'Jimmy Lai sentenced to 20 years in prison',
         'US, UK condemn verdict, call for release',
         'New sanctions proposed in Congress',
         'Hong Kong 47 sentences finalized',

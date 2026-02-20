@@ -14,7 +14,7 @@ const PetitionLinks = () => {
       progress: 75,
       urgency: 'CRITICAL',
       url: 'https://www.change.org/p/free-jimmy-lai',
-      description: 'Demand the release of Hong Kong media tycoon Jimmy Lai, who faces life in prison for exercising press freedom.',
+      description: 'Demand the release of Hong Kong media tycoon Jimmy Lai, sentenced to 20 years in prison for exercising press freedom.',
       actions: ['Sign petition', 'Write to your MP/Representative', 'Share on social media']
     },
     {

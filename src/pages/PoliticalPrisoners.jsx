@@ -432,7 +432,7 @@ const PoliticalPrisoners = () => {
               <h3 className="text-red-400 font-semibold">BREAKING: Jimmy Lai Found GUILTY (Dec 15, 2025)</h3>
               <p className="text-gray-300 text-sm mt-1">
                 78-year-old media mogul Jimmy Lai has been convicted of sedition and collusion with foreign forces under Hong Kong's National Security Law. 
-                He faces life imprisonment. His case marks the death of press freedom in Hong Kong.
+                He was sentenced to 20 years in prison on February 9, 2026. His case marks the death of press freedom in Hong Kong.
               </p>
             </div>
           </div>

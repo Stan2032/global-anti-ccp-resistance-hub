@@ -37,7 +37,7 @@ const HongKongStatus = () => {
   ];
 
   const majorCases = [
-    { name: 'Jimmy Lai', status: 'GUILTY', charges: 'NSL collusion', details: 'Faces life imprisonment' },
+    { name: 'Jimmy Lai', status: 'SENTENCED', charges: 'NSL collusion', details: '20 years (Feb 9, 2026)' },
     { name: 'Hong Kong 47', status: '45 CONVICTED', charges: 'NSL subversion', details: '4-10 year sentences' },
     { name: 'Chow Hang-tung', status: 'IMPRISONED', charges: 'NSL inciting subversion', details: 'Multiple sentences' }
   ];
@@ -61,7 +61,7 @@ const HongKongStatus = () => {
         </div>
         <div className="bg-red-900/50 border border-red-700 rounded-lg p-4">
           <span className="text-red-300 font-semibold">ONE COUNTRY, ONE SYSTEM</span>
-          <p className="text-slate-300 text-sm mt-1">Jimmy Lai convicted. Article 23 in force. Two Systems ended 27 years early.</p>
+          <p className="text-slate-300 text-sm mt-1">Jimmy Lai sentenced to 20 years. Article 23 in force. Two Systems ended 27 years early.</p>
         </div>
       </div>
 

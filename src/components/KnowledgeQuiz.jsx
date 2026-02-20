@@ -77,7 +77,7 @@ const KnowledgeQuiz = () => {
       question: 'Who is Jimmy Lai?',
       options: ['A pro-Beijing politician', 'Founder of Apple Daily newspaper', 'A protest leader', 'A human rights lawyer'],
       correct: 1,
-      explanation: 'Jimmy Lai is the founder of Apple Daily, Hong Kong\'s largest pro-democracy newspaper. He has been imprisoned under the National Security Law and faces life in prison. Apple Daily was forced to close in 2021.',
+      explanation: 'Jimmy Lai is the founder of Apple Daily, Hong Kong\'s largest pro-democracy newspaper. He has been imprisoned under the National Security Law and sentenced to 20 years. Apple Daily was forced to close in 2021.',
     },
     
     // Tibet Questions
