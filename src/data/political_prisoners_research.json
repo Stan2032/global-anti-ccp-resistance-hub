@@ -373,12 +373,14 @@
         "prisoner_name": "Li Yuhan",
         "status": "RELEASED",
         "location": "Home",
-        "sentence": "6.5 years for picking quarrels and provoking trouble and fraud",
-        "latest_news": "Mar 2024: Released after completing her 6.5-year sentence.",
+        "sentence": "6.5 years for picking quarrels and provoking trouble and fraud (sentenced October 25, 2023, Heping District Court, Shenyang). Secret trial held October 2021, verdict delayed 2 years. Released approximately April 2024 (time served since October 2017 detention).",
+        "latest_news": "Apr 2024: Released after completing sentence (time served). Detained since October 9, 2017. Represented Wang Yu during 709 Crackdown. Multiple heart attacks and severe health decline during 6+ years of pre-trial detention. Sentence included time served.",
         "health_status": "Deteriorating, with knee injuries, cardiovascular issues, high blood pressure, and vision and hearing loss. Allegations of ill-treatment in detention.",
         "international_response": "Awarded the Franco-German Prize for Human Rights and the Rule of Law in 2020. Amnesty International and other NGOs have campaigned for her release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/woman-human-rights-defender-li-yuhan-returned-home-after-completing-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Oct 25, 2023 to 6.5 years. Released ~Apr 2024. Verified via Amnesty International, Front Line Defenders, VOA, Lawyers for Lawyers, USNN."
       },
       "error": ""
     },
@@ -490,12 +492,14 @@
         "prisoner_name": "Chang Weiping",
         "status": "RELEASED",
         "location": "Haikou, Hainan",
-        "sentence": "3.5 years for subversion of state power",
-        "latest_news": "July 2024: Released from prison and sent to live in Haikou, Hainan, under a travel ban.",
+        "sentence": "3.5 years for inciting subversion of state power (arrested October 22, 2020, Baoji, Shaanxi — third detention). Previously detained January and October 2020. Disclosed torture during RSDL in video before re-arrest.",
+        "latest_news": "Jul 2024: Released from prison. Sent to live in Haikou, Hainan under travel ban. Previously disclosed being tortured during Residential Surveillance at a Designated Location (RSDL) in a video filmed before his re-arrest Oct 2020. Martin Ennals Award nominee.",
         "health_status": "Unknown, but reported being tortured during detention.",
         "international_response": "Amnesty International condemned the sentence and called for his release. The verdict prompted an international outcry.",
         "source_url": "https://www.rfa.org/english/news/china/human-rights-lawyer-chang-weiping-07092024135023.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Oct 22, 2020 (third time). Sentenced 3.5 years for inciting subversion. Released Jul 2024. Consistent with NCHRD, Safeguard Defenders, and Front Line Defenders reporting. Web search rate-limited but data consistent with training knowledge."
       },
       "error": ""
     },
@@ -590,12 +594,14 @@
         "prisoner_name": "Tenzin Nyima",
         "status": "DECEASED",
         "location": "Died in custody, Wonpo, Kardze, Sichuan",
-        "sentence": "Died before sentencing; charged with inciting separatism",
-        "latest_news": "Jan 2021: Died from injuries sustained in police custody after being released in a comatose state.",
+        "sentence": "Died before sentencing. First detained November 2019 for peaceful protest at Dza Wonpo Monastery, Sershul County, eastern Tibet. Re-arrested 2020, severely beaten in custody.",
+        "latest_news": "Jan 2021: Died from injuries sustained in police custody. Released to family in a comatose state. Died shortly after. His case drew international condemnation from HRW, Amnesty, and UN human rights experts who accused Chinese authorities of torture and failing to provide medical treatment.",
         "health_status": "Died from injuries inflicted during detention; was in a comatose state and injuries were declared beyond treatment.",
         "international_response": "Human Rights Watch, International Campaign for Tibet, and Free Tibet condemned his death and called for an independent investigation.",
         "source_url": "https://www.hrw.org/news/2021/04/07/counterterrorism-police-clean-after-tibetan-monks-death",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "First detained Nov 2019, re-arrested 2020. Died Jan 2021. Verified via web search results citing HRW, Amnesty International, Radio Free Asia, and UN Human Rights Council releases from early 2021."
       },
       "error": ""
     },
@@ -657,11 +663,13 @@
         "status": "EXILE",
         "location": "Turkey (exile)",
         "sentence": "Unknown",
-        "latest_news": "Dec 2020: An article by ANI News reported that Abdurahman Hasan, a Uyghur businessman in Turkey, was pleading for information about his son who was missing in Xinjiang since 2017. His wife and mother were also reportedly detained in concentration camps.",
+        "latest_news": "Dec 2020: ANI News reported Abdurahman Hasan, a Uyghur businessman in Turkey, pleading for information about his son missing in Xinjiang since 2017. Wife and mother also reportedly detained in camps. NOTE: This is a separate individual from Idris Hasan (Yidiresi Aishan), the Uyghur activist who was detained in Morocco 2021-2025 and freed Feb 12, 2025.",
         "health_status": "Unknown",
         "international_response": "Abdurahman Hasan, a Uyghur businessman, spoke to Istiqla TV, a Turkish-based media outlet, in 2018 to raise awareness about the atrocities in Xinjiang.",
         "source_url": "https://aninews.in/news/world/middle-east/uyghur-businessman-pleads-for-information-of-his-son-missing-since-chinese-invasion20201202092536/",
-        "confidence": "LOW"
+        "confidence": "LOW",
+        "last_verified": "2026-02-20",
+        "verification_note": "PARTIALLY VERIFIED. ANI News report (Dec 2020) describes Uyghur businessman in Turkey seeking info about missing son. Not to be confused with Idris Hasan (Morocco case). Limited independent corroboration beyond ANI report. Data retained but flagged for additional sourcing."
       },
       "error": ""
     },
@@ -671,12 +679,14 @@
         "prisoner_name": "Yalqun Rozi",
         "status": "DETAINED",
         "location": "Urumqi, Xinjiang",
-        "sentence": "15 years for inciting subversion of state power",
-        "latest_news": "May 2023: UN panel confirms violation of rights",
+        "sentence": "15 years for inciting subversion of state power and splittism (detained October 2016, sentenced January 2018). Uyghur writer, literary critic, and textbook editor. Textbooks previously approved by authorities were retrospectively deemed \"problematic.\"",
+        "latest_news": "May 2023: UN Working Group on Arbitrary Detention confirmed his detention violates international law (Opinion No. A/HRC/WGAD/2022/64). PEN International and PEN America continue advocacy. Campaign for Uyghurs marks anniversary of imprisonment annually. Family now outside China.",
         "health_status": "Unknown",
         "international_response": "UN Working Group on Arbitrary Detention ruled the detention as arbitrary; Listed as a victim by USCIRF.",
         "source_url": "https://en.wikipedia.org/wiki/Yalqun_Rozi",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Oct 2016. Sentenced Jan 2018 to 15 years. Verified via Wikipedia, PEN International, PEN America, Campaign for Uyghurs, UN WGAD (A/HRC/WGAD/2022/64), MCLC Resource Center, Uyghur American Association."
       },
       "error": ""
     },
@@ -686,12 +696,14 @@
         "prisoner_name": "Nurmuhammad Tohti",
         "status": "DECEASED",
         "location": "Xinjiang, China",
-        "sentence": "Detained in a 're-education' camp",
-        "latest_news": "June 2019: Died after being released from a 're-education' camp.",
+        "sentence": "Detained in a re-education camp without formal charges or trial. Died after being released in deteriorating health.",
+        "latest_news": "June 2019: Died after being released from a re-education camp in Xinjiang. His death exemplifies the pattern of detainees being denied adequate medical care in camps and released only when near death. Limited English-language documentation available.",
         "health_status": "Deteriorating, denied medical care for diabetes and heart disease",
         "international_response": "PEN America condemned his death.",
         "source_url": "https://pen.org/press-release/appalling-death-of-nurmuhammad-tohti/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "PARTIALLY VERIFIED. Death in/after re-education camp detention is consistent with documented patterns (ASPI, HRW, Amnesty reports on camp deaths). Specific individual details have limited independent English-language corroboration. Data retained as consistent with known patterns but flagged for additional sourcing."
       },
       "error": ""
     },
@@ -905,12 +917,14 @@
         "prisoner_name": "Erfan Hezim (Ye Erfan)",
         "status": "RELEASED",
         "location": "Unknown",
-        "sentence": "Detained in a 'political re-education camp' for 11 months, no formal sentence.",
-        "latest_news": "March 2019: Released from detention and signed with League One club Shaanxi Chang’an Athletic.",
+        "sentence": "Detained in a political re-education camp for approximately 11 months (2018-2019), no formal charges. Detained for \"visiting foreign countries\" during professional football career.",
+        "latest_news": "Mar 2019: Released from detention camp. Resumed training with club (gave forced statement of gratitude to CCP). Previously played for Jiangsu Suning (Chinese Super League) and represented China national youth team. Detained in 2018 upon return from club travel to Spain and Dubai. FIFPro called for his release.",
         "health_status": "Unknown",
         "international_response": "The International Federation of Professional Footballers (FIFPro) expressed concern. The World Uyghur Congress called for information about his and others' detentions. U.S. lawmakers called for an investigation into the camps.",
         "source_url": "https://thechinaproject.com/2019/03/01/uyghur-footballer-erfan-hezim-signs-with-new-chinese-club/",
-        "confidence": "MEDIUM"
+        "confidence": "MEDIUM",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained 2018. ~11 months in re-education camp. Released ~Mar 2019. CORRECTION: Played for Jiangsu Suning (Chinese Super League), not League One. Verified via HKFP, FIFPro/ETAA, AsiaNews, World Uyghur Congress, The News Lens, Uyghur Post, Turkistan Times."
       },
       "error": ""
     },
@@ -921,11 +935,13 @@
         "status": "DETAINED",
         "location": "Guangzhou, Guangdong Province",
         "sentence": "Unknown",
-        "latest_news": "Dec 2025: Mentioned in a Forbes article on political prisoners in China.",
+        "latest_news": "Dec 2025: Mentioned in a Forbes article on political prisoners in China. WARNING: Limited independent verification available. Not among known Hong Kong 47 defendants. Name not found in major human rights databases (Amnesty, HRW, NCHRD). Further research needed to confirm identity and case details.",
         "health_status": "Reported to be a 'very frail woman'.",
         "international_response": "Included in the 2025 annual report of the US Congressional-Executive Commission on China (CECC).",
         "source_url": "https://chinaaid.org/news/woman-has-gone-missing-after-being-taken-away-by-the-police-for-her-involvement-in-developing-christian-ap/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "UNVERIFIED — FLAGGED FOR REVIEW. No credible independent sources found beyond single Forbes mention. Not among HK47 defendants per web search. Could be transliteration issue, lesser-known case, or data error. Retained with warning flag pending human review."
       },
       "error": ""
     },

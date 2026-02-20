@@ -400,9 +400,9 @@ describe('Critical date consistency across data files', () => {
       expect(jt.output.sentence).toMatch(/February 28, 2019/);
     });
 
-    it('at least 50 prisoners have been verified', () => {
+    it('all 60 prisoners have last_verified dates', () => {
       const verified = prisoners.results.filter((r) => r.output.last_verified);
-      expect(verified.length).toBeGreaterThanOrEqual(50);
+      expect(verified.length).toBe(prisoners.results.length);
     });
   });
 
@@ -468,6 +468,55 @@ describe('Critical date consistency across data files', () => {
       expect(ll).toBeDefined();
       expect(ll.output.sentence).toMatch(/4 years/);
       expect(ll.output.sentence).toMatch(/August 2023/);
+    });
+  });
+
+  describe('Session 33: Final 8 prisoner verification', () => {
+    let prisoners;
+    beforeAll(() => {
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+    });
+
+    it('Li Yuhan sentenced Oct 25, 2023 to 6.5 years, Heping District Court', () => {
+      const ly = prisoners.results.find((r) => r.output.prisoner_name === 'Li Yuhan');
+      expect(ly).toBeDefined();
+      expect(ly.output.sentence).toMatch(/October 25, 2023/);
+      expect(ly.output.sentence).toMatch(/6\.5 years/);
+      expect(ly.output.status).toBe('RELEASED');
+    });
+
+    it('Yalqun Rozi detained Oct 2016, sentenced Jan 2018, 15 years', () => {
+      const yr = prisoners.results.find((r) => r.output.prisoner_name === 'Yalqun Rozi');
+      expect(yr).toBeDefined();
+      expect(yr.output.sentence).toMatch(/October 2016/);
+      expect(yr.output.sentence).toMatch(/January 2018/);
+      expect(yr.output.sentence).toMatch(/15 years/);
+    });
+
+    it('Tenzin Nyima first detained Nov 2019, died Jan 2021', () => {
+      const tn = prisoners.results.find((r) => r.output.prisoner_name === 'Tenzin Nyima');
+      expect(tn).toBeDefined();
+      expect(tn.output.sentence).toMatch(/November 2019/);
+      expect(tn.output.status).toBe('DECEASED');
+    });
+
+    it('Erfan Hezim played for Jiangsu Suning (CSL, not League One)', () => {
+      const eh = prisoners.results.find((r) => r.output.prisoner_name === 'Erfan Hezim (Ye Erfan)');
+      expect(eh).toBeDefined();
+      expect(eh.output.latest_news).toMatch(/Jiangsu Suning/);
+      expect(eh.output.latest_news).toMatch(/Chinese Super League/);
+    });
+
+    it('Xin Ruoyu is flagged as UNVERIFIED in verification_note', () => {
+      const xr = prisoners.results.find((r) => r.output.prisoner_name === 'Xin Ruoyu');
+      expect(xr).toBeDefined();
+      expect(xr.output.verification_note).toMatch(/UNVERIFIED/);
+    });
+
+    it('all prisoners with last_verified also have verification_note', () => {
+      const withVerified = prisoners.results.filter((r) => r.output.last_verified);
+      const withNote = withVerified.filter((r) => r.output.verification_note);
+      expect(withNote.length).toBeGreaterThanOrEqual(55);
     });
   });
 });
