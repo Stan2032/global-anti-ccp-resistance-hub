@@ -38,7 +38,7 @@ const CampaignHubs = () => {
       startDate: '2020-08-10',
       goal: 'Secure Jimmy Lai\'s release and overturn unjust conviction',
       impact: 'Jimmy Lai, 78, sentenced to 20 years under Hong Kong\'s National Security Law for his pro-democracy advocacy',
-      nextMilestone: 'Sentencing expected 2026',
+      nextMilestone: 'Appeal proceedings and international pressure campaign',
       actions: [
         'Sign international petition',
         'Contact your government representative',

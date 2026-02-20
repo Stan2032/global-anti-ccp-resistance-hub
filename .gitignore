@@ -31,3 +31,5 @@ dist-ssr
 # Coverage reports
 coverage
 backend/coverage
+dist/
+node_modules/

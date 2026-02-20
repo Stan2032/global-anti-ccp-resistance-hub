@@ -149,6 +149,18 @@
 | Safeguard Defenders date | "2023-09-14" | "2022-12-04" | timeline_events.json |
 | CampaignHubs nextMilestone | "Trial verdict expected Q1 2025" | "Sentencing expected 2026" | CampaignHubs.jsx |
 
+### Session 27 Corrections (2026-02-20)
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Jimmy Lai sentence (timeline #14) | "faces life imprisonment" | "sentenced to 20 years (Feb 9, 2026)" | timeline_events.json |
+| Jimmy Lai verdict date (HR orgs) | "December 19, 2025" | "December 15, 2025" | human_rights_orgs_research.json |
+| Jimmy Lai sidebar (App.jsx) | "Sentenced to life - Dec 15, 2025" | "Sentenced to 20 years - Feb 9, 2026" | App.jsx |
+| HK47 sentence status | "face up to life imprisonment" | "were sentenced to 4-10 years" | ContactRepresentatives.jsx |
+| Zhang Zhan sentence | "4 years" | "4 years (Dec 2020) + 4 years (Sep 2025)" | liveDataService.js |
+| CampaignHubs nextMilestone | "Sentencing expected 2026" | "Appeal proceedings and international pressure campaign" | CampaignHubs.jsx |
+| Jimmy Lai lastUpdated | "2025-12-15" | "2026-02-09" | liveDataService.js |
+
 ### Previously Correct (Verified)
 
 - Tiananmen Square: June 4, 1989 ✅
@@ -301,6 +313,16 @@ See Section 1 above for full breakdown with sources.
   - **Deduplication**: Removed duplicate Taiwan Association for Human Rights entry from human_rights_orgs_research.json (merged into single entry)
   - **Verified**: Police stations research entries for Canada, US, and Australia are NOT duplicates — they are separate stations in different cities (Toronto/Vancouver, NYC/LA, Sydney/Melbourne) with unique data. No changes needed.
   - Forced labor companies list: All 30 entries cross-referenced against ASPI "Uyghurs for Sale" report (March 2020). Company names, industries, and evidence descriptions match. UFLPA Entity List (144 entities as of 2025) targets Chinese manufacturers/suppliers, not Western brands — this distinction is correct in the data.
+
+- 2026-02-20 (Session 27): Remaining data inaccuracy sweep (Opus 4.6)
+  - **FIX: timeline_events.json event #14** (Jimmy Lai Arrested) — `sentence` field said "Guilty on all charges (Dec 2025), faces life imprisonment". Changed to "Guilty on all charges (Dec 15, 2025); sentenced to 20 years (Feb 9, 2026)". The "faces life imprisonment" phrasing was outdated after the Feb 9, 2026 sentencing.
+  - **FIX: human_rights_orgs_research.json** — Hong Kong Watch entry had `latest_news` with wrong date "December 19, 2025" for Jimmy Lai verdict. Changed to "December 15, 2025" (the actual conviction date confirmed by HKFP, EU EEAS, The Independent).
+  - **FIX: App.jsx line 257** — Sidebar said "Sentenced to life - Dec 15, 2025". TWO errors: (1) sentence was 20 years, not life; (2) sentencing was Feb 9, 2026, not Dec 15, 2025 (Dec 15 was the conviction date). Changed to "Sentenced to 20 years - Feb 9, 2026".
+  - **FIX: ContactRepresentatives.jsx** — Template said HK47 "face up to life imprisonment". Outdated: HK47 were sentenced Nov 19, 2024 to 4-10 years. Changed to "were sentenced to 4-10 years in prison".
+  - **FIX: liveDataService.js** — Zhang Zhan entry had `sentence: '4 years'`. Outdated: she received a second 4-year sentence in Sep 2025 (confirmed by OHCHR, Amnesty, CPJ). Updated to `'4 years (Dec 2020) + 4 years (Sep 2025)'` with updated description and lastUpdated date.
+  - **FIX: liveDataService.js** — Jimmy Lai `lastUpdated` was '2025-12-15'. Updated to '2026-02-09' (sentencing date).
+  - **FIX: CampaignHubs.jsx** — `nextMilestone` said "Sentencing expected 2026". Outdated: sentencing already happened Feb 9, 2026. Changed to "Appeal proceedings and international pressure campaign".
+  - **Added**: `src/test/data-consistency.test.js` — 9 new tests ensuring critical date consistency across data files, preventing regression of corrected dates, verifying chronological ordering of timeline events, and checking that no CCP state media is cited as a credible source.
 
 ---
 

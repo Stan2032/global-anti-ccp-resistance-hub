@@ -254,7 +254,7 @@ const DesktopSidebar = () => {
             <span className="text-sm font-semibold text-red-300">Free Jimmy Lai</span>
             <span className="ml-auto px-1.5 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">URGENT</span>
           </div>
-          <p className="text-xs text-red-400">Sentenced to life - Dec 15, 2025</p>
+          <p className="text-xs text-red-400">Sentenced to 20 years - Feb 9, 2026</p>
           <Link to="/campaigns" className="mt-2 block text-center py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition-colors">
             Take Action
           </Link>
