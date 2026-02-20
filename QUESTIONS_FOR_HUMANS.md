@@ -22,9 +22,9 @@ This means agents no longer need human approval to add individuals to the politi
 
 ## ✅ DECISIONS D1-D5 — ANSWERED AND IMPLEMENTED (Session 42)
 
-> Owner answered all 5 on 2026-02-20. All implemented in Session 42.
+> Humans answered all 5 on 2026-02-20. All implemented in Session 42.
 
-| # | Decision | Owner's Answer | Implementation |
+| # | Decision | Human Answer | Implementation |
 |---|----------|---------------|----------------|
 | D1 | Zhang Yuxin bad data | **D) Replace with both Che Dalha + Zhang Qingli** | ✅ Replaced in sanctioned_officials_research.json |
 | D2 | Du Bin — add to prisoners? | **A) Yes** | ✅ Added to political_prisoners_research.json |
@@ -34,35 +34,35 @@ This means agents no longer need human approval to add individuals to the politi
 
 ### D1. Zhang Yuxin — Bad Data in Sanctioned Officials ✅ RESOLVED
 
-> **Owner's answer:** Option D — Replace with both Che Dalha and Zhang Qingli.  
+> **Human's answer:** Option D — Replace with both Che Dalha and Zhang Qingli.  
 > **Implemented:** Session 42. Zhang Yuxin entry removed; Che Dalha (current TAR Party Secretary) and Zhang Qingli (former TAR Party Secretary during 2008 crackdown) added with verified source links.
 
 ---
 
 ### D2. Du Bin — Add to Political Prisoner Database? ✅ RESOLVED
 
-> **Owner's answer:** Option A — Yes, add him.  
+> **Human's answer:** Option A — Yes, add him.  
 > **Implemented:** Session 42. Added to political_prisoners_research.json with HRW source. Arrested Oct 15, 2025; charged Dec 12, 2025.
 
 ---
 
 ### D3. Rachung Gendun — Add to Political Prisoner Database? ✅ RESOLVED
 
-> **Owner's answer:** Option A — Yes, add him.  
+> **Human's answer:** Option A — Yes, add him.  
 > **Implemented:** Session 42. Added to political_prisoners_research.json with Tibet Watch source. Released Nov 16, 2024 in poor health after 3.5 years.
 
 ---
 
 ### D4. Profile Page Priority — Which Person First? ✅ RESOLVED
 
-> **Owner's answer:** Agent's choice — any order.  
+> **Human's answer:** Agent's choice — any order.  
 > **Plan:** Jimmy Lai first (most recent sentencing, most verified data), then Ilham Tohti, then others.
 
 ---
 
 ### D5. Office of Political Prisoner Advocacy — Track This Policy Proposal? ✅ RESOLVED
 
-> **Owner's answer:** Option A — Yes, track it.  
+> **Human's answer:** Option A — Yes, track it.  
 > **Implemented:** Session 42. Added as `pending_proposals` field on the US entry in international_responses_research.json.
 
 ---
@@ -71,7 +71,7 @@ This means agents no longer need human approval to add individuals to the politi
 
 ### Answers Summary
 
-| Question | Owner's Answer | Implementation Status |
+| Question | Human Answer | Implementation Status |
 |----------|---------------|----------------------|
 | Q1.1: IP Geolocation | **A) No geolocation** | ✅ No changes needed |
 | Q1.2: WebRTC Leak Detection | **B) Implement it** | ✅ Built in SecurityCenter (useWebRTCLeakCheck hook) |
@@ -219,7 +219,7 @@ Only relevant if you answered B or C above.
 | **Node.js + Express + PostgreSQL** | Maximum control, well-documented, huge community |
 | **Python + FastAPI + PostgreSQL** | If you prefer Python; good for data-heavy features |
 
-**My recommendation:** ~~Vercel serverless + Supabase — it's the lowest-friction path from your current Vite setup and has a generous free tier.~~ **Update:** Owner chose Cloudflare Pages. Recommendation updated to Cloudflare Pages Functions + Supabase (see Backend Recommendation section above).
+**My recommendation:** ~~Vercel serverless + Supabase — it's the lowest-friction path from your current Vite setup and has a generous free tier.~~ **Update:** Human chose Cloudflare Pages. Recommendation updated to Cloudflare Pages Functions + Supabase (see Backend Recommendation section above).
 
 ---
 
@@ -284,12 +284,12 @@ Machine translation (e.g., Google Translate API) is an option but produces poor 
 
 | Question | If you answer... | I can immediately... | Status |
 |----------|-----------------|---------------------|--------|
-| Q1.1 | "No geolocation" | Nothing needed (current state is correct) | ✅ Done — owner chose A |
-| Q1.1 | "Client-side API" | Implement ip-api.com integration (~30 min) | N/A — owner chose A |
+| Q1.1 | "No geolocation" | Nothing needed (current state is correct) | ✅ Done — human chose A |
+| Q1.1 | "Client-side API" | Implement ip-api.com integration (~30 min) | N/A — human chose A |
 | Q1.2 | "Yes, add WebRTC check" | Build client-side leak detector (~30 min) | ✅ Done — built useWebRTCLeakCheck hook |
 | Q2.1 | "Keep as demo" | Add "Coming soon" notes to forms (~10 min) | ✅ Done — Session 36 |
 | Q2.1 | "Email submissions" | Implement after Q4.2 is answered | N/A — deferred |
-| Q3.1 | "Stay static" | Focus on remaining frontend improvements | ✅ Done — owner chose A |
+| Q3.1 | "Stay static" | Focus on remaining frontend improvements | ✅ Done — human chose A |
 | Q3.1 | "Add serverless API" | Scaffold Cloudflare functions (~2 hours) | Phase 2 when ready |
 | Q4.1 | Any option | Configure deployment (~30 min) | ✅ Done — Cloudflare Pages chosen, _redirects + _headers configured |
 | Q5.1 | Any languages | Set up i18n infrastructure (~1 hour) | ✅ Done — 5 locale files built |
