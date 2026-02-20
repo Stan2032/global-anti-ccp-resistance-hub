@@ -308,7 +308,7 @@ export default function AgnesChowProfile() {
                 <div className="text-slate-400 text-xs">Days in exile</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-yellow-400 font-bold text-lg">11</div>
+                <div className="text-yellow-400 font-bold text-lg">12</div>
                 <div className="text-slate-400 text-xs">Years active (2012–2023)</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
