@@ -66,6 +66,10 @@ const ROUTE_META = {
     title: 'Ilham Tohti — Profile',
     description: 'Detailed profile of Ilham Tohti (伊力哈木·土赫提): Uyghur economist sentenced to life for "separatism" despite advocating dialogue. Sakharov Prize laureate. Timeline, charges, CCP narrative analysis.',
   },
+  '/profiles/panchen-lama': {
+    title: 'Gedhun Choekyi Nyima — 11th Panchen Lama Profile',
+    description: 'Detailed profile of Gedhun Choekyi Nyima (根敦确吉尼玛): 11th Panchen Lama, abducted at age 6 in 1995, disappeared for 30+ years. World\'s longest-running child enforced disappearance. Timeline, CCP narrative analysis, and sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';

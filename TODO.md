@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 44, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 45, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -69,12 +69,17 @@
     - [x] CCP "separatist" narrative vs reality (dialogue advocate)
     - [x] 7 students also persecuted
     - [x] 9 Tier 1 sources (HRW, Amnesty, European Parliament, PEN, Front Line Defenders, USCIRF, Scholars at Risk, PEN America, UN OHCHR)
-  - [ ] **Gedhun Choekyi Nyima (Panchen Lama) profile page**
-    - [ ] Recognition by Dalai Lama (May 14, 1995)
-    - [ ] Abduction (May 17, 1995)
-    - [ ] 30 years of enforced disappearance
-    - [ ] CCP's installation of Gyaltsen Norbu
-    - [ ] International advocacy efforts
+  - [x] **Gedhun Choekyi Nyima (Panchen Lama) profile page** ✅ (Session 45)
+    - [x] Recognition by Dalai Lama (May 14, 1995)
+    - [x] Abduction (May 17, 1995)
+    - [x] 30 years of enforced disappearance — 16-event timeline
+    - [x] CCP's installation of Gyaltsen Norbu (Golden Urn ceremony Nov 29, 1995)
+    - [x] "Why It Matters" section (religious, political, human significance) — replaces "Charges" since no charges exist
+    - [x] CCP narrative analysis: 4 claims debunked (living normally, Golden Urn tradition, Dalai Lama violated procedures, internal matter)
+    - [x] International advocacy efforts: 7 organizations + NED Democracy Service Medal 2025
+    - [x] 10 sources (9 Tier 1, 1 Tier 2), zero CCP state media
+    - [x] Chadrel Rinpoche persecution documented
+    - [x] Purple color theme (religious/spiritual differentiation)
   - [ ] **Liu Xiaobo profile page** (posthumous)
     - [ ] Charter 08 and Nobel Peace Prize
     - [ ] 11-year sentence and death in custody (July 13, 2017)
@@ -334,10 +339,11 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Gedhun Choekyi Nyima (Panchen Lama) profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Liu Xiaobo profile page (posthumous)
+1. Liu Xiaobo profile page (posthumous) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. Joshua Wong profile page
 
 ### Recently Completed
+- ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
 - ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
 - ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6
 - ✅ D1-D5 owner decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
