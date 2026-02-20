@@ -11,7 +11,9 @@
 > **"For future reference, if you wish to add a person to the site, as long as you deem appropriate and researched well and it fits everything we have been working towards, then please add them as you wish without asking me."**
 
 This means agents no longer need owner approval to add individuals to the political prisoner database, sanctioned officials list, or other person data — provided:
-1. The person is well-researched with Tier 1-2 sources (see source tiers in `agent-thoughts/SESSION_34_VERIFICATION_NOTES.md`)
+1. The person is well-researched with Tier 1-2 sources:
+   - **Tier 1 (Gold standard):** US Treasury/State Dept, HKFP, Amnesty, HRW, UN OHCHR, CECC, court records
+   - **Tier 2 (Reliable):** BBC, Guardian, Reuters, AP, PEN International, USCIRF, Tibet Watch, VOA, RFA
 2. The addition fits the project's goals (documenting CCP human rights abuses)
 3. Sources are verified against CCP propaganda/influence
 4. Dates are cross-checked for accuracy
