@@ -45,6 +45,7 @@ const IlhamTohtiProfile = lazy(() => import('./pages/profiles/IlhamTohtiProfile'
 const PanchenLamaProfile = lazy(() => import('./pages/profiles/PanchenLamaProfile'));
 const LiuXiaoboProfile = lazy(() => import('./pages/profiles/LiuXiaoboProfile'));
 const JoshuaWongProfile = lazy(() => import('./pages/profiles/JoshuaWongProfile'));
+const ProfilesIndex = lazy(() => import('./pages/profiles/ProfilesIndex'));
 
 // Simple Mobile-First Header
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
@@ -94,6 +95,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: t('nav.intelligence'), href: '/intelligence' },
     { name: t('nav.directory'), href: '/directory' },
     { name: t('nav.prisoners'), href: '/prisoners' },
+    { name: 'Profiles', href: '/profiles' },
     { name: t('nav.takeAction'), href: '/take-action' },
     { name: t('nav.community'), href: '/community' },
     { name: t('nav.resources'), href: '/resources' },
@@ -190,6 +192,7 @@ const DesktopSidebar = () => {
       title: t('nav.humanRights'),
       items: [
         { name: t('nav.prisoners'), href: '/prisoners' },
+        { name: 'Profiles', href: '/profiles' },
       ]
     },
     {
@@ -369,6 +372,7 @@ function AppLayout() {
               <Route path="/tactics" element={<CCPTactics />} />
               <Route path="/take-action" element={<TakeAction />} />
               <Route path="/data-sources" element={<DataSources />} />
+              <Route path="/profiles" element={<ProfilesIndex />} />
               <Route path="/profiles/jimmy-lai" element={<JimmyLaiProfile />} />
               <Route path="/profiles/ilham-tohti" element={<IlhamTohtiProfile />} />
               <Route path="/profiles/panchen-lama" element={<PanchenLamaProfile />} />

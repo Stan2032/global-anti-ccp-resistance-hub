@@ -358,10 +358,11 @@
 
 ### Up Next
 1. Gui Minhai profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Profile index page at `/profiles` listing all 5+ profiles with status indicators
-3. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+2. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 
 ### Recently Completed
+- ✅ Profile index page at `/profiles`: lists all 5 built profiles + 3 upcoming with status indicators, links, color themes, source attribution note, navigation link — Session 53, Opus 4.6
+- ✅ Reorganized `_agents/` folder: moved 12 research/audit files to `research/`, 3 satellite TODOs to `planning/`, 7 historical files to `archive/` — top level reduced from 29+ files to 10 core files — Session 53, Opus 4.6
 - ✅ Joshua Wong profile page: dedicated /profiles/joshua-wong route with 21-event timeline, dual charges section (subversion guilty + collusion pending), CCP narrative analysis (4 claims debunked), Nathan Law exile connection, "I love Hong Kong" courtroom moment, 10 sources, yellow/gold theme — Session 47, Opus 4.6
 - ✅ Liu Xiaobo memorial profile page: dedicated /profiles/liu-xiaobo route with 22-event timeline, Charter 08 & Charges tab, CCP narrative analysis (4 claims debunked), Legacy & Impact tab, Liu Xia persecution section, "I Have No Enemies" quote, Ossietzky parallel, 11 sources, memorial color theme — Session 46, Opus 4.6
 - ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
@@ -454,8 +455,8 @@
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
 8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
 
-### Current State Summary (as of Session 52, Feb 20, 2026)
-- **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)
+### Current State Summary (as of Session 53, Feb 20, 2026)
+- **Frontend:** React + Vite + Tailwind, 15 pages (including /profiles index), 100+ components, 257 tests (all passing)
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
 - **Profile Pages Queued:** Gui Minhai (next), then Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
@@ -512,6 +513,7 @@
 | 50 | Feb 20 | Opus 4.6 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS, fixed duplicate aria-label build warning |
 | 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder, updated cross-references |
 | 52 | Feb 20 | Opus 4.6 | Final cross-reference cleanup: fixed stale paths in AGENT_HANDOFF.json |
+| 53 | Feb 20 | Opus 4.6 | Reorganized `_agents/` folder (research/, planning/ subdirs), built Profiles Index page at /profiles with 9 tests |
 
 ---
 

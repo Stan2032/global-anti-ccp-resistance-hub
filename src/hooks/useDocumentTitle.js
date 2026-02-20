@@ -78,6 +78,10 @@ const ROUTE_META = {
     title: 'Joshua Wong — Profile',
     description: 'Detailed profile of Joshua Wong (黃之鋒): Hong Kong pro-democracy activist, Scholarism founder, Demosistō co-founder. Sentenced to 4 years 8 months in Hong Kong 47 subversion trial. Faces new NSL collusion charges carrying life imprisonment. Timeline, charges, CCP narrative analysis, and verified sources.',
   },
+  '/profiles': {
+    title: 'Profiles — Targeted by the CCP',
+    description: 'Detailed profiles of individuals persecuted by the CCP: journalists, activists, religious leaders, and scholars. Includes Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, and more.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
