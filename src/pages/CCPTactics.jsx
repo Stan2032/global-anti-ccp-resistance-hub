@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Lock, Globe, Radio, Swords, ClipboardList, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
-import SanctionedOfficials from '../components/SanctionedOfficials';
-import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
-import MediaManipulation from '../components/MediaManipulation';
-import CCPOfficials from '../components/CCPOfficials';
-import SanctionedOfficialsTracker from '../components/SanctionedOfficialsTracker';
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const SanctionedOfficials = lazy(() => import('../components/SanctionedOfficials'));
+const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
+const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
+const CCPOfficials = lazy(() => import('../components/CCPOfficials'));
+const SanctionedOfficialsTracker = lazy(() => import('../components/SanctionedOfficialsTracker'));
 
 const CategoryCard = ({ category, isSelected, onClick }) => {
   const Icons = {
@@ -215,27 +222,27 @@ const CCPTactics = () => {
 
         {/* CCP Officials Database */}
         <div className="mt-8">
-          <CCPOfficials />
+          <Suspense fallback={<SectionLoader />}><CCPOfficials /></Suspense>
         </div>
 
         {/* Sanctioned Officials */}
         <div className="mt-8">
-          <SanctionedOfficials />
+          <Suspense fallback={<SectionLoader />}><SanctionedOfficials /></Suspense>
         </div>
 
         {/* Sanctioned Officials Tracker (Wide Research Data) */}
         <div className="mt-8">
-          <SanctionedOfficialsTracker />
+          <Suspense fallback={<SectionLoader />}><SanctionedOfficialsTracker /></Suspense>
         </div>
 
         {/* Confucius Institutes */}
         <div className="mt-8">
-          <ConfuciusInstitutes />
+          <Suspense fallback={<SectionLoader />}><ConfuciusInstitutes /></Suspense>
         </div>
 
         {/* Media Manipulation */}
         <div className="mt-8">
-          <MediaManipulation />
+          <Suspense fallback={<SectionLoader />}><MediaManipulation /></Suspense>
         </div>
 
         {/* Sources Footer */}

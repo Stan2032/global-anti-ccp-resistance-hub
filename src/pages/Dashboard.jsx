@@ -1,15 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Building2, Target, Link2, AlertTriangle, Zap, Radio, Megaphone, Lock, BookOpen, MessageSquare, Mail, Monitor, Shield } from 'lucide-react';
 import { useStatistics } from '../hooks/useLiveData';
-import NewsAggregator from '../components/NewsAggregator';
-import UrgentCaseTimer from '../components/UrgentCaseTimer';
-import ImpactMetrics from '../components/ImpactMetrics';
-import CountdownTimer from '../components/CountdownTimer';
-import LiveStatistics from '../components/LiveStatistics';
-import EmergencyAlerts from '../components/EmergencyAlerts';
-import NewsDigest from '../components/NewsDigest';
-import ResearchDashboard from '../components/ResearchDashboard';
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const NewsAggregator = lazy(() => import('../components/NewsAggregator'));
+const UrgentCaseTimer = lazy(() => import('../components/UrgentCaseTimer'));
+const ImpactMetrics = lazy(() => import('../components/ImpactMetrics'));
+const CountdownTimer = lazy(() => import('../components/CountdownTimer'));
+const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
+const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
+const NewsDigest = lazy(() => import('../components/NewsDigest'));
+const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -89,7 +96,7 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       {/* Emergency Alerts */}
-      <EmergencyAlerts />
+      <Suspense fallback={<SectionLoader />}><EmergencyAlerts /></Suspense>
 
       {/* Welcome Header */}
       <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
@@ -282,12 +289,12 @@ const Dashboard = () => {
 
       {/* Detention Timer Section */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <UrgentCaseTimer compact={true} />
+        <Suspense fallback={<SectionLoader />}><UrgentCaseTimer compact={true} /></Suspense>
       </div>
 
       {/* News Aggregator Section */}
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-        <NewsAggregator />
+        <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
       </div>
 
       {/* Resources Section */}
@@ -318,26 +325,26 @@ const Dashboard = () => {
       </div>
 
       {/* Impact Metrics */}
-      <ImpactMetrics />
+      <Suspense fallback={<SectionLoader />}><ImpactMetrics /></Suspense>
 
       {/* Important Dates Countdown */}
       <div className="mt-8">
-        <CountdownTimer />
+        <Suspense fallback={<SectionLoader />}><CountdownTimer /></Suspense>
       </div>
 
       {/* Live Statistics */}
       <div className="mt-8">
-        <LiveStatistics />
+        <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
       </div>
 
       {/* News Digest Subscription */}
       <div className="mt-8">
-        <NewsDigest />
+        <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
       </div>
 
       {/* Research Database */}
       <div className="mt-8">
-        <ResearchDashboard />
+        <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
       </div>
 
       {/* Footer */}

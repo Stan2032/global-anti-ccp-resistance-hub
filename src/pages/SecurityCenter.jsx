@@ -1,11 +1,5 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
-import IncidentReportForm from '../components/IncidentReportForm'
-import SecurityQuiz from '../components/SecurityQuiz'
-import SafetyChecklist from '../components/SafetyChecklist'
-import WitnessProtection from '../components/WitnessProtection'
-import OfflineModeManager from '../components/OfflineModeManager'
-import WhistleblowerPortal from '../components/WhistleblowerPortal'
 import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import securityData from '../data/security_center_data.json'
 import { 
@@ -33,6 +27,19 @@ import {
   ShieldAlert,
   ShieldQuestion
 } from 'lucide-react'
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const IncidentReportForm = lazy(() => import('../components/IncidentReportForm'));
+const SecurityQuiz = lazy(() => import('../components/SecurityQuiz'));
+const SafetyChecklist = lazy(() => import('../components/SafetyChecklist'));
+const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
+const OfflineModeManager = lazy(() => import('../components/OfflineModeManager'));
+const WhistleblowerPortal = lazy(() => import('../components/WhistleblowerPortal'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assessment')
@@ -214,7 +221,7 @@ const SecurityCenter = () => {
       {/* Assessment Tab */}
       {activeTab === 'assessment' && (
         <div className="space-y-6">
-          <SecurityQuiz />
+          <Suspense fallback={<SectionLoader />}><SecurityQuiz /></Suspense>
         </div>
       )}
 
@@ -333,7 +340,7 @@ const SecurityCenter = () => {
       {/* Report Tab */}
       {activeTab === 'report' && (
         <div className="space-y-6">
-          <IncidentReportForm />
+          <Suspense fallback={<SectionLoader />}><IncidentReportForm /></Suspense>
         </div>
       )}
 
@@ -565,22 +572,22 @@ const SecurityCenter = () => {
 
       {/* Safety Checklist Tab */}
       {activeTab === 'checklist' && (
-        <SafetyChecklist />
+        <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
       )}
 
       {/* Witness Protection Tab */}
       {activeTab === 'protection' && (
-        <WitnessProtection />
+        <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
       )}
 
       {/* Offline Mode Tab */}
       {activeTab === 'offline' && (
-        <OfflineModeManager />
+        <Suspense fallback={<SectionLoader />}><OfflineModeManager /></Suspense>
       )}
 
       {/* Whistleblower Portal Tab */}
       {activeTab === 'whistleblower' && (
-        <WhistleblowerPortal />
+        <Suspense fallback={<SectionLoader />}><WhistleblowerPortal /></Suspense>
       )}
     </div>
   )

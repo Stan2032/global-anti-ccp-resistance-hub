@@ -1,14 +1,5 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
-import EventCalendar from '../components/EventCalendar'
-import DiasporaSupport from '../components/DiasporaSupport'
-import ReportSighting from '../components/ReportSighting'
-import SurvivorStories from '../components/SurvivorStories'
-import SolidarityWall from '../components/SolidarityWall'
-import VolunteerSignup from '../components/VolunteerSignup'
-import EventRSVP from '../components/EventRSVP'
-import EventMap from '../components/EventMap'
-import VictimMemorialWall from '../components/VictimMemorialWall'
 import { 
   Heart, 
   Users, 
@@ -28,6 +19,22 @@ import {
   Zap,
   Star
 } from 'lucide-react'
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const EventCalendar = lazy(() => import('../components/EventCalendar'));
+const DiasporaSupport = lazy(() => import('../components/DiasporaSupport'));
+const ReportSighting = lazy(() => import('../components/ReportSighting'));
+const SurvivorStories = lazy(() => import('../components/SurvivorStories'));
+const SolidarityWall = lazy(() => import('../components/SolidarityWall'));
+const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
+const EventRSVP = lazy(() => import('../components/EventRSVP'));
+const EventMap = lazy(() => import('../components/EventMap'));
+const VictimMemorialWall = lazy(() => import('../components/VictimMemorialWall'));
 
 const CommunitySupport = () => {
   const [activeTab, setActiveTab] = useState('requests')
@@ -578,46 +585,46 @@ const CommunitySupport = () => {
 
       {/* Report Tab */}
       {activeTab === 'report' && (
-        <ReportSighting />
+        <Suspense fallback={<SectionLoader />}><ReportSighting /></Suspense>
       )}
 
       {/* Diaspora Tab */}
       {activeTab === 'diaspora' && (
-        <DiasporaSupport />
+        <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
       )}
 
       {/* Calendar Tab */}
       {activeTab === 'calendar' && (
-        <EventCalendar />
+        <Suspense fallback={<SectionLoader />}><EventCalendar /></Suspense>
       )}
 
       {/* Survivor Stories Tab */}
       {activeTab === 'stories' && (
-        <SurvivorStories />
+        <Suspense fallback={<SectionLoader />}><SurvivorStories /></Suspense>
       )}
 
       {/* Victim Memorial Tab */}
       {activeTab === 'memorial' && (
-        <VictimMemorialWall />
+        <Suspense fallback={<SectionLoader />}><VictimMemorialWall /></Suspense>
       )}
 
       {/* Solidarity Wall Tab */}
       {activeTab === 'solidarity' && (
-        <SolidarityWall />
+        <Suspense fallback={<SectionLoader />}><SolidarityWall /></Suspense>
       )}
 
       {/* Volunteer Signup Tab */}
       {activeTab === 'signup' && (
-        <VolunteerSignup />
+        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
       )}
 
       {activeTab === 'events' && (
-        <EventRSVP />
+        <Suspense fallback={<SectionLoader />}><EventRSVP /></Suspense>
       )}
 
       {/* Event Map Tab */}
       {activeTab === 'map' && (
-        <EventMap />
+        <Suspense fallback={<SectionLoader />}><EventMap /></Suspense>
       )}
     </div>
   )
