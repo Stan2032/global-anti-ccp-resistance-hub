@@ -154,7 +154,9 @@
         "health_status": "Unknown",
         "international_response": "Awarded the 2023 Gwangju Prize for Human Rights and the 2023 Franco-German Prize for Human Rights and the Rule of Law.",
         "source_url": "https://hongkongfp.com/2025/11/03/hong-kong-court-rejects-tiananmen-activist-chow-hang-tungs-bid-to-have-subversion-charge-quashed/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced 22 months for organizing Tiananmen vigil. Awaiting separate trial for inciting subversion under NSL. Verified via Hong Kong Watch, HKFP."
       },
       "error": ""
     },
@@ -399,12 +401,14 @@
         "prisoner_name": "Chen Mei",
         "status": "RELEASED",
         "location": "China",
-        "sentence": "15 months for picking quarrels and provoking trouble",
-        "latest_news": "Aug 2021: Released after serving 15-month sentence for archiving censored COVID-19 content.",
+        "sentence": "15 months for picking quarrels and provoking trouble (sentenced August 2021). Released August 2021 on time served (detained April 2020). Co-arrested with Cai Wei for archiving censored COVID-19 articles on GitHub (Terminus 2049 project).",
+        "latest_news": "Aug 2021: Released after sentencing — 16 months pre-trial detention exceeded 15-month sentence. Archived ~100 censored COVID articles including Dr. Ai Fen interviews and MeToo movement coverage.",
         "health_status": "Unknown",
         "international_response": "Amnesty International, Human Rights Watch, and other NGOs condemned his detention and called for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/cai-wei-and-chen-mei-sentenced-released-time-served-1",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Aug 2021, released same month (time served). Verified via Front Line Defenders, SCMP, CPJ. COVID archive project Terminus 2049 on GitHub."
       },
       "error": ""
     },
@@ -414,12 +418,14 @@
         "prisoner_name": "Cai Wei",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "1 year and 3 months for \"picking quarrels and provoking trouble\"",
-        "latest_news": "Aug 2021: Sentenced to 1 year and 3 months and released on time served.",
+        "sentence": "1 year and 3 months for \"picking quarrels and provoking trouble\" (sentenced August 2021). Released August 2021 on time served (detained April 2020). Arrested alongside Chen Mei for COVID-19 article archiving project.",
+        "latest_news": "Aug 2021: Released after sentencing — pre-trial detention exceeded sentence. Family-hired lawyers denied access; state-appointed lawyers represented defendants.",
         "health_status": "Unknown",
         "international_response": "Front Line Defenders, Amnesty International, and other human rights organizations reported on the case and advocated for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/cai-wei-and-chen-mei-sentenced-released-time-served",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Aug 2021, released same month. Verified via Front Line Defenders, SCMP, CPJ. Co-defendant with Chen Mei."
       },
       "error": ""
     },
@@ -495,12 +501,14 @@
         "prisoner_name": "Pu Zhiqiang",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "3 years suspended sentence for 'picking quarrels and provoking trouble' and 'inciting ethnic hatred'",
-        "latest_news": "April 2016: Pu Zhiqiang's lawyer's license was revoked.",
+        "sentence": "3 years suspended sentence for \"picking quarrels and provoking trouble\" and \"inciting ethnic hatred\" (sentenced December 22, 2015, Beijing Second Intermediate Court). Disbarred and prohibited from practicing law.",
+        "latest_news": "Dec 2015: Suspended sentence means no prison time served beyond 19 months pre-trial detention. Disbarred — cannot practice law. Convicted over critical social media posts about government policies on Tibet and Xinjiang.",
         "health_status": "Unknown",
         "international_response": "The US, UK, and EU condemned the verdict. Amnesty International and Human Rights Watch also condemned the verdict and called for his release.",
         "source_url": "https://www.bbc.com/news/world-asia-china-36042739",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Dec 22, 2015. Suspended sentence verified via Front Line Defenders, Wikipedia, VOA, Lawyers for Lawyers, US State Department."
       },
       "error": ""
     },

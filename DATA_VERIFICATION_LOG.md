@@ -246,7 +246,7 @@
 - [x] Causeway Bay Booksellers first disappearance date (Oct 15, 2015) — ✅ CONFIRMED CORRECT. Gui Minhai and Lui Bo were both last seen on October 15, 2015. Sources: Wikipedia, HKFP, PEN International. The Oct 14 note was from an ambiguous early report.
 - [x] Falun Gong death toll in custody — "4,000+ confirmed" is from Falun Dafa Info Center (FDIC), documenting individual named cases. The pattern of deaths (including forced organ harvesting) was independently confirmed by the China Tribunal (2019, Sir Geoffrey Nice QC). Added sourcing note to timeline_events.json. ✅
 - [ ] Tiananmen casualty estimates (currently "300-3,000+" — range is accurate per multiple sources)
-- [ ] White Paper Protests — date is Nov 26 for mass protests, Ürümqi fire was Nov 24
+- [x] White Paper Protests — ✅ CONFIRMED: Date 2022-11-26 is CORRECT. Urumqi fire was November 24, 2022 (10 people killed, lockdown delayed rescue). Mass protests began November 26 in Shanghai (Urumqi Road), spread to Beijing, Chengdu, Guangzhou, Wuhan Nov 26-27. Timeline correctly uses Nov 26. Sources: Amnesty, Wikipedia, HRW, VOA, IFJ.
 - [x] Canada sanctions on Chen Quanguo date — **CONFIRMED**: December 2024, under Special Economic Measures (People's Republic of China) Regulations. 8 senior CCP officials sanctioned. Sources: [canada.ca](https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html), [Canada Gazette](https://gazette.gc.ca/rp-pr/p2/2024/2024-12-18/html/sor-dors253-eng.html) ✅
 - [ ] Political prisoner health statuses (many listed as "Unknown" — reasonable given CCP opacity)
 

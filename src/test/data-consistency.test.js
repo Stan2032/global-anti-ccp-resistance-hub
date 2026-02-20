@@ -400,9 +400,9 @@ describe('Critical date consistency across data files', () => {
       expect(jt.output.sentence).toMatch(/February 28, 2019/);
     });
 
-    it('at least 36 prisoners have been verified', () => {
+    it('at least 40 prisoners have been verified', () => {
       const verified = prisoners.results.filter((r) => r.output.last_verified);
-      expect(verified.length).toBeGreaterThanOrEqual(36);
+      expect(verified.length).toBeGreaterThanOrEqual(40);
     });
   });
 });
