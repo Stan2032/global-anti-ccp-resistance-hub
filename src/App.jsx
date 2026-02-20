@@ -46,6 +46,7 @@ const PanchenLamaProfile = lazy(() => import('./pages/profiles/PanchenLamaProfil
 const LiuXiaoboProfile = lazy(() => import('./pages/profiles/LiuXiaoboProfile'));
 const JoshuaWongProfile = lazy(() => import('./pages/profiles/JoshuaWongProfile'));
 const ProfilesIndex = lazy(() => import('./pages/profiles/ProfilesIndex'));
+const GuiMinhaiProfile = lazy(() => import('./pages/profiles/GuiMinhaiProfile'));
 
 // Simple Mobile-First Header
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
@@ -378,6 +379,7 @@ function AppLayout() {
               <Route path="/profiles/panchen-lama" element={<PanchenLamaProfile />} />
               <Route path="/profiles/liu-xiaobo" element={<LiuXiaoboProfile />} />
               <Route path="/profiles/joshua-wong" element={<JoshuaWongProfile />} />
+              <Route path="/profiles/gui-minhai" element={<GuiMinhaiProfile />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center max-w-md">

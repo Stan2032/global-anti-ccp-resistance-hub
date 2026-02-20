@@ -82,6 +82,10 @@ const ROUTE_META = {
     title: 'Profiles — Targeted by the CCP',
     description: 'Detailed profiles of individuals persecuted by the CCP: journalists, activists, religious leaders, and scholars. Includes Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, and more.',
   },
+  '/profiles/gui-minhai': {
+    title: 'Gui Minhai — Profile',
+    description: 'Detailed profile of Gui Minhai (桂民海): Swedish publisher abducted from Thailand in 2015, sentenced to 10 years in secret trial. Causeway Bay Books disappearances, forced confessions, UN WGAD ruling. Timeline, charges, CCP narrative analysis, and verified sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';

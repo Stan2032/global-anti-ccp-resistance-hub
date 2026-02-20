@@ -18,6 +18,7 @@ describe('ProfilesIndex', () => {
     expect(screen.getByText('Gedhun Choekyi Nyima')).toBeTruthy();
     expect(screen.getByText('Liu Xiaobo')).toBeTruthy();
     expect(screen.getByText('Joshua Wong')).toBeTruthy();
+    expect(screen.getByText('Gui Minhai')).toBeTruthy();
   });
 
   it('should render Chinese names for built profiles', () => {
@@ -38,13 +39,13 @@ describe('ProfilesIndex', () => {
   it('should render links for built profiles', () => {
     renderWithRouter(<ProfilesIndex />);
     const links = screen.getAllByText('Full profile available');
-    expect(links.length).toBe(5);
+    expect(links.length).toBe(6);
   });
 
   it('should show coming soon for unbuilt profiles', () => {
     renderWithRouter(<ProfilesIndex />);
     const comingSoon = screen.getAllByText('Profile coming soon');
-    expect(comingSoon.length).toBe(3);
+    expect(comingSoon.length).toBe(2);
   });
 
   it('should render the Coming Soon section', () => {
@@ -60,6 +61,6 @@ describe('ProfilesIndex', () => {
 
   it('should show profile count summary', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('5 profiles available')).toBeTruthy();
+    expect(screen.getByText('6 profiles available')).toBeTruthy();
   });
 });
