@@ -42,7 +42,7 @@ const OfflineModeManager = lazy(() => import('../components/OfflineModeManager')
 const WhistleblowerPortal = lazy(() => import('../components/WhistleblowerPortal'));
 
 const SecurityCenter = () => {
-  const [activeTab, setActiveTab] = useState('assessment')
+  const [activeTab, setActiveTab] = useState('assess')
   const [assessmentComplete, setAssessmentComplete] = useState(false)
   const [securityScore, setSecurityScore] = useState(0)
   const [categoryBreakdown, setCategoryBreakdown] = useState({ network: 0, device: 0, opsec: 0 })
@@ -201,27 +201,39 @@ const SecurityCenter = () => {
         </div>
       </motion.div>
 
-      {/* Tabs */}
-      <div className="flex space-x-4 border-b border-[#1c2a35] overflow-x-auto">
-        {['assessment', 'report', 'tools', 'guides', 'emergency', 'checklist', 'protection', 'offline', 'whistleblower'].map((tab) => (
+      {/* Tabs — consolidated from 9 to 5 */}
+      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+        {[
+          { id: 'assess', label: 'Assess' },
+          { id: 'tools', label: 'Tools' },
+          { id: 'guides', label: 'Guides' },
+          { id: 'protect', label: 'Protect' },
+          { id: 'whistleblower', label: 'Whistleblower' },
+        ].map((tab) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 font-medium transition-colors capitalize whitespace-nowrap ${
-              activeTab === tab
-                ? 'text-blue-400 border-b-2 border-blue-400'
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
                 : 'text-slate-400 hover:text-slate-300'
             }`}
           >
-            {tab}
+            {tab.label}
           </button>
         ))}
       </div>
 
-      {/* Assessment Tab */}
-      {activeTab === 'assessment' && (
-        <div className="space-y-6">
-          <Suspense fallback={<SectionLoader />}><SecurityQuiz /></Suspense>
+      {/* Assess Tab (was: assessment + checklist) */}
+      {activeTab === 'assess' && (
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><SecurityQuiz /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── safety_checklist ──</h2>
+            <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
+          </div>
         </div>
       )}
 
@@ -337,14 +349,7 @@ const SecurityCenter = () => {
         </div>
       )}
 
-      {/* Report Tab */}
-      {activeTab === 'report' && (
-        <div className="space-y-6">
-          <Suspense fallback={<SectionLoader />}><IncidentReportForm /></Suspense>
-        </div>
-      )}
-
-      {/* Tools Tab */}
+      {/* Tools Tab (was: tools + report) */}
       {activeTab === 'tools' && (
         <div className="space-y-6">
           <div>
@@ -376,10 +381,10 @@ const SecurityCenter = () => {
             {webrtcStatus === 'idle' && (
               <button
                 onClick={runWebRTCCheck}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 transition-colors"
+                className="flex items-center gap-2 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono transition-colors"
               >
                 <Play className="w-4 h-4" />
-                Run WebRTC Leak Test
+                $ run_webrtc_test
               </button>
             )}
 
@@ -407,7 +412,7 @@ const SecurityCenter = () => {
                 </p>
                 <button
                   onClick={runWebRTCCheck}
-                  className="mt-2 text-blue-400 hover:text-blue-300 text-sm underline"
+                  className="mt-2 text-[#4afa82] hover:text-[#7dffaa] text-sm underline"
                 >
                   Try again
                 </button>
@@ -449,7 +454,7 @@ const SecurityCenter = () => {
                     <p className="text-red-200 text-sm font-medium mb-2">How to fix this:</p>
                     <ul className="text-slate-400 text-sm space-y-1">
                       <li>• <strong>Firefox:</strong> Go to <code className="text-slate-300">about:config</code> and set <code className="text-slate-300">media.peerconnection.enabled</code> to <code className="text-slate-300">false</code></li>
-                      <li>• <strong>Chrome:</strong> Install the <a href="https://chrome.google.com/webstore/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">WebRTC Leak Prevent</a> extension</li>
+                      <li>• <strong>Chrome:</strong> Install the <a href="https://chrome.google.com/webstore/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml" target="_blank" rel="noopener noreferrer" className="text-[#4afa82] hover:underline">WebRTC Leak Prevent</a> extension</li>
                       <li>• <strong>Tor Browser:</strong> WebRTC is disabled by default — use Tor Browser for maximum protection</li>
                     </ul>
                   </div>
@@ -457,7 +462,7 @@ const SecurityCenter = () => {
 
                 <button
                   onClick={runWebRTCCheck}
-                  className="mt-3 text-blue-400 hover:text-blue-300 text-sm underline"
+                  className="mt-3 text-[#4afa82] hover:text-[#7dffaa] text-sm underline"
                 >
                   Run test again
                 </button>
@@ -479,13 +484,13 @@ const SecurityCenter = () => {
                   href={tool.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-blue-500 transition-colors group"
+                  className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#4afa82] transition-colors group"
                 >
                   <div className="flex items-start justify-between">
-                    <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
+                    <h4 className="text-white font-medium group-hover:text-[#4afa82] transition-colors">
                       {tool.name}
                     </h4>
-                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors flex-shrink-0 mt-0.5" />
+                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] transition-colors flex-shrink-0 mt-0.5" />
                   </div>
                   <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
                   <p className="text-slate-500 text-xs mt-2">Provider: {tool.provider}</p>
@@ -493,12 +498,18 @@ const SecurityCenter = () => {
               ))}
             </div>
           </div>
+
+          {/* Incident Report */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── incident_report ──</h2>
+            <Suspense fallback={<SectionLoader />}><IncidentReportForm /></Suspense>
+          </div>
         </div>
       )}
 
-      {/* Guides Tab */}
+      {/* Guides Tab (was: guides + emergency) */}
       {activeTab === 'guides' && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Security Training Guides</h2>
             <p className="text-slate-400 mb-6">
@@ -510,79 +521,72 @@ const SecurityCenter = () => {
               <GuideCard key={guide.id} guide={guide} />
             ))}
           </div>
-        </div>
-      )}
 
-      {/* Emergency Tab */}
-      {activeTab === 'emergency' && (
-        <div className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-red-900 border border-red-700 p-6"
-          >
-            <div className="flex items-start">
-              <AlertCircle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="text-red-100 font-semibold text-lg">Emergency Procedures</h3>
-                <p className="text-red-200 text-sm mt-1">
-                  If you are in immediate danger or your security has been compromised:
-                </p>
-                <ul className="text-red-200 text-sm mt-3 space-y-1 ml-4 list-disc">
-                  <li>Stop all online activity immediately</li>
-                  <li>Power off your device without saving</li>
-                  <li>Move to a safe location with a different device</li>
-                  <li>Contact emergency support below</li>
-                  <li>Do not attempt to retrieve data</li>
-                </ul>
+          {/* Emergency Section */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── emergency_procedures ──</h2>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-red-900 border border-red-700 p-6 mt-4"
+            >
+              <div className="flex items-start">
+                <AlertCircle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-red-100 font-semibold text-lg">Emergency Procedures</h3>
+                  <p className="text-red-200 text-sm mt-1">
+                    If you are in immediate danger or your security has been compromised:
+                  </p>
+                  <ul className="text-red-200 text-sm mt-3 space-y-1 ml-4 list-disc">
+                    <li>Stop all online activity immediately</li>
+                    <li>Power off your device without saving</li>
+                    <li>Move to a safe location with a different device</li>
+                    <li>Contact emergency support below</li>
+                    <li>Do not attempt to retrieve data</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-6">Emergency Contacts</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {emergencyContacts.map((contact) => (
-                <motion.div
-                  key={contact.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
-                >
-                  <h3 className="text-white font-semibold">{contact.name}</h3>
-                  <p className="text-slate-400 text-sm mt-1">{contact.description}</p>
-                  <p className="text-slate-500 text-xs mt-2 font-medium">{contact.type}</p>
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={contact.contact}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
+            <div className="mt-6">
+              <h3 className="text-xl font-bold text-white mb-4 font-mono">── emergency_contacts ──</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {emergencyContacts.map((contact) => (
+                  <div
+                    key={contact.id}
+                    className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
                   >
-                    <Phone className="w-4 h-4" />
-                    <span>Contact</span>
-                  </motion.a>
-                </motion.div>
-              ))}
+                    <h3 className="text-white font-semibold">{contact.name}</h3>
+                    <p className="text-slate-400 text-sm mt-1">{contact.description}</p>
+                    <p className="text-slate-500 text-xs mt-2 font-medium">{contact.type}</p>
+                    <a
+                      href={contact.contact}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 w-full bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono font-medium transition-colors flex items-center justify-center space-x-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>$ contact</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Safety Checklist Tab */}
-      {activeTab === 'checklist' && (
-        <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
-      )}
-
-      {/* Witness Protection Tab */}
-      {activeTab === 'protection' && (
-        <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
-      )}
-
-      {/* Offline Mode Tab */}
-      {activeTab === 'offline' && (
-        <Suspense fallback={<SectionLoader />}><OfflineModeManager /></Suspense>
+      {/* Protect Tab (was: protection + offline) */}
+      {activeTab === 'protect' && (
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── offline_mode ──</h2>
+            <Suspense fallback={<SectionLoader />}><OfflineModeManager /></Suspense>
+          </div>
+        </div>
       )}
 
       {/* Whistleblower Portal Tab */}

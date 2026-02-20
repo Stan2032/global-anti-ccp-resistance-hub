@@ -38,7 +38,7 @@ const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitat
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 
 const EducationalResources = () => {
-  const [activeTab, setActiveTab] = useState('modules')
+  const [activeTab, setActiveTab] = useState('learn')
   const [selectedModule, setSelectedModule] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -376,25 +376,33 @@ const EducationalResources = () => {
         </motion.div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex space-x-4 border-b border-[#1c2a35]">
-        {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress', 'citations', 'detector'].map((tab) => (
+      {/* Tabs — consolidated from 17 to 7 */}
+      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+        {[
+          { id: 'learn', label: 'Learn' },
+          { id: 'media', label: 'Media' },
+          { id: 'research', label: 'Research' },
+          { id: 'history', label: 'History' },
+          { id: 'tools', label: 'Tools' },
+          { id: 'faq', label: 'FAQ' },
+          { id: 'progress', label: 'Progress' },
+        ].map((tab) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 font-medium transition-colors capitalize ${
-              activeTab === tab
-                ? 'text-blue-400 border-b-2 border-blue-400'
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
                 : 'text-slate-400 hover:text-slate-300'
             }`}
           >
-            {tab}
+            {tab.label}
           </button>
         ))}
       </div>
 
-      {/* Modules Tab */}
-      {activeTab === 'modules' && (
+      {/* Learn Tab (was: modules + resources) */}
+      {activeTab === 'learn' && (
         <div className="space-y-6">
           {/* Search and Filter */}
           <div className="flex flex-col md:flex-row gap-4">
@@ -406,24 +414,22 @@ const EducationalResources = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
               {categories.map((cat) => (
-                <motion.button
+                <button
                   key={cat.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2 whitespace-nowrap transition-colors font-mono text-sm ${
                     selectedCategory === cat.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
+                      ? 'bg-[#4afa82]/10 text-[#4afa82] border border-[#4afa82]'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35] border border-[#1c2a35]'
                   }`}
                 >
                   {cat.name}
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>
@@ -486,79 +492,110 @@ const EducationalResources = () => {
                       <h3 className="text-white font-semibold mb-3">Topics Covered</h3>
                       <div className="flex flex-wrap gap-2">
                         {module.topics.map((topic, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-blue-900 text-blue-100 rounded-full text-sm">
+                          <span key={idx} className="px-3 py-1 bg-[#4afa82]/10 text-[#4afa82] text-sm font-mono">
                             {topic}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium transition-colors flex items-center justify-center space-x-2"
+                    <button
+                      className="mt-6 w-full bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-6 py-3 font-mono font-medium transition-colors flex items-center justify-center space-x-2"
                     >
                       <Play className="w-5 h-5" />
-                      <span>Start Course</span>
-                    </motion.button>
+                      <span>$ start_course</span>
+                    </button>
                   </>
                 )
               })()}
             </motion.div>
           )}
+
+          {/* Downloadable Resources */}
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── downloadable_resources ──</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {resources.map((resource) => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Resources Tab */}
-      {activeTab === 'resources' && (
-        <div className="space-y-6">
+      {/* Media Tab (was: books + documentaries + podcasts) */}
+      {activeTab === 'media' && (
+        <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-4">Downloadable Resources</h2>
-            <p className="text-slate-400 mb-6">
-              Access comprehensive guides, reports, and materials to support your activism
-            </p>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── books ──</h2>
+            <Suspense fallback={<SectionLoader />}><ReadingList /></Suspense>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {resources.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource} />
-            ))}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── documentaries ──</h2>
+            <Suspense fallback={<SectionLoader />}><DocumentaryList /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── podcasts ──</h2>
+            <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
           </div>
         </div>
       )}
 
-      {/* Research Tab */}
+      {/* Research Tab (was: research + sources + citations) */}
       {activeTab === 'research' && (
-        <Suspense fallback={<SectionLoader />}><ResearchPapers /></Suspense>
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><ResearchPapers /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── source_verification ──</h2>
+            <Suspense fallback={<SectionLoader />}><SourceVerification /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── citation_generator ──</h2>
+            <Suspense fallback={<SectionLoader />}><AcademicCitationGenerator /></Suspense>
+          </div>
+        </div>
       )}
 
-      {/* Books Tab */}
-      {activeTab === 'books' && (
-        <Suspense fallback={<SectionLoader />}><ReadingList /></Suspense>
+      {/* History Tab (was: stories + timeline + glossary) */}
+      {activeTab === 'history' && (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── interactive_timeline ──</h2>
+            <Suspense fallback={<SectionLoader />}><InteractiveTimeline /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── survivor_stories ──</h2>
+            <Suspense fallback={<SectionLoader />}><VictimStories /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── glossary ──</h2>
+            <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
+          </div>
+        </div>
       )}
 
-      {/* Documentaries Tab */}
-      {activeTab === 'documentaries' && (
-        <Suspense fallback={<SectionLoader />}><DocumentaryList /></Suspense>
-      )}
-
-      {/* Podcasts Tab */}
-      {activeTab === 'podcasts' && (
-        <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
-      )}
-
-      {/* Stories Tab */}
-      {activeTab === 'stories' && (
-        <Suspense fallback={<SectionLoader />}><VictimStories /></Suspense>
-      )}
-
-      {/* Glossary Tab */}
-      {activeTab === 'glossary' && (
-        <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
-      )}
-
-      {/* Timeline Tab */}
-      {activeTab === 'timeline' && (
-        <Suspense fallback={<SectionLoader />}><InteractiveTimeline /></Suspense>
+      {/* Tools Tab (was: quiz + phrases + disinfo + detector) */}
+      {activeTab === 'tools' && (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── knowledge_quiz ──</h2>
+            <Suspense fallback={<SectionLoader />}><KnowledgeQuiz /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── language_phrases ──</h2>
+            <Suspense fallback={<SectionLoader />}><LanguageGuide /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── disinfo_tracker ──</h2>
+            <Suspense fallback={<SectionLoader />}><DisinfoTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── ai_detector ──</h2>
+            <Suspense fallback={<SectionLoader />}><AIDisinfoDetector /></Suspense>
+          </div>
+        </div>
       )}
 
       {/* FAQ Tab */}
@@ -566,37 +603,9 @@ const EducationalResources = () => {
         <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
       )}
 
-      {/* Knowledge Quiz Tab */}
-      {activeTab === 'quiz' && (
-        <Suspense fallback={<SectionLoader />}><KnowledgeQuiz /></Suspense>
-      )}
-
-      {/* Language Phrases Tab */}
-      {activeTab === 'phrases' && (
-        <Suspense fallback={<SectionLoader />}><LanguageGuide /></Suspense>
-      )}
-
-      {activeTab === 'disinfo' && (
-        <Suspense fallback={<SectionLoader />}><DisinfoTracker /></Suspense>
-      )}
-
-      {activeTab === 'sources' && (
-        <Suspense fallback={<SectionLoader />}><SourceVerification /></Suspense>
-      )}
-
       {/* Reading Progress Tab */}
       {activeTab === 'progress' && (
         <Suspense fallback={<SectionLoader />}><ReadingProgress /></Suspense>
-      )}
-
-      {/* Citation Generator Tab */}
-      {activeTab === 'citations' && (
-        <Suspense fallback={<SectionLoader />}><AcademicCitationGenerator /></Suspense>
-      )}
-
-      {/* AI Disinfo Detector Tab */}
-      {activeTab === 'detector' && (
-        <Suspense fallback={<SectionLoader />}><AIDisinfoDetector /></Suspense>
       )}
     </div>
   )
