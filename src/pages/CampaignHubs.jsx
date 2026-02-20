@@ -166,7 +166,7 @@ const CampaignHubs = () => {
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedCampaign === campaign.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
-          : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
       <div className="flex items-start justify-between mb-4">
@@ -193,7 +193,7 @@ const CampaignHubs = () => {
           <span className="text-xs text-slate-400">Progress</span>
           <span className="text-xs text-slate-300">{campaign.progress}%</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-2">
+        <div className="w-full bg-[#1c2a35] rounded-full h-2">
           <div
             className="bg-blue-500 h-2 rounded-full transition-all"
             style={{ width: `${campaign.progress}%` }}
@@ -234,7 +234,7 @@ const CampaignHubs = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Active Campaigns</p>
           <p className="text-2xl font-bold text-white mt-1">6</p>
@@ -244,7 +244,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Total Supporters</p>
           <p className="text-2xl font-bold text-white mt-1">312,605</p>
@@ -254,7 +254,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Countries Reached</p>
           <p className="text-2xl font-bold text-white mt-1">89</p>
@@ -264,7 +264,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Average Progress</p>
           <p className="text-2xl font-bold text-white mt-1">58%</p>
@@ -281,7 +281,7 @@ const CampaignHubs = () => {
           placeholder="Search campaigns..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
         />
       </div>
 
@@ -302,7 +302,7 @@ const CampaignHubs = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-slate-800 rounded-lg border border-slate-700 p-6 sticky top-20"
+                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 sticky top-20"
                 >
                   <h2 className="text-xl font-bold text-white mb-4">{campaign.title}</h2>
 
@@ -321,7 +321,7 @@ const CampaignHubs = () => {
                     </div>
                   </div>
 
-                  <div className="mb-6 pb-6 border-b border-slate-700">
+                  <div className="mb-6 pb-6 border-b border-[#1c2a35]">
                     <p className="text-slate-400 text-xs font-medium mb-3">How You Can Help</p>
                     <div className="space-y-2">
                       {campaign.actions.map((action, idx) => (
@@ -344,7 +344,7 @@ const CampaignHubs = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                      className="w-full bg-[#1c2a35] hover:bg-[#1c2a35] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
                     >
                       <Share2 className="w-5 h-5" />
                       <span>Share</span>
@@ -354,7 +354,7 @@ const CampaignHubs = () => {
               )
             })()
           ) : (
-            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 text-center">
+            <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 text-center">
               <Flag className="w-12 h-12 text-slate-600 mx-auto mb-4" />
               <p className="text-slate-400">Select a campaign to view details</p>
             </div>
@@ -363,7 +363,7 @@ const CampaignHubs = () => {
       </div>
 
       {/* Campaign Highlights */}
-      <div className="mt-12 pt-8 border-t border-slate-700">
+      <div className="mt-12 pt-8 border-t border-[#1c2a35]">
         <h2 className="text-2xl font-bold text-white mb-6">Campaign Highlights</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div

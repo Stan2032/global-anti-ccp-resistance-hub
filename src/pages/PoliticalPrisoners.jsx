@@ -141,7 +141,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02 }}
-      className="bg-slate-800 rounded-lg overflow-hidden shadow-lg cursor-pointer border border-slate-700 hover:border-red-500 transition-all"
+      className="bg-[#111820] rounded-lg overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all"
       onClick={() => onClick(prisoner)}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(prisoner) } }}
       role="button"
@@ -184,7 +184,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         </div>
         
         {prisoner.awards && prisoner.awards.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-slate-700">
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <p className="text-xs text-gray-500">Awards:</p>
             <div className="flex flex-wrap gap-1 mt-1">
               {prisoner.awards.map((award, i) => (
@@ -197,7 +197,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         )}
         
         {prisoner.source && prisoner.source.url && (
-          <div className="mt-4 pt-4 border-t border-slate-700">
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <SourceAttribution source={prisoner.source} compact={true} />
           </div>
         )}
@@ -223,7 +223,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-slate-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-[#111820] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6">
@@ -334,14 +334,14 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             )}
           </div>
           
-          <div className="mt-6 pt-6 border-t border-slate-700">
+          <div className="mt-6 pt-6 border-t border-[#1c2a35]">
             <h3 className="text-sm font-semibold text-gray-400 uppercase mb-3">Take Action</h3>
             <div className="flex flex-wrap gap-2">
               <a
                 href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background} #FreePoliticalPrisoners #HumanRights`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                className="bg-[#22d3ee]/20 hover:bg-[#22d3ee]/30 text-[#22d3ee] border border-[#22d3ee]/30 px-4 py-2 font-mono text-sm transition-colors"
               >
                 Share on Twitter
               </a>
@@ -349,7 +349,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
                 href="https://www.amnesty.org/en/get-involved/write-for-rights/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                className="bg-[#fbbf24]/20 hover:bg-[#fbbf24]/30 text-[#fbbf24] border border-[#fbbf24]/30 px-4 py-2 font-mono text-sm transition-colors"
               >
                 Write for Rights
               </a>
@@ -357,7 +357,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
                 href="https://www.cecc.gov/resources/political-prisoner-database"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                className="bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 rounded-lg text-sm transition-colors"
               >
                 CECC Database
               </a>
@@ -386,7 +386,7 @@ const PoliticalPrisoners = () => {
   };
   
   return (
-    <div className="min-h-screen bg-slate-900 py-8 px-4">
+    <div className="space-y-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -404,19 +404,19 @@ const PoliticalPrisoners = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-slate-800 rounded-lg p-4 text-center">
+          <div className="bg-[#111820] rounded-lg p-4 text-center">
             <p className="text-3xl font-bold text-white">{stats.total}</p>
             <p className="text-gray-400 text-sm">Documented Cases</p>
           </div>
-          <div className="bg-slate-800 rounded-lg p-4 text-center">
+          <div className="bg-[#111820] rounded-lg p-4 text-center">
             <p className="text-3xl font-bold text-red-500">{stats.imprisoned}</p>
             <p className="text-gray-400 text-sm">Currently Imprisoned</p>
           </div>
-          <div className="bg-slate-800 rounded-lg p-4 text-center">
+          <div className="bg-[#111820] rounded-lg p-4 text-center">
             <p className="text-3xl font-bold text-yellow-500">{stats.disappeared}</p>
             <p className="text-gray-400 text-sm">Disappeared</p>
           </div>
-          <div className="bg-slate-800 rounded-lg p-4 text-center">
+          <div className="bg-[#111820] rounded-lg p-4 text-center">
             <p className="text-3xl font-bold text-orange-500">{stats.critical}</p>
             <p className="text-gray-400 text-sm">Critical Urgency</p>
           </div>
@@ -446,8 +446,8 @@ const PoliticalPrisoners = () => {
               onClick={() => setFilter(status)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === status
-                  ? 'bg-red-600 text-white'
-                  : 'bg-slate-800 text-gray-300 hover:bg-slate-700'
+                  ? 'bg-red-900/30 text-red-300 border border-red-500'
+                  : 'bg-[#111820] text-gray-300 hover:bg-[#1c2a35]'
               }`}
             >
               {status === 'ALL' ? 'All Cases' : status}
@@ -477,14 +477,14 @@ const PoliticalPrisoners = () => {
         </div>
         
         {/* Resources */}
-        <div className="mt-12 bg-slate-800 rounded-lg p-6">
+        <div className="mt-12 bg-[#111820] rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4">Additional Resources</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <a
               href="https://www.cecc.gov/resources/political-prisoner-database"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CECC Database</h3>
               <p className="text-gray-400 text-sm">US Congressional database of 10,000+ political prisoners</p>
@@ -493,7 +493,7 @@ const PoliticalPrisoners = () => {
               href="https://duihua.org/resources/political-prisoners-database/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Dui Hua Foundation</h3>
               <p className="text-gray-400 text-sm">50,000+ prisoner records since 1980</p>
@@ -502,7 +502,7 @@ const PoliticalPrisoners = () => {
               href="https://shahit.biz/eng/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Xinjiang Victims Database</h3>
               <p className="text-gray-400 text-sm">35,000+ documented Uyghur detainees</p>

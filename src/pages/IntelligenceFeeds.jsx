@@ -35,18 +35,18 @@ const IntelligenceFeeds = () => {
   // Get source badge color
   const getSourceColor = (source) => {
     const colors = {
-      icij: 'bg-purple-900/50 text-purple-300 border-purple-700',
-      rfa: 'bg-blue-900/50 text-blue-300 border-blue-700',
-      hkfp: 'bg-green-900/50 text-green-300 border-green-700',
-      aspi: 'bg-orange-900/50 text-orange-300 border-orange-700',
+      icij: 'bg-purple-900/20 text-purple-300 border-purple-700/50',
+      rfa: 'bg-blue-900/20 text-blue-300 border-blue-700/50',
+      hkfp: 'bg-[#4afa82]/10 text-[#4afa82] border-[#4afa82]/30',
+      aspi: 'bg-orange-900/20 text-orange-300 border-orange-700/50',
     };
-    return colors[source] || 'bg-slate-700 text-slate-300 border-slate-600';
+    return colors[source] || 'bg-[#1c2a35] text-slate-300 border-[#2a9a52]';
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 sm:p-8 text-white">
+      <div className="bg-[#111820] border border-[#1c2a35] rounded-xl p-6 sm:p-8 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">Live Intelligence Feed</h1>
@@ -73,7 +73,7 @@ const IntelligenceFeeds = () => {
         <button
           onClick={refresh}
           disabled={loading}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-[#4afa82]/20 hover:bg-[#4afa82]/30 disabled:bg-[#111820] text-[#4afa82] border border-[#4afa82]/30 rounded-lg font-medium transition-colors flex items-center gap-2"
         >
           {loading ? (
             <>
@@ -104,7 +104,7 @@ const IntelligenceFeeds = () => {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
         
@@ -114,8 +114,8 @@ const IntelligenceFeeds = () => {
             onClick={() => setSelectedSource('all')}
             className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               selectedSource === 'all'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             All Sources
@@ -126,8 +126,8 @@ const IntelligenceFeeds = () => {
               onClick={() => setSelectedSource(key)}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedSource === key
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {source.name}
@@ -139,7 +139,7 @@ const IntelligenceFeeds = () => {
       {/* Source Info Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {Object.entries(sources).map(([key, source]) => (
-          <div key={key} className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+          <div key={key} className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="font-semibold text-white">{source.name}</span>
               <span className="px-2 py-0.5 bg-green-900/50 text-green-400 text-xs rounded-full border border-green-700">
@@ -171,10 +171,10 @@ const IntelligenceFeeds = () => {
       {loading && feeds.length === 0 && (
         <div className="space-y-4">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-4 animate-pulse">
-              <div className="h-4 bg-slate-700 rounded w-3/4 mb-3"></div>
-              <div className="h-3 bg-slate-700 rounded w-full mb-2"></div>
-              <div className="h-3 bg-slate-700 rounded w-2/3"></div>
+            <div key={i} className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 animate-pulse">
+              <div className="h-4 bg-[#1c2a35] rounded w-3/4 mb-3"></div>
+              <div className="h-3 bg-[#1c2a35] rounded w-full mb-2"></div>
+              <div className="h-3 bg-[#1c2a35] rounded w-2/3"></div>
             </div>
           ))}
         </div>
@@ -182,7 +182,7 @@ const IntelligenceFeeds = () => {
 
       {/* Feed Items */}
       {!loading && filteredFeeds.length === 0 && (
-        <div className="text-center py-12 bg-slate-800 border border-slate-700 rounded-lg">
+        <div className="text-center py-12 bg-[#111820] border border-[#1c2a35] rounded-lg">
           <p className="text-slate-400">No articles found matching your criteria</p>
         </div>
       )}
@@ -191,7 +191,7 @@ const IntelligenceFeeds = () => {
         {filteredFeeds.map((item) => (
           <article
             key={item.id}
-            className="bg-slate-800 border border-slate-700 rounded-lg p-4 sm:p-6 hover:border-slate-600 transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
           >
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
@@ -229,12 +229,12 @@ const IntelligenceFeeds = () => {
                 Read full article →
               </a>
               <div className="flex items-center gap-2">
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] rounded-lg transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                   </svg>
                 </button>
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] rounded-lg transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                   </svg>
@@ -246,7 +246,7 @@ const IntelligenceFeeds = () => {
       </div>
 
       {/* Stats Footer */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+      <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
         <p className="text-slate-400 text-sm">
           Showing {filteredFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
         </p>

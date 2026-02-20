@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -136,8 +136,8 @@ const ThreatCard = ({ threat, isSelected, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className={`bg-slate-800 rounded-lg p-6 cursor-pointer border-2 transition-all ${
-        isSelected ? 'border-red-500' : 'border-slate-700 hover:border-slate-500'
+      className={`bg-[#111820] rounded-lg p-6 cursor-pointer border-2 transition-all ${
+        isSelected ? 'border-red-500' : 'border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
       onClick={onClick}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
@@ -164,7 +164,7 @@ const ThreatDetail = ({ threat }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg p-6 mt-6"
+      className="bg-[#111820] rounded-lg p-6 mt-6"
     >
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -200,7 +200,7 @@ const ThreatDetail = ({ threat }) => {
           <h3 className="text-lg font-semibold text-white mb-3">Potential Scenarios</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {threat.scenarios.map((scenario, i) => (
-              <div key={i} className="bg-slate-700 rounded-lg p-4">
+              <div key={i} className="bg-[#1c2a35] rounded-lg p-4">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-semibold text-white">{scenario.name}</h4>
                   <span className={`text-xs px-2 py-1 rounded ${
@@ -225,7 +225,7 @@ const ThreatDetail = ({ threat }) => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-gray-400 border-b border-slate-700">
+                <tr className="text-left text-gray-400 border-b border-[#1c2a35]">
                   <th className="pb-2">Island</th>
                   <th className="pb-2">Status</th>
                   <th className="pb-2">Military Features</th>
@@ -233,7 +233,7 @@ const ThreatDetail = ({ threat }) => {
               </thead>
               <tbody>
                 {threat.artificialIslands.map((island, i) => (
-                  <tr key={i} className="border-b border-slate-700">
+                  <tr key={i} className="border-b border-[#1c2a35]">
                     <td className="py-2 text-white">{island.name}</td>
                     <td className="py-2">
                       <span className="bg-red-900 text-red-300 text-xs px-2 py-0.5 rounded">
@@ -255,7 +255,7 @@ const ThreatDetail = ({ threat }) => {
           <h3 className="text-lg font-semibold text-white mb-3">Debt Trap Diplomacy Cases</h3>
           <div className="grid md:grid-cols-3 gap-4">
             {threat.debtTrapCases.map((case_, i) => (
-              <div key={i} className="bg-slate-700 rounded-lg p-4">
+              <div key={i} className="bg-[#1c2a35] rounded-lg p-4">
                 <h4 className="font-semibold text-white">{case_.country}</h4>
                 <p className="text-gray-400 text-sm">{case_.project}</p>
                 <p className="text-red-400 text-sm mt-2">{case_.outcome}</p>
@@ -271,7 +271,7 @@ const ThreatDetail = ({ threat }) => {
           <h3 className="text-lg font-semibold text-white mb-3">Affected Countries</h3>
           <div className="flex flex-wrap gap-2">
             {threat.affectedCountries.map((country, i) => (
-              <span key={i} className="bg-slate-700 text-gray-300 px-3 py-1 rounded-full text-sm">
+              <span key={i} className="bg-[#1c2a35] text-gray-300 px-3 py-1 rounded-full text-sm">
                 {country}
               </span>
             ))}
@@ -294,7 +294,7 @@ const RegionalThreats = () => {
   const [selectedThreat, setSelectedThreat] = useState('taiwan');
   
   return (
-    <div className="min-h-screen bg-slate-900 py-8 px-4">
+    <div className="min-h-screen bg-[#0a0e14] py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -378,14 +378,14 @@ const RegionalThreats = () => {
         </AnimatePresence>
         
         {/* Resources */}
-        <div className="mt-12 bg-slate-800 rounded-lg p-6">
+        <div className="mt-12 bg-[#111820] rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4">Intelligence Sources</h2>
           <div className="grid md:grid-cols-4 gap-4">
             <a
               href="https://www.csis.org/programs/china-power-project"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CSIS China Power</h3>
               <p className="text-gray-400 text-sm">Interactive analysis of China's military capabilities</p>
@@ -394,7 +394,7 @@ const RegionalThreats = () => {
               href="https://xjdp.aspi.org.au"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ASPI Xinjiang Data</h3>
               <p className="text-gray-400 text-sm">Satellite imagery of detention facilities</p>
@@ -403,7 +403,7 @@ const RegionalThreats = () => {
               href="https://understandingwar.org/research/china-taiwan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ISW China-Taiwan</h3>
               <p className="text-gray-400 text-sm">Daily updates on cross-strait tensions</p>
@@ -412,7 +412,7 @@ const RegionalThreats = () => {
               href="https://amti.csis.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Asia Maritime Initiative</h3>
               <p className="text-gray-400 text-sm">South China Sea monitoring</p>

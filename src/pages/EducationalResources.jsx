@@ -17,7 +17,7 @@ import {
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -236,7 +236,7 @@ const EducationalResources = () => {
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedModule === module.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
-          : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
       <div className="flex items-start justify-between mb-3">
@@ -256,7 +256,7 @@ const EducationalResources = () => {
             <span className="text-xs text-slate-400">Progress</span>
             <span className="text-xs text-slate-300">{module.progress}%</span>
           </div>
-          <div className="w-full bg-slate-700 rounded-full h-2">
+          <div className="w-full bg-[#1c2a35] rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full transition-all"
               style={{ width: `${module.progress}%` }}
@@ -288,7 +288,7 @@ const EducationalResources = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg border border-slate-700 p-4 hover:border-slate-600 transition-colors"
+      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
@@ -338,7 +338,7 @@ const EducationalResources = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Total Courses</p>
           <p className="text-2xl font-bold text-white mt-1">8</p>
@@ -348,7 +348,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Active Students</p>
           <p className="text-2xl font-bold text-white mt-1">18,728</p>
@@ -358,7 +358,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Resources</p>
           <p className="text-2xl font-bold text-white mt-1">5</p>
@@ -368,7 +368,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Certifications</p>
           <p className="text-2xl font-bold text-white mt-1">2,341</p>
@@ -377,7 +377,7 @@ const EducationalResources = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700">
+      <div className="flex space-x-4 border-b border-[#1c2a35]">
         {['modules', 'resources', 'research', 'books', 'documentaries', 'podcasts', 'stories', 'glossary', 'timeline', 'faq', 'quiz', 'phrases', 'disinfo', 'sources', 'progress', 'citations', 'detector'].map((tab) => (
           <button
             key={tab}
@@ -406,7 +406,7 @@ const EducationalResources = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -419,7 +419,7 @@ const EducationalResources = () => {
                   className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
                     selectedCategory === cat.id
                       ? 'bg-blue-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
                   {cat.name}
@@ -440,7 +440,7 @@ const EducationalResources = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
             >
               {(() => {
                 const module = modules.find(m => m.id === selectedModule)

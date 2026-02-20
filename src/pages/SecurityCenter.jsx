@@ -30,7 +30,7 @@ import {
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -100,7 +100,7 @@ const SecurityCenter = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors"
+      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -146,7 +146,7 @@ const SecurityCenter = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors"
+      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -202,7 +202,7 @@ const SecurityCenter = () => {
       </motion.div>
 
       {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700 overflow-x-auto">
+      <div className="flex space-x-4 border-b border-[#1c2a35] overflow-x-auto">
         {['assessment', 'report', 'tools', 'guides', 'emergency', 'checklist', 'protection', 'offline', 'whistleblower'].map((tab) => (
           <button
             key={tab}
@@ -230,7 +230,7 @@ const SecurityCenter = () => {
         <div className="space-y-6">
           {!assessmentComplete ? (
             <>
-              <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6">
                 <h2 className="text-2xl font-bold text-white mb-4">Security Assessment</h2>
                 <p className="text-slate-400 mb-6">
                   Answer the following questions to evaluate your current security posture. This assessment is anonymous and results are not stored.
@@ -243,7 +243,7 @@ const SecurityCenter = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="bg-slate-700 rounded-lg p-4"
+                      className="bg-[#1c2a35] rounded-lg p-4"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <p className="text-white font-medium">{q.question}</p>
@@ -256,7 +256,7 @@ const SecurityCenter = () => {
                         <button onClick={() => handleAnswer(q.id, 'no')} className={`px-4 py-2 ${answers[q.id] === 'no' ? 'bg-red-700 ring-2 ring-red-400' : 'bg-red-900 hover:bg-red-800'} text-red-100 rounded-lg transition-colors text-sm font-medium`}>
                           No
                         </button>
-                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-slate-500 ring-2 ring-slate-300' : 'bg-slate-600 hover:bg-slate-500'} text-slate-100 rounded-lg transition-colors text-sm font-medium`}>
+                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-[#1c2a35] ring-2 ring-[#4afa82]' : 'bg-[#1c2a35] hover:bg-[#111820]'} text-slate-100 rounded-lg transition-colors text-sm font-medium`}>
                           Unsure
                         </button>
                       </div>
@@ -278,7 +278,7 @@ const SecurityCenter = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-8"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-8"
             >
               <div className="text-center mb-8">
                 <div className="w-32 h-32 mx-auto mb-6 relative">
@@ -319,15 +319,15 @@ const SecurityCenter = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-slate-700 rounded-lg p-4">
+                <div className="bg-[#1c2a35] rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Network Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.network}%</p>
                 </div>
-                <div className="bg-slate-700 rounded-lg p-4">
+                <div className="bg-[#1c2a35] rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Device Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.device}%</p>
                 </div>
-                <div className="bg-slate-700 rounded-lg p-4">
+                <div className="bg-[#1c2a35] rounded-lg p-4">
                   <p className="text-slate-400 text-sm">Operational Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.opsec}%</p>
                 </div>
@@ -360,7 +360,7 @@ const SecurityCenter = () => {
           </div>
 
           {/* WebRTC Leak Test — runs entirely in your browser */}
-          <div className="mt-8 border-t border-slate-700 pt-8">
+          <div className="mt-8 border-t border-[#1c2a35] pt-8">
             <div className="flex items-center gap-2 mb-2">
               {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
               {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
@@ -391,7 +391,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'unsupported' && (
-              <div className="bg-slate-800 border border-slate-600 rounded-lg p-4">
+              <div className="bg-[#111820] border border-[#2a9a52] rounded-lg p-4">
                 <p className="text-slate-400 text-sm">
                   Your browser does not support WebRTC, which means it cannot leak your IP through this method.
                   This is actually a good thing for privacy.
@@ -400,7 +400,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'error' && (
-              <div className="bg-slate-800 border border-yellow-700 rounded-lg p-4">
+              <div className="bg-[#111820] border border-yellow-700 rounded-lg p-4">
                 <p className="text-yellow-400 text-sm">
                   Could not complete the WebRTC leak test. Your browser may be blocking WebRTC
                   (which is good for privacy) or an unexpected error occurred.
@@ -435,7 +435,7 @@ const SecurityCenter = () => {
                     <p className="text-slate-400 text-xs font-medium">Detected addresses:</p>
                     {leakedIPs.map((ip, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm">
-                        <span className={`px-1.5 py-0.5 rounded text-xs ${ip.type === 'public' ? 'bg-red-800 text-red-200' : 'bg-slate-700 text-slate-300'}`}>
+                        <span className={`px-1.5 py-0.5 rounded text-xs ${ip.type === 'public' ? 'bg-red-800 text-red-200' : 'bg-[#1c2a35] text-slate-300'}`}>
                           {ip.type}
                         </span>
                         <code className="text-slate-300 font-mono text-xs">{ip.address}</code>
@@ -466,7 +466,7 @@ const SecurityCenter = () => {
           </div>
 
           {/* Verify Your Connection */}
-          <div className="mt-8 border-t border-slate-700 pt-8">
+          <div className="mt-8 border-t border-[#1c2a35] pt-8">
             <h3 className="text-xl font-bold text-white mb-2">Verify Your Connection</h3>
             <p className="text-slate-400 text-sm mb-4">
               This platform cannot detect whether you are using a VPN or Tor. Use these reputable 
@@ -479,7 +479,7 @@ const SecurityCenter = () => {
                   href={tool.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-slate-800 rounded-lg border border-slate-700 p-4 hover:border-blue-500 transition-colors group"
+                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4 hover:border-blue-500 transition-colors group"
                 >
                   <div className="flex items-start justify-between">
                     <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
@@ -547,7 +547,7 @@ const SecurityCenter = () => {
                   key={contact.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors"
+                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
                 >
                   <h3 className="text-white font-semibold">{contact.name}</h3>
                   <p className="text-slate-400 text-sm mt-1">{contact.description}</p>

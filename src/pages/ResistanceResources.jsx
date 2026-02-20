@@ -5,7 +5,7 @@ import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckC
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -30,7 +30,7 @@ const ResistanceResources = () => {
       link: '/security',
       linkText: 'Go to Security Center',
       highlights: ['Tor Browser', 'Signal', 'ProtonVPN', 'Tails OS', 'Security Quiz'],
-      color: 'from-blue-600 to-blue-800'
+      color: 'border-l-2 border-l-[#22d3ee]'
     },
     {
       title: 'Take Action',
@@ -39,7 +39,7 @@ const ResistanceResources = () => {
       link: '/take-action',
       linkText: 'Go to Take Action',
       highlights: ['Contact Representatives', 'Sign Petitions', 'Boycott Guide', 'Success Stories'],
-      color: 'from-red-600 to-red-800'
+      color: 'border-l-2 border-l-red-500'
     },
     {
       title: 'Organizations Directory',
@@ -48,7 +48,7 @@ const ResistanceResources = () => {
       link: '/directory',
       linkText: 'Browse Directory',
       highlights: ['24 Organizations', 'IPAC Members', 'NGOs', 'Research Institutes'],
-      color: 'from-green-600 to-green-800'
+      color: 'border-l-2 border-l-[#4afa82]'
     },
     {
       title: 'Educational Resources',
@@ -57,7 +57,7 @@ const ResistanceResources = () => {
       link: '/education',
       linkText: 'Go to Education Center',
       highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
-      color: 'from-purple-600 to-purple-800'
+      color: 'border-l-2 border-l-purple-500'
     },
     {
       title: 'Intelligence & News',
@@ -66,7 +66,7 @@ const ResistanceResources = () => {
       link: '/intelligence',
       linkText: 'View Intelligence Feeds',
       highlights: ['Live RSS Feeds', 'ASPI', 'ICIJ', 'Radio Free Asia'],
-      color: 'from-orange-600 to-orange-800'
+      color: 'border-l-2 border-l-[#fbbf24]'
     },
     {
       title: 'Community Support',
@@ -75,7 +75,7 @@ const ResistanceResources = () => {
       link: '/community',
       linkText: 'Join Community',
       highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
-      color: 'from-teal-600 to-teal-800'
+      color: 'border-l-2 border-l-teal-500'
     }
   ];
 
@@ -147,7 +147,7 @@ const ResistanceResources = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700"
+        className="bg-[#111820] rounded-xl p-6 border border-[#1c2a35]"
       >
         <h1 className="text-3xl font-bold text-white mb-2">Resource Hub</h1>
         <p className="text-slate-300">
@@ -177,9 +177,9 @@ const ResistanceResources = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-600 transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] rounded-xl overflow-hidden hover:border-[#2a9a52] transition-colors"
           >
-            <div className={`bg-gradient-to-r ${section.color} p-4`}>
+            <div className={`bg-[#111820] ${section.color} p-4`}>
               <div className="flex items-center gap-3">
                 <section.Icon className="w-8 h-8 text-white" />
                 <h2 className="text-xl font-bold text-white">{section.title}</h2>
@@ -189,14 +189,14 @@ const ResistanceResources = () => {
               <p className="text-slate-300 text-sm">{section.description}</p>
               <div className="flex flex-wrap gap-2">
                 {section.highlights.map(highlight => (
-                  <span key={highlight} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
+                  <span key={highlight} className="px-2 py-1 bg-[#1c2a35] rounded text-xs text-slate-300">
                     {highlight}
                   </span>
                 ))}
               </div>
               <Link
                 to={section.link}
-                className="block w-full text-center py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-white font-medium transition-colors"
+                className="block w-full text-center py-2 bg-[#1c2a35] hover:bg-[#1c2a35] rounded-lg text-white font-medium transition-colors"
               >
                 {section.linkText} →
               </Link>
@@ -206,7 +206,7 @@ const ResistanceResources = () => {
       </div>
 
       {/* Quick Documentation Tools - Unique to this page */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] rounded-xl p-6">
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <Wrench className="w-5 h-5" /> Quick Documentation Tools
         </h2>
@@ -220,7 +220,7 @@ const ResistanceResources = () => {
               href={tool.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
+              className="flex items-start gap-3 p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] rounded-lg transition-colors"
             >
               <tool.icon className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
               <div>
@@ -242,7 +242,7 @@ const ResistanceResources = () => {
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {emergencyContacts.map(contact => (
-            <div key={contact.name} className="bg-slate-800/50 rounded-lg p-4">
+            <div key={contact.name} className="bg-[#111820]/50 rounded-lg p-4">
               <h3 className="font-bold text-white text-sm mb-1">{contact.name}</h3>
               <p className="text-xs text-slate-400 mb-2">{contact.description}</p>
               {contact.phone && (

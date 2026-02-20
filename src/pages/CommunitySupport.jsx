@@ -22,7 +22,7 @@ import {
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -185,7 +185,7 @@ const CommunitySupport = () => {
       className={`p-6 rounded-lg border cursor-pointer transition-all ${
         selectedRequest === request.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
-          : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
       <div className="flex items-start justify-between mb-3">
@@ -227,7 +227,7 @@ const CommunitySupport = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors"
+      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -277,7 +277,7 @@ const CommunitySupport = () => {
         <p className="text-slate-400 text-xs font-medium mb-2">Languages</p>
         <div className="flex flex-wrap gap-1">
           {volunteer.languages.map((lang, idx) => (
-            <span key={idx} className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs">
+            <span key={idx} className="px-2 py-1 bg-[#1c2a35] text-slate-300 rounded text-xs">
               {lang}
             </span>
           ))}
@@ -324,7 +324,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -340,7 +340,7 @@ const CommunitySupport = () => {
       <p className="text-xs text-slate-500 text-center -mt-2">Statistics shown are illustrative targets — this platform is not yet tracking live community data.</p>
 
       {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700">
+      <div className="flex space-x-4 border-b border-[#1c2a35]">
         {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'memorial', 'solidarity', 'signup', 'events', 'map'].map((tab) => (
           <button
             key={tab}
@@ -369,7 +369,7 @@ const CommunitySupport = () => {
                 placeholder="Search requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -382,7 +382,7 @@ const CommunitySupport = () => {
                   className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm ${
                     selectedCategory === cat.id
                       ? 'bg-blue-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
                   {cat.name}
@@ -408,7 +408,7 @@ const CommunitySupport = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-slate-800 rounded-lg border border-slate-700 p-6 sticky top-20"
+                      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 sticky top-20"
                     >
                       <h2 className="text-xl font-bold text-white mb-4">{request.title}</h2>
                       <p className="text-slate-400 text-sm mb-4">{request.description}</p>
@@ -447,7 +447,7 @@ const CommunitySupport = () => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-[#1c2a35] hover:bg-[#1c2a35] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
                         >
                           <MessageCircle className="w-5 h-5" />
                           <span>Message</span>
@@ -457,7 +457,7 @@ const CommunitySupport = () => {
                   )
                 })()
               ) : (
-                <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 text-center">
+                <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 text-center">
                   <Heart className="w-12 h-12 text-slate-600 mx-auto mb-4" />
                   <p className="text-slate-400">Select a request to view details</p>
                 </div>
@@ -504,7 +504,7 @@ const CommunitySupport = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Emergency Relocation Guide</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -524,7 +524,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Trauma Support Resources</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -544,7 +544,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Legal Support Directory</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -564,7 +564,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Fundraising Toolkit</h3>
               <p className="text-slate-400 text-sm mb-4">
