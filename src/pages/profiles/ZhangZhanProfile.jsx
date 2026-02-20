@@ -100,19 +100,19 @@ const TIMELINE = [
     sourceUrl: 'https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/',
   },
   {
+    date: '2024-10',
+    year: '2024',
+    title: 'Family reported forced-feeding tube observed',
+    detail: 'Family reported forced-feeding tube observed during a visit, confirming that Zhang Zhan had resumed her hunger strike in protest of her re-imprisonment.',
+    category: 'persecution',
+  },
+  {
     date: '2025-09',
     year: '2025',
     title: 'Sentenced to a second 4-year term',
     detail: 'Sentenced to a second 4-year term by Shanghai Pudong New Area People\'s Court for "picking quarrels and provoking trouble." The OHCHR called the second sentencing "deeply disturbing." The repeated use of the same vague charge demonstrates the CCP\'s pattern of using broad criminal statutes to silence persistent critics.',
     category: 'persecution',
     sourceUrl: 'https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing',
-  },
-  {
-    date: '2024-10',
-    year: '2024',
-    title: 'Family reported forced-feeding tube observed',
-    detail: 'Family reported forced-feeding tube observed during a visit, confirming that Zhang Zhan had resumed her hunger strike in protest of her re-imprisonment.',
-    category: 'persecution',
   },
   {
     date: '2025',
