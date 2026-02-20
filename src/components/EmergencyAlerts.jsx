@@ -167,9 +167,9 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                 <button
                   onClick={() => dismissAlert(alert.id)}
                   className="text-slate-500 hover:text-slate-300 ml-4 font-mono"
-                  title="Dismiss alert"
+                  aria-label="Dismiss alert"
                 >
-                  ✕
+                  <span aria-hidden="true">✕</span>
                 </button>
               </div>
               

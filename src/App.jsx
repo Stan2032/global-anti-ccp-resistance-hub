@@ -76,11 +76,11 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
         aria-label="Toggle menu"
       >
         {isMenuOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         )}
@@ -135,7 +135,7 @@ const MobileNav = ({ isOpen, onClose }) => {
         aria-label="Mobile navigation"
       >
         <div className="p-3 border-b border-[#1c2a35]">
-          <span className="font-mono text-[#1c2a35] text-xs select-none">┌─ navigation ─────────────┐</span>
+          <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">┌─ navigation ─────────────┐</span>
         </div>
         <div className="p-3 space-y-0.5">
           {navItems.map((item) => {
@@ -407,7 +407,7 @@ function AppLayout() {
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center max-w-lg">
-                    <pre className="font-mono text-[#1c2a35] text-xs mb-4 select-none" aria-hidden="true">{`
+                    <pre className="font-mono text-[#1c2a35] text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
 ┌─────────────────────────────────────┐
 │  ███╗   ██╗ ██████╗ ████████╗      │
 │  ████╗  ██║██╔═══██╗╚══██╔══╝      │
