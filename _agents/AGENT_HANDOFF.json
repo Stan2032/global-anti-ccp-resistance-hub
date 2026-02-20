@@ -12,11 +12,11 @@
   },
 
   "critical_reads": [
-    "TODO.md",
-    "AGENTS.md",
-    "AGENT_ROADMAP.md",
-    "QUESTIONS_FOR_HUMANS.md",
-    "agent-thoughts/"
+    "_agents/TODO.md",
+    "_agents/AGENTS.md",
+    "_agents/AGENT_ROADMAP.md",
+    "_agents/QUESTIONS_FOR_HUMANS.md",
+    "_agents/thoughts/"
   ],
 
   "repository_metrics": {

@@ -9,7 +9,7 @@ import {
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against NobelPrize.org, BBC, HRW, NCHRD, Britannica.
-// See agent-thoughts/SESSION_46_LIU_XIAOBO_PROFILE.md for verification methodology.
+// See _agents/thoughts/SESSION_46_LIU_XIAOBO_PROFILE.md for verification methodology.
 // CCP narrative rebuttals sourced from independent media, not CCP state outlets.
 
 const PROFILE = {

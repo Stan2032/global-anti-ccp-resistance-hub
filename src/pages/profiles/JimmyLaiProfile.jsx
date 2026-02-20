@@ -9,7 +9,7 @@ import {
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, HKFP, CPJ, HRW, US State Dept.
-// See agent-thoughts/SESSION_34_VERIFICATION_NOTES.md for verification methodology.
+// See _agents/thoughts/SESSION_34_VERIFICATION_NOTES.md for verification methodology.
 // CCP narrative rebuttals sourced from independent media, not CCP state outlets.
 
 const PROFILE = {

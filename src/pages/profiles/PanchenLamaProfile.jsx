@@ -9,7 +9,7 @@ import {
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against HRW, ICT, TCHRD, USCIRF, NED.
-// See agent-thoughts/SESSION_45_PANCHEN_LAMA_PROFILE.md for verification methodology.
+// See _agents/thoughts/SESSION_45_PANCHEN_LAMA_PROFILE.md for verification methodology.
 // CCP narrative rebuttals sourced from independent media, not CCP state outlets.
 // Note: tibet.cn is a CCP state outlet — deliberately excluded from sources.
 

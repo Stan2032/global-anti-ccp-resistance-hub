@@ -9,7 +9,7 @@ import {
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, HKFP, Amnesty International, CFHK, TIME.
-// See agent-thoughts/SESSION_47_JOSHUA_WONG_PROFILE.md for verification methodology.
+// See _agents/thoughts/SESSION_47_JOSHUA_WONG_PROFILE.md for verification methodology.
 // CCP narrative rebuttals sourced from independent media, not CCP state outlets.
 
 const PROFILE = {

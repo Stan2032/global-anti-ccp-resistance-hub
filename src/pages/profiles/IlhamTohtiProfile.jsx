@@ -10,7 +10,7 @@ import {
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against HRW, PEN International, Front Line Defenders,
 // European Parliament, USCIRF, Scholars at Risk, Amnesty International.
-// See agent-thoughts/SESSION_44_ILHAM_TOHTI_PROFILE.md for verification methodology.
+// See _agents/thoughts/SESSION_44_ILHAM_TOHTI_PROFILE.md for verification methodology.
 // CCP narrative rebuttals sourced from independent media, not CCP state outlets.
 
 const PROFILE = {
