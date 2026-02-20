@@ -4,7 +4,7 @@
     "date": "2026-02-20T14:20:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Opus 4.6 (Sessions 35-57)",
+    "previous_agent": "Opus 4.6 (Sessions 35-58)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.98,
@@ -27,7 +27,7 @@
     "profile_pages_built": 6,
     "data_entries_sourced": 142,
     "lazy_loaded_components": 81,
-    "sessions_completed": 57
+    "sessions_completed": 58
   },
 
   "resolved_since_v1": {
@@ -81,28 +81,21 @@
   "next_priority_actions": [
     {
       "priority": 1,
-      "task": "design_polish",
-      "description": "Terminal aesthetic now applied to ALL pages. Remaining: sub-components (CaseStudies, MemorialWall, ActionTracker etc.) may still use old classes internally",
-      "agent": "Sonnet 4.5 or Opus 4.6",
-      "estimated_hours": 1,
-      "status": "NEARLY_COMPLETE"
+      "task": "accessibility_audit",
+      "description": "Terminal design system now 100% applied to ALL files. Verify WCAG AA contrast ratios across all pages — especially terminal green on dark backgrounds.",
+      "agent": "Either",
+      "estimated_hours": 4,
+      "status": "NOT_STARTED"
     },
     {
       "priority": 2,
-      "task": "accessibility_audit",
-      "description": "Verify terminal design maintains WCAG AA contrast ratios across all pages",
-      "agent": "Either",
-      "estimated_hours": 4
-    },
-    {
-      "priority": 3,
       "task": "mobile_testing",
       "description": "Verify ASCII design works across mobile viewport sizes",
       "agent": "Either",
       "estimated_hours": 2
     },
     {
-      "priority": 4,
+      "priority": 3,
       "task": "additional_profiles",
       "description": "DEPRIORITIZED by project owner — Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan",
       "agent": "Opus 4.6 (content research) + Sonnet 4.5 (layout)",
@@ -110,7 +103,7 @@
       "status": "DEPRIORITIZED"
     },
     {
-      "priority": 5,
+      "priority": 4,
       "task": "multilingual_translations",
       "description": "Fill in zh-TW, ug, bo locale files (currently skeleton structures)",
       "agent": "Opus 4.6 (language expertise needed)",
