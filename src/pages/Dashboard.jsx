@@ -67,7 +67,7 @@ const Dashboard = () => {
       description: 'Hong Kong media mogul sentenced to 20 years on Feb 9, 2026',
       urgent: true,
       supporters: 125000,
-      link: '/campaigns',
+      link: '/take-action',
     },
     {
       id: 2,
@@ -75,7 +75,7 @@ const Dashboard = () => {
       description: 'End forced labor and detention in Xinjiang',
       urgent: true,
       supporters: 890000,
-      link: '/campaigns',
+      link: '/take-action',
     },
     {
       id: 3,
@@ -83,14 +83,14 @@ const Dashboard = () => {
       description: 'Support Taiwan against military threats',
       urgent: false,
       supporters: 456000,
-      link: '/campaigns',
+      link: '/take-action',
     },
   ];
 
   const quickActions = [
     { title: 'Take Action', Icon: Megaphone, href: '/take-action', color: 'red' },
-    { title: 'Join Campaign', Icon: Target, href: '/campaigns', color: 'blue' },
-    { title: 'Secure Comms', Icon: Lock, href: '/communications', color: 'green' },
+    { title: 'Join Campaign', Icon: Target, href: '/take-action', color: 'blue' },
+    { title: 'Security', Icon: Lock, href: '/security', color: 'green' },
     { title: 'Find Resources', Icon: BookOpen, href: '/resources', color: 'purple' },
   ];
 
@@ -146,7 +146,7 @@ const Dashboard = () => {
               <Link to="/prisoners" className="px-4 py-2 bg-red-900/40 hover:bg-red-900/60 text-red-200 font-mono text-sm font-medium transition-colors border border-red-900/50 hover:border-red-500">
                 $ view_case --details
               </Link>
-              <Link to="/campaigns" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-red-300 font-mono text-sm font-medium transition-colors border border-[#1c2a35] hover:border-red-500">
+              <Link to="/take-action" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-red-300 font-mono text-sm font-medium transition-colors border border-[#1c2a35] hover:border-red-500">
                 $ join_campaign
               </Link>
             </div>
@@ -278,7 +278,7 @@ const Dashboard = () => {
                 </Link>
               ))}
             </div>
-            <Link to="/campaigns" className="block mt-4 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
+            <Link to="/take-action" className="block mt-4 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
               $ list --all-campaigns →
             </Link>
           </div>

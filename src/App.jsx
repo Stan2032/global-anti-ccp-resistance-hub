@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { Heart } from 'lucide-react'
 import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
@@ -47,15 +47,11 @@ const LoadingScreen = () => (
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const IntelligenceFeeds = lazy(() => import('./pages/IntelligenceFeeds'));
 const ResistanceDirectory = lazy(() => import('./pages/ResistanceDirectory'));
-const Campaigns = lazy(() => import('./pages/CampaignHubs'));
 const CommunitySupport = lazy(() => import('./pages/CommunitySupport'));
-const SecureCommunications = lazy(() => import('./pages/SecureComms'));
 const EducationCenter = lazy(() => import('./pages/EducationalResources'));
 const SecurityCenter = lazy(() => import('./pages/SecurityCenter'));
 const PoliticalPrisoners = lazy(() => import('./pages/PoliticalPrisoners'));
-const RegionalThreats = lazy(() => import('./pages/RegionalThreats'));
 const ResistanceResources = lazy(() => import('./pages/ResistanceResources'));
-const CCPTactics = lazy(() => import('./pages/CCPTactics'));
 const TakeAction = lazy(() => import('./pages/TakeAction'));
 const DataSources = lazy(() => import('./pages/DataSources'));
 const JimmyLaiProfile = lazy(() => import('./pages/profiles/JimmyLaiProfile'));
@@ -169,7 +165,7 @@ const MobileNav = ({ isOpen, onClose }) => {
         <div className="p-3 border-t border-[#1c2a35]">
           <span className="font-mono text-xs text-[#1c2a35] select-none" aria-hidden="true">├─ urgent ─────────────────┤</span>
           <div className="mt-2">
-            <Link to="/campaigns" className="flex items-center px-3 py-3 bg-red-900/20 border border-red-900/50 text-red-300 hover:bg-red-900/30 font-mono text-sm">
+            <Link to="/take-action" className="flex items-center px-3 py-3 bg-red-900/20 border border-red-900/50 text-red-300 hover:bg-red-900/30 font-mono text-sm">
               <Heart className="w-4 h-4 mr-3 text-red-400" />
               <div>
                 <div className="font-medium">Free Jimmy Lai</div>
@@ -288,7 +284,7 @@ const DesktopSidebar = () => {
           </div>
           <p className="font-mono text-xs text-red-400/80 mb-2">sentenced: 20 years</p>
           <p className="font-mono text-xs text-red-400/80 mb-2">date: 2026-02-09</p>
-          <Link to="/campaigns" className="block text-center py-1.5 bg-red-900/40 hover:bg-red-900/60 text-red-300 font-mono text-xs font-medium border border-red-900/50 transition-colors">
+          <Link to="/take-action" className="block text-center py-1.5 bg-red-900/40 hover:bg-red-900/60 text-red-300 font-mono text-xs font-medium border border-red-900/50 transition-colors">
             [ take_action ]
           </Link>
         </div>
@@ -392,17 +388,18 @@ function AppLayout() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/intelligence" element={<IntelligenceFeeds />} />
               <Route path="/directory" element={<ResistanceDirectory />} />
-              <Route path="/campaigns" element={<Campaigns />} />
               <Route path="/community" element={<CommunitySupport />} />
-              <Route path="/communications" element={<SecureCommunications />} />
               <Route path="/education" element={<EducationCenter />} />
               <Route path="/security" element={<SecurityCenter />} />
               <Route path="/prisoners" element={<PoliticalPrisoners />} />
-              <Route path="/threats" element={<RegionalThreats />} />
               <Route path="/resources" element={<ResistanceResources />} />
-              <Route path="/tactics" element={<CCPTactics />} />
               <Route path="/take-action" element={<TakeAction />} />
               <Route path="/data-sources" element={<DataSources />} />
+              {/* Redirects: orphan pages consolidated into main pages */}
+              <Route path="/campaigns" element={<Navigate to="/take-action" replace />} />
+              <Route path="/communications" element={<Navigate to="/security" replace />} />
+              <Route path="/tactics" element={<Navigate to="/education" replace />} />
+              <Route path="/threats" element={<Navigate to="/intelligence" replace />} />
               <Route path="/profiles" element={<ProfilesIndex />} />
               <Route path="/profiles/jimmy-lai" element={<JimmyLaiProfile />} />
               <Route path="/profiles/ilham-tohti" element={<IlhamTohtiProfile />} />

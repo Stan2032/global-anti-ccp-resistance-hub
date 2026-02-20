@@ -352,7 +352,7 @@ const SuccessStories = () => {
           <a href="/take-action" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 text-sm font-medium">
             Take Action Now
           </a>
-          <a href="/campaigns" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium">
+          <a href="/take-action" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium">
             Join a Campaign
           </a>
           <a href="/directory" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-sm font-medium">

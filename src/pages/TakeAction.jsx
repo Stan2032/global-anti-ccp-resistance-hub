@@ -144,7 +144,7 @@ const TakeAction = () => {
       links: [
         { name: 'Subscribe to Our Newsletter', url: '#newsletter' },
         { name: 'Security Assessment', url: '/security', internal: true },
-        { name: 'Secure Communications Guide', url: '/communications', internal: true },
+        { name: 'Secure Communications Guide', url: '/security', internal: true },
         { name: 'Live Intelligence Feed', url: '/intelligence', internal: true },
       ],
       tools: ['Signal', 'Tor Browser', 'ProtonMail', 'VPN']
@@ -174,8 +174,8 @@ const TakeAction = () => {
             <a href="#actions" className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium transition-colors">
               See All Actions
             </a>
-            <Link to="/campaigns" className="px-6 py-3 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium transition-colors border border-[#2a9a52]">
-              View Campaigns
+            <Link to="/profiles" className="px-6 py-3 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium transition-colors border border-[#2a9a52]">
+              View Profiles
             </Link>
           </div>
         </div>
