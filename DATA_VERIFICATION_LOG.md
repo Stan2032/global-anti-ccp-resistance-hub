@@ -161,6 +161,15 @@
 | CampaignHubs nextMilestone | "Sentencing expected 2026" | "Appeal proceedings and international pressure campaign" | CampaignHubs.jsx |
 | Jimmy Lai lastUpdated | "2025-12-15" | "2026-02-09" | liveDataService.js |
 
+### Session 28 Corrections (2026-02-20)
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Safeguard Defenders date (Timeline.jsx) | "2022-10-01" (incorrect — matches neither report) | "2022-12-04" (Patrol and Persuade report date) | Timeline.jsx |
+| Xinjiang Papers date (Timeline.jsx) | "2019-03-01" (wrong by 8 months) | "2019-11-16" (NYT Xinjiang Papers publication) | Timeline.jsx |
+| Xinjiang Papers title (Timeline.jsx) | "Xinjiang Camps Confirmed" (vague) | "Xinjiang Papers Leaked" (accurate) | Timeline.jsx |
+| Timeline event ordering | 3 pairs of events out of chronological order | Reordered to correct reverse chronological sequence | Timeline.jsx |
+
 ### Previously Correct (Verified)
 
 - Tiananmen Square: June 4, 1989 ✅
@@ -168,13 +177,14 @@
 - Ilham Tohti arrest: January 15, 2014 ✅
 - Liu Xiaobo death: July 13, 2017 ✅
 - Hong Kong 47 sentencing: November 19, 2024 ✅
+- Causeway Bay Booksellers: October 15, 2015 ✅ (Confirmed Session 28)
 
 ---
 
 ## Section 7: Items Still Requiring Verification
 
-- [ ] Exact start date of Xinjiang mass internment (currently April 1, 2017 — approximate)
-- [ ] Causeway Bay Booksellers first disappearance date (currently Oct 15, 2015 — approximately correct, first was Oct 14)
+- [ ] Exact start date of Xinjiang mass internment (currently April 1, 2017 — approximate; de-extremification regulation passed March 2017, camps escalated from April 2017)
+- [x] Causeway Bay Booksellers first disappearance date (Oct 15, 2015) — ✅ CONFIRMED CORRECT. Gui Minhai and Lui Bo were both last seen on October 15, 2015. Sources: Wikipedia, HKFP, PEN International. The Oct 14 note was from an ambiguous early report.
 - [x] Falun Gong death toll in custody — "4,000+ confirmed" is from Falun Dafa Info Center (FDIC), documenting individual named cases. The pattern of deaths (including forced organ harvesting) was independently confirmed by the China Tribunal (2019, Sir Geoffrey Nice QC). Added sourcing note to timeline_events.json. ✅
 - [ ] Tiananmen casualty estimates (currently "300-3,000+" — range is accurate per multiple sources)
 - [ ] White Paper Protests — date is Nov 26 for mass protests, Ürümqi fire was Nov 24
@@ -323,6 +333,17 @@ See Section 1 above for full breakdown with sources.
   - **FIX: liveDataService.js** — Jimmy Lai `lastUpdated` was '2025-12-15'. Updated to '2026-02-09' (sentencing date).
   - **FIX: CampaignHubs.jsx** — `nextMilestone` said "Sentencing expected 2026". Outdated: sentencing already happened Feb 9, 2026. Changed to "Appeal proceedings and international pressure campaign".
   - **Added**: `src/test/data-consistency.test.js` — 9 new tests ensuring critical date consistency across data files, preventing regression of corrected dates, verifying chronological ordering of timeline events, and checking that no CCP state media is cited as a credible source.
+
+- 2026-02-20 (Session 28): Deep verification sweep — Timeline.jsx dates, CCP source exclusion, data file audits (Opus 4.6)
+  - **CRITICAL FIX: Timeline.jsx Safeguard Defenders date** — was `2022-10-01`, doesn't match either Safeguard Defenders report. The description references "102 CCP overseas police stations in 53 countries" which is from the "Patrol and Persuade" report published December 4, 2022. Changed to `2022-12-04`. (Initial "110 Overseas" report was September 12, 2022.)
+  - **CRITICAL FIX: Timeline.jsx "Xinjiang Camps Confirmed" date** — was `2019-03-01` citing ICIJ and NYT. This is wrong. The NYT "Xinjiang Papers" were published November 16, 2019 and the ICIJ "China Cables" on November 24, 2019. Changed to `2019-11-16`. Title also updated to "Xinjiang Papers Leaked" for clarity.
+  - **FIX: Timeline.jsx event ordering** — Events were not in proper reverse chronological order. Reordered: Safeguard Defenders (2022-12-04) before UN Xinjiang Report (2022-09-01); Jimmy Lai Arrested (2020-08-10) before NSL (2020-06-30); Xinjiang Papers (2019-11-16) before HK Protests (2019-06-09).
+  - **CONFIRMED: Causeway Bay Booksellers date** — October 15, 2015 is CORRECT. Gui Minhai and Lui Bo were both last seen on this date. Updated Section 7 to mark as verified.
+  - **VERIFIED: No CCP state media source URLs in any data file** — Scanned all `src/data/*.json` files for domains: xinhua.net, cgtn.com, globaltimes.cn, chinadaily.com, people.com.cn, guancha.cn, haiwainet.cn, cctv.com. Zero matches found. All source URLs point to credible independent sources.
+  - **VERIFIED: International response genocide recognition dates** — Checked all 10 key dates: US (Jan 19, 2021), UK (April 2021), Canada (Feb 22, 2021), Netherlands (Feb 25, 2021), France (Jan 20, 2022), Belgium (June 2021), Czech Republic (June 2021), Lithuania (May 20, 2021), Taiwan (Dec 27, 2022), New Zealand (May 5, 2021). All correct.
+  - **VERIFIED: All 5 previously verified sanctioned officials dates consistent** — Chen Quanguo, Zhu Hailun, Wang Junzheng, Wang Mingshan, Carrie Lam.
+  - **VERIFIED: SCMP RSS feed in liveDataSources.js** — Properly flagged with `biasRisk: 'medium'` and editorial warning about Alibaba ownership.
+  - **Extended test suite**: Added 9 new tests (18 total in data-consistency.test.js): CCP source URL exclusion across ALL data files; sanctioned officials date verification; international response date verification; Zhang Zhan second sentence verification. Full suite: 198 tests, all passing.
 
 ---
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 
 const DATA_DIR = resolve(__dirname, '../data');
@@ -81,6 +81,10 @@ describe('Critical date consistency across data files', () => {
 
   describe('No CCP state media cited as credible source', () => {
     const CCP_OUTLETS = ['Xinhua', 'CGTN', 'Global Times', 'People\'s Daily', 'China Daily'];
+    const CCP_DOMAINS = [
+      'xinhua.net', 'cgtn.com', 'globaltimes.cn', 'chinadaily.com',
+      'people.com.cn', 'guancha.cn', 'haiwainet.cn', 'cctv.com'
+    ];
 
     it('timeline_events.json does not cite CCP state media as sources', () => {
       const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
@@ -93,6 +97,92 @@ describe('Critical date consistency across data files', () => {
           }
         }
       }
+    });
+
+    it('no research data file uses CCP state media source URLs', () => {
+      const researchFiles = readdirSync(DATA_DIR)
+        .filter((f) => f.endsWith('_research.json'));
+
+      for (const fileName of researchFiles) {
+        const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
+        for (const domain of CCP_DOMAINS) {
+          const regex = new RegExp(`https?://[^"]*${domain.replace('.', '\\.')}`, 'gi');
+          const matches = content.match(regex);
+          expect(matches, `${fileName} contains CCP source URL with domain ${domain}`).toBeNull();
+        }
+      }
+    });
+  });
+
+  describe('Sanctioned officials data integrity', () => {
+    it('all verified US sanctions dates are correct', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+
+      // Verified dates from US Treasury press releases
+      const verified = {
+        'Chen Quanguo': { field: 'us_sanctions', expected: 'July 2020' },
+        'Zhu Hailun': { field: 'us_sanctions', expected: 'July 9, 2020' },
+        'Carrie Lam': { field: 'us_sanctions', expected: 'August 7, 2020' },
+      };
+
+      for (const [name, check] of Object.entries(verified)) {
+        const official = data.results.find((r) => r.output.name === name);
+        expect(official, `${name} should exist in sanctioned officials`).toBeDefined();
+        expect(official.output[check.field]).toContain(check.expected);
+      }
+    });
+
+    it('each sanctioned official has valid source_url', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+      for (const result of data.results) {
+        expect(result.output.source_url).toMatch(/^https?:\/\//);
+      }
+    });
+  });
+
+  describe('International responses data integrity', () => {
+    it('US genocide recognition date is January 19, 2021', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      const us = data.results.find((r) => r.output.country === 'United States');
+      expect(us).toBeDefined();
+      expect(us.output.genocide_recognition).toContain('January 19, 2021');
+    });
+
+    it('Netherlands genocide recognition date is February 25, 2021', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      const nl = data.results.find((r) => r.output.country === 'Netherlands');
+      expect(nl).toBeDefined();
+      expect(nl.output.genocide_recognition).toContain('February 25, 2021');
+    });
+
+    it('Lithuania genocide recognition date is May 20, 2021', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      const lt = data.results.find((r) => r.output.country === 'Lithuania');
+      expect(lt).toBeDefined();
+      expect(lt.output.genocide_recognition).toContain('May 20, 2021');
+    });
+
+    it('France genocide recognition date is January 20, 2022', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      const fr = data.results.find((r) => r.output.country === 'France');
+      expect(fr).toBeDefined();
+      expect(fr.output.genocide_recognition).toContain('January 20, 2022');
+    });
+
+    it('each country has a source_url', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      for (const result of data.results) {
+        expect(result.output.source_url).toMatch(/^https?:\/\//);
+      }
+    });
+  });
+
+  describe('Zhang Zhan second sentence is recorded', () => {
+    it('political_prisoners_research.json reflects second sentence', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      const zz = data.results.find((r) => r.output.prisoner_name === 'Zhang Zhan');
+      expect(zz).toBeDefined();
+      expect(zz.output.sentence).toMatch(/second|2025|4 years.*4 years/i);
     });
   });
 });
