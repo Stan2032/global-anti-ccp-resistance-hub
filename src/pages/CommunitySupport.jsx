@@ -484,10 +484,10 @@ const CommunitySupport = () => {
                 <div key={idx} className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors">
                   <h3 className="text-white font-semibold mb-2">{item.title}</h3>
                   <p className="text-slate-400 text-sm mb-4">{item.desc}</p>
-                  <span className="text-[#4afa82] font-mono text-sm flex items-center space-x-2 cursor-pointer hover:text-[#7dffaa]">
+                  <button type="button" className="text-[#4afa82] font-mono text-sm flex items-center space-x-2 hover:text-[#7dffaa] transition-colors">
                     <span>$ read_guide</span>
                     <ChevronRight className="w-4 h-4" />
-                  </span>
+                  </button>
                 </div>
               ))}
             </div>
