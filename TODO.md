@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 19, 2026
+> Last Updated: February 20, 2026 (Session 35, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -312,31 +312,55 @@
 
 ---
 
+## ⏳ PENDING OWNER DECISIONS (from Sessions 33-34)
+
+> These items were identified by Opus 4.6 during data verification and require owner approval before proceeding. See `agent-thoughts/SESSION_34_VERIFICATION_NOTES.md` for full context.
+
+1. **Zhang Yuxin sanctioned officials entry**: Remove "Information not found" entry? Replace with Che Dalha (current TAR Party Secretary) or Zhang Qingli (former TAR Secretary during 2008)?
+2. **Du Bin**: Add journalist Du Bin (arrested Oct 15, 2025, charged Dec 12, 2025 with "picking quarrels") to political prisoner database? Source: HRW. **Best agent: Opus 4.6**
+3. **Rachung Gendun**: Add Tibetan monk (jailed for sending prayer money for self-immolated uncle, released Nov 2024 in poor health) to database? Source: Tibet Watch. **Best agent: Opus 4.6**
+4. **Profile page priority**: Which person profile to build first? Recommendation: Jimmy Lai (most recent sentencing, most verified data). **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+5. **Office of Political Prisoner Advocacy**: Track this US policy proposal (from Olivia Enos article) in our data?
+
+---
+
 ## 🎯 CURRENT SPRINT
 
 ### In Progress
-1. [ ] Accessibility audit and improvements
+1. [x] Accessibility audit and improvements ✅ (Sessions 10, 14, 18 — 208 accessibility attributes)
+2. [ ] Performance optimization (code splitting for large bundles: TakeAction 231KB, EducationalResources 216KB)
 
 ### Up Next
-1. Performance optimization
-2. Mobile App Banner for PWA
-3. News Feed Integration
+1. Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — **Best agent: Sonnet 4.5**
+2. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+3. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
 
 ### Recently Completed
 - ✅ PWA Install Banner with iOS/Android support
 - ✅ Case Study Deep Dives (Jimmy Lai, Ilham Tohti, Panchen Lama)
 - ✅ Reading Progress Tracker with achievements
-- ✅ CCP Officials Database (8 officials, sanctions tracking)
+- ✅ CCP Officials Database (29 officials, sanctions tracking, verified sources)
 - ✅ Interactive Timeline with 21 key events (1989-2025)
 - ✅ December 2025 political prisoner updates (Jimmy Lai verdict, Xin Ruoyu, Guan Heng)
 - ✅ Enhanced SEO with structured data schemas
-- ✅ Multilingual Support Foundation (English, Traditional Chinese, Uyghur, Tibetan)
-- ✅ Language files and i18n context
+- ✅ Multilingual Support Foundation (English, Simplified Chinese, Traditional Chinese, Uyghur, Tibetan)
+- ✅ Language files and i18n context with navigation wired to t()
 - ✅ Witness Protection Guide
 - ✅ Petition Generator
 - ✅ Regional Issues (Inner Mongolia, Falun Gong, etc.)
 - ✅ Source Verification Tool
 - ✅ Quick Start Guide
+- ✅ Source Attribution across all data components (142 entries, 100% coverage)
+- ✅ Emoji reduction (934 → 278, 70% removed)
+- ✅ Accessibility improvements (208 total ARIA/role/tabIndex attributes)
+- ✅ Lint cleanup (289 → 11 errors, 96% reduction)
+- ✅ Dead code removal (15 files, 4,648 lines)
+- ✅ Source bias audit with CCP propaganda detection guide
+- ✅ Political prisoner verification (60 records, 100% verified with 2+ sources)
+- ✅ Sanctioned officials verification (29 officials, corrected dates, fixed errors)
+- ✅ WebRTC leak detection (client-side, zero privacy risk)
+- ✅ VPN/Tor fake detection removed, honest disclaimers added
+- ✅ Route error boundary for censored-region network failures
 
 ---
 

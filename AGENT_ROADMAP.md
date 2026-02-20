@@ -1,7 +1,7 @@
 # Agent Roadmap - Consolidated Task Prioritization
 **Purpose:** Agent-facing roadmap for autonomous progression and task execution  
-**Last Updated:** 2026-02-19 (Session 22)  
-**Status:** All Autonomous Tasks Complete
+**Last Updated:** 2026-02-20 (Session 35, Opus 4.6)  
+**Status:** All Autonomous Tasks Complete; Pending Owner Decisions for V2/V3
 
 ---
 
@@ -523,6 +523,51 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 - [x] Added 10 bias risk tests to `sourceLinks.test.js` (13 → 23 tests)
 - [x] Audited all primary data JSON files — zero CCP state media sources found
 - [x] Build: ✅ Tests: ✅ 180/180 pass
+
+---
+
+## ⏸️ AWAITING OWNER APPROVAL: Data Expansion
+
+### V2: Political Prisoner Database Expansion
+**Status:** ⏸️ AWAITING OWNER APPROVAL  
+**Priority:** HIGH — data integrity and coverage  
+**Agent:** Opus 4.6 (required: source verification, CCP narrative detection)  
+**Source:** Sessions 33-34 findings
+
+- [ ] **V2.1** Add Du Bin to political prisoner database
+  - Veteran journalist, arrested Oct 15, 2025, charged Dec 12, 2025 with "picking quarrels"
+  - Third detention, first formal charge
+  - Source: HRW (Tier 2 — reliable)
+  - Already in `recent_news_research.json`
+  - **Awaiting:** Owner approval (Session 34, Q2)
+
+- [ ] **V2.2** Add Rachung Gendun to database (or former prisoners section)
+  - Tibetan monk, released Nov 16, 2024 in poor health after 3.5 years
+  - Jailed for sending prayer money for self-immolated uncle Taphun
+  - Source: Tibet Watch (Tier 2 — reliable)
+  - Already in `recent_news_research.json`
+  - **Note:** Status is RELEASED — consider "former prisoners" categorization
+  - **Awaiting:** Owner approval (Session 33, Q3)
+
+- [ ] **V2.3** Replace Zhang Yuxin "Information not found" entry in sanctioned officials
+  - Current entry has no verified data; name/role combination doesn't match real sanctioned individual
+  - **Option A:** Replace with Che Dalha (current TAR Party Secretary, continued Wu Yingjie's repressive policies)
+  - **Option B:** Replace with Zhang Qingli (former TAR Party Secretary during 2008 crackdown)
+  - **Awaiting:** Owner approval (Session 34, Q1)
+
+### V3: Content Expansion — Person Profile Pages
+**Status:** ⏸️ AWAITING OWNER PRIORITY SELECTION  
+**Priority:** MEDIUM — significant content enhancement  
+**Agent:** Opus 4.6 (content/fact verification) + Sonnet 4.5 (layout/CSS)  
+**Source:** TODO.md "Expanded Person Profiles" section
+
+- [ ] **V3.1** Jimmy Lai profile page (recommended first — most recent sentencing, most data available)
+- [ ] **V3.2** Ilham Tohti profile page
+- [ ] **V3.3** Gedhun Choekyi Nyima (Panchen Lama) profile page
+- [ ] **V3.4** Liu Xiaobo profile page (posthumous)
+- [ ] **V3.5** Joshua Wong profile page
+- [ ] **V3.6** Gui Minhai profile page
+- [ ] **V3.7** Additional profiles (Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan)
 
 ---
 
