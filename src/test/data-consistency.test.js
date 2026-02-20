@@ -507,10 +507,13 @@ describe('Critical date consistency across data files', () => {
       expect(eh.output.latest_news).toMatch(/Chinese Super League/);
     });
 
-    it('Xin Ruoyu is flagged as UNVERIFIED in verification_note', () => {
+    it('Xin Ruoyu disappeared Aug 23, 2024 for Christian worship app', () => {
       const xr = prisoners.results.find((r) => r.output.prisoner_name === 'Xin Ruoyu');
       expect(xr).toBeDefined();
-      expect(xr.output.verification_note).toMatch(/UNVERIFIED/);
+      expect(xr.output.status).toBe('DISAPPEARED');
+      expect(xr.output.sentence).toMatch(/August 23, 2024/);
+      expect(xr.output.sentence).toMatch(/Song of Songs/);
+      expect(xr.output.verification_note).toMatch(/VERIFIED/);
     });
 
     it('all prisoners with last_verified also have verification_note', () => {

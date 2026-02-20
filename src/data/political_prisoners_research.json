@@ -932,16 +932,16 @@
       "input": "Xin Ruoyu - Young mother, black jail July 2024",
       "output": {
         "prisoner_name": "Xin Ruoyu",
-        "status": "DETAINED",
+        "status": "DISAPPEARED",
         "location": "Guangzhou, Guangdong Province",
-        "sentence": "Unknown",
-        "latest_news": "Dec 2025: Mentioned in a Forbes article on political prisoners in China. WARNING: Limited independent verification available. Not among known Hong Kong 47 defendants. Name not found in major human rights databases (Amnesty, HRW, NCHRD). Further research needed to confirm identity and case details.",
+        "sentence": "Forcibly disappeared August 23, 2024. No formal charges. Detained in extrajudicial \"small black room\" (黑屋) for developing the \"Song of Songs\" (雅歌) Christian worship app.",
+        "latest_news": "Aug 23, 2024: Taken by Shandong police, brought to Guangzhou. Detained in extrajudicial \"small black room\" — a secret detention facility outside the normal judicial system. Young mother with a child. The \"Song of Songs\" app offered Chinese and foreign hymns, worship music, Bible readings in multiple versions, and sermons for Chinese-speaking Christians. Listed in CECC Political Prisoner Database. Featured in Olivia Enos article for Forbes/Hudson Institute on Human Rights Day 2025. Her case is emblematic of CCP crackdown on digital religious expression and \"Sinicization\" of Christianity.",
         "health_status": "Reported to be a 'very frail woman'.",
         "international_response": "Included in the 2025 annual report of the US Congressional-Executive Commission on China (CECC).",
         "source_url": "https://chinaaid.org/news/woman-has-gone-missing-after-being-taken-away-by-the-police-for-her-involvement-in-developing-christian-ap/",
         "confidence": "HIGH",
         "last_verified": "2026-02-20",
-        "verification_note": "UNVERIFIED — FLAGGED FOR REVIEW. No credible independent sources found beyond single Forbes mention. Not among HK47 defendants per web search. Could be transliteration issue, lesser-known case, or data error. Retained with warning flag pending human review."
+        "verification_note": "VERIFIED — Previously flagged as unverifiable but Forbes article URL provided by project owner confirmed identity. Young Christian mother from Guangzhou. Disappeared Aug 23, 2024 for developing Christian worship app. Status changed from DETAINED to DISAPPEARED (extrajudicial detention, no charges). Verified via ChinaAid, Hudson Institute (Olivia Enos), Forbes, Voice of the Martyrs (Australia), ASSIST News, Eschatology Today, Human Rights Without Frontiers, CECC Political Prisoner Database."
       },
       "error": ""
     },

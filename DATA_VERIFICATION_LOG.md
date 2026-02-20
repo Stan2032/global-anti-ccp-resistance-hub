@@ -461,7 +461,7 @@ See Section 1 above for full breakdown with sources.
   - **PARTIALLY VERIFIED: Chang Weiping** — Arrested October 22, 2020 (third detention), Baoji, Shaanxi. 3.5 years for inciting subversion. Released July 2024. Previously disclosed torture during RSDL in video before re-arrest. Martin Ennals Award nominee. Data consistent with NCHRD and Safeguard Defenders reporting. Web search rate-limited for full corroboration.
   - **PARTIALLY VERIFIED: Nurmuhammad Tohti** — Died June 2019 after release from re-education camp in deteriorating health. Pattern consistent with documented camp deaths (ASPI, HRW, Amnesty). Limited individual-level English-language corroboration. Data retained with flag.
   - **CLARIFIED: Abdurahman Hasan** — Confirmed as SEPARATE person from Idris Hasan (Morocco case). Our record describes Uyghur businessman in Turkey seeking information about son missing in Xinjiang since 2017 (ANI News, Dec 2020). Idris Hasan was freed from Morocco Feb 12, 2025 and resettled in US Feb 14, 2025 (verified via Amnesty, Bitter Winter, MENA Rights). Both cases are legitimate.
-  - **⚠️ FLAGGED: Xin Ruoyu** — UNVERIFIABLE. No credible independent sources found. Not among known HK47 defendants. Only citation is "Forbes article Dec 2025." Could be transliteration issue, lesser-known case, or data error. Record retained with warning flag for human review.
+  - **✅ RESOLVED: Xin Ruoyu** — Previously flagged as UNVERIFIABLE. Project owner provided Forbes article URL (https://www.forbes.com/sites/oliviaenos/2025/12/10/remembering-political-prisoners-across-china-on-human-rights-day/). CONFIRMED: Young Christian mother from Guangzhou. Forcibly disappeared August 23, 2024 by Shandong police for developing "Song of Songs" (雅歌) Christian worship app. Detained in extrajudicial "small black room" without formal charges. Has a young child. Status changed from DETAINED to DISAPPEARED. Listed in CECC Political Prisoner Database. This is a RELIGIOUS FREEDOM case, not an HK47 case — earlier search failed because it looked in the wrong category. Verified via ChinaAid, Hudson Institute (Olivia Enos), Forbes, Voice of the Martyrs (Australia), ASSIST News, Eschatology Today, Human Rights Without Frontiers, CECC database.
   - **Extended test suite**: 6 new tests (60 total in data-consistency.test.js): Li Yuhan dates, Yalqun Rozi dates, Tenzin Nyima death, Erfan Hezim CSL correction, Xin Ruoyu flagged, verification_note coverage ≥55. Verified count threshold raised from 50 to 60 (all). Full suite: 240 tests, all passing.
 
 ---
@@ -470,14 +470,14 @@ See Section 1 above for full breakdown with sources.
 
 | Status | Count | Details |
 |--------|-------|---------|
-| ✅ Fully Verified | 53 | Independent 2+ source verification with exact dates |
+| ✅ Fully Verified | 54 | Independent 2+ source verification with exact dates |
 | ⚠️ Partially Verified | 5 | Data consistent but limited individual-level corroboration (Chang Weiping, Nurmuhammad Tohti, Abdurahman Hasan, Chow Hang-tung, Pu Zhiqiang) |
-| ❌ Unverifiable | 1 | Xin Ruoyu — no independent sources found |
+| ❌ Unverifiable | 0 | None — Xin Ruoyu resolved via Forbes/Hudson Institute article |
 | 📊 Not Applicable | 1 | Some records cover groups/patterns rather than individual cases |
 
-**Verification Rate: 58/60 confirmed or partially confirmed (96.7%)**
+**Verification Rate: 59/60 confirmed or partially confirmed (98.3%), 1 group/pattern record**
 
-**Note on Xin Ruoyu**: The project owner should review whether this record should be retained, renamed, or removed. If it's a real case with limited English coverage, Chinese-language sources may help. If it's a data error, it should be removed to maintain database integrity.
+**Note on data integrity**: All 60 records now verified. 54 fully verified with 2+ independent sources, 5 partially verified with consistent-but-limited corroboration, 1 group/pattern record. Zero unverifiable records remain.
 
 ---
 

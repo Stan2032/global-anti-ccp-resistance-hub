@@ -8,17 +8,22 @@
 
 ## Key Observations
 
-### 1. Xin Ruoyu — Unverifiable Record
+### 1. Xin Ruoyu — ~~Unverifiable Record~~ RESOLVED
 
-This is the only record in the entire database I could not verify from any independent source. The search returned no results for this name in connection with Hong Kong activism, political detention, or NSL cases. The only citation in the record is "Forbes article Dec 2025."
+~~This is the only record in the entire database I could not verify from any independent source.~~ 
 
-**My analysis:**
-- The name could be a transliteration variant — Chinese names can be romanized differently
-- It could be a lesser-known case with zero English-language coverage
-- It could be a data entry error from an earlier agent
-- Without the original Forbes article URL, I cannot verify
+**UPDATE:** Project owner provided the Forbes article URL. Xin Ruoyu is a **young Christian mother from Guangzhou** who was forcibly disappeared on **August 23, 2024** by Shandong police for developing the **"Song of Songs" (雅歌) Christian worship app**. 
 
-**Recommendation for project owner:** Review this record. If the Forbes article exists, add its URL. If the name is a transliteration, correct it. If neither, consider removing to maintain database integrity. A database with 59 verified records is stronger than 60 with 1 unverifiable.
+**Why my earlier search failed:** I was searching for her in connection with Hong Kong activism and NSL cases. She is actually a **religious freedom** case — a completely different category. This is an important lesson: when a record can't be verified, consider that the categorization assumption may be wrong before concluding the data is erroneous.
+
+**Verified via:** ChinaAid, Hudson Institute (Olivia Enos), Forbes, Voice of the Martyrs (Australia), ASSIST News, Eschatology Today, Human Rights Without Frontiers, CECC Political Prisoner Database.
+
+**Key details:**
+- App offered Chinese/foreign hymns, worship music, Bible readings, sermons
+- Detained in extrajudicial "small black room" (黑屋) without formal charges
+- Has a young child
+- Part of broader CCP crackdown on digital religious expression ("Sinicization")
+- Listed in CECC database alongside 11,000+ political prisoners
 
 ### 2. Abdurahman Hasan vs Idris Hasan — Identity Clarification
 
@@ -82,7 +87,7 @@ After 10 sessions (24-33) of systematic verification:
 
 ## Questions for Project Owner
 
-1. **Xin Ruoyu**: Should this record be retained, corrected, or removed? Can you provide the Forbes article URL?
+1. ~~**Xin Ruoyu**: Should this record be retained, corrected, or removed? Can you provide the Forbes article URL?~~ **RESOLVED** — Owner provided URL, record fully verified. Christian mother disappeared for developing worship app.
 2. **Idris Hasan**: Should we add a separate record for Idris Hasan (Morocco case, freed Feb 2025)? His case is well-documented and emblematic of CCP transnational repression.
 3. **Profile pages**: The TODO.md lists 6+ profile pages. Should we prioritize these in the next session?
 4. **Database completeness**: Are there other political prisoners you know of who should be added to the database? (The current 60 is a strong starting set but not exhaustive)
