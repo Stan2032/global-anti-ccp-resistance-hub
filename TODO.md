@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 35, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 37, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -335,6 +335,7 @@
 2. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
 
 ### Recently Completed
+- ✅ Add "illustrative targets" disclaimer to fake community statistics (CommunitySupport page) — Session 37, Opus 4.6
 - ✅ Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — Session 36, Opus 4.6
 - ✅ Fix misleading security claims in IncidentReportForm footer ("End-to-end encrypted", "No logs retained") — Session 36
 - ✅ Fix false success messages ("Report Submitted Securely", "You're Subscribed!") with honest notices + links to real organizations — Session 36

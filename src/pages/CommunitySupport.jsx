@@ -330,6 +330,7 @@ const CommunitySupport = () => {
           )
         })}
       </div>
+      <p className="text-xs text-slate-500 text-center -mt-2">Statistics shown are illustrative targets — this platform is not yet tracking live community data.</p>
 
       {/* Tabs */}
       <div className="flex space-x-4 border-b border-slate-700">
