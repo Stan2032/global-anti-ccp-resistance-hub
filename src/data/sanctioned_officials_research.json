@@ -229,12 +229,12 @@
         "name": "Pema Thinley",
         "position": "Vice-Chairperson, 13th National People's Congress Standing Committee",
         "responsibility_area": "Tibet",
-        "us_sanctions": "Yes - December 2020",
+        "us_sanctions": "Yes - December 7, 2020 (under EO 13936, as NPC vice-chairperson involved in Hong Kong NSL)",
         "uk_sanctions": "No",
         "eu_sanctions": "No",
         "canada_sanctions": "No",
         "australia_sanctions": "No",
-        "key_abuses": "Pema Thinley, also known as Padma Choling, was sanctioned by the U.S. for his role in undermining Hong Kong's autonomy and restricting the freedoms of its residents. He was also a leading figure in the harsh crackdown against the 2008 protests in Lhasa, Tibet.",
+        "key_abuses": "Sanctioned under EO 13936 as NPC Vice-Chairperson for involvement in the passage and implementation of the Hong Kong National Security Law. Previously, as Chairman of the Tibet Autonomous Region (2010-2013) and Chairman of the TAR People's Congress (2013-2018), he led the harsh crackdown against the 2008 protests in Lhasa and implemented restrictive policies toward Tibetans.",
         "current_status": "Active in Beijing",
         "source_url": "https://www.opensanctions.org/entities/Q967949/"
       },
@@ -258,7 +258,7 @@
       "error": ""
     },
     {
-      "input": "Chen Mingguo - Taiwan Affairs Office",
+      "input": "Chen Mingguo - Xinjiang Public Security Bureau Director",
       "output": {
         "name": "Chen Mingguo",
         "position": "Former Director of the Xinjiang Public Security Bureau",
@@ -286,7 +286,7 @@
         "canada_sanctions": "No",
         "australia_sanctions": "No",
         "key_abuses": "Liu Jianchao is a key figure in China's 'Operation Fox Hunt,' a global campaign of transnational repression. He is accused of overseeing the kidnapping, trapping, and 'persuasion to return' of thousands of overseas Chinese, in violation of international human rights standards and the sovereignty of other nations.",
-        "current_status": "Detained and under investigation in China since July 2025.",
+        "current_status": "Detained and under investigation in China since August 2025. Last public appearance July 29, 2025 in Algeria. Taken in for questioning by CCDI (Central Commission for Discipline Inspection) upon return to Beijing.",
         "source_url": "https://bitterwinter.org/liu-jianchao-human-rights-violator-received-with-honors-in-uk/"
       },
       "error": ""

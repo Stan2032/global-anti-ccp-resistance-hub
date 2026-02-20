@@ -20,20 +20,20 @@ const Timeline = () => {
   // Recent news removed (use RSS feeds instead)
   const events = [
     {
+      date: '2022-12-04',
+      title: 'Safeguard Defenders Police Stations Report',
+      category: 'transnational',
+      description: 'Report reveals 102 CCP overseas police stations operating in 53 countries, engaging in transnational repression.',
+      significance: 'CRITICAL',
+      sources: ['Safeguard Defenders']
+    },
+    {
       date: '2022-09-01',
       title: 'UN Xinjiang Report Released',
       category: 'xinjiang',
       description: 'UN Human Rights Office releases report finding "serious human rights violations" against Uyghurs, including possible crimes against humanity.',
       significance: 'CRITICAL',
       sources: ['UN OHCHR']
-    },
-    {
-      date: '2022-10-01',
-      title: 'Safeguard Defenders Police Stations Report',
-      category: 'transnational',
-      description: 'Report reveals 102 CCP overseas police stations operating in 53 countries, engaging in transnational repression.',
-      significance: 'CRITICAL',
-      sources: ['Safeguard Defenders']
     },
     {
       date: '2021-06-24',
@@ -52,20 +52,20 @@ const Timeline = () => {
       sources: ['Hong Kong Watch']
     },
     {
-      date: '2020-06-30',
-      title: 'National Security Law Enacted',
-      category: 'hongkong',
-      description: 'Beijing imposes sweeping National Security Law on Hong Kong, criminalizing secession, subversion, terrorism, and collusion.',
-      significance: 'CRITICAL',
-      sources: ['BBC', 'Reuters']
-    },
-    {
       date: '2020-08-10',
       title: 'Jimmy Lai Arrested',
       category: 'hongkong',
       description: 'Media tycoon Jimmy Lai arrested under National Security Law, Apple Daily offices raided.',
       significance: 'HIGH',
       sources: ['BBC', 'HKFP']
+    },
+    {
+      date: '2020-06-30',
+      title: 'National Security Law Enacted',
+      category: 'hongkong',
+      description: 'Beijing imposes sweeping National Security Law on Hong Kong, criminalizing secession, subversion, terrorism, and collusion.',
+      significance: 'CRITICAL',
+      sources: ['BBC', 'Reuters']
     },
     {
       date: '2019-11-27',
@@ -76,20 +76,20 @@ const Timeline = () => {
       sources: ['Congress.gov']
     },
     {
+      date: '2019-11-16',
+      title: 'Xinjiang Papers Leaked',
+      category: 'xinjiang',
+      description: 'NYT publishes leaked internal CCP documents confirming mass detention of over 1 million Uyghurs in "re-education" camps. ICIJ China Cables follow November 24.',
+      significance: 'CRITICAL',
+      sources: ['ICIJ', 'NYT']
+    },
+    {
       date: '2019-06-09',
       title: 'Hong Kong Protests Begin',
       category: 'hongkong',
       description: 'Over 1 million march against extradition bill, beginning months of pro-democracy protests.',
       significance: 'CRITICAL',
       sources: ['BBC', 'SCMP']
-    },
-    {
-      date: '2019-03-01',
-      title: 'Xinjiang Camps Confirmed',
-      category: 'xinjiang',
-      description: 'Leaked documents confirm mass detention of over 1 million Uyghurs in "re-education" camps.',
-      significance: 'CRITICAL',
-      sources: ['ICIJ', 'NYT']
     },
     {
       date: '2018-03-11',

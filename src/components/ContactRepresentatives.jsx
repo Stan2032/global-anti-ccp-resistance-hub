@@ -133,7 +133,7 @@ Since the imposition of the National Security Law in 2020:
 • Independent media has been shut down (Apple Daily, Stand News)
 • Pro-democracy legislators have been disqualified and imprisoned
 • Civil society organizations have been forced to disband
-• The "Hong Kong 47" face up to life imprisonment for organizing a primary election
+• The "Hong Kong 47" were sentenced to 4-10 years in prison for organizing a primary election
 
 I urge you to:
 1. Support sanctions on officials responsible for suppressing Hong Kong's freedoms

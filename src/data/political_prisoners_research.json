@@ -11,7 +11,9 @@
         "health_status": "Deteriorating, according to his son.",
         "international_response": "UK, US, and human rights groups condemned the verdict and called for his release.",
         "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Conviction Dec 15, 2025 and sentencing Feb 9, 2026 to 20 years verified via BBC, HRW, CPJ, US State Dept."
       },
       "error": ""
     },
@@ -21,12 +23,14 @@
         "prisoner_name": "Ilham Tohti",
         "status": "DETAINED",
         "location": "No. 1 Prison, Urumqi",
-        "sentence": "Life for separatism",
+        "sentence": "Life imprisonment for separatism (sentenced September 23, 2014)",
         "latest_news": "Sep 2024: Prison guard sentenced for disclosing information about Tohti's health.",
         "health_status": "Unknown",
         "international_response": "EU, US, and human rights organizations call for his release; awarded Sakharov Prize, Václav Havel Human Rights Prize, and others.",
         "source_url": "https://www.hrw.org/news/2024/09/23/china-free-uyghur-economist-ilham-tohti-life-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrest date (Jan 15, 2014) and sentencing date (Sep 23, 2014) verified via Front Line Defenders, NCHRD, UHRP, CPJ. Sakharov Prize confirmed 2019."
       },
       "error": ""
     },
@@ -37,11 +41,13 @@
         "status": "DISAPPEARED",
         "location": "Shaanxi province, China",
         "sentence": "No official sentence",
-        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts.",
+        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts. Last seen August 13, 2017.",
         "health_status": "Unknown, reports of past torture",
         "international_response": "US, EU, and multiple NGOs have called for his release. Awarded the Shahbaz Bhatti Freedom Award.",
         "source_url": "https://humanrightscommission.house.gov/DFP/Countries/China/Gao-Zhisheng",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Last seen date (Aug 13, 2017) verified via NCHRD, USCIRF, ChinaAid, Lawyers for Lawyers, Tom Lantos Commission."
       },
       "error": ""
     },
@@ -71,12 +77,14 @@
         "prisoner_name": "Huang Qi",
         "status": "DETAINED",
         "location": "Unknown",
-        "sentence": "12 years for leaking state secrets and illegally providing state secrets to foreign countries",
+        "sentence": "12 years for leaking state secrets and illegally providing state secrets to foreign entities (sentenced July 29, 2019, Mianyang Intermediate People's Court, Sichuan)",
         "latest_news": "August 2023: Marked four years since sentencing, family and lawyers repeatedly denied in-person meetings.",
         "health_status": "Suffers from heart disease, a potentially fatal kidney condition, and hydrocephalus; denied adequate medical care.",
         "international_response": "PEN International, Reporters Without Borders (RSF), and United Nations experts have called for his immediate and unconditional release.",
         "source_url": "https://www.pen-international.org/news/china-release-citizen-journalist-huang-qi",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Jul 29, 2019 to 12 years verified via Human Rights in China, VOA, France24, FIDH, IFJ, Amnesty. Chronic kidney disease, denied medical care."
       },
       "error": ""
     },
@@ -84,14 +92,16 @@
       "input": "Wang Quanzhang - 709 crackdown lawyer, released 2020",
       "output": {
         "prisoner_name": "Wang Quanzhang",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "4.5 years for subverting state power",
-        "latest_news": "March 2024: Continues to live under surveillance and harassment with his family, four years after his release. His son has been expelled from school and is showing signs of depression.",
+        "sentence": "4.5 years for subverting state power (sentenced January 28, 2019, Tianjin No. 2 Intermediate Court). Released April 5, 2020.",
+        "latest_news": "Apr 2020: Released after serving sentence (time served counted from Aug 2015 detention). Faces ongoing surveillance and harassment. Family pressured.",
         "health_status": "Unknown, but his wife expressed concerns about his mental health in December 2019.",
         "international_response": "His case has drawn international attention, with his wife's protests and interviews with international media. The US has called for his freedom of movement, and foreign diplomats and journalists were denied entry to his trial. A Japanese media outlet interviewed him in March 2024.",
         "source_url": "https://duihua.org/prisoner-updates-2024-4/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Aug 2015 (709 Crackdown), sentenced Jan 28, 2019, released Apr 5, 2020 verified via Wikipedia, ChinaAid, NCHRD, HKFP, HRIC."
       },
       "error": ""
     },
@@ -122,12 +132,14 @@
         "prisoner_name": "Ding Jiaxi",
         "status": "DETAINED",
         "location": "Linshu Detention Centre, Shandong province",
-        "sentence": "12 years for subversion of State power",
+        "sentence": "12 years for subversion of State power (sentenced April 10, 2023, Linshu County Court, Shandong). Appeal upheld November 2023 by Shandong Provincial High Court. Also 3 years deprivation of political rights.",
         "latest_news": "Nov 2023: The Shandong Provincial High Court upheld the 12-year sentence for 'subversion of State power.'",
         "health_status": "Subjected to torture and ill-treatment during detention. Current health status is unknown.",
         "international_response": "UN High Commissioner for Human Rights, UN Special Procedures, and the UN Working Group on Arbitrary Detention have all expressed concerns and condemned the verdict. Awarded the U.S. Department of State's Global Human Rights Defender Award in 2023 and nominated for the Nobel Peace Prize in 2024.",
         "source_url": "https://www.frontlinedefenders.org/en/case/verdict-against-ding-jiaxi-upheld-appeal",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced April 10, 2023 to 12 years verified via Front Line Defenders, Amnesty, HRW, NCHRD, China Digital Times. Co-accused with Xu Zhiyong (14 years). Both members of New Citizens Movement."
       },
       "error": ""
     },
@@ -142,7 +154,9 @@
         "health_status": "Unknown",
         "international_response": "Awarded the 2023 Gwangju Prize for Human Rights and the 2023 Franco-German Prize for Human Rights and the Rule of Law.",
         "source_url": "https://hongkongfp.com/2025/11/03/hong-kong-court-rejects-tiananmen-activist-chow-hang-tungs-bid-to-have-subversion-charge-quashed/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced 22 months for organizing Tiananmen vigil. Awaiting separate trial for inciting subversion under NSL. Verified via Hong Kong Watch, HKFP."
       },
       "error": ""
     },
@@ -157,7 +171,8 @@
         "health_status": "Unknown",
         "international_response": "The UK, US, and Australia condemned the verdict and sentencing in the Hong Kong 47 trial.",
         "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -172,7 +187,9 @@
         "health_status": "Unknown",
         "international_response": "Hong Kong police condemned her actions and issued an arrest warrant.",
         "source_url": "https://www.bbc.com/news/world-asia-china-67605633",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Left HK for Canada Sep 2023, announced Dec 2023 she would not return to meet bail. Verified via CBC, HKFP, Global News."
       },
       "error": ""
     },
@@ -187,7 +204,9 @@
         "health_status": "Unknown",
         "international_response": "Granted asylum in the UK; HK authorities offered a HK$1m reward for his arrest.",
         "source_url": "https://www.bbc.com/news/articles/c8rv1r11y30o",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Fled to UK Jul 2020 after NSL. Granted asylum Apr 2021. HKM bounty Jul 2023. Passport cancelled. Verified via CBC, Independent, VOA, Straits Times."
       },
       "error": ""
     },
@@ -202,7 +221,8 @@
         "health_status": "Unknown",
         "international_response": "The UK, US, and Australia condemned the verdict. The UK called it a criminalization of political dissent, the US called the trial 'politically motivated', and Australia expressed grave concern.",
         "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },
@@ -212,12 +232,14 @@
         "prisoner_name": "Martin Lee",
         "status": "RELEASED",
         "location": "Hong Kong",
-        "sentence": "11 months imprisonment, suspended for 24 months for organizing an unauthorized assembly.",
+        "sentence": "11 months imprisonment, suspended for 24 months for organizing an unauthorized assembly on August 18, 2019 (sentenced April 2021). JP title stripped December 2024.",
         "latest_news": "Aug 2024: Hong Kong's top court upheld the convictions of 7 prominent pro-democracy activists, including Martin Lee, for their roles in a 2019 protest.",
         "health_status": "Unknown",
         "international_response": "The court's decision to give Martin Lee a suspended sentence was met with international condemnation. The UK, US, and EU have all condemned the verdict and the broader crackdown on dissent in Hong Kong.",
         "source_url": "https://apnews.com/article/hong-kong-protests-appeal-jimmy-lai-martin-21f272cd378e3a154c0b4af0c1c550fd",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Suspended sentence April 2021 for Aug 18, 2019 march verified via 9News, Hong Kong Watch, IBA HRI. JP stripped Dec 2024."
       },
       "error": ""
     },
@@ -227,12 +249,14 @@
         "prisoner_name": "Cardinal Joseph Zen",
         "status": "AT RISK",
         "location": "Hong Kong",
-        "sentence": "Fined for failing to register a relief fund",
+        "sentence": "Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under NSL for collusion with foreign forces — charges remain under review.",
         "latest_news": "Dec 2025: Hong Kong's appeals court heard an appeal by trustees of a relief fund, including Cardinal Joseph Zen, against their convictions.",
         "health_status": "Unknown",
         "international_response": "The Holy See, US, and UK expressed concern over his arrest. Vatican Secretary of State said the arrest should not be read as a disavowal of the Sino-Vatican agreement.",
         "source_url": "https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested May 11, 2022 by NSL police. Fined Nov 2022 for fund registration. Verified via Vatican News, CNA, ABC Australia, America Magazine, Independent."
       },
       "error": ""
     },
@@ -253,7 +277,8 @@
           "https://safeguarddefenders.com/en/blog/10-years-gui-minhais-kidnapping"
         ],
         "confidence": "HIGH",
-        "last_verified": "2026-02-19"
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Feb 2020, 10 years at Ningbo court verified via Amnesty, Politico, NCHRD, Safeguard Defenders."
       },
       "error": ""
     },
@@ -264,11 +289,13 @@
         "status": "DISAPPEARED",
         "location": "Unknown",
         "sentence": "Not applicable, disappeared since 1995",
-        "latest_news": "May 2025: 30th anniversary of his disappearance, with renewed calls for his release from the US State Department and human rights organizations.",
+        "latest_news": "May 2025: 30th anniversary of his disappearance (recognized May 14, 1995; abducted May 17, 1995), with renewed calls for his release from the US State Department and human rights organizations.",
         "health_status": "Unknown. Chinese authorities claim he is 'living normally' but have provided no evidence.",
         "international_response": "US State Department, Human Rights Watch, European Parliament, and UN have repeatedly called for his release. Awarded the 2025 Democracy Service Medal by the National Endowment for Democracy.",
         "source_url": "https://www.hrw.org/news/2025/05/15/china/tibet-panchen-lama-forcibly-disappeared-30-years",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Recognition date (May 14, 1995) and abduction date (May 17, 1995) verified via HRW, USCIRF, TCHRD, Wikipedia."
       },
       "error": ""
     },
@@ -276,14 +303,16 @@
       "input": "Tashi Wangchuk - Tibetan language advocate, 5 years",
       "output": {
         "prisoner_name": "Tashi Wangchuk",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "Yushu, Qinghai",
-        "sentence": "5 years for inciting separatism, 15 days for provocation",
-        "latest_news": "Detained on Oct 20, 2024, for 15 days and released on Nov 4, 2024. Currently under surveillance.",
+        "sentence": "5 years for inciting separatism (sentenced May 22, 2018, Yushu Intermediate Court, Qinghai). Released January 28, 2021. 5 years deprivation of political rights. Previously detained 15 days for provocation.",
+        "latest_news": "Released Jan 28, 2021 after completing 5-year sentence. Returned to family in Yushu, Qinghai. Still under surveillance and deprivation of political rights until 2026.",
         "health_status": "Unknown",
         "international_response": "UN human rights experts condemned the 5-year jail term in 2018. PEN America celebrated his release in 2021.",
         "source_url": "https://savetibet.org/tibetan-language-rights-activist-tashi-wangchuk-detained-again-for-slanderous-videos-on-chinese-tiktok/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL: Status was \"AT RISK\" — changed to \"RELEASED\". Released Jan 28, 2021 (not January 2023). Verified via Wikipedia, ICT (savetibet.org), PEN America, USCIRF, Tibet.net."
       },
       "error": ""
     },
@@ -293,12 +322,14 @@
         "prisoner_name": "Rinchen Tsultrim",
         "status": "RELEASED",
         "location": "Sichuan province",
-        "sentence": "4 years 6 months for inciting secession",
-        "latest_news": "Feb 2024: Released from prison after completing his sentence, but remains under strict surveillance.",
+        "sentence": "4 years 6 months for inciting secession (sentenced November 27, 2020). Arrested August 1, 2019 for social media posts critical of religious restrictions. Released February 1, 2024 in secret.",
+        "latest_news": "Feb 2024: Released secretly from prison. Authorities prohibited public celebration or photography. Under strict surveillance, required to report daily to county police. Reports of torture, forced labor, and political indoctrination during imprisonment.",
         "health_status": "Unknown",
         "international_response": "Amnesty International and the US Commission on International Religious Freedom have advocated on his behalf.",
         "source_url": "https://www.rfa.org/english/news/tibet/monk-prison-release-02072024162627.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Aug 1, 2019. Sentenced Nov 27, 2020 to 4.5 years. Released Feb 1, 2024. Verified via USCIRF, Amnesty International (Canada and USA), Tibet Watch, Licas.news, Phayul."
       },
       "error": ""
     },
@@ -308,12 +339,14 @@
         "prisoner_name": "Go Sherab Gyatso",
         "status": "DETAINED",
         "location": "Prison near Lhasa, Tibet Autonomous Region",
-        "sentence": "10 years for inciting secession",
-        "latest_news": "July 2024: PEN International called for his release at the UN Human Rights Council.",
+        "sentence": "10 years for inciting secession (sentenced November 2021, secret trial at Lhasa Intermediate Court). Detained October 26, 2020 in Chengdu while seeking medical treatment.",
+        "latest_news": "Remains imprisoned. Health in jeopardy — chronic lung condition, denied adequate medical care. Previously detained in 1998 (Dalai Lama images), 2008 (Olympics protests), and 2011-2013. Buddhist scholar, educator, and author. PEN International Day of the Imprisoned Writer honoree 2023.",
         "health_status": "Chronic lung condition, concerns about access to adequate medical care.",
         "international_response": "PEN International and the US Department of State have called for his immediate and unconditional release.",
         "source_url": "https://www.pen-international.org/cases/go-sherab-gyatso-gosher",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Oct 26, 2020. Sentenced Nov 2021 to 10 years. Verified via Tibet Watch, TCHRD North America, Tibet.net, USCIRF, PEN International."
       },
       "error": ""
     },
@@ -323,12 +356,14 @@
         "prisoner_name": "Jiang Tianyong",
         "status": "RELEASED",
         "location": "Under house arrest in China",
-        "sentence": "2 years for inciting subversion of state power",
-        "latest_news": "Nov 2022: Received the IBA Human Rights Award 2022 but was unable to accept it in person due to being under house arrest.",
+        "sentence": "2 years for inciting subversion of state power (sentenced November 21, 2017, Changsha Intermediate Court). Released February 28, 2019. Under constant surveillance and effective house arrest since.",
+        "latest_news": "Ongoing surveillance at family home in Henan province. Deteriorating health (poor vision, memory loss, swollen legs) attributed to torture and forced medication in prison. Denied access to doctor of choice.",
         "health_status": "Enduring health problems from mistreatment in prison; denied access to medical care.",
         "international_response": "Awarded the 2022 IBA Human Rights Award. Lawyers for Lawyers and other groups have called for an end to his house arrest.",
         "source_url": "https://www.ibanet.org/China-Jiang-Tianyong-receives-IBA-Human-Rights-Award-2022",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 21, 2017 (not just \"2 years\" — exact date added). Released Feb 28, 2019. Ongoing harassment verified via BBC, OHCHR, ChinaAid, Lawyers for Lawyers, OIAD. 709 Crackdown victim."
       },
       "error": ""
     },
@@ -338,12 +373,14 @@
         "prisoner_name": "Li Yuhan",
         "status": "RELEASED",
         "location": "Home",
-        "sentence": "6.5 years for picking quarrels and provoking trouble and fraud",
-        "latest_news": "Mar 2024: Released after completing her 6.5-year sentence.",
+        "sentence": "6.5 years for picking quarrels and provoking trouble and fraud (sentenced October 25, 2023, Heping District Court, Shenyang). Secret trial held October 2021, verdict delayed 2 years. Released approximately April 2024 (time served since October 2017 detention).",
+        "latest_news": "Apr 2024: Released after completing sentence (time served). Detained since October 9, 2017. Represented Wang Yu during 709 Crackdown. Multiple heart attacks and severe health decline during 6+ years of pre-trial detention. Sentence included time served.",
         "health_status": "Deteriorating, with knee injuries, cardiovascular issues, high blood pressure, and vision and hearing loss. Allegations of ill-treatment in detention.",
         "international_response": "Awarded the Franco-German Prize for Human Rights and the Rule of Law in 2020. Amnesty International and other NGOs have campaigned for her release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/woman-human-rights-defender-li-yuhan-returned-home-after-completing-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Oct 25, 2023 to 6.5 years. Released ~Apr 2024. Verified via Amnesty International, Front Line Defenders, VOA, Lawyers for Lawyers, USNN."
       },
       "error": ""
     },
@@ -353,12 +390,14 @@
         "prisoner_name": "Yu Wensheng",
         "status": "DETAINED",
         "location": "Suzhou Detention Centre, Jiangsu Province",
-        "sentence": "3 years for inciting subversion of state power",
-        "latest_news": "Jan 2025: Appeal rejected by Suzhou Intermediate People's Court.",
+        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after re-arrest in April 2023 while meeting EU diplomats.",
+        "latest_news": "Oct 2024: Re-sentenced to 3 years alongside wife Xu Yan (1 year 9 months). Appeal upheld Jan 2025. Won Martin Ennals Award 2021, Franco-German HR Prize 2018.",
         "health_status": "Deteriorating due to poor conditions and alleged torture.",
         "international_response": "EU, US, Amnesty International, and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards.",
         "source_url": "https://www.amnesty.org/en/latest/news/2025/01/china-jailed-human-rights-lawyers-failed-appeal-highlights-fear-of-dissent/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL: Our data had old sentence (3 years). Actually had TWO sentences: 4 years (2018-2022) and 3 years (Oct 29, 2024). Verified via Front Line Defenders, VOA, Independent, EU EEAS, Amnesty, ISHR, Straits Times."
       },
       "error": ""
     },
@@ -368,12 +407,14 @@
         "prisoner_name": "Chen Mei",
         "status": "RELEASED",
         "location": "China",
-        "sentence": "15 months for picking quarrels and provoking trouble",
-        "latest_news": "Aug 2021: Released after serving 15-month sentence for archiving censored COVID-19 content.",
+        "sentence": "15 months for picking quarrels and provoking trouble (sentenced August 2021). Released August 2021 on time served (detained April 2020). Co-arrested with Cai Wei for archiving censored COVID-19 articles on GitHub (Terminus 2049 project).",
+        "latest_news": "Aug 2021: Released after sentencing — 16 months pre-trial detention exceeded 15-month sentence. Archived ~100 censored COVID articles including Dr. Ai Fen interviews and MeToo movement coverage.",
         "health_status": "Unknown",
         "international_response": "Amnesty International, Human Rights Watch, and other NGOs condemned his detention and called for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/cai-wei-and-chen-mei-sentenced-released-time-served-1",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Aug 2021, released same month (time served). Verified via Front Line Defenders, SCMP, CPJ. COVID archive project Terminus 2049 on GitHub."
       },
       "error": ""
     },
@@ -383,12 +424,14 @@
         "prisoner_name": "Cai Wei",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "1 year and 3 months for \"picking quarrels and provoking trouble\"",
-        "latest_news": "Aug 2021: Sentenced to 1 year and 3 months and released on time served.",
+        "sentence": "1 year and 3 months for \"picking quarrels and provoking trouble\" (sentenced August 2021). Released August 2021 on time served (detained April 2020). Arrested alongside Chen Mei for COVID-19 article archiving project.",
+        "latest_news": "Aug 2021: Released after sentencing — pre-trial detention exceeded sentence. Family-hired lawyers denied access; state-appointed lawyers represented defendants.",
         "health_status": "Unknown",
         "international_response": "Front Line Defenders, Amnesty International, and other human rights organizations reported on the case and advocated for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/cai-wei-and-chen-mei-sentenced-released-time-served",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Aug 2021, released same month. Verified via Front Line Defenders, SCMP, CPJ. Co-defendant with Chen Mei."
       },
       "error": ""
     },
@@ -398,12 +441,14 @@
         "prisoner_name": "Li Qiaochu",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "3 years and 8 months for inciting subversion of state power",
-        "latest_news": "Aug 2024: Released from prison after completing her sentence.",
+        "sentence": "3 years and 8 months for inciting subversion of state power (sentenced February 5, 2024). Released August 3, 2024 after time served counted from 2021 detention. 2 years deprivation of political rights.",
+        "latest_news": "Aug 2024: Released and returned to Beijing. Partner of Xu Zhiyong (14-year sentence). Convicted for helping manage Xu's blog. Amnesty: \"prisoner of conscience convicted for speaking out about torture.\"",
         "health_status": "Diagnosed with depression and reportedly in need of medical treatment.",
         "international_response": "The European Union, PEN America, and Amnesty International condemned her conviction and called for her release. The Netherlands embassy awarded her the Embassy Tulip award.",
         "source_url": "https://www.frontlinedefenders.org/en/case/li-qiaochu-returns-home-after-completing-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Feb 5, 2024 to 3 years 8 months. Released Aug 3, 2024. Verified via Front Line Defenders, Wikipedia, SCMP, PEN, VOA, Amnesty, AsiaNews."
       },
       "error": ""
     },
@@ -418,7 +463,9 @@
         "health_status": "Deteriorating, subjected to ill-treatment in detention.",
         "international_response": "The United States, Amnesty International, and other human rights organizations have condemned the sentence and called for her immediate release.",
         "source_url": "https://www.aljazeera.com/news/2024/6/14/chinese-metoo-activist-jailed-for-five-years-for-subversion",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced June 2024 to 5 years verified via RSF, NBC News, DW, Al Jazeera."
       },
       "error": ""
     },
@@ -433,7 +480,9 @@
         "health_status": "Health issues developed during solitary confinement have worsened, and he has been denied access to medicine.",
         "international_response": "Amnesty International and the US State Department have called for his release. The UN Working Group on Arbitrary Detention determined his detention was arbitrary.",
         "source_url": "https://www.amnesty.org/en/latest/news/2025/03/china-authorities-must-ensure-labour-activists-wang-jianbings-full-freedom-after-unjust-imprisonment/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced June 2024 to 3.5 years, released March 2025 verified via Amnesty International."
       },
       "error": ""
     },
@@ -443,12 +492,14 @@
         "prisoner_name": "Chang Weiping",
         "status": "RELEASED",
         "location": "Haikou, Hainan",
-        "sentence": "3.5 years for subversion of state power",
-        "latest_news": "July 2024: Released from prison and sent to live in Haikou, Hainan, under a travel ban.",
+        "sentence": "3.5 years for inciting subversion of state power (arrested October 22, 2020, Baoji, Shaanxi — third detention). Previously detained January and October 2020. Disclosed torture during RSDL in video before re-arrest.",
+        "latest_news": "Jul 2024: Released from prison. Sent to live in Haikou, Hainan under travel ban. Previously disclosed being tortured during Residential Surveillance at a Designated Location (RSDL) in a video filmed before his re-arrest Oct 2020. Martin Ennals Award nominee.",
         "health_status": "Unknown, but reported being tortured during detention.",
         "international_response": "Amnesty International condemned the sentence and called for his release. The verdict prompted an international outcry.",
         "source_url": "https://www.rfa.org/english/news/china/human-rights-lawyer-chang-weiping-07092024135023.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Oct 22, 2020 (third time). Sentenced 3.5 years for inciting subversion. Released Jul 2024. Consistent with NCHRD, Safeguard Defenders, and Front Line Defenders reporting. Web search rate-limited but data consistent with training knowledge."
       },
       "error": ""
     },
@@ -458,12 +509,14 @@
         "prisoner_name": "Pu Zhiqiang",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "3 years suspended sentence for 'picking quarrels and provoking trouble' and 'inciting ethnic hatred'",
-        "latest_news": "April 2016: Pu Zhiqiang's lawyer's license was revoked.",
+        "sentence": "3 years suspended sentence for \"picking quarrels and provoking trouble\" and \"inciting ethnic hatred\" (sentenced December 22, 2015, Beijing Second Intermediate Court). Disbarred and prohibited from practicing law.",
+        "latest_news": "Dec 2015: Suspended sentence means no prison time served beyond 19 months pre-trial detention. Disbarred — cannot practice law. Convicted over critical social media posts about government policies on Tibet and Xinjiang.",
         "health_status": "Unknown",
         "international_response": "The US, UK, and EU condemned the verdict. Amnesty International and Human Rights Watch also condemned the verdict and called for his release.",
         "source_url": "https://www.bbc.com/news/world-asia-china-36042739",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Dec 22, 2015. Suspended sentence verified via Front Line Defenders, Wikipedia, VOA, Lawyers for Lawyers, US State Department."
       },
       "error": ""
     },
@@ -473,12 +526,14 @@
         "prisoner_name": "Liu Feiyue",
         "status": "RELEASED",
         "location": "Hubei province",
-        "sentence": "5 years for inciting subversion of state power",
-        "latest_news": "Nov 2021: Released after completing five-year sentence, now under three years of 'deprivation of political rights'.",
+        "sentence": "5 years for inciting subversion of state power (sentenced January 29, 2019, Suizhou Intermediate Court, Hubei). Founder of Civil Rights and Livelihood Watch. Released November 2021.",
+        "latest_news": "Nov 2021: Released after completing full 5-year sentence. Subject to 3 years deprivation of political rights (ongoing surveillance). Assets seized (approx 1 million yuan).",
         "health_status": "Unknown",
         "international_response": "Front Line Defenders, Human Rights Watch, Amnesty International, PEN America, Reporters Without Borders, and the German government condemned his sentencing and called for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/liu-feiyue-released-after-completing-5-year-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Jan 29, 2019. Released Nov 2021. Verified via HRW, Amnesty, Front Line Defenders, PEN America."
       },
       "error": ""
     },
@@ -488,12 +543,14 @@
         "prisoner_name": "Wu Gan",
         "status": "RELEASED",
         "location": "Fujian, China (Released)",
-        "sentence": "8 years for subverting state power",
-        "latest_news": "May 2023: Released from prison after serving his full eight-year sentence.",
+        "sentence": "8 years for subverting state power (sentenced December 26, 2017, Tianjin No. 2 Intermediate Court). Also 5 years deprivation of political rights. Refused to plead guilty, resulting in harsher sentence. Released May 2023.",
+        "latest_news": "May 2023: Released after completing full 8-year sentence. Known as \"Super Vulgar Butcher\" for provocative performance art protests against officials. Part of broader 709 Crackdown.",
         "health_status": "Previously reported to have hypertension and a heart ailment; current status unknown.",
         "international_response": "The United States and Germany called for his release. Amnesty International campaigned for his release.",
         "source_url": "https://duihua.org/prisoner-updates-2023-7/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Dec 26, 2017 to 8 years. Released May 2023. Verified via Wikipedia, Amnesty International, Guardian/ChinaAid, WRAL, Straits Times, Rappler, China Change."
       },
       "error": ""
     },
@@ -508,7 +565,9 @@
         "health_status": "Deteriorating; reportedly forced to perform hard manual labor and suffering from high blood pressure.",
         "international_response": "Front Line Defenders and Reporters Without Borders (RSF) have condemned his sentence and called for his immediate release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/case-history-qin-yongmin",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced July 11, 2018 to 13 years for subversion verified via Front Line Defenders, PEN, HRW, NCHRD."
       },
       "error": ""
     },
@@ -518,12 +577,14 @@
         "prisoner_name": "Hada",
         "status": "DISAPPEARED",
         "location": "Unknown",
-        "sentence": "15 years for separatism and espionage",
-        "latest_news": "Dec 2025: A joint statement by several human rights groups reports that Hada and his family have completely disappeared following a medical emergency in February 2025.",
+        "sentence": "15 years for separatism and espionage (sentenced November 1996, closed hearing). 4 years deprivation of political rights. Founder of Southern Mongolian Democratic Alliance.",
+        "latest_news": "Feb 2025: Disappeared again after hospitalization under suspicious circumstances. Not released as expected in 2010 — held in extra-judicial detention 4+ additional years. Nominated for 2025 Nobel Peace Prize by Japanese and US lawmakers. Over 100 NGOs called for release (Apr 2025). Wife Xinna and son Uiles also persecuted.",
         "health_status": "Deteriorating, hospitalized in Feb 2025 with multiple organ failure.",
         "international_response": "Nominated for the 2025 Nobel Peace Prize by Japanese lawmakers; over 100 rights groups have called for his release.",
         "source_url": "https://southmongolia.org/en/588/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Dec 1995. Sentenced Nov 1996 to 15 years. Should have been released 2010 but held in extra-judicial detention. Disappeared again Feb 2025. Verified via NCHRD, CSW, UNPO, Concerned Scientists, Wikipedia, HRIC, SMHRIC."
       },
       "error": ""
     },
@@ -533,12 +594,14 @@
         "prisoner_name": "Tenzin Nyima",
         "status": "DECEASED",
         "location": "Died in custody, Wonpo, Kardze, Sichuan",
-        "sentence": "Died before sentencing; charged with inciting separatism",
-        "latest_news": "Jan 2021: Died from injuries sustained in police custody after being released in a comatose state.",
+        "sentence": "Died before sentencing. First detained November 2019 for peaceful protest at Dza Wonpo Monastery, Sershul County, eastern Tibet. Re-arrested 2020, severely beaten in custody.",
+        "latest_news": "Jan 2021: Died from injuries sustained in police custody. Released to family in a comatose state. Died shortly after. His case drew international condemnation from HRW, Amnesty, and UN human rights experts who accused Chinese authorities of torture and failing to provide medical treatment.",
         "health_status": "Died from injuries inflicted during detention; was in a comatose state and injuries were declared beyond treatment.",
         "international_response": "Human Rights Watch, International Campaign for Tibet, and Free Tibet condemned his death and called for an independent investigation.",
         "source_url": "https://www.hrw.org/news/2021/04/07/counterterrorism-police-clean-after-tibetan-monks-death",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "First detained Nov 2019, re-arrested 2020. Died Jan 2021. Verified via web search results citing HRW, Amnesty International, Radio Free Asia, and UN Human Rights Council releases from early 2021."
       },
       "error": ""
     },
@@ -548,12 +611,14 @@
         "prisoner_name": "Lobsang Lhundup",
         "status": "RELEASED",
         "location": "Unknown",
-        "sentence": "4 years for disrupting social order",
-        "latest_news": "Aug 2023: Released after completing his four-year sentence.",
+        "sentence": "4 years for disrupting social order (sentenced in secret trial). Arrested June 2019 in Chengdu. Pen name: Dhi Lhaden. Released August 2023 from Mianyang prison.",
+        "latest_news": "Aug 2023: Released from Mianyang prison after serving full 4-year sentence. Author of \"The Art of Passive Resistance\" which criticized CCP rule in Tibet — used as evidence in trial. Held incommunicado for 2 years before trial.",
         "health_status": "Unknown",
         "international_response": "UN experts raised concerns about his arrest and detention.",
         "source_url": "https://www.rfa.org/english/news/tibet/writer-released-08072023152749.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested June 2019. Sentenced 4 years (date unknown — secret trial). Released Aug 2023. Verified via Tibet Watch, Free Tibet, Phayul, RFA, Pardafas."
       },
       "error": ""
     },
@@ -568,7 +633,9 @@
         "health_status": "Unknown",
         "international_response": "US State Department #WithoutJustCause campaign, UN WGAD calls for release, EU calls for release.",
         "source_url": "http://humanrightscommission.house.gov/DFP/Countries/China/Ekpar-Asat",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained April 2016, sentence learned January 2020, 15 years verified via Tom Lantos Commission, USCIRF, Amnesty."
       },
       "error": ""
     },
@@ -583,7 +650,9 @@
         "health_status": "Unknown",
         "international_response": "Human Rights Watch, the Dui Hua Foundation, and academic institutions including Cambridge, Cornell, and Harvard have called for her release. The UN has also urged China to end the repression of Uyghur culture.",
         "source_url": "https://www.hrw.org/news/2023/09/22/chinese-court-imposes-life-sentence-uyghur-scholar",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Disappeared Dec 2017, secret trial Dec 2018, life sentence confirmed Sep 2023 via Dui Hua Foundation, HRW, UHRP, VOA."
       },
       "error": ""
     },
@@ -594,11 +663,13 @@
         "status": "EXILE",
         "location": "Turkey (exile)",
         "sentence": "Unknown",
-        "latest_news": "Dec 2020: An article by ANI News reported that Abdurahman Hasan, a Uyghur businessman in Turkey, was pleading for information about his son who was missing in Xinjiang since 2017. His wife and mother were also reportedly detained in concentration camps.",
+        "latest_news": "Dec 2020: ANI News reported Abdurahman Hasan, a Uyghur businessman in Turkey, pleading for information about his son missing in Xinjiang since 2017. Wife and mother also reportedly detained in camps. NOTE: This is a separate individual from Idris Hasan (Yidiresi Aishan), the Uyghur activist who was detained in Morocco 2021-2025 and freed Feb 12, 2025.",
         "health_status": "Unknown",
         "international_response": "Abdurahman Hasan, a Uyghur businessman, spoke to Istiqla TV, a Turkish-based media outlet, in 2018 to raise awareness about the atrocities in Xinjiang.",
         "source_url": "https://aninews.in/news/world/middle-east/uyghur-businessman-pleads-for-information-of-his-son-missing-since-chinese-invasion20201202092536/",
-        "confidence": "LOW"
+        "confidence": "LOW",
+        "last_verified": "2026-02-20",
+        "verification_note": "PARTIALLY VERIFIED. ANI News report (Dec 2020) describes Uyghur businessman in Turkey seeking info about missing son. Not to be confused with Idris Hasan (Morocco case). Limited independent corroboration beyond ANI report. Data retained but flagged for additional sourcing."
       },
       "error": ""
     },
@@ -608,12 +679,14 @@
         "prisoner_name": "Yalqun Rozi",
         "status": "DETAINED",
         "location": "Urumqi, Xinjiang",
-        "sentence": "15 years for inciting subversion of state power",
-        "latest_news": "May 2023: UN panel confirms violation of rights",
+        "sentence": "15 years for inciting subversion of state power and splittism (detained October 2016, sentenced January 2018). Uyghur writer, literary critic, and textbook editor. Textbooks previously approved by authorities were retrospectively deemed \"problematic.\"",
+        "latest_news": "May 2023: UN Working Group on Arbitrary Detention confirmed his detention violates international law (Opinion No. A/HRC/WGAD/2022/64). PEN International and PEN America continue advocacy. Campaign for Uyghurs marks anniversary of imprisonment annually. Family now outside China.",
         "health_status": "Unknown",
         "international_response": "UN Working Group on Arbitrary Detention ruled the detention as arbitrary; Listed as a victim by USCIRF.",
         "source_url": "https://en.wikipedia.org/wiki/Yalqun_Rozi",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Oct 2016. Sentenced Jan 2018 to 15 years. Verified via Wikipedia, PEN International, PEN America, Campaign for Uyghurs, UN WGAD (A/HRC/WGAD/2022/64), MCLC Resource Center, Uyghur American Association."
       },
       "error": ""
     },
@@ -623,12 +696,14 @@
         "prisoner_name": "Nurmuhammad Tohti",
         "status": "DECEASED",
         "location": "Xinjiang, China",
-        "sentence": "Detained in a 're-education' camp",
-        "latest_news": "June 2019: Died after being released from a 're-education' camp.",
+        "sentence": "Detained in a re-education camp without formal charges or trial. Died after being released in deteriorating health.",
+        "latest_news": "June 2019: Died after being released from a re-education camp in Xinjiang. His death exemplifies the pattern of detainees being denied adequate medical care in camps and released only when near death. Limited English-language documentation available.",
         "health_status": "Deteriorating, denied medical care for diabetes and heart disease",
         "international_response": "PEN America condemned his death.",
         "source_url": "https://pen.org/press-release/appalling-death-of-nurmuhammad-tohti/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "PARTIALLY VERIFIED. Death in/after re-education camp detention is consistent with documented patterns (ASPI, HRW, Amnesty reports on camp deaths). Specific individual details have limited independent English-language corroboration. Data retained as consistent with known patterns but flagged for additional sourcing."
       },
       "error": ""
     },
@@ -638,12 +713,14 @@
         "prisoner_name": "Perhat Tursun",
         "status": "DETAINED",
         "location": "Xinjiang, China",
-        "sentence": "16 years for unknown charges",
-        "latest_news": "2024: Reports revealed that Tursun was sentenced to 16 years in prison.",
+        "sentence": "16 years (seized January 2018 in Urumqi, sentence surfaced in 2020). Charges and trial details never made public. Renowned poet and novelist.",
+        "latest_news": "Remains imprisoned and incommunicado since Jan 2018. Won Tucholsky Prize from PEN Sweden (2022). Author of \"The Art of Suicide\" (novel) and \"One Hundred Love Lyrics\" (poetry). Part of sweeping crackdown targeting Uyghur intellectuals and cultural figures from 2017 onward.",
         "health_status": "Unknown",
         "international_response": "His case is monitored by PEN America, USCIRF, and the Congressional-Executive Commission on China. His novel 'The Backstreets' was runner-up for the Observer/Anthony Burgess prize for arts journalism in 2023.",
         "source_url": "https://pen.org/writer-at-risk/perhat-tursun/",
-        "confidence": "MEDIUM"
+        "confidence": "MEDIUM",
+        "last_verified": "2026-02-20",
+        "verification_note": "Seized Jan 2018. 16-year sentence surfaced 2020. Verified via Wikipedia, PEN America, PEN International, Uyghur PEN, USCIRF, Coda Story, World Uyghur Congress."
       },
       "error": ""
     },
@@ -653,12 +730,14 @@
         "prisoner_name": "Abduweli Ayup",
         "status": "EXILE",
         "location": "Bergen, Norway (exile)",
-        "sentence": "15 months for teaching Uyghur language",
-        "latest_news": "Nov 2025: Spoke at Columbia University and Penn's Center for East Asian Studies about his efforts to preserve the Uyghur language.",
+        "sentence": "18 months for \"illegal fundraising\" (detained August 2013, convicted on politically motivated charges). Sentenced for operating Uyghur-language kindergartens. Released November 2014.",
+        "latest_news": "Living in Bergen, Norway since 2019 via ICORN writer-in-residence program. Previously exiled to Turkey (2015). Founded Uyghur Hjelp (non-profit). Subject of award-winning documentary \"Behind the Mask\" (2024). Won Linguapax International Prize. Master's from University of Kansas (2011).",
         "health_status": "Unknown",
         "international_response": "Granted writer-in-residence through the ICORN program in Norway; spoken at the Geneva Summit for Human Rights and Democracy; featured in international media including NPR and VOA.",
         "source_url": "https://www.npr.org/2025/02/16/nx-s1-5293444/a-uyghur-linguists-journey-from-detainee-to-activist-in-exile",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CORRECTION: Sentence was 18 months (not 15 months as previously listed). Detained Aug 2013, released Nov 2014. Fled to Turkey 2015, Norway 2019. Verified via Wikipedia, PEN America, Uyghur Times, NY Review of Books, ICORN, USC, CCCB."
       },
       "error": ""
     },
@@ -673,7 +752,9 @@
         "health_status": "High blood pressure, migraines, back problems, osteoporosis",
         "international_response": "UN experts and the US Commission on International Religious Freedom (USCIRF) have issued statements calling for her release. Rep. Ro Khanna (D-CA) advocates for her as part of the Tom Lantos Human Rights Commission's Defending Freedoms Project.",
         "source_url": "https://www.ohchr.org/en/press-releases/2024/06/china-authorities-must-provide-information-imprisoned-uyghur-doctor",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "20-year sentence verified via OHCHR, USCIRF. Health concerns documented. Sister Rushan Abbas is founder of Campaign for Uyghurs."
       },
       "error": ""
     },
@@ -683,12 +764,14 @@
         "prisoner_name": "Andy Li",
         "status": "DETAINED",
         "location": "Siu Lam Psychiatric Center, Hong Kong",
-        "sentence": "Guilty plea for conspiracy to collude with foreign forces; sentencing deferred",
+        "sentence": "Guilty plea August 19, 2021 for conspiracy to collude with foreign forces; sentencing deferred pending role as prosecution witness in Jimmy Lai trial. Allegations of torture during mainland detention.",
         "latest_news": "Mar 2024: Testified against Jimmy Lai, sparking international concern over torture allegations",
         "health_status": "Held in solitary confinement at a psychiatric facility; allegations of torture",
         "international_response": "UN Special Rapporteur on torture raised concerns about coerced testimony",
         "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/andy-li-yu-hin",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Part of Hong Kong 12. Guilty plea Aug 19, 2021. Sentencing deferred. Torture allegations. Verified via HKFP, Straits Times, CFHK Foundation, Hong Kong Watch, Doughty Street."
       },
       "error": ""
     },
@@ -703,7 +786,9 @@
         "health_status": "Unknown",
         "international_response": "The Human Rights Foundation (HRF) submitted a petition to the UN Working Group on Arbitrary Detention (UNWGAD) for Owen Chow. The UN and other NGOs have criticized the National Security Law under which he was convicted.",
         "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/owen-chow-ka-shing",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 7 years 9 months as part of Hong Kong 47 case. Second-longest sentence after Benny Tai. Verified via HRF, Hong Kong Watch, SCMP, Asia Freedom Institute."
       },
       "error": ""
     },
@@ -718,7 +803,9 @@
         "health_status": "Unknown",
         "international_response": "The US condemned the prison sentences and is taking steps to impose visa restrictions on Hong Kong officials.",
         "source_url": "https://hongkongfp.com/2024/11/29/ex-journalist-gwyneth-ho-seeks-to-challenge-conviction-and-7-year-sentence-in-democrats-nat-security-case/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 7 years for conspiracy to commit subversion. Hong Kong 47 case. Former journalist. Verified via Hong Kong Watch, HKFP, SCMP."
       },
       "error": ""
     },
@@ -728,12 +815,14 @@
         "prisoner_name": "Claudia Mo",
         "status": "RELEASED",
         "location": "Hong Kong",
-        "sentence": "4 years and 2 months for conspiracy to commit subversion",
-        "latest_news": "Apr 2025: Released from prison after completing her sentence.",
+        "sentence": "4 years and 2 months for conspiracy to commit subversion (sentenced November 19, 2024). Released late April 2025 due to time served since 2021 arrest.",
+        "latest_news": "Apr 2025: Released from Lo Wu Correctional Institution along with Kwok Ka-ki, Jeremy Tam, and Gary Fan — first Hong Kong 47 defendants to complete sentences.",
         "health_status": "Unknown",
         "international_response": "The Hong Kong 47 case has drawn widespread international condemnation, but specific responses to her release are not detailed in the provided search results.",
         "source_url": "https://www.reuters.com/world/china/first-batch-hong-kong-democrats-freed-after-4-years-jail-subversion-2025-04-28/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Released April 2025 after time served. Verified via SCMP, RTHK, Licas.news, JadeTimes."
       },
       "error": ""
     },
@@ -748,7 +837,9 @@
         "health_status": "Wife reported his health as 'stable' in May 2022; no recent updates.",
         "international_response": "The sentencing of the Hong Kong 47, including Leung Kwok-hung, was condemned by the US, UK, EU, and other countries, as well as international human rights organizations.",
         "source_url": "https://hongkongfp.com/2024/12/16/hong-kong-47-activist-long-hair-leung-kwok-hung-seeks-to-overturn-conviction-sentence-in-national-security-case/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Known as \"Long Hair\". Sentenced Nov 19, 2024 to 6 years 9 months. Filed appeal Dec 2024. Verified via DimSum Daily, Asahi, LitCI, The Standard."
       },
       "error": ""
     },
@@ -763,7 +854,9 @@
         "health_status": "Unknown",
         "international_response": "While in prison, Sham won a landmark LGBTQ rights case at Hong Kong's top court, which ruled the government must provide a framework for recognizing same-sex partnerships.",
         "source_url": "https://apnews.com/article/hong-kong-sham-prison-democracy-lgbtq-f5163025625a9bb41cf2fbe9c90022b7",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 4 years 3 months for conspiracy to commit subversion. Hong Kong 47 case. Verified via HKFP, Hong Kong Watch."
       },
       "error": ""
     },
@@ -773,12 +866,14 @@
         "prisoner_name": "Lee Cheuk-yan",
         "status": "DETAINED",
         "location": "Unknown prison, Hong Kong",
-        "sentence": "14 months for unauthorized assembly; awaiting trial for inciting subversion of state power (up to 10 years)",
+        "sentence": "20 months total for unauthorized assemblies (Aug 18, Aug 31, Oct 1, 2019 marches and Jun 4, 2020 vigil). Charged with inciting subversion under NSL (Sep 2021); trial pending as of Jan 2026.",
         "latest_news": "Dec 2025: Trial for national security charges postponed to January 22, 2026.",
         "health_status": "Unknown",
         "international_response": "Multiple international human rights organizations, including Amnesty International and the ITUC, have called for his immediate release.",
         "source_url": "https://www.article19.org/resources/human-rights-day-hong-kong-must-release-chow-hang-tung-and-lee-cheuk-yan-now/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "20 months total for assembly convictions (not 14). NSL subversion trial pending Jan 2026. Verified via Hong Kong Watch, ITUC, HKFP, BWI, HK Labour Rights Monitor."
       },
       "error": ""
     },
@@ -788,12 +883,14 @@
         "prisoner_name": "Tam Tak-chi",
         "status": "DETAINED",
         "location": "Hong Kong",
-        "sentence": "4 years and 5 months for conspiracy to commit subversion; 40 months for sedition",
+        "sentence": "40 months for sedition (upheld by Court of Final Appeal March 2025); also charged in separate HK47 subversion case (sentencing Nov 19, 2024 to 4 years 5 months).",
         "latest_news": "July 2025: Dropped his appeal against the sentence in the national security trial.",
         "health_status": "Unknown",
         "international_response": "Unknown",
         "source_url": "https://hongkongfp.com/2025/07/10/hong-kong-activist-tam-tak-chi-drops-appeal-application-against-nat-security-jail-sentence/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sedition sentence is 40 months (upheld CFA Mar 2025). Separate subversion sentence from HK47. Verified via DimSum Daily, Taipei Times, RTHK, Columbia Global Freedom of Expression."
       },
       "error": ""
     },
@@ -803,12 +900,14 @@
         "prisoner_name": "Tony Chung",
         "status": "EXILE",
         "location": "London, UK (exile)",
-        "sentence": "3 years and 7 months for secession and money laundering",
+        "sentence": "3 years and 7 months for secession and money laundering (sentenced November 2021, youngest person sentenced under NSL at age 20). Released and exiled to UK December 2023.",
         "latest_news": "Aug 2025: Granted political asylum in the UK.",
         "health_status": "Struggled with depression and other mental illnesses since his arrest in 2020.",
         "international_response": "UK granted asylum; G7 nations condemned Hong Kong for targeting overseas activists.",
         "source_url": "https://www.theguardian.com/uk-news/2025/aug/18/hong-kong-activist-tony-chung-says-he-has-been-granted-asylum-in-the-uk",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 2021 at age 20. Exiled to UK Dec 2023. Verified via VOA, Independent, Hong Kong Watch, Wikipedia."
       },
       "error": ""
     },
@@ -818,12 +917,14 @@
         "prisoner_name": "Erfan Hezim (Ye Erfan)",
         "status": "RELEASED",
         "location": "Unknown",
-        "sentence": "Detained in a 'political re-education camp' for 11 months, no formal sentence.",
-        "latest_news": "March 2019: Released from detention and signed with League One club Shaanxi Chang’an Athletic.",
+        "sentence": "Detained in a political re-education camp for approximately 11 months (2018-2019), no formal charges. Detained for \"visiting foreign countries\" during professional football career.",
+        "latest_news": "Mar 2019: Released from detention camp. Resumed training with club (gave forced statement of gratitude to CCP). Previously played for Jiangsu Suning (Chinese Super League) and represented China national youth team. Detained in 2018 upon return from club travel to Spain and Dubai. FIFPro called for his release.",
         "health_status": "Unknown",
         "international_response": "The International Federation of Professional Footballers (FIFPro) expressed concern. The World Uyghur Congress called for information about his and others' detentions. U.S. lawmakers called for an investigation into the camps.",
         "source_url": "https://thechinaproject.com/2019/03/01/uyghur-footballer-erfan-hezim-signs-with-new-chinese-club/",
-        "confidence": "MEDIUM"
+        "confidence": "MEDIUM",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained 2018. ~11 months in re-education camp. Released ~Mar 2019. CORRECTION: Played for Jiangsu Suning (Chinese Super League), not League One. Verified via HKFP, FIFPro/ETAA, AsiaNews, World Uyghur Congress, The News Lens, Uyghur Post, Turkistan Times."
       },
       "error": ""
     },
@@ -831,14 +932,16 @@
       "input": "Xin Ruoyu - Young mother, black jail July 2024",
       "output": {
         "prisoner_name": "Xin Ruoyu",
-        "status": "DETAINED",
+        "status": "DISAPPEARED",
         "location": "Guangzhou, Guangdong Province",
-        "sentence": "Unknown",
-        "latest_news": "Dec 2025: Mentioned in a Forbes article on political prisoners in China.",
+        "sentence": "Forcibly disappeared August 23, 2024. No formal charges. Detained in extrajudicial \"small black room\" (黑屋) for developing the \"Song of Songs\" (雅歌) Christian worship app.",
+        "latest_news": "Aug 23, 2024: Taken by Shandong police, brought to Guangzhou. Detained in extrajudicial \"small black room\" — a secret detention facility outside the normal judicial system. Young mother with a child. The \"Song of Songs\" app offered Chinese and foreign hymns, worship music, Bible readings in multiple versions, and sermons for Chinese-speaking Christians. Listed in CECC Political Prisoner Database. Featured in Olivia Enos article for Forbes/Hudson Institute on Human Rights Day 2025. Her case is emblematic of CCP crackdown on digital religious expression and \"Sinicization\" of Christianity.",
         "health_status": "Reported to be a 'very frail woman'.",
         "international_response": "Included in the 2025 annual report of the US Congressional-Executive Commission on China (CECC).",
         "source_url": "https://chinaaid.org/news/woman-has-gone-missing-after-being-taken-away-by-the-police-for-her-involvement-in-developing-christian-ap/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "VERIFIED — Previously flagged as unverifiable but Forbes article URL provided by project owner confirmed identity. Young Christian mother from Guangzhou. Disappeared Aug 23, 2024 for developing Christian worship app. Status changed from DETAINED to DISAPPEARED (extrajudicial detention, no charges). Verified via ChinaAid, Hudson Institute (Olivia Enos), Forbes, Voice of the Martyrs (Australia), ASSIST News, Eschatology Today, Human Rights Without Frontiers, CECC Political Prisoner Database."
       },
       "error": ""
     },
@@ -846,14 +949,16 @@
       "input": "Guan Heng - Citizen journalist, filmed Uyghur camps, US deportation risk",
       "output": {
         "prisoner_name": "Guan Heng",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "New York, USA",
-        "sentence": "No sentence; seeking asylum in the US",
-        "latest_news": "Dec 2025: The U.S. dropped its effort to deport Guan Heng to Uganda.",
+        "sentence": "No sentence; filmed Xinjiang detention facilities. Fled China 2021. Detained by US ICE August 2025. Granted asylum January 28, 2026. Released February 2026.",
+        "latest_news": "Jan 28, 2026: Granted asylum by US immigration judge. Released from ICE detention Feb 2026 after 5+ months. Fled China via Hong Kong → Ecuador → Bahamas → US by boat. Filmed and published video evidence of Xinjiang detention facilities on YouTube. Family questioned by Chinese authorities. Supported by Rep. Ro Khanna and Rep. Raja Krishnamoorthi.",
         "health_status": "Unknown",
         "international_response": "The Committee to Protect Journalists (CPJ) and US Congressman Raja Krishnamoorthi have advocated on his behalf, urging the US government to grant him asylum.",
         "source_url": "https://www.reuters.com/world/china/us-drops-uganda-deportation-order-against-chinese-dissident-lawyer-says-2025-12-19/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL UPDATE: Status changed from \"AT RISK\" to \"RELEASED\". Granted US asylum Jan 28, 2026. Released Feb 2026. Verified via ABC News, NBC News, SFGATE, Wikipedia, Gulf News."
       },
       "error": ""
     },
@@ -887,7 +992,9 @@
         "health_status": "Unknown",
         "international_response": "US government negotiated his release to the US; recipient of multiple international awards.",
         "source_url": "https://www.voanews.com/a/usa_blind-chinese-dissident-who-escaped-2012-now-us-citizen/6208193.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Blind self-taught lawyer. Escaped house arrest Apr 2012, took refuge in US Embassy Beijing, left for US May 2012. Verified via multiple US State Dept records."
       },
       "error": ""
     },
@@ -897,12 +1004,14 @@
         "prisoner_name": "Ai Weiwei",
         "status": "EXILE",
         "location": "Montemor-o-Novo, Portugal",
-        "sentence": "N/A (previously detained for 81 days in 2011 without charge)",
-        "latest_news": "Sep 2024: A porcelain sculpture by Ai Weiwei was destroyed by a vandal at an exhibition in Bologna, Italy.",
+        "sentence": "N/A (detained for 81 days in April-June 2011 without charge; subsequently faced tax evasion charges widely viewed as politically motivated). Left China 2015 for Berlin.",
+        "latest_news": "Late 2025: Quietly returned to China for brief family visit after decade in exile — first return since 2015.",
         "health_status": "Unknown",
         "international_response": "Widespread condemnation of his 2011 detention by the US, EU, and human rights organizations. Recipient of numerous awards, including Amnesty International's Ambassador of Conscience Award in 2015.",
         "source_url": "https://news.artnet.com/art-world/ai-weiwei-sculpture-destroyed-2540881",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Apr 2011 for 81 days. Left China 2015. Returned briefly late 2025. Verified via TIME, Britannica, Wikipedia, Mimeta."
       },
       "error": ""
     },
@@ -912,12 +1021,14 @@
         "prisoner_name": "Liu Xiaobo",
         "status": "DECEASED",
         "location": "Shenyang, China",
-        "sentence": "11 years for inciting subversion of state power",
+        "sentence": "11 years for inciting subversion of state power (sentenced December 25, 2009). Detained December 8, 2008. Died July 13, 2017 of liver cancer in custody.",
         "latest_news": "July 2017: Died in custody from liver cancer",
         "health_status": "Died of multiple organ failure due to liver cancer",
         "international_response": "Awarded the 2010 Nobel Peace Prize for his long and non-violent struggle for fundamental human rights in China.",
         "source_url": "https://www.bbc.com/news/world-asia-china-40597514",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Dec 8, 2008; sentenced Dec 25, 2009; Nobel Peace Prize Oct 2010; died Jul 13, 2017. Verified via Tom Lantos Commission, NobelPrize.org, Britannica, NCHRD, Freedom Now."
       },
       "error": ""
     }
