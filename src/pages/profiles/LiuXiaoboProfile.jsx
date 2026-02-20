@@ -242,7 +242,7 @@ const INTERNATIONAL_RESPONSES = [
   { org: 'US Government', action: 'Called for immediate release; CECC and Tom Lantos Commission held hearings. Secretary Clinton called his sentencing "a violation of internationally recognized norms"', year: '2009-2017' },
   { org: 'PEN International', action: 'Named him Honorary Member; PEN America awarded him the Barbara Goldsmith Freedom to Write Award (2009)', year: '2009' },
   { org: 'Human Rights Watch', action: 'Called his death "a tragedy" and said "the government bore heavy responsibility for his death." Demanded accountability for denied medical treatment', year: '2017' },
-  { org: 'Amnesty International', action: 'Designated him a prisoner of conscience. Called his death "a final alarmingly China is heading in a more repressive direction." Campaigned for Liu Xia\'s release', year: '2009-2018' },
+  { org: 'Amnesty International', action: 'Designated him a prisoner of conscience. Called his death "an alarming signal that China is heading in a more repressive direction." Campaigned for Liu Xia\'s release', year: '2009-2018' },
   { org: 'German Government', action: 'Offered to treat Liu in German hospitals (denied by China). Successfully negotiated Liu Xia\'s release to Berlin in July 2018', year: '2017-2018' },
   { org: 'UN Human Rights Experts', action: 'Multiple UN Special Rapporteurs called for his release. The UN Working Group on Arbitrary Detention declared his detention arbitrary', year: '2009-2017' },
 ];
