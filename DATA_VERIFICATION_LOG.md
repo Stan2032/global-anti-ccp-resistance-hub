@@ -196,6 +196,21 @@
 | Ai Weiwei details | Minimal exile info | Added 81 days detail, 2015 departure, 2025 brief return | political_prisoners_research.json |
 | 12 more prisoners missing last_verified | No verification dates | Added last_verified: 2026-02-20 with source notes (28 total) | political_prisoners_research.json |
 
+### Session 31 Corrections (2026-02-20)
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Tashi Wangchuk status | "AT RISK" | "RELEASED" (released January 28, 2021). Status was 4 years out of date. | political_prisoners_research.json |
+| Yu Wensheng sentence | "3 years for inciting subversion" (ambiguous — which sentence?) | Documented BOTH sentences: 4 years (2018-2022) + 3 years (Oct 29, 2024, Suzhou Court) | political_prisoners_research.json |
+| Ding Jiaxi sentencing date | Not specified | Added "April 10, 2023, Linshu County Court, Shandong" | political_prisoners_research.json |
+| Jiang Tianyong details | No sentencing/release dates | Added sentenced "November 21, 2017", released "February 28, 2019", ongoing surveillance | political_prisoners_research.json |
+| Li Qiaochu dates | No sentencing/release dates | Added sentenced "February 5, 2024", released "August 3, 2024" | political_prisoners_research.json |
+| Liu Feiyue dates | No sentencing date | Added "January 29, 2019, Suizhou Intermediate Court" | political_prisoners_research.json |
+| Claudia Mo release | Status correct but no release details | Added "released late April 2025" from Lo Wu Correctional Institution | political_prisoners_research.json |
+| Tam Tak-chi sedition sentence | Combined description unclear | Clarified: "40 months sedition (upheld CFA Mar 2025) + 4 years 5 months subversion (HK47)" | political_prisoners_research.json |
+| Owen Chow verification | No verification | Added verification note (7 years 9 months, second-longest HK47 sentence) | political_prisoners_research.json |
+| 12 more prisoners verified | No verification dates | Added last_verified: 2026-02-20 with source notes (40 total) | political_prisoners_research.json |
+
 ### Previously Correct (Verified)
 
 - Tiananmen Square: June 4, 1989 ✅
@@ -212,6 +227,16 @@
 - Cardinal Zen arrest: May 11, 2022 ✅ (Session 30)
 - Tony Chung sentencing: November 2021 ✅ (Session 30)
 - Ai Weiwei detention: 81 days, April-June 2011 ✅ (Session 30)
+- Ding Jiaxi sentencing: April 10, 2023 ✅ (Session 31)
+- Jiang Tianyong sentencing: November 21, 2017 ✅ (Session 31)
+- Tashi Wangchuk release: January 28, 2021 ✅ (Session 31, corrected from "AT RISK")
+- Yu Wensheng second sentence: October 29, 2024 ✅ (Session 31)
+- Li Qiaochu release: August 3, 2024 ✅ (Session 31)
+- Liu Feiyue sentencing: January 29, 2019 ✅ (Session 31)
+- Claudia Mo release: late April 2025 ✅ (Session 31)
+- Tam Tak-chi sedition: 40 months upheld March 2025 ✅ (Session 31)
+- Owen Chow sentencing: 7 years 9 months, Nov 19, 2024 ✅ (Session 31)
+- Leung Kwok-hung sentencing: 6 years 9 months, Nov 19, 2024 ✅ (Session 31)
 
 ---
 

@@ -132,12 +132,14 @@
         "prisoner_name": "Ding Jiaxi",
         "status": "DETAINED",
         "location": "Linshu Detention Centre, Shandong province",
-        "sentence": "12 years for subversion of State power",
+        "sentence": "12 years for subversion of State power (sentenced April 10, 2023, Linshu County Court, Shandong). Appeal upheld November 2023 by Shandong Provincial High Court. Also 3 years deprivation of political rights.",
         "latest_news": "Nov 2023: The Shandong Provincial High Court upheld the 12-year sentence for 'subversion of State power.'",
         "health_status": "Subjected to torture and ill-treatment during detention. Current health status is unknown.",
         "international_response": "UN High Commissioner for Human Rights, UN Special Procedures, and the UN Working Group on Arbitrary Detention have all expressed concerns and condemned the verdict. Awarded the U.S. Department of State's Global Human Rights Defender Award in 2023 and nominated for the Nobel Peace Prize in 2024.",
         "source_url": "https://www.frontlinedefenders.org/en/case/verdict-against-ding-jiaxi-upheld-appeal",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced April 10, 2023 to 12 years verified via Front Line Defenders, Amnesty, HRW, NCHRD, China Digital Times. Co-accused with Xu Zhiyong (14 years). Both members of New Citizens Movement."
       },
       "error": ""
     },
@@ -299,14 +301,16 @@
       "input": "Tashi Wangchuk - Tibetan language advocate, 5 years",
       "output": {
         "prisoner_name": "Tashi Wangchuk",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "Yushu, Qinghai",
-        "sentence": "5 years for inciting separatism, 15 days for provocation",
-        "latest_news": "Detained on Oct 20, 2024, for 15 days and released on Nov 4, 2024. Currently under surveillance.",
+        "sentence": "5 years for inciting separatism (sentenced May 22, 2018, Yushu Intermediate Court, Qinghai). Released January 28, 2021. 5 years deprivation of political rights. Previously detained 15 days for provocation.",
+        "latest_news": "Released Jan 28, 2021 after completing 5-year sentence. Returned to family in Yushu, Qinghai. Still under surveillance and deprivation of political rights until 2026.",
         "health_status": "Unknown",
         "international_response": "UN human rights experts condemned the 5-year jail term in 2018. PEN America celebrated his release in 2021.",
         "source_url": "https://savetibet.org/tibetan-language-rights-activist-tashi-wangchuk-detained-again-for-slanderous-videos-on-chinese-tiktok/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL: Status was \"AT RISK\" — changed to \"RELEASED\". Released Jan 28, 2021 (not January 2023). Verified via Wikipedia, ICT (savetibet.org), PEN America, USCIRF, Tibet.net."
       },
       "error": ""
     },
@@ -346,12 +350,14 @@
         "prisoner_name": "Jiang Tianyong",
         "status": "RELEASED",
         "location": "Under house arrest in China",
-        "sentence": "2 years for inciting subversion of state power",
-        "latest_news": "Nov 2022: Received the IBA Human Rights Award 2022 but was unable to accept it in person due to being under house arrest.",
+        "sentence": "2 years for inciting subversion of state power (sentenced November 21, 2017, Changsha Intermediate Court). Released February 28, 2019. Under constant surveillance and effective house arrest since.",
+        "latest_news": "Ongoing surveillance at family home in Henan province. Deteriorating health (poor vision, memory loss, swollen legs) attributed to torture and forced medication in prison. Denied access to doctor of choice.",
         "health_status": "Enduring health problems from mistreatment in prison; denied access to medical care.",
         "international_response": "Awarded the 2022 IBA Human Rights Award. Lawyers for Lawyers and other groups have called for an end to his house arrest.",
         "source_url": "https://www.ibanet.org/China-Jiang-Tianyong-receives-IBA-Human-Rights-Award-2022",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 21, 2017 (not just \"2 years\" — exact date added). Released Feb 28, 2019. Ongoing harassment verified via BBC, OHCHR, ChinaAid, Lawyers for Lawyers, OIAD. 709 Crackdown victim."
       },
       "error": ""
     },
@@ -376,12 +382,14 @@
         "prisoner_name": "Yu Wensheng",
         "status": "DETAINED",
         "location": "Suzhou Detention Centre, Jiangsu Province",
-        "sentence": "3 years for inciting subversion of state power",
-        "latest_news": "Jan 2025: Appeal rejected by Suzhou Intermediate People's Court.",
+        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after re-arrest in April 2023 while meeting EU diplomats.",
+        "latest_news": "Oct 2024: Re-sentenced to 3 years alongside wife Xu Yan (1 year 9 months). Appeal upheld Jan 2025. Won Martin Ennals Award 2021, Franco-German HR Prize 2018.",
         "health_status": "Deteriorating due to poor conditions and alleged torture.",
         "international_response": "EU, US, Amnesty International, and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards.",
         "source_url": "https://www.amnesty.org/en/latest/news/2025/01/china-jailed-human-rights-lawyers-failed-appeal-highlights-fear-of-dissent/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL: Our data had old sentence (3 years). Actually had TWO sentences: 4 years (2018-2022) and 3 years (Oct 29, 2024). Verified via Front Line Defenders, VOA, Independent, EU EEAS, Amnesty, ISHR, Straits Times."
       },
       "error": ""
     },
@@ -421,12 +429,14 @@
         "prisoner_name": "Li Qiaochu",
         "status": "RELEASED",
         "location": "Beijing, China",
-        "sentence": "3 years and 8 months for inciting subversion of state power",
-        "latest_news": "Aug 2024: Released from prison after completing her sentence.",
+        "sentence": "3 years and 8 months for inciting subversion of state power (sentenced February 5, 2024). Released August 3, 2024 after time served counted from 2021 detention. 2 years deprivation of political rights.",
+        "latest_news": "Aug 2024: Released and returned to Beijing. Partner of Xu Zhiyong (14-year sentence). Convicted for helping manage Xu's blog. Amnesty: \"prisoner of conscience convicted for speaking out about torture.\"",
         "health_status": "Diagnosed with depression and reportedly in need of medical treatment.",
         "international_response": "The European Union, PEN America, and Amnesty International condemned her conviction and called for her release. The Netherlands embassy awarded her the Embassy Tulip award.",
         "source_url": "https://www.frontlinedefenders.org/en/case/li-qiaochu-returns-home-after-completing-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Feb 5, 2024 to 3 years 8 months. Released Aug 3, 2024. Verified via Front Line Defenders, Wikipedia, SCMP, PEN, VOA, Amnesty, AsiaNews."
       },
       "error": ""
     },
@@ -500,12 +510,14 @@
         "prisoner_name": "Liu Feiyue",
         "status": "RELEASED",
         "location": "Hubei province",
-        "sentence": "5 years for inciting subversion of state power",
-        "latest_news": "Nov 2021: Released after completing five-year sentence, now under three years of 'deprivation of political rights'.",
+        "sentence": "5 years for inciting subversion of state power (sentenced January 29, 2019, Suizhou Intermediate Court, Hubei). Founder of Civil Rights and Livelihood Watch. Released November 2021.",
+        "latest_news": "Nov 2021: Released after completing full 5-year sentence. Subject to 3 years deprivation of political rights (ongoing surveillance). Assets seized (approx 1 million yuan).",
         "health_status": "Unknown",
         "international_response": "Front Line Defenders, Human Rights Watch, Amnesty International, PEN America, Reporters Without Borders, and the German government condemned his sentencing and called for his release.",
         "source_url": "https://www.frontlinedefenders.org/en/case/liu-feiyue-released-after-completing-5-year-sentence",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Jan 29, 2019. Released Nov 2021. Verified via HRW, Amnesty, Front Line Defenders, PEN America."
       },
       "error": ""
     },
@@ -740,7 +752,9 @@
         "health_status": "Unknown",
         "international_response": "The Human Rights Foundation (HRF) submitted a petition to the UN Working Group on Arbitrary Detention (UNWGAD) for Owen Chow. The UN and other NGOs have criticized the National Security Law under which he was convicted.",
         "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/owen-chow-ka-shing",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 7 years 9 months as part of Hong Kong 47 case. Second-longest sentence after Benny Tai. Verified via HRF, Hong Kong Watch, SCMP, Asia Freedom Institute."
       },
       "error": ""
     },
@@ -755,7 +769,9 @@
         "health_status": "Unknown",
         "international_response": "The US condemned the prison sentences and is taking steps to impose visa restrictions on Hong Kong officials.",
         "source_url": "https://hongkongfp.com/2024/11/29/ex-journalist-gwyneth-ho-seeks-to-challenge-conviction-and-7-year-sentence-in-democrats-nat-security-case/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 7 years for conspiracy to commit subversion. Hong Kong 47 case. Former journalist. Verified via Hong Kong Watch, HKFP, SCMP."
       },
       "error": ""
     },
@@ -765,12 +781,14 @@
         "prisoner_name": "Claudia Mo",
         "status": "RELEASED",
         "location": "Hong Kong",
-        "sentence": "4 years and 2 months for conspiracy to commit subversion",
-        "latest_news": "Apr 2025: Released from prison after completing her sentence.",
+        "sentence": "4 years and 2 months for conspiracy to commit subversion (sentenced November 19, 2024). Released late April 2025 due to time served since 2021 arrest.",
+        "latest_news": "Apr 2025: Released from Lo Wu Correctional Institution along with Kwok Ka-ki, Jeremy Tam, and Gary Fan — first Hong Kong 47 defendants to complete sentences.",
         "health_status": "Unknown",
         "international_response": "The Hong Kong 47 case has drawn widespread international condemnation, but specific responses to her release are not detailed in the provided search results.",
         "source_url": "https://www.reuters.com/world/china/first-batch-hong-kong-democrats-freed-after-4-years-jail-subversion-2025-04-28/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Released April 2025 after time served. Verified via SCMP, RTHK, Licas.news, JadeTimes."
       },
       "error": ""
     },
@@ -785,7 +803,9 @@
         "health_status": "Wife reported his health as 'stable' in May 2022; no recent updates.",
         "international_response": "The sentencing of the Hong Kong 47, including Leung Kwok-hung, was condemned by the US, UK, EU, and other countries, as well as international human rights organizations.",
         "source_url": "https://hongkongfp.com/2024/12/16/hong-kong-47-activist-long-hair-leung-kwok-hung-seeks-to-overturn-conviction-sentence-in-national-security-case/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Known as \"Long Hair\". Sentenced Nov 19, 2024 to 6 years 9 months. Filed appeal Dec 2024. Verified via DimSum Daily, Asahi, LitCI, The Standard."
       },
       "error": ""
     },
@@ -800,7 +820,9 @@
         "health_status": "Unknown",
         "international_response": "While in prison, Sham won a landmark LGBTQ rights case at Hong Kong's top court, which ruled the government must provide a framework for recognizing same-sex partnerships.",
         "source_url": "https://apnews.com/article/hong-kong-sham-prison-democracy-lgbtq-f5163025625a9bb41cf2fbe9c90022b7",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Nov 19, 2024 to 4 years 3 months for conspiracy to commit subversion. Hong Kong 47 case. Verified via HKFP, Hong Kong Watch."
       },
       "error": ""
     },
@@ -827,12 +849,14 @@
         "prisoner_name": "Tam Tak-chi",
         "status": "DETAINED",
         "location": "Hong Kong",
-        "sentence": "4 years and 5 months for conspiracy to commit subversion; 40 months for sedition",
+        "sentence": "40 months for sedition (upheld by Court of Final Appeal March 2025); also charged in separate HK47 subversion case (sentencing Nov 19, 2024 to 4 years 5 months).",
         "latest_news": "July 2025: Dropped his appeal against the sentence in the national security trial.",
         "health_status": "Unknown",
         "international_response": "Unknown",
         "source_url": "https://hongkongfp.com/2025/07/10/hong-kong-activist-tam-tak-chi-drops-appeal-application-against-nat-security-jail-sentence/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sedition sentence is 40 months (upheld CFA Mar 2025). Separate subversion sentence from HK47. Verified via DimSum Daily, Taipei Times, RTHK, Columbia Global Freedom of Expression."
       },
       "error": ""
     },

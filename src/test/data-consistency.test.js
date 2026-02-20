@@ -347,4 +347,62 @@ describe('Critical date consistency across data files', () => {
       expect(ml.output.sentence).toMatch(/April 2021/);
     });
   });
+
+  describe('Session 31: Remaining prisoner verification', () => {
+    let prisoners;
+    beforeAll(() => {
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+    });
+
+    it('Tashi Wangchuk status corrected to RELEASED (not AT RISK)', () => {
+      const tw = prisoners.results.find((r) => r.output.prisoner_name === 'Tashi Wangchuk');
+      expect(tw).toBeDefined();
+      expect(tw.output.status).toBe('RELEASED');
+      expect(tw.output.sentence).toMatch(/May 22, 2018/);
+      expect(tw.output.sentence).toMatch(/January 28, 2021/);
+    });
+
+    it('Yu Wensheng has two sentences documented', () => {
+      const yw = prisoners.results.find((r) => r.output.prisoner_name === 'Yu Wensheng');
+      expect(yw).toBeDefined();
+      expect(yw.output.sentence).toMatch(/First sentence/);
+      expect(yw.output.sentence).toMatch(/Second sentence/);
+      expect(yw.output.sentence).toMatch(/October 29, 2024/);
+      expect(yw.output.status).toBe('DETAINED');
+    });
+
+    it('Ding Jiaxi sentenced April 10, 2023, 12 years', () => {
+      const dj = prisoners.results.find((r) => r.output.prisoner_name === 'Ding Jiaxi');
+      expect(dj).toBeDefined();
+      expect(dj.output.sentence).toMatch(/April 10, 2023/);
+      expect(dj.output.sentence).toMatch(/12 years/);
+    });
+
+    it('Li Qiaochu sentenced Feb 5, 2024, released Aug 3, 2024', () => {
+      const lq = prisoners.results.find((r) => r.output.prisoner_name === 'Li Qiaochu');
+      expect(lq).toBeDefined();
+      expect(lq.output.sentence).toMatch(/February 5, 2024/);
+      expect(lq.output.sentence).toMatch(/August 3, 2024/);
+      expect(lq.output.status).toBe('RELEASED');
+    });
+
+    it('Liu Feiyue sentenced Jan 29, 2019, released Nov 2021', () => {
+      const lf = prisoners.results.find((r) => r.output.prisoner_name === 'Liu Feiyue');
+      expect(lf).toBeDefined();
+      expect(lf.output.sentence).toMatch(/January 29, 2019/);
+      expect(lf.output.status).toBe('RELEASED');
+    });
+
+    it('Jiang Tianyong sentenced Nov 21, 2017, released Feb 28, 2019', () => {
+      const jt = prisoners.results.find((r) => r.output.prisoner_name === 'Jiang Tianyong');
+      expect(jt).toBeDefined();
+      expect(jt.output.sentence).toMatch(/November 21, 2017/);
+      expect(jt.output.sentence).toMatch(/February 28, 2019/);
+    });
+
+    it('at least 36 prisoners have been verified', () => {
+      const verified = prisoners.results.filter((r) => r.output.last_verified);
+      expect(verified.length).toBeGreaterThanOrEqual(36);
+    });
+  });
 });
