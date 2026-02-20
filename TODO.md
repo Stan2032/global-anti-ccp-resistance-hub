@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 48, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 49, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -427,6 +427,18 @@
 
 ---
 
+## 📂 RELATED TODO FILES
+
+> **Important:** These satellite TODO files were created in earlier sessions (Jan 2026) and contain items that may now be completed. Each file has been annotated with completion status as of Session 49.
+
+| File | Focus | Status |
+|------|-------|--------|
+| **SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
+| **SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
+| **SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
+
+---
+
 ## 🚀 QUICK START FOR NEW AGENTS
 
 ### Essential Reading (in order)
@@ -434,11 +446,12 @@
 2. **AGENTS.md** — Agent roles, capabilities, protocol, CodeQL troubleshooting
 3. **AGENT_ROADMAP.md** — Detailed task history with subtask breakdowns and agent assignments
 4. **QUESTIONS_FOR_OWNER.md** — All resolved decisions + standing instruction on adding people
-5. **agent-thoughts/** — Session-by-session decision logs (13 files, Sessions 33-48)
+5. **agent-thoughts/** — Session-by-session decision logs (14 files, Sessions 33-48)
 6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
+8. **Satellite TODOs** — See "Related TODO Files" section above for SIMULATED_DATA_CLEANUP_TODO.md, SITE_CLEANUP_TODO.md, SITE_WIDE_TODO.md
 
-### Current State Summary (as of Session 48, Feb 20, 2026)
+### Current State Summary (as of Session 49, Feb 20, 2026)
 - **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
@@ -492,6 +505,7 @@
 | 46 | Feb 20 | Opus 4.6 | Liu Xiaobo memorial profile page (22 events, Charter 08, posthumous/memorial treatment) |
 | 47 | Feb 20 | Opus 4.6 | Joshua Wong profile page (21 events, dual charges, HK47 trial, yellow theme) |
 | 48 | Feb 20 | Opus 4.6 | Comprehensive TODO/handoff update for branch merge |
+| 49 | Feb 20 | Opus 4.6 | Final consolidation: annotated 3 satellite TODOs, added Related TODO Files section |
 
 ---
 
