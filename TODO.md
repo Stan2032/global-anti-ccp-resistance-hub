@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 42, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 43, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -47,19 +47,19 @@
 
 ### Expanded Person Profiles (NEW — requested by project owner)
 - [ ] **Create detailed person profile pages**: Full timeline pages for key individuals targeted by CCP
-  - [ ] **Jimmy Lai profile page**: Complete timeline from birth to sentencing
-    - [ ] Early life and business career
-    - [ ] Apple Daily founding (1995) and editorial stance
-    - [ ] 2014 Umbrella Movement involvement
-    - [ ] 2019 protest coverage and CCP targeting begins
-    - [ ] August 10, 2020: Arrested under NSL
-    - [ ] 2021: Apple Daily forced to close (June 24)
-    - [ ] 2022-2025: Trial proceedings (156 days)
-    - [ ] December 15, 2025: Found guilty on all charges
-    - [ ] February 9, 2026: Sentenced to 20 years
-    - [ ] CCP narrative control breakdown with sourced rebuttals
-    - [ ] International response timeline
-    - [ ] All source links (HRW, CPJ, BBC, US State Dept, HKFP, etc.)
+  - [x] **Jimmy Lai profile page**: Complete timeline from birth to sentencing ✅ (Session 43)
+    - [x] Early life and business career
+    - [x] Apple Daily founding (1995) and editorial stance
+    - [x] 2014 Umbrella Movement involvement
+    - [x] 2019 protest coverage and CCP targeting begins
+    - [x] August 10, 2020: Arrested under NSL
+    - [x] 2021: Apple Daily forced to close (June 24)
+    - [x] 2022-2025: Trial proceedings (156 days)
+    - [x] December 15, 2025: Found guilty on all charges
+    - [x] February 9, 2026: Sentenced to 20 years
+    - [x] CCP narrative control breakdown with sourced rebuttals
+    - [x] International response timeline
+    - [x] All source links (HRW, CPJ, BBC, US State Dept, HKFP, etc.)
   - [ ] **Ilham Tohti profile page**: From academic career to life sentence
     - [ ] Academic work at Minzu University
     - [ ] Uighurbiz.net and advocacy for Han-Uyghur dialogue
@@ -332,9 +332,11 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+1. Ilham Tohti profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. Gedhun Choekyi Nyima (Panchen Lama) profile page
 
 ### Recently Completed
+- ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6
 - ✅ D1-D5 owner decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
 - ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6
 - ✅ Performance optimization Phase 2: lazy-loaded 28 more sub-components across Dashboard, CommunitySupport, CCPTactics, SecurityCenter — Session 39, Opus 4.6

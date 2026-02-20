@@ -58,6 +58,10 @@ const ROUTE_META = {
     title: 'Data Sources',
     description: 'Transparency page listing all data sources used by the platform including HRW, Amnesty, ASPI, and government records.',
   },
+  '/profiles/jimmy-lai': {
+    title: 'Jimmy Lai — Profile',
+    description: 'Detailed profile of Jimmy Lai (黎智英): Apple Daily founder sentenced to 20 years under Hong Kong NSL. Complete timeline, charges, CCP narrative analysis, and verified sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
