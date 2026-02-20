@@ -111,11 +111,11 @@ const PROFILES = [
   {
     name: 'Zhang Zhan',
     chineseName: '张展',
-    path: null,
+    path: '/profiles/zhang-zhan',
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '4 years (second sentence)',
-    age: 41,
+    age: 42,
     role: 'Citizen Journalist',
     summary: 'Jailed for reporting on COVID-19 outbreak in Wuhan. Sentenced again in 2025 after initial release.',
     location: 'Prison, China',
@@ -123,7 +123,7 @@ const PROFILES = [
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-slate-500',
     themeAccent: 'text-slate-400',
-    built: false,
+    built: true,
   },
   {
     name: 'Agnes Chow',
