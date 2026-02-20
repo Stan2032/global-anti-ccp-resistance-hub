@@ -199,7 +199,7 @@ const KnowledgeQuiz = () => {
   if (!quizStarted) {
     return (
       <div className="space-y-6">
-        <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50">
+        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6">
           <div className="flex items-center mb-4">
             <Brain className="w-8 h-8 text-indigo-400 mr-3" />
             <div>
@@ -219,10 +219,10 @@ const KnowledgeQuiz = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`flex items-center space-x-2 px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCategory === cat.id
                       ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                   }`}
                 >
                   {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
@@ -238,7 +238,7 @@ const KnowledgeQuiz = () => {
           
           <button
             onClick={() => setQuizStarted(true)}
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
           >
             Start Quiz
           </button>
@@ -251,7 +251,7 @@ const KnowledgeQuiz = () => {
     const { Icon: ResultIcon, message } = getScoreMessage();
     return (
       <div className="space-y-6">
-        <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50 text-center">
+        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6 text-center">
           <div className="mb-4 flex justify-center"><ResultIcon className="w-16 h-16 text-indigo-400" /></div>
           <h2 className="text-2xl font-bold text-white mb-2">Quiz Complete!</h2>
           <p className="text-4xl font-bold text-indigo-400 mb-2">
@@ -262,13 +262,13 @@ const KnowledgeQuiz = () => {
           <div className="flex justify-center space-x-4">
             <button
               onClick={restartQuiz}
-              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
             >
               Try Again
             </button>
             <a
               href="/education"
-              className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors"
+              className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Learn More
             </a>
@@ -284,7 +284,7 @@ const KnowledgeQuiz = () => {
   return (
     <div className="space-y-6">
       {/* Progress */}
-      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+      <div className="bg-[#111820]/50 p-4 border border-[#1c2a35]">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-slate-400">
             Question {currentQuestion + 1} of {questions.length}
@@ -302,7 +302,7 @@ const KnowledgeQuiz = () => {
       </div>
 
       {/* Question */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <div className="flex items-center space-x-2 mb-4">
           {categoryInfo?.Icon ? <categoryInfo.Icon className="w-4 h-4 text-slate-300" /> : <span>{categoryInfo?.icon}</span>}
           <span className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-300">
@@ -314,7 +314,7 @@ const KnowledgeQuiz = () => {
         
         <div className="space-y-2">
           {question.options.map((option, index) => {
-            let buttonClass = 'bg-slate-900 border-slate-700 hover:border-indigo-500';
+            let buttonClass = 'bg-[#0a0e14] border-[#1c2a35] hover:border-indigo-500';
             
             if (showExplanation) {
               if (index === question.correct) {
@@ -329,7 +329,7 @@ const KnowledgeQuiz = () => {
                 key={index}
                 onClick={() => !showExplanation && handleAnswer(index)}
                 disabled={showExplanation}
-                className={`w-full text-left p-4 rounded-lg border transition-colors ${buttonClass} ${
+                className={`w-full text-left p-4 border transition-colors ${buttonClass} ${
                   showExplanation ? 'cursor-default' : 'cursor-pointer'
                 }`}
               >
@@ -341,7 +341,7 @@ const KnowledgeQuiz = () => {
         
         {/* Explanation */}
         {showExplanation && (
-          <div className={`mt-4 p-4 rounded-lg ${
+          <div className={`mt-4 p-4 ${
             selectedAnswer === question.correct 
               ? 'bg-green-900/30 border border-green-700/50' 
               : 'bg-red-900/30 border border-red-700/50'
@@ -356,7 +356,7 @@ const KnowledgeQuiz = () => {
         {showExplanation && (
           <button
             onClick={nextQuestion}
-            className="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+            className="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
           >
             {currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results'}
           </button>

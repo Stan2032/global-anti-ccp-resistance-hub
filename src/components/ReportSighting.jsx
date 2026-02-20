@@ -118,7 +118,7 @@ const ReportSighting = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-amber-900/30 border border-amber-500 rounded-lg p-8 text-center"
+        className="bg-amber-900/30 border border-amber-500 p-8 text-center"
       >
         <div className="text-6xl mb-4">⚠️</div>
         <h3 className="text-2xl font-bold text-amber-400 mb-4">Form Not Yet Active</h3>
@@ -126,7 +126,7 @@ const ReportSighting = () => {
           This reporting form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
           To report CCP activities, please use the official channels below:
         </p>
-        <div className="bg-slate-800 rounded-lg p-4 mb-6 text-left">
+        <div className="bg-[#111820] p-4 mb-6 text-left">
           <h4 className="text-blue-400 font-semibold mb-2">Report Directly To:</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a> — CCP transnational repression</li>
@@ -135,7 +135,7 @@ const ReportSighting = () => {
             <li>→ <a href="https://www.asio.gov.au/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">ASIO</a> — Australia</li>
           </ul>
         </div>
-        <div className="bg-slate-800 rounded-lg p-4 mb-6 text-left">
+        <div className="bg-[#111820] p-4 mb-6 text-left">
           <h4 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Security Reminder</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Clear your browser history if using a shared device</li>
@@ -146,13 +146,13 @@ const ReportSighting = () => {
         <div className="flex gap-4 justify-center">
           <button
             onClick={resetForm}
-            className="px-6 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
+            className="px-6 py-2 bg-slate-700 text-white hover:bg-[#1c2a35] transition-colors"
           >
             Submit Another Report
           </button>
           <a
             href="/security"
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
+            className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-500 transition-colors"
           >
             Security Resources
           </a>
@@ -162,9 +162,9 @@ const ReportSighting = () => {
   }
 
   return (
-    <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+    <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900 to-orange-900 p-6">
+      <div className="bg-[#0a0e14] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Search className="w-6 h-6" /> Report CCP Activity</h2>
         <p className="text-gray-200">
           Help document transnational repression and CCP influence operations
@@ -186,7 +186,7 @@ const ReportSighting = () => {
       </div>
 
       {/* Progress Steps */}
-      <div className="p-4 border-b border-slate-700">
+      <div className="p-4 border-b border-[#1c2a35]">
         <div className="flex items-center justify-center gap-4">
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
@@ -228,7 +228,7 @@ const ReportSighting = () => {
                   <button
                     key={type.id}
                     onClick={() => handleTypeSelect(type)}
-                    className="p-4 bg-slate-700 rounded-lg text-left hover:bg-slate-600 hover:border-red-500 border border-transparent transition-all"
+                    className="p-4 bg-slate-700 text-left hover:bg-[#1c2a35] hover:border-red-500 border border-transparent transition-all"
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <type.Icon className="w-6 h-6" />
@@ -268,7 +268,7 @@ const ReportSighting = () => {
                       aria-label="Country"
                       value={formData.country}
                       onChange={(e) => handleInputChange('country', e.target.value)}
-                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                      className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                       required
                     >
                       <option value="">Select country</option>
@@ -287,7 +287,7 @@ const ReportSighting = () => {
                       value={formData.city}
                       onChange={(e) => handleInputChange('city', e.target.value)}
                       placeholder="e.g., London, New York"
-                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                      className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -301,7 +301,7 @@ const ReportSighting = () => {
                     type="date"
                     value={formData.date}
                     onChange={(e) => handleInputChange('date', e.target.value)}
-                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                    className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                   />
                 </div>
 
@@ -315,7 +315,7 @@ const ReportSighting = () => {
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Please describe what you observed in detail. Include specific locations, times, individuals involved (if known), and any other relevant information."
                     rows={5}
-                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                    className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                     required
                   />
                 </div>
@@ -330,7 +330,7 @@ const ReportSighting = () => {
                     onChange={(e) => handleInputChange('evidence', e.target.value)}
                     placeholder="Describe any photos, videos, documents, or other evidence you have. Do NOT upload files here - use secure channels like SecureDrop if available."
                     rows={3}
-                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                    className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                   />
                 </div>
 
@@ -338,7 +338,7 @@ const ReportSighting = () => {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="px-6 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
+                    className="px-6 py-2 bg-slate-700 text-white hover:bg-[#1c2a35] transition-colors"
                   >
                     ← Back
                   </button>
@@ -346,7 +346,7 @@ const ReportSighting = () => {
                     type="button"
                     onClick={() => setStep(3)}
                     disabled={!formData.country || !formData.description}
-                    className="flex-1 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-2 bg-red-600 text-white hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Continue →
                   </button>
@@ -365,7 +365,7 @@ const ReportSighting = () => {
             >
               <h3 className="text-lg font-semibold text-white mb-4">Review Your Report</h3>
 
-              <div className="bg-slate-700 rounded-lg p-4 mb-6">
+              <div className="bg-slate-700 p-4 mb-6">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-gray-400">Type:</span>
@@ -419,7 +419,7 @@ const ReportSighting = () => {
                       value={formData.contact}
                       onChange={(e) => handleInputChange('contact', e.target.value)}
                       placeholder="Secure email or Signal number"
-                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:border-red-500 focus:outline-none"
+                      className="w-full bg-slate-700 border border-slate-600 px-4 py-2 text-white focus:border-red-500 focus:outline-none"
                     />
                   </div>
                 )}
@@ -446,7 +446,7 @@ const ReportSighting = () => {
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-6 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
+                  className="px-6 py-2 bg-slate-700 text-white hover:bg-[#1c2a35] transition-colors"
                 >
                   ← Back
                 </button>
@@ -454,7 +454,7 @@ const ReportSighting = () => {
                   type="button"
                   onClick={handleSubmit}
                   disabled={!formData.consent}
-                  className="flex-1 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                  className="flex-1 px-6 py-2 bg-red-600 text-white hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
                 >
                   Submit Report
                 </button>
@@ -465,7 +465,7 @@ const ReportSighting = () => {
       </div>
 
       {/* Footer Resources */}
-      <div className="bg-slate-900 p-4 border-t border-slate-700">
+      <div className="bg-[#0a0e14] p-4 border-t border-[#1c2a35]">
         <h4 className="text-sm font-semibold text-gray-400 mb-2">Report to Official Channels:</h4>
         <div className="flex flex-wrap gap-4 text-sm">
           <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">

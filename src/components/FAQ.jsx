@@ -150,7 +150,7 @@ const FAQ = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-4">
           <HelpCircle className="w-8 h-8 text-slate-300" />
           <div>
@@ -169,10 +169,10 @@ const FAQ = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.name}
@@ -185,11 +185,11 @@ const FAQ = () => {
         {filteredFaqs.map(faq => (
           <div
             key={faq.id}
-            className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden"
+            className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
           >
             <button
               onClick={() => setOpenQuestion(openQuestion === faq.id ? null : faq.id)}
-              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-700/30 transition-colors"
+              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#111820]/30 transition-colors"
             >
               <span className="font-medium text-white pr-4">{faq.question}</span>
               <svg
@@ -205,7 +205,7 @@ const FAQ = () => {
             </button>
             
             {openQuestion === faq.id && (
-              <div className="px-5 pb-4 border-t border-slate-700">
+              <div className="px-5 pb-4 border-t border-[#1c2a35]">
                 <p className="text-slate-300 pt-4 leading-relaxed">{faq.answer}</p>
               </div>
             )}
@@ -214,17 +214,17 @@ const FAQ = () => {
       </div>
 
       {/* Still Have Questions */}
-      <div className="bg-blue-900/30 border border-blue-700/50 rounded-xl p-6">
+      <div className="bg-blue-900/30 border border-blue-700/50 p-6">
         <h3 className="text-lg font-bold text-white mb-2">Still have questions?</h3>
         <p className="text-slate-300 text-sm mb-4">
           If you couldn't find the answer you're looking for, check our Education Center for in-depth resources, 
           or explore the Glossary for terminology explanations.
         </p>
         <div className="flex flex-wrap gap-3">
-          <a href="/education" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+          <a href="/education" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
             Education Center
           </a>
-          <a href="/resources" className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-lg transition-colors">
+          <a href="/resources" className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
             Resources
           </a>
         </div>

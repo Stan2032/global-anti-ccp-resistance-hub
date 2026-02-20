@@ -109,3 +109,52 @@ describe('AccessibleAlert', () => {
     expect(alertEl).toBeTruthy();
   });
 });
+
+// ─── WCAG AA Contrast Ratio Verification ────────────────────────
+
+describe('WCAG AA Contrast Ratios', () => {
+  // WCAG 2.1 relative luminance formula
+  function relativeLuminance(hex) {
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+    const linearize = (c) => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
+  }
+
+  function contrastRatio(c1, c2) {
+    let l1 = relativeLuminance(c1);
+    let l2 = relativeLuminance(c2);
+    if (l1 < l2) [l1, l2] = [l2, l1];
+    return (l1 + 0.05) / (l2 + 0.05);
+  }
+
+  const BG = '#0a0e14';       // Page background
+  const SURFACE = '#111820';  // Card/surface background
+
+  // Colors as overridden in index.css
+  const textColors = {
+    'text-slate-400 (#a8b5c7)': '#a8b5c7',
+    'text-slate-500 (#8893a2)': '#8893a2',
+    'text-slate-600 (#8893a2)': '#8893a2',
+    'text-gray-400 (#a3aebb)':  '#a3aebb',
+    'text-gray-500 (#8d949e)':  '#8d949e',
+    'text-gray-600 (#8d949e)':  '#8d949e',
+    'terminal green (#4afa82)': '#4afa82',
+    'terminal cyan (#22d3ee)':  '#22d3ee',
+    'white (#ffffff)':          '#ffffff',
+    'slate-300 (#cbd5e1)':      '#cbd5e1',
+  };
+
+  Object.entries(textColors).forEach(([name, color]) => {
+    it(`${name} passes WCAG AA (4.5:1) on page background`, () => {
+      const ratio = contrastRatio(color, BG);
+      expect(ratio).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it(`${name} passes WCAG AA (4.5:1) on surface background`, () => {
+      const ratio = contrastRatio(color, SURFACE);
+      expect(ratio).toBeGreaterThanOrEqual(4.5);
+    });
+  });
+});

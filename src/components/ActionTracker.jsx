@@ -172,7 +172,7 @@ const ActionTracker = () => {
       )}
 
       {/* Header Stats */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold text-white">Your Action Tracker</h2>
@@ -185,7 +185,7 @@ const ActionTracker = () => {
         </div>
 
         {/* Level Progress */}
-        <div className="bg-slate-900/50 rounded-lg p-4">
+        <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Award className="w-6 h-6 text-slate-300" />
@@ -203,7 +203,7 @@ const ActionTracker = () => {
           {levelInfo.next && (
             <div className="w-full bg-slate-700 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
+                className="bg-[#4afa82] h-2 transition-all duration-500"
                 style={{ width: `${Math.min((getTotalPoints() / levelInfo.next) * 100, 100)}%` }}
               />
             </div>
@@ -212,7 +212,7 @@ const ActionTracker = () => {
       </div>
 
       {/* Achievements */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-bold text-white mb-3 flex items-center">
           <Trophy className="w-5 h-5 mr-2" /> Achievements ({unlockedAchievements.length}/{achievements.length})
         </h3>
@@ -222,10 +222,10 @@ const ActionTracker = () => {
             return (
               <div
                 key={achievement.id}
-                className={`p-2 rounded-lg text-center transition-all ${
+                className={`p-2 text-center transition-all ${
                   unlocked 
                     ? 'bg-yellow-900/30 border border-yellow-600/50' 
-                    : 'bg-slate-900/50 border border-slate-700 opacity-50'
+                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] opacity-50'
                 }`}
                 title={`${achievement.name}: ${achievement.description}`}
               >
@@ -246,7 +246,7 @@ const ActionTracker = () => {
           return (
             <div 
               key={category.id}
-              className={`${colors.bg} rounded-xl border ${colors.border} p-4`}
+              className={`${colors.bg} border ${colors.border} p-4`}
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2">
@@ -271,10 +271,10 @@ const ActionTracker = () => {
                     <button
                       key={action.id}
                       onClick={() => toggleAction(action.id)}
-                      className={`w-full flex items-center justify-between p-3 rounded-lg transition-all ${
+                      className={`w-full flex items-center justify-between p-3 transition-all ${
                         isCompleted 
-                          ? 'bg-slate-900/70 border border-green-600/50' 
-                          : 'bg-slate-900/30 border border-slate-700 hover:border-slate-600'
+                          ? 'bg-[#0a0e14]/70 border border-green-600/50' 
+                          : 'bg-[#0a0e14]/30 border border-[#1c2a35] hover:border-slate-600'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -302,7 +302,7 @@ const ActionTracker = () => {
       </div>
 
       {/* Motivation */}
-      <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl border border-red-700/50 p-6 text-center">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6 text-center">
         <h3 className="text-xl font-bold text-white mb-2">Every Action Matters</h3>
         <p className="text-slate-300 text-sm">
           "The only thing necessary for the triumph of evil is for good men to do nothing." — Edmund Burke

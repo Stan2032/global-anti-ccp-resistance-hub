@@ -146,7 +146,7 @@ const TaiwanDefenseStatus = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-red-900/50 border border-blue-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-4xl">🇹🇼</span>
           <div>
@@ -156,7 +156,7 @@ const TaiwanDefenseStatus = () => {
         </div>
         
         {/* Alert Level */}
-        <div className="bg-orange-900/50 border border-orange-700 rounded-lg p-4">
+        <div className="bg-orange-900/50 border border-orange-700 p-4">
           <div className="flex items-center gap-2">
             <span className="animate-pulse w-3 h-3 bg-orange-500 rounded-full"></span>
             <span className="text-orange-300 font-semibold">ELEVATED THREAT LEVEL</span>
@@ -173,10 +173,10 @@ const TaiwanDefenseStatus = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -188,7 +188,7 @@ const TaiwanDefenseStatus = () => {
       {activeTab === 'overview' && (
         <div className="space-y-6">
           {/* Recent Developments */}
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Recent Developments</h3>
             <div className="space-y-3">
               {recentDevelopments.map((dev, i) => (
@@ -207,19 +207,19 @@ const TaiwanDefenseStatus = () => {
 
           {/* Key Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
               <div className="text-3xl font-bold text-red-400">100nm</div>
               <div className="text-xs text-slate-400">Taiwan Strait Width</div>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
               <div className="text-3xl font-bold text-orange-400">10+</div>
               <div className="text-xs text-slate-400">Daily ADIZ Incursions</div>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
               <div className="text-3xl font-bold text-green-400">$11.1B</div>
               <div className="text-xs text-slate-400">Latest US Arms Package</div>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
               <div className="text-3xl font-bold text-blue-400">23.5M</div>
               <div className="text-xs text-slate-400">Taiwan Population</div>
             </div>
@@ -231,7 +231,7 @@ const TaiwanDefenseStatus = () => {
       {activeTab === 'military' && (
         <div className="grid md:grid-cols-2 gap-6">
           {/* PLA */}
-          <div className="bg-red-900/20 border border-red-700 rounded-xl p-6">
+          <div className="bg-red-900/20 border border-red-700 p-6">
             <h3 className="text-xl font-bold text-red-400 mb-4">{militaryBalance.pla.name}</h3>
             <div className="space-y-3 mb-4">
               <div className="flex justify-between">
@@ -263,7 +263,7 @@ const TaiwanDefenseStatus = () => {
           </div>
 
           {/* Taiwan */}
-          <div className="bg-blue-900/20 border border-blue-700 rounded-xl p-6">
+          <div className="bg-blue-900/20 border border-blue-700 p-6">
             <h3 className="text-xl font-bold text-blue-400 mb-4">{militaryBalance.taiwan.name}</h3>
             <div className="space-y-3 mb-4">
               <div className="flex justify-between">
@@ -300,12 +300,12 @@ const TaiwanDefenseStatus = () => {
       {activeTab === 'allies' && (
         <div className="space-y-6">
           {/* US Arms Packages */}
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">🇺🇸 US Arms Packages to Taiwan</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-slate-400 border-b border-slate-700">
+                  <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
                     <th className="pb-2">Date</th>
                     <th className="pb-2">Value</th>
                     <th className="pb-2">Contents</th>
@@ -313,7 +313,7 @@ const TaiwanDefenseStatus = () => {
                 </thead>
                 <tbody>
                   {usArmsPackages.map((pkg, i) => (
-                    <tr key={i} className="border-b border-slate-700">
+                    <tr key={i} className="border-b border-[#1c2a35]">
                       <td className="py-2 text-white">{pkg.date}</td>
                       <td className="py-2 text-green-400 font-semibold">{pkg.value}</td>
                       <td className="py-2 text-slate-300">{pkg.items}</td>
@@ -327,7 +327,7 @@ const TaiwanDefenseStatus = () => {
           {/* Allied Countries */}
           <div className="space-y-4">
             {alliedSupport.map((ally, i) => (
-              <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-4">
+              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                 <h4 className="text-lg font-bold text-white mb-2">{ally.country}</h4>
                 <div className="grid md:grid-cols-3 gap-4 text-sm">
                   <div>
@@ -353,7 +353,7 @@ const TaiwanDefenseStatus = () => {
       {activeTab === 'scenarios' && (
         <div className="space-y-4">
           {scenarios.map((scenario, i) => (
-            <div key={i} className={`bg-slate-800 border rounded-xl p-6 ${
+            <div key={i} className={`bg-[#111820] border p-6 ${
               scenario.color === 'yellow' ? 'border-yellow-700' :
               scenario.color === 'orange' ? 'border-orange-700' :
               'border-red-700'
@@ -384,14 +384,14 @@ const TaiwanDefenseStatus = () => {
       )}
 
       {/* Resources */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Taiwan Defense Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a
             href="https://www.csis.org/programs/china-power-project"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">CSIS China Power</h4>
             <p className="text-slate-400 text-sm">Interactive military analysis</p>
@@ -400,7 +400,7 @@ const TaiwanDefenseStatus = () => {
             href="https://understandingwar.org/research/china-taiwan/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">ISW China-Taiwan</h4>
             <p className="text-slate-400 text-sm">Daily situation updates</p>
@@ -409,7 +409,7 @@ const TaiwanDefenseStatus = () => {
             href="https://www.taiwandefense.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">Taiwan Defense</h4>
             <p className="text-slate-400 text-sm">Military news and analysis</p>

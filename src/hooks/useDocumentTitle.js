@@ -78,6 +78,14 @@ const ROUTE_META = {
     title: 'Joshua Wong — Profile',
     description: 'Detailed profile of Joshua Wong (黃之鋒): Hong Kong pro-democracy activist, Scholarism founder, Demosistō co-founder. Sentenced to 4 years 8 months in Hong Kong 47 subversion trial. Faces new NSL collusion charges carrying life imprisonment. Timeline, charges, CCP narrative analysis, and verified sources.',
   },
+  '/profiles': {
+    title: 'Profiles — Targeted by the CCP',
+    description: 'Detailed profiles of individuals persecuted by the CCP: journalists, activists, religious leaders, and scholars. Includes Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, and more.',
+  },
+  '/profiles/gui-minhai': {
+    title: 'Gui Minhai — Profile',
+    description: 'Detailed profile of Gui Minhai (桂民海): Swedish publisher abducted from Thailand in 2015, sentenced to 10 years in secret trial. Causeway Bay Books disappearances, forced confessions, UN WGAD ruling. Timeline, charges, CCP narrative analysis, and verified sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';

@@ -5,7 +5,7 @@ import { CCP_TACTICS, COUNTER_TACTICS } from '../data/ccpTactics';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -26,8 +26,8 @@ const CategoryCard = ({ category, isSelected, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className={`bg-slate-800 rounded-lg p-6 cursor-pointer border-2 transition-all ${
-        isSelected ? 'border-red-500' : 'border-slate-700 hover:border-slate-500'
+      className={`bg-[#111820] p-6 cursor-pointer border-2 transition-all ${
+        isSelected ? 'border-red-500' : 'border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
       onClick={onClick}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
@@ -49,7 +49,7 @@ const TacticDetail = ({ tactic }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-slate-700 rounded-lg p-4 mb-4">
+    <div className="bg-[#1c2a35] p-4 mb-4">
       <div 
         className="flex justify-between items-start cursor-pointer"
         onClick={() => setExpanded(!expanded)}
@@ -75,7 +75,7 @@ const TacticDetail = ({ tactic }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="mt-4 pt-4 border-t border-slate-600">
+            <div className="mt-4 pt-4 border-t border-[#2a9a52]">
               <h5 className="text-sm font-semibold text-red-400 uppercase mb-2">
                 Documented Examples
               </h5>
@@ -97,7 +97,7 @@ const TacticDetail = ({ tactic }) => {
                     {tactic.sources.map((source, i) => (
                       <span 
                         key={i}
-                        className="bg-slate-600 text-gray-300 px-2 py-1 rounded text-xs"
+                        className="bg-[#1c2a35] text-slate-300 px-2 py-1 rounded text-xs"
                       >
                         {source}
                       </span>
@@ -115,7 +115,7 @@ const TacticDetail = ({ tactic }) => {
 
 const CounterTacticsSection = () => {
   return (
-    <div className="bg-green-900/20 border border-green-700 rounded-lg p-6 mt-8">
+    <div className="bg-green-900/20 border border-green-700 p-6 mt-8">
       <h2 className="text-2xl font-bold text-white mb-4">
         How to Counter CCP Tactics
       </h2>
@@ -126,7 +126,7 @@ const CounterTacticsSection = () => {
       
       <div className="grid md:grid-cols-3 gap-6">
         {Object.entries(COUNTER_TACTICS).map(([key, section]) => (
-          <div key={key} className="bg-slate-800 rounded-lg p-4">
+          <div key={key} className="bg-[#111820] p-4">
             <h3 className="text-lg font-semibold text-green-400 mb-3">
               {section.title}
             </h3>
@@ -156,7 +156,7 @@ const CCPTactics = () => {
   const currentCategory = CCP_TACTICS[selectedCategory];
 
   return (
-    <div className="min-h-screen bg-slate-900 py-8 px-4">
+    <div className="min-h-screen bg-[#0a0e14] py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -170,7 +170,7 @@ const CCPTactics = () => {
         </div>
 
         {/* Warning Banner */}
-        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 mb-8">
+        <div className="bg-yellow-900/30 border border-yellow-700 p-4 mb-8">
           <div className="flex items-start">
             <AlertTriangle className="w-5 h-5 text-yellow-500 mr-3 flex-shrink-0" />
             <div>
@@ -202,7 +202,7 @@ const CCPTactics = () => {
             key={selectedCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-800 rounded-lg p-6"
+            className="bg-[#111820] p-6"
           >
             <h2 className="text-2xl font-bold text-white mb-2">
               {currentCategory.title}

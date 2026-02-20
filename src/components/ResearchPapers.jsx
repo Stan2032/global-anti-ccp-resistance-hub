@@ -243,7 +243,7 @@ const ResearchPapers = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-900/50 to-teal-900/50 rounded-xl p-6 border border-emerald-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-emerald-500 p-6">
         <div className="flex items-center mb-4">
           <BookOpen className="w-8 h-8 text-emerald-400" />
           <div>
@@ -252,19 +252,19 @@ const ResearchPapers = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-emerald-400">{papers.length}</div>
             <div className="text-xs text-slate-400">Papers</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-emerald-400">{papers.reduce((sum, p) => sum + p.citations, 0).toLocaleString()}</div>
             <div className="text-xs text-slate-400">Total Citations</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-emerald-400">{papers.reduce((sum, p) => sum + p.pages, 0).toLocaleString()}</div>
             <div className="text-xs text-slate-400">Total Pages</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-emerald-400">{new Set(papers.flatMap(p => p.authors)).size}</div>
             <div className="text-xs text-slate-400">Organizations</div>
           </div>
@@ -279,7 +279,7 @@ const ResearchPapers = () => {
           placeholder="Search papers by title, author, or topic..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
         />
         <Search className="absolute left-3 top-3.5 text-slate-500 w-5 h-5" />
       </div>
@@ -290,10 +290,10 @@ const ResearchPapers = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.name} ({cat.count})
@@ -303,7 +303,7 @@ const ResearchPapers = () => {
 
       {/* Featured Papers */}
       {selectedCategory === 'all' && searchQuery === '' && (
-        <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+        <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
           <h3 className="text-lg font-bold text-white mb-4 flex items-center">
             <span className="text-yellow-500 mr-2">⭐</span>
             Essential Reading
@@ -315,7 +315,7 @@ const ResearchPapers = () => {
                 href={paper.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-700/50 rounded-lg p-4 border border-slate-600 hover:border-emerald-500 transition-colors block"
+                className="bg-slate-700/50 p-4 border border-slate-600 hover:border-emerald-500 transition-colors block"
               >
                 <div className="flex items-start justify-between mb-2">
                   <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs rounded">{paper.type}</span>
@@ -337,7 +337,7 @@ const ResearchPapers = () => {
       {/* Papers List */}
       <div className="space-y-4">
         {filteredPapers.map(paper => (
-          <div key={paper.id} className="bg-slate-800/50 rounded-xl border border-slate-700 p-5 hover:border-emerald-500/50 transition-colors">
+          <div key={paper.id} className="bg-[#111820]/50 border border-[#1c2a35] p-5 hover:border-emerald-500/50 transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -359,7 +359,7 @@ const ResearchPapers = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between pt-3 border-t border-slate-700">
+            <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]">
               <div className="flex items-center space-x-4 text-xs text-slate-400">
                 <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {paper.pages} pages</span>
                 <span className="flex items-center gap-1"><BarChart3 className="w-3 h-3" /> {paper.citations} citations</span>
@@ -368,7 +368,7 @@ const ResearchPapers = () => {
                 href={paper.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-colors"
+                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm transition-colors"
               >
                 Read Paper →
               </a>
@@ -385,7 +385,7 @@ const ResearchPapers = () => {
       )}
 
       {/* Citation Guide */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><PenLine className="w-5 h-5" /> How to Use These Resources</h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
           <div className="space-y-2">

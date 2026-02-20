@@ -337,7 +337,7 @@ const LegalResourcesHub = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Scale className="w-8 h-8 text-indigo-400" />
         <div>
@@ -347,7 +347,7 @@ const LegalResourcesHub = () => {
       </div>
 
       {/* Important Notice */}
-      <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-amber-500/10 border border-amber-500/30 p-4 mb-6">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -373,7 +373,7 @@ const LegalResourcesHub = () => {
             placeholder="Search by country, topic, or keyword..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
           />
         </div>
 
@@ -385,10 +385,10 @@ const LegalResourcesHub = () => {
                 <button
                   key={country}
                   onClick={() => setSelectedCountry(country)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCountry === country
                       ? 'bg-indigo-500 text-white'
-                      : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                      : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
                   }`}
                 >
                   {country === 'all' ? 'All Countries' : country}
@@ -404,10 +404,10 @@ const LegalResourcesHub = () => {
                 <button
                   key={topic}
                   onClick={() => setSelectedTopic(topic)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedTopic === topic
                       ? 'bg-indigo-500 text-white'
-                      : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                      : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
                   }`}
                 >
                   {topic === 'all' ? 'All Topics' : topic}
@@ -420,19 +420,19 @@ const LegalResourcesHub = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-indigo-400 mb-1">{legalResources.length}</div>
           <div className="text-sm text-slate-400">Countries</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{legalResources.reduce((acc, c) => acc + c.resources.length, 0)}</div>
           <div className="text-sm text-slate-400">Resources</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-green-400 mb-1">{legalResources.reduce((acc, c) => acc + c.emergencyContacts.length, 0)}</div>
           <div className="text-sm text-slate-400">Emergency Contacts</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-purple-400 mb-1">{topics.length - 1}</div>
           <div className="text-sm text-slate-400">Topics</div>
         </div>
@@ -441,10 +441,10 @@ const LegalResourcesHub = () => {
       {/* Country Resources */}
       <div className="space-y-6">
         {filteredResources.map((countryResource, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
             <div className="flex items-center gap-3 mb-4">
               <h3 className="text-2xl font-bold text-white">{countryResource.country}</h3>
-              <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300">
+              <span className="px-3 py-1 bg-[#111820] border border-[#1c2a35] rounded-full text-xs text-slate-300">
                 {countryResource.region}
               </span>
             </div>
@@ -452,7 +452,7 @@ const LegalResourcesHub = () => {
             {/* Resources */}
             <div className="space-y-3 mb-4">
               {countryResource.resources.map((resource, rIndex) => (
-                <div key={rIndex} className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
+                <div key={rIndex} className="bg-[#111820]/50 p-4 border border-[#1c2a35]/50">
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -462,10 +462,10 @@ const LegalResourcesHub = () => {
                         <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getTypeColor(resource.type)}`}>
                           {resource.type}
                         </span>
-                        <span className="px-2 py-1 rounded-full text-xs font-medium border text-slate-400 bg-slate-800 border-slate-700">
+                        <span className="px-2 py-1 rounded-full text-xs font-medium border text-slate-400 bg-[#111820] border-[#1c2a35]">
                           {resource.topic}
                         </span>
-                        <span className="px-2 py-1 rounded-full text-xs font-medium border text-slate-400 bg-slate-800 border-slate-700">
+                        <span className="px-2 py-1 rounded-full text-xs font-medium border text-slate-400 bg-[#111820] border-[#1c2a35]">
                           {resource.language}
                         </span>
                       </div>
@@ -474,7 +474,7 @@ const LegalResourcesHub = () => {
 
                   <p className="text-slate-300 text-sm mb-3">{resource.description}</p>
 
-                  <div className="flex items-center justify-between pt-3 border-t border-slate-700/50">
+                  <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
                     <div className="text-xs text-slate-500">
                       <span className="font-medium">{resource.organization}</span>
                       <span className="mx-2">•</span>
@@ -484,7 +484,7 @@ const LegalResourcesHub = () => {
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors text-sm"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white transition-colors text-sm"
                     >
                       <ExternalLink className="w-4 h-4" />
                       View Resource
@@ -496,14 +496,14 @@ const LegalResourcesHub = () => {
 
             {/* Emergency Contacts */}
             {countryResource.emergencyContacts.length > 0 && (
-              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+              <div className="bg-red-500/10 border border-red-500/30 p-4">
                 <h4 className="text-red-400 font-bold mb-3 flex items-center gap-2">
                   <Phone className="w-5 h-5" />
                   Emergency Contacts
                 </h4>
                 <div className="grid md:grid-cols-2 gap-3">
                   {countryResource.emergencyContacts.map((contact, cIndex) => (
-                    <div key={cIndex} className="bg-slate-800/50 rounded p-3">
+                    <div key={cIndex} className="bg-[#111820]/50 rounded p-3">
                       <div className="font-medium text-white text-sm mb-1">{contact.name}</div>
                       <div className="text-xs text-slate-400 mb-2">{contact.description}</div>
                       {contact.phone && (
@@ -533,7 +533,7 @@ const LegalResourcesHub = () => {
       )}
 
       {/* General Advice */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3 flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-green-400" />
           General Legal Advice

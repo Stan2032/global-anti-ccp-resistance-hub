@@ -176,7 +176,7 @@ const ChinaExitBan = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/50 to-orange-900/50 border border-red-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2"><Ban className="w-6 h-6 inline mr-1" /> Exit Bans & Hostage Diplomacy</h2>
         <p className="text-slate-300">
           Tracking foreign nationals and Chinese citizens prevented from leaving China or detained abroad at China's request.
@@ -202,7 +202,7 @@ const ChinaExitBan = () => {
       </div>
 
       {/* Warning */}
-      <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
+      <div className="bg-yellow-900/30 border border-yellow-700 p-4">
         <h3 className="font-bold text-white mb-2"><AlertTriangle className="w-4 h-4 inline mr-1 text-yellow-400" /> Travel Warning</h3>
         <p className="text-slate-300 text-sm">
           China uses exit bans as a tool of coercion. Foreign nationals, especially those with Chinese heritage, 
@@ -241,17 +241,17 @@ const ChinaExitBan = () => {
           placeholder="Search cases..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+          className="flex-1 bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white"
         />
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat.id
                   ? 'bg-red-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat.name} ({cat.count})
@@ -263,7 +263,7 @@ const ChinaExitBan = () => {
       {/* Cases Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredCases.map((case_, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-5">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-5">
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-lg font-bold text-white">{case_.name}</h3>
@@ -285,7 +285,7 @@ const ChinaExitBan = () => {
       </div>
 
       {/* What You Can Do */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4"><Megaphone className="w-5 h-5 inline mr-1" /> What You Can Do</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <div>

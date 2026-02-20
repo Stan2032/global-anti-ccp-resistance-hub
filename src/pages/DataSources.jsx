@@ -147,12 +147,12 @@ const DataSources = () => {
       case 'High': return 'text-green-400 bg-green-400/10 border-green-400/30';
       case 'Medium': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30';
       case 'Low': return 'text-orange-400 bg-orange-400/10 border-orange-400/30';
-      default: return 'text-slate-400 bg-slate-400/10 border-slate-400/30';
+      default: return 'text-slate-400 bg-[#111820] border-[#1c2a35]';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-[#0a0e14] text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <motion.div
@@ -175,7 +175,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-6 mb-12"
+          className="bg-blue-600/20 border border-blue-500/30 p-6 mb-12"
         >
           <div className="flex items-start space-x-4">
             <CheckCircle className="w-8 h-8 text-green-400 flex-shrink-0 mt-1" />
@@ -231,7 +231,7 @@ const DataSources = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + index * 0.05 }}
-                className="bg-slate-800 rounded-lg border border-slate-700 p-5 hover:bg-slate-700 transition-colors group"
+                className="bg-[#111820] border border-[#1c2a35] p-5 hover:bg-[#1c2a35] transition-colors group"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-3">
@@ -247,10 +247,10 @@ const DataSources = () => {
                   <span className={`px-2 py-1 rounded text-xs font-medium border ${getCredibilityColor(source.credibility)}`}>
                     {source.credibility} Credibility
                   </span>
-                  <span className="px-2 py-1 rounded text-xs font-medium bg-slate-700 text-slate-300">
+                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#1c2a35] text-slate-300">
                     {source.region}
                   </span>
-                  <span className="px-2 py-1 rounded text-xs font-medium bg-slate-700 text-slate-300">
+                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#1c2a35] text-slate-300">
                     {source.frequency}
                   </span>
                 </div>
@@ -277,7 +277,7 @@ const DataSources = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
-                className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+                className="bg-[#111820] border border-[#1c2a35] p-6"
               >
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="text-blue-400">{category.icon}</div>
@@ -300,7 +300,7 @@ const DataSources = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-slate-400 text-sm">
                   <FileText className="w-4 h-4" />
-                  <span>Data File: <code className="bg-slate-900 px-2 py-1 rounded">/src/data/{category.dataFile}</code></span>
+                  <span>Data File: <code className="bg-[#0a0e14] px-2 py-1 rounded">/src/data/{category.dataFile}</code></span>
                 </div>
               </motion.div>
             ))}
@@ -312,7 +312,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-lg p-8 text-center"
+          className="bg-[#111820] border border-[#1c2a35] p-8 text-center"
         >
           <GraduationCap className="w-16 h-16 text-blue-400 mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Complete Documentation</h2>
@@ -324,7 +324,7 @@ const DataSources = () => {
             href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/blob/master/DATA_SOURCES.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
           >
             <FileText className="w-5 h-5" />
             <span>View Full DATA_SOURCES.md</span>
@@ -337,7 +337,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="mt-12 bg-slate-800 border border-slate-700 rounded-lg p-6"
+          className="mt-12 bg-[#111820] border border-[#1c2a35] p-6"
         >
           <div className="flex items-start space-x-4">
             <AlertCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
@@ -351,7 +351,7 @@ const DataSources = () => {
                 href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded transition-colors"
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium rounded transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Report on GitHub</span>

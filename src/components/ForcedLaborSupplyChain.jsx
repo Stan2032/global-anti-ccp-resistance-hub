@@ -114,7 +114,7 @@ const ForcedLaborSupplyChain = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-orange-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Link2 className="w-6 h-6" /> Forced Labor Supply Chains</h2>
         <p className="text-slate-300">
           Track how Xinjiang forced labor enters global supply chains. Understand the risks at each stage.
@@ -140,7 +140,7 @@ const ForcedLaborSupplyChain = () => {
       </div>
 
       {/* UFLPA Notice */}
-      <div className="bg-blue-900/30 border border-blue-700 rounded-xl p-4">
+      <div className="bg-blue-900/30 border border-blue-700 p-4">
         <h3 className="font-bold text-white mb-2 flex items-center gap-2"><ScrollText className="w-5 h-5" /> Uyghur Forced Labor Prevention Act (UFLPA)</h3>
         <p className="text-slate-300 text-sm">
           Since June 2022, the US presumes all goods from Xinjiang are made with forced labor and bans their import.
@@ -165,7 +165,7 @@ const ForcedLaborSupplyChain = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedIndustry === ind.id
                 ? 'bg-orange-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {ind.name}
@@ -176,9 +176,9 @@ const ForcedLaborSupplyChain = () => {
       {/* Supply Chain Cards */}
       <div className="space-y-6">
         {filteredData.map(([key, data]) => (
-          <div key={key} className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+          <div key={key} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
             {/* Header */}
-            <div className="p-6 border-b border-slate-700">
+            <div className="p-6 border-b border-[#1c2a35]">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <data.Icon className="w-10 h-10" />
@@ -198,12 +198,12 @@ const ForcedLaborSupplyChain = () => {
             </div>
 
             {/* Supply Chain Stages */}
-            <div className="p-6 bg-slate-900/50">
+            <div className="p-6 bg-[#0a0e14]/50">
               <h4 className="text-sm font-semibold text-slate-400 mb-4">SUPPLY CHAIN STAGES</h4>
               <div className="flex flex-wrap items-center gap-2">
                 {data.stages.map((stage, i) => (
                   <div key={i} className="flex items-center">
-                    <div className="bg-slate-700 rounded-lg p-3 text-center min-w-[120px]">
+                    <div className="bg-slate-700 p-3 text-center min-w-[120px]">
                       <div className="text-white text-sm font-medium">{stage.name}</div>
                       <span className={`${getRiskColor(stage.risk)} text-white text-xs px-2 py-0.5 rounded mt-1 inline-block`}>
                         {stage.risk}
@@ -221,7 +221,7 @@ const ForcedLaborSupplyChain = () => {
 
             {/* Expanded Details */}
             {showDetails === key && (
-              <div className="p-6 border-t border-slate-700">
+              <div className="p-6 border-t border-[#1c2a35]">
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* Stage Details */}
                   <div>
@@ -277,14 +277,14 @@ const ForcedLaborSupplyChain = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Supply Chain Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <a
             href="https://www.aspi.org.au/report/uyghurs-sale"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">ASPI: Uyghurs for Sale</h4>
             <p className="text-slate-400 text-sm">Comprehensive report on forced labor in supply chains</p>
@@ -293,7 +293,7 @@ const ForcedLaborSupplyChain = () => {
             href="https://www.coalitiontoenduyghurforcedlabour.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">End Uyghur Forced Labour</h4>
             <p className="text-slate-400 text-sm">Coalition of 400+ organizations</p>
@@ -302,7 +302,7 @@ const ForcedLaborSupplyChain = () => {
             href="https://www.cbp.gov/trade/forced-labor/UFLPA"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">CBP UFLPA Portal</h4>
             <p className="text-slate-400 text-sm">Official US enforcement information</p>

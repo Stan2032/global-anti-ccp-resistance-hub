@@ -186,7 +186,7 @@ const WitnessProtection = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 rounded-xl p-6 border border-purple-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
         <div className="flex items-center mb-4">
           <Shield className="w-8 h-8 text-purple-400 mr-3" />
           <div>
@@ -194,7 +194,7 @@ const WitnessProtection = () => {
             <p className="text-slate-400">Resources for at-risk activists and witnesses</p>
           </div>
         </div>
-        <div className="bg-red-900/30 border border-red-700/50 rounded-lg p-3 mt-4">
+        <div className="bg-red-900/30 border border-red-700/50 p-3 mt-4">
           <p className="text-sm text-red-200">
             <strong className="inline-flex items-center gap-1"><AlertTriangle className="w-4 h-4" /> Important:</strong> If you are in immediate danger, contact local emergency services 
             or Front Line Defenders' 24/7 emergency line: <strong>+353 1 210 0489</strong>
@@ -208,10 +208,10 @@ const WitnessProtection = () => {
           <button
             key={section.id}
             onClick={() => setActiveSection(section.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeSection === section.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <section.Icon className="w-4 h-4" />
@@ -223,7 +223,7 @@ const WitnessProtection = () => {
       {/* Overview Section */}
       {activeSection === 'overview' && (
         <div className="space-y-4">
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Who Needs Protection?</h3>
             <p className="text-slate-300 mb-4">
               The CCP conducts transnational repression against critics worldwide. You may need 
@@ -257,10 +257,10 @@ const WitnessProtection = () => {
             </ul>
           </div>
 
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Types of Threats</h3>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-red-900/20 border border-red-700/30 rounded-lg p-3">
+              <div className="bg-red-900/20 border border-red-700/30 p-3">
                 <h4 className="font-medium text-red-300 mb-2">Direct Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Physical surveillance</li>
@@ -269,7 +269,7 @@ const WitnessProtection = () => {
                   <li>• Detention during travel</li>
                 </ul>
               </div>
-              <div className="bg-orange-900/20 border border-orange-700/30 rounded-lg p-3">
+              <div className="bg-orange-900/20 border border-orange-700/30 p-3">
                 <h4 className="font-medium text-orange-300 mb-2">Indirect Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Threats to family in China</li>
@@ -278,7 +278,7 @@ const WitnessProtection = () => {
                   <li>• Economic pressure</li>
                 </ul>
               </div>
-              <div className="bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-3">
+              <div className="bg-yellow-900/20 border border-yellow-700/30 p-3">
                 <h4 className="font-medium text-yellow-300 mb-2">Digital Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Hacking and surveillance</li>
@@ -287,7 +287,7 @@ const WitnessProtection = () => {
                   <li>• Device compromise</li>
                 </ul>
               </div>
-              <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-3">
+              <div className="bg-blue-900/20 border border-blue-700/30 p-3">
                 <h4 className="font-medium text-blue-300 mb-2">Legal Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Interpol red notices (abuse)</li>
@@ -304,7 +304,7 @@ const WitnessProtection = () => {
       {/* Risk Assessment Section */}
       {activeSection === 'assessment' && (
         <div className="space-y-4">
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-4">Personal Risk Assessment</h3>
             <p className="text-slate-400 mb-4 text-sm">
               Answer these questions to assess your risk level. This is for guidance only - 
@@ -313,25 +313,25 @@ const WitnessProtection = () => {
             
             <div className="space-y-4">
               {riskQuestions.map(q => (
-                <div key={q.id} className="bg-slate-900/50 rounded-lg p-4">
+                <div key={q.id} className="bg-[#0a0e14]/50 p-4">
                   <p className="text-white mb-3">{q.question}</p>
                   <div className="flex space-x-3">
                     <button
                       onClick={() => setRiskAnswers({...riskAnswers, [q.id]: 'yes'})}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`px-4 py-2 text-sm font-medium transition-colors ${
                         riskAnswers[q.id] === 'yes'
                           ? 'bg-red-600 text-white'
-                          : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                          : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
                       }`}
                     >
                       Yes
                     </button>
                     <button
                       onClick={() => setRiskAnswers({...riskAnswers, [q.id]: 'no'})}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`px-4 py-2 text-sm font-medium transition-colors ${
                         riskAnswers[q.id] === 'no'
                           ? 'bg-green-600 text-white'
-                          : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                          : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
                       }`}
                     >
                       No
@@ -345,7 +345,7 @@ const WitnessProtection = () => {
               <div className="mt-6">
                 <button
                   onClick={() => setRiskLevel(calculateRisk())}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-medium transition-colors"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 font-medium transition-colors"
                 >
                   Calculate Risk Level
                 </button>
@@ -353,7 +353,7 @@ const WitnessProtection = () => {
             )}
 
             {riskLevel && (
-              <div className={`mt-6 p-4 rounded-lg border ${
+              <div className={`mt-6 p-4 border ${
                 riskLevel === 'critical' ? 'bg-red-900/30 border-red-700' :
                 riskLevel === 'high' ? 'bg-orange-900/30 border-orange-700' :
                 riskLevel === 'moderate' ? 'bg-yellow-900/30 border-yellow-700' :
@@ -382,7 +382,7 @@ const WitnessProtection = () => {
       {/* Immediate Steps Section */}
       {activeSection === 'immediate' && (
         <div className="space-y-4">
-          <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-5">
+          <div className="bg-red-900/20 border border-red-700/50 p-5">
             <h3 className="text-lg font-semibold text-red-300 mb-3 flex items-center gap-2"><Siren className="w-5 h-5" /> If You're in Immediate Danger</h3>
             <ol className="space-y-3 text-slate-300">
               <li className="flex items-start">
@@ -408,7 +408,7 @@ const WitnessProtection = () => {
             </ol>
           </div>
 
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> First 48 Hours Checklist</h3>
             <div className="space-y-2">
               {[
@@ -423,7 +423,7 @@ const WitnessProtection = () => {
                 'Consider temporary accommodation change',
                 'Consult with a lawyer about your options',
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center space-x-3 p-2 bg-slate-900/50 rounded">
+                <div key={idx} className="flex items-center space-x-3 p-2 bg-[#0a0e14]/50 rounded">
                   <Square className="w-4 h-4 text-purple-400" />
                   <span className="text-slate-300 text-sm">{item}</span>
                 </div>
@@ -436,7 +436,7 @@ const WitnessProtection = () => {
       {/* Relocation Section */}
       {activeSection === 'relocation' && (
         <div className="space-y-4">
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-4">Relocation Options</h3>
             <p className="text-slate-400 mb-4 text-sm">
               If you need to relocate for safety, these countries have programs for at-risk individuals:
@@ -444,7 +444,7 @@ const WitnessProtection = () => {
             
             <div className="space-y-3">
               {relocationCountries.map((country, idx) => (
-                <div key={idx} className="bg-slate-900/50 rounded-lg p-4">
+                <div key={idx} className="bg-[#0a0e14]/50 p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-2">
                       <span className="text-2xl">{country.flag}</span>
@@ -471,7 +471,7 @@ const WitnessProtection = () => {
             </div>
           </div>
 
-          <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
+          <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
             <h3 className="font-medium text-yellow-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Important Considerations</h3>
             <ul className="text-sm text-slate-300 space-y-1">
               <li>• <strong>Avoid countries with extradition treaties with China</strong></li>
@@ -487,11 +487,11 @@ const WitnessProtection = () => {
       {/* Legal Protection Section */}
       {activeSection === 'legal' && (
         <div className="space-y-4">
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Legal Protections Available</h3>
             
             <div className="space-y-4">
-              <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-4">
+              <div className="bg-blue-900/20 border border-blue-700/30 p-4">
                 <h4 className="font-medium text-blue-300 mb-2">Asylum</h4>
                 <p className="text-sm text-slate-400">
                   If you fear persecution, you can apply for asylum in most democratic countries. 
@@ -500,7 +500,7 @@ const WitnessProtection = () => {
                 </p>
               </div>
 
-              <div className="bg-green-900/20 border border-green-700/30 rounded-lg p-4">
+              <div className="bg-green-900/20 border border-green-700/30 p-4">
                 <h4 className="font-medium text-green-300 mb-2">Refugee Status</h4>
                 <p className="text-sm text-slate-400">
                   UNHCR can provide refugee status and facilitate resettlement to a third country. 
@@ -508,7 +508,7 @@ const WitnessProtection = () => {
                 </p>
               </div>
 
-              <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg p-4">
+              <div className="bg-purple-900/20 border border-purple-700/30 p-4">
                 <h4 className="font-medium text-purple-300 mb-2">Humanitarian Visas</h4>
                 <p className="text-sm text-slate-400">
                   Some countries offer humanitarian visas for people at risk. These are often 
@@ -516,7 +516,7 @@ const WitnessProtection = () => {
                 </p>
               </div>
 
-              <div className="bg-orange-900/20 border border-orange-700/30 rounded-lg p-4">
+              <div className="bg-orange-900/20 border border-orange-700/30 p-4">
                 <h4 className="font-medium text-orange-300 mb-2">Interpol Red Notice Challenges</h4>
                 <p className="text-sm text-slate-400">
                   China abuses Interpol red notices to target dissidents. If you're subject to one, 
@@ -526,7 +526,7 @@ const WitnessProtection = () => {
             </div>
           </div>
 
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Legal Resources</h3>
             <div className="space-y-2 text-sm">
               <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
@@ -546,12 +546,12 @@ const WitnessProtection = () => {
       {/* Organizations Section */}
       {activeSection === 'organizations' && (
         <div className="space-y-4">
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-4">Protection Organizations</h3>
             
             <div className="space-y-4">
               {protectionOrganizations.map((org, idx) => (
-                <div key={idx} className="bg-slate-900/50 rounded-lg p-4">
+                <div key={idx} className="bg-[#0a0e14]/50 p-4">
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-medium text-white">{org.name}</h4>
                     <span className="text-xs px-2 py-1 bg-purple-900/30 text-purple-300 rounded">
@@ -561,7 +561,7 @@ const WitnessProtection = () => {
                   <p className="text-sm text-slate-400 mb-3">{org.description}</p>
                   <div className="flex flex-wrap gap-2 mb-3">
                     {org.services.map((service, sidx) => (
-                      <span key={sidx} className="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">
+                      <span key={sidx} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded">
                         {service}
                       </span>
                     ))}
@@ -585,7 +585,7 @@ const WitnessProtection = () => {
       )}
 
       {/* Footer */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
         <p className="text-sm text-slate-400">
           This guide is for informational purposes only. Always consult with professional 
           protection organizations for personalized advice.

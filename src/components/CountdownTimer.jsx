@@ -137,7 +137,7 @@ const CountdownTimer = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-2">
           <CalendarDays className="w-8 h-8 text-blue-400 mr-3" />
           <div>
@@ -152,7 +152,7 @@ const CountdownTimer = () => {
 
       {/* Featured Countdown (Next Event) */}
       {sortedDates.length > 0 && (
-        <div className={`${typeColors[sortedDates[0].type].bg} rounded-xl border ${typeColors[sortedDates[0].type].border} p-6`}>
+        <div className={`${typeColors[sortedDates[0].type].bg} border ${typeColors[sortedDates[0].type].border} p-6`}>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               {(() => { const IconComp = sortedDates[0].Icon; return IconComp ? <IconComp className="w-10 h-10" /> : <span className="text-4xl mr-3">{sortedDates[0].icon}</span>; })()}
@@ -171,19 +171,19 @@ const CountdownTimer = () => {
             const time = getTimeRemaining(sortedDates[0].date);
             return (
               <div className="grid grid-cols-4 gap-4 mb-4">
-                <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+                <div className="bg-[#0a0e14]/50 p-3 text-center">
                   <div className="text-3xl font-bold text-white">{time.days}</div>
                   <div className="text-xs text-slate-400">Days</div>
                 </div>
-                <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+                <div className="bg-[#0a0e14]/50 p-3 text-center">
                   <div className="text-3xl font-bold text-white">{time.hours}</div>
                   <div className="text-xs text-slate-400">Hours</div>
                 </div>
-                <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+                <div className="bg-[#0a0e14]/50 p-3 text-center">
                   <div className="text-3xl font-bold text-white">{time.minutes}</div>
                   <div className="text-xs text-slate-400">Minutes</div>
                 </div>
-                <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+                <div className="bg-[#0a0e14]/50 p-3 text-center">
                   <div className="text-3xl font-bold text-white">{time.seconds}</div>
                   <div className="text-xs text-slate-400">Seconds</div>
                 </div>
@@ -196,7 +196,7 @@ const CountdownTimer = () => {
             <h4 className="text-sm font-medium text-slate-300 mb-2">How to participate:</h4>
             <div className="flex flex-wrap gap-2">
               {sortedDates[0].actions.map((action, idx) => (
-                <span key={idx} className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">
+                <span key={idx} className="px-3 py-1 bg-[#111820] rounded-full text-xs text-slate-300">
                   {action}
                 </span>
               ))}
@@ -212,7 +212,7 @@ const CountdownTimer = () => {
           const colors = typeColors[event.type];
           
           return (
-            <div key={event.id} className={`${colors.bg} rounded-xl border ${colors.border} p-4`}>
+            <div key={event.id} className={`${colors.bg} border ${colors.border} p-4`}>
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center">
                   {(() => { const IconComp = event.Icon; return IconComp ? <IconComp className="w-6 h-6 mr-2" /> : <span className="text-2xl mr-2">{event.icon}</span>; })()}
@@ -228,15 +228,15 @@ const CountdownTimer = () => {
               
               <div className="flex items-center justify-between">
                 <div className="flex space-x-2">
-                  <div className="bg-slate-900/50 rounded px-2 py-1 text-center">
+                  <div className="bg-[#0a0e14]/50 rounded px-2 py-1 text-center">
                     <span className="text-lg font-bold text-white">{time.days}</span>
                     <span className="text-xs text-slate-400 ml-1">d</span>
                   </div>
-                  <div className="bg-slate-900/50 rounded px-2 py-1 text-center">
+                  <div className="bg-[#0a0e14]/50 rounded px-2 py-1 text-center">
                     <span className="text-lg font-bold text-white">{time.hours}</span>
                     <span className="text-xs text-slate-400 ml-1">h</span>
                   </div>
-                  <div className="bg-slate-900/50 rounded px-2 py-1 text-center">
+                  <div className="bg-[#0a0e14]/50 rounded px-2 py-1 text-center">
                     <span className="text-lg font-bold text-white">{time.minutes}</span>
                     <span className="text-xs text-slate-400 ml-1">m</span>
                   </div>
@@ -251,7 +251,7 @@ const CountdownTimer = () => {
       </div>
 
       {/* Add to Calendar */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><CalendarPlus className="w-5 h-5" /> Add to Your Calendar</h3>
         <p className="text-sm text-slate-400 mb-3">
           Never miss an important date. Add these events to your calendar to receive reminders.
@@ -261,7 +261,7 @@ const CountdownTimer = () => {
             href="https://calendar.google.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Google Calendar
           </a>
@@ -269,7 +269,7 @@ const CountdownTimer = () => {
             href="https://outlook.live.com/calendar" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Outlook
           </a>
@@ -277,7 +277,7 @@ const CountdownTimer = () => {
             href="https://calendar.apple.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Apple Calendar
           </a>

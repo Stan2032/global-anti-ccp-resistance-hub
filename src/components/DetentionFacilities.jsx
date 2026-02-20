@@ -359,9 +359,9 @@ export default function DetentionFacilities() {
     const facility = facilities.find(f => f.id === selectedFacility);
     
     return (
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700">
+      <div className="bg-[#111820]/50 border border-[#1c2a35]">
         {/* Header */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedFacility(null)}
             className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
@@ -370,7 +370,7 @@ export default function DetentionFacilities() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
+            <div className="w-16 h-16 bg-slate-700 flex items-center justify-center">
               <Building2 className="w-8 h-8 text-red-400" />
             </div>
             <div className="flex-1">
@@ -395,20 +395,20 @@ export default function DetentionFacilities() {
         </div>
 
         {/* Quick Facts */}
-        <div className="p-6 border-b border-slate-700 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-slate-900/50 rounded-lg p-3">
+        <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Estimated Capacity</p>
             <p className="text-white font-medium">{facility.estimatedCapacity}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">First Documented</p>
             <p className="text-white font-medium">{facility.firstDocumented}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Region</p>
             <p className="text-white font-medium">{facility.region}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Status</p>
             <p className={`font-medium ${facility.status === 'Active' ? 'text-red-400' : 'text-gray-400'}`}>
               {facility.status}
@@ -417,13 +417,13 @@ export default function DetentionFacilities() {
         </div>
 
         {/* Description */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <h3 className="text-lg font-semibold text-white mb-3">Description</h3>
           <p className="text-slate-300">{facility.description}</p>
         </div>
 
         {/* Evidence */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('evidence')}
             className="w-full flex items-center justify-between text-left"
@@ -448,7 +448,7 @@ export default function DetentionFacilities() {
         </div>
 
         {/* Sources */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <h3 className="text-sm font-semibold text-slate-400 mb-2">Sources</h3>
           <div className="flex flex-wrap gap-2">
             {facility.sources.map((source, i) => (
@@ -466,7 +466,7 @@ export default function DetentionFacilities() {
               href={facility.satelliteImage}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
             >
               <ExternalLink className="w-5 h-5" />
               View Satellite Imagery (ASPI Xinjiang Data Project)
@@ -487,7 +487,7 @@ export default function DetentionFacilities() {
   }
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center gap-3 mb-6">
         <Building2 className="w-6 h-6 text-red-400" />
         <div>
@@ -497,7 +497,7 @@ export default function DetentionFacilities() {
       </div>
 
       {/* Warning */}
-      <div className="mb-6 p-4 bg-red-900/20 border border-red-700 rounded-lg">
+      <div className="mb-6 p-4 bg-red-900/20 border border-red-700">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -512,19 +512,19 @@ export default function DetentionFacilities() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{facilities.length}</p>
           <p className="text-xs text-slate-500">Facilities Documented</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-red-400">{totalCapacity.toLocaleString()}+</p>
           <p className="text-xs text-slate-500">Est. Total Capacity</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(facilities.map(f => f.region)).size}</p>
           <p className="text-xs text-slate-500">Regions</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{facilities.filter(f => f.status === 'Active').length}</p>
           <p className="text-xs text-slate-500">Active Facilities</p>
         </div>
@@ -540,14 +540,14 @@ export default function DetentionFacilities() {
             placeholder="Search facilities..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
           />
         </div>
         <select
           aria-label="Region filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region}</option>
@@ -557,7 +557,7 @@ export default function DetentionFacilities() {
           aria-label="Region filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {types.map(type => (
             <option key={type} value={type}>{type}</option>
@@ -574,10 +574,10 @@ export default function DetentionFacilities() {
               setSelectedFacility(facility.id);
               setExpandedSections({ evidence: true });
             }}
-            className="bg-slate-900/50 rounded-lg p-4 text-left hover:bg-slate-900/70 transition-colors border border-slate-700 hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
           >
             <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-slate-700 flex items-center justify-center flex-shrink-0">
                 <Building2 className="w-5 h-5 text-red-400" />
               </div>
               <div className="flex-1 min-w-0">
@@ -614,14 +614,14 @@ export default function DetentionFacilities() {
       )}
 
       {/* Resources */}
-      <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+      <div className="mt-6 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]">
         <h3 className="text-sm font-semibold text-white mb-3">Research Resources</h3>
         <div className="grid md:grid-cols-3 gap-3">
           <a
             href="https://xjdp.aspi.org.au/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>
@@ -633,7 +633,7 @@ export default function DetentionFacilities() {
             href="https://www.xinjiangpolicefiles.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>
@@ -645,7 +645,7 @@ export default function DetentionFacilities() {
             href="https://shahit.biz/eng/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>

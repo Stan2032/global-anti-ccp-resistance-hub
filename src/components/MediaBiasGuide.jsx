@@ -233,7 +233,7 @@ const MediaBiasGuide = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Info className="w-8 h-8 text-blue-400" />
         <div>
@@ -243,7 +243,7 @@ const MediaBiasGuide = () => {
       </div>
 
       {/* Guide Notice */}
-      <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-blue-500/10 border border-blue-500/30 p-4 mb-6">
         <h3 className="text-blue-400 font-bold mb-2">How to Use This Guide</h3>
         <p className="text-slate-300 text-sm mb-2">
           This guide helps you evaluate the reliability of news sources covering China. Always cross-reference multiple sources and check primary documents when possible.
@@ -261,7 +261,7 @@ const MediaBiasGuide = () => {
             placeholder="Search news sources..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           />
         </div>
 
@@ -270,10 +270,10 @@ const MediaBiasGuide = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat
                   ? 'bg-blue-500 text-white'
-                  : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                  : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
               {cat === 'all' ? 'All Sources' : cat}
@@ -285,7 +285,7 @@ const MediaBiasGuide = () => {
       {/* Media Sources */}
       <div className="space-y-4">
         {filteredSources.map((source, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -299,10 +299,10 @@ const MediaBiasGuide = () => {
                   <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getRatingColor(source.category)}`}>
                     {source.rating}
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-slate-800 border-slate-700">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-[#111820] border-[#1c2a35]">
                     Bias: {source.bias}
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-slate-800 border-slate-700">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-[#111820] border-[#1c2a35]">
                     Credibility: {source.credibility}%
                   </span>
                 </div>
@@ -330,7 +330,7 @@ const MediaBiasGuide = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-slate-500 pt-3 border-t border-slate-700/50">
+            <div className="flex items-center gap-4 text-xs text-slate-500 pt-3 border-t border-[#1c2a35]/50">
               <span>Founded: {source.founded}</span>
               <span>Funding: {source.funding}</span>
             </div>
@@ -339,7 +339,7 @@ const MediaBiasGuide = () => {
       </div>
 
       {/* Tips Section */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">Tips for Evaluating Sources</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Check funding:</strong> Who pays for the outlet? Government, subscriptions, donations, or unclear?</p>

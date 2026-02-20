@@ -232,7 +232,7 @@ const HistoricalDocuments = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <FileText className="w-8 h-8 text-amber-400" />
         <div>
@@ -242,7 +242,7 @@ const HistoricalDocuments = () => {
       </div>
 
       {/* Archive Notice */}
-      <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-amber-500/10 border border-amber-500/30 p-4 mb-6">
         <h3 className="text-amber-400 font-bold mb-2">About This Archive</h3>
         <p className="text-slate-300 text-sm">
           This archive contains leaked documents, official government records, and verified reports that provide evidence of CCP human rights abuses. 
@@ -260,7 +260,7 @@ const HistoricalDocuments = () => {
             placeholder="Search documents by title, description, or tags..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
           />
         </div>
 
@@ -269,10 +269,10 @@ const HistoricalDocuments = () => {
             <button
               key={cat}
               onClick={() => setCategoryFilter(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
                 categoryFilter === cat
                   ? 'bg-amber-500 text-white'
-                  : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                  : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
               {cat === 'all' ? 'All Documents' : cat}
@@ -283,19 +283,19 @@ const HistoricalDocuments = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-amber-400 mb-1">{documents.length}</div>
           <div className="text-sm text-slate-400">Documents</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-red-400 mb-1">{documents.filter(d => d.significance === 'Critical').length}</div>
           <div className="text-sm text-slate-400">Critical Evidence</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-green-400 mb-1">{documents.filter(d => d.downloadable).length}</div>
           <div className="text-sm text-slate-400">Downloadable</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{documents.filter(d => d.category === 'Leaked Documents').length}</div>
           <div className="text-sm text-slate-400">Leaked Docs</div>
         </div>
@@ -304,7 +304,7 @@ const HistoricalDocuments = () => {
       {/* Document Cards */}
       <div className="space-y-4">
         {filteredDocs.map((doc, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-amber-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-amber-500/30 transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -319,7 +319,7 @@ const HistoricalDocuments = () => {
                   <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getSignificanceColor(doc.significance)}`}>
                     {doc.significance} Significance
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-slate-800 border-slate-700">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium border text-slate-400 bg-[#111820] border-[#1c2a35]">
                     {doc.category}
                   </span>
                   {doc.downloadable && (
@@ -358,18 +358,18 @@ const HistoricalDocuments = () => {
 
             <div className="flex flex-wrap gap-2 mb-4">
               {doc.tags.map(tag => (
-                <span key={tag} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">
+                <span key={tag} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
                   {tag}
                 </span>
               ))}
             </div>
 
-            <div className="flex items-center gap-4 pt-4 border-t border-slate-700/50">
+            <div className="flex items-center gap-4 pt-4 border-t border-[#1c2a35]/50">
               <a
                 href={doc.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition-colors text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white transition-colors text-sm font-medium"
               >
                 <ExternalLink className="w-4 h-4" />
                 View Document
@@ -393,7 +393,7 @@ const HistoricalDocuments = () => {
       )}
 
       {/* Usage Guidelines */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">How to Use These Documents</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Cite properly:</strong> Always cite the original source when using these documents in research or advocacy.</p>

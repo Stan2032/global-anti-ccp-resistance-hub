@@ -470,9 +470,9 @@ export default function CCPOfficials() {
     const official = officials.find(o => o.id === selectedOfficial);
     
     return (
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700">
+      <div className="bg-[#111820]/50 border border-[#1c2a35]">
         {/* Header */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedOfficial(null)}
             className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
@@ -481,7 +481,7 @@ export default function CCPOfficials() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-slate-700 rounded-xl flex items-center justify-center text-4xl">
+            <div className="w-20 h-20 bg-slate-700 flex items-center justify-center text-4xl">
               {official.photo || <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
@@ -506,20 +506,20 @@ export default function CCPOfficials() {
         </div>
 
         {/* Quick Facts */}
-        <div className="p-6 border-b border-slate-700 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-slate-900/50 rounded-lg p-3">
+        <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Born</p>
             <p className="text-white font-medium">{official.birthYear}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">In Power Since</p>
             <p className="text-white font-medium">{official.inPowerSince}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Category</p>
             <p className="text-white font-medium">{official.category}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Sanctioned</p>
             <p className={`font-medium ${official.sanctioned ? 'text-red-400' : 'text-slate-400'}`}>
               {official.sanctioned ? 'Yes' : 'No'}
@@ -529,14 +529,14 @@ export default function CCPOfficials() {
 
         {/* Sanctions */}
         {official.sanctioned && official.sanctionedBy && (
-          <div className="p-6 border-b border-slate-700">
+          <div className="p-6 border-b border-[#1c2a35]">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
               <Scale className="w-5 h-5 text-red-400" />
               International Sanctions
             </h3>
             <div className="flex flex-wrap gap-2">
               {official.sanctionedBy.map((country, i) => (
-                <span key={i} className="px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg text-red-300">
+                <span key={i} className="px-3 py-1.5 bg-red-900/30 border border-red-700 text-red-300">
                   {country === 'USA' ? '🇺🇸' : country === 'UK' ? '🇬🇧' : country === 'EU' ? '🇪🇺' : country === 'Canada' ? '🇨🇦' : <Globe className="w-4 h-4 inline-block" />} {country}
                 </span>
               ))}
@@ -545,7 +545,7 @@ export default function CCPOfficials() {
         )}
 
         {/* Responsibility */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('responsibility')}
             className="w-full flex items-center justify-between text-left"
@@ -570,7 +570,7 @@ export default function CCPOfficials() {
         </div>
 
         {/* Key Actions */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('actions')}
             className="w-full flex items-center justify-between text-left"
@@ -621,7 +621,7 @@ export default function CCPOfficials() {
           
           {/* Current Status */}
           {official.currentStatus && (
-            <div className="mt-4 p-3 bg-slate-900/50 rounded-lg border border-slate-700">
+            <div className="mt-4 p-3 bg-[#0a0e14]/50 border border-[#1c2a35]">
               <h3 className="text-xs font-semibold text-slate-400 mb-1">Current Status</h3>
               <p className="text-sm text-slate-300">{official.currentStatus}</p>
             </div>
@@ -632,7 +632,7 @@ export default function CCPOfficials() {
   }
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center gap-3 mb-6">
         <User className="w-6 h-6 text-red-400" />
         <div>
@@ -643,19 +643,19 @@ export default function CCPOfficials() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{officials.length}</p>
           <p className="text-xs text-slate-500">Officials Tracked</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-red-400">{officials.filter(o => o.sanctioned).length}</p>
           <p className="text-xs text-slate-500">Sanctioned</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(officials.map(o => o.region)).size}</p>
           <p className="text-xs text-slate-500">Regions</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(officials.map(o => o.category)).size}</p>
           <p className="text-xs text-slate-500">Categories</p>
         </div>
@@ -671,14 +671,14 @@ export default function CCPOfficials() {
             placeholder="Search officials..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
           />
         </div>
         <select
           aria-label="Region filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region === 'all' ? 'All Regions' : region}</option>
@@ -688,13 +688,13 @@ export default function CCPOfficials() {
           aria-label="Region filter"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {categories.map(cat => (
             <option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>
           ))}
         </select>
-        <label className="flex items-center gap-2 text-sm text-slate-400 px-3 py-2 bg-slate-700 rounded-lg border border-slate-600">
+        <label className="flex items-center gap-2 text-sm text-slate-400 px-3 py-2 bg-slate-700 border border-slate-600">
           <input
             type="checkbox"
             checked={sanctionedOnly}
@@ -714,10 +714,10 @@ export default function CCPOfficials() {
               setSelectedOfficial(official.id);
               setExpandedSections({ responsibility: true, actions: true });
             }}
-            className="bg-slate-900/50 rounded-lg p-4 text-left hover:bg-slate-900/70 transition-colors border border-slate-700 hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-2xl">
+              <div className="w-12 h-12 bg-slate-700 flex items-center justify-center text-2xl">
                 {official.photo || <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div className="flex-1 min-w-0">
@@ -752,7 +752,7 @@ export default function CCPOfficials() {
       )}
 
       {/* Disclaimer */}
-      <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+      <div className="mt-6 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]">
         <p className="text-sm text-slate-400">
           <strong className="text-white">Note:</strong> This database documents officials based on their documented roles in human rights abuses. 
           Information is compiled from government sanctions lists, human rights reports, and verified news sources. 

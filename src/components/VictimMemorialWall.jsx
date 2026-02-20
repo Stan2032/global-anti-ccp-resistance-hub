@@ -246,7 +246,7 @@ const VictimMemorialWall = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Flame className="w-8 h-8 text-amber-400" />
         <div>
@@ -256,7 +256,7 @@ const VictimMemorialWall = () => {
       </div>
 
       {/* Memorial Notice */}
-      <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-amber-500/10 border border-amber-500/30 p-4 mb-6">
         <div className="flex items-start gap-3">
           <Heart className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -282,7 +282,7 @@ const VictimMemorialWall = () => {
             placeholder="Search by name or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
           />
         </div>
 
@@ -292,10 +292,10 @@ const VictimMemorialWall = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat
                   ? 'bg-amber-500 text-white'
-                  : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                  : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
               {cat === 'all' ? 'All Victims' : cat}
@@ -306,19 +306,19 @@ const VictimMemorialWall = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-amber-400 mb-1">{victims.length}</div>
           <div className="text-sm text-slate-400">Documented Victims</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{victims.filter(v => v.category === 'Uyghur').length}</div>
           <div className="text-sm text-slate-400">Uyghur Victims</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-red-400 mb-1">{victims.filter(v => v.category === 'Tibet').length}</div>
           <div className="text-sm text-slate-400">Tibetan Victims</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-yellow-400 mb-1">{victims.filter(v => v.category === 'Hong Kong').length}</div>
           <div className="text-sm text-slate-400">Hong Kong Victims</div>
         </div>
@@ -327,10 +327,10 @@ const VictimMemorialWall = () => {
       {/* Victim Cards */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredVictims.map((victim, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-amber-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-amber-500/30 transition-colors">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center border-2 border-amber-500/30">
+                <div className="w-16 h-16 bg-[#111820] rounded-full flex items-center justify-center border-2 border-amber-500/30">
                   <Flame className="w-8 h-8 text-amber-400" />
                 </div>
               </div>
@@ -366,7 +366,7 @@ const VictimMemorialWall = () => {
 
                 <p className="text-slate-300 text-sm mb-3">{victim.description}</p>
 
-                <div className="bg-slate-800/50 rounded p-3 mb-3">
+                <div className="bg-[#111820]/50 rounded p-3 mb-3">
                   <div className="text-xs text-slate-500 mb-1">Known For:</div>
                   <div className="text-sm text-slate-300">{victim.knownFor}</div>
                 </div>
@@ -377,7 +377,7 @@ const VictimMemorialWall = () => {
                 </div>
 
                 {victim.sources && victim.sources.length > 0 && (
-                  <div className="pt-3 border-t border-slate-700/50">
+                  <div className="pt-3 border-t border-[#1c2a35]/50">
                     <div className="text-xs text-slate-500 mb-2">Sources:</div>
                     <div className="flex flex-wrap gap-2">
                       {victim.sources.map((source, sIndex) => {
@@ -385,7 +385,7 @@ const VictimMemorialWall = () => {
                         return resolved.url ? (
                           <SourceAttribution key={sIndex} source={resolved} compact />
                         ) : (
-                          <span key={sIndex} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-400">
+                          <span key={sIndex} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-400">
                             {source}
                           </span>
                         );
@@ -407,7 +407,7 @@ const VictimMemorialWall = () => {
       )}
 
       {/* Additional Information */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">About This Memorial</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Incomplete list:</strong> This memorial represents only a fraction of victims. Many deaths go unreported due to CCP censorship.</p>
@@ -419,7 +419,7 @@ const VictimMemorialWall = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="mt-6 bg-red-500/10 border border-red-500/30 rounded-lg p-5">
+      <div className="mt-6 bg-red-500/10 border border-red-500/30 p-5">
         <h3 className="text-red-400 font-bold mb-3 flex items-center gap-2">
           <Heart className="w-5 h-5" />
           Honor Their Memory
@@ -432,7 +432,7 @@ const VictimMemorialWall = () => {
             href="https://www.tiananmenmother.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             Tiananmen Mothers
@@ -441,7 +441,7 @@ const VictimMemorialWall = () => {
             href="https://uhrp.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             Uyghur Human Rights Project
@@ -450,7 +450,7 @@ const VictimMemorialWall = () => {
             href="https://savetibet.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             International Campaign for Tibet

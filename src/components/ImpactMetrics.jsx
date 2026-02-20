@@ -63,7 +63,7 @@ const ImpactMetrics = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+    <div className="bg-[#111820]/50 border border-[#1c2a35] p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-bold text-white">Platform Impact</h2>
@@ -77,7 +77,7 @@ const ImpactMetrics = () => {
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {metrics.map((metric, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg p-4">
+          <div key={index} className="bg-[#0a0e14]/50 p-4">
             <div className="flex items-center justify-between mb-2">
               <metric.Icon className="w-6 h-6 text-slate-300" />
               <span className={`px-2 py-0.5 rounded text-xs font-medium ${colorClasses[metric.color]}`}>
@@ -92,7 +92,7 @@ const ImpactMetrics = () => {
       </div>
 
       {/* Recent Victories */}
-      <div className="border-t border-slate-700 pt-4">
+      <div className="border-t border-[#1c2a35] pt-4">
         <h3 className="text-sm font-semibold text-slate-300 mb-3 flex items-center">
           <Trophy className="w-4 h-4 mr-2" /> Recent Victories
         </h3>
@@ -113,7 +113,7 @@ const ImpactMetrics = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="mt-4 p-3 bg-blue-900/30 border border-blue-700/50 rounded-lg">
+      <div className="mt-4 p-3 bg-blue-900/30 border border-blue-700/50">
         <p className="text-sm text-blue-300">
           <strong>Your actions matter.</strong> Every petition signed, every representative contacted, and every story shared contributes to these victories.
         </p>

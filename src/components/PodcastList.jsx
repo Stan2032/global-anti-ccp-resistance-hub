@@ -207,7 +207,7 @@ const PodcastList = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 rounded-xl p-6 border border-purple-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
         <div className="flex items-center mb-4">
           <Mic className="w-8 h-8 text-purple-400 mr-3" />
           <div>
@@ -216,19 +216,19 @@ const PodcastList = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">{podcasts.length}</div>
             <div className="text-xs text-slate-400">Podcasts</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">{podcasts.reduce((sum, p) => sum + p.episodes, 0).toLocaleString()}</div>
             <div className="text-xs text-slate-400">Episodes</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">{categories.length - 1}</div>
             <div className="text-xs text-slate-400">Categories</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">{featuredPodcasts.length}</div>
             <div className="text-xs text-slate-400">Featured</div>
           </div>
@@ -236,14 +236,14 @@ const PodcastList = () => {
       </div>
 
       {/* Featured Podcasts */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center">
           <span className="text-yellow-500 mr-2">⭐</span>
           Featured Podcasts
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           {featuredPodcasts.map(podcast => (
-            <div key={podcast.id} className="bg-slate-700/50 rounded-lg p-4 border border-slate-600 hover:border-purple-500 transition-colors">
+            <div key={podcast.id} className="bg-slate-700/50 p-4 border border-slate-600 hover:border-purple-500 transition-colors">
               <div className="flex items-start justify-between mb-2">
                 <h4 className="font-bold text-white">{podcast.title}</h4>
                 <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 text-xs rounded-full">Featured</span>
@@ -260,7 +260,7 @@ const PodcastList = () => {
                   href={podcast.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-lg transition-colors"
+                  className="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-sm transition-colors"
                 >
                   Listen →
                 </a>
@@ -276,10 +276,10 @@ const PodcastList = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <span className="mr-2"><cat.Icon className="w-4 h-4 inline" /></span>
@@ -293,7 +293,7 @@ const PodcastList = () => {
         {filteredPodcasts.map(podcast => (
           <div 
             key={podcast.id} 
-            className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden hover:border-purple-500/50 transition-colors"
+            className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden hover:border-purple-500/50 transition-colors"
           >
             <div 
               className="p-4 cursor-pointer"
@@ -319,7 +319,7 @@ const PodcastList = () => {
                 </div>
               </div>
               
-              <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-700">
+              <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#1c2a35]">
                 <div className="flex items-center space-x-4 text-xs text-slate-400">
                   <span className="inline-flex items-center gap-1"><Radio className="w-3 h-3" /> {podcast.episodes} episodes</span>
                   <span className="inline-flex items-center gap-1"><RefreshCw className="w-3 h-3" /> {podcast.frequency}</span>
@@ -332,7 +332,7 @@ const PodcastList = () => {
             </div>
             
             {expandedPodcast === podcast.id && (
-              <div className="px-4 pb-4 border-t border-slate-700 bg-slate-900/50">
+              <div className="px-4 pb-4 border-t border-[#1c2a35] bg-[#0a0e14]/50">
                 <div className="pt-4">
                   <h5 className="text-sm font-medium text-slate-300 mb-2">Topics Covered:</h5>
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -346,7 +346,7 @@ const PodcastList = () => {
                     href={podcast.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                    className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white transition-colors"
                   >
                     <Headphones className="w-4 h-4 inline mr-1" /> Listen Now
                   </a>
@@ -358,7 +358,7 @@ const PodcastList = () => {
       </div>
 
       {/* Listening Tips */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Listening Tips</h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
           <div className="flex items-start">

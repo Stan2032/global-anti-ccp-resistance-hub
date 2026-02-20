@@ -5,7 +5,8 @@ import ShareButtons from '../components/ShareButtons';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span>
+    <span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -160,7 +161,7 @@ const TakeAction = () => {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-red-900 via-slate-900 to-blue-900 rounded-xl p-8 border border-slate-700">
+      <div className="bg-[#111820] p-8 border border-[#1c2a35]">
         <div className="max-w-3xl">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Take Action Against CCP Authoritarianism
@@ -170,10 +171,10 @@ const TakeAction = () => {
             Every action matters - from signing petitions to contacting your representatives.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#actions" className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+            <a href="#actions" className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium transition-colors">
               See All Actions
             </a>
-            <Link to="/campaigns" className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors border border-slate-600">
+            <Link to="/campaigns" className="px-6 py-3 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium transition-colors border border-[#2a9a52]">
               View Campaigns
             </Link>
           </div>
@@ -183,7 +184,7 @@ const TakeAction = () => {
       {/* Impact Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {impactStats.map((stat, index) => (
-          <div key={index} className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
             <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
             <div className="text-sm text-slate-400">{stat.label}</div>
           </div>
@@ -191,7 +192,7 @@ const TakeAction = () => {
       </div>
 
       {/* Security Notice */}
-      <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
+      <div className="bg-yellow-900/30 border border-yellow-700 p-4">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
           <div>
@@ -212,24 +213,24 @@ const TakeAction = () => {
           {actions.map((action) => (
             <div 
               key={action.number}
-              className={`bg-slate-800 border border-slate-700 rounded-xl overflow-hidden transition-all ${
-                expandedAction === action.number ? 'ring-2 ring-blue-500' : ''
+              className={`bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all ${
+                expandedAction === action.number ? 'ring-2 ring-[#4afa82]' : ''
               }`}
             >
               <button
                 onClick={() => setExpandedAction(expandedAction === action.number ? null : action.number)}
-                className="w-full p-6 text-left flex items-start gap-4 hover:bg-slate-700/50 transition-colors"
+                className="w-full p-6 text-left flex items-start gap-4 hover:bg-[#1c2a35]/50 transition-colors"
                 aria-expanded={expandedAction === action.number}
                 aria-controls={`action-panel-${action.number}`}
               >
-                <div className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center text-3xl font-bold ${
+                <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
                   action.color === 'blue' ? 'bg-blue-900/50 text-blue-400' :
                   action.color === 'red' ? 'bg-red-900/50 text-red-400' :
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
                   action.color === 'orange' ? 'bg-orange-900/50 text-orange-400' :
                   action.color === 'purple' ? 'bg-purple-900/50 text-purple-400' :
                   action.color === 'teal' ? 'bg-teal-900/50 text-teal-400' :
-                  'bg-slate-700 text-slate-400'
+                  'bg-[#1c2a35] text-slate-400'
                 }`}>
                   {action.number}
                 </div>
@@ -252,9 +253,9 @@ const TakeAction = () => {
               </button>
               
               {expandedAction === action.number && (
-                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-slate-700 pt-4" role="region" aria-label={action.title}>
+                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-[#1c2a35] pt-4" role="region" aria-label={action.title}>
                   {action.stats && (
-                    <div className="mb-4 p-3 bg-slate-900/50 rounded-lg">
+                    <div className="mb-4 p-3 bg-[#0a0e14]/50">
                       <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
                     </div>
                   )}
@@ -262,7 +263,7 @@ const TakeAction = () => {
                   {action.template && (
                     <div className="mb-4">
                       <h4 className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</h4>
-                      <div className="p-3 bg-slate-900/50 rounded-lg text-sm text-slate-400 italic">
+                      <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
                         "{action.template}"
                       </div>
                     </div>
@@ -301,7 +302,7 @@ const TakeAction = () => {
                         <Link
                           key={index}
                           to={link.url}
-                          className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
+                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
                           <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -314,7 +315,7 @@ const TakeAction = () => {
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors"
+                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
                         >
                           <span className="text-white text-sm">{link.name}</span>
                           <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -332,7 +333,7 @@ const TakeAction = () => {
       </div>
 
       {/* Newsletter Signup */}
-      <div id="newsletter" className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-blue-700 rounded-xl p-6">
+      <div id="newsletter" className="bg-[#111820] border border-blue-700 p-6">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-white mb-2">Stay Informed</h2>
           <p className="text-slate-300 mb-6">
@@ -340,7 +341,7 @@ const TakeAction = () => {
           </p>
           
           {subscribed ? (
-            <div className="p-4 bg-green-900/30 border border-green-700 rounded-lg">
+            <div className="p-4 bg-green-900/30 border border-green-700">
               <span className="text-green-300">✓ Thank you for subscribing! Check your email to confirm.</span>
             </div>
           ) : (
@@ -351,12 +352,12 @@ const TakeAction = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 aria-label="Email address for newsletter"
-                className="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-4 py-3 bg-[#111820] border border-[#2a9a52] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
                 required
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                className="px-6 py-3 bg-[#4afa82]/20 hover:bg-[#4afa82]/30 text-[#4afa82] border border-[#4afa82]/30 font-mono font-medium transition-colors"
               >
                 Subscribe
               </button>
@@ -370,14 +371,14 @@ const TakeAction = () => {
       </div>
 
       {/* Social Share */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-xl font-bold text-white mb-4 text-center">Share This Page</h2>
         <div className="flex justify-center gap-4">
           <a
             href="https://twitter.com/intent/tweet?text=Take%20action%20against%20CCP%20authoritarianism&url="
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-slate-700 hover:bg-blue-600 rounded-lg transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-[#22d3ee]/20 transition-colors"
             title="Share on Twitter"
           >
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -388,7 +389,7 @@ const TakeAction = () => {
             href="https://www.facebook.com/sharer/sharer.php?u="
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-slate-700 hover:bg-blue-800 rounded-lg transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-blue-900/30 transition-colors"
             title="Share on Facebook"
           >
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -399,7 +400,7 @@ const TakeAction = () => {
             href="https://www.linkedin.com/shareArticle?mini=true&url="
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-slate-700 hover:bg-blue-700 rounded-lg transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-blue-900/30 transition-colors"
             title="Share on LinkedIn"
           >
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -408,7 +409,7 @@ const TakeAction = () => {
           </a>
           <a
             href="mailto:?subject=Take%20Action%20Against%20CCP%20Authoritarianism&body="
-            className="p-3 bg-slate-700 hover:bg-green-600 rounded-lg transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-[#4afa82]/20 transition-colors"
             title="Share via Email"
           >
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -419,7 +420,7 @@ const TakeAction = () => {
       </div>
 
       {/* Emergency Contacts */}
-      <div className="bg-red-900/20 border border-red-700 rounded-xl p-6">
+      <div className="bg-red-900/20 border border-red-700 p-6">
         <h2 className="text-xl font-bold text-red-300 mb-4">Emergency Contacts</h2>
         <p className="text-slate-300 mb-4">
           If you or someone you know is facing immediate danger from CCP persecution:
@@ -429,7 +430,7 @@ const TakeAction = () => {
             href="https://safeguarddefenders.com/en/contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 bg-slate-800 border border-slate-700 rounded-lg hover:border-red-600 transition-colors"
+            className="p-4 bg-[#111820] border border-[#1c2a35] hover:border-red-600 transition-colors"
           >
             <h3 className="font-semibold text-white mb-1">Safeguard Defenders</h3>
             <p className="text-sm text-slate-400">Report transnational repression</p>
@@ -438,7 +439,7 @@ const TakeAction = () => {
             href="https://freedomhouse.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 bg-slate-800 border border-slate-700 rounded-lg hover:border-red-600 transition-colors"
+            className="p-4 bg-[#111820] border border-[#1c2a35] hover:border-red-600 transition-colors"
           >
             <h3 className="font-semibold text-white mb-1">Freedom House</h3>
             <p className="text-sm text-slate-400">Emergency assistance for activists</p>
@@ -447,7 +448,7 @@ const TakeAction = () => {
             href="https://www.frontlinedefenders.org/en/emergency-contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 bg-slate-800 border border-slate-700 rounded-lg hover:border-red-600 transition-colors"
+            className="p-4 bg-[#111820] border border-[#1c2a35] hover:border-red-600 transition-colors"
           >
             <h3 className="font-semibold text-white mb-1">Front Line Defenders</h3>
             <p className="text-sm text-slate-400">24/7 emergency line for HRDs</p>
@@ -456,32 +457,32 @@ const TakeAction = () => {
       </div>
 
       {/* Petitions Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
       </div>
 
       {/* Contact Representatives Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
       </div>
 
       {/* Boycott List Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
       </div>
 
       {/* Supply Chain Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6">
         <Suspense fallback={<SectionLoader />}><ForcedLaborSupplyChain /></Suspense>
       </div>
 
       {/* Success Stories Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
       </div>
 
       {/* Quick Facts Section */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
       </div>
 
@@ -531,7 +532,7 @@ const TakeAction = () => {
       </div>
 
       {/* Share Section */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <Megaphone className="w-5 h-5" /> Spread the Word
         </h2>

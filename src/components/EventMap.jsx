@@ -209,10 +209,10 @@ export default function EventMap() {
 
   // Simple map visualization using CSS grid — rendered inline to avoid component-in-render
   const mapView = viewMode === 'map' ? (
-    <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700">
+    <div className="bg-[#0a0e14]/50 p-6 border border-[#1c2a35]">
       <div className="grid grid-cols-3 gap-4 mb-6">
         {/* North America */}
-        <div className="bg-slate-800 rounded-lg p-4">
+        <div className="bg-[#111820] p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
             <Globe className="w-4 h-4" /> North America
           </h3>
@@ -221,7 +221,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -237,7 +237,7 @@ export default function EventMap() {
         </div>
 
         {/* Europe */}
-        <div className="bg-slate-800 rounded-lg p-4">
+        <div className="bg-[#111820] p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
             <Globe className="w-4 h-4" /> Europe
           </h3>
@@ -246,7 +246,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -262,7 +262,7 @@ export default function EventMap() {
         </div>
 
         {/* Asia-Pacific */}
-        <div className="bg-slate-800 rounded-lg p-4">
+        <div className="bg-[#111820] p-4">
           <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
             <Globe className="w-4 h-4" /> Asia-Pacific
           </h3>
@@ -271,7 +271,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -300,7 +300,7 @@ export default function EventMap() {
   ) : null;
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <Globe className="w-6 h-6 text-blue-400" />
@@ -327,19 +327,19 @@ export default function EventMap() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{events.length}</p>
           <p className="text-xs text-slate-500">Total Events</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-green-400">{upcomingEvents.length}</p>
           <p className="text-xs text-slate-500">Upcoming</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(events.map(e => e.country)).size}</p>
           <p className="text-xs text-slate-500">Countries</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 text-center">
+        <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{events.reduce((sum, e) => sum + e.attendees, 0).toLocaleString()}</p>
           <p className="text-xs text-slate-500">Expected Attendees</p>
         </div>
@@ -351,7 +351,7 @@ export default function EventMap() {
           aria-label="Filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region}</option>
@@ -361,7 +361,7 @@ export default function EventMap() {
           aria-label="Region filter"
           value={selectedCause}
           onChange={(e) => setSelectedCause(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {causes.map(cause => (
             <option key={cause} value={cause}>{cause}</option>
@@ -371,7 +371,7 @@ export default function EventMap() {
           aria-label="Type filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-2 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
         >
           {types.map(type => (
             <option key={type} value={type}>{type}</option>
@@ -397,7 +397,7 @@ export default function EventMap() {
                   <button
                     key={event.id}
                     onClick={() => setSelectedEvent(event)}
-                    className="w-full bg-slate-900/50 rounded-lg p-4 text-left hover:bg-slate-900/70 transition-colors border border-slate-700 hover:border-slate-600"
+                    className="w-full bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -439,7 +439,7 @@ export default function EventMap() {
                 {pastEvents.slice(0, 5).map(event => (
                   <div
                     key={event.id}
-                    className="bg-slate-900/50 rounded-lg p-4 border border-slate-700"
+                    className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCauseColor(event.cause)}`}>
@@ -461,7 +461,7 @@ export default function EventMap() {
       {/* Event Detail Modal */}
       {selectedEvent && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedEvent(null)}>
-          <div className="bg-slate-800 rounded-xl max-w-lg w-full p-6 border border-slate-700" onClick={e => e.stopPropagation()}>
+          <div className="bg-[#111820] max-w-lg w-full p-6 border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-2 mb-3">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCauseColor(selectedEvent.cause)}`}>
                 {selectedEvent.cause}
@@ -505,7 +505,7 @@ export default function EventMap() {
                 href={selectedEvent.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 Learn More
@@ -515,7 +515,7 @@ export default function EventMap() {
                   const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(selectedEvent.title)}&dates=${selectedEvent.date.replace(/-/g, '')}/${selectedEvent.date.replace(/-/g, '')}&details=${encodeURIComponent(selectedEvent.description)}&location=${encodeURIComponent(selectedEvent.location + ', ' + selectedEvent.country)}`;
                   window.open(calendarUrl, '_blank');
                 }}
-                className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+                className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
               >
                 Add to Calendar
               </button>
@@ -539,7 +539,7 @@ export default function EventMap() {
       )}
 
       {/* Tips */}
-      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700 rounded-lg">
+      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700">
         <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-1"><MapPin className="w-4 h-4" /> Organizing an Event?</h3>
         <p className="text-sm text-slate-400">
           Contact us to have your event listed on this map. We feature rallies, vigils, marches, 

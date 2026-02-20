@@ -248,7 +248,7 @@ const ActivistToolkit = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
           <Wrench className="w-8 h-8 text-green-400 mr-3" />
           <div>
@@ -268,10 +268,10 @@ const ActivistToolkit = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-green-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -291,7 +291,7 @@ const ActivistToolkit = () => {
           return (
             <div 
               key={resource.id}
-              className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 hover:border-green-600/50 transition-colors"
+              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-green-600/50 transition-colors"
             >
               <div className="flex items-start justify-between mb-3">
                 <resource.Preview className="w-8 h-8 text-slate-400" />
@@ -309,7 +309,7 @@ const ActivistToolkit = () => {
               </div>
               
               <button
-                className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center space-x-2"
+                className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center space-x-2"
               >
                 <Download className="w-4 h-4" />
                 <span>Download</span>
@@ -320,18 +320,18 @@ const ActivistToolkit = () => {
       </div>
 
       {/* Request Resources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6 text-center">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 text-center">
         <h3 className="text-lg font-bold text-white mb-2">Need Something Specific?</h3>
         <p className="text-sm text-slate-400 mb-4">
           Can't find what you're looking for? Let us know what resources would help your advocacy.
         </p>
-        <button className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-lg transition-colors">
+        <button className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
           Request a Resource
         </button>
       </div>
 
       {/* Usage Guidelines */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-2">Usage Guidelines</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• All resources are free for non-commercial human rights advocacy</li>

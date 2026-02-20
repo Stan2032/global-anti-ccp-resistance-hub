@@ -54,16 +54,27 @@ export default {
           700: '#15803d',
           800: '#166534',
           900: '#14532d',
+        },
+        terminal: {
+          green: '#4afa82',
+          dim: '#2a9a52',
+          cyan: '#22d3ee',
+          amber: '#fbbf24',
+          bg: '#0a0e14',
+          surface: '#111820',
+          border: '#1c2a35',
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'blink': 'blink 1.2s step-end infinite',
+        'scanline': 'scanline 8s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -74,6 +85,17 @@ export default {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        scanline: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
+      },
+      borderWidth: {
+        '1': '1px',
       },
     },
   },

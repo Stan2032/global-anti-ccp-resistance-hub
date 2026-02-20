@@ -108,24 +108,32 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
 
   const typeStyles = {
     critical: {
-      bg: 'bg-red-900/50',
-      border: 'border-red-600',
+      bg: 'bg-red-900/20',
+      border: 'border-l-2 border-l-red-500',
       Icon: Siren,
       badge: 'bg-red-600',
+      prefixColor: 'text-red-700',
+      prefix: '!!',
     },
     warning: {
-      bg: 'bg-yellow-900/50',
-      border: 'border-yellow-600',
+      bg: 'bg-yellow-900/15',
+      border: 'border-l-2 border-l-yellow-500',
       Icon: AlertTriangle,
       badge: 'bg-yellow-600',
+      prefixColor: 'text-yellow-700',
+      prefix: '!~',
     },
     info: {
-      bg: 'bg-blue-900/50',
-      border: 'border-blue-600',
+      bg: 'bg-cyan-900/15',
+      border: 'border-l-2 border-l-[#22d3ee]',
       Icon: Info,
-      badge: 'bg-blue-600',
+      badge: 'bg-[#22d3ee]/80',
+      prefixColor: 'text-cyan-700',
+      prefix: '--',
     },
   };
+
+  const alertBorderBase = 'border-t border-r border-b border-[#1c2a35]';
 
   if (activeAlerts.length === 0) {
     return null;
@@ -140,36 +148,38 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
         return (
           <div 
             key={alert.id}
-            className={`${styles.bg} border ${styles.border} rounded-xl overflow-hidden`}
+            className={`${styles.bg} ${styles.border} ${alertBorderBase} overflow-hidden`}
           >
             {/* Header */}
             <div className="p-4">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${styles.badge} text-white uppercase`}>
+                    <span className={`font-mono ${styles.prefixColor} text-xs select-none`} aria-hidden="true">{styles.prefix}</span>
+                    <span className={`text-xs font-mono font-bold px-2 py-0.5 ${styles.badge} text-white uppercase`}>
                       {alert.type}
                     </span>
-                    <span className="text-xs text-slate-400">{alert.date}</span>
+                    <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
                   <p className="text-sm text-slate-300 mt-1">{alert.summary}</p>
                 </div>
                 <button
                   onClick={() => dismissAlert(alert.id)}
-                  className="text-slate-500 hover:text-slate-300 ml-4"
-                  title="Dismiss alert"
+                  className="text-slate-500 hover:text-slate-300 ml-4 font-mono"
+                  aria-label="Dismiss alert"
                 >
-                  ✕
+                  <span aria-hidden="true">✕</span>
                 </button>
               </div>
               
               <div className="flex items-center justify-between mt-3">
                 <button
                   onClick={() => setExpandedAlert(isExpanded ? null : alert.id)}
-                  className="text-sm text-blue-400 hover:text-blue-300"
+                  className="text-sm text-[#4afa82] hover:text-[#7dffaa] font-mono"
+                  aria-label={isExpanded ? 'Collapse alert details' : 'Expand alert details'}
                 >
-                  {isExpanded ? 'Show less ↑' : 'Read more & take action →'}
+                  {isExpanded ? '$ collapse ↑' : '$ expand --details →'}
                 </button>
                 <div className="flex space-x-2">
                   {alert.links.slice(0, 2).map((link, idx) => (
@@ -178,7 +188,7 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition-colors"
+                      className="text-xs font-mono px-2 py-1 bg-[#111820] hover:bg-[#1c2a35] text-slate-300 border border-[#1c2a35] hover:border-[#2a9a52] transition-colors"
                     >
                       {link.name}
                     </a>
@@ -189,7 +199,7 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
             
             {/* Expanded Details */}
             {isExpanded && (
-              <div className="px-4 pb-4 pt-2 border-t border-slate-700">
+              <div className="px-4 pb-4 pt-2 border-t border-[#1c2a35]">
                 <p className="text-sm text-slate-300 whitespace-pre-line mb-4">
                   {alert.details}
                 </p>
@@ -200,7 +210,7 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-blue-400 rounded-lg transition-colors"
+                      className="text-sm font-mono px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#1c2a35] hover:border-[#2a9a52] transition-colors"
                     >
                       <ExternalLink className="w-3 h-3 inline" /> {link.name}
                     </a>
@@ -217,9 +227,9 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
         <div className="text-center">
           <button
             onClick={() => setDismissedAlerts([])}
-            className="text-xs text-slate-500 hover:text-slate-400"
+            className="text-xs text-slate-500 hover:text-[#4afa82] font-mono"
           >
-            Show {dismissedAlerts.length} dismissed alert{dismissedAlerts.length > 1 ? 's' : ''}
+            $ show --dismissed ({dismissedAlerts.length})
           </button>
         </div>
       )}

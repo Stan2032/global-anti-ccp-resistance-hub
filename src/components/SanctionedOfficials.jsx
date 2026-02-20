@@ -186,7 +186,7 @@ const SanctionedOfficials = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Target className="w-6 h-6 text-red-400" /> Sanctioned CCP Officials</h2>
         <p className="text-slate-300">
           {officials.length} officials and entities tracked for human rights abuses — sourced from government sanctions databases.
@@ -223,7 +223,7 @@ const SanctionedOfficials = () => {
           placeholder="Search by name, position, or Chinese characters..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
         />
       </div>
 
@@ -233,10 +233,10 @@ const SanctionedOfficials = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.name} ({cat.count})
@@ -249,7 +249,7 @@ const SanctionedOfficials = () => {
         {filteredOfficials.map((official, index) => {
           const badge = getStatusBadge(official);
           return (
-            <div key={index} className="bg-slate-800 border border-slate-700 rounded-lg p-4 hover:border-red-500/50 transition-colors">
+            <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-red-500/50 transition-colors">
               <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="font-bold text-white text-lg">{official.name}</h3>
@@ -283,7 +283,7 @@ const SanctionedOfficials = () => {
               )}
 
               {/* Details */}
-              <div className="bg-slate-900/50 rounded p-2 text-xs text-slate-400">
+              <div className="bg-[#0a0e14]/50 rounded p-2 text-xs text-slate-400">
                 {official.details && (
                   <p className="mb-1"><strong className="text-slate-300">Details:</strong> {official.details}</p>
                 )}
@@ -316,7 +316,7 @@ const SanctionedOfficials = () => {
       </div>
 
       {/* Sources List */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <SourcesList
           sources={allSources}
           title="Sanctions Data Sources"
@@ -325,7 +325,7 @@ const SanctionedOfficials = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><Megaphone className="w-5 h-5 text-red-400" /> Advocate for More Sanctions</h3>
         <p className="text-sm text-slate-300 mb-3">
           Many CCP officials responsible for human rights abuses remain unsanctioned. Contact your representatives to demand action.
@@ -343,7 +343,7 @@ const SanctionedOfficials = () => {
             href="https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn-human-readable-lists"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >
             US Treasury SDN List →
           </a>

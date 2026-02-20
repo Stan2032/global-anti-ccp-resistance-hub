@@ -167,7 +167,7 @@ const SecurityQuiz = () => {
     return (
       <div className="space-y-6">
         {/* Results Header */}
-        <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
           <h2 className="text-2xl font-bold text-white mb-2">Security Assessment Results</h2>
           <div className="text-6xl font-bold my-4">
             <span className={securityLevel.color}>{score}</span>
@@ -180,7 +180,7 @@ const SecurityQuiz = () => {
         </div>
 
         {/* Recommendations */}
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+        <div className="bg-[#111820] border border-[#1c2a35] p-6">
           <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> Personalized Recommendations</h3>
           <div className="space-y-4">
             {questions.map((q, index) => {
@@ -188,7 +188,7 @@ const SecurityQuiz = () => {
               const needsImprovement = userPoints < 3;
               
               return needsImprovement ? (
-                <div key={q.id} className="bg-slate-900/50 rounded-lg p-4 border-l-4 border-yellow-500">
+                <div key={q.id} className="bg-[#0a0e14]/50 p-4 border-l-4 border-yellow-500">
                   <div className="flex items-center gap-2 mb-2">
                     <AlertTriangle className="w-4 h-4 text-yellow-500" />
                     <span className="text-sm text-yellow-400 font-medium">{q.category}</span>
@@ -201,22 +201,22 @@ const SecurityQuiz = () => {
         </div>
 
         {/* Resources */}
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+        <div className="bg-[#111820] border border-[#1c2a35] p-6">
           <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><LinkIcon className="w-5 h-5" /> Security Resources</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <a href="https://ssd.eff.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors">
+            <a href="https://ssd.eff.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors">
               <h4 className="font-semibold text-white">EFF Surveillance Self-Defense</h4>
               <p className="text-sm text-slate-400">Comprehensive security guides</p>
             </a>
-            <a href="https://www.frontlinedefenders.org/en/digital-security-resources" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors">
+            <a href="https://www.frontlinedefenders.org/en/digital-security-resources" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors">
               <h4 className="font-semibold text-white">Front Line Defenders</h4>
               <p className="text-sm text-slate-400">Resources for human rights defenders</p>
             </a>
-            <a href="https://www.accessnow.org/help/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors">
+            <a href="https://www.accessnow.org/help/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors">
               <h4 className="font-semibold text-white">Access Now Digital Security Helpline</h4>
               <p className="text-sm text-slate-400">24/7 emergency support</p>
             </a>
-            <a href="https://securityinabox.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors">
+            <a href="https://securityinabox.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors">
               <h4 className="font-semibold text-white">Security in a Box</h4>
               <p className="text-sm text-slate-400">Digital security tools and tactics</p>
             </a>
@@ -227,7 +227,7 @@ const SecurityQuiz = () => {
         <div className="text-center">
           <button
             onClick={resetQuiz}
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-medium transition-colors"
           >
             Retake Assessment
           </button>
@@ -242,7 +242,7 @@ const SecurityQuiz = () => {
   return (
     <div className="space-y-6">
       {/* Progress Bar */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-slate-400">Question {currentQuestion + 1} of {questions.length}</span>
           <span className="text-sm text-slate-400">{question.category}</span>
@@ -256,7 +256,7 @@ const SecurityQuiz = () => {
       </div>
 
       {/* Question */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-xl font-bold text-white mb-6">{question.question}</h2>
         
         <div className="space-y-3">
@@ -264,7 +264,7 @@ const SecurityQuiz = () => {
             <button
               key={index}
               onClick={() => handleAnswer(option.points)}
-              className="w-full text-left bg-slate-700 hover:bg-slate-600 border border-slate-600 hover:border-red-500/50 rounded-lg p-4 transition-all"
+              className="w-full text-left bg-slate-700 hover:bg-[#1c2a35] border border-slate-600 hover:border-red-500/50 p-4 transition-all"
             >
               <span className="text-white">{option.text}</span>
             </button>
@@ -273,7 +273,7 @@ const SecurityQuiz = () => {
       </div>
 
       {/* Security Notice */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4">
+      <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
         <p className="text-sm text-yellow-300">
           <span className="font-semibold flex items-center gap-1"><Lock className="w-4 h-4" /> Privacy Notice:</span> Your answers are not stored or transmitted. 
           This assessment runs entirely in your browser.

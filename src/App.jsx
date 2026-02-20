@@ -16,12 +16,30 @@ import RouteAnnouncer from './components/RouteAnnouncer'
 import QuickStartGuide from './components/QuickStartGuide'
 import PWAInstallBanner from './components/PWAInstallBanner'
 
-// Loading component
+// Loading component — terminal style
 const LoadingScreen = () => (
-  <div className="bg-slate-900 min-h-screen flex items-center justify-center flex-col text-white">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-    <h1 className="text-xl font-bold mb-2">Global Resistance Hub</h1>
-    <p className="text-slate-400">Loading...</p>
+  <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono">
+    <pre className="text-[#1c2a35] text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
+┌──────────────────────────────────────┐
+│                                      │
+│   ██████╗ ██████╗ ██╗  ██╗          │
+│  ██╔════╝ ██╔══██╗██║  ██║          │
+│  ██║  ███╗██████╔╝███████║          │
+│  ██║   ██║██╔══██╗██╔══██║          │
+│  ╚██████╔╝██║  ██║██║  ██║          │
+│   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝          │
+│                                      │
+└──────────────────────────────────────┘`}</pre>
+    <div className="flex items-center gap-2 mb-3">
+      <span className="text-[#4afa82] font-mono text-sm">$</span>
+      <span className="text-white font-mono text-sm">loading system</span>
+      <span className="text-[#4afa82] font-mono text-sm animate-blink">█</span>
+    </div>
+    <div className="flex gap-1">
+      <div className="w-2 h-2 bg-[#4afa82] animate-pulse" style={{animationDelay: '0ms'}}></div>
+      <div className="w-2 h-2 bg-[#4afa82] animate-pulse" style={{animationDelay: '200ms'}}></div>
+      <div className="w-2 h-2 bg-[#4afa82] animate-pulse" style={{animationDelay: '400ms'}}></div>
+    </div>
   </div>
 );
 
@@ -45,55 +63,55 @@ const IlhamTohtiProfile = lazy(() => import('./pages/profiles/IlhamTohtiProfile'
 const PanchenLamaProfile = lazy(() => import('./pages/profiles/PanchenLamaProfile'));
 const LiuXiaoboProfile = lazy(() => import('./pages/profiles/LiuXiaoboProfile'));
 const JoshuaWongProfile = lazy(() => import('./pages/profiles/JoshuaWongProfile'));
+const ProfilesIndex = lazy(() => import('./pages/profiles/ProfilesIndex'));
+const GuiMinhaiProfile = lazy(() => import('./pages/profiles/GuiMinhaiProfile'));
 
-// Simple Mobile-First Header
+// Simple Mobile-First Header — terminal style
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
-  <header className="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+  <header className="bg-[#111820] border-b border-[#1c2a35] sticky top-0 z-50">
     <div className="flex items-center justify-between h-14 px-4">
       <button
         onClick={onMenuToggle}
-        className="p-2 -ml-2 rounded-lg text-slate-300 hover:bg-slate-700 active:bg-slate-600"
+        className="p-2 -ml-2 text-slate-300 hover:text-[#4afa82] active:text-white"
         aria-label="Toggle menu"
       >
         {isMenuOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         )}
       </button>
       
-      <div className="flex items-center">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-red-500 rounded-lg flex items-center justify-center mr-2">
-          <span className="text-white font-bold text-sm">GR</span>
-        </div>
-        <span className="font-bold text-white text-lg">Resistance Hub</span>
+      <div className="flex items-center gap-2">
+        <span className="font-mono text-[#4afa82] text-sm font-bold tracking-tight">[GRH]</span>
+        <span className="font-mono text-white text-sm font-semibold">resistance_hub</span>
       </div>
       
       <div className="flex items-center space-x-2">
         <LanguageSelector />
-        <Link to="/security" className="px-2 py-1 bg-slate-700/50 text-slate-300 text-xs font-medium rounded-full border border-slate-600 hover:bg-slate-600 hover:text-white transition-colors">
-          Security
+        <Link to="/security" className="px-2 py-1 bg-transparent text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors">
+          sec
         </Link>
       </div>
     </div>
   </header>
 );
 
-// Mobile Navigation Menu
+// Mobile Navigation Menu — terminal style
 const MobileNav = ({ isOpen, onClose }) => {
   const location = useLocation();
   const { t } = useLanguage();
   
-  // Simplified navigation - consolidated from 14 to 10 pages
   const navItems = [
     { name: t('nav.dashboard'), href: '/' },
     { name: t('nav.intelligence'), href: '/intelligence' },
     { name: t('nav.directory'), href: '/directory' },
     { name: t('nav.prisoners'), href: '/prisoners' },
+    { name: 'Profiles', href: '/profiles' },
     { name: t('nav.takeAction'), href: '/take-action' },
     { name: t('nav.community'), href: '/community' },
     { name: t('nav.resources'), href: '/resources' },
@@ -106,19 +124,20 @@ const MobileNav = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+        className="fixed inset-0 bg-black/70 z-40 lg:hidden"
         onClick={onClose}
         aria-hidden="true"
       />
       
-      {/* Slide-out menu */}
       <nav
-        className="fixed top-14 left-0 bottom-0 w-72 bg-slate-800 z-50 overflow-y-auto lg:hidden transform transition-transform duration-200"
+        className="fixed top-14 left-0 bottom-0 w-72 bg-[#111820] border-r border-[#1c2a35] z-50 overflow-y-auto lg:hidden"
         aria-label="Mobile navigation"
       >
-        <div className="p-4 space-y-1">
+        <div className="p-3 border-b border-[#1c2a35]">
+          <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">┌─ navigation ─────────────┐</span>
+        </div>
+        <div className="p-3 space-y-0.5">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -127,12 +146,13 @@ const MobileNav = ({ isOpen, onClose }) => {
                 to={item.href}
                 onClick={onClose}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                className={`flex items-center px-3 py-2.5 font-mono text-sm transition-colors ${
                   isActive
-                    ? 'bg-blue-600 text-white'
-                    : 'text-slate-300 hover:bg-slate-700 active:bg-slate-600'
+                    ? 'bg-[#4afa82]/10 text-[#4afa82] border-l-2 border-[#4afa82]'
+                    : 'text-slate-300 hover:text-[#4afa82] hover:bg-white/5 border-l-2 border-transparent'
                 }`}
               >
+                <span className="text-[#1c2a35] mr-2 select-none" aria-hidden="true">{isActive ? '▸' : '│'}</span>
                 {item.name}
               </Link>
             );
@@ -140,46 +160,44 @@ const MobileNav = ({ isOpen, onClose }) => {
         </div>
         
         {/* Featured Campaigns */}
-        <div className="p-4 border-t border-slate-700">
-          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-            Urgent Campaigns
-          </h3>
-          <div className="space-y-2">
-            <Link to="/campaigns" className="flex items-center px-4 py-3 rounded-lg bg-red-900/30 border border-red-700 text-red-300 hover:bg-red-900/50">
+        <div className="p-3 border-t border-[#1c2a35]">
+          <span className="font-mono text-xs text-[#1c2a35] select-none" aria-hidden="true">├─ urgent ─────────────────┤</span>
+          <div className="mt-2">
+            <Link to="/campaigns" className="flex items-center px-3 py-3 bg-red-900/20 border border-red-900/50 text-red-300 hover:bg-red-900/30 font-mono text-sm">
               <Heart className="w-4 h-4 mr-3 text-red-400" />
               <div>
                 <div className="font-medium">Free Jimmy Lai</div>
-                <div className="text-xs text-red-400">URGENT - Life sentence</div>
+                <div className="text-xs text-red-400/80">URGENT — 20 years</div>
               </div>
             </Link>
           </div>
         </div>
         
-        {/* Security Tips */}
-        <div className="p-4 border-t border-slate-700">
-          <div className="bg-slate-900 rounded-lg p-3 text-xs">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-slate-400">Security</span>
-              <Link to="/security" className="text-blue-400 hover:text-blue-300">
-                View Guide
+        <div className="p-3 border-t border-[#1c2a35]">
+          <div className="bg-[#0a0e14] p-3 font-mono text-xs border border-[#1c2a35]">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-slate-400">security</span>
+              <Link to="/security" className="text-[#4afa82] hover:text-[#7dffaa]">
+                --help
               </Link>
             </div>
-            <p className="text-slate-500 text-xs">Use VPN or Tor for added safety</p>
+            <p className="text-slate-500">use vpn + tor for safety</p>
           </div>
+          <span className="font-mono text-xs text-[#1c2a35] select-none block mt-2" aria-hidden="true">└──────────────────────────┘</span>
         </div>
       </nav>
     </>
   );
 };
 
-// Desktop Sidebar
+// Desktop Sidebar — terminal / ASCII aesthetic
 const DesktopSidebar = () => {
   const location = useLocation();
   const { t } = useLanguage();
   
   const sections = [
     {
-      title: t('nav.main'),
+      title: 'main',
       items: [
         { name: t('nav.dashboard'), href: '/' },
         { name: t('nav.intelligence'), href: '/intelligence' },
@@ -187,20 +205,21 @@ const DesktopSidebar = () => {
       ]
     },
     {
-      title: t('nav.humanRights'),
+      title: 'human_rights',
       items: [
         { name: t('nav.prisoners'), href: '/prisoners' },
+        { name: 'Profiles', href: '/profiles' },
       ]
     },
     {
-      title: t('nav.action'),
+      title: 'action',
       items: [
         { name: t('nav.takeAction'), href: '/take-action' },
         { name: t('nav.community'), href: '/community' },
       ]
     },
     {
-      title: t('nav.resourcesSection'),
+      title: 'resources',
       items: [
         { name: t('nav.resources'), href: '/resources' },
         { name: t('nav.education'), href: '/education' },
@@ -211,26 +230,28 @@ const DesktopSidebar = () => {
   ];
 
   return (
-    <aside id="navigation" className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-slate-800 border-r border-slate-700" role="navigation" aria-label="Main navigation">
-      {/* Logo */}
-      <div className="flex items-center h-16 px-6 border-b border-slate-700">
-        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-red-500 rounded-xl flex items-center justify-center mr-3">
-          <span className="text-white font-bold text-lg">GR</span>
-        </div>
-        <div>
-          <h1 className="font-bold text-white">Resistance Hub</h1>
-          <p className="text-xs text-slate-400">Global Coordination</p>
+    <aside id="navigation" className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-[#111820] border-r border-[#1c2a35]" role="navigation" aria-label="Main navigation">
+      {/* Logo — ASCII terminal style */}
+      <div className="h-16 px-5 border-b border-[#1c2a35] flex items-center">
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[#4afa82] text-lg font-bold terminal-glow">[GRH]</span>
+          <div>
+            <h1 className="font-mono text-white text-sm font-semibold tracking-tight leading-none">resistance_hub</h1>
+            <p className="font-mono text-[#1c2a35] text-xs mt-0.5">// global coordination</p>
+          </div>
         </div>
       </div>
       
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-4">
-        {sections.map((section) => (
-          <div key={section.title} className="mb-6">
-            <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3">
-              {section.title}
-            </h3>
-            <div className="space-y-1">
+      <nav className="flex-1 overflow-y-auto px-3 py-4">
+        {sections.map((section, sIdx) => (
+          <div key={section.title} className="mb-5">
+            <div className="flex items-center px-2 mb-2">
+              <span className="font-mono text-[#1c2a35] text-xs select-none mr-1" aria-hidden="true">──</span>
+              <span className="font-mono text-xs text-slate-500 uppercase tracking-wider">{section.title}</span>
+              <span className="font-mono text-[#1c2a35] text-xs select-none ml-1 flex-1" aria-hidden="true">{'─'.repeat(12)}</span>
+            </div>
+            <div className="space-y-0.5">
               {section.items.map((item) => {
                 const isActive = location.pathname === item.href;
                 return (
@@ -238,12 +259,13 @@ const DesktopSidebar = () => {
                     key={item.href}
                     to={item.href}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                    className={`flex items-center px-3 py-2 font-mono text-sm transition-all ${
                       isActive
-                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
-                        : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+                        ? 'text-[#4afa82] bg-[#4afa82]/8 border-l-2 border-[#4afa82]'
+                        : 'text-slate-400 hover:text-[#4afa82] hover:bg-white/3 border-l-2 border-transparent'
                     }`}
                   >
+                    <span className="text-[#1c2a35] mr-2 text-xs select-none" aria-hidden="true">{isActive ? '▸' : '│'}</span>
                     {item.name}
                   </Link>
                 );
@@ -253,29 +275,35 @@ const DesktopSidebar = () => {
         ))}
         
         {/* Urgent Campaign */}
-        <div className="mt-4 p-3 bg-red-900/30 border border-red-700 rounded-lg">
+        <div className="mt-4 border border-red-900/50 bg-red-900/10 p-3">
           <div className="flex items-center mb-2">
-            <Heart className="w-5 h-5 text-red-400 mr-2" />
-            <span className="text-sm font-semibold text-red-300">Free Jimmy Lai</span>
-            <span className="ml-auto px-1.5 py-0.5 bg-red-600 text-white text-xs rounded animate-pulse">URGENT</span>
+            <Heart className="w-4 h-4 text-red-400 mr-2" />
+            <span className="font-mono text-sm font-semibold text-red-300">Free Jimmy Lai</span>
           </div>
-          <p className="text-xs text-red-400">Sentenced to 20 years - Feb 9, 2026</p>
-          <Link to="/campaigns" className="mt-2 block text-center py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition-colors">
-            Take Action
+          <p className="font-mono text-xs text-red-400/80 mb-2">sentenced: 20 years</p>
+          <p className="font-mono text-xs text-red-400/80 mb-2">date: 2026-02-09</p>
+          <Link to="/campaigns" className="block text-center py-1.5 bg-red-900/40 hover:bg-red-900/60 text-red-300 font-mono text-xs font-medium border border-red-900/50 transition-colors">
+            [ take_action ]
           </Link>
         </div>
       </nav>
       
       {/* Status Footer */}
-      <div className="p-4 border-t border-slate-700">
-        <div className="bg-slate-900 rounded-lg p-3 text-xs">
+      <div className="p-3 border-t border-[#1c2a35]">
+        <div className="bg-[#0a0e14] p-3 font-mono text-xs border border-[#1c2a35]">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-slate-400">Security</span>
-            <Link to="/security" className="text-blue-400 hover:text-blue-300">
-              Guide
+            <span className="text-slate-500">status:</span>
+            <span className="text-[#4afa82]">● online</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-500">build:</span>
+            <span className="text-slate-400">v2.11.0</span>
+          </div>
+          <div className="border-t border-[#1c2a35] mt-2 pt-2">
+            <Link to="/security" className="text-[#4afa82] hover:text-[#7dffaa] flex items-center gap-1">
+              <span aria-hidden="true">$</span> security --guide
             </Link>
           </div>
-          <div className="text-slate-500 text-center mt-2">v2.1 • Open Source</div>
         </div>
       </div>
     </aside>
@@ -303,7 +331,7 @@ function AppLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-[#0a0e14]">
       {/* Skip Links for Accessibility */}
       <SkipLinks />
       
@@ -327,16 +355,16 @@ function AppLayout() {
       
       {/* Main Content */}
       <main id="main-content" className="lg:pl-64" role="main" aria-label="Main content">
-        {/* Desktop Header */}
-        <header className="hidden lg:flex items-center justify-between h-16 px-8 bg-slate-800/50 border-b border-slate-700/50 sticky top-0 z-30 backdrop-blur-sm">
+        {/* Desktop Header — terminal command bar */}
+        <header className="hidden lg:flex items-center justify-between h-14 px-8 bg-[#111820]/90 border-b border-[#1c2a35] sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">
             <SearchButton onClick={() => setSearchOpen(true)} className="w-80" />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <ThemeToggle />
             <Link 
               to="/intelligence"
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg relative"
+              className="p-2 text-slate-400 hover:text-[#4afa82] relative"
               aria-label="View intelligence feeds"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -344,8 +372,8 @@ function AppLayout() {
               </svg>
             </Link>
             <LanguageSelector />
-            <Link to="/security" className="px-3 py-1.5 bg-slate-700/50 text-slate-300 text-xs font-medium rounded-full border border-slate-600 hover:bg-slate-600 hover:text-white transition-colors">
-              Security Guide
+            <Link to="/security" className="px-3 py-1.5 text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors">
+              $ security
             </Link>
           </div>
         </header>
@@ -369,25 +397,47 @@ function AppLayout() {
               <Route path="/tactics" element={<CCPTactics />} />
               <Route path="/take-action" element={<TakeAction />} />
               <Route path="/data-sources" element={<DataSources />} />
+              <Route path="/profiles" element={<ProfilesIndex />} />
               <Route path="/profiles/jimmy-lai" element={<JimmyLaiProfile />} />
               <Route path="/profiles/ilham-tohti" element={<IlhamTohtiProfile />} />
               <Route path="/profiles/panchen-lama" element={<PanchenLamaProfile />} />
               <Route path="/profiles/liu-xiaobo" element={<LiuXiaoboProfile />} />
               <Route path="/profiles/joshua-wong" element={<JoshuaWongProfile />} />
+              <Route path="/profiles/gui-minhai" element={<GuiMinhaiProfile />} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
-                  <div className="text-center max-w-md">
-                    <h1 className="text-6xl font-bold text-white mb-2">404</h1>
-                    <h2 className="text-xl font-semibold text-slate-300 mb-4">Page not found</h2>
-                    <p className="text-slate-400 mb-8">
-                      The page you're looking for doesn't exist or has been moved to a different location.
+                  <div className="text-center max-w-lg">
+                    <pre className="font-mono text-[#1c2a35] text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
+┌─────────────────────────────────────┐
+│  ███╗   ██╗ ██████╗ ████████╗      │
+│  ████╗  ██║██╔═══██╗╚══██╔══╝      │
+│  ██╔██╗ ██║██║   ██║   ██║         │
+│  ██║╚██╗██║██║   ██║   ██║         │
+│  ██║ ╚████║╚██████╔╝   ██║         │
+│  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝         │
+│                                     │
+│  ███████╗ ██████╗ ██╗   ██╗███╗   █╗│
+│  ██╔════╝██╔═══██╗██║   ██║████╗  ██║
+│  █████╗  ██║   ██║██║   ██║██╔██╗ ██║
+│  ██╔══╝  ██║   ██║██║   ██║██║╚██╗██║
+│  ██║     ╚██████╔╝╚██████╔╝██║ ╚████║
+│  ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
+│                                     │
+│  404 — page not found               │
+└─────────────────────────────────────┘`}</pre>
+                    <h1 className="text-3xl font-mono font-bold text-white mb-2">404</h1>
+                    <p className="text-slate-400 font-mono text-sm mb-2">
+                      <span className="text-red-400">error:</span> requested path does not exist
+                    </p>
+                    <p className="text-slate-500 font-mono text-xs mb-8">
+                      the page may have been moved or deleted.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                      <Link to="/" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                        Go to Dashboard
+                      <Link to="/" className="px-6 py-2.5 bg-[#4afa82]/10 border border-[#4afa82]/50 hover:bg-[#4afa82]/20 text-[#4afa82] font-mono text-sm font-medium transition-colors">
+                        $ cd /dashboard
                       </Link>
-                      <Link to="/data-sources" className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors">
-                        View Data Sources
+                      <Link to="/data-sources" className="px-6 py-2.5 bg-[#111820] border border-[#1c2a35] hover:border-[#4afa82]/50 text-slate-300 font-mono text-sm font-medium transition-colors">
+                        $ ls /data-sources
                       </Link>
                     </div>
                   </div>

@@ -84,7 +84,7 @@ const GlobalDisclaimer = ({ type = 'verify', compact = false, className = '' }) 
   }
 
   return (
-    <div className={`${colors.bg} border ${colors.border} rounded-lg p-4 ${className}`}>
+    <div className={`${colors.bg} border ${colors.border} p-4 ${className}`}>
       <div className="flex items-start gap-3">
         <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${colors.icon}`} />
         <div>

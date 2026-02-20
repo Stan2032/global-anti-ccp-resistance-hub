@@ -70,11 +70,11 @@ export default function PWAInstallBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700 shadow-2xl animate-slide-up">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-[#111820] border-t border-[#1c2a35] shadow-2xl animate-slide-up">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-start gap-4">
           {/* Icon */}
-          <div className="flex-shrink-0 p-3 bg-red-600 rounded-xl">
+          <div className="flex-shrink-0 p-3 bg-red-600">
             <Smartphone className="w-8 h-8 text-white" />
           </div>
 
@@ -89,7 +89,7 @@ export default function PWAInstallBanner() {
 
             {isIOS ? (
               // iOS Instructions
-              <div className="bg-slate-800/50 rounded-lg p-3 mb-3">
+              <div className="bg-[#111820]/50 p-3 mb-3">
                 <p className="text-sm text-slate-300 mb-2">
                   <strong className="text-white">To install on iOS:</strong>
                 </p>
@@ -114,7 +114,7 @@ export default function PWAInstallBanner() {
                 {deferredPrompt && (
                   <button
                     onClick={handleInstall}
-                    className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium transition-colors"
                   >
                     <Download className="w-4 h-4" />
                     Install App
@@ -147,7 +147,7 @@ export default function PWAInstallBanner() {
           {/* Close Button */}
           <button
             onClick={handleDismiss}
-            className="flex-shrink-0 p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+            className="flex-shrink-0 p-2 text-slate-400 hover:text-white hover:bg-[#111820] transition-colors"
             aria-label="Dismiss"
           >
             <X className="w-5 h-5" />

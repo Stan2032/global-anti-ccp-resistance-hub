@@ -289,11 +289,11 @@ export default function IlhamTohtiProfile() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-[#0a0e14] text-white">
       <GlobalDisclaimer />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-900/30 via-slate-800 to-slate-900 border-b border-slate-700">
+      <div className="bg-[#0a0e14] border-b border-[#1c2a35] border-l-2 border-l-cyan-500">
         <div className="max-w-5xl mx-auto px-4 py-6">
           <Link
             to="/prisoners"
@@ -333,7 +333,7 @@ export default function IlhamTohtiProfile() {
       </div>
 
       {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-slate-800/95 backdrop-blur border-b border-slate-700">
+      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
         <div className="max-w-5xl mx-auto px-4">
           <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
             {sections.map(({ id, label, icon: Icon }) => (
@@ -345,7 +345,7 @@ export default function IlhamTohtiProfile() {
                 className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
                   activeSection === id
                     ? 'bg-blue-600 text-white'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -380,7 +380,7 @@ export default function IlhamTohtiProfile() {
               {TIMELINE.map((event, i) => (
                 <div
                   key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r ${categoryColors[event.category]} hover:bg-slate-800/50`}
+                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r ${categoryColors[event.category]} hover:bg-[#111820]/50`}
                   onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
                   role="button"
                   tabIndex={0}
@@ -433,7 +433,7 @@ export default function IlhamTohtiProfile() {
             </h2>
 
             {/* Verdict Banner */}
-            <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4 mb-6">
+            <div className="bg-red-900/30 border border-red-500/30 p-4 mb-6">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-400" />
                 <span className="font-bold text-red-300">GUILTY — Life Imprisonment</span>
@@ -448,7 +448,7 @@ export default function IlhamTohtiProfile() {
             {/* Individual Charges */}
             <div className="space-y-4">
               {CHARGES.map((charge, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <h3 className="font-bold text-red-300 mb-1">{charge.charge}</h3>
                   <p className="text-xs text-slate-400 mb-2">{charge.law} · Max: {charge.maxPenalty}</p>
                   <div className="text-sm text-slate-300 space-y-2">
@@ -473,7 +473,7 @@ export default function IlhamTohtiProfile() {
                 { label: 'Sentence', value: 'Life' },
                 { label: 'Family Contact', value: 'None since 2017' },
               ].map(({ label, value }) => (
-                <div key={label} className="bg-slate-800 rounded-lg p-3 border border-slate-700">
+                <div key={label} className="bg-[#111820] p-3 border border-[#1c2a35]">
                   <div className="text-lg font-bold text-white">{value}</div>
                   <div className="text-xs text-slate-400">{label}</div>
                 </div>
@@ -481,7 +481,7 @@ export default function IlhamTohtiProfile() {
             </div>
 
             {/* Students Persecuted */}
-            <div className="mt-6 bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
+            <div className="mt-6 bg-amber-900/20 border border-amber-500/30 p-4">
               <h3 className="font-bold text-amber-300 mb-2 flex items-center gap-2">
                 <GraduationCap className="w-4 h-4" />
                 Students Also Persecuted
@@ -510,8 +510,8 @@ export default function IlhamTohtiProfile() {
 
             <div className="space-y-4">
               {(showAllNarratives ? CCP_NARRATIVES : CCP_NARRATIVES.slice(0, 2)).map((item, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
-                  <div className="bg-red-900/20 px-4 py-2 border-b border-slate-700">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+                  <div className="bg-red-900/20 px-4 py-2 border-b border-[#1c2a35]">
                     <span className="text-xs text-red-400 font-bold uppercase">CCP Claim</span>
                     <p className="text-sm text-red-300 mt-1">{item.claim}</p>
                   </div>
@@ -554,7 +554,7 @@ export default function IlhamTohtiProfile() {
             </h2>
 
             {/* Awards Banner */}
-            <div className="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4 mb-6">
+            <div className="bg-amber-900/20 border border-amber-500/30 p-4 mb-6">
               <h3 className="font-bold text-amber-300 mb-2 flex items-center gap-2">
                 <Award className="w-4 h-4" />
                 Major Awards
@@ -566,7 +566,7 @@ export default function IlhamTohtiProfile() {
                   { award: 'Martin Ennals Award', year: '2016', org: 'Martin Ennals Foundation' },
                   { award: 'PEN/Barbara Goldsmith Freedom to Write Award', year: '2014', org: 'PEN America' },
                 ].map((item, i) => (
-                  <div key={i} className="bg-slate-800/50 rounded p-2 text-sm">
+                  <div key={i} className="bg-[#111820]/50 rounded p-2 text-sm">
                     <p className="font-medium text-amber-200">{item.award}</p>
                     <p className="text-xs text-slate-400">{item.year} · {item.org}</p>
                   </div>
@@ -576,7 +576,7 @@ export default function IlhamTohtiProfile() {
 
             <div className="space-y-3">
               {INTERNATIONAL_RESPONSES.map((response, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="font-bold text-blue-300">{response.entity}</h3>
                     <a
@@ -595,7 +595,7 @@ export default function IlhamTohtiProfile() {
             </div>
 
             {/* How to Help */}
-            <div className="mt-6 bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+            <div className="mt-6 bg-blue-900/20 border border-blue-500/30 p-4">
               <h3 className="font-bold text-blue-300 mb-3 flex items-center gap-2">
                 <Heart className="w-4 h-4" />
                 How You Can Help
@@ -607,7 +607,7 @@ export default function IlhamTohtiProfile() {
                   { action: 'Share on social media', desc: 'Use #FreeIlhamTohti and #FreeUyghurs' },
                   { action: 'Support Scholars at Risk', link: 'https://www.scholarsatrisk.org', desc: 'Protecting threatened scholars worldwide' },
                 ].map((item, i) => (
-                  <div key={i} className="bg-slate-800 rounded p-3 text-sm">
+                  <div key={i} className="bg-[#111820] rounded p-3 text-sm">
                     <p className="font-medium text-white">{item.action}</p>
                     <p className="text-slate-400 text-xs mt-0.5">{item.desc}</p>
                     {item.link && (
@@ -646,7 +646,7 @@ export default function IlhamTohtiProfile() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between bg-slate-800 border border-slate-700 rounded-lg p-3 hover:bg-slate-750 hover:border-slate-600 transition-colors"
+                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] p-3 hover:bg-slate-750 hover:border-slate-600 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${source.tier === 1 ? 'bg-emerald-500' : 'bg-amber-500'}`} />

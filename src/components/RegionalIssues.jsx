@@ -260,7 +260,7 @@ const RegionalIssues = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-xl p-6 border border-amber-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-amber-500">
         <div className="flex items-center mb-4">
           <Map className="w-8 h-8 text-amber-400 mr-3" />
           <div>
@@ -280,10 +280,10 @@ const RegionalIssues = () => {
           <button
             key={region.id}
             onClick={() => setActiveRegion(region.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeRegion === region.id
                 ? 'bg-amber-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <region.Icon className="w-4 h-4" />
@@ -296,7 +296,7 @@ const RegionalIssues = () => {
       {activeRegionData && (
         <div className="space-y-4">
           {/* Overview Card */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
@@ -328,14 +328,14 @@ const RegionalIssues = () => {
           </div>
 
           {/* Key Issues */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h4 className="font-semibold text-white mb-4">Key Issues</h4>
             <div className="space-y-3">
               {activeRegionData.keyIssues.map((issue, idx) => (
-                <div key={idx} className={`rounded-lg border p-4 ${severityColors[issue.severity]}`}>
+                <div key={idx} className={`border p-4 ${severityColors[issue.severity]}`}>
                   <div className="flex items-center justify-between mb-2">
                     <h5 className="font-medium text-white">{issue.title}</h5>
-                    <span className="text-xs px-2 py-0.5 rounded bg-slate-800/50">
+                    <span className="text-xs px-2 py-0.5 rounded bg-[#111820]/50">
                       {issue.severity}
                     </span>
                   </div>
@@ -347,7 +347,7 @@ const RegionalIssues = () => {
 
           {/* Timeline */}
           {activeRegionData.timeline.length > 0 && (
-            <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
               <h4 className="font-semibold text-white mb-4">Timeline</h4>
               <div className="space-y-3">
                 {activeRegionData.timeline.map((event, idx) => (
@@ -362,11 +362,11 @@ const RegionalIssues = () => {
 
           {/* Key Figures */}
           {activeRegionData.keyFigures.length > 0 && (
-            <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
               <h4 className="font-semibold text-white mb-4">Key Figures</h4>
               <div className="space-y-3">
                 {activeRegionData.keyFigures.map((figure, idx) => (
-                  <div key={idx} className="flex items-start justify-between p-3 bg-slate-900/50 rounded-lg">
+                  <div key={idx} className="flex items-start justify-between p-3 bg-[#0a0e14]/50">
                     <div>
                       <h5 className="font-medium text-white">{figure.name}</h5>
                       <p className="text-sm text-slate-400">{figure.description}</p>
@@ -387,7 +387,7 @@ const RegionalIssues = () => {
 
           {/* Organizations */}
           {activeRegionData.organizations.length > 0 && (
-            <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
               <h4 className="font-semibold text-white mb-4">Support Organizations</h4>
               <div className="space-y-2">
                 {activeRegionData.organizations.map((org, idx) => (
@@ -396,7 +396,7 @@ const RegionalIssues = () => {
                     href={org.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg hover:bg-slate-900 transition-colors"
+                    className="flex items-center justify-between p-3 bg-[#0a0e14]/50 hover:bg-[#0a0e14] transition-colors"
                   >
                     <span className="text-white">{org.name}</span>
                     <span className="text-blue-400">→</span>
@@ -409,7 +409,7 @@ const RegionalIssues = () => {
       )}
 
       {/* Call to Action */}
-      <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
+      <div className="bg-amber-900/20 border border-amber-700/50 p-4">
         <h3 className="font-medium text-amber-300 mb-2 flex items-center gap-2"><Handshake className="w-5 h-5" /> How You Can Help</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• Share information about these lesser-known persecuted groups</li>

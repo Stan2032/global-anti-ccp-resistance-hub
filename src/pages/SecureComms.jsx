@@ -187,10 +187,10 @@ const SecureComms = () => {
       role="button"
       tabIndex={0}
       aria-pressed={selectedChannel === channel.id}
-      className={`p-4 rounded-lg border cursor-pointer transition-all ${
+      className={`p-4 border cursor-pointer transition-all ${
         selectedChannel === channel.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
-          : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
       <div className="flex items-start justify-between">
@@ -232,10 +232,10 @@ const SecureComms = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+        className="bg-[#111820] border border-[#1c2a35] p-6"
       >
         <div className="flex items-start space-x-4">
-          <div className="p-3 bg-blue-900 rounded-lg">
+          <div className="p-3 bg-blue-900">
             <Icon className="w-6 h-6 text-blue-400" />
           </div>
           <div className="flex-1">
@@ -264,7 +264,7 @@ const SecureComms = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>New Channel</span>
@@ -275,7 +275,7 @@ const SecureComms = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-green-900 border border-green-700 rounded-lg p-4"
+        className="bg-green-900 border border-green-700 p-4"
       >
         <div className="flex items-start">
           <CheckCircle className="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" />
@@ -289,7 +289,7 @@ const SecureComms = () => {
       </motion.div>
 
       {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700">
+      <div className="flex space-x-4 border-b border-[#1c2a35]">
         {['channels', 'security', 'guidelines'].map((tab) => (
           <button
             key={tab}
@@ -316,7 +316,7 @@ const SecureComms = () => {
                 aria-label="Search"
                 type="text"
                 placeholder="Search channels..."
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -327,11 +327,11 @@ const SecureComms = () => {
           </div>
 
           {/* Message View */}
-          <div className="lg:col-span-2 bg-slate-800 rounded-lg border border-slate-700 flex flex-col h-96">
+          <div className="lg:col-span-2 bg-[#111820] border border-[#1c2a35] flex flex-col h-96">
             {selectedChannel ? (
               <>
                 {/* Channel Header */}
-                <div className="p-4 border-b border-slate-700">
+                <div className="p-4 border-b border-[#1c2a35]">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-white font-semibold">
@@ -343,7 +343,7 @@ const SecureComms = () => {
                     </div>
                     <button
                       onClick={() => setShowEncryptionDetails(!showEncryptionDetails)}
-                      className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
+                      className="p-2 hover:bg-[#1c2a35] transition-colors"
                     >
                       <Lock className="w-5 h-5 text-green-400" />
                     </button>
@@ -357,7 +357,7 @@ const SecureComms = () => {
                       key={msg.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-slate-700 rounded-lg p-4"
+                      className="bg-[#1c2a35] p-4"
                     >
                       <div className="flex items-start justify-between">
                         <div>
@@ -382,7 +382,7 @@ const SecureComms = () => {
                 </div>
 
                 {/* Message Input */}
-                <div className="p-4 border-t border-slate-700">
+                <div className="p-4 border-t border-[#1c2a35]">
                   <div className="flex items-center space-x-2">
                     <input
                       aria-label="Type encrypted message..."
@@ -390,12 +390,12 @@ const SecureComms = () => {
                       value={messageInput}
                       onChange={(e) => setMessageInput(e.target.value)}
                       placeholder="Type encrypted message..."
-                      className="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                      className="flex-1 bg-[#1c2a35] border border-[#2a9a52] px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
                     />
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                      className="p-2 bg-blue-600 hover:bg-blue-700 transition-colors"
                     >
                       <Send className="w-5 h-5 text-white" />
                     </motion.button>
@@ -430,7 +430,7 @@ const SecureComms = () => {
           </div>
 
           {/* Technical Details */}
-          <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-semibold text-white mb-4">Technical Specifications</h3>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -464,7 +464,7 @@ const SecureComms = () => {
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               <h3 className="text-xl font-semibold text-white mb-4">{section.category}</h3>
               <ul className="space-y-3">

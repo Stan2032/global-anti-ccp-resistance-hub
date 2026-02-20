@@ -258,9 +258,9 @@ export default function CampaignProgress() {
   const completedMilestones = campaigns.reduce((acc, c) => acc + c.milestones.filter(m => m.completed).length, 0);
 
   return (
-    <div className="bg-slate-800/50 rounded-xl border border-slate-700">
+    <div className="bg-[#111820]/50 border border-[#1c2a35]">
       {/* Header */}
-      <div className="p-6 border-b border-slate-700">
+      <div className="p-6 border-b border-[#1c2a35]">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center">
             <Target className="w-6 h-6 text-blue-400" />
@@ -273,19 +273,19 @@ export default function CampaignProgress() {
 
         {/* Overall Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-2xl font-bold text-blue-400">{campaigns.length}</p>
             <p className="text-xs text-slate-500">Active Campaigns</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-2xl font-bold text-green-400">{completedMilestones}</p>
             <p className="text-xs text-slate-500">Milestones Achieved</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-2xl font-bold text-orange-400">{Math.round((completedMilestones / totalMilestones) * 100)}%</p>
             <p className="text-xs text-slate-500">Overall Progress</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-2xl font-bold text-purple-400">{campaigns.filter(c => c.priority === 'critical').length}</p>
             <p className="text-xs text-slate-500">Critical Priority</p>
           </div>
@@ -293,7 +293,7 @@ export default function CampaignProgress() {
       </div>
 
       {/* Filters */}
-      <div className="p-4 border-b border-slate-700 flex flex-wrap gap-2">
+      <div className="p-4 border-b border-[#1c2a35] flex flex-wrap gap-2">
         {['all', 'critical', 'Political Prisoner', 'Economic Action', 'Advocacy'].map(f => (
           <button
             key={f}
@@ -301,7 +301,7 @@ export default function CampaignProgress() {
             className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
               filter === f
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {f === 'all' ? 'All Campaigns' : f}
@@ -315,7 +315,7 @@ export default function CampaignProgress() {
           {filteredCampaigns.map(campaign => (
             <div
               key={campaign.id}
-              className="bg-slate-900/50 rounded-lg border border-slate-700 overflow-hidden"
+              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden"
             >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
@@ -350,7 +350,7 @@ export default function CampaignProgress() {
                 {/* Key Metrics */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
                   {Object.entries(campaign.metrics).slice(0, 4).map(([key, value]) => (
-                    <div key={key} className="bg-slate-800 rounded p-2 text-center">
+                    <div key={key} className="bg-[#111820] rounded p-2 text-center">
                       <p className="text-sm font-bold text-white">
                         {typeof value === 'number' ? value.toLocaleString() : value}
                       </p>
@@ -363,7 +363,7 @@ export default function CampaignProgress() {
 
                 {/* Recent Update */}
                 {campaign.recentUpdates[0] && (
-                  <div className="bg-slate-800 rounded p-3 mb-4">
+                  <div className="bg-[#111820] rounded p-3 mb-4">
                     <div className="flex items-center gap-2 text-xs text-slate-500 mb-1">
                       <Calendar className="w-3 h-3" />
                       {campaign.recentUpdates[0].date}
@@ -380,7 +380,7 @@ export default function CampaignProgress() {
                       href={action.url || '#'}
                       target={action.url ? '_blank' : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm text-slate-300 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-sm text-slate-300 transition-colors"
                     >
                       {action.name}
                       {action.url && <ExternalLink className="w-3 h-3" />}
@@ -388,7 +388,7 @@ export default function CampaignProgress() {
                   ))}
                   <button
                     onClick={() => setSelectedCampaign(selectedCampaign === campaign.id ? null : campaign.id)}
-                    className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm text-white transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-sm text-white transition-colors"
                   >
                     {selectedCampaign === campaign.id ? 'Hide Details' : 'View Details'}
                     <ChevronRight className={`w-4 h-4 transition-transform ${selectedCampaign === campaign.id ? 'rotate-90' : ''}`} />
@@ -397,7 +397,7 @@ export default function CampaignProgress() {
 
                 {/* Expanded Details */}
                 {selectedCampaign === campaign.id && (
-                  <div className="mt-4 pt-4 border-t border-slate-700">
+                  <div className="mt-4 pt-4 border-t border-[#1c2a35]">
                     <div className="grid md:grid-cols-2 gap-6">
                       <MilestoneTimeline milestones={campaign.milestones} />
                       <div>
@@ -429,13 +429,13 @@ export default function CampaignProgress() {
       </div>
 
       {/* Call to Action */}
-      <div className="p-6 border-t border-slate-700 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
+      <div className="p-6 border-t border-[#1c2a35] bg-[#0a0e14]">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-white font-semibold">Want to start a new campaign?</h3>
             <p className="text-sm text-slate-400">Contact partner organizations to coordinate efforts</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white transition-colors">
             <Share2 className="w-4 h-4" />
             Share Progress
           </button>

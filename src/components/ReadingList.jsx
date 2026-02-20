@@ -275,7 +275,7 @@ const ReadingList = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-amber-900/30 to-orange-900/30 border border-amber-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-amber-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Essential Reading List</h2>
         <p className="text-slate-300">
           {books.length} essential books for understanding CCP human rights abuses, from academic works to survivor testimonies.
@@ -290,10 +290,10 @@ const ReadingList = () => {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                 selectedCategory === cat.id
                   ? 'bg-amber-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
               {cat.name} ({cat.count})
@@ -306,7 +306,7 @@ const ReadingList = () => {
           aria-label="Sort"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="bg-slate-800 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm"
+          className="bg-[#111820] text-white border border-[#1c2a35] px-3 py-2 text-sm"
         >
           <option value="relevance">Sort by Relevance</option>
           <option value="year">Sort by Year (Newest)</option>
@@ -320,10 +320,10 @@ const ReadingList = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-3 py-1.5 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-amber-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.name} ({cat.count})
@@ -334,7 +334,7 @@ const ReadingList = () => {
       {/* Book Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredBooks.map((book, index) => (
-          <div key={index} className="bg-slate-800 border border-slate-700 rounded-lg p-4 hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-slate-500 transition-colors">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-bold text-white text-lg pr-2">{book.title}</h3>
               <span className={`${getRelevanceColor(book.relevance)} text-white text-xs px-2 py-0.5 rounded flex-shrink-0`}>
@@ -362,14 +362,14 @@ const ReadingList = () => {
             </div>
             
             {/* ISBN & Links */}
-            <div className="border-t border-slate-700 pt-3 flex items-center justify-between">
+            <div className="border-t border-[#1c2a35] pt-3 flex items-center justify-between">
               <span className="text-xs text-slate-500">ISBN: {book.isbn}</span>
               <div className="flex gap-2">
                 <a
                   href={`https://www.goodreads.com/search?q=${encodeURIComponent(book.isbn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 px-2 py-1 rounded transition-colors"
+                  className="text-xs bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
                 >
                   Goodreads
                 </a>
@@ -377,7 +377,7 @@ const ReadingList = () => {
                   href={`https://www.worldcat.org/search?q=${encodeURIComponent(book.isbn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 px-2 py-1 rounded transition-colors"
+                  className="text-xs bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
                 >
                   Library
                 </a>
@@ -388,7 +388,7 @@ const ReadingList = () => {
       </div>
 
       {/* Reading Tips */}
-      <div className="bg-amber-900/20 border border-amber-700/50 rounded-lg p-4">
+      <div className="bg-amber-900/20 border border-amber-700/50 p-4">
         <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Reading Tips</h3>
         <ul className="space-y-1 text-sm text-slate-300">
           <li>• Start with books marked <span className="text-red-400">CRITICAL</span> for foundational understanding</li>

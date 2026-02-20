@@ -15,7 +15,7 @@
 ### High Priority
 - [ ] **Multilingual Support**: Add translations for key pages (Chinese Traditional, Uyghur, Tibetan, Vietnamese, Korean, Japanese)
 - [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
-- [ ] **Accessibility Audit**: Run automated accessibility tests and fix any WCAG 2.1 violations
+- [x] **Accessibility Audit**: WCAG AA contrast ratios verified for all text colors, ARIA labels added to SVGs/buttons, 20 contrast tests added ✅ (Session 59)
 - [x] **Performance Optimization**: Implement code splitting for large components ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles now under 50KB)
 - [x] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines ✅ (index.html already had OG/Twitter/structured data; Session 40 added per-route meta descriptions for all 14 pages)
 
@@ -106,10 +106,16 @@
     - [x] Nathan Law exile connection documented
     - [x] 10 sources (7 Tier 1, 3 Tier 2), zero CCP state media
     - [x] Yellow/gold color theme (youth activism, energy)
-  - [ ] **Gui Minhai profile page**
-    - [ ] Causeway Bay Books and cross-border abduction from Thailand
-    - [ ] Swedish citizenship and diplomatic crisis
-    - [ ] 10-year espionage sentence
+  - [x] **Gui Minhai profile page**
+    - [x] Causeway Bay Books and cross-border abduction from Thailand
+    - [x] Swedish citizenship and diplomatic crisis
+    - [x] 10-year espionage sentence
+    - [x] 14-event timeline (1964-2025), 2 charges, 4 CCP narratives debunked
+    - [x] Causeway Bay Books context section (all 5 booksellers documented)
+    - [x] Angela Gui advocacy section
+    - [x] UN WGAD ruling (August 2025), 90-org joint statement (October 2025)
+    - [x] 10 sources (6 Tier 1, 4 Tier 2), zero CCP state media
+    - [x] Teal color theme (publishing/literary differentiation) — Session 54, Opus 4.6
   - [ ] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
   - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
 
@@ -357,11 +363,18 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Gui Minhai profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Profile index page at `/profiles` listing all 5+ profiles with status indicators
-3. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+1. **Accessibility audit** — Ensure terminal aesthetic maintains WCAG AA contrast ratios across all pages
+2. **Mobile navigation testing** — Verify ASCII design works across viewport sizes
+3. Additional profiles (deprioritized per project owner): Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 
 ### Recently Completed
+- ✅ **All sub-components, profiles, campaigns, ThemeContext bulk-updated** — 128 files: all old-style Tailwind classes (bg-slate, border-slate, rounded, gradients, hovers) replaced with terminal design system tokens. Zero old-style classes remain in src/. 257 tests pass. — Session 58, Opus 4.6
+- ✅ **All 13 remaining pages terminal redesigned** — IntelligenceFeeds, PoliticalPrisoners, TakeAction, EducationalResources, SecurityCenter, ResistanceDirectory, CommunitySupport, ResistanceResources, CCPTactics, RegionalThreats, SecureComms, DataSources, CampaignHubs. Surface colors, borders, gradients, buttons, spinners, hover states all updated. 257 tests pass. — Session 57, Opus 4.6
+- ✅ **Dashboard + EmergencyAlerts terminal redesign** — all Dashboard content components (welcome header, critical alert, stat cards, intelligence section, quick actions, campaigns, resources, section loader, footer) and EmergencyAlerts (severity prefixes, terminal buttons, monospace badges) updated to match ASCII/terminal aesthetic. 257 tests pass. — Session 56, Opus 4.6
+- ✅ **ASCII/terminal design overhaul** — sidebar, header, footer, loading screen, 404 page redesigned with monospace typography, box-drawing borders, terminal-green accents, scanline effects. All 257 tests pass. — Session 55, Opus 4.6
+- ✅ Gui Minhai profile page at `/profiles/gui-minhai`: 14-event timeline, 2 charges, 4 CCP narratives debunked, Causeway Bay Books context section (all 5 booksellers), Angela Gui advocacy section, UN WGAD ruling, 90-org joint statement, 10 sources, teal theme — Session 54, Opus 4.6
+- ✅ Profile index page at `/profiles`: lists all 5 built profiles + 3 upcoming with status indicators, links, color themes, source attribution note, navigation link — Session 53, Opus 4.6
+- ✅ Reorganized `_agents/` folder: moved 12 research/audit files to `research/`, 3 satellite TODOs to `planning/`, 7 historical files to `archive/` — top level reduced from 29+ files to 10 core files — Session 53, Opus 4.6
 - ✅ Joshua Wong profile page: dedicated /profiles/joshua-wong route with 21-event timeline, dual charges section (subversion guilty + collusion pending), CCP narrative analysis (4 claims debunked), Nathan Law exile connection, "I love Hong Kong" courtroom moment, 10 sources, yellow/gold theme — Session 47, Opus 4.6
 - ✅ Liu Xiaobo memorial profile page: dedicated /profiles/liu-xiaobo route with 22-event timeline, Charter 08 & Charges tab, CCP narrative analysis (4 claims debunked), Legacy & Impact tab, Liu Xia persecution section, "I Have No Enemies" quote, Ossietzky parallel, 11 sources, memorial color theme — Session 46, Opus 4.6
 - ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
@@ -432,13 +445,13 @@
 
 ## 📂 RELATED TODO FILES
 
-> **Important:** These satellite TODO files were created in earlier sessions (Jan 2026) and contain items that may now be completed. Each file has been annotated with completion status as of Session 49.
+> **Important:** These satellite TODO files live in `_agents/planning/` and were created in earlier sessions (Jan 2026). Each file has been annotated with completion status as of Session 49.
 
 | File | Focus | Status |
 |------|-------|--------|
-| **SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
-| **SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
-| **SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
+| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
 
 ---
 
@@ -452,13 +465,14 @@
 5. **thoughts/** — Session-by-session decision logs (14 files, Sessions 33-48)
 6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
-8. **Satellite TODOs** — See "Related TODO Files" section above for SIMULATED_DATA_CLEANUP_TODO.md, SITE_CLEANUP_TODO.md, SITE_WIDE_TODO.md
+8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
 
-### Current State Summary (as of Session 52, Feb 20, 2026)
-- **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)
+### Current State Summary (as of Session 58, Feb 20, 2026)
+- **Frontend:** React + Vite + Tailwind, 16 pages, 100+ components, 257 tests (all passing)
+- **Design:** ASCII/terminal aesthetic — monospace headings (JetBrains Mono), terminal-green (#4afa82) accents, box-drawing borders, square corners, CRT scanline effects
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
-- **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
-- **Profile Pages Queued:** Gui Minhai (next), then Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+- **Profile Pages Built:** 6 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai)
+- **Profile Pages Queued (deprioritized):** Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 - **Data:** 60 political prisoners, 29 sanctioned officials, 33 forced labor companies, 142 total entries with 100% source attribution
 - **Performance:** All 8 major pages lazy-loaded (81 sub-components), all page bundles under 50KB
 - **Forms:** 4 non-functional forms have honest "Coming Soon" disclaimers (Session 36)
@@ -512,6 +526,12 @@
 | 50 | Feb 20 | Opus 4.6 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS, fixed duplicate aria-label build warning |
 | 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder, updated cross-references |
 | 52 | Feb 20 | Opus 4.6 | Final cross-reference cleanup: fixed stale paths in AGENT_HANDOFF.json |
+| 53 | Feb 20 | Opus 4.6 | Reorganized `_agents/` folder (research/, planning/ subdirs), built Profiles Index page at /profiles with 9 tests |
+| 54 | Feb 20 | Opus 4.6 | Gui Minhai profile page: 14-event timeline, Causeway Bay Books context, 4 CCP narratives debunked, 10 sources, teal theme |
+| 55 | Feb 20 | Opus 4.6 | ASCII/terminal design overhaul: monospace headings, box-drawing borders, terminal-green accents, redesigned sidebar/header/footer/loading/404 |
+| 56 | Feb 20 | Opus 4.6 | Dashboard + EmergencyAlerts terminal redesign: stat cards, intelligence section, quick actions, campaigns, resources, section loader all updated |
+| 57 | Feb 20 | Opus 4.6 | Terminal aesthetic applied to all 13 remaining pages: surface colors, borders, gradients→flat, CTA buttons, spinners, hover states |
+| 58 | Feb 20 | Opus 4.6 | Bulk terminal styling: 128 files — all sub-components, profiles, campaigns, ThemeContext. Zero old-style classes remain. Design system 100% complete. |
 
 ---
 

@@ -87,14 +87,14 @@ const NewsDigest = () => {
   if (subscribed) {
     return (
       <div className="space-y-6">
-        <div className="bg-amber-900/30 border border-amber-700/50 rounded-xl p-8 text-center">
+        <div className="bg-amber-900/30 border border-amber-700/50 p-8 text-center">
           <Inbox className="w-12 h-12 text-amber-400 mb-4 mx-auto" />
           <h2 className="text-2xl font-bold text-white mb-2">Newsletter Coming Soon</h2>
           <p className="text-slate-300 mb-4">
             This subscription form is not yet connected to an email service. No data has been stored.
             In the meantime, follow these trusted sources directly:
           </p>
-          <div className="bg-slate-800/50 rounded-lg p-4 text-left max-w-md mx-auto">
+          <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Stay Informed Via:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
               <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Radio Free Asia</a></li>
@@ -105,7 +105,7 @@ const NewsDigest = () => {
           </div>
           <button
             onClick={() => setSubscribed(false)}
-            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
           >
             Update Preferences
           </button>
@@ -117,7 +117,7 @@ const NewsDigest = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-xl p-6 border border-blue-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center mb-4">
           <Newspaper className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -132,11 +132,11 @@ const NewsDigest = () => {
       </div>
 
       {/* Recent Digests Preview */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-1"><ClipboardList className="w-4 h-4" /> Recent Digests</h3>
         <div className="space-y-3">
           {recentDigests.map((digest, idx) => (
-            <div key={idx} className="bg-slate-900/50 rounded-lg p-3">
+            <div key={idx} className="bg-[#0a0e14]/50 p-3">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium text-white text-sm">{digest.title}</h4>
                 <span className="text-xs text-slate-500">{digest.date}</span>
@@ -152,7 +152,7 @@ const NewsDigest = () => {
       </div>
 
       {/* Coming Soon Notice */}
-      <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4 flex items-start gap-3">
+      <div className="bg-amber-900/20 border border-amber-700/50 p-4 flex items-start gap-3">
         <Mail className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
         <div>
           <h3 className="font-semibold text-amber-300 text-sm">Newsletter Coming Soon</h3>
@@ -166,7 +166,7 @@ const NewsDigest = () => {
       {/* Subscription Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Email */}
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Mail className="w-4 h-4" /> Email Address</h3>
           <input
             aria-label="Email Address"
@@ -175,7 +175,7 @@ const NewsDigest = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
           />
           <p className="text-xs text-slate-500 mt-2">
             We respect your privacy. Unsubscribe anytime.
@@ -183,7 +183,7 @@ const NewsDigest = () => {
         </div>
 
         {/* Frequency */}
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Calendar className="w-4 h-4" /> Frequency</h3>
           <div className="grid md:grid-cols-3 gap-3">
             {frequencies.map(freq => (
@@ -191,10 +191,10 @@ const NewsDigest = () => {
                 key={freq.id}
                 type="button"
                 onClick={() => setPreferences({ ...preferences, frequency: freq.id })}
-                className={`p-3 rounded-lg text-left transition-colors ${
+                className={`p-3 text-left transition-colors ${
                   preferences.frequency === freq.id
                     ? 'bg-blue-600 text-white'
-                    : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 <div className="font-medium">{freq.name}</div>
@@ -205,7 +205,7 @@ const NewsDigest = () => {
         </div>
 
         {/* Topics */}
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Tag className="w-4 h-4" /> Topics of Interest</h3>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
             {topics.map(topic => (
@@ -213,10 +213,10 @@ const NewsDigest = () => {
                 key={topic.id}
                 type="button"
                 onClick={() => toggleTopic(topic.id)}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`flex items-center space-x-1 px-3 py-2 text-sm transition-colors ${
                   preferences.topics.includes(topic.id)
                     ? 'bg-blue-600 text-white'
-                    : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.icon}</span>}
@@ -227,7 +227,7 @@ const NewsDigest = () => {
         </div>
 
         {/* Format */}
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><FileText className="w-4 h-4" /> Format Preference</h3>
           <div className="grid md:grid-cols-3 gap-3">
             {formats.map(format => (
@@ -235,10 +235,10 @@ const NewsDigest = () => {
                 key={format.id}
                 type="button"
                 onClick={() => setPreferences({ ...preferences, format: format.id })}
-                className={`p-3 rounded-lg text-left transition-colors ${
+                className={`p-3 text-left transition-colors ${
                   preferences.format === format.id
                     ? 'bg-green-600 text-white'
-                    : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 <div className="font-medium">{format.name}</div>
@@ -251,14 +251,14 @@ const NewsDigest = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
         >
           Subscribe to News Digest
         </button>
       </form>
 
       {/* Alternative Sources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><BookOpen className="w-4 h-4" /> Other Ways to Stay Informed</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
@@ -277,7 +277,7 @@ const NewsDigest = () => {
       </div>
 
       {/* Security Note */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
+      <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><Lock className="w-4 h-4" /> Security Note</h3>
         <p className="text-sm text-slate-300">
           If you're in a sensitive situation, consider using a secure email provider like ProtonMail 

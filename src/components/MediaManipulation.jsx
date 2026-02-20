@@ -168,7 +168,7 @@ const MediaManipulation = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/50 to-red-900/50 border border-purple-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Radio className="w-6 h-6" /> CCP Media & Propaganda Tracker</h2>
         <p className="text-slate-300">
           Track CCP state media, social media manipulation, and disinformation networks operating globally.
@@ -177,19 +177,19 @@ const MediaManipulation = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-red-400">{mediaOutlets.length}</p>
           <p className="text-sm text-slate-400">Outlets Tracked</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-yellow-400">5</p>
           <p className="text-sm text-slate-400">Foreign Agents</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-purple-400">2</p>
           <p className="text-sm text-slate-400">Disinfo Networks</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-white">2B+</p>
           <p className="text-sm text-slate-400">Combined Reach</p>
         </div>
@@ -204,7 +204,7 @@ const MediaManipulation = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -216,7 +216,7 @@ const MediaManipulation = () => {
       {/* Media Cards */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredMedia.map((media, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-6">
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-lg font-bold text-white">{media.name}</h3>
@@ -234,7 +234,7 @@ const MediaManipulation = () => {
               <span className="flex items-center gap-1"><Globe className="w-3 h-3" /> {media.countries.join(', ')}</span>
             </div>
             
-            <div className="border-t border-slate-700 pt-4">
+            <div className="border-t border-[#1c2a35] pt-4">
               <p className="text-xs text-slate-500 mb-2">Concerns:</p>
               <div className="flex flex-wrap gap-2">
                 {media.concerns.map((concern, j) => (
@@ -249,7 +249,7 @@ const MediaManipulation = () => {
       </div>
 
       {/* How to Identify */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><Search className="w-5 h-5" /> How to Identify CCP Propaganda</h3>
         <div className="grid md:grid-cols-3 gap-6">
           <div>

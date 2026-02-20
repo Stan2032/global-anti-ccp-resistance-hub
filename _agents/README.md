@@ -26,15 +26,32 @@ _agents/
 ├── LLM_JUDGEMENT_LOG.md         ← Decision rationale (Sessions 1-7)
 ├── SESSION_SUMMARY.md           ← Session summaries
 ├── CHANGELOG.md                 ← Project changelog
-├── ... (research, audit, and planning files)
+├── STYLE_GUIDE.md               ← Code and content style guide
+├── research/                    ← Research, audits, and data verification
+│   ├── ALTERNATIVES_RATINGS.md
+│   ├── CHINA_EXPOSURE_CRITERIA.md
+│   ├── DATA_SOURCES.md
+│   ├── DATA_VERIFICATION_LOG.md
+│   ├── DEMOCRATIC_BRANDS_RESEARCH.md
+│   ├── ETHICAL_ALTERNATIVES_RESEARCH.md
+│   ├── SOURCE_BIAS_AUDIT.md
+│   ├── AUDIT_INTERNAL_SUMMARY.md
+│   ├── CODEBASE_AUDIT_SUMMARY.md
+│   ├── FABRICATION_GAP_AUDIT.md
+│   ├── INVESTIGATION_SUMMARY.md
+│   └── SITE_STRUCTURE_ANALYSIS.md
+├── planning/                    ← Satellite TODO lists and planning docs
+│   ├── SIMULATED_DATA_CLEANUP_TODO.md
+│   ├── SITE_CLEANUP_TODO.md
+│   └── SITE_WIDE_TODO.md
 ├── thoughts/                    ← Per-session agent thoughts (Sessions 33-48)
 │   ├── SESSION_33_VERIFICATION_NOTES.md
 │   ├── SESSION_34_VERIFICATION_NOTES.md
 │   └── ... (14 files)
-└── archive/                     ← Historical planning docs (early sessions)
+└── archive/                     ← Historical planning docs and one-time files
     ├── MASTER_TODO_LIST.md
     ├── IMPLEMENTATION_ROADMAP.md
-    └── ... (24 files)
+    └── ... (29 files)
 ```
 
 ## Standing Instructions (from Human)

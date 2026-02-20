@@ -134,7 +134,7 @@ const AIDisinfoDetector = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Brain className="w-8 h-8 text-cyan-400" />
         <div>
@@ -144,7 +144,7 @@ const AIDisinfoDetector = () => {
       </div>
 
       {/* Information Banner */}
-      <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-cyan-500/10 border border-cyan-500/30 p-4 mb-6">
         <h3 className="text-cyan-400 font-bold mb-2">How It Works</h3>
         <p className="text-slate-300 text-sm mb-2">
           This tool analyzes text for common CCP propaganda patterns including denial, whataboutism, deflection, euphemisms, and victim blaming. 
@@ -161,7 +161,7 @@ const AIDisinfoDetector = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Paste article text, social media post, or any content you want to analyze for propaganda patterns..."
-          className="w-full h-40 p-4 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 resize-none"
+          className="w-full h-40 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 resize-none"
         />
         <div className="flex items-center justify-between mt-2">
           <span className="text-sm text-slate-500">
@@ -170,7 +170,7 @@ const AIDisinfoDetector = () => {
           <button
             onClick={analyzeText}
             disabled={!inputText.trim() || isAnalyzing}
-            className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-colors ${
+            className={`flex items-center gap-2 px-6 py-2 font-medium transition-colors ${
               inputText.trim() && !isAnalyzing
                 ? 'bg-cyan-500 hover:bg-cyan-600 text-white'
                 : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -197,7 +197,7 @@ const AIDisinfoDetector = () => {
           <h3 className="text-white font-bold mb-3">Try Example Texts:</h3>
           <div className="grid md:grid-cols-2 gap-3">
             {exampleTexts.map((example, index) => (
-              <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-4">
+              <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-white text-sm">{example.title}</h4>
                   <span className="text-xs text-slate-500">Expected: {example.expectedRisk}</span>
@@ -219,7 +219,7 @@ const AIDisinfoDetector = () => {
       {analysisResult && (
         <div className="space-y-6">
           {/* Risk Score */}
-          <div className={`rounded-lg border p-6 ${getRiskColorClass(analysisResult.riskColor)}`}>
+          <div className={`border p-6 ${getRiskColorClass(analysisResult.riskColor)}`}>
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="text-2xl font-bold mb-1">{analysisResult.riskLevel}</h3>
@@ -246,14 +246,14 @@ const AIDisinfoDetector = () => {
 
           {/* Detected Patterns */}
           {analysisResult.detectedPatterns.length > 0 && (
-            <div className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+            <div className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
               <h3 className="text-white font-bold mb-4 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-yellow-400" />
                 Detected Propaganda Patterns
               </h3>
               <div className="space-y-3">
                 {analysisResult.detectedPatterns.map((pattern, index) => (
-                  <div key={index} className="p-4 bg-slate-800/50 rounded-lg">
+                  <div key={index} className="p-4 bg-[#111820]/50">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-bold text-white">{pattern.category}</h4>
                       <span className="text-sm text-slate-400">
@@ -275,11 +275,11 @@ const AIDisinfoDetector = () => {
 
           {/* Flagged Keywords */}
           {analysisResult.flaggedKeywords.length > 0 && (
-            <div className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+            <div className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
               <h3 className="text-white font-bold mb-3">Flagged Keywords/Phrases</h3>
               <div className="flex flex-wrap gap-2">
                 {analysisResult.flaggedKeywords.map((keyword, index) => (
-                  <span key={index} className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-slate-300">
+                  <span key={index} className="px-3 py-1 bg-[#111820] border border-[#1c2a35] rounded-full text-sm text-slate-300">
                     {keyword}
                   </span>
                 ))}
@@ -288,7 +288,7 @@ const AIDisinfoDetector = () => {
           )}
 
           {/* Recommendations */}
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-5">
+          <div className="bg-blue-500/10 border border-blue-500/30 p-5">
             <h3 className="text-blue-400 font-bold mb-3 flex items-center gap-2">
               <Eye className="w-5 h-5" />
               Recommendations
@@ -326,7 +326,7 @@ const AIDisinfoDetector = () => {
                 setInputText('');
                 setAnalysisResult(null);
               }}
-              className="flex-1 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Analyze New Text
             </button>
@@ -335,11 +335,11 @@ const AIDisinfoDetector = () => {
       )}
 
       {/* Propaganda Patterns Reference */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-4">Common CCP Propaganda Patterns</h3>
         <div className="space-y-3">
           {propagandaPatterns.map((pattern, index) => (
-            <div key={index} className="p-3 bg-slate-800/50 rounded-lg">
+            <div key={index} className="p-3 bg-[#111820]/50">
               <h4 className="font-bold text-white mb-2">{pattern.category}</h4>
               <div className="flex flex-wrap gap-2">
                 {pattern.keywords.slice(0, 5).map((keyword, kIndex) => (
@@ -359,14 +359,14 @@ const AIDisinfoDetector = () => {
       </div>
 
       {/* Additional Resources */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">Learn More About CCP Propaganda</h3>
         <div className="space-y-2">
           <a
             href="https://freedomhouse.org/report/special-report/2021/beijings-global-megaphone"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Freedom House - Beijing's Global Megaphone
@@ -375,7 +375,7 @@ const AIDisinfoDetector = () => {
             href="https://www.aspi.org.au/report/party-speak"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             ASPI - Party Speak: CCP Propaganda Language
@@ -384,7 +384,7 @@ const AIDisinfoDetector = () => {
             href="https://www.ned.org/sharp-power-rising-authoritarian-influence-forum/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             NED - Sharp Power and Authoritarian Influence

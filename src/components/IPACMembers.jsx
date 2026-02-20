@@ -112,7 +112,7 @@ const IPACMembers = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-blue-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center gap-3 mb-4">
           <Building2 className="w-10 h-10 text-slate-300" />
           <div>
@@ -146,7 +146,7 @@ const IPACMembers = () => {
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedCountry === country.code
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {country.name}
@@ -157,11 +157,11 @@ const IPACMembers = () => {
       {/* Members by Country */}
       <div className="space-y-4">
         {filteredCountries.map((country, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">{country.country}</h3>
             <div className="grid md:grid-cols-2 gap-3">
               {country.members.map((member, j) => (
-                <div key={j} className="bg-slate-700/50 rounded-lg p-3 flex justify-between items-center">
+                <div key={j} className="bg-slate-700/50 p-3 flex justify-between items-center">
                   <div>
                     <span className="text-white font-medium">{member.name}</span>
                     <span className="text-slate-400 text-sm ml-2">({member.party})</span>
@@ -180,7 +180,7 @@ const IPACMembers = () => {
       </div>
 
       {/* Achievements */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4">Key Achievements</h3>
         <div className="grid md:grid-cols-2 gap-3">
           {ipacData.achievements.map((achievement, i) => (
@@ -193,14 +193,14 @@ const IPACMembers = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4">Resources</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <a
             href="https://ipac.global/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">IPAC Official Website</h4>
             <p className="text-slate-400 text-sm">Inter-Parliamentary Alliance on China</p>
@@ -209,7 +209,7 @@ const IPACMembers = () => {
             href="https://www.cecc.gov/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4 transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">US CECC</h4>
             <p className="text-slate-400 text-sm">Congressional-Executive Commission on China</p>

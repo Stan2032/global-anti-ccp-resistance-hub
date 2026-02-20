@@ -22,7 +22,7 @@ import {
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
   </div>
 );
 
@@ -37,7 +37,7 @@ const EventMap = lazy(() => import('../components/EventMap'));
 const VictimMemorialWall = lazy(() => import('../components/VictimMemorialWall'));
 
 const CommunitySupport = () => {
-  const [activeTab, setActiveTab] = useState('requests')
+  const [activeTab, setActiveTab] = useState('support')
   const [selectedRequest, setSelectedRequest] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -182,10 +182,10 @@ const CommunitySupport = () => {
       role="button"
       tabIndex={0}
       aria-pressed={selectedRequest === request.id}
-      className={`p-6 rounded-lg border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all ${
         selectedRequest === request.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
-          : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
       <div className="flex items-start justify-between mb-3">
@@ -227,7 +227,7 @@ const CommunitySupport = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -277,7 +277,7 @@ const CommunitySupport = () => {
         <p className="text-slate-400 text-xs font-medium mb-2">Languages</p>
         <div className="flex flex-wrap gap-1">
           {volunteer.languages.map((lang, idx) => (
-            <span key={idx} className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs">
+            <span key={idx} className="px-2 py-1 bg-[#1c2a35] text-slate-300 rounded text-xs">
               {lang}
             </span>
           ))}
@@ -287,7 +287,7 @@ const CommunitySupport = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors text-sm"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors text-sm"
       >
         Connect
       </motion.button>
@@ -307,7 +307,7 @@ const CommunitySupport = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Post Request</span>
@@ -324,7 +324,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-4"
+              className="bg-[#111820] border border-[#1c2a35] p-4"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -339,25 +339,31 @@ const CommunitySupport = () => {
       </div>
       <p className="text-xs text-slate-500 text-center -mt-2">Statistics shown are illustrative targets — this platform is not yet tracking live community data.</p>
 
-      {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700">
-        {['requests', 'volunteers', 'resources', 'report', 'diaspora', 'calendar', 'stories', 'memorial', 'solidarity', 'signup', 'events', 'map'].map((tab) => (
+      {/* Tabs — consolidated from 12 to 5 */}
+      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+        {[
+          { id: 'support', label: 'Support' },
+          { id: 'events', label: 'Events' },
+          { id: 'stories', label: 'Stories' },
+          { id: 'report', label: 'Report' },
+          { id: 'volunteer', label: 'Volunteer' },
+        ].map((tab) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 font-medium transition-colors capitalize ${
-              activeTab === tab
-                ? 'text-blue-400 border-b-2 border-blue-400'
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
                 : 'text-slate-400 hover:text-slate-300'
             }`}
           >
-            {tab}
+            {tab.label}
           </button>
         ))}
       </div>
 
-      {/* Support Requests Tab */}
-      {activeTab === 'requests' && (
+      {/* Support Tab (was: requests + volunteers + resources) */}
+      {activeTab === 'support' && (
         <div className="space-y-6">
           {/* Search and Filter */}
           <div className="flex flex-col md:flex-row gap-4">
@@ -369,24 +375,22 @@ const CommunitySupport = () => {
                 placeholder="Search requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
               {categories.map((cat) => (
-                <motion.button
+                <button
                   key={cat.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm ${
+                  className={`px-4 py-2 whitespace-nowrap transition-colors font-mono text-sm ${
                     selectedCategory === cat.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-[#4afa82]/10 text-[#4afa82] border border-[#4afa82]'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35] border border-[#1c2a35]'
                   }`}
                 >
                   {cat.name}
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>
@@ -408,7 +412,7 @@ const CommunitySupport = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-slate-800 rounded-lg border border-slate-700 p-6 sticky top-20"
+                      className="bg-[#111820] border border-[#1c2a35] p-6 sticky top-20"
                     >
                       <h2 className="text-xl font-bold text-white mb-4">{request.title}</h2>
                       <p className="text-slate-400 text-sm mb-4">{request.description}</p>
@@ -436,195 +440,112 @@ const CommunitySupport = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-                        >
+                        <button className="w-full bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono font-medium transition-colors flex items-center justify-center space-x-2">
                           <Heart className="w-5 h-5" />
-                          <span>Offer Help</span>
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-                        >
+                          <span>$ offer_help</span>
+                        </button>
+                        <button className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 font-mono font-medium transition-colors flex items-center justify-center space-x-2">
                           <MessageCircle className="w-5 h-5" />
-                          <span>Message</span>
-                        </motion.button>
+                          <span>$ message</span>
+                        </button>
                       </div>
                     </motion.div>
                   )
                 })()
               ) : (
-                <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 text-center">
+                <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
                   <Heart className="w-12 h-12 text-slate-600 mx-auto mb-4" />
                   <p className="text-slate-400">Select a request to view details</p>
                 </div>
               )}
             </div>
           </div>
-        </div>
-      )}
 
-      {/* Volunteers Tab */}
-      {activeTab === 'volunteers' && (
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-4">Volunteer Network</h2>
-            <p className="text-slate-400 mb-6">
-              Connect with skilled volunteers ready to help the resistance movement
-            </p>
+          {/* Volunteer Network */}
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── volunteer_network ──</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {volunteers.map((volunteer) => (
+                <VolunteerCard key={volunteer.id} volunteer={volunteer} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {volunteers.map((volunteer) => (
-              <VolunteerCard key={volunteer.id} volunteer={volunteer} />
-            ))}
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-          >
-            Become a Volunteer
-          </motion.button>
-        </div>
-      )}
 
-      {/* Resources Tab */}
-      {activeTab === 'resources' && (
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-4">Support Resources</h2>
-            <p className="text-slate-400 mb-6">
-              Guides and resources for activists seeking or providing support
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
-            >
-              <h3 className="text-white font-semibold mb-2">Emergency Relocation Guide</h3>
-              <p className="text-slate-400 text-sm mb-4">
-                Step-by-step guide for activists needing to leave dangerous areas safely
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-blue-400 hover:text-blue-300 flex items-center space-x-2"
-              >
-                <span>Read Guide</span>
-                <ChevronRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
-            >
-              <h3 className="text-white font-semibold mb-2">Trauma Support Resources</h3>
-              <p className="text-slate-400 text-sm mb-4">
-                Mental health resources and support groups for activists dealing with trauma
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-blue-400 hover:text-blue-300 flex items-center space-x-2"
-              >
-                <span>Access Resources</span>
-                <ChevronRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
-            >
-              <h3 className="text-white font-semibold mb-2">Legal Support Directory</h3>
-              <p className="text-slate-400 text-sm mb-4">
-                Directory of lawyers and legal organizations providing pro-bono support
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-blue-400 hover:text-blue-300 flex items-center space-x-2"
-              >
-                <span>Find Lawyers</span>
-                <ChevronRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-slate-800 rounded-lg border border-slate-700 p-6"
-            >
-              <h3 className="text-white font-semibold mb-2">Fundraising Toolkit</h3>
-              <p className="text-slate-400 text-sm mb-4">
-                Tools and strategies for fundraising to support activists in need
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-blue-400 hover:text-blue-300 flex items-center space-x-2"
-              >
-                <span>View Toolkit</span>
-                <ChevronRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
+          {/* Support Resources */}
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── support_resources ──</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { title: 'Emergency Relocation Guide', desc: 'Step-by-step guide for activists needing to leave dangerous areas safely' },
+                { title: 'Trauma Support Resources', desc: 'Mental health resources and support groups for activists dealing with trauma' },
+                { title: 'Legal Support Directory', desc: 'Directory of lawyers and legal organizations providing pro-bono support' },
+                { title: 'Fundraising Toolkit', desc: 'Tools and strategies for fundraising to support activists in need' },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors">
+                  <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+                  <p className="text-slate-400 text-sm mb-4">{item.desc}</p>
+                  <button type="button" className="text-[#4afa82] font-mono text-sm flex items-center space-x-2 hover:text-[#7dffaa] transition-colors">
+                    <span>$ read_guide</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Report Tab */}
-      {activeTab === 'report' && (
-        <Suspense fallback={<SectionLoader />}><ReportSighting /></Suspense>
-      )}
-
-      {/* Diaspora Tab */}
-      {activeTab === 'diaspora' && (
-        <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
-      )}
-
-      {/* Calendar Tab */}
-      {activeTab === 'calendar' && (
-        <Suspense fallback={<SectionLoader />}><EventCalendar /></Suspense>
-      )}
-
-      {/* Survivor Stories Tab */}
-      {activeTab === 'stories' && (
-        <Suspense fallback={<SectionLoader />}><SurvivorStories /></Suspense>
-      )}
-
-      {/* Victim Memorial Tab */}
-      {activeTab === 'memorial' && (
-        <Suspense fallback={<SectionLoader />}><VictimMemorialWall /></Suspense>
-      )}
-
-      {/* Solidarity Wall Tab */}
-      {activeTab === 'solidarity' && (
-        <Suspense fallback={<SectionLoader />}><SolidarityWall /></Suspense>
-      )}
-
-      {/* Volunteer Signup Tab */}
-      {activeTab === 'signup' && (
-        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
-      )}
-
+      {/* Events Tab (was: calendar + events + map) */}
       {activeTab === 'events' && (
-        <Suspense fallback={<SectionLoader />}><EventRSVP /></Suspense>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── event_calendar ──</h2>
+            <Suspense fallback={<SectionLoader />}><EventCalendar /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── upcoming_events ──</h2>
+            <Suspense fallback={<SectionLoader />}><EventRSVP /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── event_map ──</h2>
+            <Suspense fallback={<SectionLoader />}><EventMap /></Suspense>
+          </div>
+        </div>
       )}
 
-      {/* Event Map Tab */}
-      {activeTab === 'map' && (
-        <Suspense fallback={<SectionLoader />}><EventMap /></Suspense>
+      {/* Stories Tab (was: stories + memorial + solidarity) */}
+      {activeTab === 'stories' && (
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><SurvivorStories /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── memorial_wall ──</h2>
+            <Suspense fallback={<SectionLoader />}><VictimMemorialWall /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── solidarity_wall ──</h2>
+            <Suspense fallback={<SectionLoader />}><SolidarityWall /></Suspense>
+          </div>
+        </div>
+      )}
+
+      {/* Report Tab (was: report + diaspora) */}
+      {activeTab === 'report' && (
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><ReportSighting /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── diaspora_support ──</h2>
+            <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
+          </div>
+        </div>
+      )}
+
+      {/* Volunteer Tab */}
+      {activeTab === 'volunteer' && (
+        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
       )}
     </div>
   )

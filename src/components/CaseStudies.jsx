@@ -217,9 +217,9 @@ export default function CaseStudies() {
     const caseData = caseStudies.find(c => c.id === selectedCase);
     
     return (
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700">
+      <div className="bg-[#111820]/50 border border-[#1c2a35]">
         {/* Header */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedCase(null)}
             className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
@@ -228,7 +228,7 @@ export default function CaseStudies() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-slate-700 rounded-xl flex items-center justify-center">
+            <div className="w-20 h-20 bg-slate-700 flex items-center justify-center">
               {caseData.photo ? <span className="text-4xl">{caseData.photo}</span> : <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
@@ -253,27 +253,27 @@ export default function CaseStudies() {
         </div>
 
         {/* Quick Facts */}
-        <div className="p-6 border-b border-slate-700 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-slate-900/50 rounded-lg p-3">
+        <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Born</p>
             <p className="text-white font-medium">{caseData.birthYear}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Nationality</p>
             <p className="text-white font-medium">{caseData.nationality}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Status</p>
             <p className="text-white font-medium">{caseData.status}</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3">
+          <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Category</p>
             <p className="text-white font-medium">{caseData.category}</p>
           </div>
         </div>
 
         {/* Timeline */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('timeline')}
             className="w-full flex items-center justify-between text-left"
@@ -301,7 +301,7 @@ export default function CaseStudies() {
         </div>
 
         {/* Charges & Verdict */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('legal')}
             className="w-full flex items-center justify-between text-left"
@@ -318,7 +318,7 @@ export default function CaseStudies() {
               <div>
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Charges</h4>
                 {caseData.charges.map((charge, i) => (
-                  <div key={i} className="bg-red-900/20 border border-red-800 rounded-lg p-3 mb-2">
+                  <div key={i} className="bg-red-900/20 border border-red-800 p-3 mb-2">
                     <p className="text-white font-medium">{charge.charge}</p>
                     <p className="text-sm text-slate-400">Law: {charge.law}</p>
                     <p className="text-sm text-red-400">Max sentence: {charge.maxSentence}</p>
@@ -328,7 +328,7 @@ export default function CaseStudies() {
               
               <div>
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Verdict</h4>
-                <div className="bg-slate-900/50 rounded-lg p-4">
+                <div className="bg-[#0a0e14]/50 p-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs text-slate-500">Date</p>
@@ -354,7 +354,7 @@ export default function CaseStudies() {
         </div>
 
         {/* International Response */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('international')}
             className="w-full flex items-center justify-between text-left"
@@ -369,7 +369,7 @@ export default function CaseStudies() {
           {expandedSections.international && (
             <div className="mt-4 space-y-2">
               {caseData.internationalResponse.map((response, i) => (
-                <div key={i} className="flex items-start gap-3 bg-slate-900/50 rounded-lg p-3">
+                <div key={i} className="flex items-start gap-3 bg-[#0a0e14]/50 p-3">
                   <Globe className="w-5 h-5 text-slate-300" />
                   <div>
                     <p className="text-white font-medium">{response.country}</p>
@@ -382,14 +382,14 @@ export default function CaseStudies() {
         </div>
 
         {/* How to Help */}
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-[#1c2a35]">
           <h3 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
             <Heart className="w-5 h-5 text-pink-400" />
             How You Can Help
           </h3>
           <div className="grid md:grid-cols-2 gap-3">
             {caseData.howToHelp.map((action, i) => (
-              <div key={i} className="bg-slate-900/50 rounded-lg p-4 hover:bg-slate-900/70 transition-colors">
+              <div key={i} className="bg-[#0a0e14]/50 p-4 hover:bg-[#0a0e14]/70 transition-colors">
                 <p className="text-white font-medium mb-1">{action.action}</p>
                 {action.description && <p className="text-sm text-slate-400 mb-2">{action.description}</p>}
                 {action.link && (
@@ -422,7 +422,7 @@ export default function CaseStudies() {
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm text-slate-300 flex items-center gap-1 transition-colors"
+                className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-sm text-slate-300 flex items-center gap-1 transition-colors"
               >
                 {source.name} <ExternalLink className="w-3 h-3" />
               </a>
@@ -434,7 +434,7 @@ export default function CaseStudies() {
   }
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center gap-3 mb-6">
         <BookOpen className="w-6 h-6 text-blue-400" />
         <div>
@@ -451,10 +451,10 @@ export default function CaseStudies() {
               setSelectedCase(caseData.id);
               setExpandedSections({ timeline: true, legal: true, international: true });
             }}
-            className="bg-slate-900/50 rounded-lg p-4 text-left hover:bg-slate-900/70 transition-colors border border-slate-700 hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-slate-700 flex items-center justify-center">
                 {caseData.photo ? <span className="text-2xl">{caseData.photo}</span> : <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div>
@@ -475,7 +475,7 @@ export default function CaseStudies() {
         ))}
       </div>
 
-      <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+      <div className="mt-6 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]">
         <p className="text-sm text-slate-400">
           <strong className="text-white">Note:</strong> These case studies are compiled from verified sources including court documents, 
           human rights organizations, and reputable news outlets. All information is regularly updated as cases develop.

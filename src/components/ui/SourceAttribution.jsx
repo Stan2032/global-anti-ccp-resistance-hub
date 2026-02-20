@@ -79,7 +79,7 @@ const SourceAttribution = ({ source, compact = false }) => {
   }
 
   return (
-    <div className="bg-slate-800/50 rounded-lg border border-slate-700/50 p-4">
+    <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4">
       <div className="flex items-start justify-between">
         <div className="flex items-start space-x-3 flex-1">
           {/* Source Icon */}

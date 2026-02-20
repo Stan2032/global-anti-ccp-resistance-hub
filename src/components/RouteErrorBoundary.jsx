@@ -50,7 +50,7 @@ class RouteErrorBoundary extends React.Component {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={this.handleRetry}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
               >
                 <RefreshCw className="w-4 h-4" aria-hidden="true" />
                 Try Again
@@ -58,7 +58,7 @@ class RouteErrorBoundary extends React.Component {
               <Link
                 to="/"
                 onClick={this.handleRetry}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
               >
                 <Home className="w-4 h-4" aria-hidden="true" />
                 Go to Dashboard

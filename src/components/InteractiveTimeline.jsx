@@ -84,7 +84,7 @@ export default function InteractiveTimeline() {
   const yearRange = getYearRange();
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <Calendar className="w-6 h-6 text-red-400" />
@@ -96,14 +96,14 @@ export default function InteractiveTimeline() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.25))}
-            className="p-2 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors"
+            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
             title="Zoom out"
           >
             <ZoomOut className="w-4 h-4 text-slate-300" />
           </button>
           <button
             onClick={() => setZoomLevel(Math.min(2, zoomLevel + 0.25))}
-            className="p-2 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors"
+            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
             title="Zoom in"
           >
             <ZoomIn className="w-4 h-4 text-slate-300" />
@@ -124,7 +124,7 @@ export default function InteractiveTimeline() {
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
               selectedCategory === category.id
                 ? `${category.color} text-white`
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {category.name}
@@ -136,13 +136,13 @@ export default function InteractiveTimeline() {
       <div className="flex items-center justify-center gap-4 mb-6">
         <button
           onClick={handlePrevious}
-          className="p-2 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors"
+          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronLeft className="w-5 h-5 text-slate-300" />
         </button>
         <button
           onClick={() => setIsPlaying(!isPlaying)}
-          className={`p-3 rounded-lg transition-colors ${
+          className={`p-3 transition-colors ${
             isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
           }`}
         >
@@ -150,7 +150,7 @@ export default function InteractiveTimeline() {
         </button>
         <button
           onClick={handleNext}
-          className="p-2 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors"
+          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronRight className="w-5 h-5 text-slate-300" />
         </button>
@@ -195,7 +195,7 @@ export default function InteractiveTimeline() {
 
       {/* Event Details */}
       {selectedEvent ? (
-        <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-600">
+        <div className="bg-[#0a0e14]/50 p-6 border border-slate-600">
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -215,37 +215,37 @@ export default function InteractiveTimeline() {
           
           <p className="text-slate-300 mb-4">{selectedEvent.description}</p>
           
-          <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
+          <div className="bg-[#111820]/50 p-4 mb-4">
             <p className="text-slate-300 text-sm">{selectedEvent.details}</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
             {selectedEvent.casualties && (
-              <div className="bg-red-900/30 rounded-lg p-3">
+              <div className="bg-red-900/30 p-3">
                 <p className="text-xs text-red-400 mb-1">Casualties</p>
                 <p className="text-white font-semibold">{selectedEvent.casualties}</p>
               </div>
             )}
             {selectedEvent.detained && (
-              <div className="bg-orange-900/30 rounded-lg p-3">
+              <div className="bg-orange-900/30 p-3">
                 <p className="text-xs text-orange-400 mb-1">Detained</p>
                 <p className="text-white font-semibold">{selectedEvent.detained}</p>
               </div>
             )}
             {selectedEvent.participants && (
-              <div className="bg-blue-900/30 rounded-lg p-3">
+              <div className="bg-blue-900/30 p-3">
                 <p className="text-xs text-blue-400 mb-1">Participants</p>
                 <p className="text-white font-semibold">{selectedEvent.participants}</p>
               </div>
             )}
             {selectedEvent.sentence && (
-              <div className="bg-purple-900/30 rounded-lg p-3">
+              <div className="bg-purple-900/30 p-3">
                 <p className="text-xs text-purple-400 mb-1">Sentence</p>
                 <p className="text-white font-semibold">{selectedEvent.sentence}</p>
               </div>
             )}
             {selectedEvent.stations && (
-              <div className="bg-green-900/30 rounded-lg p-3">
+              <div className="bg-green-900/30 p-3">
                 <p className="text-xs text-green-400 mb-1">Police Stations</p>
                 <p className="text-white font-semibold">{selectedEvent.stations}</p>
               </div>
@@ -278,7 +278,7 @@ export default function InteractiveTimeline() {
           )}
         </div>
       ) : (
-        <div className="bg-slate-900/50 rounded-lg p-8 border border-slate-600 text-center">
+        <div className="bg-[#0a0e14]/50 p-8 border border-slate-600 text-center">
           <Info className="w-12 h-12 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">Click on a timeline marker to view event details</p>
           <p className="text-slate-500 text-sm mt-2">Or press Play to auto-advance through events</p>
@@ -286,7 +286,7 @@ export default function InteractiveTimeline() {
       )}
 
       {/* Legend */}
-      <div className="mt-6 pt-4 border-t border-slate-700">
+      <div className="mt-6 pt-4 border-t border-[#1c2a35]">
         <h4 className="text-sm font-semibold text-slate-400 mb-3">Legend</h4>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
@@ -308,19 +308,19 @@ export default function InteractiveTimeline() {
 
       {/* Statistics */}
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+        <div className="bg-slate-700/50 p-3 text-center">
           <p className="text-2xl font-bold text-white">{timelineEvents.length}</p>
           <p className="text-xs text-slate-400">Total Events</p>
         </div>
-        <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+        <div className="bg-slate-700/50 p-3 text-center">
           <p className="text-2xl font-bold text-white">{yearRange.max - yearRange.min + 1}</p>
           <p className="text-xs text-slate-400">Years Covered</p>
         </div>
-        <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+        <div className="bg-slate-700/50 p-3 text-center">
           <p className="text-2xl font-bold text-red-400">{timelineEvents.filter(e => e.significance === 'critical').length}</p>
           <p className="text-xs text-slate-400">Critical Events</p>
         </div>
-        <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+        <div className="bg-slate-700/50 p-3 text-center">
           <p className="text-2xl font-bold text-yellow-400">{timelineEvents.filter(e => e.category === 'hongkong').length}</p>
           <p className="text-xs text-slate-400">Hong Kong Events</p>
         </div>

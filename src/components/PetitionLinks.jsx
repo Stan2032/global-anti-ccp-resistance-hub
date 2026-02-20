@@ -101,7 +101,7 @@ const PetitionLinks = () => {
         {petitions.map((petition) => (
           <div
             key={petition.id}
-            className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden hover:border-slate-500 transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-slate-500 transition-colors"
           >
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
@@ -121,14 +121,14 @@ const PetitionLinks = () => {
                 </div>
                 <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-red-500 to-orange-500 rounded-full transition-all"
+                    className="h-full bg-[#4afa82] transition-all"
                     style={{ width: `${petition.progress}%` }}
                   />
                 </div>
               </div>
 
               {expandedPetition === petition.id && (
-                <div className="mb-3 p-3 bg-slate-900/50 rounded-lg">
+                <div className="mb-3 p-3 bg-[#0a0e14]/50">
                   <p className="text-sm text-slate-300 mb-2">{petition.description}</p>
                   <div className="space-y-1">
                     <p className="text-xs text-slate-400 font-semibold">Actions you can take:</p>
@@ -147,13 +147,13 @@ const PetitionLinks = () => {
                   href={petition.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-lg text-sm font-semibold transition-colors"
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 text-sm font-semibold transition-colors"
                 >
                   Sign Now
                 </a>
                 <button
                   onClick={() => setExpandedPetition(expandedPetition === petition.id ? null : petition.id)}
-                  className="bg-slate-700 hover:bg-slate-600 text-white py-2 px-3 rounded-lg text-sm transition-colors"
+                  className="bg-slate-700 hover:bg-[#1c2a35] text-white py-2 px-3 text-sm transition-colors"
                 >
                   {expandedPetition === petition.id ? '−' : '+'}
                 </button>
@@ -164,7 +164,7 @@ const PetitionLinks = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-700/50 rounded-lg p-4 mt-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-4 mt-6">
         <div className="flex items-center gap-3">
           <Megaphone className="w-8 h-8 text-slate-300" />
           <div>

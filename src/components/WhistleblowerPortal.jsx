@@ -129,7 +129,7 @@ const WhistleblowerPortal = () => {
   ];
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Shield className="w-8 h-8 text-purple-400" />
         <div>
@@ -139,7 +139,7 @@ const WhistleblowerPortal = () => {
       </div>
 
       {/* Critical Warning */}
-      <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-red-500/10 border border-red-500/30 p-4 mb-6">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -190,7 +190,7 @@ const WhistleblowerPortal = () => {
 
           <div className="space-y-3">
             {securityChecklist.map((item, index) => (
-              <div key={index} className={`p-4 rounded-lg border ${item.critical ? 'bg-red-500/10 border-red-500/30' : 'bg-slate-900/50 border-slate-700/50'}`}>
+              <div key={index} className={`p-4 border ${item.critical ? 'bg-red-500/10 border-red-500/30' : 'bg-[#0a0e14]/50 border-[#1c2a35]/50'}`}>
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 mt-1">
                     {item.critical ? (
@@ -226,7 +226,7 @@ const WhistleblowerPortal = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-3 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+          <div className="flex items-center gap-3 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
             <input
               aria-label="I understand the security protocols"
               type="checkbox"
@@ -243,7 +243,7 @@ const WhistleblowerPortal = () => {
           <button
             onClick={() => setStep(2)}
             disabled={!agreedToTerms}
-            className={`w-full py-3 rounded-lg font-medium transition-colors ${
+            className={`w-full py-3 font-medium transition-colors ${
               agreedToTerms
                 ? 'bg-purple-500 hover:bg-purple-600 text-white'
                 : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -266,7 +266,7 @@ const WhistleblowerPortal = () => {
 
           <div className="space-y-4">
             {submissionOrganizations.map((org, index) => (
-              <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-purple-500/30 transition-colors">
+              <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-purple-500/30 transition-colors">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
@@ -283,7 +283,7 @@ const WhistleblowerPortal = () => {
                     <p className="text-sm text-slate-300 mb-3">{org.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {org.features.map((feature, fIndex) => (
-                        <span key={fIndex} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-400">
+                        <span key={fIndex} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-400">
                           {feature}
                         </span>
                       ))}
@@ -294,7 +294,7 @@ const WhistleblowerPortal = () => {
                   href={org.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors text-sm inline-flex mt-3"
+                  className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white transition-colors text-sm inline-flex mt-3"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Visit Submission Portal
@@ -306,13 +306,13 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>
             <button
               onClick={() => setStep(3)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
             >
               Continue to Step 3
             </button>
@@ -332,7 +332,7 @@ const WhistleblowerPortal = () => {
 
           <div className="space-y-4">
             {documentTypes.map((doc, index) => (
-              <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+              <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
                 <div className="flex items-start gap-3 mb-3">
                   <FileText className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
                   <div className="flex-1">
@@ -350,7 +350,7 @@ const WhistleblowerPortal = () => {
                       <div className="text-sm text-slate-400 mb-1">Examples:</div>
                       <div className="flex flex-wrap gap-2">
                         {doc.examples.map((example, eIndex) => (
-                          <span key={eIndex} className="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">
+                          <span key={eIndex} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
                             {example}
                           </span>
                         ))}
@@ -369,13 +369,13 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(2)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>
             <button
               onClick={() => setStep(4)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
             >
               Continue to Step 4
             </button>
@@ -394,7 +394,7 @@ const WhistleblowerPortal = () => {
           </div>
 
           <div className="space-y-3">
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -404,7 +404,7 @@ const WhistleblowerPortal = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -414,7 +414,7 @@ const WhistleblowerPortal = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -424,7 +424,7 @@ const WhistleblowerPortal = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -434,7 +434,7 @@ const WhistleblowerPortal = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -444,7 +444,7 @@ const WhistleblowerPortal = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+            <div className="p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
@@ -455,7 +455,7 @@ const WhistleblowerPortal = () => {
             </div>
           </div>
 
-          <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
+          <div className="bg-purple-500/10 border border-purple-500/30 p-4">
             <h3 className="text-purple-400 font-bold mb-2">You're Ready</h3>
             <p className="text-slate-300 text-sm mb-3">
               You now have the information needed to safely submit evidence. Return to Step 2 to choose an organization and access their secure submission portal.
@@ -468,13 +468,13 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(3)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>
             <button
               onClick={() => setStep(2)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
             >
               Go to Submission Organizations
             </button>
@@ -483,14 +483,14 @@ const WhistleblowerPortal = () => {
       )}
 
       {/* Additional Resources */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">Additional Resources</h3>
         <div className="space-y-2">
           <a
             href="https://freedom.press/training/everything-you-wanted-know-about-media-source-protection/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Freedom of the Press Foundation - Source Protection Guide
@@ -499,7 +499,7 @@ const WhistleblowerPortal = () => {
             href="https://www.eff.org/issues/anonymity"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             EFF - Anonymity Guide
@@ -508,7 +508,7 @@ const WhistleblowerPortal = () => {
             href="https://ssd.eff.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Surveillance Self-Defense

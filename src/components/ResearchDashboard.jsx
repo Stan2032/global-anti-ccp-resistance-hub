@@ -60,11 +60,11 @@ const ResearchDashboard = () => {
   });
 
   return (
-    <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
+    <div className="bg-[#111820]/50 border border-[#1c2a35]/50 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-slate-700/50">
+      <div className="p-6 border-b border-[#1c2a35]/50">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
+          <div className="p-2 bg-blue-500/20">
             <FileText className="w-6 h-6 text-blue-400" />
           </div>
           <div>
@@ -77,7 +77,7 @@ const ResearchDashboard = () => {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 rounded-lg p-3">
+          <div className="bg-slate-700/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Users className="w-4 h-4" />
               Political Prisoners
@@ -85,7 +85,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalPrisoners}</div>
             <div className="text-xs text-red-400">{researchStats.prisonersByStatus.detained} detained</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3">
+          <div className="bg-slate-700/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Newspaper className="w-4 h-4" />
               News Topics
@@ -93,7 +93,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalNewsTopics}</div>
             <div className="text-xs text-yellow-400">{researchStats.highSignificanceNews} high priority</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3">
+          <div className="bg-slate-700/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <MapPin className="w-4 h-4" />
               Police Stations
@@ -101,7 +101,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalPoliceStations}</div>
             <div className="text-xs text-green-400">{researchStats.stationsByStatus.closed} closed</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3">
+          <div className="bg-slate-700/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Shield className="w-4 h-4" />
               Data Quality
@@ -113,7 +113,7 @@ const ResearchDashboard = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-700/50 overflow-x-auto">
+      <div className="flex border-b border-[#1c2a35]/50 overflow-x-auto">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -121,7 +121,7 @@ const ResearchDashboard = () => {
             className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
               activeTab === tab.id
                 ? 'text-blue-400 border-b-2 border-blue-400 bg-blue-500/10'
-                : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
+                : 'text-slate-400 hover:text-white hover:bg-[#111820]/30'
             }`}
           >
             <tab.icon className="w-4 h-4" />
@@ -132,7 +132,7 @@ const ResearchDashboard = () => {
 
       {/* Search and Filter */}
       {activeTab !== 'overview' && (
-        <div className="p-4 border-b border-slate-700/50 flex flex-wrap gap-3">
+        <div className="p-4 border-b border-[#1c2a35]/50 flex flex-wrap gap-3">
           <div className="relative flex-1 min-w-[200px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
@@ -141,7 +141,7 @@ const ResearchDashboard = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
             />
           </div>
           {activeTab === 'prisoners' && (
@@ -149,7 +149,7 @@ const ResearchDashboard = () => {
               aria-label="Status filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+              className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
             >
               <option value="all">All Status</option>
               <option value="DETAINED">Detained</option>
@@ -165,7 +165,7 @@ const ResearchDashboard = () => {
               aria-label="Status filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+              className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
             >
               <option value="all">All Status</option>
               <option value="CLOSED">Closed</option>
@@ -187,7 +187,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">Political Prisoners by Status</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {Object.entries(researchStats.prisonersByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-slate-700/30 rounded-lg p-3 flex items-center justify-between">
+                  <div key={status} className="bg-slate-700/30 p-3 flex items-center justify-between">
                     <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
                     <span className="text-xl font-bold text-white">{count}</span>
                   </div>
@@ -200,7 +200,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">Police Stations by Status</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {Object.entries(researchStats.stationsByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-slate-700/30 rounded-lg p-3 flex items-center justify-between">
+                  <div key={status} className="bg-slate-700/30 p-3 flex items-center justify-between">
                     <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
                     <span className="text-xl font-bold text-white">{count}</span>
                   </div>
@@ -213,7 +213,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">High Priority News</h3>
               <div className="space-y-2">
                 {recentNews.filter(n => n.significance === 'HIGH').slice(0, 5).map((news, idx) => (
-                  <div key={idx} className="bg-slate-700/30 rounded-lg p-3">
+                  <div key={idx} className="bg-slate-700/30 p-3">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <h4 className="text-white font-medium">{news.headline}</h4>
@@ -236,7 +236,7 @@ const ResearchDashboard = () => {
         {activeTab === 'prisoners' && (
           <div className="space-y-3">
             {filteredPrisoners.map((prisoner, idx) => (
-              <div key={idx} className="bg-slate-700/30 rounded-lg p-4">
+              <div key={idx} className="bg-slate-700/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -263,7 +263,7 @@ const ResearchDashboard = () => {
                       href={prisoner.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 rounded-lg hover:bg-slate-600 transition-colors"
+                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>
@@ -283,7 +283,7 @@ const ResearchDashboard = () => {
         {activeTab === 'news' && (
           <div className="space-y-3">
             {recentNews.map((news, idx) => (
-              <div key={idx} className="bg-slate-700/30 rounded-lg p-4">
+              <div key={idx} className="bg-slate-700/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -314,7 +314,7 @@ const ResearchDashboard = () => {
                       href={news.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 rounded-lg hover:bg-slate-600 transition-colors"
+                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>
@@ -329,7 +329,7 @@ const ResearchDashboard = () => {
         {activeTab === 'stations' && (
           <div className="space-y-3">
             {filteredStations.map((station, idx) => (
-              <div key={idx} className="bg-slate-700/30 rounded-lg p-4">
+              <div key={idx} className="bg-slate-700/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -364,7 +364,7 @@ const ResearchDashboard = () => {
                       href={station.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 rounded-lg hover:bg-slate-600 transition-colors"
+                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>

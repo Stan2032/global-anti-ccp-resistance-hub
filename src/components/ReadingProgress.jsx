@@ -166,7 +166,7 @@ export default function ReadingProgress() {
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+    <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <BookOpen className="w-6 h-6 text-blue-400" />
@@ -177,7 +177,7 @@ export default function ReadingProgress() {
         </div>
         <button
           onClick={resetProgress}
-          className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+          className="p-2 text-slate-400 hover:text-white hover:bg-[#111820] transition-colors"
           title="Reset progress"
         >
           <RotateCcw className="w-5 h-5" />
@@ -186,28 +186,28 @@ export default function ReadingProgress() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4">
+        <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Check className="w-4 h-4 text-green-400" />
             <span className="text-xs text-slate-500">Completed</span>
           </div>
           <p className="text-2xl font-bold text-white">{totalCompleted}/{readingMaterials.length}</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4">
+        <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <BookOpen className="w-4 h-4 text-blue-400" />
             <span className="text-xs text-slate-500">Pages Read</span>
           </div>
           <p className="text-2xl font-bold text-white">{pagesRead.toLocaleString()}</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4">
+        <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <TrendingUp className="w-4 h-4 text-purple-400" />
             <span className="text-xs text-slate-500">Progress</span>
           </div>
           <p className="text-2xl font-bold text-white">{Math.round((pagesRead / totalPages) * 100)}%</p>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4">
+        <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Award className="w-4 h-4 text-yellow-400" />
             <span className="text-xs text-slate-500">Achievements</span>
@@ -218,7 +218,7 @@ export default function ReadingProgress() {
 
       {/* Achievements */}
       {earnedAchievements.length > 0 && (
-        <div className="mb-6 p-4 bg-yellow-900/20 border border-yellow-700 rounded-lg">
+        <div className="mb-6 p-4 bg-yellow-900/20 border border-yellow-700">
           <h3 className="text-sm font-semibold text-yellow-400 mb-2">Achievements Earned</h3>
           <div className="flex flex-wrap gap-2">
             {achievements.filter(a => earnedAchievements.includes(a.id)).map(achievement => (
@@ -243,7 +243,7 @@ export default function ReadingProgress() {
             aria-label="Filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
+            className="bg-slate-700 text-white text-sm px-3 py-1.5 border border-slate-600"
           >
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>
@@ -254,7 +254,7 @@ export default function ReadingProgress() {
           aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm rounded-lg px-3 py-1.5 border border-slate-600"
+          className="bg-slate-700 text-white text-sm px-3 py-1.5 border border-slate-600"
         >
           {types.map(type => (
             <option key={type} value={type}>{type === 'all' ? 'All Types' : type.charAt(0).toUpperCase() + type.slice(1) + 's'}</option>
@@ -284,10 +284,10 @@ export default function ReadingProgress() {
           return (
             <div
               key={material.id}
-              className={`bg-slate-900/50 rounded-lg p-4 border transition-colors ${
+              className={`bg-[#0a0e14]/50 p-4 border transition-colors ${
                 itemProgress.completed 
                   ? 'border-green-700 bg-green-900/10' 
-                  : 'border-slate-700 hover:border-slate-600'
+                  : 'border-[#1c2a35] hover:border-slate-600'
               }`}
             >
               <div className="flex items-start gap-4">
@@ -327,10 +327,10 @@ export default function ReadingProgress() {
                 <div className="flex flex-col gap-2">
                   <button
                     onClick={() => toggleCompleted(material.id)}
-                    className={`p-2 rounded-lg transition-colors ${
+                    className={`p-2 transition-colors ${
                       itemProgress.completed
                         ? 'bg-green-600 text-white'
-                        : 'bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white'
+                        : 'bg-slate-700 text-slate-400 hover:bg-[#1c2a35] hover:text-white'
                     }`}
                     title={itemProgress.completed ? 'Mark as unread' : 'Mark as complete'}
                   >
@@ -369,7 +369,7 @@ export default function ReadingProgress() {
       )}
 
       {/* Tips */}
-      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700 rounded-lg">
+      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700">
         <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-2"><Library className="w-4 h-4" /> Reading Tips</h3>
         <ul className="text-sm text-slate-400 space-y-1">
           <li>• Start with ⭐ essential readings for foundational knowledge</li>

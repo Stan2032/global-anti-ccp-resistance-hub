@@ -198,7 +198,7 @@ const DataExport = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-900/50 to-blue-900/50 rounded-xl p-6 border border-cyan-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <div className="flex items-center mb-4">
           <Upload className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -206,7 +206,7 @@ const DataExport = () => {
             <p className="text-slate-400">Download structured data for research and analysis</p>
           </div>
         </div>
-        <div className="bg-slate-800/50 rounded-lg p-4 mt-4">
+        <div className="bg-[#111820]/50 p-4 mt-4">
           <p className="text-sm text-slate-300">
             <strong className="text-cyan-400">License:</strong> All data is provided under{' '}
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">
@@ -218,19 +218,19 @@ const DataExport = () => {
       </div>
 
       {/* Dataset Selection */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-white">Select Datasets</h3>
           <div className="flex space-x-2">
             <button
               onClick={selectAll}
-              className="px-3 py-1 text-sm bg-slate-700 hover:bg-slate-600 text-slate-300 rounded transition-colors"
+              className="px-3 py-1 text-sm bg-slate-700 hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
             >
               Select All
             </button>
             <button
               onClick={selectNone}
-              className="px-3 py-1 text-sm bg-slate-700 hover:bg-slate-600 text-slate-300 rounded transition-colors"
+              className="px-3 py-1 text-sm bg-slate-700 hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
             >
               Clear
             </button>
@@ -242,7 +242,7 @@ const DataExport = () => {
             <button
               key={dataset.id}
               onClick={() => toggleDataset(dataset.id)}
-              className={`p-4 rounded-lg border text-left transition-all ${
+              className={`p-4 border text-left transition-all ${
                 selectedDatasets.includes(dataset.id)
                   ? 'bg-cyan-900/30 border-cyan-500'
                   : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
@@ -278,14 +278,14 @@ const DataExport = () => {
       </div>
 
       {/* Format Selection */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4">Export Format</h3>
         <div className="flex flex-wrap gap-4">
           {formats.map(format => (
             <button
               key={format.id}
               onClick={() => setExportFormat(format.id)}
-              className={`flex-1 min-w-[150px] p-4 rounded-lg border text-left transition-all ${
+              className={`flex-1 min-w-[150px] p-4 border text-left transition-all ${
                 exportFormat === format.id
                   ? 'bg-cyan-900/30 border-cyan-500'
                   : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
@@ -302,7 +302,7 @@ const DataExport = () => {
       </div>
 
       {/* Export Summary & Button */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold text-white">Export Summary</h3>
@@ -313,7 +313,7 @@ const DataExport = () => {
           <button
             onClick={handleExport}
             disabled={selectedDatasets.length === 0 || isExporting}
-            className={`px-6 py-3 rounded-lg font-medium transition-all flex items-center ${
+            className={`px-6 py-3 font-medium transition-all flex items-center ${
               selectedDatasets.length === 0
                 ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
                 : isExporting
@@ -341,7 +341,7 @@ const DataExport = () => {
         </div>
 
         {exportComplete && (
-          <div className="mt-4 p-3 bg-green-900/30 border border-green-700 rounded-lg flex items-center">
+          <div className="mt-4 p-3 bg-green-900/30 border border-green-700 flex items-center">
             <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
@@ -351,7 +351,7 @@ const DataExport = () => {
       </div>
 
       {/* Usage Guidelines */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-1"><ClipboardList className="w-5 h-5" /> Usage Guidelines</h3>
         <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
           <div>
@@ -366,7 +366,7 @@ const DataExport = () => {
           </div>
           <div>
             <h4 className="font-medium text-white mb-2">Attribution Format</h4>
-            <div className="bg-slate-900 rounded p-3 font-mono text-xs text-slate-400">
+            <div className="bg-[#0a0e14] rounded p-3 font-mono text-xs text-slate-400">
               Data source: Global Anti-CCP Resistance Hub<br />
               URL: https://stan2032.github.io/global-anti-ccp-resistance-hub/<br />
               License: CC BY 4.0<br />

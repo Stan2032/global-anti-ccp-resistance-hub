@@ -337,7 +337,7 @@ const SafetyChecklist = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
           <Shield className="w-8 h-8 text-green-400 mr-3" />
           <div>
@@ -352,7 +352,7 @@ const SafetyChecklist = () => {
       </div>
 
       {/* Progress */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-white font-medium">Overall Progress</span>
           <span className="text-slate-400">{completedItems}/{totalItems} items</span>
@@ -378,10 +378,10 @@ const SafetyChecklist = () => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? 'bg-green-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
               <cat.Icon className="w-4 h-4" />
@@ -393,7 +393,7 @@ const SafetyChecklist = () => {
       </div>
 
       {/* Category Progress */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-white font-medium">
             {categories.find(c => c.id === activeCategory)?.name} Progress
@@ -413,7 +413,7 @@ const SafetyChecklist = () => {
         {currentItems.map(item => (
           <div 
             key={item.id}
-            className={`rounded-xl border p-4 ${priorityColors[item.priority]} ${
+            className={`border p-4 ${priorityColors[item.priority]} ${
               checkedItems.includes(item.id) ? 'opacity-60' : ''
             }`}
           >
@@ -462,7 +462,7 @@ const SafetyChecklist = () => {
       </div>
 
       {/* Emergency Contacts */}
-      <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4">
+      <div className="bg-red-900/20 border border-red-700/50 p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><Siren className="w-5 h-5 text-red-400" /> Emergency Resources</h3>
         <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div>

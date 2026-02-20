@@ -235,7 +235,7 @@ const EventCalendar = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><CalendarDays className="w-6 h-6" /> Resistance Calendar</h2>
         <p className="text-slate-300">
           Key dates for commemorations, protests, and solidarity actions throughout the year.
@@ -271,7 +271,7 @@ const EventCalendar = () => {
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
               selectedMonth === month.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {month.name}
@@ -284,9 +284,9 @@ const EventCalendar = () => {
         {filteredEvents.map((event, i) => (
           <div 
             key={i} 
-            className={`bg-slate-800 border rounded-xl p-6 ${
+            className={`bg-[#111820] border p-6 ${
               event.priority === 'CRITICAL' ? 'border-red-500' : 
-              event.priority === 'HIGH' ? 'border-yellow-500' : 'border-slate-700'
+              event.priority === 'HIGH' ? 'border-yellow-500' : 'border-[#1c2a35]'
             }`}
           >
             <div className="flex items-start justify-between mb-3">
@@ -313,7 +313,7 @@ const EventCalendar = () => {
             
             <p className="text-slate-300 text-sm mb-4">{event.description}</p>
             
-            <div className="border-t border-slate-700 pt-4">
+            <div className="border-t border-[#1c2a35] pt-4">
               <p className="text-xs text-slate-500 mb-2">Suggested Actions:</p>
               <div className="flex flex-wrap gap-2">
                 {event.actions.map((action, j) => (
@@ -328,7 +328,7 @@ const EventCalendar = () => {
       </div>
 
       {/* Add to Calendar */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Smartphone className="w-5 h-5" /> Stay Updated</h3>
         <p className="text-slate-300 text-sm mb-4">
           Add these events to your calendar to never miss an important date.
@@ -342,7 +342,7 @@ const EventCalendar = () => {
               const text = events.map(e => `${e.date}: ${e.name}`).join('\n');
               navigator.clipboard.writeText(text);
             }}
-            className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >
             Copy All Dates
           </button>

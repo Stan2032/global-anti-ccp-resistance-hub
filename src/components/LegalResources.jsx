@@ -220,7 +220,7 @@ Key provisions:
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Scale className="w-6 h-6" /> Legal Frameworks & Resources</h2>
         <p className="text-slate-300">
           International laws, sanctions regimes, and legal tools for holding the CCP accountable for human rights abuses.
@@ -236,7 +236,7 @@ Key provisions:
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <span><cat.Icon className="w-4 h-4" /></span>
@@ -247,19 +247,19 @@ Key provisions:
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-2xl font-bold text-white">10</p>
           <p className="text-sm text-slate-400">Legal Frameworks</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-2xl font-bold text-white">6</p>
           <p className="text-sm text-slate-400">Jurisdictions</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-2xl font-bold text-white">50+</p>
           <p className="text-sm text-slate-400">Officials Sanctioned</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-2xl font-bold text-white">9</p>
           <p className="text-sm text-slate-400">Active Laws</p>
         </div>
@@ -270,11 +270,11 @@ Key provisions:
         {filteredFrameworks.map((framework) => (
           <div
             key={framework.id}
-            className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden"
+            className="bg-[#111820] border border-[#1c2a35] overflow-hidden"
           >
             {/* Header */}
             <div
-              className="p-6 cursor-pointer hover:bg-slate-700/50 transition-colors"
+              className="p-6 cursor-pointer hover:bg-[#111820]/50 transition-colors"
               onClick={() => setExpandedItem(expandedItem === framework.id ? null : framework.id)}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedItem(expandedItem === framework.id ? null : framework.id) } }}
               role="button"
@@ -303,7 +303,7 @@ Key provisions:
 
             {/* Expanded Content */}
             {expandedItem === framework.id && (
-              <div className="px-6 pb-6 border-t border-slate-700 pt-4">
+              <div className="px-6 pb-6 border-t border-[#1c2a35] pt-4">
                 <div className="prose prose-invert max-w-none">
                   {framework.details.split('\n\n').map((paragraph, i) => (
                     <p key={i} className="text-slate-300 mb-4 whitespace-pre-line">{paragraph}</p>
@@ -330,7 +330,7 @@ Key provisions:
       </div>
 
       {/* How to Use Section */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5" /> How to Use These Laws</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>

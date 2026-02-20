@@ -226,10 +226,10 @@ export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }) => {
                 onTabChange(tabs[prevIndex].id);
               }
             }}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`px-4 py-2 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.icon && <span className="mr-2" aria-hidden="true">{tab.icon}</span>}
@@ -306,7 +306,7 @@ export const AccessibleAlert = ({ type = 'info', title, children, onDismiss }) =
     <div
       role="alert"
       aria-live="polite"
-      className={`p-4 rounded-lg border ${typeStyles[type]} flex items-start`}
+      className={`p-4 border ${typeStyles[type]} flex items-start`}
     >
       <span className="mr-3 text-xl" aria-hidden="true">{icons[type]}</span>
       <div className="flex-1">

@@ -64,11 +64,11 @@ const DetentionFacilitiesTracker = () => {
   const operationalRegions = facilities.filter(f => f.status === 'Operational' || f.status === 'Expanded').length;
 
   return (
-    <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
+    <div className="bg-[#111820]/50 border border-[#1c2a35]/50 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-slate-700/50">
+      <div className="p-6 border-b border-[#1c2a35]/50">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-red-500/20 rounded-lg">
+          <div className="p-2 bg-red-500/20">
             <Building2 className="w-6 h-6 text-red-400" />
           </div>
           <div>
@@ -81,19 +81,19 @@ const DetentionFacilitiesTracker = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="bg-slate-700/30 p-3 text-center">
             <div className="text-2xl font-bold text-white">{totalFacilities}+</div>
             <div className="text-xs text-slate-400">Total Facilities</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="bg-slate-700/30 p-3 text-center">
             <div className="text-2xl font-bold text-blue-400">{xinjiangFacilities}+</div>
             <div className="text-xs text-slate-400">Xinjiang Facilities</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="bg-slate-700/30 p-3 text-center">
             <div className="text-2xl font-bold text-red-400">{operationalRegions}</div>
             <div className="text-xs text-slate-400">Active Regions</div>
           </div>
-          <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="bg-slate-700/30 p-3 text-center">
             <div className="text-2xl font-bold text-orange-400">{facilities.length}</div>
             <div className="text-xs text-slate-400">Regions Documented</div>
           </div>
@@ -101,7 +101,7 @@ const DetentionFacilitiesTracker = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="p-4 border-b border-slate-700/50 flex flex-wrap gap-3">
+      <div className="p-4 border-b border-[#1c2a35]/50 flex flex-wrap gap-3">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -110,14 +110,14 @@ const DetentionFacilitiesTracker = () => {
             placeholder="Search by region or facility name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
           />
         </div>
         <select
           aria-label="Region filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
         >
           <option value="all">All Regions</option>
           {regions.map(region => (
@@ -128,7 +128,7 @@ const DetentionFacilitiesTracker = () => {
           aria-label="Region filter"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
         >
           <option value="all">All Statuses</option>
           {statuses.map(status => (
@@ -143,10 +143,10 @@ const DetentionFacilitiesTracker = () => {
           {filteredFacilities.map((facility, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 rounded-lg overflow-hidden"
+              className="bg-slate-700/30 overflow-hidden"
             >
               <div 
-                className="p-4 cursor-pointer hover:bg-slate-700/50 transition-colors"
+                className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
                 onClick={() => setExpandedFacility(expandedFacility === idx ? null : idx)}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -231,7 +231,7 @@ const DetentionFacilitiesTracker = () => {
       </div>
 
       {/* Action Footer */}
-      <div className="p-4 border-t border-slate-700/50 bg-slate-800/30">
+      <div className="p-4 border-t border-[#1c2a35]/50 bg-[#111820]/30">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="text-sm text-slate-400">
             <AlertTriangle className="w-4 h-4 inline mr-1 text-yellow-500" />

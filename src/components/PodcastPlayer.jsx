@@ -227,7 +227,7 @@ const PodcastPlayer = () => {
   const recommendedPodcasts = podcasts.filter(p => p.recommended);
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Headphones className="w-8 h-8 text-purple-400" />
         <div>
@@ -237,7 +237,7 @@ const PodcastPlayer = () => {
       </div>
 
       {/* Listening Guide */}
-      <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-purple-500/10 border border-purple-500/30 p-4 mb-6">
         <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2"><Headphones className="w-5 h-5" /> Recommended Listening</h3>
         <p className="text-slate-300 text-sm mb-2">
           Start with these highly-rated podcasts for comprehensive coverage of CCP human rights abuses.
@@ -261,7 +261,7 @@ const PodcastPlayer = () => {
             placeholder="Search podcasts by title, host, or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
           />
         </div>
 
@@ -271,10 +271,10 @@ const PodcastPlayer = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat
                   ? 'bg-purple-500 text-white'
-                  : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                  : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
               {cat === 'all' ? 'All Categories' : cat}
@@ -285,19 +285,19 @@ const PodcastPlayer = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-purple-400 mb-1">{podcasts.length}</div>
           <div className="text-sm text-slate-400">Podcasts</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{podcasts.reduce((acc, p) => acc + p.episodes.length, 0)}</div>
           <div className="text-sm text-slate-400">Episodes</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-green-400 mb-1">{recommendedPodcasts.length}</div>
           <div className="text-sm text-slate-400">Recommended</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-amber-400 mb-1">{categories.length - 1}</div>
           <div className="text-sm text-slate-400">Categories</div>
         </div>
@@ -306,7 +306,7 @@ const PodcastPlayer = () => {
       {/* Podcast List */}
       <div className="space-y-6">
         {filteredPodcasts.map((podcast, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-purple-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-purple-500/30 transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -321,13 +321,13 @@ const PodcastPlayer = () => {
                 <div className="flex flex-wrap gap-2 mb-2">
                   <span className="text-sm text-slate-400">by {podcast.host}</span>
                   <span className="text-slate-600">•</span>
-                  <span className="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300">
+                  <span className="px-2 py-0.5 bg-[#111820] border border-[#1c2a35] rounded text-xs text-slate-300">
                     {podcast.category}
                   </span>
-                  <span className="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300">
+                  <span className="px-2 py-0.5 bg-[#111820] border border-[#1c2a35] rounded text-xs text-slate-300">
                     {podcast.frequency}
                   </span>
-                  <span className="flex items-center gap-1 px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs text-amber-400">
+                  <span className="flex items-center gap-1 px-2 py-0.5 bg-[#111820] border border-[#1c2a35] rounded text-xs text-amber-400">
                     <Star className="w-3 h-3 fill-amber-400" />
                     {podcast.rating}
                   </span>
@@ -341,7 +341,7 @@ const PodcastPlayer = () => {
             <div className="space-y-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-400">Recent Episodes:</h4>
               {podcast.episodes.map((episode, epIndex) => (
-                <div key={epIndex} className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50">
+                <div key={epIndex} className="bg-[#111820]/50 p-3 border border-[#1c2a35]/50">
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <h5 className="font-medium text-white text-sm mb-1">{episode.title}</h5>
@@ -358,7 +358,7 @@ const PodcastPlayer = () => {
                       href={episode.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-3 p-2 bg-purple-500 hover:bg-purple-600 rounded-lg transition-colors"
+                      className="ml-3 p-2 bg-purple-500 hover:bg-purple-600 transition-colors"
                       title="Listen"
                     >
                       <Play className="w-4 h-4 text-white" />
@@ -369,12 +369,12 @@ const PodcastPlayer = () => {
             </div>
 
             {/* Links */}
-            <div className="flex items-center gap-3 pt-3 border-t border-slate-700/50">
+            <div className="flex items-center gap-3 pt-3 border-t border-[#1c2a35]/50">
               <a
                 href={podcast.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white transition-colors text-sm font-medium"
               >
                 <ExternalLink className="w-4 h-4" />
                 Visit Website
@@ -384,7 +384,7 @@ const PodcastPlayer = () => {
                   href={podcast.rss}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
                 >
                   RSS Feed
                 </a>
@@ -402,7 +402,7 @@ const PodcastPlayer = () => {
       )}
 
       {/* Listening Tips */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">Listening Tips</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Start with recommended:</strong> These podcasts have the best coverage and credibility.</p>

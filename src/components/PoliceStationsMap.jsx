@@ -113,20 +113,20 @@ const PoliceStationsMap = () => {
 
   const getRegionColor = (regionKey) => {
     const colors = {
-      europe: 'from-blue-600 to-blue-800',
-      northAmerica: 'from-red-600 to-red-800',
-      southAmerica: 'from-green-600 to-green-800',
-      asiaPacific: 'from-yellow-600 to-yellow-800',
-      africa: 'from-orange-600 to-orange-800',
-      middleEast: 'from-purple-600 to-purple-800'
+      europe: 'border-l-blue-500',
+      northAmerica: 'border-l-red-500',
+      southAmerica: 'border-l-green-500',
+      asiaPacific: 'border-l-yellow-500',
+      africa: 'border-l-orange-500',
+      middleEast: 'border-l-purple-500'
     };
-    return colors[regionKey] || 'from-gray-600 to-gray-800';
+    return colors[regionKey] || 'border-l-gray-500';
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 border border-red-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Siren className="w-6 h-6 text-red-400" /> CCP Overseas Police Stations</h2>
         <p className="text-slate-300 mb-4">
           The Chinese Communist Party operates at least <span className="text-red-400 font-bold">{totalStations} police service stations</span> in{' '}
@@ -135,19 +135,19 @@ const PoliceStationsMap = () => {
         
         {/* Key Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-red-400">{totalStations}+</div>
             <div className="text-xs text-slate-400">Police Stations</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-orange-400">{totalCountries}</div>
             <div className="text-xs text-slate-400">Countries</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-yellow-400">230K+</div>
             <div className="text-xs text-slate-400">"Persuaded" to Return</div>
           </div>
-          <div className="bg-slate-800/50 rounded-lg p-3 text-center">
+          <div className="bg-[#111820]/50 p-3 text-center">
             <div className="text-2xl font-bold text-green-400">14+</div>
             <div className="text-xs text-slate-400">Govt Investigations</div>
           </div>
@@ -155,7 +155,7 @@ const PoliceStationsMap = () => {
       </div>
 
       {/* What They Do */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="text-lg font-semibold text-white mb-3">What Do These Stations Do?</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -196,7 +196,7 @@ const PoliceStationsMap = () => {
           {Object.entries(policeStationsData).map(([key, region]) => (
             <div
               key={key}
-              className={`bg-gradient-to-br ${getRegionColor(key)} rounded-lg p-4 cursor-pointer transition-transform hover:scale-102`}
+              className={`bg-[#0a0e14] border border-[#1c2a35] border-l-2 ${getRegionColor(key)} p-4 cursor-pointer transition-transform hover:scale-102`}
               onClick={() => {
                 setSelectedRegion(selectedRegion === key ? null : key);
                 setShowDetails(true);
@@ -217,7 +217,7 @@ const PoliceStationsMap = () => {
 
       {/* Selected Region Details */}
       {selectedRegion && (
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-white">
               {policeStationsData[selectedRegion].name} - Detailed Breakdown
@@ -232,7 +232,7 @@ const PoliceStationsMap = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {policeStationsData[selectedRegion].countries.map((country, index) => (
-              <div key={index} className="bg-slate-700 rounded-lg p-3">
+              <div key={index} className="bg-slate-700 p-3">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-medium text-white">{country.name}</span>
                   <span className="bg-red-600 px-2 py-0.5 rounded text-white text-xs font-bold">
@@ -265,7 +265,7 @@ const PoliceStationsMap = () => {
       )}
 
       {/* Sources */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-semibold text-white mb-2">Sources</h3>
         <div className="grid gap-2 md:grid-cols-2 text-sm">
           <a href="https://safeguarddefenders.com/en/blog/patrol-and-persuade-follow-110-overseas-investigation" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
@@ -284,7 +284,7 @@ const PoliceStationsMap = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-red-900/20 border border-red-700/50 rounded-lg p-4">
+      <div className="bg-red-900/20 border border-red-700/50 p-4">
         <h3 className="font-semibold text-white mb-2 flex items-center gap-2"><Siren className="w-5 h-5 text-red-400" /> What You Can Do</h3>
         <ul className="space-y-2 text-sm text-slate-300">
           <li className="flex items-start gap-2">

@@ -111,7 +111,7 @@ const ShareButtons = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => link.disabled && e.preventDefault()}
-            className={`${link.color} ${link.disabled ? 'opacity-50 cursor-not-allowed' : ''} text-white p-2 rounded-lg transition-colors flex items-center gap-2`}
+            className={`${link.color} ${link.disabled ? 'opacity-50 cursor-not-allowed' : ''} text-white p-2 transition-colors flex items-center gap-2`}
             title={link.disabled ? `${link.name} (not available for web sharing)` : `Share on ${link.name}`}
           >
             {link.icon}
@@ -122,7 +122,7 @@ const ShareButtons = ({
         {/* Copy Link Button */}
         <button
           onClick={copyToClipboard}
-          className={`${copied ? 'bg-green-600' : 'bg-slate-600 hover:bg-slate-500'} text-white p-2 rounded-lg transition-colors flex items-center gap-2`}
+          className={`${copied ? 'bg-green-600' : 'bg-slate-600 hover:bg-slate-500'} text-white p-2 transition-colors flex items-center gap-2`}
           title="Copy link"
         >
           {copied ? (
@@ -141,7 +141,7 @@ const ShareButtons = ({
         {!compact && shareLinks.length > 5 && (
           <button
             onClick={() => setShowMore(!showMore)}
-            className="bg-slate-700 hover:bg-slate-600 text-white p-2 rounded-lg transition-colors"
+            className="bg-slate-700 hover:bg-[#1c2a35] text-white p-2 transition-colors"
             title={showMore ? 'Show less' : 'More options'}
           >
             <svg className={`w-5 h-5 transition-transform ${showMore ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -238,7 +238,7 @@ const CompanyTracker = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-orange-500 p-6">
         <div className="flex items-center mb-4">
           <Building2 className="w-8 h-8 text-orange-400 mr-3" />
           <div>
@@ -254,19 +254,19 @@ const CompanyTracker = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-white">{stats.total}</div>
           <div className="text-xs text-slate-400">Companies Tracked</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-red-400">{stats.avoid}</div>
           <div className="text-xs text-slate-400">Avoid</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-orange-400">{stats.concern}</div>
           <div className="text-xs text-slate-400">Concern</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-yellow-400">{stats.improving}</div>
           <div className="text-xs text-slate-400">Improving</div>
         </div>
@@ -281,7 +281,7 @@ const CompanyTracker = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search companies..."
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -289,10 +289,10 @@ const CompanyTracker = () => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
               <span>{cat.icon}</span>
@@ -311,7 +311,7 @@ const CompanyTracker = () => {
           return (
             <div 
               key={company.id}
-              className={`rounded-xl border p-4 ${status.color}`}
+              className={`border p-4 ${status.color}`}
             >
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-bold text-white">{company.name}</h3>
@@ -372,7 +372,7 @@ const CompanyTracker = () => {
       </div>
 
       {/* Legend */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Status Legend</h3>
         <div className="grid md:grid-cols-2 gap-2">
           {Object.entries(statusInfo).map(([key, info]) => (
@@ -385,14 +385,14 @@ const CompanyTracker = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-3 flex items-center">
           <BookOpen className="w-5 h-5 text-blue-400 mr-2" />
           Key Research Sources
         </h3>
         
         {/* Prominent ASPI Report */}
-        <div className="mb-4 bg-blue-900/30 border border-blue-600/50 rounded-lg p-3">
+        <div className="mb-4 bg-blue-900/30 border border-blue-600/50 p-3">
           <div className="flex items-start space-x-2">
             <Search className="w-6 h-6 text-blue-400" />
             <div className="flex-1">
@@ -415,7 +415,7 @@ const CompanyTracker = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-3 text-sm">
-          <div className="bg-slate-800/50 rounded-lg p-3">
+          <div className="bg-[#111820]/50 p-3">
             <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Landmark className="w-4 h-4" /> UFLPA Enforcement</h5>
             <p className="text-slate-400 text-xs mb-2">
               US Customs enforcement of the Uyghur Forced Labor Prevention Act
@@ -425,7 +425,7 @@ const CompanyTracker = () => {
             </a>
           </div>
 
-          <div className="bg-slate-800/50 rounded-lg p-3">
+          <div className="bg-[#111820]/50 p-3">
             <h5 className="text-white font-medium mb-1 flex items-center gap-1"><BarChart3 className="w-4 h-4" /> Sheffield Hallam</h5>
             <p className="text-slate-400 text-xs mb-2">
               "In Broad Daylight" - Comprehensive supply chain research
@@ -435,7 +435,7 @@ const CompanyTracker = () => {
             </a>
           </div>
 
-          <div className="bg-slate-800/50 rounded-lg p-3">
+          <div className="bg-[#111820]/50 p-3">
             <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Handshake className="w-4 h-4" /> Coalition</h5>
             <p className="text-slate-400 text-xs mb-2">
               Coalition to End Forced Labour in the Uyghur Region
@@ -445,7 +445,7 @@ const CompanyTracker = () => {
             </a>
           </div>
 
-          <div className="bg-slate-800/50 rounded-lg p-3">
+          <div className="bg-[#111820]/50 p-3">
             <h5 className="text-white font-medium mb-1 flex items-center gap-1"><Landmark className="w-4 h-4" /> Congressional Reports</h5>
             <p className="text-slate-400 text-xs mb-2">
               US Congress research and investigations
@@ -465,7 +465,7 @@ const CompanyTracker = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-xs text-slate-500">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-xs text-slate-500">
         <GlobalDisclaimer type="changing" />
       </div>
     </div>

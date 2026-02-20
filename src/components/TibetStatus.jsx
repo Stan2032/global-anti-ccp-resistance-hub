@@ -67,7 +67,7 @@ const TibetStatus = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-orange-500 p-6">
         <div className="flex items-center gap-3 mb-4">
           <Mountain className="w-10 h-10 text-orange-400" />
           <div>
@@ -76,7 +76,7 @@ const TibetStatus = () => {
           </div>
         </div>
         
-        <div className="bg-red-900/50 border border-red-700 rounded-lg p-4">
+        <div className="bg-red-900/50 border border-red-700 p-4">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-red-500 rounded-full"></span>
             <span className="text-red-300 font-semibold">OCCUPIED TERRITORY</span>
@@ -90,7 +90,7 @@ const TibetStatus = () => {
       {/* Key Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {keyStats.map((stat, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
             <div className={`text-2xl font-bold ${
               stat.color === 'red' ? 'text-red-400' :
               stat.color === 'orange' ? 'text-orange-400' :
@@ -108,10 +108,10 @@ const TibetStatus = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-orange-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -122,7 +122,7 @@ const TibetStatus = () => {
       {/* Overview Tab */}
       {activeTab === 'overview' && (
         <div className="space-y-6">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Timeline of Occupation</h3>
             <div className="space-y-3">
               {timeline.map((item, i) => (
@@ -139,11 +139,11 @@ const TibetStatus = () => {
       {/* Repression Tab */}
       {activeTab === 'repression' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Notable Political Prisoners</h3>
             <div className="space-y-3">
               {politicalPrisoners.map((prisoner, i) => (
-                <div key={i} className="bg-slate-700/50 rounded-lg p-4">
+                <div key={i} className="bg-slate-700/50 p-4">
                   <div className="flex justify-between items-start">
                     <div>
                       <span className="text-white font-semibold">{prisoner.name}</span>
@@ -161,7 +161,7 @@ const TibetStatus = () => {
             </div>
           </div>
           
-          <div className="bg-purple-900/30 border border-purple-700 rounded-xl p-4">
+          <div className="bg-purple-900/30 border border-purple-700 p-4">
             <h4 className="text-purple-300 font-semibold mb-2">The Missing Panchen Lama</h4>
             <p className="text-slate-300 text-sm">
               Gedhun Choekyi Nyima was recognized as the 11th Panchen Lama by the Dalai Lama in 1995. 
@@ -175,7 +175,7 @@ const TibetStatus = () => {
       {/* Self-Immolation Tab */}
       {activeTab === 'selfimmolation' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Self-Immolation Protests</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div className="text-center">
@@ -207,7 +207,7 @@ const TibetStatus = () => {
             </div>
           </div>
           
-          <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
+          <div className="bg-yellow-900/30 border border-yellow-700 p-4">
             <p className="text-yellow-300 text-sm">
               <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-300 flex-shrink-0 mt-0.5" /><span>These acts of protest reflect the desperation of Tibetans under occupation. Most called for Tibetan freedom and the return of the Dalai Lama.</span></span>
             </p>
@@ -218,11 +218,11 @@ const TibetStatus = () => {
       {/* Cultural Erasure Tab */}
       {activeTab === 'cultural' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Cultural Erasure</h3>
             <div className="space-y-4">
               {culturalErasure.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 rounded-lg p-4">
+                <div key={i} className="bg-slate-700/50 p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{item.type}</span>
                     <span className="text-red-400 font-bold">{item.stat}</span>
@@ -233,7 +233,7 @@ const TibetStatus = () => {
             </div>
           </div>
           
-          <div className="bg-red-900/30 border border-red-700 rounded-xl p-4">
+          <div className="bg-red-900/30 border border-red-700 p-4">
             <h4 className="text-red-300 font-semibold mb-2">Colonial Boarding Schools</h4>
             <p className="text-slate-300 text-sm">
               Over 1 million Tibetan children are in state-run boarding schools where they are 
@@ -245,18 +245,18 @@ const TibetStatus = () => {
       )}
 
       {/* Resources */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Tibet Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://savetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://savetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">ICT</h4>
             <p className="text-slate-400 text-sm">International Campaign for Tibet</p>
           </a>
-          <a href="https://freetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://freetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Free Tibet</h4>
             <p className="text-slate-400 text-sm">Campaign organization</p>
           </a>
-          <a href="https://tibet.net/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://tibet.net/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">CTA</h4>
             <p className="text-slate-400 text-sm">Central Tibetan Administration</p>
           </a>

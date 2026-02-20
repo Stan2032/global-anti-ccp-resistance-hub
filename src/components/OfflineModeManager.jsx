@@ -128,7 +128,7 @@ const OfflineModeManager = () => {
   ];
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         {isOnline ? (
           <Wifi className="w-8 h-8 text-green-400" />
@@ -142,7 +142,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Connection Status */}
-      <div className={`rounded-lg p-4 mb-6 ${isOnline ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'}`}>
+      <div className={`p-4 mb-6 ${isOnline ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'}`}>
         <div className="flex items-center gap-3">
           {isOnline ? (
             <>
@@ -165,7 +165,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Why Offline Mode */}
-      <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-blue-500/10 border border-blue-500/30 p-4 mb-6">
         <h3 className="text-blue-400 font-bold mb-2">Why Offline Mode?</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Internet censorship:</strong> Access information even when websites are blocked</p>
@@ -176,7 +176,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Cache Status */}
-      <div className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 mb-6">
+      <div className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 mb-6">
         <h3 className="text-white font-bold mb-4">Cache Status</h3>
         
         <div className="flex items-center justify-between mb-4">
@@ -207,7 +207,7 @@ const OfflineModeManager = () => {
           {cacheStatus === 'inactive' && (
             <button
               onClick={enableOfflineMode}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white transition-colors"
             >
               <Download className="w-4 h-4" />
               Enable Offline Mode
@@ -217,7 +217,7 @@ const OfflineModeManager = () => {
           {cacheStatus === 'active' && (
             <button
               onClick={clearCache}
-              className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white transition-colors"
             >
               <Trash2 className="w-4 h-4" />
               Clear Cache
@@ -251,7 +251,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Critical Pages to Cache */}
-      <div className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 mb-6">
+      <div className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 mb-6">
         <h3 className="text-white font-bold mb-4">Critical Pages for Offline Access</h3>
         <p className="text-slate-400 text-sm mb-4">
           These pages are automatically cached when you enable offline mode:
@@ -259,7 +259,7 @@ const OfflineModeManager = () => {
         
         <div className="space-y-3">
           {criticalPages.map((page, index) => (
-            <div key={index} className="flex items-start gap-3 p-3 bg-slate-800/50 rounded-lg">
+            <div key={index} className="flex items-start gap-3 p-3 bg-[#111820]/50">
               <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-medium text-white">{page.name}</div>
@@ -271,7 +271,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Instructions */}
-      <div className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3">How to Use Offline Mode</h3>
         <div className="space-y-3 text-sm text-slate-300">
           <div>
@@ -294,7 +294,7 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Limitations Notice */}
-      <div className="mt-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <div className="mt-6 bg-yellow-500/10 border border-yellow-500/30 p-4">
         <h3 className="text-yellow-400 font-bold mb-2">Limitations</h3>
         <div className="space-y-1 text-sm text-slate-300">
           <p>• External links and embedded content may not work offline</p>
