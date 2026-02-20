@@ -432,13 +432,13 @@
 
 ## 📂 RELATED TODO FILES
 
-> **Important:** These satellite TODO files were created in earlier sessions (Jan 2026) and contain items that may now be completed. Each file has been annotated with completion status as of Session 49.
+> **Important:** These satellite TODO files live in `_agents/planning/` and were created in earlier sessions (Jan 2026). Each file has been annotated with completion status as of Session 49.
 
 | File | Focus | Status |
 |------|-------|--------|
-| **SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
-| **SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
-| **SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
+| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
 
 ---
 
@@ -452,7 +452,7 @@
 5. **thoughts/** — Session-by-session decision logs (14 files, Sessions 33-48)
 6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
-8. **Satellite TODOs** — See "Related TODO Files" section above for SIMULATED_DATA_CLEANUP_TODO.md, SITE_CLEANUP_TODO.md, SITE_WIDE_TODO.md
+8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
 
 ### Current State Summary (as of Session 52, Feb 20, 2026)
 - **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)

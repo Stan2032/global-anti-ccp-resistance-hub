@@ -148,6 +148,8 @@
     "agent_workspace": "_agents/",
     "agent_thoughts": "_agents/thoughts/",
     "agent_archive": "_agents/archive/",
+    "agent_research": "_agents/research/",
+    "agent_planning": "_agents/planning/",
     "locale_files": "src/locales/",
     "test_files": "src/test/",
     "hooks": "src/hooks/",
