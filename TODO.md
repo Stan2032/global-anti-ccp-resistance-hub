@@ -334,9 +334,9 @@
 
 ---
 
-## ✅ OWNER DECISIONS — ALL RESOLVED (Session 42)
+## ✅ HUMAN DECISIONS — ALL RESOLVED (Session 42)
 
-> All D1-D5 answered and implemented. See `QUESTIONS_FOR_OWNER.md` for details.
+> All D1-D5 answered and implemented. See `QUESTIONS_FOR_HUMANS.md` for details.
 > **Standing instruction:** Agents may add individuals to the database without asking, as long as well-researched with verified sources and consistent with project goals.
 
 1. ~~**D1 — Zhang Yuxin bad data**~~ → ✅ Replaced with Che Dalha + Zhang Qingli
@@ -364,7 +364,7 @@
 - ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
 - ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
 - ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6
-- ✅ D1-D5 owner decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
+- ✅ D1-D5 human decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
 - ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6
 - ✅ Performance optimization Phase 2: lazy-loaded 28 more sub-components across Dashboard, CommunitySupport, CCPTactics, SecurityCenter — Session 39, Opus 4.6
 - ✅ Performance optimization: lazy-loaded 53 sub-components across TakeAction, EducationalResources, RegionalThreats, ResistanceResources — Session 38, Opus 4.6
@@ -445,7 +445,7 @@
 1. **This file (TODO.md)** — What's done, what's next, standing instructions
 2. **AGENTS.md** — Agent roles, capabilities, protocol, CodeQL troubleshooting
 3. **AGENT_ROADMAP.md** — Detailed task history with subtask breakdowns and agent assignments
-4. **QUESTIONS_FOR_OWNER.md** — All resolved decisions + standing instruction on adding people
+4. **QUESTIONS_FOR_HUMANS.md** — All resolved decisions + standing instruction on adding people
 5. **agent-thoughts/** — Session-by-session decision logs (14 files, Sessions 33-48)
 6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
@@ -462,13 +462,13 @@
 - **Community stats:** Marked as "illustrative targets" (Session 37)
 - **i18n Foundation:** 5 language files built (en, zh-CN, zh-TW, ug, bo), translations not yet filled
 
-### Standing Instructions from Owner
+### Standing Instructions from Humans
 - **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
 - **CCP source exclusion:** Never cite Xinhua, CGTN, People's Daily, Global Times, China Daily, Ta Kung Pao, Wen Wei Po, tibet.cn, en.people.cn, or any CCP state/party media
 - **Date verification:** Always cross-reference dates with 2+ independent sources
 - **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
 
-### What's Immediately Actionable (no owner input needed)
+### What's Immediately Actionable (no human input needed)
 1. **Gui Minhai profile page** — next in queue, data exists in political_prisoners_research.json
 2. **Profile index page** at `/profiles` — list all profiles with status indicators and links
 3. **Additional profiles** — Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
@@ -477,7 +477,7 @@
 6. **News feed integration** — add RSS feeds from trusted sources
 7. **Update sanctions list** — check for new US/EU/UK/Canada/Australia sanctions
 
-### What Needs Owner Decisions
+### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
 2. Whether to implement backend cache system or remove documentation referencing it
 3. Priority ranking for medium-term features (video testimonials, podcast player, event map, etc.)
@@ -498,7 +498,7 @@
 | 38-39 | Feb 20 | Opus 4.6 | Performance: lazy-loaded 81 sub-components across 8 pages (87-93% bundle reduction) |
 | 40 | Feb 20 | Opus 4.6 | SEO: per-route meta descriptions for all 14 pages, 2 new tests (248 total) |
 | 41 | Feb 20 | Opus 4.6 | Consolidated pending decisions, amended outdated questions |
-| 42 | Feb 20 | Opus 4.6 | Implemented all 5 owner decisions (D1-D5), standing instruction recorded |
+| 42 | Feb 20 | Opus 4.6 | Implemented all 5 human decisions (D1-D5), standing instruction recorded |
 | 43 | Feb 20 | Opus 4.6 | Jimmy Lai profile page (16 timeline events, 3 charges, 4 CCP narratives debunked) |
 | 44 | Feb 20 | Opus 4.6 | Ilham Tohti profile page (19 events, Sakharov Prize, 7 students persecuted) |
 | 45 | Feb 20 | Opus 4.6 | Panchen Lama profile page (16 events, "Why It Matters" section, Golden Urn debunked) |

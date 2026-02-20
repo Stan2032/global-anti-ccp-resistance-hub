@@ -1300,10 +1300,10 @@ Found 12 components that are never imported:
 
 ---
 
-## Session 16 (2026-02-19): Owner Answers → Implementation Sprint
+## Session 16 (2026-02-19): Human Answers → Implementation Sprint
 **Model:** Opus 4.6  
 **Duration:** ~45 minutes  
-**Context:** Owner answered all 10 questions from QUESTIONS_FOR_OWNER.md
+**Context:** Humans answered all 10 questions from QUESTIONS_FOR_HUMANS.md
 
 ### Decisions Received
 1. **No geolocation** — confirmed, no privacy-invasive features

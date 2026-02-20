@@ -24,7 +24,7 @@
 - .the-road-we-traveled/MASTER_TODO_LIST.md — Full implementation roadmap (380hrs)
 - LLM_JUDGEMENT_LOG.md — All AI decisions (1921 lines, Sessions 1-25)
 - SESSION_SUMMARY.md — Session 1 summary
-- QUESTIONS_FOR_OWNER.md — All owner Q&A (all answered)
+- QUESTIONS_FOR_HUMANS.md — All human Q&A (all answered)
 - INVESTIGATION_SUMMARY.md — Fabrication gap investigation
 - FABRICATION_GAP_AUDIT.md — Detailed audit
 - CHANGELOG.md — Feature changelog
@@ -143,7 +143,7 @@ These patterns are well-documented by independent researchers and are NOT themse
 
 Multiple forms don't actually submit data (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest subscription). This is documented and intentional — the owner decided (Q2.1: "Consider later") to keep them as demo/placeholder until a backend exists.
 
-**What should be done:** Add visible "(Coming Soon)" or "This form is not yet connected to a backend" notices to each form. This was recommended in QUESTIONS_FOR_OWNER.md but hasn't been implemented.
+**What should be done:** Add visible "(Coming Soon)" or "This form is not yet connected to a backend" notices to each form. This was recommended in QUESTIONS_FOR_HUMANS.md but hasn't been implemented.
 
 **Best agent for this:** Sonnet 4.5 (simple text/UI changes, no judgment required)
 

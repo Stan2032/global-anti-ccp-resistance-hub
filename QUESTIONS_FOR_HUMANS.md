@@ -1,4 +1,4 @@
-# Questions for Owner — Items Requiring Human Decisions
+# Questions for Humans — Items Requiring Human Decisions
 
 **Created:** 2026-02-19 (Session 15, Opus 4.6)  
 **Updated:** 2026-02-20 (Session 42, Opus 4.6) — All D1-D5 answered and implemented  
@@ -6,11 +6,11 @@
 
 ---
 
-## 📌 STANDING INSTRUCTIONS (from Owner, Session 42)
+## 📌 STANDING INSTRUCTIONS (from Humans, Session 42)
 
 > **"For future reference, if you wish to add a person to the site, as long as you deem appropriate and researched well and it fits everything we have been working towards, then please add them as you wish without asking me."**
 
-This means agents no longer need owner approval to add individuals to the political prisoner database, sanctioned officials list, or other person data — provided:
+This means agents no longer need human approval to add individuals to the political prisoner database, sanctioned officials list, or other person data — provided:
 1. The person is well-researched with Tier 1-2 sources:
    - **Tier 1 (Gold standard):** US Treasury/State Dept, HKFP, Amnesty, HRW, UN OHCHR, CECC, court records
    - **Tier 2 (Reliable):** BBC, Guardian, Reuters, AP, PEN International, USCIRF, Tibet Watch, VOA, RFA

@@ -15,7 +15,7 @@
     "TODO.md",
     "AGENTS.md",
     "AGENT_ROADMAP.md",
-    "QUESTIONS_FOR_OWNER.md",
+    "QUESTIONS_FOR_HUMANS.md",
     "agent-thoughts/"
   ],
 
@@ -118,7 +118,7 @@
   ],
 
   "standing_instructions": {
-    "adding_people": "Agents may add individuals to the database without asking owner, as long as well-researched with verified sources and consistent with project goals",
+    "adding_people": "Agents may add individuals to the database without asking humans, as long as well-researched with verified sources and consistent with project goals",
     "source_tiers": {
       "tier_1": ["BBC", "Reuters", "AP", "HRW", "Amnesty International", "CPJ", "UN OHCHR", "Government records"],
       "tier_2": ["HKFP", "RFA", "NCHRD", "Safeguard Defenders", "CHRD", "The Guardian", "NYT", "WaPo"],
