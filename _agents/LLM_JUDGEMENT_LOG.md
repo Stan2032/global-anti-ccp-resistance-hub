@@ -1,8 +1,8 @@
 # LLM Judgement Log
 **Purpose:** Track AI model decisions, switches, improvements, and recommendations  
 **Started:** 2026-02-18  
-**Current Model:** Claude Opus 4.6 (Session 24, 2026-02-19)  
-**Previous Models:** Claude Sonnet 3.5 (Sessions 1-5)
+**Current Model:** Claude Opus 4.6 (Session 35, 2026-02-20)  
+**Previous Models:** Claude Sonnet 3.5 (Sessions 1-5), Claude Sonnet 4.5 (Session 25)
 
 ---
 
@@ -1300,10 +1300,10 @@ Found 12 components that are never imported:
 
 ---
 
-## Session 16 (2026-02-19): Owner Answers → Implementation Sprint
+## Session 16 (2026-02-19): Human Answers → Implementation Sprint
 **Model:** Opus 4.6  
 **Duration:** ~45 minutes  
-**Context:** Owner answered all 10 questions from QUESTIONS_FOR_OWNER.md
+**Context:** Humans answered all 10 questions from QUESTIONS_FOR_HUMANS.md
 
 ### Decisions Received
 1. **No geolocation** — confirmed, no privacy-invasive features
@@ -1919,3 +1919,54 @@ To prevent confusion for all agents going forward:
 - Understanding of trade-offs between different approaches
 - Persistence in solving edge cases
 - This is your wheelhouse, Opus 4.6. Show us what you've got! 💪
+
+---
+
+## Session 35: 2026-02-20 — Full Context Review & Continuation
+
+### Model Used
+**Model:** Claude Opus 4.6  
+**Task:** Full repository review, documentation consolidation, task continuity planning  
+**Branch:** copilot/read-agents-md-files
+
+### Context
+This session was a continuation session, picking up from all prior work (Sessions 1-34). The problem statement asks agents to "continue perpetually" — reviewing all documentation, updating TODOs, and progressing work.
+
+### Key Decisions
+
+#### Decision 1: Conservative Approach to Data Changes
+**Decision:** Do NOT add Du Bin, Rachung Gendun, or replace Zhang Yuxin without explicit owner approval.
+**Rationale:** These are human rights data entries. Adding unconfirmed entries to a political prisoner database risks:
+- Inaccuracy that could undermine platform credibility
+- Scope creep without governance review
+- Missing important context that only the owner/community can provide
+**Alternative Considered:** Adding Du Bin since HRW is a Tier 2 source. Rejected because Sessions 33-34 explicitly listed these as "Questions for Project Owner."
+
+#### Decision 2: Documentation Updates Over Code Changes
+**Decision:** Focus this session on bringing documentation current rather than writing new features.
+**Rationale:** The TODO.md "Current Sprint" section was significantly out of date (showed accessibility as "in progress" when it was completed 4 sessions ago). Stale documentation causes future agents to waste time on already-completed work.
+
+#### Decision 3: CodeQL Challenge Assessment
+**Decision:** CodeQL's diff-based analysis is working as designed. The "workaround" for documentation-only changes is simply to note that CodeQL didn't run, not to force unnecessary analysis.
+**Rationale:** Forcing full codebase scans on every PR would be slow and wasteful. The correct approach is periodic full security audits (quarterly) via a separate GitHub Action.
+
+### Files Changed
+1. `agent-thoughts/SESSION_35_OPUS46_CONTINUATION.md` — Created (session notes, decisions, reasoning)
+2. `TODO.md` — Updated Current Sprint, added Pending Owner Decisions section, expanded Recently Completed
+3. `AGENT_ROADMAP.md` — Added V2 (Data Expansion) and V3 (Profile Pages) sections with agent assignments
+4. `LLM_JUDGEMENT_LOG.md` — Added this Session 35 entry
+
+### Quality Assurance
+- Build: ✅ Passes (5.02s)
+- Tests: ✅ 246/246 pass
+- No code changes that could introduce regressions
+
+### Model Assessment
+**What went well:** Comprehensive context absorption from 20+ documentation files before acting. Conservative approach prevents data errors.
+**What could improve:** Should prioritize getting owner answers to unblock V2/V3 tasks. Profile pages are the most impactful remaining feature.
+
+### Recommendations for Next Session
+1. If owner approves Du Bin: Add to political_prisoners_research.json with full HRW sourcing (Opus 4.6)
+2. If owner selects profile page priority: Start with Jimmy Lai profile (Opus 4.6 for content, Sonnet 4.5 for layout)
+3. Regardless of owner input: Add "Coming Soon" notices to non-functional forms (Sonnet 4.5, ~30 min)
+4. Consider code splitting for 200KB+ bundles (Opus 4.6, ~2-3 hours)

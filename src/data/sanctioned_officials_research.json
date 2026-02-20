@@ -241,19 +241,38 @@
       "error": ""
     },
     {
-      "input": "Zhang Yuxin - Tibet Military Region Commander",
+      "input": "Che Dalha - TAR Party Secretary",
       "output": {
-        "name": "Zhang Yuxin",
-        "position": "Tibet Military Region Commander",
+        "name": "Che Dalha (Qi Zhala)",
+        "position": "Party Secretary of the Tibet Autonomous Region (since 2021)",
         "responsibility_area": "Tibet",
         "us_sanctions": "No",
         "uk_sanctions": "No",
         "eu_sanctions": "No",
         "canada_sanctions": "No",
         "australia_sanctions": "No",
-        "key_abuses": "Information not found. The provided name and title do not appear to correspond to a single individual. Research indicates the current commander of the Tibet Military Region is Wang Kai, and no public records of sanctions or human rights abuses associated with a 'Zhang Yuxin' in that role were found.",
-        "current_status": "Unknown",
-        "source_url": "https://en.wikipedia.org/wiki/Tibet_Military_District"
+        "key_abuses": "As TAR Party Secretary since October 2021, has continued and expanded the coercive labor transfer programs, religious restrictions, and surveillance systems in Tibet. Under his leadership, Tibetan monasteries face ongoing restrictions on religious practice, Tibetan language education has been further marginalized in schools, and the network of 'convenience police stations' has expanded. Continues Wu Yingjie's policies of political indoctrination campaigns in monasteries and residential surveillance.",
+        "current_status": "Active - Current TAR Party Secretary",
+        "source_url": "https://www.hrw.org/world-report/2025/country-chapters/china-and-tibet",
+        "last_verified": "2026-02-20"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zhang Qingli - Former TAR Party Secretary (2005-2011)",
+      "output": {
+        "name": "Zhang Qingli",
+        "position": "Former Party Secretary of the Tibet Autonomous Region (2005-2011)",
+        "responsibility_area": "Tibet",
+        "us_sanctions": "No",
+        "uk_sanctions": "No",
+        "eu_sanctions": "No",
+        "canada_sanctions": "No",
+        "australia_sanctions": "No",
+        "key_abuses": "TAR Party Secretary during the March 2008 Tibetan uprising. Ordered the violent military crackdown on protesters across the Tibetan Plateau, resulting in an estimated 100-220 deaths and over 5,000 detained. Called the Dalai Lama 'a wolf in monk's robes, a devil with a human face' in official rhetoric. Imposed martial law conditions including communications blackouts, mass arrests, and forced patriotic education campaigns in monasteries. Under his tenure, self-immolations by Tibetans began as a form of protest against religious suppression.",
+        "current_status": "Retired - formerly Vice Chairman of CPPCC (2018-2023)",
+        "source_url": "https://www.hrw.org/reports/2010/03/22/i-saw-it-my-own-eyes",
+        "last_verified": "2026-02-20"
       },
       "error": ""
     },

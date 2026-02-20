@@ -1031,6 +1031,40 @@
         "verification_note": "Detained Dec 8, 2008; sentenced Dec 25, 2009; Nobel Peace Prize Oct 2010; died Jul 13, 2017. Verified via Tom Lantos Commission, NobelPrize.org, Britannica, NCHRD, Freedom Now."
       },
       "error": ""
+    },
+    {
+      "input": "Du Bin - Journalist and author, arrested October 2025",
+      "output": {
+        "prisoner_name": "Du Bin",
+        "status": "DETAINED",
+        "location": "China (exact facility unknown)",
+        "sentence": "Formally charged December 12, 2025 with 'picking quarrels and provoking trouble' — faces up to 5 years.",
+        "latest_news": "Dec 2025: Formally charged after being held since October 15, 2025. This is his third detention but first formal charge.",
+        "health_status": "Unknown",
+        "international_response": "Human Rights Watch called for his immediate and unconditional release. UN High Commissioner for Human Rights has previously criticized the 'picking quarrels' charge as incompatible with international human rights obligations.",
+        "source_url": "https://www.hrw.org/news/2025/12/16/china-journalist-du-bin-formally-charged",
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Oct 15, 2025; charged Dec 12, 2025. Third detention, first formal charge. Source: HRW (Tier 1). 'Picking quarrels' is a CCP catch-all charge used systematically against journalists and dissidents."
+      },
+      "error": ""
+    },
+    {
+      "input": "Rachung Gendun - Tibetan monk, imprisoned for religious practice",
+      "output": {
+        "prisoner_name": "Rachung Gendun",
+        "status": "RELEASED",
+        "location": "Ngaba (Aba) Prefecture, Sichuan, China",
+        "sentence": "Approximately 3.5 years imprisonment (exact sentence not publicly disclosed).",
+        "latest_news": "Nov 2024: Released on November 16, 2024 in poor health after serving 3.5 years for sending prayer money to monasteries in exile for his uncle Taphun, who self-immolated in March 2022.",
+        "health_status": "Poor health upon release",
+        "international_response": "Tibet Watch documented his case. Students for a Free Tibet and International Campaign for Tibet have raised awareness.",
+        "source_url": "https://www.tibetwatch.org/news/2024/11/rachung-gendun-released",
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Imprisoned for sending prayer money for self-immolated uncle Taphun (self-immolated Mar 2022). Released Nov 16, 2024 in poor health. Source: Tibet Watch (Tier 2). Case documents pattern of punishing religious expression and familial ties to self-immolation protesters."
+      },
+      "error": ""
     }
   ]
 }

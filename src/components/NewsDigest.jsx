@@ -87,22 +87,20 @@ const NewsDigest = () => {
   if (subscribed) {
     return (
       <div className="space-y-6">
-        <div className="bg-green-900/30 border border-green-700/50 rounded-xl p-8 text-center">
-          <Inbox className="w-12 h-12 text-green-400 mb-4 mx-auto" />
-          <h2 className="text-2xl font-bold text-white mb-2">You're Subscribed!</h2>
+        <div className="bg-amber-900/30 border border-amber-700/50 rounded-xl p-8 text-center">
+          <Inbox className="w-12 h-12 text-amber-400 mb-4 mx-auto" />
+          <h2 className="text-2xl font-bold text-white mb-2">Newsletter Coming Soon</h2>
           <p className="text-slate-300 mb-4">
-            Thank you for subscribing to the Resistance News Digest. You'll receive your first 
-            {preferences.frequency === 'daily' ? ' daily digest tomorrow morning' : 
-             preferences.frequency === 'weekly' ? ' weekly roundup this Sunday' : 
-             ' breaking news alert when major developments occur'}.
+            This subscription form is not yet connected to an email service. No data has been stored.
+            In the meantime, follow these trusted sources directly:
           </p>
           <div className="bg-slate-800/50 rounded-lg p-4 text-left max-w-md mx-auto">
-            <h3 className="font-medium text-white mb-2">Your Preferences:</h3>
+            <h3 className="font-medium text-white mb-2">Stay Informed Via:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Frequency: {frequencies.find(f => f.id === preferences.frequency)?.name}</li>
-              <li className="flex items-center gap-1"><FileText className="w-3.5 h-3.5" /> Format: {formats.find(f => f.id === preferences.format)?.name}</li>
-              <li className="flex items-center gap-1"><Tag className="w-3.5 h-3.5" /> Topics: {preferences.topics.includes('all') ? 'All Topics' : 
-                preferences.topics.map(t => topics.find(topic => topic.id === t)?.name).join(', ')}</li>
+              <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Radio Free Asia</a></li>
+              <li>→ <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Free Press</a></li>
+              <li>→ <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">China Digital Times</a></li>
+              <li>→ <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">CECC (US Commission on China)</a></li>
             </ul>
           </div>
           <button
@@ -150,6 +148,18 @@ const NewsDigest = () => {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Coming Soon Notice */}
+      <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4 flex items-start gap-3">
+        <Mail className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+        <div>
+          <h3 className="font-semibold text-amber-300 text-sm">Newsletter Coming Soon</h3>
+          <p className="text-amber-200/70 text-xs mt-1">
+            This subscription form is not yet connected to an email service. No data will be stored.
+            For now, visit the news sources listed at the bottom of this page directly.
+          </p>
         </div>
       </div>
 

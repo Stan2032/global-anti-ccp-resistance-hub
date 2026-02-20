@@ -1,7 +1,7 @@
 # Agent Roadmap - Consolidated Task Prioritization
 **Purpose:** Agent-facing roadmap for autonomous progression and task execution  
-**Last Updated:** 2026-02-19 (Session 22)  
-**Status:** All Autonomous Tasks Complete
+**Last Updated:** 2026-02-20 (Session 48, Opus 4.6)  
+**Status:** All V1 Autonomous Tasks Complete; V2 Profile Pages In Progress (5 of 12+ built)
 
 ---
 
@@ -56,7 +56,7 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 3. Added "Verify Your Connection" section with 4 reputable third-party self-test tools
 4. Deleted orphaned SecurityWarning.jsx and Header.jsx (layout) dead code
 
-**Owner Decisions (2026-02-19, Session 16):**
+**Human Decisions (2026-02-19, Session 16):**
 - **C2.1** No IP geolocation — CLOSED ✅
 - **C2.2** No server-side detection — CLOSED ✅  
 - [x] **C2.3** WebRTC leak detection — IMPLEMENTED ✅ (Session 16)
@@ -334,7 +334,7 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 **From:** TODO.md Short-Term High Priority  
 **Agent Decision:** Infrastructure COMPLETE, navigation WIRED, content awaits volunteers
 
-**Owner Decision (Session 16):** Wait for native volunteers, machine translate nav/basic words only. Do NOT translate sensitive subjects without human translators.
+**Human Decision (Session 16):** Wait for native volunteers, machine translate nav/basic words only. Do NOT translate sensitive subjects without human translators.
 
 - [x] **L2.1** i18n infrastructure ✅ (Session 16)
   - Existing LanguageSelector + LanguageProvider system enhanced
@@ -345,7 +345,7 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 - [x] **L2.2** Add zh-CN (Simplified Chinese) ✅ (Session 16)
   - Created `src/locales/zh-CN.json` — full 226-line locale file
   - Split single `zh` entry into `zh-CN` (Simplified) and `zh-TW` (Traditional)
-  - Navigation and basic UI words machine-translated (per owner approval)
+  - Navigation and basic UI words machine-translated (per human approval)
   - 5 languages now available: English, 简体中文, 繁體中文, ئۇيغۇرچە, བོད་སྐད།
 
 - [x] **L2.4** Wire App.jsx navigation to use t() ✅ (Session 17)
@@ -526,11 +526,39 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ---
 
-## ⏸️ RESOLVED: Previously Blocked Tasks (Owner Answered)
+## ✅ COMPLETED: Data Expansion (Approved Session 42)
+
+### V2: Political Prisoner Database Expansion
+**Status:** ✅ COMPLETE (Session 42)  
+**Priority:** HIGH — data integrity and coverage  
+**Agent:** Opus 4.6 (required: source verification, CCP narrative detection)  
+**Source:** Sessions 33-34 findings
+
+- [x] **V2.1** Add Du Bin to political prisoner database ✅ (Session 42)
+- [x] **V2.2** Add Rachung Gendun to database ✅ (Session 42)
+- [x] **V2.3** Replace Zhang Yuxin with Che Dalha + Zhang Qingli ✅ (Session 42)
+
+### V3: Content Expansion — Person Profile Pages
+**Status:** 🔄 IN PROGRESS (5/12+ built)  
+**Priority:** MEDIUM — significant content enhancement  
+**Agent:** Opus 4.6 (content/fact verification) + Sonnet 4.5 (layout/CSS)  
+**Source:** TODO.md "Expanded Person Profiles" section
+
+- [x] **V3.1** Jimmy Lai profile page ✅ (Session 43)
+- [x] **V3.2** Ilham Tohti profile page ✅ (Session 44)
+- [x] **V3.3** Gedhun Choekyi Nyima (Panchen Lama) profile page ✅ (Session 45)
+- [x] **V3.4** Liu Xiaobo profile page (posthumous) ✅ (Session 46)
+- [x] **V3.5** Joshua Wong profile page ✅ (Session 47)
+- [ ] **V3.6** Gui Minhai profile page — NEXT
+- [ ] **V3.7** Additional profiles (Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan)
+
+---
+
+## ⏸️ RESOLVED: Previously Blocked Tasks (Humans Answered)
 
 ### HR1: Backend Architecture
 **Status:** ✅ DECIDED (Session 16)  
-**Owner Decision:** A) Stay static for now, B) add serverless later
+**Human Decision:** A) Stay static for now, B) add serverless later
 
 **Recommended Stack (researched Session 16):** Cloudflare Pages Functions + Supabase
 - Keeps hosting + functions on same platform (Cloudflare)
@@ -547,7 +575,7 @@ This document consolidates tasks from multiple TODO files (TODO.md, SITE_WIDE_TO
 
 ### HR2: Content Policy
 **Status:** ✅ DECIDED (Session 16)  
-**Owner Decision:** GitHub PRs from trusted contributors; consider user submissions later
+**Human Decision:** GitHub PRs from trusted contributors; consider user submissions later
 
 - [x] Moderation via GitHub PR review process
 - [ ] Future: Consider email-based submissions
@@ -671,6 +699,47 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-22), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-48), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
-**Next Review:** All autonomous tasks COMPLETE. Remaining tasks (HR1.1-3, HR3.3, L2.3) blocked on human decisions or volunteer recruitment.
+**Next Review:** V2 profile pages in progress (5/12+ built). Next: Gui Minhai, then Agnes Chow, Nathan Law, etc.
+
+---
+
+## 🆕 V2: Profile Pages (Sessions 43-48)
+
+### Status: IN PROGRESS (5 of 12+ built)
+**Best Agent:** Opus 4.6 (CCP narrative analysis, source verification, date cross-referencing)  
+**Template:** 5 tabs — Timeline | Charges/Significance | CCP Narrative Analysis | International Response/Legacy | Sources
+
+| Profile | Route | Status | Session | Events | Sources | Color Theme |
+|---------|-------|--------|---------|--------|---------|-------------|
+| Jimmy Lai | /profiles/jimmy-lai | ✅ BUILT | 43 | 16 | 8 Tier 1 | Red (press freedom) |
+| Ilham Tohti | /profiles/ilham-tohti | ✅ BUILT | 44 | 19 | 9 Tier 1 | Blue (academic) |
+| Panchen Lama | /profiles/panchen-lama | ✅ BUILT | 45 | 16 | 9 T1 + 1 T2 | Purple (religious) |
+| Liu Xiaobo | /profiles/liu-xiaobo | ✅ BUILT | 46 | 22 | 9 T1 + 2 T2 | Gray+Gold (memorial) |
+| Joshua Wong | /profiles/joshua-wong | ✅ BUILT | 47 | 21 | 7 T1 + 3 T2 | Yellow (youth) |
+| Gui Minhai | /profiles/gui-minhai | 📋 NEXT | — | — | — | — |
+| Agnes Chow | — | 📋 QUEUED | — | — | — | — |
+| Nathan Law | — | 📋 QUEUED | — | — | — | — |
+| Benny Tai | — | 📋 QUEUED | — | — | — | — |
+| Cardinal Zen | — | 📋 QUEUED | — | — | — | — |
+| Gao Zhisheng | — | 📋 QUEUED | — | — | — | — |
+| Zhang Zhan | — | 📋 QUEUED | — | — | — | — |
+
+### Profile Index Page
+**Status:** NOT BUILT  
+**Description:** Create `/profiles` listing all profile pages with status badges and navigation links  
+**Best Agent:** Sonnet 4.5 (straightforward UI layout)
+
+---
+
+## 🆕 V2: Other Improvements (Sessions 36-40)
+
+| Task | Status | Session | Agent |
+|------|--------|---------|-------|
+| Form honesty notices (4 forms) | ✅ COMPLETE | 36 | Opus 4.6 |
+| Community stats disclaimer | ✅ COMPLETE | 37 | Opus 4.6 |
+| Lazy-load Phase 1 (53 components) | ✅ COMPLETE | 38 | Opus 4.6 |
+| Lazy-load Phase 2 (28 components) | ✅ COMPLETE | 39 | Opus 4.6 |
+| SEO meta descriptions (14 pages) | ✅ COMPLETE | 40 | Opus 4.6 |
+| Human decisions D1-D5 | ✅ COMPLETE | 42 | Opus 4.6 |

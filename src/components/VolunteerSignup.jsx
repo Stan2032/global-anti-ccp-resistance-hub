@@ -80,20 +80,20 @@ const VolunteerSignup = () => {
   if (submitted) {
     return (
       <div className="space-y-6">
-        <div className="bg-green-900/30 border border-green-700/50 rounded-xl p-8 text-center">
-          <PartyPopper className="w-12 h-12 text-green-400 mb-4 mx-auto" />
-          <h2 className="text-2xl font-bold text-white mb-2">Thank You for Volunteering!</h2>
+        <div className="bg-amber-900/30 border border-amber-700/50 rounded-xl p-8 text-center">
+          <PartyPopper className="w-12 h-12 text-amber-400 mb-4 mx-auto" />
+          <h2 className="text-2xl font-bold text-white mb-2">Thank You for Your Interest!</h2>
           <p className="text-slate-300 mb-4">
-            Your information has been recorded. We'll be in touch soon with opportunities 
-            that match your skills and interests.
+            This volunteer signup form is not yet connected to a backend. Your data has <strong>not</strong> been submitted.
+            To volunteer, please contact the organizations below directly:
           </p>
           <div className="bg-slate-800/50 rounded-lg p-4 text-left max-w-md mx-auto">
-            <h3 className="font-medium text-white mb-2">What Happens Next:</h3>
+            <h3 className="font-medium text-white mb-2">Volunteer Directly With:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>✓ Review your application (1-2 days)</li>
-              <li>✓ Match you with relevant projects</li>
-              <li>✓ Send onboarding materials</li>
-              <li>✓ Connect you with team leads</li>
+              <li>→ <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Uyghur Human Rights Project</a></li>
+              <li>→ <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Watch</a></li>
+              <li>→ <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Tibet Action Institute</a></li>
+              <li>→ <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Amnesty International</a></li>
             </ul>
           </div>
           <button
@@ -147,6 +147,18 @@ const VolunteerSignup = () => {
             <span className="text-yellow-400 font-medium">Social Media</span>
             <p className="text-xs text-slate-400">Content creation, outreach</p>
           </div>
+        </div>
+      </div>
+
+      {/* Coming Soon Notice */}
+      <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4 flex items-start gap-3">
+        <UserPlus className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+        <div>
+          <h3 className="font-semibold text-amber-300 text-sm">Form Not Yet Connected (Coming Soon)</h3>
+          <p className="text-amber-200/70 text-xs mt-1">
+            This form is not yet connected to a backend. Submitted data will not be stored or sent anywhere.
+            To volunteer now, please visit the partner organizations listed at the bottom of this page.
+          </p>
         </div>
       </div>
 
@@ -307,9 +319,8 @@ const VolunteerSignup = () => {
         <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4">
           <h3 className="font-medium text-red-400 mb-2"><Lock className="w-4 h-4 inline mr-1" /> Security Notice</h3>
           <p className="text-sm text-slate-300">
-            Your information will be handled securely. If you are in a sensitive situation, 
-            consider using a pseudonym and secure email. We will never share your information 
-            without your consent.
+            If you are in a sensitive situation, consider using a pseudonym and secure email when contacting organizations.
+            This form is a preview — no data is currently stored or transmitted.
           </p>
         </div>
 

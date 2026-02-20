@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import useDocumentTitle from '../hooks/useDocumentTitle';
@@ -10,6 +10,16 @@ function wrapper({ initialEntries }) {
 }
 
 describe('useDocumentTitle', () => {
+  beforeEach(() => {
+    // Ensure a meta description tag exists for testing
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'description');
+      document.head.appendChild(meta);
+    }
+  });
+
   afterEach(() => {
     document.title = '';
   });
@@ -40,5 +50,21 @@ describe('useDocumentTitle', () => {
       wrapper: wrapper({ initialEntries: ['/nonexistent'] }),
     });
     expect(document.title).toBe('Global Anti-CCP Resistance Hub');
+  });
+
+  it('sets the meta description for known routes', () => {
+    renderHook(() => useDocumentTitle(), {
+      wrapper: wrapper({ initialEntries: ['/prisoners'] }),
+    });
+    const meta = document.querySelector('meta[name="description"]');
+    expect(meta.getAttribute('content')).toContain('political prisoners');
+  });
+
+  it('falls back to the base description for unknown routes', () => {
+    renderHook(() => useDocumentTitle(), {
+      wrapper: wrapper({ initialEntries: ['/nonexistent'] }),
+    });
+    const meta = document.querySelector('meta[name="description"]');
+    expect(meta.getAttribute('content')).toContain('global movement against CCP');
   });
 });

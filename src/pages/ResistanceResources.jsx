@@ -1,16 +1,24 @@
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckCircle, Globe, FileText, Search, ShieldCheck, Wrench, AlertTriangle, Phone, Mail } from 'lucide-react';
-import DataExport from '../components/DataExport';
-import Bookmarks from '../components/Bookmarks';
-import MediaGallery from '../components/MediaGallery';
-import CompanyTracker from '../components/CompanyTracker';
-import OrganizationsDirectory from '../components/OrganizationsDirectory';
-import ForcedLaborTracker from '../components/ForcedLaborTracker';
-import AcademicExperts from '../components/AcademicExperts';
-import MediaBiasGuide from '../components/MediaBiasGuide';
-import HistoricalDocuments from '../components/HistoricalDocuments';
-import LegalResourcesHub from '../components/LegalResourcesHub';
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const DataExport = lazy(() => import('../components/DataExport'));
+const Bookmarks = lazy(() => import('../components/Bookmarks'));
+const MediaGallery = lazy(() => import('../components/MediaGallery'));
+const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
+const OrganizationsDirectory = lazy(() => import('../components/OrganizationsDirectory'));
+const ForcedLaborTracker = lazy(() => import('../components/ForcedLaborTracker'));
+const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
+const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
+const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
+const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -261,51 +269,51 @@ const ResistanceResources = () => {
       </div>
 
       {/* Data Export Section */}
-      <DataExport />
+      <Suspense fallback={<SectionLoader />}><DataExport /></Suspense>
 
       {/* Personal Bookmarks */}
       <div className="mt-8">
-        <Bookmarks />
+        <Suspense fallback={<SectionLoader />}><Bookmarks /></Suspense>
       </div>
 
       {/* Media Gallery */}
       <div className="mt-8">
-        <MediaGallery />
+        <Suspense fallback={<SectionLoader />}><MediaGallery /></Suspense>
       </div>
 
       {/* Company Accountability Tracker */}
       <div className="mt-8">
-        <CompanyTracker />
+        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
       </div>
 
       {/* Organizations Directory */}
       <div className="mt-8">
-        <OrganizationsDirectory />
+        <Suspense fallback={<SectionLoader />}><OrganizationsDirectory /></Suspense>
       </div>
 
       {/* Wide Research: Forced Labor Tracker */}
       <div className="mt-8">
-        <ForcedLaborTracker />
+        <Suspense fallback={<SectionLoader />}><ForcedLaborTracker /></Suspense>
       </div>
 
       {/* Wide Research: Academic Experts */}
       <div className="mt-8">
-        <AcademicExperts />
+        <Suspense fallback={<SectionLoader />}><AcademicExperts /></Suspense>
       </div>
 
       {/* Media Bias Guide */}
       <div className="mt-8">
-        <MediaBiasGuide />
+        <Suspense fallback={<SectionLoader />}><MediaBiasGuide /></Suspense>
       </div>
 
       {/* Historical Documents Archive */}
       <div className="mt-8">
-        <HistoricalDocuments />
+        <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
       </div>
 
       {/* Legal Resources Hub */}
       <div className="mt-8">
-        <LegalResourcesHub />
+        <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
       </div>
 
       {/* Footer note */}

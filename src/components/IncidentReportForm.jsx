@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertTriangle, Lock, Globe, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, Lock, Info } from 'lucide-react';
 
 const IncidentReportForm = () => {
   const [formData, setFormData] = useState({
@@ -55,31 +55,26 @@ const IncidentReportForm = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white mb-2">Report Submitted Securely</h2>
+        <h2 className="text-2xl font-bold text-white mb-2">Thank You for Your Report</h2>
         <p className="text-slate-400 mb-6">
-          Thank you for documenting this incident. Your report helps build evidence of CCP transnational repression.
+          This form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
+          Please report directly to the organizations below:
         </p>
         <div className="bg-slate-900/50 rounded-lg p-4 mb-6">
-          <h3 className="font-semibold text-white mb-2">What Happens Next</h3>
+          <h3 className="font-semibold text-white mb-2">Report Directly To:</h3>
           <ul className="text-sm text-slate-400 space-y-2 text-left">
             <li className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              Your report is encrypted and stored securely
+              <span className="text-blue-400">→</span>
+              <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a> — CCP transnational repression specialists
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              Data is shared with verified human rights organizations
+              <span className="text-blue-400">→</span>
+              <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">FBI Tips</a> — If you're in the United States
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              Patterns are analyzed to identify CCP operations
+              <span className="text-blue-400">→</span>
+              <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Human Rights Watch</a> — International human rights documentation
             </li>
-            {!formData.anonymous && (
-              <li className="flex items-start gap-2">
-                <span className="text-green-400">✓</span>
-                You may be contacted for follow-up (if you provided contact info)
-              </li>
-            )}
           </ul>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -130,14 +125,14 @@ const IncidentReportForm = () => {
       </div>
 
       {/* Security Notice */}
-      <div className="bg-green-900/20 border-b border-green-700/50 p-4">
+      <div className="bg-amber-900/20 border-b border-amber-700/50 p-4">
         <div className="flex items-start gap-3">
-          <Lock className="w-5 h-5 text-green-400" />
+          <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
-            <h3 className="font-semibold text-green-300 text-sm">Your Security Matters</h3>
-            <p className="text-green-200/70 text-xs mt-1">
-              This form uses end-to-end encryption. You can report anonymously. 
-              We recommend using Tor Browser and a VPN for additional protection.
+            <h3 className="font-semibold text-amber-300 text-sm">Form Not Yet Connected (Coming Soon)</h3>
+            <p className="text-amber-200/70 text-xs mt-1">
+              This form is not yet connected to a backend service. Submitted data is not stored or transmitted.
+              For immediate reporting, please contact <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="underline text-amber-300 hover:text-amber-200">Safeguard Defenders</a> or the <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="underline text-amber-300 hover:text-amber-200">FBI Tips line</a> directly.
             </p>
           </div>
         </div>
@@ -416,13 +411,7 @@ const IncidentReportForm = () => {
       <div className="bg-slate-900/50 p-4 border-t border-slate-700">
         <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
           <span className="flex items-center gap-1">
-            <Lock className="w-3 h-3" /> End-to-end encrypted
-          </span>
-          <span className="flex items-center gap-1">
-            <Globe className="w-3 h-3" /> Tor-compatible
-          </span>
-          <span className="flex items-center gap-1">
-            <ShieldCheck className="w-3 h-3" /> No logs retained
+            <Info className="w-3 h-3" /> Form not yet active — coming soon
           </span>
         </div>
       </div>

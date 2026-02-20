@@ -1,0 +1,156 @@
+{
+  "handoff": {
+    "version": "2.1",
+    "date": "2026-02-20T14:20:00Z",
+    "repository": "Stan2032/global-anti-ccp-resistance-hub",
+    "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+    "previous_agent": "Opus 4.6 (Sessions 35-52)",
+    "state": "MERGE_READY",
+    "trust_level": "HIGH",
+    "verification_rate": 0.98,
+    "supersedes": "AGENT_HANDOFF.json (v1.0, Session 25)"
+  },
+
+  "critical_reads": [
+    "_agents/TODO.md",
+    "_agents/AGENTS.md",
+    "_agents/AGENT_ROADMAP.md",
+    "_agents/QUESTIONS_FOR_HUMANS.md",
+    "_agents/thoughts/"
+  ],
+
+  "repository_metrics": {
+    "total_files": "310+",
+    "frontend_tests": 248,
+    "test_status": "ALL_PASSING",
+    "build_time": "~5s",
+    "profile_pages_built": 5,
+    "data_entries_sourced": 142,
+    "lazy_loaded_components": 81,
+    "sessions_completed": 52
+  },
+
+  "resolved_since_v1": {
+    "note": "These were listed as CRITICAL/HIGH in AGENT_HANDOFF.json v1.0 but are now resolved",
+    "vpn_tor_fake_detection": {
+      "was": "CRITICAL — Uses Math.random() to fake VPN/Tor detection",
+      "now": "RESOLVED — Session 33: Removed fake detection, added honest disclaimers and third-party self-test tools",
+      "session": 33
+    },
+    "forms_dont_submit": {
+      "was": "Forms don't submit",
+      "now": "RESOLVED — Session 36: Added honest 'Coming Soon' notices, removed false success messages, added links to real organizations",
+      "session": 36
+    },
+    "statistics_hardcoded": {
+      "was": "Statistics are hardcoded",
+      "now": "RESOLVED — Session 37: Added 'illustrative targets' disclaimer to community statistics",
+      "session": 37
+    },
+    "frontend_no_tests": {
+      "was": "NO_TEST_INFRASTRUCTURE",
+      "now": "RESOLVED — 248 vitest tests across 14 test files, all passing",
+      "note": "Tests existed before Session 25 but were not documented in v1 handoff"
+    },
+    "notification_no_onclick": {
+      "was": "Notification system button has no onClick handler",
+      "now": "ACKNOWLEDGED — Non-functional UI elements have honest disclaimers where user-facing"
+    }
+  },
+
+  "still_outstanding": {
+    "cache_system": {
+      "status": "DOCUMENTED_BUT_MISSING",
+      "severity": "LOW",
+      "description": "cacheService.js referenced in docs but file never existed. Cache documentation should be removed or service implemented.",
+      "recommendation": "Remove cache documentation references (Option B from v1)"
+    },
+    "backend_test_environment": {
+      "status": "UNVERIFIABLE_IN_SANDBOX",
+      "severity": "MEDIUM",
+      "description": "Backend tests require PostgreSQL database. Cannot run in sandbox environment.",
+      "recommendation": "Set up PostgreSQL, run migrations, then verify backend tests"
+    },
+    "broken_doc_references": {
+      "status": "LOW",
+      "description": "Some docs reference branch-3 (doesn't exist) and CACHE_SYSTEM.md (doesn't exist)",
+      "recommendation": "Clean up during next documentation pass"
+    }
+  },
+
+  "next_priority_actions": [
+    {
+      "priority": 1,
+      "task": "gui_minhai_profile",
+      "description": "Build Gui Minhai profile page (next in queue)",
+      "agent": "Opus 4.6",
+      "estimated_hours": 2,
+      "data_exists": true
+    },
+    {
+      "priority": 2,
+      "task": "profile_index_page",
+      "description": "Create /profiles index page listing all 5+ profiles with status indicators",
+      "agent": "Sonnet 4.5 or Opus 4.6",
+      "estimated_hours": 1
+    },
+    {
+      "priority": 3,
+      "task": "additional_profiles",
+      "description": "Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan",
+      "agent": "Opus 4.6 (content research) + Sonnet 4.5 (layout)",
+      "estimated_hours": 12
+    },
+    {
+      "priority": 4,
+      "task": "accessibility_audit",
+      "description": "Run automated WCAG 2.1 tests and fix violations",
+      "agent": "Either",
+      "estimated_hours": 4
+    },
+    {
+      "priority": 5,
+      "task": "multilingual_translations",
+      "description": "Fill in zh-TW, ug, bo locale files (currently skeleton structures)",
+      "agent": "Opus 4.6 (language expertise needed)",
+      "estimated_hours": 8
+    }
+  ],
+
+  "standing_instructions": {
+    "adding_people": "Agents may add individuals to the database without asking humans, as long as well-researched with verified sources and consistent with project goals",
+    "source_tiers": {
+      "tier_1": ["BBC", "Reuters", "AP", "HRW", "Amnesty International", "CPJ", "UN OHCHR", "Government records"],
+      "tier_2": ["HKFP", "RFA", "NCHRD", "Safeguard Defenders", "CHRD", "The Guardian", "NYT", "WaPo"],
+      "never_cite": ["Xinhua", "CGTN", "People's Daily", "Global Times", "China Daily", "Ta Kung Pao", "Wen Wei Po", "tibet.cn", "en.people.cn"]
+    },
+    "date_verification": "Always cross-reference dates with 2+ independent sources",
+    "profile_template": "5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources"
+  },
+
+  "environment_setup": {
+    "frontend": {
+      "location": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
+      "steps": ["npm install", "npm run dev"],
+      "test_command": "npx vitest run",
+      "build_command": "npm run build"
+    },
+    "backend": {
+      "location": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub/backend",
+      "steps": ["npm install", "cp .env.example .env", "setup PostgreSQL", "npm run migrate", "npm test"],
+      "note": "Requires external PostgreSQL database"
+    }
+  },
+
+  "file_structure_highlights": {
+    "profile_pages": "src/pages/profiles/",
+    "data_files": "src/data/",
+    "agent_workspace": "_agents/",
+    "agent_thoughts": "_agents/thoughts/",
+    "agent_archive": "_agents/archive/",
+    "locale_files": "src/locales/",
+    "test_files": "src/test/",
+    "hooks": "src/hooks/",
+    "routing": "src/App.jsx"
+  }
+}

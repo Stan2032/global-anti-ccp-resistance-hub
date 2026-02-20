@@ -1,5 +1,8 @@
 # Complete Site-Wide To-Do List
 
+**Last reviewed:** February 20, 2026 (Session 49, Opus 4.6)  
+**Status:** Most items still outstanding — focused on forced labor alternatives verification and China exposure ratings. Good feature work for future sessions.
+
 ## Original User Request Review
 
 **User's Core Requirement:**

@@ -3,6 +3,14 @@
 ## Priority: CRITICAL
 **Goal:** Remove ALL simulated, fake, mock, or placeholder data. Replace with ONLY real, verified data from credible sources with transparent attribution.
 
+**Last reviewed:** February 20, 2026 (Session 49, Opus 4.6)  
+**Status:** Phase 1 ✅ COMPLETE (Dec 2025). Additionally, Sessions 33-37 addressed several more items:
+- ✅ **VPN/Tor fake detection** removed, honest disclaimers + 3rd-party self-test tools added (Session 33)
+- ✅ **Non-functional forms** now show "Coming Soon" notices with links to real organizations (Session 36)
+- ✅ **False security claims** removed from IncidentReportForm (Session 36)
+- ✅ **Community statistics** marked as "illustrative targets" (Session 37)
+- 🔄 **Phase 2** (component refactoring to use JSON data files) is still outstanding
+
 ---
 
 ## 1. LIVE INTELLIGENCE FEED (liveDataSources.js)

@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import WorldThreatMap from '../components/WorldThreatMap';
-import PoliceStationsMap from '../components/PoliceStationsMap';
-import ChinaExitBan from '../components/ChinaExitBan';
-import TaiwanDefenseStatus from '../components/TaiwanDefenseStatus';
-import HongKongStatus from '../components/HongKongStatus';
-import XinjiangStatus from '../components/XinjiangStatus';
-import TibetStatus from '../components/TibetStatus';
-import ChinaTechThreats from '../components/ChinaTechThreats';
-import GlobalInfluenceMap from '../components/GlobalInfluenceMap';
-import RegionalIssues from '../components/RegionalIssues';
-import DetentionFacilities from '../components/DetentionFacilities';
-import ConfuciusInstituteTracker from '../components/ConfuciusInstituteTracker';
-import DetentionFacilitiesTracker from '../components/DetentionFacilitiesTracker';
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const WorldThreatMap = lazy(() => import('../components/WorldThreatMap'));
+const PoliceStationsMap = lazy(() => import('../components/PoliceStationsMap'));
+const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
+const TaiwanDefenseStatus = lazy(() => import('../components/TaiwanDefenseStatus'));
+const HongKongStatus = lazy(() => import('../components/HongKongStatus'));
+const XinjiangStatus = lazy(() => import('../components/XinjiangStatus'));
+const TibetStatus = lazy(() => import('../components/TibetStatus'));
+const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
+const GlobalInfluenceMap = lazy(() => import('../components/GlobalInfluenceMap'));
+const RegionalIssues = lazy(() => import('../components/RegionalIssues'));
+const DetentionFacilities = lazy(() => import('../components/DetentionFacilities'));
+const ConfuciusInstituteTracker = lazy(() => import('../components/ConfuciusInstituteTracker'));
+const DetentionFacilitiesTracker = lazy(() => import('../components/DetentionFacilitiesTracker'));
 
 // Regional Threats Data
 const THREATS_DATA = {
@@ -299,42 +306,42 @@ const RegionalThreats = () => {
         
         {/* World Map */}
         <div className="mb-8">
-          <WorldThreatMap />
+          <Suspense fallback={<SectionLoader />}><WorldThreatMap /></Suspense>
         </div>
         
         {/* Police Stations Map */}
         <div className="mb-8">
-          <PoliceStationsMap />
+          <Suspense fallback={<SectionLoader />}><PoliceStationsMap /></Suspense>
         </div>
         
         {/* Exit Bans & Hostage Diplomacy */}
         <div className="mb-8">
-          <ChinaExitBan />
+          <Suspense fallback={<SectionLoader />}><ChinaExitBan /></Suspense>
         </div>
         
         {/* Taiwan Defense Status */}
         <div className="mb-8">
-          <TaiwanDefenseStatus />
+          <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
         </div>
         
         {/* Hong Kong Status */}
         <div className="mb-8">
-          <HongKongStatus />
+          <Suspense fallback={<SectionLoader />}><HongKongStatus /></Suspense>
         </div>
         
         {/* Xinjiang Status */}
         <div className="mb-8">
-          <XinjiangStatus />
+          <Suspense fallback={<SectionLoader />}><XinjiangStatus /></Suspense>
         </div>
         
         {/* Tibet Status */}
         <div className="mb-8">
-          <TibetStatus />
+          <Suspense fallback={<SectionLoader />}><TibetStatus /></Suspense>
         </div>
         
         {/* China Tech Threats */}
         <div className="mb-8">
-          <ChinaTechThreats />
+          <Suspense fallback={<SectionLoader />}><ChinaTechThreats /></Suspense>
         </div>
         
         {/* Alert Banner */}
@@ -416,27 +423,27 @@ const RegionalThreats = () => {
 
       {/* Global Influence Map */}
       <div className="mt-8">
-        <GlobalInfluenceMap />
+        <Suspense fallback={<SectionLoader />}><GlobalInfluenceMap /></Suspense>
       </div>
 
       {/* Other Persecuted Groups */}
       <div className="mb-8">
-        <RegionalIssues />
+        <Suspense fallback={<SectionLoader />}><RegionalIssues /></Suspense>
       </div>
 
       {/* Detention Facility Database */}
       <div className="mb-8">
-        <DetentionFacilities />
+        <Suspense fallback={<SectionLoader />}><DetentionFacilities /></Suspense>
       </div>
       
       {/* Confucius Institute Tracker */}
       <div className="mb-8">
-        <ConfuciusInstituteTracker />
+        <Suspense fallback={<SectionLoader />}><ConfuciusInstituteTracker /></Suspense>
       </div>
 
       {/* Wide Research: Detention Facilities Tracker */}
       <div className="mb-8">
-        <DetentionFacilitiesTracker />
+        <Suspense fallback={<SectionLoader />}><DetentionFacilitiesTracker /></Suspense>
       </div>
     </div>
   );
