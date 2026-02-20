@@ -331,11 +331,13 @@
 2. [ ] Performance optimization (code splitting for large bundles: TakeAction 231KB, EducationalResources 216KB)
 
 ### Up Next
-1. Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — **Best agent: Sonnet 4.5**
-2. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-3. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
+1. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
 
 ### Recently Completed
+- ✅ Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — Session 36, Opus 4.6
+- ✅ Fix misleading security claims in IncidentReportForm footer ("End-to-end encrypted", "No logs retained") — Session 36
+- ✅ Fix false success messages ("Report Submitted Securely", "You're Subscribed!") with honest notices + links to real organizations — Session 36
 - ✅ PWA Install Banner with iOS/Android support
 - ✅ Case Study Deep Dives (Jimmy Lai, Ilham Tohti, Panchen Lama)
 - ✅ Reading Progress Tracker with achievements

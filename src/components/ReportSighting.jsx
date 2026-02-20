@@ -118,20 +118,28 @@ const ReportSighting = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-green-900/30 border border-green-500 rounded-lg p-8 text-center"
+        className="bg-amber-900/30 border border-amber-500 rounded-lg p-8 text-center"
       >
-        <div className="text-6xl mb-4">✅</div>
-        <h3 className="text-2xl font-bold text-green-400 mb-4">Report Submitted</h3>
+        <div className="text-6xl mb-4">⚠️</div>
+        <h3 className="text-2xl font-bold text-amber-400 mb-4">Form Not Yet Active</h3>
         <p className="text-gray-300 mb-6">
-          Thank you for your report. Your information helps document CCP activities 
-          and protect diaspora communities worldwide.
+          This reporting form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
+          To report CCP activities, please use the official channels below:
         </p>
         <div className="bg-slate-800 rounded-lg p-4 mb-6 text-left">
-          <h4 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Important Security Reminder</h4>
+          <h4 className="text-blue-400 font-semibold mb-2">Report Directly To:</h4>
+          <ul className="text-sm text-gray-300 space-y-1">
+            <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a> — CCP transnational repression</li>
+            <li>→ <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">FBI Tips</a> — United States</li>
+            <li>→ <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">MI5</a> — United Kingdom</li>
+            <li>→ <a href="https://www.asio.gov.au/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">ASIO</a> — Australia</li>
+          </ul>
+        </div>
+        <div className="bg-slate-800 rounded-lg p-4 mb-6 text-left">
+          <h4 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Security Reminder</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Clear your browser history if using a shared device</li>
-            <li>• Consider using Tor for future reports</li>
-            <li>• Do not discuss this report on unsecured channels</li>
+            <li>• Consider using Tor for sensitive communications</li>
             <li>• If you feel unsafe, contact emergency services</li>
           </ul>
         </div>
@@ -163,15 +171,15 @@ const ReportSighting = () => {
         </p>
       </div>
 
-      {/* Security Notice */}
-      <div className="bg-yellow-900/30 border-b border-yellow-700 p-4">
+      {/* Coming Soon Notice */}
+      <div className="bg-amber-900/30 border-b border-amber-700 p-4">
         <div className="flex items-start gap-3">
-          <Shield className="w-6 h-6 text-yellow-400" />
+          <Shield className="w-6 h-6 text-amber-400" />
           <div>
-            <h4 className="font-semibold text-yellow-400">Security First</h4>
+            <h4 className="font-semibold text-amber-400">Form Not Yet Connected (Coming Soon)</h4>
             <p className="text-sm text-gray-300">
-              For your safety, we recommend using a VPN or Tor browser. 
-              Reports can be submitted anonymously. No personal data is required.
+              This reporting form is not yet connected to a backend service. Submitted data is not stored or transmitted.
+              For immediate reporting, please use the official channels listed at the bottom of this page.
             </p>
           </div>
         </div>
