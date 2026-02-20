@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { AlertTriangle, Lock, Globe, ShieldCheck, Info } from 'lucide-react';
+import { AlertTriangle, Lock, Info } from 'lucide-react';
 
 const IncidentReportForm = () => {
-  const FORM_ACTIVE = false; // Set to true when backend is connected
-
   const [formData, setFormData] = useState({
     incidentType: '',
     location: '',
