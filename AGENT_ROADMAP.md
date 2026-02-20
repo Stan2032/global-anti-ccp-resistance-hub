@@ -1,7 +1,7 @@
 # Agent Roadmap - Consolidated Task Prioritization
 **Purpose:** Agent-facing roadmap for autonomous progression and task execution  
-**Last Updated:** 2026-02-20 (Session 35, Opus 4.6)  
-**Status:** All Autonomous Tasks Complete; Pending Owner Decisions for V2/V3
+**Last Updated:** 2026-02-20 (Session 48, Opus 4.6)  
+**Status:** All V1 Autonomous Tasks Complete; V2 Profile Pages In Progress (5 of 12+ built)
 
 ---
 
@@ -716,6 +716,47 @@ This roadmap will be updated:
 
 ---
 
-**Agent:** Opus 4.6 (Sessions 6-22), Claude Sonnet 3.5 (Sessions 1-5)  
+**Agent:** Opus 4.6 (Sessions 6-48), Claude Sonnet 3.5 (Sessions 1-5)  
 **Mode:** Autonomous with human escalation  
-**Next Review:** All autonomous tasks COMPLETE. Remaining tasks (HR1.1-3, HR3.3, L2.3) blocked on human decisions or volunteer recruitment.
+**Next Review:** V2 profile pages in progress (5/12+ built). Next: Gui Minhai, then Agnes Chow, Nathan Law, etc.
+
+---
+
+## 🆕 V2: Profile Pages (Sessions 43-48)
+
+### Status: IN PROGRESS (5 of 12+ built)
+**Best Agent:** Opus 4.6 (CCP narrative analysis, source verification, date cross-referencing)  
+**Template:** 5 tabs — Timeline | Charges/Significance | CCP Narrative Analysis | International Response/Legacy | Sources
+
+| Profile | Route | Status | Session | Events | Sources | Color Theme |
+|---------|-------|--------|---------|--------|---------|-------------|
+| Jimmy Lai | /profiles/jimmy-lai | ✅ BUILT | 43 | 16 | 8 Tier 1 | Red (press freedom) |
+| Ilham Tohti | /profiles/ilham-tohti | ✅ BUILT | 44 | 19 | 9 Tier 1 | Blue (academic) |
+| Panchen Lama | /profiles/panchen-lama | ✅ BUILT | 45 | 16 | 9 T1 + 1 T2 | Purple (religious) |
+| Liu Xiaobo | /profiles/liu-xiaobo | ✅ BUILT | 46 | 22 | 9 T1 + 2 T2 | Gray+Gold (memorial) |
+| Joshua Wong | /profiles/joshua-wong | ✅ BUILT | 47 | 21 | 7 T1 + 3 T2 | Yellow (youth) |
+| Gui Minhai | /profiles/gui-minhai | 📋 NEXT | — | — | — | — |
+| Agnes Chow | — | 📋 QUEUED | — | — | — | — |
+| Nathan Law | — | 📋 QUEUED | — | — | — | — |
+| Benny Tai | — | 📋 QUEUED | — | — | — | — |
+| Cardinal Zen | — | 📋 QUEUED | — | — | — | — |
+| Gao Zhisheng | — | 📋 QUEUED | — | — | — | — |
+| Zhang Zhan | — | 📋 QUEUED | — | — | — | — |
+
+### Profile Index Page
+**Status:** NOT BUILT  
+**Description:** Create `/profiles` listing all profile pages with status badges and navigation links  
+**Best Agent:** Sonnet 4.5 (straightforward UI layout)
+
+---
+
+## 🆕 V2: Other Improvements (Sessions 36-40)
+
+| Task | Status | Session | Agent |
+|------|--------|---------|-------|
+| Form honesty notices (4 forms) | ✅ COMPLETE | 36 | Opus 4.6 |
+| Community stats disclaimer | ✅ COMPLETE | 37 | Opus 4.6 |
+| Lazy-load Phase 1 (53 components) | ✅ COMPLETE | 38 | Opus 4.6 |
+| Lazy-load Phase 2 (28 components) | ✅ COMPLETE | 39 | Opus 4.6 |
+| SEO meta descriptions (14 pages) | ✅ COMPLETE | 40 | Opus 4.6 |
+| Owner decisions D1-D5 | ✅ COMPLETE | 42 | Opus 4.6 |

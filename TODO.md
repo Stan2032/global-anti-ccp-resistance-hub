@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 47, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 48, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -90,7 +90,7 @@
     - [x] Ossietzky parallel (first Nobel laureate to die in custody since 1938)
     - [x] 11 sources (9 Tier 1, 2 Tier 2), zero CCP state media
     - [x] Memorial color theme (dark gray with gold Nobel accents)
-  - [ ] **Joshua Wong profile page**
+  - [x] **Joshua Wong profile page** ✅ (Session 47)
     - [x] Scholarism movement (2011-2012) and anti-national education curriculum campaign
     - [x] 2014 Umbrella Movement and Civic Square arrest (September 26, 2014)
     - [x] TIME "Most Influential Teens" (2014) and Fortune "World's Greatest Leaders" (2015)
@@ -422,6 +422,76 @@
 3. All data export in user-controlled formats
 4. Clear security warnings where appropriate
 5. Regular security audits
+
+---
+
+---
+
+## 🚀 QUICK START FOR NEW AGENTS
+
+### Essential Reading (in order)
+1. **This file (TODO.md)** — What's done, what's next, standing instructions
+2. **AGENTS.md** — Agent roles, capabilities, protocol, CodeQL troubleshooting
+3. **AGENT_ROADMAP.md** — Detailed task history with subtask breakdowns and agent assignments
+4. **QUESTIONS_FOR_OWNER.md** — All resolved decisions + standing instruction on adding people
+5. **agent-thoughts/** — Session-by-session decision logs (13 files, Sessions 33-48)
+6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
+7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
+
+### Current State Summary (as of Session 48, Feb 20, 2026)
+- **Frontend:** React + Vite + Tailwind, 14 pages, 100+ components, 248 tests (all passing)
+- **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
+- **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
+- **Profile Pages Queued:** Gui Minhai (next), then Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+- **Data:** 60 political prisoners, 29 sanctioned officials, 33 forced labor companies, 142 total entries with 100% source attribution
+- **Performance:** All 8 major pages lazy-loaded (81 sub-components), all page bundles under 50KB
+- **Forms:** 4 non-functional forms have honest "Coming Soon" disclaimers (Session 36)
+- **Community stats:** Marked as "illustrative targets" (Session 37)
+- **i18n Foundation:** 5 language files built (en, zh-CN, zh-TW, ug, bo), translations not yet filled
+
+### Standing Instructions from Owner
+- **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
+- **CCP source exclusion:** Never cite Xinhua, CGTN, People's Daily, Global Times, China Daily, Ta Kung Pao, Wen Wei Po, tibet.cn, en.people.cn, or any CCP state/party media
+- **Date verification:** Always cross-reference dates with 2+ independent sources
+- **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
+
+### What's Immediately Actionable (no owner input needed)
+1. **Gui Minhai profile page** — next in queue, data exists in political_prisoners_research.json
+2. **Profile index page** at `/profiles` — list all profiles with status indicators and links
+3. **Additional profiles** — Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+4. **Accessibility audit** — run automated WCAG 2.1 tests
+5. **Multilingual translations** — fill in zh-TW, ug, bo locale files (currently skeleton)
+6. **News feed integration** — add RSS feeds from trusted sources
+7. **Update sanctions list** — check for new US/EU/UK/Canada/Australia sanctions
+
+### What Needs Owner Decisions
+1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
+2. Whether to implement backend cache system or remove documentation referencing it
+3. Priority ranking for medium-term features (video testimonials, podcast player, event map, etc.)
+
+---
+
+## 📜 SESSION HISTORY
+
+| Session | Date | Agent | Key Work |
+|---------|------|-------|----------|
+| 1-5 | Jan 2026 | Sonnet 3.5 | Initial build, 14 pages, 100+ components |
+| 6-22 | Feb 18-19 | Opus 4.6 | Data verification, source attribution, security fixes, accessibility |
+| 23-25 | Feb 18-19 | Investigation | Fabrication gap audit, AGENT_HANDOFF.json creation |
+| 33-34 | Feb 19-20 | Opus 4.6 | Data verification (Zhang Zhan, Xu Zhiyong, Gui Minhai, Joshua Wong), deduplication |
+| 35 | Feb 20 | Opus 4.6 | Documentation updates, roadmap V2/V3 sections |
+| 36 | Feb 20 | Opus 4.6 | Honest "Coming Soon" notices on 4 non-functional forms, removed false security claims |
+| 37 | Feb 20 | Opus 4.6 | "Illustrative targets" disclaimer on fake community statistics |
+| 38-39 | Feb 20 | Opus 4.6 | Performance: lazy-loaded 81 sub-components across 8 pages (87-93% bundle reduction) |
+| 40 | Feb 20 | Opus 4.6 | SEO: per-route meta descriptions for all 14 pages, 2 new tests (248 total) |
+| 41 | Feb 20 | Opus 4.6 | Consolidated pending decisions, amended outdated questions |
+| 42 | Feb 20 | Opus 4.6 | Implemented all 5 owner decisions (D1-D5), standing instruction recorded |
+| 43 | Feb 20 | Opus 4.6 | Jimmy Lai profile page (16 timeline events, 3 charges, 4 CCP narratives debunked) |
+| 44 | Feb 20 | Opus 4.6 | Ilham Tohti profile page (19 events, Sakharov Prize, 7 students persecuted) |
+| 45 | Feb 20 | Opus 4.6 | Panchen Lama profile page (16 events, "Why It Matters" section, Golden Urn debunked) |
+| 46 | Feb 20 | Opus 4.6 | Liu Xiaobo memorial profile page (22 events, Charter 08, posthumous/memorial treatment) |
+| 47 | Feb 20 | Opus 4.6 | Joshua Wong profile page (21 events, dual charges, HK47 trial, yellow theme) |
+| 48 | Feb 20 | Opus 4.6 | Comprehensive TODO/handoff update for branch merge |
 
 ---
 
