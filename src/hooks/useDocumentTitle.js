@@ -74,6 +74,10 @@ const ROUTE_META = {
     title: 'Liu Xiaobo — Memorial Profile',
     description: 'Memorial profile of Liu Xiaobo (刘晓波): Nobel Peace Prize laureate, Charter 08 author, imprisoned for 11 years for writing about democracy. Died in state custody July 13, 2017. First Nobel laureate to die in custody since Carl von Ossietzky (1938). Timeline, CCP narrative analysis, and verified sources.',
   },
+  '/profiles/joshua-wong': {
+    title: 'Joshua Wong — Profile',
+    description: 'Detailed profile of Joshua Wong (黃之鋒): Hong Kong pro-democracy activist, Scholarism founder, Demosistō co-founder. Sentenced to 4 years 8 months in Hong Kong 47 subversion trial. Faces new NSL collusion charges carrying life imprisonment. Timeline, charges, CCP narrative analysis, and verified sources.',
+  },
 };
 
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';

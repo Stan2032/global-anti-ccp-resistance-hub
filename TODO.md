@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 45, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 47, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -91,9 +91,18 @@
     - [x] 11 sources (9 Tier 1, 2 Tier 2), zero CCP state media
     - [x] Memorial color theme (dark gray with gold Nobel accents)
   - [ ] **Joshua Wong profile page**
-    - [ ] Scholarism movement and Umbrella Revolution
-    - [ ] Multiple arrests and sentences
-    - [ ] Hong Kong 47 case (4 years 8 months)
+    - [x] Scholarism movement (2011-2012) and anti-national education curriculum campaign
+    - [x] 2014 Umbrella Movement and Civic Square arrest (September 26, 2014)
+    - [x] TIME "Most Influential Teens" (2014) and Fortune "World's Greatest Leaders" (2015)
+    - [x] Demosistō founding (April 2016) and dissolution (June 2020)
+    - [x] Multiple arrests, convictions, and appeals (2016-2020)
+    - [x] Hong Kong 47 case: arrested Feb 28, 2021 → guilty May 30, 2024 → sentenced Nov 19, 2024 (4y8m)
+    - [x] "I love Hong Kong" courtroom moment documented
+    - [x] June 6, 2025: new NSL collusion charge (faces life imprisonment) — Amnesty calls it "designed to prolong imprisonment"
+    - [x] CCP narrative analysis: 4 claims debunked (separatist, subversive primary, foreign manipulation, fair trial)
+    - [x] Nathan Law exile connection documented
+    - [x] 10 sources (7 Tier 1, 3 Tier 2), zero CCP state media
+    - [x] Yellow/gold color theme (youth activism, energy)
   - [ ] **Gui Minhai profile page**
     - [ ] Causeway Bay Books and cross-border abduction from Thailand
     - [ ] Swedish citizenship and diplomatic crisis
@@ -345,11 +354,12 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Joshua Wong profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Gui Minhai profile page
-3. Consider: Profile index page at `/profiles` listing all profiles with status indicators
+1. Gui Minhai profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
+2. Profile index page at `/profiles` listing all 5+ profiles with status indicators
+3. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 
 ### Recently Completed
+- ✅ Joshua Wong profile page: dedicated /profiles/joshua-wong route with 21-event timeline, dual charges section (subversion guilty + collusion pending), CCP narrative analysis (4 claims debunked), Nathan Law exile connection, "I love Hong Kong" courtroom moment, 10 sources, yellow/gold theme — Session 47, Opus 4.6
 - ✅ Liu Xiaobo memorial profile page: dedicated /profiles/liu-xiaobo route with 22-event timeline, Charter 08 & Charges tab, CCP narrative analysis (4 claims debunked), Legacy & Impact tab, Liu Xia persecution section, "I Have No Enemies" quote, Ossietzky parallel, 11 sources, memorial color theme — Session 46, Opus 4.6
 - ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
 - ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
