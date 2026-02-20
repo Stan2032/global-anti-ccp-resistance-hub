@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 37, Opus 4.6)
+> Last Updated: February 20, 2026 (Session 38, Opus 4.6)
 > 
 > This document tracks planned improvements, features, and maintenance tasks for the platform.
 > Items are categorized by timeframe and priority.
@@ -13,7 +13,7 @@
 - [ ] **Multilingual Support**: Add translations for key pages (Chinese Traditional, Uyghur, Tibetan, Vietnamese, Korean, Japanese)
 - [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
 - [ ] **Accessibility Audit**: Run automated accessibility tests and fix any WCAG 2.1 violations
-- [ ] **Performance Optimization**: Implement code splitting for large components, optimize images
+- [x] **Performance Optimization**: Implement code splitting for large components ✅ (Session 38 — lazy-loaded 53 sub-components across 4 pages, 87-93% bundle reduction)
 - [ ] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines
 
 ### Content Updates
@@ -328,13 +328,14 @@
 
 ### In Progress
 1. [x] Accessibility audit and improvements ✅ (Sessions 10, 14, 18 — 208 accessibility attributes)
-2. [ ] Performance optimization (code splitting for large bundles: TakeAction 231KB, EducationalResources 216KB)
+2. [x] Performance optimization ✅ (Session 38 — lazy-loaded 53 sub-components, 87-93% bundle reduction)
 
 ### Up Next
 1. Profile pages (awaiting owner priority selection) — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
 2. SEO improvements (meta tags, Open Graph) — **Best agent: Sonnet 4.5**
 
 ### Recently Completed
+- ✅ Performance optimization: lazy-loaded 53 sub-components across TakeAction, EducationalResources, RegionalThreats, ResistanceResources — Session 38, Opus 4.6
 - ✅ Add "illustrative targets" disclaimer to fake community statistics (CommunitySupport page) — Session 37, Opus 4.6
 - ✅ Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — Session 36, Opus 4.6
 - ✅ Fix misleading security claims in IncidentReportForm footer ("End-to-end encrypted", "No logs retained") — Session 36

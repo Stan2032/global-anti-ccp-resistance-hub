@@ -1,22 +1,5 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
-import Timeline from '../components/Timeline'
-import DocumentaryList from '../components/DocumentaryList'
-import ReadingList from '../components/ReadingList'
-import GlossaryTerms from '../components/GlossaryTerms'
-import VictimStories from '../components/VictimStories'
-import PodcastList from '../components/PodcastList'
-import ResearchPapers from '../components/ResearchPapers'
-import FAQ from '../components/FAQ'
-import KnowledgeQuiz from '../components/KnowledgeQuiz'
-import LanguageGuide from '../components/LanguageGuide';
-import DisinfoTracker from '../components/DisinfoTracker';
-import SourceVerification from '../components/SourceVerification';
-import InteractiveTimeline from '../components/InteractiveTimeline'
-import ReadingProgress from '../components/ReadingProgress';
-import PodcastPlayer from '../components/PodcastPlayer';
-import AcademicCitationGenerator from '../components/AcademicCitationGenerator';
-import AIDisinfoDetector from '../components/AIDisinfoDetector';
 import { 
   BookOpen, 
   Play, 
@@ -31,6 +14,28 @@ import {
   Lock,
   Award
 } from 'lucide-react'
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const DocumentaryList = lazy(() => import('../components/DocumentaryList'));
+const ReadingList = lazy(() => import('../components/ReadingList'));
+const GlossaryTerms = lazy(() => import('../components/GlossaryTerms'));
+const VictimStories = lazy(() => import('../components/VictimStories'));
+const ResearchPapers = lazy(() => import('../components/ResearchPapers'));
+const FAQ = lazy(() => import('../components/FAQ'));
+const KnowledgeQuiz = lazy(() => import('../components/KnowledgeQuiz'));
+const LanguageGuide = lazy(() => import('../components/LanguageGuide'));
+const DisinfoTracker = lazy(() => import('../components/DisinfoTracker'));
+const SourceVerification = lazy(() => import('../components/SourceVerification'));
+const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
+const ReadingProgress = lazy(() => import('../components/ReadingProgress'));
+const PodcastPlayer = lazy(() => import('../components/PodcastPlayer'));
+const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitationGenerator'));
+const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('modules')
@@ -523,75 +528,75 @@ const EducationalResources = () => {
 
       {/* Research Tab */}
       {activeTab === 'research' && (
-        <ResearchPapers />
+        <Suspense fallback={<SectionLoader />}><ResearchPapers /></Suspense>
       )}
 
       {/* Books Tab */}
       {activeTab === 'books' && (
-        <ReadingList />
+        <Suspense fallback={<SectionLoader />}><ReadingList /></Suspense>
       )}
 
       {/* Documentaries Tab */}
       {activeTab === 'documentaries' && (
-        <DocumentaryList />
+        <Suspense fallback={<SectionLoader />}><DocumentaryList /></Suspense>
       )}
 
       {/* Podcasts Tab */}
       {activeTab === 'podcasts' && (
-        <PodcastPlayer />
+        <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
       )}
 
       {/* Stories Tab */}
       {activeTab === 'stories' && (
-        <VictimStories />
+        <Suspense fallback={<SectionLoader />}><VictimStories /></Suspense>
       )}
 
       {/* Glossary Tab */}
       {activeTab === 'glossary' && (
-        <GlossaryTerms />
+        <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
       )}
 
       {/* Timeline Tab */}
       {activeTab === 'timeline' && (
-        <InteractiveTimeline />
+        <Suspense fallback={<SectionLoader />}><InteractiveTimeline /></Suspense>
       )}
 
       {/* FAQ Tab */}
       {activeTab === 'faq' && (
-        <FAQ />
+        <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
       )}
 
       {/* Knowledge Quiz Tab */}
       {activeTab === 'quiz' && (
-        <KnowledgeQuiz />
+        <Suspense fallback={<SectionLoader />}><KnowledgeQuiz /></Suspense>
       )}
 
       {/* Language Phrases Tab */}
       {activeTab === 'phrases' && (
-        <LanguageGuide />
+        <Suspense fallback={<SectionLoader />}><LanguageGuide /></Suspense>
       )}
 
       {activeTab === 'disinfo' && (
-        <DisinfoTracker />
+        <Suspense fallback={<SectionLoader />}><DisinfoTracker /></Suspense>
       )}
 
       {activeTab === 'sources' && (
-        <SourceVerification />
+        <Suspense fallback={<SectionLoader />}><SourceVerification /></Suspense>
       )}
 
       {/* Reading Progress Tab */}
       {activeTab === 'progress' && (
-        <ReadingProgress />
+        <Suspense fallback={<SectionLoader />}><ReadingProgress /></Suspense>
       )}
 
       {/* Citation Generator Tab */}
       {activeTab === 'citations' && (
-        <AcademicCitationGenerator />
+        <Suspense fallback={<SectionLoader />}><AcademicCitationGenerator /></Suspense>
       )}
 
       {/* AI Disinfo Detector Tab */}
       {activeTab === 'detector' && (
-        <AIDisinfoDetector />
+        <Suspense fallback={<SectionLoader />}><AIDisinfoDetector /></Suspense>
       )}
     </div>
   )

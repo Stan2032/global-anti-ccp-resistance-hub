@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
-import PetitionLinks from '../components/PetitionLinks';
-import ForcedLabourList from '../components/ForcedLabourList';
-import ForcedLaborSupplyChain from '../components/ForcedLaborSupplyChain';
-import ContactRepresentatives from '../components/ContactRepresentatives';
-import SuccessStories from '../components/SuccessStories';
-import QuickFacts from '../components/QuickFacts';
-import ActionTracker from '../components/ActionTracker';
-import ActivistToolkit from '../components/ActivistToolkit';
-import SanctionsTracker from '../components/SanctionsTracker';
-import DonationGuide from '../components/DonationGuide';
-import LetterCampaign from '../components/LetterCampaign';
-import SocialMediaToolkit from '../components/SocialMediaToolkit';
-import PetitionGenerator from '../components/PetitionGenerator';
-import CampaignProgress from '../components/CampaignProgress';
-import GovernmentResponseTracker from '../components/GovernmentResponseTracker';
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+const PetitionLinks = lazy(() => import('../components/PetitionLinks'));
+const ForcedLabourList = lazy(() => import('../components/ForcedLabourList'));
+const ForcedLaborSupplyChain = lazy(() => import('../components/ForcedLaborSupplyChain'));
+const ContactRepresentatives = lazy(() => import('../components/ContactRepresentatives'));
+const SuccessStories = lazy(() => import('../components/SuccessStories'));
+const QuickFacts = lazy(() => import('../components/QuickFacts'));
+const ActionTracker = lazy(() => import('../components/ActionTracker'));
+const ActivistToolkit = lazy(() => import('../components/ActivistToolkit'));
+const SanctionsTracker = lazy(() => import('../components/SanctionsTracker'));
+const DonationGuide = lazy(() => import('../components/DonationGuide'));
+const LetterCampaign = lazy(() => import('../components/LetterCampaign'));
+const SocialMediaToolkit = lazy(() => import('../components/SocialMediaToolkit'));
+const PetitionGenerator = lazy(() => import('../components/PetitionGenerator'));
+const CampaignProgress = lazy(() => import('../components/CampaignProgress'));
+const GovernmentResponseTracker = lazy(() => import('../components/GovernmentResponseTracker'));
 
 const TakeAction = () => {
   const [email, setEmail] = useState('');
@@ -450,77 +457,77 @@ const TakeAction = () => {
 
       {/* Petitions Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-        <PetitionLinks />
+        <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
       </div>
 
       {/* Contact Representatives Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-        <ContactRepresentatives />
+        <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
       </div>
 
       {/* Boycott List Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-        <ForcedLabourList />
+        <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
       </div>
 
       {/* Supply Chain Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-        <ForcedLaborSupplyChain />
+        <Suspense fallback={<SectionLoader />}><ForcedLaborSupplyChain /></Suspense>
       </div>
 
       {/* Success Stories Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-        <SuccessStories />
+        <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
       </div>
 
       {/* Quick Facts Section */}
       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-        <QuickFacts />
+        <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
       </div>
 
       {/* Action Tracker */}
       <div className="mt-8">
-        <ActionTracker />
+        <Suspense fallback={<SectionLoader />}><ActionTracker /></Suspense>
       </div>
 
       {/* Activist Toolkit */}
       <div className="mt-8">
-        <ActivistToolkit />
+        <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
       </div>
 
       {/* Sanctions Tracker */}
       <div className="mt-8">
-        <SanctionsTracker />
+        <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
       </div>
 
       {/* Donation Guide */}
       <div className="mt-8">
-        <DonationGuide />
+        <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
       </div>
 
       {/* Letter Writing Campaigns */}
       <div className="mt-8">
-        <LetterCampaign />
+        <Suspense fallback={<SectionLoader />}><LetterCampaign /></Suspense>
       </div>
 
       {/* Social Media Toolkit */}
       <div className="mt-8">
-        <SocialMediaToolkit />
+        <Suspense fallback={<SectionLoader />}><SocialMediaToolkit /></Suspense>
       </div>
 
       {/* Petition Generator */}
       <div>
-        <PetitionGenerator />
+        <Suspense fallback={<SectionLoader />}><PetitionGenerator /></Suspense>
       </div>
 
       {/* Campaign Progress Tracker */}
       <div className="mt-8">
-        <CampaignProgress />
+        <Suspense fallback={<SectionLoader />}><CampaignProgress /></Suspense>
       </div>
 
       {/* Government Response Tracker */}
       <div>
-        <GovernmentResponseTracker />
+        <Suspense fallback={<SectionLoader />}><GovernmentResponseTracker /></Suspense>
       </div>
 
       {/* Share Section */}
