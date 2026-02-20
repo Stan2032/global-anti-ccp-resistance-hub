@@ -481,6 +481,59 @@ See Section 1 above for full breakdown with sources.
 
 ---
 
+## Session 34: Sanctioned Officials Verification & Forbes Article Cross-Reference (2026-02-20, Opus 4.6)
+
+### Corrections Made
+
+| Issue | What Was Wrong | Corrected To | Files Affected |
+|-------|---------------|-------------|----------------|
+| Liu Jianchao detention date | "July 2025" | "August 2025" (last public appearance July 29, detained early August upon return to Beijing) | sanctioned_officials_research.json |
+| Pema Thinley/Padma Choling sanctions date | "December 2020" | "December 7, 2020 (under EO 13936, as NPC vice-chairperson involved in HK NSL)" | sanctioned_officials_research.json |
+| Chen Mingguo input label | "Taiwan Affairs Office" (wrong) | "Xinjiang Public Security Bureau Director" | sanctioned_officials_research.json |
+| Guan Heng news staleness | Described as "faces deportation" (Dec 2025 news) | Added UPDATE: "Granted US asylum Jan 28, 2026" | recent_news_research.json |
+
+### Verified Correct (No Changes Needed)
+
+| Official | Claim | Status | Sources |
+|----------|-------|--------|---------|
+| Zheng Yanxiong | Removed from HK posts May 2025 | ✅ CONFIRMED | RTHK, Bastille Post, GlobalSecurity, Macau Business, gov.cn |
+| Wu Yingjie | US sanctions Dec 9, 2022; Canada Dec 10, 2024 | ✅ CONFIRMED | US Treasury jy1155, multiple news sources |
+| Chen Mingguo | EU/UK/US/Canada all March 2021 | ✅ CONFIRMED | EU Council, US Treasury jy0070, coordinated Western action |
+| Pema Thinley | Sanctioned via NPC role (not Tibet directly) | ✅ CONFIRMED | US State Dept, Wikipedia, sanctions-finder.com |
+
+### Forbes Article Cross-Reference
+
+The project owner provided the Forbes article URL: https://www.forbes.com/sites/oliviaenos/2025/12/10/remembering-political-prisoners-across-china-on-human-rights-day/
+
+Key claims verified:
+- **CECC PPD total records: 11,262** (as of June 2025), approximately 2,755 currently detained. ✅ CONFIRMED via CECC, Epoch Times, Federal News Wire
+- **Xin Ruoyu**: Christian mother disappeared Aug 23, 2024 for "Song of Songs" worship app. ✅ VERIFIED (Session 33)
+- **Olivia Enos affiliation**: Senior Fellow, Hudson Institute. ✅ CONFIRMED
+- **Policy proposal**: Office of Political Prisoner Advocacy within State Department, ambassador-rank envoy. Tracked for future reference.
+
+### Data File Quality Assessment
+
+| File | Records | Issues Found | Issues Fixed |
+|------|---------|-------------|-------------|
+| sanctioned_officials_research.json | 20 officials | 3 (Liu Jianchao date, Pema Thinley precision, Chen Mingguo input label) | 3 ✅ |
+| recent_news_research.json | 20 entries | 1 (Guan Heng stale) | 1 ✅ |
+| detention_facilities_research.json | 20 facilities | 0 — all source URLs point to ASPI, RAND, Wikipedia, legitimate sources | — |
+| international_responses_research.json | 30 countries | 0 — all dates previously verified Session 28 | — |
+
+### Test Suite Extended
+
+6 new tests added (66 total in data-consistency.test.js):
+- Liu Jianchao: August 2025 (not July)
+- Pema Thinley: December 7, 2020
+- Chen Mingguo: input correctly identifies Xinjiang PSB
+- Zheng Yanxiong: May 2025 removal confirmed
+- Wu Yingjie: US Dec 2022 + Canada Dec 2024
+- No CCP state media URLs in sanctioned officials data
+
+Full suite: 246 tests, all passing.
+
+---
+
 **Agent Assignment Note:** This document must be maintained by Opus 4.6 or equivalent. Verification of CCP-related claims requires:
 - Deep knowledge of CCP propaganda apparatus and tactics
 - Ability to distinguish Spamouflage/DRAGONBRIDGE content from legitimate sources

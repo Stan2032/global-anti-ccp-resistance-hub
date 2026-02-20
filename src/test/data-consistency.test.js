@@ -522,4 +522,54 @@ describe('Critical date consistency across data files', () => {
       expect(withNote.length).toBeGreaterThanOrEqual(55);
     });
   });
+
+  describe('Session 34: Sanctioned officials verification', () => {
+    let officials;
+    beforeAll(() => {
+      officials = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+    });
+
+    it('Liu Jianchao detained August 2025, not July', () => {
+      const lj = officials.results.find((r) => r.output.name === 'Liu Jianchao');
+      expect(lj).toBeDefined();
+      expect(lj.output.current_status).toMatch(/August 2025/);
+      expect(lj.output.current_status).not.toMatch(/July 2025/);
+    });
+
+    it('Pema Thinley sanctions date is December 7, 2020', () => {
+      const pt = officials.results.find((r) => r.output.name === 'Pema Thinley');
+      expect(pt).toBeDefined();
+      expect(pt.output.us_sanctions).toMatch(/December 7, 2020/);
+    });
+
+    it('Chen Mingguo input correctly identifies Xinjiang PSB, not Taiwan Affairs', () => {
+      const cm = officials.results.find((r) => r.output.name === 'Chen Mingguo');
+      expect(cm).toBeDefined();
+      expect(cm.input).toMatch(/Xinjiang/);
+      expect(cm.input).not.toMatch(/Taiwan/);
+    });
+
+    it('Zheng Yanxiong removed from HK posts May 2025', () => {
+      const zy = officials.results.find((r) => r.output.name === 'Zheng Yanxiong');
+      expect(zy).toBeDefined();
+      expect(zy.output.current_status).toMatch(/May 2025/);
+    });
+
+    it('Wu Yingjie sanctions December 2022 and Canada December 2024', () => {
+      const wy = officials.results.find((r) => r.output.name === 'Wu Yingjie');
+      expect(wy).toBeDefined();
+      expect(wy.output.us_sanctions).toMatch(/December.*2022/);
+      expect(wy.output.canada_sanctions).toMatch(/December.*2024/);
+    });
+
+    it('no sanctioned official entry references CCP state media as source', () => {
+      const ccpDomains = ['xinhua.net', 'cgtn.com', 'globaltimes.cn', 'chinadaily.com', 'people.com.cn', 'cctv.com'];
+      for (const r of officials.results) {
+        const url = r.output.source_url || '';
+        for (const d of ccpDomains) {
+          expect(url).not.toContain(d);
+        }
+      }
+    });
+  });
 });
