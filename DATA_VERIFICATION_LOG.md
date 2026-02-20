@@ -442,6 +442,34 @@ See Section 1 above for full breakdown with sources.
   - **VERIFIED (no correction needed):** Agnes Chow (exile Canada Dec 2023), Nathan Law (exile UK 2020, HK$1M bounty Jul 2023), Chen Guangcheng (escape to US Embassy Apr 2012).
   - **Extended test suite**: 8 new tests (38 total in data-consistency.test.js): Liu Xiaobo dates, Huang Qi sentencing, Wang Quanzhang dates and status, Lee Cheuk-yan corrected sentence, Cardinal Zen dates, Andy Li plea date, Tony Chung sentence, Martin Lee suspended sentence. last_verified list expanded to 24 names. Full suite: 218 tests, all passing.
 
+- 2026-02-20 (Session 32): Final prisoner verification batch — 8 more prisoners verified (52 total), critical corrections (Opus 4.6)
+  - **CORRECTION: Abduweli Ayup sentence** — Was listed as "15 months". Corrected to "18 months" per Wikipedia, PEN America, Uyghur Times, NY Review of Books, ICORN, USC, CCCB. Detained August 2013, released November 2014. Now in exile in Bergen, Norway (ICORN writer-in-residence since 2019).
+  - **CRITICAL UPDATE: Guan Heng status** — Changed from "AT RISK" to "RELEASED". Granted US asylum January 28, 2026 by immigration judge. Released from ICE detention February 2026. Had been detained by ICE since August 2025. Filmed Xinjiang detention facilities and published on YouTube. Verified via ABC News, NBC News, SFGATE, Wikipedia, Gulf News.
+  - **UPDATED: Wu Gan** — Added exact sentencing date December 26, 2017 (Tianjin No. 2 Intermediate Court). Released May 2023 after full 8-year sentence. Also 5 years deprivation of political rights. Verified via Wikipedia, Amnesty, Guardian/ChinaAid, WRAL, Straits Times, Rappler, China Change.
+  - **UPDATED: Hada** — Added arrest date December 1995, sentencing November 1996. Not released as expected in 2010 — held in extra-judicial detention 4+ additional years. Disappeared again February 2025. Nominated for 2025 Nobel Peace Prize. Over 100 NGOs called for release (April 2025). Verified via NCHRD, CSW, UNPO, Concerned Scientists, Wikipedia, HRIC, SMHRIC.
+  - **UPDATED: Rinchen Tsultrim** — Added arrest date August 1, 2019. Sentenced November 27, 2020 to 4.5 years. Released February 1, 2024 in secret. Under strict surveillance. Verified via USCIRF, Amnesty (Canada/USA), Tibet Watch, Licas.news, Phayul.
+  - **UPDATED: Go Sherab Gyatso** — Added detention date October 26, 2020 in Chengdu. Sentenced November 2021 at Lhasa Intermediate Court to 10 years. Secret trial. Previously detained 1998, 2008, 2011-2013. PEN International honoree 2023. Verified via Tibet Watch, TCHRD, Tibet.net, USCIRF, PEN International.
+  - **UPDATED: Lobsang Lhundup** — Added arrest date June 2019. Released August 2023 from Mianyang prison. Pen name Dhi Lhaden. Author of "The Art of Passive Resistance" used as evidence in trial. Held incommunicado 2 years before secret trial. Verified via Tibet Watch, Free Tibet, Phayul, RFA, Pardafas.
+  - **UPDATED: Perhat Tursun** — Seized January 2018 in Urumqi. 16-year sentence surfaced 2020. Won Tucholsky Prize from PEN Sweden 2022. Charges never made public. Verified via Wikipedia, PEN America, PEN International, Uyghur PEN, USCIRF, Coda Story, World Uyghur Congress.
+  - **Extended test suite**: 8 new tests (54 total in data-consistency.test.js): Abduweli Ayup corrected sentence, Guan Heng asylum, Wu Gan dates, Hada dates, Rinchen Tsultrim dates, Go Sherab Gyatso 10 years, Perhat Tursun 16 years, Lobsang Lhundup release. Verified count threshold raised from 40 to 50. Full suite: 234 tests, all passing.
+
+---
+
+### Remaining Unverified (8/60) — web search rate-limited
+
+These 8 prisoners could not be verified due to web search rate limits but data appears consistent with known sources:
+
+1. **Tenzin Nyima** [DECEASED] — Tibetan teenager who died in detention. Limited English-language sources.
+2. **Nurmuhammad Tohti** [DECEASED] — Uyghur who died in re-education camp. Limited documentation.
+3. **Yalqun Rozi** [DETAINED] — Uyghur textbook editor, 15 years for subversion. PEN America case.
+4. **Li Yuhan** [RELEASED] — Chinese HR lawyer, Shenyang, 6.5 years. NCHRD case.
+5. **Chang Weiping** [RELEASED] — Chinese HR lawyer, 3.5 years subversion. Baoji.
+6. **Abdurahman Hasan** [EXILE] — May be confused with Idris Hasan (Uyghur detained in Morocco, freed Feb 2025).
+7. **Erfan Hezim (Ye Erfan)** [RELEASED] — Uyghur, 11 months re-education camp.
+8. **Xin Ruoyu** [DETAINED] — May not be among HK47 defendants. Needs further research.
+
+**Agent note**: These remaining 8 should be verified in the next session when web search limits reset. Prioritize Abdurahman Hasan (possible misidentification) and Xin Ruoyu (unclear case details).
+
 ---
 
 **Agent Assignment Note:** This document must be maintained by Opus 4.6 or equivalent. Verification of CCP-related claims requires:

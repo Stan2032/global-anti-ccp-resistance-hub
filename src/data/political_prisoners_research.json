@@ -322,12 +322,14 @@
         "prisoner_name": "Rinchen Tsultrim",
         "status": "RELEASED",
         "location": "Sichuan province",
-        "sentence": "4 years 6 months for inciting secession",
-        "latest_news": "Feb 2024: Released from prison after completing his sentence, but remains under strict surveillance.",
+        "sentence": "4 years 6 months for inciting secession (sentenced November 27, 2020). Arrested August 1, 2019 for social media posts critical of religious restrictions. Released February 1, 2024 in secret.",
+        "latest_news": "Feb 2024: Released secretly from prison. Authorities prohibited public celebration or photography. Under strict surveillance, required to report daily to county police. Reports of torture, forced labor, and political indoctrination during imprisonment.",
         "health_status": "Unknown",
         "international_response": "Amnesty International and the US Commission on International Religious Freedom have advocated on his behalf.",
         "source_url": "https://www.rfa.org/english/news/tibet/monk-prison-release-02072024162627.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Aug 1, 2019. Sentenced Nov 27, 2020 to 4.5 years. Released Feb 1, 2024. Verified via USCIRF, Amnesty International (Canada and USA), Tibet Watch, Licas.news, Phayul."
       },
       "error": ""
     },
@@ -337,12 +339,14 @@
         "prisoner_name": "Go Sherab Gyatso",
         "status": "DETAINED",
         "location": "Prison near Lhasa, Tibet Autonomous Region",
-        "sentence": "10 years for inciting secession",
-        "latest_news": "July 2024: PEN International called for his release at the UN Human Rights Council.",
+        "sentence": "10 years for inciting secession (sentenced November 2021, secret trial at Lhasa Intermediate Court). Detained October 26, 2020 in Chengdu while seeking medical treatment.",
+        "latest_news": "Remains imprisoned. Health in jeopardy — chronic lung condition, denied adequate medical care. Previously detained in 1998 (Dalai Lama images), 2008 (Olympics protests), and 2011-2013. Buddhist scholar, educator, and author. PEN International Day of the Imprisoned Writer honoree 2023.",
         "health_status": "Chronic lung condition, concerns about access to adequate medical care.",
         "international_response": "PEN International and the US Department of State have called for his immediate and unconditional release.",
         "source_url": "https://www.pen-international.org/cases/go-sherab-gyatso-gosher",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Detained Oct 26, 2020. Sentenced Nov 2021 to 10 years. Verified via Tibet Watch, TCHRD North America, Tibet.net, USCIRF, PEN International."
       },
       "error": ""
     },
@@ -535,12 +539,14 @@
         "prisoner_name": "Wu Gan",
         "status": "RELEASED",
         "location": "Fujian, China (Released)",
-        "sentence": "8 years for subverting state power",
-        "latest_news": "May 2023: Released from prison after serving his full eight-year sentence.",
+        "sentence": "8 years for subverting state power (sentenced December 26, 2017, Tianjin No. 2 Intermediate Court). Also 5 years deprivation of political rights. Refused to plead guilty, resulting in harsher sentence. Released May 2023.",
+        "latest_news": "May 2023: Released after completing full 8-year sentence. Known as \"Super Vulgar Butcher\" for provocative performance art protests against officials. Part of broader 709 Crackdown.",
         "health_status": "Previously reported to have hypertension and a heart ailment; current status unknown.",
         "international_response": "The United States and Germany called for his release. Amnesty International campaigned for his release.",
         "source_url": "https://duihua.org/prisoner-updates-2023-7/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Sentenced Dec 26, 2017 to 8 years. Released May 2023. Verified via Wikipedia, Amnesty International, Guardian/ChinaAid, WRAL, Straits Times, Rappler, China Change."
       },
       "error": ""
     },
@@ -567,12 +573,14 @@
         "prisoner_name": "Hada",
         "status": "DISAPPEARED",
         "location": "Unknown",
-        "sentence": "15 years for separatism and espionage",
-        "latest_news": "Dec 2025: A joint statement by several human rights groups reports that Hada and his family have completely disappeared following a medical emergency in February 2025.",
+        "sentence": "15 years for separatism and espionage (sentenced November 1996, closed hearing). 4 years deprivation of political rights. Founder of Southern Mongolian Democratic Alliance.",
+        "latest_news": "Feb 2025: Disappeared again after hospitalization under suspicious circumstances. Not released as expected in 2010 — held in extra-judicial detention 4+ additional years. Nominated for 2025 Nobel Peace Prize by Japanese and US lawmakers. Over 100 NGOs called for release (Apr 2025). Wife Xinna and son Uiles also persecuted.",
         "health_status": "Deteriorating, hospitalized in Feb 2025 with multiple organ failure.",
         "international_response": "Nominated for the 2025 Nobel Peace Prize by Japanese lawmakers; over 100 rights groups have called for his release.",
         "source_url": "https://southmongolia.org/en/588/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested Dec 1995. Sentenced Nov 1996 to 15 years. Should have been released 2010 but held in extra-judicial detention. Disappeared again Feb 2025. Verified via NCHRD, CSW, UNPO, Concerned Scientists, Wikipedia, HRIC, SMHRIC."
       },
       "error": ""
     },
@@ -597,12 +605,14 @@
         "prisoner_name": "Lobsang Lhundup",
         "status": "RELEASED",
         "location": "Unknown",
-        "sentence": "4 years for disrupting social order",
-        "latest_news": "Aug 2023: Released after completing his four-year sentence.",
+        "sentence": "4 years for disrupting social order (sentenced in secret trial). Arrested June 2019 in Chengdu. Pen name: Dhi Lhaden. Released August 2023 from Mianyang prison.",
+        "latest_news": "Aug 2023: Released from Mianyang prison after serving full 4-year sentence. Author of \"The Art of Passive Resistance\" which criticized CCP rule in Tibet — used as evidence in trial. Held incommunicado for 2 years before trial.",
         "health_status": "Unknown",
         "international_response": "UN experts raised concerns about his arrest and detention.",
         "source_url": "https://www.rfa.org/english/news/tibet/writer-released-08072023152749.html",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "Arrested June 2019. Sentenced 4 years (date unknown — secret trial). Released Aug 2023. Verified via Tibet Watch, Free Tibet, Phayul, RFA, Pardafas."
       },
       "error": ""
     },
@@ -691,12 +701,14 @@
         "prisoner_name": "Perhat Tursun",
         "status": "DETAINED",
         "location": "Xinjiang, China",
-        "sentence": "16 years for unknown charges",
-        "latest_news": "2024: Reports revealed that Tursun was sentenced to 16 years in prison.",
+        "sentence": "16 years (seized January 2018 in Urumqi, sentence surfaced in 2020). Charges and trial details never made public. Renowned poet and novelist.",
+        "latest_news": "Remains imprisoned and incommunicado since Jan 2018. Won Tucholsky Prize from PEN Sweden (2022). Author of \"The Art of Suicide\" (novel) and \"One Hundred Love Lyrics\" (poetry). Part of sweeping crackdown targeting Uyghur intellectuals and cultural figures from 2017 onward.",
         "health_status": "Unknown",
         "international_response": "His case is monitored by PEN America, USCIRF, and the Congressional-Executive Commission on China. His novel 'The Backstreets' was runner-up for the Observer/Anthony Burgess prize for arts journalism in 2023.",
         "source_url": "https://pen.org/writer-at-risk/perhat-tursun/",
-        "confidence": "MEDIUM"
+        "confidence": "MEDIUM",
+        "last_verified": "2026-02-20",
+        "verification_note": "Seized Jan 2018. 16-year sentence surfaced 2020. Verified via Wikipedia, PEN America, PEN International, Uyghur PEN, USCIRF, Coda Story, World Uyghur Congress."
       },
       "error": ""
     },
@@ -706,12 +718,14 @@
         "prisoner_name": "Abduweli Ayup",
         "status": "EXILE",
         "location": "Bergen, Norway (exile)",
-        "sentence": "15 months for teaching Uyghur language",
-        "latest_news": "Nov 2025: Spoke at Columbia University and Penn's Center for East Asian Studies about his efforts to preserve the Uyghur language.",
+        "sentence": "18 months for \"illegal fundraising\" (detained August 2013, convicted on politically motivated charges). Sentenced for operating Uyghur-language kindergartens. Released November 2014.",
+        "latest_news": "Living in Bergen, Norway since 2019 via ICORN writer-in-residence program. Previously exiled to Turkey (2015). Founded Uyghur Hjelp (non-profit). Subject of award-winning documentary \"Behind the Mask\" (2024). Won Linguapax International Prize. Master's from University of Kansas (2011).",
         "health_status": "Unknown",
         "international_response": "Granted writer-in-residence through the ICORN program in Norway; spoken at the Geneva Summit for Human Rights and Democracy; featured in international media including NPR and VOA.",
         "source_url": "https://www.npr.org/2025/02/16/nx-s1-5293444/a-uyghur-linguists-journey-from-detainee-to-activist-in-exile",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CORRECTION: Sentence was 18 months (not 15 months as previously listed). Detained Aug 2013, released Nov 2014. Fled to Turkey 2015, Norway 2019. Verified via Wikipedia, PEN America, Uyghur Times, NY Review of Books, ICORN, USC, CCCB."
       },
       "error": ""
     },
@@ -919,14 +933,16 @@
       "input": "Guan Heng - Citizen journalist, filmed Uyghur camps, US deportation risk",
       "output": {
         "prisoner_name": "Guan Heng",
-        "status": "AT RISK",
+        "status": "RELEASED",
         "location": "New York, USA",
-        "sentence": "No sentence; seeking asylum in the US",
-        "latest_news": "Dec 2025: The U.S. dropped its effort to deport Guan Heng to Uganda.",
+        "sentence": "No sentence; filmed Xinjiang detention facilities. Fled China 2021. Detained by US ICE August 2025. Granted asylum January 28, 2026. Released February 2026.",
+        "latest_news": "Jan 28, 2026: Granted asylum by US immigration judge. Released from ICE detention Feb 2026 after 5+ months. Fled China via Hong Kong → Ecuador → Bahamas → US by boat. Filmed and published video evidence of Xinjiang detention facilities on YouTube. Family questioned by Chinese authorities. Supported by Rep. Ro Khanna and Rep. Raja Krishnamoorthi.",
         "health_status": "Unknown",
         "international_response": "The Committee to Protect Journalists (CPJ) and US Congressman Raja Krishnamoorthi have advocated on his behalf, urging the US government to grant him asylum.",
         "source_url": "https://www.reuters.com/world/china/us-drops-uganda-deportation-order-against-chinese-dissident-lawyer-says-2025-12-19/",
-        "confidence": "HIGH"
+        "confidence": "HIGH",
+        "last_verified": "2026-02-20",
+        "verification_note": "CRITICAL UPDATE: Status changed from \"AT RISK\" to \"RELEASED\". Granted US asylum Jan 28, 2026. Released Feb 2026. Verified via ABC News, NBC News, SFGATE, Wikipedia, Gulf News."
       },
       "error": ""
     },

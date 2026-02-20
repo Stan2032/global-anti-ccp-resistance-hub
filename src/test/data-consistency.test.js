@@ -400,9 +400,74 @@ describe('Critical date consistency across data files', () => {
       expect(jt.output.sentence).toMatch(/February 28, 2019/);
     });
 
-    it('at least 40 prisoners have been verified', () => {
+    it('at least 50 prisoners have been verified', () => {
       const verified = prisoners.results.filter((r) => r.output.last_verified);
-      expect(verified.length).toBeGreaterThanOrEqual(40);
+      expect(verified.length).toBeGreaterThanOrEqual(50);
+    });
+  });
+
+  describe('Session 32: Final prisoner verification batch', () => {
+    let prisoners;
+    beforeAll(() => {
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+    });
+
+    it('Abduweli Ayup sentence corrected to 18 months (was 15)', () => {
+      const aa = prisoners.results.find((r) => r.output.prisoner_name === 'Abduweli Ayup');
+      expect(aa).toBeDefined();
+      expect(aa.output.sentence).toMatch(/18 months/);
+      expect(aa.output.status).toBe('EXILE');
+    });
+
+    it('Guan Heng status updated to RELEASED (asylum granted Jan 28, 2026)', () => {
+      const gh = prisoners.results.find((r) => r.output.prisoner_name === 'Guan Heng');
+      expect(gh).toBeDefined();
+      expect(gh.output.status).toBe('RELEASED');
+      expect(gh.output.sentence).toMatch(/January 28, 2026/);
+    });
+
+    it('Wu Gan sentenced Dec 26, 2017, released May 2023', () => {
+      const wg = prisoners.results.find((r) => r.output.prisoner_name === 'Wu Gan');
+      expect(wg).toBeDefined();
+      expect(wg.output.sentence).toMatch(/December 26, 2017/);
+      expect(wg.output.sentence).toMatch(/May 2023/);
+    });
+
+    it('Hada arrested Dec 1995, sentenced Nov 1996, disappeared Feb 2025', () => {
+      const h = prisoners.results.find((r) => r.output.prisoner_name === 'Hada');
+      expect(h).toBeDefined();
+      expect(h.output.status).toBe('DISAPPEARED');
+      expect(h.output.sentence).toMatch(/November 1996/);
+    });
+
+    it('Rinchen Tsultrim sentenced Nov 27, 2020, released Feb 1, 2024', () => {
+      const rt = prisoners.results.find((r) => r.output.prisoner_name === 'Rinchen Tsultrim');
+      expect(rt).toBeDefined();
+      expect(rt.output.sentence).toMatch(/November 27, 2020/);
+      expect(rt.output.sentence).toMatch(/February 1, 2024/);
+      expect(rt.output.status).toBe('RELEASED');
+    });
+
+    it('Go Sherab Gyatso sentenced Nov 2021, 10 years, Lhasa court', () => {
+      const gs = prisoners.results.find((r) => r.output.prisoner_name === 'Go Sherab Gyatso');
+      expect(gs).toBeDefined();
+      expect(gs.output.sentence).toMatch(/10 years/);
+      expect(gs.output.sentence).toMatch(/November 2021/);
+      expect(gs.output.status).toBe('DETAINED');
+    });
+
+    it('Perhat Tursun 16 years, seized Jan 2018', () => {
+      const pt = prisoners.results.find((r) => r.output.prisoner_name === 'Perhat Tursun');
+      expect(pt).toBeDefined();
+      expect(pt.output.sentence).toMatch(/16 years/);
+      expect(pt.output.sentence).toMatch(/January 2018/);
+    });
+
+    it('Lobsang Lhundup sentenced 4 years, released Aug 2023', () => {
+      const ll = prisoners.results.find((r) => r.output.prisoner_name === 'Lobsang Lhundup');
+      expect(ll).toBeDefined();
+      expect(ll.output.sentence).toMatch(/4 years/);
+      expect(ll.output.sentence).toMatch(/August 2023/);
     });
   });
 });
