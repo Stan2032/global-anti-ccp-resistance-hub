@@ -49,7 +49,7 @@ const IncidentReportForm = () => {
 
   if (submitted) {
     return (
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
+      <div className="bg-[#111820] border border-[#1c2a35] p-8 text-center">
         <div className="w-16 h-16 bg-green-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -60,7 +60,7 @@ const IncidentReportForm = () => {
           This form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
           Please report directly to the organizations below:
         </p>
-        <div className="bg-slate-900/50 rounded-lg p-4 mb-6">
+        <div className="bg-[#0a0e14]/50 p-4 mb-6">
           <h3 className="font-semibold text-white mb-2">Report Directly To:</h3>
           <ul className="text-sm text-slate-400 space-y-2 text-left">
             <li className="flex items-start gap-2">
@@ -95,7 +95,7 @@ const IncidentReportForm = () => {
                 consent: false,
               });
             }}
-            className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+            className="px-6 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
           >
             Submit Another Report
           </button>
@@ -103,7 +103,7 @@ const IncidentReportForm = () => {
             href="https://safeguarddefenders.com/en/contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white transition-colors"
           >
             Contact Safeguard Defenders
           </a>
@@ -113,9 +113,9 @@ const IncidentReportForm = () => {
   }
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+    <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/50 to-slate-900 p-6 border-b border-slate-700">
+      <div className="bg-[#0a0e14] border-l-2 border-l-red-500 p-6 border-b border-[#1c2a35]">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
           <AlertTriangle className="w-5 h-5" /> Report CCP Harassment or Transnational Repression
         </h2>
@@ -139,7 +139,7 @@ const IncidentReportForm = () => {
       </div>
 
       {/* Progress Steps */}
-      <div className="p-4 border-b border-slate-700">
+      <div className="p-4 border-b border-[#1c2a35]">
         <div className="flex items-center justify-between max-w-md mx-auto">
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
@@ -173,10 +173,10 @@ const IncidentReportForm = () => {
               {incidentTypes.map((type) => (
                 <label
                   key={type.value}
-                  className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
+                  className={`flex items-start gap-3 p-4 border cursor-pointer transition-all ${
                     formData.incidentType === type.value
                       ? 'bg-red-900/30 border-red-600'
-                      : 'bg-slate-900/50 border-slate-700 hover:border-slate-500'
+                      : 'bg-[#0a0e14]/50 border-[#1c2a35] hover:border-slate-500'
                   }`}
                 >
                   <input
@@ -214,7 +214,7 @@ const IncidentReportForm = () => {
                   value={formData.location}
                   onChange={handleChange}
                   placeholder="e.g., London, UK"
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
               </div>
               <div>
@@ -227,7 +227,7 @@ const IncidentReportForm = () => {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
               </div>
             </div>
@@ -243,7 +243,7 @@ const IncidentReportForm = () => {
                 onChange={handleChange}
                 rows={5}
                 placeholder="Please describe what happened in as much detail as you feel comfortable sharing..."
-                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                 required
               />
             </div>
@@ -259,7 +259,7 @@ const IncidentReportForm = () => {
                 value={formData.perpetrators}
                 onChange={handleChange}
                 placeholder="e.g., Unknown individuals, Chinese embassy staff, CSSA members"
-                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
               />
             </div>
 
@@ -274,7 +274,7 @@ const IncidentReportForm = () => {
                 value={formData.evidence}
                 onChange={handleChange}
                 placeholder="e.g., Screenshots, photos, recordings, documents"
-                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
               />
               <p className="text-xs text-slate-500 mt-1">
                 Do not upload files here. If you have evidence, mention it and we'll provide secure upload instructions.
@@ -288,7 +288,7 @@ const IncidentReportForm = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white mb-4">Contact & Submission</h3>
             
-            <div className="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <div className="bg-[#0a0e14]/50 p-4 mb-4">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -318,7 +318,7 @@ const IncidentReportForm = () => {
                   value={formData.contactEmail}
                   onChange={handleChange}
                   placeholder="your-secure-email@protonmail.com"
-                  className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
                 <p className="text-xs text-slate-500 mt-1">
                   We recommend using a secure email provider like ProtonMail
@@ -326,7 +326,7 @@ const IncidentReportForm = () => {
               </div>
             )}
 
-            <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4">
+            <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -348,7 +348,7 @@ const IncidentReportForm = () => {
             </div>
 
             {/* Summary */}
-            <div className="bg-slate-900/50 rounded-lg p-4">
+            <div className="bg-[#0a0e14]/50 p-4">
               <h4 className="font-semibold text-white mb-3">Report Summary</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -373,12 +373,12 @@ const IncidentReportForm = () => {
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-6 pt-4 border-t border-slate-700">
+        <div className="flex justify-between mt-6 pt-4 border-t border-[#1c2a35]">
           {step > 1 ? (
             <button
               type="button"
               onClick={prevStep}
-              className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+              className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
             >
               Back
             </button>
@@ -391,7 +391,7 @@ const IncidentReportForm = () => {
               type="button"
               onClick={nextStep}
               disabled={step === 1 && !formData.incidentType}
-              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white transition-colors"
             >
               Continue
             </button>
@@ -399,7 +399,7 @@ const IncidentReportForm = () => {
             <button
               type="submit"
               disabled={!formData.consent || !formData.description}
-              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2"
             >
               <Lock className="w-4 h-4" /> Submit Securely
             </button>
@@ -408,7 +408,7 @@ const IncidentReportForm = () => {
       </form>
 
       {/* Footer */}
-      <div className="bg-slate-900/50 p-4 border-t border-slate-700">
+      <div className="bg-[#0a0e14]/50 p-4 border-t border-[#1c2a35]">
         <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
           <span className="flex items-center gap-1">
             <Info className="w-3 h-3" /> Form not yet active — coming soon

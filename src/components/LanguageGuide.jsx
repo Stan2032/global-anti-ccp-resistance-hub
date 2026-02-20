@@ -250,7 +250,7 @@ const LanguageGuide = () => {
     support: 'bg-green-900/30 border-green-700/50',
     identity: 'bg-blue-900/30 border-blue-700/50',
     greeting: 'bg-yellow-900/30 border-yellow-700/50',
-    basic: 'bg-slate-800/50 border-slate-700/50',
+    basic: 'bg-[#111820]/50 border-[#1c2a35]/50',
     concept: 'bg-purple-900/30 border-purple-700/50',
     symbol: 'bg-orange-900/30 border-orange-700/50',
   };
@@ -258,7 +258,7 @@ const LanguageGuide = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center mb-4">
           <Languages className="w-8 h-8 text-blue-400 mr-3" />
           <div>
@@ -278,10 +278,10 @@ const LanguageGuide = () => {
           <button
             key={lang.id}
             onClick={() => setActiveLanguage(lang.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeLanguage === lang.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {lang.Icon ? <lang.Icon className="w-5 h-5" /> : <span className="text-lg">{lang.flag}</span>}
@@ -291,7 +291,7 @@ const LanguageGuide = () => {
       </div>
 
       {/* Current Language Info */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <div className="flex items-center space-x-3">
           {currentLanguage?.Icon ? <currentLanguage.Icon className="w-10 h-10" /> : <span className="text-4xl">{currentLanguage?.flag}</span>}
           <div>
@@ -306,10 +306,10 @@ const LanguageGuide = () => {
         {currentPhrases.map((phrase, index) => (
           <div 
             key={index}
-            className={`rounded-xl border p-4 ${categoryColors[phrase.category]}`}
+            className={`border p-4 ${categoryColors[phrase.category]}`}
           >
             <div className="flex items-start justify-between mb-2">
-              <span className="text-xs px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
+              <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400 capitalize">
                 {phrase.category}
               </span>
               <button
@@ -329,7 +329,7 @@ const LanguageGuide = () => {
       </div>
 
       {/* Usage Tips */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
+      <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5 text-yellow-400" /> Tips for Using These Phrases</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• Pronunciation matters - try to learn from native speakers when possible</li>
@@ -341,7 +341,7 @@ const LanguageGuide = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Learn More</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://cantonese.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">

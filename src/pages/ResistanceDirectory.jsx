@@ -43,7 +43,7 @@ const ResistanceDirectory = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#111820] border border-[#1c2a35] rounded-xl p-6 sm:p-8 text-white">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6 sm:p-8 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-4">
             <Users className="w-10 h-10" />
@@ -63,19 +63,19 @@ const ResistanceDirectory = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-blue-400">{categories.length}</div>
           <div className="text-xs text-slate-400">Categories</div>
         </div>
-        <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-green-400">{organizations.filter(o => o.region === 'Global').length}</div>
           <div className="text-xs text-slate-400">Global Reach</div>
         </div>
-        <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-yellow-400">{organizations.filter(o => o.verified).length}</div>
           <div className="text-xs text-slate-400">Verified</div>
         </div>
-        <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-purple-400">{combinedYears}+</div>
           <div className="text-xs text-slate-400">Years Combined</div>
         </div>
@@ -91,7 +91,7 @@ const ResistanceDirectory = () => {
             placeholder="Search organizations..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-[#111820] border border-[#1c2a35] rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ const ResistanceDirectory = () => {
             aria-label="Filter"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2.5 bg-[#111820] border border-[#1c2a35] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+            className="px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
           >
             <option value="all">All Categories</option>
             {categories.map(cat => (
@@ -147,7 +147,7 @@ const ResistanceDirectory = () => {
             role="button"
             tabIndex={0}
             aria-expanded={selectedOrg?.id === org.id}
-            className={`bg-[#111820] border rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 ${
+            className={`bg-[#111820] border p-4 cursor-pointer transition-all hover:border-blue-500 ${
               selectedOrg?.id === org.id ? 'border-blue-500 ring-1 ring-[#4afa82]' : 'border-[#1c2a35]'
             }`}
           >
@@ -203,7 +203,7 @@ const ResistanceDirectory = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Visit Website
@@ -216,14 +216,14 @@ const ResistanceDirectory = () => {
 
       {/* No Results */}
       {filteredOrgs.length === 0 && (
-        <div className="text-center py-12 bg-[#111820] border border-[#1c2a35] rounded-lg">
+        <div className="text-center py-12 bg-[#111820] border border-[#1c2a35]">
           <Users className="w-12 h-12 text-slate-600 mx-auto mb-3" />
           <p className="text-slate-400">No organizations found matching your criteria</p>
         </div>
       )}
 
       {/* Footer Info */}
-      <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 text-center">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
         <p className="text-slate-400 text-sm">
           Showing {filteredOrgs.length} of {organizations.length} verified organizations
         </p>

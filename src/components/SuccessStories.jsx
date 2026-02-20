@@ -248,7 +248,7 @@ const SuccessStories = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-900/50 to-emerald-900/50 border border-green-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500 p-6">
         <div className="flex items-center gap-3 mb-4">
           <Trophy className="w-10 h-10 text-green-400" />
           <div>
@@ -278,7 +278,7 @@ const SuccessStories = () => {
       </div>
 
       {/* Why This Matters */}
-      <div className="bg-blue-900/30 border border-blue-700 rounded-xl p-4">
+      <div className="bg-blue-900/30 border border-blue-700 p-4">
         <h3 className="text-blue-300 font-semibold mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Why Document Victories?</h3>
         <p className="text-slate-300 text-sm">
           Tracking successes helps activists understand what works, maintains morale, and provides 
@@ -292,10 +292,10 @@ const SuccessStories = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-green-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.name}
@@ -311,7 +311,7 @@ const SuccessStories = () => {
       {/* Victories List */}
       <div className="space-y-4">
         {filteredVictories.map((victory, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-6">
             <div className="flex justify-between items-start mb-3">
               <div>
                 <h3 className="text-xl font-bold text-white">{victory.title}</h3>
@@ -329,11 +329,11 @@ const SuccessStories = () => {
             <p className="text-slate-300 mb-4">{victory.description}</p>
             
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-green-900/20 border border-green-800 rounded-lg p-3">
+              <div className="bg-green-900/20 border border-green-800 p-3">
                 <span className="text-green-400 text-xs font-semibold">OUTCOME</span>
                 <p className="text-slate-300 text-sm mt-1">{victory.outcome}</p>
               </div>
-              <div className="bg-blue-900/20 border border-blue-800 rounded-lg p-3">
+              <div className="bg-blue-900/20 border border-blue-800 p-3">
                 <span className="text-blue-400 text-xs font-semibold">LESSONS LEARNED</span>
                 <p className="text-slate-300 text-sm mt-1">{victory.lessons}</p>
               </div>
@@ -343,19 +343,19 @@ const SuccessStories = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 border border-green-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500 p-6">
         <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2"><Target className="w-5 h-5" /> Help Create More Victories</h3>
         <p className="text-slate-300 mb-4">
           Every victory started with individuals taking action. You can contribute to the next success story.
         </p>
         <div className="flex flex-wrap gap-3">
-          <a href="/take-action" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <a href="/take-action" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 text-sm font-medium">
             Take Action Now
           </a>
-          <a href="/campaigns" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <a href="/campaigns" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium">
             Join a Campaign
           </a>
-          <a href="/directory" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <a href="/directory" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-sm font-medium">
             Find Organizations
           </a>
         </div>

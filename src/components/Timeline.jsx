@@ -244,7 +244,7 @@ const Timeline = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><CalendarDays className="w-6 h-6" /> Timeline of CCP Repression</h2>
         <p className="text-slate-400">
           Key events documenting the Chinese Communist Party's human rights abuses from 1950 to present.
@@ -261,10 +261,10 @@ const Timeline = () => {
           <button
             key={cat.key}
             onClick={() => setSelectedCategory(cat.key)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.key
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.label}
@@ -325,7 +325,7 @@ const Timeline = () => {
       </div>
 
       {/* Source Organizations */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <SourcesList
           sources={[
             {

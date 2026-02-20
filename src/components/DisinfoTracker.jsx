@@ -148,7 +148,7 @@ const DisinfoTracker = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl p-6 border border-red-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <div className="flex items-center mb-4">
           <Siren className="w-8 h-8 mr-3 text-red-400" />
           <div>
@@ -164,17 +164,17 @@ const DisinfoTracker = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-white">{disinfoAlerts.length}</div>
           <div className="text-xs text-slate-400">Claims Tracked</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-red-400">
             {disinfoAlerts.filter(a => a.severity === 'critical').length}
           </div>
           <div className="text-xs text-slate-400">Critical Alerts</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-orange-400">
             {disinfoAlerts.filter(a => a.spreadLevel === 'widespread').length}
           </div>
@@ -188,10 +188,10 @@ const DisinfoTracker = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <span>{cat.Icon ? <cat.Icon className="w-4 h-4" /> : cat.icon}</span>
@@ -205,7 +205,7 @@ const DisinfoTracker = () => {
         {filteredAlerts.map(alert => (
           <div 
             key={alert.id}
-            className={`rounded-xl border p-5 ${severityColors[alert.severity]}`}
+            className={`border p-5 ${severityColors[alert.severity]}`}
           >
             {/* Header */}
             <div className="flex items-start justify-between mb-3">
@@ -213,7 +213,7 @@ const DisinfoTracker = () => {
                 <span className={`text-xs px-2 py-0.5 rounded ${severityBadges[alert.severity]}`}>
                   {alert.severity.toUpperCase()}
                 </span>
-                <span className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400">
+                <span className="text-xs px-2 py-0.5 rounded bg-[#111820] text-slate-400">
                   {alert.spreadLevel}
                 </span>
               </div>
@@ -258,7 +258,7 @@ const DisinfoTracker = () => {
       </div>
 
       {/* How to Counter Disinfo */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> How to Counter Disinformation</h3>
         <ul className="text-sm text-slate-300 space-y-2">
           <li>• <strong>Don't amplify</strong> - Avoid sharing false claims, even to debunk them</li>
@@ -270,7 +270,7 @@ const DisinfoTracker = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Fact-Checking Resources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.aspi.org.au/program/international-cyber-policy-centre" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
@@ -289,7 +289,7 @@ const DisinfoTracker = () => {
       </div>
 
       {/* Report Disinfo */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><PenSquare className="w-5 h-5" /> Report Disinformation</h3>
         <p className="text-sm text-slate-400 mb-3">
           Spotted CCP disinformation that should be tracked? Submit it for review.
@@ -298,7 +298,7 @@ const DisinfoTracker = () => {
           href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues/new"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm transition-colors"
+          className="inline-block px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm transition-colors"
         >
           Submit Report
         </a>

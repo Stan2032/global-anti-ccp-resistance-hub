@@ -134,7 +134,7 @@ const QuickStartGuide = () => {
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-slate-800 rounded-2xl border border-slate-700 max-w-lg w-full shadow-2xl">
+        <div className="bg-[#111820] rounded-2xl border border-[#1c2a35] max-w-lg w-full shadow-2xl">
           {/* Progress Bar */}
           <div className="h-1 bg-slate-700 rounded-t-2xl overflow-hidden">
             <div 
@@ -179,7 +179,7 @@ const QuickStartGuide = () => {
                   markStepComplete(step.id);
                   setIsOpen(false);
                 }}
-                className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg font-medium transition-colors mb-4"
+                className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 font-medium transition-colors mb-4"
               >
                 {step.action.label} →
               </Link>
@@ -190,7 +190,7 @@ const QuickStartGuide = () => {
               <button
                 onClick={prevStep}
                 disabled={currentStep === 0}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 font-medium transition-colors ${
                   currentStep === 0
                     ? 'text-slate-600 cursor-not-allowed'
                     : 'text-slate-300 hover:text-white'
@@ -217,7 +217,7 @@ const QuickStartGuide = () => {
 
               <button
                 onClick={nextStep}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
               >
                 {currentStep === steps.length - 1 ? 'Finish' : 'Next →'}
               </button>
@@ -295,7 +295,7 @@ export const HelpMenu = () => {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 w-64 bg-slate-800 rounded-xl border border-slate-700 shadow-xl z-50">
+          <div className="absolute right-0 top-full mt-2 w-64 bg-[#111820] border border-[#1c2a35] shadow-xl z-50">
             <div className="p-2">
               {helpItems.map((item, idx) => (
                 item.url ? (
@@ -304,7 +304,7 @@ export const HelpMenu = () => {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors"
+                    className="flex items-start space-x-3 p-3 hover:bg-[#111820] transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     <item.Icon className="w-5 h-5" />
@@ -317,7 +317,7 @@ export const HelpMenu = () => {
                   <Link
                     key={idx}
                     to={item.path}
-                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors"
+                    className="flex items-start space-x-3 p-3 hover:bg-[#111820] transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     <item.Icon className="w-5 h-5" />
@@ -333,7 +333,7 @@ export const HelpMenu = () => {
                       item.action();
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 transition-colors text-left"
+                    className="w-full flex items-start space-x-3 p-3 hover:bg-[#111820] transition-colors text-left"
                   >
                     <item.Icon className="w-5 h-5" />
                     <div>
@@ -344,7 +344,7 @@ export const HelpMenu = () => {
                 ) : (
                   <div
                     key={idx}
-                    className="flex items-start space-x-3 p-3 rounded-lg"
+                    className="flex items-start space-x-3 p-3"
                   >
                     <item.Icon className="w-5 h-5" />
                     <div>

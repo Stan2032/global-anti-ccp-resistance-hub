@@ -173,9 +173,9 @@ const GlobalSearch = ({ isOpen, onClose }) => {
       
       {/* Search Modal */}
       <div className="fixed inset-x-4 top-20 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl z-50">
-        <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden">
+        <div className="bg-[#111820] border border-[#1c2a35] shadow-2xl overflow-hidden">
           {/* Search Input */}
-          <div className="flex items-center px-4 border-b border-slate-700">
+          <div className="flex items-center px-4 border-b border-[#1c2a35]">
             <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -214,7 +214,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                         className={`w-full flex items-center px-4 py-3 text-left transition-colors ${
                           index === selectedIndex
                             ? 'bg-blue-600/20 border-l-2 border-blue-500'
-                            : 'hover:bg-slate-700/50'
+                            : 'hover:bg-[#111820]/50'
                         }`}
                       >
                         <span className="text-2xl mr-3 flex items-center" aria-hidden="true">
@@ -268,7 +268,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                   <button
                     key={link.path}
                     onClick={() => handleResultClick(link)}
-                    className="flex items-center px-3 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 transition-colors text-left"
+                    className="flex items-center px-3 py-2 bg-slate-700/50 hover:bg-[#111820] transition-colors text-left"
                   >
                     <span className="mr-2 flex items-center">
                       {link.Icon ? <link.Icon className="w-4 h-4" /> : link.icon}
@@ -281,7 +281,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
           )}
 
           {/* Footer */}
-          <div className="px-4 py-3 border-t border-slate-700 flex items-center justify-between text-xs text-slate-500">
+          <div className="px-4 py-3 border-t border-[#1c2a35] flex items-center justify-between text-xs text-slate-500">
             <div className="flex items-center space-x-4">
               <span className="flex items-center">
                 <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">↑</kbd>

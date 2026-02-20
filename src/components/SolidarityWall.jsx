@@ -140,7 +140,7 @@ const SolidarityWall = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-6 border border-purple-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <Flame className="w-8 h-8 text-amber-400 mr-3" />
@@ -151,7 +151,7 @@ const SolidarityWall = () => {
           </div>
           <button
             onClick={() => setShowForm(!showForm)}
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-1"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium transition-colors flex items-center gap-1"
           >
             <PenLine className="w-4 h-4" /> Add Your Voice
           </button>
@@ -164,7 +164,7 @@ const SolidarityWall = () => {
 
       {/* Add Message Form */}
       {showForm && (
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-4">Share Your Message of Solidarity</h3>
           
           <div className="space-y-4">
@@ -177,7 +177,7 @@ const SolidarityWall = () => {
                 placeholder="Write your message of support..."
                 rows={3}
                 maxLength={500}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
               />
               <div className="text-xs text-slate-500 text-right">{newMessage.text.length}/500</div>
             </div>
@@ -191,7 +191,7 @@ const SolidarityWall = () => {
                   value={newMessage.name}
                   onChange={(e) => setNewMessage({ ...newMessage, name: e.target.value })}
                   placeholder="Anonymous"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
                 />
               </div>
               <div>
@@ -202,7 +202,7 @@ const SolidarityWall = () => {
                   value={newMessage.location}
                   onChange={(e) => setNewMessage({ ...newMessage, location: e.target.value })}
                   placeholder="City, Country"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
                 />
               </div>
               <div>
@@ -211,7 +211,7 @@ const SolidarityWall = () => {
                   aria-label="Cause"
                   value={newMessage.cause}
                   onChange={(e) => setNewMessage({ ...newMessage, cause: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-purple-500"
                 >
                   {causes.filter(c => c.id !== 'all').map(cause => (
                     <option key={cause.id} value={cause.id}>{cause.icon || ''} {cause.name}</option>
@@ -223,14 +223,14 @@ const SolidarityWall = () => {
             <div className="flex justify-end space-x-2">
               <button
                 onClick={() => setShowForm(false)}
-                className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+                className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={addMessage}
                 disabled={!newMessage.text.trim()}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium rounded-lg transition-colors"
+                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium transition-colors"
               >
                 Post Message
               </button>
@@ -250,10 +250,10 @@ const SolidarityWall = () => {
           <button
             key={cause.id}
             onClick={() => setFilter(cause.id)}
-            className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-3 py-1.5 text-sm font-medium transition-colors ${
               filter === cause.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cause.Icon ? <cause.Icon className="w-4 h-4" /> : <span>{cause.icon}</span>}
@@ -270,7 +270,7 @@ const SolidarityWall = () => {
           return (
             <div 
               key={message.id}
-              className={`rounded-xl border p-4 ${causeColors[message.cause]}`}
+              className={`border p-4 ${causeColors[message.cause]}`}
             >
               <div className="flex items-start justify-between mb-3">
                 {causeInfo?.Icon ? <causeInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{causeInfo?.icon}</span>}
@@ -293,7 +293,7 @@ const SolidarityWall = () => {
       </div>
 
       {/* Stats */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
         <div className="grid grid-cols-3 gap-4">
           <div>
             <div className="text-2xl font-bold text-white">{allMessages.length}</div>
@@ -315,7 +315,7 @@ const SolidarityWall = () => {
       </div>
 
       {/* Inspiration */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl border border-slate-700 p-6 text-center">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
         <blockquote className="text-lg italic text-slate-300 mb-2">
           "Injustice anywhere is a threat to justice everywhere."
         </blockquote>

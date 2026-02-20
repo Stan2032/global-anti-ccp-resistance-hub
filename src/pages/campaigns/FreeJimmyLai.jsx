@@ -11,7 +11,7 @@ const FreeJimmyLai = () => {
           <p className="text-slate-400 mt-2">Campaign details coming soon...</p>
         </div>
       </div>
-      <div className="bg-slate-800 rounded-lg border border-slate-700 p-8 text-center">
+      <div className="bg-[#111820] border border-[#1c2a35] p-8 text-center">
         <Heart className="w-16 h-16 text-slate-600 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-white mb-2">Coming Soon</h2>
         <p className="text-slate-400">This campaign page is under development.</p>

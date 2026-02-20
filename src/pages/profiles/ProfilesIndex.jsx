@@ -17,8 +17,9 @@ const PROFILES = [
     role: 'Media Entrepreneur & Publisher',
     summary: 'Founder of Apple Daily newspaper. Arrested under the National Security Law for his pro-democracy journalism.',
     location: 'Stanley Prison, Hong Kong',
-    themeGradient: 'from-red-900/40 to-slate-900',
-    themeBorder: 'border-red-700/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-red-500',
     themeAccent: 'text-red-400',
     built: true,
   },
@@ -33,8 +34,9 @@ const PROFILES = [
     role: 'Uyghur Economist & Professor',
     summary: 'Advocate for Han-Uyghur dialogue, sentenced to life for "separatism" despite promoting ethnic harmony.',
     location: 'Urumqi Prison, Xinjiang',
-    themeGradient: 'from-cyan-900/30 to-slate-900',
-    themeBorder: 'border-cyan-700/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-cyan-500',
     themeAccent: 'text-cyan-400',
     built: true,
   },
@@ -49,8 +51,9 @@ const PROFILES = [
     role: '11th Panchen Lama',
     summary: 'Second-highest Tibetan Buddhist leader. Abducted by the CCP at age 6, the world\'s youngest political prisoner.',
     location: 'Unknown — enforced disappearance since 1995',
-    themeGradient: 'from-purple-900/30 to-slate-900',
-    themeBorder: 'border-purple-700/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-purple-500',
     themeAccent: 'text-purple-400',
     built: true,
   },
@@ -65,8 +68,9 @@ const PROFILES = [
     role: 'Nobel Peace Prize Laureate',
     summary: 'Author of Charter 08. First Nobel laureate to die in state custody since Carl von Ossietzky in 1938.',
     location: 'Died in custody — July 13, 2017',
-    themeGradient: 'from-gray-800/50 to-slate-900',
-    themeBorder: 'border-yellow-700/30',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-yellow-500',
     themeAccent: 'text-yellow-400',
     built: true,
   },
@@ -81,8 +85,9 @@ const PROFILES = [
     role: 'Pro-Democracy Activist',
     summary: 'Founded Scholarism at 14. Sentenced in the Hong Kong 47 case, now facing life on new NSL charge.',
     location: 'Prison, Hong Kong',
-    themeGradient: 'from-yellow-900/30 to-slate-900',
-    themeBorder: 'border-yellow-700/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-yellow-500',
     themeAccent: 'text-yellow-400',
     built: true,
   },
@@ -97,8 +102,9 @@ const PROFILES = [
     role: 'Publisher & Swedish Citizen',
     summary: 'Abducted from Thailand in 2015 for publishing books critical of CCP leaders. Swedish citizenship revoked under duress.',
     location: 'Unknown prison, China',
-    themeGradient: 'from-teal-900/30 to-slate-900',
-    themeBorder: 'border-teal-700/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-teal-500',
     themeAccent: 'text-teal-400',
     built: true,
   },
@@ -113,8 +119,9 @@ const PROFILES = [
     role: 'Citizen Journalist',
     summary: 'Jailed for reporting on COVID-19 outbreak in Wuhan. Sentenced again in 2025 after initial release.',
     location: 'Prison, China',
-    themeGradient: 'from-slate-800/50 to-slate-900',
-    themeBorder: 'border-slate-600/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-slate-500',
     themeAccent: 'text-slate-400',
     built: false,
   },
@@ -129,8 +136,9 @@ const PROFILES = [
     role: 'Pro-Democracy Activist',
     summary: 'Former Demosistō (pro-democracy party) member. Released from prison then fled to Canada in December 2023.',
     location: 'Canada (exile)',
-    themeGradient: 'from-slate-800/50 to-slate-900',
-    themeBorder: 'border-slate-600/50',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-slate-500',
     themeAccent: 'text-slate-400',
     built: false,
   },
@@ -153,14 +161,14 @@ const ProfileCard = ({ profile }) => {
   return (
     <CardWrapper {...wrapperProps}>
       <article
-        className={`bg-gradient-to-br ${profile.themeGradient} border ${profile.themeBorder} rounded-xl p-6 transition-all duration-200 ${
-          profile.built ? 'hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 hover:-translate-y-0.5' : ''
+        className={`bg-[#0a0e14] border-l-2 ${profile.themeLeftBorder} border ${profile.themeBorder} p-6 transition-all duration-200 ${
+          profile.built ? 'hover:border-[#4afa82]/50 hover:shadow-lg hover:shadow-[#4afa82]/10 hover:-translate-y-0.5' : ''
         }`}
       >
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-full bg-slate-700/50 flex items-center justify-center border ${profile.themeBorder}`}>
+            <div className={`w-12 h-12 bg-[#111820] flex items-center justify-center border ${profile.themeBorder}`}>
               <User className={`w-6 h-6 ${profile.themeAccent}`} />
             </div>
             <div>
@@ -194,12 +202,12 @@ const ProfileCard = ({ profile }) => {
 
         {/* Footer */}
         {profile.built ? (
-          <div className="flex items-center justify-between pt-3 border-t border-slate-700/50">
+          <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
             <span className="text-xs text-green-400 font-medium">Full profile available</span>
             <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors" />
           </div>
         ) : (
-          <div className="flex items-center justify-between pt-3 border-t border-slate-700/50">
+          <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
             <span className="text-xs text-slate-500 font-medium">Profile coming soon</span>
             <Clock className="w-4 h-4 text-slate-600" />
           </div>
@@ -261,7 +269,7 @@ const ProfilesIndex = () => {
       )}
 
       {/* Source Note */}
-      <div className="mt-10 p-4 bg-slate-800/50 border border-slate-700/50 rounded-lg">
+      <div className="mt-10 p-4 bg-[#111820]/50 border border-[#1c2a35]/50">
         <p className="text-xs text-slate-500">
           All profile information is sourced from Tier 1 outlets (BBC, Reuters, AP, HRW, Amnesty International, 
           CPJ, UN OHCHR) and Tier 2 sources (HKFP, RFA, NCHRD, Safeguard Defenders). No CCP state media sources 

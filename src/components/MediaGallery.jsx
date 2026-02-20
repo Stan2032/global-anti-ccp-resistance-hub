@@ -241,7 +241,7 @@ const MediaGallery = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6">
         <div className="flex items-center mb-4">
           <Image className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -261,10 +261,10 @@ const MediaGallery = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-indigo-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
@@ -284,13 +284,13 @@ const MediaGallery = () => {
           return (
             <div 
               key={item.id}
-              className={`rounded-xl border p-4 cursor-pointer hover:scale-105 transition-transform ${typeColors[item.type]}`}
+              className={`border p-4 cursor-pointer hover:scale-105 transition-transform ${typeColors[item.type]}`}
               onClick={() => setSelectedItem(item)}
             >
               <div className="flex items-center justify-between mb-3">
                 <item.Icon className="w-10 h-10 text-slate-300" />
                 <div className="text-right">
-                  <span className="text-xs px-2 py-0.5 bg-slate-800 rounded text-slate-300">
+                  <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-300">
                     {item.type}
                   </span>
                   <div className="text-xs text-slate-500 mt-1">{item.year}</div>
@@ -318,7 +318,7 @@ const MediaGallery = () => {
           onClick={() => setSelectedItem(null)}
         >
           <div 
-            className={`max-w-lg w-full rounded-xl border p-6 ${typeColors[selectedItem.type]}`}
+            className={`max-w-lg w-full border p-6 ${typeColors[selectedItem.type]}`}
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
@@ -334,7 +334,7 @@ const MediaGallery = () => {
             <h3 className="text-xl font-bold text-white mb-2">{selectedItem.title}</h3>
             <p className="text-slate-300 mb-4">{selectedItem.description}</p>
             
-            <div className="bg-slate-900/50 rounded-lg p-3 mb-4">
+            <div className="bg-[#0a0e14]/50 p-3 mb-4">
               <h4 className="text-sm font-medium text-white mb-1">Significance</h4>
               <p className="text-sm text-slate-400">{selectedItem.significance}</p>
             </div>
@@ -343,7 +343,7 @@ const MediaGallery = () => {
               <span className="text-slate-500">Year: {selectedItem.year}</span>
               <div className="flex flex-wrap gap-1">
                 {selectedItem.tags.map((tag, idx) => (
-                  <span key={idx} className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-400">
+                  <span key={idx} className="px-2 py-0.5 bg-[#111820] rounded text-xs text-slate-400">
                     #{tag}
                   </span>
                 ))}
@@ -354,7 +354,7 @@ const MediaGallery = () => {
       )}
 
       {/* Usage Note */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><ClipboardList className="w-4 h-4" /> Using These Images</h3>
         <p className="text-sm text-slate-400">
           These descriptions represent historical events and symbols. When sharing visual content, 

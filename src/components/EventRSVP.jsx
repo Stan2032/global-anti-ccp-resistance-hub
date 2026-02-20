@@ -169,7 +169,7 @@ const EventRSVP = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-6 border border-purple-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500">
         <div className="flex items-center mb-4">
           <Calendar className="w-8 h-8 text-purple-400 mr-3" />
           <div>
@@ -185,15 +185,15 @@ const EventRSVP = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-white">{events.filter(e => isUpcoming(e.date)).length}</div>
           <div className="text-xs text-slate-400">Upcoming Events</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-green-400">{rsvps.length}</div>
           <div className="text-xs text-slate-400">Your RSVPs</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-blue-400">{reminders.length}</div>
           <div className="text-xs text-slate-400">Reminders Set</div>
         </div>
@@ -210,10 +210,10 @@ const EventRSVP = () => {
           <button
             key={filter.id}
             onClick={() => setActiveFilter(filter.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeFilter === filter.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <span>{filter.Icon ? <filter.Icon className="w-4 h-4" /> : filter.icon}</span>
@@ -225,7 +225,7 @@ const EventRSVP = () => {
       {/* Events List */}
       <div className="space-y-4">
         {filteredEvents.length === 0 ? (
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-8 text-center">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-8 text-center">
             <Inbox className="w-10 h-10 text-slate-500 mb-4 mx-auto" />
             <p className="text-slate-400">No events found in this category.</p>
           </div>
@@ -233,7 +233,7 @@ const EventRSVP = () => {
           filteredEvents.map(event => (
             <div 
               key={event.id}
-              className={`rounded-xl border p-4 ${typeColors[event.type]}`}
+              className={`border p-4 ${typeColors[event.type]}`}
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-start space-x-3">
@@ -260,7 +260,7 @@ const EventRSVP = () => {
               <p className="text-sm text-slate-300 mb-3">{event.description}</p>
 
               <div className="flex flex-wrap items-center gap-2 mb-3 text-xs">
-                <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
+                <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                   <MapPin className="w-3 h-3 inline mr-1" /> {event.location}
                 </span>
                 {event.virtual && (
@@ -269,11 +269,11 @@ const EventRSVP = () => {
                   </span>
                 )}
                 {event.cities && (
-                  <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
+                  <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                     <Building2 className="w-3 h-3 inline mr-1" /> {event.cities.length} cities
                   </span>
                 )}
-                <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
+                <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400 capitalize">
                   {event.type}
                 </span>
               </div>
@@ -281,27 +281,27 @@ const EventRSVP = () => {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => toggleRSVP(event.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${
                     rsvps.includes(event.id)
                       ? 'bg-green-600 text-white'
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'
+                      : 'bg-slate-700 hover:bg-[#1c2a35] text-white'
                   }`}
                 >
                   {rsvps.includes(event.id) ? '✓ RSVPd' : 'RSVP'}
                 </button>
                 <button
                   onClick={() => toggleReminder(event.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${
                     reminders.includes(event.id)
                       ? 'bg-blue-600 text-white'
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'
+                      : 'bg-slate-700 hover:bg-[#1c2a35] text-white'
                   }`}
                 >
                   {reminders.includes(event.id) ? <><Bell className="w-3 h-3 inline mr-1" /> Reminder Set</> : <><Bell className="w-3 h-3 inline mr-1" /> Set Reminder</>}
                 </button>
                 <button
                   onClick={() => addToCalendar(event)}
-                  className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm transition-colors"
+                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
                 >
                   <Calendar className="w-3 h-3 inline mr-1" /> Add to Calendar
                 </button>
@@ -310,7 +310,7 @@ const EventRSVP = () => {
                     href={event.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm transition-colors"
+                    className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
                   >
                     <ExternalLink className="w-3 h-3 inline mr-1" /> More Info
                   </a>
@@ -322,7 +322,7 @@ const EventRSVP = () => {
       </div>
 
       {/* Submit Event */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2"><FileText className="w-4 h-4 inline mr-1" /> Submit an Event</h3>
         <p className="text-sm text-slate-400 mb-3">
           Know of an upcoming event that should be listed here? Let us know!
@@ -331,7 +331,7 @@ const EventRSVP = () => {
           href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues/new"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm transition-colors"
+          className="inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm transition-colors"
         >
           Submit Event
         </a>

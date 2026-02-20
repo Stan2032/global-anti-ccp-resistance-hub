@@ -105,7 +105,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
           if (!timer) return null;
           
           return (
-            <div key={prisoner.id} className="bg-slate-900/50 rounded-lg p-3 border border-slate-700">
+            <div key={prisoner.id} className="bg-[#0a0e14]/50 p-3 border border-[#1c2a35]">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-medium text-white">{prisoner.name}</span>
@@ -139,7 +139,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
   // Full version
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-red-900/30 to-slate-900 border border-red-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Clock className="w-6 h-6" /> Time in Detention</h2>
         <p className="text-slate-300">
           Live counters showing how long political prisoners have been detained. Every second counts.
@@ -152,7 +152,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
           if (!timer) return null;
 
           return (
-            <div key={prisoner.id} className="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-red-500/50 transition-colors">
+            <div key={prisoner.id} className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-red-500/50 transition-colors">
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -167,7 +167,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
               </div>
 
               {/* Timer */}
-              <div className="bg-slate-900 rounded-lg p-4 mb-4">
+              <div className="bg-[#0a0e14] p-4 mb-4">
                 <div className="grid grid-cols-5 gap-2 text-center">
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.years}</div>
@@ -221,7 +221,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                     const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. ${prisoner.hashtag} #FreePoliticalPrisoners`;
                     navigator.clipboard.writeText(text);
                   }}
-                  className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>

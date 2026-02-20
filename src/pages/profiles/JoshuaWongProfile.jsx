@@ -298,7 +298,7 @@ const CATEGORY_COLORS = {
 const TimelineEvent = ({ event, isExpanded, onToggle }) => {
   const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
   return (
-    <div className={`border border-slate-700 rounded-lg overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
+    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
       <button
         onClick={onToggle}
         className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
@@ -362,7 +362,7 @@ export default function JoshuaWongProfile() {
       </Link>
 
       {/* ─── HEADER ─────────────────────────────────────────── */}
-      <div className="bg-gradient-to-br from-yellow-900/40 via-slate-800 to-slate-900 border border-yellow-700/30 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-yellow-500 p-6">
         <div className="flex flex-col md:flex-row md:items-start gap-6">
           <div className="w-20 h-20 rounded-full bg-yellow-900/60 border-2 border-yellow-600 flex items-center justify-center flex-shrink-0">
             <Megaphone className="w-10 h-10 text-yellow-400" />
@@ -387,19 +387,19 @@ export default function JoshuaWongProfile() {
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-              <div className="bg-slate-800/50 rounded-lg p-2 text-center">
+              <div className="bg-[#111820]/50 p-2 text-center">
                 <div className="text-yellow-400 font-bold text-lg">{daysDetained.toLocaleString()}+</div>
                 <div className="text-slate-400 text-xs">Days detained</div>
               </div>
-              <div className="bg-slate-800/50 rounded-lg p-2 text-center">
+              <div className="bg-[#111820]/50 p-2 text-center">
                 <div className="text-yellow-400 font-bold text-lg">14</div>
                 <div className="text-slate-400 text-xs">Age at first activism</div>
               </div>
-              <div className="bg-slate-800/50 rounded-lg p-2 text-center">
+              <div className="bg-[#111820]/50 p-2 text-center">
                 <div className="text-yellow-400 font-bold text-lg">6+</div>
                 <div className="text-slate-400 text-xs">Times arrested</div>
               </div>
-              <div className="bg-slate-800/50 rounded-lg p-2 text-center">
+              <div className="bg-[#111820]/50 p-2 text-center">
                 <div className="text-yellow-400 font-bold text-lg">120,000</div>
                 <div className="text-slate-400 text-xs">Mobilized (2012)</div>
               </div>
@@ -413,7 +413,7 @@ export default function JoshuaWongProfile() {
       </div>
 
       {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-slate-800/50 rounded-lg p-1 border border-slate-700" role="tablist" aria-label="Profile sections">
+      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
         {tabs.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
@@ -422,7 +422,7 @@ export default function JoshuaWongProfile() {
             aria-controls={`panel-${id}`}
             onClick={() => setActiveTab(id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-yellow-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'
+              activeTab === id ? 'bg-yellow-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
             }`}
           >
             <Icon className="w-4 h-4" /> {label}
@@ -462,7 +462,7 @@ export default function JoshuaWongProfile() {
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-yellow-400" /> Charges & Verdict</h2>
 
-            <div className="bg-red-900/20 border border-red-700/50 rounded-lg p-4">
+            <div className="bg-red-900/20 border border-red-700/50 p-4">
               <h3 className="text-sm font-semibold text-red-300 mb-2">⚠️ Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
                 Wong is currently serving a 4 year 8 month sentence for subversion while simultaneously facing new "collusion with foreign forces" charges 
@@ -472,7 +472,7 @@ export default function JoshuaWongProfile() {
             </div>
 
             {CHARGES.map((c, i) => (
-              <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-5">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className="text-sm font-bold text-white">{c.charge}</span>
                   <span className={`px-2 py-0.5 text-xs rounded-full font-semibold ${
@@ -489,22 +489,22 @@ export default function JoshuaWongProfile() {
             ))}
 
             {/* Hong Kong 47 Context */}
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-5">
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
               <h3 className="text-sm font-semibold text-yellow-400 mb-3">The Hong Kong 47 — Largest NSL Trial in History</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                <div className="text-center p-2 bg-slate-900/50 rounded">
+                <div className="text-center p-2 bg-[#0a0e14]/50 rounded">
                   <div className="text-white font-bold">47</div>
                   <div className="text-xs text-slate-400">Defendants</div>
                 </div>
-                <div className="text-center p-2 bg-slate-900/50 rounded">
+                <div className="text-center p-2 bg-[#0a0e14]/50 rounded">
                   <div className="text-white font-bold">45</div>
                   <div className="text-xs text-slate-400">Convicted</div>
                 </div>
-                <div className="text-center p-2 bg-slate-900/50 rounded">
+                <div className="text-center p-2 bg-[#0a0e14]/50 rounded">
                   <div className="text-white font-bold">2</div>
                   <div className="text-xs text-slate-400">Acquitted</div>
                 </div>
-                <div className="text-center p-2 bg-slate-900/50 rounded">
+                <div className="text-center p-2 bg-[#0a0e14]/50 rounded">
                   <div className="text-white font-bold">118</div>
                   <div className="text-xs text-slate-400">Trial days</div>
                 </div>
@@ -518,7 +518,7 @@ export default function JoshuaWongProfile() {
             </div>
 
             {/* Nathan Law in exile */}
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-5">
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
               <h3 className="text-sm font-semibold text-blue-400 mb-2">Nathan Law — Co-Founder of Demosistō, Now in Exile</h3>
               <p className="text-sm text-slate-300">
                 Nathan Law, co-founder of Demosistō with Wong, fled Hong Kong in July 2020 shortly after the National Security Law was imposed. 
@@ -540,7 +540,7 @@ export default function JoshuaWongProfile() {
               are cited as evidence — only as examples of propaganda to be debunked.
             </p>
             {CCP_NARRATIVES.map((n, i) => (
-              <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+              <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
                 <div className="bg-red-900/30 px-5 py-3 border-b border-red-700/30">
                   <h3 className="text-sm font-semibold text-red-300 flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4" /> CCP Claim #{i + 1}
@@ -567,11 +567,11 @@ export default function JoshuaWongProfile() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-yellow-400" /> International Response</h2>
 
             {/* Awards */}
-            <div className="bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-5">
+            <div className="bg-yellow-900/20 border border-yellow-700/30 p-5">
               <h3 className="text-sm font-semibold text-yellow-300 mb-3">Awards & Recognition</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {AWARDS.map((a, i) => (
-                  <div key={i} className="bg-slate-800/50 rounded-lg p-3 flex items-start gap-3">
+                  <div key={i} className="bg-[#111820]/50 p-3 flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-yellow-900/60 flex items-center justify-center flex-shrink-0">
                       <Heart className="w-4 h-4 text-yellow-400" />
                     </div>
@@ -586,7 +586,7 @@ export default function JoshuaWongProfile() {
 
             {/* Responses */}
             {INTERNATIONAL_RESPONSES.map((r, i) => (
-              <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <Flag className="w-4 h-4 text-yellow-400" />
                   <h3 className="text-sm font-semibold text-white">{r.entity}</h3>
@@ -613,7 +613,7 @@ export default function JoshuaWongProfile() {
             <div className="space-y-2">
               {SOURCES.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-between bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 hover:bg-slate-700 transition-colors group"
+                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] px-4 py-3 hover:bg-[#111820] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
                     <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-blue-900/60 text-blue-300'}`}>
@@ -625,7 +625,7 @@ export default function JoshuaWongProfile() {
                 </a>
               ))}
             </div>
-            <div className="bg-red-900/20 border border-red-700/30 rounded-lg p-4 mt-4">
+            <div className="bg-red-900/20 border border-red-700/30 p-4 mt-4">
               <h3 className="text-sm font-semibold text-red-300 mb-1">Excluded Sources</h3>
               <p className="text-sm text-slate-400">
                 Xinhua, People's Daily, CGTN, Global Times, China Daily, Ta Kung Pao, Wen Wei Po, and all CCP-controlled 

@@ -163,7 +163,7 @@ const CampaignHubs = () => {
       role="button"
       tabIndex={0}
       aria-pressed={selectedCampaign === campaign.id}
-      className={`p-6 rounded-lg border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all ${
         selectedCampaign === campaign.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
@@ -234,7 +234,7 @@ const CampaignHubs = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Active Campaigns</p>
           <p className="text-2xl font-bold text-white mt-1">6</p>
@@ -244,7 +244,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Total Supporters</p>
           <p className="text-2xl font-bold text-white mt-1">312,605</p>
@@ -254,7 +254,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Countries Reached</p>
           <p className="text-2xl font-bold text-white mt-1">89</p>
@@ -264,7 +264,7 @@ const CampaignHubs = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Average Progress</p>
           <p className="text-2xl font-bold text-white mt-1">58%</p>
@@ -281,7 +281,7 @@ const CampaignHubs = () => {
           placeholder="Search campaigns..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
         />
       </div>
 
@@ -302,7 +302,7 @@ const CampaignHubs = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 sticky top-20"
+                  className="bg-[#111820] border border-[#1c2a35] p-6 sticky top-20"
                 >
                   <h2 className="text-xl font-bold text-white mb-4">{campaign.title}</h2>
 
@@ -336,7 +336,7 @@ const CampaignHubs = () => {
                   <div className="space-y-2">
                     <Link
                       to={`/campaigns/${campaign.id}`}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
                     >
                       <Flag className="w-5 h-5" />
                       <span>Join Campaign</span>
@@ -344,7 +344,7 @@ const CampaignHubs = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                      className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
                     >
                       <Share2 className="w-5 h-5" />
                       <span>Share</span>
@@ -354,7 +354,7 @@ const CampaignHubs = () => {
               )
             })()
           ) : (
-            <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 text-center">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
               <Flag className="w-12 h-12 text-slate-600 mx-auto mb-4" />
               <p className="text-slate-400">Select a campaign to view details</p>
             </div>
@@ -369,7 +369,7 @@ const CampaignHubs = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-red-900 border border-red-700 rounded-lg p-6"
+            className="bg-red-900 border border-red-700 p-6"
           >
             <div className="flex items-start space-x-4">
               <AlertCircle className="w-8 h-8 text-red-400 flex-shrink-0" />
@@ -393,7 +393,7 @@ const CampaignHubs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-orange-900 border border-orange-700 rounded-lg p-6"
+            className="bg-orange-900 border border-orange-700 p-6"
           >
             <div className="flex items-start space-x-4">
               <TrendingUp className="w-8 h-8 text-orange-400 flex-shrink-0" />

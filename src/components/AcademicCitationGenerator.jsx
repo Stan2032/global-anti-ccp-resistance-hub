@@ -180,7 +180,7 @@ const AcademicCitationGenerator = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <BookOpen className="w-8 h-8 text-emerald-400" />
         <div>
@@ -190,7 +190,7 @@ const AcademicCitationGenerator = () => {
       </div>
 
       {/* Citation Style Guide */}
-      <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4 mb-6">
+      <div className="bg-emerald-500/10 border border-emerald-500/30 p-4 mb-6">
         <h3 className="text-emerald-400 font-bold mb-2">How to Use</h3>
         <p className="text-slate-300 text-sm mb-2">
           Select your preferred citation style below, then click the copy button next to any citation. 
@@ -207,10 +207,10 @@ const AcademicCitationGenerator = () => {
             <button
               key={style}
               onClick={() => setCitationStyle(style)}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-6 py-3 font-medium transition-colors ${
                 citationStyle === style
                   ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20'
-                  : 'bg-slate-900/50 text-slate-400 hover:bg-slate-900 hover:text-white border border-slate-700/50'
+                  : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
               {style}
@@ -221,19 +221,19 @@ const AcademicCitationGenerator = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-emerald-400 mb-1">{sources.length}</div>
           <div className="text-sm text-slate-400">Sources Available</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{citationStyles.length}</div>
           <div className="text-sm text-slate-400">Citation Styles</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-purple-400 mb-1">{sources.filter(s => s.type === 'Report').length}</div>
           <div className="text-sm text-slate-400">Reports</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-green-400 mb-1">{sources.filter(s => s.type === 'Book').length}</div>
           <div className="text-sm text-slate-400">Books</div>
         </div>
@@ -242,7 +242,7 @@ const AcademicCitationGenerator = () => {
       {/* Sources List */}
       <div className="space-y-4">
         {sources.map((source, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-emerald-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-emerald-500/30 transition-colors">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -261,7 +261,7 @@ const AcademicCitationGenerator = () => {
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 p-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+                className="ml-3 p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
                 title="View Source"
               >
                 <ExternalLink className="w-4 h-4 text-slate-300" />
@@ -269,7 +269,7 @@ const AcademicCitationGenerator = () => {
             </div>
 
             {/* Citation Box */}
-            <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
+            <div className="bg-[#111820]/50 p-4 border border-[#1c2a35]/50">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1">
                   <div className="text-xs text-slate-500 mb-2 font-medium">{citationStyle} Citation:</div>
@@ -279,7 +279,7 @@ const AcademicCitationGenerator = () => {
                 </div>
                 <button
                   onClick={() => handleCopy(source.citations[citationStyle], index)}
-                  className="flex-shrink-0 p-2 bg-emerald-500 hover:bg-emerald-600 rounded-lg transition-colors"
+                  className="flex-shrink-0 p-2 bg-emerald-500 hover:bg-emerald-600 transition-colors"
                   title="Copy to clipboard"
                 >
                   {copiedIndex === index ? (
@@ -295,7 +295,7 @@ const AcademicCitationGenerator = () => {
       </div>
 
       {/* Citation Guidelines */}
-      <div className="mt-6 bg-slate-900/50 rounded-lg border border-slate-700/50 p-5">
+      <div className="mt-6 bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
         <h3 className="text-white font-bold mb-3 flex items-center gap-2">
           <FileText className="w-5 h-5 text-emerald-400" />
           Citation Best Practices
@@ -311,14 +311,14 @@ const AcademicCitationGenerator = () => {
       </div>
 
       {/* Additional Resources */}
-      <div className="mt-6 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <div className="mt-6 bg-blue-500/10 border border-blue-500/30 p-4">
         <h3 className="text-blue-400 font-bold mb-3">Additional Citation Resources</h3>
         <div className="grid md:grid-cols-2 gap-3">
           <a
             href="https://www.citationmachine.net"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Citation Machine (Multiple Styles)
@@ -327,7 +327,7 @@ const AcademicCitationGenerator = () => {
             href="https://www.zotero.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Zotero (Reference Manager)
@@ -336,7 +336,7 @@ const AcademicCitationGenerator = () => {
             href="https://www.mendeley.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Mendeley (Reference Manager)
@@ -345,7 +345,7 @@ const AcademicCitationGenerator = () => {
             href="https://owl.purdue.edu/owl/research_and_citation/resources.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-800/50 hover:bg-slate-800 rounded-lg transition-colors text-sm text-slate-300"
+            className="flex items-center gap-2 p-3 bg-[#111820]/50 hover:bg-[#111820] transition-colors text-sm text-slate-300"
           >
             <ExternalLink className="w-4 h-4" />
             Purdue OWL (Citation Guides)

@@ -314,7 +314,7 @@ export default function LiuXiaoboProfile() {
       </div>
 
       {/* Profile Header — Memorial Theme (Dark with Gold Nobel accent) */}
-      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-yellow-600/30">
+      <div className="bg-[#0a0e14] border-b border-[#1c2a35] border-l-2 border-l-yellow-500">
         <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center border-2 border-yellow-500/60">
@@ -420,7 +420,7 @@ export default function LiuXiaoboProfile() {
                     </div>
                   </button>
                   {expandedEvents[i] && (
-                    <div className="mt-2 p-3 bg-gray-800/60 rounded-lg border border-gray-700 text-sm text-gray-300">
+                    <div className="mt-2 p-3 bg-gray-800/60 border border-gray-700 text-sm text-gray-300">
                       {event.detail}
                       {event.source && (
                         <a href={event.source} target="_blank" rel="noopener noreferrer" className="block mt-2 text-yellow-400 hover:text-yellow-300 text-xs flex items-center gap-1">
@@ -447,7 +447,7 @@ export default function LiuXiaoboProfile() {
             </p>
 
             {/* Charter 08 Summary */}
-            <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-5 mb-6">
+            <div className="bg-yellow-900/20 border border-yellow-700/50 p-5 mb-6">
               <h3 className="text-lg font-bold text-yellow-300 mb-3 flex items-center gap-2">
                 <FileText className="w-5 h-5" /> What Is Charter 08?
               </h3>
@@ -472,7 +472,7 @@ export default function LiuXiaoboProfile() {
 
             {/* Formal Charges */}
             {CHARGES.map((c, i) => (
-              <div key={i} className="bg-gray-800/60 border border-gray-700 rounded-lg p-5 mb-4">
+              <div key={i} className="bg-gray-800/60 border border-gray-700 p-5 mb-4">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
                   <div>
@@ -496,7 +496,7 @@ export default function LiuXiaoboProfile() {
                 { label: 'Times Imprisoned', value: '4 times', sub: '1989, 1995, 1996, 2008' },
                 { label: 'Years in Detention', value: '~17 total', sub: 'Across all detentions' },
               ].map((stat, i) => (
-                <div key={i} className="bg-gray-800/40 border border-gray-700 rounded-lg p-3 text-center">
+                <div key={i} className="bg-gray-800/40 border border-gray-700 p-3 text-center">
                   <div className="text-xl font-bold text-yellow-400">{stat.value}</div>
                   <div className="text-sm text-gray-300">{stat.label}</div>
                   <div className="text-xs text-gray-500">{stat.sub}</div>
@@ -505,7 +505,7 @@ export default function LiuXiaoboProfile() {
             </div>
 
             {/* Liu Xia Section */}
-            <div className="mt-6 bg-gray-800/40 border border-gray-700 rounded-lg p-5">
+            <div className="mt-6 bg-gray-800/40 border border-gray-700 p-5">
               <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <Heart className="w-5 h-5 text-red-400" />
                 Liu Xia — Punished for Loving Him
@@ -548,7 +548,7 @@ export default function LiuXiaoboProfile() {
 
             <div className="space-y-4">
               {CCP_NARRATIVES.map((n, i) => (
-                <div key={i} className="bg-gray-800/60 border border-gray-700 rounded-lg overflow-hidden">
+                <div key={i} className="bg-gray-800/60 border border-gray-700 overflow-hidden">
                   <div className="bg-red-900/30 px-5 py-3 border-b border-red-800/30">
                     <h3 className="text-red-300 font-semibold text-sm flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4" />
@@ -573,7 +573,7 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
 
-            <div className="mt-6 bg-gray-800/40 border border-gray-700 rounded-lg p-4 text-sm text-gray-400">
+            <div className="mt-6 bg-gray-800/40 border border-gray-700 p-4 text-sm text-gray-400">
               <strong className="text-gray-300">Source methodology:</strong> All rebuttals sourced from independent international media and human rights organizations. Deliberately excluded: Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media. One People&apos;s Daily English editorial (en.people.cn) was identified as CCP propaganda during research and excluded.
             </div>
           </div>
@@ -591,7 +591,7 @@ export default function LiuXiaoboProfile() {
             </p>
 
             {/* Awards */}
-            <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-5 mb-6">
+            <div className="bg-yellow-900/20 border border-yellow-700/50 p-5 mb-6">
               <h3 className="text-lg font-bold text-yellow-300 mb-3 flex items-center gap-2">
                 <Star className="w-5 h-5" /> Awards & Honors
               </h3>
@@ -602,7 +602,7 @@ export default function LiuXiaoboProfile() {
                   { award: 'Homo Homini Award', year: '2009', org: 'People in Need', note: 'For contribution to the defense of human rights' },
                   { award: 'Honorary Member', year: '2010', org: 'PEN International', note: 'Lifetime honorary membership for imprisoned writers' },
                 ].map((a, i) => (
-                  <div key={i} className="bg-gray-800/60 border border-gray-700 rounded-lg p-3">
+                  <div key={i} className="bg-gray-800/60 border border-gray-700 p-3">
                     <div className="flex items-center gap-2">
                       <Award className="w-4 h-4 text-yellow-400 flex-shrink-0" />
                       <span className="text-white font-semibold text-sm">{a.award}</span>
@@ -618,7 +618,7 @@ export default function LiuXiaoboProfile() {
             <h3 className="text-lg font-bold text-white mb-3">International Response</h3>
             <div className="space-y-3">
               {INTERNATIONAL_RESPONSES.map((r, i) => (
-                <div key={i} className="flex items-start gap-3 bg-gray-800/40 border border-gray-700 rounded-lg p-4">
+                <div key={i} className="flex items-start gap-3 bg-gray-800/40 border border-gray-700 p-4">
                   <Flag className="w-4 h-4 text-yellow-400 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold text-sm">{r.org}</h4>
@@ -630,7 +630,7 @@ export default function LiuXiaoboProfile() {
             </div>
 
             {/* Historical Significance */}
-            <div className="mt-6 bg-gray-800/40 border border-gray-700 rounded-lg p-5">
+            <div className="mt-6 bg-gray-800/40 border border-gray-700 p-5">
               <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-yellow-400" />
                 Historical Significance
@@ -649,7 +649,7 @@ export default function LiuXiaoboProfile() {
             </div>
 
             {/* Final Words */}
-            <div className="mt-6 bg-gray-900 border border-yellow-700/30 rounded-lg p-5 text-center">
+            <div className="mt-6 bg-gray-900 border border-yellow-700/30 p-5 text-center">
               <blockquote className="text-lg italic text-yellow-300 mb-3">
                 &quot;I have no enemies and no hatred.&quot;
               </blockquote>
@@ -681,7 +681,7 @@ export default function LiuXiaoboProfile() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 bg-gray-800/40 border border-gray-700 rounded-lg p-4 hover:border-yellow-600 transition-colors group"
+                  className="flex items-start gap-3 bg-gray-800/40 border border-gray-700 p-4 hover:border-yellow-600 transition-colors group"
                 >
                   <div className={`w-8 h-8 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                     s.tier === 1 ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700' : 'bg-blue-900/50 text-blue-300 border border-blue-700'
@@ -698,7 +698,7 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
 
-            <div className="mt-6 bg-gray-800/40 border border-gray-700 rounded-lg p-4 text-sm text-gray-400">
+            <div className="mt-6 bg-gray-800/40 border border-gray-700 p-4 text-sm text-gray-400">
               <strong className="text-gray-300">Source tier definitions:</strong>
               <ul className="mt-2 space-y-1">
                 <li><span className="text-emerald-400">Tier 1 (Gold standard):</span> Government records, Nobel Committee, BBC, HRW, Amnesty, NCHRD, Britannica, Freedom Now, PEN, European Parliament</li>

@@ -140,7 +140,7 @@ const GlobalInfluenceMap = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-4">
           <Globe className="w-8 h-8 text-slate-300" />
           <div>
@@ -155,10 +155,10 @@ const GlobalInfluenceMap = () => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat.name}
@@ -174,10 +174,10 @@ const GlobalInfluenceMap = () => {
           return (
             <div
               key={region.id}
-              className={`bg-slate-800/50 rounded-xl border transition-all cursor-pointer ${
+              className={`bg-[#111820]/50 border transition-all cursor-pointer ${
                 selectedRegion?.id === region.id
                   ? 'border-blue-500 ring-2 ring-blue-500/20'
-                  : 'border-slate-700 hover:border-slate-600'
+                  : 'border-[#1c2a35] hover:border-slate-600'
               }`}
               onClick={() => setSelectedRegion(selectedRegion?.id === region.id ? null : region)}
             >
@@ -195,19 +195,19 @@ const GlobalInfluenceMap = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="bg-slate-900/50 rounded p-2">
+                  <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Police Stations</div>
                     <div className="text-lg font-bold text-red-400">{region.stats.policeStations}</div>
                   </div>
-                  <div className="bg-slate-900/50 rounded p-2">
+                  <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Confucius Inst.</div>
                     <div className="text-lg font-bold text-orange-400">{region.stats.confuciusInstitutes}</div>
                   </div>
-                  <div className="bg-slate-900/50 rounded p-2">
+                  <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Repression Cases</div>
                     <div className="text-lg font-bold text-purple-400">{region.stats.repressionCases}</div>
                   </div>
-                  <div className="bg-slate-900/50 rounded p-2">
+                  <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Influence Level</div>
                     <div className="text-lg font-bold text-blue-400">{region.stats.influenceOps}</div>
                   </div>
@@ -220,7 +220,7 @@ const GlobalInfluenceMap = () => {
 
               {/* Expanded Details */}
               {selectedRegion?.id === region.id && (
-                <div className="border-t border-slate-700 p-4 bg-slate-900/30">
+                <div className="border-t border-[#1c2a35] p-4 bg-[#0a0e14]/30">
                   <p className="text-sm text-slate-300 mb-3">{region.details}</p>
                   
                   <h4 className="text-xs font-semibold text-slate-400 uppercase mb-2">Recent Incidents</h4>
@@ -240,7 +240,7 @@ const GlobalInfluenceMap = () => {
       </div>
 
       {/* Global Statistics */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4">Global Totals</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center">

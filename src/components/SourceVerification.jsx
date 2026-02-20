@@ -243,7 +243,7 @@ const SourceVerification = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
           <span className="text-3xl mr-3">✅</span>
           <div>
@@ -267,10 +267,10 @@ const SourceVerification = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-green-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <span>{tab.Icon ? <tab.Icon className="w-4 h-4" /> : tab.icon}</span>
@@ -290,7 +290,7 @@ const SourceVerification = () => {
               placeholder="Search sources by name or topic..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 pl-10 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 pl-10 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
             />
             <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
           </div>
@@ -301,7 +301,7 @@ const SourceVerification = () => {
               <h3 className="text-lg font-semibold text-white">{category.category}</h3>
               <div className="grid gap-3">
                 {category.sources.map((source, sidx) => (
-                  <div key={sidx} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+                  <div key={sidx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <a 
@@ -345,7 +345,7 @@ const SourceVerification = () => {
       {/* Sources to Avoid Tab */}
       {activeTab === 'avoid' && (
         <div className="space-y-4">
-          <div className="bg-red-900/20 border border-red-700/50 rounded-xl p-4 mb-4">
+          <div className="bg-red-900/20 border border-red-700/50 p-4 mb-4">
             <h3 className="font-medium text-red-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Warning</h3>
             <p className="text-sm text-slate-300">
               These sources are known to spread CCP propaganda or disinformation. 
@@ -355,7 +355,7 @@ const SourceVerification = () => {
 
           <div className="space-y-3">
             {unreliableSources.map((source, idx) => (
-              <div key={idx} className="bg-slate-800/50 rounded-xl border border-red-700/30 p-4">
+              <div key={idx} className="bg-[#111820]/50 border border-red-700/30 p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-white">{source.name}</h4>
                   <span className="text-xs px-2 py-1 bg-red-900/50 text-red-400 rounded">
@@ -377,7 +377,7 @@ const SourceVerification = () => {
         <div className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             {verificationTips.map((tip, idx) => (
-              <div key={idx} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+              <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
                 <div className="flex items-center space-x-3 mb-2">
                   <span className="text-2xl">{tip.Icon ? <tip.Icon className="w-6 h-6" /> : tip.icon}</span>
                   <h4 className="font-medium text-white">{tip.title}</h4>
@@ -387,7 +387,7 @@ const SourceVerification = () => {
             ))}
           </div>
 
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="font-semibold text-white mb-3">Common CCP Disinformation Tactics</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
@@ -431,7 +431,7 @@ const SourceVerification = () => {
       )}
 
       {/* Footer */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
         <p className="text-sm text-slate-400">
           When in doubt, cross-reference multiple independent sources and look for primary documentation.
         </p>

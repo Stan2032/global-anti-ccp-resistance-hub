@@ -100,7 +100,7 @@ const SecurityCenter = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -134,7 +134,7 @@ const SecurityCenter = () => {
         href={tool.download}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
       >
         <Download className="w-4 h-4" />
         <span>Download</span>
@@ -146,7 +146,7 @@ const SecurityCenter = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -187,7 +187,7 @@ const SecurityCenter = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-red-900 border border-red-700 rounded-lg p-4"
+        className="bg-red-900 border border-red-700 p-4"
       >
         <div className="flex items-start">
           <AlertTriangle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
@@ -230,7 +230,7 @@ const SecurityCenter = () => {
         <div className="space-y-6">
           {!assessmentComplete ? (
             <>
-              <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6">
+              <div className="bg-[#111820] border border-[#1c2a35] p-6">
                 <h2 className="text-2xl font-bold text-white mb-4">Security Assessment</h2>
                 <p className="text-slate-400 mb-6">
                   Answer the following questions to evaluate your current security posture. This assessment is anonymous and results are not stored.
@@ -243,20 +243,20 @@ const SecurityCenter = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="bg-[#1c2a35] rounded-lg p-4"
+                      className="bg-[#1c2a35] p-4"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <p className="text-white font-medium">{q.question}</p>
                         <span className="text-xs text-slate-400">{q.category}</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <button onClick={() => handleAnswer(q.id, 'yes')} className={`px-4 py-2 ${answers[q.id] === 'yes' ? 'bg-green-700 ring-2 ring-green-400' : 'bg-green-900 hover:bg-green-800'} text-green-100 rounded-lg transition-colors text-sm font-medium`}>
+                        <button onClick={() => handleAnswer(q.id, 'yes')} className={`px-4 py-2 ${answers[q.id] === 'yes' ? 'bg-green-700 ring-2 ring-green-400' : 'bg-green-900 hover:bg-green-800'} text-green-100 transition-colors text-sm font-medium`}>
                           Yes
                         </button>
-                        <button onClick={() => handleAnswer(q.id, 'no')} className={`px-4 py-2 ${answers[q.id] === 'no' ? 'bg-red-700 ring-2 ring-red-400' : 'bg-red-900 hover:bg-red-800'} text-red-100 rounded-lg transition-colors text-sm font-medium`}>
+                        <button onClick={() => handleAnswer(q.id, 'no')} className={`px-4 py-2 ${answers[q.id] === 'no' ? 'bg-red-700 ring-2 ring-red-400' : 'bg-red-900 hover:bg-red-800'} text-red-100 transition-colors text-sm font-medium`}>
                           No
                         </button>
-                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-[#1c2a35] ring-2 ring-[#4afa82]' : 'bg-[#1c2a35] hover:bg-[#111820]'} text-slate-100 rounded-lg transition-colors text-sm font-medium`}>
+                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-[#1c2a35] ring-2 ring-[#4afa82]' : 'bg-[#1c2a35] hover:bg-[#111820]'} text-slate-100 transition-colors text-sm font-medium`}>
                           Unsure
                         </button>
                       </div>
@@ -268,7 +268,7 @@ const SecurityCenter = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleAssessment}
-                  className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium transition-colors"
                 >
                   Get Security Score
                 </motion.button>
@@ -278,7 +278,7 @@ const SecurityCenter = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-8"
+              className="bg-[#111820] border border-[#1c2a35] p-8"
             >
               <div className="text-center mb-8">
                 <div className="w-32 h-32 mx-auto mb-6 relative">
@@ -312,22 +312,22 @@ const SecurityCenter = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => { setAssessmentComplete(false); setAnswers({}) }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 font-medium transition-colors"
                 >
                   Retake Assessment
                 </motion.button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-[#1c2a35] rounded-lg p-4">
+                <div className="bg-[#1c2a35] p-4">
                   <p className="text-slate-400 text-sm">Network Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.network}%</p>
                 </div>
-                <div className="bg-[#1c2a35] rounded-lg p-4">
+                <div className="bg-[#1c2a35] p-4">
                   <p className="text-slate-400 text-sm">Device Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.device}%</p>
                 </div>
-                <div className="bg-[#1c2a35] rounded-lg p-4">
+                <div className="bg-[#1c2a35] p-4">
                   <p className="text-slate-400 text-sm">Operational Security</p>
                   <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.opsec}%</p>
                 </div>
@@ -376,7 +376,7 @@ const SecurityCenter = () => {
             {webrtcStatus === 'idle' && (
               <button
                 onClick={runWebRTCCheck}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors"
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 transition-colors"
               >
                 <Play className="w-4 h-4" />
                 Run WebRTC Leak Test
@@ -391,7 +391,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'unsupported' && (
-              <div className="bg-[#111820] border border-[#2a9a52] rounded-lg p-4">
+              <div className="bg-[#111820] border border-[#2a9a52] p-4">
                 <p className="text-slate-400 text-sm">
                   Your browser does not support WebRTC, which means it cannot leak your IP through this method.
                   This is actually a good thing for privacy.
@@ -400,7 +400,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'error' && (
-              <div className="bg-[#111820] border border-yellow-700 rounded-lg p-4">
+              <div className="bg-[#111820] border border-yellow-700 p-4">
                 <p className="text-yellow-400 text-sm">
                   Could not complete the WebRTC leak test. Your browser may be blocking WebRTC
                   (which is good for privacy) or an unexpected error occurred.
@@ -415,7 +415,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'complete' && (
-              <div className={`rounded-lg p-4 border ${isLeaking ? 'bg-red-900/30 border-red-700' : 'bg-green-900/30 border-green-700'}`}>
+              <div className={`p-4 border ${isLeaking ? 'bg-red-900/30 border-red-700' : 'bg-green-900/30 border-green-700'}`}>
                 <div className="flex items-center gap-2 mb-3">
                   {isLeaking ? (
                     <>
@@ -479,7 +479,7 @@ const SecurityCenter = () => {
                   href={tool.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4 hover:border-blue-500 transition-colors group"
+                  className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-blue-500 transition-colors group"
                 >
                   <div className="flex items-start justify-between">
                     <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
@@ -519,7 +519,7 @@ const SecurityCenter = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-red-900 border border-red-700 rounded-lg p-6"
+            className="bg-red-900 border border-red-700 p-6"
           >
             <div className="flex items-start">
               <AlertCircle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
@@ -547,7 +547,7 @@ const SecurityCenter = () => {
                   key={contact.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+                  className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
                 >
                   <h3 className="text-white font-semibold">{contact.name}</h3>
                   <p className="text-slate-400 text-sm mt-1">{contact.description}</p>
@@ -558,7 +558,7 @@ const SecurityCenter = () => {
                     href={contact.contact}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                    className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
                   >
                     <Phone className="w-4 h-4" />
                     <span>Contact</span>

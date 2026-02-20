@@ -85,13 +85,13 @@ const ConfuciusInstitutes = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-yellow-900/50 to-red-900/50 border border-yellow-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-yellow-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><GraduationCap className="w-6 h-6" /> Confucius Institute Tracker</h2>
         <p className="text-slate-300">
           Confucius Institutes are Chinese government-funded cultural centers at universities worldwide. 
           Many have been closed due to concerns about academic freedom, espionage, and CCP propaganda.
         </p>
-        <div className="mt-4 p-4 bg-yellow-900/30 rounded-lg">
+        <div className="mt-4 p-4 bg-yellow-900/30">
           <p className="text-yellow-400 text-sm">
             <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" /><span><strong>Why it matters:</strong> Confucius Institutes have been linked to self-censorship on China topics, 
             surveillance of Chinese students, and restrictions on discussing Taiwan, Tibet, and Tiananmen.</span></span>
@@ -101,19 +101,19 @@ const ConfuciusInstitutes = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-green-400">{closedCount}</p>
           <p className="text-sm text-slate-400">Closed</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-red-400">{activeCount}</p>
           <p className="text-sm text-slate-400">Still Active</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-white">{totalCountries}</p>
           <p className="text-sm text-slate-400">Countries</p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+        <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
           <p className="text-3xl font-bold text-yellow-400">500+</p>
           <p className="text-sm text-slate-400">Worldwide (est.)</p>
         </div>
@@ -129,7 +129,7 @@ const ConfuciusInstitutes = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedRegion === region.id
                   ? 'bg-red-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {region.Icon ? <region.Icon className="w-4 h-4" /> : <span>{region.icon}</span>}
@@ -149,9 +149,9 @@ const ConfuciusInstitutes = () => {
       </div>
 
       {/* Institute List */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+      <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
         <table className="w-full">
-          <thead className="bg-slate-900">
+          <thead className="bg-[#0a0e14]">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">University</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">Country</th>
@@ -161,7 +161,7 @@ const ConfuciusInstitutes = () => {
           </thead>
           <tbody className="divide-y divide-slate-700">
             {filteredInstitutes.map((inst, i) => (
-              <tr key={i} className="hover:bg-slate-700/50">
+              <tr key={i} className="hover:bg-[#111820]/50">
                 <td className="px-4 py-3 text-white">{inst.university}</td>
                 <td className="px-4 py-3 text-slate-300">{inst.country}</td>
                 <td className="px-4 py-3">
@@ -183,7 +183,7 @@ const ConfuciusInstitutes = () => {
       </div>
 
       {/* Take Action */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><Megaphone className="w-5 h-5" /> Take Action</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>

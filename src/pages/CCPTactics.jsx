@@ -26,7 +26,7 @@ const CategoryCard = ({ category, isSelected, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className={`bg-[#111820] rounded-lg p-6 cursor-pointer border-2 transition-all ${
+      className={`bg-[#111820] p-6 cursor-pointer border-2 transition-all ${
         isSelected ? 'border-red-500' : 'border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
       onClick={onClick}
@@ -49,7 +49,7 @@ const TacticDetail = ({ tactic }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-[#1c2a35] rounded-lg p-4 mb-4">
+    <div className="bg-[#1c2a35] p-4 mb-4">
       <div 
         className="flex justify-between items-start cursor-pointer"
         onClick={() => setExpanded(!expanded)}
@@ -115,7 +115,7 @@ const TacticDetail = ({ tactic }) => {
 
 const CounterTacticsSection = () => {
   return (
-    <div className="bg-green-900/20 border border-green-700 rounded-lg p-6 mt-8">
+    <div className="bg-green-900/20 border border-green-700 p-6 mt-8">
       <h2 className="text-2xl font-bold text-white mb-4">
         How to Counter CCP Tactics
       </h2>
@@ -126,7 +126,7 @@ const CounterTacticsSection = () => {
       
       <div className="grid md:grid-cols-3 gap-6">
         {Object.entries(COUNTER_TACTICS).map(([key, section]) => (
-          <div key={key} className="bg-[#111820] rounded-lg p-4">
+          <div key={key} className="bg-[#111820] p-4">
             <h3 className="text-lg font-semibold text-green-400 mb-3">
               {section.title}
             </h3>
@@ -170,7 +170,7 @@ const CCPTactics = () => {
         </div>
 
         {/* Warning Banner */}
-        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 mb-8">
+        <div className="bg-yellow-900/30 border border-yellow-700 p-4 mb-8">
           <div className="flex items-start">
             <AlertTriangle className="w-5 h-5 text-yellow-500 mr-3 flex-shrink-0" />
             <div>
@@ -202,7 +202,7 @@ const CCPTactics = () => {
             key={selectedCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#111820] rounded-lg p-6"
+            className="bg-[#111820] p-6"
           >
             <h2 className="text-2xl font-bold text-white mb-2">
               {currentCategory.title}

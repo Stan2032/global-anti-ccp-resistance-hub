@@ -263,7 +263,7 @@ const DocumentaryList = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Film className="w-6 h-6" /> Essential Documentaries</h2>
         <p className="text-slate-300">
           {documentaries.length} documentaries covering CCP human rights abuses, from Hong Kong protests to the Uyghur genocide.
@@ -276,10 +276,10 @@ const DocumentaryList = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.name} ({cat.count})
@@ -290,7 +290,7 @@ const DocumentaryList = () => {
       {/* Documentary Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredDocs.map((doc, index) => (
-          <div key={index} className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-slate-500 transition-colors">
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold text-white text-lg">{doc.title}</h3>
@@ -321,7 +321,7 @@ const DocumentaryList = () => {
               </div>
               
               {/* Where to Watch */}
-              <div className="border-t border-slate-700 pt-3">
+              <div className="border-t border-[#1c2a35] pt-3">
                 <p className="text-xs text-slate-500 mb-1">Where to Watch:</p>
                 <div className="flex flex-wrap gap-1">
                   {doc.whereToWatch.map((platform, i) => (
@@ -337,7 +337,7 @@ const DocumentaryList = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-sm text-slate-400">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-sm text-slate-400">
         <p>
           <strong className="text-white">Note:</strong> Some documentaries may be banned or restricted in certain countries. 
           Use a VPN if necessary to access these important works. Availability may vary by region.

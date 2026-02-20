@@ -276,7 +276,7 @@ Sincerely,
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Landmark className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
@@ -292,10 +292,10 @@ Sincerely,
             <button
               key={country.code}
               onClick={() => setSelectedCountry(country.code)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
+              className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedCountry === country.code
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
               <span>{country.flag}</span>
@@ -306,7 +306,7 @@ Sincerely,
       </div>
 
       {/* Contact Links */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="text-lg font-semibold text-white mb-3">
           Find Your Representatives ({currentLinks.name})
         </h3>
@@ -317,7 +317,7 @@ Sincerely,
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-between"
+              className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
             >
               {link.name}
               <span>→</span>
@@ -334,10 +334,10 @@ Sincerely,
             <button
               key={topic.id}
               onClick={() => setSelectedTopic(topic.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
+              className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedTopic === topic.id
                   ? 'bg-red-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
               {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.flag}</span>}
@@ -348,12 +348,12 @@ Sincerely,
       </div>
 
       {/* Letter Template */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-semibold text-white">Letter Template</h3>
           <button
             onClick={() => copyToClipboard(currentTemplate.subject + '\n\n' + currentTemplate.body)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               copied ? 'bg-green-600 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'
             }`}
           >
@@ -363,14 +363,14 @@ Sincerely,
         
         <div className="mb-4">
           <label className="text-sm text-slate-400 mb-1 block">Subject Line:</label>
-          <div className="bg-slate-900 border border-slate-600 rounded p-3 text-white font-medium">
+          <div className="bg-[#0a0e14] border border-slate-600 rounded p-3 text-white font-medium">
             {currentTemplate.subject}
           </div>
         </div>
         
         <div>
           <label className="text-sm text-slate-400 mb-1 block">Letter Body:</label>
-          <div className="bg-slate-900 border border-slate-600 rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
+          <div className="bg-[#0a0e14] border border-slate-600 rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
             {currentTemplate.body}
           </div>
         </div>
@@ -381,7 +381,7 @@ Sincerely,
       </div>
 
       {/* Tips */}
-      <div className="bg-green-900/20 border border-green-700/50 rounded-lg p-4">
+      <div className="bg-green-900/20 border border-green-700/50 p-4">
         <h3 className="text-lg font-semibold text-white mb-3">Tips for Effective Advocacy</h3>
         <ul className="space-y-2 text-sm text-slate-300">
           <li className="flex items-start gap-2">

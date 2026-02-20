@@ -63,7 +63,7 @@ const Bookmarks = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-xl p-6 border border-yellow-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-yellow-500 p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <Bookmark className="w-8 h-8 text-yellow-400 mr-3" />
@@ -74,7 +74,7 @@ const Bookmarks = () => {
           </div>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-lg transition-colors"
+            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium transition-colors"
           >
             + Add Bookmark
           </button>
@@ -86,7 +86,7 @@ const Bookmarks = () => {
 
       {/* Add Bookmark Form */}
       {showAddForm && (
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-4">Add New Bookmark</h3>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
@@ -97,7 +97,7 @@ const Bookmarks = () => {
                 value={newBookmark.title}
                 onChange={(e) => setNewBookmark({ ...newBookmark, title: e.target.value })}
                 placeholder="Resource name"
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
               />
             </div>
             <div>
@@ -108,7 +108,7 @@ const Bookmarks = () => {
                 value={newBookmark.url}
                 onChange={(e) => setNewBookmark({ ...newBookmark, url: e.target.value })}
                 placeholder="https://..."
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
               />
             </div>
             <div>
@@ -117,7 +117,7 @@ const Bookmarks = () => {
                 aria-label="Category"
                 value={newBookmark.category}
                 onChange={(e) => setNewBookmark({ ...newBookmark, category: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-yellow-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-yellow-500"
               >
                 {categories.filter(c => c.id !== 'all').map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -132,21 +132,21 @@ const Bookmarks = () => {
                 value={newBookmark.notes}
                 onChange={(e) => setNewBookmark({ ...newBookmark, notes: e.target.value })}
                 placeholder="Personal notes..."
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
               />
             </div>
           </div>
           <div className="flex justify-end space-x-2 mt-4">
             <button
               onClick={() => setShowAddForm(false)}
-              className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+              className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={() => addBookmark(newBookmark)}
               disabled={!newBookmark.title || !newBookmark.url}
-              className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium rounded-lg transition-colors"
+              className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium transition-colors"
             >
               Save Bookmark
             </button>
@@ -160,10 +160,10 @@ const Bookmarks = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-3 py-1.5 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-yellow-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -185,7 +185,7 @@ const Bookmarks = () => {
             return (
               <div 
                 key={bookmark.id}
-                className="bg-slate-800/50 rounded-lg border border-slate-700 p-4 flex items-center justify-between group hover:border-slate-600 transition-colors"
+                className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between group hover:border-slate-600 transition-colors"
               >
                 <div className="flex items-center space-x-3">
                   {categoryInfo?.Icon && <categoryInfo.Icon className="w-5 h-5 text-slate-400" />}
@@ -221,7 +221,7 @@ const Bookmarks = () => {
           })}
         </div>
       ) : (
-        <div className="text-center py-12 bg-slate-800/50 rounded-xl border border-slate-700">
+        <div className="text-center py-12 bg-[#111820]/50 border border-[#1c2a35]">
           <Bookmark className="w-10 h-10 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400 mb-2">No bookmarks yet</p>
           <p className="text-sm text-slate-500">Start by adding suggested resources below</p>
@@ -229,7 +229,7 @@ const Bookmarks = () => {
       )}
 
       {/* Suggested Bookmarks */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-4 flex items-center gap-2"><Pin className="w-4 h-4" /> Suggested Resources</h3>
         <div className="grid md:grid-cols-2 gap-3">
           {suggestedBookmarks.map((suggestion, idx) => {
@@ -239,10 +239,10 @@ const Bookmarks = () => {
             return (
               <div 
                 key={idx}
-                className={`flex items-center justify-between p-3 rounded-lg transition-colors ${
+                className={`flex items-center justify-between p-3 transition-colors ${
                   alreadyBookmarked 
                     ? 'bg-green-900/20 border border-green-700/50' 
-                    : 'bg-slate-900/50 border border-slate-700 hover:border-slate-600'
+                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-slate-600'
                 }`}
               >
                 <div className="flex items-center space-x-3">

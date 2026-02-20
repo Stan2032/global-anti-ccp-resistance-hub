@@ -101,7 +101,7 @@ const EmptyState = ({
 
       {/* Suggestions */}
       {suggestions.length > 0 && (
-        <div className="bg-slate-800/50 rounded-lg border border-slate-700/50 p-4 max-w-md mb-6">
+        <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4 max-w-md mb-6">
           <div className="flex items-start space-x-2 mb-3">
             <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
             <p className="text-sm font-medium text-white text-left">What you can do:</p>
@@ -126,7 +126,7 @@ const EmptyState = ({
               whileTap={{ scale: 0.95 }}
               onClick={action.onClick}
               disabled={action.disabled}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-medium transition-colors"
             >
               {action.icon}
               <span>{action.label}</span>
@@ -138,7 +138,7 @@ const EmptyState = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={secondaryAction.onClick}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               {secondaryAction.icon}
               <span>{secondaryAction.label}</span>

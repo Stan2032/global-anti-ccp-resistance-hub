@@ -61,7 +61,7 @@ const SourceCitation = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute z-50 mt-2 w-80 bg-slate-800 border border-slate-600 rounded-lg shadow-xl p-4"
+              className="absolute z-50 mt-2 w-80 bg-[#111820] border border-slate-600 shadow-xl p-4"
               style={{ 
                 position: 'absolute',
                 top: '100%',
@@ -156,7 +156,7 @@ const SourceCitation = ({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`p-4 rounded-lg border ${getCredibilityColor(source.type)}`}
+            className={`p-4 border ${getCredibilityColor(source.type)}`}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center space-x-2">
@@ -230,7 +230,7 @@ const SourceCitation = ({
         ))}
       </div>
       
-      <div className="text-xs text-slate-500 border-t border-slate-700 pt-3">
+      <div className="text-xs text-slate-500 border-t border-[#1c2a35] pt-3">
         <p>
           All sources are independently verified and regularly updated. 
           Source credibility is indicated by color coding and icons.

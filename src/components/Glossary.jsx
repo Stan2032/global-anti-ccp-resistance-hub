@@ -205,7 +205,7 @@ const Glossary = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-4">
           <BookOpen className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -220,7 +220,7 @@ const Glossary = () => {
             placeholder="Search terms..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 pl-10 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 pl-10 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <svg className="absolute left-3 top-3.5 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -233,8 +233,8 @@ const Glossary = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              activeCategory === cat.id ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
+              activeCategory === cat.id ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -249,7 +249,7 @@ const Glossary = () => {
 
       <div className="space-y-4">
         {filteredTerms.map((item, index) => (
-          <div key={index} className="bg-slate-800/50 rounded-xl border border-slate-700 p-5">
+          <div key={index} className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="text-xl font-bold text-white">{item.term}</h3>
@@ -264,7 +264,7 @@ const Glossary = () => {
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs text-slate-500">Related:</span>
                 {item.related.map((rel, idx) => (
-                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-slate-700 text-slate-300 rounded hover:bg-slate-600 transition-colors">
+                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-slate-700 text-slate-300 rounded hover:bg-[#1c2a35] transition-colors">
                     {rel}
                   </button>
                 ))}

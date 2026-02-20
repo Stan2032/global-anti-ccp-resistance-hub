@@ -176,7 +176,7 @@ Sincerely,
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center mb-4">
           <Mail className="w-8 h-8 mr-3 text-blue-400" />
           <div>
@@ -191,7 +191,7 @@ Sincerely,
       </div>
 
       {/* Customization */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><PenLine className="w-5 h-5" /> Personalize Your Letters</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
@@ -202,7 +202,7 @@ Sincerely,
               value={customizations.name}
               onChange={(e) => setCustomizations({ ...customizations, name: e.target.value })}
               placeholder="Your name"
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
           <div>
@@ -213,7 +213,7 @@ Sincerely,
               value={customizations.location}
               onChange={(e) => setCustomizations({ ...customizations, location: e.target.value })}
               placeholder="City, State/Country"
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
@@ -227,11 +227,11 @@ Sincerely,
         {campaigns.map(campaign => (
           <div 
             key={campaign.id}
-            className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden"
+            className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
           >
             {/* Campaign Header */}
             <div 
-              className="p-4 cursor-pointer hover:bg-slate-800/70 transition-colors"
+              className="p-4 cursor-pointer hover:bg-[#111820]/70 transition-colors"
               onClick={() => setActiveCampaign(activeCampaign === campaign.id ? null : campaign.id)}
             >
               <div className="flex items-start justify-between">
@@ -256,7 +256,7 @@ Sincerely,
 
             {/* Expanded Content */}
             {activeCampaign === campaign.id && (
-              <div className="px-4 pb-4 border-t border-slate-700 pt-4">
+              <div className="px-4 pb-4 border-t border-[#1c2a35] pt-4">
                 {/* Background */}
                 <div className="mb-4">
                   <h4 className="text-sm font-medium text-white mb-1">Background</h4>
@@ -284,13 +284,13 @@ Sincerely,
                       {copiedLetter ? '✓ Copied!' : <span className="flex items-center gap-1"><Copy className="w-3 h-3" /> Copy Letter</span>}
                     </button>
                   </div>
-                  <pre className="bg-slate-900 rounded-lg p-4 text-xs text-slate-300 whitespace-pre-wrap overflow-x-auto max-h-64 overflow-y-auto">
+                  <pre className="bg-[#0a0e14] p-4 text-xs text-slate-300 whitespace-pre-wrap overflow-x-auto max-h-64 overflow-y-auto">
                     {campaign.letterTemplate}
                   </pre>
                 </div>
 
                 {/* Tips */}
-                <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-3">
+                <div className="bg-yellow-900/20 border border-yellow-700/50 p-3">
                   <h4 className="text-sm font-medium text-white mb-1 flex items-center gap-1"><Lightbulb className="w-4 h-4" /> Tips for Effectiveness</h4>
                   <ul className="text-xs text-slate-300 space-y-1">
                     <li>• Personalize the letter with your own words and experiences</li>
@@ -306,7 +306,7 @@ Sincerely,
       </div>
 
       {/* Resources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Find Your Representatives</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">

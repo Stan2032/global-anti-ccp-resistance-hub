@@ -315,7 +315,7 @@ const ForcedLabourList = () => {
   };
 
   return (
-    <div className="bg-slate-900 text-white p-6 rounded-lg">
+    <div className="bg-[#0a0e14] text-white p-6">
       <div className="mb-6">
         <h2 className="text-3xl font-bold mb-2">Companies Implicated in Forced Labour</h2>
         <p className="text-slate-400 mb-4">
@@ -324,7 +324,7 @@ const ForcedLabourList = () => {
           US Customs actions, or court proceedings.
         </p>
         
-        <div className="bg-yellow-900/20 border border-yellow-800 rounded-lg p-4 mb-4">
+        <div className="bg-yellow-900/20 border border-yellow-800 p-4 mb-4">
           <h3 className="font-bold text-yellow-400 mb-2">Important Disclaimer</h3>
           <p className="text-sm text-slate-300">
             <strong>Complete avoidance of China-made products is extremely difficult</strong>, especially for electronics 
@@ -351,7 +351,7 @@ const ForcedLabourList = () => {
           placeholder="Search companies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-blue-500"
+          className="w-full px-4 py-2 bg-[#111820] border border-[#1c2a35] focus:outline-none focus:border-blue-500"
         />
         
         <div className="flex flex-wrap gap-2">
@@ -359,10 +359,10 @@ const ForcedLabourList = () => {
             <button
               key={cat.key}
               onClick={() => setSelectedCategory(cat.key)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
+              className={`px-4 py-2 transition-colors ${
                 selectedCategory === cat.key
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                  : 'bg-[#111820] text-slate-400 hover:bg-[#111820]'
               }`}
             >
               {cat.label}
@@ -374,7 +374,7 @@ const ForcedLabourList = () => {
       {/* Companies List */}
       <div className="space-y-4">
         {filteredCompanies.map((company, index) => (
-          <div key={index} className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4">
             <div className="flex justify-between items-start mb-3">
               <div>
                 <h3 className="text-xl font-bold">{company.name}</h3>
@@ -448,7 +448,7 @@ const ForcedLabourList = () => {
         </div>
       )}
 
-      <div className="mt-8 p-4 bg-slate-800 border border-slate-700 rounded-lg">
+      <div className="mt-8 p-4 bg-[#111820] border border-[#1c2a35]">
         <h3 className="font-bold mb-2">Data Sources:</h3>
         <ul className="text-sm text-slate-400 space-y-1">
           <li>• <a href="https://www.aspi.org.au/report/uyghurs-sale" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">ASPI - "Uyghurs for Sale" (2020)</a></li>

@@ -165,13 +165,13 @@ const LiveStatistics = () => {
     orange: { bg: 'bg-orange-900/30', border: 'border-orange-700/50', text: 'text-orange-400' },
     yellow: { bg: 'bg-yellow-900/30', border: 'border-yellow-700/50', text: 'text-yellow-400' },
     blue: { bg: 'bg-blue-900/30', border: 'border-blue-700/50', text: 'text-blue-400' },
-    gray: { bg: 'bg-slate-800/50', border: 'border-slate-700/50', text: 'text-slate-400' },
+    gray: { bg: 'bg-[#111820]/50', border: 'border-[#1c2a35]/50', text: 'text-slate-400' },
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/30 to-slate-900 rounded-xl p-6 border border-red-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <BarChart3 className="w-8 h-8 mr-3 text-red-400" />
@@ -199,7 +199,7 @@ const LiveStatistics = () => {
           return (
             <div 
               key={stat.id}
-              className={`${colors.bg} rounded-xl border ${colors.border} p-4 hover:scale-105 transition-transform`}
+              className={`${colors.bg} border ${colors.border} p-4 hover:scale-105 transition-transform`}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-2xl">{stat.Icon ? <stat.Icon className="w-6 h-6" /> : stat.icon}</span>
@@ -229,7 +229,7 @@ const LiveStatistics = () => {
 
       {/* Context */}
       <div className="grid md:grid-cols-3 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-2 flex items-center gap-2"><TrendingUp className="w-5 h-5" /> Why These Numbers Matter</h3>
           <p className="text-sm text-slate-400">
             Statistics help document the scale of CCP repression. They provide evidence for 
@@ -237,7 +237,7 @@ const LiveStatistics = () => {
           </p>
         </div>
         
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Search className="w-5 h-5" /> Data Verification</h3>
           <p className="text-sm text-slate-400">
             All statistics are compiled from reputable sources including government reports, 
@@ -245,7 +245,7 @@ const LiveStatistics = () => {
           </p>
         </div>
         
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Underreported Reality</h3>
           <p className="text-sm text-slate-400">
             These numbers are likely underestimates. China's opacity means many cases go 
@@ -255,7 +255,7 @@ const LiveStatistics = () => {
       </div>
 
       {/* Sources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Data Sources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
           <a href="https://www.cecc.gov" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">

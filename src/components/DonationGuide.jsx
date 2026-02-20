@@ -294,7 +294,7 @@ const DonationGuide = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6 border border-green-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
           <Heart className="w-8 h-8 text-green-400 mr-3" />
           <div>
@@ -310,23 +310,23 @@ const DonationGuide = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-white">{organizations.length}</div>
           <div className="text-xs text-slate-400">Organizations</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-green-400">
             {organizations.filter(o => o.rating === 'Highly Recommended').length}
           </div>
           <div className="text-xs text-slate-400">Highly Recommended</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-blue-400">
             {organizations.filter(o => o.taxDeductible).length}
           </div>
           <div className="text-xs text-slate-400">Tax Deductible</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-purple-400">
             {new Set(organizations.map(o => o.country)).size}
           </div>
@@ -343,10 +343,10 @@ const DonationGuide = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCategory === cat.id
                     ? 'bg-green-600 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 <cat.Icon className="w-4 h-4" />
@@ -362,10 +362,10 @@ const DonationGuide = () => {
               <button
                 key={cause.id}
                 onClick={() => setActiveCause(cause.id)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCause === cause.id
                     ? 'bg-blue-600 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 {cause.name}
@@ -383,7 +383,7 @@ const DonationGuide = () => {
           return (
             <div 
               key={org.id}
-              className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 hover:border-slate-600 transition-colors"
+              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-slate-600 transition-colors"
             >
               <div className="flex items-start justify-between mb-2">
                 <div>
@@ -417,7 +417,7 @@ const DonationGuide = () => {
                   href={org.donateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center gap-1"
                 >
                   <Heart className="w-4 h-4" /> Donate
                 </a>
@@ -425,7 +425,7 @@ const DonationGuide = () => {
                   href={org.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
                 >
                   Website
                 </a>
@@ -436,7 +436,7 @@ const DonationGuide = () => {
       </div>
 
       {/* Tips */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
+      <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 text-yellow-400" /> Donation Tips</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <strong>Monthly donations</strong> provide stable funding for ongoing work</li>

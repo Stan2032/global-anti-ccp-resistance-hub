@@ -140,7 +140,7 @@ const SocialMediaToolkit = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <div className="flex items-center mb-4">
           <Smartphone className="w-8 h-8 text-blue-400 mr-3" />
           <div>
@@ -160,10 +160,10 @@ const SocialMediaToolkit = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -176,22 +176,22 @@ const SocialMediaToolkit = () => {
       {activeCategory === 'threads' && (
         <div className="space-y-4">
           {threads.map(thread => (
-            <div key={thread.id} className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden">
-              <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+            <div key={thread.id} className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden">
+              <div className="p-4 border-b border-[#1c2a35] flex items-center justify-between">
                 <div>
                   <h3 className="font-bold text-white">{thread.title}</h3>
                   <p className="text-xs text-slate-400">{thread.tweets.length} tweets</p>
                 </div>
                 <button
                   onClick={() => copyThread(thread)}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm transition-colors"
                 >
                   {copiedId === thread.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy Thread</>}
                 </button>
               </div>
               <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
                 {thread.tweets.map((tweet, idx) => (
-                  <div key={idx} className="bg-slate-900/50 rounded-lg p-3">
+                  <div key={idx} className="bg-[#0a0e14]/50 p-3">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-slate-500">Tweet {idx + 1}/{thread.tweets.length}</span>
                       <span className="text-xs text-slate-500">{tweet.length}/280</span>
@@ -209,7 +209,7 @@ const SocialMediaToolkit = () => {
       {activeCategory === 'posts' && (
         <div className="grid md:grid-cols-2 gap-4">
           {posts.map(post => (
-            <div key={post.id} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+            <div key={post.id} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-bold text-white">{post.title}</h3>
                 <button
@@ -230,7 +230,7 @@ const SocialMediaToolkit = () => {
       {activeCategory === 'hashtags' && (
         <div className="space-y-4">
           {hashtagSets.map(set => (
-            <div key={set.id} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+            <div key={set.id} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-bold text-white">{set.title}</h3>
                 <button
@@ -245,7 +245,7 @@ const SocialMediaToolkit = () => {
                   <button
                     key={idx}
                     onClick={() => copyToClipboard(tag, `${set.id}-${idx}`)}
-                    className="px-3 py-1 bg-blue-900/30 hover:bg-blue-900/50 text-blue-400 rounded-lg text-sm transition-colors"
+                    className="px-3 py-1 bg-blue-900/30 hover:bg-blue-900/50 text-blue-400 text-sm transition-colors"
                   >
                     {tag}
                   </button>
@@ -260,7 +260,7 @@ const SocialMediaToolkit = () => {
       {activeCategory === 'dates' && (
         <div className="space-y-3">
           {keyDates.map((item, idx) => (
-            <div key={idx} className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 flex items-center justify-between">
+            <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between">
               <div>
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-6 h-6 text-blue-400" />
@@ -273,7 +273,7 @@ const SocialMediaToolkit = () => {
               </div>
               <button
                 onClick={() => copyToClipboard(item.hashtags, `date-${idx}`)}
-                className="text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white rounded transition-colors"
+                className="text-xs px-3 py-1 bg-slate-700 hover:bg-[#1c2a35] text-white rounded transition-colors"
               >
                 {copiedId === `date-${idx}` ? '✓' : <Clipboard className="w-3 h-3" />}
               </button>
@@ -284,7 +284,7 @@ const SocialMediaToolkit = () => {
 
       {/* Graphics placeholder */}
       {activeCategory === 'graphics' && (
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 text-center">
           <Image className="w-10 h-10 text-slate-400 mb-4 mx-auto" />
           <h3 className="font-bold text-white mb-2">Share Graphics Coming Soon</h3>
           <p className="text-sm text-slate-400">
@@ -297,7 +297,7 @@ const SocialMediaToolkit = () => {
       )}
 
       {/* Tips */}
-      <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4">
+      <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><Lightbulb className="w-4 h-4 text-yellow-400" /> Social Media Tips</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <strong>Personalize</strong> the content with your own words for more impact</li>

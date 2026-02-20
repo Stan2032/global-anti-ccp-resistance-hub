@@ -136,7 +136,7 @@ const ThreatCard = ({ threat, isSelected, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className={`bg-[#111820] rounded-lg p-6 cursor-pointer border-2 transition-all ${
+      className={`bg-[#111820] p-6 cursor-pointer border-2 transition-all ${
         isSelected ? 'border-red-500' : 'border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
       onClick={onClick}
@@ -164,7 +164,7 @@ const ThreatDetail = ({ threat }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111820] rounded-lg p-6 mt-6"
+      className="bg-[#111820] p-6 mt-6"
     >
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -200,7 +200,7 @@ const ThreatDetail = ({ threat }) => {
           <h3 className="text-lg font-semibold text-white mb-3">Potential Scenarios</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {threat.scenarios.map((scenario, i) => (
-              <div key={i} className="bg-[#1c2a35] rounded-lg p-4">
+              <div key={i} className="bg-[#1c2a35] p-4">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-semibold text-white">{scenario.name}</h4>
                   <span className={`text-xs px-2 py-1 rounded ${
@@ -255,7 +255,7 @@ const ThreatDetail = ({ threat }) => {
           <h3 className="text-lg font-semibold text-white mb-3">Debt Trap Diplomacy Cases</h3>
           <div className="grid md:grid-cols-3 gap-4">
             {threat.debtTrapCases.map((case_, i) => (
-              <div key={i} className="bg-[#1c2a35] rounded-lg p-4">
+              <div key={i} className="bg-[#1c2a35] p-4">
                 <h4 className="font-semibold text-white">{case_.country}</h4>
                 <p className="text-gray-400 text-sm">{case_.project}</p>
                 <p className="text-red-400 text-sm mt-2">{case_.outcome}</p>
@@ -281,7 +281,7 @@ const ThreatDetail = ({ threat }) => {
       
       {/* Legal Status */}
       {threat.legalStatus && (
-        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
+        <div className="bg-blue-900/30 border border-blue-700 p-4">
           <h3 className="text-sm font-semibold text-blue-400 uppercase mb-1">International Law</h3>
           <p className="text-gray-300">{threat.legalStatus}</p>
         </div>
@@ -345,7 +345,7 @@ const RegionalThreats = () => {
         </div>
         
         {/* Alert Banner */}
-        <div className="bg-red-900/30 border border-red-700 rounded-lg p-4 mb-8">
+        <div className="bg-red-900/30 border border-red-700 p-4 mb-8">
           <div className="flex items-start">
             <svg className="w-6 h-6 text-red-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -378,14 +378,14 @@ const RegionalThreats = () => {
         </AnimatePresence>
         
         {/* Resources */}
-        <div className="mt-12 bg-[#111820] rounded-lg p-6">
+        <div className="mt-12 bg-[#111820] p-6">
           <h2 className="text-xl font-bold text-white mb-4">Intelligence Sources</h2>
           <div className="grid md:grid-cols-4 gap-4">
             <a
               href="https://www.csis.org/programs/china-power-project"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CSIS China Power</h3>
               <p className="text-gray-400 text-sm">Interactive analysis of China's military capabilities</p>
@@ -394,7 +394,7 @@ const RegionalThreats = () => {
               href="https://xjdp.aspi.org.au"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ASPI Xinjiang Data</h3>
               <p className="text-gray-400 text-sm">Satellite imagery of detention facilities</p>
@@ -403,7 +403,7 @@ const RegionalThreats = () => {
               href="https://understandingwar.org/research/china-taiwan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">ISW China-Taiwan</h3>
               <p className="text-gray-400 text-sm">Daily updates on cross-strait tensions</p>
@@ -412,7 +412,7 @@ const RegionalThreats = () => {
               href="https://amti.csis.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Asia Maritime Initiative</h3>
               <p className="text-gray-400 text-sm">South China Sea monitoring</p>

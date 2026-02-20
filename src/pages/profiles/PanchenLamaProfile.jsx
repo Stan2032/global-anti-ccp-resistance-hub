@@ -273,11 +273,11 @@ export default function PanchenLamaProfile() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-[#0a0e14] text-white">
       <GlobalDisclaimer />
 
       {/* Header */}
-      <div className="bg-gradient-to-b from-purple-900/30 to-slate-900 border-b border-slate-700">
+      <div className="bg-[#0a0e14] border-b border-[#1c2a35] border-l-2 border-l-purple-500">
         <div className="max-w-5xl mx-auto px-4 py-6">
           <Link to="/take-action" className="inline-flex items-center gap-1 text-slate-400 hover:text-white mb-4 text-sm">
             <ArrowLeft className="w-4 h-4" />
@@ -299,7 +299,7 @@ export default function PanchenLamaProfile() {
               <p className="text-slate-300 text-sm mb-3 max-w-2xl">{PROFILE.significance}</p>
 
               {/* Status Banner */}
-              <div className="bg-purple-900/40 border border-purple-500/30 rounded-lg p-3 mb-3">
+              <div className="bg-purple-900/40 border border-purple-500/30 p-3 mb-3">
                 <div className="flex items-center gap-2 mb-1">
                   <AlertTriangle className="w-5 h-5 text-purple-400 animate-pulse" />
                   <span className="font-bold text-purple-200">ENFORCED DISAPPEARANCE — {PROFILE.yearsMissing} YEARS</span>
@@ -328,7 +328,7 @@ export default function PanchenLamaProfile() {
       </div>
 
       {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-slate-800/95 backdrop-blur border-b border-slate-700">
+      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
         <div className="max-w-5xl mx-auto px-4">
           <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
             {sections.map(({ id, label, icon: Icon }) => (
@@ -340,7 +340,7 @@ export default function PanchenLamaProfile() {
                 className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
                   activeSection === id
                     ? 'bg-purple-600 text-white'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -375,7 +375,7 @@ export default function PanchenLamaProfile() {
               {TIMELINE.map((event, i) => (
                 <div
                   key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r ${categoryColors[event.category]} hover:bg-slate-800/50`}
+                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r ${categoryColors[event.category]} hover:bg-[#111820]/50`}
                   onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
                   role="button"
                   tabIndex={0}
@@ -428,7 +428,7 @@ export default function PanchenLamaProfile() {
             </h2>
 
             {/* Key Difference Banner */}
-            <div className="bg-purple-900/30 border border-purple-500/30 rounded-lg p-4 mb-6">
+            <div className="bg-purple-900/30 border border-purple-500/30 p-4 mb-6">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-purple-400" />
                 <span className="font-bold text-purple-300">NO CHARGES — EVER</span>
@@ -442,7 +442,7 @@ export default function PanchenLamaProfile() {
 
             {/* Three Pillars */}
             <div className="space-y-4">
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+              <div className="bg-[#111820] border border-[#1c2a35] p-4">
                 <h3 className="font-bold text-purple-300 mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
                   Religious Significance
@@ -456,7 +456,7 @@ export default function PanchenLamaProfile() {
                 </p>
               </div>
 
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+              <div className="bg-[#111820] border border-[#1c2a35] p-4">
                 <h3 className="font-bold text-amber-300 mb-2 flex items-center gap-2">
                   <Flag className="w-4 h-4" />
                   Political Significance
@@ -471,7 +471,7 @@ export default function PanchenLamaProfile() {
                 </p>
               </div>
 
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+              <div className="bg-[#111820] border border-[#1c2a35] p-4">
                 <h3 className="font-bold text-red-300 mb-2 flex items-center gap-2">
                   <Heart className="w-4 h-4" />
                   Human Significance
@@ -494,7 +494,7 @@ export default function PanchenLamaProfile() {
                 { label: 'Formal Charges', value: '0' },
                 { label: 'Independent Verifications', value: '0' },
               ].map((stat, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-3">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3">
                   <div className="text-2xl font-bold text-purple-300">{stat.value}</div>
                   <div className="text-xs text-slate-400">{stat.label}</div>
                 </div>
@@ -502,7 +502,7 @@ export default function PanchenLamaProfile() {
             </div>
 
             {/* Others Also Persecuted */}
-            <div className="mt-6 bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
+            <div className="mt-6 bg-amber-900/20 border border-amber-500/30 p-4">
               <h3 className="font-bold text-amber-300 mb-2">Others Persecuted in Connection</h3>
               <ul className="text-sm text-slate-300 space-y-1 list-disc pl-5">
                 <li><strong>Chadrel Rinpoche</strong> — Abbot of Tashilhunpo, led search committee. Sentenced 6 years. Under house arrest post-release.</li>
@@ -529,8 +529,8 @@ export default function PanchenLamaProfile() {
 
             <div className="space-y-6">
               {CCP_NARRATIVES.map((narrative, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
-                  <div className="bg-red-900/30 p-3 border-b border-slate-700">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+                  <div className="bg-red-900/30 p-3 border-b border-[#1c2a35]">
                     <div className="flex items-start gap-2">
                       <Newspaper className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
@@ -579,7 +579,7 @@ export default function PanchenLamaProfile() {
 
             <div className="space-y-3">
               {INTERNATIONAL_RESPONSES.map((resp, i) => (
-                <div key={i} className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`px-2 py-0.5 rounded text-xs ${
                       resp.type === 'Government' ? 'bg-blue-900/50 text-blue-300' :
@@ -607,7 +607,7 @@ export default function PanchenLamaProfile() {
             </div>
 
             {/* Awards */}
-            <div className="mt-6 bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+            <div className="mt-6 bg-purple-900/20 border border-purple-500/30 p-4">
               <h3 className="font-bold text-purple-300 mb-3">Awards & Recognition</h3>
               <div className="space-y-2">
                 {[
@@ -643,7 +643,7 @@ export default function PanchenLamaProfile() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-750 transition-colors group"
+                  className="flex items-center gap-3 p-3 bg-[#111820] border border-[#1c2a35] hover:bg-slate-750 transition-colors group"
                 >
                   <span className={`px-1.5 py-0.5 rounded text-xs font-mono ${
                     source.tier === 1 ? 'bg-green-900/50 text-green-300 border border-green-500/30' :

@@ -233,7 +233,7 @@ const EducationalResources = () => {
       role="button"
       tabIndex={0}
       aria-pressed={selectedModule === module.id}
-      className={`p-6 rounded-lg border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all ${
         selectedModule === module.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
@@ -288,7 +288,7 @@ const EducationalResources = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
@@ -315,7 +315,7 @@ const EducationalResources = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+          className="p-2 bg-blue-600 hover:bg-blue-700 transition-colors"
         >
           <Download className="w-5 h-5 text-white" />
         </motion.button>
@@ -338,7 +338,7 @@ const EducationalResources = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Total Courses</p>
           <p className="text-2xl font-bold text-white mt-1">8</p>
@@ -348,7 +348,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Active Students</p>
           <p className="text-2xl font-bold text-white mt-1">18,728</p>
@@ -358,7 +358,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Resources</p>
           <p className="text-2xl font-bold text-white mt-1">5</p>
@@ -368,7 +368,7 @@ const EducationalResources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+          className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Certifications</p>
           <p className="text-2xl font-bold text-white mt-1">2,341</p>
@@ -406,7 +406,7 @@ const EducationalResources = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -440,7 +440,7 @@ const EducationalResources = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               {(() => {
                 const module = modules.find(m => m.id === selectedModule)
@@ -496,7 +496,7 @@ const EducationalResources = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                      className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium transition-colors flex items-center justify-center space-x-2"
                     >
                       <Play className="w-5 h-5" />
                       <span>Start Course</span>

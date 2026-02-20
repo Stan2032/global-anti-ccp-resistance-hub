@@ -175,7 +175,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-6 mb-12"
+          className="bg-blue-600/20 border border-blue-500/30 p-6 mb-12"
         >
           <div className="flex items-start space-x-4">
             <CheckCircle className="w-8 h-8 text-green-400 flex-shrink-0 mt-1" />
@@ -231,7 +231,7 @@ const DataSources = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + index * 0.05 }}
-                className="bg-[#111820] rounded-lg border border-[#1c2a35] p-5 hover:bg-[#1c2a35] transition-colors group"
+                className="bg-[#111820] border border-[#1c2a35] p-5 hover:bg-[#1c2a35] transition-colors group"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-3">
@@ -277,7 +277,7 @@ const DataSources = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
-                className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+                className="bg-[#111820] border border-[#1c2a35] p-6"
               >
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="text-blue-400">{category.icon}</div>
@@ -312,7 +312,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="bg-[#111820] border border-[#1c2a35] rounded-lg p-8 text-center"
+          className="bg-[#111820] border border-[#1c2a35] p-8 text-center"
         >
           <GraduationCap className="w-16 h-16 text-blue-400 mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Complete Documentation</h2>
@@ -324,7 +324,7 @@ const DataSources = () => {
             href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/blob/master/DATA_SOURCES.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
           >
             <FileText className="w-5 h-5" />
             <span>View Full DATA_SOURCES.md</span>
@@ -337,7 +337,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="mt-12 bg-[#111820] border border-[#1c2a35] rounded-lg p-6"
+          className="mt-12 bg-[#111820] border border-[#1c2a35] p-6"
         >
           <div className="flex items-start space-x-4">
             <AlertCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />

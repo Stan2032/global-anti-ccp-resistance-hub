@@ -147,7 +147,7 @@ const ResistanceResources = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-[#111820] rounded-xl p-6 border border-[#1c2a35]"
+        className="bg-[#111820] p-6 border border-[#1c2a35]"
       >
         <h1 className="text-3xl font-bold text-white mb-2">Resource Hub</h1>
         <p className="text-slate-300">
@@ -156,7 +156,7 @@ const ResistanceResources = () => {
       </motion.div>
 
       {/* Security Notice */}
-      <div className="bg-yellow-900/30 border border-yellow-700/50 rounded-lg p-4">
+      <div className="bg-yellow-900/30 border border-yellow-700/50 p-4">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
           <div>
@@ -177,7 +177,7 @@ const ResistanceResources = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-[#111820] border border-[#1c2a35] rounded-xl overflow-hidden hover:border-[#2a9a52] transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
           >
             <div className={`bg-[#111820] ${section.color} p-4`}>
               <div className="flex items-center gap-3">
@@ -196,7 +196,7 @@ const ResistanceResources = () => {
               </div>
               <Link
                 to={section.link}
-                className="block w-full text-center py-2 bg-[#1c2a35] hover:bg-[#111820] rounded-lg text-white font-medium transition-colors"
+                className="block w-full text-center py-2 bg-[#1c2a35] hover:bg-[#111820] text-white font-medium transition-colors"
               >
                 {section.linkText} →
               </Link>
@@ -206,7 +206,7 @@ const ResistanceResources = () => {
       </div>
 
       {/* Quick Documentation Tools - Unique to this page */}
-      <div className="bg-[#111820] border border-[#1c2a35] rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <Wrench className="w-5 h-5" /> Quick Documentation Tools
         </h2>
@@ -220,7 +220,7 @@ const ResistanceResources = () => {
               href={tool.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] rounded-lg transition-colors"
+              className="flex items-start gap-3 p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
             >
               <tool.icon className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
               <div>
@@ -233,7 +233,7 @@ const ResistanceResources = () => {
       </div>
 
       {/* Emergency Contacts */}
-      <div className="bg-red-900/30 border border-red-700/50 rounded-xl p-6">
+      <div className="bg-red-900/30 border border-red-700/50 p-6">
         <h2 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5" /> Emergency Contacts
         </h2>
@@ -242,7 +242,7 @@ const ResistanceResources = () => {
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {emergencyContacts.map(contact => (
-            <div key={contact.name} className="bg-[#111820]/50 rounded-lg p-4">
+            <div key={contact.name} className="bg-[#111820]/50 p-4">
               <h3 className="font-bold text-white text-sm mb-1">{contact.name}</h3>
               <p className="text-xs text-slate-400 mb-2">{contact.description}</p>
               {contact.phone && (

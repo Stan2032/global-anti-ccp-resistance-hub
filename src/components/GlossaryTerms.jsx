@@ -257,7 +257,7 @@ const GlossaryTerms = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-700/50 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Glossary of Terms</h2>
         <p className="text-slate-300">
           {terms.length} key terms for understanding CCP policies, structures, and human rights abuses.
@@ -272,7 +272,7 @@ const GlossaryTerms = () => {
           placeholder="Search terms in English or Chinese..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
         />
         {searchQuery && (
           <button
@@ -290,10 +290,10 @@ const GlossaryTerms = () => {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-3 py-1.5 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-cyan-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             {cat.name}
@@ -309,7 +309,7 @@ const GlossaryTerms = () => {
       {/* Terms List */}
       <div className="space-y-4">
         {filteredTerms.map((item, index) => (
-          <div key={index} className="bg-slate-800 border border-slate-700 rounded-lg p-4 hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-slate-500 transition-colors">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
               <div>
                 <h3 className="font-bold text-white text-lg">{item.term}</h3>
@@ -331,7 +331,7 @@ const GlossaryTerms = () => {
                 <button
                   key={i}
                   onClick={() => setSearchQuery(rel)}
-                  className="bg-slate-700 hover:bg-slate-600 text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
+                  className="bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
                 >
                   {rel}
                 </button>

@@ -181,7 +181,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Survivor Stories</h2>
         <p className="text-slate-300">
           Personal testimonies from survivors of CCP persecution. Their courage in speaking out helps expose the truth.
@@ -200,7 +200,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
@@ -214,7 +214,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
         {filteredStories.map((story) => (
           <div
             key={story.id}
-            className="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-red-500/50 transition-colors cursor-pointer"
+            className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-red-500/50 transition-colors cursor-pointer"
             onClick={() => setSelectedStory(story)}
           >
             <div className="flex items-start justify-between mb-4">
@@ -254,7 +254,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
           onClick={() => setSelectedStory(null)}
         >
           <div
-            className="bg-slate-800 border border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-6">
@@ -279,7 +279,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               </div>
 
               {/* Quote */}
-              <blockquote className="bg-slate-900 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+              <blockquote className="bg-[#0a0e14] border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
                 <p className="italic text-slate-300">{selectedStory.quote}</p>
               </blockquote>
 
@@ -291,7 +291,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               </div>
 
               {/* Sources */}
-              <div className="bg-slate-900/50 rounded-lg p-4">
+              <div className="bg-[#0a0e14]/50 p-4">
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedStory.sources.map((source, i) => (
@@ -309,7 +309,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                     const text = `${selectedStory.name}: "${selectedStory.quote}" - Read their story of surviving CCP persecution.`;
                     navigator.clipboard.writeText(text);
                   }}
-                  className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>

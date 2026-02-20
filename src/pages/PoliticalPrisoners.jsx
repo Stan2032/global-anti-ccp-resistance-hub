@@ -141,7 +141,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02 }}
-      className="bg-[#111820] rounded-lg overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all"
+      className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all"
       onClick={() => onClick(prisoner)}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(prisoner) } }}
       role="button"
@@ -223,7 +223,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-[#111820] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-[#111820] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6">
@@ -288,7 +288,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             )}
             
             {prisoner.healthConcerns && (
-              <div className="bg-red-900/30 border border-red-700 rounded-lg p-4">
+              <div className="bg-red-900/30 border border-red-700 p-4">
                 <h3 className="text-sm font-semibold text-red-400 uppercase mb-1">Health Alert</h3>
                 <p className="text-gray-200">
                   Serious health concerns have been reported. 
@@ -357,7 +357,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
                 href="https://www.cecc.gov/resources/political-prisoner-database"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                className="bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 text-sm transition-colors"
               >
                 CECC Database
               </a>
@@ -404,26 +404,26 @@ const PoliticalPrisoners = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-[#111820] rounded-lg p-4 text-center">
+          <div className="bg-[#111820] p-4 text-center">
             <p className="text-3xl font-bold text-white">{stats.total}</p>
             <p className="text-gray-400 text-sm">Documented Cases</p>
           </div>
-          <div className="bg-[#111820] rounded-lg p-4 text-center">
+          <div className="bg-[#111820] p-4 text-center">
             <p className="text-3xl font-bold text-red-500">{stats.imprisoned}</p>
             <p className="text-gray-400 text-sm">Currently Imprisoned</p>
           </div>
-          <div className="bg-[#111820] rounded-lg p-4 text-center">
+          <div className="bg-[#111820] p-4 text-center">
             <p className="text-3xl font-bold text-yellow-500">{stats.disappeared}</p>
             <p className="text-gray-400 text-sm">Disappeared</p>
           </div>
-          <div className="bg-[#111820] rounded-lg p-4 text-center">
+          <div className="bg-[#111820] p-4 text-center">
             <p className="text-3xl font-bold text-orange-500">{stats.critical}</p>
             <p className="text-gray-400 text-sm">Critical Urgency</p>
           </div>
         </div>
         
         {/* Alert Banner */}
-        <div className="bg-red-900/30 border border-red-700 rounded-lg p-4 mb-8">
+        <div className="bg-red-900/30 border border-red-700 p-4 mb-8">
           <div className="flex items-start">
             <svg className="w-6 h-6 text-red-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -444,7 +444,7 @@ const PoliticalPrisoners = () => {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
                 filter === status
                   ? 'bg-red-900/30 text-red-300 border border-red-500'
                   : 'bg-[#111820] text-gray-300 hover:bg-[#1c2a35]'
@@ -477,14 +477,14 @@ const PoliticalPrisoners = () => {
         </div>
         
         {/* Resources */}
-        <div className="mt-12 bg-[#111820] rounded-lg p-6">
+        <div className="mt-12 bg-[#111820] p-6">
           <h2 className="text-xl font-bold text-white mb-4">Additional Resources</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <a
               href="https://www.cecc.gov/resources/political-prisoner-database"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CECC Database</h3>
               <p className="text-gray-400 text-sm">US Congressional database of 10,000+ political prisoners</p>
@@ -493,7 +493,7 @@ const PoliticalPrisoners = () => {
               href="https://duihua.org/resources/political-prisoners-database/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Dui Hua Foundation</h3>
               <p className="text-gray-400 text-sm">50,000+ prisoner records since 1980</p>
@@ -502,7 +502,7 @@ const PoliticalPrisoners = () => {
               href="https://shahit.biz/eng/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] rounded-lg p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Xinjiang Victims Database</h3>
               <p className="text-gray-400 text-sm">35,000+ documented Uyghur detainees</p>

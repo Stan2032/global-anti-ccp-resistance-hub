@@ -144,7 +144,7 @@ const NewsAggregator = () => {
 
   if (loading) {
     return (
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <div className="animate-pulse space-y-4">
           <div className="h-6 bg-slate-700 rounded w-1/3"></div>
           <div className="h-4 bg-slate-700 rounded w-full"></div>
@@ -176,7 +176,7 @@ const NewsAggregator = () => {
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-3 h-3" /> : <span>{cat.icon}</span>}
@@ -193,7 +193,7 @@ const NewsAggregator = () => {
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-slate-800 border border-slate-700 rounded-lg p-4 hover:border-red-500/50 transition-colors group"
+            className="block bg-[#111820] border border-[#1c2a35] p-4 hover:border-red-500/50 transition-colors group"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">

@@ -271,7 +271,7 @@ const SanctionsTracker = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl p-6 border border-red-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <Scale className="w-8 h-8 text-red-400 mr-3" />
@@ -289,19 +289,19 @@ const SanctionsTracker = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-white">{stats.total}</div>
           <div className="text-xs text-slate-400">Total Sanctions</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-red-400">{stats.individuals}</div>
           <div className="text-xs text-slate-400">Individuals</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-orange-400">{stats.entities}</div>
           <div className="text-xs text-slate-400">Entities</div>
         </div>
-        <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4 text-center">
+        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
           <div className="text-2xl font-bold text-blue-400">{stats.countries}</div>
           <div className="text-xs text-slate-400">Countries</div>
         </div>
@@ -316,10 +316,10 @@ const SanctionsTracker = () => {
               <button
                 key={country.id}
                 onClick={() => setActiveCountry(country.id)}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCountry === country.id
                     ? 'bg-blue-600 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 {country.Icon ? <country.Icon className="w-4 h-4" /> : <span>{country.flag}</span>}
@@ -335,10 +335,10 @@ const SanctionsTracker = () => {
               <button
                 key={type.id}
                 onClick={() => setActiveType(type.id)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeType === type.id
                     ? 'bg-blue-600 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 {type.name}
@@ -356,7 +356,7 @@ const SanctionsTracker = () => {
           return (
             <div 
               key={sanction.id}
-              className={`rounded-xl border p-4 ${typeColors[sanction.type]}`}
+              className={`border p-4 ${typeColors[sanction.type]}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -372,7 +372,7 @@ const SanctionsTracker = () => {
                   <p className="text-sm text-slate-400 mb-1">{sanction.role}</p>
                   <p className="text-sm text-slate-300 mb-2">{sanction.reason}</p>
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
+                    <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                       <CalendarDays className="w-3 h-3 inline" /> {sanction.date}
                     </span>
                     {LAW_LINKS[sanction.law] ? (
@@ -380,17 +380,17 @@ const SanctionsTracker = () => {
                         href={LAW_LINKS[sanction.law]}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-slate-800 rounded text-blue-400 hover:text-blue-300 transition-colors"
+                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#111820] rounded text-blue-400 hover:text-blue-300 transition-colors"
                       >
                         <span className="flex items-center gap-1"><ScrollText className="w-3 h-3" /> {sanction.law}</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     ) : (
-                      <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">
+                      <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                         <ScrollText className="w-3 h-3 inline" /> {sanction.law}
                       </span>
                     )}
-                    <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400 capitalize">
+                    <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-400 capitalize">
                       <Tag className="w-3 h-3 inline" /> {sanction.type}
                     </span>
                   </div>
@@ -402,7 +402,7 @@ const SanctionsTracker = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Megaphone className="w-5 h-5" /> Advocate for More Sanctions</h3>
         <p className="text-sm text-slate-300 mb-3">
           Many officials responsible for human rights abuses remain unsanctioned. Contact your representatives 
@@ -411,7 +411,7 @@ const SanctionsTracker = () => {
         <div className="flex flex-wrap gap-2">
           <a 
             href="/take-action" 
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
           >
             Contact Representatives
           </a>
@@ -419,7 +419,7 @@ const SanctionsTracker = () => {
             href="https://www.cecc.gov/victims-database" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-lg transition-colors"
+            className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors"
           >
             CECC Victims Database
           </a>
@@ -427,7 +427,7 @@ const SanctionsTracker = () => {
       </div>
 
       {/* Sources */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-4">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Sources</h3>
         <div className="grid md:grid-cols-2 gap-2">
           {['US Treasury OFAC', 'UK Sanctions List', 'EU Sanctions Map', 'Canada Sanctions - China'].map((name, i) => {

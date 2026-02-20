@@ -53,7 +53,7 @@ const XinjiangStatus = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-cyan-900/50 border border-blue-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <div className="flex items-center gap-3 mb-4">
           <Mountain className="w-10 h-10 text-blue-400" />
           <div>
@@ -62,7 +62,7 @@ const XinjiangStatus = () => {
           </div>
         </div>
         
-        <div className="bg-red-900/50 border border-red-700 rounded-lg p-4">
+        <div className="bg-red-900/50 border border-red-700 p-4">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
             <span className="text-red-300 font-semibold">GENOCIDE IN PROGRESS</span>
@@ -76,7 +76,7 @@ const XinjiangStatus = () => {
       {/* Key Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {keyStats.map((stat, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
             <div className={`text-2xl font-bold ${
               stat.color === 'red' ? 'text-red-400' :
               stat.color === 'orange' ? 'text-orange-400' :
@@ -94,10 +94,10 @@ const XinjiangStatus = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -108,11 +108,11 @@ const XinjiangStatus = () => {
       {/* Overview Tab */}
       {activeTab === 'overview' && (
         <div className="space-y-6">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">International Response</h3>
             <div className="space-y-3">
               {internationalResponse.map((item, i) => (
-                <div key={i} className="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                <div key={i} className="flex items-center justify-between bg-slate-700/50 p-3">
                   <span className="text-white">{item.country}</span>
                   <div className="text-right">
                     <span className="text-slate-300 text-sm">{item.action}</span>
@@ -128,7 +128,7 @@ const XinjiangStatus = () => {
       {/* Camps Tab */}
       {activeTab === 'camps' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Major Detention Facilities</h3>
             <p className="text-slate-400 text-sm mb-4">
               380+ facilities identified through satellite imagery by ASPI, BuzzFeed News, and researchers
@@ -136,7 +136,7 @@ const XinjiangStatus = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-slate-400 border-b border-slate-700">
+                  <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
                     <th className="pb-2">Facility</th>
                     <th className="pb-2">Location</th>
                     <th className="pb-2">Capacity</th>
@@ -145,7 +145,7 @@ const XinjiangStatus = () => {
                 </thead>
                 <tbody>
                   {detentionCamps.map((camp, i) => (
-                    <tr key={i} className="border-b border-slate-700">
+                    <tr key={i} className="border-b border-[#1c2a35]">
                       <td className="py-2 text-white">{camp.name}</td>
                       <td className="py-2 text-slate-300">{camp.location}</td>
                       <td className="py-2 text-slate-300">{camp.capacity}</td>
@@ -159,7 +159,7 @@ const XinjiangStatus = () => {
             </div>
           </div>
           
-          <div className="bg-blue-900/30 border border-blue-700 rounded-xl p-4">
+          <div className="bg-blue-900/30 border border-blue-700 p-4">
             <p className="text-blue-300 text-sm">
               <BarChart3 className="w-4 h-4 inline mr-1" /> View satellite imagery at{' '}
               <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="underline">
@@ -173,11 +173,11 @@ const XinjiangStatus = () => {
       {/* Forced Labor Tab */}
       {activeTab === 'forcedlabor' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Forced Labor by Sector</h3>
             <div className="space-y-4">
               {forcedLaborSectors.map((sector, i) => (
-                <div key={i} className="bg-slate-700/50 rounded-lg p-4">
+                <div key={i} className="bg-slate-700/50 p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{sector.sector}</span>
                     <span className="text-blue-400 font-bold">{sector.share}</span>
@@ -189,7 +189,7 @@ const XinjiangStatus = () => {
             </div>
           </div>
           
-          <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-4">
+          <div className="bg-yellow-900/30 border border-yellow-700 p-4">
             <h4 className="text-yellow-300 font-semibold mb-2">Key Legislation</h4>
             <p className="text-slate-300 text-sm">
               🇺🇸 <strong>UFLPA (2021)</strong>: Presumes all goods from Xinjiang made with forced labor, requires proof otherwise for import
@@ -201,11 +201,11 @@ const XinjiangStatus = () => {
       {/* Cultural Genocide Tab */}
       {activeTab === 'cultural' && (
         <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h3 className="text-xl font-bold text-white mb-4">Cultural Destruction</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {culturalDestruction.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 rounded-lg p-4">
+                <div key={i} className="bg-slate-700/50 p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{item.type}</span>
                     <span className="text-red-400 font-bold">{item.destroyed || item.status}</span>
@@ -216,7 +216,7 @@ const XinjiangStatus = () => {
             </div>
           </div>
           
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
             <h4 className="text-lg font-semibold text-white mb-3">Additional Measures</h4>
             <ul className="space-y-2 text-slate-300 text-sm">
               <li>• Forced sterilization of Uyghur women</li>
@@ -231,18 +231,18 @@ const XinjiangStatus = () => {
       )}
 
       {/* Resources */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Xinjiang Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">ASPI Xinjiang Data</h4>
             <p className="text-slate-400 text-sm">Satellite imagery of camps</p>
           </a>
-          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Xinjiang Victims Database</h4>
             <p className="text-slate-400 text-sm">35,000+ documented cases</p>
           </a>
-          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-slate-600 rounded-lg p-4">
+          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">UHRP</h4>
             <p className="text-slate-400 text-sm">Uyghur Human Rights Project</p>
           </a>

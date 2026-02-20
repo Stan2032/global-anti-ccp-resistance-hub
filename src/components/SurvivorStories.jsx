@@ -162,7 +162,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-xl p-6 border border-purple-700/50">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
         <div className="flex items-center mb-4">
           <MessageSquare className="w-8 h-8 text-purple-400 mr-3" />
           <div>
@@ -183,10 +183,10 @@ She has dedicated her life to advocating for her father's release, speaking at t
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
             <span>{cat.Icon && <cat.Icon className="w-4 h-4" />}</span>
@@ -204,7 +204,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
           return (
             <div 
               key={story.id}
-              className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden"
+              className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
             >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
@@ -235,7 +235,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
                 {/* Expanded Content */}
                 {isExpanded && (
-                  <div className="mt-4 pt-4 border-t border-slate-700">
+                  <div className="mt-4 pt-4 border-t border-[#1c2a35]">
                     <p className="text-sm text-slate-300 whitespace-pre-line mb-4">
                       {story.fullStory}
                     </p>
@@ -263,23 +263,23 @@ She has dedicated her life to advocating for her father's release, speaking at t
       </div>
 
       {/* Call to Action */}
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6 text-center">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 text-center">
         <h3 className="text-lg font-bold text-white mb-2">Share Their Stories</h3>
         <p className="text-sm text-slate-400 mb-4">
           Help amplify these voices. Share survivor stories to raise awareness about CCP human rights abuses.
         </p>
         <div className="flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
             Share on Twitter
           </button>
-          <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-lg transition-colors">
+          <button className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
             Copy Link
           </button>
         </div>
       </div>
 
       {/* Resources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4">
+      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> More Testimonies</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• <a href="https://xinjiangvictimsdb.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Xinjiang Victims Database</a> - 35,000+ documented cases</li>

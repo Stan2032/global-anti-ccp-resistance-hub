@@ -260,9 +260,9 @@ export default function MemorialWall() {
   const tiananmenDeaths = '数百至数千'; // Hundreds to thousands
 
   return (
-    <div className="bg-slate-800/50 rounded-xl border border-slate-700">
+    <div className="bg-[#111820]/50 border border-[#1c2a35]">
       {/* Header */}
-      <div className="p-6 border-b border-slate-700 bg-gradient-to-r from-slate-800 to-slate-900">
+      <div className="p-6 border-b border-[#1c2a35] bg-[#111820]">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
             <Flame className="w-6 h-6 text-orange-400" />
@@ -281,19 +281,19 @@ export default function MemorialWall() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-red-400">{tiananmenDeaths}</p>
             <p className="text-xs text-slate-500">Tiananmen 1989</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-orange-400">{totalSelfImmolations}+</p>
             <p className="text-xs text-slate-500">Tibetan Self-Immolations</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-blue-400">Unknown</p>
             <p className="text-xs text-slate-500">Uyghur Deaths in Camps</p>
           </div>
-          <div className="bg-slate-900/50 rounded-lg p-3 text-center">
+          <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-purple-400">60,000+/yr</p>
             <p className="text-xs text-slate-500">Organ Harvesting Est.</p>
           </div>
@@ -301,7 +301,7 @@ export default function MemorialWall() {
       </div>
 
       {/* Filters */}
-      <div className="p-4 border-b border-slate-700 flex flex-wrap gap-3">
+      <div className="p-4 border-b border-[#1c2a35] flex flex-wrap gap-3">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -310,7 +310,7 @@ export default function MemorialWall() {
             placeholder="Search by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -321,7 +321,7 @@ export default function MemorialWall() {
               className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
                 selectedCategory === cat
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat}
@@ -336,7 +336,7 @@ export default function MemorialWall() {
           {filteredVictims.map(victim => (
             <div
               key={victim.id}
-              className="bg-slate-900/50 rounded-lg border border-slate-700 overflow-hidden hover:border-slate-600 transition-colors"
+              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden hover:border-slate-600 transition-colors"
             >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
@@ -371,13 +371,13 @@ export default function MemorialWall() {
                 
                 <p className="text-slate-400 text-sm mt-3 line-clamp-3">{victim.description}</p>
                 
-                <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#1c2a35]">
                   <button
                     onClick={() => lightCandle(victim.id)}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                    className={`flex items-center gap-2 px-3 py-1.5 text-sm transition-colors ${
                       candlesLit.includes(victim.id)
                         ? 'bg-orange-600/20 text-orange-400'
-                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                        : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
                     }`}
                   >
                     <Flame className={`w-4 h-4 ${candlesLit.includes(victim.id) ? 'animate-pulse' : ''}`} />
@@ -404,7 +404,7 @@ export default function MemorialWall() {
       </div>
 
       {/* Candles Lit Counter */}
-      <div className="p-4 border-t border-slate-700 bg-slate-900/50">
+      <div className="p-4 border-t border-[#1c2a35] bg-[#0a0e14]/50">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Flame className="w-5 h-5 text-orange-400" />
@@ -417,7 +417,7 @@ export default function MemorialWall() {
       </div>
 
       {/* Resources */}
-      <div className="p-6 border-t border-slate-700">
+      <div className="p-6 border-t border-[#1c2a35]">
         <SourcesList
           sources={[
             {
@@ -452,7 +452,7 @@ export default function MemorialWall() {
       {/* Detail Modal */}
       {selectedVictim && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedVictim(null)}>
-          <div className="bg-slate-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-slate-700" onClick={e => e.stopPropagation()}>
+          <div className="bg-[#111820] max-w-lg w-full max-h-[90vh] overflow-y-auto border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="p-6">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCategoryColor(selectedVictim.category)}`}>
                 {selectedVictim.category}
@@ -494,10 +494,10 @@ export default function MemorialWall() {
               <div className="flex gap-3 mt-6">
                 <button
                   onClick={() => lightCandle(selectedVictim.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 transition-colors ${
                     candlesLit.includes(selectedVictim.id)
                       ? 'bg-orange-600 text-white'
-                      : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                      : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
                   <Flame className={`w-5 h-5 ${candlesLit.includes(selectedVictim.id) ? 'animate-pulse' : ''}`} />
@@ -505,7 +505,7 @@ export default function MemorialWall() {
                 </button>
                 <button
                   onClick={() => setSelectedVictim(null)}
-                  className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
                 >
                   Close
                 </button>

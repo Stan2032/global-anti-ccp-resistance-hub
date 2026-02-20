@@ -155,7 +155,7 @@ const DiasporaSupport = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-blue-700 rounded-xl p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Handshake className="w-6 h-6" /> Diaspora Support Resources</h2>
         <p className="text-slate-300">
           Resources for Chinese diaspora, Uyghurs, Tibetans, and Hong Kongers facing CCP pressure abroad.
@@ -163,7 +163,7 @@ const DiasporaSupport = () => {
       </div>
 
       {/* Emergency Banner */}
-      <div className="bg-red-900/50 border border-red-700 rounded-xl p-4">
+      <div className="bg-red-900/50 border border-red-700 p-4">
         <div className="flex items-start gap-3">
           <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
           <div>
@@ -184,7 +184,7 @@ const DiasporaSupport = () => {
       </div>
 
       {/* Warning Signs */}
-      <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl p-6">
+      <div className="bg-yellow-900/30 border border-yellow-700 p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-yellow-400" /> Warning Signs of Transnational Repression</h3>
         <div className="grid md:grid-cols-2 gap-3">
           {warningSignsOfRepression.map((sign, i) => (
@@ -205,7 +205,7 @@ const DiasporaSupport = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -217,7 +217,7 @@ const DiasporaSupport = () => {
       {/* Resources Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredResources.map((resource, i) => (
-          <div key={i} className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+          <div key={i} className="bg-[#111820] border border-[#1c2a35] p-6">
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-lg font-bold text-white">{resource.name}</h3>
@@ -251,7 +251,7 @@ const DiasporaSupport = () => {
               </p>
             )}
             
-            <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-700">
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-[#1c2a35]">
               {resource.website && (
                 <a
                   href={resource.website}
@@ -288,7 +288,7 @@ const DiasporaSupport = () => {
       </div>
 
       {/* Safety Tips */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-blue-400" /> Safety Tips for Diaspora</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>

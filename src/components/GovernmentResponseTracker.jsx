@@ -51,7 +51,7 @@ const GovernmentResponseTracker = () => {
   }, [responses]);
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6">
+    <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
         <Globe className="w-8 h-8 text-blue-400" />
         <div>
@@ -62,19 +62,19 @@ const GovernmentResponseTracker = () => {
 
       {/* Statistics Dashboard */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-green-400 mb-1">{stats.genocideRecognized}</div>
           <div className="text-sm text-slate-400">Genocide Recognition</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-red-400 mb-1">{stats.sanctionsImposed}</div>
           <div className="text-sm text-slate-400">Sanctions Imposed</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-blue-400 mb-1">{stats.legislativeActions}</div>
           <div className="text-sm text-slate-400">Legislative Actions</div>
         </div>
-        <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+        <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
           <div className="text-3xl font-bold text-yellow-400 mb-1">{stats.strongStance}</div>
           <div className="text-sm text-slate-400">Strong Stance</div>
         </div>
@@ -90,7 +90,7 @@ const GovernmentResponseTracker = () => {
             placeholder="Search countries, sanctions, or legislation..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           />
         </div>
 
@@ -99,7 +99,7 @@ const GovernmentResponseTracker = () => {
             aria-label="Stance filter"
             value={stanceFilter}
             onChange={(e) => setStanceFilter(e.target.value)}
-            className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           >
             <option value="all">All Stances</option>
             <option value="strong">Strong</option>
@@ -112,7 +112,7 @@ const GovernmentResponseTracker = () => {
             aria-label="Genocide filter"
             value={genocideFilter}
             onChange={(e) => setGenocideFilter(e.target.value)}
-            className="px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           >
             <option value="all">All Genocide Recognition</option>
             <option value="yes">Recognized</option>
@@ -129,7 +129,7 @@ const GovernmentResponseTracker = () => {
       {/* Response Cards */}
       <div className="space-y-4">
         {filteredResponses.map((response, index) => (
-          <div key={index} className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-5 hover:border-blue-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-blue-500/30 transition-colors">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-bold text-white">{response.country}</h3>
@@ -174,7 +174,7 @@ const GovernmentResponseTracker = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-700/50">
+            <div className="pt-4 border-t border-[#1c2a35]/50">
               <div className="text-sm font-medium text-slate-300 mb-2">Overall Assessment</div>
               <p className="text-sm text-slate-400">{response.overall_stance}</p>
             </div>

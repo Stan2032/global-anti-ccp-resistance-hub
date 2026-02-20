@@ -182,7 +182,7 @@ const CommunitySupport = () => {
       role="button"
       tabIndex={0}
       aria-pressed={selectedRequest === request.id}
-      className={`p-6 rounded-lg border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all ${
         selectedRequest === request.id
           ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
@@ -227,7 +227,7 @@ const CommunitySupport = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -287,7 +287,7 @@ const CommunitySupport = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors text-sm"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors text-sm"
       >
         Connect
       </motion.button>
@@ -307,7 +307,7 @@ const CommunitySupport = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Post Request</span>
@@ -324,7 +324,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-4"
+              className="bg-[#111820] border border-[#1c2a35] p-4"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -369,7 +369,7 @@ const CommunitySupport = () => {
                 placeholder="Search requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -408,7 +408,7 @@ const CommunitySupport = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 sticky top-20"
+                      className="bg-[#111820] border border-[#1c2a35] p-6 sticky top-20"
                     >
                       <h2 className="text-xl font-bold text-white mb-4">{request.title}</h2>
                       <p className="text-slate-400 text-sm mb-4">{request.description}</p>
@@ -439,7 +439,7 @@ const CommunitySupport = () => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
                         >
                           <Heart className="w-5 h-5" />
                           <span>Offer Help</span>
@@ -447,7 +447,7 @@ const CommunitySupport = () => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
                         >
                           <MessageCircle className="w-5 h-5" />
                           <span>Message</span>
@@ -457,7 +457,7 @@ const CommunitySupport = () => {
                   )
                 })()
               ) : (
-                <div className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6 text-center">
+                <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
                   <Heart className="w-12 h-12 text-slate-600 mx-auto mb-4" />
                   <p className="text-slate-400">Select a request to view details</p>
                 </div>
@@ -484,7 +484,7 @@ const CommunitySupport = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium transition-colors"
           >
             Become a Volunteer
           </motion.button>
@@ -504,7 +504,7 @@ const CommunitySupport = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Emergency Relocation Guide</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -524,7 +524,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Trauma Support Resources</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -544,7 +544,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Legal Support Directory</h3>
               <p className="text-slate-400 text-sm mb-4">
@@ -564,7 +564,7 @@ const CommunitySupport = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-[#111820] rounded-lg border border-[#1c2a35] p-6"
+              className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               <h3 className="text-white font-semibold mb-2">Fundraising Toolkit</h3>
               <p className="text-slate-400 text-sm mb-4">

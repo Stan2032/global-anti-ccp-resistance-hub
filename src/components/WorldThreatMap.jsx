@@ -110,7 +110,7 @@ const WorldThreatMap = () => {
       case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
       case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
       case 'MEDIUM': return 'text-yellow-400 bg-yellow-900/30 border-yellow-700';
-      default: return 'text-slate-400 bg-slate-900/30 border-slate-700';
+      default: return 'text-slate-400 bg-[#0a0e14]/30 border-[#1c2a35]';
     }
   };
 
@@ -118,9 +118,9 @@ const WorldThreatMap = () => {
   const totalCountries = Object.values(threatData).reduce((sum, region) => sum + region.countries.length, 0);
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+    <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
       {/* Header */}
-      <div className="p-4 border-b border-slate-700">
+      <div className="p-4 border-b border-[#1c2a35]">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
@@ -136,7 +136,7 @@ const WorldThreatMap = () => {
       </div>
 
       {/* Stats Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 bg-slate-900/50 border-b border-slate-700">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 bg-[#0a0e14]/50 border-b border-[#1c2a35]">
         <div className="text-center">
           <div className="text-xl font-bold text-red-400">{totalStations}</div>
           <div className="text-xs text-slate-500">Police Stations</div>
@@ -156,7 +156,7 @@ const WorldThreatMap = () => {
       </div>
 
       {/* Map Container */}
-      <div className="relative aspect-[2/1] bg-slate-900 overflow-hidden">
+      <div className="relative aspect-[2/1] bg-[#0a0e14] overflow-hidden">
         {/* Simplified World Map SVG */}
         <svg viewBox="0 0 100 50" className="w-full h-full">
           {/* Background grid */}
@@ -275,7 +275,7 @@ const WorldThreatMap = () => {
         {/* Hover tooltip */}
         {hoveredCountry && (
           <div 
-            className="absolute bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-10 pointer-events-none"
+            className="absolute bg-[#111820] border border-slate-600 p-3 shadow-xl z-10 pointer-events-none"
             style={{ 
               left: `${hoveredCountry.x}%`, 
               top: `${hoveredCountry.y}%`,
@@ -292,7 +292,7 @@ const WorldThreatMap = () => {
       </div>
 
       {/* Region Details Panel */}
-      <div className="p-4 border-t border-slate-700">
+      <div className="p-4 border-t border-[#1c2a35]">
         {selectedRegion && threatData[selectedRegion] ? (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -310,18 +310,18 @@ const WorldThreatMap = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4 text-center">
-              <div className="bg-slate-900/50 rounded-lg p-3">
+              <div className="bg-[#0a0e14]/50 p-3">
                 <div className="text-2xl font-bold text-red-400">{threatData[selectedRegion].totalStations}</div>
                 <div className="text-xs text-slate-400">Police Stations</div>
               </div>
-              <div className="bg-slate-900/50 rounded-lg p-3">
+              <div className="bg-[#0a0e14]/50 p-3">
                 <div className="text-2xl font-bold text-orange-400">{threatData[selectedRegion].countries.length}</div>
                 <div className="text-xs text-slate-400">Countries Affected</div>
               </div>
             </div>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {threatData[selectedRegion].countries.map((country) => (
-                <div key={country.name} className="bg-slate-900/50 rounded-lg p-3">
+                <div key={country.name} className="bg-[#0a0e14]/50 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium text-white">{country.name}</span>
                     <span className="text-xs text-red-400 font-bold">{country.policeStations} station{country.policeStations > 1 ? 's' : ''}</span>
@@ -348,7 +348,7 @@ const WorldThreatMap = () => {
                 <button
                   key={region}
                   onClick={() => setSelectedRegion(region)}
-                  className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm transition-colors flex items-center gap-1"
+                  className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors flex items-center gap-1"
                 >
                   {region}
                   <span className="text-xs text-red-400">({threatData[region].totalStations})</span>
@@ -360,7 +360,7 @@ const WorldThreatMap = () => {
       </div>
 
       {/* Legend & Source */}
-      <div className="p-4 border-t border-slate-700 bg-slate-900/50">
+      <div className="p-4 border-t border-[#1c2a35] bg-[#0a0e14]/50">
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-1">

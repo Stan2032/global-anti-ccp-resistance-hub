@@ -15,12 +15,12 @@ const themeColors = {
   dark: {
     name: 'Dark Mode',
     Icon: Moon,
-    bg: 'bg-slate-900',
-    bgSecondary: 'bg-slate-800',
+    bg: 'bg-[#0a0e14]',
+    bgSecondary: 'bg-[#111820]',
     text: 'text-white',
     textSecondary: 'text-slate-400',
-    border: 'border-slate-700',
-    accent: 'bg-blue-600',
+    border: 'border-[#1c2a35]',
+    accent: 'bg-[#4afa82]',
   },
   light: {
     name: 'Light Mode',
@@ -152,7 +152,7 @@ export const ThemeToggle = ({ className = '' }) => {
   return (
     <button
       onClick={toggleTheme}
-      className={`p-2 rounded-lg transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+      className={`p-2 transition-colors hover:bg-[#1c2a35] focus:outline-none focus:ring-2 focus:ring-[#4afa82] ${className}`}
       aria-label={`Current theme: ${themeConfig.name}. Click to change theme.`}
       title={`Theme: ${themeConfig.name}`}
     >
@@ -179,7 +179,7 @@ export const ThemeSelector = ({ className = '' }) => {
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex items-center space-x-2 px-3 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
@@ -198,7 +198,7 @@ export const ThemeSelector = ({ className = '' }) => {
           />
           <ul
             role="listbox"
-            className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50 overflow-hidden"
+            className="absolute right-0 mt-2 w-48 bg-[#111820] border border-[#1c2a35] shadow-lg z-50 overflow-hidden"
           >
             {themes.map((t) => (
               <li key={t.id}>
@@ -211,8 +211,8 @@ export const ThemeSelector = ({ className = '' }) => {
                   }}
                   className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-colors ${
                     theme === t.id
-                      ? 'bg-blue-600 text-white'
-                      : 'text-slate-300 hover:bg-slate-700'
+                      ? 'bg-[#4afa82]/20 text-[#4afa82]'
+                      : 'text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
                   <span aria-hidden="true">{t.Icon ? <t.Icon className="w-4 h-4" /> : t.icon}</span>

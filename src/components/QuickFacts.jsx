@@ -88,14 +88,14 @@ const QuickFacts = () => {
   ];
 
   const colorClasses = {
-    red: 'from-red-900/50 to-red-800/30 border-red-700/50',
-    orange: 'from-orange-900/50 to-orange-800/30 border-orange-700/50',
-    purple: 'from-purple-900/50 to-purple-800/30 border-purple-700/50',
-    yellow: 'from-yellow-900/50 to-yellow-800/30 border-yellow-700/50',
-    blue: 'from-blue-900/50 to-blue-800/30 border-blue-700/50',
-    green: 'from-green-900/50 to-green-800/30 border-green-700/50',
-    cyan: 'from-cyan-900/50 to-cyan-800/30 border-cyan-700/50',
-    pink: 'from-pink-900/50 to-pink-800/30 border-pink-700/50'
+    red: 'border-l-red-500 border-[#1c2a35]',
+    orange: 'border-l-orange-500 border-[#1c2a35]',
+    purple: 'border-l-purple-500 border-[#1c2a35]',
+    yellow: 'border-l-yellow-500 border-[#1c2a35]',
+    blue: 'border-l-blue-500 border-[#1c2a35]',
+    green: 'border-l-green-500 border-[#1c2a35]',
+    cyan: 'border-l-cyan-500 border-[#1c2a35]',
+    pink: 'border-l-pink-500 border-[#1c2a35]'
   };
 
   const copyToClipboard = async (fact) => {
@@ -119,7 +119,7 @@ const QuickFacts = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-4">
           <BarChart3 className="w-8 h-8 text-slate-300" />
           <div>
@@ -137,7 +137,7 @@ const QuickFacts = () => {
         {facts.map(fact => (
           <div
             key={fact.id}
-            className={`bg-gradient-to-br ${colorClasses[fact.color]} rounded-xl p-5 border transition-transform hover:scale-[1.02] cursor-pointer`}
+            className={`bg-[#0a0e14] border-l-2 ${colorClasses[fact.color]} p-5 border transition-transform hover:scale-[1.02] cursor-pointer`}
             onClick={() => copyToClipboard(fact)}
           >
             <div className="flex items-center justify-between mb-3">
@@ -159,7 +159,7 @@ const QuickFacts = () => {
             <div className="text-3xl font-bold text-white mb-2">{fact.stat}</div>
             <p className="text-sm text-slate-300 mb-3">{fact.description}</p>
             
-            <div className="flex items-center justify-between pt-3 border-t border-slate-700/50">
+            <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
               <a 
                 href={fact.sourceUrl}
                 target="_blank"
@@ -174,7 +174,7 @@ const QuickFacts = () => {
                   e.stopPropagation();
                   shareToTwitter(fact);
                 }}
-                className="p-1.5 rounded bg-slate-700/50 hover:bg-slate-600 transition-colors"
+                className="p-1.5 rounded bg-slate-700/50 hover:bg-[#1c2a35] transition-colors"
                 title="Share on Twitter"
               >
                 <svg className="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
@@ -187,7 +187,7 @@ const QuickFacts = () => {
       </div>
 
       {/* Usage Tips */}
-      <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+      <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><Megaphone className="w-5 h-5" /> How to Use These Facts</h3>
         <div className="grid md:grid-cols-3 gap-4 text-sm">
           <div className="space-y-2">
