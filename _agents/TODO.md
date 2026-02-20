@@ -106,10 +106,16 @@
     - [x] Nathan Law exile connection documented
     - [x] 10 sources (7 Tier 1, 3 Tier 2), zero CCP state media
     - [x] Yellow/gold color theme (youth activism, energy)
-  - [ ] **Gui Minhai profile page**
-    - [ ] Causeway Bay Books and cross-border abduction from Thailand
-    - [ ] Swedish citizenship and diplomatic crisis
-    - [ ] 10-year espionage sentence
+  - [x] **Gui Minhai profile page**
+    - [x] Causeway Bay Books and cross-border abduction from Thailand
+    - [x] Swedish citizenship and diplomatic crisis
+    - [x] 10-year espionage sentence
+    - [x] 14-event timeline (1964-2025), 2 charges, 4 CCP narratives debunked
+    - [x] Causeway Bay Books context section (all 5 booksellers documented)
+    - [x] Angela Gui advocacy section
+    - [x] UN WGAD ruling (August 2025), 90-org joint statement (October 2025)
+    - [x] 10 sources (6 Tier 1, 4 Tier 2), zero CCP state media
+    - [x] Teal color theme (publishing/literary differentiation) — Session 54, Opus 4.6
   - [ ] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
   - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
 
@@ -357,10 +363,10 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. Gui Minhai profile page — **Best agent: Opus 4.6 (content) + Sonnet 4.5 (layout)**
-2. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+1. Additional profiles: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 
 ### Recently Completed
+- ✅ Gui Minhai profile page at `/profiles/gui-minhai`: 14-event timeline, 2 charges, 4 CCP narratives debunked, Causeway Bay Books context section (all 5 booksellers), Angela Gui advocacy section, UN WGAD ruling, 90-org joint statement, 10 sources, teal theme — Session 54, Opus 4.6
 - ✅ Profile index page at `/profiles`: lists all 5 built profiles + 3 upcoming with status indicators, links, color themes, source attribution note, navigation link — Session 53, Opus 4.6
 - ✅ Reorganized `_agents/` folder: moved 12 research/audit files to `research/`, 3 satellite TODOs to `planning/`, 7 historical files to `archive/` — top level reduced from 29+ files to 10 core files — Session 53, Opus 4.6
 - ✅ Joshua Wong profile page: dedicated /profiles/joshua-wong route with 21-event timeline, dual charges section (subversion guilty + collusion pending), CCP narrative analysis (4 claims debunked), Nathan Law exile connection, "I love Hong Kong" courtroom moment, 10 sources, yellow/gold theme — Session 47, Opus 4.6
@@ -455,11 +461,11 @@
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
 8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
 
-### Current State Summary (as of Session 53, Feb 20, 2026)
-- **Frontend:** React + Vite + Tailwind, 15 pages (including /profiles index), 100+ components, 257 tests (all passing)
+### Current State Summary (as of Session 54, Feb 20, 2026)
+- **Frontend:** React + Vite + Tailwind, 16 pages (including /profiles index + /profiles/gui-minhai), 100+ components, 257 tests (all passing)
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
-- **Profile Pages Built:** 5 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong)
-- **Profile Pages Queued:** Gui Minhai (next), then Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+- **Profile Pages Built:** 6 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai)
+- **Profile Pages Queued:** Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
 - **Data:** 60 political prisoners, 29 sanctioned officials, 33 forced labor companies, 142 total entries with 100% source attribution
 - **Performance:** All 8 major pages lazy-loaded (81 sub-components), all page bundles under 50KB
 - **Forms:** 4 non-functional forms have honest "Coming Soon" disclaimers (Session 36)
@@ -514,6 +520,7 @@
 | 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder, updated cross-references |
 | 52 | Feb 20 | Opus 4.6 | Final cross-reference cleanup: fixed stale paths in AGENT_HANDOFF.json |
 | 53 | Feb 20 | Opus 4.6 | Reorganized `_agents/` folder (research/, planning/ subdirs), built Profiles Index page at /profiles with 9 tests |
+| 54 | Feb 20 | Opus 4.6 | Gui Minhai profile page: 14-event timeline, Causeway Bay Books context, 4 CCP narratives debunked, 10 sources, teal theme |
 
 ---
 
