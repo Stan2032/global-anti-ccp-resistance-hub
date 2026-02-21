@@ -113,7 +113,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: t('nav.intelligence'), href: '/intelligence' },
     { name: t('nav.directory'), href: '/directory' },
     { name: t('nav.prisoners'), href: '/prisoners' },
-    { name: t('nav.profiles'), href: '/profiles' },
+    { name: t('nav.profiles'), href: '/profiles', indent: true },
     { name: t('nav.takeAction'), href: '/take-action' },
     { name: t('nav.community'), href: '/community' },
     { name: t('nav.resources'), href: '/resources' },
@@ -141,21 +141,21 @@ const MobileNav = ({ isOpen, onClose }) => {
         </div>
         <div className="p-3 space-y-0.5">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.href;
+            const isActive = location.pathname === item.href || (item.href === '/profiles' && location.pathname.startsWith('/profiles/'));
             return (
               <Link
                 key={item.href}
                 to={item.href}
                 onClick={onClose}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex items-center px-3 py-2.5 font-mono text-sm transition-colors ${
+                className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-2.5 font-mono text-sm transition-colors ${
                   isActive
                     ? 'bg-[#4afa82]/10 text-[#4afa82] border-l-2 border-[#4afa82]'
                     : 'text-slate-300 hover:text-[#4afa82] hover:bg-white/5 border-l-2 border-transparent'
                 }`}
               >
-                <span className="text-[#1c2a35] mr-2 select-none" aria-hidden="true">{isActive ? '▸' : '│'}</span>
-                {item.name}
+                <span className="text-[#1c2a35] mr-2 select-none" aria-hidden="true">{isActive ? '▸' : item.indent ? '└' : '│'}</span>
+                {item.indent ? <span className="text-xs">{item.name}</span> : item.name}
               </Link>
             );
           })}
@@ -210,7 +210,7 @@ const DesktopSidebar = () => {
       title: 'human_rights',
       items: [
         { name: t('nav.prisoners'), href: '/prisoners' },
-        { name: t('nav.profiles'), href: '/profiles' },
+        { name: t('nav.profiles'), href: '/profiles', indent: true },
       ]
     },
     {
@@ -255,20 +255,20 @@ const DesktopSidebar = () => {
             </div>
             <div className="space-y-0.5">
               {section.items.map((item) => {
-                const isActive = location.pathname === item.href;
+                const isActive = location.pathname === item.href || (item.href === '/profiles' && location.pathname.startsWith('/profiles/'));
                 return (
                   <Link
                     key={item.href}
                     to={item.href}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`flex items-center px-3 py-2 font-mono text-sm transition-all ${
+                    className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-2 font-mono text-sm transition-all ${
                       isActive
                         ? 'text-[#4afa82] bg-[#4afa82]/8 border-l-2 border-[#4afa82]'
                         : 'text-slate-400 hover:text-[#4afa82] hover:bg-white/3 border-l-2 border-transparent'
                     }`}
                   >
-                    <span className="text-[#1c2a35] mr-2 text-xs select-none" aria-hidden="true">{isActive ? '▸' : '│'}</span>
-                    {item.name}
+                    <span className="text-[#1c2a35] mr-2 text-xs select-none" aria-hidden="true">{isActive ? '▸' : item.indent ? '└' : '│'}</span>
+                    {item.indent ? <span className="text-xs">{item.name}</span> : item.name}
                   </Link>
                 );
               })}
