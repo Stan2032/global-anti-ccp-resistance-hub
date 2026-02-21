@@ -16,8 +16,9 @@ export function calculateAge(birthDate, deathDate) {
   const endDate = deathDate ? new Date(deathDate) : new Date();
   const birth = new Date(birthDate);
 
-  // If only a year was provided (e.g. "1964"), Date parses it as Jan 1
-  // In that case, just do year subtraction
+  // If only a year was provided (e.g. "1964"), Date parses it as Jan 1.
+  // With year-only births, exact month/day is unknown, so simple year
+  // subtraction is the best available approximation (could be off by 1).
   if (/^\d{4}$/.test(birthDate.trim())) {
     return endDate.getFullYear() - parseInt(birthDate, 10);
   }
