@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Megaphone, Mountain, Building, Link2, Target, Landmark } from 'lucide-react';
+import { Megaphone, Building, Link2, Target } from 'lucide-react';
+import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -16,9 +17,9 @@ const ContactRepresentatives = () => {
 
   const topics = [
     { id: 'general', name: 'General Human Rights', Icon: Megaphone },
-    { id: 'uyghur', name: 'Uyghur Genocide', Icon: Mountain },
+    { id: 'uyghur', name: 'Uyghur Genocide', Icon: EastTurkestanFlag },
     { id: 'hongkong', name: 'Hong Kong Freedom', Icon: Building },
-    { id: 'tibet', name: 'Tibetan Rights', Icon: Mountain },
+    { id: 'tibet', name: 'Tibetan Rights', Icon: TibetanFlag },
     { id: 'taiwan', name: 'Taiwan Support', flag: '🇹🇼' },
     { id: 'jimmylai', name: 'Free Jimmy Lai', Icon: Link2 },
     { id: 'sanctions', name: 'Magnitsky Sanctions', Icon: Target },

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Check, ChevronDown, Flag, Mountain } from 'lucide-react';
+import { Globe, Check, ChevronDown } from 'lucide-react';
+import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 // Import comprehensive language files
 import enTranslations from '../locales/en.json';
@@ -183,7 +184,7 @@ const translations = {
   },
   ug: {
     name: 'ئۇيغۇرچە',
-    FlagIcon: Flag,
+    FlagIcon: EastTurkestanFlag,
     rtl: true,
     localeData: ugTranslations,
     nav: {
@@ -241,7 +242,7 @@ const translations = {
   },
   bo: {
     name: 'བོད་སྐད།',
-    FlagIcon: Mountain,
+    FlagIcon: TibetanFlag,
     localeData: boTranslations,
     nav: {
       dashboard: 'ལས་ཁུངས།',
