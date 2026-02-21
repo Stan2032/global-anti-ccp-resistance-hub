@@ -113,7 +113,6 @@ export default function ReadingProgress() {
     if (confirm('Are you sure you want to reset all reading progress?')) {
       setProgress({});
       localStorage.removeItem('reading-progress');
-      localStorage.removeItem('reading-achievements');
     }
   };
 
