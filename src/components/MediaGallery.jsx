@@ -315,7 +315,11 @@ const MediaGallery = () => {
       {selectedItem && (
         <div 
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Media detail: ${selectedItem.title}`}
           onClick={() => setSelectedItem(null)}
+          onKeyDown={e => e.key === 'Escape' && setSelectedItem(null)}
         >
           <div 
             className={`max-w-lg w-full border p-6 ${typeColors[selectedItem.type]}`}

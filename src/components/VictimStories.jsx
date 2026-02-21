@@ -251,7 +251,11 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
       {selectedStory && (
         <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Story of ${selectedStory.name}`}
           onClick={() => setSelectedStory(null)}
+          onKeyDown={e => e.key === 'Escape' && setSelectedStory(null)}
         >
           <div
             className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"

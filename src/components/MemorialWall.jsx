@@ -451,7 +451,7 @@ export default function MemorialWall() {
 
       {/* Detail Modal */}
       {selectedVictim && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedVictim(null)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Memorial details for ${selectedVictim.name}`} onClick={() => setSelectedVictim(null)} onKeyDown={e => e.key === 'Escape' && setSelectedVictim(null)}>
           <div className="bg-[#111820] max-w-lg w-full max-h-[90vh] overflow-y-auto border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="p-6">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCategoryColor(selectedVictim.category)}`}>
