@@ -225,44 +225,6 @@ export async function fetchPoliticalPrisoners() {
 }
 
 /**
- * Fetch regional threat data
- */
-export async function fetchRegionalThreats() {
-  // This would ideally fetch from ISW, CSIS, or similar APIs
-  const threats = [
-    {
-      id: 'taiwan',
-      region: 'Taiwan',
-      threatLevel: 'critical',
-      status: 'severe',
-      lastUpdate: '2025-12-19',
-      summary: 'PLA continues military exercises, naval buildup ongoing',
-      keyEvents: [
-        'Dec 19: PLA naval exercises near Taiwan Strait',
-        'Dec 18: 47 PLA aircraft entered Taiwan ADIZ',
-        'Dec 15: New amphibious assault ships commissioned',
-      ],
-      sources: ['ISW', 'CSIS', 'Taiwan MND'],
-    },
-    {
-      id: 'scs',
-      region: 'South China Sea',
-      threatLevel: 'high',
-      status: 'contested',
-      lastUpdate: '2025-12-18',
-      summary: 'Continued militarization of artificial islands',
-      keyEvents: [
-        'Dec 18: Chinese Coast Guard harassment of Philippine vessels',
-        'Dec 15: New radar installations detected on Mischief Reef',
-      ],
-      sources: ['AMTI', 'CSIS'],
-    },
-  ];
-  
-  return threats;
-}
-
-/**
  * Fetch live statistics
  */
 export async function fetchStatistics() {
@@ -348,7 +310,6 @@ export const FEED_SOURCES = {
 export default {
   fetchAllFeeds,
   fetchPoliticalPrisoners,
-  fetchRegionalThreats,
   fetchStatistics,
   FEED_SOURCES,
 };

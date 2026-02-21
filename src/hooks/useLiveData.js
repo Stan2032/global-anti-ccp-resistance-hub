@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { 
   fetchAllFeeds, 
   fetchPoliticalPrisoners, 
-  fetchRegionalThreats,
   fetchStatistics,
   FEED_SOURCES 
 } from '../services/liveDataService';
@@ -69,32 +68,6 @@ export function usePoliticalPrisoners() {
 }
 
 /**
- * Hook for fetching regional threats data
- */
-export function useRegionalThreats() {
-  const [threats, setThreats] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function load() {
-      try {
-        setLoading(true);
-        const data = await fetchRegionalThreats();
-        setThreats(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-  }, []);
-
-  return { threats, loading, error };
-}
-
-/**
  * Hook for fetching dashboard statistics
  */
 export function useStatistics() {
@@ -123,6 +96,5 @@ export function useStatistics() {
 export default {
   useLiveFeeds,
   usePoliticalPrisoners,
-  useRegionalThreats,
   useStatistics,
 };

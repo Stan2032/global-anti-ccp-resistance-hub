@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 20, 2026 (Session 52, Opus 4.6)
+> Last Updated: February 21, 2026 (Session 65)
 > 
 > **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
 > See `_agents/README.md` for folder structure and quick start guide.
@@ -13,7 +13,7 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### High Priority
-- [ ] **Multilingual Support**: Add translations for key pages (Chinese Traditional, Uyghur, Tibetan, Vietnamese, Korean, Japanese)
+- [x] **Multilingual Support**: 5 locale files built (en, zh-CN, zh-TW, ug, bo) with 194 keys each, all translated ✅
 - [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
 - [x] **Accessibility Audit**: WCAG AA contrast ratios verified for all text colors, ARIA labels added to SVGs/buttons, 20 contrast tests added ✅ (Session 59)
 - [x] **Performance Optimization**: Implement code splitting for large components ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles now under 50KB)
@@ -21,7 +21,7 @@
 
 ### Content Updates
 - [x] **Update Political Prisoners Database**: Add recent arrests and releases (December 2025) ✅
-- [ ] **News Feed Integration**: Add more RSS feeds from trusted sources
+- [x] **News Feed Integration**: Added 9 RSS feeds from trusted sources (HKFP, RFA China/Uyghur/Tibet, Taiwan News, SCMP, HRW, Amnesty, BBC, Guardian, CPJ) ✅
 - [ ] **Update Sanctions List**: Add any new sanctions from US, EU, UK, Canada, Australia
 - [x] **Jimmy Lai Case Updates**: Updated with Feb 9, 2026 sentencing (20 years) ✅
   - [x] Fix conviction date errors (2024 → 2025, Dec 19 → Dec 15) across 6 files
@@ -116,7 +116,7 @@
     - [x] UN WGAD ruling (August 2025), 90-org joint statement (October 2025)
     - [x] 10 sources (6 Tier 1, 4 Tier 2), zero CCP state media
     - [x] Teal color theme (publishing/literary differentiation) — Session 54, Opus 4.6
-  - [ ] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+  - [x] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan — all built ✅ (Session 62)
   - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
 
 ### Bug Fixes & Polish

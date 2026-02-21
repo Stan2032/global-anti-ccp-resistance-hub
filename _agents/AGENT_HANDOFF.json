@@ -76,9 +76,9 @@
       "recommendation": "Set up PostgreSQL, run migrations, then verify backend tests"
     },
     "broken_doc_references": {
-      "status": "LOW",
-      "description": "Some docs reference branch-3 (doesn't exist) and CACHE_SYSTEM.md (doesn't exist)",
-      "recommendation": "Clean up during next documentation pass"
+      "status": "RESOLVED",
+      "description": "Stale references to branch-3 and CACHE_SYSTEM.md exist only in archived docs. Active docs are clean.",
+      "recommendation": "No action needed"
     }
   },
 

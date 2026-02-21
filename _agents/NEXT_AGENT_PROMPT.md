@@ -18,15 +18,15 @@ This is not a neutral project. It exists because real people — journalists, la
 - A **static React site** (Vite 7 + React 19 + Tailwind CSS) deployed to **Cloudflare Pages**
 - Documents political prisoners, forced labor, surveillance, censorship, and territorial aggression by the CCP
 - Provides tools for activists, researchers, and journalists
-- Features 6 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai) with sourced timelines
+- Features 12 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 277 passing Vitest tests
+- Contains 310+ source files, 100+ React components, 276 passing Vitest tests
 
-### What Has Been Done (60 Sessions of Work)
-Over 60 agent sessions, the following has been accomplished:
+### What Has Been Done (65+ Sessions of Work)
+Over 65 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added
-3. **6 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
+3. **12 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
 4. **Terminal design system**: Applied across all 128+ component files — zero old-style Tailwind classes remain
 5. **Tab consolidation**: Education (17→7), Community (12→5), Security (9→5) — 55% fewer tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests
@@ -109,7 +109,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 277 tests
+npx vitest run                           # All 276 tests
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -118,34 +118,35 @@ npm run build                            # Production build (~5s)
 
 ## What's Next (Priority Order)
 
-### Priority 1: Mobile Testing & Fixes
-The terminal design needs verification on mobile viewports. Tabs have `overflow-x-auto`, 404 ASCII art is `hidden sm:block`, footer has `overflow-hidden` — but real mobile testing is needed.
-
-### Priority 2: Page Consolidation  
-Merge 4 orphan pages that overlap with main pages:
-- `CampaignHubs` → merge into `TakeAction`
-- `SecureComms` → merge into `SecurityCenter`
-- `CCPTactics` → merge into `EducationalResources`
-- `RegionalThreats` → merge into `IntelligenceFeeds`
-
-### Priority 3: Multilingual Translations
-Fill in zh-TW, ug, bo locale files (currently skeleton structures with `__VOLUNTEER_TRANSLATION_NEEDED__` placeholders). Machine translation is acceptable for navigation-level strings but NOT for sensitive human rights content.
-
-### Priority 4: Backend Connection
+### Priority 1: Backend Connection
 The backend exists (`/backend/`) with Express + PostgreSQL but isn't deployed. When ready, connect via Cloudflare Pages Functions + Supabase (see `_agents/QUESTIONS_FOR_HUMANS.md` for full backend recommendation).
 
-### Priority 5: Additional Profiles (DEPRIORITIZED)
-Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan — all researched but not yet built as pages.
+### Priority 2: Update Sanctions List
+Check for new US, EU, UK, Canada, Australia sanctions since December 2025.
+
+### Priority 3: Additional Languages
+Add Vietnamese, Korean, Japanese locale files. Current 5 locales (en, zh-CN, zh-TW, ug, bo) are complete.
+
+---
+
+## Completed (previously listed as priorities)
+
+- ✅ **Mobile Testing & Fixes**: Mobile nav overflow fixed, tabs have overflow-x-auto, 404 ASCII art responsive
+- ✅ **Page Consolidation**: 4 orphan pages (CampaignHubs, SecureComms, CCPTactics, RegionalThreats) removed, routes redirect to parent pages
+- ✅ **Multilingual Translations**: All 194 keys translated in 5 locales (en, zh-CN, zh-TW, ug, bo)
+- ✅ **Additional Profiles**: All 12 profiles built (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan)
+- ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes (bg-slate-*, border-slate-*, rounded-lg, bg-gradient-to-*)
+- ✅ **Flag Icons**: Proper SVG flags for East Turkestan and Tibet (replaced generic Lucide icons)
+- ✅ **RSS Feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, HRW, Amnesty, BBC, Guardian, CPJ)
 
 ---
 
 ## Known Outstanding Issues
 
-1. **Cache system**: Documented in old docs but never implemented. Remove references or implement. (LOW)
-2. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
-3. **Broken doc references**: Some old docs reference `branch-3` (doesn't exist) and `CACHE_SYSTEM.md` (doesn't exist). (LOW)
-4. **Forms**: All non-functional forms display "Coming Soon" notices with links to real organizations. No backend to submit to yet.
-5. **Statistics**: Community statistics are labeled as "illustrative targets" — not live data.
+1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
+2. **Forms**: All non-functional forms display "Coming Soon" notices with links to real organizations. No backend to submit to yet.
+3. **Statistics**: Community statistics are labeled as "illustrative targets" — not live data.
+4. **Cache system**: Referenced in archived docs but never implemented. Backend decision pending.
 
 ---
 
