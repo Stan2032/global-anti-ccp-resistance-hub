@@ -158,7 +158,7 @@ const GlobalInfluenceMap = () => {
               className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat.name}
@@ -177,7 +177,7 @@ const GlobalInfluenceMap = () => {
               className={`bg-[#111820]/50 border transition-all cursor-pointer ${
                 selectedRegion?.id === region.id
                   ? 'border-blue-500 ring-2 ring-blue-500/20'
-                  : 'border-[#1c2a35] hover:border-slate-600'
+                  : 'border-[#1c2a35] hover:border-[#1c2a35]'
               }`}
               onClick={() => setSelectedRegion(selectedRegion?.id === region.id ? null : region)}
             >

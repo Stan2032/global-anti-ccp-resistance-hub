@@ -95,7 +95,7 @@ const IncidentReportForm = () => {
                 consent: false,
               });
             }}
-            className="px-6 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+            className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
           >
             Submit Another Report
           </button>
@@ -144,13 +144,13 @@ const IncidentReportForm = () => {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                step >= s ? 'bg-red-600 text-white' : 'bg-slate-700 text-slate-400'
+                step >= s ? 'bg-red-600 text-white' : 'bg-[#111820] text-slate-400'
               }`}>
                 {s}
               </div>
               {s < 3 && (
                 <div className={`w-16 sm:w-24 h-1 mx-2 ${
-                  step > s ? 'bg-red-600' : 'bg-slate-700'
+                  step > s ? 'bg-red-600' : 'bg-[#111820]'
                 }`} />
               )}
             </div>
@@ -378,7 +378,7 @@ const IncidentReportForm = () => {
             <button
               type="button"
               onClick={prevStep}
-              className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+              className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
             >
               Back
             </button>
@@ -391,7 +391,7 @@ const IncidentReportForm = () => {
               type="button"
               onClick={nextStep}
               disabled={step === 1 && !formData.incidentType}
-              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white transition-colors"
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white transition-colors"
             >
               Continue
             </button>
@@ -399,7 +399,7 @@ const IncidentReportForm = () => {
             <button
               type="submit"
               disabled={!formData.consent || !formData.description}
-              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2"
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2"
             >
               <Lock className="w-4 h-4" /> Submit Securely
             </button>

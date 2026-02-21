@@ -370,7 +370,7 @@ export default function DetentionFacilities() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-slate-700 flex items-center justify-center">
+            <div className="w-16 h-16 bg-[#111820] flex items-center justify-center">
               <Building2 className="w-8 h-8 text-red-400" />
             </div>
             <div className="flex-1">
@@ -452,7 +452,7 @@ export default function DetentionFacilities() {
           <h3 className="text-sm font-semibold text-slate-400 mb-2">Sources</h3>
           <div className="flex flex-wrap gap-2">
             {facility.sources.map((source, i) => (
-              <span key={i} className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">
+              <span key={i} className="px-2 py-1 bg-[#111820] rounded text-sm text-slate-300">
                 {source}
               </span>
             ))}
@@ -540,14 +540,14 @@ export default function DetentionFacilities() {
             placeholder="Search facilities..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400"
           />
         </div>
         <select
           aria-label="Region filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region}</option>
@@ -557,7 +557,7 @@ export default function DetentionFacilities() {
           aria-label="Region filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {types.map(type => (
             <option key={type} value={type}>{type}</option>
@@ -574,10 +574,10 @@ export default function DetentionFacilities() {
               setSelectedFacility(facility.id);
               setExpandedSections({ evidence: true });
             }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#1c2a35]"
           >
             <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 bg-slate-700 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-[#111820] flex items-center justify-center flex-shrink-0">
                 <Building2 className="w-5 h-5 text-red-400" />
               </div>
               <div className="flex-1 min-w-0">
@@ -621,7 +621,7 @@ export default function DetentionFacilities() {
             href="https://xjdp.aspi.org.au/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>
@@ -633,7 +633,7 @@ export default function DetentionFacilities() {
             href="https://www.xinjiangpolicefiles.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>
@@ -645,7 +645,7 @@ export default function DetentionFacilities() {
             href="https://shahit.biz/eng/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-blue-400" />
             <div>

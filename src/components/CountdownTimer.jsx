@@ -261,7 +261,7 @@ const CountdownTimer = () => {
             href="https://calendar.google.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Google Calendar
           </a>
@@ -269,7 +269,7 @@ const CountdownTimer = () => {
             href="https://outlook.live.com/calendar" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Outlook
           </a>
@@ -277,7 +277,7 @@ const CountdownTimer = () => {
             href="https://calendar.apple.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
+            className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm text-white transition-colors"
           >
             Apple Calendar
           </a>

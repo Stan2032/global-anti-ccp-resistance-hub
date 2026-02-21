@@ -141,7 +141,7 @@ const ShareButtons = ({
         {!compact && shareLinks.length > 5 && (
           <button
             onClick={() => setShowMore(!showMore)}
-            className="bg-slate-700 hover:bg-[#1c2a35] text-white p-2 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] text-white p-2 transition-colors"
             title={showMore ? 'Show less' : 'More options'}
           >
             <svg className={`w-5 h-5 transition-transform ${showMore ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

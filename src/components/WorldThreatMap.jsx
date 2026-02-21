@@ -275,7 +275,7 @@ const WorldThreatMap = () => {
         {/* Hover tooltip */}
         {hoveredCountry && (
           <div 
-            className="absolute bg-[#111820] border border-slate-600 p-3 shadow-xl z-10 pointer-events-none"
+            className="absolute bg-[#111820] border border-[#1c2a35] p-3 shadow-xl z-10 pointer-events-none"
             style={{ 
               left: `${hoveredCountry.x}%`, 
               top: `${hoveredCountry.y}%`,
@@ -331,7 +331,7 @@ const WorldThreatMap = () => {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {country.threats.slice(0, 2).map((threat, i) => (
-                      <span key={i} className="px-2 py-0.5 bg-slate-700 text-slate-300 rounded text-xs">
+                      <span key={i} className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded text-xs">
                         {threat}
                       </span>
                     ))}
@@ -348,7 +348,7 @@ const WorldThreatMap = () => {
                 <button
                   key={region}
                   onClick={() => setSelectedRegion(region)}
-                  className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors flex items-center gap-1"
+                  className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors flex items-center gap-1"
                 >
                   {region}
                   <span className="text-xs text-red-400">({threatData[region].totalStations})</span>

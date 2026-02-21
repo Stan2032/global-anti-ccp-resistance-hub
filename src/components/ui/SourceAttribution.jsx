@@ -110,7 +110,7 @@ const SourceAttribution = ({ source, compact = false }) => {
             {/* Source Type and Organization */}
             <div className="flex items-center space-x-2 text-xs text-slate-400 mb-2">
               {source.type && (
-                <span className={`px-2 py-0.5 rounded ${getCredibilityColor(source.type)} bg-slate-700/50`}>
+                <span className={`px-2 py-0.5 rounded ${getCredibilityColor(source.type)} bg-[#111820]`}>
                   {source.type}
                 </span>
               )}

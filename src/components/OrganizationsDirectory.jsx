@@ -94,15 +94,15 @@ const OrganizationsDirectory = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-white">{stats.total}</div>
             <div className="text-xs text-slate-400">Organizations</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-green-400">{stats.highCredibility}</div>
             <div className="text-xs text-slate-400">Highly Credible</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-blue-400">{stats.withDonation}</div>
             <div className="text-xs text-slate-400">Accept Donations</div>
           </div>
@@ -152,7 +152,7 @@ const OrganizationsDirectory = () => {
           {filteredOrgs.map((org, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 p-4 hover:bg-[#111820]/50 transition-colors"
+              className="bg-[#111820]/30 p-4 hover:bg-[#111820]/50 transition-colors"
             >
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">

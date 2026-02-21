@@ -221,7 +221,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                       <p className="text-xs text-slate-500">{story.year}</p>
                     </div>
                   </div>
-                  <span className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-300 inline-flex items-center gap-1">
+                  <span className="text-xs px-2 py-1 bg-[#111820] rounded text-slate-300 inline-flex items-center gap-1">
                     {categoryInfo?.Icon && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}
                   </span>
                 </div>
@@ -242,7 +242,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                     <div className="flex flex-wrap gap-2">
                       <span className="text-xs text-slate-500">Sources:</span>
                       {story.sources.map((source, idx) => (
-                        <span key={idx} className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-400">
+                        <span key={idx} className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                           {source}
                         </span>
                       ))}
@@ -272,7 +272,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
           <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
             Share on Twitter
           </button>
-          <button className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
+          <button className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
             Copy Link
           </button>
         </div>

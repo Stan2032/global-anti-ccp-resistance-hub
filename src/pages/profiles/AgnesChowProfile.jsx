@@ -203,7 +203,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-teal-900/60', text: 'text-teal-200', label: 'Activism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
@@ -296,7 +296,7 @@ export default function AgnesChowProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 NSL WANTED
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>

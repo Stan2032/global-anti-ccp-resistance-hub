@@ -199,7 +199,7 @@ const Glossary = () => {
     switch (importance) {
       case 'critical': return 'bg-red-900/50 text-red-400 border-red-700';
       case 'high': return 'bg-orange-900/50 text-orange-400 border-orange-700';
-      default: return 'bg-slate-700 text-slate-400 border-slate-600';
+      default: return 'bg-[#111820] text-slate-400 border-[#1c2a35]';
     }
   };
 
@@ -264,7 +264,7 @@ const Glossary = () => {
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs text-slate-500">Related:</span>
                 {item.related.map((rel, idx) => (
-                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-slate-700 text-slate-300 rounded hover:bg-[#1c2a35] transition-colors">
+                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded hover:bg-[#1c2a35] transition-colors">
                     {rel}
                   </button>
                 ))}

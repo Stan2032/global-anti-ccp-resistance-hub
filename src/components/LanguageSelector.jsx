@@ -394,7 +394,7 @@ const LanguageSelector = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+        className="flex items-center gap-2 px-3 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
       >
         <Globe className="w-4 h-4 text-gray-400" />
         <span className="text-lg">{currentLang.FlagIcon ? <currentLang.FlagIcon className="w-5 h-5" /> : currentLang.flag}</span>
@@ -416,7 +416,7 @@ const LanguageSelector = () => {
                   setIsOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#111820] transition-colors ${
-                  language === lang.code ? 'bg-slate-700' : ''
+                  language === lang.code ? 'bg-[#111820]' : ''
                 } ${lang.code === availableLanguages[0].code ? 'rounded-t-lg' : ''} ${
                   lang.code === availableLanguages[availableLanguages.length - 1].code ? 'rounded-b-lg' : ''
                 }`}

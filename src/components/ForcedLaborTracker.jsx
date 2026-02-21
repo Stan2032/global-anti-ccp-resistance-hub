@@ -145,7 +145,7 @@ const ForcedLaborTracker = () => {
           {filteredCompanies.map((company, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 overflow-hidden"
+              className="bg-[#111820]/30 overflow-hidden"
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
@@ -179,7 +179,7 @@ const ForcedLaborTracker = () => {
 
               {/* Expanded Details */}
               {expandedCompany === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-600/50">
+                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {company.evidence && (
                     <div className="pt-3">
                       <div className="text-xs text-slate-500 uppercase mb-1">Evidence</div>

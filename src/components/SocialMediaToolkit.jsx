@@ -273,7 +273,7 @@ const SocialMediaToolkit = () => {
               </div>
               <button
                 onClick={() => copyToClipboard(item.hashtags, `date-${idx}`)}
-                className="text-xs px-3 py-1 bg-slate-700 hover:bg-[#1c2a35] text-white rounded transition-colors"
+                className="text-xs px-3 py-1 bg-[#111820] hover:bg-[#1c2a35] text-white rounded transition-colors"
               >
                 {copiedId === `date-${idx}` ? '✓' : <Clipboard className="w-3 h-3" />}
               </button>

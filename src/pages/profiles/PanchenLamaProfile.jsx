@@ -315,10 +315,10 @@ export default function PanchenLamaProfile() {
                 <span className="px-2 py-0.5 bg-purple-800/50 text-purple-200 rounded">
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
-                <span className="px-2 py-0.5 bg-slate-700 text-slate-300 rounded">
+                <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
                   Born {PROFILE.birthDate} · {PROFILE.birthPlace}
                 </span>
-                <span className="px-2 py-0.5 bg-slate-700 text-slate-300 rounded">
+                <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
                   Parents: {PROFILE.parents}
                 </span>
               </div>

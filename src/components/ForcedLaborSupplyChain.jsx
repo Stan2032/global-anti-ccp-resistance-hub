@@ -165,7 +165,7 @@ const ForcedLaborSupplyChain = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedIndustry === ind.id
                 ? 'bg-orange-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {ind.name}
@@ -203,7 +203,7 @@ const ForcedLaborSupplyChain = () => {
               <div className="flex flex-wrap items-center gap-2">
                 {data.stages.map((stage, i) => (
                   <div key={i} className="flex items-center">
-                    <div className="bg-slate-700 p-3 text-center min-w-[120px]">
+                    <div className="bg-[#111820] p-3 text-center min-w-[120px]">
                       <div className="text-white text-sm font-medium">{stage.name}</div>
                       <span className={`${getRiskColor(stage.risk)} text-white text-xs px-2 py-0.5 rounded mt-1 inline-block`}>
                         {stage.risk}
@@ -284,7 +284,7 @@ const ForcedLaborSupplyChain = () => {
             href="https://www.aspi.org.au/report/uyghurs-sale"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">ASPI: Uyghurs for Sale</h4>
             <p className="text-slate-400 text-sm">Comprehensive report on forced labor in supply chains</p>
@@ -293,7 +293,7 @@ const ForcedLaborSupplyChain = () => {
             href="https://www.coalitiontoenduyghurforcedlabour.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">End Uyghur Forced Labour</h4>
             <p className="text-slate-400 text-sm">Coalition of 400+ organizations</p>
@@ -302,7 +302,7 @@ const ForcedLaborSupplyChain = () => {
             href="https://www.cbp.gov/trade/forced-labor/UFLPA"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">CBP UFLPA Portal</h4>
             <p className="text-slate-400 text-sm">Official US enforcement information</p>

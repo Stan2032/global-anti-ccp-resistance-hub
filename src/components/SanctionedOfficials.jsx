@@ -343,7 +343,7 @@ const SanctionedOfficials = () => {
             href="https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn-human-readable-lists"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >
             US Treasury SDN List →
           </a>

@@ -198,7 +198,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-yellow-900/60', text: 'text-yellow-200', label: 'Activism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
@@ -294,7 +294,7 @@ export default function NathanLawProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 YOUNGEST LEGISLATOR
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>

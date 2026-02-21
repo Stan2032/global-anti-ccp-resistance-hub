@@ -209,7 +209,7 @@ export default function CaseStudies() {
     switch (urgency) {
       case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
       case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
-      default: return 'text-slate-400 bg-slate-700 border-slate-600';
+      default: return 'text-slate-400 bg-[#111820] border-[#1c2a35]';
     }
   };
 
@@ -228,7 +228,7 @@ export default function CaseStudies() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-slate-700 flex items-center justify-center">
+            <div className="w-20 h-20 bg-[#111820] flex items-center justify-center">
               {caseData.photo ? <span className="text-4xl">{caseData.photo}</span> : <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
@@ -239,7 +239,7 @@ export default function CaseStudies() {
                 <span className={`px-2 py-0.5 rounded text-xs font-medium border ${getUrgencyColor(caseData.urgency)}`}>
                   {caseData.urgency}
                 </span>
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-700 text-slate-300">
+                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
                   {caseData.category}
                 </span>
               </div>
@@ -422,7 +422,7 @@ export default function CaseStudies() {
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-sm text-slate-300 flex items-center gap-1 transition-colors"
+                className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-sm text-slate-300 flex items-center gap-1 transition-colors"
               >
                 {source.name} <ExternalLink className="w-3 h-3" />
               </a>
@@ -451,10 +451,10 @@ export default function CaseStudies() {
               setSelectedCase(caseData.id);
               setExpandedSections({ timeline: true, legal: true, international: true });
             }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#1c2a35]"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-slate-700 flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#111820] flex items-center justify-center">
                 {caseData.photo ? <span className="text-2xl">{caseData.photo}</span> : <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div>

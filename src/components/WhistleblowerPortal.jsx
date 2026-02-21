@@ -166,13 +166,13 @@ const WhistleblowerPortal = () => {
           <div key={s} className="flex items-center">
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step >= s ? 'bg-purple-500 text-white' : 'bg-slate-700 text-slate-400'
+                step >= s ? 'bg-purple-500 text-white' : 'bg-[#111820] text-slate-400'
               }`}
             >
               {s}
             </div>
             {s < 4 && (
-              <div className={`w-12 h-1 ${step > s ? 'bg-purple-500' : 'bg-slate-700'}`}></div>
+              <div className={`w-12 h-1 ${step > s ? 'bg-purple-500' : 'bg-[#111820]'}`}></div>
             )}
           </div>
         ))}
@@ -246,7 +246,7 @@ const WhistleblowerPortal = () => {
             className={`w-full py-3 font-medium transition-colors ${
               agreedToTerms
                 ? 'bg-purple-500 hover:bg-purple-600 text-white'
-                : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                : 'bg-[#111820] text-slate-500 cursor-not-allowed'
             }`}
           >
             Continue to Step 2
@@ -306,7 +306,7 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>
@@ -369,7 +369,7 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(2)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>
@@ -468,7 +468,7 @@ const WhistleblowerPortal = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(3)}
-              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Back
             </button>

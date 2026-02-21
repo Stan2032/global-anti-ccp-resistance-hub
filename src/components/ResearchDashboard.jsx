@@ -77,7 +77,7 @@ const ResearchDashboard = () => {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Users className="w-4 h-4" />
               Political Prisoners
@@ -85,7 +85,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalPrisoners}</div>
             <div className="text-xs text-red-400">{researchStats.prisonersByStatus.detained} detained</div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Newspaper className="w-4 h-4" />
               News Topics
@@ -93,7 +93,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalNewsTopics}</div>
             <div className="text-xs text-yellow-400">{researchStats.highSignificanceNews} high priority</div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <MapPin className="w-4 h-4" />
               Police Stations
@@ -101,7 +101,7 @@ const ResearchDashboard = () => {
             <div className="text-2xl font-bold text-white">{researchStats.totalPoliceStations}</div>
             <div className="text-xs text-green-400">{researchStats.stationsByStatus.closed} closed</div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Shield className="w-4 h-4" />
               Data Quality
@@ -187,7 +187,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">Political Prisoners by Status</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {Object.entries(researchStats.prisonersByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-slate-700/30 p-3 flex items-center justify-between">
+                  <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
                     <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
                     <span className="text-xl font-bold text-white">{count}</span>
                   </div>
@@ -200,7 +200,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">Police Stations by Status</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {Object.entries(researchStats.stationsByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-slate-700/30 p-3 flex items-center justify-between">
+                  <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
                     <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
                     <span className="text-xl font-bold text-white">{count}</span>
                   </div>
@@ -213,7 +213,7 @@ const ResearchDashboard = () => {
               <h3 className="text-lg font-semibold text-white mb-3">High Priority News</h3>
               <div className="space-y-2">
                 {recentNews.filter(n => n.significance === 'HIGH').slice(0, 5).map((news, idx) => (
-                  <div key={idx} className="bg-slate-700/30 p-3">
+                  <div key={idx} className="bg-[#111820]/30 p-3">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <h4 className="text-white font-medium">{news.headline}</h4>
@@ -236,7 +236,7 @@ const ResearchDashboard = () => {
         {activeTab === 'prisoners' && (
           <div className="space-y-3">
             {filteredPrisoners.map((prisoner, idx) => (
-              <div key={idx} className="bg-slate-700/30 p-4">
+              <div key={idx} className="bg-[#111820]/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -283,7 +283,7 @@ const ResearchDashboard = () => {
         {activeTab === 'news' && (
           <div className="space-y-3">
             {recentNews.map((news, idx) => (
-              <div key={idx} className="bg-slate-700/30 p-4">
+              <div key={idx} className="bg-[#111820]/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -329,7 +329,7 @@ const ResearchDashboard = () => {
         {activeTab === 'stations' && (
           <div className="space-y-3">
             {filteredStations.map((station, idx) => (
-              <div key={idx} className="bg-slate-700/30 p-4">
+              <div key={idx} className="bg-[#111820]/30 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">

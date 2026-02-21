@@ -232,13 +232,13 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
         {[1, 2, 3, 4].map((s) => (
           <div key={s} className="flex items-center">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center font-medium ${
-              step >= s ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'
+              step >= s ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-400'
             }`}>
               {s}
             </div>
             {s < 4 && (
               <div className={`w-16 md:w-24 h-1 mx-2 ${
-                step > s ? 'bg-blue-600' : 'bg-slate-700'
+                step > s ? 'bg-blue-600' : 'bg-[#111820]'
               }`}></div>
             )}
           </div>
@@ -264,7 +264,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`p-4 border text-left transition-colors ${
                   petition.type === type.id
                     ? 'bg-blue-900/30 border-blue-500'
-                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-slate-600'
+                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#1c2a35]'
                 }`}
               >
                 <type.Icon className="w-6 h-6 text-slate-300" />
@@ -284,7 +284,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                     className={`p-3 border text-left text-sm transition-colors ${
                       petition.target === target
                         ? 'bg-blue-900/30 border-blue-500 text-white'
-                        : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-slate-600'
+                        : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#1c2a35]'
                     }`}
                   >
                     {target}
@@ -308,7 +308,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
           <button
             onClick={() => setStep(2)}
             disabled={!petition.target || (petition.target === 'Other (specify)' && !petition.targetCustom)}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
           >
             Continue →
           </button>
@@ -328,7 +328,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`w-full p-4 border text-left transition-colors ${
                   petition.issue === issue.id
                     ? 'bg-blue-900/30 border-blue-500'
-                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-slate-600'
+                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#1c2a35]'
                 }`}
               >
                 <h4 className="font-medium text-white">{issue.name}</h4>
@@ -351,14 +351,14 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
           <div className="flex space-x-3">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 bg-slate-700 hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#111820] hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
             >
               ← Back
             </button>
             <button
               onClick={() => setStep(3)}
               disabled={!petition.issue || (petition.issue === 'other' && !petition.issueCustom)}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
             >
               Continue →
             </button>
@@ -382,7 +382,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`w-full p-3 border text-left text-sm transition-colors ${
                   petition.demands.includes(demand)
                     ? 'bg-green-900/30 border-green-500 text-green-300'
-                    : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-slate-600'
+                    : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#1c2a35]'
                 }`}
               >
                 <span className="mr-2">{petition.demands.includes(demand) ? '✓' : '+'}</span>
@@ -467,14 +467,14 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
           <div className="flex space-x-3">
             <button
               onClick={() => setStep(2)}
-              className="flex-1 bg-slate-700 hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#111820] hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
             >
               ← Back
             </button>
             <button
               onClick={generatePetitionText}
               disabled={petition.demands.length === 0}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
             >
               Generate Petition →
             </button>
@@ -534,7 +534,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 setGeneratedPetition('');
                 setStep(1);
               }}
-              className="flex-1 bg-slate-700 hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#111820] hover:bg-[#1c2a35] text-white py-3 font-medium transition-colors"
             >
               Create New Petition
             </button>

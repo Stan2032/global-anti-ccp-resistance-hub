@@ -81,7 +81,7 @@ const ConfuciusInstituteTracker = () => {
 
         {/* Global Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Building className="w-4 h-4" />
               Total Institutes
@@ -89,7 +89,7 @@ const ConfuciusInstituteTracker = () => {
             <div className="text-2xl font-bold text-white">{stats.totalInstitutes}</div>
             <div className="text-xs text-slate-500">Worldwide (peak)</div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <XCircle className="w-4 h-4" />
               Closed
@@ -99,7 +99,7 @@ const ConfuciusInstituteTracker = () => {
               {((stats.totalClosed / stats.totalInstitutes) * 100).toFixed(0)}% closure rate
             </div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Globe className="w-4 h-4" />
               Countries
@@ -107,7 +107,7 @@ const ConfuciusInstituteTracker = () => {
             <div className="text-2xl font-bold text-white">{stats.countriesWithCI}</div>
             <div className="text-xs text-slate-500">With CI presence</div>
           </div>
-          <div className="bg-slate-700/30 p-3">
+          <div className="bg-[#111820]/30 p-3">
             <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
               <Shield className="w-4 h-4" />
               CI-Free
@@ -162,7 +162,7 @@ const ConfuciusInstituteTracker = () => {
           {filteredInstitutes.map((institute, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
+              className="bg-[#111820]/30 p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
               onClick={() => setSelectedCountry(selectedCountry === idx ? null : idx)}
             >
               <div className="flex items-start justify-between gap-3">
@@ -189,7 +189,7 @@ const ConfuciusInstituteTracker = () => {
 
                   {/* Expanded Details */}
                   {selectedCountry === idx && (
-                    <div className="mt-4 space-y-3 border-t border-slate-600/50 pt-3">
+                    <div className="mt-4 space-y-3 border-t border-[#1c2a35]/50 pt-3">
                       {institute.universities_closed && institute.universities_closed !== 'None' && (
                         <div>
                           <div className="text-xs text-slate-500 uppercase mb-1">Universities Closed</div>

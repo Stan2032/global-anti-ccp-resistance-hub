@@ -279,7 +279,7 @@ const PodcastList = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <span className="mr-2"><cat.Icon className="w-4 h-4 inline" /></span>
@@ -337,7 +337,7 @@ const PodcastList = () => {
                   <h5 className="text-sm font-medium text-slate-300 mb-2">Topics Covered:</h5>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {podcast.topics.map((topic, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">
+                      <span key={idx} className="px-2 py-1 bg-[#111820] text-slate-300 text-xs rounded">
                         {topic}
                       </span>
                     ))}

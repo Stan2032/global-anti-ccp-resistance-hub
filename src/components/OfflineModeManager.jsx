@@ -233,7 +233,7 @@ const OfflineModeManager = () => {
               {formatBytes(storageUsed)} / {formatBytes(storageQuota)}
             </div>
           </div>
-          <div className="w-full bg-slate-700 rounded-full h-2">
+          <div className="w-full bg-[#111820] rounded-full h-2">
             <div
               className={`h-2 rounded-full transition-all ${
                 storagePercentage > 80 ? 'bg-red-500' : storagePercentage > 50 ? 'bg-yellow-500' : 'bg-green-500'

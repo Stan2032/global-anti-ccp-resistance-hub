@@ -324,7 +324,7 @@ const SourceVerification = () => {
                     <p className="text-sm text-slate-400 mb-3">{source.description}</p>
                     <div className="flex flex-wrap gap-2 mb-2">
                       {source.focus.map((topic, tidx) => (
-                        <span key={tidx} className="text-xs px-2 py-1 bg-slate-700 text-slate-300 rounded">
+                        <span key={tidx} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded">
                           {topic}
                         </span>
                       ))}

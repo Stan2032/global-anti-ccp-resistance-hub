@@ -236,7 +236,7 @@ Key provisions:
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <span><cat.Icon className="w-4 h-4" /></span>

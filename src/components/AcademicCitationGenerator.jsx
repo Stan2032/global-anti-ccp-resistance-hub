@@ -261,7 +261,7 @@ const AcademicCitationGenerator = () => {
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+                className="ml-3 p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
                 title="View Source"
               >
                 <ExternalLink className="w-4 h-4 text-slate-300" />

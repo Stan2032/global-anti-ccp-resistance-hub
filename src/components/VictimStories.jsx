@@ -200,7 +200,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
@@ -295,7 +295,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedStory.sources.map((source, i) => (
-                    <span key={i} className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded">
+                    <span key={i} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
                       {source}
                     </span>
                   ))}
@@ -309,7 +309,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                     const text = `${selectedStory.name}: "${selectedStory.quote}" - Read their story of surviving CCP persecution.`;
                     navigator.clipboard.writeText(text);
                   }}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>

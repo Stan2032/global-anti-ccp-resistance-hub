@@ -201,7 +201,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   legal_work: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'Legal Work' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-blue-900/60', text: 'text-blue-200', label: 'International' },
@@ -297,7 +297,7 @@ export default function GaoZhishengProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-red-900/60 text-red-300 border border-red-700">
                 ENFORCED DISAPPEARANCE
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>

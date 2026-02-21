@@ -321,7 +321,7 @@ const WitnessProtection = () => {
                       className={`px-4 py-2 text-sm font-medium transition-colors ${
                         riskAnswers[q.id] === 'yes'
                           ? 'bg-red-600 text-white'
-                          : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                          : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                       }`}
                     >
                       Yes
@@ -331,7 +331,7 @@ const WitnessProtection = () => {
                       className={`px-4 py-2 text-sm font-medium transition-colors ${
                         riskAnswers[q.id] === 'no'
                           ? 'bg-green-600 text-white'
-                          : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                          : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                       }`}
                     >
                       No

@@ -314,7 +314,7 @@ const DocumentaryList = () => {
               {/* Topics */}
               <div className="flex flex-wrap gap-1 mb-3">
                 {doc.topics.map((topic, i) => (
-                  <span key={i} className="bg-slate-700 text-slate-300 px-2 py-0.5 rounded text-xs">
+                  <span key={i} className="bg-[#111820] text-slate-300 px-2 py-0.5 rounded text-xs">
                     {topic}
                   </span>
                 ))}

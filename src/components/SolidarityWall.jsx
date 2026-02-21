@@ -223,14 +223,14 @@ const SolidarityWall = () => {
             <div className="flex justify-end space-x-2">
               <button
                 onClick={() => setShowForm(false)}
-                className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
+                className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={addMessage}
                 disabled={!newMessage.text.trim()}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-[#111820] disabled:text-slate-500 text-white text-sm font-medium transition-colors"
               >
                 Post Message
               </button>

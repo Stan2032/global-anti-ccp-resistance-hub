@@ -432,7 +432,7 @@ const VictimMemorialWall = () => {
             href="https://www.tiananmenmother.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             Tiananmen Mothers
@@ -441,7 +441,7 @@ const VictimMemorialWall = () => {
             href="https://uhrp.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             Uyghur Human Rights Project
@@ -450,7 +450,7 @@ const VictimMemorialWall = () => {
             href="https://savetibet.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors text-sm"
           >
             <ExternalLink className="w-4 h-4" />
             International Campaign for Tibet

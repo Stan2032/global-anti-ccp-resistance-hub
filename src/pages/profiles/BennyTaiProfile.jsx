@@ -196,7 +196,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-blue-900/60', text: 'text-blue-200', label: 'Activism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
@@ -289,10 +289,10 @@ export default function BennyTaiProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 HK47 — LONGEST SENTENCE
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-700 text-slate-300 border border-slate-600">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820] text-slate-300 border border-[#1c2a35]">
                 30-YEAR ACADEMIC CAREER DESTROYED
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>

@@ -97,7 +97,7 @@ const XinjiangStatus = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -234,15 +234,15 @@ const XinjiangStatus = () => {
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Xinjiang Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">ASPI Xinjiang Data</h4>
             <p className="text-slate-400 text-sm">Satellite imagery of camps</p>
           </a>
-          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Xinjiang Victims Database</h4>
             <p className="text-slate-400 text-sm">35,000+ documented cases</p>
           </a>
-          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">UHRP</h4>
             <p className="text-slate-400 text-sm">Uyghur Human Rights Project</p>
           </a>

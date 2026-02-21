@@ -224,7 +224,7 @@ const FAQ = () => {
           <a href="/education" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
             Education Center
           </a>
-          <a href="/resources" className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
+          <a href="/resources" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
             Resources
           </a>
         </div>

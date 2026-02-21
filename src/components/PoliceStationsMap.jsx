@@ -232,7 +232,7 @@ const PoliceStationsMap = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {policeStationsData[selectedRegion].countries.map((country, index) => (
-              <div key={index} className="bg-slate-700 p-3">
+              <div key={index} className="bg-[#111820] p-3">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-medium text-white">{country.name}</span>
                   <span className="bg-red-600 px-2 py-0.5 rounded text-white text-xs font-bold">
@@ -251,7 +251,7 @@ const PoliceStationsMap = () => {
           </div>
           
           {/* Government Actions */}
-          <div className="mt-4 pt-4 border-t border-slate-600">
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <h4 className="text-sm font-semibold text-green-400 mb-2">Government Actions Taken:</h4>
             <div className="flex flex-wrap gap-2">
               {policeStationsData[selectedRegion].actions.map((action, i) => (

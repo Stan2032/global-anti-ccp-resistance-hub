@@ -383,7 +383,7 @@ const DonationGuide = () => {
           return (
             <div 
               key={org.id}
-              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-slate-600 transition-colors"
+              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-[#1c2a35] transition-colors"
             >
               <div className="flex items-start justify-between mb-2">
                 <div>
@@ -398,7 +398,7 @@ const DonationGuide = () => {
               <p className="text-sm text-slate-400 mb-3">{org.description}</p>
               
               <div className="flex items-center space-x-2 mb-3 text-xs">
-                <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300 inline-flex items-center gap-1">
+                <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-300 inline-flex items-center gap-1">
                   {categoryInfo?.Icon && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}
                 </span>
                 {org.taxDeductible && (
@@ -425,7 +425,7 @@ const DonationGuide = () => {
                   href={org.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
+                  className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors"
                 >
                   Website
                 </a>

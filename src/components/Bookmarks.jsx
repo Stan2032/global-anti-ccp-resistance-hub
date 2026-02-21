@@ -139,14 +139,14 @@ const Bookmarks = () => {
           <div className="flex justify-end space-x-2 mt-4">
             <button
               onClick={() => setShowAddForm(false)}
-              className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
+              className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={() => addBookmark(newBookmark)}
               disabled={!newBookmark.title || !newBookmark.url}
-              className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-slate-700 disabled:text-slate-500 text-white text-sm font-medium transition-colors"
+              className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-[#111820] disabled:text-slate-500 text-white text-sm font-medium transition-colors"
             >
               Save Bookmark
             </button>
@@ -185,7 +185,7 @@ const Bookmarks = () => {
             return (
               <div 
                 key={bookmark.id}
-                className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between group hover:border-slate-600 transition-colors"
+                className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between group hover:border-[#1c2a35] transition-colors"
               >
                 <div className="flex items-center space-x-3">
                   {categoryInfo?.Icon && <categoryInfo.Icon className="w-5 h-5 text-slate-400" />}
@@ -242,7 +242,7 @@ const Bookmarks = () => {
                 className={`flex items-center justify-between p-3 transition-colors ${
                   alreadyBookmarked 
                     ? 'bg-green-900/20 border border-green-700/50' 
-                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-slate-600'
+                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-[#1c2a35]'
                 }`}
               >
                 <div className="flex items-center space-x-3">

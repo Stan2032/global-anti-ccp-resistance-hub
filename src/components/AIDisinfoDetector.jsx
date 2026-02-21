@@ -173,7 +173,7 @@ const AIDisinfoDetector = () => {
             className={`flex items-center gap-2 px-6 py-2 font-medium transition-colors ${
               inputText.trim() && !isAnalyzing
                 ? 'bg-cyan-500 hover:bg-cyan-600 text-white'
-                : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                : 'bg-[#111820] text-slate-500 cursor-not-allowed'
             }`}
           >
             {isAnalyzing ? (
@@ -232,7 +232,7 @@ const AIDisinfoDetector = () => {
             </div>
             
             {/* Risk Score Bar */}
-            <div className="w-full bg-slate-700 rounded-full h-3">
+            <div className="w-full bg-[#111820] rounded-full h-3">
               <div
                 className={`h-3 rounded-full transition-all ${
                   analysisResult.riskScore >= 70 ? 'bg-red-500' :
@@ -326,7 +326,7 @@ const AIDisinfoDetector = () => {
                 setInputText('');
                 setAnalysisResult(null);
               }}
-              className="flex-1 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Analyze New Text
             </button>
@@ -343,7 +343,7 @@ const AIDisinfoDetector = () => {
               <h4 className="font-bold text-white mb-2">{pattern.category}</h4>
               <div className="flex flex-wrap gap-2">
                 {pattern.keywords.slice(0, 5).map((keyword, kIndex) => (
-                  <span key={kIndex} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-400">
+                  <span key={kIndex} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-400">
                     {keyword}
                   </span>
                 ))}

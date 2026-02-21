@@ -355,7 +355,7 @@ const ReadingList = () => {
             {/* Topics */}
             <div className="flex flex-wrap gap-1 mb-3">
               {book.topics.map((topic, i) => (
-                <span key={i} className="bg-slate-700 text-slate-300 px-2 py-0.5 rounded text-xs">
+                <span key={i} className="bg-[#111820] text-slate-300 px-2 py-0.5 rounded text-xs">
                   {topic}
                 </span>
               ))}
@@ -369,7 +369,7 @@ const ReadingList = () => {
                   href={`https://www.goodreads.com/search?q=${encodeURIComponent(book.isbn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
+                  className="text-xs bg-[#111820] hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
                 >
                   Goodreads
                 </a>
@@ -377,7 +377,7 @@ const ReadingList = () => {
                   href={`https://www.worldcat.org/search?q=${encodeURIComponent(book.isbn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
+                  className="text-xs bg-[#111820] hover:bg-[#1c2a35] text-slate-300 px-2 py-1 rounded transition-colors"
                 >
                   Library
                 </a>

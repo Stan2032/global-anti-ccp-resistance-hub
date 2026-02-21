@@ -146,9 +146,9 @@ const NewsAggregator = () => {
     return (
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <div className="animate-pulse space-y-4">
-          <div className="h-6 bg-slate-700 rounded w-1/3"></div>
-          <div className="h-4 bg-slate-700 rounded w-full"></div>
-          <div className="h-4 bg-slate-700 rounded w-2/3"></div>
+          <div className="h-6 bg-[#111820] rounded w-1/3"></div>
+          <div className="h-4 bg-[#111820] rounded w-full"></div>
+          <div className="h-4 bg-[#111820] rounded w-2/3"></div>
         </div>
       </div>
     );
@@ -176,7 +176,7 @@ const NewsAggregator = () => {
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-3 h-3" /> : <span>{cat.icon}</span>}

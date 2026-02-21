@@ -293,7 +293,7 @@ const ResearchPapers = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.name} ({cat.count})
@@ -341,7 +341,7 @@ const ResearchPapers = () => {
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">{paper.type}</span>
+                  <span className="px-2 py-1 bg-[#111820] text-slate-300 text-xs rounded">{paper.type}</span>
                   <span className="text-xs text-slate-500">{paper.year}</span>
                   {paper.featured && (
                     <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 text-xs rounded">⭐ Essential</span>

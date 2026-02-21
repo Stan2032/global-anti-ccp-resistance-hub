@@ -243,7 +243,7 @@ export default function ReadingProgress() {
             aria-label="Filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-slate-700 text-white text-sm px-3 py-1.5 border border-slate-600"
+            className="bg-[#111820] text-white text-sm px-3 py-1.5 border border-[#1c2a35]"
           >
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>
@@ -254,7 +254,7 @@ export default function ReadingProgress() {
           aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-1.5 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-1.5 border border-[#1c2a35]"
         >
           {types.map(type => (
             <option key={type} value={type}>{type === 'all' ? 'All Types' : type.charAt(0).toUpperCase() + type.slice(1) + 's'}</option>
@@ -265,7 +265,7 @@ export default function ReadingProgress() {
             type="checkbox"
             checked={showCompleted}
             onChange={(e) => setShowCompleted(e.target.checked)}
-            className="rounded bg-slate-700 border-slate-600"
+            className="rounded bg-[#111820] border-[#1c2a35]"
           />
           Show completed
         </label>
@@ -287,7 +287,7 @@ export default function ReadingProgress() {
               className={`bg-[#0a0e14]/50 p-4 border transition-colors ${
                 itemProgress.completed 
                   ? 'border-green-700 bg-green-900/10' 
-                  : 'border-[#1c2a35] hover:border-slate-600'
+                  : 'border-[#1c2a35] hover:border-[#1c2a35]'
               }`}
             >
               <div className="flex items-start gap-4">
@@ -303,9 +303,9 @@ export default function ReadingProgress() {
                   </div>
                   <p className="text-sm text-slate-400 mb-2">{material.author}</p>
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">{material.category}</span>
-                    <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">{material.pages} pages</span>
-                    <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">{material.difficulty}</span>
+                    <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-300">{material.category}</span>
+                    <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-300">{material.pages} pages</span>
+                    <span className="px-2 py-0.5 bg-[#111820] rounded text-slate-300">{material.difficulty}</span>
                   </div>
                   
                   {/* Progress bar */}
@@ -314,7 +314,7 @@ export default function ReadingProgress() {
                       <span>Progress</span>
                       <span>{percentComplete}%</span>
                     </div>
-                    <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-2 bg-[#111820] rounded-full overflow-hidden">
                       <div 
                         className={`h-full transition-all ${itemProgress.completed ? 'bg-green-500' : 'bg-blue-500'}`}
                         style={{ width: `${percentComplete}%` }}
@@ -330,7 +330,7 @@ export default function ReadingProgress() {
                     className={`p-2 transition-colors ${
                       itemProgress.completed
                         ? 'bg-green-600 text-white'
-                        : 'bg-slate-700 text-slate-400 hover:bg-[#1c2a35] hover:text-white'
+                        : 'bg-[#111820] text-slate-400 hover:bg-[#1c2a35] hover:text-white'
                     }`}
                     title={itemProgress.completed ? 'Mark as unread' : 'Mark as complete'}
                   >
@@ -345,7 +345,7 @@ export default function ReadingProgress() {
                       value={itemProgress.currentPage || ''}
                       onChange={(e) => updateCurrentPage(material.id, parseInt(e.target.value) || 0)}
                       placeholder="Page"
-                      className="w-16 px-2 py-1 bg-slate-700 border border-slate-600 rounded text-white text-sm text-center"
+                      className="w-16 px-2 py-1 bg-[#111820] border border-[#1c2a35] rounded text-white text-sm text-center"
                     />
                   )}
                 </div>

@@ -251,7 +251,7 @@ const ChinaExitBan = () => {
               className={`px-3 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat.id
                   ? 'bg-red-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat.name} ({cat.count})

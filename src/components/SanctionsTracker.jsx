@@ -364,7 +364,7 @@ const SanctionsTracker = () => {
                     <span className="text-lg">{countryInfo?.flag}</span>
                     <span className="font-bold text-white">{sanction.target}</span>
                     <span className={`text-xs px-2 py-0.5 rounded ${
-                      sanction.status === 'active' ? 'bg-green-900/50 text-green-400' : 'bg-slate-700 text-slate-400'
+                      sanction.status === 'active' ? 'bg-green-900/50 text-green-400' : 'bg-[#111820] text-slate-400'
                     }`}>
                       {sanction.status}
                     </span>
@@ -419,7 +419,7 @@ const SanctionsTracker = () => {
             href="https://www.cecc.gov/victims-database" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors"
           >
             CECC Victims Database
           </a>

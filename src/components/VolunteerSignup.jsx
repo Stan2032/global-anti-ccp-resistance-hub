@@ -105,7 +105,7 @@ const VolunteerSignup = () => {
                 interests: [], message: '',
               });
             }}
-            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+            className="mt-4 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
           >
             Submit Another Application
           </button>

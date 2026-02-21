@@ -318,7 +318,7 @@ Sincerely,
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
+              className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
             >
               {link.name}
               <span>→</span>
@@ -364,14 +364,14 @@ Sincerely,
         
         <div className="mb-4">
           <label className="text-sm text-slate-400 mb-1 block">Subject Line:</label>
-          <div className="bg-[#0a0e14] border border-slate-600 rounded p-3 text-white font-medium">
+          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-3 text-white font-medium">
             {currentTemplate.subject}
           </div>
         </div>
         
         <div>
           <label className="text-sm text-slate-400 mb-1 block">Letter Body:</label>
-          <div className="bg-[#0a0e14] border border-slate-600 rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
+          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
             {currentTemplate.body}
           </div>
         </div>

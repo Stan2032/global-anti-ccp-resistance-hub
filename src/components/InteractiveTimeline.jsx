@@ -96,14 +96,14 @@ export default function InteractiveTimeline() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.25))}
-            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
             title="Zoom out"
           >
             <ZoomOut className="w-4 h-4 text-slate-300" />
           </button>
           <button
             onClick={() => setZoomLevel(Math.min(2, zoomLevel + 0.25))}
-            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
             title="Zoom in"
           >
             <ZoomIn className="w-4 h-4 text-slate-300" />
@@ -124,7 +124,7 @@ export default function InteractiveTimeline() {
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
               selectedCategory === category.id
                 ? `${category.color} text-white`
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {category.name}
@@ -136,7 +136,7 @@ export default function InteractiveTimeline() {
       <div className="flex items-center justify-center gap-4 mb-6">
         <button
           onClick={handlePrevious}
-          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronLeft className="w-5 h-5 text-slate-300" />
         </button>
@@ -150,7 +150,7 @@ export default function InteractiveTimeline() {
         </button>
         <button
           onClick={handleNext}
-          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronRight className="w-5 h-5 text-slate-300" />
         </button>
@@ -170,7 +170,7 @@ export default function InteractiveTimeline() {
           </div>
           
           {/* Timeline line */}
-          <div className="relative h-2 bg-slate-700 rounded-full mx-4">
+          <div className="relative h-2 bg-[#111820] rounded-full mx-4">
             {filteredEvents.map((event, index) => {
               const year = new Date(event.date).getFullYear();
               const position = ((year - yearRange.min) / (yearRange.max - yearRange.min)) * 100;
@@ -268,7 +268,7 @@ export default function InteractiveTimeline() {
                   return resolved.url ? (
                     <SourceAttribution key={i} source={resolved} compact />
                   ) : (
-                    <span key={i} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
+                    <span key={i} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
                       {source}
                     </span>
                   );

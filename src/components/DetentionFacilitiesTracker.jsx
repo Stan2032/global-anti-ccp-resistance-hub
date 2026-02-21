@@ -81,19 +81,19 @@ const DetentionFacilitiesTracker = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-white">{totalFacilities}+</div>
             <div className="text-xs text-slate-400">Total Facilities</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-blue-400">{xinjiangFacilities}+</div>
             <div className="text-xs text-slate-400">Xinjiang Facilities</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-red-400">{operationalRegions}</div>
             <div className="text-xs text-slate-400">Active Regions</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-orange-400">{facilities.length}</div>
             <div className="text-xs text-slate-400">Regions Documented</div>
           </div>
@@ -143,7 +143,7 @@ const DetentionFacilitiesTracker = () => {
           {filteredFacilities.map((facility, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 overflow-hidden"
+              className="bg-[#111820]/30 overflow-hidden"
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
@@ -175,7 +175,7 @@ const DetentionFacilitiesTracker = () => {
 
               {/* Expanded Details */}
               {expandedFacility === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-600/50">
+                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {facility.key_facilities && (
                     <div className="pt-3">
                       <div className="text-xs text-slate-500 uppercase mb-1 flex items-center gap-1">

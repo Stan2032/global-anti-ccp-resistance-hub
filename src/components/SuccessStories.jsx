@@ -295,7 +295,7 @@ const SuccessStories = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-green-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.name}
@@ -320,7 +320,7 @@ const SuccessStories = () => {
               <span className={`text-xs px-3 py-1 rounded-full ${
                 victory.impact === 'CRITICAL' ? 'bg-green-900/50 text-green-300 border border-green-700' :
                 victory.impact === 'HIGH' ? 'bg-blue-900/50 text-blue-300 border border-blue-700' :
-                'bg-slate-700 text-slate-300 border border-slate-600'
+                'bg-[#111820] text-slate-300 border border-[#1c2a35]'
               }`}>
                 {victory.impact} IMPACT
               </span>

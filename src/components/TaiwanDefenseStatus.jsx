@@ -176,7 +176,7 @@ const TaiwanDefenseStatus = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -391,7 +391,7 @@ const TaiwanDefenseStatus = () => {
             href="https://www.csis.org/programs/china-power-project"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">CSIS China Power</h4>
             <p className="text-slate-400 text-sm">Interactive military analysis</p>
@@ -400,7 +400,7 @@ const TaiwanDefenseStatus = () => {
             href="https://understandingwar.org/research/china-taiwan/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">ISW China-Taiwan</h4>
             <p className="text-slate-400 text-sm">Daily situation updates</p>
@@ -409,7 +409,7 @@ const TaiwanDefenseStatus = () => {
             href="https://www.taiwandefense.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">Taiwan Defense</h4>
             <p className="text-slate-400 text-sm">Military news and analysis</p>

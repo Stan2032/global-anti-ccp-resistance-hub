@@ -317,7 +317,7 @@ const GlossaryTerms = () => {
                   {item.chinese} <span className="text-slate-500">({item.pinyin})</span>
                 </p>
               </div>
-              <span className="bg-slate-700 text-slate-300 px-2 py-1 rounded text-xs capitalize self-start">
+              <span className="bg-[#111820] text-slate-300 px-2 py-1 rounded text-xs capitalize self-start">
                 {item.category}
               </span>
             </div>
@@ -331,7 +331,7 @@ const GlossaryTerms = () => {
                 <button
                   key={i}
                   onClick={() => setSearchQuery(rel)}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
                 >
                   {rel}
                 </button>

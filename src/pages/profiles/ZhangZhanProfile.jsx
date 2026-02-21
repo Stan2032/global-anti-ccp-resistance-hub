@@ -209,8 +209,8 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
-  journalism: { bg: 'bg-slate-900/60', text: 'text-slate-200', label: 'Journalism' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
+  journalism: { bg: 'bg-[#0a0e14]/60', text: 'text-slate-200', label: 'Journalism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
 };
@@ -286,7 +286,7 @@ export default function ZhangZhanProfile() {
       {/* ─── HEADER ─────────────────────────────────────────── */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-slate-500 p-6">
         <div className="flex flex-col md:flex-row md:items-start gap-6">
-          <div className="w-20 h-20 rounded-full bg-slate-900/60 border-2 border-slate-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-20 h-20 rounded-full bg-[#0a0e14]/60 border-2 border-[#1c2a35] flex items-center justify-center flex-shrink-0">
             <Newspaper className="w-10 h-10 text-slate-400" />
           </div>
           <div className="flex-1 min-w-0">
@@ -305,7 +305,7 @@ export default function ZhangZhanProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-900/60 text-blue-300 border border-blue-700">
                 COVID-19 JOURNALIST
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>
@@ -492,7 +492,7 @@ export default function ZhangZhanProfile() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-slate-400" /> International Response</h2>
 
             {/* Recognition */}
-            <div className="bg-slate-900/20 border border-slate-700/30 p-5">
+            <div className="bg-[#0a0e14]/20 border border-[#1c2a35]/30 p-5">
               <h3 className="text-sm font-semibold text-slate-300 mb-3">Recognition</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
@@ -500,7 +500,7 @@ export default function ZhangZhanProfile() {
                   { year: '2021', award: 'Press Freedom Award nominee', org: 'Reporters Without Borders' },
                 ].map((a, i) => (
                   <div key={i} className="bg-[#111820]/50 p-3 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-slate-900/60 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#0a0e14]/60 flex items-center justify-center flex-shrink-0">
                       <Heart className="w-4 h-4 text-slate-400" />
                     </div>
                     <div>

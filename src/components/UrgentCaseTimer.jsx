@@ -221,7 +221,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                     const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. ${prisoner.hashtag} #FreePoliticalPrisoners`;
                     navigator.clipboard.writeText(text);
                   }}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>
