@@ -162,7 +162,7 @@ const MediaManipulation = () => {
     if (status.includes('SURVEILLANCE') || status.includes('ACTIVE')) return 'bg-red-600';
     if (status.includes('IDENTIFIED')) return 'bg-purple-600';
     if (status.includes('CCP')) return 'bg-red-700';
-    return 'bg-slate-600';
+    return 'bg-[#1c2a35]';
   };
 
   return (

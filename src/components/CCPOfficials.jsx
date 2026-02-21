@@ -699,7 +699,7 @@ export default function CCPOfficials() {
             type="checkbox"
             checked={sanctionedOnly}
             onChange={(e) => setSanctionedOnly(e.target.checked)}
-            className="rounded bg-slate-600 border-slate-500"
+            className="rounded bg-[#1c2a35] border-[#1c2a35]"
           />
           Sanctioned only
         </label>

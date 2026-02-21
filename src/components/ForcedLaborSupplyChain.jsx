@@ -103,7 +103,7 @@ const ForcedLaborSupplyChain = () => {
       case 'HIGH': return 'bg-orange-600';
       case 'MEDIUM': return 'bg-yellow-600';
       case 'LOW': return 'bg-green-600';
-      default: return 'bg-slate-600';
+      default: return 'bg-[#1c2a35]';
     }
   };
 

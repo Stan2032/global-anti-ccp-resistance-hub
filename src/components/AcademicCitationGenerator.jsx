@@ -176,7 +176,7 @@ const AcademicCitationGenerator = () => {
       'Article': 'text-amber-400 bg-amber-500/10 border-amber-500/30',
       'Documentary': 'text-pink-400 bg-pink-500/10 border-pink-500/30'
     };
-    return colors[type] || 'text-slate-400 bg-slate-500/10 border-slate-500/30';
+    return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
 
   return (

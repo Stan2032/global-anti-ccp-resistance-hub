@@ -241,7 +241,7 @@ const PoliceStationsMap = () => {
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {country.cities.map((city, i) => (
-                    <span key={i} className="bg-slate-600 text-slate-300 px-2 py-0.5 rounded text-xs">
+                    <span key={i} className="bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs">
                       {city}
                     </span>
                   ))}

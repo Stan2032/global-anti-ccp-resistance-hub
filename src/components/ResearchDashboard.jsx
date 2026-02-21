@@ -263,7 +263,7 @@ const ResearchDashboard = () => {
                       href={prisoner.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
+                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>
@@ -314,7 +314,7 @@ const ResearchDashboard = () => {
                       href={news.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
+                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>
@@ -364,7 +364,7 @@ const ResearchDashboard = () => {
                       href={station.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-600/50 hover:bg-[#1c2a35] transition-colors"
+                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-slate-300" />
                     </a>

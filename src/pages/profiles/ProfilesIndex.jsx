@@ -306,7 +306,7 @@ const ProfilesIndex = () => {
             {builtProfiles.length} profiles available
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-slate-600" />
+            <span className="w-2 h-2 rounded-full bg-[#1c2a35]" />
             {upcomingProfiles.length} coming soon
           </span>
         </div>

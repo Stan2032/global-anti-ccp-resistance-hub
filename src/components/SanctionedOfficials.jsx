@@ -178,7 +178,7 @@ const SanctionedOfficials = () => {
       return { label: 'ENTITY LIST', className: 'bg-orange-600 text-white' };
     }
     if (official.sanctionedBy.length === 0) {
-      return { label: 'NOT SANCTIONED', className: 'bg-slate-600 text-slate-200' };
+      return { label: 'NOT SANCTIONED', className: 'bg-[#1c2a35] text-slate-200' };
     }
     return { label: official.currentStatus || 'SANCTIONED', className: 'bg-red-600 text-white' };
   };

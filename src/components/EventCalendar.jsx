@@ -218,7 +218,7 @@ const EventCalendar = () => {
       case 'protest': return 'bg-red-600';
       case 'solidarity': return 'bg-blue-600';
       case 'awareness': return 'bg-yellow-600';
-      default: return 'bg-slate-600';
+      default: return 'bg-[#1c2a35]';
     }
   };
 

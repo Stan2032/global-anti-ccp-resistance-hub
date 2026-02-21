@@ -122,7 +122,7 @@ const ShareButtons = ({
         {/* Copy Link Button */}
         <button
           onClick={copyToClipboard}
-          className={`${copied ? 'bg-green-600' : 'bg-slate-600 hover:bg-slate-500'} text-white p-2 transition-colors flex items-center gap-2`}
+          className={`${copied ? 'bg-green-600' : 'bg-[#1c2a35] hover:bg-[#1c2a35]'} text-white p-2 transition-colors flex items-center gap-2`}
           title="Copy link"
         >
           {copied ? (

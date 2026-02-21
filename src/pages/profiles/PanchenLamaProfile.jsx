@@ -244,7 +244,7 @@ const SOURCES = [
 
 const categoryColors = {
   life: 'border-green-500/50 text-green-300',
-  context: 'border-slate-500/50 text-slate-300',
+  context: 'border-[#1c2a35]/50 text-slate-300',
   religious: 'border-purple-500/50 text-purple-300',
   political: 'border-amber-500/50 text-amber-300',
   persecution: 'border-red-500/50 text-red-300',
@@ -643,7 +643,7 @@ export default function PanchenLamaProfile() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-[#111820] border border-[#1c2a35] hover:bg-slate-750 transition-colors group"
+                  className="flex items-center gap-3 p-3 bg-[#111820] border border-[#1c2a35] hover:bg-[#1c2a35] transition-colors group"
                 >
                   <span className={`px-1.5 py-0.5 rounded text-xs font-mono ${
                     source.tier === 1 ? 'bg-green-900/50 text-green-300 border border-green-500/30' :

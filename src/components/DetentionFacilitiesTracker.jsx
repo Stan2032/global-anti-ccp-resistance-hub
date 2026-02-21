@@ -14,7 +14,7 @@ const StatusBadge = ({ status }) => {
     'Expanded': 'bg-red-600/20 text-red-300 border-red-600/30',
     'Reduced': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'Closed': 'bg-green-500/20 text-green-400 border-green-500/30',
-    'Unknown': 'bg-slate-500/20 text-slate-400 border-slate-500/30'
+    'Unknown': 'bg-[#1c2a35]/30 text-slate-400 border-[#1c2a35]/50'
   };
   
   return (
@@ -25,7 +25,7 @@ const StatusBadge = ({ status }) => {
 };
 
 const RegionBadge = ({ region }) => {
-  let color = 'bg-slate-500/20 text-slate-400';
+  let color = 'bg-[#1c2a35]/30 text-slate-400';
   if (region.includes('Xinjiang')) color = 'bg-blue-500/20 text-blue-400';
   else if (region.includes('Tibet')) color = 'bg-orange-500/20 text-orange-400';
   else if (region.includes('Inner Mongolia')) color = 'bg-green-500/20 text-green-400';

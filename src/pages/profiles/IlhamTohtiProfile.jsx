@@ -646,7 +646,7 @@ export default function IlhamTohtiProfile() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] p-3 hover:bg-slate-750 hover:border-[#1c2a35] transition-colors"
+                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] p-3 hover:bg-[#1c2a35] hover:border-[#1c2a35] transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${source.tier === 1 ? 'bg-emerald-500' : 'bg-amber-500'}`} />

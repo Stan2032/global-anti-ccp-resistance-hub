@@ -423,7 +423,7 @@ const SafetyChecklist = () => {
                 className={`w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
                   checkedItems.includes(item.id)
                     ? 'bg-green-600 border-green-600 text-white'
-                    : 'border-slate-500 hover:border-green-500'
+                    : 'border-[#1c2a35] hover:border-green-500'
                 }`}
               >
                 {checkedItems.includes(item.id) && '✓'}

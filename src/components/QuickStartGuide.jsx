@@ -209,7 +209,7 @@ const QuickStartGuide = () => {
                         ? 'bg-blue-500'
                         : completedSteps.includes(steps[idx].id)
                         ? 'bg-green-500'
-                        : 'bg-slate-600'
+                        : 'bg-[#1c2a35]'
                     }`}
                   />
                 ))}

@@ -7,7 +7,7 @@ import timelineEvents from '../data/timeline_events.json';
 // Categories kept inline since they include Tailwind CSS classes (not pure data)
 
 const categories = [
-  { id: 'all', name: 'All Events', color: 'bg-slate-500' },
+  { id: 'all', name: 'All Events', color: 'bg-[#1c2a35]' },
   { id: 'hongkong', name: 'Hong Kong', color: 'bg-yellow-500' },
   { id: 'uyghur', name: 'Uyghur/Xinjiang', color: 'bg-blue-500' },
   { id: 'tibet', name: 'Tibet', color: 'bg-red-500' },
@@ -60,7 +60,7 @@ export default function InteractiveTimeline() {
   };
 
   const getCategoryColor = (category) => {
-    return categories.find(c => c.id === category)?.color || 'bg-slate-500';
+    return categories.find(c => c.id === category)?.color || 'bg-[#1c2a35]';
   };
 
   const getSignificanceStyle = (significance) => {
@@ -290,11 +290,11 @@ export default function InteractiveTimeline() {
         <h4 className="text-sm font-semibold text-slate-400 mb-3">Legend</h4>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-slate-500 ring-2 ring-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-[#1c2a35] ring-2 ring-red-500"></div>
             <span className="text-xs text-slate-400">Critical Event</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-slate-500 ring-2 ring-orange-500"></div>
+            <div className="w-3 h-3 rounded-full bg-[#1c2a35] ring-2 ring-orange-500"></div>
             <span className="text-xs text-slate-400">High Significance</span>
           </div>
           {categories.slice(1).map(cat => (

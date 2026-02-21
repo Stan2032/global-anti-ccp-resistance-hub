@@ -201,7 +201,7 @@ export default function CaseStudies() {
       case 'IMPRISONED': return 'bg-red-600';
       case 'DISAPPEARED': return 'bg-yellow-600';
       case 'RELEASED': return 'bg-green-600';
-      default: return 'bg-slate-600';
+      default: return 'bg-[#1c2a35]';
     }
   };
 

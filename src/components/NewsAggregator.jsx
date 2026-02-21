@@ -133,7 +133,7 @@ const NewsAggregator = () => {
       case 'CRITICAL': return 'bg-red-600';
       case 'HIGH': return 'bg-orange-600';
       case 'MEDIUM': return 'bg-yellow-600';
-      default: return 'bg-slate-600';
+      default: return 'bg-[#1c2a35]';
     }
   };
 

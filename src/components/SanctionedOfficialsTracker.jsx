@@ -20,7 +20,7 @@ const SanctionBadge = ({ country, status }) => {
   
   return (
     <div className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
-      isYes ? 'bg-green-500/20 text-green-400' : 'bg-slate-600/30 text-slate-500'
+      isYes ? 'bg-green-500/20 text-green-400' : 'bg-[#1c2a35]/50 text-slate-500'
     }`}>
       <span>{flags[country]}</span>
       {isYes ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
@@ -205,31 +205,31 @@ const SanctionedOfficialsTracker = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                     {official.us_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇺🇸 US:</span> 
                         <span className="text-slate-300 ml-1">{official.us_sanctions}</span>
                       </div>
                     )}
                     {official.uk_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇬🇧 UK:</span> 
                         <span className="text-slate-300 ml-1">{official.uk_sanctions}</span>
                       </div>
                     )}
                     {official.eu_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇪🇺 EU:</span> 
                         <span className="text-slate-300 ml-1">{official.eu_sanctions}</span>
                       </div>
                     )}
                     {official.canada_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇨🇦 Canada:</span> 
                         <span className="text-slate-300 ml-1">{official.canada_sanctions}</span>
                       </div>
                     )}
                     {official.australia_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇦🇺 Australia:</span> 
                         <span className="text-slate-300 ml-1">{official.australia_sanctions}</span>
                       </div>

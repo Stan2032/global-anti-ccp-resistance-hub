@@ -242,7 +242,7 @@ const VictimMemorialWall = () => {
       'Dissident': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Falun Gong': 'text-orange-400 bg-orange-500/10 border-orange-500/30'
     };
-    return colors[category] || 'text-slate-400 bg-slate-500/10 border-slate-500/30';
+    return colors[category] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
 
   return (

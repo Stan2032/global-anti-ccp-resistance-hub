@@ -30,7 +30,7 @@ export const SearchButton = ({ onClick, className = '' }) => (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
     </svg>
     <span className="text-sm">Search...</span>
-    <kbd className="hidden md:inline-flex items-center px-1.5 py-0.5 text-xs bg-slate-600 rounded">⌘K</kbd>
+    <kbd className="hidden md:inline-flex items-center px-1.5 py-0.5 text-xs bg-[#1c2a35] rounded">⌘K</kbd>
   </button>
 );
 

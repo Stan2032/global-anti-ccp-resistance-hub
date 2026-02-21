@@ -281,7 +281,7 @@ const ActionTracker = () => {
                         <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
                           isCompleted 
                             ? 'bg-green-600 border-green-600' 
-                            : 'border-slate-500'
+                            : 'border-[#1c2a35]'
                         }`}>
                           {isCompleted && <span className="text-white text-xs">✓</span>}
                         </div>

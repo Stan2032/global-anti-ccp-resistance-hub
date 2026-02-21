@@ -156,7 +156,7 @@ const OrganizationsDirectory = () => {
             >
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-slate-600/50 rounded">
+                  <div className="p-1.5 bg-[#1c2a35] rounded">
                     <TypeIcon type={org.org_type} />
                   </div>
                   <h4 className="text-white font-semibold text-sm">{org.organization}</h4>
@@ -191,7 +191,7 @@ const OrganizationsDirectory = () => {
                       href={org.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 px-2 py-1 bg-slate-600/50 rounded text-xs text-slate-300 hover:bg-[#1c2a35]"
+                      className="flex items-center gap-1 px-2 py-1 bg-[#1c2a35] rounded text-xs text-slate-300 hover:bg-[#1c2a35]"
                     >
                       <Globe className="w-3 h-3" />
                       Website

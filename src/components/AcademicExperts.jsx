@@ -19,7 +19,7 @@ const ExpertiseBadge = ({ expertise }) => {
   };
   
   return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[expertise] || 'bg-slate-500/20 text-slate-400 border-slate-500/30'}`}>
+    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[expertise] || 'bg-[#1c2a35]/30 text-slate-400 border-[#1c2a35]/50'}`}>
       {expertise}
     </span>
   );

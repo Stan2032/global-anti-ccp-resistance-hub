@@ -290,7 +290,7 @@ const Timeline = () => {
               aria-expanded={expandedEvent === index}
             >
               {/* Timeline Dot */}
-              <div className={`absolute left-2 top-6 w-4 h-4 rounded-full ${getSignificanceColor(event.significance)} border-2 border-slate-900`} />
+              <div className={`absolute left-2 top-6 w-4 h-4 rounded-full ${getSignificanceColor(event.significance)} border-2 border-[#0a0e14]`} />
               
               {/* Date */}
               <div className="text-sm text-slate-400 mb-1">{event.date}</div>
