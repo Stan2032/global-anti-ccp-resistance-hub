@@ -59,4 +59,20 @@ describe('calculateAge', () => {
       expect(calculateAge(birthDate), `${name} age`).toBe(expected);
     }
   });
+
+  it('should calculate correct ages for UrgentCaseTimer individuals', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-02-21'));
+
+    const urgentCases = [
+      { name: 'Jimmy Lai', birthDate: 'December 8, 1947', expected: 78 },
+      { name: 'Ilham Tohti', birthDate: 'October 25, 1969', expected: 56 },
+      { name: 'Chow Hang-tung', birthDate: 'November 7, 1986', expected: 39 },
+      { name: 'Panchen Lama', birthDate: 'April 25, 1989', expected: 36 },
+    ];
+
+    for (const { name, birthDate, expected } of urgentCases) {
+      expect(calculateAge(birthDate), `${name} age`).toBe(expected);
+    }
+  });
 });
