@@ -265,7 +265,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                   <button
                     key={link.path}
                     onClick={() => handleResultClick(link)}
-                    className="flex items-center px-3 py-2 bg-slate-700/50 hover:bg-[#111820] transition-colors text-left"
+                    className="flex items-center px-3 py-2 bg-[#111820] hover:bg-[#111820] transition-colors text-left"
                   >
                     <span className="mr-2 flex items-center">
                       {link.Icon ? <link.Icon className="w-4 h-4" /> : link.icon}

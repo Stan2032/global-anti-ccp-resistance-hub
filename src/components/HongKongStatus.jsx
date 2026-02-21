@@ -88,7 +88,7 @@ const HongKongStatus = () => {
           <h3 className="text-xl font-bold text-white mb-4">Closed Organizations</h3>
           <div className="grid md:grid-cols-2 gap-3">
             {closedOrgs.map((org, i) => (
-              <div key={i} className="bg-slate-700/50 p-3">
+              <div key={i} className="bg-[#111820] p-3">
                 <span className="text-white font-medium">{org.name}</span>
                 <span className="text-slate-400 text-sm ml-2">({org.type}, {org.date})</span>
               </div>

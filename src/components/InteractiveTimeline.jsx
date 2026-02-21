@@ -195,7 +195,7 @@ export default function InteractiveTimeline() {
 
       {/* Event Details */}
       {selectedEvent ? (
-        <div className="bg-[#0a0e14]/50 p-6 border border-slate-600">
+        <div className="bg-[#0a0e14]/50 p-6 border border-[#1c2a35]">
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -278,7 +278,7 @@ export default function InteractiveTimeline() {
           )}
         </div>
       ) : (
-        <div className="bg-[#0a0e14]/50 p-8 border border-slate-600 text-center">
+        <div className="bg-[#0a0e14]/50 p-8 border border-[#1c2a35] text-center">
           <Info className="w-12 h-12 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">Click on a timeline marker to view event details</p>
           <p className="text-slate-500 text-sm mt-2">Or press Play to auto-advance through events</p>
@@ -308,19 +308,19 @@ export default function InteractiveTimeline() {
 
       {/* Statistics */}
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-white">{timelineEvents.length}</p>
           <p className="text-xs text-slate-400">Total Events</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-white">{yearRange.max - yearRange.min + 1}</p>
           <p className="text-xs text-slate-400">Years Covered</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-red-400">{timelineEvents.filter(e => e.significance === 'critical').length}</p>
           <p className="text-xs text-slate-400">Critical Events</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-yellow-400">{timelineEvents.filter(e => e.category === 'hongkong').length}</p>
           <p className="text-xs text-slate-400">Hong Kong Events</p>
         </div>

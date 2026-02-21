@@ -90,7 +90,7 @@ const GovernmentResponseTracker = () => {
             placeholder="Search countries, sanctions, or legislation..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#4afa82]/50"
           />
         </div>
 
@@ -99,7 +99,7 @@ const GovernmentResponseTracker = () => {
             aria-label="Stance filter"
             value={stanceFilter}
             onChange={(e) => setStanceFilter(e.target.value)}
-            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]/50"
           >
             <option value="all">All Stances</option>
             <option value="strong">Strong</option>
@@ -112,7 +112,7 @@ const GovernmentResponseTracker = () => {
             aria-label="Genocide filter"
             value={genocideFilter}
             onChange={(e) => setGenocideFilter(e.target.value)}
-            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="px-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]/50"
           >
             <option value="all">All Genocide Recognition</option>
             <option value="yes">Recognized</option>

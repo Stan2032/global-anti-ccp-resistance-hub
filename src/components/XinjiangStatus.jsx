@@ -112,7 +112,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">International Response</h3>
             <div className="space-y-3">
               {internationalResponse.map((item, i) => (
-                <div key={i} className="flex items-center justify-between bg-slate-700/50 p-3">
+                <div key={i} className="flex items-center justify-between bg-[#111820] p-3">
                   <span className="text-white">{item.country}</span>
                   <div className="text-right">
                     <span className="text-slate-300 text-sm">{item.action}</span>
@@ -177,7 +177,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Forced Labor by Sector</h3>
             <div className="space-y-4">
               {forcedLaborSectors.map((sector, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{sector.sector}</span>
                     <span className="text-blue-400 font-bold">{sector.share}</span>
@@ -205,7 +205,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Cultural Destruction</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {culturalDestruction.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{item.type}</span>
                     <span className="text-red-400 font-bold">{item.destroyed || item.status}</span>

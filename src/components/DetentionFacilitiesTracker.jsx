@@ -110,14 +110,14 @@ const DetentionFacilitiesTracker = () => {
             placeholder="Search by region or facility name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Region filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Regions</option>
           {regions.map(region => (
@@ -128,7 +128,7 @@ const DetentionFacilitiesTracker = () => {
           aria-label="Region filter"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Statuses</option>
           {statuses.map(status => (

@@ -119,14 +119,14 @@ const OrganizationsDirectory = () => {
             placeholder="Search organizations..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Focus filter"
           value={focusFilter}
           onChange={(e) => setFocusFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Focus Areas</option>
           {focusAreas.map(focus => (
@@ -137,7 +137,7 @@ const OrganizationsDirectory = () => {
           aria-label="Type filter"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Types</option>
           {orgTypes.map(type => (

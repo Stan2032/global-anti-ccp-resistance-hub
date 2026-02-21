@@ -299,7 +299,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                   placeholder="Enter target name..."
                   value={petition.targetCustom}
                   onChange={(e) => setPetition({...petition, targetCustom: e.target.value})}
-                  className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
                 />
               )}
             </div>
@@ -344,7 +344,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               placeholder="Describe the issue..."
               value={petition.issueCustom}
               onChange={(e) => setPetition({...petition, issueCustom: e.target.value})}
-              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
           )}
 
@@ -401,7 +401,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 placeholder="Enter your demand..."
                 value={petition.customDemand}
                 onChange={(e) => setPetition({...petition, customDemand: e.target.value})}
-                className="flex-1 bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="flex-1 bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
               />
               <button
                 onClick={addCustomDemand}
@@ -441,7 +441,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               value={petition.background}
               onChange={(e) => setPetition({...petition, background: e.target.value})}
               rows={3}
-              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
           </div>
 
@@ -452,7 +452,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               placeholder="Your name (optional)"
               value={petition.yourName}
               onChange={(e) => setPetition({...petition, yourName: e.target.value})}
-              className="bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
             <input
               aria-label="Your organization (optional)"
@@ -460,7 +460,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
               placeholder="Your organization (optional)"
               value={petition.yourOrg}
               onChange={(e) => setPetition({...petition, yourOrg: e.target.value})}
-              className="bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
           </div>
 

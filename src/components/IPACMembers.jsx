@@ -161,7 +161,7 @@ const IPACMembers = () => {
             <h3 className="text-xl font-bold text-white mb-4">{country.country}</h3>
             <div className="grid md:grid-cols-2 gap-3">
               {country.members.map((member, j) => (
-                <div key={j} className="bg-slate-700/50 p-3 flex justify-between items-center">
+                <div key={j} className="bg-[#111820] p-3 flex justify-between items-center">
                   <div>
                     <span className="text-white font-medium">{member.name}</span>
                     <span className="text-slate-400 text-sm ml-2">({member.party})</span>

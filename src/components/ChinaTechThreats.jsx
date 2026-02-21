@@ -229,7 +229,7 @@ const ChinaTechThreats = () => {
             <h3 className="text-xl font-bold text-white mb-4">Sanctioned Surveillance Companies</h3>
             <div className="space-y-3">
               {surveillanceCompanies.map((company, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <span className="text-white font-semibold text-lg">{company.name}</span>
@@ -270,7 +270,7 @@ const ChinaTechThreats = () => {
             <h3 className="text-xl font-bold text-white mb-4">Critical Infrastructure Risks</h3>
             <div className="space-y-4">
               {criticalInfrastructure.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-white font-semibold">{item.sector}</span>
                     <span className={`text-xs px-2 py-1 rounded ${
@@ -342,7 +342,7 @@ const ChinaTechThreats = () => {
             <h3 className="text-xl font-bold text-white mb-4">Global Response to China Tech</h3>
             <div className="space-y-3">
               {globalResponse.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 bg-slate-700/50 p-3">
+                <div key={i} className="flex items-start gap-3 bg-[#111820] p-3">
                   <span className="text-xl">{item.country.split(' ')[0]}</span>
                   <div>
                     <span className="text-white font-semibold">{item.country.split(' ').slice(1).join(' ')}</span>

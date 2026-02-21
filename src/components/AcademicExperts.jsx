@@ -95,14 +95,14 @@ const AcademicExperts = () => {
             placeholder="Search by name, affiliation, or work..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Expertise filter"
           value={expertiseFilter}
           onChange={(e) => setExpertiseFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Expertise Areas</option>
           {expertiseAreas.map(area => (

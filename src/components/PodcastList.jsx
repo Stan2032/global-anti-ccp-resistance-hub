@@ -243,7 +243,7 @@ const PodcastList = () => {
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           {featuredPodcasts.map(podcast => (
-            <div key={podcast.id} className="bg-slate-700/50 p-4 border border-slate-600 hover:border-purple-500 transition-colors">
+            <div key={podcast.id} className="bg-[#111820] p-4 border border-[#1c2a35] hover:border-purple-500 transition-colors">
               <div className="flex items-start justify-between mb-2">
                 <h4 className="font-bold text-white">{podcast.title}</h4>
                 <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 text-xs rounded-full">Featured</span>

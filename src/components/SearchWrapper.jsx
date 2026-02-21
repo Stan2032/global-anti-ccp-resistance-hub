@@ -23,7 +23,7 @@ const SearchWrapper = ({ children }) => {
 export const SearchButton = ({ onClick, className = '' }) => (
   <button
     onClick={onClick}
-    className={`flex items-center space-x-2 px-4 py-2 bg-slate-700/50 border border-slate-600 text-slate-400 hover:text-white hover:bg-[#111820] transition-colors ${className}`}
+    className={`flex items-center space-x-2 px-4 py-2 bg-[#111820] border border-slate-600 text-slate-400 hover:text-white hover:bg-[#111820] transition-colors ${className}`}
     aria-label="Open search (Ctrl+K)"
   >
     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -315,7 +315,7 @@ const ResearchPapers = () => {
                 href={paper.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-700/50 p-4 border border-slate-600 hover:border-emerald-500 transition-colors block"
+                className="bg-[#111820] p-4 border border-[#1c2a35] hover:border-emerald-500 transition-colors block"
               >
                 <div className="flex items-start justify-between mb-2">
                   <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs rounded">{paper.type}</span>
@@ -352,7 +352,7 @@ const ResearchPapers = () => {
                 <p className="text-sm text-slate-400 mb-3">{paper.abstract}</p>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {paper.tags.map((tag, idx) => (
-                    <span key={idx} className="px-2 py-1 bg-slate-700/50 text-slate-400 text-xs rounded">
+                    <span key={idx} className="px-2 py-1 bg-[#111820] text-slate-400 text-xs rounded">
                       {tag}
                     </span>
                   ))}
