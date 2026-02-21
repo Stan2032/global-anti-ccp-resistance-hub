@@ -2,6 +2,9 @@ import { describe, it, expect } from 'vitest'
 import enLocale from '../locales/en.json'
 import zhCNLocale from '../locales/zh-CN.json'
 import zhTWLocale from '../locales/zh-TW.json'
+import viLocale from '../locales/vi.json'
+import koLocale from '../locales/ko.json'
+import jaLocale from '../locales/ja.json'
 import ugLocale from '../locales/ug.json'
 import boLocale from '../locales/bo.json'
 
@@ -9,6 +12,9 @@ const locales = {
   'en': enLocale,
   'zh-CN': zhCNLocale,
   'zh-TW': zhTWLocale,
+  'vi': viLocale,
+  'ko': koLocale,
+  'ja': jaLocale,
   'ug': ugLocale,
   'bo': boLocale
 }
