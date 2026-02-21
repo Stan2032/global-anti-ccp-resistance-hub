@@ -338,8 +338,8 @@ a, button, input, select, textarea,
     display: none !important;
   }
 
-  /* Make all backgrounds white and text black for readability */
-  * {
+  /* Make backgrounds white and text black for print readability */
+  main, main * {
     background: white !important;
     color: black !important;
     border-color: #ccc !important;
@@ -363,11 +363,11 @@ a, button, input, select, textarea,
     content: " (" attr(href) ")";
     font-size: 9pt;
     color: #666 !important;
-    word-break: break-all;
+    overflow-wrap: break-word;
   }
 
   /* Prevent page breaks inside cards and timeline entries */
-  .border, article, section > div {
+  .border, article {
     page-break-inside: avoid;
   }
 
