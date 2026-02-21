@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -22,7 +23,6 @@ const PROFILE = {
   currentLocation: 'Unknown — Chinese authorities refuse to disclose',
   sentence: '10 years for "illegally providing intelligence to foreign countries"',
   sentenceEnd: 'February 2030',
-  age: 61,
   occupation: 'Publisher, Writer, Bookseller — Co-owner of Mighty Current Media & Causeway Bay Books',
 };
 
@@ -330,7 +330,7 @@ export default function GuiMinhaiProfile() {
                 CROSS-BORDER ABDUCTION
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

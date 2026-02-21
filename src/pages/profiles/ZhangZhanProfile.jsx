@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -20,7 +21,6 @@ const PROFILE = {
   status: 'IMPRISONED',
   currentLocation: 'Prison, Shanghai, China',
   sentence: '4 years (first, Dec 2020) + 4 years (second, Sep 2025) for "picking quarrels and provoking trouble"',
-  age: 42,
   occupation: 'Citizen Journalist, Former Lawyer',
 };
 
@@ -306,7 +306,7 @@ export default function ZhangZhanProfile() {
                 COVID-19 JOURNALIST
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

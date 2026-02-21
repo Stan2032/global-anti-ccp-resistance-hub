@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -20,7 +21,6 @@ const PROFILE = {
   status: 'EXILED',
   currentLocation: 'Toronto, Canada (exile since December 2023)',
   sentence: 'Served 6 months 3 weeks for inciting unauthorized assembly (2020-2021); fled bail in 2023',
-  age: 29,
   occupation: 'Pro-Democracy Activist, Former Demosistō Deputy Secretary General',
 };
 
@@ -297,7 +297,7 @@ export default function AgnesChowProfile() {
                 NSL WANTED
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

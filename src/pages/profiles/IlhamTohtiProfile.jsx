@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -22,7 +23,6 @@ const PROFILE = {
   status: 'IMPRISONED',
   currentLocation: 'Urumqi No. 1 Prison, Xinjiang (reported)',
   sentence: 'Life imprisonment',
-  age: 56,
   occupation: 'Economist, Professor at Minzu University of China',
 };
 
@@ -321,7 +321,7 @@ export default function IlhamTohtiProfile() {
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
                 <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
-                  Age {PROFILE.age} · {PROFILE.nationality}
+                  Age {calculateAge(PROFILE.birthDate)} · {PROFILE.nationality}
                 </span>
                 <span className="px-2 py-0.5 bg-amber-600/30 text-amber-300 rounded border border-amber-500/30">
                   <Award className="w-3 h-3 inline mr-1" />Sakharov Prize Laureate 2019
