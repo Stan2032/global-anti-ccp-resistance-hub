@@ -2,18 +2,9 @@ import React, { useState } from 'react';
 import { ExternalLink, Globe, Scale, CalendarDays, ScrollText, Tag, Megaphone, BookOpen } from 'lucide-react';
 import SourceAttribution from './ui/SourceAttribution';
 import { resolveSource } from '../utils/sourceLinks';
+import sanctionsData from '../data/sanctions_tracker.json';
 
-const LAW_LINKS = {
-  'Global Magnitsky Act': 'https://www.congress.gov/bill/114th-congress/senate-bill/284',
-  'Executive Order 13936': 'https://www.federalregister.gov/documents/2020/07/17/2020-15646/the-presidents-executive-order-on-hong-kong-normalization',
-  'UFLPA': 'https://www.cbp.gov/trade/forced-labor/UFLPA',
-  'Entity List': 'https://www.bis.doc.gov/index.php/policy-guidance/lists-of-parties-of-concern/entity-list',
-  'Hong Kong Autonomy Act': 'https://www.congress.gov/bill/116th-congress/house-bill/7440',
-  'UK Magnitsky Sanctions': 'https://www.legislation.gov.uk/uksi/2020/1272/contents',
-  'EU Global Human Rights Sanctions': 'https://www.consilium.europa.eu/en/policies/sanctions/',
-  'Special Economic Measures Act': 'https://laws-lois.justice.gc.ca/eng/acts/s-14.5/',
-  'Autonomous Sanctions Act': 'https://www.legislation.gov.au/Series/C2011A00038',
-};
+const LAW_LINKS = sanctionsData.law_links;
 
 const SanctionsTracker = () => {
   const [activeCountry, setActiveCountry] = useState('all');
@@ -36,215 +27,7 @@ const SanctionsTracker = () => {
     { id: 'visa', name: 'Visa Bans' },
   ];
 
-  const sanctions = [
-    // US Sanctions
-    {
-      id: 1,
-      country: 'us',
-      type: 'individual',
-      target: 'Chen Quanguo',
-      role: 'Former Xinjiang Party Secretary',
-      reason: 'Architect of Uyghur mass detention program',
-      date: '2020-07-09',
-      law: 'Global Magnitsky Act',
-      status: 'active',
-    },
-    {
-      id: 2,
-      country: 'us',
-      type: 'individual',
-      target: 'Zhu Hailun',
-      role: 'Former Deputy Secretary, Xinjiang Political and Legal Affairs Commission',
-      reason: 'Implementing mass surveillance and detention',
-      date: '2020-07-09',
-      law: 'Global Magnitsky Act',
-      status: 'active',
-    },
-    {
-      id: 3,
-      country: 'us',
-      type: 'individual',
-      target: 'Wang Junzheng',
-      role: 'Xinjiang Party Secretary',
-      reason: 'Human rights abuses against Uyghurs',
-      date: '2021-03-22',
-      law: 'Global Magnitsky Act',
-      status: 'active',
-    },
-    {
-      id: 4,
-      country: 'us',
-      type: 'entity',
-      target: 'Xinjiang Production and Construction Corps (XPCC)',
-      role: 'Paramilitary organization',
-      reason: 'Forced labor and human rights abuses',
-      date: '2020-07-31',
-      law: 'Executive Order 13936',
-      status: 'active',
-    },
-    {
-      id: 5,
-      country: 'us',
-      type: 'trade',
-      target: 'All Xinjiang Cotton',
-      role: 'Agricultural product',
-      reason: 'Presumption of forced labor under UFLPA',
-      date: '2022-06-21',
-      law: 'UFLPA',
-      status: 'active',
-    },
-    {
-      id: 6,
-      country: 'us',
-      type: 'entity',
-      target: 'Hikvision',
-      role: 'Surveillance technology company',
-      reason: 'Enabling surveillance of Uyghurs',
-      date: '2019-10-07',
-      law: 'Entity List',
-      status: 'active',
-    },
-    {
-      id: 7,
-      country: 'us',
-      type: 'individual',
-      target: 'Carrie Lam',
-      role: 'Former Hong Kong Chief Executive',
-      reason: 'Implementing National Security Law',
-      date: '2020-08-07',
-      law: 'Hong Kong Autonomy Act',
-      status: 'active',
-    },
-    {
-      id: 8,
-      country: 'us',
-      type: 'individual',
-      target: 'John Lee',
-      role: 'Hong Kong Chief Executive',
-      reason: 'Undermining Hong Kong autonomy',
-      date: '2020-08-07',
-      law: 'Hong Kong Autonomy Act',
-      status: 'active',
-    },
-    
-    // UK Sanctions
-    {
-      id: 9,
-      country: 'uk',
-      type: 'individual',
-      target: 'Chen Quanguo',
-      role: 'Former Xinjiang Party Secretary',
-      reason: 'Serious human rights violations',
-      date: '2021-03-22',
-      law: 'UK Magnitsky Sanctions',
-      status: 'active',
-    },
-    {
-      id: 10,
-      country: 'uk',
-      type: 'individual',
-      target: 'Zhu Hailun',
-      role: 'Former Xinjiang Security Chief',
-      reason: 'Serious human rights violations',
-      date: '2021-03-22',
-      law: 'UK Magnitsky Sanctions',
-      status: 'active',
-    },
-    {
-      id: 11,
-      country: 'uk',
-      type: 'entity',
-      target: 'Xinjiang Public Security Bureau',
-      role: 'Government agency',
-      reason: 'Operating detention facilities',
-      date: '2021-03-22',
-      law: 'UK Magnitsky Sanctions',
-      status: 'active',
-    },
-    
-    // EU Sanctions
-    {
-      id: 12,
-      country: 'eu',
-      type: 'individual',
-      target: 'Chen Quanguo',
-      role: 'Former Xinjiang Party Secretary',
-      reason: 'Arbitrary detention of Uyghurs',
-      date: '2021-03-22',
-      law: 'EU Global Human Rights Sanctions',
-      status: 'active',
-    },
-    {
-      id: 13,
-      country: 'eu',
-      type: 'individual',
-      target: 'Wang Junzheng',
-      role: 'Xinjiang Party Secretary',
-      reason: 'Mass surveillance and detention',
-      date: '2021-03-22',
-      law: 'EU Global Human Rights Sanctions',
-      status: 'active',
-    },
-    {
-      id: 14,
-      country: 'eu',
-      type: 'entity',
-      target: 'Xinjiang Production and Construction Corps (XPCC)',
-      role: 'Paramilitary organization',
-      reason: 'Forced labor programs',
-      date: '2021-03-22',
-      law: 'EU Global Human Rights Sanctions',
-      status: 'active',
-    },
-    
-    // Canada Sanctions
-    {
-      id: 15,
-      country: 'canada',
-      type: 'individual',
-      target: 'Chen Quanguo',
-      role: 'Former Xinjiang Party Secretary',
-      reason: 'Gross human rights violations',
-      date: '2021-03-22',
-      law: 'Special Economic Measures Act',
-      status: 'active',
-    },
-    {
-      id: 16,
-      country: 'canada',
-      type: 'individual',
-      target: 'Wang Junzheng',
-      role: 'Xinjiang Party Secretary',
-      reason: 'Gross human rights violations',
-      date: '2021-03-22',
-      law: 'Special Economic Measures Act',
-      status: 'active',
-    },
-    
-    // Australia Sanctions
-    {
-      id: 17,
-      country: 'australia',
-      type: 'individual',
-      target: 'Chen Quanguo',
-      role: 'Former Xinjiang Party Secretary',
-      reason: 'Serious human rights abuses',
-      date: '2021-03-22',
-      law: 'Autonomous Sanctions Act',
-      status: 'active',
-    },
-    {
-      id: 18,
-      country: 'australia',
-      type: 'individual',
-      target: 'Wang Junzheng',
-      role: 'Xinjiang Party Secretary',
-      reason: 'Serious human rights abuses',
-      date: '2021-03-22',
-      law: 'Autonomous Sanctions Act',
-      status: 'active',
-    },
-  ];
+  const sanctions = sanctionsData.sanctions;
 
   const filteredSanctions = sanctions.filter(s => {
     const countryMatch = activeCountry === 'all' || s.country === activeCountry;
@@ -439,6 +222,9 @@ const SanctionsTracker = () => {
             );
           })}
         </div>
+        <p className="text-xs text-slate-500 mt-3">
+          Data last verified: {sanctionsData.metadata.last_verified}. Sanctions may have been added since this date.
+        </p>
       </div>
     </div>
   );
