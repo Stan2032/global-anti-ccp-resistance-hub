@@ -383,7 +383,7 @@ const DonationGuide = () => {
           return (
             <div 
               key={org.id}
-              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-[#1c2a35] transition-colors"
+              className="bg-[#111820]/50 border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
             >
               <div className="flex items-start justify-between mb-2">
                 <div>

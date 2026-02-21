@@ -245,7 +245,7 @@ const DataExport = () => {
               className={`p-4 border text-left transition-all ${
                 selectedDatasets.includes(dataset.id)
                   ? 'bg-cyan-900/30 border-cyan-500'
-                  : 'bg-[#111820] border-[#1c2a35] hover:border-slate-500'
+                  : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
             >
               <div className="flex items-start">
@@ -288,7 +288,7 @@ const DataExport = () => {
               className={`flex-1 min-w-[150px] p-4 border text-left transition-all ${
                 exportFormat === format.id
                   ? 'bg-cyan-900/30 border-cyan-500'
-                  : 'bg-[#111820] border-[#1c2a35] hover:border-slate-500'
+                  : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
             >
               <div className="flex items-center mb-2">

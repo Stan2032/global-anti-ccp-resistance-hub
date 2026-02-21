@@ -264,7 +264,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`p-4 border text-left transition-colors ${
                   petition.type === type.id
                     ? 'bg-blue-900/30 border-blue-500'
-                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#1c2a35]'
+                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#2a9a52]'
                 }`}
               >
                 <type.Icon className="w-6 h-6 text-slate-300" />
@@ -284,7 +284,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                     className={`p-3 border text-left text-sm transition-colors ${
                       petition.target === target
                         ? 'bg-blue-900/30 border-blue-500 text-white'
-                        : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#1c2a35]'
+                        : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#2a9a52]'
                     }`}
                   >
                     {target}
@@ -328,7 +328,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`w-full p-4 border text-left transition-colors ${
                   petition.issue === issue.id
                     ? 'bg-blue-900/30 border-blue-500'
-                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#1c2a35]'
+                    : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#2a9a52]'
                 }`}
               >
                 <h4 className="font-medium text-white">{issue.name}</h4>
@@ -382,7 +382,7 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
                 className={`w-full p-3 border text-left text-sm transition-colors ${
                   petition.demands.includes(demand)
                     ? 'bg-green-900/30 border-green-500 text-green-300'
-                    : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#1c2a35]'
+                    : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#2a9a52]'
                 }`}
               >
                 <span className="mr-2">{petition.demands.includes(demand) ? '✓' : '+'}</span>

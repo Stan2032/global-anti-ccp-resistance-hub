@@ -176,7 +176,7 @@ const IncidentReportForm = () => {
                   className={`flex items-start gap-3 p-4 border cursor-pointer transition-all ${
                     formData.incidentType === type.value
                       ? 'bg-red-900/30 border-red-600'
-                      : 'bg-[#0a0e14]/50 border-[#1c2a35] hover:border-slate-500'
+                      : 'bg-[#0a0e14]/50 border-[#1c2a35] hover:border-[#2a9a52]'
                   }`}
                 >
                   <input

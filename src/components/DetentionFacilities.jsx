@@ -574,7 +574,7 @@ export default function DetentionFacilities() {
               setSelectedFacility(facility.id);
               setExpandedSections({ evidence: true });
             }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#1c2a35]"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
           >
             <div className="flex items-start gap-3 mb-3">
               <div className="w-10 h-10 bg-[#111820] flex items-center justify-center flex-shrink-0">

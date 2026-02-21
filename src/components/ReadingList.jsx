@@ -334,7 +334,7 @@ const ReadingList = () => {
       {/* Book Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredBooks.map((book, index) => (
-          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-bold text-white text-lg pr-2">{book.title}</h3>
               <span className={`${getRelevanceColor(book.relevance)} text-white text-xs px-2 py-0.5 rounded flex-shrink-0`}>

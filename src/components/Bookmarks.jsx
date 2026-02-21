@@ -185,7 +185,7 @@ const Bookmarks = () => {
             return (
               <div 
                 key={bookmark.id}
-                className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between group hover:border-[#1c2a35] transition-colors"
+                className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between group hover:border-[#2a9a52] transition-colors"
               >
                 <div className="flex items-center space-x-3">
                   {categoryInfo?.Icon && <categoryInfo.Icon className="w-5 h-5 text-slate-400" />}
@@ -242,7 +242,7 @@ const Bookmarks = () => {
                 className={`flex items-center justify-between p-3 transition-colors ${
                   alreadyBookmarked 
                     ? 'bg-green-900/20 border border-green-700/50' 
-                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-[#1c2a35]'
+                    : 'bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-[#2a9a52]'
                 }`}
               >
                 <div className="flex items-center space-x-3">

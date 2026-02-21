@@ -287,7 +287,7 @@ export default function ReadingProgress() {
               className={`bg-[#0a0e14]/50 p-4 border transition-colors ${
                 itemProgress.completed 
                   ? 'border-green-700 bg-green-900/10' 
-                  : 'border-[#1c2a35] hover:border-[#1c2a35]'
+                  : 'border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
             >
               <div className="flex items-start gap-4">

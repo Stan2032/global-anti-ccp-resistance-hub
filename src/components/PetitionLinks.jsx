@@ -101,7 +101,7 @@ const PetitionLinks = () => {
         {petitions.map((petition) => (
           <div
             key={petition.id}
-            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-slate-500 transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
           >
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">

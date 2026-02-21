@@ -274,7 +274,7 @@ const ActionTracker = () => {
                       className={`w-full flex items-center justify-between p-3 transition-all ${
                         isCompleted 
                           ? 'bg-[#0a0e14]/70 border border-green-600/50' 
-                          : 'bg-[#0a0e14]/30 border border-[#1c2a35] hover:border-[#1c2a35]'
+                          : 'bg-[#0a0e14]/30 border border-[#1c2a35] hover:border-[#2a9a52]'
                       }`}
                     >
                       <div className="flex items-center space-x-3">

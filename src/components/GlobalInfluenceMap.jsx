@@ -177,7 +177,7 @@ const GlobalInfluenceMap = () => {
               className={`bg-[#111820]/50 border transition-all cursor-pointer ${
                 selectedRegion?.id === region.id
                   ? 'border-blue-500 ring-2 ring-blue-500/20'
-                  : 'border-[#1c2a35] hover:border-[#1c2a35]'
+                  : 'border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
               onClick={() => setSelectedRegion(selectedRegion?.id === region.id ? null : region)}
             >

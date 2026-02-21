@@ -336,7 +336,7 @@ export default function MemorialWall() {
           {filteredVictims.map(victim => (
             <div
               key={victim.id}
-              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden hover:border-[#1c2a35] transition-colors"
+              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
             >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
