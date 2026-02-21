@@ -37,20 +37,17 @@
     "intelligence": "情報",
     "directory": "目錄",
     "prisoners": "政治犯",
-    "threats": "區域威脅",
     "takeAction": "採取行動",
-    "campaigns": "運動",
     "community": "社群",
-    "communications": "通訊",
     "resources": "資源",
-    "tactics": "中共策略",
     "education": "教育",
     "security": "安全",
     "dataSources": "資料來源",
     "main": "主要",
     "humanRights": "人權",
     "action": "行動",
-    "resourcesSection": "資源"
+    "resourcesSection": "資源",
+    "profiles": "人物檔案"
   },
   "header": {
     "title": "全球抗爭中心",

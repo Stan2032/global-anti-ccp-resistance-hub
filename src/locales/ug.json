@@ -37,20 +37,17 @@
     "intelligence": "ئۇچۇر",
     "directory": "مۇندەرىجە",
     "prisoners": "سىياسىي مەھبۇسلار",
-    "threats": "رايونلۇق تەھدىدلەر",
     "takeAction": "ھەرىكەت قىلىش",
-    "campaigns": "پائالىيەتلەر",
     "community": "جامائەت",
-    "communications": "ئالاقە",
     "resources": "مەنبەلەر",
-    "tactics": "جۇڭگو كومۇنىستىك پارتىيىسى تاكتىكىسى",
     "education": "مائارىپ",
     "security": "بىخەتەرلىك",
     "dataSources": "سانلىق مەنبە",
     "main": "ئاساسىي",
     "humanRights": "ئىنسان ھوقۇقى",
     "action": "ھەرىكەت",
-    "resourcesSection": "مەنبەلەر"
+    "resourcesSection": "مەنبەلەر",
+    "profiles": "شەخسلەر"
   },
   "header": {
     "title": "دۇنيا قارشىلىق مەركىزى",

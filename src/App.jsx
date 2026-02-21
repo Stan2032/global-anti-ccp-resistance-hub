@@ -113,7 +113,7 @@ const MobileNav = ({ isOpen, onClose }) => {
     { name: t('nav.intelligence'), href: '/intelligence' },
     { name: t('nav.directory'), href: '/directory' },
     { name: t('nav.prisoners'), href: '/prisoners' },
-    { name: 'Profiles', href: '/profiles' },
+    { name: t('nav.profiles'), href: '/profiles' },
     { name: t('nav.takeAction'), href: '/take-action' },
     { name: t('nav.community'), href: '/community' },
     { name: t('nav.resources'), href: '/resources' },
@@ -210,7 +210,7 @@ const DesktopSidebar = () => {
       title: 'human_rights',
       items: [
         { name: t('nav.prisoners'), href: '/prisoners' },
-        { name: 'Profiles', href: '/profiles' },
+        { name: t('nav.profiles'), href: '/profiles' },
       ]
     },
     {

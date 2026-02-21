@@ -37,20 +37,17 @@
     "intelligence": "Intelligence",
     "directory": "Directory",
     "prisoners": "Political Prisoners",
-    "threats": "Regional Threats",
     "takeAction": "Take Action",
-    "campaigns": "Campaigns",
     "community": "Community",
-    "communications": "Communications",
     "resources": "Resources",
-    "tactics": "CCP Tactics",
     "education": "Education",
     "security": "Security",
     "dataSources": "Data Sources",
     "main": "Main",
     "humanRights": "Human Rights",
     "action": "Action",
-    "resourcesSection": "Resources"
+    "resourcesSection": "Resources",
+    "profiles": "Profiles"
   },
   "header": {
     "title": "Global Resistance Hub",
