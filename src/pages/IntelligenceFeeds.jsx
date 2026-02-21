@@ -1,10 +1,24 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { useLiveFeeds } from '../hooks/useLiveData';
+
+const HongKongStatus = lazy(() => import('../components/HongKongStatus'));
+const TibetStatus = lazy(() => import('../components/TibetStatus'));
+const XinjiangStatus = lazy(() => import('../components/XinjiangStatus'));
+const TaiwanDefenseStatus = lazy(() => import('../components/TaiwanDefenseStatus'));
+const CCPOfficials = lazy(() => import('../components/CCPOfficials'));
+const WorldThreatMap = lazy(() => import('../components/WorldThreatMap'));
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  </div>
+);
 
 const IntelligenceFeeds = () => {
   const { feeds, loading, error, lastUpdated, refresh, sources } = useLiveFeeds(300000);
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('feeds');
 
   // Filter feeds based on source and search
   const filteredFeeds = useMemo(() => {
@@ -68,6 +82,28 @@ const IntelligenceFeeds = () => {
         </div>
       </div>
 
+      {/* Tab Bar */}
+      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+        {[
+          { id: 'feeds', label: 'Live Feeds' },
+          { id: 'regional', label: 'Regional Status' },
+          { id: 'operations', label: 'CCP Operations' },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
+                : 'text-slate-400 hover:text-slate-300'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === 'feeds' && (<>
       {/* Refresh Button */}
       <div className="flex justify-end">
         <button
@@ -254,6 +290,41 @@ const IntelligenceFeeds = () => {
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
         </p>
       </div>
+      </>)}
+
+      {activeTab === 'regional' && (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── hong_kong_status ──</h2>
+            <Suspense fallback={<SectionLoader />}><HongKongStatus /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── xinjiang_status ──</h2>
+            <Suspense fallback={<SectionLoader />}><XinjiangStatus /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── tibet_status ──</h2>
+            <Suspense fallback={<SectionLoader />}><TibetStatus /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── taiwan_defense ──</h2>
+            <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'operations' && (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── ccp_officials ──</h2>
+            <Suspense fallback={<SectionLoader />}><CCPOfficials /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── world_threat_map ──</h2>
+            <Suspense fallback={<SectionLoader />}><WorldThreatMap /></Suspense>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

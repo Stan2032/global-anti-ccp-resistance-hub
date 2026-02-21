@@ -36,6 +36,7 @@ const ReadingProgress = lazy(() => import('../components/ReadingProgress'));
 const PodcastPlayer = lazy(() => import('../components/PodcastPlayer'));
 const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitationGenerator'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
+const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('learn')
@@ -594,6 +595,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── ai_detector ──</h2>
             <Suspense fallback={<SectionLoader />}><AIDisinfoDetector /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── confucius_institutes ──</h2>
+            <Suspense fallback={<SectionLoader />}><ConfuciusInstitutes /></Suspense>
           </div>
         </div>
       )}
