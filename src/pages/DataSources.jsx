@@ -246,7 +246,7 @@ const DataSources = () => {
             <h2 className="text-3xl font-bold">Live Intelligence Feeds (RSS)</h2>
           </div>
           <p className="text-slate-300 mb-6">
-            Our live intelligence feed aggregates real-time news from 8 verified sources. Updates every 30 seconds.
+            Our live intelligence feed aggregates real-time news from verified sources. Updates every 30 seconds.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {rssSources.map((source, index) => (
