@@ -246,7 +246,7 @@ const DesktopSidebar = () => {
       
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
-        {sections.map((section, sIdx) => (
+        {sections.map((section, _sIdx) => (
           <div key={section.title} className="mb-5">
             <div className="flex items-center px-2 mb-2">
               <span className="font-mono text-[#1c2a35] text-xs select-none mr-1" aria-hidden="true">──</span>
