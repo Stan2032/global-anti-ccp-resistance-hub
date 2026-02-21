@@ -282,7 +282,7 @@ Sincerely,
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
-        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Landmark className="w-6 h-6" /> Contact Your Representatives</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Building className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
           about CCP human rights abuses.

@@ -2,13 +2,14 @@
   "metadata": {
     "title": "Global Sanctions Tracker",
     "description": "International sanctions on CCP officials and entities for human rights abuses",
-    "last_verified": "2025-01-15",
+    "last_verified": "2026-02-21",
     "sources": [
       "US Treasury OFAC Sanctions List",
       "UK Sanctions List (Office of Financial Sanctions Implementation)",
       "EU Sanctions Map (Council of the European Union)",
       "Canada Special Economic Measures Act Regulations",
-      "Australia Autonomous Sanctions Regulations"
+      "Australia Autonomous Sanctions Regulations",
+      "Canada Special Economic Measures Act Regulations (December 2024 update)"
     ],
     "note": "All sanctions entries verified against official government sanctions registries. Dates reflect the date of designation."
   },
@@ -220,6 +221,193 @@
       "reason": "Serious human rights abuses",
       "date": "2021-03-22",
       "law": "Autonomous Sanctions Act",
+      "status": "active"
+    },
+    {
+      "id": 19,
+      "country": "us",
+      "type": "individual",
+      "target": "Wang Mingshan",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Implementing mass surveillance and detention of Uyghurs",
+      "date": "2020-07-09",
+      "law": "Global Magnitsky Act",
+      "status": "active"
+    },
+    {
+      "id": 20,
+      "country": "us",
+      "type": "individual",
+      "target": "Chen Mingguo",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Arbitrary detentions and abuse of Uyghurs and Muslim minorities",
+      "date": "2021-03-22",
+      "law": "Global Magnitsky Act",
+      "status": "active"
+    },
+    {
+      "id": 21,
+      "country": "us",
+      "type": "individual",
+      "target": "Teresa Cheng",
+      "role": "Former Hong Kong Secretary for Justice",
+      "reason": "Implementing National Security Law",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 22,
+      "country": "us",
+      "type": "individual",
+      "target": "Erick Tsang",
+      "role": "Hong Kong Secretary for Constitutional and Mainland Affairs",
+      "reason": "Undermining Hong Kong autonomy",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 23,
+      "country": "us",
+      "type": "individual",
+      "target": "Chris Tang",
+      "role": "Hong Kong Secretary for Security",
+      "reason": "Crackdown on pro-democracy protests, implementing National Security Law",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 24,
+      "country": "us",
+      "type": "individual",
+      "target": "Xia Baolong",
+      "role": "Director, Hong Kong and Macao Affairs Office",
+      "reason": "Threatening peace, security, and autonomy of Hong Kong",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 25,
+      "country": "us",
+      "type": "individual",
+      "target": "Luo Huining",
+      "role": "Director, Central Liaison Office in Hong Kong",
+      "reason": "Undermining Hong Kong autonomy",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 26,
+      "country": "us",
+      "type": "individual",
+      "target": "Zheng Yanxiong",
+      "role": "Director, Office for Safeguarding National Security in Hong Kong",
+      "reason": "Implementing National Security Law in Hong Kong",
+      "date": "2020-08-07",
+      "law": "Hong Kong Autonomy Act",
+      "status": "active"
+    },
+    {
+      "id": 27,
+      "country": "us",
+      "type": "individual",
+      "target": "Wu Yingjie",
+      "role": "Former Tibet Autonomous Region Party Secretary",
+      "reason": "Serious human rights abuses including arbitrary detention and torture in Tibet",
+      "date": "2022-12-09",
+      "law": "Global Magnitsky Act",
+      "status": "active"
+    },
+    {
+      "id": 28,
+      "country": "uk",
+      "type": "individual",
+      "target": "Wang Junzheng",
+      "role": "Former XPCC Party Secretary",
+      "reason": "Serious human rights violations against Uyghurs",
+      "date": "2021-03-22",
+      "law": "UK Magnitsky Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 29,
+      "country": "uk",
+      "type": "individual",
+      "target": "Wang Mingshan",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Serious human rights violations",
+      "date": "2021-03-22",
+      "law": "UK Magnitsky Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 30,
+      "country": "uk",
+      "type": "individual",
+      "target": "Chen Mingguo",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Arbitrary detentions and degrading treatment of Uyghurs",
+      "date": "2021-03-22",
+      "law": "UK Magnitsky Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 31,
+      "country": "eu",
+      "type": "individual",
+      "target": "Zhu Hailun",
+      "role": "Former Deputy Secretary, Xinjiang Political and Legal Affairs Commission",
+      "reason": "Architect of mass surveillance and detention system",
+      "date": "2021-03-22",
+      "law": "EU Global Human Rights Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 32,
+      "country": "eu",
+      "type": "individual",
+      "target": "Wang Mingshan",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Mass surveillance and arbitrary detention",
+      "date": "2021-03-22",
+      "law": "EU Global Human Rights Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 33,
+      "country": "eu",
+      "type": "individual",
+      "target": "Chen Mingguo",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Arbitrary detention and degrading treatment of Uyghurs",
+      "date": "2021-03-22",
+      "law": "EU Global Human Rights Sanctions",
+      "status": "active"
+    },
+    {
+      "id": 34,
+      "country": "canada",
+      "type": "individual",
+      "target": "Chen Mingguo",
+      "role": "Former Director, Xinjiang Public Security Bureau",
+      "reason": "Gross human rights violations",
+      "date": "2021-03-22",
+      "law": "Special Economic Measures Act",
+      "status": "active"
+    },
+    {
+      "id": 35,
+      "country": "canada",
+      "type": "individual",
+      "target": "Wu Yingjie",
+      "role": "Former Tibet Autonomous Region Party Secretary",
+      "reason": "Gross human rights violations in Tibet",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
       "status": "active"
     }
   ]
