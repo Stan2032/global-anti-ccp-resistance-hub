@@ -31,6 +31,9 @@ const CCP_KEYWORDS = [
   'united front', 'influence operation', 'espionage', 'spy',
 ];
 
+// Sources whose content is always relevant (no keyword filtering needed)
+const ALWAYS_RELEVANT_SOURCES = ['hkfp', 'rfa', 'hrw', 'amnesty', 'cpj'];
+
 /**
  * Parse RSS/Atom XML feed
  */
@@ -71,7 +74,7 @@ function parseRSSFeed(xmlText, sourceName) {
     });
     
     // Only include items with some relevance to CCP topics
-    if (relevanceScore > 0 || sourceName === 'hkfp' || sourceName === 'rfa' || sourceName === 'hrw' || sourceName === 'amnesty' || sourceName === 'cpj') {
+    if (relevanceScore > 0 || ALWAYS_RELEVANT_SOURCES.includes(sourceName)) {
       items.push({
         id: `${sourceName}-${index}-${Date.now()}`,
         title: title.trim(),
