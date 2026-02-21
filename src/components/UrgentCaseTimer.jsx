@@ -217,9 +217,13 @@ const UrgentCaseTimer = ({ compact = false }) => {
                   Take Action
                 </a>
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. ${prisoner.hashtag} #FreePoliticalPrisoners`;
-                    navigator.clipboard.writeText(text);
+                    try {
+                      await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                      console.error('Failed to copy:', err);
+                    }
                   }}
                   className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >

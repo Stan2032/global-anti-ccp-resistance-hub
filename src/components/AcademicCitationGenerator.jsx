@@ -161,10 +161,14 @@ const AcademicCitationGenerator = () => {
     }
   ];
 
-  const handleCopy = (citation, index) => {
-    navigator.clipboard.writeText(citation);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+  const handleCopy = async (citation, index) => {
+    try {
+      await navigator.clipboard.writeText(citation);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const getTypeColor = (type) => {

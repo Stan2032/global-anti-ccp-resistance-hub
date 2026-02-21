@@ -237,10 +237,14 @@ const LanguageGuide = () => {
     ],
   };
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopiedPhrase(id);
-    setTimeout(() => setCopiedPhrase(null), 2000);
+  const copyToClipboard = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedPhrase(id);
+      setTimeout(() => setCopiedPhrase(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const currentLanguage = languages.find(l => l.id === activeLanguage);

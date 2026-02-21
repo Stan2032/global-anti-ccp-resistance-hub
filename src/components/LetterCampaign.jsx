@@ -154,7 +154,7 @@ Sincerely,
     },
   ];
 
-  const copyLetter = (template) => {
+  const copyLetter = async (template) => {
     let letter = template;
     if (customizations.name) {
       letter = letter.replace('[Your Name]', customizations.name);
@@ -162,9 +162,13 @@ Sincerely,
     if (customizations.location) {
       letter = letter.replace('[Your Location]', customizations.location);
     }
-    navigator.clipboard.writeText(letter);
-    setCopiedLetter(true);
-    setTimeout(() => setCopiedLetter(false), 2000);
+    try {
+      await navigator.clipboard.writeText(letter);
+      setCopiedLetter(true);
+      setTimeout(() => setCopiedLetter(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const urgencyColors = {

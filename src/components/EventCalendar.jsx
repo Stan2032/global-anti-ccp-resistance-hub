@@ -338,9 +338,13 @@ const EventCalendar = () => {
             Subscribe to Calendar (Coming Soon)
           </button>
           <button 
-            onClick={() => {
+            onClick={async () => {
               const text = events.map(e => `${e.date}: ${e.name}`).join('\n');
-              navigator.clipboard.writeText(text);
+              try {
+                await navigator.clipboard.writeText(text);
+              } catch (err) {
+                console.error('Failed to copy:', err);
+              }
             }}
             className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >

@@ -305,9 +305,13 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               {/* Share */}
               <div className="mt-6 flex items-center gap-4">
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     const text = `${selectedStory.name}: "${selectedStory.quote}" - Read their story of surviving CCP persecution.`;
-                    navigator.clipboard.writeText(text);
+                    try {
+                      await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                      console.error('Failed to copy:', err);
+                    }
                   }}
                   className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >

@@ -184,10 +184,14 @@ https://stan2032.github.io/global-anti-ccp-resistance-hub/
     setStep(4);
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedPetition);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedPetition);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const addDemand = (demand) => {

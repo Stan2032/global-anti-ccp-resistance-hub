@@ -126,10 +126,14 @@ const SocialMediaToolkit = () => {
     { date: 'May 17', event: 'Panchen Lama Abduction Anniversary', hashtags: '#FreePanchenLama #GedunChoekyi' },
   ];
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const copyToClipboard = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const copyThread = (thread) => {
