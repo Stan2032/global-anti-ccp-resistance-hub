@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 21, 2026 (Session 65)
+> Last Updated: February 21, 2026 (Session 68)
 > 
 > **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
 > See `_agents/README.md` for folder structure and quick start guide.
@@ -13,7 +13,7 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### High Priority
-- [x] **Multilingual Support**: 5 locale files built (en, zh-CN, zh-TW, ug, bo) with 194 keys each, all translated ✅
+- [x] **Multilingual Support**: 8 locale files built (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated ✅
 - [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
 - [x] **Accessibility Audit**: WCAG AA contrast ratios verified for all text colors, ARIA labels added to SVGs/buttons, 20 contrast tests added ✅ (Session 59)
 - [x] **Performance Optimization**: Implement code splitting for large components ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles now under 50KB)
@@ -363,9 +363,9 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. **Accessibility audit** — Ensure terminal aesthetic maintains WCAG AA contrast ratios across all pages
-2. **Mobile navigation testing** — Verify ASCII design works across viewport sizes
-3. Additional profiles (deprioritized per project owner): Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+1. **Sanctions data update** — Check for recent US/EU/UK/Canada/Australia sanctions
+2. **Content updates** — Monitor breaking developments
+3. **Backend connection** — Priority 4 from roadmap (Cloudflare Pages Functions + Supabase)
 
 ### Recently Completed
 - ✅ **All sub-components, profiles, campaigns, ThemeContext bulk-updated** — 128 files: all old-style Tailwind classes (bg-slate, border-slate, rounded, gradients, hovers) replaced with terminal design system tokens. Zero old-style classes remain in src/. 257 tests pass. — Session 58, Opus 4.6
@@ -467,17 +467,21 @@
 7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
 8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
 
-### Current State Summary (as of Session 58, Feb 20, 2026)
-- **Frontend:** React + Vite + Tailwind, 16 pages, 100+ components, 257 tests (all passing)
-- **Design:** ASCII/terminal aesthetic — monospace headings (JetBrains Mono), terminal-green (#4afa82) accents, box-drawing borders, square corners, CRT scanline effects
+### Current State Summary (as of Session 68, Feb 21, 2026)
+- **Frontend:** React + Vite + Tailwind, 14 pages (4 consolidated), 100+ components, 288 tests (all passing)
+- **Design:** ASCII/terminal aesthetic — monospace headings (JetBrains Mono), terminal-green (#4afa82) accents, box-drawing borders, square corners, CRT scanline effects. Zero old-style slate classes remain.
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
-- **Profile Pages Built:** 6 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai)
-- **Profile Pages Queued (deprioritized):** Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
+- **Profile Pages Built:** 12 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen)
+- **Profile Pages Queued:** None — all queued profiles have been built
 - **Data:** 60 political prisoners, 29 sanctioned officials, 33 forced labor companies, 142 total entries with 100% source attribution
 - **Performance:** All 8 major pages lazy-loaded (81 sub-components), all page bundles under 50KB
 - **Forms:** 4 non-functional forms have honest "Coming Soon" disclaimers (Session 36)
 - **Community stats:** Marked as "illustrative targets" (Session 37)
-- **i18n Foundation:** 5 language files built (en, zh-CN, zh-TW, ug, bo), translations not yet filled
+- **i18n:** 8 language files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo), 194 keys each, all translated. Proper East Turkestan and Tibetan flag SVGs.
+- **Page consolidation:** 4 orphan pages merged (CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds)
+- **Clipboard:** 9 components have proper try/catch error handling
+- **Print:** @media print stylesheet for profile pages (A4 layout, hides nav/footer)
+- **RSS:** 9 feeds from trusted sources (HKFP, RFA, BBC, HRW, Amnesty, CPJ, Guardian, Taiwan News, SCMP)
 
 ### Standing Instructions from Humans
 - **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
@@ -486,13 +490,10 @@
 - **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
 
 ### What's Immediately Actionable (no human input needed)
-1. **Gui Minhai profile page** — next in queue, data exists in political_prisoners_research.json
-2. **Profile index page** at `/profiles` — list all profiles with status indicators and links
-3. **Additional profiles** — Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan
-4. **Accessibility audit** — run automated WCAG 2.1 tests
-5. **Multilingual translations** — fill in zh-TW, ug, bo locale files (currently skeleton)
-6. **News feed integration** — add RSS feeds from trusted sources
-7. **Update sanctions list** — check for new US/EU/UK/Canada/Australia sanctions
+1. **Update sanctions list** — check for new US/EU/UK/Canada/Australia sanctions (2025-2026)
+2. **Content monitoring** — update political prisoners database with new cases
+3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
+4. **Additional locale translations** — machine translate more keys for vi, ko, ja
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -532,6 +533,14 @@
 | 56 | Feb 20 | Opus 4.6 | Dashboard + EmergencyAlerts terminal redesign: stat cards, intelligence section, quick actions, campaigns, resources, section loader all updated |
 | 57 | Feb 20 | Opus 4.6 | Terminal aesthetic applied to all 13 remaining pages: surface colors, borders, gradients→flat, CTA buttons, spinners, hover states |
 | 58 | Feb 20 | Opus 4.6 | Bulk terminal styling: 128 files — all sub-components, profiles, campaigns, ThemeContext. Zero old-style classes remain. Design system 100% complete. |
+| 59-61 | Feb 20 | Opus 4.6 | Accessibility audit, WCAG AA contrast verification, 20 contrast tests, 277 tests total |
+| 62 | Feb 20 | Sonnet 4.5 | 6 new profile pages: Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen. ProfilesIndex updated (12 profiles, 0 coming soon) |
+| 63 | Feb 20 | Sonnet 4.5 | Page consolidation: 4 orphan pages → redirects (CampaignHubs, SecureComms, CCPTactics, RegionalThreats). Updated Dashboard, Footer, GlobalSearch, SuccessStories links |
+| 64 | Feb 21 | Sonnet 4.5 | Locale cleanup: removed 4 stale nav keys, added nav.profiles, fixed hardcoded 'Profiles' string to use t('nav.profiles') |
+| 65 | Feb 21 | Sonnet 4.5 | Proper flag SVGs: replaced generic Lucide icons (Flag, Mountain, Landmark) with East Turkestan and Tibetan flag SVG components |
+| 66 | Feb 21 | Sonnet 4.5 | 5 new RSS feeds (BBC, HRW, Amnesty, CPJ, Guardian), mobile nav overflow fix, ALWAYS_RELEVANT_SOURCES array |
+| 67 | Feb 21 | Sonnet 4.5 | Complete terminal design cleanup: all remaining bg-slate-*/border-slate-* → design tokens across 97+ files. Deleted 4 orphan page files (1,616 lines) |
+| 68 | Feb 21 | Sonnet 4.5 | Clipboard error handling (9 components), print styles (@media print), zh-CN bug fix, 3 new locales (vi/ko/ja), dynamic countdown dates |
 
 ---
 

@@ -9,12 +9,13 @@ const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const currentYear = now.getFullYear();
   const importantDates = [
     {
       id: 'tiananmen',
       name: 'Tiananmen Square Anniversary',
-      date: new Date('2025-06-04T00:00:00'),
-      description: '36th anniversary of the 1989 Tiananmen Square Massacre',
+      date: new Date(`${currentYear}-06-04T00:00:00`),
+      description: `${currentYear - 1989}th anniversary of the 1989 Tiananmen Square Massacre`,
       Icon: Flame,
       type: 'memorial',
       actions: ['Light a candle', 'Share survivor stories', 'Contact representatives'],
@@ -22,8 +23,8 @@ const CountdownTimer = () => {
     {
       id: 'july1',
       name: 'Hong Kong Handover Anniversary',
-      date: new Date('2025-07-01T00:00:00'),
-      description: '28th anniversary of Hong Kong handover to China',
+      date: new Date(`${currentYear}-07-01T00:00:00`),
+      description: `${currentYear - 1997}th anniversary of Hong Kong handover to China`,
       icon: '🇭🇰',
       type: 'awareness',
       actions: ['Stand with Hong Kong', 'Support HK refugees', 'Share HK stories'],
@@ -31,8 +32,8 @@ const CountdownTimer = () => {
     {
       id: 'tibet-uprising',
       name: 'Tibetan Uprising Day',
-      date: new Date('2025-03-10T00:00:00'),
-      description: '66th anniversary of the 1959 Tibetan uprising',
+      date: new Date(`${currentYear}-03-10T00:00:00`),
+      description: `${currentYear - 1959}th anniversary of the 1959 Tibetan uprising`,
       Icon: Mountain,
       type: 'memorial',
       actions: ['Fly Tibetan flag', 'Support ICT', 'Contact representatives'],
@@ -40,7 +41,7 @@ const CountdownTimer = () => {
     {
       id: 'uyghur-day',
       name: 'Uyghur Human Rights Day',
-      date: new Date('2025-07-05T00:00:00'),
+      date: new Date(`${currentYear}-07-05T00:00:00`),
       description: 'Commemorating the 2009 Ürümqi protests',
       Icon: Landmark,
       type: 'memorial',
@@ -49,7 +50,7 @@ const CountdownTimer = () => {
     {
       id: 'human-rights-day',
       name: 'Human Rights Day',
-      date: new Date('2025-12-10T00:00:00'),
+      date: new Date(`${currentYear}-12-10T00:00:00`),
       description: 'Universal Declaration of Human Rights anniversary',
       Icon: Heart,
       type: 'action',
@@ -58,7 +59,7 @@ const CountdownTimer = () => {
     {
       id: 'taiwan-national',
       name: 'Taiwan National Day',
-      date: new Date('2025-10-10T00:00:00'),
+      date: new Date(`${currentYear}-10-10T00:00:00`),
       description: 'Double Ten Day - Taiwan\'s National Day',
       icon: '🇹🇼',
       type: 'solidarity',
@@ -67,8 +68,8 @@ const CountdownTimer = () => {
     {
       id: 'panchen-lama',
       name: 'Panchen Lama Abduction Anniversary',
-      date: new Date('2025-05-17T00:00:00'),
-      description: '30 years since Gedhun Choekyi Nyima was abducted',
+      date: new Date(`${currentYear}-05-17T00:00:00`),
+      description: `${currentYear - 1995} years since Gedhun Choekyi Nyima was abducted`,
       Icon: Link2,
       type: 'memorial',
       actions: ['Demand his release', 'Contact representatives', 'Share his story'],
@@ -76,8 +77,8 @@ const CountdownTimer = () => {
     {
       id: 'nsl-anniversary',
       name: 'Hong Kong NSL Anniversary',
-      date: new Date('2025-06-30T00:00:00'),
-      description: '5 years since the National Security Law was imposed',
+      date: new Date(`${currentYear}-06-30T00:00:00`),
+      description: `${currentYear - 2020} years since the National Security Law was imposed`,
       Icon: Scale,
       type: 'awareness',
       actions: ['Document impact', 'Support political prisoners', 'Advocate for sanctions'],
