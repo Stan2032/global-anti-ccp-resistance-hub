@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
 
 const VictimStories = () => {
   const [selectedStory, setSelectedStory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedStory(null); };
+    if (selectedStory) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedStory]);
 
   const stories = [
     {
@@ -255,7 +261,6 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
           aria-modal="true"
           aria-label={`Story of ${selectedStory.name}`}
           onClick={() => setSelectedStory(null)}
-          onKeyDown={e => e.key === 'Escape' && setSelectedStory(null)}
         >
           <div
             className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"

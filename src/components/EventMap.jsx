@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Calendar, Users, ExternalLink, Filter, Globe, Clock, ChevronRight } from 'lucide-react';
 
 const events = [
@@ -177,6 +177,12 @@ export default function EventMap() {
   const [selectedType, setSelectedType] = useState('All Types');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'map'
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedEvent(null); };
+    if (selectedEvent) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedEvent]);
 
   const filteredEvents = events.filter(event => {
     if (selectedRegion !== 'All Regions' && event.region !== selectedRegion) return false;
@@ -460,7 +466,7 @@ export default function EventMap() {
 
       {/* Event Detail Modal */}
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Event details: ${selectedEvent.title}`} onClick={() => setSelectedEvent(null)} onKeyDown={e => e.key === 'Escape' && setSelectedEvent(null)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Event details: ${selectedEvent.title}`} onClick={() => setSelectedEvent(null)}>
           <div className="bg-[#111820] max-w-lg w-full p-6 border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-2 mb-3">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCauseColor(selectedEvent.cause)}`}>
