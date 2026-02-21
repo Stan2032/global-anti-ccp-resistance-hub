@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { User, Clock, MapPin, Cake } from 'lucide-react';
+import { calculateAge } from '../utils/dateUtils';
 
 const UrgentCaseTimer = ({ compact = false }) => {
   const [timers, setTimers] = useState({});
 
-  const urgentCases = [
+  const urgentCases = useMemo(() => [
     {
       id: 'jimmy-lai',
       name: 'Jimmy Lai',
@@ -12,8 +13,8 @@ const UrgentCaseTimer = ({ compact = false }) => {
       status: 'SENTENCED - 20 YEARS',
       statusColor: 'red',
       detentionDate: '2020-12-03',
+      birthDate: 'December 8, 1947',
       location: 'Stanley Prison, Hong Kong',
-      age: 78,
       description: 'Media tycoon and founder of Apple Daily. Convicted Dec 15, 2025. Sentenced to 20 years on Feb 9, 2026.',
       image: 'user',
       actionUrl: '/prisoners',
@@ -26,8 +27,8 @@ const UrgentCaseTimer = ({ compact = false }) => {
       status: 'LIFE SENTENCE',
       statusColor: 'red',
       detentionDate: '2014-01-15',
+      birthDate: 'October 25, 1969',
       location: 'Urumqi Prison, Xinjiang',
-      age: 55,
       description: 'Uyghur economist and professor. Sentenced to life for "separatism". Sakharov Prize winner.',
       image: 'user',
       actionUrl: '/prisoners',
@@ -40,8 +41,8 @@ const UrgentCaseTimer = ({ compact = false }) => {
       status: 'IMPRISONED',
       statusColor: 'red',
       detentionDate: '2021-06-04',
+      birthDate: 'November 7, 1986',
       location: 'Hong Kong',
-      age: 38,
       description: 'Human rights lawyer and Tiananmen vigil organizer. Multiple sentences totaling over 6 years.',
       image: 'user',
       actionUrl: '/prisoners',
@@ -54,14 +55,14 @@ const UrgentCaseTimer = ({ compact = false }) => {
       status: 'DISAPPEARED',
       statusColor: 'gray',
       detentionDate: '1995-05-17',
+      birthDate: 'April 25, 1989',
       location: 'Unknown, China',
-      age: 35,
       description: 'Recognized as 11th Panchen Lama by Dalai Lama at age 6. Disappeared 3 days later. Longest-held political prisoner.',
       image: 'user',
       actionUrl: '/prisoners',
       hashtag: '#FreePanchenLama'
     }
-  ];
+  ], []);
 
   useEffect(() => {
     const calculateTime = () => {
@@ -87,7 +88,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
     calculateTime();
     const interval = setInterval(calculateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [urgentCases]);
 
   if (compact) {
     // Compact version for dashboard
@@ -204,7 +205,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                 </div>
                 <div className="flex items-center gap-2 text-slate-400">
                   <Cake className="w-4 h-4" />
-                  <span>Age: {prisoner.age}</span>
+                  <span>Age: {calculateAge(prisoner.birthDate)}</span>
                 </div>
               </div>
 

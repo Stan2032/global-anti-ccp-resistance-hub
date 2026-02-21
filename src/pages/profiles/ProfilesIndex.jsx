@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { calculateAge } from '../../utils/dateUtils';
 import {
   User, Clock, Scale, AlertTriangle, ExternalLink,
   ArrowRight, Heart, MapPin, Calendar
