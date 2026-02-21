@@ -316,3 +316,75 @@ a, button, input, select, textarea,
     /* Keep rounded-full for dots/avatars/badges */
   }
 }
+
+/* Print styles — for activists to print profile pages and reports */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  /* Hide navigation, sidebar, footer, buttons */
+  nav, aside, footer,
+  button, .mobile-nav,
+  [role="navigation"],
+  [data-no-print] {
+    display: none !important;
+  }
+
+  /* Make all backgrounds white and text black for readability */
+  * {
+    background: white !important;
+    color: black !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Restore some color for headings and links */
+  h1, h2, h3, h4 {
+    color: #111 !important;
+    page-break-after: avoid;
+  }
+
+  a {
+    color: #333 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Show URLs after links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666 !important;
+    word-break: break-all;
+  }
+
+  /* Prevent page breaks inside cards and timeline entries */
+  .border, article, section > div {
+    page-break-inside: avoid;
+  }
+
+  /* Show full content, remove overflow hidden */
+  [class*="overflow-hidden"],
+  [class*="overflow-x-auto"] {
+    overflow: visible !important;
+  }
+
+  /* Remove animations */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Ensure images print */
+  img {
+    max-width: 100% !important;
+  }
+}
