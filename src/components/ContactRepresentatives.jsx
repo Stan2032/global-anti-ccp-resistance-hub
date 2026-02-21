@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Megaphone, Mountain, Building, Link2, Target, Landmark } from 'lucide-react';
+import { Megaphone, Building, Link2, Target } from 'lucide-react';
+import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -16,9 +17,9 @@ const ContactRepresentatives = () => {
 
   const topics = [
     { id: 'general', name: 'General Human Rights', Icon: Megaphone },
-    { id: 'uyghur', name: 'Uyghur Genocide', Icon: Mountain },
+    { id: 'uyghur', name: 'Uyghur Genocide', Icon: EastTurkestanFlag },
     { id: 'hongkong', name: 'Hong Kong Freedom', Icon: Building },
-    { id: 'tibet', name: 'Tibetan Rights', Icon: Mountain },
+    { id: 'tibet', name: 'Tibetan Rights', Icon: TibetanFlag },
     { id: 'taiwan', name: 'Taiwan Support', flag: '🇹🇼' },
     { id: 'jimmylai', name: 'Free Jimmy Lai', Icon: Link2 },
     { id: 'sanctions', name: 'Magnitsky Sanctions', Icon: Target },
@@ -267,17 +268,21 @@ Sincerely,
   const currentTemplate = letterTemplates[selectedTopic];
   const currentLinks = contactLinks[selectedCountry];
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
-        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Landmark className="w-6 h-6" /> Contact Your Representatives</h2>
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Building className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
           about CCP human rights abuses.
@@ -317,7 +322,7 @@ Sincerely,
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
+              className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
             >
               {link.name}
               <span>→</span>
@@ -363,14 +368,14 @@ Sincerely,
         
         <div className="mb-4">
           <label className="text-sm text-slate-400 mb-1 block">Subject Line:</label>
-          <div className="bg-[#0a0e14] border border-slate-600 rounded p-3 text-white font-medium">
+          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-3 text-white font-medium">
             {currentTemplate.subject}
           </div>
         </div>
         
         <div>
           <label className="text-sm text-slate-400 mb-1 block">Letter Body:</label>
-          <div className="bg-[#0a0e14] border border-slate-600 rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
+          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
             {currentTemplate.body}
           </div>
         </div>

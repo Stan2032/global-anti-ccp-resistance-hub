@@ -233,7 +233,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   business: { bg: 'bg-teal-900/60', text: 'text-teal-200', label: 'Publishing' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
@@ -329,7 +329,7 @@ export default function GuiMinhaiProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 CROSS-BORDER ABDUCTION
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>
@@ -453,7 +453,7 @@ export default function GuiMinhaiProfile() {
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className="text-sm font-bold text-white">{c.charge}</span>
                   <span className={`px-2 py-0.5 text-xs rounded-full font-semibold ${
-                    c.verdict.startsWith('GUILTY') ? 'bg-red-900/60 text-red-300' : 'bg-slate-700 text-slate-300'
+                    c.verdict.startsWith('GUILTY') ? 'bg-red-900/60 text-red-300' : 'bg-[#111820] text-slate-300'
                   }`}>{c.verdict.startsWith('GUILTY') ? 'GUILTY' : 'SERVED AS PRETEXT'}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm mb-3">

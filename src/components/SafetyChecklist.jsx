@@ -357,7 +357,7 @@ const SafetyChecklist = () => {
           <span className="text-white font-medium">Overall Progress</span>
           <span className="text-slate-400">{completedItems}/{totalItems} items</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-3">
+        <div className="w-full bg-[#111820] rounded-full h-3">
           <div 
             className="bg-green-500 h-3 rounded-full transition-all"
             style={{ width: `${(completedItems / totalItems) * 100}%` }}
@@ -400,7 +400,7 @@ const SafetyChecklist = () => {
           </span>
           <span className="text-slate-400">{categoryCompleted}/{currentItems.length}</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-2">
+        <div className="w-full bg-[#111820] rounded-full h-2">
           <div 
             className="bg-blue-500 h-2 rounded-full transition-all"
             style={{ width: `${(categoryCompleted / currentItems.length) * 100}%` }}
@@ -423,7 +423,7 @@ const SafetyChecklist = () => {
                 className={`w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
                   checkedItems.includes(item.id)
                     ? 'bg-green-600 border-green-600 text-white'
-                    : 'border-slate-500 hover:border-green-500'
+                    : 'border-[#1c2a35] hover:border-green-500'
                 }`}
               >
                 {checkedItems.includes(item.id) && '✓'}

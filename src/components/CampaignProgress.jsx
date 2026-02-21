@@ -207,7 +207,7 @@ const ProgressBar = ({ current, goal, label }) => {
         <span>{label}</span>
         <span>{current.toLocaleString()} / {goal.toLocaleString()}</span>
       </div>
-      <div className="w-full bg-slate-700 rounded-full h-2">
+      <div className="w-full bg-[#111820] rounded-full h-2">
         <div
           className="bg-blue-500 h-2 rounded-full transition-all duration-500"
           style={{ width: `${percentage}%` }}
@@ -301,7 +301,7 @@ export default function CampaignProgress() {
             className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
               filter === f
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {f === 'all' ? 'All Campaigns' : f}
@@ -339,7 +339,7 @@ export default function CampaignProgress() {
                     <span>Campaign Progress</span>
                     <span>{campaign.milestones.filter(m => m.completed).length}/{campaign.milestones.length} milestones</span>
                   </div>
-                  <div className="w-full bg-slate-700 rounded-full h-2">
+                  <div className="w-full bg-[#111820] rounded-full h-2">
                     <div
                       className="bg-green-500 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${(campaign.milestones.filter(m => m.completed).length / campaign.milestones.length) * 100}%` }}
@@ -380,7 +380,7 @@ export default function CampaignProgress() {
                       href={action.url || '#'}
                       target={action.url ? '_blank' : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 px-3 py-1.5 bg-slate-700 hover:bg-[#1c2a35] text-sm text-slate-300 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-sm text-slate-300 transition-colors"
                     >
                       {action.name}
                       {action.url && <ExternalLink className="w-3 h-3" />}
@@ -413,7 +413,7 @@ export default function CampaignProgress() {
                         <h4 className="text-sm font-semibold text-white mt-4 mb-2">Partner Organizations</h4>
                         <div className="flex flex-wrap gap-2">
                           {campaign.organizations.map((org, i) => (
-                            <span key={i} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
+                            <span key={i} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
                               {org}
                             </span>
                           ))}

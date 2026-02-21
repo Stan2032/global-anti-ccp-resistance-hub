@@ -281,7 +281,7 @@ const CompanyTracker = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search companies..."
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <div className="flex flex-wrap gap-2">

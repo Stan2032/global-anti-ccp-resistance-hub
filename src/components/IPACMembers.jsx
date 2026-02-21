@@ -146,7 +146,7 @@ const IPACMembers = () => {
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedCountry === country.code
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {country.name}
@@ -161,7 +161,7 @@ const IPACMembers = () => {
             <h3 className="text-xl font-bold text-white mb-4">{country.country}</h3>
             <div className="grid md:grid-cols-2 gap-3">
               {country.members.map((member, j) => (
-                <div key={j} className="bg-slate-700/50 p-3 flex justify-between items-center">
+                <div key={j} className="bg-[#111820] p-3 flex justify-between items-center">
                   <div>
                     <span className="text-white font-medium">{member.name}</span>
                     <span className="text-slate-400 text-sm ml-2">({member.party})</span>
@@ -200,7 +200,7 @@ const IPACMembers = () => {
             href="https://ipac.global/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">IPAC Official Website</h4>
             <p className="text-slate-400 text-sm">Inter-Parliamentary Alliance on China</p>
@@ -209,7 +209,7 @@ const IPACMembers = () => {
             href="https://www.cecc.gov/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] p-4 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] p-4 transition-colors"
           >
             <h4 className="text-white font-semibold">US CECC</h4>
             <p className="text-slate-400 text-sm">Congressional-Executive Commission on China</p>

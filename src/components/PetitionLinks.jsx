@@ -101,7 +101,7 @@ const PetitionLinks = () => {
         {petitions.map((petition) => (
           <div
             key={petition.id}
-            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-slate-500 transition-colors"
+            className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
           >
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
@@ -119,7 +119,7 @@ const PetitionLinks = () => {
                   <span>{petition.signatures} signed</span>
                   <span>Goal: {petition.target}</span>
                 </div>
-                <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-[#111820] rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-[#4afa82] transition-all"
                     style={{ width: `${petition.progress}%` }}
@@ -153,7 +153,7 @@ const PetitionLinks = () => {
                 </a>
                 <button
                   onClick={() => setExpandedPetition(expandedPetition === petition.id ? null : petition.id)}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-white py-2 px-3 text-sm transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-white py-2 px-3 text-sm transition-colors"
                 >
                   {expandedPetition === petition.id ? '−' : '+'}
                 </button>

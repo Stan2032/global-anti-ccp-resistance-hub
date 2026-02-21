@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "3.0",
-    "date": "2026-02-20T20:50:00Z",
+    "version": "5.0",
+    "date": "2026-02-21T17:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4.5 (Sessions 62-70), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
-    "verification_rate": 0.98,
-    "supersedes": "AGENT_HANDOFF.json (v2.1, Session 60)",
+    "verification_rate": 0.99,
+    "supersedes": "AGENT_HANDOFF.json (v4.0, Session 68)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,16 +22,43 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 277,
+    "frontend_tests": 298,
+    "test_files": 16,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
-    "profile_pages_built": 6,
+    "profile_pages_built": 12,
+    "languages_supported": 8,
     "data_entries_sourced": 142,
+    "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 61,
+    "sessions_completed": 70,
     "design_system": "terminal_ascii_100_percent_applied",
+    "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
-    "accessibility": "WCAG_AA_verified"
+    "pages_consolidated": "18_to_14",
+    "orphan_components_integrated": 8,
+    "accessibility": "WCAG_AA_verified_plus_ARIA_modals",
+    "rss_feeds": 9,
+    "clipboard_error_handling": "all_9_components_fixed",
+    "print_styles": "media_print_A4_layout",
+    "security_fixes": "react_router_7.13.0_3_CVEs_fixed"
+  },
+
+  "sessions_62_to_70_changes": {
+    "profiles": "6 new profile pages (Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen). ProfilesIndex now 12/12, 0 coming soon.",
+    "page_consolidation": "4 orphan pages merged via Navigate redirects: CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds. Orphan files deleted (1,616 lines).",
+    "orphan_integration": "8 orphan components integrated: HongKongStatus/TibetStatus/XinjiangStatus/TaiwanDefenseStatus/CCPOfficials/WorldThreatMap→IntelligenceFeeds (3-tab), ChinaExitBan→SecurityCenter, ConfuciusInstitutes→EducationalResources.",
+    "i18n": "zh-CN bug fix (was in selector but not LanguageContext). Added vi, ko, ja locales (194 keys each). 8 languages total. Removed 4 stale nav keys. Added nav.profiles key.",
+    "flags": "Replaced generic Lucide icons (Flag, Mountain, Landmark) with proper East Turkestan and Tibetan flag SVG components.",
+    "design_cleanup": "Replaced all remaining bg-slate-*/border-slate-* across 97+ files. Fixed focus:border-blue→green in 16 components. Fixed hover borders. Zero old-style classes remain.",
+    "rss_feeds": "Added 5 new feeds: BBC, HRW, Amnesty, CPJ, Guardian. ALWAYS_RELEVANT_SOURCES array.",
+    "sanctions": "Extracted to JSON file, expanded 18→35 entries, 10 data integrity tests. Added 9 US, 3 UK, 3 EU, 2 Canada entries.",
+    "security": "react-router 7.11.0→7.13.0 (3 CVEs: CSRF, XSS, SSR XSS). Fixed Landmark crash on Take Action page.",
+    "accessibility": "ARIA dialog roles + Escape key on 4 modal overlays (MemorialWall, EventMap, VictimStories, MediaGallery).",
+    "clipboard": "Added try/catch to 9 components using navigator.clipboard.writeText().",
+    "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
+    "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
+    "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
   },
 
   "resolved_since_v1": {
@@ -53,8 +80,7 @@
     },
     "frontend_no_tests": {
       "was": "NO_TEST_INFRASTRUCTURE",
-      "now": "RESOLVED — 248 vitest tests across 14 test files, all passing",
-      "note": "Tests existed before Session 25 but were not documented in v1 handoff"
+      "now": "RESOLVED — 298 vitest tests across 16 test files, all passing"
     },
     "notification_no_onclick": {
       "was": "Notification system button has no onClick handler",
@@ -66,8 +92,8 @@
     "cache_system": {
       "status": "DOCUMENTED_BUT_MISSING",
       "severity": "LOW",
-      "description": "cacheService.js referenced in docs but file never existed. Cache documentation should be removed or service implemented.",
-      "recommendation": "Remove cache documentation references (Option B from v1)"
+      "description": "cacheService.js referenced in archived docs but file never existed. Active docs are clean.",
+      "recommendation": "No action needed — references only in _agents/archive/"
     },
     "backend_test_environment": {
       "status": "UNVERIFIABLE_IN_SANDBOX",
@@ -75,48 +101,48 @@
       "description": "Backend tests require PostgreSQL database. Cannot run in sandbox environment.",
       "recommendation": "Set up PostgreSQL, run migrations, then verify backend tests"
     },
-    "broken_doc_references": {
-      "status": "LOW",
-      "description": "Some docs reference branch-3 (doesn't exist) and CACHE_SYSTEM.md (doesn't exist)",
-      "recommendation": "Clean up during next documentation pass"
+    "sanctions_update": {
+      "status": "PARTIALLY_COMPLETE",
+      "severity": "LOW",
+      "description": "Expanded from 18 to 35 entries (Sessions 69-70). May still be missing some 2026 sanctions.",
+      "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions in 2026"
+    },
+    "remaining_orphan_components": {
+      "status": "ALMOST_COMPLETE",
+      "severity": "LOW",
+      "description": "DetentionFacilities and PoliceStationsMap are built but not yet integrated into a page tab.",
+      "recommendation": "Integrate DetentionFacilities into IntelligenceFeeds or a new Research tab"
     }
   },
 
   "next_priority_actions": [
     {
       "priority": 1,
-      "task": "mobile_testing",
-      "description": "Verify ASCII design works across mobile viewport sizes — tabs have overflow-x-auto, 404 ASCII hidden on mobile, footer has overflow-hidden",
-      "estimated_hours": 2,
-      "status": "PARTIALLY_DONE"
-    },
-    {
-      "priority": 2,
-      "task": "page_consolidation",
-      "description": "Merge 4 orphan pages: CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→Education, RegionalThreats→Intelligence",
-      "estimated_hours": 3,
-      "status": "NOT_STARTED"
-    },
-    {
-      "priority": 3,
-      "task": "multilingual_translations",
-      "description": "Fill in zh-TW, ug, bo locale files (currently skeleton structures with __VOLUNTEER_TRANSLATION_NEEDED__ placeholders)",
-      "estimated_hours": 8,
-      "status": "NOT_STARTED"
-    },
-    {
-      "priority": 4,
       "task": "backend_connection",
-      "description": "Connect frontend to Cloudflare Pages Functions + Supabase backend when ready",
+      "description": "Connect frontend to Cloudflare Pages Functions + Supabase backend. Backend exists in /backend/ with Express + PostgreSQL.",
       "estimated_hours": 16,
       "status": "NOT_STARTED"
     },
     {
-      "priority": 5,
-      "task": "additional_profiles",
-      "description": "DEPRIORITIZED by project owner — Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan",
-      "estimated_hours": 12,
-      "status": "DEPRIORITIZED"
+      "priority": 2,
+      "task": "remaining_orphan_integration",
+      "description": "Integrate DetentionFacilities and PoliceStationsMap into page tabs",
+      "estimated_hours": 2,
+      "status": "NOT_STARTED"
+    },
+    {
+      "priority": 3,
+      "task": "content_monitoring",
+      "description": "Update political prisoners database with new cases, monitor appeal proceedings (Jimmy Lai, Joshua Wong)",
+      "estimated_hours": 4,
+      "status": "ONGOING"
+    },
+    {
+      "priority": 4,
+      "task": "sanctions_monitoring",
+      "description": "Monitor for new 2026 sanctions from US/EU/UK/Canada/Australia",
+      "estimated_hours": 2,
+      "status": "ONGOING"
     }
   ],
 

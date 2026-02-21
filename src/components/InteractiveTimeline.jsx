@@ -7,7 +7,7 @@ import timelineEvents from '../data/timeline_events.json';
 // Categories kept inline since they include Tailwind CSS classes (not pure data)
 
 const categories = [
-  { id: 'all', name: 'All Events', color: 'bg-slate-500' },
+  { id: 'all', name: 'All Events', color: 'bg-[#1c2a35]' },
   { id: 'hongkong', name: 'Hong Kong', color: 'bg-yellow-500' },
   { id: 'uyghur', name: 'Uyghur/Xinjiang', color: 'bg-blue-500' },
   { id: 'tibet', name: 'Tibet', color: 'bg-red-500' },
@@ -60,7 +60,7 @@ export default function InteractiveTimeline() {
   };
 
   const getCategoryColor = (category) => {
-    return categories.find(c => c.id === category)?.color || 'bg-slate-500';
+    return categories.find(c => c.id === category)?.color || 'bg-[#1c2a35]';
   };
 
   const getSignificanceStyle = (significance) => {
@@ -96,14 +96,14 @@ export default function InteractiveTimeline() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.25))}
-            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
             title="Zoom out"
           >
             <ZoomOut className="w-4 h-4 text-slate-300" />
           </button>
           <button
             onClick={() => setZoomLevel(Math.min(2, zoomLevel + 0.25))}
-            className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
             title="Zoom in"
           >
             <ZoomIn className="w-4 h-4 text-slate-300" />
@@ -124,7 +124,7 @@ export default function InteractiveTimeline() {
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
               selectedCategory === category.id
                 ? `${category.color} text-white`
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {category.name}
@@ -136,7 +136,7 @@ export default function InteractiveTimeline() {
       <div className="flex items-center justify-center gap-4 mb-6">
         <button
           onClick={handlePrevious}
-          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronLeft className="w-5 h-5 text-slate-300" />
         </button>
@@ -150,7 +150,7 @@ export default function InteractiveTimeline() {
         </button>
         <button
           onClick={handleNext}
-          className="p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
         >
           <ChevronRight className="w-5 h-5 text-slate-300" />
         </button>
@@ -170,7 +170,7 @@ export default function InteractiveTimeline() {
           </div>
           
           {/* Timeline line */}
-          <div className="relative h-2 bg-slate-700 rounded-full mx-4">
+          <div className="relative h-2 bg-[#111820] rounded-full mx-4">
             {filteredEvents.map((event, index) => {
               const year = new Date(event.date).getFullYear();
               const position = ((year - yearRange.min) / (yearRange.max - yearRange.min)) * 100;
@@ -195,7 +195,7 @@ export default function InteractiveTimeline() {
 
       {/* Event Details */}
       {selectedEvent ? (
-        <div className="bg-[#0a0e14]/50 p-6 border border-slate-600">
+        <div className="bg-[#0a0e14]/50 p-6 border border-[#1c2a35]">
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -268,7 +268,7 @@ export default function InteractiveTimeline() {
                   return resolved.url ? (
                     <SourceAttribution key={i} source={resolved} compact />
                   ) : (
-                    <span key={i} className="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">
+                    <span key={i} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
                       {source}
                     </span>
                   );
@@ -278,7 +278,7 @@ export default function InteractiveTimeline() {
           )}
         </div>
       ) : (
-        <div className="bg-[#0a0e14]/50 p-8 border border-slate-600 text-center">
+        <div className="bg-[#0a0e14]/50 p-8 border border-[#1c2a35] text-center">
           <Info className="w-12 h-12 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">Click on a timeline marker to view event details</p>
           <p className="text-slate-500 text-sm mt-2">Or press Play to auto-advance through events</p>
@@ -290,11 +290,11 @@ export default function InteractiveTimeline() {
         <h4 className="text-sm font-semibold text-slate-400 mb-3">Legend</h4>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-slate-500 ring-2 ring-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-[#1c2a35] ring-2 ring-red-500"></div>
             <span className="text-xs text-slate-400">Critical Event</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-slate-500 ring-2 ring-orange-500"></div>
+            <div className="w-3 h-3 rounded-full bg-[#1c2a35] ring-2 ring-orange-500"></div>
             <span className="text-xs text-slate-400">High Significance</span>
           </div>
           {categories.slice(1).map(cat => (
@@ -308,19 +308,19 @@ export default function InteractiveTimeline() {
 
       {/* Statistics */}
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-white">{timelineEvents.length}</p>
           <p className="text-xs text-slate-400">Total Events</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-white">{yearRange.max - yearRange.min + 1}</p>
           <p className="text-xs text-slate-400">Years Covered</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-red-400">{timelineEvents.filter(e => e.significance === 'critical').length}</p>
           <p className="text-xs text-slate-400">Critical Events</p>
         </div>
-        <div className="bg-slate-700/50 p-3 text-center">
+        <div className="bg-[#111820] p-3 text-center">
           <p className="text-2xl font-bold text-yellow-400">{timelineEvents.filter(e => e.category === 'hongkong').length}</p>
           <p className="text-xs text-slate-400">Hong Kong Events</p>
         </div>

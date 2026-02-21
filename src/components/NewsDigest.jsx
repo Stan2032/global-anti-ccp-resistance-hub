@@ -105,7 +105,7 @@ const NewsDigest = () => {
           </div>
           <button
             onClick={() => setSubscribed(false)}
-            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+            className="mt-4 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
           >
             Update Preferences
           </button>
@@ -175,7 +175,7 @@ const NewsDigest = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
           />
           <p className="text-xs text-slate-500 mt-2">
             We respect your privacy. Unsubscribe anytime.

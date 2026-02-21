@@ -224,13 +224,13 @@ const DataExport = () => {
           <div className="flex space-x-2">
             <button
               onClick={selectAll}
-              className="px-3 py-1 text-sm bg-slate-700 hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
+              className="px-3 py-1 text-sm bg-[#111820] hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
             >
               Select All
             </button>
             <button
               onClick={selectNone}
-              className="px-3 py-1 text-sm bg-slate-700 hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
+              className="px-3 py-1 text-sm bg-[#111820] hover:bg-[#1c2a35] text-slate-300 rounded transition-colors"
             >
               Clear
             </button>
@@ -245,7 +245,7 @@ const DataExport = () => {
               className={`p-4 border text-left transition-all ${
                 selectedDatasets.includes(dataset.id)
                   ? 'bg-cyan-900/30 border-cyan-500'
-                  : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
+                  : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
             >
               <div className="flex items-start">
@@ -256,7 +256,7 @@ const DataExport = () => {
                     <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                       selectedDatasets.includes(dataset.id)
                         ? 'bg-cyan-500 border-cyan-500'
-                        : 'border-slate-500'
+                        : 'border-[#1c2a35]'
                     }`}>
                       {selectedDatasets.includes(dataset.id) && (
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -288,7 +288,7 @@ const DataExport = () => {
               className={`flex-1 min-w-[150px] p-4 border text-left transition-all ${
                 exportFormat === format.id
                   ? 'bg-cyan-900/30 border-cyan-500'
-                  : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
+                  : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
             >
               <div className="flex items-center mb-2">
@@ -315,7 +315,7 @@ const DataExport = () => {
             disabled={selectedDatasets.length === 0 || isExporting}
             className={`px-6 py-3 font-medium transition-all flex items-center ${
               selectedDatasets.length === 0
-                ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                ? 'bg-[#111820] text-slate-500 cursor-not-allowed'
                 : isExporting
                 ? 'bg-cyan-700 text-white cursor-wait'
                 : 'bg-cyan-600 hover:bg-cyan-700 text-white'

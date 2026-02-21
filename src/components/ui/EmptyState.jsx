@@ -126,7 +126,7 @@ const EmptyState = ({
               whileTap={{ scale: 0.95 }}
               onClick={action.onClick}
               disabled={action.disabled}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-medium transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
             >
               {action.icon}
               <span>{action.label}</span>
@@ -138,7 +138,7 @@ const EmptyState = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={secondaryAction.onClick}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               {secondaryAction.icon}
               <span>{secondaryAction.label}</span>

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Check, ChevronDown, Flag, Mountain } from 'lucide-react';
+import { Globe, Check, ChevronDown } from 'lucide-react';
+import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 // Import comprehensive language files
 import enTranslations from '../locales/en.json';
 import zhCNTranslations from '../locales/zh-CN.json';
 import zhTWTranslations from '../locales/zh-TW.json';
+import viTranslations from '../locales/vi.json';
+import koTranslations from '../locales/ko.json';
+import jaTranslations from '../locales/ja.json';
 import ugTranslations from '../locales/ug.json';
 import boTranslations from '../locales/bo.json';
 
@@ -181,9 +185,180 @@ const translations = {
       tortureDocumented: '有酷刑記錄'
     }
   },
+  vi: {
+    name: 'Tiếng Việt',
+    flag: '🇻🇳',
+    localeData: viTranslations,
+    nav: {
+      dashboard: 'Bảng điều khiển',
+      intelligence: 'Tin tức',
+      directory: 'Danh mục',
+      prisoners: 'Tù nhân chính trị',
+      threats: 'Mối đe dọa khu vực',
+      takeAction: 'Hành động',
+      campaigns: 'Chiến dịch',
+      community: 'Cộng đồng',
+      tactics: 'Chiến thuật ĐCSTQ',
+      education: 'Giáo dục',
+      security: 'An ninh',
+      resources: 'Tài nguyên'
+    },
+    common: {
+      search: 'Tìm kiếm',
+      filter: 'Lọc',
+      all: 'Tất cả',
+      critical: 'Nghiêm trọng',
+      high: 'Cao',
+      medium: 'Trung bình',
+      low: 'Thấp',
+      learnMore: 'Tìm hiểu thêm',
+      takeAction: 'Hành động',
+      share: 'Chia sẻ',
+      donate: 'Quyên góp',
+      signPetition: 'Ký kiến nghị',
+      contactRep: 'Liên hệ đại diện',
+      viewDetails: 'Xem chi tiết',
+      close: 'Đóng',
+      submit: 'Gửi',
+      cancel: 'Hủy',
+      back: 'Quay lại',
+      next: 'Tiếp theo'
+    },
+    alerts: {
+      securityWarning: 'Cảnh báo an ninh',
+      useVPN: 'Vì an toàn của bạn, hãy sử dụng VPN hoặc Tor.',
+      inChina: 'Nếu bạn ở Trung Quốc, hãy cực kỳ cẩn thận.',
+      emergency: 'Liên hệ khẩn cấp',
+      reportIncident: 'Báo cáo sự cố'
+    },
+    prisoners: {
+      title: 'Cơ sở dữ liệu Tù nhân Chính trị',
+      detained: 'Đang bị giam',
+      imprisoned: 'Bị cầm tù',
+      disappeared: 'Mất tích',
+      released: 'Đã được thả',
+      deceased: 'Đã qua đời',
+      healthConcerns: 'Lo ngại sức khỏe',
+      tortureDocumented: 'Có ghi nhận tra tấn'
+    }
+  },
+  ko: {
+    name: '한국어',
+    flag: '🇰🇷',
+    localeData: koTranslations,
+    nav: {
+      dashboard: '대시보드',
+      intelligence: '정보',
+      directory: '디렉터리',
+      prisoners: '정치범',
+      threats: '지역 위협',
+      takeAction: '행동하기',
+      campaigns: '캠페인',
+      community: '커뮤니티',
+      tactics: '중국공산당 전술',
+      education: '교육',
+      security: '보안',
+      resources: '자료'
+    },
+    common: {
+      search: '검색',
+      filter: '필터',
+      all: '전체',
+      critical: '심각',
+      high: '높음',
+      medium: '보통',
+      low: '낮음',
+      learnMore: '더 알아보기',
+      takeAction: '행동하기',
+      share: '공유',
+      donate: '기부',
+      signPetition: '청원 서명',
+      contactRep: '대표자 연락',
+      viewDetails: '상세 보기',
+      close: '닫기',
+      submit: '제출',
+      cancel: '취소',
+      back: '뒤로',
+      next: '다음'
+    },
+    alerts: {
+      securityWarning: '보안 경고',
+      useVPN: '안전을 위해 VPN 또는 Tor를 사용하세요.',
+      inChina: '중국에 계시다면 각별히 주의하세요.',
+      emergency: '긴급 연락처',
+      reportIncident: '사건 보고'
+    },
+    prisoners: {
+      title: '정치범 데이터베이스',
+      detained: '구금 중',
+      imprisoned: '수감 중',
+      disappeared: '실종',
+      released: '석방됨',
+      deceased: '사망',
+      healthConcerns: '건강 우려',
+      tortureDocumented: '고문 기록'
+    }
+  },
+  ja: {
+    name: '日本語',
+    flag: '🇯🇵',
+    localeData: jaTranslations,
+    nav: {
+      dashboard: 'ダッシュボード',
+      intelligence: 'インテリジェンス',
+      directory: 'ディレクトリ',
+      prisoners: '政治犯',
+      threats: '地域の脅威',
+      takeAction: '行動する',
+      campaigns: 'キャンペーン',
+      community: 'コミュニティ',
+      tactics: '中共の戦術',
+      education: '教育',
+      security: 'セキュリティ',
+      resources: 'リソース'
+    },
+    common: {
+      search: '検索',
+      filter: 'フィルター',
+      all: 'すべて',
+      critical: '重大',
+      high: '高',
+      medium: '中',
+      low: '低',
+      learnMore: '詳しく見る',
+      takeAction: '行動する',
+      share: '共有',
+      donate: '寄付',
+      signPetition: '署名する',
+      contactRep: '代表者に連絡',
+      viewDetails: '詳細を見る',
+      close: '閉じる',
+      submit: '送信',
+      cancel: 'キャンセル',
+      back: '戻る',
+      next: '次へ'
+    },
+    alerts: {
+      securityWarning: 'セキュリティ警告',
+      useVPN: '安全のため、VPNまたはTorをご使用ください。',
+      inChina: '中国にいる場合は、十分にご注意ください。',
+      emergency: '緊急連絡先',
+      reportIncident: 'インシデント報告'
+    },
+    prisoners: {
+      title: '政治犯データベース',
+      detained: '拘束中',
+      imprisoned: '投獄中',
+      disappeared: '行方不明',
+      released: '釈放済み',
+      deceased: '死亡',
+      healthConcerns: '健康上の懸念',
+      tortureDocumented: '拷問の記録'
+    }
+  },
   ug: {
     name: 'ئۇيغۇرچە',
-    FlagIcon: Flag,
+    FlagIcon: EastTurkestanFlag,
     rtl: true,
     localeData: ugTranslations,
     nav: {
@@ -241,7 +416,7 @@ const translations = {
   },
   bo: {
     name: 'བོད་སྐད།',
-    FlagIcon: Mountain,
+    FlagIcon: TibetanFlag,
     localeData: boTranslations,
     nav: {
       dashboard: 'ལས་ཁུངས།',
@@ -393,7 +568,7 @@ const LanguageSelector = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+        className="flex items-center gap-2 px-3 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
       >
         <Globe className="w-4 h-4 text-gray-400" />
         <span className="text-lg">{currentLang.FlagIcon ? <currentLang.FlagIcon className="w-5 h-5" /> : currentLang.flag}</span>
@@ -415,7 +590,7 @@ const LanguageSelector = () => {
                   setIsOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#111820] transition-colors ${
-                  language === lang.code ? 'bg-slate-700' : ''
+                  language === lang.code ? 'bg-[#111820]' : ''
                 } ${lang.code === availableLanguages[0].code ? 'rounded-t-lg' : ''} ${
                   lang.code === availableLanguages[availableLanguages.length - 1].code ? 'rounded-b-lg' : ''
                 }`}

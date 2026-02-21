@@ -333,7 +333,7 @@ const LegalResourcesHub = () => {
       'Directory': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Legal Document': 'text-purple-400 bg-purple-500/10 border-purple-500/30'
     };
-    return colors[type] || 'text-slate-400 bg-slate-500/10 border-slate-500/30';
+    return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
 
   return (

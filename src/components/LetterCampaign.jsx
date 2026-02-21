@@ -154,7 +154,7 @@ Sincerely,
     },
   ];
 
-  const copyLetter = (template) => {
+  const copyLetter = async (template) => {
     let letter = template;
     if (customizations.name) {
       letter = letter.replace('[Your Name]', customizations.name);
@@ -162,9 +162,13 @@ Sincerely,
     if (customizations.location) {
       letter = letter.replace('[Your Location]', customizations.location);
     }
-    navigator.clipboard.writeText(letter);
-    setCopiedLetter(true);
-    setTimeout(() => setCopiedLetter(false), 2000);
+    try {
+      await navigator.clipboard.writeText(letter);
+      setCopiedLetter(true);
+      setTimeout(() => setCopiedLetter(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const urgencyColors = {
@@ -202,7 +206,7 @@ Sincerely,
               value={customizations.name}
               onChange={(e) => setCustomizations({ ...customizations, name: e.target.value })}
               placeholder="Your name"
-              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
           </div>
           <div>
@@ -213,7 +217,7 @@ Sincerely,
               value={customizations.location}
               onChange={(e) => setCustomizations({ ...customizations, location: e.target.value })}
               placeholder="City, State/Country"
-              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
             />
           </div>
         </div>

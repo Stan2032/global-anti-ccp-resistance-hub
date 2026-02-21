@@ -1,0 +1,80 @@
+import { describe, it, expect } from 'vitest';
+import sanctionsData from '../data/sanctions_tracker.json';
+
+describe('Sanctions Tracker Data', () => {
+  it('has valid metadata', () => {
+    expect(sanctionsData.metadata).toBeDefined();
+    expect(sanctionsData.metadata.title).toBe('Global Sanctions Tracker');
+    expect(sanctionsData.metadata.last_verified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(sanctionsData.metadata.sources.length).toBeGreaterThan(0);
+  });
+
+  it('has law_links with valid URLs', () => {
+    const laws = Object.entries(sanctionsData.law_links);
+    expect(laws.length).toBeGreaterThan(0);
+    laws.forEach(([name, url]) => {
+      expect(url).toMatch(/^https:\/\//);
+      expect(name).toBeTruthy();
+    });
+  });
+
+  it('has sanctions entries with required fields', () => {
+    const requiredFields = ['id', 'country', 'type', 'target', 'role', 'reason', 'date', 'law', 'status'];
+    expect(sanctionsData.sanctions.length).toBeGreaterThanOrEqual(18);
+    
+    sanctionsData.sanctions.forEach(sanction => {
+      requiredFields.forEach(field => {
+        expect(sanction[field], `Sanction ${sanction.id} missing ${field}`).toBeDefined();
+      });
+    });
+  });
+
+  it('has valid dates in YYYY-MM-DD format', () => {
+    sanctionsData.sanctions.forEach(sanction => {
+      expect(sanction.date, `Sanction ${sanction.id} invalid date`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    });
+  });
+
+  it('has unique IDs', () => {
+    const ids = sanctionsData.sanctions.map(s => s.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('has valid country codes', () => {
+    const validCountries = ['us', 'uk', 'eu', 'canada', 'australia'];
+    sanctionsData.sanctions.forEach(sanction => {
+      expect(validCountries, `Invalid country: ${sanction.country}`).toContain(sanction.country);
+    });
+  });
+
+  it('has valid sanction types', () => {
+    const validTypes = ['individual', 'entity', 'trade', 'visa'];
+    sanctionsData.sanctions.forEach(sanction => {
+      expect(validTypes, `Invalid type: ${sanction.type}`).toContain(sanction.type);
+    });
+  });
+
+  it('references only known laws', () => {
+    const knownLaws = Object.keys(sanctionsData.law_links);
+    sanctionsData.sanctions.forEach(sanction => {
+      expect(knownLaws, `Unknown law: ${sanction.law} in sanction ${sanction.id}`).toContain(sanction.law);
+    });
+  });
+
+  it('covers all 5 sanctioning countries', () => {
+    const countries = new Set(sanctionsData.sanctions.map(s => s.country));
+    expect(countries.has('us')).toBe(true);
+    expect(countries.has('uk')).toBe(true);
+    expect(countries.has('eu')).toBe(true);
+    expect(countries.has('canada')).toBe(true);
+    expect(countries.has('australia')).toBe(true);
+  });
+
+  it('does not cite CCP state media sources', () => {
+    const ccpMedia = ['xinhua', 'cgtn', 'people.cn', 'globaltimes', 'chinadaily', 'takungpao'];
+    const sourcesStr = JSON.stringify(sanctionsData.metadata.sources).toLowerCase();
+    ccpMedia.forEach(outlet => {
+      expect(sourcesStr).not.toContain(outlet);
+    });
+  });
+});

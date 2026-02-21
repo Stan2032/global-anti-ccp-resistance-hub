@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
 
 const VictimStories = () => {
   const [selectedStory, setSelectedStory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedStory(null); };
+    if (selectedStory) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedStory]);
 
   const stories = [
     {
@@ -200,7 +206,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
@@ -251,6 +257,9 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
       {selectedStory && (
         <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Story of ${selectedStory.name}`}
           onClick={() => setSelectedStory(null)}
         >
           <div
@@ -295,7 +304,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedStory.sources.map((source, i) => (
-                    <span key={i} className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded">
+                    <span key={i} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
                       {source}
                     </span>
                   ))}
@@ -305,11 +314,15 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               {/* Share */}
               <div className="mt-6 flex items-center gap-4">
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     const text = `${selectedStory.name}: "${selectedStory.quote}" - Read their story of surviving CCP persecution.`;
-                    navigator.clipboard.writeText(text);
+                    try {
+                      await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                      console.error('Failed to copy:', err);
+                    }
                   }}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>

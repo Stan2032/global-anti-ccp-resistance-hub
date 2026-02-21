@@ -201,7 +201,7 @@ const ActionTracker = () => {
             )}
           </div>
           {levelInfo.next && (
-            <div className="w-full bg-slate-700 rounded-full h-2">
+            <div className="w-full bg-[#111820] rounded-full h-2">
               <div 
                 className="bg-[#4afa82] h-2 transition-all duration-500"
                 style={{ width: `${Math.min((getTotalPoints() / levelInfo.next) * 100, 100)}%` }}
@@ -255,7 +255,7 @@ const ActionTracker = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="text-sm text-slate-400">{progress}%</div>
-                  <div className="w-20 bg-slate-700 rounded-full h-2">
+                  <div className="w-20 bg-[#111820] rounded-full h-2">
                     <div 
                       className={`${colors.check} h-2 rounded-full transition-all duration-300`}
                       style={{ width: `${progress}%` }}
@@ -274,14 +274,14 @@ const ActionTracker = () => {
                       className={`w-full flex items-center justify-between p-3 transition-all ${
                         isCompleted 
                           ? 'bg-[#0a0e14]/70 border border-green-600/50' 
-                          : 'bg-[#0a0e14]/30 border border-[#1c2a35] hover:border-slate-600'
+                          : 'bg-[#0a0e14]/30 border border-[#1c2a35] hover:border-[#2a9a52]'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
                           isCompleted 
                             ? 'bg-green-600 border-green-600' 
-                            : 'border-slate-500'
+                            : 'border-[#1c2a35]'
                         }`}>
                           {isCompleted && <span className="text-white text-xs">✓</span>}
                         </div>

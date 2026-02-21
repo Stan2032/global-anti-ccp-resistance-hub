@@ -205,7 +205,7 @@ const DiasporaSupport = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <cat.Icon className="w-4 h-4" />
@@ -237,7 +237,7 @@ const DiasporaSupport = () => {
                 <p className="text-xs text-slate-500 mb-2">Services:</p>
                 <div className="flex flex-wrap gap-2">
                   {resource.services.map((service, j) => (
-                    <span key={j} className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded">
+                    <span key={j} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
                       {service}
                     </span>
                   ))}

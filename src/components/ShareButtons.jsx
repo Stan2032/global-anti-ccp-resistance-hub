@@ -122,7 +122,7 @@ const ShareButtons = ({
         {/* Copy Link Button */}
         <button
           onClick={copyToClipboard}
-          className={`${copied ? 'bg-green-600' : 'bg-slate-600 hover:bg-slate-500'} text-white p-2 transition-colors flex items-center gap-2`}
+          className={`${copied ? 'bg-green-600' : 'bg-[#1c2a35] hover:bg-[#1c2a35]'} text-white p-2 transition-colors flex items-center gap-2`}
           title="Copy link"
         >
           {copied ? (
@@ -141,7 +141,7 @@ const ShareButtons = ({
         {!compact && shareLinks.length > 5 && (
           <button
             onClick={() => setShowMore(!showMore)}
-            className="bg-slate-700 hover:bg-[#1c2a35] text-white p-2 transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] text-white p-2 transition-colors"
             title={showMore ? 'Show less' : 'More options'}
           >
             <svg className={`w-5 h-5 transition-transform ${showMore ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

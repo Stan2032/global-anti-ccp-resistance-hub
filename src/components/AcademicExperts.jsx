@@ -19,7 +19,7 @@ const ExpertiseBadge = ({ expertise }) => {
   };
   
   return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[expertise] || 'bg-slate-500/20 text-slate-400 border-slate-500/30'}`}>
+    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[expertise] || 'bg-[#1c2a35]/30 text-slate-400 border-[#1c2a35]/50'}`}>
       {expertise}
     </span>
   );
@@ -95,14 +95,14 @@ const AcademicExperts = () => {
             placeholder="Search by name, affiliation, or work..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Expertise filter"
           value={expertiseFilter}
           onChange={(e) => setExpertiseFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Expertise Areas</option>
           {expertiseAreas.map(area => (
@@ -117,7 +117,7 @@ const AcademicExperts = () => {
           {filteredExperts.map((expert, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 overflow-hidden"
+              className="bg-[#111820]/30 overflow-hidden"
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
@@ -162,7 +162,7 @@ const AcademicExperts = () => {
 
               {/* Expanded Details */}
               {expandedExpert === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-600/50">
+                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {expert.key_works && (
                     <div className="pt-3">
                       <div className="text-xs text-slate-500 uppercase mb-1 flex items-center gap-1">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Calendar, Users, ExternalLink, Filter, Globe, Clock, ChevronRight } from 'lucide-react';
 
 const events = [
@@ -178,6 +178,12 @@ export default function EventMap() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'map'
 
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedEvent(null); };
+    if (selectedEvent) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedEvent]);
+
   const filteredEvents = events.filter(event => {
     if (selectedRegion !== 'All Regions' && event.region !== selectedRegion) return false;
     if (selectedCause !== 'All Causes' && event.cause !== selectedCause) return false;
@@ -221,7 +227,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -246,7 +252,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -271,7 +277,7 @@ export default function EventMap() {
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="w-full text-left p-2 bg-slate-700 hover:bg-[#1c2a35] rounded text-sm transition-colors"
+                className="w-full text-left p-2 bg-[#111820] hover:bg-[#1c2a35] rounded text-sm transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${getCauseColor(event.cause)}`}></span>
@@ -312,13 +318,13 @@ export default function EventMap() {
         <div className="flex gap-2">
           <button
             onClick={() => setViewMode('list')}
-            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-300'}`}
           >
             List
           </button>
           <button
             onClick={() => setViewMode('map')}
-            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'map' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'map' ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-300'}`}
           >
             Map
           </button>
@@ -351,7 +357,7 @@ export default function EventMap() {
           aria-label="Filter"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region}</option>
@@ -361,7 +367,7 @@ export default function EventMap() {
           aria-label="Region filter"
           value={selectedCause}
           onChange={(e) => setSelectedCause(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {causes.map(cause => (
             <option key={cause} value={cause}>{cause}</option>
@@ -371,7 +377,7 @@ export default function EventMap() {
           aria-label="Type filter"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {types.map(type => (
             <option key={type} value={type}>{type}</option>
@@ -397,7 +403,7 @@ export default function EventMap() {
                   <button
                     key={event.id}
                     onClick={() => setSelectedEvent(event)}
-                    className="w-full bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
+                    className="w-full bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -405,7 +411,7 @@ export default function EventMap() {
                           <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCauseColor(event.cause)}`}>
                             {event.cause}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300">
+                          <span className="px-2 py-0.5 rounded text-xs bg-[#111820] text-slate-300">
                             {event.type}
                           </span>
                         </div>
@@ -460,13 +466,13 @@ export default function EventMap() {
 
       {/* Event Detail Modal */}
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedEvent(null)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Event details: ${selectedEvent.title}`} onClick={() => setSelectedEvent(null)}>
           <div className="bg-[#111820] max-w-lg w-full p-6 border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-2 mb-3">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCauseColor(selectedEvent.cause)}`}>
                 {selectedEvent.cause}
               </span>
-              <span className="px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300">
+              <span className="px-2 py-0.5 rounded text-xs bg-[#111820] text-slate-300">
                 {selectedEvent.type}
               </span>
               {isUpcoming(selectedEvent.date) && (
@@ -515,7 +521,7 @@ export default function EventMap() {
                   const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(selectedEvent.title)}&dates=${selectedEvent.date.replace(/-/g, '')}/${selectedEvent.date.replace(/-/g, '')}&details=${encodeURIComponent(selectedEvent.description)}&location=${encodeURIComponent(selectedEvent.location + ', ' + selectedEvent.country)}`;
                   window.open(calendarUrl, '_blank');
                 }}
-                className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+                className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
               >
                 Add to Calendar
               </button>

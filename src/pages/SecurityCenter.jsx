@@ -40,6 +40,7 @@ const SafetyChecklist = lazy(() => import('../components/SafetyChecklist'));
 const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
 const OfflineModeManager = lazy(() => import('../components/OfflineModeManager'));
 const WhistleblowerPortal = lazy(() => import('../components/WhistleblowerPortal'));
+const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -503,6 +504,11 @@ const SecurityCenter = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── incident_report ──</h2>
             <Suspense fallback={<SectionLoader />}><IncidentReportForm /></Suspense>
+          </div>
+          {/* China Exit Ban Tracker */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── exit_ban_tracker ──</h2>
+            <Suspense fallback={<SectionLoader />}><ChinaExitBan /></Suspense>
           </div>
         </div>
       )}

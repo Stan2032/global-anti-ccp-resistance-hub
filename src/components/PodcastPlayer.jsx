@@ -384,7 +384,7 @@ const PodcastPlayer = () => {
                   href={podcast.rss}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors text-sm"
                 >
                   RSS Feed
                 </a>

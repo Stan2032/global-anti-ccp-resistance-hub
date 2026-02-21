@@ -19,18 +19,15 @@ const GlobalSearch = ({ isOpen, onClose }) => {
   const searchableContent = [
     // Pages
     { type: 'page', title: 'Dashboard', description: 'Overview of resistance activities', path: '/', Icon: BarChart3, keywords: ['home', 'overview', 'stats'] },
-    { type: 'page', title: 'Intelligence Feeds', description: 'Live news and updates', path: '/intelligence', Icon: Newspaper, keywords: ['news', 'rss', 'feeds'] },
+    { type: 'page', title: 'Intelligence Feeds', description: 'Live news, updates, and regional threats', path: '/intelligence', Icon: Newspaper, keywords: ['news', 'rss', 'feeds', 'map', 'regions', 'countries', 'threats'] },
     { type: 'page', title: 'Resistance Directory', description: 'Organizations fighting for human rights', path: '/directory', Icon: Users, keywords: ['organizations', 'ngos', 'groups'] },
     { type: 'page', title: 'Political Prisoners', description: 'Documented cases of political detention', path: '/prisoners', Icon: Link, keywords: ['detained', 'imprisoned', 'jail'] },
-    { type: 'page', title: 'Regional Threats', description: 'CCP activities by region', path: '/threats', Icon: AlertTriangle, keywords: ['map', 'regions', 'countries'] },
-    { type: 'page', title: 'Take Action', description: 'Ways to help and get involved', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition'] },
-    { type: 'page', title: 'Campaigns', description: 'Active advocacy campaigns', path: '/campaigns', Icon: Target, keywords: ['activism', 'campaigns', 'movements'] },
+    { type: 'page', title: 'Take Action', description: 'Ways to help, campaigns, and advocacy', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition', 'activism', 'campaigns', 'movements'] },
     { type: 'page', title: 'Community', description: 'Connect with other activists', path: '/community', Icon: MessageCircle, keywords: ['forum', 'discussion', 'connect'] },
-    { type: 'page', title: 'Communications', description: 'Secure communication tools', path: '/communications', Icon: Lock, keywords: ['secure', 'encrypted', 'privacy'] },
     { type: 'page', title: 'Resources', description: 'Tools and materials', path: '/resources', Icon: Wrench, keywords: ['tools', 'downloads', 'materials'] },
-    { type: 'page', title: 'CCP Tactics', description: 'Understanding CCP methods', path: '/tactics', Icon: BookOpen, keywords: ['propaganda', 'influence', 'methods'] },
-    { type: 'page', title: 'Education Center', description: 'Learning resources and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training'] },
-    { type: 'page', title: 'Security Center', description: 'Digital security guidance', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection'] },
+    { type: 'page', title: 'Education Center', description: 'Learning resources, CCP tactics, and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training', 'propaganda', 'influence', 'methods', 'tactics'] },
+    { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
+    { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
 
     // Political Prisoners
     { type: 'prisoner', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder', path: '/prisoners', Icon: Link, keywords: ['hong kong', 'apple daily', 'media'] },
@@ -189,7 +186,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
               className="flex-1 px-4 py-4 bg-transparent text-white placeholder-slate-400 focus:outline-none"
               aria-label="Global search"
             />
-            <kbd className="hidden md:inline-flex items-center px-2 py-1 text-xs text-slate-400 bg-slate-700 rounded">
+            <kbd className="hidden md:inline-flex items-center px-2 py-1 text-xs text-slate-400 bg-[#111820] rounded">
               ESC
             </kbd>
           </div>
@@ -199,7 +196,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
             <div className="max-h-96 overflow-y-auto">
               {isLoading ? (
                 <div className="p-4 text-center text-slate-400">
-                  <div className="animate-spin w-5 h-5 border-2 border-slate-400 border-t-transparent rounded-full mx-auto mb-2" />
+                  <div className="animate-spin w-5 h-5 border-2 border-[#1c2a35] border-t-transparent rounded-full mx-auto mb-2" />
                   Searching...
                 </div>
               ) : results.length > 0 ? (
@@ -228,7 +225,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                               result.type === 'prisoner' ? 'bg-red-900 text-red-300' :
                               result.type === 'topic' ? 'bg-purple-900 text-purple-300' :
                               result.type === 'action' ? 'bg-green-900 text-green-300' :
-                              'bg-slate-700 text-slate-300'
+                              'bg-[#111820] text-slate-300'
                             }`}>
                               {result.type}
                             </span>
@@ -236,7 +233,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                           <p className="text-sm text-slate-400 truncate">{result.description}</p>
                         </div>
                         {index === selectedIndex && (
-                          <kbd className="hidden md:inline-flex items-center px-2 py-1 text-xs text-slate-400 bg-slate-700 rounded ml-2">
+                          <kbd className="hidden md:inline-flex items-center px-2 py-1 text-xs text-slate-400 bg-[#111820] rounded ml-2">
                             ↵
                           </kbd>
                         )}
@@ -268,7 +265,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                   <button
                     key={link.path}
                     onClick={() => handleResultClick(link)}
-                    className="flex items-center px-3 py-2 bg-slate-700/50 hover:bg-[#111820] transition-colors text-left"
+                    className="flex items-center px-3 py-2 bg-[#111820] hover:bg-[#111820] transition-colors text-left"
                   >
                     <span className="mr-2 flex items-center">
                       {link.Icon ? <link.Icon className="w-4 h-4" /> : link.icon}
@@ -284,18 +281,18 @@ const GlobalSearch = ({ isOpen, onClose }) => {
           <div className="px-4 py-3 border-t border-[#1c2a35] flex items-center justify-between text-xs text-slate-500">
             <div className="flex items-center space-x-4">
               <span className="flex items-center">
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">↑</kbd>
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">↓</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">↑</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">↓</kbd>
                 Navigate
               </span>
               <span className="flex items-center">
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">↵</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">↵</kbd>
                 Select
               </span>
             </div>
             <span className="flex items-center">
-              <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">⌘</kbd>
-              <kbd className="px-1.5 py-0.5 bg-slate-700 rounded mr-1">K</kbd>
+              <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">⌘</kbd>
+              <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">K</kbd>
               to open
             </span>
           </div>

@@ -218,7 +218,7 @@ const EventCalendar = () => {
       case 'protest': return 'bg-red-600';
       case 'solidarity': return 'bg-blue-600';
       case 'awareness': return 'bg-yellow-600';
-      default: return 'bg-slate-600';
+      default: return 'bg-[#1c2a35]';
     }
   };
 
@@ -271,7 +271,7 @@ const EventCalendar = () => {
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
               selectedMonth === month.id
                 ? 'bg-red-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {month.name}
@@ -317,7 +317,7 @@ const EventCalendar = () => {
               <p className="text-xs text-slate-500 mb-2">Suggested Actions:</p>
               <div className="flex flex-wrap gap-2">
                 {event.actions.map((action, j) => (
-                  <span key={j} className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded">
+                  <span key={j} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
                     {action}
                   </span>
                 ))}
@@ -338,11 +338,15 @@ const EventCalendar = () => {
             Subscribe to Calendar (Coming Soon)
           </button>
           <button 
-            onClick={() => {
+            onClick={async () => {
               const text = events.map(e => `${e.date}: ${e.name}`).join('\n');
-              navigator.clipboard.writeText(text);
+              try {
+                await navigator.clipboard.writeText(text);
+              } catch (err) {
+                console.error('Failed to copy:', err);
+              }
             }}
-            className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >
             Copy All Dates
           </button>

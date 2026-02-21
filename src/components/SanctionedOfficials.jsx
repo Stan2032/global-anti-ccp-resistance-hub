@@ -178,7 +178,7 @@ const SanctionedOfficials = () => {
       return { label: 'ENTITY LIST', className: 'bg-orange-600 text-white' };
     }
     if (official.sanctionedBy.length === 0) {
-      return { label: 'NOT SANCTIONED', className: 'bg-slate-600 text-slate-200' };
+      return { label: 'NOT SANCTIONED', className: 'bg-[#1c2a35] text-slate-200' };
     }
     return { label: official.currentStatus || 'SANCTIONED', className: 'bg-red-600 text-white' };
   };
@@ -343,7 +343,7 @@ const SanctionedOfficials = () => {
             href="https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn-human-readable-lists"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
           >
             US Treasury SDN List →
           </a>

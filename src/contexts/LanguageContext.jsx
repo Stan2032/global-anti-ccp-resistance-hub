@@ -2,7 +2,11 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 
 // Import all language files
 import en from '../locales/en.json';
+import zhCN from '../locales/zh-CN.json';
 import zhTW from '../locales/zh-TW.json';
+import vi from '../locales/vi.json';
+import ko from '../locales/ko.json';
+import ja from '../locales/ja.json';
 import ug from '../locales/ug.json';
 import bo from '../locales/bo.json';
 
@@ -15,12 +19,40 @@ const languages = {
     dir: 'ltr',
     translations: en
   },
+  'zh-CN': {
+    name: 'Simplified Chinese',
+    nativeName: '简体中文',
+    code: 'zh-CN',
+    dir: 'ltr',
+    translations: zhCN
+  },
   'zh-TW': {
     name: 'Traditional Chinese',
     nativeName: '繁體中文',
     code: 'zh-TW',
     dir: 'ltr',
     translations: zhTW
+  },
+  vi: {
+    name: 'Vietnamese',
+    nativeName: 'Tiếng Việt',
+    code: 'vi',
+    dir: 'ltr',
+    translations: vi
+  },
+  ko: {
+    name: 'Korean',
+    nativeName: '한국어',
+    code: 'ko',
+    dir: 'ltr',
+    translations: ko
+  },
+  ja: {
+    name: 'Japanese',
+    nativeName: '日本語',
+    code: 'ja',
+    dir: 'ltr',
+    translations: ja
   },
   ug: {
     name: 'Uyghur',

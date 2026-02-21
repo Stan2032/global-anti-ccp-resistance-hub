@@ -16,9 +16,9 @@ const Footer = () => {
     resources: [
       { name: 'Resistance Directory', path: '/directory' },
       { name: 'Intelligence Feeds', path: '/intelligence' },
-      { name: 'CCP Tactics', path: '/tactics' },
-      { name: 'Regional Threats', path: '/threats' },
-      { name: 'Data Export', path: '/resources' },
+      { name: 'Profiles', path: '/profiles' },
+      { name: 'Community', path: '/community' },
+      { name: 'Data Sources', path: '/data-sources' },
     ],
     organizations: [
       { name: 'Safeguard Defenders', url: 'https://safeguarddefenders.com/' },

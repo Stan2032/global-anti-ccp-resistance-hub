@@ -375,7 +375,7 @@ const RegionalIssues = () => {
                       figure.status === 'Imprisoned' ? 'bg-red-900/50 text-red-400' :
                       figure.status === 'Detained' ? 'bg-orange-900/50 text-orange-400' :
                       figure.status === 'Exile' ? 'bg-blue-900/50 text-blue-400' :
-                      'bg-slate-700 text-slate-400'
+                      'bg-[#111820] text-slate-400'
                     }`}>
                       {figure.status}
                     </span>

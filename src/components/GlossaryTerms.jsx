@@ -309,7 +309,7 @@ const GlossaryTerms = () => {
       {/* Terms List */}
       <div className="space-y-4">
         {filteredTerms.map((item, index) => (
-          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
               <div>
                 <h3 className="font-bold text-white text-lg">{item.term}</h3>
@@ -317,7 +317,7 @@ const GlossaryTerms = () => {
                   {item.chinese} <span className="text-slate-500">({item.pinyin})</span>
                 </p>
               </div>
-              <span className="bg-slate-700 text-slate-300 px-2 py-1 rounded text-xs capitalize self-start">
+              <span className="bg-[#111820] text-slate-300 px-2 py-1 rounded text-xs capitalize self-start">
                 {item.category}
               </span>
             </div>
@@ -331,7 +331,7 @@ const GlossaryTerms = () => {
                 <button
                   key={i}
                   onClick={() => setSearchQuery(rel)}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-slate-300 px-2 py-0.5 rounded text-xs transition-colors"
                 >
                   {rel}
                 </button>

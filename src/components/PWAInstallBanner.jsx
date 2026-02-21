@@ -95,15 +95,15 @@ export default function PWAInstallBanner() {
                 </p>
                 <ol className="text-sm text-slate-400 space-y-1">
                   <li className="flex items-center gap-2">
-                    <span className="w-5 h-5 bg-slate-700 rounded-full flex items-center justify-center text-xs text-white">1</span>
+                    <span className="w-5 h-5 bg-[#111820] rounded-full flex items-center justify-center text-xs text-white">1</span>
                     Tap the <strong className="text-blue-400">Share</strong> button <span className="text-blue-400">(□↑)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-5 h-5 bg-slate-700 rounded-full flex items-center justify-center text-xs text-white">2</span>
+                    <span className="w-5 h-5 bg-[#111820] rounded-full flex items-center justify-center text-xs text-white">2</span>
                     Scroll down and tap <strong className="text-white">"Add to Home Screen"</strong>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-5 h-5 bg-slate-700 rounded-full flex items-center justify-center text-xs text-white">3</span>
+                    <span className="w-5 h-5 bg-[#111820] rounded-full flex items-center justify-center text-xs text-white">3</span>
                     Tap <strong className="text-white">"Add"</strong> in the top right
                   </li>
                 </ol>

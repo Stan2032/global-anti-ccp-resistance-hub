@@ -97,7 +97,7 @@ const XinjiangStatus = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -112,7 +112,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">International Response</h3>
             <div className="space-y-3">
               {internationalResponse.map((item, i) => (
-                <div key={i} className="flex items-center justify-between bg-slate-700/50 p-3">
+                <div key={i} className="flex items-center justify-between bg-[#111820] p-3">
                   <span className="text-white">{item.country}</span>
                   <div className="text-right">
                     <span className="text-slate-300 text-sm">{item.action}</span>
@@ -177,7 +177,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Forced Labor by Sector</h3>
             <div className="space-y-4">
               {forcedLaborSectors.map((sector, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{sector.sector}</span>
                     <span className="text-blue-400 font-bold">{sector.share}</span>
@@ -205,7 +205,7 @@ const XinjiangStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Cultural Destruction</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {culturalDestruction.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{item.type}</span>
                     <span className="text-red-400 font-bold">{item.destroyed || item.status}</span>
@@ -234,15 +234,15 @@ const XinjiangStatus = () => {
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Xinjiang Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">ASPI Xinjiang Data</h4>
             <p className="text-slate-400 text-sm">Satellite imagery of camps</p>
           </a>
-          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://shahit.biz/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Xinjiang Victims Database</h4>
             <p className="text-slate-400 text-sm">35,000+ documented cases</p>
           </a>
-          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://uhrp.org/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">UHRP</h4>
             <p className="text-slate-400 text-sm">Uyghur Human Rights Project</p>
           </a>

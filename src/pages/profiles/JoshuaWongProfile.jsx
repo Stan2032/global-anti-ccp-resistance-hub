@@ -286,7 +286,7 @@ const SOURCES = [
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
-  life: { bg: 'bg-slate-700', text: 'text-slate-200', label: 'Personal' },
+  life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-yellow-900/60', text: 'text-yellow-200', label: 'Activism' },
   political: { bg: 'bg-blue-900/60', text: 'text-blue-200', label: 'Political' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
@@ -380,7 +380,7 @@ export default function JoshuaWongProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 NEW NSL CHARGE — FACES LIFE
               </span>
-              <span className="px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {PROFILE.age}
               </span>
             </div>

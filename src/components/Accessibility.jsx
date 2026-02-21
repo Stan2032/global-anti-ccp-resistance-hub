@@ -114,7 +114,7 @@ export const AccessibleButton = ({
       aria-describedby={ariaDescribedBy}
       aria-busy={loading}
       aria-disabled={disabled}
-      className={`focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 ${className}`}
+      className={`focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:ring-offset-2 focus:ring-offset-slate-900 ${className}`}
       {...props}
     >
       {loading ? (
@@ -142,7 +142,7 @@ export const AccessibleCard = ({
 }) => {
   return (
     <Component
-      className={`focus-within:ring-2 focus-within:ring-blue-500 ${className}`}
+      className={`focus-within:ring-2 focus-within:ring-[#4afa82] ${className}`}
       aria-label={title}
       {...props}
     >
@@ -226,10 +226,10 @@ export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }) => {
                 onTabChange(tabs[prevIndex].id);
               }
             }}
-            className={`px-4 py-2 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`px-4 py-2 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#4afa82] ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.icon && <span className="mr-2" aria-hidden="true">{tab.icon}</span>}
@@ -273,7 +273,7 @@ export const AccessibleProgress = ({ value, max = 100, label }) => {
         aria-valuemin={0}
         aria-valuemax={max}
         aria-label={label || `Progress: ${percentage}%`}
-        className="w-full bg-slate-700 rounded-full h-2"
+        className="w-full bg-[#111820] rounded-full h-2"
       >
         <div
           className="bg-blue-600 h-2 rounded-full transition-all duration-300"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 
@@ -229,6 +229,12 @@ export default function MemorialWall() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedVictim(null); };
+    if (selectedVictim) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedVictim]);
+
   const filteredVictims = victims.filter(victim => {
     if (selectedCategory !== 'All' && victim.category !== selectedCategory) return false;
     if (searchQuery && !victim.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
@@ -264,7 +270,7 @@ export default function MemorialWall() {
       {/* Header */}
       <div className="p-6 border-b border-[#1c2a35] bg-[#111820]">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center">
+          <div className="w-12 h-12 bg-[#111820] rounded-full flex items-center justify-center">
             <Flame className="w-6 h-6 text-orange-400" />
           </div>
           <div>
@@ -310,7 +316,7 @@ export default function MemorialWall() {
             placeholder="Search by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -321,7 +327,7 @@ export default function MemorialWall() {
               className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
                 selectedCategory === cat
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {cat}
@@ -336,7 +342,7 @@ export default function MemorialWall() {
           {filteredVictims.map(victim => (
             <div
               key={victim.id}
-              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden hover:border-slate-600 transition-colors"
+              className="bg-[#0a0e14]/50 border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
             >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
@@ -377,7 +383,7 @@ export default function MemorialWall() {
                     className={`flex items-center gap-2 px-3 py-1.5 text-sm transition-colors ${
                       candlesLit.includes(victim.id)
                         ? 'bg-orange-600/20 text-orange-400'
-                        : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                        : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                     }`}
                   >
                     <Flame className={`w-4 h-4 ${candlesLit.includes(victim.id) ? 'animate-pulse' : ''}`} />
@@ -451,7 +457,7 @@ export default function MemorialWall() {
 
       {/* Detail Modal */}
       {selectedVictim && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedVictim(null)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Memorial details for ${selectedVictim.name}`} onClick={() => setSelectedVictim(null)}>
           <div className="bg-[#111820] max-w-lg w-full max-h-[90vh] overflow-y-auto border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
             <div className="p-6">
               <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCategoryColor(selectedVictim.category)}`}>
@@ -497,7 +503,7 @@ export default function MemorialWall() {
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 transition-colors ${
                     candlesLit.includes(selectedVictim.id)
                       ? 'bg-orange-600 text-white'
-                      : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
                   <Flame className={`w-5 h-5 ${candlesLit.includes(selectedVictim.id) ? 'animate-pulse' : ''}`} />
@@ -505,7 +511,7 @@ export default function MemorialWall() {
                 </button>
                 <button
                   onClick={() => setSelectedVictim(null)}
-                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white transition-colors"
+                  className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
                 >
                   Close
                 </button>

@@ -111,7 +111,7 @@ const TibetStatus = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-orange-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             {tab.name}
@@ -143,7 +143,7 @@ const TibetStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Notable Political Prisoners</h3>
             <div className="space-y-3">
               {politicalPrisoners.map((prisoner, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-start">
                     <div>
                       <span className="text-white font-semibold">{prisoner.name}</span>
@@ -199,7 +199,7 @@ const TibetStatus = () => {
             <h4 className="text-lg font-semibold text-white mb-3">By Year</h4>
             <div className="flex flex-wrap gap-2">
               {selfImmolations.byYear.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 rounded px-3 py-1 text-sm">
+                <div key={i} className="bg-[#111820] rounded px-3 py-1 text-sm">
                   <span className="text-slate-400">{item.year}:</span>
                   <span className="text-orange-400 ml-1 font-semibold">{item.count}</span>
                 </div>
@@ -222,7 +222,7 @@ const TibetStatus = () => {
             <h3 className="text-xl font-bold text-white mb-4">Cultural Erasure</h3>
             <div className="space-y-4">
               {culturalErasure.map((item, i) => (
-                <div key={i} className="bg-slate-700/50 p-4">
+                <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{item.type}</span>
                     <span className="text-red-400 font-bold">{item.stat}</span>
@@ -248,15 +248,15 @@ const TibetStatus = () => {
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Tibet Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://savetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://savetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">ICT</h4>
             <p className="text-slate-400 text-sm">International Campaign for Tibet</p>
           </a>
-          <a href="https://freetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://freetibet.org/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Free Tibet</h4>
             <p className="text-slate-400 text-sm">Campaign organization</p>
           </a>
-          <a href="https://tibet.net/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://tibet.net/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">CTA</h4>
             <p className="text-slate-400 text-sm">Central Tibetan Administration</p>
           </a>

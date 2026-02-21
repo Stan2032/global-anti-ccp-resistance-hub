@@ -112,7 +112,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                   <span className="text-slate-500 text-sm ml-2">{prisoner.chinese}</span>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded ${
-                  prisoner.statusColor === 'red' ? 'bg-red-600' : 'bg-slate-600'
+                  prisoner.statusColor === 'red' ? 'bg-red-600' : 'bg-[#1c2a35]'
                 }`}>
                   {prisoner.status}
                 </span>
@@ -160,7 +160,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                   <p className="text-red-400">{prisoner.chinese}</p>
                 </div>
                 <span className={`px-3 py-1 rounded text-xs font-bold ${
-                  prisoner.statusColor === 'red' ? 'bg-red-600 text-white' : 'bg-slate-600 text-white'
+                  prisoner.statusColor === 'red' ? 'bg-red-600 text-white' : 'bg-[#1c2a35] text-white'
                 }`}>
                   {prisoner.status}
                 </span>
@@ -217,11 +217,15 @@ const UrgentCaseTimer = ({ compact = false }) => {
                   Take Action
                 </a>
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. ${prisoner.hashtag} #FreePoliticalPrisoners`;
-                    navigator.clipboard.writeText(text);
+                    try {
+                      await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                      console.error('Failed to copy:', err);
+                    }
                   }}
-                  className="bg-slate-700 hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
                 >
                   Copy to Share
                 </button>

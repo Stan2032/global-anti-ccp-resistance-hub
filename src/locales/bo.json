@@ -37,20 +37,17 @@
     "intelligence": "གནས་ཚུལ།",
     "directory": "དཀར་ཆག",
     "prisoners": "ཆབ་སྲིད་བཙོན་པ།",
-    "threats": "ས་ཁུལ་གྱི་ཉེན་ཁ།",
     "takeAction": "བྱ་སྤྱོད་ལེན།",
-    "campaigns": "འགུལ་སྐྱོད།",
     "community": "སྤྱི་ཚོགས།",
-    "communications": "འབྲེལ་གཏུགས།",
     "resources": "ཐོན་ཁུངས།",
-    "tactics": "རྒྱ་ནག་གུང་ཁྲན་ཏང་གི་ཐབས་ལམ།",
     "education": "སློབ་གསོ།",
     "security": "བདེ་འཇགས།",
     "dataSources": "གཞི་གྲངས་ཁུངས།",
     "main": "གཙོ་བོ།",
     "humanRights": "མིའི་ཐོབ་ཐང་།",
     "action": "བྱ་སྤྱོད།",
-    "resourcesSection": "ཐོན་ཁུངས།"
+    "resourcesSection": "ཐོན་ཁུངས།",
+    "profiles": "མི་སྣའི་ཐོ།"
   },
   "header": {
     "title": "འཛམ་གླིང་འགོག་རྒོལ་ལྟེ་གནས།",

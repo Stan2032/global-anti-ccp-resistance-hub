@@ -297,10 +297,10 @@ export default function JimmyLaiProfile() {
                 <span className="px-2 py-0.5 bg-red-600/30 text-red-300 rounded border border-red-500/30">
                   {PROFILE.status} — {PROFILE.sentence}
                 </span>
-                <span className="px-2 py-0.5 bg-slate-700 text-slate-300 rounded">
+                <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
-                <span className="px-2 py-0.5 bg-slate-700 text-slate-300 rounded">
+                <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
                   Age {PROFILE.age} · {PROFILE.nationality}
                 </span>
               </div>
@@ -483,7 +483,7 @@ export default function JimmyLaiProfile() {
                     <p className="text-sm text-slate-300 mt-1">{item.reality}</p>
                     <div className="mt-2 flex flex-wrap gap-1">
                       {item.sources.map((src) => (
-                        <span key={src} className="text-xs px-2 py-0.5 bg-slate-700 text-slate-400 rounded">
+                        <span key={src} className="text-xs px-2 py-0.5 bg-[#111820] text-slate-400 rounded">
                           {src}
                         </span>
                       ))}
@@ -588,7 +588,7 @@ export default function JimmyLaiProfile() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] p-3 hover:bg-slate-750 hover:border-slate-600 transition-colors"
+                  className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] p-3 hover:bg-[#1c2a35] hover:border-[#1c2a35] transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${source.tier === 1 ? 'bg-emerald-500' : 'bg-amber-500'}`} />

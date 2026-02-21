@@ -14,7 +14,7 @@ const StatusBadge = ({ status }) => {
     'Concern': { color: 'bg-orange-500/20 text-orange-400 border-orange-500/30', icon: AlertCircle },
     'Improving': { color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30', icon: TrendingUp },
     'Cleared': { color: 'bg-green-500/20 text-green-400 border-green-500/30', icon: CheckCircle },
-    'Unknown': { color: 'bg-slate-500/20 text-slate-400 border-slate-500/30', icon: AlertCircle }
+    'Unknown': { color: 'bg-[#1c2a35]/30 text-slate-400 border-[#1c2a35]/50', icon: AlertCircle }
   };
   
   const { color, icon: Icon } = config[status] || config['Unknown'];
@@ -112,14 +112,14 @@ const ForcedLaborTracker = () => {
             placeholder="Search companies..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Industry filter"
           value={industryFilter}
           onChange={(e) => setIndustryFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Industries</option>
           {industries.map(industry => (
@@ -130,7 +130,7 @@ const ForcedLaborTracker = () => {
           aria-label="Status filter"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Statuses</option>
           {statuses.map(status => (
@@ -145,7 +145,7 @@ const ForcedLaborTracker = () => {
           {filteredCompanies.map((company, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 overflow-hidden"
+              className="bg-[#111820]/30 overflow-hidden"
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
@@ -179,7 +179,7 @@ const ForcedLaborTracker = () => {
 
               {/* Expanded Details */}
               {expandedCompany === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-600/50">
+                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {company.evidence && (
                     <div className="pt-3">
                       <div className="text-xs text-slate-500 uppercase mb-1">Evidence</div>

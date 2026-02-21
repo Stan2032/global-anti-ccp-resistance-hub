@@ -126,10 +126,14 @@ const SocialMediaToolkit = () => {
     { date: 'May 17', event: 'Panchen Lama Abduction Anniversary', hashtags: '#FreePanchenLama #GedunChoekyi' },
   ];
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const copyToClipboard = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const copyThread = (thread) => {
@@ -273,7 +277,7 @@ const SocialMediaToolkit = () => {
               </div>
               <button
                 onClick={() => copyToClipboard(item.hashtags, `date-${idx}`)}
-                className="text-xs px-3 py-1 bg-slate-700 hover:bg-[#1c2a35] text-white rounded transition-colors"
+                className="text-xs px-3 py-1 bg-[#111820] hover:bg-[#1c2a35] text-white rounded transition-colors"
               >
                 {copiedId === `date-${idx}` ? '✓' : <Clipboard className="w-3 h-3" />}
               </button>

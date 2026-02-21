@@ -284,7 +284,7 @@ const EventRSVP = () => {
                   className={`px-4 py-2 text-sm font-medium transition-colors ${
                     rsvps.includes(event.id)
                       ? 'bg-green-600 text-white'
-                      : 'bg-slate-700 hover:bg-[#1c2a35] text-white'
+                      : 'bg-[#111820] hover:bg-[#1c2a35] text-white'
                   }`}
                 >
                   {rsvps.includes(event.id) ? '✓ RSVPd' : 'RSVP'}
@@ -294,14 +294,14 @@ const EventRSVP = () => {
                   className={`px-4 py-2 text-sm font-medium transition-colors ${
                     reminders.includes(event.id)
                       ? 'bg-blue-600 text-white'
-                      : 'bg-slate-700 hover:bg-[#1c2a35] text-white'
+                      : 'bg-[#111820] hover:bg-[#1c2a35] text-white'
                   }`}
                 >
                   {reminders.includes(event.id) ? <><Bell className="w-3 h-3 inline mr-1" /> Reminder Set</> : <><Bell className="w-3 h-3 inline mr-1" /> Set Reminder</>}
                 </button>
                 <button
                   onClick={() => addToCalendar(event)}
-                  className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
+                  className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors"
                 >
                   <Calendar className="w-3 h-3 inline mr-1" /> Add to Calendar
                 </button>
@@ -310,7 +310,7 @@ const EventRSVP = () => {
                     href={event.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm transition-colors"
+                    className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors"
                   >
                     <ExternalLink className="w-3 h-3 inline mr-1" /> More Info
                   </a>

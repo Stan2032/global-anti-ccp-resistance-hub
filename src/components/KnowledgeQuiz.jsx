@@ -268,7 +268,7 @@ const KnowledgeQuiz = () => {
             </button>
             <a
               href="/education"
-              className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+              className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
             >
               Learn More
             </a>
@@ -293,7 +293,7 @@ const KnowledgeQuiz = () => {
             Score: {score}
           </span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-2">
+        <div className="w-full bg-[#111820] rounded-full h-2">
           <div 
             className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
@@ -305,7 +305,7 @@ const KnowledgeQuiz = () => {
       <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
         <div className="flex items-center space-x-2 mb-4">
           {categoryInfo?.Icon ? <categoryInfo.Icon className="w-4 h-4 text-slate-300" /> : <span>{categoryInfo?.icon}</span>}
-          <span className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-300">
+          <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-300">
             {categoryInfo?.name}
           </span>
         </div>

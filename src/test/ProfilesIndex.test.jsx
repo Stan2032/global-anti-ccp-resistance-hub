@@ -19,6 +19,12 @@ describe('ProfilesIndex', () => {
     expect(screen.getByText('Liu Xiaobo')).toBeTruthy();
     expect(screen.getByText('Joshua Wong')).toBeTruthy();
     expect(screen.getByText('Gui Minhai')).toBeTruthy();
+    expect(screen.getByText('Zhang Zhan')).toBeTruthy();
+    expect(screen.getByText('Gao Zhisheng')).toBeTruthy();
+    expect(screen.getByText('Nathan Law')).toBeTruthy();
+    expect(screen.getByText('Cardinal Joseph Zen')).toBeTruthy();
+    expect(screen.getByText('Benny Tai')).toBeTruthy();
+    expect(screen.getByText('Agnes Chow')).toBeTruthy();
   });
 
   it('should render Chinese names for built profiles', () => {
@@ -31,26 +37,25 @@ describe('ProfilesIndex', () => {
   it('should show status badges', () => {
     renderWithRouter(<ProfilesIndex />);
     const imprisonedBadges = screen.getAllByText('IMPRISONED');
-    expect(imprisonedBadges.length).toBe(5);
-    expect(screen.getByText('DISAPPEARED')).toBeTruthy();
+    expect(imprisonedBadges.length).toBe(6);
+    const disappearedBadges = screen.getAllByText('DISAPPEARED');
+    expect(disappearedBadges.length).toBe(2);
     expect(screen.getByText('DECEASED')).toBeTruthy();
+    const exiledBadges = screen.getAllByText('EXILED');
+    expect(exiledBadges.length).toBe(2);
+    expect(screen.getByText('AT RISK')).toBeTruthy();
   });
 
   it('should render links for built profiles', () => {
     renderWithRouter(<ProfilesIndex />);
     const links = screen.getAllByText('Full profile available');
-    expect(links.length).toBe(6);
+    expect(links.length).toBe(12);
   });
 
-  it('should show coming soon for unbuilt profiles', () => {
+  it('should not show coming soon section when all profiles are built', () => {
     renderWithRouter(<ProfilesIndex />);
-    const comingSoon = screen.getAllByText('Profile coming soon');
-    expect(comingSoon.length).toBe(2);
-  });
-
-  it('should render the Coming Soon section', () => {
-    renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('Coming Soon')).toBeTruthy();
+    expect(screen.queryByText('Coming Soon')).toBeNull();
+    expect(screen.queryByText('Profile coming soon')).toBeNull();
   });
 
   it('should render source attribution note', () => {
@@ -61,6 +66,6 @@ describe('ProfilesIndex', () => {
 
   it('should show profile count summary', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('6 profiles available')).toBeTruthy();
+    expect(screen.getByText('12 profiles available')).toBeTruthy();
   });
 });

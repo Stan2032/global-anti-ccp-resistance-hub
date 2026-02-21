@@ -243,7 +243,7 @@ const PodcastList = () => {
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           {featuredPodcasts.map(podcast => (
-            <div key={podcast.id} className="bg-slate-700/50 p-4 border border-slate-600 hover:border-purple-500 transition-colors">
+            <div key={podcast.id} className="bg-[#111820] p-4 border border-[#1c2a35] hover:border-purple-500 transition-colors">
               <div className="flex items-start justify-between mb-2">
                 <h4 className="font-bold text-white">{podcast.title}</h4>
                 <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 text-xs rounded-full">Featured</span>
@@ -279,7 +279,7 @@ const PodcastList = () => {
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-purple-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-[#1c2a35]'
+                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
             <span className="mr-2"><cat.Icon className="w-4 h-4 inline" /></span>
@@ -337,7 +337,7 @@ const PodcastList = () => {
                   <h5 className="text-sm font-medium text-slate-300 mb-2">Topics Covered:</h5>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {podcast.topics.map((topic, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">
+                      <span key={idx} className="px-2 py-1 bg-[#111820] text-slate-300 text-xs rounded">
                         {topic}
                       </span>
                     ))}

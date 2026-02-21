@@ -161,10 +161,14 @@ const AcademicCitationGenerator = () => {
     }
   ];
 
-  const handleCopy = (citation, index) => {
-    navigator.clipboard.writeText(citation);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+  const handleCopy = async (citation, index) => {
+    try {
+      await navigator.clipboard.writeText(citation);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const getTypeColor = (type) => {
@@ -176,7 +180,7 @@ const AcademicCitationGenerator = () => {
       'Article': 'text-amber-400 bg-amber-500/10 border-amber-500/30',
       'Documentary': 'text-pink-400 bg-pink-500/10 border-pink-500/30'
     };
-    return colors[type] || 'text-slate-400 bg-slate-500/10 border-slate-500/30';
+    return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
 
   return (
@@ -261,7 +265,7 @@ const AcademicCitationGenerator = () => {
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 p-2 bg-slate-700 hover:bg-[#1c2a35] transition-colors"
+                className="ml-3 p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
                 title="View Source"
               >
                 <ExternalLink className="w-4 h-4 text-slate-300" />

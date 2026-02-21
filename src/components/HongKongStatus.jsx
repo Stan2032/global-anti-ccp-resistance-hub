@@ -77,7 +77,7 @@ const HongKongStatus = () => {
       <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-sm font-medium ${activeTab === tab.id ? 'bg-yellow-600 text-white' : 'bg-slate-700 text-slate-300'}`}>
+            className={`px-4 py-2 text-sm font-medium ${activeTab === tab.id ? 'bg-yellow-600 text-white' : 'bg-[#111820] text-slate-300'}`}>
             {tab.name}
           </button>
         ))}
@@ -88,7 +88,7 @@ const HongKongStatus = () => {
           <h3 className="text-xl font-bold text-white mb-4">Closed Organizations</h3>
           <div className="grid md:grid-cols-2 gap-3">
             {closedOrgs.map((org, i) => (
-              <div key={i} className="bg-slate-700/50 p-3">
+              <div key={i} className="bg-[#111820] p-3">
                 <span className="text-white font-medium">{org.name}</span>
                 <span className="text-slate-400 text-sm ml-2">({org.type}, {org.date})</span>
               </div>
@@ -147,13 +147,13 @@ const HongKongStatus = () => {
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4">Resources</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          <a href="https://www.hongkongwatch.org/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://www.hongkongwatch.org/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">Hong Kong Watch</h4>
           </a>
-          <a href="https://www.hkdc.us/" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://www.hkdc.us/" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">HK Democracy Council</h4>
           </a>
-          <a href="https://www.cecc.gov/freedom-in-hong-kong" target="_blank" rel="noopener noreferrer" className="bg-slate-700 hover:bg-[#1c2a35] p-4">
+          <a href="https://www.cecc.gov/freedom-in-hong-kong" target="_blank" rel="noopener noreferrer" className="bg-[#111820] hover:bg-[#1c2a35] p-4">
             <h4 className="text-white font-semibold">CECC Hong Kong</h4>
           </a>
         </div>

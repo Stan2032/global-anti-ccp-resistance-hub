@@ -290,7 +290,7 @@ const DocumentaryList = () => {
       {/* Documentary Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredDocs.map((doc, index) => (
-          <div key={index} className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-slate-500 transition-colors">
+          <div key={index} className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors">
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold text-white text-lg">{doc.title}</h3>
@@ -314,7 +314,7 @@ const DocumentaryList = () => {
               {/* Topics */}
               <div className="flex flex-wrap gap-1 mb-3">
                 {doc.topics.map((topic, i) => (
-                  <span key={i} className="bg-slate-700 text-slate-300 px-2 py-0.5 rounded text-xs">
+                  <span key={i} className="bg-[#111820] text-slate-300 px-2 py-0.5 rounded text-xs">
                     {topic}
                   </span>
                 ))}

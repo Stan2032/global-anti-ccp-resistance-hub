@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Landmark, Mountain, Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
+import { Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
+import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 const LanguageGuide = () => {
   const [activeLanguage, setActiveLanguage] = useState('cantonese');
@@ -7,8 +8,8 @@ const LanguageGuide = () => {
 
   const languages = [
     { id: 'cantonese', name: 'Cantonese', flag: '🇭🇰', region: 'Hong Kong' },
-    { id: 'uyghur', name: 'Uyghur', Icon: Landmark, region: 'East Turkestan' },
-    { id: 'tibetan', name: 'Tibetan', Icon: Mountain, region: 'Tibet' },
+    { id: 'uyghur', name: 'Uyghur', Icon: EastTurkestanFlag, region: 'East Turkestan' },
+    { id: 'tibetan', name: 'Tibetan', Icon: TibetanFlag, region: 'Tibet' },
     { id: 'mandarin', name: 'Mandarin', flag: '🇨🇳', region: 'China' },
     { id: 'taiwanese', name: 'Taiwanese', flag: '🇹🇼', region: 'Taiwan' },
   ];
@@ -236,10 +237,14 @@ const LanguageGuide = () => {
     ],
   };
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopiedPhrase(id);
-    setTimeout(() => setCopiedPhrase(null), 2000);
+  const copyToClipboard = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedPhrase(id);
+      setTimeout(() => setCopiedPhrase(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const currentLanguage = languages.find(l => l.id === activeLanguage);

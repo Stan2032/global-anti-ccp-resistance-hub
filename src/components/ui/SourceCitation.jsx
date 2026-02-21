@@ -61,7 +61,7 @@ const SourceCitation = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute z-50 mt-2 w-80 bg-[#111820] border border-slate-600 shadow-xl p-4"
+              className="absolute z-50 mt-2 w-80 bg-[#111820] border border-[#1c2a35] shadow-xl p-4"
               style={{ 
                 position: 'absolute',
                 top: '100%',
@@ -212,7 +212,7 @@ const SourceCitation = ({
             )}
             
             {source.methodology && (
-              <div className="mt-3 p-2 bg-slate-700/50 rounded">
+              <div className="mt-3 p-2 bg-[#111820] rounded">
                 <p className="text-xs text-slate-400">
                   <strong>Methodology:</strong> {source.methodology}
                 </p>

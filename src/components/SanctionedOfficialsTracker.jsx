@@ -20,7 +20,7 @@ const SanctionBadge = ({ country, status }) => {
   
   return (
     <div className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
-      isYes ? 'bg-green-500/20 text-green-400' : 'bg-slate-600/30 text-slate-500'
+      isYes ? 'bg-green-500/20 text-green-400' : 'bg-[#1c2a35]/50 text-slate-500'
     }`}>
       <span>{flags[country]}</span>
       {isYes ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
@@ -93,19 +93,19 @@ const SanctionedOfficialsTracker = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-white">{stats.total}</div>
             <div className="text-xs text-slate-400">Officials Tracked</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-blue-400">{stats.xinjiang}</div>
             <div className="text-xs text-slate-400">Xinjiang-Related</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-yellow-400">{stats.hongKong}</div>
             <div className="text-xs text-slate-400">Hong Kong-Related</div>
           </div>
-          <div className="bg-slate-700/30 p-3 text-center">
+          <div className="bg-[#111820]/30 p-3 text-center">
             <div className="text-2xl font-bold text-green-400">{stats.multiSanctioned}</div>
             <div className="text-xs text-slate-400">Multi-Sanctioned (3+)</div>
           </div>
@@ -132,14 +132,14 @@ const SanctionedOfficialsTracker = () => {
             placeholder="Search by name or position..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select
           aria-label="Area filter"
           value={areaFilter}
           onChange={(e) => setAreaFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-700/50 border border-slate-600 text-white focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
         >
           <option value="all">All Areas</option>
           <option value="Xinjiang">Xinjiang</option>
@@ -156,7 +156,7 @@ const SanctionedOfficialsTracker = () => {
           {filteredOfficials.map((official, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-700/30 overflow-hidden"
+              className="bg-[#111820]/30 overflow-hidden"
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
@@ -192,7 +192,7 @@ const SanctionedOfficialsTracker = () => {
 
               {/* Expanded Details */}
               {expandedOfficial === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-600/50">
+                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   <div className="pt-3">
                     <div className="text-xs text-slate-500 uppercase mb-1">Key Abuses</div>
                     <p className="text-sm text-red-300">{official.key_abuses}</p>
@@ -205,31 +205,31 @@ const SanctionedOfficialsTracker = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                     {official.us_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇺🇸 US:</span> 
                         <span className="text-slate-300 ml-1">{official.us_sanctions}</span>
                       </div>
                     )}
                     {official.uk_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇬🇧 UK:</span> 
                         <span className="text-slate-300 ml-1">{official.uk_sanctions}</span>
                       </div>
                     )}
                     {official.eu_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇪🇺 EU:</span> 
                         <span className="text-slate-300 ml-1">{official.eu_sanctions}</span>
                       </div>
                     )}
                     {official.canada_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇨🇦 Canada:</span> 
                         <span className="text-slate-300 ml-1">{official.canada_sanctions}</span>
                       </div>
                     )}
                     {official.australia_sanctions && (
-                      <div className="bg-slate-600/30 p-2 rounded">
+                      <div className="bg-[#1c2a35]/50 p-2 rounded">
                         <span className="text-slate-400">🇦🇺 Australia:</span> 
                         <span className="text-slate-300 ml-1">{official.australia_sanctions}</span>
                       </div>

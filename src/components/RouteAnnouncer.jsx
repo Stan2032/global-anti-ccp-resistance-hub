@@ -5,17 +5,14 @@ const ROUTE_LABELS = {
   '/': 'Dashboard',
   '/intelligence': 'Intelligence Feeds',
   '/directory': 'Resistance Directory',
-  '/campaigns': 'Campaign Hubs',
   '/community': 'Community Support',
-  '/communications': 'Secure Communications',
   '/education': 'Education Center',
   '/security': 'Security Center',
   '/prisoners': 'Political Prisoners',
-  '/threats': 'Regional Threats',
   '/resources': 'Resistance Resources',
-  '/tactics': 'CCP Tactics',
   '/take-action': 'Take Action',
   '/data-sources': 'Data Sources',
+  '/profiles': 'Profiles',
 };
 
 /**

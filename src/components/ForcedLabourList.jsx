@@ -351,7 +351,7 @@ const ForcedLabourList = () => {
           placeholder="Search companies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-4 py-2 bg-[#111820] border border-[#1c2a35] focus:outline-none focus:border-blue-500"
+          className="w-full px-4 py-2 bg-[#111820] border border-[#1c2a35] focus:outline-none focus:border-[#4afa82]"
         />
         
         <div className="flex flex-wrap gap-2">

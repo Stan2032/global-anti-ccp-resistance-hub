@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Mountain, BarChart3, Megaphone, Umbrella, Palette, Handshake, Droplets, Flag, Satellite, Folder, Shield, Flame, Zap, Map, Link2, Calendar, ClipboardList, Flower2, User, FileText, Landmark } from 'lucide-react';
 
 const MediaGallery = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedItem(null); };
+    if (selectedItem) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedItem]);
 
   const categories = [
     { id: 'all', name: 'All Media', Icon: Image },
@@ -315,6 +321,9 @@ const MediaGallery = () => {
       {selectedItem && (
         <div 
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Media detail: ${selectedItem.title}`}
           onClick={() => setSelectedItem(null)}
         >
           <div 

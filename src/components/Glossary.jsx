@@ -199,7 +199,7 @@ const Glossary = () => {
     switch (importance) {
       case 'critical': return 'bg-red-900/50 text-red-400 border-red-700';
       case 'high': return 'bg-orange-900/50 text-orange-400 border-orange-700';
-      default: return 'bg-slate-700 text-slate-400 border-slate-600';
+      default: return 'bg-[#111820] text-slate-400 border-[#1c2a35]';
     }
   };
 
@@ -220,7 +220,7 @@ const Glossary = () => {
             placeholder="Search terms..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 pl-10 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 pl-10 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
           />
           <svg className="absolute left-3 top-3.5 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -264,7 +264,7 @@ const Glossary = () => {
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs text-slate-500">Related:</span>
                 {item.related.map((rel, idx) => (
-                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-slate-700 text-slate-300 rounded hover:bg-[#1c2a35] transition-colors">
+                  <button key={idx} onClick={() => setSearchTerm(rel)} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded hover:bg-[#1c2a35] transition-colors">
                     {rel}
                   </button>
                 ))}

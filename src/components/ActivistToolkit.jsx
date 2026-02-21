@@ -295,7 +295,7 @@ const ActivistToolkit = () => {
             >
               <div className="flex items-start justify-between mb-3">
                 <resource.Preview className="w-8 h-8 text-slate-400" />
-                <span className="text-xs px-2 py-1 bg-slate-700 rounded text-slate-300">
+                <span className="text-xs px-2 py-1 bg-[#111820] rounded text-slate-300">
                   {resource.format}
                 </span>
               </div>
@@ -325,7 +325,7 @@ const ActivistToolkit = () => {
         <p className="text-sm text-slate-400 mb-4">
           Can't find what you're looking for? Let us know what resources would help your advocacy.
         </p>
-        <button className="px-6 py-2 bg-slate-700 hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
+        <button className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
           Request a Resource
         </button>
       </div>

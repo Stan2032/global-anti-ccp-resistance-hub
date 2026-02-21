@@ -58,7 +58,7 @@ class RouteErrorBoundary extends React.Component {
               <Link
                 to="/"
                 onClick={this.handleRetry}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-700 hover:bg-[#1c2a35] text-white font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white font-medium transition-colors"
               >
                 <Home className="w-4 h-4" aria-hidden="true" />
                 Go to Dashboard

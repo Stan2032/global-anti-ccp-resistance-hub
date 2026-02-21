@@ -174,7 +174,7 @@ const QuickFacts = () => {
                   e.stopPropagation();
                   shareToTwitter(fact);
                 }}
-                className="p-1.5 rounded bg-slate-700/50 hover:bg-[#1c2a35] transition-colors"
+                className="p-1.5 rounded bg-[#111820] hover:bg-[#1c2a35] transition-colors"
                 title="Share on Twitter"
               >
                 <svg className="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24">

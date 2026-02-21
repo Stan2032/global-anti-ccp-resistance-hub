@@ -275,7 +275,7 @@ const Timeline = () => {
       {/* Timeline */}
       <div className="relative">
         {/* Vertical Line */}
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-700" />
+        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#111820]" />
 
         {/* Events */}
         <div className="space-y-4">
@@ -290,7 +290,7 @@ const Timeline = () => {
               aria-expanded={expandedEvent === index}
             >
               {/* Timeline Dot */}
-              <div className={`absolute left-2 top-6 w-4 h-4 rounded-full ${getSignificanceColor(event.significance)} border-2 border-slate-900`} />
+              <div className={`absolute left-2 top-6 w-4 h-4 rounded-full ${getSignificanceColor(event.significance)} border-2 border-[#0a0e14]`} />
               
               {/* Date */}
               <div className="text-sm text-slate-400 mb-1">{event.date}</div>
@@ -308,11 +308,11 @@ const Timeline = () => {
               
               {/* Expanded Content */}
               {expandedEvent === index && (
-                <div className="mt-4 pt-4 border-t border-slate-600">
+                <div className="mt-4 pt-4 border-t border-[#1c2a35]">
                   <div className="flex flex-wrap gap-2">
                     <span className="text-xs text-slate-400">Sources:</span>
                     {event.sources.map((source, i) => (
-                      <span key={i} className="bg-slate-700 text-slate-300 px-2 py-1 rounded text-xs">
+                      <span key={i} className="bg-[#111820] text-slate-300 px-2 py-1 rounded text-xs">
                         {source}
                       </span>
                     ))}

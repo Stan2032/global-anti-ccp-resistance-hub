@@ -9,6 +9,11 @@ const RSS_FEEDS = {
   rfa: 'https://www.rfa.org/english/news/rss2.xml',
   hkfp: 'https://hongkongfp.com/feed/',
   aspi: 'https://www.aspistrategist.org.au/feed/',
+  hrw: 'https://www.hrw.org/rss/news',
+  amnesty: 'https://www.amnesty.org/en/feed/',
+  cpj: 'https://cpj.org/feed/',
+  guardian: 'https://www.theguardian.com/world/china/rss',
+  bbc: 'https://feeds.bbci.co.uk/news/world/asia/china/rss.xml',
 };
 
 // CORS proxy for fetching RSS feeds from browser
@@ -25,6 +30,9 @@ const CCP_KEYWORDS = [
   'genocide', 'forced labor', 'organ harvesting', 'concentration camp',
   'united front', 'influence operation', 'espionage', 'spy',
 ];
+
+// Sources whose content is always relevant (no keyword filtering needed)
+const ALWAYS_RELEVANT_SOURCES = ['hkfp', 'rfa', 'hrw', 'amnesty', 'cpj'];
 
 /**
  * Parse RSS/Atom XML feed
@@ -66,7 +74,7 @@ function parseRSSFeed(xmlText, sourceName) {
     });
     
     // Only include items with some relevance to CCP topics
-    if (relevanceScore > 0 || sourceName === 'hkfp' || sourceName === 'rfa') {
+    if (relevanceScore > 0 || ALWAYS_RELEVANT_SOURCES.includes(sourceName)) {
       items.push({
         id: `${sourceName}-${index}-${Date.now()}`,
         title: title.trim(),
@@ -217,44 +225,6 @@ export async function fetchPoliticalPrisoners() {
 }
 
 /**
- * Fetch regional threat data
- */
-export async function fetchRegionalThreats() {
-  // This would ideally fetch from ISW, CSIS, or similar APIs
-  const threats = [
-    {
-      id: 'taiwan',
-      region: 'Taiwan',
-      threatLevel: 'critical',
-      status: 'severe',
-      lastUpdate: '2025-12-19',
-      summary: 'PLA continues military exercises, naval buildup ongoing',
-      keyEvents: [
-        'Dec 19: PLA naval exercises near Taiwan Strait',
-        'Dec 18: 47 PLA aircraft entered Taiwan ADIZ',
-        'Dec 15: New amphibious assault ships commissioned',
-      ],
-      sources: ['ISW', 'CSIS', 'Taiwan MND'],
-    },
-    {
-      id: 'scs',
-      region: 'South China Sea',
-      threatLevel: 'high',
-      status: 'contested',
-      lastUpdate: '2025-12-18',
-      summary: 'Continued militarization of artificial islands',
-      keyEvents: [
-        'Dec 18: Chinese Coast Guard harassment of Philippine vessels',
-        'Dec 15: New radar installations detected on Mischief Reef',
-      ],
-      sources: ['AMTI', 'CSIS'],
-    },
-  ];
-  
-  return threats;
-}
-
-/**
  * Fetch live statistics
  */
 export async function fetchStatistics() {
@@ -300,12 +270,46 @@ export const FEED_SOURCES = {
     description: 'Independent think tank on strategic policy',
     reliability: 'high',
   },
+  hrw: {
+    name: 'HRW',
+    fullName: 'Human Rights Watch',
+    url: 'https://www.hrw.org',
+    description: 'International human rights organization',
+    reliability: 'high',
+  },
+  amnesty: {
+    name: 'Amnesty',
+    fullName: 'Amnesty International',
+    url: 'https://www.amnesty.org',
+    description: 'Global human rights movement',
+    reliability: 'high',
+  },
+  cpj: {
+    name: 'CPJ',
+    fullName: 'Committee to Protect Journalists',
+    url: 'https://cpj.org',
+    description: 'Press freedom advocacy organization',
+    reliability: 'high',
+  },
+  guardian: {
+    name: 'Guardian',
+    fullName: 'The Guardian',
+    url: 'https://www.theguardian.com',
+    description: 'UK-based independent newspaper',
+    reliability: 'high',
+  },
+  bbc: {
+    name: 'BBC',
+    fullName: 'BBC News',
+    url: 'https://www.bbc.com/news',
+    description: 'British public service broadcaster',
+    reliability: 'high',
+  },
 };
 
 export default {
   fetchAllFeeds,
   fetchPoliticalPrisoners,
-  fetchRegionalThreats,
   fetchStatistics,
   FEED_SOURCES,
 };

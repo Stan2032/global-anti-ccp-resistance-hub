@@ -481,7 +481,7 @@ export default function CCPOfficials() {
           </button>
           
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-slate-700 flex items-center justify-center text-4xl">
+            <div className="w-20 h-20 bg-[#111820] flex items-center justify-center text-4xl">
               {official.photo || <User className="w-10 h-10 text-slate-400" />}
             </div>
             <div className="flex-1">
@@ -491,10 +491,10 @@ export default function CCPOfficials() {
                     SANCTIONED
                   </span>
                 )}
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-700 text-slate-300">
+                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
                   {official.level}
                 </span>
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-700 text-slate-300">
+                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
                   {official.region}
                 </span>
               </div>
@@ -611,7 +611,7 @@ export default function CCPOfficials() {
               <h3 className="text-sm font-semibold text-slate-400 mb-2">Additional References</h3>
               <div className="flex flex-wrap gap-2">
                 {official.sources.filter(s => !s.url || s.url === '#').map((source, i) => (
-                  <span key={i} className="px-2 py-1 bg-slate-700 rounded text-sm text-slate-300">
+                  <span key={i} className="px-2 py-1 bg-[#111820] rounded text-sm text-slate-300">
                     {source.name || source}
                   </span>
                 ))}
@@ -671,14 +671,14 @@ export default function CCPOfficials() {
             placeholder="Search officials..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400"
           />
         </div>
         <select
           aria-label="Region filter"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {regions.map(region => (
             <option key={region} value={region}>{region === 'all' ? 'All Regions' : region}</option>
@@ -688,18 +688,18 @@ export default function CCPOfficials() {
           aria-label="Region filter"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-slate-700 text-white text-sm px-3 py-2 border border-slate-600"
+          className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
         >
           {categories.map(cat => (
             <option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>
           ))}
         </select>
-        <label className="flex items-center gap-2 text-sm text-slate-400 px-3 py-2 bg-slate-700 border border-slate-600">
+        <label className="flex items-center gap-2 text-sm text-slate-400 px-3 py-2 bg-[#111820] border border-[#1c2a35]">
           <input
             type="checkbox"
             checked={sanctionedOnly}
             onChange={(e) => setSanctionedOnly(e.target.checked)}
-            className="rounded bg-slate-600 border-slate-500"
+            className="rounded bg-[#1c2a35] border-[#1c2a35]"
           />
           Sanctioned only
         </label>
@@ -714,10 +714,10 @@ export default function CCPOfficials() {
               setSelectedOfficial(official.id);
               setExpandedSections({ responsibility: true, actions: true });
             }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-slate-600"
+            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-slate-700 flex items-center justify-center text-2xl">
+              <div className="w-12 h-12 bg-[#111820] flex items-center justify-center text-2xl">
                 {official.photo || <User className="w-6 h-6 text-slate-400" />}
               </div>
               <div className="flex-1 min-w-0">
@@ -735,8 +735,8 @@ export default function CCPOfficials() {
             <p className="text-sm text-slate-400 line-clamp-2 mb-2">{official.position}</p>
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
-                <span className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-400">{official.region}</span>
-                <span className="text-xs px-2 py-0.5 bg-slate-700 rounded text-slate-400">{official.category}</span>
+                <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.region}</span>
+                <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.category}</span>
               </div>
               <span className="text-blue-400 text-sm">View →</span>
             </div>
