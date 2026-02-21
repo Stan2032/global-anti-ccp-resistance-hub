@@ -66,6 +66,12 @@ describe('ProfilesIndex', () => {
 
   it('should show profile count summary', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('12 profiles available')).toBeTruthy();
+    expect(screen.getByText('12 detailed profiles')).toBeTruthy();
+  });
+
+  it('should link back to political prisoners database', () => {
+    renderWithRouter(<ProfilesIndex />);
+    expect(screen.getByText('Political Prisoners Database')).toBeTruthy();
+    expect(screen.getByText(/62 total cases in database/)).toBeTruthy();
   });
 });

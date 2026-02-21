@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Library, BookOpen, Landmark, Newspaper, FlaskConical, Megaphone, Wrench, Bookmark, Pin } from 'lucide-react';
 
 const Bookmarks = () => {
@@ -37,16 +37,16 @@ const Bookmarks = () => {
     { title: 'Signal', url: 'https://signal.org', category: 'tool', description: 'Encrypted messaging' },
   ];
 
-  const addBookmark = (bookmark) => {
+  const addBookmark = useCallback((bookmark) => {
     const newBm = {
       ...bookmark,
       id: Date.now(),
       addedAt: new Date().toISOString(),
     };
-    setBookmarks([...bookmarks, newBm]);
+    setBookmarks(prev => [...prev, newBm]);
     setNewBookmark({ title: '', url: '', category: 'resource', notes: '' });
     setShowAddForm(false);
-  };
+  }, []);
 
   const removeBookmark = (id) => {
     setBookmarks(bookmarks.filter(bm => bm.id !== id));

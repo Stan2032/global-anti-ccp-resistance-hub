@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
+
+// Map prisoner names to their detailed profile page paths
+const PROFILE_PATHS = {
+  'Jimmy Lai': '/profiles/jimmy-lai',
+  'Ilham Tohti': '/profiles/ilham-tohti',
+  'Gedhun Choekyi Nyima': '/profiles/panchen-lama',
+  'Liu Xiaobo': '/profiles/liu-xiaobo',
+  'Joshua Wong': '/profiles/joshua-wong',
+  'Gui Minhai': '/profiles/gui-minhai',
+  'Zhang Zhan': '/profiles/zhang-zhan',
+  'Gao Zhisheng': '/profiles/gao-zhisheng',
+  'Benny Tai': '/profiles/benny-tai',
+  'Nathan Law': '/profiles/nathan-law',
+  'Cardinal Joseph Zen': '/profiles/cardinal-zen',
+  'Agnes Chow': '/profiles/agnes-chow',
+};
 
 // Mapping function to convert JSON data to component format
 const mapJsonToComponentFormat = (jsonResults) => {
@@ -95,7 +112,8 @@ const mapJsonToComponentFormat = (jsonResults) => {
       latestNews: output.latest_news,
       healthStatus: output.health_status,
       source: source, // Add source object
-      confidence: output.confidence
+      confidence: output.confidence,
+      profilePath: PROFILE_PATHS[output.prisoner_name] || null,
     };
   });
 };
@@ -199,6 +217,19 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         {prisoner.source && prisoner.source.url && (
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <SourceAttribution source={prisoner.source} compact={true} />
+          </div>
+        )}
+        
+        {prisoner.profilePath && (
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
+            <Link
+              to={prisoner.profilePath}
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center justify-between text-sm text-[#4afa82] hover:text-[#2a9a52] transition-colors font-mono"
+            >
+              <span>$ view_full_profile</span>
+              <span>→</span>
+            </Link>
           </div>
         )}
       </div>
@@ -334,6 +365,21 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             )}
           </div>
           
+          {prisoner.profilePath && (
+            <div className="mt-6 pt-6 border-t border-[#1c2a35]">
+              <Link
+                to={prisoner.profilePath}
+                className="flex items-center justify-between bg-[#4afa82]/10 hover:bg-[#4afa82]/20 border border-[#4afa82]/30 p-4 transition-colors"
+              >
+                <div>
+                  <p className="text-[#4afa82] font-mono text-sm font-semibold">$ view_full_profile --detailed</p>
+                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response, and sourced documentation</p>
+                </div>
+                <span className="text-[#4afa82] text-lg">→</span>
+              </Link>
+            </div>
+          )}
+
           <div className="mt-6 pt-6 border-t border-[#1c2a35]">
             <h3 className="text-sm font-semibold text-gray-400 uppercase mb-3">Take Action</h3>
             <div className="flex flex-wrap gap-2">
@@ -455,6 +501,24 @@ const PoliticalPrisoners = () => {
           ))}
         </div>
         
+        {/* Featured Profiles Banner */}
+        <div className="bg-[#111820] border border-[#1c2a35] p-5 mb-8">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-white font-mono mb-1">── featured_profiles ──</h2>
+              <p className="text-slate-400 text-sm">
+                12 individuals have detailed profile pages with sourced timelines, charge analysis, CCP narrative debunking, and international response documentation.
+              </p>
+            </div>
+            <Link
+              to="/profiles"
+              className="flex-shrink-0 ml-4 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap"
+            >
+              $ view_all_profiles →
+            </Link>
+          </div>
+        </div>
+
         {/* Prisoner Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPrisoners.map((prisoner, index) => (

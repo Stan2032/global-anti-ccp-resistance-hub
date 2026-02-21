@@ -133,7 +133,6 @@ export const SocketProvider = ({ children, token }) => {
   }, [isConnected]);
 
   const value = {
-    socket: socketRef.current,
     isConnected,
     connectionError,
     on,

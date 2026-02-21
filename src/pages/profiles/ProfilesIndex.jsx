@@ -291,6 +291,11 @@ const ProfilesIndex = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      {/* Breadcrumb / Back link to prisoners database */}
+      <Link to="/prisoners" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#4afa82] transition-colors mb-6 font-mono">
+        <ArrowRight className="w-4 h-4 rotate-180" /> Political Prisoners Database
+      </Link>
+
       {/* Page Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">
@@ -303,12 +308,12 @@ const ProfilesIndex = () => {
         <div className="flex items-center gap-4 mt-4 text-sm text-slate-500">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-green-500" />
-            {builtProfiles.length} profiles available
+            {builtProfiles.length} detailed profiles
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#1c2a35]" />
-            {upcomingProfiles.length} coming soon
-          </span>
+          <Link to="/prisoners" className="flex items-center gap-1.5 hover:text-[#4afa82] transition-colors">
+            <span className="w-2 h-2 rounded-full bg-red-500" />
+            62 total cases in database →
+          </Link>
         </div>
       </div>
 

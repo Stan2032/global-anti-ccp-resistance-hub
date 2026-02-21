@@ -258,8 +258,6 @@ export default function CardinalZenProfile() {
     { id: 'sources', label: 'Sources', icon: BookOpen },
   ];
 
-  const yearsSinceBirth = Math.floor((new Date() - new Date('1932-01-13')) / (1000 * 60 * 60 * 24 * 365.25));
-
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <GlobalDisclaimer />
