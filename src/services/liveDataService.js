@@ -9,6 +9,11 @@ const RSS_FEEDS = {
   rfa: 'https://www.rfa.org/english/news/rss2.xml',
   hkfp: 'https://hongkongfp.com/feed/',
   aspi: 'https://www.aspistrategist.org.au/feed/',
+  hrw: 'https://www.hrw.org/rss/news',
+  amnesty: 'https://www.amnesty.org/en/feed/',
+  cpj: 'https://cpj.org/feed/',
+  guardian: 'https://www.theguardian.com/world/china/rss',
+  bbc: 'https://feeds.bbci.co.uk/news/world/asia/china/rss.xml',
 };
 
 // CORS proxy for fetching RSS feeds from browser
@@ -66,7 +71,7 @@ function parseRSSFeed(xmlText, sourceName) {
     });
     
     // Only include items with some relevance to CCP topics
-    if (relevanceScore > 0 || sourceName === 'hkfp' || sourceName === 'rfa') {
+    if (relevanceScore > 0 || sourceName === 'hkfp' || sourceName === 'rfa' || sourceName === 'hrw' || sourceName === 'amnesty' || sourceName === 'cpj') {
       items.push({
         id: `${sourceName}-${index}-${Date.now()}`,
         title: title.trim(),
@@ -298,6 +303,41 @@ export const FEED_SOURCES = {
     fullName: 'Australian Strategic Policy Institute',
     url: 'https://www.aspistrategist.org.au',
     description: 'Independent think tank on strategic policy',
+    reliability: 'high',
+  },
+  hrw: {
+    name: 'HRW',
+    fullName: 'Human Rights Watch',
+    url: 'https://www.hrw.org',
+    description: 'International human rights organization',
+    reliability: 'high',
+  },
+  amnesty: {
+    name: 'Amnesty',
+    fullName: 'Amnesty International',
+    url: 'https://www.amnesty.org',
+    description: 'Global human rights movement',
+    reliability: 'high',
+  },
+  cpj: {
+    name: 'CPJ',
+    fullName: 'Committee to Protect Journalists',
+    url: 'https://cpj.org',
+    description: 'Press freedom advocacy organization',
+    reliability: 'high',
+  },
+  guardian: {
+    name: 'Guardian',
+    fullName: 'The Guardian',
+    url: 'https://www.theguardian.com',
+    description: 'UK-based independent newspaper',
+    reliability: 'high',
+  },
+  bbc: {
+    name: 'BBC',
+    fullName: 'BBC News',
+    url: 'https://www.bbc.com/news',
+    description: 'British public service broadcaster',
     reliability: 'high',
   },
 };

@@ -133,7 +133,7 @@ const MobileNav = ({ isOpen, onClose }) => {
       />
       
       <nav
-        className="fixed top-14 left-0 bottom-0 w-72 bg-[#111820] border-r border-[#1c2a35] z-50 overflow-y-auto lg:hidden"
+        className="fixed top-14 left-0 bottom-0 w-72 max-w-[85vw] bg-[#111820] border-r border-[#1c2a35] z-50 overflow-y-auto lg:hidden"
         aria-label="Mobile navigation"
       >
         <div className="p-3 border-b border-[#1c2a35]">

@@ -86,6 +86,33 @@ const DataSources = () => {
       frequency: 'Weekly',
       credibility: 'High',
       description: 'Global human rights movement reports and campaigns'
+    },
+    {
+      name: 'BBC News - China',
+      url: 'https://www.bbc.com/news/topics/c1vel0q9gynt',
+      type: 'Mainstream News',
+      region: 'China',
+      frequency: 'Daily',
+      credibility: 'High',
+      description: 'British public service broadcaster with extensive China coverage'
+    },
+    {
+      name: 'The Guardian - China',
+      url: 'https://www.theguardian.com/world/china',
+      type: 'Newspaper',
+      region: 'China',
+      frequency: 'Daily',
+      credibility: 'High',
+      description: 'UK-based independent newspaper with investigative reporting on China'
+    },
+    {
+      name: 'Committee to Protect Journalists',
+      url: 'https://cpj.org/asia/china/',
+      type: 'Press Freedom',
+      region: 'China',
+      frequency: 'Weekly',
+      credibility: 'High',
+      description: 'Press freedom advocacy and journalist safety reporting'
     }
   ];
 
