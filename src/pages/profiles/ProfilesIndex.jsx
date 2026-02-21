@@ -13,7 +13,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '20 years',
-    age: 78,
+    birthDate: 'December 8, 1947',
     role: 'Media Entrepreneur & Publisher',
     summary: 'Founder of Apple Daily newspaper. Arrested under the National Security Law for his pro-democracy journalism.',
     location: 'Stanley Prison, Hong Kong',
@@ -30,7 +30,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: 'Life imprisonment',
-    age: 56,
+    birthDate: 'October 25, 1969',
     role: 'Uyghur Economist & Professor',
     summary: 'Advocate for Han-Uyghur dialogue, sentenced to life for "separatism" despite promoting ethnic harmony.',
     location: 'Urumqi Prison, Xinjiang',
@@ -47,7 +47,7 @@ const PROFILES = [
     status: 'DISAPPEARED',
     statusColor: 'purple',
     sentence: '30 years missing',
-    age: 36,
+    birthDate: 'April 25, 1989',
     role: '11th Panchen Lama',
     summary: 'Second-highest Tibetan Buddhist leader. Abducted by the CCP at age 6, the world\'s youngest political prisoner.',
     location: 'Unknown — enforced disappearance since 1995',
@@ -64,7 +64,8 @@ const PROFILES = [
     status: 'DECEASED',
     statusColor: 'gray',
     sentence: 'Died in custody (2017)',
-    age: 61,
+    birthDate: 'December 28, 1955',
+    deathDate: 'July 13, 2017',
     role: 'Nobel Peace Prize Laureate',
     summary: 'Author of Charter 08. First Nobel laureate to die in state custody since Carl von Ossietzky in 1938.',
     location: 'Died in custody — July 13, 2017',
@@ -81,7 +82,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '4y 8m + faces life',
-    age: 29,
+    birthDate: 'October 13, 1996',
     role: 'Pro-Democracy Activist',
     summary: 'Founded Scholarism at 14. Sentenced in the Hong Kong 47 case, now facing life on new NSL charge.',
     location: 'Prison, Hong Kong',
@@ -98,7 +99,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '10 years (ends Feb 2030)',
-    age: 61,
+    birthDate: 'May 5, 1964',
     role: 'Publisher & Swedish Citizen',
     summary: 'Abducted from Thailand in 2015 for publishing books critical of CCP leaders. Swedish citizenship revoked under duress.',
     location: 'Unknown prison, China',
@@ -115,7 +116,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '4 years (second sentence)',
-    age: 42,
+    birthDate: 'September 1, 1983',
     role: 'Citizen Journalist',
     summary: 'Jailed for reporting on COVID-19 outbreak in Wuhan. Sentenced again in 2025 after initial release.',
     location: 'Prison, China',
@@ -132,7 +133,7 @@ const PROFILES = [
     status: 'DISAPPEARED',
     statusColor: 'purple',
     sentence: 'Disappeared since Aug 2017',
-    age: 59,
+    birthDate: 'April 20, 1966',
     role: 'Human Rights Lawyer',
     summary: 'Named top 10 lawyer by Ministry of Justice in 2001, then convicted for defending Falun Gong practitioners. Disappeared August 2017.',
     location: 'Unknown',
@@ -149,7 +150,7 @@ const PROFILES = [
     status: 'EXILED',
     statusColor: 'yellow',
     sentence: 'Wanted under NSL; HK$1M bounty',
-    age: 32,
+    birthDate: 'July 13, 1993',
     role: 'Pro-Democracy Activist, Former Legislator',
     summary: 'Co-founder of Demosistō and youngest legislator in Hong Kong history. Fled to London after the National Security Law was imposed. HK$1 million bounty offered for his arrest.',
     location: 'London, UK (exile)',
@@ -166,7 +167,7 @@ const PROFILES = [
     status: 'AT RISK',
     statusColor: 'yellow',
     sentence: 'Fined HK$4,000 (Nov 2022)',
-    age: 94,
+    birthDate: 'January 13, 1932',
     role: 'Bishop Emeritus of Hong Kong, Cardinal',
     summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees. Convicted under the Societies Ordinance. NSL charge remains under review.',
     location: 'Hong Kong',
@@ -183,7 +184,7 @@ const PROFILES = [
     status: 'IMPRISONED',
     statusColor: 'red',
     sentence: '10 years (HK47 — longest)',
-    age: 61,
+    birthDate: '1964',
     role: 'Law Professor & Democracy Advocate',
     summary: 'Associate Professor at HKU for 30 years. Organized pro-democracy primary elections. Received the longest sentence in the Hong Kong 47 case.',
     location: 'Prison, Hong Kong',
@@ -200,7 +201,7 @@ const PROFILES = [
     status: 'EXILED',
     statusColor: 'yellow',
     sentence: 'Released, fled to Canada',
-    age: 29,
+    birthDate: 'December 3, 1996',
     role: 'Pro-Democracy Activist',
     summary: 'Former Demosistō member. Served prison sentence, then fled to Canada in December 2023 rather than comply with NSL bail conditions.',
     location: 'Toronto, Canada (exile)',
@@ -291,6 +292,11 @@ const ProfilesIndex = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      {/* Breadcrumb / Back link to prisoners database */}
+      <Link to="/prisoners" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#4afa82] transition-colors mb-6 font-mono">
+        <ArrowRight className="w-4 h-4 rotate-180" /> Political Prisoners Database
+      </Link>
+
       {/* Page Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">
@@ -303,12 +309,12 @@ const ProfilesIndex = () => {
         <div className="flex items-center gap-4 mt-4 text-sm text-slate-500">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-green-500" />
-            {builtProfiles.length} profiles available
+            {builtProfiles.length} detailed profiles
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#1c2a35]" />
-            {upcomingProfiles.length} coming soon
-          </span>
+          <Link to="/prisoners" className="flex items-center gap-1.5 hover:text-[#4afa82] transition-colors">
+            <span className="w-2 h-2 rounded-full bg-red-500" />
+            62 total cases in database →
+          </Link>
         </div>
       </div>
 

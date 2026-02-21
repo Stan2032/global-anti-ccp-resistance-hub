@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link2, ShieldAlert, Users, Ban, Building, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
 
 const DataExport = () => {
@@ -107,7 +107,7 @@ const DataExport = () => {
     setExportComplete(false);
   };
 
-  const generateExportData = () => {
+  const generateExportData = useCallback(() => {
     // This would normally fetch real data - for now we generate sample structure
     const exportData = {};
     
@@ -131,9 +131,9 @@ const DataExport = () => {
     });
 
     return exportData;
-  };
+  }, [selectedDatasets]);
 
-  const handleExport = async () => {
+  const handleExport = useCallback(async () => {
     if (selectedDatasets.length === 0) return;
 
     setIsExporting(true);
@@ -142,12 +142,13 @@ const DataExport = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     const data = generateExportData();
+    const timestamp = Date.now();
     let content, filename, mimeType;
 
     switch (exportFormat) {
       case 'json':
         content = JSON.stringify(data, null, 2);
-        filename = `resistance-hub-export-${Date.now()}.json`;
+        filename = `resistance-hub-export-${timestamp}.json`;
         mimeType = 'application/json';
         break;
       case 'csv': {
@@ -156,7 +157,7 @@ const DataExport = () => {
           return `# ${value.metadata.name}\n# ${value.metadata.description}\n# Records: ${value.metadata.records}\n# Last Updated: ${value.metadata.lastUpdated}\n\n${value.schema.join(',')}\n[Data rows would appear here]`;
         });
         content = csvParts.join('\n\n---\n\n');
-        filename = `resistance-hub-export-${Date.now()}.csv`;
+        filename = `resistance-hub-export-${timestamp}.csv`;
         mimeType = 'text/csv';
         break;
       }
@@ -164,14 +165,14 @@ const DataExport = () => {
         const mdParts = Object.entries(data).map(([, value]) => {
           return `# ${value.metadata.name}\n\n${value.metadata.description}\n\n- **Records:** ${value.metadata.records}\n- **Last Updated:** ${value.metadata.lastUpdated}\n- **Source:** ${value.metadata.source}\n- **License:** ${value.metadata.license}\n\n## Schema\n\n| Field |\n|-------|\n${value.schema.map(f => `| ${f} |`).join('\n')}\n`;
         });
-        content = `# Resistance Hub Data Export\n\nExported: ${new Date().toISOString()}\n\n---\n\n${mdParts.join('\n---\n\n')}`;
-        filename = `resistance-hub-export-${Date.now()}.md`;
+        content = `# Resistance Hub Data Export\n\nExported: ${new Date(timestamp).toISOString()}\n\n---\n\n${mdParts.join('\n---\n\n')}`;
+        filename = `resistance-hub-export-${timestamp}.md`;
         mimeType = 'text/markdown';
         break;
       }
       default:
         content = JSON.stringify(data, null, 2);
-        filename = `resistance-hub-export-${Date.now()}.json`;
+        filename = `resistance-hub-export-${timestamp}.json`;
         mimeType = 'application/json';
     }
 
@@ -188,7 +189,7 @@ const DataExport = () => {
 
     setIsExporting(false);
     setExportComplete(true);
-  };
+  }, [selectedDatasets, exportFormat, generateExportData]);
 
   const totalRecords = selectedDatasets.reduce((sum, id) => {
     const dataset = datasets.find(d => d.id === id);

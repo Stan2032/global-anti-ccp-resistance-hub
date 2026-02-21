@@ -64,23 +64,22 @@ export const ThemeProvider = ({ children }) => {
     return savedTheme;
   });
 
-  // Handle system theme preference changes
+  // Handle system theme preference changes and keep resolvedTheme in sync
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
-    const handleChange = (e) => {
+    const syncResolved = () => {
       if (theme === THEMES.SYSTEM) {
-        setResolvedTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
+        setResolvedTheme(mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT);
+      } else {
+        setResolvedTheme(theme);
       }
     };
 
-    // Update resolved theme when theme setting changes
-    if (theme === THEMES.SYSTEM) {
-      setResolvedTheme(mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT);
-    } else {
-      setResolvedTheme(theme);
-    }
+    // Use microtask to avoid synchronous setState in effect body
+    queueMicrotask(syncResolved);
 
+    const handleChange = () => syncResolved();
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);

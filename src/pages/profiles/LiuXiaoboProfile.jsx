@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -22,7 +23,6 @@ const PROFILE = {
   nationality: 'Chinese',
   status: 'DECEASED — DIED IN STATE CUSTODY',
   sentence: '11 years for "inciting subversion of state power"',
-  ageAtDeath: 61,
   occupation: 'Literary Critic, Professor, Writer, Human Rights Activist, Nobel Peace Prize Laureate',
 };
 
@@ -344,7 +344,7 @@ export default function LiuXiaoboProfile() {
                 </span>
               </div>
               <p className="text-gray-400 text-sm mt-2">
-                Died age {PROFILE.ageAtDeath} • {PROFILE.deathPlace} • First Nobel Peace Prize laureate to die in state custody since Carl von Ossietzky (Nazi Germany, 1938)
+                Died age {calculateAge(PROFILE.birthDate, PROFILE.deathDate)} • {PROFILE.deathPlace} • First Nobel Peace Prize laureate to die in state custody since Carl von Ossietzky (Nazi Germany, 1938)
               </p>
             </div>
           </div>

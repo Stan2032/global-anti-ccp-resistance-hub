@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -20,7 +21,6 @@ const PROFILE = {
   status: 'AT RISK',
   currentLocation: 'Hong Kong',
   sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under the NSL',
-  age: 94,
   occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
 };
 
@@ -258,8 +258,6 @@ export default function CardinalZenProfile() {
     { id: 'sources', label: 'Sources', icon: BookOpen },
   ];
 
-  const yearsSinceBirth = Math.floor((new Date() - new Date('1932-01-13')) / (1000 * 60 * 60 * 24 * 365.25));
-
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <GlobalDisclaimer />
@@ -405,7 +403,7 @@ export default function CardinalZenProfile() {
               <p className="text-sm text-slate-300">
                 Cardinal Zen was convicted under the Societies Ordinance in November 2022 and fined HK$4,000.
                 The more serious NSL charge of &quot;collusion with foreign forces&quot; has neither been formally dropped
-                nor proceeded to trial. At age {PROFILE.age}, he remains in Hong Kong under ongoing legal jeopardy.
+                nor proceeded to trial. At age {calculateAge(PROFILE.birthDate)}, he remains in Hong Kong under ongoing legal jeopardy.
                 An appeal against the conviction was heard in December 2025 and the case is ongoing.
               </p>
             </div>

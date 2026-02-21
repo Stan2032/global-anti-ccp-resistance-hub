@@ -273,7 +273,7 @@ const Dashboard = () => {
                   <p className="text-xs text-slate-400 mb-2">{campaign.description}</p>
                   <div className="text-xs text-slate-500 font-mono">
                     <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>
-                    {campaign.supporters.toLocaleString()} supporters
+                    {campaign.supporters.toLocaleString()} supporters (est.)
                   </div>
                 </Link>
               ))}

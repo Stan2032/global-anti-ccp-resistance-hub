@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -21,7 +22,6 @@ const PROFILE = {
   status: 'IMPRISONED',
   currentLocation: 'Stanley Prison, Hong Kong',
   sentence: '4 years 8 months (subversion) + new NSL collusion charge (faces life)',
-  age: 29,
   occupation: 'Pro-Democracy Activist, Student Leader, Former Secretary-General of Demosistō',
 };
 
@@ -381,7 +381,7 @@ export default function JoshuaWongProfile() {
                 NEW NSL CHARGE — FACES LIFE
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

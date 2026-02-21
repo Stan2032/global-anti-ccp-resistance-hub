@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -21,7 +22,6 @@ const PROFILE = {
   status: 'DISAPPEARED',
   currentLocation: 'Unknown — last seen August 13, 2017, in Shaanxi Province',
   sentence: '3 years suspended sentence (2006), revoked and served 2011-2014. Disappeared since August 2017.',
-  age: 59,
   occupation: 'Human Rights Lawyer — named one of China\'s top 10 lawyers by the Ministry of Justice in 2001',
 };
 
@@ -298,7 +298,7 @@ export default function GaoZhishengProfile() {
                 ENFORCED DISAPPEARANCE
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

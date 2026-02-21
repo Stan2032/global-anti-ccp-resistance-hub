@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
@@ -20,7 +21,6 @@ const PROFILE = {
   status: 'EXILED',
   currentLocation: 'London, UK (exile since July 2020)',
   sentence: 'Wanted under the National Security Law; HK$1 million bounty offered July 2023',
-  age: 32,
   occupation: 'Pro-Democracy Activist, Former Legislator, Co-founder of Demosistō',
 };
 
@@ -295,7 +295,7 @@ export default function NathanLawProfile() {
                 YOUNGEST LEGISLATOR
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate)}
               </span>
             </div>
 

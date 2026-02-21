@@ -7,6 +7,11 @@ const XinjiangStatus = lazy(() => import('../components/XinjiangStatus'));
 const TaiwanDefenseStatus = lazy(() => import('../components/TaiwanDefenseStatus'));
 const CCPOfficials = lazy(() => import('../components/CCPOfficials'));
 const WorldThreatMap = lazy(() => import('../components/WorldThreatMap'));
+const DetentionFacilities = lazy(() => import('../components/DetentionFacilities'));
+const PoliceStationsMap = lazy(() => import('../components/PoliceStationsMap'));
+const RegionalIssues = lazy(() => import('../components/RegionalIssues'));
+const SanctionedOfficials = lazy(() => import('../components/SanctionedOfficials'));
+const GlobalInfluenceMap = lazy(() => import('../components/GlobalInfluenceMap'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
@@ -310,6 +315,10 @@ const IntelligenceFeeds = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── taiwan_defense ──</h2>
             <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
           </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── regional_issues ──</h2>
+            <Suspense fallback={<SectionLoader />}><RegionalIssues /></Suspense>
+          </div>
         </div>
       )}
 
@@ -322,6 +331,22 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── world_threat_map ──</h2>
             <Suspense fallback={<SectionLoader />}><WorldThreatMap /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── detention_facilities ──</h2>
+            <Suspense fallback={<SectionLoader />}><DetentionFacilities /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── overseas_police_stations ──</h2>
+            <Suspense fallback={<SectionLoader />}><PoliceStationsMap /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── sanctioned_officials ──</h2>
+            <Suspense fallback={<SectionLoader />}><SanctionedOfficials /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── global_influence_map ──</h2>
+            <Suspense fallback={<SectionLoader />}><GlobalInfluenceMap /></Suspense>
           </div>
         </div>
       )}
