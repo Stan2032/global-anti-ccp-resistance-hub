@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 21, 2026 (Session 68)
+> Last Updated: February 21, 2026 (Session 69)
 > 
 > **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
 > See `_agents/README.md` for folder structure and quick start guide.
@@ -120,9 +120,10 @@
   - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
 
 ### Bug Fixes & Polish
-- [ ] **Test all forms**: Ensure all copy-to-clipboard functions work across browsers
+- [x] **Clipboard error handling**: Added try/catch to 9 components ✅ (Session 68)
+- [x] **Print styles**: A4 print stylesheet for profile pages and reports ✅ (Session 68)
+- [x] **Modal accessibility**: Added ARIA dialog roles and Escape key to 4 modal overlays ✅ (Session 69)
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
-- [ ] **Print styles**: Test print functionality for all major pages
 - [ ] **Dark mode**: Ensure all components respect theme settings
 
 ---
@@ -133,22 +134,22 @@
 - [x] **Interactive Timeline**: Zoomable, filterable timeline of CCP human rights abuses since 1989 ✅
 - [x] **Case Study Deep Dives**: Detailed pages for major cases (Jimmy Lai, Ilham Tohti, Panchen Lama) ✅
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
-- [ ] **Podcast Player**: In-app podcast player for recommended shows
+- [x] **Podcast Player**: In-app podcast player for recommended shows ✅ (PodcastPlayer.jsx in EducationalResources)
 - [x] **Reading Progress Tracker**: Track books and articles read in Education Center ✅
-- [ ] **Campaign Progress Tracker**: Show real-time progress on petitions and campaigns
-- [ ] **Event Map**: Interactive map showing upcoming events worldwide
-- [ ] **Diaspora Directory**: Searchable directory of diaspora organizations by location
-- [ ] **Legal Resources Hub**: Country-specific legal information for asylum, immigration
-- [ ] **Academic Citation Generator**: Generate citations for research papers
+- [x] **Campaign Progress Tracker**: Show real-time progress on petitions and campaigns ✅ (CampaignProgress.jsx in TakeAction)
+- [x] **Event Map**: Interactive map showing upcoming events worldwide ✅ (EventMap.jsx in CommunitySupport)
+- [x] **Diaspora Directory**: Searchable directory of diaspora organizations by location ✅ (DiasporaSupport.jsx in CommunitySupport)
+- [x] **Legal Resources Hub**: Country-specific legal information for asylum, immigration ✅ (LegalResourcesHub.jsx in ResistanceResources)
+- [x] **Academic Citation Generator**: Generate citations for research papers ✅ (AcademicCitationGenerator.jsx in EducationalResources)
 
 ### Content Expansion
-- [ ] **Uyghur Forced Labor Database**: Comprehensive list of companies and products
-- [ ] **Confucius Institute Tracker**: Map and status of all CIs worldwide
+- [x] **Uyghur Forced Labor Database**: Comprehensive list of companies and products ✅ (ForcedLaborTracker.jsx in ResistanceResources + forced_labor_companies_research.json with 30 companies)
+- [ ] **Confucius Institute Tracker**: Component built (ConfuciusInstitutes.jsx + confucius_institutes_research.json with 50 entries) but not yet integrated into a page
 - [x] **CCP Officials Database**: Profiles of key officials involved in repression ✅
-- [ ] **Detention Facility Database**: Satellite imagery and documentation
-- [ ] **Media Bias Guide**: Detailed analysis of media coverage of China
-- [ ] **Historical Documents Archive**: Key speeches, laws, leaked documents
-- [ ] **Victim Memorial Wall**: Remembering those who died in detention
+- [ ] **Detention Facility Database**: Component built (DetentionFacilities.jsx + detention_facilities_research.json with 20 entries) but not yet integrated into a page
+- [x] **Media Bias Guide**: Detailed analysis of media coverage of China ✅ (MediaBiasGuide.jsx in ResistanceResources)
+- [x] **Historical Documents Archive**: Key speeches, laws, leaked documents ✅ (HistoricalDocuments.jsx in ResistanceResources)
+- [x] **Victim Memorial Wall**: Remembering those who died in detention ✅ (VictimMemorialWall.jsx in CommunitySupport)
 
 ### Technical Improvements
 - [ ] **Offline Mode**: Cache critical content for offline access
@@ -363,35 +364,23 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. **Sanctions data update** — Check for recent US/EU/UK/Canada/Australia sanctions
+1. **Integrate orphan components** — ConfuciusInstitutes, DetentionFacilities, CCPOfficials, HongKongStatus, TibetStatus, XinjiangStatus, TaiwanDefenseStatus, PoliceStationsMap, WorldThreatMap, etc. are built but not integrated into any page tab
 2. **Content updates** — Monitor breaking developments
 3. **Backend connection** — Priority 4 from roadmap (Cloudflare Pages Functions + Supabase)
 
 ### Recently Completed
-- ✅ **All sub-components, profiles, campaigns, ThemeContext bulk-updated** — 128 files: all old-style Tailwind classes (bg-slate, border-slate, rounded, gradients, hovers) replaced with terminal design system tokens. Zero old-style classes remain in src/. 257 tests pass. — Session 58, Opus 4.6
-- ✅ **All 13 remaining pages terminal redesigned** — IntelligenceFeeds, PoliticalPrisoners, TakeAction, EducationalResources, SecurityCenter, ResistanceDirectory, CommunitySupport, ResistanceResources, CCPTactics, RegionalThreats, SecureComms, DataSources, CampaignHubs. Surface colors, borders, gradients, buttons, spinners, hover states all updated. 257 tests pass. — Session 57, Opus 4.6
-- ✅ **Dashboard + EmergencyAlerts terminal redesign** — all Dashboard content components (welcome header, critical alert, stat cards, intelligence section, quick actions, campaigns, resources, section loader, footer) and EmergencyAlerts (severity prefixes, terminal buttons, monospace badges) updated to match ASCII/terminal aesthetic. 257 tests pass. — Session 56, Opus 4.6
-- ✅ **ASCII/terminal design overhaul** — sidebar, header, footer, loading screen, 404 page redesigned with monospace typography, box-drawing borders, terminal-green accents, scanline effects. All 257 tests pass. — Session 55, Opus 4.6
-- ✅ Gui Minhai profile page at `/profiles/gui-minhai`: 14-event timeline, 2 charges, 4 CCP narratives debunked, Causeway Bay Books context section (all 5 booksellers), Angela Gui advocacy section, UN WGAD ruling, 90-org joint statement, 10 sources, teal theme — Session 54, Opus 4.6
-- ✅ Profile index page at `/profiles`: lists all 5 built profiles + 3 upcoming with status indicators, links, color themes, source attribution note, navigation link — Session 53, Opus 4.6
-- ✅ Reorganized `_agents/` folder: moved 12 research/audit files to `research/`, 3 satellite TODOs to `planning/`, 7 historical files to `archive/` — top level reduced from 29+ files to 10 core files — Session 53, Opus 4.6
-- ✅ Joshua Wong profile page: dedicated /profiles/joshua-wong route with 21-event timeline, dual charges section (subversion guilty + collusion pending), CCP narrative analysis (4 claims debunked), Nathan Law exile connection, "I love Hong Kong" courtroom moment, 10 sources, yellow/gold theme — Session 47, Opus 4.6
-- ✅ Liu Xiaobo memorial profile page: dedicated /profiles/liu-xiaobo route with 22-event timeline, Charter 08 & Charges tab, CCP narrative analysis (4 claims debunked), Legacy & Impact tab, Liu Xia persecution section, "I Have No Enemies" quote, Ossietzky parallel, 11 sources, memorial color theme — Session 46, Opus 4.6
-- ✅ Gedhun Choekyi Nyima (Panchen Lama) profile page: dedicated /profiles/panchen-lama route with 16-event timeline, "Why It Matters" section (no charges to analyze — unique), CCP narrative analysis (4 claims debunked), 7 international responses, NED Democracy Service Medal 2025, 10 sources — Session 45, Opus 4.6
-- ✅ Ilham Tohti profile page: dedicated /profiles/ilham-tohti route with 19-event timeline, charges, CCP narrative analysis (4 claim/reality pairs), 7 international responses, 9 Tier 1 sources — Session 44, Opus 4.6
-- ✅ Jimmy Lai profile page: dedicated /profiles/jimmy-lai route with complete timeline, charges, CCP narrative analysis, international response, sources — Session 43, Opus 4.6
-- ✅ D1-D5 human decisions implemented: Zhang Yuxin→Che Dalha+Zhang Qingli, Du Bin+Rachung Gendun added, policy proposal tracked — Session 42, Opus 4.6
-- ✅ SEO improvements: per-route meta descriptions for all 14 pages, 2 new tests — Session 40, Opus 4.6
-- ✅ Performance optimization Phase 2: lazy-loaded 28 more sub-components across Dashboard, CommunitySupport, CCPTactics, SecurityCenter — Session 39, Opus 4.6
-- ✅ Performance optimization: lazy-loaded 53 sub-components across TakeAction, EducationalResources, RegionalThreats, ResistanceResources — Session 38, Opus 4.6
-- ✅ Add "illustrative targets" disclaimer to fake community statistics (CommunitySupport page) — Session 37, Opus 4.6
-- ✅ Add "Coming Soon" notices to non-functional forms (VolunteerSignup, IncidentReportForm, ReportSighting, NewsDigest) — Session 36, Opus 4.6
-- ✅ Fix misleading security claims in IncidentReportForm footer ("End-to-end encrypted", "No logs retained") — Session 36
-- ✅ Fix false success messages ("Report Submitted Securely", "You're Subscribed!") with honest notices + links to real organizations — Session 36
-- ✅ PWA Install Banner with iOS/Android support
-- ✅ Case Study Deep Dives (Jimmy Lai, Ilham Tohti, Panchen Lama)
-- ✅ Reading Progress Tracker with achievements
-- ✅ CCP Officials Database (29 officials, sanctions tracking, verified sources)
+- ✅ **ARIA dialog roles + Escape key on 4 modal overlays** (MemorialWall, EventMap, VictimStories, MediaGallery) — Session 69
+- ✅ **Sanctions data expanded 18→35 entries**, extracted to JSON, 10 data integrity tests — Session 69
+- ✅ **react-router security fix** (7.11.0→7.13.0, 3 CVEs: CSRF, XSS, SSR XSS) — Session 69
+- ✅ **zh-CN bug fix** (missing from LanguageContext), added Vietnamese/Korean/Japanese locales (8 languages total, 288→298 tests) — Session 68
+- ✅ **CountdownTimer dates made dynamic** (auto-calculates anniversary years) — Session 68
+- ✅ **Clipboard error handling** (try/catch on 9 components) + **print stylesheet** — Session 68
+- ✅ **Terminal design migration complete** — zero bg-slate/border-slate classes remain in codebase (97+ files updated) — Sessions 67-68
+- ✅ **Page consolidation**: 4 orphan pages merged (CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds) with Navigate redirects — Session 63
+- ✅ **East Turkestan + Tibetan flag SVGs** replace generic Lucide icons in LanguageSelector, LanguageGuide, ContactRepresentatives — Session 64
+- ✅ **5 new RSS feeds** (BBC, HRW, Amnesty, CPJ, Guardian) with ALWAYS_RELEVANT_SOURCES array — Session 65
+- ✅ **6 new profile pages**: Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen (12 total, 0 coming soon) — Session 62
+- ✅ **All sub-components, profiles, campaigns, ThemeContext bulk-updated** — 128 files: all old-style Tailwind classes replaced with terminal design system tokens — Session 58
 - ✅ Interactive Timeline with 21 key events (1989-2025)
 - ✅ December 2025 political prisoner updates (Jimmy Lai verdict, Xin Ruoyu, Guan Heng)
 - ✅ Enhanced SEO with structured data schemas
