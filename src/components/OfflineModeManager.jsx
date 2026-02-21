@@ -50,15 +50,57 @@ const OfflineModeManager = () => {
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
-    // Check cache status
-    checkCacheStatus();
-    checkStorageUsage();
-
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Check cache and storage status on mount
+  useEffect(() => {
+    let cancelled = false;
+
+    const initCacheCheck = async () => {
+      try {
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          if (!cancelled) {
+            setCacheStatus(cacheNames.length > 0 ? 'active' : 'inactive');
+            if (cacheNames.length > 0) {
+              const cache = await caches.open(cacheNames[0]);
+              const requests = await cache.keys();
+              if (!cancelled) {
+                setCachedPages(requests.map(req => req.url));
+              }
+            }
+          }
+        } else if (!cancelled) {
+          setCacheStatus('unsupported');
+        }
+      } catch (error) {
+        console.error('Error checking cache:', error);
+        if (!cancelled) setCacheStatus('error');
+      }
+    };
+
+    const initStorageCheck = async () => {
+      try {
+        if ('storage' in navigator && 'estimate' in navigator.storage) {
+          const estimate = await navigator.storage.estimate();
+          if (!cancelled) {
+            setStorageUsed(estimate.usage || 0);
+            setStorageQuota(estimate.quota || 0);
+          }
+        }
+      } catch (error) {
+        console.error('Error checking storage:', error);
+      }
+    };
+
+    initCacheCheck();
+    initStorageCheck();
+    return () => { cancelled = true; };
+  }, []);
 
   const enableOfflineMode = async () => {
     try {

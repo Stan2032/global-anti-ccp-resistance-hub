@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { BookOpen, Check, Clock, Award, TrendingUp, RotateCcw, ExternalLink, Star, Filter, Library, GraduationCap, Trophy, Book, FileText, Newspaper } from 'lucide-react';
 
 const readingMaterials = [
@@ -36,73 +36,54 @@ const achievements = [
 ];
 
 export default function ReadingProgress() {
-  const [progress, setProgress] = useState({});
+  const [progress, setProgress] = useState(() => {
+    const saved = localStorage.getItem('reading-progress');
+    return saved ? JSON.parse(saved) : {};
+  });
   const [filter, setFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
   const [showCompleted, setShowCompleted] = useState(true);
-  const [earnedAchievements, setEarnedAchievements] = useState([]);
 
-  // Load progress from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem('reading-progress');
-    if (saved) {
-      setProgress(JSON.parse(saved));
-    }
-    const savedAchievements = localStorage.getItem('reading-achievements');
-    if (savedAchievements) {
-      setEarnedAchievements(JSON.parse(savedAchievements));
-    }
-  }, []);
-
-  const checkAchievements = () => {
+  // Derive achievements from progress (pure computation, no side effects)
+  const earnedAchievements = useMemo(() => {
     const completedCount = Object.values(progress).filter(p => p.completed).length;
     const completedIds = Object.keys(progress).filter(id => progress[id]?.completed);
-    const newAchievements = [...earnedAchievements];
+    const achievements = [];
 
     // Check count-based achievements
-    if (completedCount >= 1 && !newAchievements.includes('first-read')) {
-      newAchievements.push('first-read');
-    }
-    if (completedCount >= 5 && !newAchievements.includes('five-reads')) {
-      newAchievements.push('five-reads');
-    }
-    if (completedCount >= 10 && !newAchievements.includes('ten-reads')) {
-      newAchievements.push('ten-reads');
-    }
+    if (completedCount >= 1) achievements.push('first-read');
+    if (completedCount >= 5) achievements.push('five-reads');
+    if (completedCount >= 10) achievements.push('ten-reads');
 
     // Check essential readings
     const essentialIds = readingMaterials.filter(m => m.essential).map(m => m.id);
-    if (essentialIds.every(id => completedIds.includes(id)) && !newAchievements.includes('all-essential')) {
-      newAchievements.push('all-essential');
+    if (essentialIds.length > 0 && essentialIds.every(id => completedIds.includes(id))) {
+      achievements.push('all-essential');
     }
 
     // Check books
     const bookIds = readingMaterials.filter(m => m.type === 'book').map(m => m.id);
     const completedBooks = bookIds.filter(id => completedIds.includes(id)).length;
-    if (completedBooks >= 5 && !newAchievements.includes('book-worm')) {
-      newAchievements.push('book-worm');
-    }
+    if (completedBooks >= 5) achievements.push('book-worm');
 
     // Check category completion
     const categories = [...new Set(readingMaterials.map(m => m.category))];
     for (const cat of categories) {
       const catIds = readingMaterials.filter(m => m.category === cat).map(m => m.id);
-      if (catIds.every(id => completedIds.includes(id)) && !newAchievements.includes('category-master')) {
-        newAchievements.push('category-master');
+      if (catIds.length > 0 && catIds.every(id => completedIds.includes(id))) {
+        achievements.push('category-master');
+        break;
       }
     }
 
-    if (newAchievements.length !== earnedAchievements.length) {
-      setEarnedAchievements(newAchievements);
-      localStorage.setItem('reading-achievements', JSON.stringify(newAchievements));
-    }
-  };
+    return achievements;
+  }, [progress]);
 
-  // Save progress to localStorage
+  // Persist progress and achievements to localStorage
   useEffect(() => {
     localStorage.setItem('reading-progress', JSON.stringify(progress));
-    checkAchievements();
-  }, [progress]); // eslint-disable-line react-hooks/exhaustive-deps
+    localStorage.setItem('reading-achievements', JSON.stringify(earnedAchievements));
+  }, [progress, earnedAchievements]);
 
   const toggleCompleted = (id) => {
     setProgress(prev => ({
@@ -131,7 +112,6 @@ export default function ReadingProgress() {
   const resetProgress = () => {
     if (confirm('Are you sure you want to reset all reading progress?')) {
       setProgress({});
-      setEarnedAchievements([]);
       localStorage.removeItem('reading-progress');
       localStorage.removeItem('reading-achievements');
     }
