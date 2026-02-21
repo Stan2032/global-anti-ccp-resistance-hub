@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub - Development To-Do List
 
-> Last Updated: February 21, 2026 (Session 69)
+> Last Updated: February 21, 2026 (Session 70)
 > 
 > **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
 > See `_agents/README.md` for folder structure and quick start guide.
@@ -144,9 +144,9 @@
 
 ### Content Expansion
 - [x] **Uyghur Forced Labor Database**: Comprehensive list of companies and products ✅ (ForcedLaborTracker.jsx in ResistanceResources + forced_labor_companies_research.json with 30 companies)
-- [ ] **Confucius Institute Tracker**: Component built (ConfuciusInstitutes.jsx + confucius_institutes_research.json with 50 entries) but not yet integrated into a page
+- [x] **Confucius Institute Tracker**: Built and integrated into EducationalResources Tools tab ✅ (Session 70)
 - [x] **CCP Officials Database**: Profiles of key officials involved in repression ✅
-- [ ] **Detention Facility Database**: Component built (DetentionFacilities.jsx + detention_facilities_research.json with 20 entries) but not yet integrated into a page
+- [ ] **Detention Facility Database**: Component built (DetentionFacilities.jsx + detention_facilities_research.json with 20 entries) — needs integration into a page tab
 - [x] **Media Bias Guide**: Detailed analysis of media coverage of China ✅ (MediaBiasGuide.jsx in ResistanceResources)
 - [x] **Historical Documents Archive**: Key speeches, laws, leaked documents ✅ (HistoricalDocuments.jsx in ResistanceResources)
 - [x] **Victim Memorial Wall**: Remembering those who died in detention ✅ (VictimMemorialWall.jsx in CommunitySupport)
@@ -364,11 +364,12 @@
 2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
 
 ### Up Next
-1. **Integrate orphan components** — ConfuciusInstitutes, DetentionFacilities, CCPOfficials, HongKongStatus, TibetStatus, XinjiangStatus, TaiwanDefenseStatus, PoliceStationsMap, WorldThreatMap, etc. are built but not integrated into any page tab
-2. **Content updates** — Monitor breaking developments
-3. **Backend connection** — Priority 4 from roadmap (Cloudflare Pages Functions + Supabase)
+1. **Integrate remaining orphan components** — DetentionFacilities, PoliceStationsMap still not integrated into any page tab
+2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
+3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
 
 ### Recently Completed
+- ✅ **8 orphan components integrated** into IntelligenceFeeds (3-tab: Live Feeds, Regional Status, CCP Operations), SecurityCenter (ChinaExitBan), EducationalResources (ConfuciusInstitutes) — Session 70
 - ✅ **ARIA dialog roles + Escape key on 4 modal overlays** (MemorialWall, EventMap, VictimStories, MediaGallery) — Session 69
 - ✅ **Sanctions data expanded 18→35 entries**, extracted to JSON, 10 data integrity tests — Session 69
 - ✅ **react-router security fix** (7.11.0→7.13.0, 3 CVEs: CSRF, XSS, SSR XSS) — Session 69
