@@ -75,7 +75,8 @@ These are directives from the human owner. Follow them:
 ### File Structure
 ```
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
-│   ├── TODO.md                 # Master task list
+│   ├── TODO.md                 # Active task list (pending items only)
+│   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
 │   ├── AGENT_HANDOFF.json      # Machine-readable state (v5.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
@@ -199,8 +200,9 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 ## Files to Read (In Order)
 
 1. **This file** — You're reading it now ✅
-2. `_agents/TODO.md` — Full task list with completion status
-3. `_agents/STYLE_GUIDE.md` — Design system reference
+2. `_agents/TODO.md` — Active task list (pending items only)
+3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
+4. `_agents/STYLE_GUIDE.md` — Design system reference
 4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v5.0)
 5. `_agents/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered)
 6. `_agents/thoughts/` — Per-session decision notes (read the latest few)

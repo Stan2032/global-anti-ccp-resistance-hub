@@ -1,161 +1,55 @@
-# Global Anti-CCP Resistance Hub - Development To-Do List
+# Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 21, 2026 (Session 71)
-> 
-> **Location:** `_agents/TODO.md` — All agent documentation is now in the `_agents/` folder.
-> See `_agents/README.md` for folder structure and quick start guide.
-> 
-> This document tracks planned improvements, features, and maintenance tasks for the platform.
-> Items are categorized by timeframe and priority.
+> Last Updated: February 24, 2026 (Session 74)
+>
+> **Location:** `_agents/TODO.md` — Active tasks only.
+> **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
+> **Agent docs:** `_agents/` folder (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, AGENT_HANDOFF.json)
 
 ---
 
 ## 🔴 SHORT-TERM (1-2 weeks)
 
-### High Priority
-- [x] **Multilingual Support**: 8 locale files built (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated ✅
-- [x] **Mobile App Banner**: Add "Add to Home Screen" prompt for PWA installation ✅
-- [x] **Accessibility Audit**: WCAG AA contrast ratios verified for all text colors, ARIA labels added to SVGs/buttons, 20 contrast tests added ✅ (Session 59)
-- [x] **Performance Optimization**: Implement code splitting for large components ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles now under 50KB)
-- [x] **SEO Improvements**: Add meta tags, Open Graph tags, structured data for search engines ✅ (index.html already had OG/Twitter/structured data; Session 40 added per-route meta descriptions for all 14 pages)
-
 ### Content Updates
-- [x] **Update Political Prisoners Database**: Add recent arrests and releases (December 2025) ✅
-- [x] **News Feed Integration**: Added 9 RSS feeds from trusted sources (HKFP, RFA China/Uyghur/Tibet, Taiwan News, SCMP, HRW, Amnesty, BBC, Guardian, CPJ) ✅
-- [ ] **Update Sanctions List**: Add any new sanctions from US, EU, UK, Canada, Australia
-- [x] **Jimmy Lai Case Updates**: Updated with Feb 9, 2026 sentencing (20 years) ✅
-  - [x] Fix conviction date errors (2024 → 2025, Dec 19 → Dec 15) across 6 files
-  - [x] Fix age errors (77 → 78) across 5 files
-  - [x] Update sentence from "faces life" to "20 years" across 20+ files
-  - [x] Update status from "GUILTY - AWAITING SENTENCING" to "SENTENCED - 20 YEARS"
-  - [x] Add February 9, 2026 sentencing as new timeline event ✅
-  - [ ] Monitor for appeal proceedings
-
-### Data Verification (Opus 4.6 — requires CCP propaganda detection capability)
-- [x] **Verify all timeline event dates**: 21 events verified with direct source links (see DATA_VERIFICATION_LOG.md)
-- [x] **Fix Safeguard Defenders report date**: Corrected from 2023-09-14 to 2022-12-04
-- [x] **Verify sanctions dates**: Chen Quanguo, Zhu Hailun, Carrie Lam dates confirmed
-- [x] **Verify Canada sanctions on Chen Quanguo**: CONFIRMED December 2024 via canada.ca and Canada Gazette ✅
-- [x] **Cross-reference Falun Gong death toll**: "4,000+ confirmed deaths in custody" from FDIC (individual named cases); independently corroborated pattern by China Tribunal 2019. Added sourcing note ✅
-- [x] **Verify all political prisoner statuses**: Key updates completed ✅
-  - [x] Zhang Zhan: Second 4-year sentence CONFIRMED (Sep 2025) via OHCHR, Amnesty, CPJ
-  - [x] Xu Zhiyong: Hunger strike CONFIRMED (Oct 4, 2024) via HRW, The Independent, NCHRD. Forced-feeding observed. Critical health.
-  - [x] Gui Minhai: Sentence ends Feb 2030 CONFIRMED. Location unknown. No consular access. Via Amnesty, NCHRD, Safeguard Defenders
-  - [x] Gedhun Choekyi Nyima: 30th anniversary coverage May 2025 CONFIRMED per existing data
-  - [x] Joshua Wong: New NSL collusion charges June 2025 CONFIRMED via Amnesty, HKFP
-- [x] **Verify academic experts data**: Checked affiliations, current positions. Fixed: Elliot Sperling (deceased 2017), Sophie Richardson (now CHRD), Elizabeth Economy (title updated), Barnett duplicate removed ✅
-- [x] **Verify forced labor companies list**: 30 companies cross-referenced with ASPI "Uyghurs for Sale" report. UFLPA Entity List (144 entities) targets Chinese suppliers, not Western brands — distinction is correct ✅
-- [x] **Verify Confucius Institute data**: US: 4 remaining, 104 closed. Many rebranded. Via GAO report ✅
-- [x] **Deduplicate data files**: Removed Barnett duplicate from academic experts, merged Taiwan Assoc. for HR duplicate in HR orgs ✅
-
-### Expanded Person Profiles (NEW — requested by project owner)
-- [ ] **Create detailed person profile pages**: Full timeline pages for key individuals targeted by CCP
-  - [x] **Jimmy Lai profile page**: Complete timeline from birth to sentencing ✅ (Session 43)
-    - [x] Early life and business career
-    - [x] Apple Daily founding (1995) and editorial stance
-    - [x] 2014 Umbrella Movement involvement
-    - [x] 2019 protest coverage and CCP targeting begins
-    - [x] August 10, 2020: Arrested under NSL
-    - [x] 2021: Apple Daily forced to close (June 24)
-    - [x] 2022-2025: Trial proceedings (156 days)
-    - [x] December 15, 2025: Found guilty on all charges
-    - [x] February 9, 2026: Sentenced to 20 years
-    - [x] CCP narrative control breakdown with sourced rebuttals
-    - [x] International response timeline
-    - [x] All source links (HRW, CPJ, BBC, US State Dept, HKFP, etc.)
-  - [x] **Ilham Tohti profile page**: From academic career to life sentence ✅ (Session 44)
-    - [x] Academic work at Minzu University
-    - [x] Uighurbiz.net and advocacy for Han-Uyghur dialogue
-    - [x] January 15, 2014: Arrested
-    - [x] September 23, 2014: Sentenced to life
-    - [x] Sakharov Prize (2019), Václav Havel Prize (2019), Martin Ennals Award (2016), PEN Award (2014)
-    - [x] CCP "separatist" narrative vs reality (dialogue advocate)
-    - [x] 7 students also persecuted
-    - [x] 9 Tier 1 sources (HRW, Amnesty, European Parliament, PEN, Front Line Defenders, USCIRF, Scholars at Risk, PEN America, UN OHCHR)
-  - [x] **Gedhun Choekyi Nyima (Panchen Lama) profile page** ✅ (Session 45)
-    - [x] Recognition by Dalai Lama (May 14, 1995)
-    - [x] Abduction (May 17, 1995)
-    - [x] 30 years of enforced disappearance — 16-event timeline
-    - [x] CCP's installation of Gyaltsen Norbu (Golden Urn ceremony Nov 29, 1995)
-    - [x] "Why It Matters" section (religious, political, human significance) — replaces "Charges" since no charges exist
-    - [x] CCP narrative analysis: 4 claims debunked (living normally, Golden Urn tradition, Dalai Lama violated procedures, internal matter)
-    - [x] International advocacy efforts: 7 organizations + NED Democracy Service Medal 2025
-    - [x] 10 sources (9 Tier 1, 1 Tier 2), zero CCP state media
-    - [x] Chadrel Rinpoche persecution documented
-    - [x] Purple color theme (religious/spiritual differentiation)
-  - [x] **Liu Xiaobo profile page** (posthumous) ✅ (Session 46)
-    - [x] Charter 08 and Nobel Peace Prize
-    - [x] 22-event timeline from 1955 birth to 2018 Liu Xia exile
-    - [x] 11-year sentence and death in custody (July 13, 2017)
-    - [x] Liu Xia (wife) house arrest and eventual exile — dedicated section
-    - [x] CCP narrative analysis: 4 claims debunked (criminal not prisoner, best medical care, Nobel blasphemy, voluntary sea burial)
-    - [x] "I Have No Enemies" quote on Legacy tab
-    - [x] Ossietzky parallel (first Nobel laureate to die in custody since 1938)
-    - [x] 11 sources (9 Tier 1, 2 Tier 2), zero CCP state media
-    - [x] Memorial color theme (dark gray with gold Nobel accents)
-  - [x] **Joshua Wong profile page** ✅ (Session 47)
-    - [x] Scholarism movement (2011-2012) and anti-national education curriculum campaign
-    - [x] 2014 Umbrella Movement and Civic Square arrest (September 26, 2014)
-    - [x] TIME "Most Influential Teens" (2014) and Fortune "World's Greatest Leaders" (2015)
-    - [x] Demosistō founding (April 2016) and dissolution (June 2020)
-    - [x] Multiple arrests, convictions, and appeals (2016-2020)
-    - [x] Hong Kong 47 case: arrested Feb 28, 2021 → guilty May 30, 2024 → sentenced Nov 19, 2024 (4y8m)
-    - [x] "I love Hong Kong" courtroom moment documented
-    - [x] June 6, 2025: new NSL collusion charge (faces life imprisonment) — Amnesty calls it "designed to prolong imprisonment"
-    - [x] CCP narrative analysis: 4 claims debunked (separatist, subversive primary, foreign manipulation, fair trial)
-    - [x] Nathan Law exile connection documented
-    - [x] 10 sources (7 Tier 1, 3 Tier 2), zero CCP state media
-    - [x] Yellow/gold color theme (youth activism, energy)
-  - [x] **Gui Minhai profile page**
-    - [x] Causeway Bay Books and cross-border abduction from Thailand
-    - [x] Swedish citizenship and diplomatic crisis
-    - [x] 10-year espionage sentence
-    - [x] 14-event timeline (1964-2025), 2 charges, 4 CCP narratives debunked
-    - [x] Causeway Bay Books context section (all 5 booksellers documented)
-    - [x] Angela Gui advocacy section
-    - [x] UN WGAD ruling (August 2025), 90-org joint statement (October 2025)
-    - [x] 10 sources (6 Tier 1, 4 Tier 2), zero CCP state media
-    - [x] Teal color theme (publishing/literary differentiation) — Session 54, Opus 4.6
-  - [x] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan — all built ✅ (Session 62)
-  - **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
+- [ ] **Update Sanctions List**: Add any new 2025-2026 sanctions from US, EU, UK, Canada, Australia
+  - **Agent:** Opus 4.6 (requires source verification against government registries)
+  - Subtask: Check US Treasury SDN list for new China/HK-related designations
+  - Subtask: Check UK FCDO sanctions list for updates
+  - Subtask: Check EU Council sanctions for new entries
+  - Subtask: Verify source_url links still resolve
+- [ ] **Monitor Jimmy Lai appeal proceedings**
+  - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
+  - Subtask: Watch for appeal filing date
+  - Subtask: Update profile page timeline when new developments occur
+- [ ] **Fill timeline gaps** (identified Session 72):
+  - [ ] 1999-07-20: Falun Gong persecution begins — already in timeline ✅
+  - [ ] 2001: Tiananmen Square self-immolation incident (CCP used to justify Falun Gong persecution)
+  - [ ] 2003: Hong Kong Article 23 legislation attempt and 500,000-person march
+  - [ ] 2010-2013 gap: Consider adding Liu Xiaobo Nobel (2010-10-08), Wukan protests (2011), self-immolation wave in Tibet (2012)
+  - [ ] 2018 gap: Consider adding constitutional amendment removing term limits (2018-03-11)
+  - [ ] 2023-2024 gap: Consider adding Hong Kong Article 23 passage (2024-03-19)
+  - **Agent:** Opus 4.6 (requires date cross-referencing and source verification)
 
 ### Bug Fixes & Polish
-- [x] **Clipboard error handling**: Added try/catch to 9 components ✅ (Session 68)
-- [x] **Print styles**: A4 print stylesheet for profile pages and reports ✅ (Session 68)
-- [x] **Modal accessibility**: Added ARIA dialog roles and Escape key to 4 modal overlays ✅ (Session 69)
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
+  - **Agent:** Sonnet 4.5 (UI testing, rapid iteration)
 - [ ] **Dark mode**: Ensure all components respect theme settings
+  - **Agent:** Sonnet 4.5 (design system application)
 
 ---
 
 ## 🟠 MEDIUM-TERM (1-3 months)
 
 ### New Features
-- [x] **Interactive Timeline**: Zoomable, filterable timeline of CCP human rights abuses since 1989 ✅
-- [x] **Case Study Deep Dives**: Detailed pages for major cases (Jimmy Lai, Ilham Tohti, Panchen Lama) ✅
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
-- [x] **Podcast Player**: In-app podcast player for recommended shows ✅ (PodcastPlayer.jsx in EducationalResources)
-- [x] **Reading Progress Tracker**: Track books and articles read in Education Center ✅
-- [x] **Campaign Progress Tracker**: Show real-time progress on petitions and campaigns ✅ (CampaignProgress.jsx in TakeAction)
-- [x] **Event Map**: Interactive map showing upcoming events worldwide ✅ (EventMap.jsx in CommunitySupport)
-- [x] **Diaspora Directory**: Searchable directory of diaspora organizations by location ✅ (DiasporaSupport.jsx in CommunitySupport)
-- [x] **Legal Resources Hub**: Country-specific legal information for asylum, immigration ✅ (LegalResourcesHub.jsx in ResistanceResources)
-- [x] **Academic Citation Generator**: Generate citations for research papers ✅ (AcademicCitationGenerator.jsx in EducationalResources)
-
-### Content Expansion
-- [x] **Uyghur Forced Labor Database**: Comprehensive list of companies and products ✅ (ForcedLaborTracker.jsx in ResistanceResources + forced_labor_companies_research.json with 30 companies)
-- [x] **Confucius Institute Tracker**: Built and integrated into EducationalResources Tools tab ✅ (Session 70)
-- [x] **CCP Officials Database**: Profiles of key officials involved in repression ✅
-- [x] **Detention Facility Database**: Built and integrated into IntelligenceFeeds CCP Operations tab ✅ (Session 71)
-- [x] **Media Bias Guide**: Detailed analysis of media coverage of China ✅ (MediaBiasGuide.jsx in ResistanceResources)
-- [x] **Historical Documents Archive**: Key speeches, laws, leaked documents ✅ (HistoricalDocuments.jsx in ResistanceResources)
-- [x] **Victim Memorial Wall**: Remembering those who died in detention ✅ (VictimMemorialWall.jsx in CommunitySupport)
+  - **Agent:** Sonnet 4.5 (UI/embedding), Human (content sourcing/consent)
 
 ### Technical Improvements
 - [ ] **Offline Mode**: Cache critical content for offline access
 - [ ] **Push Notifications**: Alert users to breaking news and urgent actions
 - [ ] **Analytics Dashboard**: Track platform usage (privacy-respecting)
 - [ ] **API Development**: Create public API for researchers to access data
+  - **Agent:** Opus 4.6 (backend API design, security implications)
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery
@@ -344,65 +238,24 @@
 
 ---
 
-## ✅ HUMAN DECISIONS — ALL RESOLVED (Session 42)
+## ✅ HUMAN DECISIONS — ALL RESOLVED
 
 > All D1-D5 answered and implemented. See `QUESTIONS_FOR_HUMANS.md` for details.
 > **Standing instruction:** Agents may add individuals to the database without asking, as long as well-researched with verified sources and consistent with project goals.
-
-1. ~~**D1 — Zhang Yuxin bad data**~~ → ✅ Replaced with Che Dalha + Zhang Qingli
-2. ~~**D2 — Du Bin**~~ → ✅ Added to political prisoner database
-3. ~~**D3 — Rachung Gendun**~~ → ✅ Added to political prisoner database
-4. ~~**D4 — Profile page priority**~~ → ✅ Jimmy Lai first (agent's choice)
-5. ~~**D5 — Policy tracking**~~ → ✅ Added to US international responses
 
 ---
 
 ## 🎯 CURRENT SPRINT
 
-### In Progress
-1. [x] Accessibility audit and improvements ✅ (Sessions 10, 14, 18 — 208 accessibility attributes)
-2. [x] Performance optimization ✅ (Sessions 38-39 — lazy-loaded 81 sub-components across 8 pages, all page bundles under 50KB)
-
 ### Up Next
 1. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 2. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
+3. **Timeline gap filling** — Add missing historical events (see SHORT-TERM section)
 
-### Recently Completed
-- ✅ **5 more orphan components integrated** — DetentionFacilities, PoliceStationsMap, RegionalIssues, SanctionedOfficials, GlobalInfluenceMap into IntelligenceFeeds tabs; `sIdx` lint error fixed in App.jsx — Sessions 70-71
-- ✅ **8 orphan components integrated** into IntelligenceFeeds (3-tab: Live Feeds, Regional Status, CCP Operations), SecurityCenter (ChinaExitBan), EducationalResources (ConfuciusInstitutes) — Session 70
-- ✅ **ARIA dialog roles + Escape key on 4 modal overlays** (MemorialWall, EventMap, VictimStories, MediaGallery) — Session 69
-- ✅ **Sanctions data expanded 18→35 entries**, extracted to JSON, 10 data integrity tests — Session 69
-- ✅ **react-router security fix** (7.11.0→7.13.0, 3 CVEs: CSRF, XSS, SSR XSS) — Session 69
-- ✅ **zh-CN bug fix** (missing from LanguageContext), added Vietnamese/Korean/Japanese locales (8 languages total, 288→298 tests) — Session 68
-- ✅ **CountdownTimer dates made dynamic** (auto-calculates anniversary years) — Session 68
-- ✅ **Clipboard error handling** (try/catch on 9 components) + **print stylesheet** — Session 68
-- ✅ **Terminal design migration complete** — zero bg-slate/border-slate classes remain in codebase (97+ files updated) — Sessions 67-68
-- ✅ **Page consolidation**: 4 orphan pages merged (CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds) with Navigate redirects — Session 63
-- ✅ **East Turkestan + Tibetan flag SVGs** replace generic Lucide icons in LanguageSelector, LanguageGuide, ContactRepresentatives — Session 64
-- ✅ **5 new RSS feeds** (BBC, HRW, Amnesty, CPJ, Guardian) with ALWAYS_RELEVANT_SOURCES array — Session 65
-- ✅ **6 new profile pages**: Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen (12 total, 0 coming soon) — Session 62
-- ✅ **All sub-components, profiles, campaigns, ThemeContext bulk-updated** — 128 files: all old-style Tailwind classes replaced with terminal design system tokens — Session 58
-- ✅ Interactive Timeline with 21 key events (1989-2025)
-- ✅ December 2025 political prisoner updates (Jimmy Lai verdict, Xin Ruoyu, Guan Heng)
-- ✅ Enhanced SEO with structured data schemas
-- ✅ Multilingual Support Foundation (English, Simplified Chinese, Traditional Chinese, Uyghur, Tibetan)
-- ✅ Language files and i18n context with navigation wired to t()
-- ✅ Witness Protection Guide
-- ✅ Petition Generator
-- ✅ Regional Issues (Inner Mongolia, Falun Gong, etc.)
-- ✅ Source Verification Tool
-- ✅ Quick Start Guide
-- ✅ Source Attribution across all data components (142 entries, 100% coverage)
-- ✅ Emoji reduction (934 → 278, 70% removed)
-- ✅ Accessibility improvements (208 total ARIA/role/tabIndex attributes)
-- ✅ Lint cleanup (289 → 11 errors, 96% reduction)
-- ✅ Dead code removal (15 files, 4,648 lines)
-- ✅ Source bias audit with CCP propaganda detection guide
-- ✅ Political prisoner verification (60 records, 100% verified with 2+ sources)
-- ✅ Sanctioned officials verification (29 officials, corrected dates, fixed errors)
-- ✅ WebRTC leak detection (client-side, zero privacy risk)
-- ✅ VPN/Tor fake detection removed, honest disclaimers added
-- ✅ Route error boundary for censored-region network failures
+### What Needs Human Decisions
+1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
+2. Whether to implement backend cache system or remove documentation referencing it
+3. Priority ranking for medium-term features
 
 ---
 
@@ -415,123 +268,45 @@
 4. **Actionable**: Every page should lead to concrete actions
 5. **Comprehensive**: One-stop resource for all anti-CCP activism needs
 
-### Content Guidelines
-1. Primary sources preferred over secondary
-2. Multiple independent sources for major claims
-3. Clear attribution and citation
-4. Regular updates to maintain accuracy
-5. Balanced coverage of all affected groups
-
-### Security Considerations
-1. No user tracking or analytics that could identify individuals
-2. No server-side storage of sensitive user data
-3. All data export in user-controlled formats
-4. Clear security warnings where appropriate
-5. Regular security audits
-
----
+### Standing Instructions from Humans
+- **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
+- **CCP source exclusion:** Never cite CCP state/party media. Use `isCCPStateMedia()` from `src/utils/sourceLinks.js` — the centralized CCP influence detection registry
+- **Date verification:** Always cross-reference dates with 2+ independent sources
+- **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
 
 ---
 
 ## 📂 RELATED TODO FILES
 
-> **Important:** These satellite TODO files live in `_agents/planning/` and were created in earlier sessions (Jan 2026). Each file has been annotated with completion status as of Session 49.
-
 | File | Focus | Status |
 |------|-------|--------|
-| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data from the codebase | Phase 1 ✅ complete. Phase 2 (component refactoring to use JSON data) still outstanding — **highest priority satellite work** |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete (emoji reduction, code splitting, accessibility all done). Typography and page consolidation still outstanding |
-| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Still outstanding — good feature work for future sessions |
+| **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2 (component refactoring) outstanding |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete |
+| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 
 ---
 
 ## 🚀 QUICK START FOR NEW AGENTS
 
 ### Essential Reading (in order)
-1. **This file (TODO.md)** — What's done, what's next, standing instructions
-2. **AGENTS.md** — Agent roles, capabilities, protocol, CodeQL troubleshooting
-3. **AGENT_ROADMAP.md** — Detailed task history with subtask breakdowns and agent assignments
-4. **QUESTIONS_FOR_HUMANS.md** — All resolved decisions + standing instruction on adding people
-5. **thoughts/** — Session-by-session decision logs (14 files, Sessions 33-48)
-6. **AGENT_HANDOFF.json** — Machine-readable state snapshot (updated Session 48)
-7. **LLM_JUDGEMENT_LOG.md** — Formal decision rationale log (Sessions 6-35)
-8. **Satellite TODOs** — See "Related TODO Files" section above for `planning/SIMULATED_DATA_CLEANUP_TODO.md`, `planning/SITE_CLEANUP_TODO.md`, `planning/SITE_WIDE_TODO.md`
+1. **This file (TODO.md)** — What's active, what's next, standing instructions
+2. **TODO_COMPLETED.md** — Archive of everything already done
+3. **AGENTS.md** — Agent roles, capabilities, protocol, CodeQL troubleshooting
+4. **STYLE_GUIDE.md** — Terminal design system reference
+5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
+6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 68, Feb 21, 2026)
-- **Frontend:** React + Vite + Tailwind, 14 pages (4 consolidated), 100+ components, 288 tests (all passing)
-- **Design:** ASCII/terminal aesthetic — monospace headings (JetBrains Mono), terminal-green (#4afa82) accents, box-drawing borders, square corners, CRT scanline effects. Zero old-style slate classes remain.
+### Current State Summary (as of Session 74, Feb 24, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 495 tests (25 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
-- **Profile Pages Built:** 12 (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen)
-- **Profile Pages Queued:** None — all queued profiles have been built
-- **Data:** 60 political prisoners, 29 sanctioned officials, 33 forced labor companies, 142 total entries with 100% source attribution
-- **Performance:** All 8 major pages lazy-loaded (81 sub-components), all page bundles under 50KB
-- **Forms:** 4 non-functional forms have honest "Coming Soon" disclaimers (Session 36)
-- **Community stats:** Marked as "illustrative targets" (Session 37)
-- **i18n:** 8 language files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo), 194 keys each, all translated. Proper East Turkestan and Tibetan flag SVGs.
-- **Page consolidation:** 4 orphan pages merged (CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds)
-- **Clipboard:** 9 components have proper try/catch error handling
-- **Print:** @media print stylesheet for profile pages (A4 layout, hides nav/footer)
-- **RSS:** 9 feeds from trusted sources (HKFP, RFA, BBC, HRW, Amnesty, CPJ, Guardian, Taiwan News, SCMP)
-
-### Standing Instructions from Humans
-- **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
-- **CCP source exclusion:** Never cite Xinhua, CGTN, People's Daily, Global Times, China Daily, Ta Kung Pao, Wen Wei Po, tibet.cn, en.people.cn, or any CCP state/party media
-- **Date verification:** Always cross-reference dates with 2+ independent sources
-- **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
-
-### What's Immediately Actionable (no human input needed)
-1. **Update sanctions list** — check for new US/EU/UK/Canada/Australia sanctions (2025-2026)
-2. **Content monitoring** — update political prisoners database with new cases
-3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
-4. **Additional locale translations** — machine translate more keys for vi, ko, ja
-
-### What Needs Human Decisions
-1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
-2. Whether to implement backend cache system or remove documentation referencing it
-3. Priority ranking for medium-term features (video testimonials, podcast player, event map, etc.)
+- **Profile Pages:** 12/12 built (0 coming soon)
+- **Data:** 60 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
+- **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
+- **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries)
+- **Lint:** 0 errors, 10 harmless react-refresh warnings
 
 ---
 
-## 📜 SESSION HISTORY
-
-| Session | Date | Agent | Key Work |
-|---------|------|-------|----------|
-| 1-5 | Jan 2026 | Sonnet 3.5 | Initial build, 14 pages, 100+ components |
-| 6-22 | Feb 18-19 | Opus 4.6 | Data verification, source attribution, security fixes, accessibility |
-| 23-25 | Feb 18-19 | Investigation | Fabrication gap audit, AGENT_HANDOFF.json creation |
-| 33-34 | Feb 19-20 | Opus 4.6 | Data verification (Zhang Zhan, Xu Zhiyong, Gui Minhai, Joshua Wong), deduplication |
-| 35 | Feb 20 | Opus 4.6 | Documentation updates, roadmap V2/V3 sections |
-| 36 | Feb 20 | Opus 4.6 | Honest "Coming Soon" notices on 4 non-functional forms, removed false security claims |
-| 37 | Feb 20 | Opus 4.6 | "Illustrative targets" disclaimer on fake community statistics |
-| 38-39 | Feb 20 | Opus 4.6 | Performance: lazy-loaded 81 sub-components across 8 pages (87-93% bundle reduction) |
-| 40 | Feb 20 | Opus 4.6 | SEO: per-route meta descriptions for all 14 pages, 2 new tests (248 total) |
-| 41 | Feb 20 | Opus 4.6 | Consolidated pending decisions, amended outdated questions |
-| 42 | Feb 20 | Opus 4.6 | Implemented all 5 human decisions (D1-D5), standing instruction recorded |
-| 43 | Feb 20 | Opus 4.6 | Jimmy Lai profile page (16 timeline events, 3 charges, 4 CCP narratives debunked) |
-| 44 | Feb 20 | Opus 4.6 | Ilham Tohti profile page (19 events, Sakharov Prize, 7 students persecuted) |
-| 45 | Feb 20 | Opus 4.6 | Panchen Lama profile page (16 events, "Why It Matters" section, Golden Urn debunked) |
-| 46 | Feb 20 | Opus 4.6 | Liu Xiaobo memorial profile page (22 events, Charter 08, posthumous/memorial treatment) |
-| 47 | Feb 20 | Opus 4.6 | Joshua Wong profile page (21 events, dual charges, HK47 trial, yellow theme) |
-| 48 | Feb 20 | Opus 4.6 | Comprehensive TODO/handoff update for branch merge |
-| 49 | Feb 20 | Opus 4.6 | Final consolidation: annotated 3 satellite TODOs, added Related TODO Files section |
-| 50 | Feb 20 | Opus 4.6 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS, fixed duplicate aria-label build warning |
-| 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder, updated cross-references |
-| 52 | Feb 20 | Opus 4.6 | Final cross-reference cleanup: fixed stale paths in AGENT_HANDOFF.json |
-| 53 | Feb 20 | Opus 4.6 | Reorganized `_agents/` folder (research/, planning/ subdirs), built Profiles Index page at /profiles with 9 tests |
-| 54 | Feb 20 | Opus 4.6 | Gui Minhai profile page: 14-event timeline, Causeway Bay Books context, 4 CCP narratives debunked, 10 sources, teal theme |
-| 55 | Feb 20 | Opus 4.6 | ASCII/terminal design overhaul: monospace headings, box-drawing borders, terminal-green accents, redesigned sidebar/header/footer/loading/404 |
-| 56 | Feb 20 | Opus 4.6 | Dashboard + EmergencyAlerts terminal redesign: stat cards, intelligence section, quick actions, campaigns, resources, section loader all updated |
-| 57 | Feb 20 | Opus 4.6 | Terminal aesthetic applied to all 13 remaining pages: surface colors, borders, gradients→flat, CTA buttons, spinners, hover states |
-| 58 | Feb 20 | Opus 4.6 | Bulk terminal styling: 128 files — all sub-components, profiles, campaigns, ThemeContext. Zero old-style classes remain. Design system 100% complete. |
-| 59-61 | Feb 20 | Opus 4.6 | Accessibility audit, WCAG AA contrast verification, 20 contrast tests, 277 tests total |
-| 62 | Feb 20 | Sonnet 4.5 | 6 new profile pages: Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen. ProfilesIndex updated (12 profiles, 0 coming soon) |
-| 63 | Feb 20 | Sonnet 4.5 | Page consolidation: 4 orphan pages → redirects (CampaignHubs, SecureComms, CCPTactics, RegionalThreats). Updated Dashboard, Footer, GlobalSearch, SuccessStories links |
-| 64 | Feb 21 | Sonnet 4.5 | Locale cleanup: removed 4 stale nav keys, added nav.profiles, fixed hardcoded 'Profiles' string to use t('nav.profiles') |
-| 65 | Feb 21 | Sonnet 4.5 | Proper flag SVGs: replaced generic Lucide icons (Flag, Mountain, Landmark) with East Turkestan and Tibetan flag SVG components |
-| 66 | Feb 21 | Sonnet 4.5 | 5 new RSS feeds (BBC, HRW, Amnesty, CPJ, Guardian), mobile nav overflow fix, ALWAYS_RELEVANT_SOURCES array |
-| 67 | Feb 21 | Sonnet 4.5 | Complete terminal design cleanup: all remaining bg-slate-*/border-slate-* → design tokens across 97+ files. Deleted 4 orphan page files (1,616 lines) |
-| 68 | Feb 21 | Sonnet 4.5 | Clipboard error handling (9 components), print styles (@media print), zh-CN bug fix, 3 new locales (vi/ko/ja), dynamic countdown dates |
-
----
-
-*This document is a living guide and should be updated regularly as priorities shift and new needs emerge.*
+*Active tasks only. For completed work and session history, see `_agents/TODO_COMPLETED.md`.*
