@@ -109,7 +109,7 @@
     },
     "remaining_orphan_components": {
       "status": "RESOLVED",
-      "severity": "NONE",
+      "severity": "RESOLVED",
       "description": "DetentionFacilities and PoliceStationsMap are integrated into IntelligenceFeeds (CCP Operations tab) as lazy-loaded components.",
       "recommendation": "No action needed — both components confirmed integrated (Session 71)"
     }
