@@ -213,5 +213,29 @@ describe('Timeline Events Data Integrity', () => {
       expect(event.category).toBe('hongkong');
       expect(event.significance).toBe('critical');
     });
+
+    it('includes Charter 08 (2008)', () => {
+      const event = events.find(e => e.title === 'Charter 08 Published');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2008-12-10');
+      expect(event.category).toBe('mainland');
+      expect(event.significance).toBe('critical');
+    });
+
+    it('includes Liu Xiaobo Nobel Peace Prize (2010)', () => {
+      const event = events.find(e => e.title === 'Liu Xiaobo Awarded Nobel Peace Prize');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2010-10-08');
+      expect(event.category).toBe('mainland');
+      expect(event.significance).toBe('critical');
+    });
+
+    it('includes Presidential Term Limits Abolished (2018)', () => {
+      const event = events.find(e => e.title === 'Presidential Term Limits Abolished');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2018-03-11');
+      expect(event.category).toBe('mainland');
+      expect(event.significance).toBe('critical');
+    });
   });
 });
