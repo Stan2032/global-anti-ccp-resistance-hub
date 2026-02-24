@@ -237,5 +237,43 @@ describe('Timeline Events Data Integrity', () => {
       expect(event.category).toBe('mainland');
       expect(event.significance).toBe('critical');
     });
+
+    it('includes Tiananmen Self-Immolation Incident (2001)', () => {
+      const event = events.find(e => e.title === 'Tiananmen Self-Immolation Incident');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2001-01-23');
+      expect(event.category).toBe('falungong');
+    });
+
+    it('includes 500,000 March Against Article 23 (2003)', () => {
+      const event = events.find(e => e.title === '500,000 March Against Article 23');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2003-07-01');
+      expect(event.category).toBe('hongkong');
+      expect(event.significance).toBe('critical');
+    });
+
+    it('includes Wukan Protests (2011)', () => {
+      const event = events.find(e => e.title === 'Wukan Protests');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2011-09-21');
+      expect(event.category).toBe('mainland');
+    });
+
+    it('includes Tibetan Self-Immolation Wave (2012)', () => {
+      const event = events.find(e => e.title === 'Tibetan Self-Immolation Wave Peaks');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2012-11-07');
+      expect(event.category).toBe('tibet');
+      expect(event.significance).toBe('critical');
+    });
+
+    it('includes Hong Kong Article 23 Passed (2024)', () => {
+      const event = events.find(e => e.title === 'Hong Kong Article 23 Passed');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('2024-03-19');
+      expect(event.category).toBe('hongkong');
+      expect(event.significance).toBe('critical');
+    });
   });
 });

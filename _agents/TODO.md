@@ -25,12 +25,13 @@
   - [x] 2008-12-10: Charter 08 Published ✅ (Session 74)
   - [x] 2010-10-08: Liu Xiaobo Nobel Peace Prize ✅ (Session 74)
   - [x] 2018-03-11: Presidential term limits abolished ✅ (Session 74)
-  - [ ] 2001: Tiananmen Square self-immolation incident (CCP used to justify Falun Gong persecution)
-  - [ ] 2003: Hong Kong Article 23 legislation attempt and 500,000-person march
-  - [ ] 2011: Wukan protests (rare successful land rights protest)
-  - [ ] 2012: Self-immolation wave in Tibet
-  - [ ] 2024-03-19: Hong Kong Article 23 passage
+  - [x] 2001-01-23: Tiananmen self-immolation incident ✅ (Session 75)
+  - [x] 2003-07-01: Hong Kong Article 23 march — 500,000 protesters ✅ (Session 75)
+  - [x] 2011-09-21: Wukan protests ✅ (Session 75)
+  - [x] 2012-11-07: Tibetan self-immolation wave peaks ✅ (Session 75)
+  - [x] 2024-03-19: Hong Kong Article 23 passage ✅ (Session 75)
   - **Agent:** Opus 4.6 (requires date cross-referencing and source verification)
+  - **Status:** ✅ ALL GAPS FILLED — timeline now covers 31 events from 1989-2026
 
 ### Bug Fixes & Polish
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
@@ -299,12 +300,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 74, Feb 24, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 495 tests (25 files, all passing)
+### Current State Summary (as of Session 75, Feb 24, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 503 tests (25 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages:** 12/12 built (0 coming soon)
 - **Data:** 60 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
+- **Timeline:** 31 events from 1989-2026, all gaps filled (was 26 events)
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries)
 - **Lint:** 0 errors, 10 harmless react-refresh warnings
