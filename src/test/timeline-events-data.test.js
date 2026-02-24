@@ -120,11 +120,12 @@ describe('Timeline Events Data Integrity', () => {
     it('no event cites CCP state media as a source', () => {
       for (const event of events) {
         for (const source of event.sources) {
+          const sourceLower = source.toLowerCase();
           for (const ccpMedia of CCP_STATE_MEDIA) {
             expect(
-              source,
+              sourceLower.includes(ccpMedia.toLowerCase()),
               `Event ${event.id} "${event.title}" cites CCP state media: "${source}"`
-            ).not.toBe(ccpMedia);
+            ).toBe(false);
           }
         }
       }
