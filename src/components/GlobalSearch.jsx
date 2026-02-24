@@ -21,12 +21,19 @@ const searchableContent = [
   { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
   { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
 
-  // Political Prisoners
-  { type: 'prisoner', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder', path: '/prisoners', Icon: Link, keywords: ['hong kong', 'apple daily', 'media'] },
-  { type: 'prisoner', title: 'Ilham Tohti', description: 'Uyghur economist, life sentence', path: '/prisoners', Icon: Link, keywords: ['uyghur', 'economist', 'xinjiang'] },
-  { type: 'prisoner', title: 'Joshua Wong', description: 'Hong Kong democracy activist', path: '/prisoners', Icon: Link, keywords: ['hong kong', 'democracy', 'umbrella'] },
-  { type: 'prisoner', title: 'Gedhun Choekyi Nyima', description: 'Panchen Lama, disappeared since 1995', path: '/prisoners', Icon: Link, keywords: ['tibet', 'panchen lama', 'buddhism'] },
-  { type: 'prisoner', title: 'Gao Zhisheng', description: 'Human rights lawyer, disappeared', path: '/prisoners', Icon: Link, keywords: ['lawyer', 'disappeared', 'human rights'] },
+  // Profile Pages (all 12 individuals)
+  { type: 'profile', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder — sentenced to 20 years', path: '/profiles/jimmy-lai', Icon: Users, keywords: ['hong kong', 'apple daily', 'media', 'nsl', 'press freedom'] },
+  { type: 'profile', title: 'Ilham Tohti', description: 'Uyghur economist — life sentence for "separatism"', path: '/profiles/ilham-tohti', Icon: Users, keywords: ['uyghur', 'economist', 'xinjiang', 'sakharov'] },
+  { type: 'profile', title: 'Joshua Wong', description: 'Hong Kong democracy activist — sentenced under NSL', path: '/profiles/joshua-wong', Icon: Users, keywords: ['hong kong', 'democracy', 'umbrella', 'demosisto'] },
+  { type: 'profile', title: 'Gedhun Choekyi Nyima', description: 'Panchen Lama — disappeared since 1995', path: '/profiles/panchen-lama', Icon: Users, keywords: ['tibet', 'panchen lama', 'buddhism', 'disappeared'] },
+  { type: 'profile', title: 'Liu Xiaobo', description: 'Nobel Peace Prize laureate — died in custody 2017', path: '/profiles/liu-xiaobo', Icon: Users, keywords: ['charter 08', 'nobel', 'democracy', 'dissident'] },
+  { type: 'profile', title: 'Gui Minhai', description: 'Swedish-Chinese publisher — abducted from Thailand', path: '/profiles/gui-minhai', Icon: Users, keywords: ['causeway bay books', 'publisher', 'sweden', 'abduction'] },
+  { type: 'profile', title: 'Zhang Zhan', description: 'Citizen journalist — imprisoned for COVID-19 reporting', path: '/profiles/zhang-zhan', Icon: Users, keywords: ['wuhan', 'covid', 'journalist', 'hunger strike'] },
+  { type: 'profile', title: 'Gao Zhisheng', description: 'Human rights lawyer — disappeared since 2017', path: '/profiles/gao-zhisheng', Icon: Users, keywords: ['lawyer', 'disappeared', 'falun gong', 'human rights'] },
+  { type: 'profile', title: 'Agnes Chow', description: 'Hong Kong activist — fled to Canada', path: '/profiles/agnes-chow', Icon: Users, keywords: ['hong kong', 'demosisto', 'nsl', 'exile'] },
+  { type: 'profile', title: 'Nathan Law', description: 'Hong Kong activist — exiled in London', path: '/profiles/nathan-law', Icon: Users, keywords: ['hong kong', 'demosisto', 'exile', 'uk'] },
+  { type: 'profile', title: 'Benny Tai', description: 'Legal scholar — Hong Kong 47 defendant', path: '/profiles/benny-tai', Icon: Users, keywords: ['hong kong', 'occupy central', 'legal scholar', 'hong kong 47'] },
+  { type: 'profile', title: 'Cardinal Zen', description: 'Catholic cardinal — arrested under NSL', path: '/profiles/cardinal-zen', Icon: Users, keywords: ['catholic', 'cardinal', 'hong kong', 'religious freedom'] },
 
   // Topics
   { type: 'topic', title: 'Uyghur Genocide', description: 'Documentation of atrocities in Xinjiang', path: '/education', Icon: BookOpen, keywords: ['xinjiang', 'camps', 'genocide', 'forced labor'] },
@@ -182,7 +189,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search pages, prisoners, topics, actions..."
+              placeholder="Search pages, profiles, topics, actions..."
               className="flex-1 px-4 py-4 bg-transparent text-white placeholder-slate-400 focus:outline-none"
               aria-label="Global search"
             />
@@ -222,6 +229,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                             <span className="font-medium text-white truncate">{result.title}</span>
                             <span className={`ml-2 px-2 py-0.5 text-xs rounded ${
                               result.type === 'page' ? 'bg-blue-900 text-blue-300' :
+                              result.type === 'profile' ? 'bg-amber-900 text-amber-300' :
                               result.type === 'prisoner' ? 'bg-red-900 text-red-300' :
                               result.type === 'topic' ? 'bg-purple-900 text-purple-300' :
                               result.type === 'action' ? 'bg-green-900 text-green-300' :

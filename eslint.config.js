@@ -67,8 +67,8 @@ export default defineConfig([
     ignores: ['backend/**/*.test.js', 'backend/**/*.spec.js'],
     extends: [js.configs.recommended],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: { ...globals.node, ...globals.es2020 },
+      ecmaVersion: 2022,
+      globals: { ...globals.node, ...globals.es2021 },
       sourceType: 'module',
     },
     rules: {
@@ -79,8 +79,8 @@ export default defineConfig([
     files: ['backend/**/*.test.js', 'backend/**/*.spec.js'],
     extends: [js.configs.recommended],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: { ...globals.node, ...globals.jest, ...globals.es2020 },
+      ecmaVersion: 2022,
+      globals: { ...globals.node, ...globals.jest, ...globals.es2021 },
       sourceType: 'module',
     },
     rules: {
