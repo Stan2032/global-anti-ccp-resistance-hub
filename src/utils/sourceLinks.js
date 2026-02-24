@@ -523,7 +523,7 @@ export const CCP_ELEVATED_RISK = [
   {
     name: 'Spamouflage network content',
     domain: null,
-    category: 'elite_capture',
+    category: 'disinformation_network',
     risk: 'high',
     reason: 'CCP-linked coordinated inauthentic behavior network identified by Graphika, Stanford Internet Observatory, and Meta. Creates fake personas to amplify CCP messaging and attack critics.',
     source: 'Graphika, "Spamouflage Goes to America", 2023; Stanford Internet Observatory, 2023'

@@ -1,8 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { CCP_TACTICS } from '../data/ccpTactics.js';
-import { isCCPStateMedia, CCP_NEVER_CITE } from '../utils/sourceLinks.js';
-
-// Use the shared CCP_NEVER_CITE registry — single source of truth
+import { isCCPStateMedia } from '../utils/sourceLinks.js';
 
 describe('CCP Tactics Data Integrity', () => {
   describe('Top-level structure', () => {

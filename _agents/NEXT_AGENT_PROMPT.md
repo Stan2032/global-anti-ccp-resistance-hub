@@ -20,7 +20,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 12 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 458 passing Vitest tests across 24 test files
+- Contains 310+ source files, 100+ React components, 495 passing Vitest tests across 25 test files
 
 ### What Has Been Done (70 Sessions of Work)
 Over 70 agent sessions, the following has been accomplished:
@@ -44,7 +44,7 @@ Over 70 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 458 tests passing across 24 test files
+npx vitest run    # Should show 495 tests passing across 25 test files
 ```
 
 ---
@@ -130,7 +130,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 458 tests (24 files)
+npx vitest run                           # All 495 tests (25 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -222,5 +222,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 **Handoff prepared by:** Sessions 62-71 (Sonnet 4.5, updated Session 71)  
 **Date:** February 24, 2026  
-**Repository state:** 458 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 0 orphan components  
+**Repository state:** 495 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 0 orphan components  
 **Status:** ✅ READY FOR CONTINUED WORK
