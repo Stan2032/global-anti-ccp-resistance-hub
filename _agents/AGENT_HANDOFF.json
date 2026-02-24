@@ -22,8 +22,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 298,
-    "test_files": 16,
+    "frontend_tests": 306,
+    "test_files": 17,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 12,
@@ -36,7 +36,7 @@
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
     "pages_consolidated": "18_to_14",
-    "orphan_components_integrated": 8,
+    "orphan_components_integrated": 10,
     "accessibility": "WCAG_AA_verified_plus_ARIA_modals",
     "rss_feeds": 9,
     "clipboard_error_handling": "all_9_components_fixed",
@@ -108,10 +108,10 @@
       "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions in 2026"
     },
     "remaining_orphan_components": {
-      "status": "ALMOST_COMPLETE",
-      "severity": "LOW",
-      "description": "DetentionFacilities and PoliceStationsMap are built but not yet integrated into a page tab.",
-      "recommendation": "Integrate DetentionFacilities into IntelligenceFeeds or a new Research tab"
+      "status": "RESOLVED",
+      "severity": "NONE",
+      "description": "DetentionFacilities and PoliceStationsMap are integrated into IntelligenceFeeds (CCP Operations tab) as lazy-loaded components.",
+      "recommendation": "No action needed — both components confirmed integrated (Session 71)"
     }
   },
 
@@ -126,9 +126,9 @@
     {
       "priority": 2,
       "task": "remaining_orphan_integration",
-      "description": "Integrate DetentionFacilities and PoliceStationsMap into page tabs",
-      "estimated_hours": 2,
-      "status": "NOT_STARTED"
+      "description": "DetentionFacilities and PoliceStationsMap integrated into IntelligenceFeeds CCP Operations tab",
+      "estimated_hours": 0,
+      "status": "COMPLETED"
     },
     {
       "priority": 3,
