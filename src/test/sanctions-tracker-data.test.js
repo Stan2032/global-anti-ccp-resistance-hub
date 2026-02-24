@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import sanctionsData from '../data/sanctions_tracker.json';
+import { isCCPStateMedia } from '../utils/sourceLinks.js';
 
 describe('Sanctions Tracker Data', () => {
   it('has valid metadata', () => {
@@ -71,10 +72,11 @@ describe('Sanctions Tracker Data', () => {
   });
 
   it('does not cite CCP state media sources', () => {
-    const ccpMedia = ['xinhua', 'cgtn', 'people.cn', 'globaltimes', 'chinadaily', 'takungpao'];
-    const sourcesStr = JSON.stringify(sanctionsData.metadata.sources).toLowerCase();
-    ccpMedia.forEach(outlet => {
-      expect(sourcesStr).not.toContain(outlet);
+    sanctionsData.metadata.sources.forEach(source => {
+      expect(
+        isCCPStateMedia(source),
+        `Sanctions metadata cites CCP media: "${source}"`
+      ).toBe(false);
     });
   });
 

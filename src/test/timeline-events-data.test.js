@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { isCCPStateMedia } from '../utils/sourceLinks.js';
 
 const DATA_DIR = resolve(__dirname, '../data');
 
@@ -112,35 +113,24 @@ describe('Timeline Events Data Integrity', () => {
   });
 
   describe('Source integrity', () => {
-    const CCP_STATE_MEDIA = [
-      'Xinhua', 'CGTN', 'Global Times', "People's Daily", 'China Daily',
-      'Ta Kung Pao', 'Wen Wei Po'
-    ];
-
     it('no event cites CCP state media as a source', () => {
       for (const event of events) {
         for (const source of event.sources) {
-          const sourceLower = source.toLowerCase();
-          for (const ccpMedia of CCP_STATE_MEDIA) {
-            expect(
-              sourceLower.includes(ccpMedia.toLowerCase()),
-              `Event ${event.id} "${event.title}" cites CCP state media: "${source}"`
-            ).toBe(false);
-          }
+          expect(
+            isCCPStateMedia(source),
+            `Event ${event.id} "${event.title}" cites CCP state media: "${source}"`
+          ).toBe(false);
         }
       }
     });
 
     it('no source URL contains CCP state media domains', () => {
-      const ccpDomains = ['xinhua.net', 'cgtn.com', 'globaltimes.cn', 'chinadaily.com', 'people.com.cn'];
       for (const event of events) {
         for (const source of event.sources) {
-          for (const domain of ccpDomains) {
-            expect(
-              source.toLowerCase(),
-              `Event ${event.id} "${event.title}" source contains CCP domain: ${domain}`
-            ).not.toContain(domain);
-          }
+          expect(
+            isCCPStateMedia(source),
+            `Event ${event.id} "${event.title}" source contains CCP media reference: "${source}"`
+          ).toBe(false);
         }
       }
     });

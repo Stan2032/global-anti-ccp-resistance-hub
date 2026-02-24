@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { isCCPDomain } from '../utils/sourceLinks.js';
 
 const DATA_PATH = resolve(__dirname, '../data/political_prisoners_research.json');
 
@@ -113,15 +114,12 @@ describe('Political Prisoners Research Data Integrity', () => {
     });
 
     it('no source URLs reference CCP state media', () => {
-      const ccpDomains = ['xinhua.net', 'cgtn.com', 'globaltimes.cn', 'chinadaily.com.cn', 'people.com.cn'];
       for (const entry of results) {
-        const url = entry.output.source_url.toLowerCase();
-        for (const domain of ccpDomains) {
-          expect(
-            url.includes(domain),
-            `"${entry.output.prisoner_name}" cites CCP source: ${domain}`
-          ).toBe(false);
-        }
+        const url = entry.output.source_url;
+        expect(
+          isCCPDomain(url),
+          `"${entry.output.prisoner_name}" cites CCP source: ${url}`
+        ).toBe(false);
       }
     });
   });

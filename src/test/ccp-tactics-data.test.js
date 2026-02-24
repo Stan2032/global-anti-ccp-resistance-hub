@@ -1,10 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { CCP_TACTICS } from '../data/ccpTactics.js';
+import { isCCPStateMedia, CCP_NEVER_CITE } from '../utils/sourceLinks.js';
 
-const CCP_STATE_MEDIA = [
-  'xinhua', 'cgtn', 'global times', "people's daily", 'china daily',
-  'ta kung pao', 'wen wei po'
-];
+// Use the shared CCP_NEVER_CITE registry — single source of truth
 
 describe('CCP Tactics Data Integrity', () => {
   describe('Top-level structure', () => {
@@ -80,13 +78,10 @@ describe('CCP Tactics Data Integrity', () => {
     it('no tactic cites CCP state media as a source', () => {
       for (const tactic of allTactics) {
         for (const source of tactic.sources) {
-          const sourceLower = source.toLowerCase();
-          for (const ccpMedia of CCP_STATE_MEDIA) {
-            expect(
-              sourceLower.includes(ccpMedia),
-              `${tactic.name} cites CCP media: "${source}"`
-            ).toBe(false);
-          }
+          expect(
+            isCCPStateMedia(source),
+            `${tactic.name} cites CCP media: "${source}"`
+          ).toBe(false);
         }
       }
     });
