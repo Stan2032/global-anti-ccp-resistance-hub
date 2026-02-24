@@ -22,8 +22,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 385,
-    "test_files": 20,
+    "frontend_tests": 420,
+    "test_files": 22,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 12,
