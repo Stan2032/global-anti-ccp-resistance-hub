@@ -22,12 +22,14 @@
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
 - [ ] **Fill timeline gaps** (identified Session 72):
-  - [ ] 1999-07-20: Falun Gong persecution begins — already in timeline ✅
+  - [x] 2008-12-10: Charter 08 Published ✅ (Session 74)
+  - [x] 2010-10-08: Liu Xiaobo Nobel Peace Prize ✅ (Session 74)
+  - [x] 2018-03-11: Presidential term limits abolished ✅ (Session 74)
   - [ ] 2001: Tiananmen Square self-immolation incident (CCP used to justify Falun Gong persecution)
   - [ ] 2003: Hong Kong Article 23 legislation attempt and 500,000-person march
-  - [ ] 2010-2013 gap: Consider adding Liu Xiaobo Nobel (2010-10-08), Wukan protests (2011), self-immolation wave in Tibet (2012)
-  - [ ] 2018 gap: Consider adding constitutional amendment removing term limits (2018-03-11)
-  - [ ] 2023-2024 gap: Consider adding Hong Kong Article 23 passage (2024-03-19)
+  - [ ] 2011: Wukan protests (rare successful land rights protest)
+  - [ ] 2012: Self-immolation wave in Tibet
+  - [ ] 2024-03-19: Hong Kong Article 23 passage
   - **Agent:** Opus 4.6 (requires date cross-referencing and source verification)
 
 ### Bug Fixes & Polish
