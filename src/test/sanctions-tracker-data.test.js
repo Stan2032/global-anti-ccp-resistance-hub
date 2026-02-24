@@ -77,4 +77,35 @@ describe('Sanctions Tracker Data', () => {
       expect(sourcesStr).not.toContain(outlet);
     });
   });
+
+  it('every entry has a source_url linking to government sanctions registry', () => {
+    sanctionsData.sanctions.forEach(sanction => {
+      expect(
+        sanction.source_url,
+        `Sanction ${sanction.id} (${sanction.target}) missing source_url`
+      ).toBeDefined();
+      expect(
+        sanction.source_url.startsWith('https://'),
+        `Sanction ${sanction.id} source_url not HTTPS: ${sanction.source_url}`
+      ).toBe(true);
+    });
+  });
+
+  it('source_urls point to government domains', () => {
+    const validDomains = [
+      'treasury.gov', 'cbp.gov', 'bis.gov',       // US
+      'gov.uk',                                     // UK
+      'sanctionsmap.eu',                            // EU
+      'international.gc.ca',                        // Canada
+      'dfat.gov.au'                                 // Australia
+    ];
+    sanctionsData.sanctions.forEach(sanction => {
+      const url = sanction.source_url;
+      const matchesDomain = validDomains.some(d => url.includes(d));
+      expect(
+        matchesDomain,
+        `Sanction ${sanction.id} source_url points to non-government domain: ${url}`
+      ).toBe(true);
+    });
+  });
 });

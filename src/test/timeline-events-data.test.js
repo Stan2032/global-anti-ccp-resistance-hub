@@ -215,5 +215,13 @@ describe('Timeline Events Data Integrity', () => {
       expect(event.date).toBe('2022-11-26');
       expect(event.category).toBe('mainland');
     });
+
+    it('includes Hong Kong Handover (1997)', () => {
+      const event = events.find(e => e.title === 'Hong Kong Handover');
+      expect(event).toBeDefined();
+      expect(event.date).toBe('1997-07-01');
+      expect(event.category).toBe('hongkong');
+      expect(event.significance).toBe('critical');
+    });
   });
 });
