@@ -29,6 +29,24 @@ export default defineConfig([
     },
   },
   {
+    files: ['public/sw.js'],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.serviceworker },
+    },
+  },
+  {
+    files: ['tailwind.config.js', 'postcss.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+  {
+    files: ['vite.config.js'],
+    languageOptions: {
+      globals: { ...globals.node },
+    },
+  },
+  {
     files: ['src/test/**/*.{js,jsx}'],
     extends: [js.configs.recommended],
     languageOptions: {

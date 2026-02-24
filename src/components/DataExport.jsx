@@ -1,86 +1,86 @@
 import React, { useState, useCallback } from 'react';
 import { Link2, ShieldAlert, Users, Ban, Building, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
 
+const datasets = [
+  {
+    id: 'prisoners',
+    name: 'Political Prisoners Database',
+    description: 'Documented cases of political detention including names, charges, sentences, and status',
+    records: 53,
+    lastUpdated: '2025-12-20',
+    fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
+    Icon: Link2
+  },
+  {
+    id: 'police_stations',
+    name: 'Overseas Police Stations',
+    description: 'CCP police service stations operating in foreign countries',
+    records: 102,
+    lastUpdated: '2025-12-20',
+    fields: ['country', 'city', 'status', 'source', 'government_action'],
+    Icon: ShieldAlert
+  },
+  {
+    id: 'organizations',
+    name: 'Resistance Organizations',
+    description: 'Human rights and advocacy organizations fighting CCP abuses',
+    records: 24,
+    lastUpdated: '2025-12-20',
+    fields: ['name', 'category', 'focus_area', 'website', 'location', 'description'],
+    Icon: Users
+  },
+  {
+    id: 'sanctions',
+    name: 'Sanctioned Officials',
+    description: 'CCP officials under Magnitsky and other sanctions',
+    records: 18,
+    lastUpdated: '2025-12-20',
+    fields: ['name', 'position', 'sanctions', 'reason', 'date'],
+    Icon: Ban
+  },
+  {
+    id: 'confucius',
+    name: 'Confucius Institutes',
+    description: 'Confucius Institutes at universities worldwide',
+    records: 36,
+    lastUpdated: '2025-12-20',
+    fields: ['university', 'country', 'status', 'closure_date', 'reason'],
+    Icon: Building
+  },
+  {
+    id: 'companies',
+    name: 'Boycott List Companies',
+    description: 'Companies linked to Uyghur forced labor',
+    records: 27,
+    lastUpdated: '2025-12-20',
+    fields: ['name', 'industry', 'status', 'evidence', 'alternatives'],
+    Icon: Factory
+  },
+  {
+    id: 'timeline',
+    name: 'Historical Timeline',
+    description: 'Key events in CCP repression history',
+    records: 28,
+    lastUpdated: '2025-12-20',
+    fields: ['date', 'title', 'description', 'category', 'significance', 'sources'],
+    Icon: Calendar
+  },
+  {
+    id: 'exit_bans',
+    name: 'Exit Ban Cases',
+    description: 'Documented cases of exit bans and hostage diplomacy',
+    records: 14,
+    lastUpdated: '2025-12-20',
+    fields: ['name', 'nationality', 'status', 'duration', 'reason'],
+    Icon: UserX
+  }
+];
+
 const DataExport = () => {
   const [selectedDatasets, setSelectedDatasets] = useState([]);
   const [exportFormat, setExportFormat] = useState('json');
   const [isExporting, setIsExporting] = useState(false);
   const [exportComplete, setExportComplete] = useState(false);
-
-  const datasets = [
-    {
-      id: 'prisoners',
-      name: 'Political Prisoners Database',
-      description: 'Documented cases of political detention including names, charges, sentences, and status',
-      records: 53,
-      lastUpdated: '2025-12-20',
-      fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
-      Icon: Link2
-    },
-    {
-      id: 'police_stations',
-      name: 'Overseas Police Stations',
-      description: 'CCP police service stations operating in foreign countries',
-      records: 102,
-      lastUpdated: '2025-12-20',
-      fields: ['country', 'city', 'status', 'source', 'government_action'],
-      Icon: ShieldAlert
-    },
-    {
-      id: 'organizations',
-      name: 'Resistance Organizations',
-      description: 'Human rights and advocacy organizations fighting CCP abuses',
-      records: 24,
-      lastUpdated: '2025-12-20',
-      fields: ['name', 'category', 'focus_area', 'website', 'location', 'description'],
-      Icon: Users
-    },
-    {
-      id: 'sanctions',
-      name: 'Sanctioned Officials',
-      description: 'CCP officials under Magnitsky and other sanctions',
-      records: 18,
-      lastUpdated: '2025-12-20',
-      fields: ['name', 'position', 'sanctions', 'reason', 'date'],
-      Icon: Ban
-    },
-    {
-      id: 'confucius',
-      name: 'Confucius Institutes',
-      description: 'Confucius Institutes at universities worldwide',
-      records: 36,
-      lastUpdated: '2025-12-20',
-      fields: ['university', 'country', 'status', 'closure_date', 'reason'],
-      Icon: Building
-    },
-    {
-      id: 'companies',
-      name: 'Boycott List Companies',
-      description: 'Companies linked to Uyghur forced labor',
-      records: 27,
-      lastUpdated: '2025-12-20',
-      fields: ['name', 'industry', 'status', 'evidence', 'alternatives'],
-      Icon: Factory
-    },
-    {
-      id: 'timeline',
-      name: 'Historical Timeline',
-      description: 'Key events in CCP repression history',
-      records: 28,
-      lastUpdated: '2025-12-20',
-      fields: ['date', 'title', 'description', 'category', 'significance', 'sources'],
-      Icon: Calendar
-    },
-    {
-      id: 'exit_bans',
-      name: 'Exit Ban Cases',
-      description: 'Documented cases of exit bans and hostage diplomacy',
-      records: 14,
-      lastUpdated: '2025-12-20',
-      fields: ['name', 'nationality', 'status', 'duration', 'reason'],
-      Icon: UserX
-    }
-  ];
 
   const formats = [
     { id: 'json', name: 'JSON', description: 'JavaScript Object Notation - best for developers', icon: '{ }' },
