@@ -22,7 +22,7 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: ✅ ALL COMPLETE (4/4 fully migrated to JSON)
+- [ ] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - **Agent:** Opus 4.6 (requires understanding component→data mapping)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
@@ -284,7 +284,7 @@
 | File | Focus | Status |
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
-| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: ✅ ALL 4/4 COMPLETE |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: ✅ ALL 5/5 COMPLETE |
 | **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~50% complete (typography done) |
 | **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 
@@ -301,13 +301,13 @@
 6. **thoughts/** — Session-by-session decision logs
 
 ### Current State Summary (as of Session 97, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 629 tests (34 files, all passing)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 630 tests (34 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance + URL health tests added.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
 - **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 4/4 JSON migrations complete.
+- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)

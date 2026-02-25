@@ -20,7 +20,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 629 passing Vitest tests across 34 test files
+- Contains 310+ source files, 100+ React components, 630 passing Vitest tests across 34 test files
 
 ### What Has Been Done (91 Sessions of Work)
 Over 102 agent sessions, the following has been accomplished:
@@ -40,7 +40,7 @@ Over 102 agent sessions, the following has been accomplished:
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
 16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
-17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 4/4 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials all read entirely from JSON.
+17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 5/5 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read entirely from JSON.
 18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
 20. **Typography cleanup**: SITE_CLEANUP_TODO.md Priority 1 complete — text-xs: 12→14px, text-sm: 14→16px, contrast overrides, line-height improvements, paragraph font-weight improvements. All via CSS overrides in index.css.
@@ -58,7 +58,7 @@ Over 102 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 629 tests passing across 34 test files
+npx vitest run    # Should show 630 tests passing across 34 test files
 ```
 
 ---
@@ -128,7 +128,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 34 Vitest test files, 629 tests
+│   └── test/                   # 34 Vitest test files, 630 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -149,7 +149,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 629 tests (34 files)
+npx vitest run                           # All 630 tests (34 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -195,7 +195,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
 2. **Forms**: All 4 forms (IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm) are wired to Supabase. All show conditional "Coming Soon" notices when backend is not configured.
-3. **Simulated data Phase 2**: ✅ ALL COMPLETE. All 4/4 data migrations done: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials all read from JSON. No hardcoded data arrays remain. (See `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
+3. **Simulated data Phase 2**: ✅ ALL COMPLETE. All 5/5 data migrations done: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read from JSON. No hardcoded data arrays remain. (See `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
 4. **Site cleanup**: Typography ✅, mobile ✅, ESLint ✅, data migrations ✅. ~75% complete. Remaining: page merging, visual hierarchy, color standardization. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
 ---
@@ -203,7 +203,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 ## How Previous Agents Worked
 
 ### Proven Patterns (Use These)
-- **Hybrid JSON + existing data**: Keep rich existing component data, add JSON sources alongside. 4/4 successes.
+- **Hybrid JSON + existing data**: Keep rich existing component data, add JSON sources alongside. 5/5 successes.
 - **Incremental commits**: Small changes, frequent `report_progress`, verify after each change.
 - **Security-first**: Run CodeQL after code changes, `npm audit` for dependencies, never introduce XSS/injection.
 - **Test alongside**: Write tests for new components, run existing tests after every change.
@@ -246,5 +246,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 **Handoff prepared by:** Sessions 62-85 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-85)  
 **Date:** February 25, 2026  
-**Repository state:** 629 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events, 0 orphan components, CCP influence detection centralized, "CPC" terminology banned (automated test), Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 4/4 data migrations complete, URLs pointing to Cloudflare Workers, comprehensive session notes in thoughts/  
+**Repository state:** 630 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events, 0 orphan components, CCP influence detection centralized, "CPC" terminology banned (automated test), Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 5/5 data migrations complete, URLs pointing to Cloudflare Workers, comprehensive session notes in thoughts/  
 **Status:** ✅ MERGE READY — branch prepared for merge to main

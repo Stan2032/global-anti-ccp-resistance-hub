@@ -262,7 +262,7 @@ const TakeAction = () => {
                   
                   {action.template && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</h4>
+                      <p className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</p>
                       <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
                         "{action.template}"
                       </div>
@@ -271,7 +271,7 @@ const TakeAction = () => {
                   
                   {action.companies && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</h4>
+                      <p className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</p>
                       <div className="flex flex-wrap gap-2">
                         {action.companies.map((company) => (
                           <span key={company} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-sm border border-red-700">
@@ -284,7 +284,7 @@ const TakeAction = () => {
                   
                   {action.tools && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</h4>
+                      <p className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</p>
                       <div className="flex flex-wrap gap-2">
                         {action.tools.map((tool) => (
                           <span key={tool} className="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm border border-green-700">
@@ -295,7 +295,7 @@ const TakeAction = () => {
                     </div>
                   )}
                   
-                  <h4 className="text-sm font-semibold text-slate-300 mb-3">Take Action:</h4>
+                  <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {action.links.map((link, index) => (
                       link.internal ? (
