@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { AlertTriangle, Lock, Info } from 'lucide-react';
+import { isSupabaseConfigured } from '../services/supabaseClient';
+import { submitIncidentReport } from '../services/supabaseService';
 
 const IncidentReportForm = () => {
+  const backendConnected = isSupabaseConfigured();
   const [formData, setFormData] = useState({
     incidentType: '',
     location: '',
@@ -16,6 +19,8 @@ const IncidentReportForm = () => {
   });
   
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [step, setStep] = useState(1);
 
   const incidentTypes = [
@@ -38,9 +43,27 @@ const IncidentReportForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In production, this would send to a secure backend
+    if (backendConnected) {
+      setSubmitting(true);
+      setSubmitError(null);
+      const { error } = await submitIncidentReport({
+        title: `${formData.incidentType} — ${formData.location || 'Unknown location'}`,
+        description: formData.description,
+        incidentType: formData.incidentType,
+        location: formData.location,
+        dateOfIncident: formData.date || null,
+        severity: 'medium',
+        contactEmail: formData.anonymous ? null : formData.contactEmail,
+      });
+      setSubmitting(false);
+      if (error) {
+        setSubmitError(error);
+        return;
+      }
+    }
+    // Static-only fallback or success
     setSubmitted(true);
   };
 
@@ -57,8 +80,10 @@ const IncidentReportForm = () => {
         </div>
         <h2 className="text-2xl font-bold text-white mb-2">Thank You for Your Report</h2>
         <p className="text-slate-400 mb-6">
-          This form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
-          Please report directly to the organizations below:
+          {backendConnected
+            ? 'Your report has been securely submitted and will be reviewed. You can also contact the organizations below for additional support:'
+            : <>This form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
+            Please report directly to the organizations below:</>}
         </p>
         <div className="bg-[#0a0e14]/50 p-4 mb-6">
           <h3 className="font-semibold text-white mb-2">Report Directly To:</h3>
@@ -125,6 +150,7 @@ const IncidentReportForm = () => {
       </div>
 
       {/* Security Notice */}
+      {!backendConnected && (
       <div className="bg-amber-900/20 border-b border-amber-700/50 p-4">
         <div className="flex items-start gap-3">
           <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
@@ -137,6 +163,7 @@ const IncidentReportForm = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* Progress Steps */}
       <div className="p-4 border-b border-[#1c2a35]">
@@ -372,6 +399,13 @@ const IncidentReportForm = () => {
           </div>
         )}
 
+        {/* Error message */}
+        {submitError && (
+          <div className="mt-4 p-3 bg-red-900/30 border border-red-700/50 text-sm text-red-300">
+            Error submitting report: {submitError}
+          </div>
+        )}
+
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-6 pt-4 border-t border-[#1c2a35]">
           {step > 1 ? (
@@ -398,10 +432,10 @@ const IncidentReportForm = () => {
           ) : (
             <button
               type="submit"
-              disabled={!formData.consent || !formData.description}
+              disabled={!formData.consent || !formData.description || submitting}
               className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2"
             >
-              <Lock className="w-4 h-4" /> Submit Securely
+              <Lock className="w-4 h-4" /> {submitting ? 'Submitting...' : 'Submit Securely'}
             </button>
           )}
         </div>
@@ -410,9 +444,15 @@ const IncidentReportForm = () => {
       {/* Footer */}
       <div className="bg-[#0a0e14]/50 p-4 border-t border-[#1c2a35]">
         <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
-          <span className="flex items-center gap-1">
-            <Info className="w-3 h-3" /> Form not yet active — coming soon
-          </span>
+          {backendConnected ? (
+            <span className="flex items-center gap-1">
+              <Lock className="w-3 h-3" /> Connected to secure backend
+            </span>
+          ) : (
+            <span className="flex items-center gap-1">
+              <Info className="w-3 h-3" /> Form not yet active — coming soon
+            </span>
+          )}
         </div>
       </div>
     </div>
