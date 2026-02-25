@@ -22,8 +22,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 863,
-    "test_files": 32,
+    "frontend_tests": 1032,
+    "test_files": 33,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 87,
+    "sessions_completed": 88,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -72,7 +72,8 @@
     "quickstart_fix": "Fixed QuickStartGuide.jsx — removed rounded-2xl and rounded-t-2xl from modal container (violates terminal square-corner aesthetic).",
     "bundle_optimization_session86": "socket.io-client removed (107KB dead weight). SocketContext replaced with no-op stub. Main bundle 421→305KB (133→97KB gzip). Vendor splitting: react (11KB), router (35KB), framer-motion (116KB). GlobalSearch/QuickStartGuide/PWAInstallBanner lazy-loaded.",
     "data_extraction_session86": "DataSources.jsx hardcoded data extracted to src/data/data_sources.json (11 RSS + 4 major categories). 11 data integrity tests added.",
-    "docs_updated": "AGENT_HANDOFF.json v7.2→v7.3. TODO.md sprint section updated (all 4 forms wired, bundle optimization noted). Test count: 584→863 (32 files)."
+    "docs_updated": "AGENT_HANDOFF.json v7.2→v7.3. TODO.md sprint section updated (all 4 forms wired, bundle optimization noted). Test count: 584→1032 (33 files).",
+    "url_health_test": "Added url-health.test.js with 169 tests scanning all JSX+JSON files for CCP state media domains (using CCP_NEVER_CITE.domains from sourceLinks.js) and HTTP-only URLs."
   },
 
   "session_85_changes": {
