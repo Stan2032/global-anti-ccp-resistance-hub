@@ -2,6 +2,35 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [3.1.0] - 2026-02-25
+
+### Added - Supabase Integration, New Profiles, Cloudflare Fix (Sessions 81-82)
+- **Supabase Integration**: @supabase/supabase-js v2.97.0 client + service layer
+  - `supabaseClient.js` — graceful null fallback when env vars are unset
+  - `supabaseService.js` — 4 form helpers: incident reports, volunteer signups, newsletter, contact messages
+  - IncidentReportForm wired to submit to Supabase (hides "Coming Soon" when configured)
+  - CSP `connect-src` updated for `https://*.supabase.co`
+  - 7 graceful-degradation tests + 1 CSP test
+
+- **3 New Profile Pages** (12→15 total):
+  - Tashi Wangchuk — Tibetan language rights advocate, 5yr for "inciting separatism"
+  - Ren Zhiqiang — CCP insider, 18yr after criticizing Xi's COVID response
+  - Xu Zhiyong — New Citizens Movement founder, 14yr for "subversion"
+  - ProfilesIndex, App.jsx routes, GlobalSearch, sitemap.xml all updated
+
+- **Deployment Guides**:
+  - `SUPABASE_SETUP.md` — Click-by-click from dashboard to working connection. Single SQL block for tables + RLS.
+  - `CLOUDFLARE_DEPLOY.md` — Repo connection, build settings, env vars, troubleshooting.
+  - `.env.example` — Documents VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+
+### Fixed
+- **Cloudflare Pages build failure**: Removed stale `pnpm-lock.yaml` that caused Cloudflare to use pnpm instead of npm, breaking `--frozen-lockfile` check
+- **Newsletter upsert**: `ignoreDuplicates: true` instead of overwriting `subscribed_at` on re-subscribe
+
+### Changed
+- Tests: 535→546 across 26→27 files
+- Agent docs: AGENT_HANDOFF.json v6.0→v7.0, NEXT_AGENT_PROMPT.md, TODO.md, TODO_COMPLETED.md all updated
+
 ## [3.0.0] - 2026-02-25
 
 ### Added - Data Quality & Integrity (Sessions 72-80)

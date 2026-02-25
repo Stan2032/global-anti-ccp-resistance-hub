@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "6.0",
-    "date": "2026-02-25T00:25:00Z",
+    "version": "7.0",
+    "date": "2026-02-25T02:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v5.0, Session 71)",
+    "supersedes": "AGENT_HANDOFF.json (v6.0, Session 80)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,16 +22,16 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 535,
-    "test_files": 26,
+    "frontend_tests": 546,
+    "test_files": 27,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
-    "profile_pages_built": 12,
+    "profile_pages_built": 15,
     "languages_supported": 8,
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 80,
+    "sessions_completed": 82,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -41,7 +41,10 @@
     "rss_feeds": 9,
     "clipboard_error_handling": "all_9_components_fixed",
     "print_styles": "media_print_A4_layout",
-    "security_fixes": "react_router_7.13.0_3_CVEs_fixed"
+    "security_fixes": "react_router_7.13.0_3_CVEs_fixed",
+    "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types",
+    "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md",
+    "cloudflare_fix": "stale_pnpm_lock_yaml_removed"
   },
 
   "sessions_62_to_71_changes": {
@@ -59,6 +62,15 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "sessions_81_to_82_changes": {
+    "summary": "Supabase integration, 3 new profiles, Cloudflare deployment fix, deployment guides",
+    "supabase_integration": "Installed @supabase/supabase-js v2.97.0. Created supabaseClient.js (graceful null when unconfigured) and supabaseService.js (4 form helpers: incident reports, volunteer signups, newsletter, contact messages). Wired IncidentReportForm.jsx to submit to Supabase when configured, hides 'Coming Soon' banner. CSP updated for *.supabase.co.",
+    "new_profiles": "3 new profile pages: Tashi Wangchuk (Tibetan language rights, 5yr), Ren Zhiqiang (CCP critic, 18yr), Xu Zhiyong (New Citizens Movement, 14yr). Updated ProfilesIndex (12→15), App.jsx routes, GlobalSearch, sitemap.xml.",
+    "cloudflare_fix": "Removed stale pnpm-lock.yaml that caused Cloudflare Pages to use pnpm instead of npm. pnpm lockfile was out of sync with package.json (missing vitest, @testing-library/*, @supabase/supabase-js).",
+    "deployment_guides": "Created SUPABASE_SETUP.md (click-by-click, single SQL block for tables+RLS) and CLOUDFLARE_DEPLOY.md (repo connection, build settings, env vars, troubleshooting). Created .env.example.",
+    "tests_added": "8 new tests: 7 Supabase service graceful-degradation tests, 1 CSP test for *.supabase.co. Test count: 535→546, files: 26→27."
   },
 
   "sessions_72_to_80_changes": {
@@ -140,10 +152,10 @@
   "next_priority_actions": [
     {
       "priority": 1,
-      "task": "backend_connection",
-      "description": "Connect frontend to Cloudflare Pages Functions + Supabase backend. Backend exists in /backend/ with Express + PostgreSQL.",
-      "estimated_hours": 16,
-      "status": "NOT_STARTED",
+      "task": "backend_connection_phase2",
+      "description": "Supabase client + service layer done. Next: wire remaining 3 forms (VolunteerSignup, NewsDigest newsletter, Contact), add Supabase Auth for admin dashboard, deploy backend to production.",
+      "estimated_hours": 8,
+      "status": "PARTIALLY_COMPLETE",
       "agent": "Opus 4.6"
     },
     {

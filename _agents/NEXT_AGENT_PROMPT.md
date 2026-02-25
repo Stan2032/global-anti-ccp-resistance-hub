@@ -18,20 +18,20 @@ This is not a neutral project. It exists because real people — journalists, la
 - A **static React site** (Vite 7 + React 19 + Tailwind CSS) deployed to **Cloudflare Pages**
 - Documents political prisoners, forced labor, surveillance, censorship, and territorial aggression by the CCP
 - Provides tools for activists, researchers, and journalists
-- Features 12 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan) with sourced timelines
+- Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 535 passing Vitest tests across 26 test files
+- Contains 310+ source files, 100+ React components, 546 passing Vitest tests across 27 test files
 
-### What Has Been Done (78 Sessions of Work)
-Over 80 agent sessions, the following has been accomplished:
+### What Has Been Done (82 Sessions of Work)
+Over 82 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
-3. **12 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
+3. **15 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
 4. **Terminal design system**: Applied across all 128+ component files — zero old-style Tailwind classes remain (no bg-slate-*, no border-slate-*, no rounded-lg, no bg-gradient-to-*)
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 535 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics)
+8. **Test infrastructure**: 546 Vitest tests across 27 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -41,13 +41,15 @@ Over 80 agent sessions, the following has been accomplished:
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
 16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
 17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach.
+18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. IncidentReportForm wired. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
+19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
 
 ### Your Quick Start
 ```bash
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 535 tests passing across 26 test files
+npx vitest run    # Should show 546 tests passing across 27 test files
 ```
 
 ---
@@ -92,7 +94,7 @@ These are directives from the human owner. Follow them:
 │   ├── App.jsx                 # Main router — all routes, sidebar, header
 │   ├── index.css               # Global CSS, terminal theme, print styles
 │   ├── pages/                  # 14 main pages + profiles/
-│   │   ├── profiles/           # 12 profile pages + ProfilesIndex.jsx
+│   │   ├── profiles/           # 15 profile pages + ProfilesIndex.jsx
 │   │   ├── Dashboard.jsx       # Home page
 │   │   ├── IntelligenceFeeds.jsx  # 3-tab: Live Feeds, Regional Status, CCP Operations
 │   │   ├── SecurityCenter.jsx  # 5-tab: includes ChinaExitBan
@@ -109,7 +111,9 @@ These are directives from the human owner. Follow them:
 │   │   ├── sanctioned_officials_research.json
 │   │   └── ...
 │   ├── services/
-│   │   └── liveDataService.js  # 9 RSS feeds, ALWAYS_RELEVANT_SOURCES
+│   │   ├── liveDataService.js  # 9 RSS feeds, ALWAYS_RELEVANT_SOURCES
+│   │   ├── supabaseClient.js   # Supabase client (null when unconfigured)
+│   │   └── supabaseService.js  # Form submission helpers (4 types)
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
@@ -134,7 +138,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 535 tests (26 files)
+npx vitest run                           # All 546 tests (27 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -143,8 +147,8 @@ npm run build                            # Production build (~5s)
 
 ## What's Next (Priority Order)
 
-### Priority 1: Backend Connection
-The backend exists (`/backend/`) with Express + PostgreSQL but isn't deployed. When ready, connect via Cloudflare Pages Functions + Supabase (see `_agents/QUESTIONS_FOR_HUMANS.md` for full backend recommendation).
+### Priority 1: Backend Connection (Phase 2)
+Supabase client + service layer is done. IncidentReportForm is wired. Next steps: wire the remaining 3 forms (VolunteerSignup, NewsDigest newsletter, Contact page), add Supabase Auth for admin dashboard, and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
 
 ### Priority 2: Content Monitoring
 - Monitor Jimmy Lai appeal proceedings
@@ -162,7 +166,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Mobile Testing & Fixes**: Mobile nav overflow fixed, tabs have overflow-x-auto, 404 ASCII art responsive
 - ✅ **Page Consolidation**: 4 orphan pages removed + 10 orphan components integrated into page tabs (including DetentionFacilities and PoliceStationsMap in IntelligenceFeeds CCP Operations tab)
 - ✅ **Multilingual Translations**: 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each
-- ✅ **Additional Profiles**: All 12 profiles built (0 coming soon)
+- ✅ **Additional Profiles**: All 15 profiles built (0 coming soon)
 - ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes
 - ✅ **Flag Icons**: Proper SVG flags for East Turkestan and Tibet
 - ✅ **RSS Feeds**: 9 feeds from trusted sources with ALWAYS_RELEVANT_SOURCES
@@ -170,6 +174,8 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Security**: react-router 7.13.0 (3 CVEs fixed), clipboard error handling (9 components)
 - ✅ **Accessibility**: WCAG AA verified, ARIA dialog roles on modals, Escape key support
 - ✅ **Print Styles**: @media print A4 layout for profile pages
+- ✅ **Supabase Integration**: Client + service layer, IncidentReportForm wired, SUPABASE_SETUP.md guide
+- ✅ **Cloudflare Deployment**: CLOUDFLARE_DEPLOY.md guide, stale pnpm-lock.yaml removed
 
 ---
 
@@ -226,7 +232,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-79 (Sonnet 4.5 62-71, Opus 4.6 72-79)  
+**Handoff prepared by:** Sessions 62-82 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-82)  
 **Date:** February 25, 2026  
-**Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized  
+**Repository state:** 546 tests passing, build clean, terminal design 100% applied, 15 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated, Cloudflare deploy-ready  
 **Status:** ✅ MERGE READY — branch prepared for merge to main

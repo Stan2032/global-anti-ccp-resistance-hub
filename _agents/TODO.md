@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 80)
+> Last Updated: February 25, 2026 (Session 82)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -247,10 +247,9 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Simulated data Phase 2** — 2/4 components fully migrated, 2 use justified hybrid approach. Remaining work: enrich JSON files with coordinate/imagery data if full migration desired (see SIMULATED_DATA_CLEANUP_TODO.md)
+1. **Backend connection Phase 2** — Supabase client + service layer done ✅. Wire remaining 3 forms (VolunteerSignup, NewsDigest, Contact), add Supabase Auth for admin
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
-4. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
+3. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -297,16 +296,16 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 80, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 535 tests (26 files, all passing)
+### Current State Summary (as of Session 82, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 546 tests (27 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
-- **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
-- **Profile Pages:** 12/12 built (0 coming soon)
+- **Backend:** Supabase client + service layer integrated. Express backend exists but untested.
+- **Profile Pages:** 15/15 built (0 coming soon)
 - **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
-- **Simulated data:** Phase 1 done (liveDataService uses real JSON). Phase 2 outstanding (component refactoring).
+- **Deployment:** SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md ready. pnpm-lock.yaml removed.
 - **Lint:** 0 errors, 10 harmless react-refresh warnings
 
 ---
