@@ -4,7 +4,7 @@
     "date": "2026-02-25T00:25:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Opus 4.6 (Sessions 72-78), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 78,
+    "sessions_completed": 80,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -61,7 +61,7 @@
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
   },
 
-  "sessions_72_to_78_changes": {
+  "sessions_72_to_80_changes": {
     "summary": "Data quality, test coverage, CCP influence detection, simulated data removal, timeline completion",
     "timeline": "31 events (was 22). Filled ALL gaps: Charter 08, Nobel Prize, Term Limits, Self-Immolation, HK Article 23 march, Wukan, Tibet immolations, HK Article 23 passage.",
     "ccp_influence_detection": "Centralized CCP_NEVER_CITE (21 names, 13 domains) + CCP_ELEVATED_RISK (15 entries) in sourceLinks.js. 4 utility functions: isCCPStateMedia(), isCCPDomain(), getCCPInfluenceRisk(), assessSourceRisk(). 37 dedicated tests. Consolidated 4 test files from duplicate blocklists.",
@@ -165,7 +165,7 @@
     {
       "priority": 4,
       "task": "simulated_data_phase2",
-      "description": "Refactor PoliticalPrisoners, DetentionFacilities, Officials, Companies components to import from JSON research files instead of hardcoded data.",
+      "description": "Enrich JSON files with coordinate/imagery data so DetentionFacilities + CCPOfficials can fully import from JSON instead of hybrid approach. PoliticalPrisoners + ForcedLaborTracker already migrated.",
       "estimated_hours": 8,
       "status": "NOT_STARTED",
       "agent": "Opus 4.6"

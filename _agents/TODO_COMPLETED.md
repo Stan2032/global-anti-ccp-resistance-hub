@@ -212,6 +212,8 @@
 | 75 | Feb 24 | Opus 4.6 | 5 final timeline events (Self-Immolation, Article 23 march, Wukan, Tibet immolations, Article 23 passage). ALL gaps filled. |
 | 76-77 | Feb 25 | Opus 4.6 | Simulated data Phase 1: real JSON data for statistics + prisoners. Dead feedValidator removed. Schema consistency fix. Research data tests. |
 | 78 | Feb 25 | Opus 4.6 | Merge preparation: comprehensive handoff documentation update. AGENT_HANDOFF v6.0. |
+| 79 | Feb 25 | Opus 4.6 | Phase 2 audit: PoliticalPrisoners + ForcedLaborTracker already migrated. Updated SIMULATED_DATA docs. Fixed stale references. |
+| 80 | Feb 25 | Opus 4.6 | Final merge prep: README fixes, CHANGELOG v3.0.0 entry, AGENT_ROADMAP header update, cross-doc consistency check. |
 
 ---
 

@@ -2,6 +2,52 @@
 
 All notable changes to the Global Anti-CCP Resistance Hub.
 
+## [3.0.0] - 2026-02-25
+
+### Added - Data Quality & Integrity (Sessions 72-80)
+- **CCP Influence Detection System**: Centralized in `sourceLinks.js`
+  - 21 CCP state media names + 13 domains in never-cite registry
+  - 15 elevated-risk entries (proxy media, United Front, Confucius Institutes, think tanks, Spamouflage)
+  - 4 exported utility functions: `isCCPStateMedia()`, `isCCPDomain()`, `getCCPInfluenceRisk()`, `assessSourceRisk()`
+  - 37-test dedicated test suite
+  - All data test files now import from shared registry (no duplicate blocklists)
+
+- **Timeline Completion**: 22→31 events covering 1989-2026
+  - Added: HK Handover (1997), Tiananmen Self-Immolation (2001), 500K Article 23 March (2003), Charter 08 (2008), Nobel Prize (2010), Wukan (2011), Tibet Immolation Wave (2012), Term Limits Abolished (2018), Article 23 Passage (2024)
+  - All gaps filled, sorted chronologically with verified Tier 1/2 sources
+
+- **PWA Icons**: Generated icon-192.png and icon-512.png from favicon.svg (were missing)
+- **Sitemap**: Removed 4 redirect routes, added 13 missing pages (profiles index + 12 profiles)
+- **Sanctions Source URLs**: All 35 entries now link to official government registries
+- **Research Schema Consistency**: All 10 JSON files have `source_url` (HTTPS), tests enforce ≥90% coverage
+- **Hong Kong Handover** timeline event with BBC/Reuters/UK Gov sources
+
+### Added - Test Coverage (Sessions 72-80)
+- 306→535 tests across 17→26 test files
+- New test suites: timeline-events, sitemap, manifest/PWA, security-headers, political-prisoners, CCP-tactics, CCP-influence-detection, sanctions-tracker, live-data-service, research-data, security-center
+
+### Changed
+- **Dashboard statistics**: Replaced fabricated numbers with real counts from verified JSON data files + source attribution
+- **Political prisoners service**: Dynamic import from `political_prisoners_research.json` (62 entries) instead of hardcoded 5-item array
+- **Dashboard stat cards**: Honest labels ("In database", "ASPI estimate", "Documented cases") replacing fake change metrics
+- **GlobalSearch**: All 12 profile pages now searchable with amber badge type
+- **ESLint**: Backend ecmaVersion 2020→2022, 3 `react-hooks/exhaustive-deps` bugs fixed, 0 errors (was 5)
+- **CSP headers**: Added CORS proxy domains to `connect-src` (RSS feeds were blocked)
+- **HTTP→HTTPS**: Fixed insecure URLs in data files
+
+### Removed
+- Dead `feedValidator`/`checkFeedHealth` code (returned fake "operational" status)
+- Dead `simulatedLiveData` object and `validateSource` fake timestamp generator
+- Fabricated Dashboard statistics and change metrics
+- 4 stale redirect routes from sitemap
+
+### Documentation
+- Agent documentation centralized and updated (AGENT_HANDOFF.json v6.0)
+- TODO split: active tasks in TODO.md, archive in TODO_COMPLETED.md
+- AGENTS.md: Agent capability matrix with 14-row task assignment table
+- Session thoughts for Sessions 72, 75, 78 documenting decisions
+- README: Fixed test count, language count, file references
+
 ## [2.31.0] - 2025-12-30
 
 ### Added - Security & Memorial Features

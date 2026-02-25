@@ -23,7 +23,7 @@ This platform serves as a centralized resource for:
 - Source attribution with clickable links to 164+ verified sources
 
 ### Political Prisoners Database
-- 60 documented political prisoners with source URLs
+- 62 documented political prisoners with source URLs
 - Status tracking (imprisoned, disappeared, deceased)
 - Action items for advocacy
 
@@ -103,7 +103,7 @@ npm run dev
 
 ### Running Tests
 ```bash
-npm test                # Run all 306 tests
+npm test                # Run all 535 tests
 npm run test:watch      # Watch mode
 ```
 

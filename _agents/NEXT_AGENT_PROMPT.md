@@ -23,7 +23,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Contains 310+ source files, 100+ React components, 535 passing Vitest tests across 26 test files
 
 ### What Has Been Done (78 Sessions of Work)
-Over 78 agent sessions, the following has been accomplished:
+Over 80 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **12 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
