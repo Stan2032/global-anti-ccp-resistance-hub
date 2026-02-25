@@ -20,10 +20,10 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 564 passing Vitest tests across 29 test files
+- Contains 310+ source files, 100+ React components, 573 passing Vitest tests across 30 test files
 
-### What Has Been Done (84 Sessions of Work)
-Over 84 agent sessions, the following has been accomplished:
+### What Has Been Done (85 Sessions of Work)
+Over 85 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **15 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
@@ -31,7 +31,7 @@ Over 84 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 546 Vitest tests across 27 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service)
+8. **Test infrastructure**: 573 Vitest tests across 30 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -41,7 +41,7 @@ Over 84 agent sessions, the following has been accomplished:
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
 16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
 17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach.
-18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. IncidentReportForm, VolunteerSignup, NewsDigest all wired. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
+18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
 20. **Typography cleanup**: SITE_CLEANUP_TODO.md Priority 1 complete — text-xs: 12→14px, text-sm: 14→16px, contrast overrides, line-height improvements, paragraph font-weight improvements. All via CSS overrides in index.css.
 
@@ -50,7 +50,7 @@ Over 84 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 564 tests passing across 29 test files
+npx vitest run    # Should show 573 tests passing across 30 test files
 ```
 
 ---
@@ -83,7 +83,7 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v6.0)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v7.2)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── QUESTIONS_FOR_HUMANS.md # All human decisions (all answered)
@@ -118,7 +118,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 26 Vitest test files, 535 tests
+│   └── test/                   # 30 Vitest test files, 573 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -139,7 +139,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 564 tests (29 files)
+npx vitest run                           # All 573 tests (30 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -149,7 +149,7 @@ npm run build                            # Production build (~5s)
 ## What's Next (Priority Order)
 
 ### Priority 1: Backend Connection (Phase 2)
-Supabase client + service layer is done. IncidentReportForm, VolunteerSignup, and NewsDigest are all wired. Next steps: wire the Contact form, add Supabase Auth for admin dashboard, and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
+Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next steps: add Supabase Auth for admin dashboard and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
 
 ### Priority 2: Content Monitoring
 - Monitor Jimmy Lai appeal proceedings
@@ -175,7 +175,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Security**: react-router 7.13.0 (3 CVEs fixed), clipboard error handling (9 components)
 - ✅ **Accessibility**: WCAG AA verified, ARIA dialog roles on modals, Escape key support
 - ✅ **Print Styles**: @media print A4 layout for profile pages
-- ✅ **Supabase Integration**: Client + service layer, IncidentReportForm + VolunteerSignup + NewsDigest wired, SUPABASE_SETUP.md guide
+- ✅ **Supabase Integration**: Client + service layer, all 4 forms wired (IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm), SUPABASE_SETUP.md guide
 - ✅ **Cloudflare Deployment**: CLOUDFLARE_DEPLOY.md guide, stale pnpm-lock.yaml removed
 - ✅ **Typography Cleanup**: SITE_CLEANUP_TODO.md Priority 1 complete — text-xs→14px, text-sm→16px, contrast overrides, leading-relaxed
 
@@ -184,7 +184,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 ## Known Outstanding Issues
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
-2. **Forms**: IncidentReportForm, VolunteerSignup, and NewsDigest are wired to Supabase. Contact form still needs wiring. All show conditional "Coming Soon" notices when backend is not configured.
+2. **Forms**: All 4 forms (IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm) are wired to Supabase. All show conditional "Coming Soon" notices when backend is not configured.
 3. **Simulated data Phase 2**: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON ✅. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON). To fully migrate, enrich JSON with coordinates/imagery. (LOW — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
 4. **Site cleanup**: Typography done ✅. Tab consolidation, page merging ~50% complete. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
@@ -234,7 +234,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-84 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-84)  
+**Handoff prepared by:** Sessions 62-85 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-85)  
 **Date:** February 25, 2026  
-**Repository state:** 564 tests passing, build clean, terminal design 100% applied, typography cleanup complete, 15 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated (3 forms wired), Cloudflare deploy-ready  
+**Repository state:** 573 tests passing, build clean, terminal design 100% applied, typography cleanup complete, 15 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated (4 forms wired), Cloudflare deploy-ready  
 **Status:** ✅ MERGE READY — branch prepared for merge to main
