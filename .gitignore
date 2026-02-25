@@ -31,3 +31,6 @@ dist-ssr
 # Coverage reports
 coverage
 backend/coverage
+
+# Wrangler
+.wrangler

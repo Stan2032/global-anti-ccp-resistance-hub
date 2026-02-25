@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   // Base path: configurable via VITE_BASE_PATH env var
   // GitHub Pages: /global-anti-ccp-resistance-hub/ (default)
-  // Cloudflare Pages: / (set VITE_BASE_PATH=/ in build settings)
-  base: process.env.VITE_BASE_PATH || '/global-anti-ccp-resistance-hub/',
+  // Cloudflare: / (auto-detected via CF_PAGES env var, or set VITE_BASE_PATH=/)
+  base: process.env.VITE_BASE_PATH || (process.env.CF_PAGES ? '/' : '/global-anti-ccp-resistance-hub/'),
   server: {
     host: true,
     allowedHosts: 'all'
