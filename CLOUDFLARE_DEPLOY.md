@@ -43,9 +43,9 @@ On the same page (or go to **Settings → Environment variables** after creation
 | `VITE_SUPABASE_URL` | `https://YOUR_PROJECT_ID.supabase.co` |
 | `VITE_SUPABASE_ANON_KEY` | Your Supabase anon key |
 
-> **Note:** `VITE_BASE_PATH` is **no longer required** — the build
-> automatically detects the Cloudflare environment (`CF_PAGES`) and defaults
-> to `/`. You can still override it if needed.
+> **Note:** `VITE_BASE_PATH` is **not required** — the build defaults to `/`.
+> The GitHub Pages workflow sets its own base path automatically.
+> You can still override it if needed.
 >
 > Supabase variables are optional. Without them the site runs in static-only
 > mode (forms show "Coming Soon" with links to real organizations).
@@ -145,7 +145,7 @@ Every push to your production branch triggers an automatic redeploy.
 
 | Feature | GitHub Pages | Cloudflare |
 |---------|-------------|-----------------|
-| **Base path** | `/global-anti-ccp-resistance-hub/` | `/` (auto-detected) |
+| **Base path** | `/global-anti-ccp-resistance-hub/` (via `VITE_BASE_PATH` in deploy.yml) | `/` (default) |
 | **Custom domain** | Yes | Yes |
 | **HTTPS** | Yes | Yes |
 | **Headers control** | No | Yes (`_headers`) |
@@ -154,4 +154,5 @@ Every push to your production branch triggers an automatic redeploy.
 | **CDN** | GitHub's CDN | Cloudflare (200+ cities) |
 | **Cost** | Free | Free |
 
-You can run both simultaneously. The build auto-detects Cloudflare via the `CF_PAGES` env var.
+You can run both simultaneously. The GitHub Pages workflow sets `VITE_BASE_PATH`
+to its subdirectory path; Cloudflare uses the default `/`.

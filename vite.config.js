@@ -5,9 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Base path: configurable via VITE_BASE_PATH env var
-  // GitHub Pages: /global-anti-ccp-resistance-hub/ (default)
-  // Cloudflare: / (auto-detected via CF_PAGES env var, or set VITE_BASE_PATH=/)
-  base: process.env.VITE_BASE_PATH || (process.env.CF_PAGES ? '/' : '/global-anti-ccp-resistance-hub/'),
+  // Cloudflare / local dev: / (default)
+  // GitHub Pages: /global-anti-ccp-resistance-hub/ (set VITE_BASE_PATH in deploy.yml)
+  base: process.env.VITE_BASE_PATH || '/',
   server: {
     host: true,
     allowedHosts: 'all'
