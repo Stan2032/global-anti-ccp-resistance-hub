@@ -22,8 +22,8 @@ This is not a neutral project. It exists because real people — journalists, la
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
 - Contains 310+ source files, 100+ React components, 535 passing Vitest tests across 26 test files
 
-### What Has Been Done (70 Sessions of Work)
-Over 70 agent sessions, the following has been accomplished:
+### What Has Been Done (78 Sessions of Work)
+Over 78 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **12 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
@@ -31,13 +31,16 @@ Over 70 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 535 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security)
+8. **Test infrastructure**: 535 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
-10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with data integrity tests
+10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
 12. **Print styles**: @media print stylesheet for A4 layout
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
+15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
+16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
+17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels.
 
 ### Your Quick Start
 ```bash
@@ -110,7 +113,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 24 Vitest test files, 455 tests
+│   └── test/                   # 26 Vitest test files, 535 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -174,7 +177,8 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
 2. **Forms**: All non-functional forms display "Coming Soon" notices with links to real organizations. No backend to submit to yet.
-3. **Statistics**: Community statistics are labeled as "illustrative targets" — not live data.
+3. **Simulated data Phase 2**: Components like PoliticalPrisoners, DetentionFacilities, Officials, Companies still use hardcoded data arrays. JSON research files exist but components haven't been refactored to import from them yet. (MEDIUM — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
+4. **Site cleanup**: Typography improvement, tab consolidation, page merging ~40% complete. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
 ---
 
@@ -222,7 +226,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-75 (Sonnet 4.5 62-71, Opus 4.6 72-75)  
-**Date:** February 24, 2026  
-**Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components  
-**Status:** ✅ READY FOR CONTINUED WORK
+**Handoff prepared by:** Sessions 62-78 (Sonnet 4.5 62-71, Opus 4.6 72-78)  
+**Date:** February 25, 2026  
+**Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized  
+**Status:** ✅ MERGE READY — branch prepared for merge to main

@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 24, 2026 (Session 74)
+> Last Updated: February 25, 2026 (Session 78)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -21,17 +21,13 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Fill timeline gaps** (identified Session 72):
-  - [x] 2008-12-10: Charter 08 Published ✅ (Session 74)
-  - [x] 2010-10-08: Liu Xiaobo Nobel Peace Prize ✅ (Session 74)
-  - [x] 2018-03-11: Presidential term limits abolished ✅ (Session 74)
-  - [x] 2001-01-23: Tiananmen self-immolation incident ✅ (Session 75)
-  - [x] 2003-07-01: Hong Kong Article 23 march — 500,000 protesters ✅ (Session 75)
-  - [x] 2011-09-21: Wukan protests ✅ (Session 75)
-  - [x] 2012-11-07: Tibetan self-immolation wave peaks ✅ (Session 75)
-  - [x] 2024-03-19: Hong Kong Article 23 passage ✅ (Session 75)
-  - **Agent:** Opus 4.6 (requires date cross-referencing and source verification)
-  - **Status:** ✅ ALL GAPS FILLED — timeline now covers 31 events from 1989-2026
+- [ ] **Simulated Data Phase 2**: Refactor components to import from JSON research files
+  - **Agent:** Opus 4.6 (requires understanding component→data mapping)
+  - Subtask: PoliticalPrisoners page → political_prisoners_research.json
+  - Subtask: DetentionFacilities → detention_facilities_research.json
+  - Subtask: CCPOfficials → sanctioned_officials_research.json
+  - Subtask: ForcedLaborTracker → forced_labor_companies_research.json
+  - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` Phase 2
 
 ### Bug Fixes & Polish
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
@@ -251,9 +247,10 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-2. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
-3. **Timeline gap filling** — Add missing historical events (see SHORT-TERM section)
+1. **Simulated data Phase 2** — Refactor 4 major components to use JSON data files (see SHORT-TERM)
+2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
+3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
+4. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -300,16 +297,16 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 76, Feb 24, 2026)
+### Current State Summary (as of Session 78, Feb 25, 2026)
 - **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 535 tests (26 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages:** 12/12 built (0 coming soon)
 - **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
-- **Timeline:** 31 events from 1989-2026, all gaps filled (was 26 events)
+- **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-- **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries)
-- **Simulated data:** fetchPoliticalPrisoners and fetchStatistics now use real JSON data (was hardcoded)
+- **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
+- **Simulated data:** Phase 1 done (liveDataService uses real JSON). Phase 2 outstanding (component refactoring).
 - **Lint:** 0 errors, 10 harmless react-refresh warnings
 
 ---

@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "5.0",
-    "date": "2026-02-21T17:30:00Z",
+    "version": "6.0",
+    "date": "2026-02-25T00:25:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4.5 (Sessions 62-70), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Opus 4.6 (Sessions 72-78), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v4.0, Session 68)",
+    "supersedes": "AGENT_HANDOFF.json (v5.0, Session 71)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 70,
+    "sessions_completed": 78,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -44,7 +44,7 @@
     "security_fixes": "react_router_7.13.0_3_CVEs_fixed"
   },
 
-  "sessions_62_to_70_changes": {
+  "sessions_62_to_71_changes": {
     "profiles": "6 new profile pages (Zhang Zhan, Agnes Chow, Gao Zhisheng, Benny Tai, Nathan Law, Cardinal Zen). ProfilesIndex now 12/12, 0 coming soon.",
     "page_consolidation": "4 orphan pages merged via Navigate redirects: CampaignHubs→TakeAction, SecureComms→SecurityCenter, CCPTactics→EducationalResources, RegionalThreats→IntelligenceFeeds. Orphan files deleted (1,616 lines).",
     "orphan_integration": "8 orphan components integrated: HongKongStatus/TibetStatus/XinjiangStatus/TaiwanDefenseStatus/CCPOfficials/WorldThreatMap→IntelligenceFeeds (3-tab), ChinaExitBan→SecurityCenter, ConfuciusInstitutes→EducationalResources.",
@@ -59,6 +59,22 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "sessions_72_to_78_changes": {
+    "summary": "Data quality, test coverage, CCP influence detection, simulated data removal, timeline completion",
+    "timeline": "31 events (was 22). Filled ALL gaps: Charter 08, Nobel Prize, Term Limits, Self-Immolation, HK Article 23 march, Wukan, Tibet immolations, HK Article 23 passage.",
+    "ccp_influence_detection": "Centralized CCP_NEVER_CITE (21 names, 13 domains) + CCP_ELEVATED_RISK (15 entries) in sourceLinks.js. 4 utility functions: isCCPStateMedia(), isCCPDomain(), getCCPInfluenceRisk(), assessSourceRisk(). 37 dedicated tests. Consolidated 4 test files from duplicate blocklists.",
+    "simulated_data_removed": "fetchStatistics() now returns counts from actual JSON data files with source attribution. fetchPoliticalPrisoners() imports from political_prisoners_research.json (62 entries). Dashboard stat cards use honest labels. Dead feedValidator/checkFeedHealth code removed.",
+    "sanctions_urls": "Added source_url fields to all 35 entries, linking to official government registries (US Treasury SDN, UK Gov, EU Sanctions Map, Canada SEMA, Australia DFAT).",
+    "schema_consistency": "Added source_url to all 49 human_rights_orgs_research.json entries. Fixed 'N/A' strings to empty strings. Tests enforce ≥90% source_url coverage + HTTPS.",
+    "test_growth": "306→535 tests across 17→26 test files. New files: timeline, sitemap, manifest, security-headers, political-prisoners, ccp-tactics, ccp-influence-detection, sanctions, live-data-service, research-data, security-center.",
+    "pwa_icons": "Generated icon-192.png and icon-512.png from favicon.svg (were missing despite manifest.json references).",
+    "csp_fix": "Added api.allorigins.win and api.rss2json.com to CSP connect-src (RSS feeds were blocked).",
+    "eslint": "Fixed backend ecmaVersion (2020→2022), removed unused imports. 0 errors (was 5).",
+    "global_search": "All 12 profile pages now searchable with direct links and amber 'profile' badge.",
+    "todo_split": "Split TODO.md into active-only (TODO.md) and archive (TODO_COMPLETED.md) per owner request.",
+    "agent_docs": "Created AGENTS.md with agent capability matrix. Created thoughts/ session logs for Sessions 72, 75, 78."
   },
 
   "resolved_since_v1": {
@@ -80,7 +96,7 @@
     },
     "frontend_no_tests": {
       "was": "NO_TEST_INFRASTRUCTURE",
-      "now": "RESOLVED — 298 vitest tests across 16 test files, all passing"
+      "now": "RESOLVED — 535 vitest tests across 26 test files, all passing"
     },
     "notification_no_onclick": {
       "was": "Notification system button has no onClick handler",
@@ -104,14 +120,20 @@
     "sanctions_update": {
       "status": "PARTIALLY_COMPLETE",
       "severity": "LOW",
-      "description": "Expanded from 18 to 35 entries (Sessions 69-70). May still be missing some 2026 sanctions.",
+      "description": "35 entries with source_url fields linking to official registries. May be missing some 2026 sanctions.",
       "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions in 2026"
     },
-    "remaining_orphan_components": {
-      "status": "RESOLVED",
-      "severity": "RESOLVED",
-      "description": "DetentionFacilities and PoliceStationsMap are integrated into IntelligenceFeeds (CCP Operations tab) as lazy-loaded components.",
-      "recommendation": "No action needed — both components confirmed integrated (Session 71)"
+    "site_cleanup": {
+      "status": "PARTIALLY_COMPLETE",
+      "severity": "LOW",
+      "description": "SITE_CLEANUP_TODO.md ~40% complete. Emoji reduction done, accessibility done, perf done. Typography, tab consolidation, page merging still outstanding.",
+      "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
+    },
+    "simulated_data_phase2": {
+      "status": "IN_PROGRESS",
+      "severity": "MEDIUM",
+      "description": "Phase 1 done (liveDataService fixed). Phase 2 (refactor components to use JSON files instead of hardcoded data) still outstanding for PoliticalPrisoners, DetentionFacilities, Officials, Companies pages.",
+      "recommendation": "See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md Phase 2"
     }
   },
 
@@ -121,28 +143,32 @@
       "task": "backend_connection",
       "description": "Connect frontend to Cloudflare Pages Functions + Supabase backend. Backend exists in /backend/ with Express + PostgreSQL.",
       "estimated_hours": 16,
-      "status": "NOT_STARTED"
+      "status": "NOT_STARTED",
+      "agent": "Opus 4.6"
     },
     {
       "priority": 2,
-      "task": "remaining_orphan_integration",
-      "description": "DetentionFacilities and PoliceStationsMap integrated into IntelligenceFeeds CCP Operations tab",
-      "estimated_hours": 0,
-      "status": "COMPLETED"
+      "task": "site_cleanup_typography",
+      "description": "SITE_CLEANUP_TODO.md Priority 1: increase font sizes, improve contrast, add line-height. Quick win for readability.",
+      "estimated_hours": 3,
+      "status": "NOT_STARTED",
+      "agent": "Sonnet 4.5"
     },
     {
       "priority": 3,
       "task": "content_monitoring",
-      "description": "Update political prisoners database with new cases, monitor appeal proceedings (Jimmy Lai, Joshua Wong)",
+      "description": "Update political prisoners database with new cases, monitor appeal proceedings (Jimmy Lai, Joshua Wong). Check 2026 sanctions updates.",
       "estimated_hours": 4,
-      "status": "ONGOING"
+      "status": "ONGOING",
+      "agent": "Opus 4.6"
     },
     {
       "priority": 4,
-      "task": "sanctions_monitoring",
-      "description": "Monitor for new 2026 sanctions from US/EU/UK/Canada/Australia",
-      "estimated_hours": 2,
-      "status": "ONGOING"
+      "task": "simulated_data_phase2",
+      "description": "Refactor PoliticalPrisoners, DetentionFacilities, Officials, Companies components to import from JSON research files instead of hardcoded data.",
+      "estimated_hours": 8,
+      "status": "NOT_STARTED",
+      "agent": "Opus 4.6"
     }
   ],
 

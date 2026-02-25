@@ -1,7 +1,7 @@
 # Completed Tasks Archive
 
 > Moved from `TODO.md` to keep the active task list focused and manageable.
-> Items here have been completed and verified across Sessions 1-73.
+> Items here have been completed and verified across Sessions 1-78.
 >
 > **Active tasks:** See `_agents/TODO.md`
 
@@ -107,6 +107,11 @@
 ## ✅ RECENTLY COMPLETED (Reverse Chronological)
 
 - ✅ **CCP influence detection system**: Centralized CCP_NEVER_CITE (21 names, 13 domains) + CCP_ELEVATED_RISK (15 entries) in sourceLinks.js with 4 utility functions. 37 tests. Consolidated 4 test files from duplicate blocklists — Session 73
+- ✅ **Timeline gaps ALL FILLED**: 8 events added (Charter 08, Nobel Prize, Term Limits, Self-Immolation, HK Article 23 march, Wukan, Tibet immolations, HK Article 23 passage). Timeline now 31 events, 1989-2026 — Sessions 74-75
+- ✅ **Simulated data Phase 1**: fetchStatistics() uses actual JSON file counts. fetchPoliticalPrisoners() imports from research file. Dashboard stat cards have honest labels — Session 77
+- ✅ **Dead code removed**: feedValidator/checkFeedHealth (returned fake "operational" status, never imported) — Session 77
+- ✅ **Schema consistency**: source_url added to all 49 human_rights_orgs entries. Fixed "N/A" strings. Tests enforce ≥90% source_url + HTTPS — Session 77
+- ✅ **TODO split**: Active-only TODO.md + archive TODO_COMPLETED.md per owner request — Session 74
 - ✅ **Sanctions source URLs**: Added source_url fields to all 35 entries linking to official government registries — Session 72
 - ✅ **Hong Kong Handover event**: Added July 1, 1997 to timeline (22→23 events) — Session 72
 - ✅ **Security headers tests**: 16 tests for CSP, CORS proxy allowlisting — Session 72
@@ -203,6 +208,10 @@
 | 70-71 | Feb 21 | Sonnet 4.5 | Orphan component integration (13 components → 0 orphans) |
 | 72 | Feb 24 | Opus 4.6 | Data quality: docs fixes, lint fixes, PWA icons, sitemap, CSP, timeline events, sanctions URLs, data tests |
 | 73 | Feb 24 | Opus 4.6 | CCP influence detection system: centralized registry (21+15 entries), 4 utility functions, 37 tests |
+| 74 | Feb 24 | Opus 4.6 | TODO split, 3 timeline events (Charter 08, Nobel Prize, Term Limits), agent capabilities doc |
+| 75 | Feb 24 | Opus 4.6 | 5 final timeline events (Self-Immolation, Article 23 march, Wukan, Tibet immolations, Article 23 passage). ALL gaps filled. |
+| 76-77 | Feb 25 | Opus 4.6 | Simulated data Phase 1: real JSON data for statistics + prisoners. Dead feedValidator removed. Schema consistency fix. Research data tests. |
+| 78 | Feb 25 | Opus 4.6 | Merge preparation: comprehensive handoff documentation update. AGENT_HANDOFF v6.0. |
 
 ---
 
