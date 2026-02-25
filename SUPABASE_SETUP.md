@@ -44,20 +44,25 @@ You need two values. Here's exactly where to find them:
 
 ---
 
-## Step 3: Create the Database Tables
+## Step 3: Create Tables and Security — ONE Copy-Paste
 
-Now you need to create the tables that the website's forms write to.
+This is the only SQL you need. It creates the 4 tables AND sets up security, all at once.
 
 1. In your Supabase project, look at the **left sidebar**
 2. Click **SQL Editor** (the icon that looks like a terminal/code window)
-3. You'll see a blank editor. **Delete anything in it**
-4. **Copy the entire block of SQL below** and paste it into the editor:
+3. You'll see a blank editor area. **If there's anything already in it, select all and delete it**
+4. **Copy EVERYTHING below** (from the first `--` to the very last `;`) and paste it into the editor
 
 ```sql
--- ============================================================================
+-- =====================================================================
+-- RESISTANCE HUB — COMPLETE DATABASE SETUP
+-- Copy this ENTIRE block, paste into Supabase SQL Editor, click Run.
+-- It creates 4 tables and sets up security. You only need to do this once.
+-- =====================================================================
+
+
 -- TABLE 1: INCIDENT REPORTS
--- This is where the "Report CCP Harassment" form saves data
--- ============================================================================
+-- The "Report CCP Harassment" form writes here
 CREATE TABLE IF NOT EXISTS incident_reports (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   title TEXT NOT NULL,
@@ -73,10 +78,9 @@ CREATE TABLE IF NOT EXISTS incident_reports (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 
--- ============================================================================
+
 -- TABLE 2: VOLUNTEER SIGN-UPS
--- This is where the "Volunteer" form saves data
--- ============================================================================
+-- The "Volunteer" form writes here
 CREATE TABLE IF NOT EXISTS volunteer_signups (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
@@ -89,10 +93,9 @@ CREATE TABLE IF NOT EXISTS volunteer_signups (
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- ============================================================================
+
 -- TABLE 3: NEWSLETTER SUBSCRIBERS
--- This is where the "Newsletter" form saves data
--- ============================================================================
+-- The "Newsletter" form writes here
 CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
@@ -100,10 +103,9 @@ CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   unsubscribed_at TIMESTAMPTZ
 );
 
--- ============================================================================
+
 -- TABLE 4: CONTACT MESSAGES
--- This is where a future "Contact Us" form will save data
--- ============================================================================
+-- A future "Contact Us" form will write here
 CREATE TABLE IF NOT EXISTS contact_messages (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
@@ -112,64 +114,41 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   message TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT now()
 );
-```
 
-5. Click the **Run** button (green play button, or press Ctrl+Enter / Cmd+Enter)
-6. You should see **"Success. No rows returned"** — that means it worked
 
----
-
-## Step 4: Set Up Security (Row Level Security)
-
-This step makes sure random people on the internet can submit forms, but can't read
-other people's submissions. Only you can see all entries via the Supabase dashboard.
-
-1. You should still be in the **SQL Editor**
-2. Click **+** to open a new query tab (or clear the current one)
-3. **Copy the entire block below** and paste it in:
-
-```sql
--- Enable Row Level Security on all four tables
+-- SECURITY: Enable Row Level Security on all tables
+-- This means: people can SUBMIT forms, but can NOT read other people's submissions
 ALTER TABLE incident_reports ENABLE ROW LEVEL SECURITY;
 ALTER TABLE volunteer_signups ENABLE ROW LEVEL SECURITY;
 ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 
--- Allow anyone to SUBMIT forms (insert rows) but NOT read other entries
+-- Allow form submissions (inserts) from website visitors
 CREATE POLICY "Anyone can submit incident reports"
-  ON incident_reports FOR INSERT
-  TO anon
-  WITH CHECK (true);
+  ON incident_reports FOR INSERT TO anon WITH CHECK (true);
 
 CREATE POLICY "Anyone can sign up as volunteer"
-  ON volunteer_signups FOR INSERT
-  TO anon
-  WITH CHECK (true);
+  ON volunteer_signups FOR INSERT TO anon WITH CHECK (true);
 
 CREATE POLICY "Anyone can subscribe to newsletter"
-  ON newsletter_subscribers FOR INSERT
-  TO anon
-  WITH CHECK (true);
+  ON newsletter_subscribers FOR INSERT TO anon WITH CHECK (true);
 
 CREATE POLICY "Anyone can send contact messages"
-  ON contact_messages FOR INSERT
-  TO anon
-  WITH CHECK (true);
+  ON contact_messages FOR INSERT TO anon WITH CHECK (true);
 
--- Allow newsletter re-subscribing (upsert)
+-- Allow newsletter re-subscribing
 CREATE POLICY "Anyone can update their newsletter subscription"
-  ON newsletter_subscribers FOR UPDATE
-  TO anon
-  USING (true)
-  WITH CHECK (true);
+  ON newsletter_subscribers FOR UPDATE TO anon USING (true) WITH CHECK (true);
 ```
 
-4. Click **Run**
-5. You should see **"Success. No rows returned"** again — that means it worked
+5. Click the **Run** button (the green play ▶ button at the top, or press Ctrl+Enter / Cmd+Enter)
+6. You should see **"Success. No rows returned"** — that means it worked. All 4 tables and all security policies were created.
+
+> **That's it. One paste, one click.** You do NOT need to run anything else.
 
 ---
 
-## Step 5: Verify Your Tables Were Created
+## Step 4: Verify Your Tables Were Created
 
 1. In the **left sidebar**, click **Table Editor** (the grid/table icon)
 2. You should see 4 tables listed:
@@ -183,7 +162,7 @@ If you see all 4 tables, **Supabase is fully set up.** 🎉
 
 ---
 
-## Step 6: Connect to Your Website
+## Step 5: Connect to Your Website
 
 You have two options depending on how you're deploying:
 
@@ -228,7 +207,7 @@ Add these as **repository variables** (not secrets — Vite needs them at build 
 
 ---
 
-## Step 7: Test That It Works
+## Step 6: Test That It Works
 
 1. Open your site (local dev, Cloudflare, or GitHub Pages — wherever it's running)
 2. Navigate to the **Incident Report form** (Security Center → Report tab, or find it in the nav)
@@ -275,11 +254,11 @@ User fills form → supabaseService.js sends data → Supabase stores it
 
 ### "Error submitting report" message after clicking Submit
 - Open browser DevTools (F12) → Console tab — look for red error messages
-- Common cause: you haven't run the SQL from Steps 3 and 4 yet
-- Common cause: RLS is blocking the insert — make sure you ran the policies in Step 4
+- Common cause: you haven't run the SQL from Step 3 yet
+- Common cause: RLS is blocking the insert — the SQL in Step 3 includes RLS policies, make sure the whole block ran successfully
 
 ### Table exists but no data appears after submitting
-- Check that RLS policies were created (Step 4)
+- Check that RLS policies were created (they're included in Step 3's SQL block)
 - In Supabase Dashboard, click on a table → click **RLS policies** tab → you should see the policies listed
 
 ### "relation does not exist" error
