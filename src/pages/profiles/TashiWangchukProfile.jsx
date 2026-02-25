@@ -133,7 +133,7 @@ const INTERNATIONAL_RESPONSES = [
   },
   {
     entity: 'Human Rights Watch',
-    response: 'Called the sentence "a gross injustice" and stated that "Tashi Wangchuk\'s only crime was to peacefully advocate for Tibetan language education." HRW China Director Sophie Richardson called it "a painful alterm about Beijing\'s tightening grip on Tibet."',
+    response: 'Called the sentence "a gross injustice" and stated that "Tashi Wangchuk\'s only crime was to peacefully advocate for Tibetan language education." HRW China Director Sophie Richardson called it "a painful alarm about Beijing\'s tightening grip on Tibet."',
     sourceUrl: 'https://www.hrw.org/news/2018/05/22/china-tibetan-language-advocate-faces-verdict',
   },
   {
