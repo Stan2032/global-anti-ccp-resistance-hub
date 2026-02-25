@@ -13,7 +13,7 @@ git clone https://github.com/Stan2032/global-anti-ccp-resistance-hub.git
 cd global-anti-ccp-resistance-hub
 npm install
 npm run dev           # Start dev server at http://localhost:5173
-npm test              # Run 607 tests across 34 files
+npm test              # Run 608 tests across 34 files
 npm run build         # Production build (~5s)
 ```
 
@@ -134,7 +134,7 @@ See [STYLE_GUIDE.md](_agents/STYLE_GUIDE.md) for the complete design system refe
 ## Testing
 
 ```bash
-npm test                              # Run all 607 tests
+npm test                              # Run all 608 tests
 npx vitest run src/test/FILE_NAME     # Run specific test file
 npm run test:watch                    # Watch mode
 ```

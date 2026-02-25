@@ -285,17 +285,17 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Detention Timer Section */}
+      {/* ─── Detention Timer ────────────────────────────────────── */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <Suspense fallback={<SectionLoader />}><UrgentCaseTimer compact={true} /></Suspense>
       </div>
 
-      {/* News Aggregator Section */}
+      {/* ─── Live News ─────────────────────────────────────────── */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
       </div>
 
-      {/* Resources Section */}
+      {/* ─── Essential Security Tools ──────────────────────────── */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
           <Link2 className="w-5 h-5 text-[#22d3ee]" /> essential_tools
@@ -322,28 +322,20 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Impact Metrics */}
+      {/* ─── Impact & Statistics ───────────────────────────────── */}
       <Suspense fallback={<SectionLoader />}><ImpactMetrics /></Suspense>
 
-      {/* Important Dates Countdown */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><CountdownTimer /></Suspense>
-      </div>
+      {/* ─── Important Dates ───────────────────────────────────── */}
+      <Suspense fallback={<SectionLoader />}><CountdownTimer /></Suspense>
 
-      {/* Live Statistics */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
-      </div>
+      {/* ─── Live Statistics ───────────────────────────────────── */}
+      <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
 
-      {/* News Digest Subscription */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
-      </div>
+      {/* ─── News Digest ───────────────────────────────────────── */}
+      <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
 
-      {/* Research Database */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
-      </div>
+      {/* ─── Research Database ─────────────────────────────────── */}
+      <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
 
       {/* Footer */}
       <div className="text-center text-slate-500 text-sm py-4 font-mono">
