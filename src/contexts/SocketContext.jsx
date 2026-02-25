@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useCallback } from 'react';
+import React, { createContext, useContext, useCallback, useMemo } from 'react';
 
 /**
  * Socket Context — Lightweight stub
@@ -21,16 +21,14 @@ export const useSocketContext = () => {
   return context;
 };
 
-const noop = () => {};
-
 export const SocketProvider = ({ children }) => {
-  const on = useCallback(noop, []);
-  const off = useCallback(noop, []);
-  const emit = useCallback(noop, []);
-  const subscribe = useCallback(noop, []);
-  const unsubscribe = useCallback(noop, []);
+  const on = useCallback(() => {}, []);
+  const off = useCallback(() => {}, []);
+  const emit = useCallback(() => {}, []);
+  const subscribe = useCallback(() => {}, []);
+  const unsubscribe = useCallback(() => {}, []);
 
-  const value = {
+  const value = useMemo(() => ({
     isConnected: false,
     connectionError: null,
     on,
@@ -38,7 +36,7 @@ export const SocketProvider = ({ children }) => {
     emit,
     subscribe,
     unsubscribe,
-  };
+  }), [on, off, emit, subscribe, unsubscribe]);
 
   return (
     <SocketContext.Provider value={value}>
