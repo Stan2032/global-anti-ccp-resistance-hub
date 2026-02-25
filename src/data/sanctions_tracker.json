@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Global Sanctions Tracker",
     "description": "International sanctions on CCP officials and entities for human rights abuses",
-    "last_verified": "2026-02-21",
+    "last_verified": "2026-02-25",
     "sources": [
       "US Treasury OFAC Sanctions List",
       "UK Sanctions List (Office of Financial Sanctions Implementation)",
@@ -443,6 +443,150 @@
       "law": "Special Economic Measures Act",
       "status": "active",
       "source_url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/consolidated-consolide.aspx"
+    },
+    {
+      "id": 36,
+      "country": "canada",
+      "type": "individual",
+      "target": "Erkin Tuniyaz",
+      "role": "Deputy Secretary of CPC Xinjiang Uyghur Autonomous Region",
+      "reason": "Gross human rights violations against Uyghurs in Xinjiang",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 37,
+      "country": "canada",
+      "type": "individual",
+      "target": "Shohrat Zakir",
+      "role": "Vice Chairman of NPC Standing Committee (former Xinjiang Chairman)",
+      "reason": "Gross human rights violations against Uyghurs in Xinjiang",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 38,
+      "country": "canada",
+      "type": "individual",
+      "target": "Peng Jiarui",
+      "role": "Vice Chairman of Xinjiang CPPCC",
+      "reason": "Gross human rights violations against Uyghurs in Xinjiang",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 39,
+      "country": "canada",
+      "type": "individual",
+      "target": "Huo Liujun",
+      "role": "Party Secretary of Xinjiang Public Security Department",
+      "reason": "Gross human rights violations against Uyghurs in Xinjiang",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 40,
+      "country": "canada",
+      "type": "individual",
+      "target": "Zhang Hongbo",
+      "role": "Vice Chairman of Xinjiang and former Director of Tibet Public Security Bureau",
+      "reason": "Gross human rights violations in Xinjiang and Tibet",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 41,
+      "country": "canada",
+      "type": "individual",
+      "target": "You Quan",
+      "role": "Former Director of United Front Work Department",
+      "reason": "Persecution of Falun Gong practitioners and religious minorities",
+      "date": "2024-12-10",
+      "law": "Special Economic Measures Act",
+      "status": "active",
+      "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html"
+    },
+    {
+      "id": 42,
+      "country": "us",
+      "type": "individual",
+      "target": "Dong Jingwei",
+      "role": "Director of Office for Safeguarding National Security in HKSAR",
+      "reason": "Undermining Hong Kong autonomy and transnational repression of pro-democracy activists",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
+    },
+    {
+      "id": 43,
+      "country": "us",
+      "type": "individual",
+      "target": "Paul Lam Ting Kwok",
+      "role": "Secretary for Justice of Hong Kong",
+      "reason": "Enforcing National Security Law against peaceful protesters and overseas activists",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
+    },
+    {
+      "id": 44,
+      "country": "us",
+      "type": "individual",
+      "target": "Raymond Siu Chak Yee",
+      "role": "Commissioner of Hong Kong Police Force",
+      "reason": "Coercion arrest and imprisonment of individuals under National Security Law",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
+    },
+    {
+      "id": 45,
+      "country": "us",
+      "type": "individual",
+      "target": "Sonny Au Chi Kwong",
+      "role": "Secretary-General of Committee for Safeguarding National Security",
+      "reason": "Undermining Hong Kong autonomy through national security apparatus",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
+    },
+    {
+      "id": 46,
+      "country": "us",
+      "type": "individual",
+      "target": "Dick Wong Chung Chun",
+      "role": "Assistant Commissioner of Police (National Security)",
+      "reason": "Transnational repression targeting overseas pro-democracy activists",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
+    },
+    {
+      "id": 47,
+      "country": "us",
+      "type": "individual",
+      "target": "Margaret Chiu Wing Lan",
+      "role": "Assistant Commissioner of Police (National Security)",
+      "reason": "Transnational repression targeting overseas pro-democracy activists",
+      "date": "2025-03-31",
+      "law": "Executive Order 13936",
+      "status": "active",
+      "source_url": "https://www.state.gov/u-s-sanctions-six-individuals-for-undermining-hong-kongs-autonomy/"
     }
   ]
 }
