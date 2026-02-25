@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react';
+import { useLanguage } from './LanguageSelector';
 
 /**
  * Skip Links Component
  * Provides keyboard users with quick navigation to main content areas
+ * Uses i18n translations (8 languages) and terminal design system colors
  */
 export const SkipLinks = () => {
+  const { t } = useLanguage();
   return (
     <div className="sr-only focus-within:not-sr-only">
       <a
         href="#main-content"
-        className="fixed top-0 left-0 z-[100] bg-blue-600 text-white px-4 py-2 font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-white"
+        className="fixed top-0 left-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
       >
-        Skip to main content
+        {t('skipToMain')}
       </a>
       <a
         href="#navigation"
-        className="fixed top-0 left-40 z-[100] bg-blue-600 text-white px-4 py-2 font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-white"
+        className="fixed top-0 left-52 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
       >
-        Skip to navigation
+        {t('skipToNav')}
       </a>
     </div>
   );
@@ -228,7 +231,7 @@ export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }) => {
             }}
             className={`px-4 py-2 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#4afa82] ${
               activeTab === tab.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/50'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -276,7 +279,7 @@ export const AccessibleProgress = ({ value, max = 100, label }) => {
         className="w-full bg-[#111820] rounded-full h-2"
       >
         <div
-          className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+          className="bg-[#4afa82] h-2 rounded-full transition-all duration-300"
           style={{ width: `${percentage}%` }}
         />
       </div>

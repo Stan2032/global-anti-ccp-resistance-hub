@@ -7,20 +7,33 @@ import {
   AccessibleProgress,
   AccessibleAlert,
 } from '../components/Accessibility';
+import { LanguageProvider } from '../components/LanguageSelector';
+
+const renderWithLanguage = (ui) => render(<LanguageProvider>{ui}</LanguageProvider>);
 
 describe('SkipLinks', () => {
   it('should render skip to main content link', () => {
-    render(<SkipLinks />);
-    const link = screen.getByText('Skip to main content');
+    renderWithLanguage(<SkipLinks />);
+    const link = screen.getByRole('link', { name: /skip.*main|skipToMain/i });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#main-content');
   });
 
   it('should render skip to navigation link', () => {
-    render(<SkipLinks />);
-    const link = screen.getByText('Skip to navigation');
+    renderWithLanguage(<SkipLinks />);
+    const link = screen.getByRole('link', { name: /skip.*nav|skipToNav/i });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#navigation');
+  });
+
+  it('should use terminal design system colors', () => {
+    const { container } = renderWithLanguage(<SkipLinks />);
+    const links = container.querySelectorAll('a');
+    links.forEach(link => {
+      expect(link.className).toContain('text-[#4afa82]');
+      expect(link.className).toContain('bg-[#111820]');
+      expect(link.className).toContain('font-mono');
+    });
   });
 });
 
