@@ -21,12 +21,12 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: Remaining hybrid components (3 of 4 fully migrated to JSON)
+- [ ] **Simulated Data Phase 2**: ✅ ALL COMPLETE (4/4 fully migrated to JSON)
   - **Agent:** Opus 4.6 (requires understanding component→data mapping)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
   - ✅ DetentionFacilities → detention_facilities_research.json (DONE — Session 89, 11 facilities with coordinates/capacity/evidence)
-  - 🟡 CCPOfficials → sanctioned_officials_research.json (hybrid — component has rich biographical data)
+  - ✅ CCPOfficials → sanctioned_officials_research.json (DONE — Session 90, JSON enriched with biographical data, hardcoded array removed)
   - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
 ### Bug Fixes & Polish

@@ -1,12 +1,12 @@
 # Simulated Data Cleanup - Comprehensive TODO List
 
-## Priority: LOW (was CRITICAL — most items resolved)
+## Priority: LOW (was CRITICAL — all items resolved)
 **Goal:** Remove ALL simulated, fake, mock, or placeholder data. Replace with ONLY real, verified data from credible sources with transparent attribution.
 
-**Last reviewed:** February 25, 2026 (Session 89)  
-**Status:** Phase 1 ✅ COMPLETE. Phase 2 ✅ MOSTLY COMPLETE (3/4 fully refactored, 1/4 uses justified hybrid approach).
+**Last reviewed:** February 25, 2026 (Session 90)  
+**Status:** Phase 1 ✅ COMPLETE. Phase 2 ✅ COMPLETE (4/4 fully migrated to JSON).
 
-### Completed across Sessions 33-89:
+### Completed across Sessions 33-90:
 - ✅ **VPN/Tor fake detection** removed, honest disclaimers + 3rd-party self-test tools added (Session 33)
 - ✅ **Non-functional forms** now show "Coming Soon" notices with links to real organizations (Session 36)
 - ✅ **False security claims** removed from IncidentReportForm (Session 36)
@@ -20,9 +20,7 @@
 - ✅ **ForcedLaborTracker.jsx** fully imports from forced_labor_companies_research.json
 - ✅ **SanctionsTracker** uses sanctions_tracker.json with source_url fields linking to gov registries (Session 72)
 - ✅ **DetentionFacilities.jsx** fully imports from detention_facilities_research.json (Session 89) — 11 facilities with coordinates, capacity, satellite imagery, evidence, sources all moved to JSON
-
-### Remaining (LOW priority — justified hybrid approach):
-- 🟡 **CCPOfficials.jsx** — 8 hardcoded officials with detailed UI data, merged with JSON sanctions data. **Recommendation:** Keep hybrid approach; the hardcoded data provides UI-specific fields (images, detailed descriptions) not in the JSON research file.
+- ✅ **CCPOfficials.jsx** fully imports from sanctioned_officials_research.json (Session 90) — JSON enriched with biographical data (chinese_name, birth_year, in_power_since, key_actions, detailed_responsibilities) for 8 key officials, Xi Jinping entry added, hardcoded array removed
 
 ---
 

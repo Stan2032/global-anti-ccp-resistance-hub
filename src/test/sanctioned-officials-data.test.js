@@ -7,8 +7,8 @@ const filePath = resolve(DATA_DIR, 'sanctioned_officials_research.json');
 const data = JSON.parse(readFileSync(filePath, 'utf-8'));
 
 describe('sanctioned_officials_research.json specifics', () => {
-  it('contains at least 15 official records', () => {
-    expect(data.results.length).toBeGreaterThanOrEqual(15);
+  it('contains at least 20 official records', () => {
+    expect(data.results.length).toBeGreaterThanOrEqual(20);
   });
 
   it('each official has a name and position', () => {
@@ -66,6 +66,39 @@ describe('sanctioned_officials_research.json specifics', () => {
       expect(result.output).toHaveProperty('key_abuses');
       expect(result.output).toHaveProperty('current_status');
       expect(result.output.key_abuses.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('includes Xi Jinping as paramount leader', () => {
+    const xi = data.results.find(r => r.output.name === 'Xi Jinping');
+    expect(xi).toBeDefined();
+    expect(xi.output.responsibility_area).toBe('General');
+    expect(xi.output.current_status).toBe('In power');
+  });
+
+  it('key officials have biographical data (chinese_name, birth_year, key_actions)', () => {
+    const keyNames = ['Xi Jinping', 'Chen Quanguo', 'Carrie Lam', 'John Lee', 'Wang Junzheng', 'Zhu Hailun', 'Zhao Kezhi', 'Wang Yi'];
+    for (const name of keyNames) {
+      const result = data.results.find(r => r.output.name === name);
+      expect(result, `${name} should be in the data`).toBeDefined();
+      expect(result.output.chinese_name, `${name} should have chinese_name`).toBeTruthy();
+      expect(result.output.birth_year, `${name} should have birth_year`).toBeGreaterThan(1900);
+      expect(result.output.key_actions, `${name} should have key_actions`).toBeInstanceOf(Array);
+      expect(result.output.key_actions.length, `${name} should have at least 3 key_actions`).toBeGreaterThanOrEqual(3);
+      expect(result.output.detailed_responsibilities, `${name} should have detailed_responsibilities`).toBeInstanceOf(Array);
+    }
+  });
+
+  it('key_actions entries have year and action fields', () => {
+    const withActions = data.results.filter(r => r.output.key_actions && r.output.key_actions.length > 0);
+    expect(withActions.length).toBeGreaterThanOrEqual(8);
+    for (const result of withActions) {
+      for (const action of result.output.key_actions) {
+        expect(action).toHaveProperty('year');
+        expect(action).toHaveProperty('action');
+        expect(action.year).toBeGreaterThanOrEqual(2000);
+        expect(action.action.length).toBeGreaterThan(0);
+      }
     }
   });
 });
