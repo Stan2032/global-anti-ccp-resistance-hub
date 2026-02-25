@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "7.6",
-    "date": "2026-02-25T19:49:00Z",
+    "version": "7.7",
+    "date": "2026-02-25T20:10:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v7.5, Session 91)",
+    "supersedes": "AGENT_HANDOFF.json (v7.6, Session 94)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,7 +22,7 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 608,
+    "frontend_tests": 618,
     "test_files": 34,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 94,
+    "sessions_completed": 95,
     "eslint_status": "0_errors_10_warnings",
     "npm_vulnerabilities": 0,
     "mobile_responsiveness": "WCAG_2.5.5_44px_touch_targets_16px_base_font",
@@ -67,6 +67,15 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "session_95_changes": {
+    "summary": "Fix broken service worker, terminal-styled offline/404 pages, manifest theme, 10 new PWA tests",
+    "service_worker_fix": "Fixed 8 stale GitHub Pages paths in sw.js (all /global-anti-ccp-resistance-hub/ → /). Bumped cache version v1→v2 to invalidate stale cached assets.",
+    "offline_page": "Rewrote offline.html from scratch: terminal aesthetic (monospace, #0a0e14 bg, #4afa82 green, box-drawing borders, $ command prompts). Removed gradients, border-radius, blue colors.",
+    "404_page": "Replaced GitHub Pages SPA redirect hack in 404.html with proper terminal-styled 404 page. ASCII box art, path display, navigation buttons.",
+    "manifest_theme": "Updated manifest.json theme_color/background_color from #0f172a to #0a0e14 (terminal page bg).",
+    "pwa_tests": "Added 10 new tests in manifest-pwa.test.js: SW path validation (no GH Pages paths, root-relative precache, OFFLINE_URL), manifest theme consistency (bg/theme match #0a0e14), offline page design compliance (terminal bg, monospace, no gradients, green accent). 618 total tests."
   },
 
   "session_92_94_changes": {

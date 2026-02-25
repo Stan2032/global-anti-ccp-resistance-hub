@@ -54,7 +54,7 @@ Over 94 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 608 tests passing across 34 test files
+npx vitest run    # Should show 618 tests passing across 34 test files
 ```
 
 ---
@@ -122,7 +122,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 34 Vitest test files, 608 tests
+│   └── test/                   # 34 Vitest test files, 618 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -143,7 +143,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 608 tests (34 files)
+npx vitest run                           # All 618 tests (34 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -240,5 +240,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 **Handoff prepared by:** Sessions 62-85 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-85)  
 **Date:** February 25, 2026  
-**Repository state:** 608 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 35 sanctions, 22 sanctioned officials, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 4/4 data migrations complete, URLs pointing to Cloudflare Workers  
+**Repository state:** 618 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 35 sanctions, 22 sanctioned officials, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 4/4 data migrations complete, URLs pointing to Cloudflare Workers  
 **Status:** ✅ MERGE READY — branch prepared for merge to main
