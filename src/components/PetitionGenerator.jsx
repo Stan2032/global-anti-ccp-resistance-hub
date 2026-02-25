@@ -177,7 +177,7 @@ ${petition.yourOrg ? `${petition.yourOrg}` : ''}
 
 ---
 This petition was created using the Global Anti-CCP Resistance Hub
-https://stan2032.github.io/global-anti-ccp-resistance-hub/
+https://global-anti-ccp-resistance-hub.stane203.workers.dev/
 `;
 
     setGeneratedPetition(text);

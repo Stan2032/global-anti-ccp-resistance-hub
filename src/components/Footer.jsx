@@ -188,7 +188,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://twitter.com/intent/tweet?text=Join%20the%20global%20resistance%20against%20CCP%20authoritarianism&url=https://stan2032.github.io/global-anti-ccp-resistance-hub/"
+                href="https://twitter.com/intent/tweet?text=Join%20the%20global%20resistance%20against%20CCP%20authoritarianism&url=https://global-anti-ccp-resistance-hub.stane203.workers.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-500 hover:text-[#4afa82] transition-colors"
