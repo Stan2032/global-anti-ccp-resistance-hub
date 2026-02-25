@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "7.0",
-    "date": "2026-02-25T02:00:00Z",
+    "version": "7.1",
+    "date": "2026-02-25T16:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v6.0, Session 80)",
+    "supersedes": "AGENT_HANDOFF.json (v7.0, Session 82)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,8 +22,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 546,
-    "test_files": 27,
+    "frontend_tests": 564,
+    "test_files": 29,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 82,
+    "sessions_completed": 84,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -63,6 +63,14 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "sessions_83_to_84_changes": {
+    "summary": "Supabase form wiring (VolunteerSignup, NewsDigest), typography improvements, agent docs update",
+    "forms_wired": "VolunteerSignup.jsx and NewsDigest.jsx now wired to Supabase via submitVolunteerSignup() and subscribeNewsletter(). Both show conditional 'Coming Soon' notices only when backend is not configured. Follow same pattern as IncidentReportForm.jsx.",
+    "typography": "SITE_CLEANUP_TODO.md Priority 1 completed: text-xs bumped 12px→14px (0.875rem), text-sm bumped 14px→16px (1rem), text-base gets leading-relaxed (1.625), paragraph font-weight improved to 450.",
+    "tests_added": "VolunteerSignup.test.jsx (9 tests) and NewsDigest.test.jsx (9 tests) added. Test count: 546→564, files: 27→29.",
+    "agent_docs": "Updated AGENT_HANDOFF.json v7.0→v7.1, TODO.md session count and sprint status."
   },
 
   "sessions_81_to_82_changes": {
@@ -139,7 +147,7 @@
     "site_cleanup": {
       "status": "PARTIALLY_COMPLETE",
       "severity": "LOW",
-      "description": "SITE_CLEANUP_TODO.md ~40% complete. Emoji reduction done, accessibility done, perf done. Typography, tab consolidation, page merging still outstanding.",
+      "description": "SITE_CLEANUP_TODO.md ~50% complete. Emoji reduction done, accessibility done, perf done, typography done. Tab consolidation, page merging still outstanding.",
       "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
@@ -154,18 +162,18 @@
     {
       "priority": 1,
       "task": "backend_connection_phase2",
-      "description": "Supabase client + service layer done. Next: wire remaining 3 forms (VolunteerSignup, NewsDigest newsletter, Contact), add Supabase Auth for admin dashboard, deploy backend to production.",
-      "estimated_hours": 8,
-      "status": "PARTIALLY_COMPLETE",
+      "description": "Supabase client + service layer done. IncidentReportForm, VolunteerSignup, NewsDigest wired. Next: wire Contact form, add Supabase Auth for admin dashboard, deploy backend to production.",
+      "estimated_hours": 4,
+      "status": "MOSTLY_COMPLETE",
       "agent": "Opus 4.6"
     },
     {
       "priority": 2,
       "task": "site_cleanup_typography",
-      "description": "SITE_CLEANUP_TODO.md Priority 1: increase font sizes, improve contrast, add line-height. Quick win for readability.",
-      "estimated_hours": 3,
-      "status": "NOT_STARTED",
-      "agent": "Sonnet 4.5"
+      "description": "SITE_CLEANUP_TODO.md Priority 1 DONE: text-xs bumped 12→14px, text-sm bumped 14→16px, text-base gets leading-relaxed, paragraph font-weight improved, contrast overrides in place.",
+      "estimated_hours": 0,
+      "status": "COMPLETE",
+      "agent": "Sonnet 4"
     },
     {
       "priority": 3,

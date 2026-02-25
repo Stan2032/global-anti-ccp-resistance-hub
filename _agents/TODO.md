@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 82)
+> Last Updated: February 25, 2026 (Session 84)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -247,9 +247,9 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Backend connection Phase 2** — Supabase client + service layer done ✅. Wire remaining 3 forms (VolunteerSignup, NewsDigest, Contact), add Supabase Auth for admin
+1. **Backend connection Phase 2** — Supabase client + service layer done ✅. VolunteerSignup, NewsDigest, IncidentReportForm all wired ✅. Remaining: add Supabase Auth for admin, wire Contact form
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
+3. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 ✅ (font sizes bumped, contrast improved, line-height added)
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -281,7 +281,7 @@
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
 | **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: 2/4 done, 2 hybrid/justified |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~50% complete (typography done) |
 | **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 
 ---
@@ -296,10 +296,10 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 82, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 546 tests (27 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
-- **Backend:** Supabase client + service layer integrated. Express backend exists but untested.
+### Current State Summary (as of Session 84, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 564 tests (29 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete (text-xs→14px, text-sm→16px).
+- **Backend:** Supabase client + service layer integrated. 3 forms wired (IncidentReport, VolunteerSignup, NewsDigest).
 - **Profile Pages:** 15/15 built (0 coming soon)
 - **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
 - **Timeline:** 31 events from 1989-2026, all gaps filled
