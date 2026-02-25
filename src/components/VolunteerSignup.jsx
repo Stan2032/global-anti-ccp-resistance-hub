@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, Landmark, Mountain, Megaphone, Link2, Globe2, Newspaper, PartyPopper, UserPlus, Flame, FileText, Wrench, Heart, MessageCircle, Lock } from 'lucide-react';
+import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, Landmark, Mountain, Megaphone, Link2, Globe2, Newspaper, PartyPopper, UserPlus, Flame, FileText, Wrench, Heart, MessageCircle, Lock, Info } from 'lucide-react';
+import { isSupabaseConfigured } from '../services/supabaseClient';
+import { submitVolunteerSignup } from '../services/supabaseService';
 
 const VolunteerSignup = () => {
+  const backendConnected = isSupabaseConfigured();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,6 +17,8 @@ const VolunteerSignup = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const skillOptions = [
     { id: 'translation', name: 'Translation', Icon: Globe },
@@ -71,9 +76,26 @@ const VolunteerSignup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, this would submit to a backend
+    if (backendConnected) {
+      setSubmitting(true);
+      setSubmitError(null);
+      const { error } = await submitVolunteerSignup({
+        name: formData.name,
+        email: formData.email,
+        skills: formData.skills,
+        languages: formData.languages,
+        availability: formData.availability,
+        message: formData.message,
+      });
+      setSubmitting(false);
+      if (error) {
+        setSubmitError(error);
+        return;
+      }
+    }
+    // Static-only fallback or success
     setSubmitted(true);
   };
 
@@ -84,8 +106,10 @@ const VolunteerSignup = () => {
           <PartyPopper className="w-12 h-12 text-amber-400 mb-4 mx-auto" />
           <h2 className="text-2xl font-bold text-white mb-2">Thank You for Your Interest!</h2>
           <p className="text-slate-300 mb-4">
-            This volunteer signup form is not yet connected to a backend. Your data has <strong>not</strong> been submitted.
-            To volunteer, please contact the organizations below directly:
+            {backendConnected
+              ? 'Your volunteer application has been securely submitted. We will review it and get back to you. You can also reach out to the organizations below directly:'
+              : <>This volunteer signup form is not yet connected to a backend. Your data has <strong>not</strong> been submitted.
+              To volunteer, please contact the organizations below directly:</>}
           </p>
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Volunteer Directly With:</h3>
@@ -151,6 +175,7 @@ const VolunteerSignup = () => {
       </div>
 
       {/* Coming Soon Notice */}
+      {!backendConnected && (
       <div className="bg-amber-900/20 border border-amber-700/50 p-4 flex items-start gap-3">
         <UserPlus className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
         <div>
@@ -161,6 +186,7 @@ const VolunteerSignup = () => {
           </p>
         </div>
       </div>
+      )}
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -320,16 +346,24 @@ const VolunteerSignup = () => {
           <h3 className="font-medium text-red-400 mb-2"><Lock className="w-4 h-4 inline mr-1" /> Security Notice</h3>
           <p className="text-sm text-slate-300">
             If you are in a sensitive situation, consider using a pseudonym and secure email when contacting organizations.
-            This form is a preview — no data is currently stored or transmitted.
+            {!backendConnected && ' This form is a preview — no data is currently stored or transmitted.'}
           </p>
         </div>
+
+        {/* Error message */}
+        {submitError && (
+          <div className="p-3 bg-red-900/30 border border-red-700/50 text-sm text-red-300">
+            Error submitting application: {submitError}
+          </div>
+        )}
 
         {/* Submit */}
         <button
           type="submit"
-          className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-medium transition-colors"
+          disabled={submitting}
+          className="w-full py-3 bg-green-600 hover:bg-green-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
         >
-          Submit Volunteer Application
+          {submitting ? 'Submitting...' : 'Submit Volunteer Application'}
         </button>
       </form>
 
@@ -349,6 +383,21 @@ const VolunteerSignup = () => {
           <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Amnesty International
           </a>
+        </div>
+      </div>
+
+      {/* Backend status footer */}
+      <div className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
+          {backendConnected ? (
+            <span className="flex items-center gap-1">
+              <Lock className="w-3 h-3" /> Connected to secure backend
+            </span>
+          ) : (
+            <span className="flex items-center gap-1">
+              <Info className="w-3 h-3" /> Form not yet active — coming soon
+            </span>
+          )}
         </div>
       </div>
     </div>

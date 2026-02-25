@@ -58,7 +58,7 @@ Cloudflare will:
 3. Run `npm run build` (produces `dist/`)
 4. Run `npx wrangler deploy` (deploys using `wrangler.jsonc` config)
 
-Your site will be live at: `https://your-project-name.pages.dev`
+Your site will be live at your Cloudflare Workers URL (e.g., `https://global-anti-ccp-resistance-hub.stane203.workers.dev/`)
 
 ### 5. (Optional) Add a Custom Domain
 

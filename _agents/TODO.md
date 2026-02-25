@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 82)
+> Last Updated: February 25, 2026 (Session 89)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -21,11 +21,11 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: Remaining hybrid components (2 of 4 already fully migrated to JSON)
+- [ ] **Simulated Data Phase 2**: Remaining hybrid components (3 of 4 fully migrated to JSON)
   - **Agent:** Opus 4.6 (requires understanding component→data mapping)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
-  - 🟡 DetentionFacilities → detention_facilities_research.json (hybrid — lacks coordinate/imagery data in JSON)
+  - ✅ DetentionFacilities → detention_facilities_research.json (DONE — Session 89, 11 facilities with coordinates/capacity/evidence)
   - 🟡 CCPOfficials → sanctioned_officials_research.json (hybrid — component has rich biographical data)
   - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
@@ -247,9 +247,10 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Backend connection Phase 2** — Supabase client + service layer done ✅. Wire remaining 3 forms (VolunteerSignup, NewsDigest, Contact), add Supabase Auth for admin
+1. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
+3. **Site cleanup** — SITE_CLEANUP_TODO.md ~65% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: page merging, visual hierarchy
+4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -280,8 +281,8 @@
 | File | Focus | Status |
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
-| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: 2/4 done, 2 hybrid/justified |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: 3/4 done, 1 hybrid/justified |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~50% complete (typography done) |
 | **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 
 ---
@@ -296,12 +297,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 82, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 546 tests (27 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
-- **Backend:** Supabase client + service layer integrated. Express backend exists but untested.
+### Current State Summary (as of Session 88, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 1032 tests (33 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance + URL health tests added.
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
+- **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
+- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries. DataSources extracted to JSON.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)

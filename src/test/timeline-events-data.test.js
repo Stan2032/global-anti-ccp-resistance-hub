@@ -123,17 +123,6 @@ describe('Timeline Events Data Integrity', () => {
         }
       }
     });
-
-    it('no source URL contains CCP state media domains', () => {
-      for (const event of events) {
-        for (const source of event.sources) {
-          expect(
-            isCCPStateMedia(source),
-            `Event ${event.id} "${event.title}" source contains CCP media reference: "${source}"`
-          ).toBe(false);
-        }
-      }
-    });
   });
 
   describe('Key historical events are present', () => {

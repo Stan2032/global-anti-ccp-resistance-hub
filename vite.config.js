@@ -8,6 +8,18 @@ export default defineConfig({
   // Cloudflare / local dev: / (default)
   // GitHub Pages: /global-anti-ccp-resistance-hub/ (set VITE_BASE_PATH in deploy.yml)
   base: process.env.VITE_BASE_PATH || '/',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split large vendor libraries into cacheable chunks
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-router': ['react-router', 'react-router-dom'],
+          'vendor-motion': ['framer-motion'],
+        },
+      },
+    },
+  },
   server: {
     host: true,
     allowedHosts: 'all'

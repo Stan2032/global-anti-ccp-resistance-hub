@@ -35,6 +35,7 @@ const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
 const EventRSVP = lazy(() => import('../components/EventRSVP'));
 const EventMap = lazy(() => import('../components/EventMap'));
 const VictimMemorialWall = lazy(() => import('../components/VictimMemorialWall'));
+const ContactForm = lazy(() => import('../components/ContactForm'));
 
 const CommunitySupport = () => {
   const [activeTab, setActiveTab] = useState('support')
@@ -347,6 +348,7 @@ const CommunitySupport = () => {
           { id: 'stories', label: 'Stories' },
           { id: 'report', label: 'Report' },
           { id: 'volunteer', label: 'Volunteer' },
+          { id: 'contact', label: 'Contact' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -546,6 +548,11 @@ const CommunitySupport = () => {
       {/* Volunteer Tab */}
       {activeTab === 'volunteer' && (
         <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
+      )}
+
+      {/* Contact Tab */}
+      {activeTab === 'contact' && (
+        <Suspense fallback={<SectionLoader />}><ContactForm /></Suspense>
       )}
     </div>
   )

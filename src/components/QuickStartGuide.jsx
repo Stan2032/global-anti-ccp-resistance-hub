@@ -134,9 +134,9 @@ const QuickStartGuide = () => {
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-[#111820] rounded-2xl border border-[#1c2a35] max-w-lg w-full shadow-2xl">
+        <div className="bg-[#111820] border border-[#1c2a35] max-w-lg w-full shadow-2xl">
           {/* Progress Bar */}
-          <div className="h-1 bg-[#111820] rounded-t-2xl overflow-hidden">
+          <div className="h-1 bg-[#111820] overflow-hidden">
             <div 
               className="h-full bg-blue-500 transition-all duration-300"
               style={{ width: `${progress}%` }}

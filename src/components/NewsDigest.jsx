@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, FileText, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock } from 'lucide-react';
+import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, FileText, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
+import { isSupabaseConfigured } from '../services/supabaseClient';
+import { subscribeNewsletter } from '../services/supabaseService';
 
 const NewsDigest = () => {
+  const backendConnected = isSupabaseConfigured();
   const [email, setEmail] = useState('');
   const [preferences, setPreferences] = useState({
     frequency: 'weekly',
@@ -9,6 +12,8 @@ const NewsDigest = () => {
     format: 'summary',
   });
   const [subscribed, setSubscribed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const frequencies = [
     { id: 'daily', name: 'Daily Digest', description: 'Every morning' },
@@ -78,9 +83,19 @@ const NewsDigest = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, this would submit to a backend
+    if (backendConnected) {
+      setSubmitting(true);
+      setSubmitError(null);
+      const { error } = await subscribeNewsletter(email);
+      setSubmitting(false);
+      if (error) {
+        setSubmitError(error);
+        return;
+      }
+    }
+    // Static-only fallback or success
     setSubscribed(true);
   };
 
@@ -89,10 +104,12 @@ const NewsDigest = () => {
       <div className="space-y-6">
         <div className="bg-amber-900/30 border border-amber-700/50 p-8 text-center">
           <Inbox className="w-12 h-12 text-amber-400 mb-4 mx-auto" />
-          <h2 className="text-2xl font-bold text-white mb-2">Newsletter Coming Soon</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">{backendConnected ? 'You\'re Subscribed!' : 'Newsletter Coming Soon'}</h2>
           <p className="text-slate-300 mb-4">
-            This subscription form is not yet connected to an email service. No data has been stored.
-            In the meantime, follow these trusted sources directly:
+            {backendConnected
+              ? 'Your email has been added to our newsletter list. You\'ll receive updates based on your preferences. In the meantime, follow these trusted sources directly:'
+              : <>This subscription form is not yet connected to an email service. No data has been stored.
+            In the meantime, follow these trusted sources directly:</>}
           </p>
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Stay Informed Via:</h3>
@@ -152,6 +169,7 @@ const NewsDigest = () => {
       </div>
 
       {/* Coming Soon Notice */}
+      {!backendConnected && (
       <div className="bg-amber-900/20 border border-amber-700/50 p-4 flex items-start gap-3">
         <Mail className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
         <div>
@@ -162,6 +180,7 @@ const NewsDigest = () => {
           </p>
         </div>
       </div>
+      )}
 
       {/* Subscription Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -248,12 +267,20 @@ const NewsDigest = () => {
           </div>
         </div>
 
+        {/* Error message */}
+        {submitError && (
+          <div className="p-3 bg-red-900/30 border border-red-700/50 text-sm text-red-300">
+            Error subscribing: {submitError}
+          </div>
+        )}
+
         {/* Submit */}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+          disabled={submitting}
+          className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
         >
-          Subscribe to News Digest
+          {submitting ? 'Subscribing...' : 'Subscribe to News Digest'}
         </button>
       </form>
 
@@ -283,6 +310,21 @@ const NewsDigest = () => {
           If you're in a sensitive situation, consider using a secure email provider like ProtonMail 
           and accessing this content through Tor or a VPN. Your subscription information is kept confidential.
         </p>
+      </div>
+
+      {/* Backend status footer */}
+      <div className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
+          {backendConnected ? (
+            <span className="flex items-center gap-1">
+              <Lock className="w-3 h-3" /> Connected to secure backend
+            </span>
+          ) : (
+            <span className="flex items-center gap-1">
+              <Info className="w-3 h-3" /> Newsletter not yet active — coming soon
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

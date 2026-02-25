@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "7.0",
-    "date": "2026-02-25T02:00:00Z",
+    "version": "7.4",
+    "date": "2026-02-25T18:28:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v6.0, Session 80)",
+    "supersedes": "AGENT_HANDOFF.json (v7.3, Session 87)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,8 +22,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 546,
-    "test_files": 27,
+    "frontend_tests": 604,
+    "test_files": 34,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 82,
+    "sessions_completed": 89,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -42,9 +42,11 @@
     "clipboard_error_handling": "all_9_components_fixed",
     "print_styles": "media_print_A4_layout",
     "security_fixes": "react_router_7.13.0_3_CVEs_fixed",
-    "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types",
+    "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types_all_wired",
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md",
-    "cloudflare_fix": "stale_pnpm_lock_yaml_removed"
+    "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
+    "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/",
+    "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_305KB_97KB_gzip"
   },
 
   "sessions_62_to_71_changes": {
@@ -62,6 +64,32 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "session_87_changes": {
+    "summary": "Design system compliance test, fix rounded-2xl violation, update stale docs",
+    "design_system_test": "Added design-system.test.js with 279 tests scanning all JSX files for prohibited rounded classes (rounded-lg/xl/2xl/3xl) and gradient backgrounds. Catches future violations automatically.",
+    "quickstart_fix": "Fixed QuickStartGuide.jsx — removed rounded-2xl and rounded-t-2xl from modal container (violates terminal square-corner aesthetic).",
+    "bundle_optimization_session86": "socket.io-client removed (107KB dead weight). SocketContext replaced with no-op stub. Main bundle 421→305KB (133→97KB gzip). Vendor splitting: react (11KB), router (35KB), framer-motion (116KB). GlobalSearch/QuickStartGuide/PWAInstallBanner lazy-loaded.",
+    "data_extraction_session86": "DataSources.jsx hardcoded data extracted to src/data/data_sources.json (11 RSS + 4 major categories). 11 data integrity tests added.",
+    "docs_updated": "AGENT_HANDOFF.json v7.2→v7.3. TODO.md sprint section updated (all 4 forms wired, bundle optimization noted). Test count: 584→1032→604 (34 files, consolidated from inflated per-file scans).",
+    "url_health_test": "Added url-health.test.js scanning all JSX+JSON files for CCP state media domains (using CCP_NEVER_CITE.domains from sourceLinks.js) and HTTP-only URLs.",
+    "test_consolidation": "Consolidated per-file scan tests: design-system.test.js 279→3 tests, url-health.test.js 169→5 tests. Same files scanned, same patterns caught, but no inflated count. Removed duplicate CCP check in timeline-events-data.test.js. Refactored data-sources.test.js to use beforeAll(). Final: 604 tests, 34 files."
+  },
+
+  "session_85_changes": {
+    "summary": "ContactForm component created and wired to Supabase. All 4 forms now complete.",
+    "contact_form": "Created ContactForm.jsx component with name/email/subject/message fields. Wired to submitContactMessage() from supabaseService.js. Shows conditional 'Coming Soon' notice and backend status footer. Added as 'Contact' tab in CommunitySupport page.",
+    "tests_added": "ContactForm.test.jsx (9 tests): renders form, conditional notices, Supabase integration, error handling, success messages. Test count: 564→573, files: 29→30.",
+    "agent_docs": "Updated AGENT_HANDOFF.json v7.1→v7.2, session count 84→85."
+  },
+
+  "sessions_83_to_84_changes": {
+    "summary": "Supabase form wiring (VolunteerSignup, NewsDigest), typography improvements, agent docs update",
+    "forms_wired": "VolunteerSignup.jsx and NewsDigest.jsx now wired to Supabase via submitVolunteerSignup() and subscribeNewsletter(). Both show conditional 'Coming Soon' notices only when backend is not configured. Follow same pattern as IncidentReportForm.jsx.",
+    "typography": "SITE_CLEANUP_TODO.md Priority 1 completed: text-xs bumped 12px→14px (0.875rem), text-sm bumped 14px→16px (1rem), text-base gets leading-relaxed (1.625), paragraph font-weight improved to 450.",
+    "tests_added": "VolunteerSignup.test.jsx (9 tests) and NewsDigest.test.jsx (9 tests) added. Test count: 546→564, files: 27→29.",
+    "agent_docs": "Updated AGENT_HANDOFF.json v7.0→v7.1, TODO.md session count and sprint status."
   },
 
   "sessions_81_to_82_changes": {
@@ -108,7 +136,7 @@
     },
     "frontend_no_tests": {
       "was": "NO_TEST_INFRASTRUCTURE",
-      "now": "RESOLVED — 535 vitest tests across 26 test files, all passing"
+      "now": "RESOLVED — 604 vitest tests across 34 test files, all passing"
     },
     "notification_no_onclick": {
       "was": "Notification system button has no onClick handler",
@@ -136,16 +164,16 @@
       "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions in 2026"
     },
     "site_cleanup": {
-      "status": "PARTIALLY_COMPLETE",
+      "status": "MOSTLY_COMPLETE",
       "severity": "LOW",
-      "description": "SITE_CLEANUP_TODO.md ~40% complete. Emoji reduction done, accessibility done, perf done. Typography, tab consolidation, page merging still outstanding.",
+      "description": "SITE_CLEANUP_TODO.md ~70% complete. Emoji reduction ✅, accessibility ✅, perf ✅, typography ✅, tab consolidation ✅, disclaimers ✅, nav emojis ✅. Page merging and visual hierarchy still outstanding.",
       "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
       "status": "MOSTLY_COMPLETE",
       "severity": "LOW",
-      "description": "Phase 1 done. Phase 2: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON — coordinates, imagery, biographical context).",
-      "recommendation": "To fully migrate remaining 2, enrich JSON files with coordinate/imagery data. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
+      "description": "Phase 1 done. Phase 2: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities fully migrated to JSON. CCPOfficials uses justified hybrid approach (rich component data not in JSON — biographical context).",
+      "recommendation": "To fully migrate remaining 1, enrich sanctioned_officials_research.json with biographical data. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
     }
   },
 
@@ -153,18 +181,18 @@
     {
       "priority": 1,
       "task": "backend_connection_phase2",
-      "description": "Supabase client + service layer done. Next: wire remaining 3 forms (VolunteerSignup, NewsDigest newsletter, Contact), add Supabase Auth for admin dashboard, deploy backend to production.",
-      "estimated_hours": 8,
-      "status": "PARTIALLY_COMPLETE",
+      "description": "All 4 forms wired to Supabase: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next: add Supabase Auth for admin dashboard, deploy backend to production.",
+      "estimated_hours": 4,
+      "status": "COMPLETE_FORMS_WIRED",
       "agent": "Opus 4.6"
     },
     {
       "priority": 2,
       "task": "site_cleanup_typography",
-      "description": "SITE_CLEANUP_TODO.md Priority 1: increase font sizes, improve contrast, add line-height. Quick win for readability.",
-      "estimated_hours": 3,
-      "status": "NOT_STARTED",
-      "agent": "Sonnet 4.5"
+      "description": "SITE_CLEANUP_TODO.md Priority 1 DONE: text-xs bumped 12→14px, text-sm bumped 14→16px, text-base gets leading-relaxed, paragraph font-weight improved, contrast overrides in place.",
+      "estimated_hours": 0,
+      "status": "COMPLETE",
+      "agent": "Sonnet 4"
     },
     {
       "priority": 3,

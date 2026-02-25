@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const SITEMAP_PATH = resolve(__dirname, '../../public/sitemap.xml');
-const BASE_URL = 'https://stan2032.github.io/global-anti-ccp-resistance-hub';
+const BASE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 describe('Sitemap Data Integrity', () => {
   let sitemapContent;

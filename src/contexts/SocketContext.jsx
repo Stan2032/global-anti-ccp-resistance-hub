@@ -1,13 +1,15 @@
-import React, { createContext, useContext, useEffect, useState, useRef, useCallback } from 'react';
-import { io } from 'socket.io-client';
-
-const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-const DEBUG = import.meta.env.DEV;
+import React, { createContext, useContext, useCallback } from 'react';
 
 /**
- * Socket Context
- * Provides a singleton Socket.IO connection shared across all components
- * Prevents memory leaks from multiple connections
+ * Socket Context — Lightweight stub
+ *
+ * The socket.io-client library (~107 KB) was removed from the main bundle because
+ * no component currently consumes the socket hooks. This stub preserves the full
+ * SocketProvider / useSocketContext API so existing hook code in useSocket.js
+ * continues to work if imported in the future.
+ *
+ * When a real WebSocket backend is deployed, restore the full implementation by
+ * dynamically importing socket.io-client here (lazy connect on first use).
  */
 const SocketContext = createContext(null);
 
@@ -19,122 +21,18 @@ export const useSocketContext = () => {
   return context;
 };
 
-export const SocketProvider = ({ children, token }) => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [connectionError, setConnectionError] = useState(null);
-  const socketRef = useRef(null);
-  const listenersRef = useRef(new Map());
+const noop = () => {};
 
-  // Initialize socket connection
-  useEffect(() => {
-    // Allow connection without token for public feeds
-    // Token is optional for authenticated features
-
-    // Don't reconnect if already connected with same token
-    if (socketRef.current?.connected) {
-      return;
-    }
-
-    if (DEBUG) console.log('[SocketContext] Initializing connection...');
-
-    const socket = io(SOCKET_URL, {
-      auth: { token },
-      transports: ['websocket', 'polling'],
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: 10,
-      timeout: 20000,
-    });
-
-    socketRef.current = socket;
-
-    // Connection handlers
-    socket.on('connect', () => {
-      if (DEBUG) console.log('[SocketContext] Connected:', socket.id);
-      setIsConnected(true);
-      setConnectionError(null);
-    });
-
-    socket.on('disconnect', (reason) => {
-      if (DEBUG) console.log('[SocketContext] Disconnected:', reason);
-      setIsConnected(false);
-    });
-
-    socket.on('connect_error', (error) => {
-      console.error('[SocketContext] Connection error:', error.message);
-      setConnectionError(error.message);
-      setIsConnected(false);
-    });
-
-    socket.on('error', (error) => {
-      console.error('[SocketContext] Error:', error);
-      setConnectionError(error.message || 'Socket error');
-    });
-
-    // Cleanup on unmount
-    return () => {
-      if (DEBUG) console.log('[SocketContext] Cleaning up connection');
-      socket.disconnect();
-      socketRef.current = null;
-    };
-  }, [token]);
-
-  // Subscribe to an event
-  const on = useCallback((event, handler) => {
-    if (!socketRef.current) return;
-
-    // Track listeners for cleanup
-    if (!listenersRef.current.has(event)) {
-      listenersRef.current.set(event, new Set());
-    }
-    listenersRef.current.get(event).add(handler);
-
-    socketRef.current.on(event, handler);
-  }, []);
-
-  // Unsubscribe from an event
-  const off = useCallback((event, handler) => {
-    if (!socketRef.current) return;
-
-    // Remove from tracking
-    if (listenersRef.current.has(event)) {
-      listenersRef.current.get(event).delete(handler);
-    }
-
-    socketRef.current.off(event, handler);
-  }, []);
-
-  // Emit an event
-  const emit = useCallback((event, data) => {
-    if (socketRef.current && isConnected) {
-      socketRef.current.emit(event, data);
-    } else {
-      console.warn('[SocketContext] Cannot emit - not connected');
-    }
-  }, [isConnected]);
-
-  // Subscribe to a room/channel
-  const subscribe = useCallback((type, id) => {
-    if (!socketRef.current || !isConnected) return;
-    
-    const event = `${type}:subscribe`;
-    socketRef.current.emit(event, id);
-    if (DEBUG) console.log(`[SocketContext] Subscribed to ${type}:${id}`);
-  }, [isConnected]);
-
-  // Unsubscribe from a room/channel
-  const unsubscribe = useCallback((type, id) => {
-    if (!socketRef.current || !isConnected) return;
-    
-    const event = `${type}:unsubscribe`;
-    socketRef.current.emit(event, id);
-    if (DEBUG) console.log(`[SocketContext] Unsubscribed from ${type}:${id}`);
-  }, [isConnected]);
+export const SocketProvider = ({ children }) => {
+  const on = useCallback(noop, []);
+  const off = useCallback(noop, []);
+  const emit = useCallback(noop, []);
+  const subscribe = useCallback(noop, []);
+  const unsubscribe = useCallback(noop, []);
 
   const value = {
-    isConnected,
-    connectionError,
+    isConnected: false,
+    connectionError: null,
     on,
     off,
     emit,

@@ -43,7 +43,7 @@ p {
   font-size: 1rem;
   line-height: 1.75;
   color: #cbd5e1;
-  font-weight: 400;
+  font-weight: 450;   /* between normal(400) and medium(500) for body readability */
 }
 
 /* Headings use monospace for the terminal feel */
@@ -105,15 +105,20 @@ h4 {
   color: #8d949e !important; /* 5.84:1 on surface — original #4b5563 was 2.36:1 */
 }
 
-/* Upgrade small text sizes */
+/* Upgrade small text sizes — SITE_CLEANUP_TODO Priority 1 */
 .text-xs {
-  font-size: 0.8125rem !important;
+  font-size: 0.875rem !important;   /* 14px (was 12px default, 13px prev) */
   line-height: 1.5 !important;
 }
 
 .text-sm {
-  font-size: 0.9375rem !important;
-  line-height: 1.6 !important;
+  font-size: 1rem !important;       /* 16px (was 14px default, 15px prev) */
+  line-height: 1.625 !important;    /* leading-relaxed equivalent */
+}
+
+/* Upgrade text-base with relaxed leading for body content */
+.text-base {
+  line-height: 1.625 !important;    /* leading-relaxed */
 }
 
 /* Links — terminal green accent */
