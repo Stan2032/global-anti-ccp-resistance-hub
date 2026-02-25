@@ -708,3 +708,26 @@ All JSON files follow this pattern:
 
 **Agent:** Opus 4.6 (Session 76)
 **Rationale:** This was an Opus task because it required fact verification (are these numbers real?), source credibility assessment (what should the numbers be?), and careful judgment about what to show vs. hide.
+
+---
+
+## UPDATE: February 25, 2026 - Session 77
+
+### ✅ COMPLETED
+
+**liveDataSources.js — Dead Code Removed**
+- ✅ Removed `feedValidator` export (dead code — exported but never imported anywhere)
+- ✅ Removed `checkFeedHealth()` function that returned fake `{ status: 'operational' }` without actually checking feed health
+- ✅ Removed `validateSource()` that generated fake `lastChecked` timestamps
+
+**human_rights_orgs_research.json — Schema Consistency**
+- ✅ Added `source_url` field to all 49 entries (was using `website` field instead — schema mismatch with all other research files)
+- ✅ Fixed Formosa Foundation entry: replaced `"N/A"` strings with empty strings (org defunct since 2016)
+
+**research-data.test.js — Strengthened Tests**
+- ✅ Added "at least 90% of entries have a source_url" test (catches missing schema fields)
+- ✅ Added "all source_url values use HTTPS" test (catches insecure URLs and "N/A" strings)
+- ✅ Tests increased from 63→83 (20 new, covering all 10 research files)
+
+**Agent:** Opus 4.6 (Session 77)
+**Rationale:** Data schema consistency and test strengthening — the existing research data test had a gap where files without `source_url` silently passed. The new tests would have caught the N/A and schema issues.

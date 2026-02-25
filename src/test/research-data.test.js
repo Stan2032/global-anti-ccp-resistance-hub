@@ -50,6 +50,22 @@ describe('Research data integrity', () => {
       }
     });
 
+    it('at least 90% of entries have a source_url', () => {
+      const withSource = data.results.filter(
+        (r) => r.output && r.output.source_url
+      );
+      const ratio = withSource.length / data.results.length;
+      expect(ratio).toBeGreaterThanOrEqual(0.9);
+    });
+
+    it('all source_url values use HTTPS (not plain HTTP)', () => {
+      for (const result of data.results) {
+        if (result.output && result.output.source_url) {
+          expect(result.output.source_url).toMatch(/^https:\/\//);
+        }
+      }
+    });
+
     it('confidence field, when present, is HIGH, MEDIUM, or LOW', () => {
       for (const result of data.results) {
         if (result.output && result.output.confidence) {

@@ -20,7 +20,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 12 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 515 passing Vitest tests across 26 test files
+- Contains 310+ source files, 100+ React components, 535 passing Vitest tests across 26 test files
 
 ### What Has Been Done (70 Sessions of Work)
 Over 70 agent sessions, the following has been accomplished:
@@ -31,7 +31,7 @@ Over 70 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 515 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security)
+8. **Test infrastructure**: 535 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with data integrity tests
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -44,7 +44,7 @@ Over 70 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 515 tests passing across 26 test files
+npx vitest run    # Should show 535 tests passing across 26 test files
 ```
 
 ---
@@ -131,7 +131,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 515 tests (26 files)
+npx vitest run                           # All 535 tests (26 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -224,5 +224,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 **Handoff prepared by:** Sessions 62-75 (Sonnet 4.5 62-71, Opus 4.6 72-75)  
 **Date:** February 24, 2026  
-**Repository state:** 515 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components  
+**Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components  
 **Status:** ✅ READY FOR CONTINUED WORK
