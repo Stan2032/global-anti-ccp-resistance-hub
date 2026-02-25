@@ -110,4 +110,23 @@ describe('Sanctions Tracker Data', () => {
       ).toBe(true);
     });
   });
+
+  describe('Cross-file consistency with sanctioned officials', () => {
+    it('all individually sanctioned targets appear in sanctioned_officials_research.json', async () => {
+      const { default: officialsData } = await import('../data/sanctioned_officials_research.json');
+      const officialNames = new Set(
+        officialsData.results.map(r => r.output.name.toLowerCase())
+      );
+
+      const individualSanctions = sanctionsData.sanctions.filter(s => s.type === 'individual');
+      const missing = individualSanctions.filter(
+        s => !officialNames.has(s.target.toLowerCase())
+      );
+
+      expect(
+        missing.map(s => s.target),
+        `Sanctioned individuals not in officials research: ${missing.map(s => s.target).join(', ')}`
+      ).toEqual([]);
+    });
+  });
 });
