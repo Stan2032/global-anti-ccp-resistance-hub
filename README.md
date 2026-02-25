@@ -100,7 +100,7 @@ src/
 ├── hooks/              # useDocumentTitle, useLiveData, useWebRTCLeakCheck
 ├── contexts/           # ThemeContext, LanguageContext, SocketContext (stub)
 ├── locales/            # 8 locale JSON files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-└── test/               # 34 Vitest test files, 618 tests
+└── test/               # 34 Vitest test files, 619 tests
 ```
 
 ### Data Flow
@@ -110,9 +110,9 @@ All structured content lives in `src/data/` as JSON files:
 | File | Content | Used by |
 |------|---------|---------|
 | `political_prisoners_research.json` | 62 prisoners with sources | PoliticalPrisoners page |
-| `sanctions_tracker.json` | 35 sanctions entries | SanctionsTracker component |
+| `sanctions_tracker.json` | 47 sanctions entries | SanctionsTracker component |
 | `detention_facilities_research.json` | 11 facilities with coordinates | DetentionFacilities component |
-| `sanctioned_officials_research.json` | CCP officials under sanctions | SanctionedOfficials component |
+| `sanctioned_officials_research.json` | 34 CCP officials tracked | CCPOfficials component |
 | `forced_labor_companies_research.json` | Companies linked to forced labor | ForcedLaborTracker component |
 | `timeline_events.json` | 31 events (1989–2026) | InteractiveTimeline component |
 | `confucius_institutes_research.json` | Confucius Institutes data | ConfuciusInstitutes component |
@@ -179,7 +179,7 @@ npm run preview         # Preview production build locally
 
 ### Testing
 ```bash
-npm test                # Run all 618 tests across 34 files
+npm test                # Run all 619 tests across 34 files
 npm run test:watch      # Watch mode for development
 ```
 

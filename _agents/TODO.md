@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 93)
+> Last Updated: February 25, 2026 (Session 97)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -11,8 +11,9 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### Content Updates
-- [ ] **Update Sanctions List**: Add any new 2025-2026 sanctions from US, EU, UK, Canada, Australia
+- [ ] **Update Sanctions List**: Check for any new sanctions after March 2025 from US, EU, UK, Canada, Australia
   - **Agent:** Opus 4.6 (requires source verification against government registries)
+  - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds added in Session 96)
   - Subtask: Check US Treasury SDN list for new China/HK-related designations
   - Subtask: Check UK FCDO sanctions list for updates
   - Subtask: Check EU Council sanctions for new entries
@@ -272,6 +273,7 @@
 ### Standing Instructions from Humans
 - **Adding people to site:** Agents may add individuals without asking, as long as well-researched with verified sources (Tier 1: BBC, Reuters, AP, HRW, Amnesty, CPJ, OHCHR, government records; Tier 2: HKFP, RFA, NCHRD, Safeguard Defenders, CHRD)
 - **CCP source exclusion:** Never cite CCP state/party media. Use `isCCPStateMedia()` from `src/utils/sourceLinks.js` — the centralized CCP influence detection registry
+- **CCP terminology:** Always use "CCP" (Chinese Communist Party), NEVER "CPC" (Communist Party of China). The CCP promotes "CPC" to dilute critical search results. Automated test in url-health.test.js enforces this.
 - **Date verification:** Always cross-reference dates with 2+ independent sources
 - **Profile template:** Follow established pattern (5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources)
 
@@ -298,19 +300,21 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 93, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 618 tests (34 files, all passing)
+### Current State Summary (as of Session 97, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 619 tests (34 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance + URL health tests added.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
 - **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 35 sanctioned entities, 22 officials, 30 forced labor companies, 142+ total entries. All 4/4 JSON migrations complete.
+- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 4/4 JSON migrations complete.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
-- **Deployment:** URLs updated to Cloudflare Workers. SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md ready.
+- **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
+- **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages.
 - **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
+- **Knowledge Transfer:** Comprehensive session notes in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`.
 
 ---
 

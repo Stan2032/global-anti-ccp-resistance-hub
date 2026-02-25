@@ -77,7 +77,7 @@ src/data/
 
 ### Why JSON?
 - **Verifiable**: Every entry has source URLs that can be checked
-- **Testable**: 618 automated tests validate data integrity (required fields, valid URLs, no CCP sources)
+- **Testable**: 619 automated tests validate data integrity (required fields, valid URLs, no CCP sources)
 - **No runtime dependency**: Data is bundled into JavaScript — the site works offline after initial load
 - **Git-auditable**: All changes go through PR review
 
@@ -147,7 +147,7 @@ When not configured, the client is `null` and forms display "Coming Soon" notice
 
 ## Testing Strategy
 
-618 tests across 34 files using Vitest + jsdom + React Testing Library.
+619 tests across 34 files using Vitest + jsdom + React Testing Library.
 
 | Category | Files | What it tests |
 |----------|-------|---------------|
