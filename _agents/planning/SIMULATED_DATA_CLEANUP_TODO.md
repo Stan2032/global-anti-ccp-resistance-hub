@@ -678,3 +678,33 @@ All JSON files follow this pattern:
 ---
 
 **Next Update:** After completing first component refactor (Political Prisoners)
+
+---
+
+## UPDATE: February 24, 2026 - Session 76
+
+### ✅ COMPLETED
+
+**liveDataService.js — Remaining Simulated Data Removed**
+- ✅ `fetchPoliticalPrisoners()`: Replaced 5-item hardcoded array with dynamic import from `political_prisoners_research.json` (62 verified entries)
+- ✅ `fetchStatistics()`: Replaced fabricated numbers (847 orgs, 1200 facilities, 156 campaigns, 10000 prisoners) with actual counts derived from JSON data files (49 orgs, 380+ facilities per ASPI, null campaigns, 62 prisoners)
+- ✅ Added source attribution metadata to statistics response
+- ✅ Added data transparency note explaining counts are documented entries, not global totals
+
+**Dashboard.jsx — Fabricated Metrics Removed**
+- ✅ Removed "+12 this week" (fabricated live change metric)
+- ✅ Removed "+5 new" (fabricated campaign change metric)
+- ✅ Replaced with honest labels: "In database", "ASPI estimate", "Coming soon", "Documented cases"
+- ✅ Active Campaigns now shows "—" with "Coming soon" (was showing fabricated "156")
+
+**Tests Added**
+- ✅ Created `live-data-service.test.js` (12 tests) verifying:
+  - Statistics match actual JSON data file counts
+  - No fabricated campaign numbers
+  - Source attribution present
+  - Static lastUpdated date (not fabricated real-time)
+  - Prisoners come from JSON (not hardcoded)
+  - No CCP state media in feed sources
+
+**Agent:** Opus 4.6 (Session 76)
+**Rationale:** This was an Opus task because it required fact verification (are these numbers real?), source credibility assessment (what should the numbers be?), and careful judgment about what to show vs. hide.

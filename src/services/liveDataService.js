@@ -147,94 +147,55 @@ export async function fetchAllFeeds() {
 }
 
 /**
- * Fetch political prisoners data from CECC API (or fallback to static)
+ * Fetch political prisoners data from verified JSON research file
+ * Source: CECC Political Prisoner Database, HRW, Amnesty International, CPJ
+ * Data file: src/data/political_prisoners_research.json (62 verified entries)
  */
 export async function fetchPoliticalPrisoners() {
-  // In production, this would fetch from a real API
-  // For now, we'll use the CECC website data we gathered
-  const prisoners = [
-    {
-      id: 1,
-      name: 'Jimmy Lai',
-      chineseName: '黎智英',
-      status: 'imprisoned',
-      sentence: 'Sentenced to 20 years (Feb 9, 2026)',
-      dateDetained: '2020-08-10',
-      dateConvicted: '2025-12-15',
-      category: 'Press Freedom',
-      description: 'Founder of Apple Daily newspaper, convicted under National Security Law',
-      urgent: true,
-      source: 'https://www.cecc.gov/victims',
-      lastUpdated: '2026-02-09',
-    },
-    {
-      id: 2,
-      name: 'Ilham Tohti',
-      chineseName: '伊力哈木·土赫提',
-      status: 'imprisoned',
-      sentence: 'Life imprisonment',
-      dateDetained: '2014-01-15',
-      dateConvicted: '2014-09-23',
-      category: 'Uyghur Rights',
-      description: 'Uyghur economist and professor, Sakharov Prize laureate',
-      urgent: true,
-      source: 'https://www.cecc.gov/victims',
-      lastUpdated: '2024-12-01',
-    },
-    {
-      id: 3,
-      name: 'Gao Zhisheng',
-      chineseName: '高智晟',
-      status: 'disappeared',
-      dateDetained: '2017-08-13',
-      category: 'Human Rights',
-      description: 'Human rights lawyer, disappeared since August 2017',
-      urgent: true,
-      source: 'https://www.cecc.gov/victims',
-      lastUpdated: '2024-12-01',
-    },
-    {
-      id: 4,
-      name: 'Zhang Zhan',
-      chineseName: '张展',
-      status: 'imprisoned',
-      sentence: '4 years (Dec 2020) + 4 years (Sep 2025)',
-      dateDetained: '2020-05-14',
-      dateConvicted: '2020-12-28',
-      category: 'Journalism',
-      description: 'Citizen journalist who reported on COVID-19 outbreak in Wuhan. Re-arrested Aug 2024, sentenced again Sep 2025.',
-      urgent: true,
-      source: 'https://www.cecc.gov/victims',
-      lastUpdated: '2025-09-01',
-    },
-    {
-      id: 5,
-      name: 'Gedhun Choekyi Nyima',
-      chineseName: '根敦确吉尼玛',
-      status: 'disappeared',
-      dateDetained: '1995-05-17',
-      category: 'Religious Freedom',
-      description: '11th Panchen Lama, disappeared at age 6, whereabouts unknown',
-      urgent: true,
-      source: 'https://www.cecc.gov/victims',
-      lastUpdated: '2024-12-01',
-    },
-  ];
+  const { default: prisonersData } = await import('../data/political_prisoners_research.json');
   
-  return prisoners;
+  return prisonersData.results
+    .filter(r => !r.error && r.output)
+    .map((r, index) => ({
+      id: index + 1,
+      name: r.output.prisoner_name,
+      status: r.output.status?.toLowerCase() || 'unknown',
+      sentence: r.output.sentence || '',
+      location: r.output.location || '',
+      description: r.output.latest_news || r.input,
+      source: r.output.source_url || 'https://www.cecc.gov/victims',
+      confidence: r.output.confidence || 'MEDIUM',
+      lastUpdated: r.output.last_verified || '',
+    }));
 }
 
 /**
- * Fetch live statistics
+ * Fetch platform statistics derived from verified data files
+ * 
+ * Numbers are derived from actual data in the repository's JSON files,
+ * not from a live database. They represent documented/verified entries.
+ * 
+ * Sources:
+ * - Political prisoners: CECC database, HRW, Amnesty (62 documented in our database)
+ * - Detention facilities: ASPI Xinjiang Data Project estimates 380+ facilities;
+ *   broader estimates by researchers suggest 1,000+ across all regions
+ *   (Source: ASPI, https://xjdp.aspi.org.au/)
+ * - Verified organizations: human_rights_orgs_research.json (49 documented)
+ * - Active campaigns: Illustrative target — no live tracking
  */
 export async function fetchStatistics() {
-  // These would be fetched from a real database
   return {
-    verifiedOrganizations: 847,
-    detentionFacilities: 1200,
-    activeCampaigns: 156,
-    politicalPrisoners: 10000,
-    lastUpdated: new Date().toISOString(),
+    verifiedOrganizations: 49,
+    detentionFacilities: 380,
+    activeCampaigns: null,
+    politicalPrisoners: 62,
+    lastUpdated: '2026-02-20',
+    dataNote: 'Counts reflect entries documented in this platform\'s verified database, not global totals.',
+    sources: {
+      organizations: 'human_rights_orgs_research.json — 49 verified human rights organizations',
+      facilities: 'ASPI Xinjiang Data Project (xjdp.aspi.org.au) — 380+ identified facilities',
+      prisoners: 'political_prisoners_research.json — 62 verified individual cases (CECC, HRW, Amnesty)',
+    },
   };
 }
 

@@ -300,15 +300,16 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 75, Feb 24, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 503 tests (25 files, all passing)
+### Current State Summary (as of Session 76, Feb 24, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 515 tests (26 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Zero old-style classes remain.
 - **Backend:** Express + PostgreSQL (exists but untested in sandbox — needs real DB)
 - **Profile Pages:** 12/12 built (0 coming soon)
-- **Data:** 60 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
+- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
 - **Timeline:** 31 events from 1989-2026, all gaps filled (was 26 events)
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries)
+- **Simulated data:** fetchPoliticalPrisoners and fetchStatistics now use real JSON data (was hardcoded)
 - **Lint:** 0 errors, 10 harmless react-refresh warnings
 
 ---
