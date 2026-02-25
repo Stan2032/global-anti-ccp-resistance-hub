@@ -280,5 +280,301 @@
       },
       "error": ""
     }
+  ],
+  "facilities": [
+    {
+      "id": "xj-001",
+      "name": "Dabancheng Internment Camp",
+      "chinese_name": "达坂城",
+      "type": "Internment Camp",
+      "region": "Xinjiang",
+      "city": "Ürümqi",
+      "coordinates": {
+        "lat": 43.3633,
+        "lng": 88.3114
+      },
+      "estimated_capacity": "10,000+",
+      "status": "Active",
+      "first_documented": "2018",
+      "description": "One of the largest detention facilities in Xinjiang. Satellite imagery shows massive expansion since 2017.",
+      "evidence": [
+        "Satellite imagery from ASPI",
+        "Xinjiang Police Files documents",
+        "Survivor testimonies"
+      ],
+      "sources": [
+        "ASPI Xinjiang Data Project",
+        "Xinjiang Police Files",
+        "BuzzFeed News"
+      ],
+      "satellite_image_url": "https://xjdp.aspi.org.au/"
+    },
+    {
+      "id": "xj-002",
+      "name": "Artux City Vocational Skills Education Training Center",
+      "chinese_name": "阿图什市职业技能教育培训中心",
+      "type": "Internment Camp",
+      "region": "Xinjiang",
+      "city": "Artux",
+      "coordinates": {
+        "lat": 39.7164,
+        "lng": 76.1683
+      },
+      "estimated_capacity": "8,000+",
+      "status": "Active",
+      "first_documented": "2017",
+      "description": "Large facility documented in leaked government documents. Features high-security perimeter and watchtowers.",
+      "evidence": [
+        "China Cables leaked documents",
+        "Satellite imagery",
+        "Drone footage"
+      ],
+      "sources": [
+        "ICIJ China Cables",
+        "ASPI",
+        "BBC"
+      ],
+      "satellite_image_url": "https://xjdp.aspi.org.au/"
+    },
+    {
+      "id": "xj-003",
+      "name": "Kashgar Detention Center",
+      "chinese_name": "喀什拘留中心",
+      "type": "Detention Center",
+      "region": "Xinjiang",
+      "city": "Kashgar",
+      "coordinates": {
+        "lat": 39.4547,
+        "lng": 75.9797
+      },
+      "estimated_capacity": "5,000+",
+      "status": "Active",
+      "first_documented": "2017",
+      "description": "Multiple facilities in Kashgar area. Documented forced labor and political indoctrination.",
+      "evidence": [
+        "Xinjiang Police Files photos",
+        "Survivor testimonies",
+        "Satellite imagery"
+      ],
+      "sources": [
+        "Xinjiang Police Files",
+        "Human Rights Watch",
+        "AP"
+      ],
+      "satellite_image_url": "https://xjdp.aspi.org.au/"
+    },
+    {
+      "id": "xj-004",
+      "name": "Hotan Vocational Training Center",
+      "chinese_name": "和田职业培训中心",
+      "type": "Internment Camp",
+      "region": "Xinjiang",
+      "city": "Hotan",
+      "coordinates": {
+        "lat": 37.1,
+        "lng": 79.9269
+      },
+      "estimated_capacity": "7,000+",
+      "status": "Active",
+      "first_documented": "2018",
+      "description": "Large-scale facility with documented forced labor programs producing textiles and electronics.",
+      "evidence": [
+        "ASPI forced labor research",
+        "Corporate supply chain audits",
+        "Satellite imagery"
+      ],
+      "sources": [
+        "ASPI Uyghurs for Sale",
+        "NYT",
+        "Reuters"
+      ],
+      "satellite_image_url": "https://xjdp.aspi.org.au/"
+    },
+    {
+      "id": "xj-005",
+      "name": "Turpan Detention Facility",
+      "chinese_name": "吐鲁番拘留设施",
+      "type": "Prison",
+      "region": "Xinjiang",
+      "city": "Turpan",
+      "coordinates": {
+        "lat": 42.9513,
+        "lng": 89.1895
+      },
+      "estimated_capacity": "3,000+",
+      "status": "Active",
+      "first_documented": "2019",
+      "description": "High-security prison facility. Multiple reports of torture and deaths in custody.",
+      "evidence": [
+        "Leaked internal documents",
+        "Family testimonies",
+        "Satellite expansion tracking"
+      ],
+      "sources": [
+        "Xinjiang Victims Database",
+        "Amnesty International",
+        "UHRP"
+      ],
+      "satellite_image_url": "https://xjdp.aspi.org.au/"
+    },
+    {
+      "id": "tb-001",
+      "name": "Drapchi Prison",
+      "chinese_name": "扎其监狱",
+      "type": "Prison",
+      "region": "Tibet",
+      "city": "Lhasa",
+      "coordinates": {
+        "lat": 29.65,
+        "lng": 91.1
+      },
+      "estimated_capacity": "2,000+",
+      "status": "Active",
+      "first_documented": "1960s",
+      "description": "Tibet's largest and most notorious prison. Long history of political prisoner detention and documented torture.",
+      "evidence": [
+        "Decades of survivor testimonies",
+        "UN reports",
+        "ICT documentation"
+      ],
+      "sources": [
+        "International Campaign for Tibet",
+        "Human Rights Watch",
+        "UN Special Rapporteurs"
+      ],
+      "satellite_image_url": null
+    },
+    {
+      "id": "tb-002",
+      "name": "Chushur Prison",
+      "chinese_name": "曲水监狱",
+      "type": "Prison",
+      "region": "Tibet",
+      "city": "Chushur",
+      "coordinates": {
+        "lat": 29.3167,
+        "lng": 90.7333
+      },
+      "estimated_capacity": "1,500+",
+      "status": "Active",
+      "first_documented": "1990s",
+      "description": "High-security facility holding many Tibetan political prisoners including monks and nuns.",
+      "evidence": [
+        "TCHRD documentation",
+        "Former prisoner accounts",
+        "Family testimonies"
+      ],
+      "sources": [
+        "Tibetan Centre for Human Rights and Democracy",
+        "ICT",
+        "Free Tibet"
+      ],
+      "satellite_image_url": null
+    },
+    {
+      "id": "hk-001",
+      "name": "Lai Chi Kok Reception Centre",
+      "chinese_name": "荔枝角收押所",
+      "type": "Detention Center",
+      "region": "Hong Kong",
+      "city": "Kowloon",
+      "coordinates": {
+        "lat": 22.3333,
+        "lng": 114.15
+      },
+      "estimated_capacity": "1,400",
+      "status": "Active",
+      "first_documented": "1970s",
+      "description": "Primary remand facility where many pro-democracy activists have been held pending trial.",
+      "evidence": [
+        "Court records",
+        "Legal documentation",
+        "Media reports"
+      ],
+      "sources": [
+        "HKFP",
+        "Stand News (archived)",
+        "Court records"
+      ],
+      "satellite_image_url": null
+    },
+    {
+      "id": "hk-002",
+      "name": "Stanley Prison",
+      "chinese_name": "赤柱監獄",
+      "type": "Maximum Security Prison",
+      "region": "Hong Kong",
+      "city": "Stanley",
+      "coordinates": {
+        "lat": 22.2167,
+        "lng": 114.2167
+      },
+      "estimated_capacity": "1,500",
+      "status": "Active",
+      "first_documented": "1937",
+      "description": "Maximum security facility where Jimmy Lai and other high-profile political prisoners are held.",
+      "evidence": [
+        "Court records",
+        "Legal visits documentation",
+        "Media reports"
+      ],
+      "sources": [
+        "HKFP",
+        "Reuters",
+        "BBC"
+      ],
+      "satellite_image_url": null
+    },
+    {
+      "id": "ml-001",
+      "name": "Qincheng Prison",
+      "chinese_name": "秦城监狱",
+      "type": "Maximum Security Prison",
+      "region": "Mainland China",
+      "city": "Beijing",
+      "coordinates": {
+        "lat": 40.25,
+        "lng": 116.3
+      },
+      "estimated_capacity": "500+",
+      "status": "Active",
+      "first_documented": "1958",
+      "description": "China's most secure prison for high-profile political prisoners and purged officials.",
+      "evidence": [
+        "Historical records",
+        "Former prisoner accounts",
+        "Official court documents"
+      ],
+      "sources": [
+        "Various historical sources",
+        "Dui Hua Foundation",
+        "Media reports"
+      ],
+      "satellite_image_url": null
+    },
+    {
+      "id": "ml-002",
+      "name": "Residential Surveillance at a Designated Location (RSDL)",
+      "chinese_name": "指定居所监视居住",
+      "type": "Secret Detention",
+      "region": "Mainland China",
+      "city": "Various",
+      "coordinates": null,
+      "estimated_capacity": "Unknown",
+      "status": "Active",
+      "first_documented": "2013",
+      "description": "System of secret detention facilities across China. Detainees held incommunicado for up to 6 months.",
+      "evidence": [
+        "Safeguard Defenders research",
+        "Survivor testimonies",
+        "Legal documentation"
+      ],
+      "sources": [
+        "Safeguard Defenders",
+        "Human Rights Watch",
+        "Amnesty International"
+      ],
+      "satellite_image_url": null
+    }
   ]
 }

@@ -3,10 +3,10 @@
 ## Priority: LOW (was CRITICAL — most items resolved)
 **Goal:** Remove ALL simulated, fake, mock, or placeholder data. Replace with ONLY real, verified data from credible sources with transparent attribution.
 
-**Last reviewed:** February 25, 2026 (Session 79, Opus 4.6)  
-**Status:** Phase 1 ✅ COMPLETE. Phase 2 ✅ MOSTLY COMPLETE (2/4 fully refactored, 2/4 use justified hybrid approach).
+**Last reviewed:** February 25, 2026 (Session 89)  
+**Status:** Phase 1 ✅ COMPLETE. Phase 2 ✅ MOSTLY COMPLETE (3/4 fully refactored, 1/4 uses justified hybrid approach).
 
-### Completed across Sessions 33-78:
+### Completed across Sessions 33-89:
 - ✅ **VPN/Tor fake detection** removed, honest disclaimers + 3rd-party self-test tools added (Session 33)
 - ✅ **Non-functional forms** now show "Coming Soon" notices with links to real organizations (Session 36)
 - ✅ **False security claims** removed from IncidentReportForm (Session 36)
@@ -19,9 +19,9 @@
 - ✅ **PoliticalPrisoners.jsx** fully imports from political_prisoners_research.json (Session 76+)
 - ✅ **ForcedLaborTracker.jsx** fully imports from forced_labor_companies_research.json
 - ✅ **SanctionsTracker** uses sanctions_tracker.json with source_url fields linking to gov registries (Session 72)
+- ✅ **DetentionFacilities.jsx** fully imports from detention_facilities_research.json (Session 89) — 11 facilities with coordinates, capacity, satellite imagery, evidence, sources all moved to JSON
 
 ### Remaining (LOW priority — justified hybrid approach):
-- 🟡 **DetentionFacilities.jsx** — 10 hardcoded facilities with rich component data (coordinates, satellite imagery links, detailed descriptions). JSON import exists but doesn't contain coordinate/imagery data. **Recommendation:** Keep hybrid approach; enriching JSON with coordinate data is a separate task.
 - 🟡 **CCPOfficials.jsx** — 8 hardcoded officials with detailed UI data, merged with JSON sanctions data. **Recommendation:** Keep hybrid approach; the hardcoded data provides UI-specific fields (images, detailed descriptions) not in the JSON research file.
 
 ---
