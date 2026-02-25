@@ -40,7 +40,7 @@ describe('sanctioned_officials_research.json specifics', () => {
   });
 
   it('each official has a responsibility_area', () => {
-    const validAreas = ['Xinjiang', 'Hong Kong', 'Tibet', 'General'];
+    const validAreas = ['Xinjiang', 'Hong Kong', 'Tibet', 'Xinjiang/Tibet', 'Religious minorities', 'General'];
     for (const result of data.results) {
       expect(result.output).toHaveProperty('responsibility_area');
       expect(validAreas).toContain(result.output.responsibility_area);

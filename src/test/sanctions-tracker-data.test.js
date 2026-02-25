@@ -95,10 +95,10 @@ describe('Sanctions Tracker Data', () => {
 
   it('source_urls point to government domains', () => {
     const validDomains = [
-      'treasury.gov', 'cbp.gov', 'bis.gov',       // US
+      'treasury.gov', 'cbp.gov', 'bis.gov', 'state.gov', // US
       'gov.uk',                                     // UK
       'sanctionsmap.eu',                            // EU
-      'international.gc.ca',                        // Canada
+      'international.gc.ca', 'canada.ca',           // Canada
       'dfat.gov.au'                                 // Australia
     ];
     sanctionsData.sanctions.forEach(sanction => {
