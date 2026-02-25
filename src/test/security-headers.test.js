@@ -60,6 +60,21 @@ describe('Security Headers', () => {
     it('CSP allows Supabase connections (*.supabase.co)', () => {
       expect(headersContent).toContain('https://*.supabase.co');
     });
+
+    it('enforces HTTPS via Strict-Transport-Security with preload', () => {
+      expect(headersContent).toContain('Strict-Transport-Security:');
+      expect(headersContent).toContain('max-age=31536000');
+      expect(headersContent).toContain('includeSubDomains');
+      expect(headersContent).toContain('preload');
+    });
+
+    it('sets Cross-Origin-Opener-Policy to same-origin', () => {
+      expect(headersContent).toContain('Cross-Origin-Opener-Policy: same-origin');
+    });
+
+    it('sets Cross-Origin-Resource-Policy to same-origin', () => {
+      expect(headersContent).toContain('Cross-Origin-Resource-Policy: same-origin');
+    });
   });
 
   describe('index.html security', () => {
