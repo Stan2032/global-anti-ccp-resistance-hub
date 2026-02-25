@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const DATA_DIR = resolve(__dirname, '../data');
@@ -75,41 +75,6 @@ describe('Critical date consistency across data files', () => {
         expect(currDate.getTime()).toBeGreaterThanOrEqual(
           prevDate.getTime()
         );
-      }
-    });
-  });
-
-  describe('No CCP state media cited as credible source', () => {
-    const CCP_OUTLETS = ['Xinhua', 'CGTN', 'Global Times', 'People\'s Daily', 'China Daily'];
-    const CCP_DOMAINS = [
-      'xinhua.net', 'cgtn.com', 'globaltimes.cn', 'chinadaily.com',
-      'people.com.cn', 'guancha.cn', 'haiwainet.cn', 'cctv.com'
-    ];
-
-    it('timeline_events.json does not cite CCP state media as sources', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      for (const event of data) {
-        if (event.sources) {
-          for (const source of event.sources) {
-            for (const outlet of CCP_OUTLETS) {
-              expect(source).not.toBe(outlet);
-            }
-          }
-        }
-      }
-    });
-
-    it('no research data file uses CCP state media source URLs', () => {
-      const researchFiles = readdirSync(DATA_DIR)
-        .filter((f) => f.endsWith('_research.json'));
-
-      for (const fileName of researchFiles) {
-        const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
-        for (const domain of CCP_DOMAINS) {
-          const regex = new RegExp(`https?://[^"]*${domain.replace('.', '\\.')}`, 'gi');
-          const matches = content.match(regex);
-          expect(matches, `${fileName} contains CCP source URL with domain ${domain}`).toBeNull();
-        }
       }
     });
   });

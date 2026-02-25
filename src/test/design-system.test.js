@@ -8,9 +8,12 @@ import { resolve, join } from 'path';
  * The terminal/ASCII aesthetic requires:
  * - Square corners (no rounded-lg, rounded-xl, rounded-2xl, rounded-3xl)
  * - No gradient backgrounds (no bg-gradient-to-*)
- * - No old-style slate backgrounds (no bg-slate-*, border-slate-*)
  *
  * Allowed: rounded, rounded-sm, rounded-md (subtle), rounded-full (circles/dots only)
+ *
+ * These tests scan ALL JSX files in bulk — any violation is reported with
+ * the exact file and match. One test per pattern keeps the suite fast while
+ * catching every violation.
  */
 
 const SRC_DIR = resolve(__dirname, '..');
@@ -38,30 +41,31 @@ describe('Terminal design system compliance', () => {
     expect(jsxFiles.length).toBeGreaterThan(50);
   });
 
-  describe('no prohibited rounded classes', () => {
-    // rounded-lg, rounded-xl, rounded-2xl, rounded-3xl are prohibited
+  it('no JSX file uses prohibited rounded classes (rounded-lg/xl/2xl/3xl)', () => {
     const PROHIBITED_ROUNDED = /rounded-(lg|xl|2xl|3xl)/g;
-
+    const violations = [];
     for (const filePath of jsxFiles) {
-      const relativePath = filePath.replace(SRC_DIR + '/', '');
-      it(`${relativePath} has no rounded-lg/xl/2xl/3xl`, () => {
-        const content = readFileSync(filePath, 'utf-8');
-        const matches = content.match(PROHIBITED_ROUNDED);
-        expect(matches, `Found prohibited rounded classes: ${matches}`).toBeNull();
-      });
+      const content = readFileSync(filePath, 'utf-8');
+      const matches = content.match(PROHIBITED_ROUNDED);
+      if (matches) {
+        const relativePath = filePath.replace(SRC_DIR + '/', '');
+        violations.push(`${relativePath}: ${matches.join(', ')}`);
+      }
     }
+    expect(violations, `Prohibited rounded classes found:\n${violations.join('\n')}`).toEqual([]);
   });
 
-  describe('no gradient backgrounds', () => {
+  it('no JSX file uses gradient backgrounds (bg-gradient-to-*)', () => {
     const GRADIENT_PATTERN = /bg-gradient-to-/g;
-
+    const violations = [];
     for (const filePath of jsxFiles) {
-      const relativePath = filePath.replace(SRC_DIR + '/', '');
-      it(`${relativePath} has no bg-gradient-to-*`, () => {
-        const content = readFileSync(filePath, 'utf-8');
-        const matches = content.match(GRADIENT_PATTERN);
-        expect(matches, `Found gradient backgrounds: ${matches}`).toBeNull();
-      });
+      const content = readFileSync(filePath, 'utf-8');
+      const matches = content.match(GRADIENT_PATTERN);
+      if (matches) {
+        const relativePath = filePath.replace(SRC_DIR + '/', '');
+        violations.push(`${relativePath}: ${matches.join(', ')}`);
+      }
     }
+    expect(violations, `Gradient backgrounds found:\n${violations.join('\n')}`).toEqual([]);
   });
 });

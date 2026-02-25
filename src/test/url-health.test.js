@@ -9,7 +9,8 @@ import { CCP_NEVER_CITE } from '../utils/sourceLinks';
  * Scans ALL source files and data files to ensure:
  * 1. No CCP state media domains are used as sources
  * 2. All external URLs use HTTPS
- * 3. No data files contain HTTP-only URLs
+ *
+ * Runs in bulk — violations are reported with exact file + match.
  */
 
 const SRC_DIR = resolve(__dirname, '..');
@@ -41,30 +42,33 @@ describe('URL health across all data files', () => {
     expect(jsonFiles.length).toBeGreaterThanOrEqual(10);
   });
 
-  describe('no CCP state media domains in data files', () => {
+  it('no data file contains CCP state media domain URLs', () => {
+    const violations = [];
     for (const fileName of jsonFiles) {
-      it(`${fileName} contains no CCP state media domains`, () => {
-        const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
-        for (const domain of CCP_DOMAINS) {
-          const escaped = domain.replace(/\./g, '\\.');
-          const regex = new RegExp(`https?://[^"'\\s]*${escaped}`, 'gi');
-          const matches = content.match(regex);
-          expect(matches, `Found CCP domain ${domain} in ${fileName}: ${matches}`).toBeNull();
+      const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
+      for (const domain of CCP_DOMAINS) {
+        const escaped = domain.replace(/\./g, '\\.');
+        const regex = new RegExp(`https?://[^"'\\s]*${escaped}`, 'gi');
+        const matches = content.match(regex);
+        if (matches) {
+          violations.push(`${fileName}: ${domain} → ${matches.join(', ')}`);
         }
-      });
+      }
     }
+    expect(violations, `CCP domains found in data files:\n${violations.join('\n')}`).toEqual([]);
   });
 
-  describe('all URLs in data files use HTTPS', () => {
+  it('no data file contains HTTP-only URLs (all must be HTTPS)', () => {
+    const violations = [];
     for (const fileName of jsonFiles) {
-      it(`${fileName} has no HTTP-only URLs`, () => {
-        const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
-        // Match "http://" that's NOT "https://"
-        const httpOnlyRegex = /"http:\/\/[^"]+"/g;
-        const matches = content.match(httpOnlyRegex);
-        expect(matches, `Found HTTP-only URLs in ${fileName}: ${matches}`).toBeNull();
-      });
+      const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
+      const httpOnlyRegex = /"http:\/\/[^"]+"/g;
+      const matches = content.match(httpOnlyRegex);
+      if (matches) {
+        violations.push(`${fileName}: ${matches.join(', ')}`);
+      }
     }
+    expect(violations, `HTTP-only URLs found:\n${violations.join('\n')}`).toEqual([]);
   });
 });
 
@@ -75,17 +79,20 @@ describe('No CCP state media links in JSX source files', () => {
     expect(jsxFiles.length).toBeGreaterThan(50);
   });
 
-  for (const filePath of jsxFiles) {
-    const relativePath = filePath.replace(SRC_DIR + '/', '');
-    it(`${relativePath} contains no CCP state media links`, () => {
+  it('no JSX file contains CCP state media links in href/url/src attributes', () => {
+    const violations = [];
+    for (const filePath of jsxFiles) {
       const content = readFileSync(filePath, 'utf-8');
+      const relativePath = filePath.replace(SRC_DIR + '/', '');
       for (const domain of CCP_DOMAINS) {
         const escaped = domain.replace(/\./g, '\\.');
-        // Only check href/url/src attributes and string literals, not comments
         const regex = new RegExp(`(?:href|url|src).*${escaped}`, 'gi');
         const matches = content.match(regex);
-        expect(matches, `Found CCP domain ${domain} link in ${relativePath}: ${matches}`).toBeNull();
+        if (matches) {
+          violations.push(`${relativePath}: ${domain} → ${matches[0].substring(0, 80)}`);
+        }
       }
-    });
-  }
+    }
+    expect(violations, `CCP domain links found in JSX:\n${violations.join('\n')}`).toEqual([]);
+  });
 });
