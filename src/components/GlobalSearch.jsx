@@ -52,6 +52,7 @@ const searchableContent = [
   { type: 'action', title: 'Report CCP Activity', description: 'Document incidents of repression', path: '/community', Icon: Siren, keywords: ['report', 'incident', 'harassment'] },
   { type: 'action', title: 'Donate', description: 'Support human rights organizations', path: '/take-action', Icon: CircleDollarSign, keywords: ['donate', 'support', 'money'] },
   { type: 'action', title: 'Boycott Guide', description: 'Companies linked to forced labor', path: '/take-action', Icon: Ban, keywords: ['boycott', 'companies', 'forced labor'] },
+  { type: 'action', title: 'Contact Us', description: 'Send a message to the Resistance Hub team', path: '/community', Icon: MessageCircle, keywords: ['contact', 'message', 'email', 'feedback', 'help'] },
 
   // Resources
   { type: 'resource', title: 'Security Quiz', description: 'Assess your digital security', path: '/security', Icon: Lock, keywords: ['quiz', 'assessment', 'security'] },
