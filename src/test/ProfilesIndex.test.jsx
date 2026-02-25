@@ -25,6 +25,9 @@ describe('ProfilesIndex', () => {
     expect(screen.getByText('Cardinal Joseph Zen')).toBeTruthy();
     expect(screen.getByText('Benny Tai')).toBeTruthy();
     expect(screen.getByText('Agnes Chow')).toBeTruthy();
+    expect(screen.getByText('Tashi Wangchuk')).toBeTruthy();
+    expect(screen.getByText('Ren Zhiqiang')).toBeTruthy();
+    expect(screen.getByText('Xu Zhiyong')).toBeTruthy();
   });
 
   it('should render Chinese names for built profiles', () => {
@@ -37,19 +40,20 @@ describe('ProfilesIndex', () => {
   it('should show status badges', () => {
     renderWithRouter(<ProfilesIndex />);
     const imprisonedBadges = screen.getAllByText('IMPRISONED');
-    expect(imprisonedBadges.length).toBe(6);
+    expect(imprisonedBadges.length).toBe(8);
     const disappearedBadges = screen.getAllByText('DISAPPEARED');
     expect(disappearedBadges.length).toBe(2);
     expect(screen.getByText('DECEASED')).toBeTruthy();
     const exiledBadges = screen.getAllByText('EXILED');
     expect(exiledBadges.length).toBe(2);
     expect(screen.getByText('AT RISK')).toBeTruthy();
+    expect(screen.getByText('RELEASED — SURVEILLANCE')).toBeTruthy();
   });
 
   it('should render links for built profiles', () => {
     renderWithRouter(<ProfilesIndex />);
     const links = screen.getAllByText('Full profile available');
-    expect(links.length).toBe(12);
+    expect(links.length).toBe(15);
   });
 
   it('should not show coming soon section when all profiles are built', () => {
@@ -66,7 +70,7 @@ describe('ProfilesIndex', () => {
 
   it('should show profile count summary', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('12 detailed profiles')).toBeTruthy();
+    expect(screen.getByText('15 detailed profiles')).toBeTruthy();
   });
 
   it('should link back to political prisoners database', () => {

@@ -34,6 +34,9 @@ const searchableContent = [
   { type: 'profile', title: 'Nathan Law', description: 'Hong Kong activist — exiled in London', path: '/profiles/nathan-law', Icon: Users, keywords: ['hong kong', 'demosisto', 'exile', 'uk'] },
   { type: 'profile', title: 'Benny Tai', description: 'Legal scholar — Hong Kong 47 defendant', path: '/profiles/benny-tai', Icon: Users, keywords: ['hong kong', 'occupy central', 'legal scholar', 'hong kong 47'] },
   { type: 'profile', title: 'Cardinal Zen', description: 'Catholic cardinal — arrested under NSL', path: '/profiles/cardinal-zen', Icon: Users, keywords: ['catholic', 'cardinal', 'hong kong', 'religious freedom'] },
+  { type: 'profile', title: 'Tashi Wangchuk', description: 'Tibetan language rights advocate — 5 years for "inciting separatism"', path: '/profiles/tashi-wangchuk', Icon: Users, keywords: ['tibet', 'language', 'education', 'separatism'] },
+  { type: 'profile', title: 'Ren Zhiqiang', description: 'CCP member — 18 years after criticizing Xi\'s COVID response', path: '/profiles/ren-zhiqiang', Icon: Users, keywords: ['covid', 'corruption', 'real estate', 'xi jinping'] },
+  { type: 'profile', title: 'Xu Zhiyong', description: 'Legal scholar — 14 years for New Citizens Movement', path: '/profiles/xu-zhiyong', Icon: Users, keywords: ['new citizens movement', 'legal scholar', 'subversion', 'rights'] },
 
   // Topics
   { type: 'topic', title: 'Uyghur Genocide', description: 'Documentation of atrocities in Xinjiang', path: '/education', Icon: BookOpen, keywords: ['xinjiang', 'camps', 'genocide', 'forced labor'] },
