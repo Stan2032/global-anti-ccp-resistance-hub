@@ -56,6 +56,10 @@ describe('Security Headers', () => {
     it('CSP allows RSS2JSON proxy (api.rss2json.com)', () => {
       expect(headersContent).toContain('https://api.rss2json.com');
     });
+
+    it('CSP allows Supabase connections (*.supabase.co)', () => {
+      expect(headersContent).toContain('https://*.supabase.co');
+    });
   });
 
   describe('index.html security', () => {
