@@ -34,6 +34,7 @@ const SourceVerification = lazy(() => import('../components/SourceVerification')
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
 const ReadingProgress = lazy(() => import('../components/ReadingProgress'));
 const PodcastPlayer = lazy(() => import('../components/PodcastPlayer'));
+const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
 const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitationGenerator'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
@@ -538,6 +539,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── podcasts ──</h2>
             <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── propaganda_outlets ──</h2>
+            <Suspense fallback={<SectionLoader />}><MediaManipulation /></Suspense>
           </div>
         </div>
       )}

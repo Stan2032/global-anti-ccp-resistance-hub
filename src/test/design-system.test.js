@@ -104,4 +104,39 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('no orphan component files in src/components/ (all must be imported somewhere)', () => {
+    const componentsDir = resolve(SRC_DIR, 'components');
+    const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.jsx'));
+
+    // Read all non-test source files for import scanning
+    const allSourceFiles = [];
+    function findAllSourceFiles(dir) {
+      for (const entry of readdirSync(dir)) {
+        const full = join(dir, entry);
+        if (entry === 'node_modules' || entry === 'test') continue;
+        const stat = statSync(full);
+        if (stat.isDirectory()) findAllSourceFiles(full);
+        else if (entry.endsWith('.jsx') || entry.endsWith('.js')) allSourceFiles.push(full);
+      }
+    }
+    findAllSourceFiles(SRC_DIR);
+
+    const orphans = [];
+    for (const compFile of componentFiles) {
+      const compName = compFile.replace('.jsx', '');
+      const compPath = resolve(componentsDir, compFile);
+      const isImported = allSourceFiles.some(srcFile => {
+        if (srcFile === compPath) return false;
+        const content = readFileSync(srcFile, 'utf-8');
+        return content.includes(`/${compName}'`) || content.includes(`/${compName}"`);
+      });
+      if (!isImported) orphans.push(compFile);
+    }
+
+    expect(orphans,
+      `Orphan components found (not imported anywhere):\n` +
+      orphans.map(f => `  ${f} — integrate into a page tab or remove`).join('\n')
+    ).toEqual([]);
+  });
 });
