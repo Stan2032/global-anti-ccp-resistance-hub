@@ -6,15 +6,17 @@ import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider, useLanguage } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
 import { SearchButton } from './components/SearchWrapper'
-import GlobalSearch from './components/GlobalSearch'
 import useDocumentTitle from './hooks/useDocumentTitle'
 import ErrorBoundary from './components/ErrorBoundary'
 import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
-import QuickStartGuide from './components/QuickStartGuide'
-import PWAInstallBanner from './components/PWAInstallBanner'
+
+// Non-critical shell components — lazy loaded to reduce initial bundle
+const GlobalSearch = lazy(() => import('./components/GlobalSearch'));
+const QuickStartGuide = lazy(() => import('./components/QuickStartGuide'));
+const PWAInstallBanner = lazy(() => import('./components/PWAInstallBanner'));
 
 // Loading component — terminal style
 const LoadingScreen = () => (
@@ -468,13 +470,19 @@ function AppLayout() {
       </main>
       
       {/* Global Search Modal */}
-      <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <Suspense fallback={null}>
+        <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      </Suspense>
       
       {/* Quick Start Guide for new users */}
-      <QuickStartGuide />
+      <Suspense fallback={null}>
+        <QuickStartGuide />
+      </Suspense>
       
       {/* PWA Install Banner */}
-      <PWAInstallBanner />
+      <Suspense fallback={null}>
+        <PWAInstallBanner />
+      </Suspense>
     </div>
   );
 }
