@@ -156,11 +156,19 @@ describe('Sitemap Data Integrity', () => {
     });
 
     it('does not block any content paths', () => {
-      expect(robotsContent).not.toContain('Disallow: /');
+      // Check for Disallow directives — but 'Disallow:' with empty value is OK
+      const disallowLines = robotsContent.split('\n').filter(line => 
+        line.trim().startsWith('Disallow:') && line.trim() !== 'Disallow:'
+      );
+      expect(disallowLines).toEqual([]);
     });
 
-    it('has crawl-delay for respectful crawling', () => {
-      expect(robotsContent).toMatch(/Crawl-delay:\s*\d+/);
+    it('has reasonable crawl-delay (1-10 seconds)', () => {
+      const match = robotsContent.match(/Crawl-delay:\s*(\d+)/);
+      expect(match).not.toBeNull();
+      const delay = parseInt(match[1], 10);
+      expect(delay).toBeGreaterThanOrEqual(1);
+      expect(delay).toBeLessThanOrEqual(10);
     });
   });
 });
