@@ -155,15 +155,13 @@ const UrgencyBadge = ({ urgency }) => {
 
 const PrisonerCard = ({ prisoner, onClick }) => {
   return (
-    <motion.div
+    <motion.button
+      type="button"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02 }}
-      className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all"
+      className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all text-left w-full"
       onClick={() => onClick(prisoner)}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(prisoner) } }}
-      role="button"
-      tabIndex={0}
       aria-label={`View details for ${prisoner.name}`}
     >
       <div className="p-6">
@@ -233,7 +231,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
           </div>
         )}
       </div>
-    </motion.div>
+    </motion.button>
   );
 };
 

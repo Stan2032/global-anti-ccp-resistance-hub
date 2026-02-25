@@ -373,15 +373,13 @@ export default function PanchenLamaProfile() {
 
             <div className="space-y-3">
               {TIMELINE.map((event, i) => (
-                <div
+                <button
+                  type="button"
                   key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r ${categoryColors[event.category]} hover:bg-[#111820]/50`}
+                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r text-left w-full ${categoryColors[event.category]} hover:bg-[#111820]/50`}
                   onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                  role="button"
-                  tabIndex={0}
                   aria-expanded={expandedEvent === i}
                   aria-label={`${event.year}: ${event.title}`}
-                  onKeyDown={(e) => e.key === 'Enter' && setExpandedEvent(expandedEvent === i ? null : i)}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -413,7 +411,7 @@ export default function PanchenLamaProfile() {
                       <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
                     )}
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </section>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'fs';
-import { resolve, join } from 'path';
+import { resolve, join, relative } from 'path';
 
 /**
  * Design System Compliance Tests
@@ -137,6 +137,23 @@ describe('Terminal design system compliance', () => {
     expect(orphans,
       `Orphan components found (not imported anywhere):\n` +
       orphans.map(f => `  ${f} — integrate into a page tab or remove`).join('\n')
+    ).toEqual([]);
+  });
+
+  it('no role="button" on non-button elements (use semantic <button> instead)', () => {
+    const violations = [];
+    for (const file of jsxFiles) {
+      const content = readFileSync(file, 'utf-8');
+      const lines = content.split('\n');
+      lines.forEach((line, i) => {
+        if (line.includes('role="button"')) {
+          violations.push(`${relative(SRC_DIR, file)}:${i + 1}: ${line.trim()}`);
+        }
+      });
+    }
+    expect(violations,
+      `Use semantic <button> or <motion.button> instead of div[role="button"]:\n` +
+      violations.join('\n')
     ).toEqual([]);
   });
 });

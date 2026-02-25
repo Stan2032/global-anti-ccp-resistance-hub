@@ -228,16 +228,14 @@ const EducationalResources = () => {
   })
 
   const ModuleCard = ({ module }) => (
-    <motion.div
+    <motion.button
+      type="button"
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedModule(module.id)}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedModule(module.id) } }}
-      role="button"
-      tabIndex={0}
       aria-pressed={selectedModule === module.id}
-      className={`p-6 border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all text-left w-full ${
         selectedModule === module.id
-          ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
+          ? 'bg-[#4afa82]/10 border-[#4afa82] shadow-lg shadow-[#4afa82]/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
@@ -283,7 +281,7 @@ const EducationalResources = () => {
           <span>{module.rating}</span>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   )
 
   const ResourceCard = ({ resource }) => (
