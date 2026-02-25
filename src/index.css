@@ -322,6 +322,117 @@ a, button, input, select, textarea,
   }
 }
 
+/* ─── MOBILE RESPONSIVENESS ───────────────────────────────── */
+/* Improve readability and touch targets on small screens */
+@media (max-width: 768px) {
+  /* Bump base font sizes for mobile readability */
+  body {
+    font-size: 16px;
+  }
+
+  /* Ensure minimum touch target size (WCAG 2.5.5: 44×44px) */
+  button,
+  a,
+  [role="button"],
+  [role="tab"],
+  select,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile nav links need larger touch targets */
+  nav a,
+  nav button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Increase padding on cards and sections for mobile */
+  .p-4 {
+    padding: 1.25rem !important;
+  }
+  .p-6 {
+    padding: 1.5rem !important;
+  }
+
+  /* Better spacing between sections on mobile */
+  .space-y-4 > * + * {
+    margin-top: 1.25rem !important;
+  }
+  .space-y-6 > * + * {
+    margin-top: 1.75rem !important;
+  }
+
+  /* Ensure text inputs are large enough to read and tap */
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="url"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    min-height: 44px;
+    padding: 0.625rem 0.75rem !important;
+  }
+
+  /* Tabs: horizontal scroll with better touch area */
+  [role="tablist"] {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  [role="tablist"]::-webkit-scrollbar {
+    display: none;
+  }
+  [role="tab"] {
+    min-height: 44px;
+    white-space: nowrap;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Inline links in text should not enforce min-height */
+  p a,
+  li a,
+  span a,
+  td a {
+    min-height: auto;
+    min-width: auto;
+    display: inline;
+  }
+}
+
+/* Small phones — extra readability boost */
+@media (max-width: 480px) {
+  /* Slightly larger text on very small screens */
+  .text-xs {
+    font-size: 0.9375rem !important; /* 15px */
+  }
+
+  .text-sm {
+    font-size: 1.0625rem !important; /* 17px */
+  }
+
+  /* Full-width cards on very small screens */
+  .grid-cols-2,
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce horizontal padding on small phones */
+  .px-8 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .px-6 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
 /* Print styles — for activists to print profile pages and reports */
 @media print {
   @page {
