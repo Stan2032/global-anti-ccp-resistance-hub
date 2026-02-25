@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 92)
+> Last Updated: February 25, 2026 (Session 93)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -30,6 +30,7 @@
   - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
 ### Bug Fixes & Polish
+- [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
   - **Agent:** Sonnet 4.5 (UI testing, rapid iteration)
 - [ ] **Dark mode**: Ensure all components respect theme settings
@@ -297,18 +298,19 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 91, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 607 tests (34 files, all passing)
+### Current State Summary (as of Session 93, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 608 tests (34 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance + URL health tests added.
+- **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
 - **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries. DataSources extracted to JSON.
+- **Data:** 62 political prisoners, 35 sanctioned entities, 22 officials, 30 forced labor companies, 142+ total entries. All 4/4 JSON migrations complete.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
-- **Deployment:** SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md ready. pnpm-lock.yaml removed.
-- **Lint:** 0 errors, 10 harmless react-refresh warnings
+- **Deployment:** URLs updated to Cloudflare Workers. SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md ready.
+- **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
 
 ---
 
