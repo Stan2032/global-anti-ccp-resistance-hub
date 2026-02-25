@@ -12,162 +12,25 @@ import {
   Newspaper,
   GraduationCap
 } from 'lucide-react';
+import dataSourcesData from '../data/data_sources.json';
+
+const ICON_MAP = {
+  Shield: Shield,
+  Building: Building,
+  FileText: FileText,
+};
 
 const DataSources = () => {
-  const rssSources = [
-    {
-      name: 'Hong Kong Free Press',
-      url: 'https://hongkongfp.com/',
-      type: 'Independent News',
-      region: 'Hong Kong',
-      frequency: 'Hourly',
-      credibility: 'High',
-      description: 'Independent, non-profit news organization covering Hong Kong'
-    },
-    {
-      name: 'Radio Free Asia - China',
-      url: 'https://www.rfa.org/english/news/china',
-      type: 'Government-Funded News',
-      region: 'China',
-      frequency: 'Daily',
-      credibility: 'High',
-      description: 'US government-funded news service covering China and Asia'
-    },
-    {
-      name: 'Radio Free Asia - Uyghur',
-      url: 'https://www.rfa.org/english/news/uyghur',
-      type: 'Government-Funded News',
-      region: 'Xinjiang',
-      frequency: 'Daily',
-      credibility: 'High',
-      description: 'Dedicated coverage of Uyghur human rights issues'
-    },
-    {
-      name: 'Radio Free Asia - Tibet',
-      url: 'https://www.rfa.org/english/news/tibet',
-      type: 'Government-Funded News',
-      region: 'Tibet',
-      frequency: 'Daily',
-      credibility: 'High',
-      description: 'Dedicated coverage of Tibet and Tibetan issues'
-    },
-    {
-      name: 'Taiwan News',
-      url: 'https://www.taiwannews.com.tw/',
-      type: 'Independent News',
-      region: 'Taiwan',
-      frequency: 'Hourly',
-      credibility: 'High',
-      description: 'English-language news from Taiwan perspective'
-    },
-    {
-      name: 'South China Morning Post',
-      url: 'https://www.scmp.com/',
-      type: 'Newspaper',
-      region: 'Hong Kong',
-      frequency: 'Hourly',
-      credibility: 'Medium',
-      description: 'Hong Kong-based newspaper (Pro-Beijing editorial stance but credible reporting)'
-    },
-    {
-      name: 'Human Rights Watch - China',
-      url: 'https://www.hrw.org/asia/china-and-tibet',
-      type: 'NGO Reports',
-      region: 'China',
-      frequency: 'Weekly',
-      credibility: 'High',
-      description: 'International human rights organization reports'
-    },
-    {
-      name: 'Amnesty International - China',
-      url: 'https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/china/',
-      type: 'NGO Reports',
-      region: 'China',
-      frequency: 'Weekly',
-      credibility: 'High',
-      description: 'Global human rights movement reports and campaigns'
-    },
-    {
-      name: 'BBC News - China',
-      url: 'https://www.bbc.com/news/topics/c1vel0q9gynt',
-      type: 'Mainstream News',
-      region: 'China',
-      frequency: 'Daily',
-      credibility: 'High',
-      description: 'British public service broadcaster with extensive China coverage'
-    },
-    {
-      name: 'The Guardian - China',
-      url: 'https://www.theguardian.com/world/china',
-      type: 'Newspaper',
-      region: 'China',
-      frequency: 'Daily',
-      credibility: 'High',
-      description: 'UK-based independent newspaper with investigative reporting on China'
-    },
-    {
-      name: 'Committee to Protect Journalists',
-      url: 'https://cpj.org/asia/china/',
-      type: 'Press Freedom',
-      region: 'China',
-      frequency: 'Weekly',
-      credibility: 'High',
-      description: 'Press freedom advocacy and journalist safety reporting'
-    }
-  ];
+  const rssSources = dataSourcesData.rss_sources;
 
-  const majorSources = [
-    {
-      category: 'Political Prisoners',
-      icon: <Shield className="w-6 h-6" />,
-      sources: [
-        { name: 'Dui Hua Foundation', url: 'https://duihua.org/' },
-        { name: 'CECC Political Prisoner Database', url: 'https://www.cecc.gov/political-prisoner-database' },
-        { name: 'Human Rights Watch', url: 'https://www.hrw.org/tag/political-prisoners' },
-        { name: 'Amnesty International', url: 'https://www.amnesty.org/' },
-        { name: 'Committee to Protect Journalists', url: 'https://cpj.org/' }
-      ],
-      dataFile: 'political_prisoners_research.json',
-      count: '60 prisoners documented'
-    },
-    {
-      category: 'Detention Facilities',
-      icon: <Building className="w-6 h-6" />,
-      sources: [
-        { name: 'ASPI Xinjiang Data Project', url: 'https://xjdp.aspi.org.au/' },
-        { name: 'Xinjiang Police Files', url: 'https://www.xinjiangpolicefiles.org/' },
-        { name: 'China Cables (ICIJ)', url: 'https://www.icij.org/investigations/china-cables/' },
-        { name: 'Uyghur Human Rights Project', url: 'https://uhrp.org/' },
-        { name: 'Human Rights Watch', url: 'https://www.hrw.org/tag/xinjiang' }
-      ],
-      dataFile: 'detention_facilities_research.json',
-      count: 'Satellite imagery analysis'
-    },
-    {
-      category: 'Sanctioned Officials',
-      icon: <FileText className="w-6 h-6" />,
-      sources: [
-        { name: 'US Treasury OFAC', url: 'https://sanctionssearch.ofac.treas.gov/' },
-        { name: 'UK Foreign Office Sanctions', url: 'https://www.gov.uk/government/collections/financial-sanctions-regime-specific-consolidated-lists-and-releases' },
-        { name: 'EU Sanctions Map', url: 'https://www.sanctionsmap.eu/' },
-        { name: 'Canada Sanctions', url: 'https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/index.aspx' }
-      ],
-      dataFile: 'sanctioned_officials_research.json',
-      count: 'Official government lists'
-    },
-    {
-      category: 'Forced Labor Companies',
-      icon: <Building className="w-6 h-6" />,
-      sources: [
-        { name: 'ASPI Uyghurs for Sale', url: 'https://www.aspi.org.au/report/uyghurs-sale' },
-        { name: 'US Customs and Border Protection', url: 'https://www.cbp.gov/trade/programs-administration/forced-labor' },
-        { name: 'Sheffield Hallam University', url: 'https://www.shu.ac.uk/helena-kennedy-centre-international-justice/research-and-projects/all-projects/in-broad-daylight' },
-        { name: 'Business & Human Rights Resource Centre', url: 'https://www.business-humanrights.org/' }
-      ],
-      dataFile: 'forced_labor_companies_research.json',
-      count: 'Supply chain research'
-    }
-  ];
+  const majorSources = dataSourcesData.major_sources.map(cat => ({
+    ...cat,
+    icon: (() => {
+      const IconComponent = ICON_MAP[cat.icon_name] || Database;
+      return <IconComponent className="w-6 h-6" />;
+    })(),
+    dataFile: cat.data_file,
+  }));
 
   const getCredibilityColor = (credibility) => {
     switch (credibility) {
