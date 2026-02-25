@@ -2,6 +2,9 @@
 
 Deploy the **Global Anti-CCP Resistance Hub** to Cloudflare Pages for free (unlimited bandwidth, global CDN, automatic HTTPS).
 
+> **Prerequisite:** Complete [SUPABASE_SETUP.md](SUPABASE_SETUP.md) first.
+> You need your Supabase URL and anon key before setting up Cloudflare.
+
 ---
 
 ## Step-by-Step Setup
