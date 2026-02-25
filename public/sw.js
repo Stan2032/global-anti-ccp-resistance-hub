@@ -1,13 +1,14 @@
 // Service Worker for Global Anti-CCP Resistance Hub
-const CACHE_NAME = 'resistance-hub-v1';
-const OFFLINE_URL = '/global-anti-ccp-resistance-hub/offline.html';
+// Deployed at: https://global-anti-ccp-resistance-hub.stane203.workers.dev/
+const CACHE_NAME = 'resistance-hub-v2';
+const OFFLINE_URL = '/offline.html';
 
 // Assets to cache immediately
 const PRECACHE_ASSETS = [
-  '/global-anti-ccp-resistance-hub/',
-  '/global-anti-ccp-resistance-hub/index.html',
-  '/global-anti-ccp-resistance-hub/offline.html',
-  '/global-anti-ccp-resistance-hub/manifest.json'
+  '/',
+  '/index.html',
+  '/offline.html',
+  '/manifest.json'
 ];
 
 // Install event - precache essential assets
@@ -101,11 +102,11 @@ self.addEventListener('push', (event) => {
     const data = event.data.json();
     const options = {
       body: data.body,
-      icon: '/global-anti-ccp-resistance-hub/icon-192.png',
-      badge: '/global-anti-ccp-resistance-hub/icon-192.png',
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
       vibrate: [100, 50, 100],
       data: {
-        url: data.url || '/global-anti-ccp-resistance-hub/'
+        url: data.url || '/'
       }
     };
     

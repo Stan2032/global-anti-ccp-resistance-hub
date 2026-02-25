@@ -124,4 +124,77 @@ describe('PWA Manifest Data Integrity', () => {
       expect(existsSync(resolve(PUBLIC_DIR, '404.html'))).toBe(true);
     });
   });
+
+  describe('service worker paths', () => {
+    let swContent;
+
+    beforeAll(() => {
+      swContent = readFileSync(resolve(PUBLIC_DIR, 'sw.js'), 'utf-8');
+    });
+
+    it('has no stale GitHub Pages paths', () => {
+      expect(swContent).not.toContain('/global-anti-ccp-resistance-hub/');
+    });
+
+    it('precache assets use root-relative paths', () => {
+      // Extract PRECACHE_ASSETS array content
+      const match = swContent.match(/PRECACHE_ASSETS\s*=\s*\[([\s\S]*?)\]/);
+      expect(match, 'PRECACHE_ASSETS array not found in sw.js').toBeTruthy();
+      const assetsBlock = match[1];
+      // Each path should start with /
+      const paths = assetsBlock.match(/'[^']+'/g) || [];
+      for (const p of paths) {
+        const path = p.replace(/'/g, '');
+        expect(path.startsWith('/'), `Precache path should be root-relative: ${path}`).toBe(true);
+        expect(path).not.toContain('/global-anti-ccp-resistance-hub');
+      }
+    });
+
+    it('OFFLINE_URL is root-relative', () => {
+      const match = swContent.match(/OFFLINE_URL\s*=\s*'([^']+)'/);
+      expect(match, 'OFFLINE_URL not found in sw.js').toBeTruthy();
+      expect(match[1]).toBe('/offline.html');
+    });
+  });
+
+  describe('manifest theme colors match design system', () => {
+    it('background_color matches terminal page bg (#0a0e14)', () => {
+      expect(manifest.background_color).toBe('#0a0e14');
+    });
+
+    it('theme_color matches terminal page bg (#0a0e14)', () => {
+      expect(manifest.theme_color).toBe('#0a0e14');
+    });
+  });
+
+  describe('offline page design system compliance', () => {
+    let offlineContent;
+
+    beforeAll(() => {
+      offlineContent = readFileSync(resolve(PUBLIC_DIR, 'offline.html'), 'utf-8');
+    });
+
+    it('uses terminal background color', () => {
+      expect(offlineContent).toContain('#0a0e14');
+    });
+
+    it('uses monospace font family', () => {
+      expect(offlineContent).toMatch(/font-family:.*monospace/);
+    });
+
+    it('does not use gradients', () => {
+      expect(offlineContent).not.toContain('linear-gradient');
+      expect(offlineContent).not.toContain('radial-gradient');
+    });
+
+    it('does not use border-radius (except small status dots)', () => {
+      // border-radius: 50% is allowed for small circular status indicators (same as design system)
+      const withoutDots = offlineContent.replace(/border-radius:\s*50%/g, '');
+      expect(withoutDots).not.toContain('border-radius');
+    });
+
+    it('uses terminal green accent', () => {
+      expect(offlineContent).toContain('#4afa82');
+    });
+  });
 });
