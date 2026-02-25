@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "7.4",
-    "date": "2026-02-25T18:28:00Z",
+    "version": "7.5",
+    "date": "2026-02-25T19:15:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v7.3, Session 87)",
+    "supersedes": "AGENT_HANDOFF.json (v7.4, Session 89)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,7 +22,7 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 604,
+    "frontend_tests": 607,
     "test_files": 34,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
@@ -31,7 +31,7 @@
     "data_entries_sourced": 142,
     "sanctions_entries": 35,
     "lazy_loaded_components": 81,
-    "sessions_completed": 89,
+    "sessions_completed": 91,
     "design_system": "terminal_ascii_100_percent_applied",
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
@@ -64,6 +64,14 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "session_90_91_changes": {
+    "summary": "CCPOfficials fully migrated to JSON (completing 4/4 data migrations), static site documentation added, stale docs updated",
+    "ccp_officials_migration": "Enriched sanctioned_officials_research.json with biographical data (chinese_name, birth_year, in_power_since, key_actions, detailed_responsibilities) for 8 key officials. Added Xi Jinping entry (22 total). Removed 220-line hardcoded array and merge logic from CCPOfficials.jsx. Fixed duplicate ARIA label bug (category filter said 'Region filter').",
+    "documentation": "Added CONTRIBUTING.md and ARCHITECTURE.md as top-level docs. Updated README.md with static SPA architecture section, clear static/backend distinction, accurate feature counts.",
+    "test_count_fix": "Updated stale test counts 604→607 across README.md, CONTRIBUTING.md, ARCHITECTURE.md, AGENT_HANDOFF.json. 3 new tests: Xi Jinping entry validation, biographical data coverage, key_actions structure.",
+    "agent_handoff_update": "AGENT_HANDOFF.json v7.4→v7.5. Simulated Data Phase 2 marked COMPLETE (was MOSTLY_COMPLETE). Session count 89→91."
   },
 
   "session_87_changes": {
@@ -170,10 +178,10 @@
       "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
-      "status": "MOSTLY_COMPLETE",
-      "severity": "LOW",
-      "description": "Phase 1 done. Phase 2: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities fully migrated to JSON. CCPOfficials uses justified hybrid approach (rich component data not in JSON — biographical context).",
-      "recommendation": "To fully migrate remaining 1, enrich sanctioned_officials_research.json with biographical data. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
+      "status": "COMPLETE",
+      "severity": "RESOLVED",
+      "description": "Phase 1 done. Phase 2: ALL 4/4 fully migrated to JSON. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials all read entirely from JSON. CCPOfficials enriched with biographical data (chinese_name, birth_year, in_power_since, key_actions, detailed_responsibilities). Xi Jinping added. 22 officials total.",
+      "recommendation": "No further action needed. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
     }
   },
 
@@ -205,10 +213,10 @@
     {
       "priority": 4,
       "task": "simulated_data_phase2",
-      "description": "Enrich JSON files with coordinate/imagery data so DetentionFacilities + CCPOfficials can fully import from JSON instead of hybrid approach. PoliticalPrisoners + ForcedLaborTracker already migrated.",
-      "estimated_hours": 8,
-      "status": "NOT_STARTED",
-      "agent": "Opus 4.6"
+      "description": "ALL 4/4 data migrations complete. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials all read from JSON. No hardcoded data arrays remain.",
+      "estimated_hours": 0,
+      "status": "COMPLETE",
+      "agent": "Sonnet 4 (Session 90)"
     }
   ],
 
