@@ -6,20 +6,16 @@ import { useLanguage } from './LanguageSelector';
  * Provides keyboard users with quick navigation to main content areas
  * Uses i18n translations (8 languages) and terminal design system colors
  */
+const SKIP_LINK_CLASSES = 'fixed top-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
+
 export const SkipLinks = () => {
   const { t } = useLanguage();
   return (
     <div className="sr-only focus-within:not-sr-only">
-      <a
-        href="#main-content"
-        className="fixed top-0 left-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
-      >
+      <a href="#main-content" className={`${SKIP_LINK_CLASSES} left-0`}>
         {t('skipToMain')}
       </a>
-      <a
-        href="#navigation"
-        className="fixed top-0 left-52 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
-      >
+      <a href="#navigation" className={`${SKIP_LINK_CLASSES} left-52`}>
         {t('skipToNav')}
       </a>
     </div>

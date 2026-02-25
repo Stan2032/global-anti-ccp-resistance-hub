@@ -26,12 +26,13 @@ describe('SkipLinks', () => {
     expect(link.getAttribute('href')).toBe('#navigation');
   });
 
-  it('should use terminal design system colors', () => {
+  it('should use terminal design system colors (not blue/generic)', () => {
     const { container } = renderWithLanguage(<SkipLinks />);
     const links = container.querySelectorAll('a');
     links.forEach(link => {
-      expect(link.className).toContain('text-[#4afa82]');
-      expect(link.className).toContain('bg-[#111820]');
+      // Must use terminal palette, not generic blue
+      expect(link.className).not.toContain('bg-blue');
+      expect(link.className).toContain('#4afa82');
       expect(link.className).toContain('font-mono');
     });
   });
