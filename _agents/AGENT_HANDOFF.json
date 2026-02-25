@@ -44,7 +44,8 @@
     "security_fixes": "react_router_7.13.0_3_CVEs_fixed",
     "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types",
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md",
-    "cloudflare_fix": "stale_pnpm_lock_yaml_removed"
+    "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
+    "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/"
   },
 
   "sessions_62_to_71_changes": {

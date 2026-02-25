@@ -15,7 +15,7 @@ This is not a neutral project. It exists because real people — journalists, la
 ## Essential Context (Read First)
 
 ### What This Project Is
-- A **static React site** (Vite 7 + React 19 + Tailwind CSS) deployed to **Cloudflare Pages**
+- A **static React site** (Vite 7 + React 19 + Tailwind CSS) deployed to **Cloudflare Workers** at [https://global-anti-ccp-resistance-hub.stane203.workers.dev/](https://global-anti-ccp-resistance-hub.stane203.workers.dev/)
 - Documents political prisoners, forced labor, surveillance, censorship, and territorial aggression by the CCP
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines

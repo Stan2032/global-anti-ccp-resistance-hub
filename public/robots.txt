@@ -5,8 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-# TODO: Update to custom domain URL when deployed to Cloudflare Pages
-Sitemap: https://stan2032.github.io/global-anti-ccp-resistance-hub/sitemap.xml
+Sitemap: https://global-anti-ccp-resistance-hub.stane203.workers.dev/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

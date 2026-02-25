@@ -1,5 +1,7 @@
 # Global Anti-CCP Resistance Hub
 
+🌐 **Live Site:** [https://global-anti-ccp-resistance-hub.stane203.workers.dev/](https://global-anti-ccp-resistance-hub.stane203.workers.dev/)
+
 A comprehensive platform for documenting CCP human rights violations, supporting resistance movements, and providing tools for activists and researchers fighting against Chinese Communist Party authoritarianism.
 
 > **For Developers/Agents:** See [_agents/AGENT_ROADMAP.md](_agents/AGENT_ROADMAP.md) for current task status and [_agents/LLM_JUDGEMENT_LOG.md](_agents/LLM_JUDGEMENT_LOG.md) for decision history.
@@ -83,7 +85,8 @@ This platform serves as a centralized resource for:
 - PostgreSQL for data storage
 
 ### Deployment
-- **Recommended**: Cloudflare Pages (configured with `_redirects` and `_headers`)
+- **Live site**: [https://global-anti-ccp-resistance-hub.stane203.workers.dev/](https://global-anti-ccp-resistance-hub.stane203.workers.dev/)
+- **Recommended**: Cloudflare Workers (configured with `wrangler.jsonc` and `_headers`)
 - **Also supported**: GitHub Pages, Vercel, Netlify
 - Base path configurable via `VITE_BASE_PATH` environment variable
 
@@ -91,7 +94,7 @@ This platform serves as a centralized resource for:
 
 ### Prerequisites
 - Node.js 18+
-- pnpm (recommended) or npm
+- npm
 
 ### Frontend Setup
 ```bash
