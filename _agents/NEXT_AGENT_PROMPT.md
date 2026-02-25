@@ -40,7 +40,7 @@ Over 78 agent sessions, the following has been accomplished:
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
 16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
-17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels.
+17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach.
 
 ### Your Quick Start
 ```bash
@@ -80,7 +80,7 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v5.0)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v6.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── QUESTIONS_FOR_HUMANS.md # All human decisions (all answered)
@@ -177,7 +177,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
 2. **Forms**: All non-functional forms display "Coming Soon" notices with links to real organizations. No backend to submit to yet.
-3. **Simulated data Phase 2**: Components like PoliticalPrisoners, DetentionFacilities, Officials, Companies still use hardcoded data arrays. JSON research files exist but components haven't been refactored to import from them yet. (MEDIUM — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
+3. **Simulated data Phase 2**: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON ✅. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON). To fully migrate, enrich JSON with coordinates/imagery. (LOW — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
 4. **Site cleanup**: Typography improvement, tab consolidation, page merging ~40% complete. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
 ---
@@ -226,7 +226,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-78 (Sonnet 4.5 62-71, Opus 4.6 72-78)  
+**Handoff prepared by:** Sessions 62-79 (Sonnet 4.5 62-71, Opus 4.6 72-79)  
 **Date:** February 25, 2026  
 **Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized  
 **Status:** ✅ MERGE READY — branch prepared for merge to main

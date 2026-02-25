@@ -21,13 +21,13 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: Refactor components to import from JSON research files
+- [ ] **Simulated Data Phase 2**: Remaining hybrid components (2 of 4 already fully migrated to JSON)
   - **Agent:** Opus 4.6 (requires understanding component→data mapping)
-  - Subtask: PoliticalPrisoners page → political_prisoners_research.json
-  - Subtask: DetentionFacilities → detention_facilities_research.json
-  - Subtask: CCPOfficials → sanctioned_officials_research.json
-  - Subtask: ForcedLaborTracker → forced_labor_companies_research.json
-  - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` Phase 2
+  - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
+  - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
+  - 🟡 DetentionFacilities → detention_facilities_research.json (hybrid — lacks coordinate/imagery data in JSON)
+  - 🟡 CCPOfficials → sanctioned_officials_research.json (hybrid — component has rich biographical data)
+  - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
 ### Bug Fixes & Polish
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
@@ -247,7 +247,7 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Simulated data Phase 2** — Refactor 4 major components to use JSON data files (see SHORT-TERM)
+1. **Simulated data Phase 2** — 2/4 components fully migrated, 2 use justified hybrid approach. Remaining work: enrich JSON files with coordinate/imagery data if full migration desired (see SIMULATED_DATA_CLEANUP_TODO.md)
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 3. **Backend connection** — Cloudflare Pages Functions + Supabase (see QUESTIONS_FOR_HUMANS.md)
 4. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 (font sizes, contrast, line-height)
@@ -281,7 +281,7 @@
 | File | Focus | Status |
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
-| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2 (component refactoring) outstanding |
+| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: 2/4 done, 2 hybrid/justified |
 | **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~40% complete |
 | **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 

@@ -130,10 +130,10 @@
       "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
-      "status": "IN_PROGRESS",
-      "severity": "MEDIUM",
-      "description": "Phase 1 done (liveDataService fixed). Phase 2 (refactor components to use JSON files instead of hardcoded data) still outstanding for PoliticalPrisoners, DetentionFacilities, Officials, Companies pages.",
-      "recommendation": "See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md Phase 2"
+      "status": "MOSTLY_COMPLETE",
+      "severity": "LOW",
+      "description": "Phase 1 done. Phase 2: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON — coordinates, imagery, biographical context).",
+      "recommendation": "To fully migrate remaining 2, enrich JSON files with coordinate/imagery data. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
     }
   },
 
