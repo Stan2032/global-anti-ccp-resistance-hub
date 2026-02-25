@@ -10,7 +10,6 @@ import dotenv from 'dotenv';
 import logger from './utils/logger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { requestLogger } from './middleware/requestLogger.js';
-import { authenticateToken } from './middleware/auth.js';
 import { socketAuthMiddleware } from './middleware/socketAuth.js';
 import { initializeSocketService } from './services/socketService.js';
 import { handleConnection } from './sockets/handlers.js';
@@ -74,7 +73,7 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api/v1/auth', (await import('./routes/auth.js')).default);
+app.use('/api/v1/auth', loginLimiter, (await import('./routes/auth.js')).default);
 app.use('/api/v1/users', (await import('./routes/users.js')).default);
 app.use('/api/v1/organizations', (await import('./routes/organizations.js')).default);
 app.use('/api/v1/campaigns', (await import('./routes/campaigns.js')).default);

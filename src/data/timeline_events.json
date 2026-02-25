@@ -30,6 +30,21 @@
     ]
   },
   {
+    "id": 23,
+    "date": "1997-07-01",
+    "title": "Hong Kong Handover",
+    "category": "hongkong",
+    "significance": "critical",
+    "description": "Sovereignty over Hong Kong is transferred from the United Kingdom to the People's Republic of China, beginning the \"One Country, Two Systems\" arrangement.",
+    "details": "Under the Sino-British Joint Declaration (1984), China promised Hong Kong would retain its capitalist system, independent judiciary, and civil liberties for 50 years until 2047. The Basic Law served as Hong Kong's mini-constitution, guaranteeing freedoms of speech, press, and assembly. This framework became the legal basis for all subsequent protests and the benchmark against which the CCP's erosion of Hong Kong's autonomy is measured.",
+    "impact": "Established the legal framework that the CCP systematically dismantled, culminating in the 2020 National Security Law",
+    "sources": [
+      "BBC News",
+      "UK Government Archives",
+      "Reuters"
+    ]
+  },
+  {
     "id": 3,
     "date": "1999-07-20",
     "title": "Falun Gong Persecution Begins",
@@ -42,6 +57,37 @@
     "sources": [
       "Falun Dafa Information Center",
       "China Tribunal"
+    ]
+  },
+  {
+    "id": 27,
+    "date": "2001-01-23",
+    "title": "Tiananmen Self-Immolation Incident",
+    "category": "falungong",
+    "significance": "high",
+    "description": "Five people set themselves on fire in Tiananmen Square in an incident the CCP used to intensify persecution of Falun Gong, though independent investigations raised serious doubts about the official narrative.",
+    "details": "On Chinese New Year's Eve, five individuals allegedly self-immolated in Tiananmen Square. Chinese state media immediately broadcast footage and attributed the act to Falun Gong practitioners. However, independent investigations by the Washington Post found that neighbors of the alleged practitioners had never seen them practice Falun Gong. The International Education Development stated at the United Nations that there was evidence the event was staged. Falun Gong's teachings explicitly prohibit killing and suicide. Forensic analysis of the state-broadcast footage revealed anomalies including rapid police intervention with fire extinguishers already on hand. Regardless of whether staged or genuine, the CCP used the incident to dramatically shift public opinion against Falun Gong and escalate persecution.",
+    "impact": "Turned Chinese public opinion against Falun Gong, escalated persecution to include systematic torture and organ harvesting",
+    "sources": [
+      "Washington Post (Philip Pan investigation)",
+      "International Education Development (UN statement)",
+      "Human Rights Watch"
+    ]
+  },
+  {
+    "id": 28,
+    "date": "2003-07-01",
+    "title": "500,000 March Against Article 23",
+    "category": "hongkong",
+    "significance": "critical",
+    "description": "Approximately 500,000 Hong Kong residents march against proposed Article 23 national security legislation, forcing the government to shelve the bill.",
+    "details": "The Hong Kong government proposed legislation under Article 23 of the Basic Law that would have criminalized treason, secession, sedition, and subversion. Fearing erosion of civil liberties, an estimated 500,000 people took to the streets on July 1 — the anniversary of the handover. The massive turnout forced the government to withdraw the bill after losing critical Legislative Council support. The march demonstrated the power of peaceful mass protest and established the annual July 1 march tradition as a barometer of public sentiment on democratic freedoms.",
+    "participants": "~500,000",
+    "impact": "Article 23 shelved for 21 years until it was finally passed in March 2024 under very different political conditions",
+    "sources": [
+      "BBC",
+      "Reuters",
+      "Hong Kong Free Press"
     ]
   },
   {
@@ -60,6 +106,21 @@
     ]
   },
   {
+    "id": 24,
+    "date": "2008-12-10",
+    "title": "Charter 08 Published",
+    "category": "mainland",
+    "significance": "critical",
+    "description": "Liu Xiaobo and over 300 Chinese intellectuals publish Charter 08, a manifesto calling for political reform, human rights, and an end to one-party rule.",
+    "details": "Modeled on Czechoslovakia's Charter 77, the document called for an independent judiciary, legislative democracy, and protection of human rights. Liu Xiaobo was arrested the day before publication on December 8, 2008, and was later sentenced to 11 years for 'inciting subversion of state power.' Over 10,000 Chinese citizens eventually signed the charter.",
+    "impact": "Liu Xiaobo awarded Nobel Peace Prize in 2010; died in custody July 2017",
+    "sources": [
+      "PEN International",
+      "Human Rights Watch",
+      "Nobel Prize Committee"
+    ]
+  },
+  {
     "id": 5,
     "date": "2009-07-05",
     "title": "Ürümqi Riots",
@@ -71,6 +132,52 @@
     "impact": "Preceded mass surveillance and internment campaign",
     "sources": [
       "Radio Free Asia",
+      "Human Rights Watch"
+    ]
+  },
+  {
+    "id": 25,
+    "date": "2010-10-08",
+    "title": "Liu Xiaobo Awarded Nobel Peace Prize",
+    "category": "mainland",
+    "significance": "critical",
+    "description": "Imprisoned dissident Liu Xiaobo is awarded the Nobel Peace Prize for his 'long and non-violent struggle for fundamental human rights in China.'",
+    "details": "The Norwegian Nobel Committee awarded the prize while Liu was serving an 11-year sentence for co-authoring Charter 08. China condemned the award, placed Liu's wife Liu Xia under illegal house arrest, and pressured countries to boycott the ceremony. The empty chair at the December 10 ceremony became an iconic image. Liu remains the only Nobel Peace laureate to die in state custody since Carl von Ossietzky in 1938.",
+    "impact": "Global spotlight on China's political repression; Liu Xia held under house arrest until 2018",
+    "sources": [
+      "Nobel Prize Committee",
+      "Amnesty International",
+      "BBC"
+    ]
+  },
+  {
+    "id": 29,
+    "date": "2011-09-21",
+    "title": "Wukan Protests",
+    "category": "mainland",
+    "significance": "high",
+    "description": "Villagers in Wukan, Guangdong province, revolt against illegal land seizures by local officials in one of the most significant grassroots protests in modern China.",
+    "details": "Protests erupted on September 21 when villagers discovered that local officials had illegally sold collectively owned farmland to developers without compensation. The protests escalated in December 2011 when detained village representative Xue Jinbo died in police custody. Villagers expelled local party officials and police, effectively governing themselves. After a police siege blocking food supplies, provincial authorities intervened and negotiated a settlement. Free elections were held in February 2012 — an extraordinarily rare concession. However, the elected village chief Lin Zuluan was later arrested in 2016, and the promised land reforms were never fully implemented.",
+    "impact": "Rare example of successful grassroots resistance; later reversed when elected leaders were arrested",
+    "sources": [
+      "BBC",
+      "The Guardian",
+      "Reuters"
+    ]
+  },
+  {
+    "id": 30,
+    "date": "2012-11-07",
+    "title": "Tibetan Self-Immolation Wave Peaks",
+    "category": "tibet",
+    "significance": "critical",
+    "description": "The wave of Tibetan self-immolation protests reaches its peak with five people setting themselves on fire in a single day, part of 85+ self-immolations in 2012 alone.",
+    "details": "On November 7, 2012 — just before the CCP's 18th Party Congress — five Tibetans self-immolated in separate incidents: three teenage monks from Ngoshul Monastery (aged 15-16) immolated together near a police station in Ngaba, a 23-year-old mother named Tamding Tso called for the Dalai Lama's return while burning in Rebkong, and another man self-immolated in Driru. November 2012 saw 27 self-immolations, the deadliest single month. Since the first protest self-immolation in February 2009, over 150 Tibetans have set themselves on fire protesting Chinese rule, religious repression, and cultural destruction.",
+    "casualties": "85+ self-immolations in 2012 (most fatal); 150+ total since 2009",
+    "impact": "Drew global attention to Tibet's desperation; CCP responded with intensified surveillance and collective punishment of communities",
+    "sources": [
+      "Free Tibet",
+      "International Campaign for Tibet",
       "Human Rights Watch"
     ]
   },
@@ -161,6 +268,21 @@
     "sources": [
       "Nobel Committee",
       "PEN International"
+    ]
+  },
+  {
+    "id": 26,
+    "date": "2018-03-11",
+    "title": "Presidential Term Limits Abolished",
+    "category": "mainland",
+    "significance": "critical",
+    "description": "China's National People's Congress amends the constitution to remove presidential term limits, enabling Xi Jinping to rule indefinitely.",
+    "details": "The amendment, passed with 2,958 votes in favor, 2 against, and 3 abstentions, removed the two-term limit for the president and vice president that had been in place since 1982. Critics called it a return to one-man rule reminiscent of the Mao era. The amendment also enshrined 'Xi Jinping Thought' in the constitution. Online censorship surged as references to the change, including the letter 'N' and Winnie the Pooh comparisons, were scrubbed from Chinese internet.",
+    "impact": "Consolidated Xi's power, ended post-Mao collective leadership norms",
+    "sources": [
+      "BBC",
+      "Reuters",
+      "The Guardian"
     ]
   },
   {
@@ -282,6 +404,22 @@
       "Safeguard Defenders",
       "FBI",
       "European Parliament"
+    ]
+  },
+  {
+    "id": 31,
+    "date": "2024-03-19",
+    "title": "Hong Kong Article 23 Passed",
+    "category": "hongkong",
+    "significance": "critical",
+    "description": "Hong Kong's Legislative Council unanimously passes the Safeguarding National Security Ordinance (Article 23), 21 years after mass protests shelved the original attempt.",
+    "details": "The bill was fast-tracked through the now-opposition-free legislature in just 11 days, passing unanimously on March 19, 2024 and taking effect March 23. It created new offenses including treason, insurrection, sabotage, sedition, theft of state secrets, espionage, and external interference — many carrying sentences of 10 years to life imprisonment. Unlike the 2003 attempt, there was no meaningful public consultation and no legislative opposition. The law supplements the Beijing-imposed 2020 National Security Law, creating what critics call a comprehensive legal architecture for authoritarian control. The UN, EU, US, UK, and press freedom organizations condemned the legislation.",
+    "impact": "Completed the legal framework for authoritarian control of Hong Kong; fulfilled what 500,000 protesters blocked in 2003",
+    "sources": [
+      "Hong Kong Free Press",
+      "Amnesty International",
+      "Human Rights Watch",
+      "Reuters"
     ]
   },
   {

@@ -437,40 +437,7 @@ export const dataProcessor = {
   }
 }
 
-// Feed validation and credibility scoring
-export const feedValidator = {
-  validateSource: (source) => {
-    const credibilityScores = {
-      'Primary Source': 10,
-      'Government Document': 9,
-      'Academic Research': 8,
-      'NGO Report': 7,
-      'News Report': 6,
-      'Social Media': 3,
-      'Anonymous': 2
-    }
-
-    return {
-      isValid: source.url && source.title,
-      credibilityScore: credibilityScores[source.type] || 1,
-      hasVerification: !!source.organization || !!source.publication,
-      lastChecked: new Date().toISOString()
-    }
-  },
-
-  checkFeedHealth: (feedId) => {
-    return {
-      feedId,
-      status: 'operational',
-      lastUpdate: new Date().toISOString(),
-      responseTime: null,
-      errorCount: 0
-    }
-  }
-}
-
 export default {
   liveDataFeeds,
-  dataProcessor,
-  feedValidator
+  dataProcessor
 }

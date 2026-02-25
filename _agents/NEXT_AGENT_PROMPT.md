@@ -20,10 +20,10 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 12 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 298 passing Vitest tests across 16 test files
+- Contains 310+ source files, 100+ React components, 535 passing Vitest tests across 26 test files
 
-### What Has Been Done (70 Sessions of Work)
-Over 70 agent sessions, the following has been accomplished:
+### What Has Been Done (78 Sessions of Work)
+Over 80 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **12 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
@@ -31,20 +31,23 @@ Over 70 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 298 Vitest tests across 16 test files (data integrity, accessibility, i18n, profiles, sanctions, source links)
+8. **Test infrastructure**: 535 Vitest tests across 26 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
-10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with data integrity tests
+10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
 12. **Print styles**: @media print stylesheet for A4 layout
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
+15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
+16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
+17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach.
 
 ### Your Quick Start
 ```bash
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 298 tests passing across 16 test files
+npx vitest run    # Should show 535 tests passing across 26 test files
 ```
 
 ---
@@ -75,8 +78,9 @@ These are directives from the human owner. Follow them:
 ### File Structure
 ```
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
-│   ├── TODO.md                 # Master task list
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v5.0)
+│   ├── TODO.md                 # Active task list (pending items only)
+│   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v6.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── QUESTIONS_FOR_HUMANS.md # All human decisions (all answered)
@@ -109,7 +113,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 16 Vitest test files, 298 tests
+│   └── test/                   # 26 Vitest test files, 535 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -130,7 +134,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 298 tests (16 files)
+npx vitest run                           # All 535 tests (26 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -142,16 +146,13 @@ npm run build                            # Production build (~5s)
 ### Priority 1: Backend Connection
 The backend exists (`/backend/`) with Express + PostgreSQL but isn't deployed. When ready, connect via Cloudflare Pages Functions + Supabase (see `_agents/QUESTIONS_FOR_HUMANS.md` for full backend recommendation).
 
-### Priority 2: Remaining Orphan Components
-`DetentionFacilities` and `PoliceStationsMap` are built but not integrated into any page tab yet.
-
-### Priority 3: Content Monitoring
+### Priority 2: Content Monitoring
 - Monitor Jimmy Lai appeal proceedings
 - Monitor Joshua Wong NSL collusion case
 - Update sanctions tracker with any new 2026 actions from US/EU/UK/Canada/Australia
 - Add new political prisoner cases as they emerge
 
-### Priority 4: Full Translation
+### Priority 3: Full Translation
 Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human rights content (profile pages, data entries) should NOT be machine-translated — needs volunteer translators.
 
 ---
@@ -159,7 +160,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 ## Completed (previously listed as priorities)
 
 - ✅ **Mobile Testing & Fixes**: Mobile nav overflow fixed, tabs have overflow-x-auto, 404 ASCII art responsive
-- ✅ **Page Consolidation**: 4 orphan pages removed + 8 orphan components integrated into page tabs
+- ✅ **Page Consolidation**: 4 orphan pages removed + 10 orphan components integrated into page tabs (including DetentionFacilities and PoliceStationsMap in IntelligenceFeeds CCP Operations tab)
 - ✅ **Multilingual Translations**: 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each
 - ✅ **Additional Profiles**: All 12 profiles built (0 coming soon)
 - ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes
@@ -176,8 +177,8 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
 2. **Forms**: All non-functional forms display "Coming Soon" notices with links to real organizations. No backend to submit to yet.
-3. **Statistics**: Community statistics are labeled as "illustrative targets" — not live data.
-4. **2 remaining orphan components**: DetentionFacilities.jsx and PoliceStationsMap.jsx are built but not integrated. (LOW)
+3. **Simulated data Phase 2**: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON ✅. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON). To fully migrate, enrich JSON with coordinates/imagery. (LOW — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
+4. **Site cleanup**: Typography improvement, tab consolidation, page merging ~40% complete. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
 ---
 
@@ -203,8 +204,9 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 ## Files to Read (In Order)
 
 1. **This file** — You're reading it now ✅
-2. `_agents/TODO.md` — Full task list with completion status
-3. `_agents/STYLE_GUIDE.md` — Design system reference
+2. `_agents/TODO.md` — Active task list (pending items only)
+3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
+4. `_agents/STYLE_GUIDE.md` — Design system reference
 4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v5.0)
 5. `_agents/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered)
 6. `_agents/thoughts/` — Per-session decision notes (read the latest few)
@@ -224,7 +226,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-70 (Sonnet 4.5)  
-**Date:** February 21, 2026  
-**Repository state:** 298 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions  
-**Status:** ✅ READY FOR CONTINUED WORK
+**Handoff prepared by:** Sessions 62-79 (Sonnet 4.5 62-71, Opus 4.6 72-79)  
+**Date:** February 25, 2026  
+**Repository state:** 535 tests passing, build clean, terminal design 100% applied, 12 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized  
+**Status:** ✅ MERGE READY — branch prepared for merge to main

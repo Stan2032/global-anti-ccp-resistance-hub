@@ -3,86 +3,140 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/intelligence</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/prisoners</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/threats</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/campaigns</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/take-action</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/tactics</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/education</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/security</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/resources</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/directory</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/community</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/communications</loc>
-    <lastmod>2025-12-20</lastmod>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/education</loc>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/security</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/resources</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/data-sources</loc>
-    <lastmod>2026-02-18</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/jimmy-lai</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/ilham-tohti</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/panchen-lama</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/liu-xiaobo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/joshua-wong</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/gui-minhai</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/zhang-zhan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/gao-zhisheng</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/benny-tai</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/nathan-law</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/cardinal-zen</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stan2032.github.io/global-anti-ccp-resistance-hub/profiles/agnes-chow</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

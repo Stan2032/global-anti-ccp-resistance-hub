@@ -49,15 +49,48 @@ If needed, create purpose-limited sub-agents for specific domains:
 - Iterate: update AGENTS.md and LLM_JUDGEMENT_LOG.md as new agents or approaches are added
 
 ## Current Agent Assignment Table
-| Domain                  | Primary Agent     | Backup Agent    | Human Oversight? |
-|-------------------------|------------------|----------------|------------------|
-| API coding              | Opus 4.6         | Sonnet 4.5     | Yes              |
-| Docs & onboarding       | Sonnet 4.5       | Opus 4.6       | Yes              |
-| Test automation         | Opus 4.6         |                | Yes              |
-| Data migration, infra   | Opus 4.6         | Sonnet 4.5     | Yes              |
-| UI/UX tweaks            | Sonnet 4.5       | Opus 4.6       | Yes              |
-| Security reviews        | Opus 4.6         |                | Yes              |
-| Policies/moderation     | Human            |                | Required         |
+
+| Domain | Primary Agent | Backup Agent | Human Oversight? | Why This Agent |
+|---|---|---|---|---|
+| API coding & backend | Opus 4.6 | Sonnet 4.5 | Yes | Complex multi-step logic, security implications, database design |
+| Fact verification & date checking | Opus 4.6 | — | Yes | Requires cross-referencing multiple sources, detecting propaganda influence, assessing source credibility |
+| CCP narrative analysis (profile pages) | Opus 4.6 | — | Yes | Requires understanding of CCP disinformation tactics, logical fallacy detection, propaganda pattern recognition |
+| Security reviews & CSP | Opus 4.6 | — | Yes | Security-critical decisions, threat modeling, vulnerability assessment |
+| Test automation & data integrity tests | Opus 4.6 | Sonnet 4.5 | Yes | Designing test assertions requires understanding what matters; execution can be delegated |
+| UI/UX implementation & design system | Sonnet 4.5 | Opus 4.6 | Yes | Rapid iteration, consistent Tailwind class application, layout work |
+| Documentation & onboarding | Sonnet 4.5 | Opus 4.6 | Yes | Structured writing, consistency, quick turnaround |
+| i18n translations (UI strings only) | Sonnet 4.5 | Opus 4.6 | Yes | Mechanical translation of navigation-level strings. Sensitive content should NOT be machine-translated. |
+| Data entry (adding prisoners/sanctions) | Opus 4.6 | Sonnet 4.5 | Yes | Requires source verification; Sonnet can do the JSON editing after Opus verifies |
+| Profile page creation | Opus 4.6 (content) + Sonnet 4.5 (layout) | — | Yes | Content requires fact verification and narrative analysis; layout is mechanical |
+| Performance optimization | Sonnet 4.5 | Opus 4.6 | Yes | Code splitting, lazy loading — mechanical optimizations |
+| Accessibility (WCAG/ARIA) | Sonnet 4.5 | Opus 4.6 | Yes | Standard patterns, contrast checks, attribute additions |
+| Source URL verification | Opus 4.6 | — | Yes | Requires judgment on source credibility, domain verification, CCP media detection |
+| Policies/moderation/ethics | Human | — | Required | Ethical decisions must not be delegated to AI |
+
+### Why These Assignments Matter
+
+**Opus 4.6** excels when tasks require:
+- Cross-referencing information across multiple sources
+- Detecting CCP propaganda or narrative influence in sources
+- Making security-sensitive decisions (CSP, XSS, input sanitization)
+- Understanding complex codebases for refactoring
+- Verifying factual claims against independent evidence
+- Building complex multi-file features (backend APIs, database schemas)
+
+**Sonnet 4.5** excels when tasks require:
+- Rapid, iterative UI changes across many files
+- Consistent application of design system patterns
+- Writing structured documentation and handoff notes
+- Mechanical code changes (find-and-replace, pattern application)
+- Quick prototyping and scaffolding
+- i18n string translations (navigation-level only)
+
+**Neither agent should:**
+- Machine-translate sensitive human rights content (needs volunteer translators)
+- Make policy or ethical decisions
+- Cite sources without verification
+- Fabricate dates, statistics, or quotes
+- Remove working code unless explicitly required
 
 ## Known Issues & Troubleshooting
 
@@ -112,6 +145,7 @@ See LLM_JUDGEMENT_LOG.md Session 25 for detailed investigation findings and insp
 ---
 
 ## Change Log
+- [2026-02-24] Expanded agent assignment table with detailed capability notes and rationale (Opus 4.6, Session 72)
 - [2026-02-20] Added CodeQL troubleshooting section (Sonnet 4.5, Session 25)
 - [2026-02-18] Initial AGENTS.md version (Opus 4.6, following agents.md methodology)
 

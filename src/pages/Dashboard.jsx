@@ -32,31 +32,31 @@ const Dashboard = () => {
   const statCards = [
     {
       title: 'Verified Organizations',
-      value: stats?.verifiedOrganizations || 847,
+      value: stats?.verifiedOrganizations || 49,
       icon: Users,
       color: 'blue',
-      change: '+12 this week',
+      change: 'In database',
     },
     {
       title: 'Detention Facilities',
-      value: stats?.detentionFacilities || 1200,
+      value: stats?.detentionFacilities ? `${stats.detentionFacilities}+` : '380+',
       icon: Building2,
       color: 'red',
-      change: 'Documented',
+      change: 'ASPI estimate',
     },
     {
       title: 'Active Campaigns',
-      value: stats?.activeCampaigns || 156,
+      value: '—',
       icon: Target,
       color: 'green',
-      change: '+5 new',
+      change: 'Coming soon',
     },
     {
       title: 'Political Prisoners',
-      value: stats?.politicalPrisoners || '10,000+',
+      value: stats?.politicalPrisoners || 62,
       icon: AlertTriangle,
       color: 'orange',
-      change: 'Tracked',
+      change: 'Documented cases',
     },
   ];
 

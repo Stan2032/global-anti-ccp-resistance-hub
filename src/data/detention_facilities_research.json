@@ -32,7 +32,7 @@
       "input": "Xinjiang - Hotan Prefecture",
       "output": {
         "region": "Xinjiang - Hotan Prefecture",
-        "facility_count": "",
+        "facility_count": 2,
         "estimated_capacity": "Unknown",
         "key_facilities": "Hotan County Facility #2, Hotan City Facility",
         "satellite_evidence": "ASPI Xinjiang Data Project - https://xjdp.aspi.org.au/map/",

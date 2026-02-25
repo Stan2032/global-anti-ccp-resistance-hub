@@ -7,6 +7,57 @@ import {
   FileText, Mic, Search,
 } from 'lucide-react';
 
+// Searchable content database (static — declared outside component to avoid re-creation on each render)
+const searchableContent = [
+  // Pages
+  { type: 'page', title: 'Dashboard', description: 'Overview of resistance activities', path: '/', Icon: BarChart3, keywords: ['home', 'overview', 'stats'] },
+  { type: 'page', title: 'Intelligence Feeds', description: 'Live news, updates, and regional threats', path: '/intelligence', Icon: Newspaper, keywords: ['news', 'rss', 'feeds', 'map', 'regions', 'countries', 'threats'] },
+  { type: 'page', title: 'Resistance Directory', description: 'Organizations fighting for human rights', path: '/directory', Icon: Users, keywords: ['organizations', 'ngos', 'groups'] },
+  { type: 'page', title: 'Political Prisoners', description: 'Documented cases of political detention', path: '/prisoners', Icon: Link, keywords: ['detained', 'imprisoned', 'jail'] },
+  { type: 'page', title: 'Take Action', description: 'Ways to help, campaigns, and advocacy', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition', 'activism', 'campaigns', 'movements'] },
+  { type: 'page', title: 'Community', description: 'Connect with other activists', path: '/community', Icon: MessageCircle, keywords: ['forum', 'discussion', 'connect'] },
+  { type: 'page', title: 'Resources', description: 'Tools and materials', path: '/resources', Icon: Wrench, keywords: ['tools', 'downloads', 'materials'] },
+  { type: 'page', title: 'Education Center', description: 'Learning resources, CCP tactics, and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training', 'propaganda', 'influence', 'methods', 'tactics'] },
+  { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
+  { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
+
+  // Profile Pages (all 12 individuals)
+  { type: 'profile', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder — sentenced to 20 years', path: '/profiles/jimmy-lai', Icon: Users, keywords: ['hong kong', 'apple daily', 'media', 'nsl', 'press freedom'] },
+  { type: 'profile', title: 'Ilham Tohti', description: 'Uyghur economist — life sentence for "separatism"', path: '/profiles/ilham-tohti', Icon: Users, keywords: ['uyghur', 'economist', 'xinjiang', 'sakharov'] },
+  { type: 'profile', title: 'Joshua Wong', description: 'Hong Kong democracy activist — sentenced under NSL', path: '/profiles/joshua-wong', Icon: Users, keywords: ['hong kong', 'democracy', 'umbrella', 'demosisto'] },
+  { type: 'profile', title: 'Gedhun Choekyi Nyima', description: 'Panchen Lama — disappeared since 1995', path: '/profiles/panchen-lama', Icon: Users, keywords: ['tibet', 'panchen lama', 'buddhism', 'disappeared'] },
+  { type: 'profile', title: 'Liu Xiaobo', description: 'Nobel Peace Prize laureate — died in custody 2017', path: '/profiles/liu-xiaobo', Icon: Users, keywords: ['charter 08', 'nobel', 'democracy', 'dissident'] },
+  { type: 'profile', title: 'Gui Minhai', description: 'Swedish-Chinese publisher — abducted from Thailand', path: '/profiles/gui-minhai', Icon: Users, keywords: ['causeway bay books', 'publisher', 'sweden', 'abduction'] },
+  { type: 'profile', title: 'Zhang Zhan', description: 'Citizen journalist — imprisoned for COVID-19 reporting', path: '/profiles/zhang-zhan', Icon: Users, keywords: ['wuhan', 'covid', 'journalist', 'hunger strike'] },
+  { type: 'profile', title: 'Gao Zhisheng', description: 'Human rights lawyer — disappeared since 2017', path: '/profiles/gao-zhisheng', Icon: Users, keywords: ['lawyer', 'disappeared', 'falun gong', 'human rights'] },
+  { type: 'profile', title: 'Agnes Chow', description: 'Hong Kong activist — fled to Canada', path: '/profiles/agnes-chow', Icon: Users, keywords: ['hong kong', 'demosisto', 'nsl', 'exile'] },
+  { type: 'profile', title: 'Nathan Law', description: 'Hong Kong activist — exiled in London', path: '/profiles/nathan-law', Icon: Users, keywords: ['hong kong', 'demosisto', 'exile', 'uk'] },
+  { type: 'profile', title: 'Benny Tai', description: 'Legal scholar — Hong Kong 47 defendant', path: '/profiles/benny-tai', Icon: Users, keywords: ['hong kong', 'occupy central', 'legal scholar', 'hong kong 47'] },
+  { type: 'profile', title: 'Cardinal Zen', description: 'Catholic cardinal — arrested under NSL', path: '/profiles/cardinal-zen', Icon: Users, keywords: ['catholic', 'cardinal', 'hong kong', 'religious freedom'] },
+
+  // Topics
+  { type: 'topic', title: 'Uyghur Genocide', description: 'Documentation of atrocities in Xinjiang', path: '/education', Icon: BookOpen, keywords: ['xinjiang', 'camps', 'genocide', 'forced labor'] },
+  { type: 'topic', title: 'Hong Kong Freedom', description: 'Democracy movement and NSL', path: '/education', Icon: BookOpen, keywords: ['nsl', 'democracy', 'protests', '2019'] },
+  { type: 'topic', title: 'Tibet Rights', description: 'Tibetan independence movement', path: '/education', Icon: BookOpen, keywords: ['dalai lama', 'buddhism', 'independence'] },
+  { type: 'topic', title: 'Taiwan Sovereignty', description: 'Cross-strait relations and defense', path: '/threats', icon: '🇹🇼', keywords: ['cross-strait', 'defense', 'independence'] },
+  { type: 'topic', title: 'Transnational Repression', description: 'CCP activities abroad', path: '/tactics', Icon: Globe, keywords: ['police stations', 'fox hunt', 'diaspora'] },
+  { type: 'topic', title: 'Overseas Police Stations', description: '102+ stations in 53 countries', path: '/threats', Icon: ShieldAlert, keywords: ['police', 'stations', 'safeguard defenders'] },
+
+  // Actions
+  { type: 'action', title: 'Sign Petitions', description: 'Add your voice to active campaigns', path: '/take-action', Icon: PenLine, keywords: ['petition', 'sign', 'campaign'] },
+  { type: 'action', title: 'Contact Representatives', description: 'Write to your elected officials', path: '/take-action', Icon: Landmark, keywords: ['congress', 'parliament', 'letter'] },
+  { type: 'action', title: 'Report CCP Activity', description: 'Document incidents of repression', path: '/community', Icon: Siren, keywords: ['report', 'incident', 'harassment'] },
+  { type: 'action', title: 'Donate', description: 'Support human rights organizations', path: '/take-action', Icon: CircleDollarSign, keywords: ['donate', 'support', 'money'] },
+  { type: 'action', title: 'Boycott Guide', description: 'Companies linked to forced labor', path: '/take-action', Icon: Ban, keywords: ['boycott', 'companies', 'forced labor'] },
+
+  // Resources
+  { type: 'resource', title: 'Security Quiz', description: 'Assess your digital security', path: '/security', Icon: Lock, keywords: ['quiz', 'assessment', 'security'] },
+  { type: 'resource', title: 'Documentaries', description: 'Films about CCP human rights abuses', path: '/education', Icon: Film, keywords: ['films', 'movies', 'watch'] },
+  { type: 'resource', title: 'Research Papers', description: 'Academic studies and reports', path: '/education', Icon: FileText, keywords: ['research', 'papers', 'academic'] },
+  { type: 'resource', title: 'Podcasts', description: 'Audio content about China', path: '/education', Icon: Mic, keywords: ['podcasts', 'audio', 'listen'] },
+  { type: 'resource', title: 'Books', description: 'Essential reading list', path: '/education', Icon: BookOpen, keywords: ['books', 'reading', 'literature'] },
+];
+
 const GlobalSearch = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -14,50 +65,6 @@ const GlobalSearch = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
-
-  // Searchable content database
-  const searchableContent = [
-    // Pages
-    { type: 'page', title: 'Dashboard', description: 'Overview of resistance activities', path: '/', Icon: BarChart3, keywords: ['home', 'overview', 'stats'] },
-    { type: 'page', title: 'Intelligence Feeds', description: 'Live news, updates, and regional threats', path: '/intelligence', Icon: Newspaper, keywords: ['news', 'rss', 'feeds', 'map', 'regions', 'countries', 'threats'] },
-    { type: 'page', title: 'Resistance Directory', description: 'Organizations fighting for human rights', path: '/directory', Icon: Users, keywords: ['organizations', 'ngos', 'groups'] },
-    { type: 'page', title: 'Political Prisoners', description: 'Documented cases of political detention', path: '/prisoners', Icon: Link, keywords: ['detained', 'imprisoned', 'jail'] },
-    { type: 'page', title: 'Take Action', description: 'Ways to help, campaigns, and advocacy', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition', 'activism', 'campaigns', 'movements'] },
-    { type: 'page', title: 'Community', description: 'Connect with other activists', path: '/community', Icon: MessageCircle, keywords: ['forum', 'discussion', 'connect'] },
-    { type: 'page', title: 'Resources', description: 'Tools and materials', path: '/resources', Icon: Wrench, keywords: ['tools', 'downloads', 'materials'] },
-    { type: 'page', title: 'Education Center', description: 'Learning resources, CCP tactics, and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training', 'propaganda', 'influence', 'methods', 'tactics'] },
-    { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
-    { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
-
-    // Political Prisoners
-    { type: 'prisoner', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder', path: '/prisoners', Icon: Link, keywords: ['hong kong', 'apple daily', 'media'] },
-    { type: 'prisoner', title: 'Ilham Tohti', description: 'Uyghur economist, life sentence', path: '/prisoners', Icon: Link, keywords: ['uyghur', 'economist', 'xinjiang'] },
-    { type: 'prisoner', title: 'Joshua Wong', description: 'Hong Kong democracy activist', path: '/prisoners', Icon: Link, keywords: ['hong kong', 'democracy', 'umbrella'] },
-    { type: 'prisoner', title: 'Gedhun Choekyi Nyima', description: 'Panchen Lama, disappeared since 1995', path: '/prisoners', Icon: Link, keywords: ['tibet', 'panchen lama', 'buddhism'] },
-    { type: 'prisoner', title: 'Gao Zhisheng', description: 'Human rights lawyer, disappeared', path: '/prisoners', Icon: Link, keywords: ['lawyer', 'disappeared', 'human rights'] },
-
-    // Topics
-    { type: 'topic', title: 'Uyghur Genocide', description: 'Documentation of atrocities in Xinjiang', path: '/education', Icon: BookOpen, keywords: ['xinjiang', 'camps', 'genocide', 'forced labor'] },
-    { type: 'topic', title: 'Hong Kong Freedom', description: 'Democracy movement and NSL', path: '/education', Icon: BookOpen, keywords: ['nsl', 'democracy', 'protests', '2019'] },
-    { type: 'topic', title: 'Tibet Rights', description: 'Tibetan independence movement', path: '/education', Icon: BookOpen, keywords: ['dalai lama', 'buddhism', 'independence'] },
-    { type: 'topic', title: 'Taiwan Sovereignty', description: 'Cross-strait relations and defense', path: '/threats', icon: '🇹🇼', keywords: ['cross-strait', 'defense', 'independence'] },
-    { type: 'topic', title: 'Transnational Repression', description: 'CCP activities abroad', path: '/tactics', Icon: Globe, keywords: ['police stations', 'fox hunt', 'diaspora'] },
-    { type: 'topic', title: 'Overseas Police Stations', description: '102+ stations in 53 countries', path: '/threats', Icon: ShieldAlert, keywords: ['police', 'stations', 'safeguard defenders'] },
-
-    // Actions
-    { type: 'action', title: 'Sign Petitions', description: 'Add your voice to active campaigns', path: '/take-action', Icon: PenLine, keywords: ['petition', 'sign', 'campaign'] },
-    { type: 'action', title: 'Contact Representatives', description: 'Write to your elected officials', path: '/take-action', Icon: Landmark, keywords: ['congress', 'parliament', 'letter'] },
-    { type: 'action', title: 'Report CCP Activity', description: 'Document incidents of repression', path: '/community', Icon: Siren, keywords: ['report', 'incident', 'harassment'] },
-    { type: 'action', title: 'Donate', description: 'Support human rights organizations', path: '/take-action', Icon: CircleDollarSign, keywords: ['donate', 'support', 'money'] },
-    { type: 'action', title: 'Boycott Guide', description: 'Companies linked to forced labor', path: '/take-action', Icon: Ban, keywords: ['boycott', 'companies', 'forced labor'] },
-
-    // Resources
-    { type: 'resource', title: 'Security Quiz', description: 'Assess your digital security', path: '/security', Icon: Lock, keywords: ['quiz', 'assessment', 'security'] },
-    { type: 'resource', title: 'Documentaries', description: 'Films about CCP human rights abuses', path: '/education', Icon: Film, keywords: ['films', 'movies', 'watch'] },
-    { type: 'resource', title: 'Research Papers', description: 'Academic studies and reports', path: '/education', Icon: FileText, keywords: ['research', 'papers', 'academic'] },
-    { type: 'resource', title: 'Podcasts', description: 'Audio content about China', path: '/education', Icon: Mic, keywords: ['podcasts', 'audio', 'listen'] },
-    { type: 'resource', title: 'Books', description: 'Essential reading list', path: '/education', Icon: BookOpen, keywords: ['books', 'reading', 'literature'] },
-  ];
 
   // Search function
   const performSearch = useCallback((searchQuery) => {
@@ -182,7 +189,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search pages, prisoners, topics, actions..."
+              placeholder="Search pages, profiles, topics, actions..."
               className="flex-1 px-4 py-4 bg-transparent text-white placeholder-slate-400 focus:outline-none"
               aria-label="Global search"
             />
@@ -222,6 +229,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                             <span className="font-medium text-white truncate">{result.title}</span>
                             <span className={`ml-2 px-2 py-0.5 text-xs rounded ${
                               result.type === 'page' ? 'bg-blue-900 text-blue-300' :
+                              result.type === 'profile' ? 'bg-amber-900 text-amber-300' :
                               result.type === 'prisoner' ? 'bg-red-900 text-red-300' :
                               result.type === 'topic' ? 'bg-purple-900 text-purple-300' :
                               result.type === 'action' ? 'bg-green-900 text-green-300' :

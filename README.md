@@ -2,7 +2,7 @@
 
 A comprehensive platform for documenting CCP human rights violations, supporting resistance movements, and providing tools for activists and researchers fighting against Chinese Communist Party authoritarianism.
 
-> **For Developers/Agents:** See [AGENT_ROADMAP.md](AGENT_ROADMAP.md) for current task status and [LLM_JUDGEMENT_LOG.md](LLM_JUDGEMENT_LOG.md) for decision history.
+> **For Developers/Agents:** See [_agents/AGENT_ROADMAP.md](_agents/AGENT_ROADMAP.md) for current task status and [_agents/LLM_JUDGEMENT_LOG.md](_agents/LLM_JUDGEMENT_LOG.md) for decision history.
 
 ## Mission
 
@@ -23,7 +23,7 @@ This platform serves as a centralized resource for:
 - Source attribution with clickable links to 164+ verified sources
 
 ### Political Prisoners Database
-- 60 documented political prisoners with source URLs
+- 62 documented political prisoners with source URLs
 - Status tracking (imprisoned, disappeared, deceased)
 - Action items for advocacy
 
@@ -61,7 +61,7 @@ This platform serves as a centralized resource for:
 - WCAG AA compliant text contrast
 
 ### Internationalization
-- 5 language locales: English, Simplified Chinese, Traditional Chinese, Uyghur, Tibetan
+- 8 language locales: English, Simplified Chinese, Traditional Chinese, Vietnamese, Korean, Japanese, Uyghur, Tibetan
 - Navigation and UI elements translated via machine translation
 - Sensitive content marked for human volunteer translation
 - Drop-in locale system for adding new languages
@@ -103,7 +103,7 @@ npm run dev
 
 ### Running Tests
 ```bash
-npm test                # Run all 165 tests
+npm test                # Run all 535 tests
 npm run test:watch      # Watch mode
 ```
 
@@ -188,7 +188,7 @@ We welcome contributions from researchers, developers, and activists. Data chang
 - Integration with additional verified data sources
 - Mobile app development
 
-Please see [STYLE_GUIDE.md](STYLE_GUIDE.md) for visual design and component conventions, and [DATA_SOURCES.md](DATA_SOURCES.md) for source attribution standards.
+Please see [_agents/STYLE_GUIDE.md](_agents/STYLE_GUIDE.md) for visual design and component conventions, and [_agents/research/DATA_SOURCES.md](_agents/research/DATA_SOURCES.md) for source attribution standards.
 
 ## License
 
