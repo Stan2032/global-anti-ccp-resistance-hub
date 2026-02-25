@@ -467,7 +467,7 @@
       "input": "Wang Yi - Foreign Minister",
       "output": {
         "name": "Wang Yi",
-        "position": "Member of the Political Bureau of the CPC Central Committee, Director of the Office of the Central Commission for Foreign Affairs, and Foreign Minister",
+        "position": "Member of the Political Bureau of the CCP Central Committee, Director of the Office of the Central Commission for Foreign Affairs, and Foreign Minister",
         "responsibility_area": "General",
         "us_sanctions": "No",
         "uk_sanctions": "No",
@@ -618,17 +618,17 @@
       "error": ""
     },
     {
-      "input": "Erkin Tuniyaz - Deputy Secretary of CPC Xinjiang",
+      "input": "Erkin Tuniyaz - Deputy Secretary of CCP Xinjiang",
       "output": {
         "name": "Erkin Tuniyaz",
-        "position": "Deputy Secretary of CPC Xinjiang Uyghur Autonomous Region",
+        "position": "Deputy Secretary of CCP Xinjiang Uyghur Autonomous Region",
         "responsibility_area": "Xinjiang",
         "us_sanctions": "No",
         "uk_sanctions": "No",
         "eu_sanctions": "No",
         "canada_sanctions": "Yes - December 2024",
         "australia_sanctions": "No",
-        "key_abuses": "Senior CPC Xinjiang official involved in mass detention and forced labor programs targeting Uyghurs",
+        "key_abuses": "Senior CCP Xinjiang official involved in mass detention and forced labor programs targeting Uyghurs",
         "current_status": "Active",
         "source_url": "https://www.canada.ca/en/global-affairs/news/2024/12/canada-sanctions-chinese-officials-for-human-rights-violations.html",
         "last_verified": "2026-02-25",

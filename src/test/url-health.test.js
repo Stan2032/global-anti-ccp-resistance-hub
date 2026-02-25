@@ -95,4 +95,24 @@ describe('No CCP state media links in JSX source files', () => {
     }
     expect(violations, `CCP domain links found in JSX:\n${violations.join('\n')}`).toEqual([]);
   });
+
+  it('does not use "CPC" terminology (CCP rebranding)', () => {
+    // The CCP promotes "CPC" (Communist Party of China) to dilute search results
+    // that surface critical journalism. This project uses "CCP" consistently.
+    const violations = [];
+    const dataJsonFiles = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
+    const allFiles = [
+      ...jsxFiles,
+      ...dataJsonFiles.map(f => resolve(DATA_DIR, f))
+    ];
+    for (const filePath of allFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      const relativePath = filePath.replace(SRC_DIR + '/', '');
+      const matches = content.match(/\bCPC\b/g);
+      if (matches) {
+        violations.push(`${relativePath}: ${matches.length} instance(s) of "CPC" — use "CCP" instead`);
+      }
+    }
+    expect(violations, `"CPC" found (use "CCP"):\n${violations.join('\n')}`).toEqual([]);
+  });
 });
