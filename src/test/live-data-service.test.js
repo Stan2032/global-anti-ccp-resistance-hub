@@ -96,7 +96,6 @@ describe('fetchPoliticalPrisoners', () => {
 
 describe('FEED_SOURCES', () => {
   it('should only contain real news organizations', () => {
-    const sourceNames = Object.values(FEED_SOURCES).map(s => s.name);
     // All sources should be high reliability
     for (const source of Object.values(FEED_SOURCES)) {
       expect(source.reliability).toBe('high');
