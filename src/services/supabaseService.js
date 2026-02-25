@@ -70,8 +70,9 @@ export async function subscribeNewsletter(email) {
 
   const { data, error } = await supabase
     .from('newsletter_subscribers')
-    .upsert([{ email, subscribed_at: new Date().toISOString() }], {
+    .upsert([{ email }], {
       onConflict: 'email',
+      ignoreDuplicates: true,
     })
     .select();
 
