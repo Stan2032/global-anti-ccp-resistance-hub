@@ -21,8 +21,8 @@ describe('Sitemap Data Integrity', () => {
     expect(sitemapContent).toContain('</urlset>');
   });
 
-  it('has exactly 23 URLs (11 main pages + 12 profiles)', () => {
-    expect(urls.length).toBe(23);
+  it('has exactly 26 URLs (11 main pages + 15 profiles)', () => {
+    expect(urls.length).toBe(26);
   });
 
   it('all URLs use the correct base URL', () => {
@@ -54,7 +54,7 @@ describe('Sitemap Data Integrity', () => {
     }
   });
 
-  describe('includes all 12 profile pages', () => {
+  describe('includes all 15 profile pages', () => {
     const profileSlugs = [
       'jimmy-lai',
       'ilham-tohti',
@@ -68,6 +68,9 @@ describe('Sitemap Data Integrity', () => {
       'nathan-law',
       'cardinal-zen',
       'agnes-chow',
+      'tashi-wangchuk',
+      'ren-zhiqiang',
+      'xu-zhiyong',
     ];
 
     for (const slug of profileSlugs) {

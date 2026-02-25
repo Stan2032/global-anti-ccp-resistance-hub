@@ -1,9 +1,21 @@
 # Completed Tasks Archive
 
 > Moved from `TODO.md` to keep the active task list focused and manageable.
-> Items here have been completed and verified across Sessions 1-78.
+> Items here have been completed and verified across Sessions 1-82.
 >
 > **Active tasks:** See `_agents/TODO.md`
+
+---
+
+## ✅ Sessions 81-82 — Supabase Integration, 3 Profiles, Cloudflare Fix
+
+- [x] **Supabase integration**: Installed @supabase/supabase-js, created supabaseClient.js + supabaseService.js (4 form types), wired IncidentReportForm, CSP updated ✅
+- [x] **3 new profile pages**: Tashi Wangchuk (Tibetan language rights), Ren Zhiqiang (CCP critic), Xu Zhiyong (New Citizens Movement). 12→15 profiles ✅
+- [x] **Cloudflare Pages fix**: Removed stale pnpm-lock.yaml that caused build failure ✅
+- [x] **Deployment guides**: SUPABASE_SETUP.md (click-by-click, single SQL block) + CLOUDFLARE_DEPLOY.md ✅
+- [x] **.env.example**: Created with VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY ✅
+- [x] **8 new tests**: 7 Supabase service graceful-degradation + 1 CSP. 535→546 tests, 26→27 files ✅
+- [x] **Agent handoff docs**: Updated AGENT_HANDOFF.json v7.0, NEXT_AGENT_PROMPT.md, TODO.md, TODO_COMPLETED.md, CHANGELOG.md, session thoughts ✅
 
 ---
 
