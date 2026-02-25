@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 85)
+> Last Updated: February 25, 2026 (Session 87)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -247,9 +247,10 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Backend connection Phase 2** — Supabase client + service layer done ✅. VolunteerSignup, NewsDigest, IncidentReportForm all wired ✅. Remaining: add Supabase Auth for admin, wire Contact form
+1. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Site cleanup typography** — SITE_CLEANUP_TODO.md Priority 1 ✅ (font sizes bumped, contrast improved, line-height added)
+3. **Site cleanup** — SITE_CLEANUP_TODO.md ~65% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: page merging, visual hierarchy
+4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
 
 ### What Needs Human Decisions
 1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
@@ -296,12 +297,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 84, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 564 tests (29 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete (text-xs→14px, text-sm→16px).
-- **Backend:** Supabase client + service layer integrated. 3 forms wired (IncidentReport, VolunteerSignup, NewsDigest).
+### Current State Summary (as of Session 87, Feb 25, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 863 tests (32 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete (text-xs→14px, text-sm→16px). Design system compliance tests added.
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
+- **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries
+- **Data:** 62 political prisoners, 35 sanctioned entities, 30 forced labor companies, 142+ total entries. DataSources extracted to JSON.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
