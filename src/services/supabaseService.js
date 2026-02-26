@@ -4,8 +4,12 @@
  * Provides read/write helpers for the frontend to interact with Supabase tables.
  * All functions are safe to call even when Supabase is not configured —
  * they return { data: null, error: 'Supabase not configured' } gracefully.
+ *
+ * PII fields are encrypted client-side before storage when an encryption
+ * public key is configured (see BACKEND_GUIDE.md).
  */
 import supabase, { isSupabaseConfigured } from './supabaseClient.js';
+import { encryptSubmission } from '../utils/encryption.js';
 
 const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
 
@@ -18,19 +22,23 @@ const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VIT
 export async function submitIncidentReport(report) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
+  const row = {
+    title: report.title,
+    description: report.description,
+    incident_type: report.incidentType || null,
+    location: report.location || null,
+    date_of_incident: report.dateOfIncident || null,
+    severity: report.severity || 'medium',
+    source_url: report.sourceUrl || null,
+    contact_email: report.contactEmail || null,
+    status: 'pending',
+  };
+
+  const encrypted = await encryptSubmission(row, ['contact_email', 'description', 'location']);
+
   const { data, error } = await supabase
     .from('incident_reports')
-    .insert([{
-      title: report.title,
-      description: report.description,
-      incident_type: report.incidentType || null,
-      location: report.location || null,
-      date_of_incident: report.dateOfIncident || null,
-      severity: report.severity || 'medium',
-      source_url: report.sourceUrl || null,
-      contact_email: report.contactEmail || null,
-      status: 'pending',
-    }])
+    .insert([encrypted])
     .select();
 
   return { data, error: error?.message || null };
@@ -44,17 +52,21 @@ export async function submitIncidentReport(report) {
 export async function submitVolunteerSignup(volunteer) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
+  const row = {
+    name: volunteer.name,
+    email: volunteer.email,
+    skills: volunteer.skills || [],
+    languages: volunteer.languages || [],
+    availability: volunteer.availability || null,
+    message: volunteer.message || null,
+    status: 'pending',
+  };
+
+  const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
+
   const { data, error } = await supabase
     .from('volunteer_signups')
-    .insert([{
-      name: volunteer.name,
-      email: volunteer.email,
-      skills: volunteer.skills || [],
-      languages: volunteer.languages || [],
-      availability: volunteer.availability || null,
-      message: volunteer.message || null,
-      status: 'pending',
-    }])
+    .insert([encrypted])
     .select();
 
   return { data, error: error?.message || null };
@@ -87,14 +99,18 @@ export async function subscribeNewsletter(email) {
 export async function submitContactMessage(message) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
+  const row = {
+    name: message.name,
+    email: message.email,
+    subject: message.subject || null,
+    message: message.message,
+  };
+
+  const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
+
   const { data, error } = await supabase
     .from('contact_messages')
-    .insert([{
-      name: message.name,
-      email: message.email,
-      subject: message.subject || null,
-      message: message.message,
-    }])
+    .insert([encrypted])
     .select();
 
   return { data, error: error?.message || null };
