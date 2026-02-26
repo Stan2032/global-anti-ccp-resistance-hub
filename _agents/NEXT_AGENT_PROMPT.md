@@ -20,10 +20,10 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 604 passing Vitest tests across 34 test files
+- Contains 310+ source files, 100+ React components, 631 passing Vitest tests across 34 test files
 
-### What Has Been Done (89 Sessions of Work)
-Over 89 agent sessions, the following has been accomplished:
+### What Has Been Done (106 Sessions of Work)
+Over 106 agent sessions, the following has been accomplished:
 1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **15 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
@@ -31,26 +31,38 @@ Over 89 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 604 Vitest tests across 34 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health)
+8. **Test infrastructure**: 631 Vitest tests across 34 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
-10. **Sanctions tracker**: 35 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries
+10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
 12. **Print styles**: @media print stylesheet for A4 layout
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
 16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
-17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON. DetentionFacilities + CCPOfficials use justified hybrid approach.
+17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 5/5 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read entirely from JSON.
 18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
 20. **Typography cleanup**: SITE_CLEANUP_TODO.md Priority 1 complete — text-xs: 12→14px, text-sm: 14→16px, contrast overrides, line-height improvements, paragraph font-weight improvements. All via CSS overrides in index.css.
+21. **ESLint cleanup**: Fixed 5 errors in SocketContext.jsx (useCallback with inline functions, useMemo for value). 0 errors, 10 harmless warnings.
+22. **URL migration**: 19 stale github.io references updated to Cloudflare Workers URL across index.html, Footer, PetitionGenerator, DataExport, QuickFacts.
+23. **Mobile responsiveness**: @media queries for 768px and 480px breakpoints. 44px WCAG touch targets, 16px base font, iOS zoom prevention, responsive grids.
+24. **Documentation**: CONTRIBUTING.md and ARCHITECTURE.md added. README.md updated with static SPA architecture section.
+25. **Sanctions update**: 12 new entries (35→47): 6 Canada Dec 2024 (canada.ca), 6 US Mar 2025 (state.gov). 12 new officials (22→34). Chen Quanguo multi-country flags corrected.
+26. **CPC terminology ban**: Owner directive — never use "CPC" (CCP's information warfare tactic). 5 instances replaced, automated test prevents reintroduction.
+27. **PWA fix**: Service worker 8 stale GitHub Pages paths → root-relative. Cache v1→v2. Terminal-styled offline.html and 404.html. Manifest theme_color → #0a0e14. 10 new PWA tests.
+28. **Knowledge transfer**: Comprehensive session notes (`_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`) covering 15 sessions of reasoning, patterns, anti-patterns, and lessons for future agents.
+29. **Security headers**: Added HSTS (1yr, includeSubDomains, preload), COOP (same-origin), CORP (same-origin). 9 total security headers. 3 new tests.
+30. **Semantic buttons**: Converted all 8 div[role="button"] to semantic button/motion.button (WCAG 4.1.2). Added prevention test. Fixed heading hierarchy (WCAG 1.3.1).
+31. **Orphan cleanup**: Removed 7 orphan components (2,043 lines dead code). Integrated 2 unique orphans (ChinaTechThreats→SecurityCenter, MediaManipulation→EducationalResources). Added orphan detection test.
+32. **Email deferral**: Owner directive to delay email/newsletter feature to later date. Marked DEFERRED in TODO.md.
 
 ### Your Quick Start
 ```bash
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 604 tests passing across 34 test files
+npx vitest run    # Should show 631 tests passing across 34 test files
 ```
 
 ---
@@ -73,6 +85,8 @@ These are directives from the human owner. Follow them:
 5. **Design aesthetic**: Modern ASCII/terminal — readable, accessible, professional. See `_agents/STYLE_GUIDE.md` for the complete design system.
 
 6. **Flags**: Use proper SVG flags for Uyghur (East Turkestan/Kök Bayraq) and Tibetan (Snow Lion) — never generic Lucide icons. Flags are in `src/components/FlagIcons.jsx`.
+
+7. **Terminology**: Always use "CCP" (Chinese Communist Party), NEVER "CPC" (Communist Party of China). The CCP promotes "CPC" to dilute search results that surface critical journalism and human rights documentation. An automated test in `url-health.test.js` scans all JSX and JSON files to enforce this.
 
 ---
 
@@ -107,7 +121,7 @@ These are directives from the human owner. Follow them:
 │   │   ├── SanctionsTracker.jsx # Uses src/data/sanctions_tracker.json
 │   │   └── ...
 │   ├── data/                   # JSON data files
-│   │   ├── sanctions_tracker.json     # 35 sanctions entries
+│   │   ├── sanctions_tracker.json     # 47 sanctions entries
 │   │   ├── political_prisoners_research.json
 │   │   ├── sanctioned_officials_research.json
 │   │   └── ...
@@ -118,7 +132,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 30 Vitest test files, 573 tests
+│   └── test/                   # 34 Vitest test files, 631 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -139,7 +153,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 573 tests (30 files)
+npx vitest run                           # All 631 tests (34 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -185,15 +199,15 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 
 1. **Backend tests**: Require PostgreSQL database, can't run in sandbox. (MEDIUM)
 2. **Forms**: All 4 forms (IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm) are wired to Supabase. All show conditional "Coming Soon" notices when backend is not configured.
-3. **Simulated data Phase 2**: PoliticalPrisoners + ForcedLaborTracker fully migrated to JSON ✅. DetentionFacilities + CCPOfficials use justified hybrid approach (rich component data not in JSON). To fully migrate, enrich JSON with coordinates/imagery. (LOW — see `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
-4. **Site cleanup**: Typography done ✅. Tab consolidation, page merging ~50% complete. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
+3. **Simulated data Phase 2**: ✅ ALL COMPLETE. All 5/5 data migrations done: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read from JSON. No hardcoded data arrays remain. (See `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md`)
+4. **Site cleanup**: Typography ✅, mobile ✅, ESLint ✅, data migrations ✅. ~75% complete. Remaining: page merging, visual hierarchy, color standardization. (LOW — see `_agents/planning/SITE_CLEANUP_TODO.md`)
 
 ---
 
 ## How Previous Agents Worked
 
 ### Proven Patterns (Use These)
-- **Hybrid JSON + existing data**: Keep rich existing component data, add JSON sources alongside. 4/4 successes.
+- **Hybrid JSON + existing data**: Keep rich existing component data, add JSON sources alongside. 5/5 successes.
 - **Incremental commits**: Small changes, frequent `report_progress`, verify after each change.
 - **Security-first**: Run CodeQL after code changes, `npm audit` for dependencies, never introduce XSS/injection.
 - **Test alongside**: Write tests for new components, run existing tests after every change.
@@ -215,7 +229,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 2. `_agents/TODO.md` — Active task list (pending items only)
 3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
 4. `_agents/STYLE_GUIDE.md` — Design system reference
-4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v5.0)
+4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v8.1)
 5. `_agents/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered)
 6. `_agents/thoughts/` — Per-session decision notes (read the latest few)
 
@@ -234,7 +248,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 62-85 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-85)  
-**Date:** February 25, 2026  
-**Repository state:** 573 tests passing, build clean, terminal design 100% applied, typography cleanup complete, 15 profiles, 8 languages, 35 sanctions, 31 timeline events, 0 orphan components, CCP influence detection centralized, Supabase integrated (4 forms wired), Cloudflare deploy-ready  
+**Handoff prepared by:** Sessions 62-106 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-106)  
+**Date:** February 26, 2026  
+**Repository state:** 631 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events, 0 orphan components, 6 design system compliance checks, CCP influence detection centralized, "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner, Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 5/5 data migrations complete, 9 security headers (HSTS/COOP/CORP/CSP), URLs pointing to Cloudflare Workers, comprehensive session notes in thoughts/  
 **Status:** ✅ MERGE READY — branch prepared for merge to main

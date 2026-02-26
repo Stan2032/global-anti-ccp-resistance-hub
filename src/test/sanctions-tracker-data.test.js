@@ -95,10 +95,10 @@ describe('Sanctions Tracker Data', () => {
 
   it('source_urls point to government domains', () => {
     const validDomains = [
-      'treasury.gov', 'cbp.gov', 'bis.gov',       // US
+      'treasury.gov', 'cbp.gov', 'bis.gov', 'state.gov', // US
       'gov.uk',                                     // UK
       'sanctionsmap.eu',                            // EU
-      'international.gc.ca',                        // Canada
+      'international.gc.ca', 'canada.ca',           // Canada
       'dfat.gov.au'                                 // Australia
     ];
     sanctionsData.sanctions.forEach(sanction => {
@@ -108,6 +108,25 @@ describe('Sanctions Tracker Data', () => {
         matchesDomain,
         `Sanction ${sanction.id} source_url points to non-government domain: ${url}`
       ).toBe(true);
+    });
+  });
+
+  describe('Cross-file consistency with sanctioned officials', () => {
+    it('all individually sanctioned targets appear in sanctioned_officials_research.json', async () => {
+      const { default: officialsData } = await import('../data/sanctioned_officials_research.json');
+      const officialNames = new Set(
+        officialsData.results.map(r => r.output.name.toLowerCase())
+      );
+
+      const individualSanctions = sanctionsData.sanctions.filter(s => s.type === 'individual');
+      const missing = individualSanctions.filter(
+        s => !officialNames.has(s.target.toLowerCase())
+      );
+
+      expect(
+        missing.map(s => s.target),
+        `Sanctioned individuals not in officials research: ${missing.map(s => s.target).join(', ')}`
+      ).toEqual([]);
     });
   });
 });

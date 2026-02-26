@@ -1,27 +1,108 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Global Resistance Hub</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment
-      var pathSegmentsToKeep = 1;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Resistance Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', 'Consolas', monospace;
+      background: #0a0e14;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e2e8f0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 560px;
+      width: 100%;
+      background: #111820;
+      border: 1px solid #1c2a35;
+      padding: 2rem;
+    }
+    .header {
+      border-bottom: 1px solid #1c2a35;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .prompt { color: #4afa82; font-size: 14px; }
+    .dim { color: #1c2a35; }
+    .err { color: #f87171; }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 0.5rem;
+      font-family: 'Courier New', 'Consolas', monospace;
+    }
+    pre {
+      background: #0a0e14;
+      border: 1px solid #1c2a35;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+    p { font-size: 15px; color: #94a3b8; line-height: 1.7; margin-bottom: 1rem; }
+    .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: rgba(74, 250, 130, 0.1);
+      color: #4afa82;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 14px;
+      border: 1px solid rgba(74, 250, 130, 0.3);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn:hover {
+      background: rgba(74, 250, 130, 0.2);
+      border-color: #4afa82;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #94a3b8;
+      border-color: #1c2a35;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="prompt">$ navigate <span class="err" id="path"></span></div>
+      <h1><span class="dim">──</span> error_404: path_not_found</h1>
+    </div>
 
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
-    </script>
-  </head>
-  <body>
-  </body>
+    <pre>
+╔══════════════════════════════════════╗
+║  ERROR 404 — ROUTE NOT FOUND        ║
+║                                      ║
+║  The requested path does not exist   ║
+║  in the resistance database.         ║
+╚══════════════════════════════════════╝</pre>
+
+    <p>The page you are looking for may have been moved or does not exist.</p>
+
+    <div class="actions">
+      <a href="/" class="btn">$ cd /dashboard</a>
+      <button class="btn btn-secondary" onclick="history.back()">$ cd ..</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('path').textContent = window.location.pathname;
+  </script>
+</body>
 </html>

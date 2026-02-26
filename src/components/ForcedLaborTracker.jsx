@@ -147,12 +147,10 @@ const ForcedLaborTracker = () => {
               key={idx} 
               className="bg-[#111820]/30 overflow-hidden"
             >
-              <div 
-                className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
+              <button
+                type="button"
+                className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors text-left w-full"
                 onClick={() => setExpandedCompany(expandedCompany === idx ? null : idx)}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedCompany(expandedCompany === idx ? null : idx) } }}
-                role="button"
-                tabIndex={0}
                 aria-expanded={expandedCompany === idx}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -175,7 +173,7 @@ const ForcedLaborTracker = () => {
                     {expandedCompany === idx ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                   </div>
                 </div>
-              </div>
+              </button>
 
               {/* Expanded Details */}
               {expandedCompany === idx && (

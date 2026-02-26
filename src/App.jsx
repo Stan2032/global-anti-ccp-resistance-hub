@@ -153,7 +153,7 @@ const MobileNav = ({ isOpen, onClose }) => {
                 to={item.href}
                 onClick={onClose}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-2.5 font-mono text-sm transition-colors ${
+                className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-3 font-mono text-sm transition-colors ${
                   isActive
                     ? 'bg-[#4afa82]/10 text-[#4afa82] border-l-2 border-[#4afa82]'
                     : 'text-slate-300 hover:text-[#4afa82] hover:bg-white/5 border-l-2 border-transparent'

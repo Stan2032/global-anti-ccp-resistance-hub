@@ -41,6 +41,7 @@ const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
 const OfflineModeManager = lazy(() => import('../components/OfflineModeManager'));
 const WhistleblowerPortal = lazy(() => import('../components/WhistleblowerPortal'));
 const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
+const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -210,6 +211,7 @@ const SecurityCenter = () => {
           { id: 'guides', label: 'Guides' },
           { id: 'protect', label: 'Protect' },
           { id: 'whistleblower', label: 'Whistleblower' },
+          { id: 'threats', label: 'Tech Threats' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -598,6 +600,11 @@ const SecurityCenter = () => {
       {/* Whistleblower Portal Tab */}
       {activeTab === 'whistleblower' && (
         <Suspense fallback={<SectionLoader />}><WhistleblowerPortal /></Suspense>
+      )}
+
+      {/* Tech Threats Tab */}
+      {activeTab === 'threats' && (
+        <Suspense fallback={<SectionLoader />}><ChinaTechThreats /></Suspense>
       )}
     </div>
   )

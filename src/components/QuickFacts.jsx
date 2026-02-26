@@ -99,7 +99,7 @@ const QuickFacts = () => {
   };
 
   const copyToClipboard = async (fact) => {
-    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n${fact.sourceUrl}\n\n${fact.hashtags}\n\nLearn more: https://stan2032.github.io/global-anti-ccp-resistance-hub/`;
+    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n${fact.sourceUrl}\n\n${fact.hashtags}\n\nLearn more: https://global-anti-ccp-resistance-hub.stane203.workers.dev/`;
     
     try {
       await navigator.clipboard.writeText(text);
@@ -112,7 +112,7 @@ const QuickFacts = () => {
 
   const shareToTwitter = (fact) => {
     const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n\n${fact.hashtags}`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://stan2032.github.io/global-anti-ccp-resistance-hub/')}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://global-anti-ccp-resistance-hub.stane203.workers.dev/')}`;
     window.open(url, '_blank', 'width=550,height=420');
   };
 

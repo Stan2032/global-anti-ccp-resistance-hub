@@ -369,7 +369,7 @@ const DataExport = () => {
             <h4 className="font-medium text-white mb-2">Attribution Format</h4>
             <div className="bg-[#0a0e14] rounded p-3 font-mono text-xs text-slate-400">
               Data source: Global Anti-CCP Resistance Hub<br />
-              URL: https://stan2032.github.io/global-anti-ccp-resistance-hub/<br />
+              URL: https://global-anti-ccp-resistance-hub.stane203.workers.dev/<br />
               License: CC BY 4.0<br />
               Accessed: [Date]
             </div>

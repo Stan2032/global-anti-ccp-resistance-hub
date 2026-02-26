@@ -81,42 +81,26 @@ const extractSanctionYear = (official) => {
   return null;
 };
 
-// Chinese name mapping for JSON officials
-const CHINESE_NAMES = {
-  'zhu hailun': '朱海仑',
-  'wang mingshan': '王明山',
-  'wang junzheng': '王君正',
-  'teresa cheng': '鄭若驊',
-  'erick tsang': '曾國衞',
-  'chris tang': '鄧炳強',
-  'xia baolong': '夏寶龍',
-  'luo huining': '駱惠寧',
-  'zheng yanxiong': '鄭雁雄',
-  'wu yingjie': '吳英傑',
-  'pema thinley': '帕巴拉·格列朗傑',
-  'chen mingguo': '陳明國'
-};
-
-// Map JSON officials to component format
-const jsonOfficials = sanctionedOfficialsData.results.map((result) => {
+// Build officials list entirely from JSON data
+const officials = sanctionedOfficialsData.results.map((result) => {
   const official = result.output;
   const sanctionedBy = mapSanctionData(official);
   
   return {
     id: official.name.toLowerCase().replace(/\s+/g, '-'),
     name: official.name,
-    chineseName: '', // Not in JSON, will be supplemented from hardcoded data if available
+    chineseName: official.chinese_name || '',
     position: official.position,
     level: getOfficialLevel(official.responsibility_area),
     region: official.responsibility_area === 'General' ? 'National' : official.responsibility_area,
     category: getOfficialCategory(official.responsibility_area),
-    birthYear: null, // Not in JSON
-    inPowerSince: null, // Not in JSON
+    birthYear: official.birth_year || null,
+    inPowerSince: official.in_power_since || null,
     sanctioned: sanctionedBy.length > 0,
     sanctionedBy: sanctionedBy,
     photo: null,
-    responsibility: official.key_abuses ? [official.key_abuses] : [],
-    keyActions: [], // Not in JSON
+    responsibility: official.detailed_responsibilities || (official.key_abuses ? [official.key_abuses] : []),
+    keyActions: official.key_actions || [],
     sources: official.source_url ? [{
       name: getSourceName(sanctionedBy),
       url: official.source_url,
@@ -127,278 +111,6 @@ const jsonOfficials = sanctionedOfficialsData.results.map((result) => {
     currentStatus: official.current_status
   };
 });
-
-// Original hardcoded officials data with more detail
-const hardcodedOfficials = [
-  {
-    id: 'xi-jinping',
-    name: 'Xi Jinping',
-    chineseName: '习近平',
-    position: 'General Secretary of CCP, President of PRC, Chairman of CMC',
-    level: 'Paramount Leader',
-    region: 'National',
-    category: 'Leadership',
-    birthYear: 1953,
-    inPowerSince: 2012,
-    sanctioned: false,
-    photo: null,
-    responsibility: [
-      'Ultimate authority over all CCP policies including Xinjiang, Hong Kong, Tibet',
-      'Architect of "Xi Jinping Thought" and constitutional changes removing term limits',
-      'Oversees Belt and Road Initiative and military expansion',
-      'Responsible for crackdown on civil society, lawyers, journalists',
-    ],
-    keyActions: [
-      { year: 2013, action: 'Launched anti-corruption campaign targeting rivals' },
-      { year: 2017, action: 'Escalated Xinjiang internment camps' },
-      { year: 2018, action: 'Removed presidential term limits' },
-      { year: 2020, action: 'Imposed Hong Kong National Security Law' },
-      { year: 2022, action: 'Secured unprecedented third term' },
-    ],
-    sources: ['BBC', 'Reuters', 'Council on Foreign Relations'],
-  },
-  {
-    id: 'chen-quanguo',
-    name: 'Chen Quanguo',
-    chineseName: '陈全国',
-    position: 'Former CCP Secretary of Xinjiang (2016-2021)',
-    level: 'Provincial',
-    region: 'Xinjiang',
-    category: 'Regional',
-    birthYear: 1955,
-    inPowerSince: 2016,
-    sanctioned: true,
-    sanctionedBy: ['USA', 'UK', 'EU', 'Canada'],
-    photo: null,
-    responsibility: [
-      'Architect of mass internment camp system in Xinjiang',
-      'Implemented "vocational training centers" holding 1-3 million Uyghurs',
-      'Previously implemented similar tactics in Tibet (2011-2016)',
-      'Expanded surveillance and "grid management" systems',
-    ],
-    keyActions: [
-      { year: 2016, action: 'Appointed Xinjiang Party Secretary' },
-      { year: 2017, action: 'Massively expanded detention facilities' },
-      { year: 2018, action: 'Implemented forced labor programs' },
-      { year: 2020, action: 'Sanctioned by US under Global Magnitsky Act' },
-      { year: 2021, action: 'Transferred out of Xinjiang' },
-    ],
-    sources: ['ASPI', 'Xinjiang Police Files', 'US Treasury'],
-  },
-  {
-    id: 'carrie-lam',
-    name: 'Carrie Lam',
-    chineseName: '林鄭月娥',
-    position: 'Former Chief Executive of Hong Kong (2017-2022)',
-    level: 'Regional',
-    region: 'Hong Kong',
-    category: 'Regional',
-    birthYear: 1957,
-    inPowerSince: 2017,
-    sanctioned: true,
-    sanctionedBy: ['USA'],
-    photo: null,
-    responsibility: [
-      'Introduced extradition bill sparking 2019 protests',
-      'Oversaw implementation of National Security Law',
-      'Presided over mass arrests of pro-democracy figures',
-      'Closed Apple Daily and independent media',
-    ],
-    keyActions: [
-      { year: 2019, action: 'Introduced extradition bill' },
-      { year: 2019, action: 'Refused independent inquiry into police violence' },
-      { year: 2020, action: 'Implemented National Security Law' },
-      { year: 2020, action: 'Sanctioned by US Treasury' },
-      { year: 2021, action: 'Oversaw arrest of 47 democrats' },
-    ],
-    sources: ['HKFP', 'US Treasury', 'Amnesty International'],
-  },
-  {
-    id: 'john-lee',
-    name: 'John Lee',
-    chineseName: '李家超',
-    position: 'Chief Executive of Hong Kong (2022-present)',
-    level: 'Regional',
-    region: 'Hong Kong',
-    category: 'Regional',
-    birthYear: 1957,
-    inPowerSince: 2022,
-    sanctioned: true,
-    sanctionedBy: ['USA'],
-    photo: null,
-    responsibility: [
-      'Former Security Secretary who oversaw 2019 protest crackdown',
-      'Implemented Article 23 national security legislation',
-      'Continued prosecution of pro-democracy activists',
-      'Expanded surveillance and censorship',
-    ],
-    keyActions: [
-      { year: 2019, action: 'As Security Secretary, oversaw police response to protests' },
-      { year: 2020, action: 'Sanctioned by US Treasury' },
-      { year: 2022, action: 'Elected Chief Executive (only candidate)' },
-      { year: 2024, action: 'Passed Article 23 legislation' },
-    ],
-    sources: ['HKFP', 'US Treasury', 'Hong Kong Watch'],
-  },
-  {
-    id: 'wang-junzheng',
-    name: 'Wang Junzheng',
-    chineseName: '王君正',
-    position: 'CCP Secretary of Tibet (2021-present)',
-    level: 'Provincial',
-    region: 'Tibet',
-    category: 'Regional',
-    birthYear: 1963,
-    inPowerSince: 2021,
-    sanctioned: true,
-    sanctionedBy: ['USA', 'EU', 'UK', 'Canada'],
-    photo: null,
-    responsibility: [
-      'Former Deputy Secretary of Xinjiang during camp expansion',
-      'Now implementing similar policies in Tibet',
-      'Overseeing forced labor transfer programs',
-      'Expanding surveillance infrastructure',
-    ],
-    keyActions: [
-      { year: 2019, action: 'Deputy Secretary of Xinjiang' },
-      { year: 2020, action: 'Sanctioned by US for Xinjiang role' },
-      { year: 2021, action: 'Appointed Tibet Party Secretary' },
-      { year: 2022, action: 'Expanded "vocational training" in Tibet' },
-    ],
-    sources: ['ICT', 'US Treasury', 'Tibet Action Institute'],
-  },
-  {
-    id: 'zhu-hailun',
-    name: 'Zhu Hailun',
-    chineseName: '朱海仑',
-    position: 'Former Deputy Secretary of Xinjiang',
-    level: 'Provincial',
-    region: 'Xinjiang',
-    category: 'Security',
-    birthYear: 1958,
-    inPowerSince: 2016,
-    sanctioned: true,
-    sanctionedBy: ['USA', 'UK'],
-    photo: null,
-    responsibility: [
-      'Head of Xinjiang Political and Legal Affairs Commission',
-      'Oversaw security apparatus and detention system',
-      'Signed documents ordering mass detentions',
-      'Named in Xinjiang Police Files',
-    ],
-    keyActions: [
-      { year: 2017, action: 'Signed detention orders for thousands' },
-      { year: 2018, action: 'Expanded camp system' },
-      { year: 2020, action: 'Sanctioned by US Treasury' },
-      { year: 2021, action: 'Sanctioned by UK' },
-    ],
-    sources: ['Xinjiang Police Files', 'US Treasury', 'UK Government'],
-  },
-  {
-    id: 'zhao-kezhi',
-    name: 'Zhao Kezhi',
-    chineseName: '赵克志',
-    position: 'Former Minister of Public Security (2017-2022)',
-    level: 'National',
-    region: 'National',
-    category: 'Security',
-    birthYear: 1953,
-    inPowerSince: 2017,
-    sanctioned: false,
-    photo: null,
-    responsibility: [
-      'Oversaw national police and security apparatus',
-      'Responsible for transnational repression operations',
-      'Directed Fox Hunt and Sky Net operations',
-      'Oversaw expansion of surveillance technology',
-    ],
-    keyActions: [
-      { year: 2017, action: 'Appointed Minister of Public Security' },
-      { year: 2018, action: 'Expanded overseas police operations' },
-      { year: 2019, action: 'Directed response to Hong Kong protests' },
-      { year: 2022, action: 'Retired from position' },
-    ],
-    sources: ['Safeguard Defenders', 'FBI', 'Reuters'],
-  },
-  {
-    id: 'wang-yi',
-    name: 'Wang Yi',
-    chineseName: '王毅',
-    position: 'Foreign Minister, Director of CCP Foreign Affairs Commission',
-    level: 'National',
-    region: 'National',
-    category: 'Diplomacy',
-    birthYear: 1953,
-    inPowerSince: 2013,
-    sanctioned: false,
-    photo: null,
-    responsibility: [
-      'Chief diplomat defending CCP human rights record',
-      'Promotes "wolf warrior" diplomacy',
-      'Denies genocide and repression allegations',
-      'Threatens countries over Taiwan, Tibet, Xinjiang',
-    ],
-    keyActions: [
-      { year: 2019, action: 'Defended Xinjiang policies internationally' },
-      { year: 2020, action: 'Threatened UK over Hong Kong' },
-      { year: 2022, action: 'Reappointed Foreign Minister' },
-      { year: 2023, action: 'Threatened Philippines over South China Sea' },
-    ],
-    sources: ['Ministry of Foreign Affairs', 'Reuters', 'AP'],
-  },
-];
-
-// Merge JSON data with hardcoded data
-// Use JSON for sanction info and sources, but keep detailed info from hardcoded
-const officials = hardcodedOfficials.map(hardcoded => {
-  const jsonMatch = jsonOfficials.find(json => 
-    json.name.toLowerCase() === hardcoded.name.toLowerCase() ||
-    json.id === hardcoded.id
-  );
-  
-  if (jsonMatch) {
-    return {
-      ...hardcoded,
-      sanctioned: jsonMatch.sanctioned || hardcoded.sanctioned,
-      sanctionedBy: jsonMatch.sanctionedBy.length > 0 ? jsonMatch.sanctionedBy : hardcoded.sanctionedBy,
-      sources: jsonMatch.sources.length > 0 ? [...jsonMatch.sources, ...hardcoded.sources.map(s => 
-        typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
-      )] : hardcoded.sources.map(s => 
-        typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
-      ),
-      currentStatus: jsonMatch.currentStatus,
-      responsibility: jsonMatch.responsibility[0] ? 
-        [jsonMatch.responsibility[0], ...hardcoded.responsibility] : 
-        hardcoded.responsibility
-    };
-  }
-  
-  // Convert old source format to new format
-  return {
-    ...hardcoded,
-    sources: hardcoded.sources.map(s => 
-      typeof s === 'string' ? { name: s, url: '#', type: 'Reference', verified: false } : s
-    )
-  };
-});
-
-// Add any JSON officials not in hardcoded data
-const unmatchedJsonOfficials = jsonOfficials.filter(json => 
-  !hardcodedOfficials.find(hardcoded => 
-    hardcoded.name.toLowerCase() === json.name.toLowerCase() ||
-    hardcoded.id === json.id
-  )
-);
-
-// Supplement Chinese names for JSON officials
-unmatchedJsonOfficials.forEach(official => {
-  const key = official.name.toLowerCase();
-  if (CHINESE_NAMES[key]) {
-    official.chineseName = CHINESE_NAMES[key];
-  }
-});
-
-officials.push(...unmatchedJsonOfficials);
 
 // Government sanction list sources
 const sanctionSources = [
@@ -685,7 +397,7 @@ export default function CCPOfficials() {
           ))}
         </select>
         <select
-          aria-label="Region filter"
+          aria-label="Category filter"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
           className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"

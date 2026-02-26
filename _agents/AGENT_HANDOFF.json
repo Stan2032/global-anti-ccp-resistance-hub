@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "7.4",
-    "date": "2026-02-25T18:28:00Z",
+    "version": "8.1",
+    "date": "2026-02-26T00:05:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v7.3, Session 87)",
+    "supersedes": "AGENT_HANDOFF.json (v8.0, Session 104)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -22,26 +22,34 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 604,
+    "frontend_tests": 631,
     "test_files": 34,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
     "languages_supported": 8,
-    "data_entries_sourced": 142,
-    "sanctions_entries": 35,
+    "data_entries_sourced": 154,
+    "sanctions_entries": 47,
+    "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 89,
-    "design_system": "terminal_ascii_100_percent_applied",
+    "sessions_completed": 106,
+    "eslint_status": "0_errors_10_warnings",
+    "npm_vulnerabilities": 0,
+    "codeql_alerts": 0,
+    "mobile_responsiveness": "WCAG_2.5.5_44px_touch_targets_16px_base_font",
+    "cpc_terminology": "BANNED_automated_test_enforces_CCP_only",
+    "design_system": "terminal_ascii_100_percent_applied_6_automated_compliance_checks",
+    "design_system_checks": ["prohibited_rounded", "gradient_backgrounds", "structural_bg_gray", "structural_border_gray", "orphan_detection", "role_button_prevention"],
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
     "pages_consolidated": "18_to_14",
-    "orphan_components_integrated": 10,
-    "accessibility": "WCAG_AA_verified_plus_ARIA_modals",
+    "orphan_components_integrated": "17_total_0_remaining",
+    "accessibility": "WCAG_AA_semantic_buttons_heading_hierarchy_skip_links_i18n",
+    "email_newsletter": "DEFERRED_by_owner_decide_later",
     "rss_feeds": 9,
     "clipboard_error_handling": "all_9_components_fixed",
     "print_styles": "media_print_A4_layout",
-    "security_fixes": "react_router_7.13.0_3_CVEs_fixed",
+    "security_fixes": "react_router_7.13.0_3_CVEs_fixed_HSTS_COOP_CORP_headers",
     "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types_all_wired",
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md",
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
@@ -64,6 +72,63 @@
     "print": "@media print stylesheet for profile pages (A4 layout, hides nav, shows URLs).",
     "mobile": "max-w-[85vw] on MobileNav to prevent overflow.",
     "countdown": "Made CountdownTimer dates dynamic (uses currentYear instead of hardcoded 2025)."
+  },
+
+  "session_105_106_changes": {
+    "summary": "Semantic button accessibility, email deferral, merge preparation",
+    "session_105_semantic_buttons": "Converted ALL 7 remaining div[role='button'] to semantic button/motion.button across JimmyLaiProfile, PanchenLamaProfile, IlhamTohtiProfile, PoliticalPrisoners, ResistanceDirectory, EducationalResources, ForcedLaborTracker. Each removes role/tabIndex/onKeyDown (implicit with buttons). Added prevention test. 0 role='button' violations remain.",
+    "session_106_email_deferral": "Owner directive: 'Let's delay the email part until a lot later, I'll look into and decide at a later date.' Email newsletter subscription, email client integration, and email service choice all marked DEFERRED in TODO.md.",
+    "session_106_merge_prep": "Updated all docs (README, CONTRIBUTING, ARCHITECTURE, AGENT_HANDOFF, NEXT_AGENT_PROMPT, TODO) to 631 tests. AGENT_HANDOFF v8.0→v8.1. Sessions 104→106. Wrote SESSION_98_106_NOTES.md with complete reasoning and decision log for future agents.",
+    "test_count": "631 tests across 34 files. 6 design system compliance checks."
+  },
+
+  "session_98_104_changes": {
+    "summary": "Design system color standardization, security hardening, sitemap tests, SkipLinks i18n, Timeline JSON migration, orphan cleanup, heading hierarchy fixes",
+    "session_98_design_system": "Standardized LiuXiaoboProfile.jsx (21 structural gray→terminal hex). Added automated color compliance test distinguishing structural vs semantic gray usage.",
+    "session_99_security": "Added HSTS (1yr, includeSubDomains, preload), Cross-Origin-Opener-Policy: same-origin, Cross-Origin-Resource-Policy: same-origin to public/_headers. 3 new security header tests.",
+    "session_100_sitemap": "Added robots.txt validation tests (4) + GitHub Pages URL contamination check. Consolidated duplicate sitemap-validation.test.js into sitemap-data.test.js.",
+    "session_101_accessibility": "SkipLinks i18n: added useLanguage() hook for all 8 locales. Terminal design applied to SkipLinks, AccessibleTabs, AccessibleProgress. SKIP_LINK_CLASSES constant extracted.",
+    "session_102_timeline": "Migrated Timeline.jsx from 225-line hardcoded stale data (25 events, last Dec 2022) to JSON import (31 events through Feb 2026). Component shrunk 49%. 5th/final data migration.",
+    "session_103_orphan_cleanup": "Removed 7 orphan components (2,043 lines): Timeline, SanctionedOfficialsTracker, DetentionFacilitiesTracker, ConfuciusInstituteTracker, Glossary, PodcastList, LegalResources. Integrated ChinaTechThreats→SecurityCenter Tech Threats tab, MediaManipulation→EducationalResources Media tab. Added automated orphan detection test.",
+    "session_104_heading_hierarchy": "Fixed WCAG 1.3.1 heading hierarchy in TakeAction.jsx (4 h4 labels→p tags). Replaced div[role=button] with semantic motion.button in CommunitySupport.jsx. Terminal green applied to selected state. Updated AGENT_HANDOFF to v8.0.",
+    "data_migrations": "ALL 5/5 complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline. Zero hardcoded data arrays remain.",
+    "orphan_status": "0 orphan components (was 9). Automated detection test prevents future dead code.",
+    "test_progression": "619→620→623→628→629→630 tests across sessions 98-104 (34 files)"
+  },
+
+  "session_96_97_changes": {
+    "summary": "12 new sanctions, CPC→CCP terminology enforcement, comprehensive session documentation",
+    "sanctions_update": "Added 12 new entries: 6 Canada Dec 2024 (Erkin Tuniyaz, Shohrat Zakir, Peng Jiarui, Huo Liujun, Zhang Hongbo, You Quan) + 6 US Mar 2025 (Dong Jingwei, Paul Lam, Raymond Siu, Sonny Au, Dick Wong, Margaret Chiu). Sources: canada.ca, state.gov. Chen Quanguo UK/EU/AU flags corrected. 35→47 sanctions, 22→34 officials.",
+    "cpc_ban": "Owner directive: never use 'CPC' — CCP promotes this to dilute search results. 5 instances replaced, automated test added in url-health.test.js scanning all JSX+JSON. 629 total tests.",
+    "session_notes": "Created comprehensive _agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md covering 15 sessions of undocumented reasoning. Documents WHY decisions were made, patterns that worked, anti-patterns fixed, and lessons for future agents.",
+    "agent_handoff": "AGENT_HANDOFF.json v7.7→v7.8. Sessions 95→97, sanctions 35→47, officials 22→34, data entries 142→154, CPC terminology ban documented."
+  },
+
+  "session_95_changes": {
+    "summary": "Fix broken service worker, terminal-styled offline/404 pages, manifest theme, 10 new PWA tests",
+    "service_worker_fix": "Fixed 8 stale GitHub Pages paths in sw.js (all /global-anti-ccp-resistance-hub/ → /). Bumped cache version v1→v2 to invalidate stale cached assets.",
+    "offline_page": "Rewrote offline.html from scratch: terminal aesthetic (monospace, #0a0e14 bg, #4afa82 green, box-drawing borders, $ command prompts). Removed gradients, border-radius, blue colors.",
+    "404_page": "Replaced GitHub Pages SPA redirect hack in 404.html with proper terminal-styled 404 page. ASCII box art, path display, navigation buttons.",
+    "manifest_theme": "Updated manifest.json theme_color/background_color from #0f172a to #0a0e14 (terminal page bg).",
+    "pwa_tests": "Added 10 new tests in manifest-pwa.test.js: SW path validation (no GH Pages paths, root-relative precache, OFFLINE_URL), manifest theme consistency (bg/theme match #0a0e14), offline page design compliance (terminal bg, monospace, no gradients, green accent). 629 total tests."
+  },
+
+  "session_92_94_changes": {
+    "summary": "ESLint cleanup, URL migration, mobile responsiveness, cross-file tests, doc updates",
+    "eslint_fix": "Fixed 5 ESLint errors in SocketContext.jsx (useCallback with inline functions, value wrapped in useMemo). 0 errors now.",
+    "url_migration": "Updated 19 stale stan2032.github.io references to Cloudflare Workers URL across index.html (14 meta/canonical/JSON-LD refs), Footer, PetitionGenerator, DataExport, QuickFacts.",
+    "mobile_responsiveness": "Added @media (max-width: 768px) and @media (max-width: 480px) sections in index.css. 44px WCAG touch targets, 16px base font, iOS zoom prevention, tab scroll improvements, small-phone grids. MobileNav py-2.5→py-3.",
+    "cross_file_test": "Added sanctions_tracker↔sanctioned_officials cross-file consistency test. 608 total tests.",
+    "security": "Removed unused serve devDependency (4 npm audit vulns→0).",
+    "agent_handoff_update": "AGENT_HANDOFF.json v7.5→v7.6. Sessions 91→94, test count 607→608."
+  },
+
+  "session_90_91_changes": {
+    "summary": "CCPOfficials fully migrated to JSON (completing 4/4 data migrations), static site documentation added, stale docs updated",
+    "ccp_officials_migration": "Enriched sanctioned_officials_research.json with biographical data (chinese_name, birth_year, in_power_since, key_actions, detailed_responsibilities) for 8 key officials. Added Xi Jinping entry (22 total). Removed 220-line hardcoded array and merge logic from CCPOfficials.jsx. Fixed duplicate ARIA label bug (category filter said 'Region filter').",
+    "documentation": "Added CONTRIBUTING.md and ARCHITECTURE.md as top-level docs. Updated README.md with static SPA architecture section, clear static/backend distinction, accurate feature counts.",
+    "test_count_fix": "Updated stale test counts 604→607 across README.md, CONTRIBUTING.md, ARCHITECTURE.md, AGENT_HANDOFF.json. 3 new tests: Xi Jinping entry validation, biographical data coverage, key_actions structure.",
+    "agent_handoff_update": "AGENT_HANDOFF.json v7.4→v7.5. Simulated Data Phase 2 marked COMPLETE (was MOSTLY_COMPLETE). Session count 89→91."
   },
 
   "session_87_changes": {
@@ -158,22 +223,22 @@
       "recommendation": "Set up PostgreSQL, run migrations, then verify backend tests"
     },
     "sanctions_update": {
-      "status": "PARTIALLY_COMPLETE",
+      "status": "CURRENT_AS_OF_MAR_2025",
       "severity": "LOW",
-      "description": "35 entries with source_url fields linking to official registries. May be missing some 2026 sanctions.",
-      "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions in 2026"
+      "description": "47 entries with source_url fields linking to official registries. Includes Canada Dec 2024 and US Mar 2025 rounds. May be missing later 2025-2026 sanctions.",
+      "recommendation": "Monitor US Treasury, UK FCDO, EU Council for new sanctions post-March 2025"
     },
     "site_cleanup": {
       "status": "MOSTLY_COMPLETE",
       "severity": "LOW",
-      "description": "SITE_CLEANUP_TODO.md ~70% complete. Emoji reduction ✅, accessibility ✅, perf ✅, typography ✅, tab consolidation ✅, disclaimers ✅, nav emojis ✅. Page merging and visual hierarchy still outstanding.",
-      "recommendation": "Assign to Sonnet 4.5 for UI iteration work. See _agents/planning/SITE_CLEANUP_TODO.md"
+      "description": "SITE_CLEANUP_TODO.md ~80% complete. Emoji ✅, accessibility ✅, perf ✅, typography ✅, tabs ✅, disclaimers ✅, nav ✅, mobile ✅, data migrations 5/5 ✅, orphans 0 ✅, semantic buttons ✅, heading hierarchy ✅, color standardization in progress. Blue→terminal green remaining (~459 instances across many files).",
+      "recommendation": "Blue color standardization is the biggest remaining item. Assign to Sonnet 4.5 for batch UI work. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
-      "status": "MOSTLY_COMPLETE",
-      "severity": "LOW",
-      "description": "Phase 1 done. Phase 2: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities fully migrated to JSON. CCPOfficials uses justified hybrid approach (rich component data not in JSON — biographical context).",
-      "recommendation": "To fully migrate remaining 1, enrich sanctioned_officials_research.json with biographical data. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
+      "status": "COMPLETE",
+      "severity": "RESOLVED",
+      "description": "Phase 1 done. Phase 2: ALL 4/4 fully migrated to JSON. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials all read entirely from JSON. CCPOfficials enriched with biographical data (chinese_name, birth_year, in_power_since, key_actions, detailed_responsibilities). Xi Jinping added. 22 officials total.",
+      "recommendation": "No further action needed. See _agents/planning/SIMULATED_DATA_CLEANUP_TODO.md"
     }
   },
 
@@ -205,10 +270,10 @@
     {
       "priority": 4,
       "task": "simulated_data_phase2",
-      "description": "Enrich JSON files with coordinate/imagery data so DetentionFacilities + CCPOfficials can fully import from JSON instead of hybrid approach. PoliticalPrisoners + ForcedLaborTracker already migrated.",
-      "estimated_hours": 8,
-      "status": "NOT_STARTED",
-      "agent": "Opus 4.6"
+      "description": "ALL 5/5 data migrations complete. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read from JSON. No hardcoded data arrays remain. 7 orphan components removed (2,043 lines). Orphan detection test prevents regression.",
+      "estimated_hours": 0,
+      "status": "COMPLETE",
+      "agent": "Sonnet 4 (Session 90: CCPOfficials, Session 102: Timeline, Session 103: orphan cleanup)"
     }
   ],
 
@@ -220,6 +285,7 @@
       "never_cite": ["Xinhua", "CGTN", "People's Daily", "Global Times", "China Daily", "Ta Kung Pao", "Wen Wei Po", "tibet.cn", "en.people.cn"]
     },
     "date_verification": "Always cross-reference dates with 2+ independent sources",
+    "terminology": "Always use CCP (Chinese Communist Party), NEVER CPC (Communist Party of China). CPC is the CCP's rebranding to dilute critical search results. Automated test enforces this in url-health.test.js.",
     "profile_template": "5 tabs: Timeline, Charges/Significance, CCP Narrative Analysis, International Response/Legacy, Sources"
   },
 

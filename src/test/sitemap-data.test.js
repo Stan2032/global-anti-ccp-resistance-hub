@@ -2,15 +2,19 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
-const SITEMAP_PATH = resolve(__dirname, '../../public/sitemap.xml');
+const PUBLIC_DIR = resolve(__dirname, '../../public');
+const SITEMAP_PATH = resolve(PUBLIC_DIR, 'sitemap.xml');
+const ROBOTS_PATH = resolve(PUBLIC_DIR, 'robots.txt');
 const BASE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 describe('Sitemap Data Integrity', () => {
   let sitemapContent;
   let urls;
+  let robotsContent;
 
   beforeAll(() => {
     sitemapContent = readFileSync(SITEMAP_PATH, 'utf-8');
+    robotsContent = readFileSync(ROBOTS_PATH, 'utf-8');
     // Extract all <loc> URLs from sitemap
     urls = [...sitemapContent.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
   });
@@ -132,6 +136,39 @@ describe('Sitemap Data Integrity', () => {
       for (const freq of freqs) {
         expect(validFreqs, `Invalid changefreq: ${freq}`).toContain(freq);
       }
+    });
+  });
+
+  describe('no stale GitHub Pages URLs', () => {
+    it('sitemap does not reference github.io', () => {
+      expect(sitemapContent).not.toContain('github.io');
+    });
+  });
+
+  describe('robots.txt', () => {
+    it('allows all crawlers', () => {
+      expect(robotsContent).toContain('User-agent: *');
+      expect(robotsContent).toContain('Allow: /');
+    });
+
+    it('references sitemap with canonical URL', () => {
+      expect(robotsContent).toContain(`Sitemap: ${BASE_URL}/sitemap.xml`);
+    });
+
+    it('does not block any content paths', () => {
+      // Check for Disallow directives — but 'Disallow:' with empty value is OK
+      const disallowLines = robotsContent.split('\n').filter(line => 
+        line.trim().startsWith('Disallow:') && line.trim() !== 'Disallow:'
+      );
+      expect(disallowLines).toEqual([]);
+    });
+
+    it('has reasonable crawl-delay (1-10 seconds)', () => {
+      const match = robotsContent.match(/Crawl-delay:\s*(\d+)/);
+      expect(match).not.toBeNull();
+      const delay = parseInt(match[1], 10);
+      expect(delay).toBeGreaterThanOrEqual(1);
+      expect(delay).toBeLessThanOrEqual(10);
     });
   });
 });

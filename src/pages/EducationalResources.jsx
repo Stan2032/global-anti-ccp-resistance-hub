@@ -34,6 +34,7 @@ const SourceVerification = lazy(() => import('../components/SourceVerification')
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
 const ReadingProgress = lazy(() => import('../components/ReadingProgress'));
 const PodcastPlayer = lazy(() => import('../components/PodcastPlayer'));
+const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
 const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitationGenerator'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
@@ -227,16 +228,14 @@ const EducationalResources = () => {
   })
 
   const ModuleCard = ({ module }) => (
-    <motion.div
+    <motion.button
+      type="button"
       whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedModule(module.id)}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedModule(module.id) } }}
-      role="button"
-      tabIndex={0}
       aria-pressed={selectedModule === module.id}
-      className={`p-6 border cursor-pointer transition-all ${
+      className={`p-6 border cursor-pointer transition-all text-left w-full ${
         selectedModule === module.id
-          ? 'bg-blue-900 border-blue-500 shadow-lg shadow-blue-500/20'
+          ? 'bg-[#4afa82]/10 border-[#4afa82] shadow-lg shadow-[#4afa82]/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
       }`}
     >
@@ -282,7 +281,7 @@ const EducationalResources = () => {
           <span>{module.rating}</span>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   )
 
   const ResourceCard = ({ resource }) => (
@@ -538,6 +537,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── podcasts ──</h2>
             <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── propaganda_outlets ──</h2>
+            <Suspense fallback={<SectionLoader />}><MediaManipulation /></Suspense>
           </div>
         </div>
       )}

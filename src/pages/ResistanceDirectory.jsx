@@ -140,14 +140,12 @@ const ResistanceDirectory = () => {
       {/* Organizations Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {filteredOrgs.map(org => (
-          <div
+          <button
+            type="button"
             key={org.id}
             onClick={() => setSelectedOrg(selectedOrg?.id === org.id ? null : org)}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedOrg(selectedOrg?.id === org.id ? null : org) } }}
-            role="button"
-            tabIndex={0}
             aria-expanded={selectedOrg?.id === org.id}
-            className={`bg-[#111820] border p-4 cursor-pointer transition-all hover:border-blue-500 ${
+            className={`bg-[#111820] border p-4 cursor-pointer transition-all text-left w-full hover:border-blue-500 ${
               selectedOrg?.id === org.id ? 'border-blue-500 ring-1 ring-[#4afa82]' : 'border-[#1c2a35]'
             }`}
           >
@@ -210,7 +208,7 @@ const ResistanceDirectory = () => {
                 </a>
               </div>
             )}
-          </div>
+          </button>
         ))}
       </div>
 
