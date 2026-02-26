@@ -36,6 +36,35 @@ These files are preserved for:
 - `leaked_info_networks.md` - Research on information networks
 - `resistance_research_findings.md` - General research findings
 
+### Completed Planning (Archived Feb 26, 2026 — Session 110)
+- `SIMULATED_DATA_CLEANUP_TODO.md` - All 5/5 JSON migrations completed
+- `SITE_WIDE_TODO.md` - Superseded by TODO.md + SITE_CLEANUP_TODO.md
+- `AGENT_ROADMAP.md` - Superseded by TODO.md current sprint
+- `SESSION_SUMMARY_FEB18.md` - Superseded by session notes + AGENT_HANDOFF.json
+
+### Completed Audits (Archived Feb 26, 2026 — Session 110)
+- `FABRICATION_GAP_AUDIT.md` - One-time fabrication audit, all findings resolved
+- `INVESTIGATION_SUMMARY.md` - Executive summary of fabrication audit
+- `AUDIT_INTERNAL_SUMMARY.md` - Internal codebase audit, findings acted on
+- `CODEBASE_AUDIT_SUMMARY.md` - Codebase status check, findings acted on
+
+### Session Notes (Sessions 33-48, Archived Feb 26, 2026)
+These individual session notes are summarized in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`:
+- `SESSION_33_VERIFICATION_NOTES.md` - Political prisoner data verification
+- `SESSION_34_VERIFICATION_NOTES.md` - Sanctioned officials verification
+- `SESSION_35_OPUS46_CONTINUATION.md` - Full context review
+- `SESSION_36_FORM_HONESTY_FIXES.md` - Form honesty fixes
+- `SESSION_37_COMMUNITY_STATS_FIX.md` - Community stats honesty
+- `SESSION_38_PERFORMANCE_OPTIMIZATION.md` - Lazy loading
+- `SESSION_39_PERFORMANCE_PHASE2.md` - Performance phase 2
+- `SESSION_40_SEO_META_DESCRIPTIONS.md` - Per-route SEO
+- `SESSION_43_JIMMY_LAI_PROFILE.md` - Jimmy Lai profile page
+- `SESSION_44_ILHAM_TOHTI_PROFILE.md` - Ilham Tohti profile page
+- `SESSION_45_PANCHEN_LAMA_PROFILE.md` - Panchen Lama profile page
+- `SESSION_46_LIU_XIAOBO_PROFILE.md` - Liu Xiaobo memorial page
+- `SESSION_47_JOSHUA_WONG_PROFILE.md` - Joshua Wong profile page
+- `SESSION_48_HANDOFF_PREPARATION.md` - Handoff preparation
+
 ### Superseded Documentation
 - `README_COMPREHENSIVE.md` - Replaced by current README
 - `ISSUES_AND_BLOCKERS.md` - Historical issues (resolved)
@@ -43,6 +72,7 @@ These files are preserved for:
 
 ---
 
-*Archived on January 7, 2026*
+*Originally archived: January 7, 2026*
+*Last updated: February 26, 2026 (Session 110)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*
