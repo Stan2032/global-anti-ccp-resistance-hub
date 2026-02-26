@@ -199,9 +199,9 @@ const KnowledgeQuiz = () => {
   if (!quizStarted) {
     return (
       <div className="space-y-6">
-        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6">
+        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
           <div className="flex items-center mb-4">
-            <Brain className="w-8 h-8 text-indigo-400 mr-3" />
+            <Brain className="w-8 h-8 text-[#22d3ee] mr-3" />
             <div>
               <h2 className="text-2xl font-bold text-white">Knowledge Quiz</h2>
               <p className="text-slate-400">Test your understanding of CCP human rights abuses</p>
@@ -221,7 +221,7 @@ const KnowledgeQuiz = () => {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center space-x-2 px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCategory === cat.id
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-[#22d3ee] text-[#0a0e14]'
                       : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                   }`}
                 >
@@ -238,7 +238,7 @@ const KnowledgeQuiz = () => {
           
           <button
             onClick={() => setQuizStarted(true)}
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+            className="w-full py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
           >
             Start Quiz
           </button>
@@ -251,10 +251,10 @@ const KnowledgeQuiz = () => {
     const { Icon: ResultIcon, message } = getScoreMessage();
     return (
       <div className="space-y-6">
-        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6 text-center">
-          <div className="mb-4 flex justify-center"><ResultIcon className="w-16 h-16 text-indigo-400" /></div>
+        <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6 text-center">
+          <div className="mb-4 flex justify-center"><ResultIcon className="w-16 h-16 text-[#22d3ee]" /></div>
           <h2 className="text-2xl font-bold text-white mb-2">Quiz Complete!</h2>
-          <p className="text-4xl font-bold text-indigo-400 mb-2">
+          <p className="text-4xl font-bold text-[#22d3ee] mb-2">
             {score} / {questions.length}
           </p>
           <p className="text-slate-300 mb-6">{message}</p>
@@ -262,7 +262,7 @@ const KnowledgeQuiz = () => {
           <div className="flex justify-center space-x-4">
             <button
               onClick={restartQuiz}
-              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+              className="px-6 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
             >
               Try Again
             </button>
@@ -295,7 +295,7 @@ const KnowledgeQuiz = () => {
         </div>
         <div className="w-full bg-[#111820] rounded-full h-2">
           <div 
-            className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+            className="bg-[#22d3ee] h-2 rounded-full transition-all duration-300"
             style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
           />
         </div>
@@ -314,7 +314,7 @@ const KnowledgeQuiz = () => {
         
         <div className="space-y-2">
           {question.options.map((option, index) => {
-            let buttonClass = 'bg-[#0a0e14] border-[#1c2a35] hover:border-indigo-500';
+            let buttonClass = 'bg-[#0a0e14] border-[#1c2a35] hover:border-[#22d3ee]';
             
             if (showExplanation) {
               if (index === question.correct) {
@@ -356,7 +356,7 @@ const KnowledgeQuiz = () => {
         {showExplanation && (
           <button
             onClick={nextQuestion}
-            className="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+            className="w-full mt-4 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
           >
             {currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results'}
           </button>

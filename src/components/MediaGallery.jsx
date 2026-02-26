@@ -247,7 +247,7 @@ const MediaGallery = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-indigo-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
           <Image className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -269,7 +269,7 @@ const MediaGallery = () => {
             onClick={() => setActiveCategory(cat.id)}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -310,7 +310,7 @@ const MediaGallery = () => {
                 <span className="text-xs text-slate-500 flex items-center gap-1">
                   {categoryInfo?.Icon ? <categoryInfo.Icon className="w-3 h-3" /> : categoryInfo?.icon} {categoryInfo?.name}
                 </span>
-                <span className="text-xs text-indigo-400">View details →</span>
+                <span className="text-xs text-[#22d3ee]">View details →</span>
               </div>
             </div>
           );
