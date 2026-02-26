@@ -28,6 +28,25 @@ const mockMatchMedia = (matches = false) => {
   }));
 };
 
+// ─── WCAG 2.1 contrast ratio utilities ──────────────────────
+function relativeLuminance(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const linearize = (c) =>
+    c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  return (
+    0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
+  );
+}
+
+function contrastRatio(c1, c2) {
+  let l1 = relativeLuminance(c1);
+  let l2 = relativeLuminance(c2);
+  if (l1 < l2) [l1, l2] = [l2, l1];
+  return (l1 + 0.05) / (l2 + 0.05);
+}
+
 // ─── Helper: render inside ThemeProvider ─────────────────────
 
 function ThemeConsumer() {
@@ -382,23 +401,6 @@ describe('CSS Tailwind Overrides', () => {
 // ═══════════════════════════════════════════════════════════
 
 describe('WCAG AA Contrast — Light Theme', () => {
-  function relativeLuminance(hex) {
-    const r = parseInt(hex.slice(1, 3), 16) / 255;
-    const g = parseInt(hex.slice(3, 5), 16) / 255;
-    const b = parseInt(hex.slice(5, 7), 16) / 255;
-    const linearize = (c) =>
-      c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-    return (
-      0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
-    );
-  }
-
-  function contrastRatio(c1, c2) {
-    let l1 = relativeLuminance(c1);
-    let l2 = relativeLuminance(c2);
-    if (l1 < l2) [l1, l2] = [l2, l1];
-    return (l1 + 0.05) / (l2 + 0.05);
-  }
 
   // Light theme backgrounds (from CSS vars)
   const LIGHT_BG = '#f8fafc';
@@ -429,24 +431,6 @@ describe('WCAG AA Contrast — Light Theme', () => {
 });
 
 describe('WCAG AA Contrast — High-Contrast Theme', () => {
-  function relativeLuminance(hex) {
-    const r = parseInt(hex.slice(1, 3), 16) / 255;
-    const g = parseInt(hex.slice(3, 5), 16) / 255;
-    const b = parseInt(hex.slice(5, 7), 16) / 255;
-    const linearize = (c) =>
-      c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-    return (
-      0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
-    );
-  }
-
-  function contrastRatio(c1, c2) {
-    let l1 = relativeLuminance(c1);
-    let l2 = relativeLuminance(c2);
-    if (l1 < l2) [l1, l2] = [l2, l1];
-    return (l1 + 0.05) / (l2 + 0.05);
-  }
-
   const HC_BG = '#000000';
   const HC_SURFACE = '#0a0a0a';
 
