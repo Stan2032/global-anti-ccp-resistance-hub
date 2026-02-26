@@ -201,7 +201,7 @@
 
 ### Backend Cleanup
 - [ ] **Remove socket.io from backend** — `socket.io` ^4.8.1 still in backend/package.json + 3 socket files (socketAuth.js, socketService.js, sockets/handlers.js). Frontend socket.io was removed in Session 96. Clean up when backend is deployed.
-- [ ] **Audit backend dependencies** — Some deps may be outdated (express ^4.18.2, pg ^8.10.0). Run `npm audit` when backend is active.
+- [ ] **Audit backend dependencies** — Run `npm audit` when backend is next active.
 
 ### Documentation
 - [x] ~~Create developer documentation~~ ✅ (ARCHITECTURE.md + README.md)
