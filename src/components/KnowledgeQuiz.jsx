@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Library, AlertOctagon, Mountain, Target, BookOpen, Trophy, Star, Sprout, Brain } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const KnowledgeQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,7 +27,7 @@ const KnowledgeQuiz = () => {
       question: 'Approximately how many Uyghurs are estimated to be detained in internment camps in Xinjiang?',
       options: ['100,000', '500,000', '1-3 million', '5 million'],
       correct: 2,
-      explanation: 'Researchers estimate between 1 to 3 million Uyghurs and other Turkic Muslims have been detained in internment camps since 2017. This figure comes from multiple sources including Adrian Zenz, ASPI, and the Xinjiang Police Files.',
+      explanation: `Researchers estimate between ${STATISTICS.uyghurDetention.value} Uyghurs and other Turkic Muslims have been detained in internment camps since 2017. This figure comes from multiple sources including Adrian Zenz, ASPI, and the Xinjiang Police Files.`,
     },
     {
       category: 'uyghur',

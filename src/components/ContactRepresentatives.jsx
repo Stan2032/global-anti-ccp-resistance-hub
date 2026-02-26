@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Megaphone, Building, Link2, Target } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
+import { STATISTICS } from '../data/statistics';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -76,7 +77,7 @@ const ContactRepresentatives = () => {
 I am writing to urge you to take action on the ongoing human rights abuses perpetrated by the Chinese Communist Party (CCP).
 
 The CCP continues to commit serious violations including:
-• The detention of over 1 million Uyghurs in concentration camps
+• The detention of an estimated ${STATISTICS.uyghurDetention.value} Uyghurs in concentration camps
 • The systematic destruction of Hong Kong's autonomy and freedoms
 • The persecution of Tibetans, Falun Gong practitioners, and Christians
 • Transnational repression targeting diaspora communities worldwide
@@ -102,7 +103,7 @@ Sincerely,
 I am writing to urge immediate action on the genocide being committed against the Uyghur people in the Xinjiang Uyghur Autonomous Region of China.
 
 The evidence is overwhelming:
-• Over 1 million Uyghurs detained in concentration camps
+• An estimated ${STATISTICS.uyghurDetention.value} Uyghurs detained in concentration camps
 • Forced sterilization and birth prevention
 • Systematic cultural and religious destruction
 • Forced labor in factories supplying global brands

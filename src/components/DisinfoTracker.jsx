@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   ClipboardList, Building2, Mountain, Bug, Globe, Siren, Lightbulb, BookOpen, PenSquare,
 } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const DisinfoTracker = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -20,7 +21,7 @@ const DisinfoTracker = () => {
     {
       id: 1,
       claim: '"Vocational training centers" in Xinjiang are voluntary education programs',
-      reality: 'These are forced detention camps holding 1-3 million Uyghurs. Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.',
+      reality: `These are forced detention camps holding ${STATISTICS.uyghurDetention.value} Uyghurs. Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.`,
       category: 'uyghur',
       source: 'CCP State Media',
       debunkedBy: ['Xinjiang Police Files', 'China Cables', 'Uyghur Tribunal'],

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, FileText, Hash, Image, Calendar, Smartphone, Clipboard, Lightbulb } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const SocialMediaToolkit = () => {
   const [activeCategory, setActiveCategory] = useState('threads');
@@ -19,9 +20,9 @@ const SocialMediaToolkit = () => {
       title: 'Uyghur Genocide 101',
       topic: 'uyghur',
       tweets: [
-        '🧵 THREAD: What you need to know about the Uyghur Genocide\n\nOver 1 million Uyghurs are detained in concentration camps in Xinjiang. Here\'s what\'s happening and what you can do about it. 👇',
+        `🧵 THREAD: What you need to know about the Uyghur Genocide\n\nAn estimated ${STATISTICS.uyghurDetention.value} Uyghurs are detained in concentration camps in Xinjiang. Here\'s what\'s happening and what you can do about it. 👇`,
         '1/ WHO ARE THE UYGHURS?\n\nUyghurs are a Turkic Muslim minority group of ~12 million people in the Xinjiang region of northwest China (which they call East Turkestan).\n\nThey have their own language, culture, and history dating back centuries.',
-        '2/ WHAT\'S HAPPENING?\n\nSince 2017, China has detained 1-3 million Uyghurs in "re-education camps" where they face:\n\n• Forced labor\n• Torture\n• Sexual violence\n• Forced sterilization\n• Family separation\n• Cultural erasure',
+        `2/ WHAT\'S HAPPENING?\n\nSince 2017, China has detained an estimated ${STATISTICS.uyghurDetention.value} Uyghurs in "re-education camps" where they face:\n\n• Forced labor\n• Torture\n• Sexual violence\n• Forced sterilization\n• Family separation\n• Cultural erasure`,
         '3/ THE EVIDENCE\n\n• Leaked "China Cables" (2019)\n• Xinjiang Police Files (2022)\n• Satellite imagery of 380+ camps\n• Survivor testimonies\n• Birth rate drops of 84%\n\nMultiple governments have declared this a GENOCIDE.',
         '4/ WHO HAS CALLED IT GENOCIDE?\n\n🇺🇸 United States\n🇬🇧 United Kingdom\n🇨🇦 Canada\n🇳🇱 Netherlands\n🇧🇪 Belgium\n🇫🇷 France\n🇱🇹 Lithuania\n\n+ The independent Uyghur Tribunal',
         '5/ WHAT CAN YOU DO?\n\n✅ Share this thread\n✅ Check product labels (avoid "Made in Xinjiang")\n✅ Contact your representatives\n✅ Support @UyghurProject @CampaignUyghurs\n✅ Learn more: uhrp.org\n\n#FreeUyghurs #StopUyghurGenocide',

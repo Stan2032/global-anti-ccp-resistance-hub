@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, PenLine, Send, Clock, Copy, Lightbulb, BookOpen } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const LetterCampaign = () => {
   const [activeCampaign, setActiveCampaign] = useState(null);
@@ -54,7 +55,7 @@ Sincerely,
       urgency: 'high',
       deadline: 'Ongoing',
       description: 'Demand companies audit their supply chains and eliminate Uyghur forced labor.',
-      background: 'Over 1 million Uyghurs are estimated to be in forced labor programs. Major brands continue to source from Xinjiang or suppliers linked to forced labor despite the Uyghur Forced Labor Prevention Act.',
+      background: `An estimated ${STATISTICS.forcedLabor.value} Uyghurs are in forced labor programs. Major brands continue to source from Xinjiang or suppliers linked to forced labor despite the Uyghur Forced Labor Prevention Act.`,
       asks: [
         'Conduct independent supply chain audits',
         'Publish supplier lists for transparency',
