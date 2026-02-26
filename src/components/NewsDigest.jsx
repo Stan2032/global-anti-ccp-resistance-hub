@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, FileText, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
+import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
 import { subscribeNewsletter } from '../services/supabaseService';
 
@@ -9,7 +9,6 @@ const NewsDigest = () => {
   const [preferences, setPreferences] = useState({
     frequency: 'weekly',
     topics: ['all'],
-    format: 'summary',
   });
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -31,12 +30,6 @@ const NewsDigest = () => {
     { id: 'sanctions', name: 'Sanctions & Policy', Icon: Scale },
     { id: 'forced-labor', name: 'Forced Labor', Icon: Link2 },
     { id: 'transnational', name: 'Transnational Repression', Icon: Globe2 },
-  ];
-
-  const formats = [
-    { id: 'summary', name: 'Brief Summary', description: '5-minute read with key headlines' },
-    { id: 'detailed', name: 'Detailed Analysis', description: 'In-depth coverage with context' },
-    { id: 'links', name: 'Links Only', description: 'Curated links to original sources' },
   ];
 
   const recentDigests = [
@@ -240,28 +233,6 @@ const NewsDigest = () => {
               >
                 {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.icon}</span>}
                 <span>{topic.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Format */}
-        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><FileText className="w-4 h-4" /> Format Preference</h3>
-          <div className="grid md:grid-cols-3 gap-3">
-            {formats.map(format => (
-              <button
-                key={format.id}
-                type="button"
-                onClick={() => setPreferences({ ...preferences, format: format.id })}
-                className={`p-3 text-left transition-colors ${
-                  preferences.format === format.id
-                    ? 'bg-green-600 text-white'
-                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
-                }`}
-              >
-                <div className="font-medium">{format.name}</div>
-                <div className="text-xs opacity-75">{format.description}</div>
               </button>
             ))}
           </div>
