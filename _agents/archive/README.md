@@ -97,9 +97,13 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 - `SocketContext.jsx` - Lightweight no-op stub for WebSocket context. socket.io-client was removed (Session ~96) and no component ever imported useSocket. SocketProvider wrapper removed from App.jsx. Restore when real WebSocket backend is deployed.
 - `useSocket.js` - Complete WebSocket hook library (useSocket, useSocketRoom, useSocketEvent, etc). Never imported by any component after socket.io removal. Ready to restore for real-time features.
 
+### Dead UI Components (Archived Feb 26, 2026 — Session 115)
+- `Card.jsx` - Generic card UI component (71 lines). Zero imports anywhere in codebase. Useful pattern for future standardized card layouts.
+- `LoadingScreen.jsx` - Animated loading screen with motion effects and rotating icons (96 lines). Never imported — App.jsx defines a simpler inline version. Richer animations available for future use.
+
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 114)*
+*Last updated: February 26, 2026 (Session 115)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*

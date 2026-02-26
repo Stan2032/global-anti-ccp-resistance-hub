@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "9.4",
-    "date": "2026-02-26T02:00:00Z",
+    "version": "9.5",
+    "date": "2026-02-26T02:10:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v9.3, Session 113)",
+    "supersedes": "AGENT_HANDOFF.json (v9.4, Session 114)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 114,
+    "sessions_completed": 115,
     "eslint_status": "0_errors_10_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -54,6 +54,15 @@
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
     "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/",
     "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_305KB_97KB_gzip"
+  },
+
+  "session_115_changes": {
+    "summary": "Continuation file audit — archived 2 dead UI components (Card.jsx, LoadingScreen.jsx)",
+    "archived": "Card.jsx (71 lines, generic card component, zero imports anywhere in codebase), LoadingScreen.jsx (96 lines, animated loading screen with framer-motion, never imported — App.jsx defines simpler inline version)",
+    "verified_active": "All 95 components, all data files, all hooks/services/utils — confirmed imported. organizations-data.json used by ResistanceDirectory. server.js used for preview deployments. Backend socket files kept (backend is independent system).",
+    "archive_total": "66 files (was 64)",
+    "test_count": "625 tests across 34 files. 8 design system compliance checks.",
+    "active_agents_structure": "7 root, 1 planning, 7 research, 2 thoughts, 66 archive"
   },
 
   "session_114_changes": {
