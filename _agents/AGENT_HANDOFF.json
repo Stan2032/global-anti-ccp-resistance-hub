@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "9.0",
-    "date": "2026-02-26T01:25:00Z",
+    "version": "9.1",
+    "date": "2026-02-26T01:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v8.1, Session 107)",
+    "supersedes": "AGENT_HANDOFF.json (v9.0, Session 110)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -16,7 +16,6 @@
     "_agents/NEXT_AGENT_PROMPT.md",
     "_agents/TODO.md",
     "_agents/STYLE_GUIDE.md",
-    "_agents/QUESTIONS_FOR_HUMANS.md",
     "_agents/thoughts/"
   ],
 
@@ -55,6 +54,18 @@
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
     "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/",
     "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_305KB_97KB_gzip"
+  },
+
+  "session_111_changes": {
+    "summary": "Deep repository file audit — removed dead scaffold files, archived frozen docs, gitignore fix",
+    "removed": "src/App.css (default Vite CSS, zero imports), src/assets/react.svg (default React logo, zero refs), src/assets/ directory",
+    "archived_docs": "CHANGELOG.md (1,778 lines, frozen Session 35), LLM_JUDGEMENT_LOG.md (1,972 lines, frozen Session 35), QUESTIONS_FOR_HUMANS.md (all answered, standing instructions in NEXT_AGENT_PROMPT.md)",
+    "archived_sessions": "SESSION_72, SESSION_75, SESSION_78, SESSION_81_82 — all subsumed by SESSION_83_97_COMPREHENSIVE_NOTES.md",
+    "gitignore": "Added backend/.env pattern, removed backend/.env from tracking (was committed with dev JWT secret)",
+    "archive_readme": "Updated with Session 111 additions (58 total archive files)",
+    "active_thoughts": "Only 2 remain: SESSION_83_97_COMPREHENSIVE_NOTES.md, SESSION_98_106_NOTES.md",
+    "active_agent_root": "7 files: AGENTS.md, AGENT_HANDOFF.json, NEXT_AGENT_PROMPT.md, README.md, STYLE_GUIDE.md, TODO.md, TODO_COMPLETED.md",
+    "test_count": "633 tests across 34 files. 8 design system compliance checks."
   },
 
   "session_108_110_changes": {

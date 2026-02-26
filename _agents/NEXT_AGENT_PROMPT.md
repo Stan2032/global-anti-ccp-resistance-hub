@@ -97,14 +97,13 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v7.2)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v9.1)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
-│   ├── QUESTIONS_FOR_HUMANS.md # All human decisions (all answered)
 │   ├── research/               # Research files and verification logs
 │   ├── planning/               # Planning TODOs
-│   ├── archive/                # Historical handoff documents
-│   └── thoughts/               # Per-session decision notes
+│   ├── archive/                # Historical handoff documents (58 files)
+│   └── thoughts/               # Comprehensive session notes (2 files: Sessions 83-97, 98-106)
 ├── src/
 │   ├── App.jsx                 # Main router — all routes, sidebar, header
 │   ├── index.css               # Global CSS, terminal theme, print styles
@@ -229,9 +228,9 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 2. `_agents/TODO.md` — Active task list (pending items only)
 3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
 4. `_agents/STYLE_GUIDE.md` — Design system reference
-4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v8.1)
-5. `_agents/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered)
-6. `_agents/thoughts/` — Per-session decision notes (read the latest few)
+4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v9.1)
+5. `_agents/thoughts/` — Comprehensive session notes (read both files)
+6. `_agents/archive/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered, standing instructions above)
 
 ---
 
