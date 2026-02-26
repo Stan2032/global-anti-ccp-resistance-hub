@@ -3,8 +3,8 @@
 **Goal:** Make the site cleaner, more readable, less cluttered, and more professional
 
 **Date:** January 7, 2026  
-**Last reviewed:** February 25, 2026 (Session 93)  
-**Status:** ~80% complete. Typography ✅, emoji reduction ✅, tab consolidation ✅, nav emojis ✅, accessibility ✅, performance ✅, data migrations ✅, ESLint ✅, mobile responsiveness ✅, blue→cyan color standardization ✅ (Session 108, 460 instances). Remaining: purple/indigo/teal/pink color standardization, page merging, visual hierarchy.
+**Last reviewed:** February 26, 2026 (Session 112)  
+**Status:** ~90% complete. Typography ✅, emoji reduction ✅, tab consolidation ✅, nav emojis ✅, accessibility ✅, performance ✅, data migrations ✅, ESLint ✅, mobile responsiveness ✅, ALL non-terminal color standardization ✅ (Sessions 108-109: blue 460, purple 246, indigo 20, teal 37, pink 10 = 773 total instances). Remaining: page merging, visual hierarchy, emerald/orange/amber review (semantic — may keep).
 
 ---
 
@@ -211,16 +211,16 @@
   - All `bg-blue-*`, `text-blue-*`, `border-blue-*` replaced with terminal cyan (#22d3ee) and surface colors (#111820, #1c2a35)
   - Regression test in design-system.test.js prevents reintroduction
   
-- [ ] **Purple → Cyan standardization** (~246 instances across 51 files)
-  - Map: text-purple-400→text-[#22d3ee], bg-purple-600→bg-[#22d3ee], bg-purple-900→bg-[#111820], border-purple-700→border-[#1c2a35]
-  - Purple serves "special/accent" role — mapped to terminal cyan (info/accent)
+- [x] **Purple → Cyan standardization** ✅ (Session 109, 246 instances)
+  - All `bg-purple-*`, `text-purple-*`, `border-purple-*` replaced with terminal palette
+  - Regression test in design-system.test.js prevents reintroduction
 
-- [ ] **Standardize remaining accent colors**
-  - Indigo (~20 instances) → terminal cyan
-  - Teal (~37 instances) → terminal cyan  
-  - Pink (~10 instances) → terminal red-400 (danger/emphasis)
-  - Emerald (~167) — keep as semantic "success" green, but align with terminal green (#4afa82)
-  - Orange (~170) / Amber (~150) — keep as semantic "warning" yellow-400/amber-400
+- [x] **Standardize remaining accent colors** ✅ (Session 109)
+  - Indigo (~20 instances) → terminal cyan ✅
+  - Teal (~37 instances) → terminal cyan ✅
+  - Pink (~10 instances) → terminal palette ✅
+  - Emerald (~167) — keep as semantic "success" green (decision: semantic colors may stay)
+  - Orange (~170) / Amber (~150) — keep as semantic "warning" (decision: semantic colors may stay)
 
 - [ ] **Standardize background colors**
   - Primary bg: `bg-[#0a0e14]` (page background)

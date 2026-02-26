@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 26, 2026 (Session 108)
+> Last Updated: February 26, 2026 (Session 112)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -22,13 +22,11 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
-  - **Agent:** Opus 4.6 (requires understanding component→data mapping)
+- [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
   - ✅ DetentionFacilities → detention_facilities_research.json (DONE — Session 89, 11 facilities with coordinates/capacity/evidence)
   - ✅ CCPOfficials → sanctioned_officials_research.json (DONE — Session 90, JSON enriched with biographical data, hardcoded array removed)
-  - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
 ### Bug Fixes & Polish
 - [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
@@ -241,7 +239,7 @@
 
 ## ✅ HUMAN DECISIONS — ALL RESOLVED
 
-> All D1-D5 answered and implemented. See `QUESTIONS_FOR_HUMANS.md` for details.
+> All D1-D5 answered and implemented. See `_agents/archive/QUESTIONS_FOR_HUMANS.md` for details.
 > **Standing instruction:** Agents may add individuals to the database without asking, as long as well-researched with verified sources and consistent with project goals.
 
 ---
@@ -249,7 +247,7 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Site cleanup** — SITE_CLEANUP_TODO.md ~80% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, blue→cyan standardization ✅ (460 instances, Session 108). Remaining: purple/indigo/teal/pink color standardization, page merging, visual hierarchy
+1. **Site cleanup** — SITE_CLEANUP_TODO.md ~90% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal color standardization ✅ (773 instances across 5 colors, Sessions 108-109). Remaining: page merging, visual hierarchy, emerald/orange/amber review (semantic — may keep)
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
@@ -285,8 +283,7 @@
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
 | **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: ✅ ALL 5/5 COMPLETE |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~75% complete (typography, emojis, tabs, a11y, mobile, data migrations, orphans all done) |
-| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~90% complete (typography, emojis, tabs, a11y, mobile, data migrations, orphans, ALL non-terminal colors done) |
 
 ---
 
@@ -300,9 +297,9 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 106, Feb 26, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 631 tests (34 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (6 automated checks) + URL health tests.
+### Current State Summary (as of Session 112, Feb 26, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 633 tests (34 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors (blue/purple/indigo/teal/pink) standardized.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. Heading hierarchy fixed. SkipLinks i18n (8 languages).
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED.
@@ -316,7 +313,7 @@
 - **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
 - **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages.
 - **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
-- **Knowledge Transfer:** Comprehensive session notes in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`.
+- **Knowledge Transfer:** Comprehensive session notes in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md` and `_agents/thoughts/SESSION_98_106_NOTES.md`. Machine-readable state in `_agents/AGENT_HANDOFF.json` (v9.2).
 
 ---
 

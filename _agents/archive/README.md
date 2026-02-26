@@ -85,9 +85,12 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 ### Build Tooling Artifacts
 - `create_placeholders.sh` - One-time script used to scaffold initial page components (historical only)
 
+### Superseded Research (Archived Feb 26, 2026 — Session 112)
+- `SITE_STRUCTURE_ANALYSIS.md` - Described old 14-page layout with pages that have since been merged/redirected (RegionalThreats, CampaignHubs, SecureComms, CCPTactics). Current structure captured in AGENT_HANDOFF.json
+
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 111)*
+*Last updated: February 26, 2026 (Session 112)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*
