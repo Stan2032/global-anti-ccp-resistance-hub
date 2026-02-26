@@ -156,4 +156,22 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('no Tailwind blue-* classes (use terminal palette: #22d3ee for cyan, #1c2a35 for borders)', () => {
+    const BLUE_PATTERN = /(?:bg|text|border|ring)-blue-\d+/g;
+    const violations = [];
+    for (const filePath of jsxFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      const matches = content.match(BLUE_PATTERN);
+      if (matches) {
+        const relativePath = filePath.replace(SRC_DIR + '/', '');
+        violations.push(`${relativePath}: ${[...new Set(matches)].join(', ')}`);
+      }
+    }
+    expect(violations,
+      `Tailwind blue-* classes found (use terminal palette instead):\n` +
+      `  text-[#22d3ee] for info text, bg-[#22d3ee] for buttons, border-[#1c2a35] for borders\n` +
+      violations.join('\n')
+    ).toEqual([]);
+  });
 });
