@@ -32,8 +32,7 @@
 - [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
   - **Agent:** Sonnet 4.5 (UI testing, rapid iteration)
-- [ ] **Dark mode**: Ensure all components respect theme settings
-  - **Agent:** Sonnet 4.5 (design system application)
+- [x] **Dark mode**: Theme CSS variables + Tailwind overrides for light/high-contrast (Session 121)
 
 ---
 
@@ -200,7 +199,7 @@
 - [x] ~~Configure proper caching headers~~ ✅ (public/_headers with security + cache headers)
 
 ### Backend Cleanup
-- [ ] **Remove socket.io from backend** — `socket.io` ^4.8.1 still in backend/package.json + 3 socket files (socketAuth.js, socketService.js, sockets/handlers.js). Frontend socket.io was removed in Session 96. Clean up when backend is deployed.
+- [x] ~~**Remove socket.io from backend**~~ ✅ (Session 118: socket.io dep + 3 socket files removed. Session 120: 6 stub routes removed, README updated.)
 - [ ] **Audit backend dependencies** — Run `npm audit` when backend is next active.
 
 ### Documentation
