@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.4",
-    "date": "2026-02-26T22:45:00Z",
+    "version": "10.5",
+    "date": "2026-02-26T22:57:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.3, Session 124)",
+    "supersedes": "AGENT_HANDOFF.json (v10.4, Session 125)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -20,8 +20,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 824,
-    "test_files": 47,
+    "frontend_tests": 862,
+    "test_files": 49,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -30,7 +30,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 125,
+    "sessions_completed": 126,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -57,6 +57,17 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_126_changes": {
+    "summary": "Test coverage for IncidentReportForm (multi-step wizard with Supabase integration) and InteractiveTimeline (data visualization with filtering, navigation, and auto-play). IncidentReportForm is 1 of 4 Supabase-wired forms — now all 4 have tests. InteractiveTimeline is a key data display component covering 31 events across 6 categories.",
+    "new_test_files": [
+      "src/test/IncidentReportForm.test.jsx — 23 tests: Step 1 (header, 9 incident types, disabled/enabled Continue), Step 2 (navigation, detail fields, Back button), Step 3 (anonymous toggle, consent, email show/hide, summary, submit disabled), backend integration (Coming Soon notice, footer states), submission (static fallback, Supabase connected with correct params, error handling, success screen with reporting orgs, form reset, backend-aware message)",
+      "src/test/InteractiveTimeline.test.jsx — 15 tests: rendering (header, 7 categories, stats, counter, placeholder, legend, zoom), filtering (Hong Kong filter, All Events return), navigation (next/previous with wrapping), event selection (marker click), auto-play (3s advance, pause stops), statistics display"
+    ],
+    "test_count": "862 tests across 49 files (was 824/47). 38 new tests across 2 files.",
+    "forms_now_tested": "All 4 Supabase-wired forms now have tests: ContactForm (9), VolunteerSignup (9), NewsDigest (9), IncidentReportForm (23). The IncidentReportForm has the most tests due to its 3-step wizard complexity.",
+    "components_now_tested": "IncidentReportForm, InteractiveTimeline added. Major untested components remaining: SanctionsTracker, ContactRepresentatives, WhistleblowerPortal, LegalResourcesHub, LiveStatistics"
   },
 
   "session_125_changes": {
