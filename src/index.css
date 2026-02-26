@@ -43,11 +43,11 @@
   --th-text-heading: #0f172a;
   --th-text-body: #334155;
   --th-text-base: #1e293b;
-  --th-accent: #059669;
-  --th-accent-hover: #047857;
-  --th-accent-dim: #047857;
-  --th-accent-cyan: #0891b2;
-  --th-focus: #059669;
+  --th-accent: #047857;
+  --th-accent-hover: #065f46;
+  --th-accent-dim: #065f46;
+  --th-accent-cyan: #0e7490;
+  --th-focus: #047857;
 }
 
 /* ─── High-contrast theme ──────────────────────────────────── */
@@ -381,18 +381,18 @@ a, button, input, select, textarea,
 .theme-light .border-\[\#1c2a35\] { border-color: #e2e8f0 !important; }
 
 /* ─── Light theme — text ─────────────────────────────────── */
-.theme-light .text-\[\#4afa82\] { color: #059669 !important; }
-.theme-light .text-\[\#22d3ee\] { color: #0891b2 !important; }
-.theme-light .text-\[\#2a9a52\] { color: #047857 !important; }
+.theme-light .text-\[\#4afa82\] { color: #047857 !important; }
+.theme-light .text-\[\#22d3ee\] { color: #0e7490 !important; }
+.theme-light .text-\[\#2a9a52\] { color: #065f46 !important; }
 .theme-light .text-white        { color: #0f172a !important; }
 .theme-light .text-slate-300    { color: #334155 !important; }
 .theme-light .text-slate-400    { color: #475569 !important; }
 
 /* ─── Light theme — accents & badges ─────────────────────── */
-.theme-light .bg-\[\#4afa82\]\/10  { background-color: rgba(5,150,105,0.1) !important; }
-.theme-light .bg-\[\#22d3ee\]\/10  { background-color: rgba(8,145,178,0.1) !important; }
-.theme-light .border-l-\[\#4afa82\] { border-left-color: #059669 !important; }
-.theme-light .border-l-\[\#22d3ee\] { border-left-color: #0891b2 !important; }
+.theme-light .bg-\[\#4afa82\]\/10  { background-color: rgba(4,120,87,0.1) !important; }
+.theme-light .bg-\[\#22d3ee\]\/10  { background-color: rgba(14,116,144,0.1) !important; }
+.theme-light .border-l-\[\#4afa82\] { border-left-color: #047857 !important; }
+.theme-light .border-l-\[\#22d3ee\] { border-left-color: #0e7490 !important; }
 
 /* ─── High-contrast theme — backgrounds ──────────────────── */
 .theme-high-contrast .bg-\[\#0a0e14\]  { background-color: #000000 !important; }
