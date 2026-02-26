@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "9.5",
-    "date": "2026-02-26T02:10:00Z",
+    "version": "9.6",
+    "date": "2026-02-26T02:20:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v9.4, Session 114)",
+    "supersedes": "AGENT_HANDOFF.json (v9.5, Session 115)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 115,
+    "sessions_completed": 116,
     "eslint_status": "0_errors_10_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -41,7 +41,7 @@
     "design_system_checks": ["prohibited_rounded", "gradient_backgrounds", "structural_bg_gray", "structural_border_gray", "orphan_detection", "role_button_prevention", "blue_star_prevention", "non_terminal_accent_prevention"],
     "old_style_classes_remaining": 0,
     "tabs_consolidated": "38_to_17",
-    "pages_consolidated": "18_to_14",
+    "pages_consolidated": "18_to_10_with_redirects",
     "orphan_components_integrated": "17_total_0_remaining",
     "accessibility": "WCAG_AA_semantic_buttons_heading_hierarchy_skip_links_i18n",
     "email_newsletter": "DEFERRED_by_owner_decide_later",
@@ -53,7 +53,18 @@
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md",
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
     "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/",
-    "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_305KB_97KB_gzip"
+    "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_304KB_97KB_gzip",
+    "site_cleanup_status": "97_percent_complete_session_116"
+  },
+
+  "session_116_changes": {
+    "summary": "Comprehensive TODO sync — marked 20+ done items in SITE_CLEANUP_TODO.md, updated TODO.md current state, added backend socket cleanup task",
+    "site_cleanup_todo_updates": "Marked done: page merging (4/4 verified with redirects), background color standardization (audit confirmed), text color standardization (CSS overrides verified), accent color standardization (all 5 colors done), accessibility (208+ ARIA attrs across 53 files, focus indicators in 33 files), documentation (README/STYLE_GUIDE/CONTRIBUTING all current), performance optimization (6 audit sessions, 0 orphans, code splitting done). Status: ~90% → ~97%.",
+    "todo_md_updates": "Updated Current Sprint (site cleanup ~97%, bundle 304KB), Quick Start summary (Session 116 state, 625 tests, 10 pages + 15 profiles, v9.6), Technical Debt (marked 9 items as done), Added backend socket cleanup task, Fixed SIMULATED_DATA reference to archived location.",
+    "new_items_added": "Backend cleanup: socket.io still in backend deps + 3 socket files from before frontend socket.io removal. Added as deferred task.",
+    "archive_total": "66 files (unchanged)",
+    "test_count": "625 tests across 34 files. 8 design system compliance checks.",
+    "active_agents_structure": "7 root, 1 planning, 7 research, 2 thoughts, 66 archive"
   },
 
   "session_115_changes": {
