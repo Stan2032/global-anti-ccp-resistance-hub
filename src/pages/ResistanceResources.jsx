@@ -57,7 +57,7 @@ const ResistanceResources = () => {
       link: '/education',
       linkText: 'Go to Education Center',
       highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
-      color: 'border-l-2 border-l-purple-500'
+      color: 'border-l-2 border-l-[#22d3ee]'
     },
     {
       title: 'Intelligence & News',
@@ -75,7 +75,7 @@ const ResistanceResources = () => {
       link: '/community',
       linkText: 'Join Community',
       highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
-      color: 'border-l-2 border-l-teal-500'
+      color: 'border-l-2 border-l-[#22d3ee]'
     }
   ];
 
@@ -251,7 +251,7 @@ const ResistanceResources = () => {
                 </a>
               )}
               {contact.email && (
-                <a href={`mailto:${contact.email}`} className="block text-blue-400 text-sm font-mono mb-1">
+                <a href={`mailto:${contact.email}`} className="block text-[#22d3ee] text-sm font-mono mb-1">
                   <Mail className="w-3 h-3 inline mr-1" />{contact.email}
                 </a>
               )}

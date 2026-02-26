@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, PenLine, Send, Clock, Copy, Lightbulb, BookOpen } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const LetterCampaign = () => {
   const [activeCampaign, setActiveCampaign] = useState(null);
@@ -54,7 +55,7 @@ Sincerely,
       urgency: 'high',
       deadline: 'Ongoing',
       description: 'Demand companies audit their supply chains and eliminate Uyghur forced labor.',
-      background: 'Over 1 million Uyghurs are estimated to be in forced labor programs. Major brands continue to source from Xinjiang or suppliers linked to forced labor despite the Uyghur Forced Labor Prevention Act.',
+      background: `An estimated ${STATISTICS.forcedLabor.value} Uyghurs are in forced labor programs. Major brands continue to source from Xinjiang or suppliers linked to forced labor despite the Uyghur Forced Labor Prevention Act.`,
       asks: [
         'Conduct independent supply chain audits',
         'Publish supplier lists for transparency',
@@ -180,9 +181,9 @@ Sincerely,
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <Mail className="w-8 h-8 mr-3 text-blue-400" />
+          <Mail className="w-8 h-8 mr-3 text-[#22d3ee]" />
           <div>
             <h2 className="text-2xl font-bold text-white">Letter Writing Campaigns</h2>
             <p className="text-slate-400">Ready-to-use templates for advocacy</p>
@@ -283,7 +284,7 @@ Sincerely,
                     <h4 className="text-sm font-medium text-white">Letter Template</h4>
                     <button
                       onClick={() => copyLetter(campaign.letterTemplate)}
-                      className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                      className="text-xs px-3 py-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] rounded transition-colors"
                     >
                       {copiedLetter ? '✓ Copied!' : <span className="flex items-center gap-1"><Copy className="w-3 h-3" /> Copy Letter</span>}
                     </button>
@@ -313,16 +314,16 @@ Sincerely,
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Find Your Representatives</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇺🇸 US House Representatives
           </a>
-          <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇺🇸 US Senators
           </a>
-          <a href="https://members.parliament.uk/members/Commons" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://members.parliament.uk/members/Commons" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇬🇧 UK Members of Parliament
           </a>
-          <a href="https://www.ourcommons.ca/members/en" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.ourcommons.ca/members/en" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇨🇦 Canadian MPs
           </a>
         </div>

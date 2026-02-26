@@ -127,7 +127,7 @@ const AIDisinfoDetector = () => {
     const colors = {
       red: 'text-red-400 bg-red-500/10 border-red-500/30',
       yellow: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
-      blue: 'text-blue-400 bg-blue-500/10 border-blue-500/30',
+      blue: 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       green: 'text-green-400 bg-green-500/10 border-green-500/30'
     };
     return colors[color] || colors.blue;
@@ -237,7 +237,7 @@ const AIDisinfoDetector = () => {
                 className={`h-3 rounded-full transition-all ${
                   analysisResult.riskScore >= 70 ? 'bg-red-500' :
                   analysisResult.riskScore >= 40 ? 'bg-yellow-500' :
-                  analysisResult.riskScore >= 20 ? 'bg-blue-500' : 'bg-green-500'
+                  analysisResult.riskScore >= 20 ? 'bg-[#22d3ee]' : 'bg-green-500'
                 }`}
                 style={{ width: `${analysisResult.riskScore}%` }}
               ></div>
@@ -288,8 +288,8 @@ const AIDisinfoDetector = () => {
           )}
 
           {/* Recommendations */}
-          <div className="bg-blue-500/10 border border-blue-500/30 p-5">
-            <h3 className="text-blue-400 font-bold mb-3 flex items-center gap-2">
+          <div className="bg-[#22d3ee]/10 border border-[#1c2a35] p-5">
+            <h3 className="text-[#22d3ee] font-bold mb-3 flex items-center gap-2">
               <Eye className="w-5 h-5" />
               Recommendations
             </h3>

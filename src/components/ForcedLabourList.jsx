@@ -309,7 +309,7 @@ const ForcedLabourList = () => {
       case 'CRITICAL': return 'bg-red-900/30 text-red-400 border-red-800';
       case 'HIGH RISK': return 'bg-orange-900/30 text-orange-400 border-orange-800';
       case 'IMPLICATED': return 'bg-yellow-900/30 text-yellow-400 border-yellow-800';
-      case 'IMPROVED': return 'bg-blue-900/30 text-blue-400 border-blue-800';
+      case 'IMPROVED': return 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]';
       default: return 'bg-gray-900/30 text-gray-400 border-gray-800';
     }
   };
@@ -361,7 +361,7 @@ const ForcedLabourList = () => {
               onClick={() => setSelectedCategory(cat.key)}
               className={`px-4 py-2 transition-colors ${
                 selectedCategory === cat.key
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-400 hover:bg-[#111820]'
               }`}
             >
@@ -391,13 +391,13 @@ const ForcedLabourList = () => {
               </div>
 
               <div>
-                <h4 className="font-semibold text-blue-400 mb-1">Evidence:</h4>
+                <h4 className="font-semibold text-[#22d3ee] mb-1">Evidence:</h4>
                 <p className="text-slate-300">{company.evidence}</p>
                 <a 
                   href={company.sourceUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 text-sm underline"
+                  className="text-[#22d3ee] hover:text-white text-sm underline"
                 >
                   View Source →
                 </a>
@@ -421,8 +421,8 @@ const ForcedLabourList = () => {
                 
                 {showAlternatives[company.name] && (
                   <div className="mt-2 pl-4 border-l-2 border-green-600">
-                    <div className="bg-blue-900/20 border border-blue-700 rounded p-2 mb-2">
-                      <p className="text-xs text-blue-300">
+                    <div className="bg-[#111820] border border-[#1c2a35] rounded p-2 mb-2">
+                      <p className="text-xs text-[#22d3ee]">
                         <strong>China Exposure Ratings:</strong> 🟢 Zero (100% no China) | 🟡 Minimal (&lt;10% China components) | 🔴 Significant (avoid)
                       </p>
                     </div>
@@ -451,11 +451,11 @@ const ForcedLabourList = () => {
       <div className="mt-8 p-4 bg-[#111820] border border-[#1c2a35]">
         <h3 className="font-bold mb-2">Data Sources:</h3>
         <ul className="text-sm text-slate-400 space-y-1">
-          <li>• <a href="https://www.aspi.org.au/report/uyghurs-sale" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">ASPI - "Uyghurs for Sale" (2020)</a></li>
-          <li>• <a href="https://www.hrw.org/report/2024/11/18/asleep-wheel/car-companies-complicity-forced-labor-chinas-xinjiang-uyghur" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Human Rights Watch - "Asleep at the Wheel" (2024)</a></li>
-          <li>• <a href="https://www.cbp.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">US Customs and Border Protection - Detention Orders</a></li>
-          <li>• <a href="https://ipvm.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">IPVM - Surveillance Technology Investigations</a></li>
-          <li>• <a href="https://www.endforcedlabour.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Coalition to End Forced Labour in the Uyghur Region</a></li>
+          <li>• <a href="https://www.aspi.org.au/report/uyghurs-sale" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">ASPI - "Uyghurs for Sale" (2020)</a></li>
+          <li>• <a href="https://www.hrw.org/report/2024/11/18/asleep-wheel/car-companies-complicity-forced-labor-chinas-xinjiang-uyghur" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Human Rights Watch - "Asleep at the Wheel" (2024)</a></li>
+          <li>• <a href="https://www.cbp.gov/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">US Customs and Border Protection - Detention Orders</a></li>
+          <li>• <a href="https://ipvm.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">IPVM - Surveillance Technology Investigations</a></li>
+          <li>• <a href="https://www.endforcedlabour.org/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Coalition to End Forced Labour in the Uyghur Region</a></li>
         </ul>
       </div>
     </div>

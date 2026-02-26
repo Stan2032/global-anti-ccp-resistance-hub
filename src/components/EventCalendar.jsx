@@ -214,9 +214,9 @@ const EventCalendar = () => {
 
   const getTypeColor = (type) => {
     switch (type) {
-      case 'commemoration': return 'bg-purple-600';
+      case 'commemoration': return 'bg-[#22d3ee]';
       case 'protest': return 'bg-red-600';
-      case 'solidarity': return 'bg-blue-600';
+      case 'solidarity': return 'bg-[#22d3ee]';
       case 'awareness': return 'bg-yellow-600';
       default: return 'bg-[#1c2a35]';
     }
@@ -245,7 +245,7 @@ const EventCalendar = () => {
       {/* Legend */}
       <div className="flex flex-wrap gap-4">
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-purple-600"></span>
+          <span className="w-3 h-3 rounded-full bg-[#22d3ee]"></span>
           <span className="text-sm text-slate-300">Commemoration</span>
         </div>
         <div className="flex items-center gap-2">
@@ -253,7 +253,7 @@ const EventCalendar = () => {
           <span className="text-sm text-slate-300">Protest</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+          <span className="w-3 h-3 rounded-full bg-[#22d3ee]"></span>
           <span className="text-sm text-slate-300">Solidarity</span>
         </div>
         <div className="flex items-center gap-2">

@@ -51,7 +51,7 @@ const DataSources = () => {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <Database className="w-12 h-12 text-blue-400" />
+            <Database className="w-12 h-12 text-[#22d3ee]" />
             <h1 className="text-5xl font-bold">Data Sources & Methodology</h1>
           </div>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -65,7 +65,7 @@ const DataSources = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-blue-600/20 border border-blue-500/30 p-6 mb-12"
+          className="bg-[#22d3ee]/20 border border-[#1c2a35] p-6 mb-12"
         >
           <div className="flex items-start space-x-4">
             <CheckCircle className="w-8 h-8 text-green-400 flex-shrink-0 mt-1" />
@@ -105,7 +105,7 @@ const DataSources = () => {
           className="mb-12"
         >
           <div className="flex items-center space-x-3 mb-6">
-            <RefreshCw className="w-8 h-8 text-blue-400" />
+            <RefreshCw className="w-8 h-8 text-[#22d3ee]" />
             <h2 className="text-3xl font-bold">Live Intelligence Feeds (RSS)</h2>
           </div>
           <p className="text-slate-300 mb-6">
@@ -125,12 +125,12 @@ const DataSources = () => {
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-3">
-                    <Newspaper className="w-6 h-6 text-blue-400" />
-                    <h3 className="text-lg font-semibold group-hover:text-blue-400 transition-colors">
+                    <Newspaper className="w-6 h-6 text-[#22d3ee]" />
+                    <h3 className="text-lg font-semibold group-hover:text-white transition-colors">
                       {source.name}
                     </h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                  <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-slate-300 text-sm mb-3">{source.description}</p>
                 <div className="flex flex-wrap gap-2">
@@ -157,7 +157,7 @@ const DataSources = () => {
           className="mb-12"
         >
           <div className="flex items-center space-x-3 mb-6">
-            <Database className="w-8 h-8 text-blue-400" />
+            <Database className="w-8 h-8 text-[#22d3ee]" />
             <h2 className="text-3xl font-bold">Major Data Sources by Category</h2>
           </div>
           <div className="space-y-6">
@@ -170,7 +170,7 @@ const DataSources = () => {
                 className="bg-[#111820] border border-[#1c2a35] p-6"
               >
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="text-blue-400">{category.icon}</div>
+                  <div className="text-[#22d3ee]">{category.icon}</div>
                   <h3 className="text-2xl font-bold">{category.category}</h3>
                   <span className="text-slate-400 text-sm">({category.count})</span>
                 </div>
@@ -181,7 +181,7 @@ const DataSources = () => {
                       href={source.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors group"
+                      className="flex items-center space-x-2 text-[#22d3ee] hover:text-white transition-colors group"
                     >
                       <ExternalLink className="w-4 h-4 flex-shrink-0" />
                       <span className="group-hover:underline">{source.name}</span>
@@ -204,7 +204,7 @@ const DataSources = () => {
           transition={{ delay: 0.8 }}
           className="bg-[#111820] border border-[#1c2a35] p-8 text-center"
         >
-          <GraduationCap className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+          <GraduationCap className="w-16 h-16 text-[#22d3ee] mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Complete Documentation</h2>
           <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
             For detailed information about our data collection methodology, verification process, 
@@ -214,7 +214,7 @@ const DataSources = () => {
             href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/blob/master/DATA_SOURCES.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-semibold transition-colors"
           >
             <FileText className="w-5 h-5" />
             <span>View Full DATA_SOURCES.md</span>

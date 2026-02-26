@@ -252,10 +252,10 @@ export default function MemorialWall() {
   const getCategoryColor = (category) => {
     const colors = {
       'Tiananmen': 'bg-red-600',
-      'Uyghur': 'bg-blue-600',
+      'Uyghur': 'bg-[#22d3ee]',
       'Tibet': 'bg-orange-600',
       'Hong Kong': 'bg-yellow-600',
-      'Dissident': 'bg-purple-600',
+      'Dissident': 'bg-[#22d3ee]',
       'Falun Gong': 'bg-green-600',
       'Organ Harvesting': 'bg-gray-600',
     };
@@ -296,11 +296,11 @@ export default function MemorialWall() {
             <p className="text-xs text-slate-500">Tibetan Self-Immolations</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
-            <p className="text-lg font-bold text-blue-400">Unknown</p>
+            <p className="text-lg font-bold text-[#22d3ee]">Unknown</p>
             <p className="text-xs text-slate-500">Uyghur Deaths in Camps</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
-            <p className="text-lg font-bold text-purple-400">60,000+/yr</p>
+            <p className="text-lg font-bold text-[#22d3ee]">60,000+/yr</p>
             <p className="text-xs text-slate-500">Organ Harvesting Est.</p>
           </div>
         </div>
@@ -326,7 +326,7 @@ export default function MemorialWall() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
@@ -391,7 +391,7 @@ export default function MemorialWall() {
                   </button>
                   <button
                     onClick={() => setSelectedVictim(victim)}
-                    className="text-blue-400 hover:text-blue-300 text-sm"
+                    className="text-[#22d3ee] hover:text-white text-sm"
                   >
                     Read More →
                   </button>

@@ -1,7 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
 import http from 'http';
-import { Server } from 'socket.io';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -10,9 +9,6 @@ import dotenv from 'dotenv';
 import logger from './utils/logger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { requestLogger } from './middleware/requestLogger.js';
-import { socketAuthMiddleware } from './middleware/socketAuth.js';
-import { initializeSocketService } from './services/socketService.js';
-import { handleConnection } from './sockets/handlers.js';
 import feedScheduler from './services/feedScheduler.js';
 
 // Load environment variables
@@ -21,15 +17,6 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 const server = http.createServer(app);
-
-// Initialize Socket.IO
-const io = new Server(server, {
-  cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-    credentials: true
-  },
-  transports: ['websocket', 'polling']
-});
 
 // Middleware
 app.use(helmet());
@@ -99,18 +86,6 @@ app.use((req, res) => {
 
 // Error handling middleware
 app.use(errorHandler);
-
-// Initialize Socket.IO service
-initializeSocketService(io);
-
-// Socket.IO authentication middleware
-io.use(socketAuthMiddleware);
-
-// Socket.IO connection handler
-io.on('connection', handleConnection);
-
-// Make io accessible to routes
-app.set('io', io);
 
 // Start feed scheduler (polls RSS feeds every 15 minutes)
 const FEED_POLL_INTERVAL = parseInt(process.env.FEED_POLL_INTERVAL_MINUTES || '15');

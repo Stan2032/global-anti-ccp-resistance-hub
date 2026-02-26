@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Megaphone, Building, Link2, Target } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
+import { STATISTICS } from '../data/statistics';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -76,7 +77,7 @@ const ContactRepresentatives = () => {
 I am writing to urge you to take action on the ongoing human rights abuses perpetrated by the Chinese Communist Party (CCP).
 
 The CCP continues to commit serious violations including:
-• The detention of over 1 million Uyghurs in concentration camps
+• The detention of an estimated ${STATISTICS.uyghurDetention.value} Uyghurs in concentration camps
 • The systematic destruction of Hong Kong's autonomy and freedoms
 • The persecution of Tibetans, Falun Gong practitioners, and Christians
 • Transnational repression targeting diaspora communities worldwide
@@ -102,7 +103,7 @@ Sincerely,
 I am writing to urge immediate action on the genocide being committed against the Uyghur people in the Xinjiang Uyghur Autonomous Region of China.
 
 The evidence is overwhelming:
-• Over 1 million Uyghurs detained in concentration camps
+• An estimated ${STATISTICS.uyghurDetention.value} Uyghurs detained in concentration camps
 • Forced sterilization and birth prevention
 • Systematic cultural and religious destruction
 • Forced labor in factories supplying global brands
@@ -281,7 +282,7 @@ Sincerely,
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Building className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
@@ -299,7 +300,7 @@ Sincerely,
               onClick={() => setSelectedCountry(country.code)}
               className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedCountry === country.code
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
@@ -359,7 +360,7 @@ Sincerely,
           <button
             onClick={() => copyToClipboard(currentTemplate.subject + '\n\n' + currentTemplate.body)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
-              copied ? 'bg-green-600 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'
+              copied ? 'bg-green-600 text-[#0a0e14]' : 'bg-[#22d3ee] hover:bg-[#22d3ee] text-[#0a0e14]'
             }`}
           >
             {copied ? '✓ Copied!' : 'Copy Letter'}

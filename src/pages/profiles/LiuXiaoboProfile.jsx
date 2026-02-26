@@ -264,7 +264,7 @@ const SOURCES = [
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const categoryColors = {
   life: 'bg-gray-500',
-  academic: 'bg-blue-500',
+  academic: 'bg-[#22d3ee]',
   political: 'bg-amber-500',
   persecution: 'bg-red-600',
   international: 'bg-yellow-500',
@@ -684,7 +684,7 @@ export default function LiuXiaoboProfile() {
                   className="flex items-start gap-3 bg-[#111820] border border-[#1c2a35] p-4 hover:border-yellow-600 transition-colors group"
                 >
                   <div className={`w-8 h-8 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                    s.tier === 1 ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700' : 'bg-blue-900/50 text-blue-300 border border-blue-700'
+                    s.tier === 1 ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700' : 'bg-[#111820]/50 text-[#22d3ee] border border-[#1c2a35]'
                   }`}>
                     T{s.tier}
                   </div>
@@ -702,7 +702,7 @@ export default function LiuXiaoboProfile() {
               <strong className="text-gray-300">Source tier definitions:</strong>
               <ul className="mt-2 space-y-1">
                 <li><span className="text-emerald-400">Tier 1 (Gold standard):</span> Government records, Nobel Committee, BBC, HRW, Amnesty, NCHRD, Britannica, Freedom Now, PEN, European Parliament</li>
-                <li><span className="text-blue-400">Tier 2 (Reliable):</span> HKFP, The Guardian — editorially independent, well-sourced</li>
+                <li><span className="text-[#22d3ee]">Tier 2 (Reliable):</span> HKFP, The Guardian — editorially independent, well-sourced</li>
               </ul>
               <p className="mt-2"><strong className="text-gray-300">Excluded:</strong> Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media</p>
             </div>

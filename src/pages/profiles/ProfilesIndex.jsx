@@ -45,7 +45,7 @@ const PROFILES = [
     chineseName: '根敦确吉尼玛',
     path: '/profiles/panchen-lama',
     status: 'DISAPPEARED',
-    statusColor: 'purple',
+    statusColor: 'cyan',
     sentence: '30 years missing',
     birthDate: 'April 25, 1989',
     role: '11th Panchen Lama',
@@ -53,8 +53,8 @@ const PROFILES = [
     location: 'Unknown — enforced disappearance since 1995',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
-    themeLeftBorder: 'border-l-purple-500',
-    themeAccent: 'text-purple-400',
+    themeLeftBorder: 'border-l-[#22d3ee]',
+    themeAccent: 'text-[#22d3ee]',
     built: true,
   },
   {
@@ -105,8 +105,8 @@ const PROFILES = [
     location: 'Unknown prison, China',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
-    themeLeftBorder: 'border-l-teal-500',
-    themeAccent: 'text-teal-400',
+    themeLeftBorder: 'border-l-[#22d3ee]',
+    themeAccent: 'text-[#22d3ee]',
     built: true,
   },
   {
@@ -131,7 +131,7 @@ const PROFILES = [
     chineseName: '高智晟',
     path: '/profiles/gao-zhisheng',
     status: 'DISAPPEARED',
-    statusColor: 'purple',
+    statusColor: 'cyan',
     sentence: 'Disappeared since Aug 2017',
     birthDate: 'April 20, 1966',
     role: 'Human Rights Lawyer',
@@ -139,8 +139,8 @@ const PROFILES = [
     location: 'Unknown',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
-    themeLeftBorder: 'border-l-purple-500',
-    themeAccent: 'text-purple-400',
+    themeLeftBorder: 'border-l-[#22d3ee]',
+    themeAccent: 'text-[#22d3ee]',
     built: true,
   },
   {
@@ -266,7 +266,7 @@ const PROFILES = [
 
 const statusStyles = {
   red: { badge: 'bg-red-900/50 text-red-300 border-red-700/50', dot: 'bg-red-500' },
-  purple: { badge: 'bg-purple-900/50 text-purple-300 border-purple-700/50', dot: 'bg-purple-500' },
+  cyan: { badge: 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]', dot: 'bg-[#22d3ee]' },
   gray: { badge: 'bg-gray-800/50 text-gray-300 border-gray-600/50', dot: 'bg-gray-400' },
   yellow: { badge: 'bg-yellow-900/50 text-yellow-300 border-yellow-700/50', dot: 'bg-yellow-500' },
 };
@@ -324,7 +324,7 @@ const ProfileCard = ({ profile }) => {
         {profile.built ? (
           <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
             <span className="text-xs text-green-400 font-medium">Full profile available</span>
-            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors" />
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#22d3ee] transition-colors" />
           </div>
         ) : (
           <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">

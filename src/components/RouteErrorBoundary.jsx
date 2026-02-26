@@ -50,7 +50,7 @@ class RouteErrorBoundary extends React.Component {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={this.handleRetry}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
               >
                 <RefreshCw className="w-4 h-4" aria-hidden="true" />
                 Try Again

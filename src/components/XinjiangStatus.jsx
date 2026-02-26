@@ -55,7 +55,7 @@ const XinjiangStatus = () => {
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <div className="flex items-center gap-3 mb-4">
-          <Mountain className="w-10 h-10 text-blue-400" />
+          <Mountain className="w-10 h-10 text-[#22d3ee]" />
           <div>
             <h2 className="text-2xl font-bold text-white">Xinjiang / East Turkistan Status</h2>
             <p className="text-slate-300">Tracking the Uyghur genocide and mass detention</p>
@@ -81,7 +81,7 @@ const XinjiangStatus = () => {
               stat.color === 'red' ? 'text-red-400' :
               stat.color === 'orange' ? 'text-orange-400' :
               stat.color === 'yellow' ? 'text-yellow-400' :
-              'text-blue-400'
+              'text-[#22d3ee]'
             }`}>{stat.value}</div>
             <div className="text-xs text-slate-400">{stat.label}</div>
           </div>
@@ -96,7 +96,7 @@ const XinjiangStatus = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -159,8 +159,8 @@ const XinjiangStatus = () => {
             </div>
           </div>
           
-          <div className="bg-blue-900/30 border border-blue-700 p-4">
-            <p className="text-blue-300 text-sm">
+          <div className="bg-[#111820] border border-[#1c2a35] p-4">
+            <p className="text-[#22d3ee] text-sm">
               <BarChart3 className="w-4 h-4 inline mr-1" /> View satellite imagery at{' '}
               <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="underline">
                 ASPI Xinjiang Data Project
@@ -180,7 +180,7 @@ const XinjiangStatus = () => {
                 <div key={i} className="bg-[#111820] p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-semibold">{sector.sector}</span>
-                    <span className="text-blue-400 font-bold">{sector.share}</span>
+                    <span className="text-[#22d3ee] font-bold">{sector.share}</span>
                   </div>
                   <p className="text-slate-400 text-sm">{sector.description}</p>
                   <p className="text-slate-500 text-xs mt-1">Estimated workers: {sector.workers}</p>

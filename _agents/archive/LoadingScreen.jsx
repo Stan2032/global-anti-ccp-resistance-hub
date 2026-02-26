@@ -16,7 +16,7 @@ const LoadingScreen = () => {
           className="mb-8"
         >
           <div className="flex items-center justify-center mb-4">
-            <Shield className="w-16 h-16 text-blue-400 mr-4" />
+            <Shield className="w-16 h-16 text-[#22d3ee] mr-4" />
             <div>
               <h1 className="text-4xl font-bold gradient-text">
                 Global Resistance Hub
@@ -43,7 +43,7 @@ const LoadingScreen = () => {
               }}
               className="p-4 bg-[#111820] rounded-full"
             >
-              <Icon className="w-8 h-8 text-blue-400" />
+              <Icon className="w-8 h-8 text-[#22d3ee]" />
             </motion.div>
           ))}
         </div>

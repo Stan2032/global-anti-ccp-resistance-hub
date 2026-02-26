@@ -136,7 +136,7 @@ const SecurityCenter = () => {
         href={tool.download}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
+        className="w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
       >
         <Download className="w-4 h-4" />
         <span>Download</span>
@@ -167,7 +167,7 @@ const SecurityCenter = () => {
       <div className="space-y-2">
         {guide.topics.map((topic, idx) => (
           <div key={idx} className="flex items-center text-slate-300 text-sm">
-            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></div>
+            <div className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full mr-2"></div>
             {topic}
           </div>
         ))}
@@ -283,7 +283,7 @@ const SecurityCenter = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleAssessment}
-                  className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium transition-colors"
+                  className="mt-6 w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-6 py-3 font-medium transition-colors"
                 >
                   Get Security Score
                 </motion.button>
@@ -327,7 +327,7 @@ const SecurityCenter = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => { setAssessmentComplete(false); setAnswers({}) }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 font-medium transition-colors"
+                  className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-6 py-2 font-medium transition-colors"
                 >
                   Retake Assessment
                 </motion.button>
@@ -373,7 +373,7 @@ const SecurityCenter = () => {
               {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
               {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
               {(webrtcStatus === 'idle' || webrtcStatus === 'unsupported' || webrtcStatus === 'error') && <ShieldQuestion className="w-5 h-5 text-slate-400" />}
-              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />}
+              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-[#22d3ee] animate-spin" />}
               <h3 className="text-xl font-bold text-white">WebRTC Leak Test</h3>
             </div>
             <p className="text-slate-400 text-sm mb-4">
@@ -392,7 +392,7 @@ const SecurityCenter = () => {
             )}
 
             {webrtcStatus === 'running' && (
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-[#22d3ee]">
                 <Loader2 className="w-4 h-4 animate-spin" />
                 <span className="text-sm">Checking for WebRTC leaks...</span>
               </div>

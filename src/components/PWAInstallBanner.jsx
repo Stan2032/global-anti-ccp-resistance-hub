@@ -96,7 +96,7 @@ export default function PWAInstallBanner() {
                 <ol className="text-sm text-slate-400 space-y-1">
                   <li className="flex items-center gap-2">
                     <span className="w-5 h-5 bg-[#111820] rounded-full flex items-center justify-center text-xs text-white">1</span>
-                    Tap the <strong className="text-blue-400">Share</strong> button <span className="text-blue-400">(□↑)</span>
+                    Tap the <strong className="text-[#22d3ee]">Share</strong> button <span className="text-[#22d3ee]">(□↑)</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-5 h-5 bg-[#111820] rounded-full flex items-center justify-center text-xs text-white">2</span>
@@ -130,11 +130,11 @@ export default function PWAInstallBanner() {
                 Works offline
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
                 Quick access
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
                 No app store needed
               </span>
               <span className="flex items-center gap-1">

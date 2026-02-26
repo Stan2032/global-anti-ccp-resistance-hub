@@ -253,19 +253,19 @@ const LanguageGuide = () => {
   const categoryColors = {
     slogan: 'bg-red-900/30 border-red-700/50',
     support: 'bg-green-900/30 border-green-700/50',
-    identity: 'bg-blue-900/30 border-blue-700/50',
+    identity: 'bg-[#111820] border-[#1c2a35]',
     greeting: 'bg-yellow-900/30 border-yellow-700/50',
     basic: 'bg-[#111820]/50 border-[#1c2a35]/50',
-    concept: 'bg-purple-900/30 border-purple-700/50',
+    concept: 'bg-[#111820] border-[#1c2a35]',
     symbol: 'bg-orange-900/30 border-orange-700/50',
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <Languages className="w-8 h-8 text-blue-400 mr-3" />
+          <Languages className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Solidarity Phrase Guide</h2>
             <p className="text-slate-400">Learn key phrases to show support in native languages</p>
@@ -285,7 +285,7 @@ const LanguageGuide = () => {
             onClick={() => setActiveLanguage(lang.id)}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeLanguage === lang.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -319,14 +319,14 @@ const LanguageGuide = () => {
               </span>
               <button
                 onClick={() => copyToClipboard(phrase.native, index)}
-                className="text-xs text-blue-400 hover:text-blue-300"
+                className="text-xs text-[#22d3ee] hover:text-white"
               >
                 {copiedPhrase === index ? '✓ Copied!' : <><ClipboardCopy className="w-3 h-3 inline" /> Copy</>}
               </button>
             </div>
             
             <p className="text-lg font-bold text-white mb-1">{phrase.english}</p>
-            <p className="text-2xl text-blue-300 mb-1 font-medium">{phrase.native}</p>
+            <p className="text-2xl text-[#22d3ee] mb-1 font-medium">{phrase.native}</p>
             <p className="text-sm text-slate-400 italic mb-2">{phrase.romanization}</p>
             <p className="text-xs text-slate-500">{phrase.context}</p>
           </div>
@@ -349,16 +349,16 @@ const LanguageGuide = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Learn More</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://cantonese.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://cantonese.org/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Cantonese.org - Learn Cantonese
           </a>
-          <a href="https://www.uyghuramerican.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.uyghuramerican.org/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Uyghur American Association
           </a>
-          <a href="https://www.tibetanculture.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.tibetanculture.org/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Tibetan Cultural Center
           </a>
-          <a href="https://taiwanplus.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://taiwanplus.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             TaiwanPlus - Taiwan News & Culture
           </a>
         </div>

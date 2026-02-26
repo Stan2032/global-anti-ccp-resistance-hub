@@ -1,5 +1,4 @@
 import feedService from './feedService.js';
-import * as socketService from './socketService.js';
 import logger from '../utils/logger.js';
 
 /**
@@ -97,8 +96,8 @@ class FeedScheduler {
         this.broadcastNewItems(results);
       }
 
-      // Broadcast updated statistics
-      socketService.broadcastFeedStats({
+      // Log updated statistics
+      logger.info('Feed stats updated', {
         ...this.stats,
         feedStats: await feedService.getFeedStatistics()
       });
@@ -137,10 +136,9 @@ class FeedScheduler {
   }
 
   /**
-   * Broadcast new feed items to connected clients
+   * Log new feed items (socket.io broadcasting removed — use REST polling or Supabase Realtime instead)
    */
   broadcastNewItems(results) {
-    // Collect all new items from all sources
     const allNewItems = results.results
       .filter(r => r.success && r.newItems && r.newItems.length > 0)
       .flatMap(r => r.newItems.map(item => ({
@@ -150,27 +148,9 @@ class FeedScheduler {
 
     if (allNewItems.length === 0) return;
 
-    // Broadcast batch of new items
-    socketService.broadcastNewFeedItems(allNewItems);
-
-    // Also broadcast individual items for real-time feed updates
-    allNewItems.forEach(item => {
-      socketService.broadcastNewFeed({
-        id: item.id,
-        title: item.title,
-        link: item.link,
-        description: item.description,
-        author: item.author,
-        publishedAt: item.published_at,
-        sourceName: item.sourceName,
-        sourceId: item.feed_source_id,
-        relevanceScore: item.relevance_score,
-        categories: item.categories,
-        imageUrl: item.image_url
-      });
+    logger.info(`${allNewItems.length} new feed items available`, {
+      items: allNewItems.map(item => ({ id: item.id, title: item.title, source: item.sourceName }))
     });
-
-    logger.info(`Broadcasted ${allNewItems.length} new feed items`);
   }
 
   /**

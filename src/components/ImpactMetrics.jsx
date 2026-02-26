@@ -58,7 +58,7 @@ const ImpactMetrics = () => {
   const colorClasses = {
     red: 'text-red-400 bg-red-900/30',
     orange: 'text-orange-400 bg-orange-900/30',
-    blue: 'text-blue-400 bg-blue-900/30',
+    blue: 'text-[#22d3ee] bg-[#111820]',
     green: 'text-green-400 bg-green-900/30'
   };
 
@@ -113,8 +113,8 @@ const ImpactMetrics = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="mt-4 p-3 bg-blue-900/30 border border-blue-700/50">
-        <p className="text-sm text-blue-300">
+      <div className="mt-4 p-3 bg-[#111820] border border-[#1c2a35]">
+        <p className="text-sm text-[#22d3ee]">
           <strong>Your actions matter.</strong> Every petition signed, every representative contacted, and every story shared contributes to these victories.
         </p>
       </div>

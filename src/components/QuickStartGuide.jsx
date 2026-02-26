@@ -111,7 +111,7 @@ const QuickStartGuide = () => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 z-40 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors"
+        className="fixed bottom-4 right-4 z-40 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] p-3 rounded-full shadow-lg transition-colors"
         title="Quick Start Guide"
       >
         <HelpCircle className="w-5 h-5" />
@@ -138,7 +138,7 @@ const QuickStartGuide = () => {
           {/* Progress Bar */}
           <div className="h-1 bg-[#111820] overflow-hidden">
             <div 
-              className="h-full bg-blue-500 transition-all duration-300"
+              className="h-full bg-[#22d3ee] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -160,7 +160,7 @@ const QuickStartGuide = () => {
 
             {/* Icon */}
             <div className="mb-4 text-center flex justify-center">
-              <step.Icon className="w-12 h-12 text-blue-400" />
+              <step.Icon className="w-12 h-12 text-[#22d3ee]" />
             </div>
 
             {/* Title & Description */}
@@ -179,7 +179,7 @@ const QuickStartGuide = () => {
                   markStepComplete(step.id);
                   setIsOpen(false);
                 }}
-                className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 font-medium transition-colors mb-4"
+                className="block w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-center py-3 font-medium transition-colors mb-4"
               >
                 {step.action.label} →
               </Link>
@@ -206,7 +206,7 @@ const QuickStartGuide = () => {
                     onClick={() => setCurrentStep(idx)}
                     className={`w-2 h-2 rounded-full transition-colors ${
                       idx === currentStep
-                        ? 'bg-blue-500'
+                        ? 'bg-[#22d3ee]'
                         : completedSteps.includes(steps[idx].id)
                         ? 'bg-green-500'
                         : 'bg-[#1c2a35]'
@@ -217,7 +217,7 @@ const QuickStartGuide = () => {
 
               <button
                 onClick={nextStep}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+                className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
               >
                 {currentStep === steps.length - 1 ? 'Finish' : 'Next →'}
               </button>

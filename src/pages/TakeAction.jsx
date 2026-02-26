@@ -113,7 +113,7 @@ const TakeAction = () => {
       number: 6,
       title: 'SPREAD AWARENESS',
       Icon: Megaphone,
-      color: 'purple',
+      color: 'cyan',
       description: 'Share information about CCP human rights abuses with your network. Education is the first step toward action.',
       links: [
         { name: 'Share Our Site', url: '#', action: 'share' },
@@ -224,12 +224,12 @@ const TakeAction = () => {
                 aria-controls={`action-panel-${action.number}`}
               >
                 <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
-                  action.color === 'blue' ? 'bg-blue-900/50 text-blue-400' :
+                  action.color === 'blue' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                   action.color === 'red' ? 'bg-red-900/50 text-red-400' :
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
                   action.color === 'orange' ? 'bg-orange-900/50 text-orange-400' :
-                  action.color === 'purple' ? 'bg-purple-900/50 text-purple-400' :
-                  action.color === 'teal' ? 'bg-teal-900/50 text-teal-400' :
+                  action.color === 'cyan' ? 'bg-[#111820]/50 text-[#22d3ee]' :
+                  action.color === 'teal' ? 'bg-[#111820] text-[#22d3ee]' :
                   'bg-[#1c2a35] text-slate-400'
                 }`}>
                   {action.number}
@@ -333,7 +333,7 @@ const TakeAction = () => {
       </div>
 
       {/* Newsletter Signup */}
-      <div id="newsletter" className="bg-[#111820] border border-blue-700 p-6">
+      <div id="newsletter" className="bg-[#111820] border border-[#1c2a35] p-6">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-white mb-2">Stay Informed</h2>
           <p className="text-slate-300 mb-6">
@@ -389,7 +389,7 @@ const TakeAction = () => {
             href="https://www.facebook.com/sharer/sharer.php?u="
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-[#1c2a35] hover:bg-blue-900/30 transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-[#111820] transition-colors"
             title="Share on Facebook"
           >
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -400,7 +400,7 @@ const TakeAction = () => {
             href="https://www.linkedin.com/shareArticle?mini=true&url="
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-[#1c2a35] hover:bg-blue-900/30 transition-colors"
+            className="p-3 bg-[#1c2a35] hover:bg-[#111820] transition-colors"
             title="Share on LinkedIn"
           >
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">

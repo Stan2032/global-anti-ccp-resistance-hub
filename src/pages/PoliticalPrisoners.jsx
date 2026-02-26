@@ -133,7 +133,7 @@ const StatusBadge = ({ status }) => {
     DECEASED: 'bg-gray-600',
     RELEASED: 'bg-green-600',
     'AT RISK': 'bg-orange-600',
-    EXILE: 'bg-blue-600'
+    EXILE: 'bg-[#22d3ee]'
   };
   
   return (

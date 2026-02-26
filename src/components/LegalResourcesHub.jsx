@@ -329,9 +329,9 @@ const LegalResourcesHub = () => {
 
   const getTypeColor = (type) => {
     const colors = {
-      'Guide': 'text-blue-400 bg-blue-500/10 border-blue-500/30',
+      'Guide': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Directory': 'text-green-400 bg-green-500/10 border-green-500/30',
-      'Legal Document': 'text-purple-400 bg-purple-500/10 border-purple-500/30'
+      'Legal Document': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]'
     };
     return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
@@ -339,7 +339,7 @@ const LegalResourcesHub = () => {
   return (
     <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
-        <Scale className="w-8 h-8 text-indigo-400" />
+        <Scale className="w-8 h-8 text-[#22d3ee]" />
         <div>
           <h2 className="text-2xl font-bold text-white">Legal Resources Hub</h2>
           <p className="text-slate-400 text-sm">Country-specific legal information for asylum, immigration, and protection</p>
@@ -373,7 +373,7 @@ const LegalResourcesHub = () => {
             placeholder="Search by country, topic, or keyword..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+            className="w-full pl-10 pr-4 py-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22d3ee]/50"
           />
         </div>
 
@@ -387,7 +387,7 @@ const LegalResourcesHub = () => {
                   onClick={() => setSelectedCountry(country)}
                   className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCountry === country
-                      ? 'bg-indigo-500 text-white'
+                      ? 'bg-[#22d3ee] text-[#0a0e14]'
                       : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
                   }`}
                 >
@@ -406,7 +406,7 @@ const LegalResourcesHub = () => {
                   onClick={() => setSelectedTopic(topic)}
                   className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedTopic === topic
-                      ? 'bg-indigo-500 text-white'
+                      ? 'bg-[#22d3ee] text-[#0a0e14]'
                       : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
                   }`}
                 >
@@ -421,11 +421,11 @@ const LegalResourcesHub = () => {
       {/* Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-indigo-400 mb-1">{legalResources.length}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{legalResources.length}</div>
           <div className="text-sm text-slate-400">Countries</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-blue-400 mb-1">{legalResources.reduce((acc, c) => acc + c.resources.length, 0)}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{legalResources.reduce((acc, c) => acc + c.resources.length, 0)}</div>
           <div className="text-sm text-slate-400">Resources</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
@@ -433,7 +433,7 @@ const LegalResourcesHub = () => {
           <div className="text-sm text-slate-400">Emergency Contacts</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-purple-400 mb-1">{topics.length - 1}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{topics.length - 1}</div>
           <div className="text-sm text-slate-400">Topics</div>
         </div>
       </div>
@@ -484,7 +484,7 @@ const LegalResourcesHub = () => {
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white transition-colors text-sm"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors text-sm"
                     >
                       <ExternalLink className="w-4 h-4" />
                       View Resource
@@ -512,7 +512,7 @@ const LegalResourcesHub = () => {
                         </a>
                       )}
                       {contact.email && (
-                        <div className="text-blue-400 text-sm font-mono">
+                        <div className="text-[#22d3ee] text-sm font-mono">
                           <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {contact.email}</span>
                         </div>
                       )}

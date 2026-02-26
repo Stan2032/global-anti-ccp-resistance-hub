@@ -204,7 +204,7 @@ const CATEGORY_COLORS = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   legal_work: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'Legal Work' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
-  international: { bg: 'bg-blue-900/60', text: 'text-blue-200', label: 'International' },
+  international: { bg: 'bg-[#111820]/60', text: 'text-[#22d3ee]', label: 'International' },
 };
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
@@ -229,7 +229,7 @@ const TimelineEvent = ({ event, isExpanded, onToggle }) => {
         <div className="px-4 pb-3 border-t border-white/5">
           <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
           {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 mt-2">
+            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-white mt-2">
               <ExternalLink className="w-3 h-3" /> Source
             </a>
           )}
@@ -276,21 +276,21 @@ export default function GaoZhishengProfile() {
       </Link>
 
       {/* ─── HEADER ─────────────────────────────────────────── */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex flex-col md:flex-row md:items-start gap-6">
-          <div className="w-20 h-20 rounded-full bg-purple-900/60 border-2 border-purple-600 flex items-center justify-center flex-shrink-0">
-            <Scale className="w-10 h-10 text-purple-400" />
+          <div className="w-20 h-20 rounded-full bg-[#111820]/60 border-2 border-[#1c2a35] flex items-center justify-center flex-shrink-0">
+            <Scale className="w-10 h-10 text-[#22d3ee]" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-3 mb-1">
               <h1 className="text-2xl md:text-3xl font-bold text-white">{PROFILE.name}</h1>
-              <span className="text-lg text-purple-400">{PROFILE.chineseName}</span>
+              <span className="text-lg text-[#22d3ee]">{PROFILE.chineseName}</span>
             </div>
             <p className="text-sm text-slate-400 mb-3">{PROFILE.occupation}</p>
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white animate-pulse">DISAPPEARED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22d3ee] text-[#0a0e14] animate-pulse">DISAPPEARED</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 MINISTRY OF JUSTICE TOP 10 LAWYER (2001)
               </span>
@@ -305,19 +305,19 @@ export default function GaoZhishengProfile() {
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-purple-400 font-bold text-lg">{daysMissing.toLocaleString()}+</div>
+                <div className="text-[#22d3ee] font-bold text-lg">{daysMissing.toLocaleString()}+</div>
                 <div className="text-slate-400 text-xs">Days missing</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-purple-400 font-bold text-lg">20+</div>
+                <div className="text-[#22d3ee] font-bold text-lg">20+</div>
                 <div className="text-slate-400 text-xs">Years of persecution (2005–present)</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-purple-400 font-bold text-lg">2009</div>
+                <div className="text-[#22d3ee] font-bold text-lg">2009</div>
                 <div className="text-slate-400 text-xs">Family in exile</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-purple-400 font-bold text-lg">3</div>
+                <div className="text-[#22d3ee] font-bold text-lg">3</div>
                 <div className="text-slate-400 text-xs">Open letters published</div>
               </div>
             </div>
@@ -331,7 +331,7 @@ export default function GaoZhishengProfile() {
 
       {/* ─── 709 CRACKDOWN CONTEXT ─────────────────────────── */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-        <h3 className="text-sm font-semibold text-purple-400 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-[#22d3ee] mb-3 flex items-center gap-2">
           <Newspaper className="w-4 h-4" /> The 709 Crackdown Context
         </h3>
         <p className="text-sm text-slate-300 mb-3">
@@ -343,7 +343,7 @@ export default function GaoZhishengProfile() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
           <div className="bg-[#0a0e14]/50 rounded p-2">
-            <span className="text-purple-400 font-semibold">Gao Zhisheng</span> — Persecution began 2005. Disappeared August 2017. <span className="text-purple-300">Status unknown.</span>
+            <span className="text-[#22d3ee] font-semibold">Gao Zhisheng</span> — Persecution began 2005. Disappeared August 2017. <span className="text-[#22d3ee]">Status unknown.</span>
           </div>
           <div className="bg-[#0a0e14]/50 rounded p-2">
             <span className="text-slate-300 font-semibold">709 Crackdown</span> — July 9, 2015. Over 300 lawyers and activists targeted. Many still detained or under surveillance.
@@ -361,7 +361,7 @@ export default function GaoZhishengProfile() {
             aria-controls={`panel-${id}`}
             onClick={() => setActiveTab(id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
+              activeTab === id ? 'bg-[#22d3ee] text-[#0a0e14]' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
             }`}
           >
             <Icon className="w-4 h-4" /> {label}
@@ -375,9 +375,9 @@ export default function GaoZhishengProfile() {
         {activeTab === 'timeline' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-purple-400" /> Timeline — {TIMELINE.length} Events</h2>
+              <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-[#22d3ee]" /> Timeline — {TIMELINE.length} Events</h2>
               <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-purple-400 hover:text-purple-300">Expand all</button>
+                <button onClick={expandAll} className="text-xs text-[#22d3ee] hover:text-white">Expand all</button>
                 <span className="text-slate-600">|</span>
                 <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
               </div>
@@ -399,13 +399,13 @@ export default function GaoZhishengProfile() {
         {/* CHARGES & LEGAL HISTORY */}
         {activeTab === 'charges' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-purple-400" /> Charges & Legal History</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-[#22d3ee]" /> Charges & Legal History</h2>
 
-            <div className="bg-purple-900/20 border border-purple-700/50 p-4">
-              <h3 className="text-sm font-semibold text-purple-300 mb-2">Current Legal Situation</h3>
+            <div className="bg-[#111820] border border-[#1c2a35] p-4">
+              <h3 className="text-sm font-semibold text-[#22d3ee] mb-2">Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
                 Gao Zhisheng completed his 3-year prison sentence in August 2014 but has been missing since
-                <strong className="text-purple-400"> August 13, 2017</strong>. He is not known to be facing any current
+                <strong className="text-[#22d3ee]"> August 13, 2017</strong>. He is not known to be facing any current
                 charges. His disappearance is extrajudicial — Chinese authorities have provided no legal basis
                 for his detention and refuse to confirm whether he is alive.
               </p>
@@ -428,7 +428,7 @@ export default function GaoZhishengProfile() {
 
             {/* Family section */}
             <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-              <h3 className="text-sm font-semibold text-purple-400 mb-2">Geng He — Wife and Advocate</h3>
+              <h3 className="text-sm font-semibold text-[#22d3ee] mb-2">Geng He — Wife and Advocate</h3>
               <p className="text-sm text-slate-300">
                 Geng He, Gao Zhisheng&#39;s wife, fled China with their two children in 2009 and resettled in the
                 United States. She has become a tireless advocate for his release, testifying before the US Congress
@@ -442,7 +442,7 @@ export default function GaoZhishengProfile() {
         {/* CCP NARRATIVE ANALYSIS */}
         {activeTab === 'narratives' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-purple-400" /> CCP Narrative Analysis</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-[#22d3ee]" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
               Gao Zhisheng&#39;s case reveals the CCP&#39;s systematic use of the legal system as a weapon against its own
               lawyers. A man honored by the Ministry of Justice was subsequently convicted, tortured, and disappeared
@@ -474,18 +474,18 @@ export default function GaoZhishengProfile() {
         {/* INTERNATIONAL RESPONSE */}
         {activeTab === 'response' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-purple-400" /> International Response</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-[#22d3ee]" /> International Response</h2>
 
             {/* Responses */}
             {INTERNATIONAL_RESPONSES.map((r, i) => (
               <div key={i} className="bg-[#111820] border border-[#1c2a35] p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <Flag className="w-4 h-4 text-purple-400" />
+                  <Flag className="w-4 h-4 text-[#22d3ee]" />
                   <h3 className="text-sm font-semibold text-white">{r.entity}</h3>
                 </div>
                 <p className="text-sm text-slate-300">{r.response}</p>
                 {r.sourceUrl && (
-                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 mt-2">
+                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-white mt-2">
                     <ExternalLink className="w-3 h-3" /> Source
                   </a>
                 )}
@@ -497,7 +497,7 @@ export default function GaoZhishengProfile() {
         {/* SOURCES */}
         {activeTab === 'sources' && (
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-purple-400" /> Sources</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-[#22d3ee]" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
               All information verified against independent sources. <strong className="text-slate-300">Zero CCP state media cited.</strong> Tier 1 =
               established international news/human rights organizations; Tier 2 = credible independent outlets.
@@ -508,12 +508,12 @@ export default function GaoZhishengProfile() {
                   className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] px-4 py-3 hover:bg-[#111820] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-blue-900/60 text-blue-300'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-[#111820]/60 text-[#22d3ee]'}`}>
                       Tier {s.tier}
                     </span>
                     <span className="text-sm text-white">{s.name}</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors" />
+                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
                 </a>
               ))}
             </div>

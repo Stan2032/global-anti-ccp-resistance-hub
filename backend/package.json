@@ -35,7 +35,6 @@
     "nodemailer": "^6.9.0",
     "pg": "^8.10.0",
     "rss-parser": "^3.13.0",
-    "socket.io": "^4.8.1",
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1",
     "uuid": "^9.0.1",

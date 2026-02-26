@@ -207,8 +207,8 @@ const OfflineModeManager = () => {
       </div>
 
       {/* Why Offline Mode */}
-      <div className="bg-blue-500/10 border border-blue-500/30 p-4 mb-6">
-        <h3 className="text-blue-400 font-bold mb-2">Why Offline Mode?</h3>
+      <div className="bg-[#22d3ee]/10 border border-[#1c2a35] p-4 mb-6">
+        <h3 className="text-[#22d3ee] font-bold mb-2">Why Offline Mode?</h3>
         <div className="space-y-2 text-sm text-slate-300">
           <p>• <strong>Internet censorship:</strong> Access information even when websites are blocked</p>
           <p>• <strong>Network disruptions:</strong> Continue working during internet outages</p>
@@ -249,7 +249,7 @@ const OfflineModeManager = () => {
           {cacheStatus === 'inactive' && (
             <button
               onClick={enableOfflineMode}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors"
             >
               <Download className="w-4 h-4" />
               Enable Offline Mode

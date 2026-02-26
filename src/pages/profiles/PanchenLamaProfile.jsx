@@ -245,10 +245,10 @@ const SOURCES = [
 const categoryColors = {
   life: 'border-green-500/50 text-green-300',
   context: 'border-[#1c2a35]/50 text-slate-300',
-  religious: 'border-purple-500/50 text-purple-300',
+  religious: 'border-[#1c2a35]/50 text-[#22d3ee]',
   political: 'border-amber-500/50 text-amber-300',
   persecution: 'border-red-500/50 text-red-300',
-  international: 'border-blue-500/50 text-blue-300',
+  international: 'border-[#1c2a35]/50 text-[#22d3ee]',
 };
 
 const categoryLabels = {
@@ -277,7 +277,7 @@ export default function PanchenLamaProfile() {
       <GlobalDisclaimer />
 
       {/* Header */}
-      <div className="bg-[#0a0e14] border-b border-[#1c2a35] border-l-2 border-l-purple-500">
+      <div className="bg-[#0a0e14] border-b border-[#1c2a35] border-l-2 border-l-[#22d3ee]">
         <div className="max-w-5xl mx-auto px-4 py-6">
           <Link to="/take-action" className="inline-flex items-center gap-1 text-slate-400 hover:text-white mb-4 text-sm">
             <ArrowLeft className="w-4 h-4" />
@@ -286,23 +286,23 @@ export default function PanchenLamaProfile() {
 
           <div className="flex flex-col md:flex-row items-start gap-6">
             {/* Profile Icon */}
-            <div className="w-24 h-24 bg-purple-800/50 border-2 border-purple-500/50 rounded-full flex items-center justify-center flex-shrink-0">
-              <User className="w-12 h-12 text-purple-300" />
+            <div className="w-24 h-24 bg-[#111820]/50 border-2 border-[#1c2a35]/50 rounded-full flex items-center justify-center flex-shrink-0">
+              <User className="w-12 h-12 text-[#22d3ee]" />
             </div>
 
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
                 <h1 className="text-2xl md:text-3xl font-bold">{PROFILE.name}</h1>
-                <span className="text-lg text-purple-300">{PROFILE.tibetanName}</span>
+                <span className="text-lg text-[#22d3ee]">{PROFILE.tibetanName}</span>
               </div>
-              <p className="text-purple-300 font-medium mb-2">{PROFILE.title}</p>
+              <p className="text-[#22d3ee] font-medium mb-2">{PROFILE.title}</p>
               <p className="text-slate-300 text-sm mb-3 max-w-2xl">{PROFILE.significance}</p>
 
               {/* Status Banner */}
-              <div className="bg-purple-900/40 border border-purple-500/30 p-3 mb-3">
+              <div className="bg-[#111820]/40 border border-[#1c2a35] p-3 mb-3">
                 <div className="flex items-center gap-2 mb-1">
-                  <AlertTriangle className="w-5 h-5 text-purple-400 animate-pulse" />
-                  <span className="font-bold text-purple-200">ENFORCED DISAPPEARANCE — {PROFILE.yearsMissing} YEARS</span>
+                  <AlertTriangle className="w-5 h-5 text-[#22d3ee] animate-pulse" />
+                  <span className="font-bold text-[#22d3ee]">ENFORCED DISAPPEARANCE — {PROFILE.yearsMissing} YEARS</span>
                 </div>
                 <p className="text-sm text-slate-300">
                   Abducted at age {PROFILE.ageAtAbduction} on May 17, 1995. Now {PROFILE.currentAge} years old.
@@ -312,7 +312,7 @@ export default function PanchenLamaProfile() {
               </div>
 
               <div className="flex flex-wrap gap-2 text-xs">
-                <span className="px-2 py-0.5 bg-purple-800/50 text-purple-200 rounded">
+                <span className="px-2 py-0.5 bg-[#111820]/50 text-[#22d3ee] rounded">
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
                 <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
@@ -339,7 +339,7 @@ export default function PanchenLamaProfile() {
                 aria-selected={activeSection === id}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
                   activeSection === id
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'text-slate-400 hover:text-white hover:bg-[#111820]'
                 }`}
               >
@@ -358,7 +358,7 @@ export default function PanchenLamaProfile() {
         {activeSection === 'timeline' && (
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-purple-400" />
+              <Clock className="w-5 h-5 text-[#22d3ee]" />
               Complete Timeline
             </h2>
 
@@ -395,7 +395,7 @@ export default function PanchenLamaProfile() {
                               href={event.source}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-purple-400 hover:text-purple-300 text-xs"
+                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <ExternalLink className="w-3 h-3" />
@@ -421,15 +421,15 @@ export default function PanchenLamaProfile() {
         {activeSection === 'significance' && (
           <section aria-label="Why this case matters">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Eye className="w-5 h-5 text-purple-400" />
+              <Eye className="w-5 h-5 text-[#22d3ee]" />
               Why This Case Matters
             </h2>
 
             {/* Key Difference Banner */}
-            <div className="bg-purple-900/30 border border-purple-500/30 p-4 mb-6">
+            <div className="bg-[#111820] border border-[#1c2a35] p-4 mb-6">
               <div className="flex items-center gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 text-purple-400" />
-                <span className="font-bold text-purple-300">NO CHARGES — EVER</span>
+                <AlertTriangle className="w-5 h-5 text-[#22d3ee]" />
+                <span className="font-bold text-[#22d3ee]">NO CHARGES — EVER</span>
               </div>
               <p className="text-sm text-slate-300">
                 Unlike Jimmy Lai or Ilham Tohti, Gedhun Choekyi Nyima was never charged, tried, or convicted of anything.
@@ -441,7 +441,7 @@ export default function PanchenLamaProfile() {
             {/* Three Pillars */}
             <div className="space-y-4">
               <div className="bg-[#111820] border border-[#1c2a35] p-4">
-                <h3 className="font-bold text-purple-300 mb-2 flex items-center gap-2">
+                <h3 className="font-bold text-[#22d3ee] mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
                   Religious Significance
                 </h3>
@@ -493,7 +493,7 @@ export default function PanchenLamaProfile() {
                 { label: 'Independent Verifications', value: '0' },
               ].map((stat, i) => (
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3">
-                  <div className="text-2xl font-bold text-purple-300">{stat.value}</div>
+                  <div className="text-2xl font-bold text-[#22d3ee]">{stat.value}</div>
                   <div className="text-xs text-slate-400">{stat.label}</div>
                 </div>
               ))}
@@ -551,7 +551,7 @@ export default function PanchenLamaProfile() {
                               href={narrative.sourceUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-purple-400 hover:text-purple-300 inline-flex items-center gap-0.5"
+                              className="text-[#22d3ee] hover:text-white inline-flex items-center gap-0.5"
                             >
                               <ExternalLink className="w-3 h-3" />
                               Verify
@@ -571,7 +571,7 @@ export default function PanchenLamaProfile() {
         {activeSection === 'response' && (
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Globe className="w-5 h-5 text-blue-400" />
+              <Globe className="w-5 h-5 text-[#22d3ee]" />
               International Response
             </h2>
 
@@ -580,9 +580,9 @@ export default function PanchenLamaProfile() {
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`px-2 py-0.5 rounded text-xs ${
-                      resp.type === 'Government' ? 'bg-blue-900/50 text-blue-300' :
+                      resp.type === 'Government' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                       resp.type === 'NGO' ? 'bg-green-900/50 text-green-300' :
-                      'bg-purple-900/50 text-purple-300'
+                      'bg-[#111820]/50 text-[#22d3ee]'
                     }`}>
                       {resp.type}
                     </span>
@@ -594,7 +594,7 @@ export default function PanchenLamaProfile() {
                       href={resp.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 mt-2 text-purple-400 hover:text-purple-300 text-xs"
+                      className="inline-flex items-center gap-1 mt-2 text-[#22d3ee] hover:text-white text-xs"
                     >
                       <ExternalLink className="w-3 h-3" />
                       Source
@@ -605,14 +605,14 @@ export default function PanchenLamaProfile() {
             </div>
 
             {/* Awards */}
-            <div className="mt-6 bg-purple-900/20 border border-purple-500/30 p-4">
-              <h3 className="font-bold text-purple-300 mb-3">Awards & Recognition</h3>
+            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4">
+              <h3 className="font-bold text-[#22d3ee] mb-3">Awards & Recognition</h3>
               <div className="space-y-2">
                 {[
                   { award: 'NED Democracy Service Medal', year: '2025', note: 'Accepted by Zeekyab Rinpoche on his behalf' },
                 ].map((a, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm">
-                    <span className="text-purple-400 font-mono text-xs min-w-[40px]">{a.year}</span>
+                    <span className="text-[#22d3ee] font-mono text-xs min-w-[40px]">{a.year}</span>
                     <span className="text-white font-medium">{a.award}</span>
                     <span className="text-slate-400 text-xs">— {a.note}</span>
                   </div>
@@ -649,8 +649,8 @@ export default function PanchenLamaProfile() {
                   }`}>
                     T{source.tier}
                   </span>
-                  <span className="text-sm text-white group-hover:text-purple-300 flex-1">{source.name}</span>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-purple-400" />
+                  <span className="text-sm text-white group-hover:text-white flex-1">{source.name}</span>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-white" />
                 </a>
               ))}
             </div>

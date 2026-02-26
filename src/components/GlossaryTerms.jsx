@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BookOpen } from 'lucide-react';
+import { STATISTICS } from '../data/statistics';
 
 const GlossaryTerms = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,7 +79,7 @@ const GlossaryTerms = () => {
       chinese: '职业技能教育培训中心',
       pinyin: 'Zhíyè Jìnéng Jiàoyù Péixùn Zhōngxīn',
       category: 'xinjiang',
-      definition: 'CCP euphemism for concentration camps in Xinjiang where over 1 million Uyghurs and other minorities are detained for "re-education."',
+      definition: `CCP euphemism for concentration camps in Xinjiang where an estimated ${STATISTICS.uyghurDetention.value} Uyghurs and other minorities are detained for "re-education."`,
       related: ['Uyghurs', 'Xinjiang', 'Genocide', 'Detention']
     },
     {

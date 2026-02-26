@@ -288,7 +288,7 @@ export const AccessibleProgress = ({ value, max = 100, label }) => {
  */
 export const AccessibleAlert = ({ type = 'info', title, children, onDismiss }) => {
   const typeStyles = {
-    info: 'bg-blue-900/50 border-blue-700 text-blue-300',
+    info: 'bg-[#111820]/50 border-[#1c2a35] text-[#22d3ee]',
     warning: 'bg-yellow-900/50 border-yellow-700 text-yellow-300',
     error: 'bg-red-900/50 border-red-700 text-red-300',
     success: 'bg-green-900/50 border-green-700 text-green-300',

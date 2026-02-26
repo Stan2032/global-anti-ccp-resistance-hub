@@ -330,7 +330,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${selectedStory.name}: "${selectedStory.quote.substring(0, 100)}..." #CCP #HumanRights`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                  className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 rounded text-sm transition-colors"
                 >
                   Share on Twitter
                 </a>

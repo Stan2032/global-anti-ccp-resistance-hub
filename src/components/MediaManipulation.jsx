@@ -160,7 +160,7 @@ const MediaManipulation = () => {
     if (status.includes('FOREIGN AGENT')) return 'bg-yellow-600';
     if (status.includes('INVESTIGATION')) return 'bg-orange-600';
     if (status.includes('SURVEILLANCE') || status.includes('ACTIVE')) return 'bg-red-600';
-    if (status.includes('IDENTIFIED')) return 'bg-purple-600';
+    if (status.includes('IDENTIFIED')) return 'bg-[#22d3ee]';
     if (status.includes('CCP')) return 'bg-red-700';
     return 'bg-[#1c2a35]';
   };
@@ -168,7 +168,7 @@ const MediaManipulation = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Radio className="w-6 h-6" /> CCP Media & Propaganda Tracker</h2>
         <p className="text-slate-300">
           Track CCP state media, social media manipulation, and disinformation networks operating globally.
@@ -186,7 +186,7 @@ const MediaManipulation = () => {
           <p className="text-sm text-slate-400">Foreign Agents</p>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-          <p className="text-3xl font-bold text-purple-400">2</p>
+          <p className="text-3xl font-bold text-[#22d3ee]">2</p>
           <p className="text-sm text-slate-400">Disinfo Networks</p>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">

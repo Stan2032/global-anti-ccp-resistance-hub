@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, Landmark, Mountain, Megaphone, Link2, Globe2, Newspaper, PartyPopper, UserPlus, Flame, FileText, Wrench, Heart, MessageCircle, Lock, Info } from 'lucide-react';
+import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, PartyPopper, UserPlus, Flame, FileText, Wrench, MessageCircle, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
 import { submitVolunteerSignup } from '../services/supabaseService';
 
@@ -8,12 +8,8 @@ const VolunteerSignup = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    location: '',
     skills: [],
     availability: '',
-    languages: [],
-    experience: '',
-    interests: [],
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -31,32 +27,6 @@ const VolunteerSignup = () => {
     { id: 'legal', name: 'Legal/Policy', Icon: Scale },
     { id: 'organizing', name: 'Event Organizing', Icon: ClipboardList },
     { id: 'outreach', name: 'Community Outreach', Icon: Handshake },
-  ];
-
-  const languageOptions = [
-    { id: 'english', name: 'English' },
-    { id: 'mandarin', name: 'Mandarin Chinese' },
-    { id: 'cantonese', name: 'Cantonese' },
-    { id: 'uyghur', name: 'Uyghur' },
-    { id: 'tibetan', name: 'Tibetan' },
-    { id: 'taiwanese', name: 'Taiwanese/Hokkien' },
-    { id: 'spanish', name: 'Spanish' },
-    { id: 'french', name: 'French' },
-    { id: 'german', name: 'German' },
-    { id: 'japanese', name: 'Japanese' },
-    { id: 'korean', name: 'Korean' },
-    { id: 'other', name: 'Other' },
-  ];
-
-  const interestOptions = [
-    { id: 'uyghur', name: 'Uyghur Rights', Icon: Landmark },
-    { id: 'hongkong', name: 'Hong Kong', icon: '🇭🇰' },
-    { id: 'tibet', name: 'Tibet', Icon: Mountain },
-    { id: 'taiwan', name: 'Taiwan', icon: '🇹🇼' },
-    { id: 'dissidents', name: 'Chinese Dissidents', Icon: Megaphone },
-    { id: 'forced-labor', name: 'Forced Labor', Icon: Link2 },
-    { id: 'transnational', name: 'Transnational Repression', Icon: Globe2 },
-    { id: 'press-freedom', name: 'Press Freedom', Icon: Newspaper },
   ];
 
   const availabilityOptions = [
@@ -85,7 +55,7 @@ const VolunteerSignup = () => {
         name: formData.name,
         email: formData.email,
         skills: formData.skills,
-        languages: formData.languages,
+        languages: [],
         availability: formData.availability,
         message: formData.message,
       });
@@ -114,19 +84,18 @@ const VolunteerSignup = () => {
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Volunteer Directly With:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>→ <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Uyghur Human Rights Project</a></li>
-              <li>→ <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Watch</a></li>
-              <li>→ <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Tibet Action Institute</a></li>
-              <li>→ <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Amnesty International</a></li>
+              <li>→ <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Uyghur Human Rights Project</a></li>
+              <li>→ <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Hong Kong Watch</a></li>
+              <li>→ <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Tibet Action Institute</a></li>
+              <li>→ <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Amnesty International</a></li>
             </ul>
           </div>
           <button
             onClick={() => {
               setSubmitted(false);
               setFormData({
-                name: '', email: '', location: '', skills: [],
-                availability: '', languages: [], experience: '',
-                interests: [], message: '',
+                name: '', email: '', skills: [],
+                availability: '', message: '',
               });
             }}
             className="mt-4 px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
@@ -219,17 +188,6 @@ const VolunteerSignup = () => {
               />
             </div>
             <div>
-              <label className="block text-sm text-slate-400 mb-1">Location</label>
-              <input
-                aria-label="Location"
-                type="text"
-                value={formData.location}
-                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="City, Country (optional)"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
-              />
-            </div>
-            <div>
               <label className="block text-sm text-slate-400 mb-1">Availability *</label>
               <select
                 aria-label="Availability *"
@@ -269,76 +227,17 @@ const VolunteerSignup = () => {
           </div>
         </div>
 
-        {/* Languages */}
+        {/* Message */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-          <h3 className="font-medium text-white mb-4"><Globe className="w-4 h-4 inline mr-1" /> Languages (select all you speak)</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {languageOptions.map(lang => (
-              <button
-                key={lang.id}
-                type="button"
-                onClick={() => toggleSelection('languages', lang.id)}
-                className={`px-3 py-2 text-sm transition-colors ${
-                  formData.languages.includes(lang.id)
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
-                }`}
-              >
-                {lang.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Interests */}
-        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-          <h3 className="font-medium text-white mb-4"><Heart className="w-4 h-4 inline mr-1 text-red-400" /> Areas of Interest</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {interestOptions.map(interest => (
-              <button
-                key={interest.id}
-                type="button"
-                onClick={() => toggleSelection('interests', interest.id)}
-                className={`flex items-center space-x-2 px-3 py-2 text-sm transition-colors ${
-                  formData.interests.includes(interest.id)
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
-                }`}
-              >
-                {interest.Icon ? <interest.Icon className="w-4 h-4" /> : <span>{interest.icon}</span>}
-                <span>{interest.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Experience & Message */}
-        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-          <h3 className="font-medium text-white mb-4"><MessageCircle className="w-4 h-4 inline mr-1" /> Tell Us More</h3>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm text-slate-400 mb-1">Relevant Experience</label>
-              <textarea
-                aria-label="Relevant Experience"
-                value={formData.experience}
-                onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                placeholder="Tell us about any relevant experience (activism, research, etc.)"
-                rows={3}
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm text-slate-400 mb-1">Why do you want to volunteer?</label>
-              <textarea
-                aria-label="Why do you want to volunteer?"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="What motivates you to get involved?"
-                rows={3}
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
-              />
-            </div>
-          </div>
+          <h3 className="font-medium text-white mb-4"><MessageCircle className="w-4 h-4 inline mr-1" /> Tell Us More (optional)</h3>
+          <textarea
+            aria-label="Tell us about yourself"
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            placeholder="Tell us about your experience, motivation, or how you'd like to help"
+            rows={3}
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+          />
         </div>
 
         {/* Security Notice */}
@@ -371,16 +270,16 @@ const VolunteerSignup = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2"><Handshake className="w-4 h-4 inline mr-1" /> Partner Organizations Also Seeking Volunteers</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Uyghur Human Rights Project
           </a>
-          <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Hong Kong Watch
           </a>
-          <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Students for a Free Tibet
           </a>
-          <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Amnesty International
           </a>
         </div>

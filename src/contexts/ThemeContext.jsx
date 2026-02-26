@@ -30,7 +30,7 @@ const themeColors = {
     text: 'text-gray-900',
     textSecondary: 'text-gray-600',
     border: 'border-gray-200',
-    accent: 'bg-blue-500',
+    accent: 'bg-[#22d3ee]',
   },
   'high-contrast': {
     name: 'High Contrast',

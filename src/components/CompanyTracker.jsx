@@ -291,7 +291,7 @@ const CompanyTracker = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
@@ -328,8 +328,8 @@ const CompanyTracker = () => {
                 
                 {/* Show UFLPA actions if available */}
                 {company.uflpaActions && (
-                  <div className="bg-blue-900/20 border border-blue-700/30 rounded p-2 mt-2">
-                    <p className="text-blue-300 flex items-center gap-1"><Landmark className="w-3 h-3" /><strong>UFLPA Actions:</strong></p>
+                  <div className="bg-[#111820] border border-[#1c2a35] rounded p-2 mt-2">
+                    <p className="text-[#22d3ee] flex items-center gap-1"><Landmark className="w-3 h-3" /><strong>UFLPA Actions:</strong></p>
                     <p className="mt-1">{company.uflpaActions}</p>
                   </div>
                 )}
@@ -356,7 +356,7 @@ const CompanyTracker = () => {
               {(company.companyResponse || company.uflpaActions) && (
                 <button
                   onClick={() => setExpandedCompany(isExpanded ? null : company.id)}
-                  className="text-xs text-blue-400 hover:text-blue-300 underline mb-2"
+                  className="text-xs text-[#22d3ee] hover:text-white underline mb-2"
                 >
                   {isExpanded ? '▼ Show Less' : '▶ Show More Details'}
                 </button>
@@ -385,16 +385,16 @@ const CompanyTracker = () => {
       </div>
 
       {/* Resources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center">
-          <BookOpen className="w-5 h-5 text-blue-400 mr-2" />
+          <BookOpen className="w-5 h-5 text-[#22d3ee] mr-2" />
           Key Research Sources
         </h3>
         
         {/* Prominent ASPI Report */}
-        <div className="mb-4 bg-blue-900/30 border border-blue-600/50 p-3">
+        <div className="mb-4 bg-[#111820] border border-[#1c2a35] p-3">
           <div className="flex items-start space-x-2">
-            <Search className="w-6 h-6 text-blue-400" />
+            <Search className="w-6 h-6 text-[#22d3ee]" />
             <div className="flex-1">
               <h4 className="font-semibold text-white mb-1">Primary Source: ASPI "Uyghurs for Sale"</h4>
               <p className="text-sm text-slate-300 mb-2">
@@ -405,7 +405,7 @@ const CompanyTracker = () => {
                 href="https://www.aspi.org.au/report/uyghurs-sale" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center space-x-1 text-blue-400 hover:text-blue-300 text-sm font-medium"
+                className="inline-flex items-center space-x-1 text-[#22d3ee] hover:text-white text-sm font-medium"
               >
                 <span>View Full Report</span>
                 <span>→</span>
@@ -420,7 +420,7 @@ const CompanyTracker = () => {
             <p className="text-slate-400 text-xs mb-2">
               US Customs enforcement of the Uyghur Forced Labor Prevention Act
             </p>
-            <a href="https://www.cbp.gov/trade/forced-labor/UFLPA" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-xs">
+            <a href="https://www.cbp.gov/trade/forced-labor/UFLPA" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline text-xs">
               View CBP UFLPA Records →
             </a>
           </div>
@@ -430,7 +430,7 @@ const CompanyTracker = () => {
             <p className="text-slate-400 text-xs mb-2">
               "In Broad Daylight" - Comprehensive supply chain research
             </p>
-            <a href="https://www.shu.ac.uk/helena-kennedy-centre-international-justice/research-and-projects/all-projects/in-broad-daylight" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-xs">
+            <a href="https://www.shu.ac.uk/helena-kennedy-centre-international-justice/research-and-projects/all-projects/in-broad-daylight" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline text-xs">
               View Report →
             </a>
           </div>
@@ -440,7 +440,7 @@ const CompanyTracker = () => {
             <p className="text-slate-400 text-xs mb-2">
               Coalition to End Forced Labour in the Uyghur Region
             </p>
-            <a href="https://enduyghurforcedlabour.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-xs">
+            <a href="https://enduyghurforcedlabour.org/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline text-xs">
               View Coalition →
             </a>
           </div>
@@ -450,13 +450,13 @@ const CompanyTracker = () => {
             <p className="text-slate-400 text-xs mb-2">
               US Congress research and investigations
             </p>
-            <a href="https://www.congress.gov" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-xs">
+            <a href="https://www.congress.gov" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline text-xs">
               View Congress.gov →
             </a>
           </div>
         </div>
 
-        <div className="mt-3 pt-3 border-t border-blue-700/30">
+        <div className="mt-3 pt-3 border-t border-[#1c2a35]">
           <p className="text-xs text-slate-400">
             <strong>Note:</strong> This tracker combines data from multiple verified sources. 
             Each company listing includes direct source attribution with links to original research.

@@ -100,6 +100,14 @@ const TIMELINE = [
     category: 'persecution',
     sourceUrl: 'https://www.bbc.com/news/world-asia-china-65226498',
   },
+  {
+    date: '2024-10-04',
+    year: '2024',
+    title: 'Began hunger strike to protest inhumane prison treatment',
+    detail: 'Xu Zhiyong began a hunger strike on October 4 at Lunan Prison in Shandong Province to protest inhumane treatment. He lost 5-6 kg in less than a month. During a family visit, a forced-feeding tube was observed. He was referred to only as "Prisoner No. 003." He promised to suspend the strike in late October, but his health remained a critical concern. Over 40 human rights organizations issued a joint statement in November demanding his release.',
+    category: 'persecution',
+    sourceUrl: 'https://www.hrw.org/news/2024/11/20/concerns-grow-health-detained-chinese-lawyer',
+  },
 ];
 
 const CHARGES = [
@@ -273,7 +281,7 @@ export default function XuZhiyongProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 NEW CITIZENS MOVEMENT FOUNDER
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-900/60 text-purple-300 border border-purple-700">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 PRISONER OF CONSCIENCE
               </span>
             </div>
@@ -462,7 +470,7 @@ export default function XuZhiyongProfile() {
                   className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] px-4 py-3 hover:bg-[#111820] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-blue-900/60 text-blue-300'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-[#111820]/60 text-[#22d3ee]'}`}>
                       Tier {s.tier}
                     </span>
                     <span className="text-sm text-white">{s.name}</span>

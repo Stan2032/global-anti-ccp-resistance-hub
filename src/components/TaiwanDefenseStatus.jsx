@@ -146,7 +146,7 @@ const TaiwanDefenseStatus = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-4xl">🇹🇼</span>
           <div>
@@ -175,7 +175,7 @@ const TaiwanDefenseStatus = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -220,7 +220,7 @@ const TaiwanDefenseStatus = () => {
               <div className="text-xs text-slate-400">Latest US Arms Package</div>
             </div>
             <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-              <div className="text-3xl font-bold text-blue-400">23.5M</div>
+              <div className="text-3xl font-bold text-[#22d3ee]">23.5M</div>
               <div className="text-xs text-slate-400">Taiwan Population</div>
             </div>
           </div>
@@ -263,8 +263,8 @@ const TaiwanDefenseStatus = () => {
           </div>
 
           {/* Taiwan */}
-          <div className="bg-blue-900/20 border border-blue-700 p-6">
-            <h3 className="text-xl font-bold text-blue-400 mb-4">{militaryBalance.taiwan.name}</h3>
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
+            <h3 className="text-xl font-bold text-[#22d3ee] mb-4">{militaryBalance.taiwan.name}</h3>
             <div className="space-y-3 mb-4">
               <div className="flex justify-between">
                 <span className="text-slate-400">Personnel:</span>
@@ -283,11 +283,11 @@ const TaiwanDefenseStatus = () => {
                 <span className="text-white font-semibold">{militaryBalance.taiwan.missiles}</span>
               </div>
             </div>
-            <h4 className="text-sm font-semibold text-blue-300 mb-2">Key Advantages:</h4>
+            <h4 className="text-sm font-semibold text-[#22d3ee] mb-2">Key Advantages:</h4>
             <ul className="space-y-1">
               {militaryBalance.taiwan.advantages.map((adv, i) => (
                 <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
-                  <span className="text-blue-400">•</span>
+                  <span className="text-[#22d3ee]">•</span>
                   {adv}
                 </li>
               ))}

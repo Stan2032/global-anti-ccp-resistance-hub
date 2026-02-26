@@ -374,7 +374,7 @@ const RegionalIssues = () => {
                     <span className={`text-xs px-2 py-1 rounded ${
                       figure.status === 'Imprisoned' ? 'bg-red-900/50 text-red-400' :
                       figure.status === 'Detained' ? 'bg-orange-900/50 text-orange-400' :
-                      figure.status === 'Exile' ? 'bg-blue-900/50 text-blue-400' :
+                      figure.status === 'Exile' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                       'bg-[#111820] text-slate-400'
                     }`}>
                       {figure.status}
@@ -399,7 +399,7 @@ const RegionalIssues = () => {
                     className="flex items-center justify-between p-3 bg-[#0a0e14]/50 hover:bg-[#0a0e14] transition-colors"
                   >
                     <span className="text-white">{org.name}</span>
-                    <span className="text-blue-400">→</span>
+                    <span className="text-[#22d3ee]">→</span>
                   </a>
                 ))}
               </div>

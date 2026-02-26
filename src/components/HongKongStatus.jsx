@@ -133,13 +133,13 @@ const HongKongStatus = () => {
       {activeTab === 'exodus' && (
         <div className="bg-[#111820] border border-[#1c2a35] p-6">
           <div className="text-center mb-4">
-            <div className="text-4xl font-bold text-blue-400">500,000+</div>
+            <div className="text-4xl font-bold text-[#22d3ee]">500,000+</div>
             <div className="text-slate-400">Estimated emigrants since 2020</div>
           </div>
           <div className="space-y-2">
-            <div className="flex justify-between"><span>🇬🇧 UK</span><span className="text-blue-400">180,000+ (BNO)</span></div>
-            <div className="flex justify-between"><span>🇨🇦 Canada</span><span className="text-blue-400">50,000+</span></div>
-            <div className="flex justify-between"><span>🇦🇺 Australia</span><span className="text-blue-400">20,000+</span></div>
+            <div className="flex justify-between"><span>🇬🇧 UK</span><span className="text-[#22d3ee]">180,000+ (BNO)</span></div>
+            <div className="flex justify-between"><span>🇨🇦 Canada</span><span className="text-[#22d3ee]">50,000+</span></div>
+            <div className="flex justify-between"><span>🇦🇺 Australia</span><span className="text-[#22d3ee]">20,000+</span></div>
           </div>
         </div>
       )}

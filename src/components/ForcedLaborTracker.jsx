@@ -95,8 +95,8 @@ const ForcedLaborTracker = () => {
             <div className="text-2xl font-bold text-yellow-400">{improvingCount}</div>
             <div className="text-xs text-slate-400">Improving</div>
           </div>
-          <div className="bg-blue-500/10 p-3 text-center border border-blue-500/20">
-            <div className="text-2xl font-bold text-blue-400">{uflpaActions}</div>
+          <div className="bg-[#22d3ee]/10 p-3 text-center border border-[#1c2a35]/20">
+            <div className="text-2xl font-bold text-[#22d3ee]">{uflpaActions}</div>
             <div className="text-xs text-slate-400">UFLPA Actions</div>
           </div>
         </div>
@@ -188,7 +188,7 @@ const ForcedLaborTracker = () => {
                   {company.company_response && company.company_response !== 'No public response' && (
                     <div>
                       <div className="text-xs text-slate-500 uppercase mb-1">Company Response</div>
-                      <p className="text-sm text-blue-300">{company.company_response}</p>
+                      <p className="text-sm text-[#22d3ee]">{company.company_response}</p>
                     </div>
                   )}
 
@@ -205,7 +205,7 @@ const ForcedLaborTracker = () => {
                         href={company.source_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
                       >
                         <ExternalLink className="w-3 h-3" />
                         View Source
@@ -237,7 +237,7 @@ const ForcedLaborTracker = () => {
               href="https://www.aspi.org.au/report/uyghurs-sale"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
+              className="text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
             >
               <ExternalLink className="w-3 h-3" />
               ASPI Report
@@ -246,7 +246,7 @@ const ForcedLaborTracker = () => {
               href="https://www.cbp.gov/trade/forced-labor/UFLPA"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
+              className="text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
             >
               <ExternalLink className="w-3 h-3" />
               UFLPA Info

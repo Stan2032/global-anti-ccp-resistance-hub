@@ -263,7 +263,7 @@ const SuccessStories = () => {
             <div className="text-xs text-slate-400">Documented Victories</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">7+</div>
+            <div className="text-2xl font-bold text-[#22d3ee]">7+</div>
             <div className="text-xs text-slate-400">Genocide Declarations</div>
           </div>
           <div className="text-center">
@@ -271,15 +271,15 @@ const SuccessStories = () => {
             <div className="text-xs text-slate-400">CI Closures</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400">10+</div>
+            <div className="text-2xl font-bold text-[#22d3ee]">10+</div>
             <div className="text-xs text-slate-400">Countries Acting</div>
           </div>
         </div>
       </div>
 
       {/* Why This Matters */}
-      <div className="bg-blue-900/30 border border-blue-700 p-4">
-        <h3 className="text-blue-300 font-semibold mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Why Document Victories?</h3>
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
+        <h3 className="text-[#22d3ee] font-semibold mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Why Document Victories?</h3>
         <p className="text-slate-300 text-sm">
           Tracking successes helps activists understand what works, maintains morale, and provides 
           templates for future campaigns. Every victory proves that resistance is not futile.
@@ -319,7 +319,7 @@ const SuccessStories = () => {
               </div>
               <span className={`text-xs px-3 py-1 rounded-full ${
                 victory.impact === 'CRITICAL' ? 'bg-green-900/50 text-green-300 border border-green-700' :
-                victory.impact === 'HIGH' ? 'bg-blue-900/50 text-blue-300 border border-blue-700' :
+                victory.impact === 'HIGH' ? 'bg-[#111820]/50 text-[#22d3ee] border border-[#1c2a35]' :
                 'bg-[#111820] text-slate-300 border border-[#1c2a35]'
               }`}>
                 {victory.impact} IMPACT
@@ -333,8 +333,8 @@ const SuccessStories = () => {
                 <span className="text-green-400 text-xs font-semibold">OUTCOME</span>
                 <p className="text-slate-300 text-sm mt-1">{victory.outcome}</p>
               </div>
-              <div className="bg-blue-900/20 border border-blue-800 p-3">
-                <span className="text-blue-400 text-xs font-semibold">LESSONS LEARNED</span>
+              <div className="bg-[#111820] border border-[#1c2a35] p-3">
+                <span className="text-[#22d3ee] text-xs font-semibold">LESSONS LEARNED</span>
                 <p className="text-slate-300 text-sm mt-1">{victory.lessons}</p>
               </div>
             </div>
@@ -352,10 +352,10 @@ const SuccessStories = () => {
           <a href="/take-action" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 text-sm font-medium">
             Take Action Now
           </a>
-          <a href="/take-action" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium">
+          <a href="/take-action" className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 text-sm font-medium">
             Join a Campaign
           </a>
-          <a href="/directory" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-sm font-medium">
+          <a href="/directory" className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 text-sm font-medium">
             Find Organizations
           </a>
         </div>

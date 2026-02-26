@@ -148,7 +148,7 @@ const SecurityQuiz = () => {
     const percentage = (score / maxScore) * 100;
     
     if (percentage >= 80) return { level: 'EXCELLENT', color: 'text-green-400', bg: 'bg-green-600', message: 'Your security practices are strong. Keep staying vigilant!' };
-    if (percentage >= 60) return { level: 'GOOD', color: 'text-blue-400', bg: 'bg-blue-600', message: 'You have good security habits but there is room for improvement.' };
+    if (percentage >= 60) return { level: 'GOOD', color: 'text-[#22d3ee]', bg: 'bg-[#22d3ee]', message: 'You have good security habits but there is room for improvement.' };
     if (percentage >= 40) return { level: 'MODERATE', color: 'text-yellow-400', bg: 'bg-yellow-600', message: 'Your security needs improvement. Review the recommendations below.' };
     return { level: 'AT RISK', color: 'text-red-400', bg: 'bg-red-600', message: 'Your security practices put you at significant risk. Please implement the recommendations urgently.' };
   };

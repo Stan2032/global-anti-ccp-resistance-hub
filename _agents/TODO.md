@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 97)
+> Last Updated: February 26, 2026 (Session 119)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -22,13 +22,11 @@
   - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
-- [ ] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
-  - **Agent:** Opus 4.6 (requires understanding component→data mapping)
+- [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
   - ✅ DetentionFacilities → detention_facilities_research.json (DONE — Session 89, 11 facilities with coordinates/capacity/evidence)
   - ✅ CCPOfficials → sanctioned_officials_research.json (DONE — Session 90, JSON enriched with biographical data, hardcoded array removed)
-  - See: `_agents/planning/SIMULATED_DATA_CLEANUP_TODO.md` for full justification
 
 ### Bug Fixes & Polish
 - [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
@@ -184,30 +182,34 @@
 ## 🔧 TECHNICAL DEBT
 
 ### Code Quality
-- [ ] Refactor large components into smaller modules
+- [x] ~~Refactor large components into smaller modules~~ ✅ (81+ lazy-loaded sub-components across pages)
 - [ ] Add TypeScript for type safety
-- [ ] Implement comprehensive testing (unit, integration, e2e)
+- [x] ~~Implement comprehensive testing (unit, integration, e2e)~~ ✅ (625 tests across 34 files, 8 design system compliance checks)
 - [ ] Document all components with JSDoc
-- [ ] Create component library/design system
-- [ ] Standardize error handling
+- [x] ~~Create component library/design system~~ ✅ (STYLE_GUIDE.md + 8 automated checks)
+- [x] ~~Standardize error handling~~ ✅ (ErrorBoundary + RouteErrorBoundary)
 - [ ] Implement logging system
 
 ### Infrastructure
 - [ ] Set up staging environment
-- [ ] Implement CI/CD improvements
-- [ ] Add automated security scanning
+- [x] ~~Implement CI/CD improvements~~ ✅ (GitHub Actions deploy.yml to Cloudflare Workers)
+- [x] ~~Add automated security scanning~~ ✅ (CodeQL via GitHub, 0 alerts)
 - [ ] Set up monitoring and alerting
 - [ ] Implement rate limiting
-- [ ] Add DDoS protection
-- [ ] Configure proper caching headers
+- [ ] Add DDoS protection (Cloudflare provides basic protection)
+- [x] ~~Configure proper caching headers~~ ✅ (public/_headers with security + cache headers)
+
+### Backend Cleanup
+- [ ] **Remove socket.io from backend** — `socket.io` ^4.8.1 still in backend/package.json + 3 socket files (socketAuth.js, socketService.js, sockets/handlers.js). Frontend socket.io was removed in Session 96. Clean up when backend is deployed.
+- [ ] **Audit backend dependencies** — Run `npm audit` when backend is next active.
 
 ### Documentation
-- [ ] Create developer documentation
-- [ ] Write contribution guidelines
-- [ ] Document API endpoints
+- [x] ~~Create developer documentation~~ ✅ (ARCHITECTURE.md + README.md)
+- [x] ~~Write contribution guidelines~~ ✅ (CONTRIBUTING.md)
+- [ ] Document API endpoints (when backend API is deployed)
 - [ ] Create user guides
-- [ ] Write security documentation
-- [ ] Maintain changelog
+- [x] ~~Write security documentation~~ ✅ (SecurityCenter page + SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md)
+- [x] ~~Maintain changelog~~ ✅ (archived — session notes serve this purpose)
 
 ---
 
@@ -241,7 +243,7 @@
 
 ## ✅ HUMAN DECISIONS — ALL RESOLVED
 
-> All D1-D5 answered and implemented. See `QUESTIONS_FOR_HUMANS.md` for details.
+> All D1-D5 answered and implemented. See `_agents/archive/QUESTIONS_FOR_HUMANS.md` for details.
 > **Standing instruction:** Agents may add individuals to the database without asking, as long as well-researched with verified sources and consistent with project goals.
 
 ---
@@ -249,10 +251,11 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
+1. **Site cleanup** — ✅ SITE_CLEANUP_TODO.md ~99% done (Session 118). Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal colors ✅, page merging ✅, dead code removal ✅, accessibility ✅, documentation ✅, content deduplication ✅ (Session 117), form simplification ✅ (Session 117), CONTENT_GUIDE.md ✅ (Session 117), backend socket.io cleanup ✅ (Session 118). Remaining: aspirational features only
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Site cleanup** — SITE_CLEANUP_TODO.md ~65% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: page merging, visual hierarchy
-4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
+3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Client-side PII encryption ✅ (Session 117). Remaining: add Supabase Auth for admin
+4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→304KB (133→97KB gzip)
+5. **Backend cleanup** — ✅ socket.io dep + 3 socket files (socketAuth.js, socketService.js, handlers.js) removed (Session 118).
 
 ### What Needs Human Decisions
 1. ~~Email service choice for forms~~ — **DEFERRED by owner** (Feb 25, 2026): "Let's delay the email part until a lot later, I'll look into and decide at a later date"
@@ -284,9 +287,8 @@
 | File | Focus | Status |
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
-| **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: ✅ ALL 5/5 COMPLETE |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~75% complete (typography, emojis, tabs, a11y, mobile, data migrations, orphans all done) |
-| **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
+| **archive/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | ✅ ALL COMPLETE (archived) |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~97% complete (all priorities substantially done; remaining: content dedup, form simplification) |
 
 ---
 
@@ -300,13 +302,14 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 106, Feb 26, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 631 tests (34 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (6 automated checks) + URL health tests.
+### Current State Summary (as of Session 116, Feb 26, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 95+ components, 625 tests (34 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors (blue/purple/indigo/teal/pink) standardized.
+- **Site Cleanup:** ~97% complete. Page merging done (4 merges + redirects). Dead code: 0 orphan components (6 consecutive audit sessions 110-115). SITE_CLEANUP_TODO.md substantially done.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
-- **Accessibility:** All role="button" divs → semantic buttons. Heading hierarchy fixed. SkipLinks i18n (8 languages).
-- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED.
-- **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
+- **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED. Backend still has socket.io dep (cleanup deferred until backend deployment).
+- **Bundle:** Main bundle 304KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
 - **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete. 0 orphan components.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
@@ -314,9 +317,10 @@
 - **Security:** 9 headers (HSTS, COOP, CORP, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection). 0 npm vulns. 0 CodeQL alerts.
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
 - **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
-- **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages.
+- **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages. Sitemap matches all routes.
 - **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
-- **Knowledge Transfer:** Comprehensive session notes in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`.
+- **Archive:** 66 files in `_agents/archive/` (sessions 110-115 audit). All dead code removed.
+- **Knowledge Transfer:** `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md` and `_agents/thoughts/SESSION_98_106_NOTES.md`. Machine-readable state in `_agents/AGENT_HANDOFF.json` (v9.6).
 
 ---
 

@@ -54,8 +54,8 @@ const IntelligenceFeeds = () => {
   // Get source badge color
   const getSourceColor = (source) => {
     const colors = {
-      icij: 'bg-purple-900/20 text-purple-300 border-purple-700/50',
-      rfa: 'bg-blue-900/20 text-blue-300 border-blue-700/50',
+      icij: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
+      rfa: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       hkfp: 'bg-[#4afa82]/10 text-[#4afa82] border-[#4afa82]/30',
       aspi: 'bg-orange-900/20 text-orange-300 border-orange-700/50',
     };
@@ -69,7 +69,7 @@ const IntelligenceFeeds = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">Live Intelligence Feed</h1>
-            <p className="text-blue-100">
+            <p className="text-[#22d3ee]">
               Real-time news from verified sources worldwide
             </p>
           </div>
@@ -79,7 +79,7 @@ const IntelligenceFeeds = () => {
               <span className="text-sm text-green-300">Live Connected</span>
             </div>
             {lastUpdated && (
-              <span className="text-xs text-blue-200">
+              <span className="text-xs text-[#22d3ee]">
                 Updated: {lastUpdated.toLocaleTimeString()}
               </span>
             )}
@@ -192,7 +192,7 @@ const IntelligenceFeeds = () => {
               href={source.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs text-blue-400 hover:text-blue-300"
+              className="text-xs text-[#22d3ee] hover:text-white"
             >
               Visit source →
             </a>
@@ -248,7 +248,7 @@ const IntelligenceFeeds = () => {
               )}
             </div>
             
-            <h2 className="text-lg font-semibold text-white mb-2 hover:text-blue-400">
+            <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
               <a href={item.link} target="_blank" rel="noopener noreferrer">
                 {item.title}
               </a>
@@ -265,7 +265,7 @@ const IntelligenceFeeds = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 text-sm font-medium"
+                className="text-[#22d3ee] hover:text-white text-sm font-medium"
               >
                 Read full article →
               </a>

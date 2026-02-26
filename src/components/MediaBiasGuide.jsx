@@ -235,7 +235,7 @@ const MediaBiasGuide = () => {
   return (
     <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
-        <Info className="w-8 h-8 text-blue-400" />
+        <Info className="w-8 h-8 text-[#22d3ee]" />
         <div>
           <h2 className="text-2xl font-bold text-white">Media Bias Guide</h2>
           <p className="text-slate-400 text-sm">Evaluate news sources on China and CCP human rights abuses</p>
@@ -243,8 +243,8 @@ const MediaBiasGuide = () => {
       </div>
 
       {/* Guide Notice */}
-      <div className="bg-blue-500/10 border border-blue-500/30 p-4 mb-6">
-        <h3 className="text-blue-400 font-bold mb-2">How to Use This Guide</h3>
+      <div className="bg-[#22d3ee]/10 border border-[#1c2a35] p-4 mb-6">
+        <h3 className="text-[#22d3ee] font-bold mb-2">How to Use This Guide</h3>
         <p className="text-slate-300 text-sm mb-2">
           This guide helps you evaluate the reliability of news sources covering China. Always cross-reference multiple sources and check primary documents when possible.
         </p>
@@ -272,7 +272,7 @@ const MediaBiasGuide = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#0a0e14]/50 text-slate-400 hover:bg-[#0a0e14] hover:text-white border border-[#1c2a35]/50'
               }`}
             >
@@ -291,7 +291,7 @@ const MediaBiasGuide = () => {
                 <div className="flex items-center gap-2 mb-2">
                   {getRatingIcon(source.category)}
                   <h3 className="text-xl font-bold text-white">{source.name}</h3>
-                  <a href={source.website} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
+                  <a href={source.website} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-white">
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>

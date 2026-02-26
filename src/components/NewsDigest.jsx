@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, FileText, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
+import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
 import { subscribeNewsletter } from '../services/supabaseService';
 
@@ -9,7 +9,6 @@ const NewsDigest = () => {
   const [preferences, setPreferences] = useState({
     frequency: 'weekly',
     topics: ['all'],
-    format: 'summary',
   });
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -31,12 +30,6 @@ const NewsDigest = () => {
     { id: 'sanctions', name: 'Sanctions & Policy', Icon: Scale },
     { id: 'forced-labor', name: 'Forced Labor', Icon: Link2 },
     { id: 'transnational', name: 'Transnational Repression', Icon: Globe2 },
-  ];
-
-  const formats = [
-    { id: 'summary', name: 'Brief Summary', description: '5-minute read with key headlines' },
-    { id: 'detailed', name: 'Detailed Analysis', description: 'In-depth coverage with context' },
-    { id: 'links', name: 'Links Only', description: 'Curated links to original sources' },
   ];
 
   const recentDigests = [
@@ -114,10 +107,10 @@ const NewsDigest = () => {
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Stay Informed Via:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Radio Free Asia</a></li>
-              <li>→ <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Free Press</a></li>
-              <li>→ <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">China Digital Times</a></li>
-              <li>→ <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">CECC (US Commission on China)</a></li>
+              <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Radio Free Asia</a></li>
+              <li>→ <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Hong Kong Free Press</a></li>
+              <li>→ <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">China Digital Times</a></li>
+              <li>→ <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">CECC (US Commission on China)</a></li>
             </ul>
           </div>
           <button
@@ -134,7 +127,7 @@ const NewsDigest = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
           <Newspaper className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -212,7 +205,7 @@ const NewsDigest = () => {
                 onClick={() => setPreferences({ ...preferences, frequency: freq.id })}
                 className={`p-3 text-left transition-colors ${
                   preferences.frequency === freq.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -234,34 +227,12 @@ const NewsDigest = () => {
                 onClick={() => toggleTopic(topic.id)}
                 className={`flex items-center space-x-1 px-3 py-2 text-sm transition-colors ${
                   preferences.topics.includes(topic.id)
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
                 {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.icon}</span>}
                 <span>{topic.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Format */}
-        <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-          <h3 className="font-medium text-white mb-3 flex items-center gap-1"><FileText className="w-4 h-4" /> Format Preference</h3>
-          <div className="grid md:grid-cols-3 gap-3">
-            {formats.map(format => (
-              <button
-                key={format.id}
-                type="button"
-                onClick={() => setPreferences({ ...preferences, format: format.id })}
-                className={`p-3 text-left transition-colors ${
-                  preferences.format === format.id
-                    ? 'bg-green-600 text-white'
-                    : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
-                }`}
-              >
-                <div className="font-medium">{format.name}</div>
-                <div className="text-xs opacity-75">{format.description}</div>
               </button>
             ))}
           </div>
@@ -278,7 +249,7 @@ const NewsDigest = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
+          className="w-full py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] font-medium transition-colors"
         >
           {submitting ? 'Subscribing...' : 'Subscribe to News Digest'}
         </button>
@@ -288,16 +259,16 @@ const NewsDigest = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><BookOpen className="w-4 h-4" /> Other Ways to Stay Informed</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Radio Free Asia
           </a>
-          <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Hong Kong Free Press
           </a>
-          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             China Digital Times
           </a>
-          <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             CECC Updates
           </a>
         </div>

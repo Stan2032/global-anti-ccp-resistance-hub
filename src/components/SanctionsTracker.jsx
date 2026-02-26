@@ -41,7 +41,7 @@ const SanctionsTracker = () => {
     individual: 'bg-red-900/30 border-red-700/50',
     entity: 'bg-orange-900/30 border-orange-700/50',
     trade: 'bg-yellow-900/30 border-yellow-700/50',
-    visa: 'bg-purple-900/30 border-purple-700/50',
+    visa: 'bg-[#111820] border-[#1c2a35]',
   };
 
   const stats = {
@@ -85,7 +85,7 @@ const SanctionsTracker = () => {
           <div className="text-xs text-slate-400">Entities</div>
         </div>
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-blue-400">{stats.countries}</div>
+          <div className="text-2xl font-bold text-[#22d3ee]">{stats.countries}</div>
           <div className="text-xs text-slate-400">Countries</div>
         </div>
       </div>
@@ -101,7 +101,7 @@ const SanctionsTracker = () => {
                 onClick={() => setActiveCountry(country.id)}
                 className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCountry === country.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -120,7 +120,7 @@ const SanctionsTracker = () => {
                 onClick={() => setActiveType(type.id)}
                 className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeType === type.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -163,7 +163,7 @@ const SanctionsTracker = () => {
                         href={LAW_LINKS[sanction.law]}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#111820] rounded text-blue-400 hover:text-blue-300 transition-colors"
+                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#111820] rounded text-[#22d3ee] hover:text-white transition-colors"
                       >
                         <span className="flex items-center gap-1"><ScrollText className="w-3 h-3" /> {sanction.law}</span>
                         <ExternalLink className="w-3 h-3" />
@@ -185,7 +185,7 @@ const SanctionsTracker = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><Megaphone className="w-5 h-5" /> Advocate for More Sanctions</h3>
         <p className="text-sm text-slate-300 mb-3">
           Many officials responsible for human rights abuses remain unsanctioned. Contact your representatives 
@@ -194,7 +194,7 @@ const SanctionsTracker = () => {
         <div className="flex flex-wrap gap-2">
           <a 
             href="/take-action" 
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors"
           >
             Contact Representatives
           </a>

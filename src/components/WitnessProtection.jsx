@@ -186,9 +186,9 @@ const WitnessProtection = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <Shield className="w-8 h-8 text-purple-400 mr-3" />
+          <Shield className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Witness Protection Guide</h2>
             <p className="text-slate-400">Resources for at-risk activists and witnesses</p>
@@ -210,7 +210,7 @@ const WitnessProtection = () => {
             onClick={() => setActiveSection(section.id)}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeSection === section.id
-                ? 'bg-purple-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -231,27 +231,27 @@ const WitnessProtection = () => {
             </p>
             <ul className="space-y-2 text-slate-300">
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>A <strong>witness</strong> to human rights abuses (camps, torture, forced labor)</span>
               </li>
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>A <strong>defector</strong> from CCP, police, or military</span>
               </li>
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>A <strong>journalist</strong> covering sensitive topics</span>
               </li>
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>An <strong>activist</strong> organizing resistance activities</span>
               </li>
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>A <strong>family member</strong> of someone the CCP wants to silence</span>
               </li>
               <li className="flex items-start">
-                <span className="text-purple-400 mr-2">•</span>
+                <span className="text-[#22d3ee] mr-2">•</span>
                 <span>Anyone who has <strong>testified</strong> against CCP interests</span>
               </li>
             </ul>
@@ -287,8 +287,8 @@ const WitnessProtection = () => {
                   <li>• Device compromise</li>
                 </ul>
               </div>
-              <div className="bg-blue-900/20 border border-blue-700/30 p-3">
-                <h4 className="font-medium text-blue-300 mb-2">Legal Threats</h4>
+              <div className="bg-[#111820] border border-[#1c2a35] p-3">
+                <h4 className="font-medium text-[#22d3ee] mb-2">Legal Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Interpol red notices (abuse)</li>
                   <li>• Extradition requests</li>
@@ -345,7 +345,7 @@ const WitnessProtection = () => {
               <div className="mt-6">
                 <button
                   onClick={() => setRiskLevel(calculateRisk())}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 font-medium transition-colors"
+                  className="w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] py-3 font-medium transition-colors"
                 >
                   Calculate Risk Level
                 </button>
@@ -424,7 +424,7 @@ const WitnessProtection = () => {
                 'Consult with a lawyer about your options',
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center space-x-3 p-2 bg-[#0a0e14]/50 rounded">
-                  <Square className="w-4 h-4 text-purple-400" />
+                  <Square className="w-4 h-4 text-[#22d3ee]" />
                   <span className="text-slate-300 text-sm">{item}</span>
                 </div>
               ))}
@@ -460,7 +460,7 @@ const WitnessProtection = () => {
                   </div>
                   <div className="flex flex-wrap gap-2 mb-2">
                     {country.programs.map((program, pidx) => (
-                      <span key={pidx} className="text-xs px-2 py-1 bg-purple-900/30 text-purple-300 rounded">
+                      <span key={pidx} className="text-xs px-2 py-1 bg-[#111820] text-[#22d3ee] rounded">
                         {program}
                       </span>
                     ))}
@@ -491,8 +491,8 @@ const WitnessProtection = () => {
             <h3 className="text-lg font-semibold text-white mb-3">Legal Protections Available</h3>
             
             <div className="space-y-4">
-              <div className="bg-blue-900/20 border border-blue-700/30 p-4">
-                <h4 className="font-medium text-blue-300 mb-2">Asylum</h4>
+              <div className="bg-[#111820] border border-[#1c2a35] p-4">
+                <h4 className="font-medium text-[#22d3ee] mb-2">Asylum</h4>
                 <p className="text-sm text-slate-400">
                   If you fear persecution, you can apply for asylum in most democratic countries. 
                   You must demonstrate a well-founded fear of persecution based on race, religion, 
@@ -508,8 +508,8 @@ const WitnessProtection = () => {
                 </p>
               </div>
 
-              <div className="bg-purple-900/20 border border-purple-700/30 p-4">
-                <h4 className="font-medium text-purple-300 mb-2">Humanitarian Visas</h4>
+              <div className="bg-[#111820] border border-[#1c2a35]/30 p-4">
+                <h4 className="font-medium text-[#22d3ee] mb-2">Humanitarian Visas</h4>
                 <p className="text-sm text-slate-400">
                   Some countries offer humanitarian visas for people at risk. These are often 
                   faster than asylum processes but may have limited duration.
@@ -529,13 +529,13 @@ const WitnessProtection = () => {
           <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Legal Resources</h3>
             <div className="space-y-2 text-sm">
-              <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 UNHCR - UN Refugee Agency
               </a>
-              <a href="https://www.interpol.int/How-we-work/Notices/View-Red-Notices" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.interpol.int/How-we-work/Notices/View-Red-Notices" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 Interpol - Challenge Red Notices
               </a>
-              <a href="https://www.amnesty.org/en/what-we-do/refugees-asylum-seekers-and-migrants/" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.amnesty.org/en/what-we-do/refugees-asylum-seekers-and-migrants/" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 Amnesty International - Refugee Rights
               </a>
             </div>
@@ -554,7 +554,7 @@ const WitnessProtection = () => {
                 <div key={idx} className="bg-[#0a0e14]/50 p-4">
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-medium text-white">{org.name}</h4>
-                    <span className="text-xs px-2 py-1 bg-purple-900/30 text-purple-300 rounded">
+                    <span className="text-xs px-2 py-1 bg-[#111820] text-[#22d3ee] rounded">
                       {org.region}
                     </span>
                   </div>
@@ -572,7 +572,7 @@ const WitnessProtection = () => {
                       href={org.website} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-blue-400 hover:underline"
+                      className="text-[#22d3ee] hover:underline"
                     >
                       Website →
                     </a>

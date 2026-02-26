@@ -187,7 +187,7 @@ export default function CCPOfficials() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedOfficial(null)}
-            className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
+            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
           >
             ← Back to all officials
           </button>
@@ -288,7 +288,7 @@ export default function CCPOfficials() {
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-blue-400" />
+              <Calendar className="w-5 h-5 text-[#22d3ee]" />
               Key Actions Timeline
             </h3>
             {expandedSections.actions ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
@@ -300,7 +300,7 @@ export default function CCPOfficials() {
                 <div key={i} className="flex gap-4">
                   <div className="w-16 flex-shrink-0 text-sm text-slate-500 font-medium">{action.year}</div>
                   <div className="flex-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
+                    <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
                     <p className="text-slate-300">{action.action}</p>
                   </div>
                 </div>
@@ -450,7 +450,7 @@ export default function CCPOfficials() {
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.region}</span>
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.category}</span>
               </div>
-              <span className="text-blue-400 text-sm">View →</span>
+              <span className="text-[#22d3ee] text-sm">View →</span>
             </div>
           </button>
         ))}
@@ -475,7 +475,7 @@ export default function CCPOfficials() {
       {/* Official Sanction List Sources */}
       <div className="mt-6">
         <h3 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-blue-400" />
+          <Shield className="w-5 h-5 text-[#22d3ee]" />
           Official Government Sanction Lists
         </h3>
         <p className="text-sm text-slate-400 mb-4">

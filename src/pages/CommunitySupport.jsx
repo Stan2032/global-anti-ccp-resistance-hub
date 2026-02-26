@@ -254,7 +254,7 @@ const CommunitySupport = () => {
         <p className="text-slate-400 text-xs font-medium mb-2">Expertise</p>
         <div className="flex flex-wrap gap-2">
           {volunteer.expertise.map((exp, idx) => (
-            <span key={idx} className="px-2 py-1 bg-blue-900 text-blue-100 rounded text-xs">
+            <span key={idx} className="px-2 py-1 bg-[#111820] text-[#22d3ee] rounded text-xs">
               {exp}
             </span>
           ))}
@@ -286,7 +286,7 @@ const CommunitySupport = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors text-sm"
+        className="w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 font-medium transition-colors text-sm"
       >
         Connect
       </motion.button>
@@ -306,7 +306,7 @@ const CommunitySupport = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors"
+          className="flex items-center space-x-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 font-medium transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Post Request</span>
@@ -330,7 +330,7 @@ const CommunitySupport = () => {
                   <p className="text-slate-400 text-sm">{stat.label}</p>
                   <p className="text-2xl font-bold text-white mt-1">{stat.value}</p>
                 </div>
-                <Icon className="w-8 h-8 text-blue-400 opacity-50" />
+                <Icon className="w-8 h-8 text-[#22d3ee] opacity-50" />
               </div>
             </motion.div>
           )

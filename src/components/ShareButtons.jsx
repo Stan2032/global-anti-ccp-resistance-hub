@@ -34,7 +34,7 @@ const ShareButtons = ({
         </svg>
       ),
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      color: 'bg-blue-600 hover:bg-blue-700'
+      color: 'bg-[#22d3ee] hover:bg-[#22d3ee]/80'
     },
     {
       name: 'LinkedIn',
@@ -44,7 +44,7 @@ const ShareButtons = ({
         </svg>
       ),
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`,
-      color: 'bg-blue-700 hover:bg-blue-800'
+      color: 'bg-[#1c2a35] hover:bg-[#22d3ee]/80'
     },
     {
       name: 'Telegram',
@@ -74,7 +74,7 @@ const ShareButtons = ({
         </svg>
       ),
       url: `https://signal.me/#p/+1234567890`, // Placeholder - Signal doesn't have web sharing
-      color: 'bg-blue-500 hover:bg-blue-600',
+      color: 'bg-[#22d3ee] hover:bg-[#22d3ee]/80',
       disabled: true
     },
     {
@@ -155,7 +155,7 @@ const ShareButtons = ({
       {!compact && (
         <div className="flex flex-wrap gap-1">
           {hashtags.map((tag) => (
-            <span key={tag} className="text-xs text-blue-400 bg-blue-900/30 px-2 py-1 rounded">
+            <span key={tag} className="text-xs text-[#22d3ee] bg-[#111820] px-2 py-1 rounded">
               #{tag}
             </span>
           ))}
