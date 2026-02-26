@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.3",
-    "date": "2026-02-26T21:58:00Z",
+    "version": "10.4",
+    "date": "2026-02-26T22:45:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.2, Session 123)",
+    "supersedes": "AGENT_HANDOFF.json (v10.3, Session 124)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -20,8 +20,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 788,
-    "test_files": 45,
+    "frontend_tests": 824,
+    "test_files": 47,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -30,7 +30,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 124,
+    "sessions_completed": 125,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -57,6 +57,17 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_125_changes": {
+    "summary": "Test coverage for useLiveData hook (3 custom hooks) and Footer component. useLiveData.js was the only untested hook — handles async RSS feed fetching, political prisoner loading, and statistics with auto-refresh intervals. Footer.jsx is a core infrastructure component with emergency contacts, partner links, security notice, and accessibility features.",
+    "new_test_files": [
+      "src/test/useLiveData.test.jsx — 14 tests: useLiveFeeds (loading state, success data, error handling, FEED_SOURCES exposure, refresh function, auto-refresh interval setup, cleanup on unmount, skip interval when 0), usePoliticalPrisoners (loading state, success data, error handling), useStatistics (loading state, success data, error handling). Uses vi.useFakeTimers + vi.advanceTimersByTimeAsync for proper async hook testing.",
+      "src/test/Footer.test.jsx — 22 tests: structure (semantic footer, 4 section headings), platform links (Dashboard route, Prisoners route, all 5), resource links (all 5), organization links (external target/_blank, HTTPS URLs), emergency contacts (phone tel: link, email mailto: link), security notice (text, Tor Browser link, VPN link), bottom bar (version, GitHub link, Twitter share, copyright year, CC BY 4.0, MIT license, solidarity text), accessibility (aria-hidden on decorative borders, sr-only solidarity slogans)"
+    ],
+    "test_count": "824 tests across 47 files (was 788/45). 36 new tests across 2 files.",
+    "hooks_now_tested": "All 3 hooks now have tests: useDocumentTitle (6 tests), useWebRTCLeakCheck (9 tests), useLiveData (14 tests). 0 untested hooks remaining.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
   },
 
   "session_124_changes": {
