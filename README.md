@@ -100,7 +100,7 @@ src/
 ├── hooks/              # useDocumentTitle, useLiveData, useWebRTCLeakCheck
 ├── contexts/           # ThemeContext, LanguageContext, SocketContext (stub)
 ├── locales/            # 8 locale JSON files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-└── test/               # 34 Vitest test files, 630 tests
+└── test/               # 34 Vitest test files, 631 tests
 ```
 
 ### Data Flow
@@ -179,7 +179,7 @@ npm run preview         # Preview production build locally
 
 ### Testing
 ```bash
-npm test                # Run all 630 tests across 34 files
+npm test                # Run all 631 tests across 34 files
 npm run test:watch      # Watch mode for development
 ```
 
