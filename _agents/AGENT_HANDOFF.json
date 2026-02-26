@@ -1,22 +1,21 @@
 {
   "handoff": {
-    "version": "9.8",
-    "date": "2026-02-26T03:30:00Z",
+    "version": "9.9",
+    "date": "2026-02-26T19:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v9.7, Session 118)",
+    "supersedes": "AGENT_HANDOFF.json (v9.8, Session 119)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
   "critical_reads": [
     "_agents/NEXT_AGENT_PROMPT.md",
     "_agents/TODO.md",
-    "_agents/STYLE_GUIDE.md",
-    "_agents/thoughts/"
+    "_agents/STYLE_GUIDE.md"
   ],
 
   "repository_metrics": {
@@ -31,7 +30,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 119,
+    "sessions_completed": 120,
     "eslint_status": "0_errors_10_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -58,6 +57,16 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_120_changes": {
+    "summary": "File archival + code cleanup. Fixed QuickFacts.jsx duplicate cyan key (build warning). Archived 5 completed research files and 2 session notes to _agents/archive/. Updated _agents/README.md to reflect current structure.",
+    "quickfacts_fix": "Removed duplicate 'cyan' key in QuickFacts.jsx colorClasses object (line 97). First entry (line 93) uses correct terminal cyan #22d3ee. Second entry used non-design-system border-l-cyan-500. Build warning eliminated.",
+    "archived_research": "ALTERNATIVES_RATINGS.md (426 lines), CHINA_EXPOSURE_CRITERIA.md (310 lines), DEMOCRATIC_BRANDS_RESEARCH.md (270 lines), ETHICAL_ALTERNATIVES_RESEARCH.md (148 lines), DATA_VERIFICATION_LOG.md (543 lines) — all moved from _agents/research/ to _agents/archive/. Two actively-referenced files kept: DATA_SOURCES.md (DataSources.jsx), SOURCE_BIAS_AUDIT.md (sourceLinks.js).",
+    "archived_thoughts": "SESSION_83_97_COMPREHENSIVE_NOTES.md and SESSION_98_106_NOTES.md — moved to _agents/archive/. Superseded by AGENT_HANDOFF.json session blocks.",
+    "docs_updated": "_agents/archive/README.md (new sections for archived research + thoughts), _agents/README.md (updated folder structure to reflect current state).",
+    "test_count": "654 tests across 37 files (unchanged).",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
   },
 
   "session_119_changes": {

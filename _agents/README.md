@@ -8,50 +8,30 @@ This folder is the centralised autonomous area for AI agents working on this pro
 
 New agent? Start here:
 
-1. **[TODO.md](./TODO.md)** — Main task list with Quick Start section, session history, and standing instructions
-2. **[AGENTS.md](./AGENTS.md)** — Agent role definitions and protocols
-3. **[AGENT_HANDOFF.json](./AGENT_HANDOFF.json)** — Machine-readable handoff context (v2.0)
-4. **[QUESTIONS_FOR_HUMANS.md](./QUESTIONS_FOR_HUMANS.md)** — Human Q&A log + standing instructions
+1. **[NEXT_AGENT_PROMPT.md](./NEXT_AGENT_PROMPT.md)** — Comprehensive project context and instructions
+2. **[TODO.md](./TODO.md)** — Active task list with standing instructions
+3. **[STYLE_GUIDE.md](./STYLE_GUIDE.md)** — Terminal design system reference
+4. **[AGENT_HANDOFF.json](./AGENT_HANDOFF.json)** — Machine-readable handoff context
 
 ## Folder Structure
 
 ```
 _agents/
 ├── README.md                    ← You are here
-├── TODO.md                      ← Main entry point for agents
+├── TODO.md                      ← Active task list
+├── TODO_COMPLETED.md            ← Archive of completed tasks + session history
 ├── AGENTS.md                    ← Agent roles and protocols
-├── AGENT_HANDOFF.json           ← Machine-readable handoff
-├── AGENT_ROADMAP.md             ← Task prioritization
-├── QUESTIONS_FOR_HUMANS.md      ← Human decisions log
-├── LLM_JUDGEMENT_LOG.md         ← Decision rationale (Sessions 1-7)
-├── SESSION_SUMMARY.md           ← Session summaries
-├── CHANGELOG.md                 ← Project changelog
-├── STYLE_GUIDE.md               ← Code and content style guide
-├── research/                    ← Research, audits, and data verification
-│   ├── ALTERNATIVES_RATINGS.md
-│   ├── CHINA_EXPOSURE_CRITERIA.md
-│   ├── DATA_SOURCES.md
-│   ├── DATA_VERIFICATION_LOG.md
-│   ├── DEMOCRATIC_BRANDS_RESEARCH.md
-│   ├── ETHICAL_ALTERNATIVES_RESEARCH.md
-│   ├── SOURCE_BIAS_AUDIT.md
-│   ├── AUDIT_INTERNAL_SUMMARY.md
-│   ├── CODEBASE_AUDIT_SUMMARY.md
-│   ├── FABRICATION_GAP_AUDIT.md
-│   ├── INVESTIGATION_SUMMARY.md
-│   └── SITE_STRUCTURE_ANALYSIS.md
-├── planning/                    ← Satellite TODO lists and planning docs
-│   ├── SIMULATED_DATA_CLEANUP_TODO.md
-│   ├── SITE_CLEANUP_TODO.md
-│   └── SITE_WIDE_TODO.md
-├── thoughts/                    ← Per-session agent thoughts (Sessions 33-48)
-│   ├── SESSION_33_VERIFICATION_NOTES.md
-│   ├── SESSION_34_VERIFICATION_NOTES.md
-│   └── ... (14 files)
-└── archive/                     ← Historical planning docs and one-time files
-    ├── MASTER_TODO_LIST.md
-    ├── IMPLEMENTATION_ROADMAP.md
-    └── ... (29 files)
+├── AGENT_HANDOFF.json           ← Machine-readable handoff (v9.8+)
+├── NEXT_AGENT_PROMPT.md         ← Comprehensive prompt for new agents
+├── STYLE_GUIDE.md               ← Terminal design system reference
+├── research/                    ← Active research files (referenced by code)
+│   ├── DATA_SOURCES.md          ← Referenced by DataSources.jsx
+│   └── SOURCE_BIAS_AUDIT.md     ← Referenced by sourceLinks.js
+├── planning/                    ← Active planning docs
+│   └── SITE_CLEANUP_TODO.md     ← ~99% complete
+├── thoughts/                    ← Per-session agent thoughts (empty — notes archived)
+└── archive/                     ← 73 historical files (sessions, research, dead code)
+    └── README.md                ← Index of all archived files
 ```
 
 ## Standing Instructions (from Human)
@@ -60,6 +40,7 @@ _agents/
 - **Date verification:** Always cross-reference dates with primary sources
 - **Adding people:** If well-researched and fits project goals, add without asking
 - **Source tiers:** Tier 1 (major international outlets, human rights orgs) > Tier 2 (credible regional/specialist) > Tier 3 (avoid)
+- **Terminology:** Always "CCP" never "CPC" — automated test enforces this
 
 ## What's NOT in This Folder
 
@@ -69,4 +50,4 @@ Site-running files remain in the project root:
 - `public/` — Static assets
 - `package.json`, `vite.config.js`, etc. — Build configuration
 - `README.md` — Project README
-- `organizations-data.json` — Site data
+- `ARCHITECTURE.md`, `CONTRIBUTING.md`, `CONTENT_GUIDE.md` — Project docs

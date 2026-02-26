@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 26, 2026 (Session 119)
+> Last Updated: February 26, 2026 (Session 120)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -251,7 +251,7 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Site cleanup** — ✅ SITE_CLEANUP_TODO.md ~99% done (Session 118). Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal colors ✅, page merging ✅, dead code removal ✅, accessibility ✅, documentation ✅, content deduplication ✅ (Session 117), form simplification ✅ (Session 117), CONTENT_GUIDE.md ✅ (Session 117), backend socket.io cleanup ✅ (Session 118). Remaining: aspirational features only
+1. **Site cleanup** — ✅ SITE_CLEANUP_TODO.md ~99% done (Session 118). Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal colors ✅, page merging ✅, dead code removal ✅, accessibility ✅, documentation ✅, content deduplication ✅ (Session 117), form simplification ✅ (Session 117), CONTENT_GUIDE.md ✅ (Session 117), backend socket.io cleanup ✅ (Session 118). File archival ✅ (Session 120: 5 research + 2 thoughts archived, QuickFacts duplicate key fixed). Remaining: aspirational features only
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Client-side PII encryption ✅ (Session 117). Remaining: add Supabase Auth for admin
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→304KB (133→97KB gzip)
@@ -302,13 +302,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 116, Feb 26, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 95+ components, 625 tests (34 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors (blue/purple/indigo/teal/pink) standardized.
-- **Site Cleanup:** ~97% complete. Page merging done (4 merges + redirects). Dead code: 0 orphan components (6 consecutive audit sessions 110-115). SITE_CLEANUP_TODO.md substantially done.
+### Current State Summary (as of Session 120, Feb 26, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 95+ components, 654 tests (37 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors (blue/purple/indigo/teal/pink) standardized. QuickFacts duplicate key fixed.
+- **Site Cleanup:** ~99% complete. Page merging done (4 merges + redirects). Dead code: 0 orphan components. SITE_CLEANUP_TODO.md substantially done. File archival: 73 files in `_agents/archive/`.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
-- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED. Backend still has socket.io dep (cleanup deferred until backend deployment).
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED. Backend socket.io fully removed.
 - **Bundle:** Main bundle 304KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
 - **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete. 0 orphan components.
@@ -319,8 +319,8 @@
 - **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
 - **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages. Sitemap matches all routes.
 - **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
-- **Archive:** 66 files in `_agents/archive/` (sessions 110-115 audit). All dead code removed.
-- **Knowledge Transfer:** `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md` and `_agents/thoughts/SESSION_98_106_NOTES.md`. Machine-readable state in `_agents/AGENT_HANDOFF.json` (v9.6).
+- **Archive:** 73 files in `_agents/archive/` (including 5 completed research + 2 session notes from Session 120).
+- **Knowledge Transfer:** Session notes archived. Machine-readable state in `_agents/AGENT_HANDOFF.json` (v9.9).
 
 ---
 
