@@ -361,7 +361,7 @@ export default function GaoZhishengProfile() {
             aria-controls={`panel-${id}`}
             onClick={() => setActiveTab(id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-[#22d3ee] text-[#0a0e14]' : 'text-slate-400 hover:text-[#0a0e14] hover:bg-[#111820]'
+              activeTab === id ? 'bg-[#22d3ee] text-[#0a0e14]' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
             }`}
           >
             <Icon className="w-4 h-4" /> {label}

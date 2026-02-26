@@ -4,7 +4,7 @@
 
 **Date:** January 7, 2026  
 **Last reviewed:** February 25, 2026 (Session 93)  
-**Status:** ~75% complete. Typography ✅, emoji reduction ✅, tab consolidation ✅, nav emojis ✅, accessibility ✅, performance ✅, data migrations ✅, ESLint ✅, mobile responsiveness ✅. Remaining: page merging, visual hierarchy, color standardization.
+**Status:** ~80% complete. Typography ✅, emoji reduction ✅, tab consolidation ✅, nav emojis ✅, accessibility ✅, performance ✅, data migrations ✅, ESLint ✅, mobile responsiveness ✅, blue→cyan color standardization ✅ (Session 108, 460 instances). Remaining: purple/indigo/teal/pink color standardization, page merging, visual hierarchy.
 
 ---
 
@@ -207,27 +207,40 @@
 **Problem:** Too many similar grays, inconsistent colors
 
 **Tasks:**
+- [x] **Blue → Cyan standardization** ✅ (Session 108, 460 instances)
+  - All `bg-blue-*`, `text-blue-*`, `border-blue-*` replaced with terminal cyan (#22d3ee) and surface colors (#111820, #1c2a35)
+  - Regression test in design-system.test.js prevents reintroduction
+  
+- [ ] **Purple → Cyan standardization** (~246 instances across 51 files)
+  - Map: text-purple-400→text-[#22d3ee], bg-purple-600→bg-[#22d3ee], bg-purple-900→bg-[#111820], border-purple-700→border-[#1c2a35]
+  - Purple serves "special/accent" role — mapped to terminal cyan (info/accent)
+
+- [ ] **Standardize remaining accent colors**
+  - Indigo (~20 instances) → terminal cyan
+  - Teal (~37 instances) → terminal cyan  
+  - Pink (~10 instances) → terminal red-400 (danger/emphasis)
+  - Emerald (~167) — keep as semantic "success" green, but align with terminal green (#4afa82)
+  - Orange (~170) / Amber (~150) — keep as semantic "warning" yellow-400/amber-400
+
 - [ ] **Standardize background colors**
-  - Primary bg: `bg-slate-900` (darkest)
-  - Secondary bg: `bg-slate-800` (medium)
-  - Tertiary bg: `bg-slate-700` (lighter)
+  - Primary bg: `bg-[#0a0e14]` (page background)
+  - Secondary bg: `bg-[#111820]` (cards, raised surfaces)
+  - Border: `border-[#1c2a35]` (all borders/dividers)
   - Remove: slate-850, slate-750, gray-900, etc.
 
 - [ ] **Standardize text colors**
   - Primary text: `text-white` (headings)
   - Secondary text: `text-slate-300` (body)
   - Tertiary text: `text-slate-400` (labels)
-  - Remove: slate-200, slate-500, gray-300, etc.
 
-- [ ] **Standardize accent colors**
-  - Success: `text-green-400` / `bg-green-900/20`
+- [ ] **Standardize accent colors to terminal palette**
+  - Success: `text-[#4afa82]` / `bg-[#4afa82]/10` (terminal green)
   - Warning: `text-yellow-400` / `bg-yellow-900/20`
   - Error: `text-red-400` / `bg-red-900/20`
-  - Info: `text-blue-400` / `bg-blue-900/20`
-  - Remove all other color variations
+  - Info/Accent: `text-[#22d3ee]` / `bg-[#22d3ee]/10` (terminal cyan)
 
-**Estimated Impact:** Consistent, professional appearance
-**Files Affected:** All components, create color guide
+**Estimated Impact:** Consistent, professional terminal appearance
+**Files Affected:** All components, STYLE_GUIDE.md
 
 ---
 

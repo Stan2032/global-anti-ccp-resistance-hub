@@ -249,7 +249,7 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Site cleanup** — SITE_CLEANUP_TODO.md ~75% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: blue color standardization (~460 instances), page merging, visual hierarchy
+1. **Site cleanup** — SITE_CLEANUP_TODO.md ~80% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, blue→cyan standardization ✅ (460 instances, Session 108). Remaining: purple/indigo/teal/pink color standardization, page merging, visual hierarchy
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
