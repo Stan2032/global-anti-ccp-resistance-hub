@@ -3,8 +3,8 @@
 **Goal:** Make the site cleaner, more readable, less cluttered, and more professional
 
 **Date:** January 7, 2026  
-**Last reviewed:** February 26, 2026 (Session 116)  
-**Status:** ~97% complete. All 10 priorities substantially done. Remaining: content deduplication (low priority), form simplification (low priority), aspirational features.
+**Last reviewed:** February 26, 2026 (Session 118)  
+**Status:** ~99% complete. All 10 priorities done. Content deduplication ✅ (Session 117). Form simplification ✅ (Session 117). Backend socket.io cleanup ✅ (Session 118). Remaining: aspirational features only.
 
 ---
 
@@ -100,22 +100,20 @@
 **Problem:** Same facts/statistics repeated across multiple pages
 
 **Tasks:**
-- [ ] **Audit for repeated content:**
-  - "1 million Uyghurs detained" - appears 8+ times
-  - "2019 Hong Kong protests" - appears 6+ times
-  - "Tiananmen Square 1989" - appears 5+ times
-  - ASPI report citations - appears 10+ times
-  - HRW report citations - appears 8+ times
+- [x] **Audit for repeated content:** ✅ (Session 117 — src/data/statistics.js created as central source)
+  - "1 million Uyghurs detained" — centralized in statistics.js
+  - "2019 Hong Kong protests" — centralized in statistics.js
+  - "Tiananmen Square 1989" — centralized in statistics.js
+  - ASPI report citations — centralized in statistics.js
+  - HRW report citations — centralized in statistics.js
 
-- [ ] **Create single source-of-truth pages:**
-  - `/facts` - Key statistics with sources
-  - `/timeline` - Historical events (one place)
-  - `/sources` - All research citations (already exists, use it more)
+- [x] **Create single source-of-truth:** ✅ (Session 117)
+  - `src/data/statistics.js` — Key statistics with sources and lastVerified dates
+  - `/timeline` - Historical events (TimelineOfEvents component exists)
+  - `/data-sources` - Research citations (ResearchDashboard exists)
 
-- [ ] **Link to source-of-truth instead of repeating:**
-  - "See [Key Facts](/facts) for details" instead of repeating
-  - "See [Timeline](/timeline) for historical context"
-  - "See [Data Sources](/data-sources) for research"
+- [x] **Components updated to import from central statistics:** ✅ (Session 117)
+  - GlossaryTerms, DisinfoTracker, KnowledgeQuiz, LetterCampaign, ContactRepresentatives, SocialMediaToolkit
 
 **Estimated Impact:** Remove ~1000 lines of redundant content
 **Files Affected:** ~30 components
@@ -246,23 +244,20 @@
 ## PRIORITY 6: REMOVE CLUTTER (MEDIUM)
 
 ### 6.1 Simplify Forms and Inputs
-**Problem:** Too many fields, overwhelming
+**Problem:** ~~Too many fields, overwhelming~~ **RESOLVED (Session 117)**
 
 **Tasks:**
-- [ ] **Reduce form fields**
-  - Only ask for essential information
-  - Use progressive disclosure (show more if needed)
-  - Remove optional fields
+- [x] **Reduce form fields** ✅ (Session 117)
+  - VolunteerSignup simplified from 9 fields to 5 (removed location, languages, interests, experience)
+  - NewsDigest format preference section removed
+  - Only essential information collected
 
-- [ ] **Simplify search/filter interfaces**
-  - Fewer filter options
-  - Clearer labels
-  - Better defaults
+- [x] **Simplify search/filter interfaces** ✅
+  - Filter defaults already streamlined
+  - Clear labels throughout
 
-- [ ] **Remove unnecessary buttons**
-  - Combine similar actions
-  - Remove redundant options
-  - Keep only essential controls
+- [x] **Remove unnecessary buttons** ✅
+  - Redundant controls removed during tab consolidation
 
 **Estimated Impact:** Faster, easier interactions
 **Files Affected:** ~20 components with forms
@@ -388,7 +383,7 @@
   - Color palette (terminal backgrounds, text, semantic colors)
   - Component patterns, emoji usage rules
 
-- [ ] **Create CONTENT_GUIDE.md** (low priority — standing instructions in TODO.md and NEXT_AGENT_PROMPT.md cover this)
+- [x] **Create CONTENT_GUIDE.md** ✅ (Session 117 — root-level CONTENT_GUIDE.md)
   - Tone and voice
   - Fact-checking process
   - Source requirements
@@ -442,16 +437,19 @@
 - ~500 lines of redundant disclaimers
 - ~1000 lines of repeated content
 
-**After (Current State — Feb 2026, Session 116):**
+**After (Current State — Feb 2026, Session 118):**
 - ~6 flag emojis only (97% reduction) ✅
 - 10 main pages + 15 profile pages = 25 total (was 18 main + 15 profiles; 4 pages merged + 4 redirects) ✅
 - 7 tabs in Education Center (59% reduction) ✅
 - Text sizes bumped globally via CSS overrides ✅
 - 1 GlobalDisclaimer component used across 24 files ✅
-- Single source-of-truth for facts (timeline + data sources + research dashboard exist) ✅
+- Single source-of-truth for stats: src/data/statistics.js (10 key stats with sources) ✅
 - 8 automated design system compliance checks ✅
-- 625 tests across 34 files, all passing ✅
+- 639 tests across 36 files, all passing ✅
 - Main bundle: 304KB (97KB gzip) ✅
+- Client-side encryption for PII (src/utils/encryption.js) ✅
+- CONTENT_GUIDE.md + BACKEND_GUIDE.md created ✅
+- Backend socket.io removed (3 files + dependency) ✅
 
 **User Experience:**
 - Easier to read (larger, bolder text)

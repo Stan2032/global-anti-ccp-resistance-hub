@@ -251,11 +251,11 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Site cleanup** — ✅ SITE_CLEANUP_TODO.md ~97% done (Session 116). Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal colors ✅, page merging ✅, dead code removal ✅, accessibility ✅, documentation ✅. Remaining: content deduplication (low priority), form simplification (low priority)
+1. **Site cleanup** — ✅ SITE_CLEANUP_TODO.md ~99% done (Session 118). Typography ✅, emojis ✅, tabs ✅, disclaimers ✅, ALL non-terminal colors ✅, page merging ✅, dead code removal ✅, accessibility ✅, documentation ✅, content deduplication ✅ (Session 117), form simplification ✅ (Session 117), CONTENT_GUIDE.md ✅ (Session 117), backend socket.io cleanup ✅ (Session 118). Remaining: aspirational features only
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
+3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Client-side PII encryption ✅ (Session 117). Remaining: add Supabase Auth for admin
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→304KB (133→97KB gzip)
-5. **Backend cleanup** — backend still has socket.io dep + 3 socket files (socketAuth.js, socketService.js, handlers.js) from before frontend socket.io removal. Clean up when backend is next deployed.
+5. **Backend cleanup** — ✅ socket.io dep + 3 socket files (socketAuth.js, socketService.js, handlers.js) removed (Session 118).
 
 ### What Needs Human Decisions
 1. ~~Email service choice for forms~~ — **DEFERRED by owner** (Feb 25, 2026): "Let's delay the email part until a lot later, I'll look into and decide at a later date"
