@@ -384,7 +384,7 @@ export default function CaseStudies() {
         {/* How to Help */}
         <div className="p-6 border-b border-[#1c2a35]">
           <h3 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
-            <Heart className="w-5 h-5 text-pink-400" />
+            <Heart className="w-5 h-5 text-[#22d3ee]" />
             How You Can Help
           </h3>
           <div className="grid md:grid-cols-2 gap-3">

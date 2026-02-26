@@ -75,7 +75,7 @@ const ResistanceResources = () => {
       link: '/community',
       linkText: 'Join Community',
       highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
-      color: 'border-l-2 border-l-teal-500'
+      color: 'border-l-2 border-l-[#22d3ee]'
     }
   ];
 

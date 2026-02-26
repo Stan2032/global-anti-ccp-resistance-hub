@@ -95,7 +95,7 @@ const QuickFacts = () => {
     blue: 'border-l-[#22d3ee] border-[#1c2a35]',
     green: 'border-l-green-500 border-[#1c2a35]',
     cyan: 'border-l-cyan-500 border-[#1c2a35]',
-    pink: 'border-l-pink-500 border-[#1c2a35]'
+    pink: 'border-l-[#22d3ee] border-[#1c2a35]'
   };
 
   const copyToClipboard = async (fact) => {

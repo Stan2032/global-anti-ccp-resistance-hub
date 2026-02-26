@@ -34,7 +34,7 @@ const ResistanceDirectory = () => {
       'Human Rights': 'bg-green-900/50 text-green-300 border-green-700',
       'Press Freedom': 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]',
       'Research': 'bg-cyan-900/50 text-cyan-300 border-cyan-700',
-      'Democracy': 'bg-pink-900/50 text-pink-300 border-pink-700',
+      'Democracy': 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       'Government': 'bg-red-900/50 text-red-300 border-red-700',
     };
     return colors[category] || 'bg-[#1c2a35] text-slate-300 border-[#2a9a52]';

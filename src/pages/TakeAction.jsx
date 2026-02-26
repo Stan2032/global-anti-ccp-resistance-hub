@@ -229,7 +229,7 @@ const TakeAction = () => {
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
                   action.color === 'orange' ? 'bg-orange-900/50 text-orange-400' :
                   action.color === 'cyan' ? 'bg-[#111820]/50 text-[#22d3ee]' :
-                  action.color === 'teal' ? 'bg-teal-900/50 text-teal-400' :
+                  action.color === 'teal' ? 'bg-[#111820] text-[#22d3ee]' :
                   'bg-[#1c2a35] text-slate-400'
                 }`}>
                   {action.number}

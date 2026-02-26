@@ -178,7 +178,7 @@ const AcademicCitationGenerator = () => {
       'Leaked Documents': 'text-red-400 bg-red-500/10 border-red-500/30',
       'Book': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Article': 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-      'Documentary': 'text-pink-400 bg-pink-500/10 border-pink-500/30'
+      'Documentary': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]'
     };
     return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };

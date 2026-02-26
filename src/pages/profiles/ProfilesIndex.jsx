@@ -105,8 +105,8 @@ const PROFILES = [
     location: 'Unknown prison, China',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
-    themeLeftBorder: 'border-l-teal-500',
-    themeAccent: 'text-teal-400',
+    themeLeftBorder: 'border-l-[#22d3ee]',
+    themeAccent: 'text-[#22d3ee]',
     built: true,
   },
   {

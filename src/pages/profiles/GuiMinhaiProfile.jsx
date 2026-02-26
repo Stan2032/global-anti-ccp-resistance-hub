@@ -234,7 +234,7 @@ const SOURCES = [
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
 const CATEGORY_COLORS = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
-  business: { bg: 'bg-teal-900/60', text: 'text-teal-200', label: 'Publishing' },
+  business: { bg: 'bg-[#111820]', text: 'text-[#22d3ee]', label: 'Publishing' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
 };
@@ -261,7 +261,7 @@ const TimelineEvent = ({ event, isExpanded, onToggle }) => {
         <div className="px-4 pb-3 border-t border-white/5">
           <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
           {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-teal-400 hover:text-teal-300 mt-2">
+            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] mt-2">
               <ExternalLink className="w-3 h-3" /> Source
             </a>
           )}
@@ -308,15 +308,15 @@ export default function GuiMinhaiProfile() {
       </Link>
 
       {/* ─── HEADER ─────────────────────────────────────────── */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-teal-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex flex-col md:flex-row md:items-start gap-6">
-          <div className="w-20 h-20 rounded-full bg-teal-900/60 border-2 border-teal-600 flex items-center justify-center flex-shrink-0">
-            <Book className="w-10 h-10 text-teal-400" />
+          <div className="w-20 h-20 rounded-full bg-[#111820] border-2 border-[#1c2a35] flex items-center justify-center flex-shrink-0">
+            <Book className="w-10 h-10 text-[#22d3ee]" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-3 mb-1">
               <h1 className="text-2xl md:text-3xl font-bold text-white">{PROFILE.name}</h1>
-              <span className="text-lg text-teal-400">{PROFILE.chineseName}</span>
+              <span className="text-lg text-[#22d3ee]">{PROFILE.chineseName}</span>
             </div>
             <p className="text-sm text-slate-400 mb-3">{PROFILE.occupation}</p>
 
@@ -337,19 +337,19 @@ export default function GuiMinhaiProfile() {
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-teal-400 font-bold text-lg">{daysDetained.toLocaleString()}+</div>
+                <div className="text-[#22d3ee] font-bold text-lg">{daysDetained.toLocaleString()}+</div>
                 <div className="text-slate-400 text-xs">Days detained</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-teal-400 font-bold text-lg">5</div>
+                <div className="text-[#22d3ee] font-bold text-lg">5</div>
                 <div className="text-slate-400 text-xs">Booksellers abducted</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-teal-400 font-bold text-lg">3</div>
+                <div className="text-[#22d3ee] font-bold text-lg">3</div>
                 <div className="text-slate-400 text-xs">Countries violated</div>
               </div>
               <div className="bg-[#111820]/50 p-2 text-center">
-                <div className="text-teal-400 font-bold text-lg">90+</div>
+                <div className="text-[#22d3ee] font-bold text-lg">90+</div>
                 <div className="text-slate-400 text-xs">Orgs demanding release</div>
               </div>
             </div>
@@ -363,7 +363,7 @@ export default function GuiMinhaiProfile() {
 
       {/* ─── CAUSEWAY BAY BOOKS CONTEXT ─────────────────────── */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-        <h3 className="text-sm font-semibold text-teal-400 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-[#22d3ee] mb-3 flex items-center gap-2">
           <Newspaper className="w-4 h-4" /> The Causeway Bay Books Disappearances (October–December 2015)
         </h3>
         <p className="text-sm text-slate-300 mb-3">
@@ -398,7 +398,7 @@ export default function GuiMinhaiProfile() {
             aria-controls={`panel-${id}`}
             onClick={() => setActiveTab(id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-teal-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
+              activeTab === id ? 'bg-[#22d3ee] text-[#0a0e14]' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
             }`}
           >
             <Icon className="w-4 h-4" /> {label}
@@ -412,9 +412,9 @@ export default function GuiMinhaiProfile() {
         {activeTab === 'timeline' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-teal-400" /> Timeline — {TIMELINE.length} Events</h2>
+              <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-[#22d3ee]" /> Timeline — {TIMELINE.length} Events</h2>
               <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-teal-400 hover:text-teal-300">Expand all</button>
+                <button onClick={expandAll} className="text-xs text-[#22d3ee] hover:text-[#22d3ee]">Expand all</button>
                 <span className="text-slate-600">|</span>
                 <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
               </div>
@@ -436,13 +436,13 @@ export default function GuiMinhaiProfile() {
         {/* CHARGES & VERDICT */}
         {activeTab === 'charges' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-teal-400" /> Charges & Verdict</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-[#22d3ee]" /> Charges & Verdict</h2>
 
             <div className="bg-red-900/20 border border-red-700/50 p-4">
               <h3 className="text-sm font-semibold text-red-300 mb-2">Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
                 Gui Minhai is serving a 10-year sentence imposed in a secret trial. His sentence is due to end 
-                in <strong className="text-teal-400">February 2030</strong>, but given the CCP&#39;s pattern of extending 
+                in <strong className="text-[#22d3ee]">February 2030</strong>, but given the CCP&#39;s pattern of extending 
                 sentences or filing new charges (as seen with Joshua Wong), there is no guarantee of release. 
                 His location, health status, and access to legal counsel remain unknown.
               </p>
@@ -467,7 +467,7 @@ export default function GuiMinhaiProfile() {
 
             {/* Angela Gui section */}
             <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-              <h3 className="text-sm font-semibold text-teal-400 mb-2">Angela Gui — Daughter and Advocate</h3>
+              <h3 className="text-sm font-semibold text-[#22d3ee] mb-2">Angela Gui — Daughter and Advocate</h3>
               <p className="text-sm text-slate-300">
                 Angela Gui, Gui Minhai&#39;s daughter, has become one of the most prominent advocates for his release. 
                 Based in the UK, she has testified before European and US legislative bodies, engaged with media, 
@@ -481,7 +481,7 @@ export default function GuiMinhaiProfile() {
         {/* CCP NARRATIVE ANALYSIS */}
         {activeTab === 'narratives' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-teal-400" /> CCP Narrative Analysis</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-[#22d3ee]" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
               The Gui Minhai case is one of the clearest examples of CCP narrative manipulation: forced televised confessions, 
               fabricated citizenship changes, and the reframing of an international kidnapping as a "voluntary return." 
@@ -512,19 +512,19 @@ export default function GuiMinhaiProfile() {
         {/* INTERNATIONAL RESPONSE */}
         {activeTab === 'response' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-teal-400" /> International Response</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-[#22d3ee]" /> International Response</h2>
 
             {/* Awards */}
-            <div className="bg-teal-900/20 border border-teal-700/30 p-5">
-              <h3 className="text-sm font-semibold text-teal-300 mb-3">Awards & Recognition</h3>
+            <div className="bg-[#111820] border border-[#1c2a35] p-5">
+              <h3 className="text-sm font-semibold text-[#22d3ee] mb-3">Awards & Recognition</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
                   { year: '2018', award: 'PEN/Barbara Goldsmith Freedom to Write Award', org: 'PEN America' },
                   { year: '2019', award: 'Tucholsky Prize for persecuted writers', org: 'Swedish PEN' },
                 ].map((a, i) => (
                   <div key={i} className="bg-[#111820]/50 p-3 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-teal-900/60 flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-teal-400" />
+                    <div className="w-8 h-8 rounded-full bg-[#111820] flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-4 h-4 text-[#22d3ee]" />
                     </div>
                     <div>
                       <div className="text-sm font-medium text-white">{a.award}</div>
@@ -539,12 +539,12 @@ export default function GuiMinhaiProfile() {
             {INTERNATIONAL_RESPONSES.map((r, i) => (
               <div key={i} className="bg-[#111820] border border-[#1c2a35] p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <Flag className="w-4 h-4 text-teal-400" />
+                  <Flag className="w-4 h-4 text-[#22d3ee]" />
                   <h3 className="text-sm font-semibold text-white">{r.entity}</h3>
                 </div>
                 <p className="text-sm text-slate-300">{r.response}</p>
                 {r.sourceUrl && (
-                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-teal-400 hover:text-teal-300 mt-2">
+                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] mt-2">
                     <ExternalLink className="w-3 h-3" /> Source
                   </a>
                 )}
@@ -556,7 +556,7 @@ export default function GuiMinhaiProfile() {
         {/* SOURCES */}
         {activeTab === 'sources' && (
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-teal-400" /> Sources</h2>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-[#22d3ee]" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
               All information verified against independent sources. <strong className="text-slate-300">Zero CCP state media cited.</strong> Tier 1 = 
               established international news/human rights organizations; Tier 2 = credible independent outlets.
@@ -572,7 +572,7 @@ export default function GuiMinhaiProfile() {
                     </span>
                     <span className="text-sm text-white">{s.name}</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-teal-400 transition-colors" />
+                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#22d3ee] transition-colors" />
                 </a>
               ))}
             </div>
