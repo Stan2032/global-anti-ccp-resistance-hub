@@ -88,9 +88,14 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 ### Superseded Research (Archived Feb 26, 2026 — Session 112)
 - `SITE_STRUCTURE_ANALYSIS.md` - Described old 14-page layout with pages that have since been merged/redirected (RegionalThreats, CampaignHubs, SecureComms, CCPTactics). Current structure captured in AGENT_HANDOFF.json
 
+### Dead Code & Unused Components (Archived Feb 26, 2026 — Session 113)
+- `confucius_institutes_research.json` - 41KB Confucius Institute research data (50 entries). Never imported by any component — ConfuciusInstitutes.jsx uses inline data. Useful reference for future integration.
+- `EmptyState.jsx` - Reusable empty-state UI component with animations. Never wired into any page. Ready to use when needed.
+- `SourceCitation.jsx` - Source citation display component with expandable details. Never imported by other components. Ready for future integration.
+
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 112)*
+*Last updated: February 26, 2026 (Session 113)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*
