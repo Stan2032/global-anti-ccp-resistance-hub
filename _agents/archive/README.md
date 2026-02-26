@@ -93,9 +93,13 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 - `EmptyState.jsx` - Reusable empty-state UI component with animations. Never wired into any page. Ready to use when needed.
 - `SourceCitation.jsx` - Source citation display component with expandable details. Never imported by other components. Ready for future integration.
 
+### Dead Socket Infrastructure (Archived Feb 26, 2026 — Session 114)
+- `SocketContext.jsx` - Lightweight no-op stub for WebSocket context. socket.io-client was removed (Session ~96) and no component ever imported useSocket. SocketProvider wrapper removed from App.jsx. Restore when real WebSocket backend is deployed.
+- `useSocket.js` - Complete WebSocket hook library (useSocket, useSocketRoom, useSocketEvent, etc). Never imported by any component after socket.io removal. Ready to restore for real-time features.
+
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 113)*
+*Last updated: February 26, 2026 (Session 114)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*

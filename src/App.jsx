@@ -1,7 +1,6 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { Heart } from 'lucide-react'
-import { SocketProvider } from './contexts/SocketContext'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector, { LanguageProvider, useLanguage } from './components/LanguageSelector'
 import { SkipLinks } from './components/Accessibility'
@@ -495,11 +494,9 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <LanguageProvider>
-          <SocketProvider>
-            <Router basename={basename}>
-              <AppLayout />
-            </Router>
-          </SocketProvider>
+          <Router basename={basename}>
+            <AppLayout />
+          </Router>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
