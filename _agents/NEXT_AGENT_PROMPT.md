@@ -20,7 +20,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 631 passing Vitest tests across 34 test files
+- Contains 310+ source files, 100+ React components, 654 passing Vitest tests across 37 test files
 
 ### What Has Been Done (106 Sessions of Work)
 Over 106 agent sessions, the following has been accomplished:
@@ -31,7 +31,7 @@ Over 106 agent sessions, the following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 631 Vitest tests across 34 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials)
+8. **Test infrastructure**: 654 Vitest tests across 37 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -62,7 +62,7 @@ Over 106 agent sessions, the following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 631 tests passing across 34 test files
+npx vitest run    # Should show 654 tests passing across 37 test files
 ```
 
 ---
@@ -131,7 +131,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 34 Vitest test files, 631 tests
+│   └── test/                   # 37 Vitest test files, 654 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -152,7 +152,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 631 tests (34 files)
+npx vitest run                           # All 654 tests (37 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -249,5 +249,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 **Handoff prepared by:** Sessions 62-106 (Sonnet 4.5 62-71, Opus 4.6 72-80, Sonnet 4 81-106)  
 **Date:** February 26, 2026  
-**Repository state:** 631 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events, 0 orphan components, 6 design system compliance checks, CCP influence detection centralized, "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner, Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 5/5 data migrations complete, 9 security headers (HSTS/COOP/CORP/CSP), URLs pointing to Cloudflare Workers, comprehensive session notes in thoughts/  
+**Repository state:** 654 tests passing, build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts, terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete, 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events, 0 orphan components, 8 design system compliance checks, CCP influence detection centralized, "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner, Supabase integrated (4 forms wired), Cloudflare deploy-ready, all 5/5 data migrations complete, 9 security headers (HSTS/COOP/CORP/CSP), URLs pointing to Cloudflare Workers, comprehensive session notes in thoughts/  
 **Status:** ✅ MERGE READY — branch prepared for merge to main
