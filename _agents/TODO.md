@@ -148,7 +148,7 @@
 ## 📋 FEATURE IDEAS BACKLOG
 
 ### User Requests (to be prioritized)
-- [ ] Email newsletter subscription
+- [ ] ~~Email newsletter subscription~~ — **DEFERRED by owner** (decide later)
 - [ ] RSS feed for platform updates
 - [ ] Embeddable widgets for other websites
 - [ ] Browser extension for quick access
@@ -173,7 +173,7 @@
 - [ ] Social media auto-posting
 - [ ] Calendar app sync
 - [ ] Task manager integration
-- [ ] Email client integration
+- [ ] ~~Email client integration~~ — **DEFERRED by owner** (decide later)
 - [ ] Slack/Discord bots
 - [ ] Telegram channel
 - [ ] WhatsApp broadcast
@@ -255,7 +255,7 @@
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
 
 ### What Needs Human Decisions
-1. Email service choice for forms (HR3.3 in AGENT_ROADMAP.md)
+1. ~~Email service choice for forms~~ — **DEFERRED by owner** (Feb 25, 2026): "Let's delay the email part until a lot later, I'll look into and decide at a later date"
 2. Whether to implement backend cache system or remove documentation referencing it
 3. Priority ranking for medium-term features
 
@@ -285,7 +285,7 @@
 |------|-------|--------|
 | **TODO_COMPLETED.md** | Archive of all completed tasks + session history | Reference only |
 | **planning/SIMULATED_DATA_CLEANUP_TODO.md** | Remove all fake/simulated data | Phase 1 ✅. Phase 2: ✅ ALL 5/5 COMPLETE |
-| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~50% complete (typography done) |
+| **planning/SITE_CLEANUP_TODO.md** | UI readability, emoji reduction, page consolidation | ~75% complete (typography, emojis, tabs, a11y, mobile, data migrations, orphans all done) |
 | **planning/SITE_WIDE_TODO.md** | Forced labor alternatives with China exposure verification | Outstanding |
 
 ---
@@ -300,16 +300,18 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 97, Feb 25, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 630 tests (34 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance + URL health tests added.
+### Current State Summary (as of Session 106, Feb 26, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 14 pages, 100+ components, 631 tests (34 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (6 automated checks) + URL health tests.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
-- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm).
+- **Accessibility:** All role="button" divs → semantic buttons. Heading hierarchy fixed. SkipLinks i18n (8 languages).
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Email service DEFERRED.
 - **Bundle:** Main bundle 305KB (97KB gzip). socket.io-client removed. Vendor splitting (react, router, framer-motion).
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete.
+- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete. 0 orphan components.
 - **Timeline:** 31 events from 1989-2026, all gaps filled
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
+- **Security:** 9 headers (HSTS, COOP, CORP, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection). 0 npm vulns. 0 CodeQL alerts.
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
 - **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
 - **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages.
