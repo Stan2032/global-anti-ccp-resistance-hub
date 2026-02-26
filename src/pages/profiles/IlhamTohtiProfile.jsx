@@ -160,7 +160,7 @@ const TIMELINE = [
     date: '2024-09',
     year: '2024',
     title: '10th anniversary of imprisonment',
-    detail: 'The tenth anniversary of Tohti\'s life sentence prompted renewed international calls for his release from Amnesty International, HRW, PEN International, Scholars at Risk, and the EU. Reports indicate he has been subjected to solitary confinement and denied medical care. His health status remains unknown.',
+    detail: 'The tenth anniversary of Tohti\'s life sentence prompted renewed international calls for his release from Amnesty International, HRW, PEN International, Scholars at Risk, and the EU. Reports indicate he has been subjected to solitary confinement and denied medical care. His health status remains unknown. Notably, a prison guard was sentenced for disclosing information about Tohti\'s health — illustrating the extreme lengths the CCP takes to suppress information about political prisoners.',
     category: 'legal',
     source: 'https://www.amnesty.org/en/latest/news/2024/09/china-world-leaders-must-act-to-end-decade-of-injustice-for-jailed-uyghur-academic/',
   },
