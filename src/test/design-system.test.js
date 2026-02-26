@@ -175,20 +175,21 @@ describe('Terminal design system compliance', () => {
     ).toEqual([]);
   });
 
-  it('no Tailwind purple-* classes (use terminal palette: #22d3ee for cyan, #1c2a35 for borders)', () => {
-    const PURPLE_PATTERN = /(?:bg|text|border|ring)-purple-\d+/g;
+  it('no non-terminal accent color classes (blue/purple/indigo/teal/pink → terminal palette)', () => {
+    const NON_TERMINAL_PATTERN = /(?:bg|text|border|ring)-(?:blue|purple|indigo|teal|pink)-\d+/g;
     const violations = [];
     for (const filePath of jsxFiles) {
       const content = readFileSync(filePath, 'utf-8');
-      const matches = content.match(PURPLE_PATTERN);
+      const matches = content.match(NON_TERMINAL_PATTERN);
       if (matches) {
         const relativePath = filePath.replace(SRC_DIR + '/', '');
         violations.push(`${relativePath}: ${[...new Set(matches)].join(', ')}`);
       }
     }
     expect(violations,
-      `Tailwind purple-* classes found (use terminal palette instead):\n` +
-      `  text-[#22d3ee] for accent text, bg-[#22d3ee] for buttons, border-[#1c2a35] for borders\n` +
+      `Non-terminal accent colors found (use terminal palette instead):\n` +
+      `  text-[#22d3ee] for info/accent text, bg-[#22d3ee] for buttons, border-[#1c2a35] for borders\n` +
+      `  bg-[#111820] for dark surfaces, text-[#0a0e14] for dark text on cyan bg\n` +
       violations.join('\n')
     ).toEqual([]);
   });
