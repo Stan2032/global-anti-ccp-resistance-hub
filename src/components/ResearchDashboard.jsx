@@ -14,7 +14,7 @@ const StatusBadge = ({ status }) => {
     'RELEASED': 'bg-green-500/20 text-green-400 border-green-500/30',
     'DISAPPEARED': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
     'DECEASED': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
-    'EXILE': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    'EXILE': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'AT RISK': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'CLOSED': 'bg-green-500/20 text-green-400 border-green-500/30',
     'UNDER INVESTIGATION': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
@@ -22,7 +22,7 @@ const StatusBadge = ({ status }) => {
     'UNKNOWN': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
     'HIGH': 'bg-red-500/20 text-red-400 border-red-500/30',
     'MEDIUM': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    'LOW': 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+    'LOW': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]'
   };
   
   return (
@@ -64,8 +64,8 @@ const ResearchDashboard = () => {
       {/* Header */}
       <div className="p-6 border-b border-[#1c2a35]/50">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-500/20">
-            <FileText className="w-6 h-6 text-blue-400" />
+          <div className="p-2 bg-[#22d3ee]/20">
+            <FileText className="w-6 h-6 text-[#22d3ee]" />
           </div>
           <div>
             <h2 className="text-xl font-bold text-white">Research Database</h2>
@@ -107,7 +107,7 @@ const ResearchDashboard = () => {
               Data Quality
             </div>
             <div className="text-2xl font-bold text-white">HIGH</div>
-            <div className="text-xs text-blue-400">Verified sources</div>
+            <div className="text-xs text-[#22d3ee]">Verified sources</div>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ const ResearchDashboard = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
               activeTab === tab.id
-                ? 'text-blue-400 border-b-2 border-blue-400 bg-blue-500/10'
+                ? 'text-[#22d3ee] border-b-2 border-[#1c2a35] bg-[#22d3ee]/10'
                 : 'text-slate-400 hover:text-white hover:bg-[#111820]/30'
             }`}
           >
@@ -246,7 +246,7 @@ const ResearchDashboard = () => {
                     <p className="text-slate-400 text-sm">{prisoner.location}</p>
                     <p className="text-slate-300 text-sm mt-2">{prisoner.sentence}</p>
                     {prisoner.latestNews && (
-                      <p className="text-blue-400 text-sm mt-2">
+                      <p className="text-[#22d3ee] text-sm mt-2">
                         <Clock className="w-3 h-3 inline mr-1" />
                         {prisoner.latestNews}
                       </p>
@@ -287,7 +287,7 @@ const ResearchDashboard = () => {
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-blue-400 text-sm font-medium">{news.topic}</span>
+                      <span className="text-[#22d3ee] text-sm font-medium">{news.topic}</span>
                       <StatusBadge status={news.significance} />
                     </div>
                     <h4 className="text-white font-semibold">{news.headline}</h4>
@@ -347,7 +347,7 @@ const ResearchDashboard = () => {
                       </p>
                     )}
                     {station.latestNews && (
-                      <p className="text-blue-400 text-sm mt-1">
+                      <p className="text-[#22d3ee] text-sm mt-1">
                         <Clock className="w-3 h-3 inline mr-1" />
                         {station.latestNews}
                       </p>

@@ -155,7 +155,7 @@ const DiasporaSupport = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Handshake className="w-6 h-6" /> Diaspora Support Resources</h2>
         <p className="text-slate-300">
           Resources for Chinese diaspora, Uyghurs, Tibetans, and Hong Kongers facing CCP pressure abroad.
@@ -204,7 +204,7 @@ const DiasporaSupport = () => {
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -221,7 +221,7 @@ const DiasporaSupport = () => {
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-lg font-bold text-white">{resource.name}</h3>
-                <p className="text-sm text-blue-400">{resource.type}</p>
+                <p className="text-sm text-[#22d3ee]">{resource.type}</p>
               </div>
               {resource.emergency && (
                 <span className="bg-red-600 text-white text-xs px-2 py-1 rounded">
@@ -257,7 +257,7 @@ const DiasporaSupport = () => {
                   href={resource.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline text-sm"
+                  className="text-[#22d3ee] hover:underline text-sm"
                 >
                   Visit Website →
                 </a>
@@ -265,7 +265,7 @@ const DiasporaSupport = () => {
               {resource.contact && (
                 <a
                   href={`mailto:${resource.contact}`}
-                  className="text-blue-400 hover:underline text-sm"
+                  className="text-[#22d3ee] hover:underline text-sm"
                 >
                   {resource.contact}
                 </a>
@@ -289,7 +289,7 @@ const DiasporaSupport = () => {
 
       {/* Safety Tips */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-blue-400" /> Safety Tips for Diaspora</h3>
+        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-[#22d3ee]" /> Safety Tips for Diaspora</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold text-white mb-2">Digital Security:</h4>

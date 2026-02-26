@@ -221,7 +221,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                         onMouseEnter={() => setSelectedIndex(index)}
                         className={`w-full flex items-center px-4 py-3 text-left transition-colors ${
                           index === selectedIndex
-                            ? 'bg-blue-600/20 border-l-2 border-blue-500'
+                            ? 'bg-[#22d3ee]/20 border-l-2 border-[#1c2a35]'
                             : 'hover:bg-[#111820]/50'
                         }`}
                       >
@@ -232,7 +232,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                           <div className="flex items-center">
                             <span className="font-medium text-white truncate">{result.title}</span>
                             <span className={`ml-2 px-2 py-0.5 text-xs rounded ${
-                              result.type === 'page' ? 'bg-blue-900 text-blue-300' :
+                              result.type === 'page' ? 'bg-[#111820] text-[#22d3ee]' :
                               result.type === 'profile' ? 'bg-amber-900 text-amber-300' :
                               result.type === 'prisoner' ? 'bg-red-900 text-red-300' :
                               result.type === 'topic' ? 'bg-purple-900 text-purple-300' :

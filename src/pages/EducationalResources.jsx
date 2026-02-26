@@ -258,7 +258,7 @@ const EducationalResources = () => {
           </div>
           <div className="w-full bg-[#1c2a35] rounded-full h-2">
             <div
-              className="bg-blue-500 h-2 rounded-full transition-all"
+              className="bg-[#22d3ee] h-2 rounded-full transition-all"
               style={{ width: `${module.progress}%` }}
             ></div>
           </div>
@@ -315,7 +315,7 @@ const EducationalResources = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="p-2 bg-blue-600 hover:bg-blue-700 transition-colors"
+          className="p-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 transition-colors"
         >
           <Download className="w-5 h-5 text-white" />
         </motion.button>

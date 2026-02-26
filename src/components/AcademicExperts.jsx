@@ -10,7 +10,7 @@ import expertsData from '../data/academic_experts_research.json';
 
 const ExpertiseBadge = ({ expertise }) => {
   const colors = {
-    'Xinjiang/Uyghur': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    'Xinjiang/Uyghur': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Tibet': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     'Hong Kong': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'China Politics': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
@@ -66,8 +66,8 @@ const AcademicExperts = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <div className="bg-blue-500/10 p-3 text-center border border-blue-500/20">
-            <div className="text-2xl font-bold text-blue-400">{xinjiangExperts}</div>
+          <div className="bg-[#22d3ee]/10 p-3 text-center border border-[#1c2a35]/20">
+            <div className="text-2xl font-bold text-[#22d3ee]">{xinjiangExperts}</div>
             <div className="text-xs text-slate-400">Xinjiang/Uyghur</div>
           </div>
           <div className="bg-orange-500/10 p-3 text-center border border-orange-500/20">
@@ -147,7 +147,7 @@ const AcademicExperts = () => {
                         href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300"
+                        className="text-[#22d3ee] hover:text-[#22d3ee]"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Twitter className="w-4 h-4" />
@@ -179,7 +179,7 @@ const AcademicExperts = () => {
                         <Mic className="w-3 h-3" />
                         Media Presence
                       </div>
-                      <p className="text-sm text-blue-300">{expert.media_presence}</p>
+                      <p className="text-sm text-[#22d3ee]">{expert.media_presence}</p>
                     </div>
                   )}
 
@@ -199,7 +199,7 @@ const AcademicExperts = () => {
                         href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
                       >
                         <Twitter className="w-3 h-3" />
                         {expert.twitter}
@@ -210,7 +210,7 @@ const AcademicExperts = () => {
                         href={expert.source_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Profile

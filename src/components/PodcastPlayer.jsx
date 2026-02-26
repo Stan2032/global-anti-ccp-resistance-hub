@@ -290,7 +290,7 @@ const PodcastPlayer = () => {
           <div className="text-sm text-slate-400">Podcasts</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-blue-400 mb-1">{podcasts.reduce((acc, p) => acc + p.episodes.length, 0)}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{podcasts.reduce((acc, p) => acc + p.episodes.length, 0)}</div>
           <div className="text-sm text-slate-400">Episodes</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">

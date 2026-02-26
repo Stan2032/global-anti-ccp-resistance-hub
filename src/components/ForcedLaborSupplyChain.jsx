@@ -133,14 +133,14 @@ const ForcedLaborSupplyChain = () => {
             <div className="text-xs text-slate-400">China's Tomatoes</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">5</div>
+            <div className="text-3xl font-bold text-[#22d3ee]">5</div>
             <div className="text-xs text-slate-400">Major Industries Affected</div>
           </div>
         </div>
       </div>
 
       {/* UFLPA Notice */}
-      <div className="bg-blue-900/30 border border-blue-700 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-bold text-white mb-2 flex items-center gap-2"><ScrollText className="w-5 h-5" /> Uyghur Forced Labor Prevention Act (UFLPA)</h3>
         <p className="text-slate-300 text-sm">
           Since June 2022, the US presumes all goods from Xinjiang are made with forced labor and bans their import.
@@ -150,7 +150,7 @@ const ForcedLaborSupplyChain = () => {
           href="https://www.cbp.gov/trade/forced-labor/UFLPA" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-blue-400 hover:underline text-sm mt-2 inline-block"
+          className="text-[#22d3ee] hover:underline text-sm mt-2 inline-block"
         >
           Learn more about UFLPA →
         </a>
@@ -189,7 +189,7 @@ const ForcedLaborSupplyChain = () => {
                 </div>
                 <button
                   onClick={() => setShowDetails(showDetails === key ? null : key)}
-                  className="text-blue-400 hover:text-blue-300 text-sm"
+                  className="text-[#22d3ee] hover:text-[#22d3ee] text-sm"
                 >
                   {showDetails === key ? 'Hide Details' : 'Show Details'}
                 </button>
@@ -262,7 +262,7 @@ const ForcedLaborSupplyChain = () => {
                       <h5 className="text-sm font-semibold text-slate-400 mb-1">Relevant Legislation:</h5>
                       <div className="flex flex-wrap gap-2">
                         {data.legislation.map((law, i) => (
-                          <span key={i} className="bg-blue-900/50 text-blue-300 text-xs px-2 py-1 rounded">
+                          <span key={i} className="bg-[#111820]/50 text-[#22d3ee] text-xs px-2 py-1 rounded">
                             {law}
                           </span>
                         ))}

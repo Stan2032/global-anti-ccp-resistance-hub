@@ -19,7 +19,7 @@ const GovernmentResponseTracker = () => {
   const getGenocideIcon = (recognition) => {
     if (recognition.startsWith('Yes')) return <CheckCircle className="w-5 h-5 text-green-400" />;
     if (recognition.startsWith('Debated')) return <AlertCircle className="w-5 h-5 text-yellow-400" />;
-    if (recognition.startsWith('Pending')) return <MinusCircle className="w-5 h-5 text-blue-400" />;
+    if (recognition.startsWith('Pending')) return <MinusCircle className="w-5 h-5 text-[#22d3ee]" />;
     return <XCircle className="w-5 h-5 text-red-400" />;
   };
 
@@ -53,7 +53,7 @@ const GovernmentResponseTracker = () => {
   return (
     <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
-        <Globe className="w-8 h-8 text-blue-400" />
+        <Globe className="w-8 h-8 text-[#22d3ee]" />
         <div>
           <h2 className="text-2xl font-bold text-white">International Government Responses</h2>
           <p className="text-slate-400 text-sm">Track how 30 countries have responded to CCP human rights abuses</p>
@@ -71,7 +71,7 @@ const GovernmentResponseTracker = () => {
           <div className="text-sm text-slate-400">Sanctions Imposed</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-blue-400 mb-1">{stats.legislativeActions}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{stats.legislativeActions}</div>
           <div className="text-sm text-slate-400">Legislative Actions</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
@@ -129,7 +129,7 @@ const GovernmentResponseTracker = () => {
       {/* Response Cards */}
       <div className="space-y-4">
         {filteredResponses.map((response, index) => (
-          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-blue-500/30 transition-colors">
+          <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-[#1c2a35] transition-colors">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-bold text-white">{response.country}</h3>
@@ -141,7 +141,7 @@ const GovernmentResponseTracker = () => {
                 href={response.source_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-[#22d3ee] hover:text-[#22d3ee] transition-colors"
               >
                 <ExternalLink className="w-5 h-5" />
               </a>

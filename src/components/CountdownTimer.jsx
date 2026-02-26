@@ -130,7 +130,7 @@ const CountdownTimer = () => {
 
   const typeColors = {
     memorial: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', badge: 'bg-purple-600' },
-    awareness: { bg: 'bg-blue-900/30', border: 'border-blue-700/50', badge: 'bg-blue-600' },
+    awareness: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', badge: 'bg-[#22d3ee]' },
     action: { bg: 'bg-red-900/30', border: 'border-red-700/50', badge: 'bg-red-600' },
     solidarity: { bg: 'bg-green-900/30', border: 'border-green-700/50', badge: 'bg-green-600' },
   };
@@ -140,7 +140,7 @@ const CountdownTimer = () => {
       {/* Header */}
       <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-2">
-          <CalendarDays className="w-8 h-8 text-blue-400 mr-3" />
+          <CalendarDays className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Important Dates</h2>
             <p className="text-slate-400">Upcoming anniversaries and days of action</p>

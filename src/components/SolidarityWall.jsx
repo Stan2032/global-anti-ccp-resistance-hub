@@ -131,7 +131,7 @@ const SolidarityWall = () => {
 
   const causeColors = {
     hongkong: 'border-yellow-600/50 bg-yellow-900/20',
-    uyghur: 'border-blue-600/50 bg-blue-900/20',
+    uyghur: 'border-[#1c2a35] bg-[#111820]',
     tibet: 'border-orange-600/50 bg-orange-900/20',
     taiwan: 'border-green-600/50 bg-green-900/20',
     general: 'border-purple-600/50 bg-purple-900/20',

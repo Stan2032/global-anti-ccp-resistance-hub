@@ -197,7 +197,7 @@ export default function EventMap() {
   const getCauseColor = (cause) => {
     const colors = {
       'Hong Kong': 'bg-yellow-600',
-      'Uyghur': 'bg-blue-600',
+      'Uyghur': 'bg-[#22d3ee]',
       'Tibet': 'bg-red-600',
       'Taiwan': 'bg-green-600',
       'Tiananmen': 'bg-purple-600',
@@ -309,7 +309,7 @@ export default function EventMap() {
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <Globe className="w-6 h-6 text-blue-400" />
+          <Globe className="w-6 h-6 text-[#22d3ee]" />
           <div>
             <h2 className="text-xl font-bold text-white">Global Event Map</h2>
             <p className="text-sm text-slate-400">Upcoming rallies, vigils, and events worldwide</p>
@@ -318,13 +318,13 @@ export default function EventMap() {
         <div className="flex gap-2">
           <button
             onClick={() => setViewMode('list')}
-            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-300'}`}
+            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'list' ? 'bg-[#22d3ee] text-[#0a0e14]' : 'bg-[#111820] text-slate-300'}`}
           >
             List
           </button>
           <button
             onClick={() => setViewMode('map')}
-            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'map' ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-300'}`}
+            className={`px-3 py-1.5 rounded text-sm ${viewMode === 'map' ? 'bg-[#22d3ee] text-[#0a0e14]' : 'bg-[#111820] text-slate-300'}`}
           >
             Map
           </button>
@@ -511,7 +511,7 @@ export default function EventMap() {
                 href={selectedEvent.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 Learn More
@@ -545,8 +545,8 @@ export default function EventMap() {
       )}
 
       {/* Tips */}
-      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700">
-        <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-1"><MapPin className="w-4 h-4" /> Organizing an Event?</h3>
+      <div className="mt-6 p-4 bg-[#111820] border border-[#1c2a35]">
+        <h3 className="text-sm font-semibold text-[#22d3ee] mb-2 flex items-center gap-1"><MapPin className="w-4 h-4" /> Organizing an Event?</h3>
         <p className="text-sm text-slate-400">
           Contact us to have your event listed on this map. We feature rallies, vigils, marches, 
           briefings, and other activism events supporting human rights in China.

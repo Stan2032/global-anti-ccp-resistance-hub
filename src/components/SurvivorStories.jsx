@@ -269,7 +269,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
           Help amplify these voices. Share survivor stories to raise awareness about CCP human rights abuses.
         </p>
         <div className="flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
+          <button className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors">
             Share on Twitter
           </button>
           <button className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
@@ -279,13 +279,13 @@ She has dedicated her life to advocating for her father's release, speaking at t
       </div>
 
       {/* Resources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> More Testimonies</h3>
         <ul className="text-sm text-slate-300 space-y-1">
-          <li>• <a href="https://xinjiangvictimsdb.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Xinjiang Victims Database</a> - 35,000+ documented cases</li>
-          <li>• <a href="https://www.uyghurtribunal.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Uyghur Tribunal</a> - Legal testimonies and judgment</li>
-          <li>• <a href="https://hongkongwatch.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Watch</a> - Political prisoner profiles</li>
-          <li>• <a href="https://savetibet.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">International Campaign for Tibet</a> - Tibetan stories</li>
+          <li>• <a href="https://xinjiangvictimsdb.org" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Xinjiang Victims Database</a> - 35,000+ documented cases</li>
+          <li>• <a href="https://www.uyghurtribunal.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Uyghur Tribunal</a> - Legal testimonies and judgment</li>
+          <li>• <a href="https://hongkongwatch.org" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Hong Kong Watch</a> - Political prisoner profiles</li>
+          <li>• <a href="https://savetibet.org" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">International Campaign for Tibet</a> - Tibetan stories</li>
         </ul>
       </div>
     </div>

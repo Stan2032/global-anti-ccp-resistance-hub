@@ -199,7 +199,7 @@ const ChinaTechThreats = () => {
             <div className="text-xs text-slate-400">Safe City Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">2B+</div>
+            <div className="text-2xl font-bold text-[#22d3ee]">2B+</div>
             <div className="text-xs text-slate-400">App Users at Risk</div>
           </div>
         </div>
@@ -243,7 +243,7 @@ const ChinaTechThreats = () => {
                       }`}>{company.threat}</span>
                       <span className={`text-xs px-2 py-1 rounded ${
                         company.status === 'SANCTIONED' ? 'bg-purple-900/50 text-purple-300' :
-                        'bg-blue-900/50 text-blue-300'
+                        'bg-[#111820]/50 text-[#22d3ee]'
                       }`}>{company.status}</span>
                     </div>
                   </div>

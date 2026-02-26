@@ -222,7 +222,7 @@ export default function CaseStudies() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedCase(null)}
-            className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
+            className="text-[#22d3ee] hover:text-[#22d3ee] text-sm mb-4 flex items-center gap-1"
           >
             ← Back to all cases
           </button>
@@ -279,7 +279,7 @@ export default function CaseStudies() {
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Clock className="w-5 h-5 text-blue-400" />
+              <Clock className="w-5 h-5 text-[#22d3ee]" />
               Timeline
             </h3>
             {expandedSections.timeline ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
@@ -291,7 +291,7 @@ export default function CaseStudies() {
                 <div key={i} className="flex gap-4">
                   <div className="w-24 flex-shrink-0 text-sm text-slate-500">{item.date}</div>
                   <div className="flex-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
+                    <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
                     <p className="text-slate-300">{item.event}</p>
                   </div>
                 </div>
@@ -393,14 +393,14 @@ export default function CaseStudies() {
                 <p className="text-white font-medium mb-1">{action.action}</p>
                 {action.description && <p className="text-sm text-slate-400 mb-2">{action.description}</p>}
                 {action.link && (
-                  <a href={action.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
+                  <a href={action.link} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-[#22d3ee] text-sm flex items-center gap-1">
                     Visit <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
                 {action.hashtags && (
                   <div className="flex gap-2 mt-2">
                     {action.hashtags.map((tag, j) => (
-                      <span key={j} className="text-blue-400 text-sm">{tag}</span>
+                      <span key={j} className="text-[#22d3ee] text-sm">{tag}</span>
                     ))}
                   </div>
                 )}
@@ -436,7 +436,7 @@ export default function CaseStudies() {
   return (
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center gap-3 mb-6">
-        <BookOpen className="w-6 h-6 text-blue-400" />
+        <BookOpen className="w-6 h-6 text-[#22d3ee]" />
         <div>
           <h2 className="text-xl font-bold text-white">Case Study Deep Dives</h2>
           <p className="text-sm text-slate-400">In-depth profiles of major political prisoner cases</p>
@@ -469,7 +469,7 @@ export default function CaseStudies() {
             <p className="text-sm text-slate-400 line-clamp-2">{caseData.summary}</p>
             <div className="mt-3 flex items-center justify-between">
               <span className="text-xs text-slate-500">{caseData.category}</span>
-              <span className="text-blue-400 text-sm">Read more →</span>
+              <span className="text-[#22d3ee] text-sm">Read more →</span>
             </div>
           </button>
         ))}

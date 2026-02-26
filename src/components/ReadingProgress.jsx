@@ -138,7 +138,7 @@ export default function ReadingProgress() {
   const getTypeIcon = (type) => {
     switch (type) {
       case 'book': return <Book className="w-5 h-5 text-red-400" />;
-      case 'report': return <FileText className="w-5 h-5 text-blue-400" />;
+      case 'report': return <FileText className="w-5 h-5 text-[#22d3ee]" />;
       case 'article': return <Newspaper className="w-5 h-5 text-green-400" />;
       default: return <BookOpen className="w-5 h-5 text-slate-400" />;
     }
@@ -148,7 +148,7 @@ export default function ReadingProgress() {
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <BookOpen className="w-6 h-6 text-blue-400" />
+          <BookOpen className="w-6 h-6 text-[#22d3ee]" />
           <div>
             <h2 className="text-xl font-bold text-white">Reading Progress Tracker</h2>
             <p className="text-sm text-slate-400">Track your learning journey through essential readings</p>
@@ -174,7 +174,7 @@ export default function ReadingProgress() {
         </div>
         <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
-            <BookOpen className="w-4 h-4 text-blue-400" />
+            <BookOpen className="w-4 h-4 text-[#22d3ee]" />
             <span className="text-xs text-slate-500">Pages Read</span>
           </div>
           <p className="text-2xl font-bold text-white">{pagesRead.toLocaleString()}</p>
@@ -295,7 +295,7 @@ export default function ReadingProgress() {
                     </div>
                     <div className="h-2 bg-[#111820] rounded-full overflow-hidden">
                       <div 
-                        className={`h-full transition-all ${itemProgress.completed ? 'bg-green-500' : 'bg-blue-500'}`}
+                        className={`h-full transition-all ${itemProgress.completed ? 'bg-green-500' : 'bg-[#22d3ee]'}`}
                         style={{ width: `${percentComplete}%` }}
                       />
                     </div>
@@ -348,8 +348,8 @@ export default function ReadingProgress() {
       )}
 
       {/* Tips */}
-      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700">
-        <h3 className="text-sm font-semibold text-blue-400 mb-2 flex items-center gap-2"><Library className="w-4 h-4" /> Reading Tips</h3>
+      <div className="mt-6 p-4 bg-[#111820] border border-[#1c2a35]">
+        <h3 className="text-sm font-semibold text-[#22d3ee] mb-2 flex items-center gap-2"><Library className="w-4 h-4" /> Reading Tips</h3>
         <ul className="text-sm text-slate-400 space-y-1">
           <li>• Start with ⭐ essential readings for foundational knowledge</li>
           <li>• Reports are shorter and great for quick learning</li>

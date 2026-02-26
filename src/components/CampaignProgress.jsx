@@ -193,7 +193,7 @@ const getStatusColor = (status) => {
   const colors = {
     active: 'text-green-400',
     paused: 'text-yellow-400',
-    completed: 'text-blue-400',
+    completed: 'text-[#22d3ee]',
     urgent: 'text-red-400',
   };
   return colors[status] || 'text-gray-400';
@@ -209,7 +209,7 @@ const ProgressBar = ({ current, goal, label }) => {
       </div>
       <div className="w-full bg-[#111820] rounded-full h-2">
         <div
-          className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+          className="bg-[#22d3ee] h-2 rounded-full transition-all duration-500"
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -262,8 +262,8 @@ export default function CampaignProgress() {
       {/* Header */}
       <div className="p-6 border-b border-[#1c2a35]">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center">
-            <Target className="w-6 h-6 text-blue-400" />
+          <div className="w-12 h-12 bg-[#22d3ee]/20 rounded-full flex items-center justify-center">
+            <Target className="w-6 h-6 text-[#22d3ee]" />
           </div>
           <div>
             <h2 className="text-xl font-bold text-white">Campaign Progress Tracker</h2>
@@ -274,7 +274,7 @@ export default function CampaignProgress() {
         {/* Overall Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           <div className="bg-[#0a0e14]/50 p-3 text-center">
-            <p className="text-2xl font-bold text-blue-400">{campaigns.length}</p>
+            <p className="text-2xl font-bold text-[#22d3ee]">{campaigns.length}</p>
             <p className="text-xs text-slate-500">Active Campaigns</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
@@ -300,7 +300,7 @@ export default function CampaignProgress() {
             onClick={() => setFilter(f)}
             className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
               filter === f
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -388,7 +388,7 @@ export default function CampaignProgress() {
                   ))}
                   <button
                     onClick={() => setSelectedCampaign(selectedCampaign === campaign.id ? null : campaign.id)}
-                    className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-sm text-white transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 bg-[#22d3ee] hover:bg-[#22d3ee] text-sm text-[#0a0e14] transition-colors"
                   >
                     {selectedCampaign === campaign.id ? 'Hide Details' : 'View Details'}
                     <ChevronRight className={`w-4 h-4 transition-transform ${selectedCampaign === campaign.id ? 'rotate-90' : ''}`} />
@@ -435,7 +435,7 @@ export default function CampaignProgress() {
             <h3 className="text-white font-semibold">Want to start a new campaign?</h3>
             <p className="text-sm text-slate-400">Contact partner organizations to coordinate efforts</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee] text-[#0a0e14] transition-colors">
             <Share2 className="w-4 h-4" />
             Share Progress
           </button>

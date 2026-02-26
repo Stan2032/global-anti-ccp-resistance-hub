@@ -302,7 +302,7 @@ export default function ZhangZhanProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 PRISONER OF CONSCIENCE
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-900/60 text-blue-300 border border-blue-700">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 COVID-19 JOURNALIST
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
@@ -544,7 +544,7 @@ export default function ZhangZhanProfile() {
                   className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] px-4 py-3 hover:bg-[#111820] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-blue-900/60 text-blue-300'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-[#111820]/60 text-[#22d3ee]'}`}>
                       Tier {s.tier}
                     </span>
                     <span className="text-sm text-white">{s.name}</span>

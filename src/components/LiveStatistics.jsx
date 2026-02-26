@@ -164,7 +164,7 @@ const LiveStatistics = () => {
     purple: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', text: 'text-purple-400' },
     orange: { bg: 'bg-orange-900/30', border: 'border-orange-700/50', text: 'text-orange-400' },
     yellow: { bg: 'bg-yellow-900/30', border: 'border-yellow-700/50', text: 'text-yellow-400' },
-    blue: { bg: 'bg-blue-900/30', border: 'border-blue-700/50', text: 'text-blue-400' },
+    blue: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]' },
     gray: { bg: 'bg-[#111820]/50', border: 'border-[#1c2a35]/50', text: 'text-slate-400' },
   };
 
@@ -255,25 +255,25 @@ const LiveStatistics = () => {
       </div>
 
       {/* Sources */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Data Sources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.cecc.gov" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.cecc.gov" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Congressional-Executive Commission on China (CECC)
           </a>
-          <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Safeguard Defenders
           </a>
-          <a href="https://www.aspi.org.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.aspi.org.au" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Australian Strategic Policy Institute (ASPI)
           </a>
-          <a href="https://hongkongwatch.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://hongkongwatch.org" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Hong Kong Watch
           </a>
-          <a href="https://cpj.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://cpj.org" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Committee to Protect Journalists (CPJ)
           </a>
-          <a href="https://chinatribunal.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://chinatribunal.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             China Tribunal
           </a>
         </div>

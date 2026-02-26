@@ -258,7 +258,7 @@ const DisinfoTracker = () => {
       </div>
 
       {/* How to Counter Disinfo */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-3 flex items-center gap-2"><Lightbulb className="w-5 h-5" /> How to Counter Disinformation</h3>
         <ul className="text-sm text-slate-300 space-y-2">
           <li>• <strong>Don't amplify</strong> - Avoid sharing false claims, even to debunk them</li>
@@ -273,16 +273,16 @@ const DisinfoTracker = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-2"><BookOpen className="w-5 h-5" /> Fact-Checking Resources</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.aspi.org.au/program/international-cyber-policy-centre" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.aspi.org.au/program/international-cyber-policy-centre" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             ASPI - CCP Influence Tracking
           </a>
-          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             China Digital Times
           </a>
-          <a href="https://www.propublica.org/series/china-propaganda" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.propublica.org/series/china-propaganda" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             ProPublica - China Propaganda
           </a>
-          <a href="https://www.disinfo.eu/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.disinfo.eu/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             EU DisinfoLab
           </a>
         </div>

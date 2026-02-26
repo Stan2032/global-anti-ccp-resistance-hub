@@ -402,7 +402,7 @@ const SafetyChecklist = () => {
         </div>
         <div className="w-full bg-[#111820] rounded-full h-2">
           <div 
-            className="bg-blue-500 h-2 rounded-full transition-all"
+            className="bg-[#22d3ee] h-2 rounded-full transition-all"
             style={{ width: `${(categoryCompleted / currentItems.length) * 100}%` }}
           ></div>
         </div>
@@ -448,7 +448,7 @@ const SafetyChecklist = () => {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-blue-400 hover:underline"
+                        className="text-xs text-[#22d3ee] hover:underline"
                       >
                         {new URL(url).hostname}
                       </a>

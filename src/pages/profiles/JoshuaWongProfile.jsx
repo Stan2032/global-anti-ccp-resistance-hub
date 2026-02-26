@@ -288,7 +288,7 @@ const SOURCES = [
 const CATEGORY_COLORS = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-yellow-900/60', text: 'text-yellow-200', label: 'Activism' },
-  political: { bg: 'bg-blue-900/60', text: 'text-blue-200', label: 'Political' },
+  political: { bg: 'bg-[#111820]/60', text: 'text-[#22d3ee]', label: 'Political' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
   international: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'International' },
 };
@@ -519,7 +519,7 @@ export default function JoshuaWongProfile() {
 
             {/* Nathan Law in exile */}
             <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-              <h3 className="text-sm font-semibold text-blue-400 mb-2">Nathan Law — Co-Founder of Demosistō, Now in Exile</h3>
+              <h3 className="text-sm font-semibold text-[#22d3ee] mb-2">Nathan Law — Co-Founder of Demosistō, Now in Exile</h3>
               <p className="text-sm text-slate-300">
                 Nathan Law, co-founder of Demosistō with Wong, fled Hong Kong in July 2020 shortly after the National Security Law was imposed. 
                 He was granted political asylum in the United Kingdom. The new June 2025 "collusion" charges against Wong specifically name Nathan Law 
@@ -616,7 +616,7 @@ export default function JoshuaWongProfile() {
                   className="flex items-center justify-between bg-[#111820] border border-[#1c2a35] px-4 py-3 hover:bg-[#111820] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-blue-900/60 text-blue-300'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${s.tier === 1 ? 'bg-emerald-900/60 text-emerald-300' : 'bg-[#111820]/60 text-[#22d3ee]'}`}>
                       Tier {s.tier}
                     </span>
                     <span className="text-sm text-white">{s.name}</span>

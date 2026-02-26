@@ -331,7 +331,7 @@ const ActivistToolkit = () => {
       </div>
 
       {/* Usage Guidelines */}
-      <div className="bg-blue-900/20 border border-blue-700/50 p-4">
+      <div className="bg-[#111820] border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2">Usage Guidelines</h3>
         <ul className="text-sm text-slate-300 space-y-1">
           <li>• All resources are free for non-commercial human rights advocacy</li>

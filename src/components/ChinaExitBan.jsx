@@ -191,7 +191,7 @@ const ChinaExitBan = () => {
             <div className="text-xs text-slate-400">Released</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">{new Set(exitBanCases.map(c => c.nationality.split(' ')[0])).size}</div>
+            <div className="text-3xl font-bold text-[#22d3ee]">{new Set(exitBanCases.map(c => c.nationality.split(' ')[0])).size}</div>
             <div className="text-xs text-slate-400">Nationalities</div>
           </div>
           <div className="text-center">
@@ -212,22 +212,22 @@ const ChinaExitBan = () => {
         <div className="flex flex-wrap gap-2 mt-3">
           <a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/china-travel-advisory.html" 
              target="_blank" rel="noopener noreferrer"
-             className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+             className="text-xs bg-[#22d3ee] text-[#0a0e14] px-3 py-1 rounded hover:bg-[#22d3ee]/80">
             🇺🇸 US Advisory
           </a>
           <a href="https://www.gov.uk/foreign-travel-advice/china" 
              target="_blank" rel="noopener noreferrer"
-             className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+             className="text-xs bg-[#22d3ee] text-[#0a0e14] px-3 py-1 rounded hover:bg-[#22d3ee]/80">
             🇬🇧 UK Advisory
           </a>
           <a href="https://travel.gc.ca/destinations/china" 
              target="_blank" rel="noopener noreferrer"
-             className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+             className="text-xs bg-[#22d3ee] text-[#0a0e14] px-3 py-1 rounded hover:bg-[#22d3ee]/80">
             🇨🇦 Canada Advisory
           </a>
           <a href="https://www.smartraveller.gov.au/destinations/asia/china" 
              target="_blank" rel="noopener noreferrer"
-             className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+             className="text-xs bg-[#22d3ee] text-[#0a0e14] px-3 py-1 rounded hover:bg-[#22d3ee]/80">
             🇦🇺 Australia Advisory
           </a>
         </div>
@@ -309,9 +309,9 @@ const ChinaExitBan = () => {
           <div>
             <h4 className="font-semibold text-white mb-2">Resources:</h4>
             <ul className="text-slate-300 text-sm space-y-1">
-              <li>• <a href="https://safeguarddefenders.com" className="text-blue-400 hover:underline">Safeguard Defenders</a></li>
-              <li>• <a href="https://www.dui-hua.org" className="text-blue-400 hover:underline">Dui Hua Foundation</a></li>
-              <li>• <a href="https://www.cecc.gov" className="text-blue-400 hover:underline">CECC Database</a></li>
+              <li>• <a href="https://safeguarddefenders.com" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a></li>
+              <li>• <a href="https://www.dui-hua.org" className="text-[#22d3ee] hover:underline">Dui Hua Foundation</a></li>
+              <li>• <a href="https://www.cecc.gov" className="text-[#22d3ee] hover:underline">CECC Database</a></li>
             </ul>
           </div>
         </div>

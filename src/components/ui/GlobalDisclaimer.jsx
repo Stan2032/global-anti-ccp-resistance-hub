@@ -40,10 +40,10 @@ const disclaimerContent = {
 
 const colorClasses = {
   blue: {
-    bg: 'bg-blue-900/20',
-    border: 'border-blue-700/50',
-    icon: 'text-blue-400',
-    title: 'text-blue-300',
+    bg: 'bg-[#111820]',
+    border: 'border-[#1c2a35]',
+    icon: 'text-[#22d3ee]',
+    title: 'text-[#22d3ee]',
     text: 'text-slate-300',
   },
   yellow: {

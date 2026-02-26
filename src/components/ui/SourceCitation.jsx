@@ -21,7 +21,7 @@ const SourceCitation = ({
         return <CheckCircle className="w-3 h-3 text-green-400" />
       case 'News Report':
       case 'Academic Research':
-        return <CheckCircle className="w-3 h-3 text-blue-400" />
+        return <CheckCircle className="w-3 h-3 text-[#22d3ee]" />
       case 'NGO Report':
         return <CheckCircle className="w-3 h-3 text-yellow-400" />
       default:
@@ -36,7 +36,7 @@ const SourceCitation = ({
         return 'border-green-500 bg-green-900/20'
       case 'News Report':
       case 'Academic Research':
-        return 'border-blue-500 bg-blue-900/20'
+        return 'border-[#1c2a35] bg-[#111820]'
       case 'NGO Report':
         return 'border-yellow-500 bg-yellow-900/20'
       default:
@@ -49,7 +49,7 @@ const SourceCitation = ({
       <span className={`inline-flex items-center ${className}`}>
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="text-blue-400 hover:text-blue-300 text-sm underline decoration-dotted ml-1"
+          className="text-[#22d3ee] hover:text-[#22d3ee] text-sm underline decoration-dotted ml-1"
           title="View sources"
         >
           [{sources.length}]
@@ -94,7 +94,7 @@ const SourceCitation = ({
                           href={source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300"
+                          className="text-[#22d3ee] hover:text-[#22d3ee]"
                         >
                           <ExternalLink className="w-3 h-3" />
                         </a>
@@ -145,7 +145,7 @@ const SourceCitation = ({
   return (
     <div className={`space-y-4 ${className}`}>
       <div className="flex items-center space-x-2">
-        <Info className="w-5 h-5 text-blue-400" />
+        <Info className="w-5 h-5 text-[#22d3ee]" />
         <h3 className="text-lg font-semibold text-white">Sources & References</h3>
       </div>
       
@@ -170,7 +170,7 @@ const SourceCitation = ({
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 flex items-center space-x-1"
+                  className="text-[#22d3ee] hover:text-[#22d3ee] flex items-center space-x-1"
                 >
                   <span className="text-sm">View Source</span>
                   <ExternalLink className="w-4 h-4" />
@@ -220,8 +220,8 @@ const SourceCitation = ({
             )}
             
             {source.impact && (
-              <div className="mt-3 p-2 bg-blue-900/20 rounded">
-                <p className="text-xs text-blue-300">
+              <div className="mt-3 p-2 bg-[#111820] rounded">
+                <p className="text-xs text-[#22d3ee]">
                   <strong>Impact:</strong> {source.impact}
                 </p>
               </div>

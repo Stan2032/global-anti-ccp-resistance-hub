@@ -10,7 +10,7 @@ import orgsData from '../data/human_rights_orgs_research.json';
 
 const FocusBadge = ({ focus }) => {
   const colors = {
-    'Uyghur': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    'Uyghur': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Hong Kong': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'Tibet': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     'Taiwan': 'bg-green-500/20 text-green-400 border-green-500/30',
@@ -103,7 +103,7 @@ const OrganizationsDirectory = () => {
             <div className="text-xs text-slate-400">Highly Credible</div>
           </div>
           <div className="bg-[#111820]/30 p-3 text-center">
-            <div className="text-2xl font-bold text-blue-400">{stats.withDonation}</div>
+            <div className="text-2xl font-bold text-[#22d3ee]">{stats.withDonation}</div>
             <div className="text-xs text-slate-400">Accept Donations</div>
           </div>
         </div>
@@ -180,7 +180,7 @@ const OrganizationsDirectory = () => {
                 </p>
 
                 {org.latest_news && (
-                  <p className="text-blue-400 text-xs">
+                  <p className="text-[#22d3ee] text-xs">
                     <span className="flex items-center gap-1"><Newspaper className="w-3 h-3" /> {org.latest_news}</span>
                   </p>
                 )}

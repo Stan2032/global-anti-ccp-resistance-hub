@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 25, 2026 (Session 97)
+> Last Updated: February 26, 2026 (Session 108)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -249,9 +249,9 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
+1. **Site cleanup** — SITE_CLEANUP_TODO.md ~75% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: blue color standardization (~460 instances), page merging, visual hierarchy
 2. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-3. **Site cleanup** — SITE_CLEANUP_TODO.md ~65% done. Typography ✅, emojis ✅, tabs ✅, disclaimers ✅. Remaining: page merging, visual hierarchy
+3. **Backend connection Phase 2** — Supabase client + service layer done ✅. All 4 forms wired ✅ (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Remaining: add Supabase Auth for admin
 4. **Bundle optimization** — ✅ socket.io removed, vendor splitting added, main bundle 421→305KB (133→97KB gzip)
 
 ### What Needs Human Decisions

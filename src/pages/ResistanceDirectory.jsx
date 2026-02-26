@@ -28,7 +28,7 @@ const ResistanceDirectory = () => {
   // Category colors
   const getCategoryColor = (category) => {
     const colors = {
-      'Uyghur Rights': 'bg-blue-900/50 text-blue-300 border-blue-700',
+      'Uyghur Rights': 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]',
       'Tibetan Rights': 'bg-orange-900/50 text-orange-300 border-orange-700',
       'Hong Kong Democracy': 'bg-yellow-900/50 text-yellow-300 border-yellow-700',
       'Human Rights': 'bg-green-900/50 text-green-300 border-green-700',
@@ -49,14 +49,14 @@ const ResistanceDirectory = () => {
             <Users className="w-10 h-10" />
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold mb-1">Resistance Directory</h1>
-              <p className="text-blue-100">
+              <p className="text-[#22d3ee]">
                 Global database of verified organizations fighting CCP authoritarianism
               </p>
             </div>
           </div>
           <div className="flex flex-col items-start sm:items-end gap-1">
             <span className="text-2xl font-bold">{organizations.length}</span>
-            <span className="text-sm text-blue-200">Verified Organizations</span>
+            <span className="text-sm text-[#22d3ee]">Verified Organizations</span>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ const ResistanceDirectory = () => {
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-blue-400">{categories.length}</div>
+          <div className="text-2xl font-bold text-[#22d3ee]">{categories.length}</div>
           <div className="text-xs text-slate-400">Categories</div>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
@@ -116,7 +116,7 @@ const ResistanceDirectory = () => {
           onClick={() => setSelectedCategory('all')}
           className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
             selectedCategory === 'all'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-[#22d3ee] text-[#0a0e14]'
               : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
           }`}
         >
@@ -128,7 +128,7 @@ const ResistanceDirectory = () => {
             onClick={() => setSelectedCategory(cat)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedCategory === cat
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -145,8 +145,8 @@ const ResistanceDirectory = () => {
             key={org.id}
             onClick={() => setSelectedOrg(selectedOrg?.id === org.id ? null : org)}
             aria-expanded={selectedOrg?.id === org.id}
-            className={`bg-[#111820] border p-4 cursor-pointer transition-all text-left w-full hover:border-blue-500 ${
-              selectedOrg?.id === org.id ? 'border-blue-500 ring-1 ring-[#4afa82]' : 'border-[#1c2a35]'
+            className={`bg-[#111820] border p-4 cursor-pointer transition-all text-left w-full hover:border-[#1c2a35] ${
+              selectedOrg?.id === org.id ? 'border-[#1c2a35] ring-1 ring-[#4afa82]' : 'border-[#1c2a35]'
             }`}
           >
             <div className="flex items-start justify-between mb-3">
@@ -201,7 +201,7 @@ const ResistanceDirectory = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Visit Website

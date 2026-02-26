@@ -89,16 +89,16 @@ const IncidentReportForm = () => {
           <h3 className="font-semibold text-white mb-2">Report Directly To:</h3>
           <ul className="text-sm text-slate-400 space-y-2 text-left">
             <li className="flex items-start gap-2">
-              <span className="text-blue-400">→</span>
-              <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a> — CCP transnational repression specialists
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a> — CCP transnational repression specialists
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-400">→</span>
-              <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">FBI Tips</a> — If you're in the United States
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">FBI Tips</a> — If you're in the United States
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-400">→</span>
-              <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Human Rights Watch</a> — International human rights documentation
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Human Rights Watch</a> — International human rights documentation
             </li>
           </ul>
         </div>

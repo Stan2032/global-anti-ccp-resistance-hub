@@ -173,7 +173,7 @@ const AcademicCitationGenerator = () => {
 
   const getTypeColor = (type) => {
     const colors = {
-      'Report': 'text-blue-400 bg-blue-500/10 border-blue-500/30',
+      'Report': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Judgment': 'text-purple-400 bg-purple-500/10 border-purple-500/30',
       'Leaked Documents': 'text-red-400 bg-red-500/10 border-red-500/30',
       'Book': 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -230,7 +230,7 @@ const AcademicCitationGenerator = () => {
           <div className="text-sm text-slate-400">Sources Available</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-blue-400 mb-1">{citationStyles.length}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{citationStyles.length}</div>
           <div className="text-sm text-slate-400">Citation Styles</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
@@ -315,8 +315,8 @@ const AcademicCitationGenerator = () => {
       </div>
 
       {/* Additional Resources */}
-      <div className="mt-6 bg-blue-500/10 border border-blue-500/30 p-4">
-        <h3 className="text-blue-400 font-bold mb-3">Additional Citation Resources</h3>
+      <div className="mt-6 bg-[#22d3ee]/10 border border-[#1c2a35] p-4">
+        <h3 className="text-[#22d3ee] font-bold mb-3">Additional Citation Resources</h3>
         <div className="grid md:grid-cols-2 gap-3">
           <a
             href="https://www.citationmachine.net"

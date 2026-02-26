@@ -144,9 +144,9 @@ const SocialMediaToolkit = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <Smartphone className="w-8 h-8 text-blue-400 mr-3" />
+          <Smartphone className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Social Media Toolkit</h2>
             <p className="text-slate-400">Ready-to-share content for advocacy</p>
@@ -166,7 +166,7 @@ const SocialMediaToolkit = () => {
             onClick={() => setActiveCategory(cat.id)}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -188,7 +188,7 @@ const SocialMediaToolkit = () => {
                 </div>
                 <button
                   onClick={() => copyThread(thread)}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm transition-colors"
+                  className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm transition-colors"
                 >
                   {copiedId === thread.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy Thread</>}
                 </button>
@@ -218,7 +218,7 @@ const SocialMediaToolkit = () => {
                 <h3 className="font-bold text-white">{post.title}</h3>
                 <button
                   onClick={() => copyToClipboard(post.text, post.id)}
-                  className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                  className="text-xs px-3 py-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] rounded transition-colors"
                 >
                   {copiedId === post.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy</>}
                 </button>
@@ -239,7 +239,7 @@ const SocialMediaToolkit = () => {
                 <h3 className="font-bold text-white">{set.title}</h3>
                 <button
                   onClick={() => copyToClipboard(set.hashtags.join(' '), set.id)}
-                  className="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                  className="text-xs px-3 py-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] rounded transition-colors"
                 >
                   {copiedId === set.id ? '✓ Copied!' : <><Clipboard className="w-3 h-3 inline" /> Copy All</>}
                 </button>
@@ -249,7 +249,7 @@ const SocialMediaToolkit = () => {
                   <button
                     key={idx}
                     onClick={() => copyToClipboard(tag, `${set.id}-${idx}`)}
-                    className="px-3 py-1 bg-blue-900/30 hover:bg-blue-900/50 text-blue-400 text-sm transition-colors"
+                    className="px-3 py-1 bg-[#111820] hover:bg-[#111820]/50 text-[#22d3ee] text-sm transition-colors"
                   >
                     {tag}
                   </button>
@@ -267,13 +267,13 @@ const SocialMediaToolkit = () => {
             <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4 flex items-center justify-between">
               <div>
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-6 h-6 text-blue-400" />
+                  <Calendar className="w-6 h-6 text-[#22d3ee]" />
                   <div>
                     <h3 className="font-bold text-white">{item.date}</h3>
                     <p className="text-sm text-slate-400">{item.event}</p>
                   </div>
                 </div>
-                <div className="mt-2 text-xs text-blue-400">{item.hashtags}</div>
+                <div className="mt-2 text-xs text-[#22d3ee]">{item.hashtags}</div>
               </div>
               <button
                 onClick={() => copyToClipboard(item.hashtags, `date-${idx}`)}

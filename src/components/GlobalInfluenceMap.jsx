@@ -157,7 +157,7 @@ const GlobalInfluenceMap = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
@@ -176,7 +176,7 @@ const GlobalInfluenceMap = () => {
               key={region.id}
               className={`bg-[#111820]/50 border transition-all cursor-pointer ${
                 selectedRegion?.id === region.id
-                  ? 'border-blue-500 ring-2 ring-blue-500/20'
+                  ? 'border-[#1c2a35] ring-2 ring-[#22d3ee]/20'
                   : 'border-[#1c2a35] hover:border-[#2a9a52]'
               }`}
               onClick={() => setSelectedRegion(selectedRegion?.id === region.id ? null : region)}
@@ -209,7 +209,7 @@ const GlobalInfluenceMap = () => {
                   </div>
                   <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Influence Level</div>
-                    <div className="text-lg font-bold text-blue-400">{region.stats.influenceOps}</div>
+                    <div className="text-lg font-bold text-[#22d3ee]">{region.stats.influenceOps}</div>
                   </div>
                 </div>
 
@@ -265,7 +265,7 @@ const GlobalInfluenceMap = () => {
             <div className="text-xs text-slate-500">documented</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">6</div>
+            <div className="text-3xl font-bold text-[#22d3ee]">6</div>
             <div className="text-sm text-slate-400">Regions Affected</div>
             <div className="text-xs text-slate-500">all continents</div>
           </div>

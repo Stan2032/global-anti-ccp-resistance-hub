@@ -114,10 +114,10 @@ const NewsDigest = () => {
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Stay Informed Via:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Radio Free Asia</a></li>
-              <li>→ <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Free Press</a></li>
-              <li>→ <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">China Digital Times</a></li>
-              <li>→ <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">CECC (US Commission on China)</a></li>
+              <li>→ <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Radio Free Asia</a></li>
+              <li>→ <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Hong Kong Free Press</a></li>
+              <li>→ <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">China Digital Times</a></li>
+              <li>→ <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">CECC (US Commission on China)</a></li>
             </ul>
           </div>
           <button
@@ -134,7 +134,7 @@ const NewsDigest = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
           <Newspaper className="w-8 h-8 text-slate-400 mr-3" />
           <div>
@@ -212,7 +212,7 @@ const NewsDigest = () => {
                 onClick={() => setPreferences({ ...preferences, frequency: freq.id })}
                 className={`p-3 text-left transition-colors ${
                   preferences.frequency === freq.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -234,7 +234,7 @@ const NewsDigest = () => {
                 onClick={() => toggleTopic(topic.id)}
                 className={`flex items-center space-x-1 px-3 py-2 text-sm transition-colors ${
                   preferences.topics.includes(topic.id)
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -278,7 +278,7 @@ const NewsDigest = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
+          className="w-full py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] font-medium transition-colors"
         >
           {submitting ? 'Subscribing...' : 'Subscribe to News Digest'}
         </button>
@@ -288,16 +288,16 @@ const NewsDigest = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2 flex items-center gap-1"><BookOpen className="w-4 h-4" /> Other Ways to Stay Informed</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.rfa.org/english/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Radio Free Asia
           </a>
-          <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://hongkongfp.com/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Hong Kong Free Press
           </a>
-          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://chinadigitaltimes.net/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             China Digital Times
           </a>
-          <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.cecc.gov/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             CECC Updates
           </a>
         </div>

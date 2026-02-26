@@ -329,7 +329,7 @@ const LegalResourcesHub = () => {
 
   const getTypeColor = (type) => {
     const colors = {
-      'Guide': 'text-blue-400 bg-blue-500/10 border-blue-500/30',
+      'Guide': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Directory': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Legal Document': 'text-purple-400 bg-purple-500/10 border-purple-500/30'
     };
@@ -425,7 +425,7 @@ const LegalResourcesHub = () => {
           <div className="text-sm text-slate-400">Countries</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-blue-400 mb-1">{legalResources.reduce((acc, c) => acc + c.resources.length, 0)}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{legalResources.reduce((acc, c) => acc + c.resources.length, 0)}</div>
           <div className="text-sm text-slate-400">Resources</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
@@ -512,7 +512,7 @@ const LegalResourcesHub = () => {
                         </a>
                       )}
                       {contact.email && (
-                        <div className="text-blue-400 text-sm font-mono">
+                        <div className="text-[#22d3ee] text-sm font-mono">
                           <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {contact.email}</span>
                         </div>
                       )}

@@ -105,7 +105,7 @@ const EventRSVP = () => {
 
   const typeColors = {
     protest: 'bg-red-900/30 border-red-700/50',
-    webinar: 'bg-blue-900/30 border-blue-700/50',
+    webinar: 'bg-[#111820] border-[#1c2a35]',
     commemoration: 'bg-purple-900/30 border-purple-700/50',
     briefing: 'bg-green-900/30 border-green-700/50',
     vigil: 'bg-yellow-900/30 border-yellow-700/50',
@@ -194,7 +194,7 @@ const EventRSVP = () => {
           <div className="text-xs text-slate-400">Your RSVPs</div>
         </div>
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-blue-400">{reminders.length}</div>
+          <div className="text-2xl font-bold text-[#22d3ee]">{reminders.length}</div>
           <div className="text-xs text-slate-400">Reminders Set</div>
         </div>
       </div>
@@ -264,7 +264,7 @@ const EventRSVP = () => {
                   <MapPin className="w-3 h-3 inline mr-1" /> {event.location}
                 </span>
                 {event.virtual && (
-                  <span className="px-2 py-0.5 bg-blue-900/50 rounded text-blue-400">
+                  <span className="px-2 py-0.5 bg-[#111820]/50 rounded text-[#22d3ee]">
                     <Globe className="w-3 h-3 inline mr-1" /> Virtual
                   </span>
                 )}
@@ -293,7 +293,7 @@ const EventRSVP = () => {
                   onClick={() => toggleReminder(event.id)}
                   className={`px-4 py-2 text-sm font-medium transition-colors ${
                     reminders.includes(event.id)
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-[#22d3ee] text-[#0a0e14]'
                       : 'bg-[#111820] hover:bg-[#1c2a35] text-white'
                   }`}
                 >

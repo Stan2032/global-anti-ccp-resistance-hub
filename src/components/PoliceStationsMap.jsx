@@ -113,7 +113,7 @@ const PoliceStationsMap = () => {
 
   const getRegionColor = (regionKey) => {
     const colors = {
-      europe: 'border-l-blue-500',
+      europe: 'border-l-[#22d3ee]',
       northAmerica: 'border-l-red-500',
       southAmerica: 'border-l-green-500',
       asiaPacific: 'border-l-yellow-500',
@@ -268,16 +268,16 @@ const PoliceStationsMap = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-semibold text-white mb-2">Sources</h3>
         <div className="grid gap-2 md:grid-cols-2 text-sm">
-          <a href="https://safeguarddefenders.com/en/blog/patrol-and-persuade-follow-110-overseas-investigation" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://safeguarddefenders.com/en/blog/patrol-and-persuade-follow-110-overseas-investigation" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Safeguard Defenders: 110 Overseas Report
           </a>
-          <a href="https://www.newsweek.com/china-overseas-police-service-center-public-security-bureau-safeguard-defenders-transnational-crime-1764531" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.newsweek.com/china-overseas-police-service-center-public-security-bureau-safeguard-defenders-transnational-crime-1764531" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Newsweek: Full List of Police Stations
           </a>
-          <a href="https://www.brookings.edu/articles/chinas-overseas-police-stations-an-imminent-security-threat/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.brookings.edu/articles/chinas-overseas-police-stations-an-imminent-security-threat/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Brookings: Security Threat Analysis
           </a>
-          <a href="https://www.cnn.com/2022/12/04/world/china-overseas-police-stations-intl-cmd" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.cnn.com/2022/12/04/world/china-overseas-police-stations-intl-cmd" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             CNN: China's Overseas Police Stations
           </a>
         </div>

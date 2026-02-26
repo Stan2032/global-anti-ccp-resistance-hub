@@ -155,7 +155,7 @@ const ActionTracker = () => {
   const unlockedAchievements = getUnlockedAchievements();
 
   const colorClasses = {
-    blue: { bg: 'bg-blue-900/30', border: 'border-blue-700/50', text: 'text-blue-400', check: 'bg-blue-600' },
+    blue: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]', check: 'bg-[#22d3ee]' },
     purple: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', text: 'text-purple-400', check: 'bg-purple-600' },
     green: { bg: 'bg-green-900/30', border: 'border-green-700/50', text: 'text-green-400', check: 'bg-green-600' },
     yellow: { bg: 'bg-yellow-900/30', border: 'border-yellow-700/50', text: 'text-yellow-400', check: 'bg-yellow-600' },

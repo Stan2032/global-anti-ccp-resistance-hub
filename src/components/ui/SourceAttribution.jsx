@@ -45,7 +45,7 @@ const SourceAttribution = ({ source, compact = false }) => {
 
   const getCredibilityColor = (type) => {
     const typeStr = type?.toLowerCase() || '';
-    if (typeStr.includes('government') || typeStr.includes('official')) return 'text-blue-400';
+    if (typeStr.includes('government') || typeStr.includes('official')) return 'text-[#22d3ee]';
     if (typeStr.includes('ngo') || typeStr.includes('human rights')) return 'text-green-400';
     if (typeStr.includes('academic') || typeStr.includes('research')) return 'text-purple-400';
     if (typeStr.includes('news') || typeStr.includes('media')) return 'text-orange-400';
@@ -68,7 +68,7 @@ const SourceAttribution = ({ source, compact = false }) => {
         href={source.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center space-x-1 text-xs text-blue-400 hover:text-blue-300 transition-colors group"
+        className="inline-flex items-center space-x-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] transition-colors group"
         title={`Source: ${source.name}${source.date ? ` (${formatDate(source.date)})` : ''}`}
       >
         {getSourceIcon(source.type)}
@@ -140,7 +140,7 @@ const SourceAttribution = ({ source, compact = false }) => {
           href={source.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 ml-4 inline-flex items-center space-x-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded transition-colors"
+          className="flex-shrink-0 ml-4 inline-flex items-center space-x-1 px-3 py-1.5 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-xs font-medium rounded transition-colors"
         >
           <span>View Source</span>
           <ExternalLink className="w-3 h-3" />
@@ -194,7 +194,7 @@ export const InlineSource = ({ source, number }) => {
       href={source.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+      className="inline-flex items-center text-[#22d3ee] hover:text-[#22d3ee] transition-colors"
       title={`Source: ${source.name}`}
     >
       <sup className="ml-0.5">[{number || '?'}]</sup>

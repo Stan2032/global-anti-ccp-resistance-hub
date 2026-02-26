@@ -237,7 +237,7 @@ const MediaGallery = () => {
   const getCategoryInfo = (categoryId) => categories.find(c => c.id === categoryId);
 
   const typeColors = {
-    photo: 'bg-blue-900/30 border-blue-700/50',
+    photo: 'bg-[#111820] border-[#1c2a35]',
     symbol: 'bg-purple-900/30 border-purple-700/50',
     infographic: 'bg-green-900/30 border-green-700/50',
     evidence: 'bg-red-900/30 border-red-700/50',

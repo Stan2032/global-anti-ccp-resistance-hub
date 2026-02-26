@@ -150,7 +150,7 @@ const WorldThreatMap = () => {
           <div className="text-xs text-slate-500">"Persuaded" to Return</div>
         </div>
         <div className="text-center">
-          <div className="text-xl font-bold text-blue-400">14+</div>
+          <div className="text-xl font-bold text-[#22d3ee]">14+</div>
           <div className="text-xs text-slate-500">Gov Investigations</div>
         </div>
       </div>
@@ -377,7 +377,7 @@ const WorldThreatMap = () => {
             </div>
           </div>
           <div className="text-slate-500">
-            Source: <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a>
+            Source: <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a>
           </div>
         </div>
       </div>

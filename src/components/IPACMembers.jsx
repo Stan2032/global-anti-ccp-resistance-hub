@@ -112,7 +112,7 @@ const IPACMembers = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center gap-3 mb-4">
           <Building2 className="w-10 h-10 text-slate-300" />
           <div>
@@ -123,7 +123,7 @@ const IPACMembers = () => {
         
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">{ipacData.overview.members}</div>
+            <div className="text-3xl font-bold text-[#22d3ee]">{ipacData.overview.members}</div>
             <div className="text-xs text-slate-400">Legislators</div>
           </div>
           <div className="text-center">
@@ -145,7 +145,7 @@ const IPACMembers = () => {
             onClick={() => setSelectedCountry(country.code)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedCountry === country.code
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -169,7 +169,7 @@ const IPACMembers = () => {
                   <div className="text-right">
                     <span className="text-slate-400 text-xs">{member.chamber}</span>
                     {member.role.includes('Chair') && (
-                      <span className="ml-2 bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded">{member.role}</span>
+                      <span className="ml-2 bg-[#111820]/50 text-[#22d3ee] text-xs px-2 py-0.5 rounded">{member.role}</span>
                     )}
                   </div>
                 </div>

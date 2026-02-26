@@ -155,7 +155,7 @@ export default function DetentionFacilities() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedFacility(null)}
-            className="text-blue-400 hover:text-blue-300 text-sm mb-4 flex items-center gap-1"
+            className="text-[#22d3ee] hover:text-[#22d3ee] text-sm mb-4 flex items-center gap-1"
           >
             ← Back to all facilities
           </button>
@@ -220,7 +220,7 @@ export default function DetentionFacilities() {
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Eye className="w-5 h-5 text-blue-400" />
+              <Eye className="w-5 h-5 text-[#22d3ee]" />
               Documented Evidence
             </h3>
             {expandedSections.evidence ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
@@ -230,7 +230,7 @@ export default function DetentionFacilities() {
             <ul className="mt-4 space-y-2">
               {facility.evidence.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-slate-300">
-                  <span className="text-blue-400 mt-1">•</span>
+                  <span className="text-[#22d3ee] mt-1">•</span>
                   {item}
                 </li>
               ))}
@@ -257,7 +257,7 @@ export default function DetentionFacilities() {
               href={facility.satelliteImage}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+              className="flex items-center gap-2 px-4 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors"
             >
               <ExternalLink className="w-5 h-5" />
               View Satellite Imagery (ASPI Xinjiang Data Project)
@@ -414,7 +414,7 @@ export default function DetentionFacilities() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
+            <ExternalLink className="w-4 h-4 text-[#22d3ee]" />
             <div>
               <p className="text-sm text-white">ASPI Xinjiang Data Project</p>
               <p className="text-xs text-slate-400">Satellite imagery database</p>
@@ -426,7 +426,7 @@ export default function DetentionFacilities() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
+            <ExternalLink className="w-4 h-4 text-[#22d3ee]" />
             <div>
               <p className="text-sm text-white">Xinjiang Police Files</p>
               <p className="text-xs text-slate-400">Leaked internal documents</p>
@@ -438,7 +438,7 @@ export default function DetentionFacilities() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 p-3 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
           >
-            <ExternalLink className="w-4 h-4 text-blue-400" />
+            <ExternalLink className="w-4 h-4 text-[#22d3ee]" />
             <div>
               <p className="text-sm text-white">Xinjiang Victims Database</p>
               <p className="text-xs text-slate-400">35,000+ documented victims</p>

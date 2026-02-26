@@ -281,7 +281,7 @@ Sincerely,
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Building className="w-6 h-6" /> Contact Your Representatives</h2>
         <p className="text-slate-300">
           Your voice matters. Use these tools and templates to contact your elected officials 
@@ -299,7 +299,7 @@ Sincerely,
               onClick={() => setSelectedCountry(country.code)}
               className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedCountry === country.code
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#22d3ee] text-[#0a0e14]'
                   : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
               }`}
             >
@@ -359,7 +359,7 @@ Sincerely,
           <button
             onClick={() => copyToClipboard(currentTemplate.subject + '\n\n' + currentTemplate.body)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
-              copied ? 'bg-green-600 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'
+              copied ? 'bg-green-600 text-[#0a0e14]' : 'bg-[#22d3ee] hover:bg-[#22d3ee] text-[#0a0e14]'
             }`}
           >
             {copied ? '✓ Copied!' : 'Copy Letter'}

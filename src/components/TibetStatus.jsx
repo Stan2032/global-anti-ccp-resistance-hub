@@ -95,7 +95,7 @@ const TibetStatus = () => {
               stat.color === 'red' ? 'text-red-400' :
               stat.color === 'orange' ? 'text-orange-400' :
               stat.color === 'yellow' ? 'text-yellow-400' :
-              'text-blue-400'
+              'text-[#22d3ee]'
             }`}>{stat.value}</div>
             <div className="text-xs text-slate-400">{stat.label}</div>
           </div>
@@ -191,7 +191,7 @@ const TibetStatus = () => {
                 <div className="text-xs text-slate-400">Inside Tibet</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400">{selfImmolations.outside}</div>
+                <div className="text-3xl font-bold text-[#22d3ee]">{selfImmolations.outside}</div>
                 <div className="text-xs text-slate-400">In exile</div>
               </div>
             </div>

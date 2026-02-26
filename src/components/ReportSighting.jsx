@@ -127,12 +127,12 @@ const ReportSighting = () => {
           To report CCP activities, please use the official channels below:
         </p>
         <div className="bg-[#111820] p-4 mb-6 text-left">
-          <h4 className="text-blue-400 font-semibold mb-2">Report Directly To:</h4>
+          <h4 className="text-[#22d3ee] font-semibold mb-2">Report Directly To:</h4>
           <ul className="text-sm text-gray-300 space-y-1">
-            <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a> — CCP transnational repression</li>
-            <li>→ <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">FBI Tips</a> — United States</li>
-            <li>→ <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">MI5</a> — United Kingdom</li>
-            <li>→ <a href="https://www.asio.gov.au/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">ASIO</a> — Australia</li>
+            <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a> — CCP transnational repression</li>
+            <li>→ <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">FBI Tips</a> — United States</li>
+            <li>→ <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">MI5</a> — United Kingdom</li>
+            <li>→ <a href="https://www.asio.gov.au/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">ASIO</a> — Australia</li>
           </ul>
         </div>
         <div className="bg-[#111820] p-4 mb-6 text-left">
@@ -152,7 +152,7 @@ const ReportSighting = () => {
           </button>
           <a
             href="/security"
-            className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-500 transition-colors"
+            className="px-6 py-2 bg-[#22d3ee] text-[#0a0e14] hover:bg-[#22d3ee] transition-colors"
           >
             Security Resources
           </a>
@@ -468,19 +468,19 @@ const ReportSighting = () => {
       <div className="bg-[#0a0e14] p-4 border-t border-[#1c2a35]">
         <h4 className="text-sm font-semibold text-gray-400 mb-2">Report to Official Channels:</h4>
         <div className="flex flex-wrap gap-4 text-sm">
-          <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇺🇸 FBI Tips
           </a>
-          <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇬🇧 MI5
           </a>
-          <a href="https://www.rcmp-grc.gc.ca/en/report-information" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.rcmp-grc.gc.ca/en/report-information" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇨🇦 RCMP
           </a>
-          <a href="https://www.asio.gov.au/report-suspicious-activity" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.asio.gov.au/report-suspicious-activity" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇦🇺 ASIO
           </a>
-          <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline inline-flex items-center gap-1">
+          <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline inline-flex items-center gap-1">
             <Globe className="w-4 h-4" /> Safeguard Defenders
           </a>
         </div>

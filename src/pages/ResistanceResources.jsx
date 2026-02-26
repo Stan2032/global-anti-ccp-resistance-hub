@@ -251,7 +251,7 @@ const ResistanceResources = () => {
                 </a>
               )}
               {contact.email && (
-                <a href={`mailto:${contact.email}`} className="block text-blue-400 text-sm font-mono mb-1">
+                <a href={`mailto:${contact.email}`} className="block text-[#22d3ee] text-sm font-mono mb-1">
                   <Mail className="w-3 h-3 inline mr-1" />{contact.email}
                 </a>
               )}

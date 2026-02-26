@@ -287,8 +287,8 @@ const WitnessProtection = () => {
                   <li>• Device compromise</li>
                 </ul>
               </div>
-              <div className="bg-blue-900/20 border border-blue-700/30 p-3">
-                <h4 className="font-medium text-blue-300 mb-2">Legal Threats</h4>
+              <div className="bg-[#111820] border border-[#1c2a35] p-3">
+                <h4 className="font-medium text-[#22d3ee] mb-2">Legal Threats</h4>
                 <ul className="text-sm text-slate-400 space-y-1">
                   <li>• Interpol red notices (abuse)</li>
                   <li>• Extradition requests</li>
@@ -491,8 +491,8 @@ const WitnessProtection = () => {
             <h3 className="text-lg font-semibold text-white mb-3">Legal Protections Available</h3>
             
             <div className="space-y-4">
-              <div className="bg-blue-900/20 border border-blue-700/30 p-4">
-                <h4 className="font-medium text-blue-300 mb-2">Asylum</h4>
+              <div className="bg-[#111820] border border-[#1c2a35] p-4">
+                <h4 className="font-medium text-[#22d3ee] mb-2">Asylum</h4>
                 <p className="text-sm text-slate-400">
                   If you fear persecution, you can apply for asylum in most democratic countries. 
                   You must demonstrate a well-founded fear of persecution based on race, religion, 
@@ -529,13 +529,13 @@ const WitnessProtection = () => {
           <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
             <h3 className="text-lg font-semibold text-white mb-3">Legal Resources</h3>
             <div className="space-y-2 text-sm">
-              <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 UNHCR - UN Refugee Agency
               </a>
-              <a href="https://www.interpol.int/How-we-work/Notices/View-Red-Notices" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.interpol.int/How-we-work/Notices/View-Red-Notices" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 Interpol - Challenge Red Notices
               </a>
-              <a href="https://www.amnesty.org/en/what-we-do/refugees-asylum-seekers-and-migrants/" target="_blank" rel="noopener noreferrer" className="block text-blue-400 hover:underline">
+              <a href="https://www.amnesty.org/en/what-we-do/refugees-asylum-seekers-and-migrants/" target="_blank" rel="noopener noreferrer" className="block text-[#22d3ee] hover:underline">
                 Amnesty International - Refugee Rights
               </a>
             </div>
@@ -572,7 +572,7 @@ const WitnessProtection = () => {
                       href={org.website} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-blue-400 hover:underline"
+                      className="text-[#22d3ee] hover:underline"
                     >
                       Website →
                     </a>

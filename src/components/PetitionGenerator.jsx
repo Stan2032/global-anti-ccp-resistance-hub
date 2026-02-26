@@ -217,9 +217,9 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <FileText className="w-8 h-8 text-blue-400 mr-3" />
+          <FileText className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Petition Generator</h2>
             <p className="text-slate-400">Create professional petitions for your advocacy campaigns</p>
@@ -236,13 +236,13 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
         {[1, 2, 3, 4].map((s) => (
           <div key={s} className="flex items-center">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center font-medium ${
-              step >= s ? 'bg-blue-600 text-white' : 'bg-[#111820] text-slate-400'
+              step >= s ? 'bg-[#22d3ee] text-[#0a0e14]' : 'bg-[#111820] text-slate-400'
             }`}>
               {s}
             </div>
             {s < 4 && (
               <div className={`w-16 md:w-24 h-1 mx-2 ${
-                step > s ? 'bg-blue-600' : 'bg-[#111820]'
+                step > s ? 'bg-[#22d3ee]' : 'bg-[#111820]'
               }`}></div>
             )}
           </div>
@@ -267,7 +267,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
                 onClick={() => setPetition({...petition, type: type.id, target: ''})}
                 className={`p-4 border text-left transition-colors ${
                   petition.type === type.id
-                    ? 'bg-blue-900/30 border-blue-500'
+                    ? 'bg-[#111820] border-[#1c2a35]'
                     : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#2a9a52]'
                 }`}
               >
@@ -287,7 +287,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
                     onClick={() => setPetition({...petition, target})}
                     className={`p-3 border text-left text-sm transition-colors ${
                       petition.target === target
-                        ? 'bg-blue-900/30 border-blue-500 text-white'
+                        ? 'bg-[#111820] border-[#1c2a35] text-white'
                         : 'bg-[#111820]/50 border-[#1c2a35] text-slate-300 hover:border-[#2a9a52]'
                     }`}
                   >
@@ -312,7 +312,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
           <button
             onClick={() => setStep(2)}
             disabled={!petition.target || (petition.target === 'Other (specify)' && !petition.targetCustom)}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+            className="w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] py-3 font-medium transition-colors"
           >
             Continue →
           </button>
@@ -331,7 +331,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
                 onClick={() => setPetition({...petition, issue: issue.id, demands: []})}
                 className={`w-full p-4 border text-left transition-colors ${
                   petition.issue === issue.id
-                    ? 'bg-blue-900/30 border-blue-500'
+                    ? 'bg-[#111820] border-[#1c2a35]'
                     : 'bg-[#111820]/50 border-[#1c2a35] hover:border-[#2a9a52]'
                 }`}
               >
@@ -362,7 +362,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
             <button
               onClick={() => setStep(3)}
               disabled={!petition.issue || (petition.issue === 'other' && !petition.issueCustom)}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] py-3 font-medium transition-colors"
             >
               Continue →
             </button>
@@ -409,7 +409,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
               />
               <button
                 onClick={addCustomDemand}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors"
               >
                 Add
               </button>
@@ -478,7 +478,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
             <button
               onClick={generatePetitionText}
               disabled={petition.demands.length === 0}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] py-3 font-medium transition-colors"
             >
               Generate Petition →
             </button>
@@ -496,7 +496,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
               className={`px-4 py-2 font-medium transition-colors ${
                 copied 
                   ? 'bg-green-600 text-white' 
-                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14]'
               }`}
             >
               {copied ? '✓ Copied!' : <span className="flex items-center gap-1"><Clipboard className="w-4 h-4" /> Copy to Clipboard</span>}
@@ -509,8 +509,8 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
             </pre>
           </div>
 
-          <div className="bg-blue-900/20 border border-blue-700/50 p-4">
-            <h4 className="font-medium text-blue-300 mb-2 flex items-center gap-2"><Send className="w-4 h-4" /> Next Steps</h4>
+          <div className="bg-[#111820] border border-[#1c2a35] p-4">
+            <h4 className="font-medium text-[#22d3ee] mb-2 flex items-center gap-2"><Send className="w-4 h-4" /> Next Steps</h4>
             <ul className="text-sm text-slate-300 space-y-1">
               <li>• Copy the petition and paste into an email or document</li>
               <li>• Collect signatures from supporters</li>
@@ -544,7 +544,7 @@ https://global-anti-ccp-resistance-hub.stane203.workers.dev/
             </button>
             <button
               onClick={() => setStep(3)}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium transition-colors"
+              className="flex-1 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] py-3 font-medium transition-colors"
             >
               ← Edit Petition
             </button>

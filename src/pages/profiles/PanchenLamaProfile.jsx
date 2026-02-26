@@ -248,7 +248,7 @@ const categoryColors = {
   religious: 'border-purple-500/50 text-purple-300',
   political: 'border-amber-500/50 text-amber-300',
   persecution: 'border-red-500/50 text-red-300',
-  international: 'border-blue-500/50 text-blue-300',
+  international: 'border-[#1c2a35]/50 text-[#22d3ee]',
 };
 
 const categoryLabels = {
@@ -571,7 +571,7 @@ export default function PanchenLamaProfile() {
         {activeSection === 'response' && (
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Globe className="w-5 h-5 text-blue-400" />
+              <Globe className="w-5 h-5 text-[#22d3ee]" />
               International Response
             </h2>
 
@@ -580,7 +580,7 @@ export default function PanchenLamaProfile() {
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`px-2 py-0.5 rounded text-xs ${
-                      resp.type === 'Government' ? 'bg-blue-900/50 text-blue-300' :
+                      resp.type === 'Government' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                       resp.type === 'NGO' ? 'bg-green-900/50 text-green-300' :
                       'bg-purple-900/50 text-purple-300'
                     }`}>

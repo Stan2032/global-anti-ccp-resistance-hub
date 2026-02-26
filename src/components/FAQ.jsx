@@ -171,7 +171,7 @@ const FAQ = () => {
             onClick={() => setActiveCategory(cat.id)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -214,14 +214,14 @@ const FAQ = () => {
       </div>
 
       {/* Still Have Questions */}
-      <div className="bg-blue-900/30 border border-blue-700/50 p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-2">Still have questions?</h3>
         <p className="text-slate-300 text-sm mb-4">
           If you couldn't find the answer you're looking for, check our Education Center for in-depth resources, 
           or explore the Glossary for terminology explanations.
         </p>
         <div className="flex flex-wrap gap-3">
-          <a href="/education" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
+          <a href="/education" className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors">
             Education Center
           </a>
           <a href="/resources" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">

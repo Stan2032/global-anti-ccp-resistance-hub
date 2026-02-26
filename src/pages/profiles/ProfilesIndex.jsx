@@ -324,7 +324,7 @@ const ProfileCard = ({ profile }) => {
         {profile.built ? (
           <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
             <span className="text-xs text-green-400 font-medium">Full profile available</span>
-            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors" />
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#22d3ee] transition-colors" />
           </div>
         ) : (
           <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">

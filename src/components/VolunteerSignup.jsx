@@ -114,10 +114,10 @@ const VolunteerSignup = () => {
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Volunteer Directly With:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>→ <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Uyghur Human Rights Project</a></li>
-              <li>→ <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Hong Kong Watch</a></li>
-              <li>→ <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Tibet Action Institute</a></li>
-              <li>→ <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Amnesty International</a></li>
+              <li>→ <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Uyghur Human Rights Project</a></li>
+              <li>→ <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Hong Kong Watch</a></li>
+              <li>→ <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Tibet Action Institute</a></li>
+              <li>→ <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Amnesty International</a></li>
             </ul>
           </div>
           <button
@@ -280,7 +280,7 @@ const VolunteerSignup = () => {
                 onClick={() => toggleSelection('languages', lang.id)}
                 className={`px-3 py-2 text-sm transition-colors ${
                   formData.languages.includes(lang.id)
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >
@@ -371,16 +371,16 @@ const VolunteerSignup = () => {
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
         <h3 className="font-medium text-white mb-2"><Handshake className="w-4 h-4 inline mr-1" /> Partner Organizations Also Seeking Volunteers</h3>
         <div className="grid md:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.uhrp.org/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Uyghur Human Rights Project
           </a>
-          <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.hongkongwatch.org/volunteer" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Hong Kong Watch
           </a>
-          <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://tibetaction.net/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Students for a Free Tibet
           </a>
-          <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href="https://www.amnesty.org/en/get-involved/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Amnesty International
           </a>
         </div>

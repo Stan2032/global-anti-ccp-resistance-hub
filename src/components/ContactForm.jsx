@@ -61,10 +61,10 @@ const ContactForm = () => {
           <div className="bg-[#111820]/50 p-4 text-left max-w-md mx-auto">
             <h3 className="font-medium text-white mb-2">Reach Out Directly:</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>→ <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Human Rights Watch</a></li>
-              <li>→ <a href="https://www.amnesty.org/en/contact-us/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Amnesty International</a></li>
-              <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Safeguard Defenders</a></li>
-              <li>→ <a href="https://freedomhouse.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Freedom House</a></li>
+              <li>→ <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Human Rights Watch</a></li>
+              <li>→ <a href="https://www.amnesty.org/en/contact-us/" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Amnesty International</a></li>
+              <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a></li>
+              <li>→ <a href="https://freedomhouse.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Freedom House</a></li>
             </ul>
           </div>
           <button
@@ -84,9 +84,9 @@ const ContactForm = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-blue-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center mb-4">
-          <Mail className="w-8 h-8 text-blue-400 mr-3" />
+          <Mail className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Contact Us</h2>
             <p className="text-slate-400">Get in touch with the Global Resistance Hub team</p>
@@ -126,7 +126,7 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
             <div>
@@ -138,7 +138,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
           </div>
@@ -151,7 +151,7 @@ const ContactForm = () => {
             aria-label="Subject"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-[#1c2a35]"
           >
             <option value="">Select a topic (optional)</option>
             {subjectOptions.map(opt => (
@@ -170,7 +170,7 @@ const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="How can we help you?"
             rows={5}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
           />
         </div>
 
@@ -194,7 +194,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
+          className="w-full py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] font-medium transition-colors"
         >
           {submitting ? 'Sending...' : 'Send Message'}
         </button>

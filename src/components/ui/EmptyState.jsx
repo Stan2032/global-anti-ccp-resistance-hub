@@ -41,7 +41,7 @@ const EmptyState = ({
       case 'error':
         return <AlertTriangle className={`${iconClass} text-red-400`} />;
       case 'loading':
-        return <RefreshCw className={`${iconClass} text-blue-400 animate-spin`} />;
+        return <RefreshCw className={`${iconClass} text-[#22d3ee] animate-spin`} />;
       case 'offline':
         return <WifiOff className={`${iconClass} text-orange-400`} />;
       case 'no-data':
@@ -103,13 +103,13 @@ const EmptyState = ({
       {suggestions.length > 0 && (
         <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4 max-w-md mb-6">
           <div className="flex items-start space-x-2 mb-3">
-            <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+            <Info className="w-4 h-4 text-[#22d3ee] flex-shrink-0 mt-0.5" />
             <p className="text-sm font-medium text-white text-left">What you can do:</p>
           </div>
           <ul className="space-y-2 text-sm text-slate-300 text-left">
             {suggestions.map((suggestion, index) => (
               <li key={index} className="flex items-start space-x-2">
-                <span className="text-blue-400 flex-shrink-0">•</span>
+                <span className="text-[#22d3ee] flex-shrink-0">•</span>
                 <span>{suggestion}</span>
               </li>
             ))}
@@ -126,7 +126,7 @@ const EmptyState = ({
               whileTap={{ scale: 0.95 }}
               onClick={action.onClick}
               disabled={action.disabled}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white font-medium transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:cursor-not-allowed text-[#0a0e14] font-medium transition-colors"
             >
               {action.icon}
               <span>{action.label}</span>

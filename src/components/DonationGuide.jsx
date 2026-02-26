@@ -288,7 +288,7 @@ const DonationGuide = () => {
 
   const ratingColors = {
     'Highly Recommended': 'bg-green-900/30 text-green-400 border-green-700/50',
-    'Recommended': 'bg-blue-900/30 text-blue-400 border-blue-700/50',
+    'Recommended': 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
   };
 
   return (
@@ -321,7 +321,7 @@ const DonationGuide = () => {
           <div className="text-xs text-slate-400">Highly Recommended</div>
         </div>
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-blue-400">
+          <div className="text-2xl font-bold text-[#22d3ee]">
             {organizations.filter(o => o.taxDeductible).length}
           </div>
           <div className="text-xs text-slate-400">Tax Deductible</div>
@@ -364,7 +364,7 @@ const DonationGuide = () => {
                 onClick={() => setActiveCause(cause.id)}
                 className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCause === cause.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
                 }`}
               >

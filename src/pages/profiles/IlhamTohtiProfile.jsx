@@ -260,7 +260,7 @@ const SOURCES = [
 // ─── COMPONENT ─────────────────────────────────────────────────────
 
 const categoryColors = {
-  life: 'border-blue-500 bg-blue-500/10',
+  life: 'border-[#1c2a35] bg-[#22d3ee]/10',
   academic: 'border-emerald-500 bg-emerald-500/10',
   advocacy: 'border-cyan-500 bg-cyan-500/10',
   legal: 'border-red-500 bg-red-500/10',
@@ -344,7 +344,7 @@ export default function IlhamTohtiProfile() {
                 aria-selected={activeSection === id}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
                   activeSection === id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'text-slate-400 hover:text-white hover:bg-[#111820]'
                 }`}
               >
@@ -363,7 +363,7 @@ export default function IlhamTohtiProfile() {
         {activeSection === 'timeline' && (
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-blue-400" />
+              <Clock className="w-5 h-5 text-[#22d3ee]" />
               Complete Timeline
             </h2>
 
@@ -400,7 +400,7 @@ export default function IlhamTohtiProfile() {
                               href={event.source}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-blue-400 hover:text-blue-300 text-xs"
+                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-[#22d3ee] text-xs"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <ExternalLink className="w-3 h-3" />
@@ -531,7 +531,7 @@ export default function IlhamTohtiProfile() {
             {CCP_NARRATIVES.length > 2 && (
               <button
                 onClick={() => setShowAllNarratives(!showAllNarratives)}
-                className="mt-3 text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1"
+                className="mt-3 text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
               >
                 {showAllNarratives ? (
                   <>Show less <ChevronUp className="w-4 h-4" /></>
@@ -547,7 +547,7 @@ export default function IlhamTohtiProfile() {
         {activeSection === 'international' && (
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Globe className="w-5 h-5 text-blue-400" />
+              <Globe className="w-5 h-5 text-[#22d3ee]" />
               International Response
             </h2>
 
@@ -576,12 +576,12 @@ export default function IlhamTohtiProfile() {
               {INTERNATIONAL_RESPONSES.map((response, i) => (
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-bold text-blue-300">{response.entity}</h3>
+                    <h3 className="font-bold text-[#22d3ee]">{response.entity}</h3>
                     <a
                       href={response.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-slate-400 hover:text-blue-400 flex items-center gap-1"
+                      className="text-xs text-slate-400 hover:text-[#22d3ee] flex items-center gap-1"
                     >
                       <ExternalLink className="w-3 h-3" />
                       Source
@@ -593,8 +593,8 @@ export default function IlhamTohtiProfile() {
             </div>
 
             {/* How to Help */}
-            <div className="mt-6 bg-blue-900/20 border border-blue-500/30 p-4">
-              <h3 className="font-bold text-blue-300 mb-3 flex items-center gap-2">
+            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4">
+              <h3 className="font-bold text-[#22d3ee] mb-3 flex items-center gap-2">
                 <Heart className="w-4 h-4" />
                 How You Can Help
               </h3>
@@ -613,7 +613,7 @@ export default function IlhamTohtiProfile() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 mt-1"
+                        className="text-[#22d3ee] hover:text-[#22d3ee] text-xs flex items-center gap-1 mt-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Visit
