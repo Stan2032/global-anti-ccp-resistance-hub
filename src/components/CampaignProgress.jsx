@@ -286,7 +286,7 @@ export default function CampaignProgress() {
             <p className="text-xs text-slate-500">Overall Progress</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
-            <p className="text-2xl font-bold text-purple-400">{campaigns.filter(c => c.priority === 'critical').length}</p>
+            <p className="text-2xl font-bold text-[#22d3ee]">{campaigns.filter(c => c.priority === 'critical').length}</p>
             <p className="text-xs text-slate-500">Critical Priority</p>
           </div>
         </div>

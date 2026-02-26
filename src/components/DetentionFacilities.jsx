@@ -135,7 +135,7 @@ export default function DetentionFacilities() {
       'Internment Camp': 'bg-red-600',
       'Prison': 'bg-orange-600',
       'Detention Center': 'bg-yellow-600',
-      'Maximum Security Prison': 'bg-purple-600',
+      'Maximum Security Prison': 'bg-[#22d3ee]',
       'Secret Detention': 'bg-gray-600',
     };
     return colors[type] || 'bg-gray-600';

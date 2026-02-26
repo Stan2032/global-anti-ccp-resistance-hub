@@ -331,7 +331,7 @@ const LegalResourcesHub = () => {
     const colors = {
       'Guide': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Directory': 'text-green-400 bg-green-500/10 border-green-500/30',
-      'Legal Document': 'text-purple-400 bg-purple-500/10 border-purple-500/30'
+      'Legal Document': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]'
     };
     return colors[type] || 'text-slate-400 bg-[#1c2a35]/20 border-[#1c2a35]/50';
   };
@@ -433,7 +433,7 @@ const LegalResourcesHub = () => {
           <div className="text-sm text-slate-400">Emergency Contacts</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-purple-400 mb-1">{topics.length - 1}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{topics.length - 1}</div>
           <div className="text-sm text-slate-400">Topics</div>
         </div>
       </div>

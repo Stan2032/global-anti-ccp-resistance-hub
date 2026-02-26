@@ -86,7 +86,7 @@ const LiveStatistics = () => {
       suffix: 'M+',
       decimals: 1,
       Icon: Building2,
-      color: 'purple',
+      color: 'cyan',
       description: 'Estimated Uyghurs in detention camps',
       source: 'Adrian Zenz, ASPI',
       trend: 'Ongoing since 2017',
@@ -161,7 +161,7 @@ const LiveStatistics = () => {
 
   const colorClasses = {
     red: { bg: 'bg-red-900/30', border: 'border-red-700/50', text: 'text-red-400' },
-    purple: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', text: 'text-purple-400' },
+    cyan: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]' },
     orange: { bg: 'bg-orange-900/30', border: 'border-orange-700/50', text: 'text-orange-400' },
     yellow: { bg: 'bg-yellow-900/30', border: 'border-yellow-700/50', text: 'text-yellow-400' },
     blue: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]' },

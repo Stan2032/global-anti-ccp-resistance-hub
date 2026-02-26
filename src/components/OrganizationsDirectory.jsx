@@ -15,7 +15,7 @@ const FocusBadge = ({ focus }) => {
     'Tibet': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     'Taiwan': 'bg-green-500/20 text-green-400 border-green-500/30',
     'General China': 'bg-red-500/20 text-red-400 border-red-500/30',
-    'Media': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+    'Media': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Research': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
     'Legal': 'bg-pink-500/20 text-pink-400 border-pink-500/30'
   };

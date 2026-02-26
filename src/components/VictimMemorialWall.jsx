@@ -238,7 +238,7 @@ const VictimMemorialWall = () => {
       'Uyghur': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Hong Kong': 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
       'Tibet': 'text-red-400 bg-red-500/10 border-red-500/30',
-      'Tiananmen': 'text-purple-400 bg-purple-500/10 border-purple-500/30',
+      'Tiananmen': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Dissident': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Falun Gong': 'text-orange-400 bg-orange-500/10 border-orange-500/30'
     };

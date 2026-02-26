@@ -54,7 +54,7 @@ const IntelligenceFeeds = () => {
   // Get source badge color
   const getSourceColor = (source) => {
     const colors = {
-      icij: 'bg-purple-900/20 text-purple-300 border-purple-700/50',
+      icij: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       rfa: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       hkfp: 'bg-[#4afa82]/10 text-[#4afa82] border-[#4afa82]/30',
       aspi: 'bg-orange-900/20 text-orange-300 border-orange-700/50',

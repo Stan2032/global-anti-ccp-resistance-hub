@@ -131,7 +131,7 @@ const WhistleblowerPortal = () => {
   return (
     <div className="bg-[#111820]/50 backdrop-blur-sm border border-[#1c2a35]/50 p-6">
       <div className="flex items-center gap-3 mb-6">
-        <Shield className="w-8 h-8 text-purple-400" />
+        <Shield className="w-8 h-8 text-[#22d3ee]" />
         <div>
           <h2 className="text-2xl font-bold text-white">Whistleblower Portal</h2>
           <p className="text-slate-400 text-sm">Secure guidance for submitting leaked documents and evidence</p>
@@ -166,13 +166,13 @@ const WhistleblowerPortal = () => {
           <div key={s} className="flex items-center">
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step >= s ? 'bg-purple-500 text-white' : 'bg-[#111820] text-slate-400'
+                step >= s ? 'bg-[#22d3ee] text-[#0a0e14]' : 'bg-[#111820] text-slate-400'
               }`}
             >
               {s}
             </div>
             {s < 4 && (
-              <div className={`w-12 h-1 ${step > s ? 'bg-purple-500' : 'bg-[#111820]'}`}></div>
+              <div className={`w-12 h-1 ${step > s ? 'bg-[#22d3ee]' : 'bg-[#111820]'}`}></div>
             )}
           </div>
         ))}
@@ -196,7 +196,7 @@ const WhistleblowerPortal = () => {
                     {item.critical ? (
                       <AlertTriangle className="w-5 h-5 text-red-400" />
                     ) : (
-                      <Shield className="w-5 h-5 text-purple-400" />
+                      <Shield className="w-5 h-5 text-[#22d3ee]" />
                     )}
                   </div>
                   <div className="flex-1">
@@ -214,7 +214,7 @@ const WhistleblowerPortal = () => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-purple-400 hover:text-purple-300 flex items-center gap-1"
+                        className="text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Learn more
@@ -245,7 +245,7 @@ const WhistleblowerPortal = () => {
             disabled={!agreedToTerms}
             className={`w-full py-3 font-medium transition-colors ${
               agreedToTerms
-                ? 'bg-purple-500 hover:bg-purple-600 text-white'
+                ? 'bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-500 cursor-not-allowed'
             }`}
           >
@@ -266,7 +266,7 @@ const WhistleblowerPortal = () => {
 
           <div className="space-y-4">
             {submissionOrganizations.map((org, index) => (
-              <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-purple-500/30 transition-colors">
+              <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5 hover:border-[#1c2a35] transition-colors">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
@@ -294,7 +294,7 @@ const WhistleblowerPortal = () => {
                   href={org.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white transition-colors text-sm inline-flex mt-3"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] transition-colors text-sm inline-flex mt-3"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Visit Submission Portal
@@ -312,7 +312,7 @@ const WhistleblowerPortal = () => {
             </button>
             <button
               onClick={() => setStep(3)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
             >
               Continue to Step 3
             </button>
@@ -334,7 +334,7 @@ const WhistleblowerPortal = () => {
             {documentTypes.map((doc, index) => (
               <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-5">
                 <div className="flex items-start gap-3 mb-3">
-                  <FileText className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
+                  <FileText className="w-5 h-5 text-[#22d3ee] flex-shrink-0 mt-1" />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h4 className="font-bold text-white">{doc.type}</h4>
@@ -375,7 +375,7 @@ const WhistleblowerPortal = () => {
             </button>
             <button
               onClick={() => setStep(4)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
             >
               Continue to Step 4
             </button>
@@ -455,8 +455,8 @@ const WhistleblowerPortal = () => {
             </div>
           </div>
 
-          <div className="bg-purple-500/10 border border-purple-500/30 p-4">
-            <h3 className="text-purple-400 font-bold mb-2">You're Ready</h3>
+          <div className="bg-[#22d3ee]/10 border border-[#1c2a35] p-4">
+            <h3 className="text-[#22d3ee] font-bold mb-2">You're Ready</h3>
             <p className="text-slate-300 text-sm mb-3">
               You now have the information needed to safely submit evidence. Return to Step 2 to choose an organization and access their secure submission portal.
             </p>
@@ -474,7 +474,7 @@ const WhistleblowerPortal = () => {
             </button>
             <button
               onClick={() => setStep(2)}
-              className="flex-1 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium transition-colors"
+              className="flex-1 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
             >
               Go to Submission Organizations
             </button>

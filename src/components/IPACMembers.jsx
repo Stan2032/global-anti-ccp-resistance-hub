@@ -127,7 +127,7 @@ const IPACMembers = () => {
             <div className="text-xs text-slate-400">Legislators</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400">{ipacData.overview.countries}</div>
+            <div className="text-3xl font-bold text-[#22d3ee]">{ipacData.overview.countries}</div>
             <div className="text-xs text-slate-400">Countries</div>
           </div>
           <div className="text-center">

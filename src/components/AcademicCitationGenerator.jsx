@@ -174,7 +174,7 @@ const AcademicCitationGenerator = () => {
   const getTypeColor = (type) => {
     const colors = {
       'Report': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
-      'Judgment': 'text-purple-400 bg-purple-500/10 border-purple-500/30',
+      'Judgment': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Leaked Documents': 'text-red-400 bg-red-500/10 border-red-500/30',
       'Book': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Article': 'text-amber-400 bg-amber-500/10 border-amber-500/30',
@@ -234,7 +234,7 @@ const AcademicCitationGenerator = () => {
           <div className="text-sm text-slate-400">Citation Styles</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">
-          <div className="text-3xl font-bold text-purple-400 mb-1">{sources.filter(s => s.type === 'Report').length}</div>
+          <div className="text-3xl font-bold text-[#22d3ee] mb-1">{sources.filter(s => s.type === 'Report').length}</div>
           <div className="text-sm text-slate-400">Reports</div>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 border border-[#1c2a35]/50">

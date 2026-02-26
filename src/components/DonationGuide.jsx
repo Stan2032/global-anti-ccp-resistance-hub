@@ -327,7 +327,7 @@ const DonationGuide = () => {
           <div className="text-xs text-slate-400">Tax Deductible</div>
         </div>
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-purple-400">
+          <div className="text-2xl font-bold text-[#22d3ee]">
             {new Set(organizations.map(o => o.country)).size}
           </div>
           <div className="text-xs text-slate-400">Countries</div>

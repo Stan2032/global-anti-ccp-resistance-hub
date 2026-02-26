@@ -118,7 +118,7 @@ const PoliceStationsMap = () => {
       southAmerica: 'border-l-green-500',
       asiaPacific: 'border-l-yellow-500',
       africa: 'border-l-orange-500',
-      middleEast: 'border-l-purple-500'
+      middleEast: 'border-l-[#22d3ee]'
     };
     return colors[regionKey] || 'border-l-gray-500';
   };

@@ -129,7 +129,7 @@ const CountdownTimer = () => {
   });
 
   const typeColors = {
-    memorial: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', badge: 'bg-purple-600' },
+    memorial: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', badge: 'bg-[#22d3ee]' },
     awareness: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', badge: 'bg-[#22d3ee]' },
     action: { bg: 'bg-red-900/30', border: 'border-red-700/50', badge: 'bg-red-600' },
     solidarity: { bg: 'bg-green-900/30', border: 'border-green-700/50', badge: 'bg-green-600' },

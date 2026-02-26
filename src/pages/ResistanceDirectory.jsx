@@ -32,7 +32,7 @@ const ResistanceDirectory = () => {
       'Tibetan Rights': 'bg-orange-900/50 text-orange-300 border-orange-700',
       'Hong Kong Democracy': 'bg-yellow-900/50 text-yellow-300 border-yellow-700',
       'Human Rights': 'bg-green-900/50 text-green-300 border-green-700',
-      'Press Freedom': 'bg-purple-900/50 text-purple-300 border-purple-700',
+      'Press Freedom': 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]',
       'Research': 'bg-cyan-900/50 text-cyan-300 border-cyan-700',
       'Democracy': 'bg-pink-900/50 text-pink-300 border-pink-700',
       'Government': 'bg-red-900/50 text-red-300 border-red-700',
@@ -76,7 +76,7 @@ const ResistanceDirectory = () => {
           <div className="text-xs text-slate-400">Verified</div>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-purple-400">{combinedYears}+</div>
+          <div className="text-2xl font-bold text-[#22d3ee]">{combinedYears}+</div>
           <div className="text-xs text-slate-400">Years Combined</div>
         </div>
       </div>

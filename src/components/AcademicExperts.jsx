@@ -13,7 +13,7 @@ const ExpertiseBadge = ({ expertise }) => {
     'Xinjiang/Uyghur': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Tibet': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     'Hong Kong': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    'China Politics': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+    'China Politics': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Human Rights': 'bg-red-500/20 text-red-400 border-red-500/30',
     'General China': 'bg-green-500/20 text-green-400 border-green-500/30'
   };
@@ -53,8 +53,8 @@ const AcademicExperts = () => {
       {/* Header */}
       <div className="p-6 border-b border-[#1c2a35]/50">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-purple-500/20">
-            <GraduationCap className="w-6 h-6 text-purple-400" />
+          <div className="p-2 bg-[#22d3ee]/20">
+            <GraduationCap className="w-6 h-6 text-[#22d3ee]" />
           </div>
           <div>
             <h2 className="text-xl font-bold text-white">Academic Experts Directory</h2>
@@ -233,7 +233,7 @@ const AcademicExperts = () => {
       {/* Footer */}
       <div className="p-4 border-t border-[#1c2a35]/50 bg-[#111820]/30">
         <div className="text-sm text-slate-400">
-          <Globe className="w-4 h-4 inline mr-1 text-purple-400" />
+          <Globe className="w-4 h-4 inline mr-1 text-[#22d3ee]" />
           These scholars are recognized experts whose work has been cited in government reports, tribunals, and major media outlets.
         </div>
       </div>

@@ -27,7 +27,7 @@ const ActionTracker = () => {
       id: 'advocacy',
       name: 'Political Advocacy',
       Icon: Landmark,
-      color: 'purple',
+      color: 'cyan',
       actions: [
         { id: 'sign-petition', name: 'Sign a petition', points: 5 },
         { id: 'email-rep', name: 'Email your representative', points: 15 },
@@ -156,7 +156,7 @@ const ActionTracker = () => {
 
   const colorClasses = {
     blue: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]', check: 'bg-[#22d3ee]' },
-    purple: { bg: 'bg-purple-900/30', border: 'border-purple-700/50', text: 'text-purple-400', check: 'bg-purple-600' },
+    cyan: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]', check: 'bg-[#22d3ee]' },
     green: { bg: 'bg-green-900/30', border: 'border-green-700/50', text: 'text-green-400', check: 'bg-green-600' },
     yellow: { bg: 'bg-yellow-900/30', border: 'border-yellow-700/50', text: 'text-yellow-400', check: 'bg-yellow-600' },
     red: { bg: 'bg-red-900/30', border: 'border-red-700/50', text: 'text-red-400', check: 'bg-red-600' },

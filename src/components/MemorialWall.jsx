@@ -255,7 +255,7 @@ export default function MemorialWall() {
       'Uyghur': 'bg-[#22d3ee]',
       'Tibet': 'bg-orange-600',
       'Hong Kong': 'bg-yellow-600',
-      'Dissident': 'bg-purple-600',
+      'Dissident': 'bg-[#22d3ee]',
       'Falun Gong': 'bg-green-600',
       'Organ Harvesting': 'bg-gray-600',
     };
@@ -300,7 +300,7 @@ export default function MemorialWall() {
             <p className="text-xs text-slate-500">Uyghur Deaths in Camps</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
-            <p className="text-lg font-bold text-purple-400">60,000+/yr</p>
+            <p className="text-lg font-bold text-[#22d3ee]">60,000+/yr</p>
             <p className="text-xs text-slate-500">Organ Harvesting Est.</p>
           </div>
         </div>

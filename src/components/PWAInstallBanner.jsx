@@ -134,7 +134,7 @@ export default function PWAInstallBanner() {
                 Quick access
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
                 No app store needed
               </span>
               <span className="flex items-center gap-1">

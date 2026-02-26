@@ -283,7 +283,7 @@ export default function CardinalZenProfile() {
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">AT RISK</span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-900/60 text-purple-300 border border-purple-700">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 CARDINAL OF THE CATHOLIC CHURCH
               </span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-red-900/60 text-red-300 border border-red-700">

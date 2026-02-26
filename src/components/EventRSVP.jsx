@@ -106,7 +106,7 @@ const EventRSVP = () => {
   const typeColors = {
     protest: 'bg-red-900/30 border-red-700/50',
     webinar: 'bg-[#111820] border-[#1c2a35]',
-    commemoration: 'bg-purple-900/30 border-purple-700/50',
+    commemoration: 'bg-[#111820] border-[#1c2a35]',
     briefing: 'bg-green-900/30 border-green-700/50',
     vigil: 'bg-yellow-900/30 border-yellow-700/50',
     workshop: 'bg-cyan-900/30 border-cyan-700/50',
@@ -169,9 +169,9 @@ const EventRSVP = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee]">
         <div className="flex items-center mb-4">
-          <Calendar className="w-8 h-8 text-purple-400 mr-3" />
+          <Calendar className="w-8 h-8 text-[#22d3ee] mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Events & Actions</h2>
             <p className="text-slate-400">RSVP to events and set reminders</p>
@@ -212,7 +212,7 @@ const EventRSVP = () => {
             onClick={() => setActiveFilter(filter.id)}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeFilter === filter.id
-                ? 'bg-purple-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >
@@ -331,7 +331,7 @@ const EventRSVP = () => {
           href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues/new"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm transition-colors"
+          className="inline-block px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm transition-colors"
         >
           Submit Event
         </a>

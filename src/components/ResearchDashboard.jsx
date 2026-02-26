@@ -12,7 +12,7 @@ const StatusBadge = ({ status }) => {
   const colors = {
     'DETAINED': 'bg-red-500/20 text-red-400 border-red-500/30',
     'RELEASED': 'bg-green-500/20 text-green-400 border-green-500/30',
-    'DISAPPEARED': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+    'DISAPPEARED': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'DECEASED': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
     'EXILE': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'AT RISK': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',

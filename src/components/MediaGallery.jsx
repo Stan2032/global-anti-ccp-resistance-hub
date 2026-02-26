@@ -238,7 +238,7 @@ const MediaGallery = () => {
 
   const typeColors = {
     photo: 'bg-[#111820] border-[#1c2a35]',
-    symbol: 'bg-purple-900/30 border-purple-700/50',
+    symbol: 'bg-[#111820] border-[#1c2a35]',
     infographic: 'bg-green-900/30 border-green-700/50',
     evidence: 'bg-red-900/30 border-red-700/50',
     memorial: 'bg-yellow-900/30 border-yellow-700/50',

@@ -57,7 +57,7 @@ const ResistanceResources = () => {
       link: '/education',
       linkText: 'Go to Education Center',
       highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
-      color: 'border-l-2 border-l-purple-500'
+      color: 'border-l-2 border-l-[#22d3ee]'
     },
     {
       title: 'Intelligence & News',

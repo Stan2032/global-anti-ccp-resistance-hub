@@ -113,7 +113,7 @@ const TakeAction = () => {
       number: 6,
       title: 'SPREAD AWARENESS',
       Icon: Megaphone,
-      color: 'purple',
+      color: 'cyan',
       description: 'Share information about CCP human rights abuses with your network. Education is the first step toward action.',
       links: [
         { name: 'Share Our Site', url: '#', action: 'share' },
@@ -228,7 +228,7 @@ const TakeAction = () => {
                   action.color === 'red' ? 'bg-red-900/50 text-red-400' :
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
                   action.color === 'orange' ? 'bg-orange-900/50 text-orange-400' :
-                  action.color === 'purple' ? 'bg-purple-900/50 text-purple-400' :
+                  action.color === 'cyan' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                   action.color === 'teal' ? 'bg-teal-900/50 text-teal-400' :
                   'bg-[#1c2a35] text-slate-400'
                 }`}>

@@ -9,7 +9,7 @@ const GlobalInfluenceMap = () => {
     { id: 'all', name: 'All Threats', color: 'slate' },
     { id: 'police', name: 'Police Stations', color: 'red' },
     { id: 'confucius', name: 'Confucius Institutes', color: 'orange' },
-    { id: 'repression', name: 'Transnational Repression', color: 'purple' },
+    { id: 'repression', name: 'Transnational Repression', color: 'cyan' },
     { id: 'influence', name: 'Political Influence', color: 'blue' },
     { id: 'economic', name: 'Economic Coercion', color: 'yellow' },
   ];
@@ -205,7 +205,7 @@ const GlobalInfluenceMap = () => {
                   </div>
                   <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Repression Cases</div>
-                    <div className="text-lg font-bold text-purple-400">{region.stats.repressionCases}</div>
+                    <div className="text-lg font-bold text-[#22d3ee]">{region.stats.repressionCases}</div>
                   </div>
                   <div className="bg-[#0a0e14]/50 rounded p-2">
                     <div className="text-xs text-slate-500">Influence Level</div>
@@ -258,7 +258,7 @@ const GlobalInfluenceMap = () => {
             <div className="text-xs text-slate-500">worldwide</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400">
+            <div className="text-3xl font-bold text-[#22d3ee]">
               {regions.reduce((sum, r) => sum + r.stats.repressionCases, 0)}+
             </div>
             <div className="text-sm text-slate-400">Repression Cases</div>

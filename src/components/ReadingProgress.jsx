@@ -181,7 +181,7 @@ export default function ReadingProgress() {
         </div>
         <div className="bg-[#0a0e14]/50 p-4">
           <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className="w-4 h-4 text-purple-400" />
+            <TrendingUp className="w-4 h-4 text-[#22d3ee]" />
             <span className="text-xs text-slate-500">Progress</span>
           </div>
           <p className="text-2xl font-bold text-white">{Math.round((pagesRead / totalPages) * 100)}%</p>

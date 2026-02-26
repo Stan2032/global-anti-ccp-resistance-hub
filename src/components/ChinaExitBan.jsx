@@ -169,7 +169,7 @@ const ChinaExitBan = () => {
     if (status.includes('IMPRISONED') || status.includes('DETAINED')) return 'bg-red-700';
     if (status.includes('RELEASED')) return 'bg-green-600';
     if (status.includes('THREATENED')) return 'bg-yellow-600';
-    if (status.includes('DEPORTED')) return 'bg-purple-600';
+    if (status.includes('DEPORTED')) return 'bg-[#22d3ee]';
     return 'bg-[#1c2a35]';
   };
 

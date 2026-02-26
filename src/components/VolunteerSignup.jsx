@@ -301,7 +301,7 @@ const VolunteerSignup = () => {
                 onClick={() => toggleSelection('interests', interest.id)}
                 className={`flex items-center space-x-2 px-3 py-2 text-sm transition-colors ${
                   formData.interests.includes(interest.id)
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-[#22d3ee] text-[#0a0e14]'
                     : 'bg-[#0a0e14] text-slate-300 hover:bg-[#111820]'
                 }`}
               >

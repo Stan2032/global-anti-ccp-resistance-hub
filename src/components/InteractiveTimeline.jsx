@@ -11,7 +11,7 @@ const categories = [
   { id: 'hongkong', name: 'Hong Kong', color: 'bg-yellow-500' },
   { id: 'uyghur', name: 'Uyghur/Xinjiang', color: 'bg-[#22d3ee]' },
   { id: 'tibet', name: 'Tibet', color: 'bg-red-500' },
-  { id: 'mainland', name: 'Mainland China', color: 'bg-purple-500' },
+  { id: 'mainland', name: 'Mainland China', color: 'bg-[#22d3ee]' },
   { id: 'falungong', name: 'Falun Gong', color: 'bg-orange-500' },
   { id: 'global', name: 'Global', color: 'bg-green-500' }
 ];
@@ -239,8 +239,8 @@ export default function InteractiveTimeline() {
               </div>
             )}
             {selectedEvent.sentence && (
-              <div className="bg-purple-900/30 p-3">
-                <p className="text-xs text-purple-400 mb-1">Sentence</p>
+              <div className="bg-[#111820] p-3">
+                <p className="text-xs text-[#22d3ee] mb-1">Sentence</p>
                 <p className="text-white font-semibold">{selectedEvent.sentence}</p>
               </div>
             )}

@@ -271,7 +271,7 @@ const SuccessStories = () => {
             <div className="text-xs text-slate-400">CI Closures</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400">10+</div>
+            <div className="text-2xl font-bold text-[#22d3ee]">10+</div>
             <div className="text-xs text-slate-400">Countries Acting</div>
           </div>
         </div>
@@ -355,7 +355,7 @@ const SuccessStories = () => {
           <a href="/take-action" className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 text-sm font-medium">
             Join a Campaign
           </a>
-          <a href="/directory" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-sm font-medium">
+          <a href="/directory" className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 text-sm font-medium">
             Find Organizations
           </a>
         </div>

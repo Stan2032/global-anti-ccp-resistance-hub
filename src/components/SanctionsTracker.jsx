@@ -41,7 +41,7 @@ const SanctionsTracker = () => {
     individual: 'bg-red-900/30 border-red-700/50',
     entity: 'bg-orange-900/30 border-orange-700/50',
     trade: 'bg-yellow-900/30 border-yellow-700/50',
-    visa: 'bg-purple-900/30 border-purple-700/50',
+    visa: 'bg-[#111820] border-[#1c2a35]',
   };
 
   const stats = {

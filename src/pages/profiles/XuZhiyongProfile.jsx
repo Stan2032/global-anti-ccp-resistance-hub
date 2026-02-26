@@ -281,7 +281,7 @@ export default function XuZhiyongProfile() {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 NEW CITIZENS MOVEMENT FOUNDER
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-900/60 text-purple-300 border border-purple-700">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 PRISONER OF CONSCIENCE
               </span>
             </div>

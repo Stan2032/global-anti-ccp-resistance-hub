@@ -134,13 +134,13 @@ const SolidarityWall = () => {
     uyghur: 'border-[#1c2a35] bg-[#111820]',
     tibet: 'border-orange-600/50 bg-orange-900/20',
     taiwan: 'border-green-600/50 bg-green-900/20',
-    general: 'border-purple-600/50 bg-purple-900/20',
+    general: 'border-[#1c2a35] bg-[#111820]',
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <Flame className="w-8 h-8 text-amber-400 mr-3" />
@@ -151,7 +151,7 @@ const SolidarityWall = () => {
           </div>
           <button
             onClick={() => setShowForm(!showForm)}
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium transition-colors flex items-center gap-1"
+            className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors flex items-center gap-1"
           >
             <PenLine className="w-4 h-4" /> Add Your Voice
           </button>
@@ -177,7 +177,7 @@ const SolidarityWall = () => {
                 placeholder="Write your message of support..."
                 rows={3}
                 maxLength={500}
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#22d3ee]"
               />
               <div className="text-xs text-slate-500 text-right">{newMessage.text.length}/500</div>
             </div>
@@ -191,7 +191,7 @@ const SolidarityWall = () => {
                   value={newMessage.name}
                   onChange={(e) => setNewMessage({ ...newMessage, name: e.target.value })}
                   placeholder="Anonymous"
-                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#22d3ee]"
                 />
               </div>
               <div>
@@ -202,7 +202,7 @@ const SolidarityWall = () => {
                   value={newMessage.location}
                   onChange={(e) => setNewMessage({ ...newMessage, location: e.target.value })}
                   placeholder="City, Country"
-                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#22d3ee]"
                 />
               </div>
               <div>
@@ -211,7 +211,7 @@ const SolidarityWall = () => {
                   aria-label="Cause"
                   value={newMessage.cause}
                   onChange={(e) => setNewMessage({ ...newMessage, cause: e.target.value })}
-                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-purple-500"
+                  className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-[#22d3ee]"
                 >
                   {causes.filter(c => c.id !== 'all').map(cause => (
                     <option key={cause.id} value={cause.id}>{cause.icon || ''} {cause.name}</option>
@@ -230,7 +230,7 @@ const SolidarityWall = () => {
               <button
                 onClick={addMessage}
                 disabled={!newMessage.text.trim()}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-[#111820] disabled:text-slate-500 text-white text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 disabled:bg-[#111820] disabled:text-slate-500 text-[#0a0e14] text-sm font-medium transition-colors"
               >
                 Post Message
               </button>
@@ -252,7 +252,7 @@ const SolidarityWall = () => {
             onClick={() => setFilter(cause.id)}
             className={`flex items-center space-x-2 px-3 py-1.5 text-sm font-medium transition-colors ${
               filter === cause.id
-                ? 'bg-purple-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
             }`}
           >

@@ -176,9 +176,9 @@ const ChinaTechThreats = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-purple-500 p-6">
+      <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <div className="flex items-center gap-3 mb-4">
-          <Monitor className="w-10 h-10 text-purple-400" />
+          <Monitor className="w-10 h-10 text-[#22d3ee]" />
           <div>
             <h2 className="text-2xl font-bold text-white">China Tech Threats</h2>
             <p className="text-slate-300">Surveillance technology and critical infrastructure risks</p>
@@ -213,7 +213,7 @@ const ChinaTechThreats = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? 'bg-purple-600 text-white'
+                ? 'bg-[#22d3ee] text-[#0a0e14]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
@@ -242,7 +242,7 @@ const ChinaTechThreats = () => {
                         'bg-yellow-900/50 text-yellow-300'
                       }`}>{company.threat}</span>
                       <span className={`text-xs px-2 py-1 rounded ${
-                        company.status === 'SANCTIONED' ? 'bg-purple-900/50 text-purple-300' :
+                        company.status === 'SANCTIONED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                         'bg-[#111820]/50 text-[#22d3ee]'
                       }`}>{company.status}</span>
                     </div>

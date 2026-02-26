@@ -235,7 +235,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                               result.type === 'page' ? 'bg-[#111820] text-[#22d3ee]' :
                               result.type === 'profile' ? 'bg-amber-900 text-amber-300' :
                               result.type === 'prisoner' ? 'bg-red-900 text-red-300' :
-                              result.type === 'topic' ? 'bg-purple-900 text-purple-300' :
+                              result.type === 'topic' ? 'bg-[#111820] text-[#22d3ee]' :
                               result.type === 'action' ? 'bg-green-900 text-green-300' :
                               'bg-[#111820] text-slate-300'
                             }`}>

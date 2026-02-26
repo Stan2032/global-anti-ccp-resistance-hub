@@ -200,7 +200,7 @@ export default function EventMap() {
       'Uyghur': 'bg-[#22d3ee]',
       'Tibet': 'bg-red-600',
       'Taiwan': 'bg-green-600',
-      'Tiananmen': 'bg-purple-600',
+      'Tiananmen': 'bg-[#22d3ee]',
       'General': 'bg-gray-600',
     };
     return colors[cause] || 'bg-gray-600';

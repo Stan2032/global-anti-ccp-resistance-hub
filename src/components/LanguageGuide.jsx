@@ -256,7 +256,7 @@ const LanguageGuide = () => {
     identity: 'bg-[#111820] border-[#1c2a35]',
     greeting: 'bg-yellow-900/30 border-yellow-700/50',
     basic: 'bg-[#111820]/50 border-[#1c2a35]/50',
-    concept: 'bg-purple-900/30 border-purple-700/50',
+    concept: 'bg-[#111820] border-[#1c2a35]',
     symbol: 'bg-orange-900/30 border-orange-700/50',
   };
 

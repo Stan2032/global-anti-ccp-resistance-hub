@@ -33,7 +33,7 @@ const QuickFacts = () => {
       source: 'Multiple sources including ASPI',
       sourceUrl: 'https://www.aspi.org.au/',
       hashtags: '#UyghurGenocide #FreeUyghurs',
-      color: 'purple'
+      color: 'cyan'
     },
     {
       id: 4,
@@ -90,7 +90,7 @@ const QuickFacts = () => {
   const colorClasses = {
     red: 'border-l-red-500 border-[#1c2a35]',
     orange: 'border-l-orange-500 border-[#1c2a35]',
-    purple: 'border-l-purple-500 border-[#1c2a35]',
+    cyan: 'border-l-[#22d3ee] border-[#1c2a35]',
     yellow: 'border-l-yellow-500 border-[#1c2a35]',
     blue: 'border-l-[#22d3ee] border-[#1c2a35]',
     green: 'border-l-green-500 border-[#1c2a35]',

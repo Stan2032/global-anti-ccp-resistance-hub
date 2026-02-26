@@ -91,7 +91,7 @@ const Dashboard = () => {
     { title: 'Take Action', Icon: Megaphone, href: '/take-action', color: 'red' },
     { title: 'Join Campaign', Icon: Target, href: '/take-action', color: 'blue' },
     { title: 'Security', Icon: Lock, href: '/security', color: 'green' },
-    { title: 'Find Resources', Icon: BookOpen, href: '/resources', color: 'purple' },
+    { title: 'Find Resources', Icon: BookOpen, href: '/resources', color: 'cyan' },
   ];
 
   return (

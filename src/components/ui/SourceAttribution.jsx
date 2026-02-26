@@ -47,7 +47,7 @@ const SourceAttribution = ({ source, compact = false }) => {
     const typeStr = type?.toLowerCase() || '';
     if (typeStr.includes('government') || typeStr.includes('official')) return 'text-[#22d3ee]';
     if (typeStr.includes('ngo') || typeStr.includes('human rights')) return 'text-green-400';
-    if (typeStr.includes('academic') || typeStr.includes('research')) return 'text-purple-400';
+    if (typeStr.includes('academic') || typeStr.includes('research')) return 'text-[#22d3ee]';
     if (typeStr.includes('news') || typeStr.includes('media')) return 'text-orange-400';
     return 'text-slate-400';
   };

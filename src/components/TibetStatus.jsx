@@ -150,7 +150,7 @@ const TibetStatus = () => {
                       <p className="text-slate-400 text-sm">{prisoner.details}</p>
                     </div>
                     <span className={`text-xs px-2 py-1 rounded ${
-                      prisoner.status === 'DISAPPEARED' ? 'bg-purple-900/50 text-purple-300' :
+                      prisoner.status === 'DISAPPEARED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                       prisoner.status === 'IMPRISONED' ? 'bg-red-900/50 text-red-300' :
                       'bg-green-900/50 text-green-300'
                     }`}>{prisoner.status}</span>
@@ -161,8 +161,8 @@ const TibetStatus = () => {
             </div>
           </div>
           
-          <div className="bg-purple-900/30 border border-purple-700 p-4">
-            <h4 className="text-purple-300 font-semibold mb-2">The Missing Panchen Lama</h4>
+          <div className="bg-[#111820] border border-[#1c2a35] p-4">
+            <h4 className="text-[#22d3ee] font-semibold mb-2">The Missing Panchen Lama</h4>
             <p className="text-slate-300 text-sm">
               Gedhun Choekyi Nyima was recognized as the 11th Panchen Lama by the Dalai Lama in 1995. 
               Three days later, at age 6, he was abducted by Chinese authorities. He has not been seen 
