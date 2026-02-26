@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.1",
-    "date": "2026-02-26T21:30:00Z",
+    "version": "10.2",
+    "date": "2026-02-26T21:40:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.0, Session 121)",
+    "supersedes": "AGENT_HANDOFF.json (v10.1, Session 122)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -20,8 +20,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 703,
-    "test_files": 38,
+    "frontend_tests": 736,
+    "test_files": 39,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -30,7 +30,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 122,
+    "sessions_completed": 123,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -57,6 +57,14 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_123_changes": {
+    "summary": "GlobalSearch test coverage (33 tests) + minor bug fixes. GlobalSearch.jsx was a critical untested component handling search scoring, keyboard navigation, debounce, and result rendering.",
+    "new_test_file": "src/test/GlobalSearch.test.jsx — 33 tests covering: rendering (open/close, input, quick links, shortcuts footer), search functionality (title/profile/keyword matching, no results, max 10 results, clear), scoring (title > keyword priority, starts-with > contains), keyboard navigation (ArrowDown/Up bounds checking, Enter to navigate, Escape to close), click interactions (result click, backdrop close, quick link click), accessibility (listbox/option roles, aria-selected), index completeness (all 10 pages, all 15 profiles), debounce (150ms delay), useGlobalSearch hook (open/close/Ctrl+K/Meta+K).",
+    "bug_fixes": "Fixed stale comment '12 individuals' → '15 individuals' (15 profiles indexed). Fixed non-functional hover on quick links — hover:bg-[#111820] was identical to bg-[#111820], changed to hover:bg-[#1c2a35].",
+    "test_count": "736 tests across 39 files (was 703/38). 33 new GlobalSearch tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
   },
 
   "session_122_changes": {
