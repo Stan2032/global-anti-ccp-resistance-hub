@@ -130,28 +130,13 @@ h4 {
 }
 
 /* Better contrast for secondary text — dark-mode only (WCAG AA on #111820) */
-:root:not(.theme-light):not(.theme-high-contrast) .text-slate-400 {
-  color: #a8b5c7 !important; /* 8.59:1 on surface */
-}
-
-:root:not(.theme-light):not(.theme-high-contrast) .text-slate-500 {
-  color: #8893a2 !important; /* 5.74:1 on surface */
-}
-
-:root:not(.theme-light):not(.theme-high-contrast) .text-slate-600 {
-  color: #8893a2 !important; /* 5.74:1 on surface — original #475569 was 2.36:1 */
-}
-
-:root:not(.theme-light):not(.theme-high-contrast) .text-gray-400 {
-  color: #a3aebb !important; /* 7.94:1 on surface */
-}
-
-:root:not(.theme-light):not(.theme-high-contrast) .text-gray-500 {
-  color: #8d949e !important; /* 5.84:1 on surface */
-}
-
-:root:not(.theme-light):not(.theme-high-contrast) .text-gray-600 {
-  color: #8d949e !important; /* 5.84:1 on surface — original #4b5563 was 2.36:1 */
+:root:not(.theme-light):not(.theme-high-contrast) {
+  .text-slate-400 { color: #a8b5c7 !important; }  /* 8.59:1 on surface */
+  .text-slate-500 { color: #8893a2 !important; }  /* 5.74:1 on surface */
+  .text-slate-600 { color: #8893a2 !important; }  /* 5.74:1 — original #475569 was 2.36:1 */
+  .text-gray-400  { color: #a3aebb !important; }  /* 7.94:1 on surface */
+  .text-gray-500  { color: #8d949e !important; }  /* 5.84:1 on surface */
+  .text-gray-600  { color: #8d949e !important; }  /* 5.84:1 — original #4b5563 was 2.36:1 */
 }
 
 /* Upgrade small text sizes — SITE_CLEANUP_TODO Priority 1 */
