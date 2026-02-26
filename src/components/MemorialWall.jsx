@@ -391,7 +391,7 @@ export default function MemorialWall() {
                   </button>
                   <button
                     onClick={() => setSelectedVictim(victim)}
-                    className="text-[#22d3ee] hover:text-[#22d3ee] text-sm"
+                    className="text-[#22d3ee] hover:text-white text-sm"
                   >
                     Read More →
                   </button>

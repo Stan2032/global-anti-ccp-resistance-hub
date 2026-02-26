@@ -147,7 +147,7 @@ const AcademicExperts = () => {
                         href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#22d3ee] hover:text-[#22d3ee]"
+                        className="text-[#22d3ee] hover:text-white"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Twitter className="w-4 h-4" />
@@ -199,7 +199,7 @@ const AcademicExperts = () => {
                         href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
                       >
                         <Twitter className="w-3 h-3" />
                         {expert.twitter}
@@ -210,7 +210,7 @@ const AcademicExperts = () => {
                         href={expert.source_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Profile

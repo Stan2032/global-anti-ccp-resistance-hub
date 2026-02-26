@@ -126,11 +126,11 @@ const DataSources = () => {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     <Newspaper className="w-6 h-6 text-[#22d3ee]" />
-                    <h3 className="text-lg font-semibold group-hover:text-[#22d3ee] transition-colors">
+                    <h3 className="text-lg font-semibold group-hover:text-white transition-colors">
                       {source.name}
                     </h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-[#22d3ee] transition-colors" />
+                  <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-slate-300 text-sm mb-3">{source.description}</p>
                 <div className="flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ const DataSources = () => {
                       href={source.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 text-[#22d3ee] hover:text-[#22d3ee] transition-colors group"
+                      className="flex items-center space-x-2 text-[#22d3ee] hover:text-white transition-colors group"
                     >
                       <ExternalLink className="w-4 h-4 flex-shrink-0" />
                       <span className="group-hover:underline">{source.name}</span>

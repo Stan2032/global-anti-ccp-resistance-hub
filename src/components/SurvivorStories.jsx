@@ -252,7 +252,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
                 <button
                   onClick={() => setExpandedStory(isExpanded ? null : story.id)}
-                  className="mt-3 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
+                  className="mt-3 text-sm text-[#22d3ee] hover:text-white"
                 >
                   {isExpanded ? 'Show less ↑' : 'Read full story →'}
                 </button>

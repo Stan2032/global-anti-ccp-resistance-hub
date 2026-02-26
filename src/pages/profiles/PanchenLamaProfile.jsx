@@ -395,7 +395,7 @@ export default function PanchenLamaProfile() {
                               href={event.source}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-[#22d3ee] text-xs"
+                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <ExternalLink className="w-3 h-3" />
@@ -551,7 +551,7 @@ export default function PanchenLamaProfile() {
                               href={narrative.sourceUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#22d3ee] hover:text-[#22d3ee] inline-flex items-center gap-0.5"
+                              className="text-[#22d3ee] hover:text-white inline-flex items-center gap-0.5"
                             >
                               <ExternalLink className="w-3 h-3" />
                               Verify
@@ -594,7 +594,7 @@ export default function PanchenLamaProfile() {
                       href={resp.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 mt-2 text-[#22d3ee] hover:text-[#22d3ee] text-xs"
+                      className="inline-flex items-center gap-1 mt-2 text-[#22d3ee] hover:text-white text-xs"
                     >
                       <ExternalLink className="w-3 h-3" />
                       Source
@@ -649,8 +649,8 @@ export default function PanchenLamaProfile() {
                   }`}>
                     T{source.tier}
                   </span>
-                  <span className="text-sm text-white group-hover:text-[#22d3ee] flex-1">{source.name}</span>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-[#22d3ee]" />
+                  <span className="text-sm text-white group-hover:text-white flex-1">{source.name}</span>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-white" />
                 </a>
               ))}
             </div>

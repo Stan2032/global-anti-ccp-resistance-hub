@@ -187,7 +187,7 @@ export default function CCPOfficials() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedOfficial(null)}
-            className="text-[#22d3ee] hover:text-[#22d3ee] text-sm mb-4 flex items-center gap-1"
+            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
           >
             ← Back to all officials
           </button>

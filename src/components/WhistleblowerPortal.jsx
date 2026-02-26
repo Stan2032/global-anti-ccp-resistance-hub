@@ -214,7 +214,7 @@ const WhistleblowerPortal = () => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
+                        className="text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Learn more

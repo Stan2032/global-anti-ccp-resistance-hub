@@ -400,7 +400,7 @@ export default function IlhamTohtiProfile() {
                               href={event.source}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-[#22d3ee] text-xs"
+                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <ExternalLink className="w-3 h-3" />
@@ -531,7 +531,7 @@ export default function IlhamTohtiProfile() {
             {CCP_NARRATIVES.length > 2 && (
               <button
                 onClick={() => setShowAllNarratives(!showAllNarratives)}
-                className="mt-3 text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
+                className="mt-3 text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
               >
                 {showAllNarratives ? (
                   <>Show less <ChevronUp className="w-4 h-4" /></>
@@ -581,7 +581,7 @@ export default function IlhamTohtiProfile() {
                       href={response.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-slate-400 hover:text-[#22d3ee] flex items-center gap-1"
+                      className="text-xs text-slate-400 hover:text-white flex items-center gap-1"
                     >
                       <ExternalLink className="w-3 h-3" />
                       Source
@@ -613,7 +613,7 @@ export default function IlhamTohtiProfile() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#22d3ee] hover:text-[#22d3ee] text-xs flex items-center gap-1 mt-1"
+                        className="text-[#22d3ee] hover:text-white text-xs flex items-center gap-1 mt-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Visit

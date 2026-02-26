@@ -68,7 +68,7 @@ const SourceAttribution = ({ source, compact = false }) => {
         href={source.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center space-x-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] transition-colors group"
+        className="inline-flex items-center space-x-1 text-xs text-[#22d3ee] hover:text-white transition-colors group"
         title={`Source: ${source.name}${source.date ? ` (${formatDate(source.date)})` : ''}`}
       >
         {getSourceIcon(source.type)}
@@ -194,7 +194,7 @@ export const InlineSource = ({ source, number }) => {
       href={source.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center text-[#22d3ee] hover:text-[#22d3ee] transition-colors"
+      className="inline-flex items-center text-[#22d3ee] hover:text-white transition-colors"
       title={`Source: ${source.name}`}
     >
       <sup className="ml-0.5">[{number || '?'}]</sup>

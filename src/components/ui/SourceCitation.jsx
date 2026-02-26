@@ -49,7 +49,7 @@ const SourceCitation = ({
       <span className={`inline-flex items-center ${className}`}>
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="text-[#22d3ee] hover:text-[#22d3ee] text-sm underline decoration-dotted ml-1"
+          className="text-[#22d3ee] hover:text-white text-sm underline decoration-dotted ml-1"
           title="View sources"
         >
           [{sources.length}]
@@ -94,7 +94,7 @@ const SourceCitation = ({
                           href={source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#22d3ee] hover:text-[#22d3ee]"
+                          className="text-[#22d3ee] hover:text-white"
                         >
                           <ExternalLink className="w-3 h-3" />
                         </a>
@@ -170,7 +170,7 @@ const SourceCitation = ({
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#22d3ee] hover:text-[#22d3ee] flex items-center space-x-1"
+                  className="text-[#22d3ee] hover:text-white flex items-center space-x-1"
                 >
                   <span className="text-sm">View Source</span>
                   <ExternalLink className="w-4 h-4" />

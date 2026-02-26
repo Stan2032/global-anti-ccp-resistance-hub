@@ -205,7 +205,7 @@ const ForcedLaborTracker = () => {
                         href={company.source_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-[#22d3ee]"
+                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
                       >
                         <ExternalLink className="w-3 h-3" />
                         View Source
@@ -237,7 +237,7 @@ const ForcedLaborTracker = () => {
               href="https://www.aspi.org.au/report/uyghurs-sale"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
+              className="text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
             >
               <ExternalLink className="w-3 h-3" />
               ASPI Report
@@ -246,7 +246,7 @@ const ForcedLaborTracker = () => {
               href="https://www.cbp.gov/trade/forced-labor/UFLPA"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[#22d3ee] hover:text-[#22d3ee] flex items-center gap-1"
+              className="text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
             >
               <ExternalLink className="w-3 h-3" />
               UFLPA Info

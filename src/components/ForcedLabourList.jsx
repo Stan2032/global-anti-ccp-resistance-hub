@@ -397,7 +397,7 @@ const ForcedLabourList = () => {
                   href={company.sourceUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#22d3ee] hover:text-[#22d3ee] text-sm underline"
+                  className="text-[#22d3ee] hover:text-white text-sm underline"
                 >
                   View Source →
                 </a>

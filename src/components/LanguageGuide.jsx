@@ -319,7 +319,7 @@ const LanguageGuide = () => {
               </span>
               <button
                 onClick={() => copyToClipboard(phrase.native, index)}
-                className="text-xs text-[#22d3ee] hover:text-[#22d3ee]"
+                className="text-xs text-[#22d3ee] hover:text-white"
               >
                 {copiedPhrase === index ? '✓ Copied!' : <><ClipboardCopy className="w-3 h-3 inline" /> Copy</>}
               </button>

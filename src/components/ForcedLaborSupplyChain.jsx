@@ -189,7 +189,7 @@ const ForcedLaborSupplyChain = () => {
                 </div>
                 <button
                   onClick={() => setShowDetails(showDetails === key ? null : key)}
-                  className="text-[#22d3ee] hover:text-[#22d3ee] text-sm"
+                  className="text-[#22d3ee] hover:text-white text-sm"
                 >
                   {showDetails === key ? 'Hide Details' : 'Show Details'}
                 </button>

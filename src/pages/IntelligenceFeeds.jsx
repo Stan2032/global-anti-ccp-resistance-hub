@@ -192,7 +192,7 @@ const IntelligenceFeeds = () => {
               href={source.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs text-[#22d3ee] hover:text-[#22d3ee]"
+              className="text-xs text-[#22d3ee] hover:text-white"
             >
               Visit source →
             </a>
@@ -248,7 +248,7 @@ const IntelligenceFeeds = () => {
               )}
             </div>
             
-            <h2 className="text-lg font-semibold text-white mb-2 hover:text-[#22d3ee]">
+            <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
               <a href={item.link} target="_blank" rel="noopener noreferrer">
                 {item.title}
               </a>
@@ -265,7 +265,7 @@ const IntelligenceFeeds = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#22d3ee] hover:text-[#22d3ee] text-sm font-medium"
+                className="text-[#22d3ee] hover:text-white text-sm font-medium"
               >
                 Read full article →
               </a>

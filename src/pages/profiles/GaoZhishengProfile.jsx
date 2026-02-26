@@ -229,7 +229,7 @@ const TimelineEvent = ({ event, isExpanded, onToggle }) => {
         <div className="px-4 pb-3 border-t border-white/5">
           <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
           {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] mt-2">
+            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-white mt-2">
               <ExternalLink className="w-3 h-3" /> Source
             </a>
           )}
@@ -377,7 +377,7 @@ export default function GaoZhishengProfile() {
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-[#22d3ee]" /> Timeline — {TIMELINE.length} Events</h2>
               <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-[#22d3ee] hover:text-[#22d3ee]">Expand all</button>
+                <button onClick={expandAll} className="text-xs text-[#22d3ee] hover:text-white">Expand all</button>
                 <span className="text-slate-600">|</span>
                 <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
               </div>
@@ -485,7 +485,7 @@ export default function GaoZhishengProfile() {
                 </div>
                 <p className="text-sm text-slate-300">{r.response}</p>
                 {r.sourceUrl && (
-                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-[#22d3ee] mt-2">
+                  <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:text-white mt-2">
                     <ExternalLink className="w-3 h-3" /> Source
                   </a>
                 )}
@@ -513,7 +513,7 @@ export default function GaoZhishengProfile() {
                     </span>
                     <span className="text-sm text-white">{s.name}</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#22d3ee] transition-colors" />
+                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
                 </a>
               ))}
             </div>

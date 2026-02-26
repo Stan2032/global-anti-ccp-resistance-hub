@@ -141,7 +141,7 @@ const GovernmentResponseTracker = () => {
                 href={response.source_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[#22d3ee] hover:text-[#22d3ee] transition-colors"
+                className="text-[#22d3ee] hover:text-white transition-colors"
               >
                 <ExternalLink className="w-5 h-5" />
               </a>

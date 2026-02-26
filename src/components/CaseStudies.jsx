@@ -222,7 +222,7 @@ export default function CaseStudies() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => setSelectedCase(null)}
-            className="text-[#22d3ee] hover:text-[#22d3ee] text-sm mb-4 flex items-center gap-1"
+            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
           >
             ← Back to all cases
           </button>
@@ -393,7 +393,7 @@ export default function CaseStudies() {
                 <p className="text-white font-medium mb-1">{action.action}</p>
                 {action.description && <p className="text-sm text-slate-400 mb-2">{action.description}</p>}
                 {action.link && (
-                  <a href={action.link} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-[#22d3ee] text-sm flex items-center gap-1">
+                  <a href={action.link} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-white text-sm flex items-center gap-1">
                     Visit <ExternalLink className="w-3 h-3" />
                   </a>
                 )}

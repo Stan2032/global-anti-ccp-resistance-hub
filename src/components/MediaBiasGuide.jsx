@@ -291,7 +291,7 @@ const MediaBiasGuide = () => {
                 <div className="flex items-center gap-2 mb-2">
                   {getRatingIcon(source.category)}
                   <h3 className="text-xl font-bold text-white">{source.name}</h3>
-                  <a href={source.website} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-[#22d3ee]">
+                  <a href={source.website} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-white">
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>

@@ -163,7 +163,7 @@ const SanctionsTracker = () => {
                         href={LAW_LINKS[sanction.law]}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#111820] rounded text-[#22d3ee] hover:text-[#22d3ee] transition-colors"
+                        className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#111820] rounded text-[#22d3ee] hover:text-white transition-colors"
                       >
                         <span className="flex items-center gap-1"><ScrollText className="w-3 h-3" /> {sanction.law}</span>
                         <ExternalLink className="w-3 h-3" />

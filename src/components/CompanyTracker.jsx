@@ -356,7 +356,7 @@ const CompanyTracker = () => {
               {(company.companyResponse || company.uflpaActions) && (
                 <button
                   onClick={() => setExpandedCompany(isExpanded ? null : company.id)}
-                  className="text-xs text-[#22d3ee] hover:text-[#22d3ee] underline mb-2"
+                  className="text-xs text-[#22d3ee] hover:text-white underline mb-2"
                 >
                   {isExpanded ? '▼ Show Less' : '▶ Show More Details'}
                 </button>
@@ -405,7 +405,7 @@ const CompanyTracker = () => {
                 href="https://www.aspi.org.au/report/uyghurs-sale" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center space-x-1 text-[#22d3ee] hover:text-[#22d3ee] text-sm font-medium"
+                className="inline-flex items-center space-x-1 text-[#22d3ee] hover:text-white text-sm font-medium"
               >
                 <span>View Full Report</span>
                 <span>→</span>
