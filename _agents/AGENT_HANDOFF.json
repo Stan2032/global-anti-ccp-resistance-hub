@@ -1,28 +1,28 @@
 {
   "handoff": {
-    "version": "9.8",
-    "date": "2026-02-26T03:30:00Z",
+    "version": "10.6",
+    "date": "2026-02-27T23:50:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v9.7, Session 118)",
+    "supersedes": "AGENT_HANDOFF.json (v10.5, Session 126)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
   "critical_reads": [
     "_agents/NEXT_AGENT_PROMPT.md",
     "_agents/TODO.md",
-    "_agents/STYLE_GUIDE.md",
-    "_agents/thoughts/"
+    "_agents/QUESTIONS_FOR_HUMANS.md",
+    "_agents/STYLE_GUIDE.md"
   ],
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 654,
-    "test_files": 37,
+    "frontend_tests": 895,
+    "test_files": 51,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,8 +31,8 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 119,
-    "eslint_status": "0_errors_10_warnings",
+    "sessions_completed": 127,
+    "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
     "mobile_responsiveness": "WCAG_2.5.5_44px_touch_targets_16px_base_font",
@@ -58,6 +58,95 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_127_changes": {
+    "summary": "SanctionsTracker and DataExport test coverage + QUESTIONS_FOR_HUMANS.md for perpetual autonomous agent work. SanctionsTracker is the core sanctions display component with dual-axis filtering (country × type). DataExport handles researcher data downloads with dataset selection, format choice, and export generation. QUESTIONS_FOR_HUMANS.md enables agents to queue decisions without blocking.",
+    "new_files": [
+      "_agents/QUESTIONS_FOR_HUMANS.md — Active questions file for ongoing human decisions. Contains Q6-Q9 (backend cache docs, feature priorities, Supabase Auth scope, Tor .onion routing). Standing instructions section. Protocol for future agents to add/answer questions. Enables perpetual autonomous work by decoupling human decisions from agent progress."
+    ],
+    "new_test_files": [
+      "src/test/SanctionsTracker.test.jsx — 15 tests: rendering (header, stats with correct totals, country filters ×6, type filters ×5), country filtering (US shows Carrie Lam hides UK targets, All Countries returns all), type filtering (Entity shows Hikvision hides individuals), combined filters (US + Entity), sanction details (target/role/reason/date), law links with URLs, CTA section (CECC link external), sources with last_verified date",
+      "src/test/DataExport.test.jsx — 18 tests: rendering (header, CC BY 4.0 license, all 8 datasets, record counts), dataset selection (click select, click deselect, Select All, Clear), format selection (JSON/CSV/Markdown, default, switching), export button (disabled when empty, enabled when selected), record calculation (multi-dataset totals), usage guidelines (recommended uses, attribution format)"
+    ],
+    "doc_updates": [
+      "TODO.md — Updated Current State Summary to Session 127 (895 tests, 51 files). Updated test count in Technical Debt section.",
+      "AGENT_HANDOFF.json — v10.6 with 895 tests, 51 files, Session 127"
+    ],
+    "test_count": "895 tests across 51 files (was 862/49). 33 new tests across 2 files.",
+    "perpetual_work_protocol": "QUESTIONS_FOR_HUMANS.md enables agents to: (1) check for answered questions at session start, (2) add new questions without blocking, (3) continue autonomous work while human decisions accumulate. This replaces ad-hoc decision tracking in archive."
+  },
+
+  "session_126_changes": {
+    "summary": "Test coverage for IncidentReportForm (multi-step wizard with Supabase integration) and InteractiveTimeline (data visualization with filtering, navigation, and auto-play). IncidentReportForm is 1 of 4 Supabase-wired forms — now all 4 have tests. InteractiveTimeline is a key data display component covering 31 events across 6 categories.",
+    "new_test_files": [
+      "src/test/IncidentReportForm.test.jsx — 23 tests: Step 1 (header, 9 incident types, disabled/enabled Continue), Step 2 (navigation, detail fields, Back button), Step 3 (anonymous toggle, consent, email show/hide, summary, submit disabled), backend integration (Coming Soon notice, footer states), submission (static fallback, Supabase connected with correct params, error handling, success screen with reporting orgs, form reset, backend-aware message)",
+      "src/test/InteractiveTimeline.test.jsx — 15 tests: rendering (header, 7 categories, stats, counter, placeholder, legend, zoom), filtering (Hong Kong filter, All Events return), navigation (next/previous with wrapping), event selection (marker click), auto-play (3s advance, pause stops), statistics display"
+    ],
+    "test_count": "862 tests across 49 files (was 824/47). 38 new tests across 2 files.",
+    "forms_now_tested": "All 4 Supabase-wired forms now have tests: ContactForm (9), VolunteerSignup (9), NewsDigest (9), IncidentReportForm (23). The IncidentReportForm has the most tests due to its 3-step wizard complexity.",
+    "components_now_tested": "IncidentReportForm, InteractiveTimeline added. Major untested components remaining: SanctionsTracker, ContactRepresentatives, WhistleblowerPortal, LegalResourcesHub, LiveStatistics"
+  },
+
+  "session_125_changes": {
+    "summary": "Test coverage for useLiveData hook (3 custom hooks) and Footer component. useLiveData.js was the only untested hook — handles async RSS feed fetching, political prisoner loading, and statistics with auto-refresh intervals. Footer.jsx is a core infrastructure component with emergency contacts, partner links, security notice, and accessibility features.",
+    "new_test_files": [
+      "src/test/useLiveData.test.jsx — 14 tests: useLiveFeeds (loading state, success data, error handling, FEED_SOURCES exposure, refresh function, auto-refresh interval setup, cleanup on unmount, skip interval when 0), usePoliticalPrisoners (loading state, success data, error handling), useStatistics (loading state, success data, error handling). Uses vi.useFakeTimers + vi.advanceTimersByTimeAsync for proper async hook testing.",
+      "src/test/Footer.test.jsx — 22 tests: structure (semantic footer, 4 section headings), platform links (Dashboard route, Prisoners route, all 5), resource links (all 5), organization links (external target/_blank, HTTPS URLs), emergency contacts (phone tel: link, email mailto: link), security notice (text, Tor Browser link, VPN link), bottom bar (version, GitHub link, Twitter share, copyright year, CC BY 4.0, MIT license, solidarity text), accessibility (aria-hidden on decorative borders, sr-only solidarity slogans)"
+    ],
+    "test_count": "824 tests across 47 files (was 788/45). 36 new tests across 2 files.",
+    "hooks_now_tested": "All 3 hooks now have tests: useDocumentTitle (6 tests), useWebRTCLeakCheck (9 tests), useLiveData (14 tests). 0 untested hooks remaining.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_124_changes": {
+    "summary": "Data integrity test coverage for 6 previously untested JSON research files. These files contain critical human rights documentation data (forced labor companies, overseas police stations, human rights organizations, academic experts, international responses, recent news) that had zero validation tests.",
+    "new_test_files": [
+      "src/test/forced-labor-data.test.js — 8 tests: results array, entry count (≥25), required fields (company/industry/connection_type/status), unique company names, HTTPS source URLs, valid industry categories, evidence fields, no errors",
+      "src/test/police-stations-data.test.js — 9 tests: results array, entry count (≥25), required fields (country/city/status), ≥20 countries coverage, valid status categories (OPERATING/CLOSED/UNDER INVESTIGATION/UNKNOWN), HTTPS source URLs, government_response field, no errors, key countries present (UK/NL/CA/US)",
+      "src/test/human-rights-orgs-data.test.js — 10 tests: results array, entry count (≥40), required fields (organization/focus_area/org_type), unique org names, ≥95% source URL coverage, HTTPS URLs, website/donation_url fields, HTTPS websites, valid org_type categories, no errors",
+      "src/test/academic-experts-data.test.js — 8 tests: results array, entry count (≥20), required fields (name/affiliation/expertise), unique names, HTTPS source URLs, key_works/media_presence fields, no errors, includes well-known scholars (Zenz/Byler)",
+      "src/test/international-responses-data.test.js — 9 tests: results array, entry count (≥25), required fields (country/overall_stance), unique countries, HTTPS source URLs, genocide_recognition/sanctions_imposed fields, legislative/diplomatic_actions fields, major powers included (US/UK/CA), no errors",
+      "src/test/recent-news-data.test.js — 8 tests: results array, entry count (≥15), required fields (topic/headline/summary/date/source), HTTPS source URLs, YYYY-MM-DD date format, significance/action_needed fields, no CCP state media sources, no errors"
+    ],
+    "test_count": "788 tests across 45 files (was 736/39). 52 new data integrity tests across 6 files.",
+    "data_coverage_improvement": "JSON research data coverage increased from 11/17 to 17/17 files (100%). All research data files now have validation tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_123_changes": {
+    "summary": "GlobalSearch test coverage (33 tests) + minor bug fixes. GlobalSearch.jsx was a critical untested component handling search scoring, keyboard navigation, debounce, and result rendering.",
+    "new_test_file": "src/test/GlobalSearch.test.jsx — 33 tests covering: rendering (open/close, input, quick links, shortcuts footer), search functionality (title/profile/keyword matching, no results, max 10 results, clear), scoring (title > keyword priority, starts-with > contains), keyboard navigation (ArrowDown/Up bounds checking, Enter to navigate, Escape to close), click interactions (result click, backdrop close, quick link click), accessibility (listbox/option roles, aria-selected), index completeness (all 10 pages, all 15 profiles), debounce (150ms delay), useGlobalSearch hook (open/close/Ctrl+K/Meta+K).",
+    "bug_fixes": "Fixed stale comment '12 individuals' → '15 individuals' (15 profiles indexed). Fixed non-functional hover on quick links — hover:bg-[#111820] was identical to bg-[#111820], changed to hover:bg-[#1c2a35].",
+    "test_count": "736 tests across 39 files (was 703/38). 33 new GlobalSearch tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_122_changes": {
+    "summary": "Theme system test coverage + light theme WCAG AA contrast fix. Added 49 tests for the theme system that had zero test coverage since Session 121. Found and fixed accessibility contrast failure in light theme accent colors.",
+    "new_test_file": "src/test/theme-system.test.jsx — 49 tests covering: theme constants (4 identifiers), ThemeProvider (localStorage persistence, dark default, invalid fallback, class application, themeConfig), ThemeToggle (accessible label, dark→light→hc→dark cycling), useTheme error case, CSS variable definitions (all 11 vars in :root/.theme-light/.theme-high-contrast), Tailwind override selectors (10 selectors verified), dark-mode scope, WCAG AA contrast for light theme (7 colors × 2 backgrounds), WCAG AA contrast for high-contrast theme (4 colors × 2 backgrounds).",
+    "wcag_fix": "Light theme accent colors failed WCAG AA 4.5:1 minimum — #059669 (emerald-600) was 3.60:1, #0891b2 (cyan-600) was 3.52:1 on #f8fafc background. Fixed: --th-accent #059669→#047857 (emerald-700, 5.24:1), --th-accent-cyan #0891b2→#0e7490 (cyan-700, 5.12:1). Updated all .theme-light CSS overrides to match.",
+    "test_count": "703 tests across 38 files (was 654/37). 49 new theme system tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_121_changes": {
+    "summary": "Theme system CSS implementation + ESLint error fixes. The ThemeProvider (ThemeContext.jsx) has always set theme-dark/theme-light/theme-high-contrast classes on <html>, but no CSS responded to them — light mode and high contrast were completely non-functional. Now theme toggle actually works.",
+    "theme_css": "Added CSS custom properties (--th-bg-page, --th-bg-surface, --th-border, --th-text-heading, --th-text-body, --th-accent, etc.) with :root (dark default), .theme-light, and .theme-high-contrast overrides. Replaced hardcoded hex values in body/typography/links/scrollbar/focus/utility classes with var() references. Added Tailwind arbitrary-value class overrides (.theme-light .bg-\\[#0a0e14\\] etc.) so bg-[#0a0e14], bg-[#111820], border-[#1c2a35], text-[#4afa82], text-[#22d3ee] all respond to theme changes. Scoped dark-mode contrast overrides to :root:not(.theme-light):not(.theme-high-contrast) so they don't force light-text-on-light-bg.",
+    "eslint_fix": "Fixed 3 no-useless-escape errors in SocialMediaToolkit.jsx — removed unnecessary \\' in template literals (backtick strings don't need escaped single quotes). ESLint now 0 errors, 7 warnings (was 3 errors, 7 warnings).",
+    "todo_fix": "Updated stale TODO.md reference claiming backend socket.io still needs removal (was done Session 118/120). Marked dark mode TODO as complete.",
+    "test_count": "654 tests across 37 files (unchanged).",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_120_changes": {
+    "summary": "File archival + code cleanup. Fixed QuickFacts.jsx duplicate cyan key (build warning). Archived 5 completed research files and 2 session notes to _agents/archive/. Updated _agents/README.md to reflect current structure.",
+    "quickfacts_fix": "Removed duplicate 'cyan' key in QuickFacts.jsx colorClasses object (line 97). First entry (line 93) uses correct terminal cyan #22d3ee. Second entry used non-design-system border-l-cyan-500. Build warning eliminated.",
+    "archived_research": "ALTERNATIVES_RATINGS.md (426 lines), CHINA_EXPOSURE_CRITERIA.md (310 lines), DEMOCRATIC_BRANDS_RESEARCH.md (270 lines), ETHICAL_ALTERNATIVES_RESEARCH.md (148 lines), DATA_VERIFICATION_LOG.md (543 lines) — all moved from _agents/research/ to _agents/archive/. Two actively-referenced files kept: DATA_SOURCES.md (DataSources.jsx), SOURCE_BIAS_AUDIT.md (sourceLinks.js).",
+    "archived_thoughts": "SESSION_83_97_COMPREHENSIVE_NOTES.md and SESSION_98_106_NOTES.md — moved to _agents/archive/. Superseded by AGENT_HANDOFF.json session blocks.",
+    "docs_updated": "_agents/archive/README.md (new sections for archived research + thoughts), _agents/README.md (updated folder structure to reflect current state).",
+    "test_count": "654 tests across 37 files (unchanged).",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
   },
 
   "session_119_changes": {
