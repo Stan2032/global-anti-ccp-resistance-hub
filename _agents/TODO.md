@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: February 26, 2026 (Session 120)
+> Last Updated: February 27, 2026 (Session 127)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -183,7 +183,7 @@
 ### Code Quality
 - [x] ~~Refactor large components into smaller modules~~ ✅ (81+ lazy-loaded sub-components across pages)
 - [ ] Add TypeScript for type safety
-- [x] ~~Implement comprehensive testing (unit, integration, e2e)~~ ✅ (625 tests across 34 files, 8 design system compliance checks)
+- [x] ~~Implement comprehensive testing (unit, integration, e2e)~~ ✅ (895 tests across 51 files, all 17 JSON data files, all 4 forms, all 3 hooks, key components tested)
 - [ ] Document all components with JSDoc
 - [x] ~~Create component library/design system~~ ✅ (STYLE_GUIDE.md + 8 automated checks)
 - [x] ~~Standardize error handling~~ ✅ (ErrorBoundary + RouteErrorBoundary)
@@ -301,8 +301,8 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 120, Feb 26, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 95+ components, 654 tests (37 files, all passing)
+### Current State Summary (as of Session 127, Feb 27, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 95+ components, 895 tests (51 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors (blue/purple/indigo/teal/pink) standardized. QuickFacts duplicate key fixed.
 - **Site Cleanup:** ~99% complete. Page merging done (4 merges + redirects). Dead code: 0 orphan components. SITE_CLEANUP_TODO.md substantially done. File archival: 73 files in `_agents/archive/`.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
@@ -317,9 +317,10 @@
 - **CCP Detection:** Centralized in sourceLinks.js (21 state media + 15 elevated risk entries, 4 utility functions)
 - **Terminology:** "CCP" only — never "CPC". Automated test enforces this across all JSX+JSON files.
 - **Deployment:** URLs updated to Cloudflare Workers. Service worker paths fixed. Terminal-styled offline/404 pages. Sitemap matches all routes.
-- **Lint:** 0 errors, 10 harmless react-refresh warnings. 0 npm vulnerabilities.
-- **Archive:** 73 files in `_agents/archive/` (including 5 completed research + 2 session notes from Session 120).
-- **Knowledge Transfer:** Session notes archived. Machine-readable state in `_agents/AGENT_HANDOFF.json` (v9.9).
+- **Lint:** 0 errors, 7 warnings (react-refresh only). 0 npm vulnerabilities.
+- **Archive:** 73 files in `_agents/archive/`.
+- **Knowledge Transfer:** Machine-readable state in `_agents/AGENT_HANDOFF.json` (v10.6). Questions for humans in `_agents/QUESTIONS_FOR_HUMANS.md`.
+- **Test Coverage Highlights:** All 17 JSON data files, all 4 Supabase forms, all 3 hooks, SanctionsTracker, DataExport, InteractiveTimeline, GlobalSearch, Footer, theme system tested.
 
 ---
 
