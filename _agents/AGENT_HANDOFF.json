@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.9",
-    "date": "2026-03-01T21:10:00Z",
+    "version": "11.0",
+    "date": "2026-03-01T21:17:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 130), Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 131), Sonnet 4 (Session 130), Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.8, Session 129)",
+    "supersedes": "AGENT_HANDOFF.json (v10.9, Session 130)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -21,8 +21,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 1035,
-    "test_files": 60,
+    "frontend_tests": 1076,
+    "test_files": 63,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 130,
+    "sessions_completed": 131,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -58,6 +58,17 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_131_changes": {
+    "summary": "Test coverage for TaiwanDefenseStatus (4-tab defense analysis with military balance, allied support, scenarios), ChinaTechThreats (4-tab surveillance/infrastructure/data/response tracker), and CompanyTracker (filterable company database with JSON data, search, categories, expand/collapse). All three are complex data-heavy components.",
+    "new_test_files": [
+      "src/test/TaiwanDefenseStatus.test.jsx — 14 tests: header (title, ELEVATED THREAT LEVEL banner), 4 tabs (Overview with recent developments + key stats, Military Balance with PLA vs Taiwan data + advantages, Allied Support with US arms table + 5 ally countries, Scenarios with 4 levels + warning indicators), tab isolation, 3 resource links with noopener",
+      "src/test/ChinaTechThreats.test.jsx — 14 tests: header (title, 4 stats including sanctioned companies/countries/safe cities/app users), 4 tabs (Surveillance Tech with 8 companies + threat levels, Critical Infrastructure with 5 sectors + risk levels, Data Collection with 5 apps + BGI genomics warning, Global Response with 8 countries + actionable advice), tab isolation, 3 resource links with noopener",
+      "src/test/CompanyTracker.test.jsx — 13 tests: header (title), stats (Companies Tracked with getAllByText for duplicated 'Avoid'), search (input, filter by name, empty state), category filter (7 buttons, filter by Technology), company cards (hardcoded Hikvision/TikTok, source attribution), status legend (3 descriptions), ASPI resources (link with noopener), disclaimer"
+    ],
+    "test_count": "1076 tests across 63 files (was 1035/60). 41 new tests across 3 files.",
+    "testing_patterns": "CompanyTracker: mock SourceAttribution + SourcesList + GlobalDisclaimer. 'Avoid'/'Concern'/'Improving' appear in both stat labels and company badges — use getAllByText. Research data from JSON overwrites hardcoded companies (case-insensitive dedup) — 'SHEIN' from research replaces 'Shein'. Use unique hardcoded company names like 'Hikvision' for search filter tests."
   },
 
   "session_130_changes": {
