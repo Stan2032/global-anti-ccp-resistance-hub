@@ -12,14 +12,12 @@
 
 ### Content Updates
 - [ ] **Update Sanctions List**: Check for any new sanctions after March 2025 from US, EU, UK, Canada, Australia
-  - **Agent:** Opus 4.6 (requires source verification against government registries)
   - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds added in Session 96)
   - Subtask: Check US Treasury SDN list for new China/HK-related designations
   - Subtask: Check UK FCDO sanctions list for updates
   - Subtask: Check EU Council sanctions for new entries
   - Subtask: Verify source_url links still resolve
 - [ ] **Monitor Jimmy Lai appeal proceedings**
-  - **Agent:** Opus 4.6 (requires fact verification, narrative analysis)
   - Subtask: Watch for appeal filing date
   - Subtask: Update profile page timeline when new developments occur
 - [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
@@ -31,7 +29,6 @@
 ### Bug Fixes & Polish
 - [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
 - [ ] **Mobile navigation**: Test hamburger menu on various devices
-  - **Agent:** Sonnet 4.5 (UI testing, rapid iteration)
 - [x] **Dark mode**: Theme CSS variables + Tailwind overrides for light/high-contrast (Session 121)
 
 ---
@@ -40,14 +37,12 @@
 
 ### New Features
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
-  - **Agent:** Sonnet 4.5 (UI/embedding), Human (content sourcing/consent)
 
 ### Technical Improvements
 - [ ] **Offline Mode**: Cache critical content for offline access
 - [ ] **Push Notifications**: Alert users to breaking news and urgent actions
 - [ ] **Analytics Dashboard**: Track platform usage (privacy-respecting)
 - [ ] **API Development**: Create public API for researchers to access data
-  - **Agent:** Opus 4.6 (backend API design, security implications)
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery

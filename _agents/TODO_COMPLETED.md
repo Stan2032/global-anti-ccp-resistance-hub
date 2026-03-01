@@ -63,7 +63,7 @@
 - [x] **Joshua Wong profile page** ✅ (Session 47)
 - [x] **Gui Minhai profile page** ✅ (Session 54)
 - [x] **Additional profiles**: Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan — all built ✅ (Session 62)
-- **Agent note**: Profile pages should be built by Opus 4.6 (fact verification, CCP narrative analysis) with Sonnet 4.5 for UI/layout. Each profile must include direct source links, not just source names.
+- **Note**: Profile pages must include direct source links, not just source names. Each profile requires fact verification and CCP narrative analysis.
 
 ### Bug Fixes & Polish (Completed)
 - [x] **Clipboard error handling**: Added try/catch to 9 components ✅ (Session 68)
@@ -179,53 +179,53 @@
 
 ## 📜 SESSION HISTORY
 
-| Session | Date | Agent | Key Work |
-|---------|------|-------|----------|
-| 1-5 | Jan 2026 | Sonnet 3.5 | Initial build, 14 pages, 100+ components |
-| 6-22 | Feb 18-19 | Opus 4.6 | Data verification, source attribution, security fixes, accessibility |
-| 23-25 | Feb 18-19 | Investigation | Fabrication gap audit, AGENT_HANDOFF.json creation |
-| 33-34 | Feb 19-20 | Opus 4.6 | Data verification (Zhang Zhan, Xu Zhiyong, Gui Minhai, Joshua Wong), deduplication |
-| 35 | Feb 20 | Opus 4.6 | Documentation updates, roadmap V2/V3 sections |
-| 36 | Feb 20 | Opus 4.6 | Honest "Coming Soon" notices on 4 non-functional forms |
-| 37 | Feb 20 | Opus 4.6 | "Illustrative targets" disclaimer on fake community statistics |
-| 38-39 | Feb 20 | Opus 4.6 | Performance: lazy-loaded 81 sub-components (87-93% bundle reduction) |
-| 40 | Feb 20 | Opus 4.6 | SEO: per-route meta descriptions for all 14 pages |
-| 41 | Feb 20 | Opus 4.6 | Consolidated pending decisions |
-| 42 | Feb 20 | Opus 4.6 | Implemented all 5 human decisions (D1-D5) |
-| 43 | Feb 20 | Opus 4.6 | Jimmy Lai profile page |
-| 44 | Feb 20 | Opus 4.6 | Ilham Tohti profile page |
-| 45 | Feb 20 | Opus 4.6 | Panchen Lama profile page |
-| 46 | Feb 20 | Opus 4.6 | Liu Xiaobo memorial profile page |
-| 47 | Feb 20 | Opus 4.6 | Joshua Wong profile page |
-| 48 | Feb 20 | Opus 4.6 | Comprehensive TODO/handoff update |
-| 49 | Feb 20 | Opus 4.6 | Final consolidation: annotated 3 satellite TODOs |
-| 50 | Feb 20 | Opus 4.6 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS |
-| 51 | Feb 20 | Opus 4.6 | Moved all agent docs to `_agents/` folder |
-| 52 | Feb 20 | Opus 4.6 | Fixed stale paths in AGENT_HANDOFF.json |
-| 53 | Feb 20 | Opus 4.6 | Reorganized `_agents/`, built Profiles Index page |
-| 54 | Feb 20 | Opus 4.6 | Gui Minhai profile page |
-| 55 | Feb 20 | Opus 4.6 | ASCII/terminal design overhaul |
-| 56 | Feb 20 | Opus 4.6 | Dashboard + EmergencyAlerts terminal redesign |
-| 57 | Feb 20 | Opus 4.6 | Terminal aesthetic applied to all 13 remaining pages |
-| 58 | Feb 20 | Opus 4.6 | 128 files bulk terminal styling — design system 100% complete |
-| 59-61 | Feb 20 | Opus 4.6 | Accessibility audit, WCAG AA, 20 contrast tests |
-| 62 | Feb 20 | Sonnet 4.5 | 6 new profile pages (12 total, 0 coming soon) |
-| 63 | Feb 20 | Sonnet 4.5 | Page consolidation: 4 orphan pages → redirects |
-| 64 | Feb 21 | Sonnet 4.5 | Locale cleanup, nav.profiles key |
-| 65 | Feb 21 | Sonnet 4.5 | Flag SVGs for East Turkestan + Tibet |
-| 66 | Feb 21 | Sonnet 4.5 | 5 new RSS feeds, mobile nav fix |
-| 67 | Feb 21 | Sonnet 4.5 | Terminal design cleanup (97+ files), deleted 4 orphan pages |
-| 68 | Feb 21 | Sonnet 4.5 | Clipboard handling, print styles, 3 new locales, dynamic countdown |
-| 69 | Feb 21 | Sonnet 4.5 | Sanctions expansion (18→35), ARIA modals, react-router security fix |
-| 70-71 | Feb 21 | Sonnet 4.5 | Orphan component integration (13 components → 0 orphans) |
-| 72 | Feb 24 | Opus 4.6 | Data quality: docs fixes, lint fixes, PWA icons, sitemap, CSP, timeline events, sanctions URLs, data tests |
-| 73 | Feb 24 | Opus 4.6 | CCP influence detection system: centralized registry (21+15 entries), 4 utility functions, 37 tests |
-| 74 | Feb 24 | Opus 4.6 | TODO split, 3 timeline events (Charter 08, Nobel Prize, Term Limits), agent capabilities doc |
-| 75 | Feb 24 | Opus 4.6 | 5 final timeline events (Self-Immolation, Article 23 march, Wukan, Tibet immolations, Article 23 passage). ALL gaps filled. |
-| 76-77 | Feb 25 | Opus 4.6 | Simulated data Phase 1: real JSON data for statistics + prisoners. Dead feedValidator removed. Schema consistency fix. Research data tests. |
-| 78 | Feb 25 | Opus 4.6 | Merge preparation: comprehensive handoff documentation update. AGENT_HANDOFF v6.0. |
-| 79 | Feb 25 | Opus 4.6 | Phase 2 audit: PoliticalPrisoners + ForcedLaborTracker already migrated. Updated SIMULATED_DATA docs. Fixed stale references. |
-| 80 | Feb 25 | Opus 4.6 | Final merge prep: README fixes, CHANGELOG v3.0.0 entry, AGENT_ROADMAP header update, cross-doc consistency check. |
+| Session | Date | Key Work |
+|---------|------|----------|
+| 1-5 | Jan 2026 | Initial build, 14 pages, 100+ components |
+| 6-22 | Feb 18-19 | Data verification, source attribution, security fixes, accessibility |
+| 23-25 | Feb 18-19 | Fabrication gap audit, AGENT_HANDOFF.json creation |
+| 33-34 | Feb 19-20 | Data verification (Zhang Zhan, Xu Zhiyong, Gui Minhai, Joshua Wong), deduplication |
+| 35 | Feb 20 | Documentation updates, roadmap V2/V3 sections |
+| 36 | Feb 20 | Honest "Coming Soon" notices on 4 non-functional forms |
+| 37 | Feb 20 | "Illustrative targets" disclaimer on fake community statistics |
+| 38-39 | Feb 20 | Performance: lazy-loaded 81 sub-components (87-93% bundle reduction) |
+| 40 | Feb 20 | SEO: per-route meta descriptions for all 14 pages |
+| 41 | Feb 20 | Consolidated pending decisions |
+| 42 | Feb 20 | Implemented all 5 human decisions (D1-D5) |
+| 43 | Feb 20 | Jimmy Lai profile page |
+| 44 | Feb 20 | Ilham Tohti profile page |
+| 45 | Feb 20 | Panchen Lama profile page |
+| 46 | Feb 20 | Liu Xiaobo memorial profile page |
+| 47 | Feb 20 | Joshua Wong profile page |
+| 48 | Feb 20 | Comprehensive TODO/handoff update |
+| 49 | Feb 20 | Final consolidation: annotated 3 satellite TODOs |
+| 50 | Feb 20 | Renamed QUESTIONS_FOR_OWNER→QUESTIONS_FOR_HUMANS |
+| 51 | Feb 20 | Moved all agent docs to `_agents/` folder |
+| 52 | Feb 20 | Fixed stale paths in AGENT_HANDOFF.json |
+| 53 | Feb 20 | Reorganized `_agents/`, built Profiles Index page |
+| 54 | Feb 20 | Gui Minhai profile page |
+| 55 | Feb 20 | ASCII/terminal design overhaul |
+| 56 | Feb 20 | Dashboard + EmergencyAlerts terminal redesign |
+| 57 | Feb 20 | Terminal aesthetic applied to all 13 remaining pages |
+| 58 | Feb 20 | 128 files bulk terminal styling — design system 100% complete |
+| 59-61 | Feb 20 | Accessibility audit, WCAG AA, 20 contrast tests |
+| 62 | Feb 20 | 6 new profile pages (12 total, 0 coming soon) |
+| 63 | Feb 20 | Page consolidation: 4 orphan pages → redirects |
+| 64 | Feb 21 | Locale cleanup, nav.profiles key |
+| 65 | Feb 21 | Flag SVGs for East Turkestan + Tibet |
+| 66 | Feb 21 | 5 new RSS feeds, mobile nav fix |
+| 67 | Feb 21 | Terminal design cleanup (97+ files), deleted 4 orphan pages |
+| 68 | Feb 21 | Clipboard handling, print styles, 3 new locales, dynamic countdown |
+| 69 | Feb 21 | Sanctions expansion (18→35), ARIA modals, react-router security fix |
+| 70-71 | Feb 21 | Orphan component integration (13 components → 0 orphans) |
+| 72 | Feb 24 | Data quality: docs fixes, lint fixes, PWA icons, sitemap, CSP, timeline events, sanctions URLs, data tests |
+| 73 | Feb 24 | CCP influence detection system: centralized registry (21+15 entries), 4 utility functions, 37 tests |
+| 74 | Feb 24 | TODO split, 3 timeline events (Charter 08, Nobel Prize, Term Limits), agent capabilities doc |
+| 75 | Feb 24 | 5 final timeline events (Self-Immolation, Article 23 march, Wukan, Tibet immolations, Article 23 passage). ALL gaps filled. |
+| 76-77 | Feb 25 | Simulated data Phase 1: real JSON data for statistics + prisoners. Dead feedValidator removed. Schema consistency fix. Research data tests. |
+| 78 | Feb 25 | Merge preparation: comprehensive handoff documentation update. AGENT_HANDOFF v6.0. |
+| 79 | Feb 25 | Phase 2 audit: PoliticalPrisoners + ForcedLaborTracker already migrated. Updated SIMULATED_DATA docs. Fixed stale references. |
+| 80 | Feb 25 | Final merge prep: README fixes, CHANGELOG v3.0.0 entry, AGENT_ROADMAP header update, cross-doc consistency check. |
 
 ---
 

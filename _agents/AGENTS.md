@@ -6,19 +6,17 @@ This document defines the autonomous, semi-autonomous, and human-in-the-loop age
 ## Types of Agents
 
 ### 1. Primary LLM Coding Agents
-Description: Large language models operating autonomously or semi-autonomously to write, refactor, review, and maintain code, documentation, and tests.
+Description: Large language models operating autonomously or semi-autonomously to write, refactor, review, test, and maintain code and documentation.
 
 #### Core Responsibilities:
 - Full-stack code writing (backend, frontend, DB, infra)
 - Test writing and continuous testing
 - System-level refactoring and architectural analysis
 - Reviewing previous work (human or LLM) for risks/optimizations
-- Task handoff and logging via LLM_JUDGEMENT_LOG.md
+- Task handoff and logging via AGENT_HANDOFF.json
 - Raising risks or ambiguous requirements
 
-#### Examples for Resistance Hub:
-- Opus 4.6: End-to-end integration, backend API extension, security review
-- Sonnet 4.5: Documentation, rapid prototyping, shallow feature builds
+Note: Per-session model tracking was removed because agents cannot reliably self-identify their model. The project owner primarily uses Opus 4.6. All agents follow the same standing instructions regardless of model.
 
 ### 2. Human Collaborators
 Primary roles: Product owner, maintainers, project contributors.
@@ -50,26 +48,26 @@ If needed, create purpose-limited sub-agents for specific domains:
 
 ## Current Agent Assignment Table
 
-| Domain | Primary Agent | Backup Agent | Human Oversight? | Why This Agent |
-|---|---|---|---|---|
-| API coding & backend | Opus 4.6 | Sonnet 4.5 | Yes | Complex multi-step logic, security implications, database design |
-| Fact verification & date checking | Opus 4.6 | — | Yes | Requires cross-referencing multiple sources, detecting propaganda influence, assessing source credibility |
-| CCP narrative analysis (profile pages) | Opus 4.6 | — | Yes | Requires understanding of CCP disinformation tactics, logical fallacy detection, propaganda pattern recognition |
-| Security reviews & CSP | Opus 4.6 | — | Yes | Security-critical decisions, threat modeling, vulnerability assessment |
-| Test automation & data integrity tests | Opus 4.6 | Sonnet 4.5 | Yes | Designing test assertions requires understanding what matters; execution can be delegated |
-| UI/UX implementation & design system | Sonnet 4.5 | Opus 4.6 | Yes | Rapid iteration, consistent Tailwind class application, layout work |
-| Documentation & onboarding | Sonnet 4.5 | Opus 4.6 | Yes | Structured writing, consistency, quick turnaround |
-| i18n translations (UI strings only) | Sonnet 4.5 | Opus 4.6 | Yes | Mechanical translation of navigation-level strings. Sensitive content should NOT be machine-translated. |
-| Data entry (adding prisoners/sanctions) | Opus 4.6 | Sonnet 4.5 | Yes | Requires source verification; Sonnet can do the JSON editing after Opus verifies |
-| Profile page creation | Opus 4.6 (content) + Sonnet 4.5 (layout) | — | Yes | Content requires fact verification and narrative analysis; layout is mechanical |
-| Performance optimization | Sonnet 4.5 | Opus 4.6 | Yes | Code splitting, lazy loading — mechanical optimizations |
-| Accessibility (WCAG/ARIA) | Sonnet 4.5 | Opus 4.6 | Yes | Standard patterns, contrast checks, attribute additions |
-| Source URL verification | Opus 4.6 | — | Yes | Requires judgment on source credibility, domain verification, CCP media detection |
-| Policies/moderation/ethics | Human | — | Required | Ethical decisions must not be delegated to AI |
+| Domain | Human Oversight? | Notes |
+|---|---|---|
+| API coding & backend | Yes | Complex multi-step logic, security implications, database design |
+| Fact verification & date checking | Yes | Requires cross-referencing multiple sources, detecting propaganda influence |
+| CCP narrative analysis (profile pages) | Yes | Requires understanding of CCP disinformation tactics |
+| Security reviews & CSP | Yes | Security-critical decisions, threat modeling |
+| Test automation & data integrity tests | Yes | Designing test assertions requires understanding what matters |
+| UI/UX implementation & design system | Yes | Consistent Tailwind class application, layout work |
+| Documentation & onboarding | Yes | Structured writing, consistency |
+| i18n translations (UI strings only) | Yes | Sensitive content should NOT be machine-translated |
+| Data entry (adding prisoners/sanctions) | Yes | Requires source verification |
+| Profile page creation | Yes | Content requires fact verification and narrative analysis |
+| Performance optimization | Yes | Code splitting, lazy loading |
+| Accessibility (WCAG/ARIA) | Yes | Standard patterns, contrast checks |
+| Source URL verification | Yes | Requires judgment on source credibility |
+| Policies/moderation/ethics | Required | Ethical decisions must not be delegated to AI |
 
-### Why These Assignments Matter
+### Task Complexity Guide
 
-**Opus 4.6** excels when tasks require:
+**High-judgment tasks** (require careful reasoning):
 - Cross-referencing information across multiple sources
 - Detecting CCP propaganda or narrative influence in sources
 - Making security-sensitive decisions (CSP, XSS, input sanitization)
@@ -77,7 +75,7 @@ If needed, create purpose-limited sub-agents for specific domains:
 - Verifying factual claims against independent evidence
 - Building complex multi-file features (backend APIs, database schemas)
 
-**Sonnet 4.5** excels when tasks require:
+**Mechanical tasks** (standard patterns):
 - Rapid, iterative UI changes across many files
 - Consistent application of design system patterns
 - Writing structured documentation and handoff notes
@@ -85,7 +83,7 @@ If needed, create purpose-limited sub-agents for specific domains:
 - Quick prototyping and scaffolding
 - i18n string translations (navigation-level only)
 
-**Neither agent should:**
+**No agent should:**
 - Machine-translate sensitive human rights content (needs volunteer translators)
 - Make policy or ethical decisions
 - Cite sources without verification
@@ -128,7 +126,7 @@ No code changes detected for languages that CodeQL can analyze, so no analysis w
    - Document security baseline in project docs
    - Track "last full scan" date
 
-**🚀 CHALLENGE FOR OPUS 4.6:**
+**OPEN CHALLENGE:**
 This limitation needs a better solution. Potential approaches to investigate:
 - Force full codebase analysis option
 - Hybrid approach: diff analysis + periodic full scans  
@@ -138,16 +136,15 @@ This limitation needs a better solution. Potential approaches to investigate:
 See LLM_JUDGEMENT_LOG.md Session 25 for detailed investigation findings and inspiration.
 
 **Agent Responsibilities:**
-- **Opus 4.6:** Primary investigator - find a workaround or better solution
-- **Sonnet 4.5:** Documented the issue, supports testing solutions
 - **All agents:** Don't misinterpret "0 fails" - always verify analysis actually ran
 
 ---
 
 ## Change Log
-- [2026-02-24] Expanded agent assignment table with detailed capability notes and rationale (Opus 4.6, Session 72)
-- [2026-02-20] Added CodeQL troubleshooting section (Sonnet 4.5, Session 25)
-- [2026-02-18] Initial AGENTS.md version (Opus 4.6, following agents.md methodology)
+- [2026-03-01] Removed per-session model tracking — agents cannot reliably self-identify their model (Session 133)
+- [2026-02-24] Expanded agent assignment table with detailed capability notes
+- [2026-02-20] Added CodeQL troubleshooting section
+- [2026-02-18] Initial AGENTS.md version
 
 ---
 This file grows as the codebase and team grow; future agents or model versions should update both their scope and best practices as relevant.

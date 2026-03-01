@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "11.1",
-    "date": "2026-03-01T22:15:00Z",
+    "version": "11.2",
+    "date": "2026-03-01T22:45:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_sessions": "131 sessions completed. Primarily Claude Opus 4.6 (~125 sessions), with ~5-6 sessions on other models. Per-session model tracking was removed in Session 132 as agents cannot reliably self-identify their model and the data was inaccurate.",
+    "sessions_completed": 133,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v11.0, Session 131)",
+    "supersedes": "AGENT_HANDOFF.json (v11.1, Session 132)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -457,7 +457,7 @@
       "status": "MOSTLY_COMPLETE",
       "severity": "LOW",
       "description": "SITE_CLEANUP_TODO.md ~80% complete. Emoji ✅, accessibility ✅, perf ✅, typography ✅, tabs ✅, disclaimers ✅, nav ✅, mobile ✅, data migrations 5/5 ✅, orphans 0 ✅, semantic buttons ✅, heading hierarchy ✅, color standardization in progress. Blue→terminal green remaining (~459 instances across many files).",
-      "recommendation": "Blue color standardization is the biggest remaining item. Assign to Sonnet 4.5 for batch UI work. See _agents/planning/SITE_CLEANUP_TODO.md"
+      "recommendation": "Blue color standardization is the biggest remaining item. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
       "status": "COMPLETE",
@@ -473,32 +473,28 @@
       "task": "backend_connection_phase2",
       "description": "All 4 forms wired to Supabase: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next: add Supabase Auth for admin dashboard, deploy backend to production.",
       "estimated_hours": 4,
-      "status": "COMPLETE_FORMS_WIRED",
-      "agent": "Opus 4.6"
+      "status": "COMPLETE_FORMS_WIRED"
     },
     {
       "priority": 2,
       "task": "site_cleanup_typography",
       "description": "SITE_CLEANUP_TODO.md Priority 1 DONE: text-xs bumped 12→14px, text-sm bumped 14→16px, text-base gets leading-relaxed, paragraph font-weight improved, contrast overrides in place.",
       "estimated_hours": 0,
-      "status": "COMPLETE",
-      "agent": "Sonnet 4"
+      "status": "COMPLETE"
     },
     {
       "priority": 3,
       "task": "content_monitoring",
       "description": "Update political prisoners database with new cases, monitor appeal proceedings (Jimmy Lai, Joshua Wong). Check 2026 sanctions updates.",
       "estimated_hours": 4,
-      "status": "ONGOING",
-      "agent": "Opus 4.6"
+      "status": "ONGOING"
     },
     {
       "priority": 4,
       "task": "simulated_data_phase2",
       "description": "ALL 5/5 data migrations complete. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read from JSON. No hardcoded data arrays remain. 7 orphan components removed (2,043 lines). Orphan detection test prevents regression.",
       "estimated_hours": 0,
-      "status": "COMPLETE",
-      "agent": "Sonnet 4 (Session 90: CCPOfficials, Session 102: Timeline, Session 103: orphan cleanup)"
+      "status": "COMPLETE"
     }
   ],
 
