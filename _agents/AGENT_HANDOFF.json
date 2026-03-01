@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "11.0",
-    "date": "2026-03-01T21:17:00Z",
+    "version": "11.1",
+    "date": "2026-03-01T22:15:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 131), Sonnet 4 (Session 130), Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_sessions": "131 sessions completed. Primarily Claude Opus 4.6 (~125 sessions), with ~5-6 sessions on other models. Per-session model tracking was removed in Session 132 as agents cannot reliably self-identify their model and the data was inaccurate.",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.9, Session 130)",
+    "supersedes": "AGENT_HANDOFF.json (v11.0, Session 131)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 131,
+    "sessions_completed": 132,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
