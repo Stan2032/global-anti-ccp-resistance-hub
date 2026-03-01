@@ -177,29 +177,6 @@ const IntelligenceFeeds = () => {
         </div>
       </div>
 
-      {/* Source Info Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {Object.entries(sources).map(([key, source]) => (
-          <div key={key} className="bg-[#111820] border border-[#1c2a35] p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-semibold text-white">{source.name}</span>
-              <span className="px-2 py-0.5 bg-green-900/50 text-green-400 text-xs rounded-full border border-green-700">
-                LIVE
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 mb-2">{source.description}</p>
-            <a 
-              href={source.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs text-[#22d3ee] hover:text-white"
-            >
-              Visit source →
-            </a>
-          </div>
-        ))}
-      </div>
-
       {/* Error State */}
       {error && (
         <div className="bg-red-900/30 border border-red-700 p-4 text-red-300">
@@ -208,82 +185,108 @@ const IntelligenceFeeds = () => {
         </div>
       )}
 
-      {/* Loading State */}
-      {loading && feeds.length === 0 && (
+      {/* Loading Banner */}
+      {loading && (
+        <div className="bg-[#111820] border border-[#1c2a35] p-4" role="status">
+          <div className="flex items-center gap-3 mb-2">
+            <svg className="animate-spin w-4 h-4 text-[#4afa82]" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span className="font-mono text-sm text-[#4afa82]">
+              Fetching feeds from {Object.keys(sources).length} sources...
+            </span>
+          </div>
+          <div className="w-full bg-[#1c2a35] h-1">
+            <div className="bg-[#4afa82] h-1 animate-pulse" style={{ width: '60%' }}></div>
+          </div>
+        </div>
+      )}
+
+      {/* Loaded Confirmation */}
+      {!loading && feeds.length > 0 && (
+        <div className="bg-[#111820] border border-[#1c2a35] p-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-[#4afa82]">&#10003;</span>
+            <span className="font-mono text-sm text-slate-300">
+              {feeds.length} articles loaded from {Object.keys(sources).length} sources
+            </span>
+          </div>
+          {lastUpdated && (
+            <span className="text-xs text-slate-500">
+              {lastUpdated.toLocaleTimeString()}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Feed Container — stable min-height prevents layout bounce */}
+      <div className="min-h-[400px]">
+        {/* Empty State (only when not loading) */}
+        {!loading && filteredFeeds.length === 0 && (
+          <div className="text-center py-12 bg-[#111820] border border-[#1c2a35]">
+            <p className="text-slate-400">No articles found matching your criteria</p>
+          </div>
+        )}
+
+        {/* Feed Items */}
         <div className="space-y-4">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4 animate-pulse">
-              <div className="h-4 bg-[#1c2a35] rounded w-3/4 mb-3"></div>
-              <div className="h-3 bg-[#1c2a35] rounded w-full mb-2"></div>
-              <div className="h-3 bg-[#1c2a35] rounded w-2/3"></div>
-            </div>
+          {filteredFeeds.map((item) => (
+            <article
+              key={item.id}
+              className="bg-[#111820] border border-[#1c2a35] p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
+                  {sources[item.source]?.name || item.source.toUpperCase()}
+                </span>
+                <span className="text-xs text-slate-500">
+                  {formatTime(item.pubDate)}
+                </span>
+                {item.relevanceScore > 30 && (
+                  <span className="px-2 py-0.5 bg-red-900/50 text-red-300 text-xs rounded border border-red-700">
+                    HIGH RELEVANCE
+                  </span>
+                )}
+              </div>
+              
+              <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                </a>
+              </h2>
+              
+              {item.description && (
+                <p className="text-slate-400 text-sm mb-4 line-clamp-3">
+                  {item.description}
+                </p>
+              )}
+              
+              <div className="flex items-center justify-between">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#22d3ee] hover:text-white text-sm font-medium"
+                >
+                  Read full article →
+                </a>
+                <div className="flex items-center gap-2">
+                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                  </button>
+                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
-      )}
-
-      {/* Feed Items */}
-      {!loading && filteredFeeds.length === 0 && (
-        <div className="text-center py-12 bg-[#111820] border border-[#1c2a35]">
-          <p className="text-slate-400">No articles found matching your criteria</p>
-        </div>
-      )}
-
-      <div className="space-y-4">
-        {filteredFeeds.map((item) => (
-          <article
-            key={item.id}
-            className="bg-[#111820] border border-[#1c2a35] p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
-          >
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
-                {sources[item.source]?.name || item.source.toUpperCase()}
-              </span>
-              <span className="text-xs text-slate-500">
-                {formatTime(item.pubDate)}
-              </span>
-              {item.relevanceScore > 30 && (
-                <span className="px-2 py-0.5 bg-red-900/50 text-red-300 text-xs rounded border border-red-700">
-                  HIGH RELEVANCE
-                </span>
-              )}
-            </div>
-            
-            <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                {item.title}
-              </a>
-            </h2>
-            
-            {item.description && (
-              <p className="text-slate-400 text-sm mb-4 line-clamp-3">
-                {item.description}
-              </p>
-            )}
-            
-            <div className="flex items-center justify-between">
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#22d3ee] hover:text-white text-sm font-medium"
-              >
-                Read full article →
-              </a>
-              <div className="flex items-center gap-2">
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                  </svg>
-                </button>
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-        ))}
       </div>
 
       {/* Stats Footer */}
