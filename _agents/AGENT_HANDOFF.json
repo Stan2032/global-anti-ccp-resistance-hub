@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.7",
-    "date": "2026-03-01T20:50:00Z",
+    "version": "10.8",
+    "date": "2026-03-01T21:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.6, Session 127)",
+    "supersedes": "AGENT_HANDOFF.json (v10.7, Session 128)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -21,8 +21,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 947,
-    "test_files": 54,
+    "frontend_tests": 991,
+    "test_files": 57,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 128,
+    "sessions_completed": 129,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -58,6 +58,17 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_129_changes": {
+    "summary": "Test coverage for SecurityQuiz (multi-step interactive quiz with scoring), HongKongStatus (tabbed regional status page), and DetentionFacilities (filterable data-driven facility database with detail views). Three diverse component types: interactive quiz, tabbed content, and filterable list-detail.",
+    "new_test_files": [
+      "src/test/SecurityQuiz.test.jsx — 14 tests: rendering (first question, counter, 4 options, privacy notice), navigation (advance Q1→Q2, multi-question navigation), scoring (results screen, EXCELLENT at 30/30, AT RISK at 0/30), recommendations (shown for low scores, hidden for perfect), security resources (4 links with HTTPS/noopener), reset (retake returns to Q1)",
+      "src/test/HongKongStatus.test.jsx — 11 tests: header (title, status banner), key stats (4 stats: arrests/NSL/media/emigration), tab navigation (4 tabs, default Overview with closed orgs, Repressive Laws with NSL/Article 23, Arrests with Jimmy Lai/HK47/Chow, Exodus with emigration data), tab isolation (previous tab hidden), resources (3 links with noopener)",
+      "src/test/DetentionFacilities.test.jsx — 19 tests: rendering (header, warning, facility/active/region counts), facility cards (names, type badges), filters (search input, search filtering, empty state, region dropdown, type dropdown), detail view (click opens detail, evidence section, back button), evidence toggle, resources (3 links with HTTPS/noopener), sources list"
+    ],
+    "test_count": "991 tests across 57 files (was 947/54). 44 new tests across 3 files.",
+    "testing_patterns": "Use getAllByText for values that appear in multiple stats (e.g. '11' for both total facilities and active count). Mock SourceAttribution/SourcesList for components using them. Both dropdowns in DetentionFacilities have same aria-label 'Region filter' — use getAllByLabelText with index."
   },
 
   "session_128_changes": {
