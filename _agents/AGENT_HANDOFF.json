@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.8",
-    "date": "2026-03-01T21:00:00Z",
+    "version": "10.9",
+    "date": "2026-03-01T21:10:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 130), Sonnet 4 (Session 129), Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.7, Session 128)",
+    "supersedes": "AGENT_HANDOFF.json (v10.8, Session 129)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -21,8 +21,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 991,
-    "test_files": 57,
+    "frontend_tests": 1035,
+    "test_files": 60,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 129,
+    "sessions_completed": 130,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -58,6 +58,17 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_130_changes": {
+    "summary": "Test coverage for ResearchDashboard (multi-tab dashboard with search/filter and mocked data), TibetStatus (4-tab regional page with timeline, political prisoners, self-immolation stats, cultural erasure), and XinjiangStatus (4-tab regional page with international response, detention camps, forced labor, cultural genocide). All three are important user-facing regional/research components.",
+    "new_test_files": [
+      "src/test/ResearchDashboard.test.jsx — 16 tests: header, stats overview (using getAllByText for duplicated labels), 4 tabs (Overview with breakdowns, Prisoners with search/filter/empty state/health, News with intl response, Stations with search/empty state), search bar visibility per tab, status dropdown filtering",
+      "src/test/TibetStatus.test.jsx — 14 tests: header (title, OCCUPIED TERRITORY banner), 4 key stats (75 years/157+ immolations/1000+ prisoners/6000+ monasteries), 4 tabs (Overview with timeline, Repression with prisoners + Missing Panchen Lama, Self-Immolations with 157/136 stats + by-year, Cultural Erasure with categories + boarding school warning), tab isolation, 3 resource links with noopener",
+      "src/test/XinjiangStatus.test.jsx — 14 tests: header (title, GENOCIDE IN PROGRESS banner), 4 key stats (1-3M/380+/16000+/570000+), 4 tabs (Overview with 8 countries' response, Detention Camps with 4 facilities + ASPI link, Forced Labor with 4 sectors + UFLPA, Cultural Genocide with 4 categories + additional measures), tab isolation, 3 resource links with noopener"
+    ],
+    "test_count": "1035 tests across 60 files (was 991/57). 44 new tests across 3 files.",
+    "testing_patterns": "ResearchDashboard: mock ../data/researchData module with controlled test data. Use getAllByText for labels that appear both as stat names and tab buttons. Tab button indices: [1] for tabs when stat label is [0]."
   },
 
   "session_129_changes": {
