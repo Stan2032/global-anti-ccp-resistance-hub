@@ -1,6 +1,6 @@
 # Source Bias Audit — CCP Propaganda & Influence Assessment
 
-**Created:** 2026-02-19 (Session 24, Opus 4.6)  
+**Created:** 2026-02-19 (Session 24)  
 **Purpose:** Identify and document potential CCP propaganda/influence risks in sources used by this platform.  
 **Methodology:** Independent assessment of source ownership, funding, editorial stance, known compromises, and CCP targeting patterns.
 
@@ -290,7 +290,7 @@ Before adding any new data point to this platform:
 
 ## Change Log
 
-- 2026-02-19: Initial document created by Claude Opus 4.6 (Session 24)
+- 2026-02-19: Initial document created (Session 24)
   - Comprehensive source registry bias assessment
   - Spamouflage/DRAGONBRIDGE detection guide
   - CCP propaganda outlet blacklist
@@ -298,7 +298,7 @@ Before adding any new data point to this platform:
 
 ---
 
-**Agent Assignment Note:** This document requires Opus 4.6 or equivalent. Assessing bias risk requires:
+**Note:** Maintaining this document requires careful judgment. Assessing bias risk requires:
 - Understanding of CCP information warfare tactics
 - Knowledge of which researchers are CCP-targeted vs. genuinely compromised
 - Ability to distinguish CCP propaganda attacks from legitimate criticism

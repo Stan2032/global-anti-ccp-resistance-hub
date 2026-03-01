@@ -30,7 +30,7 @@ const themeColors = {
     text: 'text-gray-900',
     textSecondary: 'text-gray-600',
     border: 'border-gray-200',
-    accent: 'bg-[#22d3ee]',
+    accent: 'bg-[#22d3ee]',  // CSS overrides remap in .theme-light
   },
   'high-contrast': {
     name: 'High Contrast',

@@ -65,12 +65,6 @@ app.use('/api/v1/users', (await import('./routes/users.js')).default);
 app.use('/api/v1/organizations', (await import('./routes/organizations.js')).default);
 app.use('/api/v1/campaigns', (await import('./routes/campaigns.js')).default);
 app.use('/api/v1/intelligence', (await import('./routes/intelligence.js')).default);
-app.use('/api/v1/support-requests', (await import('./routes/supportRequests.js')).default);
-app.use('/api/v1/channels', (await import('./routes/channels.js')).default);
-app.use('/api/v1/modules', (await import('./routes/modules.js')).default);
-app.use('/api/v1/notifications', (await import('./routes/notifications.js')).default);
-app.use('/api/v1/statistics', (await import('./routes/statistics.js')).default);
-app.use('/api/v1/search', (await import('./routes/search.js')).default);
 app.use('/api/v1/feeds', (await import('./routes/feeds.js')).default);
 
 // 404 handler

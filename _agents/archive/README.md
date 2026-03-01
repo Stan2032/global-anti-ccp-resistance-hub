@@ -101,9 +101,22 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 - `Card.jsx` - Generic card UI component (71 lines). Zero imports anywhere in codebase. Useful pattern for future standardized card layouts.
 - `LoadingScreen.jsx` - Animated loading screen with motion effects and rotating icons (96 lines). Never imported — App.jsx defines a simpler inline version. Richer animations available for future use.
 
+### Completed Research (Archived Feb 26, 2026 — Session 120)
+These research files were completed and their findings integrated into the codebase. Kept as reference for future ethical-alternatives features:
+- `ALTERNATIVES_RATINGS.md` - China exposure ratings for alternative brands (426 lines). Criteria applied but no frontend component references this file.
+- `CHINA_EXPOSURE_CRITERIA.md` - Rating methodology for China exposure levels (310 lines). Historical criteria — integrated into research approach.
+- `DEMOCRATIC_BRANDS_RESEARCH.md` - Expanded research on brands manufactured in democratic countries (270 lines). Not yet integrated into any component.
+- `ETHICAL_ALTERNATIVES_RESEARCH.md` - Zero-China-manufacturing alternatives (148 lines). Not yet integrated into any component.
+- `DATA_VERIFICATION_LOG.md` - Accuracy audit log with direct source links (543 lines). Historical record of all verified claims. New verifications tracked in session notes.
+
+### Session Notes (Sessions 83-106, Archived Feb 26, 2026 — Session 120)
+Comprehensive notes covering Sessions 83-106. Superseded by AGENT_HANDOFF.json (v9.8+) which captures all relevant context:
+- `SESSION_83_97_COMPREHENSIVE_NOTES.md` - 15 sessions of reasoning, patterns, anti-patterns, and lessons learned across profile pages, design system, security, and data migrations.
+- `SESSION_98_106_NOTES.md` - 9 sessions covering orphan cleanup, dead code removal, file audits, and documentation consolidation.
+
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 115)*
+*Last updated: February 26, 2026 (Session 120)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*

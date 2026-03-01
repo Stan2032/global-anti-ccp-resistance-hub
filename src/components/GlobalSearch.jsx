@@ -21,7 +21,7 @@ const searchableContent = [
   { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
   { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
 
-  // Profile Pages (all 12 individuals)
+  // Profile Pages (all 15 individuals)
   { type: 'profile', title: 'Jimmy Lai', description: 'Hong Kong media mogul, Apple Daily founder — sentenced to 20 years', path: '/profiles/jimmy-lai', Icon: Users, keywords: ['hong kong', 'apple daily', 'media', 'nsl', 'press freedom'] },
   { type: 'profile', title: 'Ilham Tohti', description: 'Uyghur economist — life sentence for "separatism"', path: '/profiles/ilham-tohti', Icon: Users, keywords: ['uyghur', 'economist', 'xinjiang', 'sakharov'] },
   { type: 'profile', title: 'Joshua Wong', description: 'Hong Kong democracy activist — sentenced under NSL', path: '/profiles/joshua-wong', Icon: Users, keywords: ['hong kong', 'democracy', 'umbrella', 'demosisto'] },
@@ -277,7 +277,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                   <button
                     key={link.path}
                     onClick={() => handleResultClick(link)}
-                    className="flex items-center px-3 py-2 bg-[#111820] hover:bg-[#111820] transition-colors text-left"
+                    className="flex items-center px-3 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors text-left"
                   >
                     <span className="mr-2 flex items-center">
                       {link.Icon ? <link.Icon className="w-4 h-4" /> : link.icon}

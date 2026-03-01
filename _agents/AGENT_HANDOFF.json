@@ -1,28 +1,28 @@
 {
   "handoff": {
-    "version": "9.8",
-    "date": "2026-02-26T03:30:00Z",
+    "version": "11.2",
+    "date": "2026-03-01T22:45:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "sessions_completed": 133,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v9.7, Session 118)",
+    "supersedes": "AGENT_HANDOFF.json (v11.1, Session 132)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
   "critical_reads": [
     "_agents/NEXT_AGENT_PROMPT.md",
     "_agents/TODO.md",
-    "_agents/STYLE_GUIDE.md",
-    "_agents/thoughts/"
+    "_agents/QUESTIONS_FOR_HUMANS.md",
+    "_agents/STYLE_GUIDE.md"
   ],
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 654,
-    "test_files": 37,
+    "frontend_tests": 1076,
+    "test_files": 63,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,8 +31,8 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 119,
-    "eslint_status": "0_errors_10_warnings",
+    "sessions_completed": 132,
+    "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
     "mobile_responsiveness": "WCAG_2.5.5_44px_touch_targets_16px_base_font",
@@ -58,6 +58,143 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_131_changes": {
+    "summary": "Test coverage for TaiwanDefenseStatus (4-tab defense analysis with military balance, allied support, scenarios), ChinaTechThreats (4-tab surveillance/infrastructure/data/response tracker), and CompanyTracker (filterable company database with JSON data, search, categories, expand/collapse). All three are complex data-heavy components.",
+    "new_test_files": [
+      "src/test/TaiwanDefenseStatus.test.jsx — 14 tests: header (title, ELEVATED THREAT LEVEL banner), 4 tabs (Overview with recent developments + key stats, Military Balance with PLA vs Taiwan data + advantages, Allied Support with US arms table + 5 ally countries, Scenarios with 4 levels + warning indicators), tab isolation, 3 resource links with noopener",
+      "src/test/ChinaTechThreats.test.jsx — 14 tests: header (title, 4 stats including sanctioned companies/countries/safe cities/app users), 4 tabs (Surveillance Tech with 8 companies + threat levels, Critical Infrastructure with 5 sectors + risk levels, Data Collection with 5 apps + BGI genomics warning, Global Response with 8 countries + actionable advice), tab isolation, 3 resource links with noopener",
+      "src/test/CompanyTracker.test.jsx — 13 tests: header (title), stats (Companies Tracked with getAllByText for duplicated 'Avoid'), search (input, filter by name, empty state), category filter (7 buttons, filter by Technology), company cards (hardcoded Hikvision/TikTok, source attribution), status legend (3 descriptions), ASPI resources (link with noopener), disclaimer"
+    ],
+    "test_count": "1076 tests across 63 files (was 1035/60). 41 new tests across 3 files.",
+    "testing_patterns": "CompanyTracker: mock SourceAttribution + SourcesList + GlobalDisclaimer. 'Avoid'/'Concern'/'Improving' appear in both stat labels and company badges — use getAllByText. Research data from JSON overwrites hardcoded companies (case-insensitive dedup) — 'SHEIN' from research replaces 'Shein'. Use unique hardcoded company names like 'Hikvision' for search filter tests."
+  },
+
+  "session_130_changes": {
+    "summary": "Test coverage for ResearchDashboard (multi-tab dashboard with search/filter and mocked data), TibetStatus (4-tab regional page with timeline, political prisoners, self-immolation stats, cultural erasure), and XinjiangStatus (4-tab regional page with international response, detention camps, forced labor, cultural genocide). All three are important user-facing regional/research components.",
+    "new_test_files": [
+      "src/test/ResearchDashboard.test.jsx — 16 tests: header, stats overview (using getAllByText for duplicated labels), 4 tabs (Overview with breakdowns, Prisoners with search/filter/empty state/health, News with intl response, Stations with search/empty state), search bar visibility per tab, status dropdown filtering",
+      "src/test/TibetStatus.test.jsx — 14 tests: header (title, OCCUPIED TERRITORY banner), 4 key stats (75 years/157+ immolations/1000+ prisoners/6000+ monasteries), 4 tabs (Overview with timeline, Repression with prisoners + Missing Panchen Lama, Self-Immolations with 157/136 stats + by-year, Cultural Erasure with categories + boarding school warning), tab isolation, 3 resource links with noopener",
+      "src/test/XinjiangStatus.test.jsx — 14 tests: header (title, GENOCIDE IN PROGRESS banner), 4 key stats (1-3M/380+/16000+/570000+), 4 tabs (Overview with 8 countries' response, Detention Camps with 4 facilities + ASPI link, Forced Labor with 4 sectors + UFLPA, Cultural Genocide with 4 categories + additional measures), tab isolation, 3 resource links with noopener"
+    ],
+    "test_count": "1035 tests across 60 files (was 991/57). 44 new tests across 3 files.",
+    "testing_patterns": "ResearchDashboard: mock ../data/researchData module with controlled test data. Use getAllByText for labels that appear both as stat names and tab buttons. Tab button indices: [1] for tabs when stat label is [0]."
+  },
+
+  "session_129_changes": {
+    "summary": "Test coverage for SecurityQuiz (multi-step interactive quiz with scoring), HongKongStatus (tabbed regional status page), and DetentionFacilities (filterable data-driven facility database with detail views). Three diverse component types: interactive quiz, tabbed content, and filterable list-detail.",
+    "new_test_files": [
+      "src/test/SecurityQuiz.test.jsx — 14 tests: rendering (first question, counter, 4 options, privacy notice), navigation (advance Q1→Q2, multi-question navigation), scoring (results screen, EXCELLENT at 30/30, AT RISK at 0/30), recommendations (shown for low scores, hidden for perfect), security resources (4 links with HTTPS/noopener), reset (retake returns to Q1)",
+      "src/test/HongKongStatus.test.jsx — 11 tests: header (title, status banner), key stats (4 stats: arrests/NSL/media/emigration), tab navigation (4 tabs, default Overview with closed orgs, Repressive Laws with NSL/Article 23, Arrests with Jimmy Lai/HK47/Chow, Exodus with emigration data), tab isolation (previous tab hidden), resources (3 links with noopener)",
+      "src/test/DetentionFacilities.test.jsx — 19 tests: rendering (header, warning, facility/active/region counts), facility cards (names, type badges), filters (search input, search filtering, empty state, region dropdown, type dropdown), detail view (click opens detail, evidence section, back button), evidence toggle, resources (3 links with HTTPS/noopener), sources list"
+    ],
+    "test_count": "991 tests across 57 files (was 947/54). 44 new tests across 3 files.",
+    "testing_patterns": "Use getAllByText for values that appear in multiple stats (e.g. '11' for both total facilities and active count). Mock SourceAttribution/SourcesList for components using them. Both dropdowns in DetentionFacilities have same aria-label 'Region filter' — use getAllByLabelText with index."
+  },
+
+  "session_128_changes": {
+    "summary": "Test coverage for LiveStatistics (animated counters with IntersectionObserver), EmergencyAlerts (dismiss/persist/expand with localStorage), and QuickFacts (clipboard/Twitter share). These are 3 key user-facing components that were previously untested. Also added Q10-Q11 to QUESTIONS_FOR_HUMANS.md.",
+    "new_test_files": [
+      "src/test/LiveStatistics.test.jsx — 20 tests: header (title, context paragraph, data notice, last updated), all 8 statistics (Political Prisoners, Uyghurs, Police Stations, Confucius Institutes, HK Prisoners, Forced Returns, Journalists, Organ Harvesting), trends, context sections (Why Numbers Matter, Data Verification, Underreported Reality), 6 source links (CECC, Safeguard Defenders, ASPI, HK Watch, CPJ, China Tribunal), HTTPS validation, noopener target, no CCP media",
+      "src/test/EmergencyAlerts.test.jsx — 18 tests: rendering (4 alerts, summaries, type badges, dates), external links (action links, target blank), expand/collapse (expand button, expand details, collapse, all links in expanded view), dismiss (removes alert, count display, localStorage persistence, restore from localStorage, show-dismissed restores all, null when all dismissed), accessibility (dismiss aria-label, expand aria-label)",
+      "src/test/QuickFacts.test.jsx — 14 tests: header (title, instructions), all 8 categories and statistics, descriptions, source attributions (with getAllByText for duplicates), HTTPS source links, clipboard copy (card click, copied indicator with async wait, hashtags), Twitter share (8 buttons, window.open URL), usage tips section, no CCP media"
+    ],
+    "questions_added": [
+      "Q10 — Test coverage strategy: breadth vs depth vs features",
+      "Q11 — EmergencyAlerts content freshness: data-driven with expiry dates"
+    ],
+    "test_count": "947 tests across 54 files (was 895/51). 52 new tests across 3 files.",
+    "testing_patterns": "IntersectionObserver mock needs class syntax (not vi.fn), localStorage mock needs mockReset + mockImplementation in beforeEach, clipboard writeText needs vi.waitFor for async state updates"
+  },
+
+  "session_127_changes": {
+    "summary": "SanctionsTracker and DataExport test coverage + QUESTIONS_FOR_HUMANS.md for perpetual autonomous agent work. SanctionsTracker is the core sanctions display component with dual-axis filtering (country × type). DataExport handles researcher data downloads with dataset selection, format choice, and export generation. QUESTIONS_FOR_HUMANS.md enables agents to queue decisions without blocking.",
+    "new_files": [
+      "_agents/QUESTIONS_FOR_HUMANS.md — Active questions file for ongoing human decisions. Contains Q6-Q9 (backend cache docs, feature priorities, Supabase Auth scope, Tor .onion routing). Standing instructions section. Protocol for future agents to add/answer questions. Enables perpetual autonomous work by decoupling human decisions from agent progress."
+    ],
+    "new_test_files": [
+      "src/test/SanctionsTracker.test.jsx — 15 tests: rendering (header, stats with correct totals, country filters ×6, type filters ×5), country filtering (US shows Carrie Lam hides UK targets, All Countries returns all), type filtering (Entity shows Hikvision hides individuals), combined filters (US + Entity), sanction details (target/role/reason/date), law links with URLs, CTA section (CECC link external), sources with last_verified date",
+      "src/test/DataExport.test.jsx — 18 tests: rendering (header, CC BY 4.0 license, all 8 datasets, record counts), dataset selection (click select, click deselect, Select All, Clear), format selection (JSON/CSV/Markdown, default, switching), export button (disabled when empty, enabled when selected), record calculation (multi-dataset totals), usage guidelines (recommended uses, attribution format)"
+    ],
+    "doc_updates": [
+      "TODO.md — Updated Current State Summary to Session 127 (895 tests, 51 files). Updated test count in Technical Debt section.",
+      "AGENT_HANDOFF.json — v10.6 with 895 tests, 51 files, Session 127"
+    ],
+    "test_count": "895 tests across 51 files (was 862/49). 33 new tests across 2 files.",
+    "perpetual_work_protocol": "QUESTIONS_FOR_HUMANS.md enables agents to: (1) check for answered questions at session start, (2) add new questions without blocking, (3) continue autonomous work while human decisions accumulate. This replaces ad-hoc decision tracking in archive."
+  },
+
+  "session_126_changes": {
+    "summary": "Test coverage for IncidentReportForm (multi-step wizard with Supabase integration) and InteractiveTimeline (data visualization with filtering, navigation, and auto-play). IncidentReportForm is 1 of 4 Supabase-wired forms — now all 4 have tests. InteractiveTimeline is a key data display component covering 31 events across 6 categories.",
+    "new_test_files": [
+      "src/test/IncidentReportForm.test.jsx — 23 tests: Step 1 (header, 9 incident types, disabled/enabled Continue), Step 2 (navigation, detail fields, Back button), Step 3 (anonymous toggle, consent, email show/hide, summary, submit disabled), backend integration (Coming Soon notice, footer states), submission (static fallback, Supabase connected with correct params, error handling, success screen with reporting orgs, form reset, backend-aware message)",
+      "src/test/InteractiveTimeline.test.jsx — 15 tests: rendering (header, 7 categories, stats, counter, placeholder, legend, zoom), filtering (Hong Kong filter, All Events return), navigation (next/previous with wrapping), event selection (marker click), auto-play (3s advance, pause stops), statistics display"
+    ],
+    "test_count": "862 tests across 49 files (was 824/47). 38 new tests across 2 files.",
+    "forms_now_tested": "All 4 Supabase-wired forms now have tests: ContactForm (9), VolunteerSignup (9), NewsDigest (9), IncidentReportForm (23). The IncidentReportForm has the most tests due to its 3-step wizard complexity.",
+    "components_now_tested": "IncidentReportForm, InteractiveTimeline added. Major untested components remaining: SanctionsTracker, ContactRepresentatives, WhistleblowerPortal, LegalResourcesHub, LiveStatistics"
+  },
+
+  "session_125_changes": {
+    "summary": "Test coverage for useLiveData hook (3 custom hooks) and Footer component. useLiveData.js was the only untested hook — handles async RSS feed fetching, political prisoner loading, and statistics with auto-refresh intervals. Footer.jsx is a core infrastructure component with emergency contacts, partner links, security notice, and accessibility features.",
+    "new_test_files": [
+      "src/test/useLiveData.test.jsx — 14 tests: useLiveFeeds (loading state, success data, error handling, FEED_SOURCES exposure, refresh function, auto-refresh interval setup, cleanup on unmount, skip interval when 0), usePoliticalPrisoners (loading state, success data, error handling), useStatistics (loading state, success data, error handling). Uses vi.useFakeTimers + vi.advanceTimersByTimeAsync for proper async hook testing.",
+      "src/test/Footer.test.jsx — 22 tests: structure (semantic footer, 4 section headings), platform links (Dashboard route, Prisoners route, all 5), resource links (all 5), organization links (external target/_blank, HTTPS URLs), emergency contacts (phone tel: link, email mailto: link), security notice (text, Tor Browser link, VPN link), bottom bar (version, GitHub link, Twitter share, copyright year, CC BY 4.0, MIT license, solidarity text), accessibility (aria-hidden on decorative borders, sr-only solidarity slogans)"
+    ],
+    "test_count": "824 tests across 47 files (was 788/45). 36 new tests across 2 files.",
+    "hooks_now_tested": "All 3 hooks now have tests: useDocumentTitle (6 tests), useWebRTCLeakCheck (9 tests), useLiveData (14 tests). 0 untested hooks remaining.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_124_changes": {
+    "summary": "Data integrity test coverage for 6 previously untested JSON research files. These files contain critical human rights documentation data (forced labor companies, overseas police stations, human rights organizations, academic experts, international responses, recent news) that had zero validation tests.",
+    "new_test_files": [
+      "src/test/forced-labor-data.test.js — 8 tests: results array, entry count (≥25), required fields (company/industry/connection_type/status), unique company names, HTTPS source URLs, valid industry categories, evidence fields, no errors",
+      "src/test/police-stations-data.test.js — 9 tests: results array, entry count (≥25), required fields (country/city/status), ≥20 countries coverage, valid status categories (OPERATING/CLOSED/UNDER INVESTIGATION/UNKNOWN), HTTPS source URLs, government_response field, no errors, key countries present (UK/NL/CA/US)",
+      "src/test/human-rights-orgs-data.test.js — 10 tests: results array, entry count (≥40), required fields (organization/focus_area/org_type), unique org names, ≥95% source URL coverage, HTTPS URLs, website/donation_url fields, HTTPS websites, valid org_type categories, no errors",
+      "src/test/academic-experts-data.test.js — 8 tests: results array, entry count (≥20), required fields (name/affiliation/expertise), unique names, HTTPS source URLs, key_works/media_presence fields, no errors, includes well-known scholars (Zenz/Byler)",
+      "src/test/international-responses-data.test.js — 9 tests: results array, entry count (≥25), required fields (country/overall_stance), unique countries, HTTPS source URLs, genocide_recognition/sanctions_imposed fields, legislative/diplomatic_actions fields, major powers included (US/UK/CA), no errors",
+      "src/test/recent-news-data.test.js — 8 tests: results array, entry count (≥15), required fields (topic/headline/summary/date/source), HTTPS source URLs, YYYY-MM-DD date format, significance/action_needed fields, no CCP state media sources, no errors"
+    ],
+    "test_count": "788 tests across 45 files (was 736/39). 52 new data integrity tests across 6 files.",
+    "data_coverage_improvement": "JSON research data coverage increased from 11/17 to 17/17 files (100%). All research data files now have validation tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_123_changes": {
+    "summary": "GlobalSearch test coverage (33 tests) + minor bug fixes. GlobalSearch.jsx was a critical untested component handling search scoring, keyboard navigation, debounce, and result rendering.",
+    "new_test_file": "src/test/GlobalSearch.test.jsx — 33 tests covering: rendering (open/close, input, quick links, shortcuts footer), search functionality (title/profile/keyword matching, no results, max 10 results, clear), scoring (title > keyword priority, starts-with > contains), keyboard navigation (ArrowDown/Up bounds checking, Enter to navigate, Escape to close), click interactions (result click, backdrop close, quick link click), accessibility (listbox/option roles, aria-selected), index completeness (all 10 pages, all 15 profiles), debounce (150ms delay), useGlobalSearch hook (open/close/Ctrl+K/Meta+K).",
+    "bug_fixes": "Fixed stale comment '12 individuals' → '15 individuals' (15 profiles indexed). Fixed non-functional hover on quick links — hover:bg-[#111820] was identical to bg-[#111820], changed to hover:bg-[#1c2a35].",
+    "test_count": "736 tests across 39 files (was 703/38). 33 new GlobalSearch tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_122_changes": {
+    "summary": "Theme system test coverage + light theme WCAG AA contrast fix. Added 49 tests for the theme system that had zero test coverage since Session 121. Found and fixed accessibility contrast failure in light theme accent colors.",
+    "new_test_file": "src/test/theme-system.test.jsx — 49 tests covering: theme constants (4 identifiers), ThemeProvider (localStorage persistence, dark default, invalid fallback, class application, themeConfig), ThemeToggle (accessible label, dark→light→hc→dark cycling), useTheme error case, CSS variable definitions (all 11 vars in :root/.theme-light/.theme-high-contrast), Tailwind override selectors (10 selectors verified), dark-mode scope, WCAG AA contrast for light theme (7 colors × 2 backgrounds), WCAG AA contrast for high-contrast theme (4 colors × 2 backgrounds).",
+    "wcag_fix": "Light theme accent colors failed WCAG AA 4.5:1 minimum — #059669 (emerald-600) was 3.60:1, #0891b2 (cyan-600) was 3.52:1 on #f8fafc background. Fixed: --th-accent #059669→#047857 (emerald-700, 5.24:1), --th-accent-cyan #0891b2→#0e7490 (cyan-700, 5.12:1). Updated all .theme-light CSS overrides to match.",
+    "test_count": "703 tests across 38 files (was 654/37). 49 new theme system tests.",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_121_changes": {
+    "summary": "Theme system CSS implementation + ESLint error fixes. The ThemeProvider (ThemeContext.jsx) has always set theme-dark/theme-light/theme-high-contrast classes on <html>, but no CSS responded to them — light mode and high contrast were completely non-functional. Now theme toggle actually works.",
+    "theme_css": "Added CSS custom properties (--th-bg-page, --th-bg-surface, --th-border, --th-text-heading, --th-text-body, --th-accent, etc.) with :root (dark default), .theme-light, and .theme-high-contrast overrides. Replaced hardcoded hex values in body/typography/links/scrollbar/focus/utility classes with var() references. Added Tailwind arbitrary-value class overrides (.theme-light .bg-\\[#0a0e14\\] etc.) so bg-[#0a0e14], bg-[#111820], border-[#1c2a35], text-[#4afa82], text-[#22d3ee] all respond to theme changes. Scoped dark-mode contrast overrides to :root:not(.theme-light):not(.theme-high-contrast) so they don't force light-text-on-light-bg.",
+    "eslint_fix": "Fixed 3 no-useless-escape errors in SocialMediaToolkit.jsx — removed unnecessary \\' in template literals (backtick strings don't need escaped single quotes). ESLint now 0 errors, 7 warnings (was 3 errors, 7 warnings).",
+    "todo_fix": "Updated stale TODO.md reference claiming backend socket.io still needs removal (was done Session 118/120). Marked dark mode TODO as complete.",
+    "test_count": "654 tests across 37 files (unchanged).",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
+  },
+
+  "session_120_changes": {
+    "summary": "File archival + code cleanup. Fixed QuickFacts.jsx duplicate cyan key (build warning). Archived 5 completed research files and 2 session notes to _agents/archive/. Updated _agents/README.md to reflect current structure.",
+    "quickfacts_fix": "Removed duplicate 'cyan' key in QuickFacts.jsx colorClasses object (line 97). First entry (line 93) uses correct terminal cyan #22d3ee. Second entry used non-design-system border-l-cyan-500. Build warning eliminated.",
+    "archived_research": "ALTERNATIVES_RATINGS.md (426 lines), CHINA_EXPOSURE_CRITERIA.md (310 lines), DEMOCRATIC_BRANDS_RESEARCH.md (270 lines), ETHICAL_ALTERNATIVES_RESEARCH.md (148 lines), DATA_VERIFICATION_LOG.md (543 lines) — all moved from _agents/research/ to _agents/archive/. Two actively-referenced files kept: DATA_SOURCES.md (DataSources.jsx), SOURCE_BIAS_AUDIT.md (sourceLinks.js).",
+    "archived_thoughts": "SESSION_83_97_COMPREHENSIVE_NOTES.md and SESSION_98_106_NOTES.md — moved to _agents/archive/. Superseded by AGENT_HANDOFF.json session blocks.",
+    "docs_updated": "_agents/archive/README.md (new sections for archived research + thoughts), _agents/README.md (updated folder structure to reflect current state).",
+    "test_count": "654 tests across 37 files (unchanged).",
+    "active_agents_structure": "7 root, 1 planning, 2 research, 0 thoughts, 73 archive"
   },
 
   "session_119_changes": {
@@ -320,7 +457,7 @@
       "status": "MOSTLY_COMPLETE",
       "severity": "LOW",
       "description": "SITE_CLEANUP_TODO.md ~80% complete. Emoji ✅, accessibility ✅, perf ✅, typography ✅, tabs ✅, disclaimers ✅, nav ✅, mobile ✅, data migrations 5/5 ✅, orphans 0 ✅, semantic buttons ✅, heading hierarchy ✅, color standardization in progress. Blue→terminal green remaining (~459 instances across many files).",
-      "recommendation": "Blue color standardization is the biggest remaining item. Assign to Sonnet 4.5 for batch UI work. See _agents/planning/SITE_CLEANUP_TODO.md"
+      "recommendation": "Blue color standardization is the biggest remaining item. See _agents/planning/SITE_CLEANUP_TODO.md"
     },
     "simulated_data_phase2": {
       "status": "COMPLETE",
@@ -336,32 +473,28 @@
       "task": "backend_connection_phase2",
       "description": "All 4 forms wired to Supabase: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next: add Supabase Auth for admin dashboard, deploy backend to production.",
       "estimated_hours": 4,
-      "status": "COMPLETE_FORMS_WIRED",
-      "agent": "Opus 4.6"
+      "status": "COMPLETE_FORMS_WIRED"
     },
     {
       "priority": 2,
       "task": "site_cleanup_typography",
       "description": "SITE_CLEANUP_TODO.md Priority 1 DONE: text-xs bumped 12→14px, text-sm bumped 14→16px, text-base gets leading-relaxed, paragraph font-weight improved, contrast overrides in place.",
       "estimated_hours": 0,
-      "status": "COMPLETE",
-      "agent": "Sonnet 4"
+      "status": "COMPLETE"
     },
     {
       "priority": 3,
       "task": "content_monitoring",
       "description": "Update political prisoners database with new cases, monitor appeal proceedings (Jimmy Lai, Joshua Wong). Check 2026 sanctions updates.",
       "estimated_hours": 4,
-      "status": "ONGOING",
-      "agent": "Opus 4.6"
+      "status": "ONGOING"
     },
     {
       "priority": 4,
       "task": "simulated_data_phase2",
       "description": "ALL 5/5 data migrations complete. PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read from JSON. No hardcoded data arrays remain. 7 orphan components removed (2,043 lines). Orphan detection test prevents regression.",
       "estimated_hours": 0,
-      "status": "COMPLETE",
-      "agent": "Sonnet 4 (Session 90: CCPOfficials, Session 102: Timeline, Session 103: orphan cleanup)"
+      "status": "COMPLETE"
     }
   ],
 

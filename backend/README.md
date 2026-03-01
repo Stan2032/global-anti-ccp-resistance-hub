@@ -2,44 +2,40 @@
 
 Backend API for the Global Anti-CCP Resistance Hub platform.
 
+> **Status:** NOT YET DEPLOYED. The frontend currently uses Supabase for form submissions.
+> See `SUPABASE_SETUP.md` and `BACKEND_GUIDE.md` in the project root for current integration details.
+
 ## Features
 
 - ✅ User authentication and authorization (JWT)
 - ✅ PostgreSQL database with migrations
-- ✅ Redis caching and sessions
-- ✅ Real-time WebSocket communication (Socket.IO)
 - ✅ Email notifications
 - ✅ Comprehensive error handling
 - ✅ Request logging and monitoring
 - ✅ Rate limiting and security headers
 - ✅ Input validation with Joi
-- ✅ Docker support
+- ✅ RSS feed polling and aggregation
 
 ## Tech Stack
 
 - **Runtime:** Node.js 18+
 - **Framework:** Express.js 4.18+
 - **Database:** PostgreSQL 14+
-- **Cache:** Redis 7+
-- **Real-Time:** Socket.IO 4+
 - **Testing:** Jest 29+
-- **Containerization:** Docker
 
 ## Quick Start
 
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL 14+
-- Redis 7+
-- Docker & Docker Compose (optional)
+- PostgreSQL 14+ (or use in-memory mock for development)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/Stan2032/global-anti-ccp-resistance-hub.git
-cd resistance-hub-backend
+cd global-anti-ccp-resistance-hub/backend
 ```
 
 2. Install dependencies:
@@ -47,32 +43,26 @@ cd resistance-hub-backend
 npm install
 ```
 
-3. Create `.env` file:
-```bash
-cp .env.example .env
-```
-
-4. Configure environment variables in `.env`
+3. Create `.env` file (see Environment Variables below)
 
 ### Development
 
-#### Using Docker Compose (Recommended)
+#### Quick Start (In-Memory Mock Database)
 
 ```bash
-docker-compose up -d
+cd backend
+npm install
+npm start
 ```
 
-This will start:
-- PostgreSQL database on port 5432
-- Redis on port 6379
-- Node.js API on port 3000
+No PostgreSQL required — automatically uses in-memory mock database in development mode.
 
-#### Manual Setup
+#### With PostgreSQL
 
-1. Start PostgreSQL and Redis
+1. Start PostgreSQL
 2. Run migrations:
 ```bash
-npm run migrate
+npm run setup-db
 ```
 
 3. Start development server:
@@ -85,66 +75,53 @@ The API will be available at `http://localhost:3000`
 ### API Documentation
 
 - **Health Check:** `GET /health`
-- **API Docs:** `GET /api/docs` (Swagger UI)
-- **OpenAPI Spec:** `GET /api/openapi.json`
 
 ### Testing
 
 ```bash
-# Run all tests
+# Run all tests (requires PostgreSQL)
 npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm test -- --coverage
-```
-
-### Linting
-
-```bash
-npm run lint
 ```
 
 ## Project Structure
 
 ```
-src/
+backend/src/
 ├── server.js              # Main application entry point
-├── middleware/            # Express middleware
-│   ├── auth.js           # Authentication & JWT
-│   ├── errorHandler.js   # Error handling
-│   └── requestLogger.js  # Request logging
-├── routes/               # API route handlers
-│   ├── auth.js
-│   ├── users.js
-│   ├── organizations.js
-│   ├── campaigns.js
-│   ├── intelligence.js
-│   ├── supportRequests.js
-│   ├── channels.js
-│   ├── modules.js
-│   ├── notifications.js
-│   ├── statistics.js
-│   └── search.js
-├── services/             # Business logic
-│   └── emailService.js
-├── db/                   # Database
-│   ├── connection.js     # Database connection
-│   ├── migrations/       # Database migrations
-│   └── seeds/            # Database seeds
-├── cache/                # Caching
-│   └── redis.js          # Redis client
-├── validators/           # Input validation
-│   └── schemas.js        # Joi schemas
-└── utils/                # Utilities
-    └── logger.js         # Winston logger
+├── middleware/             # Express middleware
+│   ├── auth.js            # Authentication & JWT
+│   ├── errorHandler.js    # Error handling
+│   └── requestLogger.js   # Request logging
+├── routes/                # API route handlers
+│   ├── auth.js            # Authentication (register, login, refresh, verify, reset)
+│   ├── users.js           # User profiles and management
+│   ├── organizations.js   # Organization CRUD with verification
+│   ├── campaigns.js       # Campaign management
+│   ├── intelligence.js    # CCP data, prisoners, officials, threats
+│   └── feeds.js           # RSS feed aggregation
+├── services/              # Business logic
+│   ├── authService.js     # Authentication logic
+│   ├── userService.js     # User management
+│   ├── campaignService.js # Campaign logic
+│   ├── organizationService.js # Organization logic
+│   ├── feedService.js     # RSS feed parsing
+│   ├── feedScheduler.js   # Scheduled feed polling
+│   ├── emailService.js    # Email sending
+│   └── cacheService.js    # In-memory LRU cache
+├── data/                  # Static data
+│   ├── ccpViolationsData.js  # Human rights violation data
+│   └── regionalThreats.js    # Regional threat assessments
+├── db/                    # Database
+│   ├── connection.js      # PostgreSQL connection pool
+│   ├── database.js        # Query wrapper (mock in dev)
+│   └── runMigrations.js   # Migration runner
+├── validators/            # Input validation (Joi schemas)
+└── utils/                 # Utilities (Winston logger)
 ```
 
-## API Endpoints
+## Active API Endpoints
 
-### Authentication (✅ Fully Implemented)
+### Authentication (✅ Implemented)
 - `POST /api/v1/auth/register` - Register new user
 - `POST /api/v1/auth/login` - Login user
 - `POST /api/v1/auth/refresh` - Refresh access token
@@ -154,46 +131,46 @@ src/
 - `POST /api/v1/auth/logout` - Logout user
 - `GET /api/v1/auth/me` - Get current user
 
-### Users (✅ Fully Implemented)
+### Users (✅ Implemented)
 - `GET /api/v1/users/profile` - Get own profile
 - `PUT /api/v1/users/profile` - Update own profile
 - `PUT /api/v1/users/settings` - Update user settings
-- `GET /api/v1/users/:id` - Get user by ID (admin/moderator only)
-- `GET /api/v1/users/username/:username` - Get public profile by username
-- `GET /api/v1/users` - List users (admin/moderator only)
-- `DELETE /api/v1/users/:id` - Delete user (admin only)
+- `GET /api/v1/users/:id` - Get user by ID (admin/moderator)
+- `GET /api/v1/users/username/:username` - Get public profile
+- `GET /api/v1/users` - List users (admin/moderator)
+- `DELETE /api/v1/users/:id` - Delete user (admin)
 
-### Organizations (✅ Fully Implemented)
-- `GET /api/v1/organizations` - List organizations with filters (search, verification status, type, country, focus area)
-- `GET /api/v1/organizations/search` - Search organizations
-- `GET /api/v1/organizations/:id` - Get organization by ID or slug
-- `POST /api/v1/organizations` - Create organization (authenticated)
-- `PUT /api/v1/organizations/:id` - Update organization (admin only)
-- `DELETE /api/v1/organizations/:id` - Delete organization (admin only)
-- `POST /api/v1/organizations/:id/verify` - Verify organization (admin only)
+### Organizations (✅ Implemented)
+- `GET /api/v1/organizations` - List with filters
+- `GET /api/v1/organizations/search` - Search
+- `GET /api/v1/organizations/:id` - Get by ID or slug
+- `POST /api/v1/organizations` - Create (authenticated)
+- `PUT /api/v1/organizations/:id` - Update (admin)
+- `DELETE /api/v1/organizations/:id` - Delete (admin)
+- `POST /api/v1/organizations/:id/verify` - Verify (admin)
 
-### Campaigns (✅ Fully Implemented)
-- `GET /api/v1/campaigns` - List campaigns with filters (search, status, type, priority, country, organization)
-- `GET /api/v1/campaigns/:id` - Get campaign by ID or slug
-- `GET /api/v1/campaigns/:id/members` - Get campaign members
-- `POST /api/v1/campaigns` - Create campaign (authenticated)
-- `PUT /api/v1/campaigns/:id` - Update campaign (creator or admin)
-- `DELETE /api/v1/campaigns/:id` - Delete campaign (creator or admin)
-- `POST /api/v1/campaigns/:id/join` - Join campaign (authenticated)
-- `POST /api/v1/campaigns/:id/leave` - Leave campaign (authenticated)
-- `POST /api/v1/campaigns/:id/progress` - Update campaign progress (creator or admin)
+### Campaigns (✅ Implemented)
+- `GET /api/v1/campaigns` - List with filters
+- `GET /api/v1/campaigns/:id` - Get by ID or slug
+- `GET /api/v1/campaigns/:id/members` - Get members
+- `POST /api/v1/campaigns` - Create (authenticated)
+- `PUT /api/v1/campaigns/:id` - Update (creator/admin)
+- `DELETE /api/v1/campaigns/:id` - Delete (creator/admin)
+- `POST /api/v1/campaigns/:id/join` - Join (authenticated)
+- `POST /api/v1/campaigns/:id/leave` - Leave (authenticated)
+- `POST /api/v1/campaigns/:id/progress` - Update progress
 
-### Intelligence (✅ Partially Implemented - Mock Data)
-- `GET /api/v1/intelligence/sources` - List intelligence sources
+### Intelligence (✅ Implemented — static data)
+- `GET /api/v1/intelligence/sources` - Intelligence sources
 - `GET /api/v1/intelligence/databases` - Research databases
-- `GET /api/v1/intelligence/tactics` - CCP tactics documentation
-- `GET /api/v1/intelligence/prisoners` - Political prisoners list
-- `GET /api/v1/intelligence/prisoners/:name` - Specific prisoner details
-- `GET /api/v1/intelligence/officials` - Sanctioned CCP officials
-- `GET /api/v1/intelligence/threats/*` - Regional threat assessments
-- `POST /api/v1/intelligence/analyze` - Analyze text for CCP relevance
+- `GET /api/v1/intelligence/tactics` - CCP tactics
+- `GET /api/v1/intelligence/prisoners` - Political prisoners
+- `GET /api/v1/intelligence/prisoners/:name` - Specific prisoner
+- `GET /api/v1/intelligence/officials` - Sanctioned officials
+- `GET /api/v1/intelligence/threats/*` - Regional threats
+- `POST /api/v1/intelligence/analyze` - Text analysis
 
-### Feeds (✅ Fully Implemented)
+### Feeds (✅ Implemented)
 - `GET /api/v1/feeds` - List feed items with filters
 - `GET /api/v1/feeds/sources` - List feed sources
 - `GET /api/v1/feeds/stats` - Feed statistics
@@ -201,35 +178,17 @@ src/
 - `POST /api/v1/feeds/:id/share` - Track share event
 - `POST /api/v1/feeds/poll` - Trigger immediate poll (admin)
 
-### Support Requests (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
-### Channels (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
-### Modules (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
-### Notifications (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
-### Statistics (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
-### Search (⏳ Stub Only)
-- Endpoints defined but not yet implemented
-
 ## Environment Variables
-
-See `.env.example` for all available configuration options.
 
 Key variables:
 - `NODE_ENV` - Environment (development/production)
-- `PORT` - Server port
+- `PORT` - Server port (default: 3000)
 - `DATABASE_URL` - PostgreSQL connection string
-- `REDIS_URL` - Redis connection string
 - `JWT_SECRET` - JWT signing secret
-- `SMTP_*` - Email configuration
+- `JWT_REFRESH_SECRET` - JWT refresh token secret
+- `SMTP_*` - Email configuration (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD)
+- `CORS_ORIGIN` - Allowed CORS origin (default: http://localhost:5173)
+- `FEED_POLL_INTERVAL_MINUTES` - RSS feed poll interval (default: 15)
 
 ## Database
 
@@ -310,70 +269,12 @@ See migration files in `src/db/migrations/` for complete schema.
 - Password hashing with bcrypt (cost 12)
 - CORS protection
 - Helmet.js security headers
-- Rate limiting
+- Rate limiting (100 req/15min general, 5 req/15min login)
 - Input validation with Joi
 - SQL injection prevention (parameterized queries)
-- CSRF protection (ready)
-- E2E encryption for messages (ready)
 
-## Monitoring
+## Related Documentation
 
-- Winston logging
-- Request logging middleware
-- Error tracking (Sentry ready)
-- Performance monitoring (New Relic ready)
-
-## Deployment
-
-### Docker
-
-```bash
-# Build image
-docker build -t resistance-hub-api .
-
-# Run container
-docker run -p 3000:3000 --env-file .env resistance-hub-api
-```
-
-### Docker Compose
-
-```bash
-docker-compose up -d
-```
-
-### Production
-
-See deployment documentation for production setup with Kubernetes, AWS, or DigitalOcean.
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Run tests and linting
-4. Submit a pull request
-
-## License
-
-MIT
-
-## Support
-
-For issues and questions, please create an issue on GitHub.
-
-## Roadmap
-
-- [ ] Phase 1: Backend Infrastructure (In Progress)
-- [ ] Phase 2: Authentication & Users
-- [ ] Phase 3: Real-time Notifications
-- [ ] Phase 4: Data & Statistics
-- [ ] Phase 5: Organizations & Campaigns
-- [ ] Phase 6: Community Features
-- [ ] Phase 7: Education & Security
-- [ ] Phase 8: Data Integration
-- [ ] Phase 9: Search & Discovery
-- [ ] Phase 10: Forms & Submissions
-- [ ] Phase 11: File Management
-- [ ] Phase 12: Analytics
-- [ ] Phase 13: Advanced Features
-- [ ] Phase 14: Testing & QA
-- [ ] Phase 15: Deployment & Documentation
+- `SUPABASE_SETUP.md` — Current form submission backend (Supabase)
+- `BACKEND_GUIDE.md` — Integration guide and key generation
+- `CLOUDFLARE_DEPLOY.md` — Frontend deployment to Cloudflare Workers
