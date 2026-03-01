@@ -16,7 +16,7 @@ Description: Large language models operating autonomously or semi-autonomously t
 - Task handoff and logging via AGENT_HANDOFF.json
 - Raising risks or ambiguous requirements
 
-Note: Per-session model tracking was removed because agents cannot reliably self-identify their model. The project owner primarily uses Opus 4.6. All agents follow the same standing instructions regardless of model.
+Note: All agents follow the same standing instructions regardless of model.
 
 ### 2. Human Collaborators
 Primary roles: Product owner, maintainers, project contributors.
