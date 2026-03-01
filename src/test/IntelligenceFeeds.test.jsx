@@ -106,7 +106,7 @@ describe('IntelligenceFeeds', () => {
       lastUpdated: new Date(),
     };
     render(<IntelligenceFeeds />);
-    expect(screen.getByText(/1 articles loaded from 3 sources/)).toBeTruthy();
+    expect(screen.getByText(/1 article loaded from 3 sources/)).toBeTruthy();
   });
 
   it('does not show loading banner when loaded', () => {

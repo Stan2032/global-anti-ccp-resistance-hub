@@ -209,7 +209,7 @@ const IntelligenceFeeds = () => {
           <div className="flex items-center gap-2">
             <span className="text-[#4afa82]">&#10003;</span>
             <span className="font-mono text-sm text-slate-300">
-              {feeds.length} articles loaded from {Object.keys(sources).length} sources
+              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {Object.keys(sources).length} sources
             </span>
           </div>
           {lastUpdated && (
