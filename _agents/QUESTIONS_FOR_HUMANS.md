@@ -69,6 +69,30 @@ These are permanent directives that apply to all agents:
 
 ---
 
+### Q10. Test Coverage Strategy — Breadth vs. Depth
+**Asked:** Session 128 (Mar 1, 2026)
+**Context:** We've grown from 654 tests (Session 120) to 947 tests (Session 128). Test coverage is now extensive but ~66 components still lack dedicated test files. Should agents:
+- **A) Continue adding component tests** — aim for 100% component coverage (systematic, catches regressions)
+- **B) Shift to integration/E2E tests** — test user flows across multiple components (higher value per test)
+- **C) Focus on non-test work** — sanctions data updates, new features, content improvements
+- **D) Mix** — alternate between test coverage and feature work each session
+
+**Agent recommendation:** Option D — alternating keeps the project balanced. Tests prevent regressions while features deliver user value.
+
+---
+
+### Q11. EmergencyAlerts — Content Freshness
+**Asked:** Session 128 (Mar 1, 2026)
+**Context:** The EmergencyAlerts component has 4 hardcoded alerts, the oldest from November 2024. For a "live" alerts feature, stale content may reduce credibility. Options:
+- **A) Make alerts data-driven** — move to a JSON file that can be updated without code changes
+- **B) Add expiry dates** — automatically hide alerts older than N months
+- **C) Keep as-is** — static alerts are fine for an archival reference
+- **D) Add a "last reviewed" date** — show when alerts were last verified as current
+
+**Agent recommendation:** Option A + B — move to JSON data file with an `expires` field, consistent with the existing data-driven pattern.
+
+---
+
 ## ✅ ANSWERED QUESTIONS
 
 ### Q1-Q5: See `_agents/archive/QUESTIONS_FOR_HUMANS.md`

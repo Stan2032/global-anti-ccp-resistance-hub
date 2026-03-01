@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "10.6",
-    "date": "2026-02-27T23:50:00Z",
+    "version": "10.7",
+    "date": "2026-03-01T20:50:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "previous_agent": "Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
+    "previous_agent": "Sonnet 4 (Session 128), Sonnet 4 (Session 127), Sonnet 4 (Session 126), Sonnet 4 (Session 125), Sonnet 4 (Session 124), Sonnet 4 (Session 123), Sonnet 4 (Session 122), Sonnet 4 (Session 121), Sonnet 4 (Session 120), Sonnet 4 (Session 119), Sonnet 4 (Session 118), Sonnet 4 (Session 117), Sonnet 4 (Session 116), Sonnet 4 (Session 115), Sonnet 4 (Session 114), Sonnet 4 (Session 113), Sonnet 4 (Session 112), Sonnet 4 (Session 111), Sonnet 4 (Sessions 108-110), Sonnet 4 (Session 106), Sonnet 4 (Session 105), Sonnet 4 (Session 104), Sonnet 4 (Session 103), Sonnet 4 (Sessions 98-102), Sonnet 4 (Sessions 96-97), Sonnet 4 (Session 95), Sonnet 4 (Sessions 92-94), Sonnet 4 (Session 90-91), Sonnet 4 (Session 89), Sonnet 4 (Session 87), Sonnet 4 (Session 85-86), Sonnet 4 (Sessions 83-84), Sonnet 4 (Sessions 81-82), Opus 4.6 (Sessions 72-80), Sonnet 4.5 (Sessions 62-71), Opus 4.6 (Sessions 35-61)",
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v10.5, Session 126)",
+    "supersedes": "AGENT_HANDOFF.json (v10.6, Session 127)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
 
@@ -21,8 +21,8 @@
 
   "repository_metrics": {
     "total_files": "310+",
-    "frontend_tests": 895,
-    "test_files": 51,
+    "frontend_tests": 947,
+    "test_files": 54,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -31,7 +31,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 127,
+    "sessions_completed": 128,
     "eslint_status": "0_errors_7_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -58,6 +58,21 @@
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
     "backend_socket_cleanup": "socket_io_removed_3_files_deleted_session_118"
+  },
+
+  "session_128_changes": {
+    "summary": "Test coverage for LiveStatistics (animated counters with IntersectionObserver), EmergencyAlerts (dismiss/persist/expand with localStorage), and QuickFacts (clipboard/Twitter share). These are 3 key user-facing components that were previously untested. Also added Q10-Q11 to QUESTIONS_FOR_HUMANS.md.",
+    "new_test_files": [
+      "src/test/LiveStatistics.test.jsx — 20 tests: header (title, context paragraph, data notice, last updated), all 8 statistics (Political Prisoners, Uyghurs, Police Stations, Confucius Institutes, HK Prisoners, Forced Returns, Journalists, Organ Harvesting), trends, context sections (Why Numbers Matter, Data Verification, Underreported Reality), 6 source links (CECC, Safeguard Defenders, ASPI, HK Watch, CPJ, China Tribunal), HTTPS validation, noopener target, no CCP media",
+      "src/test/EmergencyAlerts.test.jsx — 18 tests: rendering (4 alerts, summaries, type badges, dates), external links (action links, target blank), expand/collapse (expand button, expand details, collapse, all links in expanded view), dismiss (removes alert, count display, localStorage persistence, restore from localStorage, show-dismissed restores all, null when all dismissed), accessibility (dismiss aria-label, expand aria-label)",
+      "src/test/QuickFacts.test.jsx — 14 tests: header (title, instructions), all 8 categories and statistics, descriptions, source attributions (with getAllByText for duplicates), HTTPS source links, clipboard copy (card click, copied indicator with async wait, hashtags), Twitter share (8 buttons, window.open URL), usage tips section, no CCP media"
+    ],
+    "questions_added": [
+      "Q10 — Test coverage strategy: breadth vs depth vs features",
+      "Q11 — EmergencyAlerts content freshness: data-driven with expiry dates"
+    ],
+    "test_count": "947 tests across 54 files (was 895/51). 52 new tests across 3 files.",
+    "testing_patterns": "IntersectionObserver mock needs class syntax (not vi.fn), localStorage mock needs mockReset + mockImplementation in beforeEach, clipboard writeText needs vi.waitFor for async state updates"
   },
 
   "session_127_changes": {
