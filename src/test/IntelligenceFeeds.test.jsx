@@ -10,10 +10,7 @@ vi.mock('../components/TaiwanDefenseStatus', () => ({ default: () => <div>Taiwan
 vi.mock('../components/CCPOfficials', () => ({ default: () => <div>CCPOfficials</div> }));
 vi.mock('../components/WorldThreatMap', () => ({ default: () => <div>WorldThreatMap</div> }));
 vi.mock('../components/DetentionFacilities', () => ({ default: () => <div>DetentionFacilities</div> }));
-vi.mock('../components/PoliceStationsMap', () => ({ default: () => <div>PoliceStationsMap</div> }));
-vi.mock('../components/RegionalIssues', () => ({ default: () => <div>RegionalIssues</div> }));
 vi.mock('../components/SanctionedOfficials', () => ({ default: () => <div>SanctionedOfficials</div> }));
-vi.mock('../components/GlobalInfluenceMap', () => ({ default: () => <div>GlobalInfluenceMap</div> }));
 
 // Mock useLiveFeeds hook
 const mockRefresh = vi.fn();
