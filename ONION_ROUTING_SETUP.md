@@ -34,10 +34,22 @@ Enable Tor access for the **Global Anti-CCP Resistance Hub** via Cloudflare's bu
 
 ## Step-by-Step Setup
 
+### ⚠️ Important: Custom Domain Required
+
+**Cloudflare Onion Routing requires a custom domain with Cloudflare DNS.** It is **not available** for `workers.dev` subdomains. If you only have a `workers.dev` deployment, the "Onion Routing" toggle will not appear in the Network settings.
+
+**To use Onion Routing, you need to:**
+1. Register a custom domain (e.g., `resistancehub.org`)
+2. Add the domain to Cloudflare (transfer DNS or add as a zone)
+3. Create a Worker route or custom domain mapping for the Worker
+4. Then the Onion Routing option will appear under Network settings
+
+> **Status (Session 155):** Human owner reports the Onion Routing option is not visible in their Cloudflare dashboard. This is most likely because the site is deployed on `workers.dev` without a custom domain. **Deferred** until a custom domain is added.
+
 ### Step 1: Log into Cloudflare Dashboard
 
 1. Go to [dash.cloudflare.com](https://dash.cloudflare.com)
-2. Select your site (e.g., `stane203.workers.dev` or your custom domain)
+2. Select your **custom domain zone** (not `workers.dev` — onion routing is not available for `workers.dev` subdomains)
 
 ### Step 2: Enable Onion Routing
 
@@ -108,9 +120,9 @@ Once you have the `.onion` address, consider:
 **Tor Browser includes bridge support** for countries that block Tor entry nodes (including China). Users should configure Tor bridges (obfs4, meek, or Snowflake) if direct Tor connections are blocked. This is a Tor client configuration, not something we control on the server side.
 
 ### Q: What about Cloudflare Workers sites?
-Cloudflare Onion Routing works with both Cloudflare Pages and Workers. Since this site deploys via `wrangler deploy` (Workers), onion routing should work once enabled in the dashboard for the zone.
+Cloudflare Onion Routing **requires a custom domain** — it is not available for `workers.dev` subdomains. Since this site deploys via `wrangler deploy` (Workers), you must first add a custom domain to Cloudflare, then route the Worker to that domain. Once the custom domain is active, the Onion Routing toggle will appear under Network settings.
 
-> **Important for Workers:** If the site is deployed as a Workers site on a `workers.dev` subdomain (not a custom domain), verify that Onion Routing is available for `workers.dev`. If not, adding a custom domain first may be required. Check [Cloudflare's documentation](https://developers.cloudflare.com/network/onion-routing/) for the latest compatibility information.
+> **This is the most likely reason the toggle doesn't appear:** If you're on a `workers.dev` subdomain, you need a custom domain first. See [Cloudflare Custom Domains for Workers](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/) for setup instructions.
 
 ---
 

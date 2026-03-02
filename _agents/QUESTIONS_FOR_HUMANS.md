@@ -21,9 +21,20 @@ These are permanent directives that apply to all agents:
 
 ## 🔴 OPEN QUESTIONS (Awaiting Human Decision)
 
-*No open questions at this time. All Q1-Q11 have been answered.*
+### Q12: Custom Domain for Cloudflare Onion Routing (Session 155)
 
-*When you encounter a decision that requires human input, add it here starting with Q12.*
+**Context:** Cloudflare Onion Routing requires a custom domain — it's not available for `workers.dev` subdomains. You reported that the onion routing toggle doesn't appear in your dashboard, which confirms this limitation.
+
+**Question:** Do you plan to register/add a custom domain for the site? (This would also enable onion routing.)
+
+**Options:**
+- **A)** Yes, I'll register a custom domain (e.g., `resistancehub.org`) — Agent will update deployment docs when ready
+- **B)** Not now, defer onion routing indefinitely — Agent will remove it from short-term TODO
+- **C)** I already have a domain I want to use — Tell us the domain and we'll update the deployment config
+
+**Agent recommendation:** A custom domain would benefit the project beyond just onion routing (better SEO, professional appearance, easier sharing). Domains are ~$10/year. However, this is entirely the owner's decision.
+
+*When you encounter a decision that requires human input, add it here starting with Q13.*
 
 ---
 
@@ -34,7 +45,7 @@ See `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md` for full details.
 - **Q6: C)** Implement basic cache (Cloudflare KV or Workers Cache API) — added to TODO.md
 - **Q7: Use own judgement** — agents prioritize medium-term features based on project mission
 - **Q8: Single admin login** via Supabase Auth (email/password). Add roles later if needed. — added to TODO.md
-- **Q9: A)** Enable Cloudflare Onion Routing — setup steps documented for human owner
+- **Q9: A)** Enable Cloudflare Onion Routing — ⚠️ Setup guide created but **DEFERRED**: requires custom domain (not available on `workers.dev`). See Q12.
 - **Q10: D) Mix** — alternate between test coverage and feature work each session
 - **Q11: Already done** ✅ — confirmed implemented in Sessions 149-150 (data-driven alerts + expiry + lastVerified)
 
