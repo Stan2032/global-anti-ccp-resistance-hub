@@ -357,6 +357,22 @@
         "action_needed": "Write to your government representatives demanding they publicly condemn the ruling and impose targeted sanctions on officials responsible."
       },
       "error": null
+    },
+    {
+      "input": "Joshua Wong foreign collusion case transferred to High Court March 2026",
+      "output": {
+        "topic": "Joshua Wong foreign collusion case transferred to High Court March 2026",
+        "headline": "Joshua Wong foreign collusion case heading to High Court \u2014 next hearing March 6, 2026",
+        "summary": "Joshua Wong's foreign collusion case under Hong Kong's National Security Law has been transferred to the High Court, where life imprisonment can be imposed. The case, adjourned from earlier proceedings, is scheduled for its next hearing on March 6, 2026. Wong has not entered a plea. He was charged in June 2025 with conspiring with exiled activist Nathan Law to encourage foreign sanctions against Hong Kong/China.",
+        "date": "2026-03-02",
+        "source": "The Standard (Hong Kong)",
+        "source_url": "https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year",
+        "significance": "HIGH",
+        "related_prisoners": "Joshua Wong, Nathan Law (in exile)",
+        "international_response": "Amnesty International condemned the charges as designed to prolong imprisonment. The UK, US, and Australia have called for his release.",
+        "action_needed": "Monitor the March 6, 2026 High Court hearing for developments. Support international campaigns calling for Wong's release and the repeal of Hong Kong's National Security Law."
+      },
+      "error": ""
     }
   ]
 }
