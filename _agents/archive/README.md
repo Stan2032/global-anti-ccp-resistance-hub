@@ -68,7 +68,10 @@ These individual session notes are summarized in `_agents/thoughts/SESSION_83_97
 ### Frozen Logs & Answered Questions (Archived Feb 26, 2026 — Session 111)
 - `CHANGELOG.md` - Full changelog through Session 35 (1,778 lines). Not updated since; superseded by AGENT_HANDOFF.json session blocks
 - `LLM_JUDGEMENT_LOG.md` - AI decision log through Session 35 (1,972 lines). Historical record of model decisions and reasoning
-- `QUESTIONS_FOR_HUMANS.md` - All questions answered. Standing instructions (e.g. "agents may add people without asking") captured in NEXT_AGENT_PROMPT.md
+- `QUESTIONS_FOR_HUMANS.md` - Q1-Q5 answered. Standing instructions (e.g. "agents may add people without asking") captured in NEXT_AGENT_PROMPT.md
+
+### Answered Questions Q6-Q11 (Archived Mar 2, 2026 — Session 153)
+- `QUESTIONS_FOR_HUMANS_Q6_Q11.md` - Q6-Q11 all answered by human owner. Includes cache (Q6:C), feature priority (Q7: agent judgement), Supabase Auth (Q8: single admin), Onion Routing (Q9:A), test strategy (Q10:D mix), EmergencyAlerts (Q11: confirmed done)
 
 ### Session Notes (Sessions 72-82, Archived Feb 26, 2026 — Session 111)
 These individual session notes are summarized in `_agents/thoughts/SESSION_83_97_COMPREHENSIVE_NOTES.md`:
@@ -117,6 +120,6 @@ Comprehensive notes covering Sessions 83-106. Superseded by AGENT_HANDOFF.json (
 ---
 
 *Originally archived: January 7, 2026*
-*Last updated: February 26, 2026 (Session 120)*
+*Last updated: March 2, 2026 (Session 153)*
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*

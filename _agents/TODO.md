@@ -1,14 +1,24 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 151)
+> Last Updated: March 2, 2026 (Session 153)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
 > **Agent docs:** `_agents/` folder (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, AGENT_HANDOFF.json)
+> **Human decisions:** All Q1-Q11 answered. See `_agents/QUESTIONS_FOR_HUMANS.md` + archives.
 
 ---
 
 ## 🔴 SHORT-TERM (1-2 weeks)
+
+### Human-Answered Tasks (Q6-Q10, Session 153)
+- [ ] **Implement basic cache (Q6)**: Add Cloudflare Workers Cache API or KV for backend caching. Update `BACKEND_GUIDE.md` to reflect actual implementation.
+- [ ] **Supabase Auth admin login (Q8)**: Implement single admin login via Supabase Auth (email/password). Add roles later if needed. This enables viewing submitted form data (incident reports, volunteer signups, newsletter subscribers, contact messages).
+- [ ] **Cloudflare Onion Routing (Q9)**: Human owner needs to enable in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed — Cloudflare handles the header injection. Setup steps in `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md`.
+
+### Standing Instructions (from Q7, Q10)
+- **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
+- **Test strategy (Q10)**: Mix — alternate between test coverage and feature work each session.
 
 ### Content Updates
 - [x] **Update Sanctions List**: ✅ Verified March 2, 2026. US Mar 2025 round (6 HK officials for transnational repression) already included. EU 2025 sanctions are entity-level (Chinese companies supporting Russia), not individual officials — different category. All 47 entries verified current.

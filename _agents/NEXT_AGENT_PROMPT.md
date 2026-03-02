@@ -163,8 +163,11 @@ npm run build                            # Production build (~5s)
 
 ## What's Next (Priority Order)
 
-### Priority 1: Backend Connection (Phase 2)
-Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next steps: add Supabase Auth for admin dashboard and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
+### Priority 1: Backend Connection (Phase 2) — Answers from Q6, Q8
+- **Implement Supabase Auth (Q8)**: Single admin login via Supabase Auth (email/password). Enables viewing submitted form data. Add roles later if needed.
+- **Implement basic cache (Q6)**: Add Cloudflare Workers Cache API or KV for backend caching. Update BACKEND_GUIDE.md accordingly.
+- **Cloudflare Onion Routing (Q9)**: Human owner enables in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed.
+- All 4 forms already wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md`.
 
 ### Priority 2: Content Monitoring
 - Monitor Jimmy Lai NSL sentence appeal filing (sentenced Feb 9, 2026 to 20 years)
@@ -176,6 +179,10 @@ Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, 
 
 ### Priority 3: Full Translation
 Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human rights content (profile pages, data entries) should NOT be machine-translated — needs volunteer translators.
+
+### Standing Instructions (from Human, Session 153)
+- **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
+- **Test strategy (Q10)**: Mix — alternate between test coverage and feature work each session.
 
 ---
 
@@ -232,9 +239,10 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 2. `_agents/TODO.md` — Active task list (pending items only)
 3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
 4. `_agents/STYLE_GUIDE.md` — Design system reference
-4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v9.1)
-5. `_agents/thoughts/` — Comprehensive session notes (read both files)
-6. `_agents/archive/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered, standing instructions above)
+5. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v12.0)
+6. `_agents/QUESTIONS_FOR_HUMANS.md` — All Q1-Q11 answered, no open questions
+7. `_agents/thoughts/` — Session decision logs (Sessions 150-153)
+8. `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md` — Q6-Q11 answered details
 
 ---
 
@@ -251,7 +259,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-150  
+**Handoff prepared by:** Sessions 1-153  
 **Date:** March 2, 2026  
 **Repository state:**
 - 1257 tests passing (76 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
@@ -263,4 +271,5 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 - All 5/5 data migrations complete, 21 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
 - ALL page simplification complete (25 aspirational components removed, framer-motion eliminated)
 - EmergencyAlerts data-driven with auto-expiry (expires + lastVerified fields)
+- **ALL Q1-Q11 human questions answered** — no open questions remain
 **Status:** ✅ MERGE READY — branch prepared for merge to main
