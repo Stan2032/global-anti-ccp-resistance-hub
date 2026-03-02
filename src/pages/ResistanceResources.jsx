@@ -11,9 +11,6 @@ const SectionLoader = () => (
 const DataExport = lazy(() => import('../components/DataExport'));
 const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
 const ForcedLaborTracker = lazy(() => import('../components/ForcedLaborTracker'));
-const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
-const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
-const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
 const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 
 const ResistanceResources = () => {
@@ -270,21 +267,6 @@ const ResistanceResources = () => {
       {/* Wide Research: Forced Labor Tracker */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><ForcedLaborTracker /></Suspense>
-      </div>
-
-      {/* Wide Research: Academic Experts */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><AcademicExperts /></Suspense>
-      </div>
-
-      {/* Media Bias Guide */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><MediaBiasGuide /></Suspense>
-      </div>
-
-      {/* Historical Documents Archive */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
       </div>
 
       {/* Legal Resources Hub */}

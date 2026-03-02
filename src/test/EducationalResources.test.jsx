@@ -16,6 +16,9 @@ vi.mock('../components/InteractiveTimeline', () => ({ default: () => <div>Intera
 vi.mock('../components/MediaManipulation', () => ({ default: () => <div>MediaManipulation</div> }));
 vi.mock('../components/AIDisinfoDetector', () => ({ default: () => <div>AIDisinfoDetector</div> }));
 vi.mock('../components/ConfuciusInstitutes', () => ({ default: () => <div>ConfuciusInstitutes</div> }));
+vi.mock('../components/AcademicExperts', () => ({ default: () => <div>AcademicExperts</div> }));
+vi.mock('../components/MediaBiasGuide', () => ({ default: () => <div>MediaBiasGuide</div> }));
+vi.mock('../components/HistoricalDocuments', () => ({ default: () => <div>HistoricalDocuments</div> }));
 
 import EducationalResources from '../pages/EducationalResources';
 

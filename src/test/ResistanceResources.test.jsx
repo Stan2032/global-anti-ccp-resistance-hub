@@ -3,13 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 
-// Mock lazy-loaded components (7 remaining after aspirational removal)
+// Mock lazy-loaded components (4 remaining after moves to Education page)
 vi.mock('../components/DataExport', () => ({ default: () => <div>DataExport</div> }));
 vi.mock('../components/CompanyTracker', () => ({ default: () => <div>CompanyTracker</div> }));
 vi.mock('../components/ForcedLaborTracker', () => ({ default: () => <div>ForcedLaborTracker</div> }));
-vi.mock('../components/AcademicExperts', () => ({ default: () => <div>AcademicExperts</div> }));
-vi.mock('../components/MediaBiasGuide', () => ({ default: () => <div>MediaBiasGuide</div> }));
-vi.mock('../components/HistoricalDocuments', () => ({ default: () => <div>HistoricalDocuments</div> }));
 vi.mock('../components/LegalResourcesHub', () => ({ default: () => <div>LegalResourcesHub</div> }));
 
 import ResistanceResources from '../pages/ResistanceResources';
@@ -109,7 +106,7 @@ describe('ResistanceResources', () => {
   it('renders loading states for lazy components', () => {
     renderPage();
     const loaders = screen.getAllByText('$ loading');
-    expect(loaders.length).toBeGreaterThanOrEqual(7);
+    expect(loaders.length).toBeGreaterThanOrEqual(4);
   });
 
   // --- No framer-motion ---

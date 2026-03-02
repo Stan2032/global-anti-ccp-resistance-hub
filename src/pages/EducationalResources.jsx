@@ -26,6 +26,9 @@ const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline
 const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
+const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
+const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
+const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('learn')
@@ -281,6 +284,10 @@ const EducationalResources = () => {
             <h2 className="text-xl font-bold text-white mb-4 font-mono">── glossary ──</h2>
             <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
           </div>
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── historical_documents ──</h2>
+            <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
+          </div>
         </div>
       )}
 
@@ -299,6 +306,10 @@ const EducationalResources = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── propaganda_outlets ──</h2>
             <Suspense fallback={<SectionLoader />}><MediaManipulation /></Suspense>
           </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── media_bias_guide ──</h2>
+            <Suspense fallback={<SectionLoader />}><MediaBiasGuide /></Suspense>
+          </div>
         </div>
       )}
 
@@ -311,6 +322,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── source_verification ──</h2>
             <Suspense fallback={<SectionLoader />}><SourceVerification /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── academic_experts ──</h2>
+            <Suspense fallback={<SectionLoader />}><AcademicExperts /></Suspense>
           </div>
         </div>
       )}
