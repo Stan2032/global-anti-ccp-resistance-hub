@@ -2,7 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import GlobalSearch, { useGlobalSearch } from '../components/GlobalSearch';
+import GlobalSearch from '../components/GlobalSearch';
+import useGlobalSearch from '../hooks/useGlobalSearch';
 
 // Mock react-router-dom navigate
 const mockNavigate = vi.fn();

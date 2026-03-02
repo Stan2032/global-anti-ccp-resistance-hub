@@ -38,7 +38,7 @@ export const VisuallyHidden = ({ children, as: Component = 'span' }) => {
  * Focus Trap Hook
  * Traps focus within a container (useful for modals)
  */
-export const useFocusTrap = (containerRef, isActive) => {
+const useFocusTrap = (containerRef, isActive) => {
   useEffect(() => {
     if (!isActive || !containerRef.current) return;
 
@@ -164,7 +164,7 @@ export const AccessibleCard = ({
  * Keyboard Navigation Hook
  * Handles arrow key navigation in lists
  */
-export const useKeyboardNavigation = (items, onSelect) => {
+const useKeyboardNavigation = (items, onSelect) => {
   const [focusedIndex, setFocusedIndex] = React.useState(0);
 
   const handleKeyDown = (e) => {
