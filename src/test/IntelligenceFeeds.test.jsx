@@ -11,6 +11,7 @@ vi.mock('../components/CCPOfficials', () => ({ default: () => <div>CCPOfficials<
 vi.mock('../components/WorldThreatMap', () => ({ default: () => <div>WorldThreatMap</div> }));
 vi.mock('../components/DetentionFacilities', () => ({ default: () => <div>DetentionFacilities</div> }));
 vi.mock('../components/SanctionedOfficials', () => ({ default: () => <div>SanctionedOfficials</div> }));
+vi.mock('../components/ResearchDashboard', () => ({ default: () => <div>ResearchDashboard</div> }));
 
 // Mock useLiveFeeds hook
 const mockRefresh = vi.fn();

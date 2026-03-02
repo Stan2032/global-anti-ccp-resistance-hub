@@ -2,6 +2,9 @@ import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
+import actionsData from '../data/take_action_steps.json';
+
+const ICON_MAP = { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield };
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
@@ -22,117 +25,7 @@ const DonationGuide = lazy(() => import('../components/DonationGuide'));
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
 
-  const actions = [
-    {
-      number: 1,
-      title: 'DONATE TO VERIFIED ORGANIZATIONS',
-      Icon: Heart,
-      color: 'blue',
-      description: 'Support organizations fighting for human rights in China. Every dollar helps fund research, advocacy, and direct assistance to victims.',
-      links: [
-        { name: 'Uyghur Human Rights Project', url: 'https://uhrp.org/donate/' },
-        { name: 'Hong Kong Watch', url: 'https://www.hongkongwatch.org/donate' },
-        { name: 'International Campaign for Tibet', url: 'https://savetibet.org/donate/' },
-        { name: 'Safeguard Defenders', url: 'https://safeguarddefenders.com/en/donate' },
-      ],
-      stats: '29 in-depth reports published since 2021 by UHRP alone'
-    },
-    {
-      number: 2,
-      title: 'CONTACT YOUR REPRESENTATIVES',
-      Icon: Landmark,
-      color: 'red',
-      description: 'Urge your elected officials to take action on China human rights. Your voice matters - legislators track constituent contacts.',
-      links: [
-        { name: 'Find Your US Representative', url: 'https://www.house.gov/representatives/find-your-representative' },
-        { name: 'Contact Your US Senator', url: 'https://www.senate.gov/senators/senators-contact.htm' },
-        { name: 'UK Parliament - Find Your MP', url: 'https://members.parliament.uk/members/Commons' },
-        { name: 'EU Parliament - MEP Directory', url: 'https://www.europarl.europa.eu/meps/en/home' },
-      ],
-      template: 'I am writing to urge you to support legislation addressing human rights abuses by the Chinese Communist Party, including the ongoing Uyghur genocide, suppression of Hong Kong democracy, and transnational repression of dissidents.'
-    },
-    {
-      number: 3,
-      title: 'SIGN ACTIVE PETITIONS',
-      Icon: PenLine,
-      color: 'green',
-      description: 'Add your name to campaigns demanding action. Petitions with large numbers of signatures get attention from policymakers and media.',
-      links: [
-        { name: 'Free Jimmy Lai - Change.org', url: 'https://www.change.org/p/free-jimmy-lai' },
-        { name: 'End Uyghur Forced Labor - Freedom United', url: 'https://www.freedomunited.org/advocate/uyghur-forced-labor/' },
-        { name: 'Free Uyghur Political Prisoners - Amnesty', url: 'https://www.amnesty.org/en/petition/china-free-uyghurs/' },
-        { name: 'Sanction CCP Officials - UHRP', url: 'https://uhrp.org/take-action/' },
-      ],
-      stats: 'Coalition to End Forced Labour supported by 415+ groups from 40+ countries'
-    },
-    {
-      number: 4,
-      title: 'BOYCOTT COMPLICIT COMPANIES',
-      Icon: Ban,
-      color: 'orange',
-      description: 'Avoid products made with forced labor or by companies complicit in surveillance. Your purchasing power sends a message.',
-      links: [
-        { name: 'Uyghur Forced Labor Prevention Act Database', url: 'https://www.cbp.gov/trade/forced-labor/UFLPA' },
-        { name: 'Tech Transparency Project', url: 'https://www.techtransparencyproject.org/' },
-        { name: 'Coalition to End Forced Labour', url: 'https://enduyghurforcedlabour.org/' },
-      ],
-      companies: ['Shein', 'Temu', 'Hikvision', 'Dahua', 'Huawei', 'ZTE']
-    },
-    {
-      number: 5,
-      title: 'REPORT CCP HARASSMENT',
-      Icon: AlertTriangle,
-      color: 'red',
-      description: 'If you or someone you know has experienced CCP intimidation, surveillance, or harassment, report it to help document transnational repression.',
-      links: [
-        { name: 'Safeguard Defenders - Report Form', url: 'https://safeguarddefenders.com/en/contact' },
-        { name: 'FBI Tips (US)', url: 'https://tips.fbi.gov/' },
-        { name: 'UK Counter Terrorism Hotline', url: 'https://www.gov.uk/report-terrorism' },
-        { name: 'Our Incident Report Form', url: '/security', internal: true },
-      ],
-      stats: 'Over 100 CCP "overseas police stations" documented in 53 countries'
-    },
-    {
-      number: 6,
-      title: 'SPREAD AWARENESS',
-      Icon: Megaphone,
-      color: 'cyan',
-      description: 'Share information about CCP human rights abuses with your network. Education is the first step toward action.',
-      links: [
-        { name: 'Share Our Site', url: '#', action: 'share' },
-        { name: 'Download Infographics', url: '/resources', internal: true },
-        { name: 'Watch Documentaries', url: '/education', internal: true },
-      ],
-      socialActions: ['Twitter', 'Facebook', 'LinkedIn', 'WhatsApp', 'Email']
-    },
-    {
-      number: 7,
-      title: 'SUPPORT DIASPORA COMMUNITIES',
-      Icon: Handshake,
-      color: 'teal',
-      description: 'Stand with Uyghur, Tibetan, Hong Kong, and Chinese diaspora communities. Attend events, amplify their voices, and offer solidarity.',
-      links: [
-        { name: 'Find Local Uyghur Community', url: 'https://www.uyghurcongress.org/en/' },
-        { name: 'Students for a Free Tibet', url: 'https://www.studentsforafreetibet.org/' },
-        { name: 'Hong Kong Democracy Council Events', url: 'https://www.hkdc.us/' },
-        { name: 'Our Community Page', url: '/community', internal: true },
-      ]
-    },
-    {
-      number: 8,
-      title: 'STAY INFORMED & SECURE',
-      Icon: Shield,
-      color: 'slate',
-      description: 'Follow trusted news sources and protect your digital security. The CCP targets activists with surveillance and hacking.',
-      links: [
-        { name: 'Subscribe to Our Newsletter', url: '#newsletter' },
-        { name: 'Security Assessment', url: '/security', internal: true },
-        { name: 'Secure Communications Guide', url: '/security', internal: true },
-        { name: 'Live Intelligence Feed', url: '/intelligence', internal: true },
-      ],
-      tools: ['Signal', 'Tor Browser', 'ProtonMail', 'VPN']
-    },
-  ];
+  const actions = actionsData.map(a => ({ ...a, Icon: ICON_MAP[a.icon] || AlertTriangle }));
 
   const impactStats = [
     { label: 'Political Prisoners Documented', value: '10,000+' },

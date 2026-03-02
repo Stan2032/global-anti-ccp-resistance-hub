@@ -9,7 +9,6 @@ vi.mock('../components/UrgentCaseTimer', () => ({ default: () => <div>UrgentCase
 vi.mock('../components/LiveStatistics', () => ({ default: () => <div>LiveStatistics</div> }));
 vi.mock('../components/EmergencyAlerts', () => ({ default: () => <div>EmergencyAlerts</div> }));
 vi.mock('../components/NewsDigest', () => ({ default: () => <div>NewsDigest</div> }));
-vi.mock('../components/ResearchDashboard', () => ({ default: () => <div>ResearchDashboard</div> }));
 
 // Mock useStatistics hook
 let mockStatsReturn = {

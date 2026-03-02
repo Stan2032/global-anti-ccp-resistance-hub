@@ -15,7 +15,6 @@ const UrgentCaseTimer = lazy(() => import('../components/UrgentCaseTimer'));
 const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
 const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
 const NewsDigest = lazy(() => import('../components/NewsDigest'));
-const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -266,9 +265,6 @@ const Dashboard = () => {
 
       {/* ─── News Digest ───────────────────────────────────────── */}
       <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
-
-      {/* ─── Research Database ─────────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
 
       {/* Footer */}
       <div className="text-center text-slate-500 text-sm py-4 font-mono">
