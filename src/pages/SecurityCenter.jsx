@@ -1,25 +1,15 @@
 import { useState, lazy, Suspense } from 'react'
-import { motion } from 'framer-motion'
 import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import securityData from '../data/security_center_data.json'
 import { 
   Shield, 
-  Lock, 
   AlertTriangle,
   CheckCircle,
   Eye,
-  EyeOff,
   Download,
-  Wifi,
-  Smartphone,
-  Monitor,
-  Globe,
-  Key,
-  FileText,
   Phone,
   AlertCircle,
   ChevronRight,
-  Zap,
   ExternalLink,
   Play,
   Loader2,
@@ -38,70 +28,20 @@ const IncidentReportForm = lazy(() => import('../components/IncidentReportForm')
 const SecurityQuiz = lazy(() => import('../components/SecurityQuiz'));
 const SafetyChecklist = lazy(() => import('../components/SafetyChecklist'));
 const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
-const OfflineModeManager = lazy(() => import('../components/OfflineModeManager'));
-const WhistleblowerPortal = lazy(() => import('../components/WhistleblowerPortal'));
 const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
 const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
-  const [assessmentComplete, setAssessmentComplete] = useState(false)
-  const [securityScore, setSecurityScore] = useState(0)
-  const [categoryBreakdown, setCategoryBreakdown] = useState({ network: 0, device: 0, opsec: 0 })
-  const [answers, setAnswers] = useState({})
   const { status: webrtcStatus, leakedIPs, isLeaking, runCheck: runWebRTCCheck } = useWebRTCLeakCheck()
 
   const securityTools = securityData.securityTools
   const connectionTestTools = securityData.connectionTestTools
-  const assessmentQuestions = securityData.assessmentQuestions
   const emergencyContacts = securityData.emergencyContacts
   const securityGuides = securityData.securityGuides
 
-  const handleAnswer = (questionId, answer) => {
-    setAnswers(prev => ({ ...prev, [questionId]: answer }))
-  }
-
-  const handleAssessment = () => {
-    let score = 0
-    const categoryScores = {}
-    const categoryMaxes = {}
-
-    for (const q of assessmentQuestions) {
-      const cat = q.category
-      if (!categoryMaxes[cat]) categoryMaxes[cat] = 0
-      if (!categoryScores[cat]) categoryScores[cat] = 0
-      categoryMaxes[cat] += q.weight
-
-      const answer = answers[q.id]
-      if (answer === 'yes') {
-        score += q.weight
-        categoryScores[cat] += q.weight
-      } else if (answer === 'unsure') {
-        const partial = Math.round(q.weight * 0.5)
-        score += partial
-        categoryScores[cat] += partial
-      }
-    }
-
-    // Map categories to display groups
-    const networkMax = (categoryMaxes['network'] || 0)
-    const deviceMax = (categoryMaxes['device'] || 0)
-    const opsecMax = (categoryMaxes['passwords'] || 0) + (categoryMaxes['authentication'] || 0) + (categoryMaxes['communications'] || 0) + (categoryMaxes['updates'] || 0) + (categoryMaxes['opsec'] || 0)
-
-    setCategoryBreakdown({
-      network: networkMax > 0 ? Math.round((categoryScores['network'] || 0) / networkMax * 100) : 0,
-      device: deviceMax > 0 ? Math.round((categoryScores['device'] || 0) / deviceMax * 100) : 0,
-      opsec: opsecMax > 0 ? Math.round(((categoryScores['passwords'] || 0) + (categoryScores['authentication'] || 0) + (categoryScores['communications'] || 0) + (categoryScores['updates'] || 0) + (categoryScores['opsec'] || 0)) / opsecMax * 100) : 0
-    })
-
-    setSecurityScore(score)
-    setAssessmentComplete(true)
-  }
-
   const ToolCard = ({ tool }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <div
       className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
@@ -130,9 +70,7 @@ const SecurityCenter = () => {
         </ul>
       </div>
 
-      <motion.a
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      <a
         href={tool.download}
         target="_blank"
         rel="noopener noreferrer"
@@ -140,14 +78,12 @@ const SecurityCenter = () => {
       >
         <Download className="w-4 h-4" />
         <span>Download</span>
-      </motion.a>
-    </motion.div>
+      </a>
+    </div>
   )
 
   const GuideCard = ({ guide }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <div
       className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between mb-4">
@@ -172,7 +108,7 @@ const SecurityCenter = () => {
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   )
 
   return (
@@ -186,9 +122,7 @@ const SecurityCenter = () => {
       </div>
 
       {/* Critical Alert */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+      <div
         className="bg-red-900 border border-red-700 p-4"
       >
         <div className="flex items-start">
@@ -201,16 +135,14 @@ const SecurityCenter = () => {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Tabs — consolidated from 9 to 5 */}
+      {/* Tabs — consolidated from 6 to 4 */}
       <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
         {[
           { id: 'assess', label: 'Assess' },
           { id: 'tools', label: 'Tools' },
           { id: 'guides', label: 'Guides' },
-          { id: 'protect', label: 'Protect' },
-          { id: 'whistleblower', label: 'Whistleblower' },
           { id: 'threats', label: 'Tech Threats' },
         ].map((tab) => (
           <button
@@ -237,118 +169,6 @@ const SecurityCenter = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── safety_checklist ──</h2>
             <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
           </div>
-        </div>
-      )}
-
-      {/* Legacy Assessment Tab - Hidden */}
-      {activeTab === 'legacy-assessment' && (
-        <div className="space-y-6">
-          {!assessmentComplete ? (
-            <>
-              <div className="bg-[#111820] border border-[#1c2a35] p-6">
-                <h2 className="text-2xl font-bold text-white mb-4">Security Assessment</h2>
-                <p className="text-slate-400 mb-6">
-                  Answer the following questions to evaluate your current security posture. This assessment is anonymous and results are not stored.
-                </p>
-
-                <div className="space-y-4">
-                  {assessmentQuestions.map((q, idx) => (
-                    <motion.div
-                      key={q.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="bg-[#1c2a35] p-4"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <p className="text-white font-medium">{q.question}</p>
-                        <span className="text-xs text-slate-400">{q.category}</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <button onClick={() => handleAnswer(q.id, 'yes')} className={`px-4 py-2 ${answers[q.id] === 'yes' ? 'bg-green-700 ring-2 ring-green-400' : 'bg-green-900 hover:bg-green-800'} text-green-100 transition-colors text-sm font-medium`}>
-                          Yes
-                        </button>
-                        <button onClick={() => handleAnswer(q.id, 'no')} className={`px-4 py-2 ${answers[q.id] === 'no' ? 'bg-red-700 ring-2 ring-red-400' : 'bg-red-900 hover:bg-red-800'} text-red-100 transition-colors text-sm font-medium`}>
-                          No
-                        </button>
-                        <button onClick={() => handleAnswer(q.id, 'unsure')} className={`px-4 py-2 ${answers[q.id] === 'unsure' ? 'bg-[#1c2a35] ring-2 ring-[#4afa82]' : 'bg-[#1c2a35] hover:bg-[#111820]'} text-slate-100 transition-colors text-sm font-medium`}>
-                          Unsure
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleAssessment}
-                  className="mt-6 w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-6 py-3 font-medium transition-colors"
-                >
-                  Get Security Score
-                </motion.button>
-              </div>
-            </>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-[#111820] border border-[#1c2a35] p-8"
-            >
-              <div className="text-center mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 relative">
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#334155" strokeWidth="8" />
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="#3b82f6"
-                      strokeWidth="8"
-                      strokeDasharray={`${(securityScore / 100) * 282.7} 282.7`}
-                      strokeLinecap="round"
-                      style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
-                    />
-                    <text x="50" y="50" textAnchor="middle" dy="0.3em" className="text-4xl font-bold" fill="white">
-                      {securityScore}
-                    </text>
-                  </svg>
-                </div>
-
-                <h2 className="text-2xl font-bold text-white mb-2">Your Security Score</h2>
-                <p className="text-slate-400 mb-6">
-                  {securityScore >= 80 ? 'Excellent security posture. Continue maintaining these practices.' :
-                   securityScore >= 60 ? 'Good security. Implement recommended improvements below.' :
-                   'Needs improvement. Critical security gaps identified.'}
-                </p>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => { setAssessmentComplete(false); setAnswers({}) }}
-                  className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-6 py-2 font-medium transition-colors"
-                >
-                  Retake Assessment
-                </motion.button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-[#1c2a35] p-4">
-                  <p className="text-slate-400 text-sm">Network Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.network}%</p>
-                </div>
-                <div className="bg-[#1c2a35] p-4">
-                  <p className="text-slate-400 text-sm">Device Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.device}%</p>
-                </div>
-                <div className="bg-[#1c2a35] p-4">
-                  <p className="text-slate-400 text-sm">Operational Security</p>
-                  <p className="text-white text-2xl font-bold mt-1">{categoryBreakdown.opsec}%</p>
-                </div>
-              </div>
-            </motion.div>
-          )}
         </div>
       )}
 
@@ -515,7 +335,7 @@ const SecurityCenter = () => {
         </div>
       )}
 
-      {/* Guides Tab (was: guides + emergency) */}
+      {/* Guides Tab (was: guides + emergency + protect) */}
       {activeTab === 'guides' && (
         <div className="space-y-8">
           <div>
@@ -530,12 +350,16 @@ const SecurityCenter = () => {
             ))}
           </div>
 
+          {/* Witness Protection (merged from Protect tab) */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── witness_protection ──</h2>
+            <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
+          </div>
+
           {/* Emergency Section */}
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── emergency_procedures ──</h2>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <div
               className="bg-red-900 border border-red-700 p-6 mt-4"
             >
               <div className="flex items-start">
@@ -554,7 +378,7 @@ const SecurityCenter = () => {
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             <div className="mt-6">
               <h3 className="text-xl font-bold text-white mb-4 font-mono">── emergency_contacts ──</h3>
@@ -582,24 +406,6 @@ const SecurityCenter = () => {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Protect Tab (was: protection + offline) */}
-      {activeTab === 'protect' && (
-        <div className="space-y-8">
-          <div>
-            <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── offline_mode ──</h2>
-            <Suspense fallback={<SectionLoader />}><OfflineModeManager /></Suspense>
-          </div>
-        </div>
-      )}
-
-      {/* Whistleblower Portal Tab */}
-      {activeTab === 'whistleblower' && (
-        <Suspense fallback={<SectionLoader />}><WhistleblowerPortal /></Suspense>
       )}
 
       {/* Tech Threats Tab */}
