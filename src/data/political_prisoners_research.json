@@ -6,14 +6,14 @@
         "prisoner_name": "Jimmy Lai",
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
-        "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); previously sentenced to 5 years 9 months for fraud.",
-        "latest_news": "Feb 2026: Sentenced to 20 years in prison, the harshest sentence yet under Hong Kong's National Security Law.",
-        "health_status": "Deteriorating, according to his son.",
-        "international_response": "UK, US, and human rights groups condemned the verdict and called for his release.",
+        "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
+        "latest_news": "Feb 26, 2026: Court of Appeal quashed separate fraud conviction. NSL sentence of 20 years remains — the harshest under Hong Kong's National Security Law.",
+        "health_status": "Deteriorating, according to his son. Legal team filed urgent UN appeal citing health risks.",
+        "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated.",
         "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Conviction Dec 15, 2025 and sentencing Feb 9, 2026 to 20 years verified via BBC, HRW, CPJ, US State Dept."
+        "last_verified": "2026-03-02",
+        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (BBC, HRW, CPJ, US State Dept). Fraud conviction overturned Feb 26, 2026 (ABC, SCMP, UPI)."
       },
       "error": ""
     },
