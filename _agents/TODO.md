@@ -51,6 +51,7 @@
 - [x] **Mobile responsiveness**: Touch targets, font sizing, iOS zoom prevention (Session 93)
 - [x] **Mobile navigation**: 13 tests added for hamburger menu (Session 149) — toggle, 7 nav items, backdrop close, active state, urgent campaign, branding
 - [x] **Dark mode**: Theme CSS variables + Tailwind overrides for light/high-contrast (Session 121)
+- [x] **Sort By for Live Feed (Session 155)**: Added "Sort by" dropdown to Intelligence Feeds page — Relevancy (default), Newest First, Oldest First. Integrated with existing search + source filter. 6 tests added.
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

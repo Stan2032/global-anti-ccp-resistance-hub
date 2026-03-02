@@ -120,7 +120,6 @@ describe('FAQ', () => {
   // --- Content Quality ---
 
   it('does not contain CCP state media references (CPC terminology)', () => {
-    render(<FAQ />);
     const { container } = render(<FAQ />);
     const text = container.textContent;
     expect(text).not.toContain('CPC');

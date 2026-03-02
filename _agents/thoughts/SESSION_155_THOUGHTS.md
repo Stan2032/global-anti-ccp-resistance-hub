@@ -35,8 +35,17 @@ Added news item 24: Japan LDP drafting its own Uyghur Forced Labor Prevention Ac
 Updated Japan entry in international_responses_research.json with legislative_actions.
 Source: Human Rights Watch (Tier 1).
 
+### 5. Sort By for Live Feed (Human Request)
+Added "Sort by" dropdown to IntelligenceFeeds.jsx:
+- **Relevancy** (default) — highest relevanceScore first, then newest
+- **Newest First** — by pubDate descending
+- **Oldest First** — by pubDate ascending
+- Alphabetical sort was initially included but removed per human feedback ("not useful")
+- Integrated into useMemo with existing search + source filter
+- 6 tests added to IntelligenceFeeds.test.jsx (dropdown rendering, default state, 3 sort behaviors)
+
 ## Post-Session State
-- **Tests:** 1352 passing (82 files) — was 1291 (78 files)
+- **Tests:** 1357 passing (82 files) — was 1291 (78 files)
 - **Build:** 301KB (97KB gzip) — ~5s
 - **ESLint:** 0 errors, 0 warnings
 - **News items:** 24 (was 23)

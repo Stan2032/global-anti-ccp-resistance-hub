@@ -1,7 +1,6 @@
 // Service Worker for Global Anti-CCP Resistance Hub
 // Deployed at: https://global-anti-ccp-resistance-hub.stane203.workers.dev/
 const CACHE_NAME = 'resistance-hub-v3';
-const DATA_CACHE_NAME = 'resistance-hub-data-v1';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache immediately (app shell)
@@ -29,7 +28,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  const VALID_CACHES = [CACHE_NAME, DATA_CACHE_NAME];
+  const VALID_CACHES = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
