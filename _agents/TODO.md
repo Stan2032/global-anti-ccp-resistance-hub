@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 141)
+> Last Updated: March 2, 2026 (Session 142)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -49,16 +49,16 @@
 > - Cut redundant sub-components that duplicate content across pages
 > - Tabs: max 3-4 per page (currently some have 6-7)
 
-### Page 1: Dashboard (344 lines, 6 lazy components) — ✅ SIMPLIFIED (Session 140)
+### Page 1: Dashboard (282 lines, 6 lazy components) — ✅ SIMPLIFIED (Session 140, 142)
 **Was:** 349 lines, 8 lazy components (incl CountdownTimer, ImpactMetrics)
-**Now:** 344 lines, 6 lazy components (EmergencyAlerts, UrgentCaseTimer, NewsAggregator, LiveStatistics, NewsDigest, ResearchDashboard)
+**Now:** 282 lines, 6 lazy components (EmergencyAlerts, UrgentCaseTimer, NewsAggregator, LiveStatistics, NewsDigest, ResearchDashboard)
 - [x] **Remove CountdownTimer** — redundant with UrgentCaseTimer (both track Jimmy Lai) ✅
 - [x] **Remove ImpactMetrics** — aspirational data without real backend metrics ✅
 - [x] **Component files deleted** — 2 orphan .jsx files removed (416 lines) ✅
+- [x] **Remove inline `urgentCampaigns` array** — fake supporter counts, overlaps EmergencyAlerts ✅ (Session 142)
+- [x] **Simplify quick actions** — 4 → 3 (removed "Join Campaign" duplicate of "Take Action") ✅ (Session 142)
 - [ ] **Move ResearchDashboard to Intelligence page** — research fits better there
-- [ ] **Simplify quick actions** — 4 buttons → reduce to 3 most essential
-- [ ] **Remove inline `urgentCampaigns` array** — overlaps with EmergencyAlerts content
-- **Target reached:** 8 → 6 components ✅
+- **Target reached:** 8 → 6 components, fake data removed ✅
 
 ### Page 2: Intelligence Feeds (345 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 139)
 **Was:** 360 lines, 11 lazy components, 3 tabs (Feeds/Regional with 5 components/Operations with 6 components)
@@ -73,14 +73,15 @@
 - [ ] **Research: inline RSS data** — 93 lines of hardcoded `rssFeeds` array (lines 28-120) should be JSON
 - **Target reached:** 11 → 8 components ✅
 
-### Page 3: Political Prisoners (580 lines, 0 lazy components) — ✅ framer-motion removed (Session 140)
+### Page 3: Political Prisoners (590 lines, 0 lazy components) — ✅ truncation added (Session 142)
 **Current:** Large inline page with search/filter, prisoner cards, detail modal — no sub-components
-- [x] **Remove motion animations** — 7 motion.div usages removed ✅
+- [x] **Remove motion animations** — 7 motion.div usages removed ✅ (Session 140)
+- [x] **Truncate long prisoner lists** — show 15 by default with "Show all X cases" button, resets on filter change ✅ (Session 142)
+- [x] **16 tests added** — all passing ✅ (Session 142)
 - [ ] **Research: data already in JSON** — verify all data comes from political_prisoners_research.json
 - [ ] **Simplify filter UI** — currently has category filter buttons + search; keep it clean
 - [ ] **Reduce prisoner detail view verbosity** — show key facts (name, status, charges, sentence) prominently
-- [ ] **Research: truncate long prisoner lists** — show 10-15 by default with "Show all" button
-- **Target:** Keep structure, reduce visual noise and line count by ~100 lines
+- **Target:** Keep structure, reduce visual noise ✅ (truncation done)
 
 ### Page 4: Take Action (413 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 138)
 **Was:** 552 lines, 15 lazy components, email form, duplicate share section
@@ -418,9 +419,9 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — IN PROGRESS (Session 137-141). All priority pages done:
+1. **🔴 Page simplification** — IN PROGRESS (Session 137-142). All priority pages done:
    - **✅ DONE:** TakeAction (15→8), EducationalResources (17→13, 7→4 tabs), IntelligenceFeeds (11→8), SecurityCenter (8→6, 6→4 tabs)
-   - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→6), PoliticalPrisoners (motion removed), DataSources (motion removed)
+   - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→6, urgentCampaigns removed, quickActions 4→3), PoliticalPrisoners (motion removed, truncation added), DataSources (motion removed)
    - **✅ DONE:** ResistanceResources (10→7, aspirational removed), EducationalResources data→JSON
    - **LOW:** ResistanceDirectory (keep as-is)
    - **Cross-cutting remaining:** Move TakeAction `actions` array to JSON (requires icon mapping refactor)
@@ -475,11 +476,11 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 141, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1197 tests (70 files, all passing)
+### Current State Summary (as of Session 142, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1208 tests (71 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
-- **Page Simplification:** ALL pages simplified. TakeAction 15→8 (S138). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→8 (S139). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→6 (S140). ResistanceResources 10→7 (S141). PoliticalPrisoners + DataSources motion removed (S140). 25 aspirational components deleted. ResistanceDirectory: keep as-is.
+- **Page Simplification:** ALL pages simplified. TakeAction 15→8 (S138). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→8 (S139). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→6, urgentCampaigns removed, quickActions 4→3 (S140,S142). ResistanceResources 10→7 (S141). PoliticalPrisoners: motion removed, truncation added (S140,S142). DataSources motion removed (S140). 25 aspirational components deleted. ResistanceDirectory: keep as-is.
 - **framer-motion:** Removed from ALL 8 pages that had it. Still used by some sub-components (vendor bundle 116KB/38KB gzip).
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
@@ -490,7 +491,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
 - **Lint:** 0 errors, 7 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 18 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1197 tests across 70 files.
+- **Test Coverage:** All 18 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1208 tests across 71 files.
 
 ---
 
