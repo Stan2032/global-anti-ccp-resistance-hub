@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 146)
+> Last Updated: March 2, 2026 (Session 147)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -11,15 +11,18 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### Content Updates
-- [ ] **Update Sanctions List**: Check for any new sanctions after March 2025 from US, EU, UK, Canada, Australia
-  - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds added in Session 96)
-  - Subtask: Check US Treasury SDN list for new China/HK-related designations
-  - Subtask: Check UK FCDO sanctions list for updates
-  - Subtask: Check EU Council sanctions for new entries
+- [x] **Update Sanctions List**: ✅ Verified March 2, 2026. US Mar 2025 round (6 HK officials for transnational repression) already included. EU 2025 sanctions are entity-level (Chinese companies supporting Russia), not individual officials — different category. All 47 entries verified current.
+  - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds)
+  - Subtask: Check US Treasury SDN list for new China/HK-related designations ✅
+  - Subtask: Check UK FCDO sanctions list for updates ✅
+  - Subtask: Check EU Council sanctions for new entries ✅ (entity-level only in 2025)
   - Subtask: Verify source_url links still resolve
-- [ ] **Monitor Jimmy Lai appeal proceedings**
-  - Subtask: Watch for appeal filing date
-  - Subtask: Update profile page timeline when new developments occur
+- [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 147
+  - ✅ Dec 15, 2025: Found guilty on all 3 NSL charges
+  - ✅ Feb 9, 2026: Sentenced to 20 years (harshest NSL sentence)
+  - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
+  - Subtask: Watch for NSL sentence appeal filing
+  - Subtask: Monitor health status and UN appeals
 - [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
@@ -77,7 +80,7 @@
 - [x] **Truncate long prisoner lists** — show 15 by default with "Show all X cases" button, resets on filter change ✅ (Session 142)
 - [x] **16 tests added** — all passing ✅ (Session 142)
 - [x] **Streamline detail modal** — remove redundant charges section (=sentence), merge health sections, merge latestNews+intlResponse, compact key facts grid, source compact ✅ (Session 145)
-- [ ] **Research: data already in JSON** — verify all data comes from political_prisoners_research.json
+- [x] **Research: data already in JSON** — ✅ verified: all data from political_prisoners_research.json (line 7)
 - **Target:** Keep structure, reduce visual noise ✅ (truncation + modal done)
 
 ### Page 4: Take Action (306 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 138, 143, 145)
@@ -418,7 +421,7 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — IN PROGRESS (Session 137-146). All priority pages done:
+1. **🔴 Page simplification** — ✅ COMPLETE (Session 137-146). All priority pages done:
    - **✅ DONE:** TakeAction (15→8, 8→5 actions, actions→JSON, show-more), EducationalResources (17→13, 7→4 tabs, data→JSON), IntelligenceFeeds (11→9, ResearchDashboard moved in, feed truncation, RSS→JSON), SecurityCenter (8→6, 6→4 tabs)
    - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→5, urgentCampaigns removed, quickActions 4→3, ResearchDashboard moved out), PoliticalPrisoners (motion removed, truncation added, modal streamlined), DataSources (motion removed, DataExport added)
    - **✅ DONE:** ResistanceResources (10→7, aspirational removed), EducationalResources data→JSON
@@ -426,8 +429,8 @@
    - **LOW:** ResistanceDirectory (keep as-is)
    - **Cross-cutting complete:** All data→JSON migrations done ✅ (20 JSON files), framer-motion eliminated ✅, TakeAction 8→5 ✅, DataExport on DataSources ✅
 2. **Navigation simplification** — ✅ Session 136: sidebar 11→7 items, width w-64→w-56
-3. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
-4. **Cross-cutting:** Remove aspirational components, consolidate overlaps, move hardcoded data to JSON
+3. **ESLint cleanup** — ✅ Session 147: 7 errors + 7 warnings → 0 errors + 4 warnings. useGlobalSearch extracted to hooks/, test config fixed.
+4. **Content updates** — ✅ Session 147: Jimmy Lai fraud appeal overturned Feb 26, 2026 added. Sanctions verified current. Monitor breaking developments.
 5. **Backend connection Phase 2** — Supabase client + service layer done ✅. Remaining: add Supabase Auth for admin
 
 ### What Needs Human Decisions
@@ -476,22 +479,24 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 146, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1228 tests (73 files, all passing)
+### Current State Summary (as of Session 147, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1236 tests (74 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
 - **Page Simplification:** ALL pages simplified + data extracted. TakeAction 15→8→5 actions, actions→JSON, show-more (S138,S143,S145). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→9+ResearchDashboard+feed truncation+RSS→JSON (S139,S143,S144,S146). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→5 (S140,S142,S143). ResistanceResources 10→7 (S141). PoliticalPrisoners: truncation+modal streamlined (S140,S142,S145). DataSources: DataExport added (S146). 25 aspirational components deleted. ALL data→JSON migrations complete (20 files).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
+- **ESLint:** 0 errors, 4 warnings (was 7+7). useGlobalSearch extracted to hooks/ (S147). Accessibility unused exports removed (S147). Test argsIgnorePattern added.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
 - **Bundle:** Main bundle 301KB (97KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All data→JSON migrations complete. Educational modules + take action steps + RSS feeds in JSON. 20 total JSON data files.
+- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All data→JSON migrations complete. Educational modules + take action steps + RSS feeds in JSON. 20 total JSON data files. Jimmy Lai data updated through Feb 2026 (fraud appeal overturned).
+- **Content:** Sanctions verified current as of Mar 2026. Jimmy Lai profile updated through Feb 26, 2026 fraud appeal.
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
-- **Lint:** 0 errors, 7 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 20 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1228 tests across 73 files.
+- **Lint:** 0 errors, 4 warnings. 0 npm vulnerabilities.
+- **Test Coverage:** All 20 JSON data files, all 4 Supabase forms, all 4 hooks (useDocumentTitle, useLiveData, useWebRTCLeakCheck, useGlobalSearch), key components tested. 1236 tests across 74 files.
 
 ---
 
