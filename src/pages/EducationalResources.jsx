@@ -1,18 +1,9 @@
 import { useState, lazy, Suspense } from 'react'
-import { motion } from 'framer-motion'
 import { 
-  BookOpen, 
   Play, 
-  CheckCircle, 
   Clock, 
-  Users,
-  Star,
   Download,
-  Search,
-  Filter,
-  ChevronRight,
-  Lock,
-  Award
+  Search
 } from 'lucide-react'
 
 const SectionLoader = () => (
@@ -27,15 +18,11 @@ const GlossaryTerms = lazy(() => import('../components/GlossaryTerms'));
 const VictimStories = lazy(() => import('../components/VictimStories'));
 const ResearchPapers = lazy(() => import('../components/ResearchPapers'));
 const FAQ = lazy(() => import('../components/FAQ'));
-const KnowledgeQuiz = lazy(() => import('../components/KnowledgeQuiz'));
 const LanguageGuide = lazy(() => import('../components/LanguageGuide'));
 const DisinfoTracker = lazy(() => import('../components/DisinfoTracker'));
 const SourceVerification = lazy(() => import('../components/SourceVerification'));
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
-const ReadingProgress = lazy(() => import('../components/ReadingProgress'));
-const PodcastPlayer = lazy(() => import('../components/PodcastPlayer'));
 const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
-const AcademicCitationGenerator = lazy(() => import('../components/AcademicCitationGenerator'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
 
@@ -51,14 +38,9 @@ const EducationalResources = () => {
       title: 'Propaganda Detection Fundamentals',
       category: 'propaganda',
       description: 'Learn to identify common CCP propaganda techniques and narratives',
-      instructor: 'Dr. Sarah Chen',
       duration: '4 hours',
-      students: 2847,
-      rating: 4.8,
       level: 'Beginner',
       lessons: 12,
-      completed: 3,
-      progress: 25,
       topics: ['Narrative Techniques', 'Visual Manipulation', 'Emotional Exploitation']
     },
     {
@@ -66,14 +48,9 @@ const EducationalResources = () => {
       title: 'Digital Security for Activists',
       category: 'security',
       description: 'Protect yourself and your organization from digital surveillance',
-      instructor: 'Marcus Rodriguez',
       duration: '6 hours',
-      students: 1956,
-      rating: 4.9,
       level: 'Intermediate',
       lessons: 15,
-      completed: 0,
-      progress: 0,
       topics: ['VPN/Tor', 'Encryption', 'Device Security', 'Operational Security']
     },
     {
@@ -81,14 +58,9 @@ const EducationalResources = () => {
       title: 'Hong Kong Democracy Movement History',
       category: 'history',
       description: 'Comprehensive overview of Hong Kong\'s struggle for democracy',
-      instructor: 'Prof. James Wong',
       duration: '5 hours',
-      students: 3124,
-      rating: 4.7,
       level: 'Beginner',
       lessons: 10,
-      completed: 5,
-      progress: 50,
       topics: ['1997 Handover', '2019 Protests', 'National Security Law', 'Current Situation']
     },
     {
@@ -96,75 +68,20 @@ const EducationalResources = () => {
       title: 'Uyghur Rights Advocacy',
       category: 'advocacy',
       description: 'Effective strategies for advocating for Uyghur human rights',
-      instructor: 'Rahima Mahmut',
       duration: '4.5 hours',
-      students: 2341,
-      rating: 4.9,
       level: 'Intermediate',
       lessons: 11,
-      completed: 0,
-      progress: 0,
       topics: ['Documentation', 'International Advocacy', 'Corporate Accountability', 'Legal Action']
     },
     {
       id: 5,
-      title: 'Tibetan Independence Movement',
-      category: 'history',
-      description: 'History and current status of Tibetan freedom struggle',
-      instructor: 'Tenzin Dorje',
-      duration: '4 hours',
-      students: 1847,
-      rating: 4.6,
-      level: 'Beginner',
-      lessons: 9,
-      completed: 2,
-      progress: 22,
-      topics: ['Historical Context', 'Cultural Preservation', 'Religious Freedom', 'Self-Determination']
-    },
-    {
-      id: 6,
-      title: 'Taiwan Democracy & Sovereignty',
-      category: 'advocacy',
-      description: 'Understanding Taiwan\'s democratic system and international status',
-      instructor: 'Dr. Lin Wei-ming',
-      duration: '3.5 hours',
-      students: 2156,
-      rating: 4.8,
-      level: 'Beginner',
-      lessons: 8,
-      completed: 1,
-      progress: 12,
-      topics: ['Democratic System', 'International Relations', 'Cross-Strait Issues', 'Sovereignty']
-    },
-    {
-      id: 7,
       title: 'Fact-Checking & Verification',
       category: 'skills',
       description: 'Master techniques for verifying information and debunking false claims',
-      instructor: 'Alex Thompson',
       duration: '3 hours',
-      students: 1623,
-      rating: 4.7,
       level: 'Intermediate',
       lessons: 8,
-      completed: 0,
-      progress: 0,
       topics: ['Source Verification', 'Image Analysis', 'Timeline Verification', 'Expert Consultation']
-    },
-    {
-      id: 8,
-      title: 'Social Media Advocacy Strategy',
-      category: 'skills',
-      description: 'Effective strategies for spreading awareness on social media',
-      instructor: 'Jessica Liu',
-      duration: '2.5 hours',
-      students: 2734,
-      rating: 4.6,
-      level: 'Beginner',
-      lessons: 7,
-      completed: 4,
-      progress: 57,
-      topics: ['Platform Strategy', 'Content Creation', 'Community Building', 'Engagement Tactics']
     }
   ])
 
@@ -173,51 +90,40 @@ const EducationalResources = () => {
       id: 1,
       title: 'CCP Propaganda Analysis Report',
       type: 'PDF',
-      size: '2.4 MB',
-      downloads: 4521,
-      rating: 4.9
+      size: '2.4 MB'
     },
     {
       id: 2,
       title: 'Xinjiang Human Rights Documentation',
       type: 'PDF',
-      size: '5.8 MB',
-      downloads: 3847,
-      rating: 4.8
+      size: '5.8 MB'
     },
     {
       id: 3,
       title: 'Hong Kong National Security Law Analysis',
       type: 'PDF',
-      size: '1.9 MB',
-      downloads: 2956,
-      rating: 4.7
+      size: '1.9 MB'
     },
     {
       id: 4,
       title: 'Digital Security Handbook',
       type: 'PDF',
-      size: '3.2 MB',
-      downloads: 5234,
-      rating: 4.9
+      size: '3.2 MB'
     },
     {
       id: 5,
       title: 'Propaganda Techniques Visual Guide',
       type: 'PDF',
-      size: '4.1 MB',
-      downloads: 6123,
-      rating: 4.8
+      size: '4.1 MB'
     }
   ])
 
   const [categories] = useState([
-    { id: 'all', name: 'All Courses', count: 8 },
+    { id: 'all', name: 'All Courses', count: 5 },
     { id: 'propaganda', name: 'Propaganda Analysis', count: 1 },
     { id: 'security', name: 'Digital Security', count: 1 },
-    { id: 'history', name: 'History & Context', count: 2 },
-    { id: 'advocacy', name: 'Advocacy Strategies', count: 2 },
-    { id: 'skills', name: 'Skills Development', count: 2 }
+    { id: 'history', name: 'History & Context', count: 1 },
+    { id: 'advocacy', name: 'Advocacy & Skills', count: 2 }
   ])
 
   const filteredModules = modules.filter(module => {
@@ -228,12 +134,11 @@ const EducationalResources = () => {
   })
 
   const ModuleCard = ({ module }) => (
-    <motion.button
+    <button
       type="button"
-      whileHover={{ scale: 1.02 }}
       onClick={() => setSelectedModule(module.id)}
       aria-pressed={selectedModule === module.id}
-      className={`p-6 border cursor-pointer transition-all text-left w-full ${
+      className={`p-6 border cursor-pointer transition-all text-left w-full hover:scale-[1.02] ${
         selectedModule === module.id
           ? 'bg-[#4afa82]/10 border-[#4afa82] shadow-lg shadow-[#4afa82]/20'
           : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
@@ -244,26 +149,7 @@ const EducationalResources = () => {
           <h3 className="text-white font-semibold">{module.title}</h3>
           <p className="text-slate-400 text-sm mt-1">{module.description}</p>
         </div>
-        {module.progress === 100 && (
-          <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
-        )}
       </div>
-
-      {/* Progress Bar */}
-      {module.progress > 0 && (
-        <div className="mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400">Progress</span>
-            <span className="text-xs text-slate-300">{module.progress}%</span>
-          </div>
-          <div className="w-full bg-[#1c2a35] rounded-full h-2">
-            <div
-              className="bg-[#22d3ee] h-2 rounded-full transition-all"
-              style={{ width: `${module.progress}%` }}
-            ></div>
-          </div>
-        </div>
-      )}
 
       <div className="flex items-center justify-between text-xs text-slate-400">
         <div className="flex items-center space-x-4">
@@ -271,23 +157,21 @@ const EducationalResources = () => {
             <Clock className="w-3 h-3 mr-1" />
             {module.duration}
           </span>
-          <span className="flex items-center">
-            <Users className="w-3 h-3 mr-1" />
-            {module.students.toLocaleString()}
+          <span className={`px-2 py-0.5 text-xs font-mono ${
+            module.level === 'Beginner' ? 'bg-green-900/30 text-green-300' :
+            module.level === 'Intermediate' ? 'bg-yellow-900/30 text-yellow-300' :
+            'bg-red-900/30 text-red-300'
+          }`}>
+            {module.level}
           </span>
         </div>
-        <div className="flex items-center space-x-1">
-          <Star className="w-3 h-3 text-yellow-400 fill-current" />
-          <span>{module.rating}</span>
-        </div>
+        <span className="text-slate-500">{module.lessons} lessons</span>
       </div>
-    </motion.button>
+    </button>
   )
 
   const ResourceCard = ({ resource }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <div
       className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
     >
       <div className="flex items-start justify-between">
@@ -296,31 +180,15 @@ const EducationalResources = () => {
           <div className="flex items-center space-x-4 mt-2 text-xs text-slate-400">
             <span>{resource.type}</span>
             <span>{resource.size}</span>
-            <span>{resource.downloads.toLocaleString()} downloads</span>
-          </div>
-          <div className="flex items-center space-x-1 mt-2">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-3 h-3 ${
-                  i < Math.floor(resource.rating)
-                    ? 'text-yellow-400 fill-current'
-                    : 'text-slate-600'
-                }`}
-              />
-            ))}
-            <span className="text-xs text-slate-400 ml-1">{resource.rating}</span>
           </div>
         </div>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+        <button
           className="p-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 transition-colors"
         >
           <Download className="w-5 h-5 text-white" />
-        </motion.button>
+        </button>
       </div>
-    </motion.div>
+    </div>
   )
 
   return (
@@ -334,58 +202,37 @@ const EducationalResources = () => {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div
           className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Total Courses</p>
-          <p className="text-2xl font-bold text-white mt-1">8</p>
+          <p className="text-2xl font-bold text-white mt-1">5</p>
           <p className="text-xs text-slate-500 mt-1">Comprehensive modules</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-[#111820] border border-[#1c2a35] p-4"
-        >
-          <p className="text-slate-400 text-sm">Active Students</p>
-          <p className="text-2xl font-bold text-white mt-1">18,728</p>
-          <p className="text-xs text-slate-500 mt-1">Worldwide learners</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        </div>
+        <div
           className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Resources</p>
           <p className="text-2xl font-bold text-white mt-1">5</p>
           <p className="text-xs text-slate-500 mt-1">Downloadable materials</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+        </div>
+        <div
           className="bg-[#111820] border border-[#1c2a35] p-4"
         >
-          <p className="text-slate-400 text-sm">Certifications</p>
-          <p className="text-2xl font-bold text-white mt-1">2,341</p>
-          <p className="text-xs text-slate-500 mt-1">Completed courses</p>
-        </motion.div>
+          <p className="text-slate-400 text-sm">Topics Covered</p>
+          <p className="text-2xl font-bold text-white mt-1">20+</p>
+          <p className="text-xs text-slate-500 mt-1">Key subject areas</p>
+        </div>
       </div>
 
-      {/* Tabs — consolidated from 17 to 7 */}
+      {/* Tabs — consolidated from 7 to 4 */}
       <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
         {[
           { id: 'learn', label: 'Learn' },
           { id: 'media', label: 'Media' },
           { id: 'research', label: 'Research' },
-          { id: 'history', label: 'History' },
           { id: 'tools', label: 'Tools' },
-          { id: 'faq', label: 'FAQ' },
-          { id: 'progress', label: 'Progress' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -443,9 +290,7 @@ const EducationalResources = () => {
 
           {/* Module Details */}
           {selectedModule && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="bg-[#111820] border border-[#1c2a35] p-6"
             >
               {(() => {
@@ -457,34 +302,23 @@ const EducationalResources = () => {
                         <h2 className="text-2xl font-bold text-white">{module.title}</h2>
                         <p className="text-slate-400 mt-2">{module.description}</p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        module.level === 'Beginner' ? 'bg-green-900 text-green-100' :
-                        module.level === 'Intermediate' ? 'bg-yellow-900 text-yellow-100' :
-                        'bg-red-900 text-red-100'
+                      <span className={`px-3 py-1 text-sm font-medium ${
+                        module.level === 'Beginner' ? 'bg-green-900/30 text-green-300' :
+                        module.level === 'Intermediate' ? 'bg-yellow-900/30 text-yellow-300' :
+                        'bg-red-900/30 text-red-300'
                       }`}>
                         {module.level}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                      <div>
-                        <p className="text-slate-400 text-sm">Instructor</p>
-                        <p className="text-white font-semibold">{module.instructor}</p>
-                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                       <div>
                         <p className="text-slate-400 text-sm">Duration</p>
                         <p className="text-white font-semibold">{module.duration}</p>
                       </div>
                       <div>
-                        <p className="text-slate-400 text-sm">Students</p>
-                        <p className="text-white font-semibold">{module.students.toLocaleString()}</p>
-                      </div>
-                      <div>
-                        <p className="text-slate-400 text-sm">Rating</p>
-                        <div className="flex items-center space-x-1">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <p className="text-white font-semibold">{module.rating}</p>
-                        </div>
+                        <p className="text-slate-400 text-sm">Lessons</p>
+                        <p className="text-white font-semibold">{module.lessons}</p>
                       </div>
                     </div>
 
@@ -508,7 +342,7 @@ const EducationalResources = () => {
                   </>
                 )
               })()}
-            </motion.div>
+            </div>
           )}
 
           {/* Downloadable Resources */}
@@ -519,6 +353,20 @@ const EducationalResources = () => {
                 <ResourceCard key={resource.id} resource={resource} />
               ))}
             </div>
+          </div>
+
+          {/* History & Context (merged from History tab) */}
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── interactive_timeline ──</h2>
+            <Suspense fallback={<SectionLoader />}><InteractiveTimeline /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── survivor_stories ──</h2>
+            <Suspense fallback={<SectionLoader />}><VictimStories /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── glossary ──</h2>
+            <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
           </div>
         </div>
       )}
@@ -535,17 +383,13 @@ const EducationalResources = () => {
             <Suspense fallback={<SectionLoader />}><DocumentaryList /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── podcasts ──</h2>
-            <Suspense fallback={<SectionLoader />}><PodcastPlayer /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── propaganda_outlets ──</h2>
             <Suspense fallback={<SectionLoader />}><MediaManipulation /></Suspense>
           </div>
         </div>
       )}
 
-      {/* Research Tab (was: research + sources + citations) */}
+      {/* Research Tab (was: research + sources) */}
       {activeTab === 'research' && (
         <div className="space-y-8">
           <div>
@@ -555,39 +399,13 @@ const EducationalResources = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── source_verification ──</h2>
             <Suspense fallback={<SectionLoader />}><SourceVerification /></Suspense>
           </div>
-          <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── citation_generator ──</h2>
-            <Suspense fallback={<SectionLoader />}><AcademicCitationGenerator /></Suspense>
-          </div>
         </div>
       )}
 
-      {/* History Tab (was: stories + timeline + glossary) */}
-      {activeTab === 'history' && (
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── interactive_timeline ──</h2>
-            <Suspense fallback={<SectionLoader />}><InteractiveTimeline /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── survivor_stories ──</h2>
-            <Suspense fallback={<SectionLoader />}><VictimStories /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── glossary ──</h2>
-            <Suspense fallback={<SectionLoader />}><GlossaryTerms /></Suspense>
-          </div>
-        </div>
-      )}
-
-      {/* Tools Tab (was: quiz + phrases + disinfo + detector) */}
+      {/* Tools Tab (was: phrases + disinfo + detector + confucius + faq) */}
       {activeTab === 'tools' && (
         <div className="space-y-8">
           <div>
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── knowledge_quiz ──</h2>
-            <Suspense fallback={<SectionLoader />}><KnowledgeQuiz /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── language_phrases ──</h2>
             <Suspense fallback={<SectionLoader />}><LanguageGuide /></Suspense>
           </div>
@@ -603,17 +421,11 @@ const EducationalResources = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── confucius_institutes ──</h2>
             <Suspense fallback={<SectionLoader />}><ConfuciusInstitutes /></Suspense>
           </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── faq ──</h2>
+            <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
+          </div>
         </div>
-      )}
-
-      {/* FAQ Tab */}
-      {activeTab === 'faq' && (
-        <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
-      )}
-
-      {/* Reading Progress Tab */}
-      {activeTab === 'progress' && (
-        <Suspense fallback={<SectionLoader />}><ReadingProgress /></Suspense>
       )}
     </div>
   )
