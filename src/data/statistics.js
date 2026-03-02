@@ -42,6 +42,20 @@ export const STATISTICS = {
     lastVerified: '2026-02-26',
   },
 
+  hongKongNSLArrests: {
+    value: '386',
+    context: 'people arrested under Hong Kong national security laws since 2020, with 176 convicted',
+    sources: ['Hong Kong Free Press', 'AFP/France24', 'Reuters'],
+    lastVerified: '2026-03-02',
+  },
+
+  uflpaEntityList: {
+    value: '144',
+    context: 'companies on the UFLPA Entity List banned from supplying goods to the US',
+    sources: ['DHS UFLPA Strategy 2025 Update', 'CSIS', 'UHRP Sanctions Tracker'],
+    lastVerified: '2026-03-02',
+  },
+
   confuciusInstitutes: {
     value: '500+',
     context: 'Confucius Institutes established worldwide (many now closed)',

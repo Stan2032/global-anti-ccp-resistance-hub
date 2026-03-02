@@ -8,6 +8,8 @@ describe('Centralized statistics', () => {
       'surveillanceCameras',
       'overseasPoliceStations',
       'hongKong47',
+      'hongKongNSLArrests',
+      'uflpaEntityList',
       'confuciusInstitutes',
       'tiananmenYear',
       'organHarvesting',
