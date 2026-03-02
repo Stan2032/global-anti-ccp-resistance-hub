@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 137)
+> Last Updated: March 2, 2026 (Session 138)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -82,34 +82,38 @@
 - [ ] **Research: truncate long prisoner lists** — show 10-15 by default with "Show all" button
 - **Target:** Keep structure, reduce visual noise and line count by ~100 lines
 
-### Page 4: Take Action (552 lines, 15 lazy components) — HIGHEST priority
-**Current:** 7 action steps (hardcoded) + email subscribe form + 15 lazy sub-components all stacked vertically
-- [ ] **Remove email subscribe form** — owner DEFERRED email features
-- [ ] **Reduce 15 lazy components to 6-8** — many are overlapping:
-  - Remove PetitionGenerator (overlaps PetitionLinks)
-  - Remove ForcedLaborSupplyChain (overlaps ForcedLabourList)
-  - Remove SocialMediaToolkit (aspirational — no real backend)
-  - Remove CampaignProgress (aspirational — no real tracking data)
-  - Remove LetterCampaign (overlaps ContactRepresentatives)
-  - Remove ActionTracker (aspirational — no real user action data)
-  - Remove GovernmentResponseTracker (aspirational — no real response data)
+### Page 4: Take Action (413 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 138)
+**Was:** 552 lines, 15 lazy components, email form, duplicate share section
+**Now:** 413 lines, 8 lazy components (PetitionLinks, ForcedLabourList, ContactRepresentatives, SuccessStories, QuickFacts, ActivistToolkit, SanctionsTracker, DonationGuide)
+- [x] **Remove email subscribe form** — owner DEFERRED email features ✅
+- [x] **Reduce 15 lazy components to 8** — removed 7 aspirational/overlapping: ✅
+  - ✅ PetitionGenerator (overlaps PetitionLinks)
+  - ✅ ForcedLaborSupplyChain (overlaps ForcedLabourList)
+  - ✅ SocialMediaToolkit (aspirational — no real backend)
+  - ✅ CampaignProgress (aspirational — no real tracking data)
+  - ✅ LetterCampaign (overlaps ContactRepresentatives)
+  - ✅ ActionTracker (aspirational — no real user action data)
+  - ✅ GovernmentResponseTracker (aspirational — no real response data)
+- [x] **Remove duplicate inline social share section** — ShareButtons already at bottom ✅
+- [x] **Component files deleted** — 7 orphan .jsx files removed ✅
 - [ ] **Move inline `actions` array (80+ lines)** → JSON data file
-- [ ] **Simplify 7 action steps to 5** — merge "Report CCP Harassment" into security page
+- [ ] **Simplify 8 action steps to 5** — merge "Report CCP Harassment" into security page
 - [ ] **Add "show more" pattern** — show top 3 actions expanded, rest collapsed
-- **Target:** 15 lazy components → 6 (PetitionLinks, ContactRepresentatives, ForcedLabourList, QuickFacts, SanctionsTracker, DonationGuide)
 
-### Page 5: Education Center (622 lines, 17 lazy components) — HIGHEST priority
-**Current:** 7 tabs (learn, media, research, history, tools, faq, progress) + 10 modules inline + 17 lazy components
-- [ ] **Reduce 7 tabs to 3-4**: Learn | Media | Research | Tools (merge history into learn, merge faq into learn, remove progress)
-- [ ] **Remove ReadingProgress** — aspirational feature (no real user session tracking)
-- [ ] **Remove AcademicCitationGenerator** — niche utility, rarely used
-- [ ] **Remove PodcastPlayer** — aspirational (no real podcast content)
-- [ ] **Remove KnowledgeQuiz** — already have SecurityQuiz on Security page
-- [ ] **Move inline `modules` array (120+ lines of hardcoded data)** → JSON file
-- [ ] **Reduce 10 modules to 5** — remove modules with fake instructor names/ratings
-- [ ] **Simplify category filter** — 6 category buttons is too many; reduce to 3-4
-- [ ] **Remove motion animations** — 17 motion.div imports, adds bundle weight
-- **Target:** 17 components → 8-10, 7 tabs → 3-4
+### Page 5: Education Center (434 lines, 13 lazy components) — ✅ SIMPLIFIED (Session 138)
+**Was:** 622 lines, 17 lazy components, 7 tabs, 8 modules, framer-motion
+**Now:** 434 lines, 13 lazy components, 4 tabs, 5 modules, no framer-motion
+- [x] **Reduce 7 tabs to 4**: Learn | Media | Research | Tools ✅ (History merged into Learn, FAQ merged into Tools, Progress removed)
+- [x] **Remove ReadingProgress** — aspirational feature (no real user session tracking) ✅
+- [x] **Remove AcademicCitationGenerator** — niche utility, rarely used ✅
+- [x] **Remove PodcastPlayer** — aspirational (no real podcast content) ✅
+- [x] **Remove KnowledgeQuiz** — already have SecurityQuiz on Security page ✅
+- [x] **Reduce 8 modules to 5** — removed modules with fake instructor names/ratings ✅
+- [x] **Simplify category filter** — 6 → 5 category buttons ✅
+- [x] **Remove motion animations** — all motion.div → div, motion.button → button ✅
+- [x] **Remove fake data** — student counts, ratings, download counts, progress bars all removed ✅
+- [x] **Component files deleted** — 4 orphan .jsx files removed ✅
+- [ ] **Move inline `modules` array** → JSON file (still 50+ lines inline)
 
 ### Page 6: Security Center (613 lines, 8 lazy components) — HIGH priority
 **Current:** 6 tabs (assess, legacy-assessment, tools, guides, protect, whistleblower, threats) + complex security assessment
@@ -168,23 +172,21 @@
 - **Target:** Keep as-is
 
 ### Cross-Cutting Simplification Tasks
-- [ ] **Remove framer-motion from pages that don't need it** — CommunitySupport (13), DataSources (17), EducationalResources (17), SecurityCenter (19), PoliticalPrisoners (7) = ~73 motion.div imports across 5 pages
+- [ ] **Remove framer-motion from pages that don't need it** — CommunitySupport (13), DataSources (17), SecurityCenter (19), PoliticalPrisoners (7) = ~56 motion.div imports across 4 pages
+  - ✅ EducationalResources: all motion removed (Session 138)
   - Research: removing motion.div → static div saves bundle size (vendor-motion is 116KB/38KB gzip)
   - Start with pages that use motion only for fade-in (no real interactivity)
-- [ ] **Audit for aspirational components** — components with no real data/backend that pretend to have features
-  - ActionTracker, CampaignProgress, GovernmentResponseTracker, ImpactMetrics, SocialMediaToolkit, PetitionGenerator, LetterCampaign, EventRSVP, EventMap, SolidarityWall, ReadingProgress, PodcastPlayer, Bookmarks, OfflineModeManager, WhistleblowerPortal
-  - Decision: remove or clearly label as "coming soon" with minimal UI
-- [ ] **Consolidate overlapping components**:
-  - PetitionGenerator ↔ PetitionLinks (both handle petitions)
-  - ForcedLaborSupplyChain ↔ ForcedLabourList (both track forced labor)
-  - LetterCampaign ↔ ContactRepresentatives (both contact officials)
-  - VictimMemorialWall ↔ MemorialWall (both memorial features)
-  - PoliceStationsMap ↔ DetentionFacilities (both track CCP facilities)
-  - GlobalInfluenceMap ↔ WorldThreatMap (both map CCP influence)
-  - OrganizationsDirectory ↔ ResistanceDirectory page (both list organizations)
+- [x] **Audit for aspirational components** — 11 removed in Session 138: ✅
+  - ✅ Removed: ActionTracker, CampaignProgress, GovernmentResponseTracker, SocialMediaToolkit, PetitionGenerator, LetterCampaign, ForcedLaborSupplyChain, ReadingProgress, PodcastPlayer, KnowledgeQuiz, AcademicCitationGenerator
+  - Remaining aspirational: ImpactMetrics, EventRSVP, EventMap, SolidarityWall, Bookmarks, OfflineModeManager, WhistleblowerPortal
+- [x] **Consolidate overlapping components** — 4 of 7 pairs resolved: ✅
+  - ✅ PetitionGenerator removed (PetitionLinks kept)
+  - ✅ ForcedLaborSupplyChain removed (ForcedLabourList kept)
+  - ✅ LetterCampaign removed (ContactRepresentatives kept)
+  - Remaining: VictimMemorialWall ↔ MemorialWall, PoliceStationsMap ↔ DetentionFacilities, GlobalInfluenceMap ↔ WorldThreatMap, OrganizationsDirectory ↔ ResistanceDirectory page
 - [ ] **Move hardcoded data to JSON files**:
   - TakeAction.jsx `actions` array (~80 lines)
-  - EducationalResources.jsx `modules` array (~120 lines)
+  - EducationalResources.jsx `modules` array (~50 lines)
   - CommunitySupport.jsx `supportRequests` array (~70 lines)
   - IntelligenceFeeds.jsx `rssFeeds` array (~90 lines)
 
@@ -402,8 +404,8 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — NEW (Session 137). Comprehensive per-page task list added above. Priority order:
-   - **HIGHEST:** TakeAction (15→6 components), EducationalResources (17→8 components)
+1. **🔴 Page simplification** — IN PROGRESS (Session 137-138). Two HIGHEST priority pages done:
+   - **✅ DONE:** TakeAction (15→8 components, 552→413 lines), EducationalResources (17→13 components, 7→4 tabs, 622→434 lines)
    - **HIGH:** IntelligenceFeeds (11→7 components), SecurityCenter (8→5 components), CommunitySupport (10→4 or merge)
    - **MEDIUM:** Dashboard (8→4 components), PoliticalPrisoners (reduce visual noise), ResistanceResources (redistribute)
    - **LOW:** DataSources (minor motion removal), ResistanceDirectory (keep as-is)
@@ -458,11 +460,11 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 137, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 96 components, 1137 tests (66 files, all passing)
+### Current State Summary (as of Session 138, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 85 components (was 96), 1154 tests (67 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
-- **Page Simplification:** Comprehensive task list created (Session 137). 10 pages analyzed. Priority: TakeAction (15→6), EducationalResources (17→8), IntelligenceFeeds (11→7), SecurityCenter (8→5), CommunitySupport (10→4 or merge). ~15 aspirational components identified for removal. ~7 overlapping component pairs identified for consolidation.
+- **Page Simplification:** TakeAction simplified 15→8 components (Session 138). EducationalResources simplified 17→13 components, 7→4 tabs, framer-motion removed (Session 138). 11 orphan component files deleted. Next: IntelligenceFeeds, SecurityCenter, CommunitySupport.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
@@ -472,7 +474,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
 - **Lint:** 0 errors, 7 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 17 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1137 tests across 66 files.
+- **Test Coverage:** All 17 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1154 tests across 67 files.
 
 ---
 
