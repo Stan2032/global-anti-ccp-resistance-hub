@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 145)
+> Last Updated: March 2, 2026 (Session 146)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -68,8 +68,8 @@
 - [x] **Remove RegionalIssues** — generic, overlaps 4 specific regional components ✅
 - [x] **Component files deleted** — 3 orphan .jsx files removed (1,021 lines) ✅
 - [x] **Feed truncation** — show 5 articles by default with "Show all" button, reset on filter change ✅ (Session 144)
-- [ ] **Research: inline RSS data** — 93 lines of hardcoded `rssFeeds` array (lines 28-120) should be JSON
-- **Target reached:** 11 → 8 components ✅, feeds truncated ✅
+- [x] **RSS feed config → JSON** — moved liveDataFeeds to live_data_feeds.json, liveDataSources.js imports from JSON ✅ (Session 146)
+- **Target reached:** 11 → 8 components ✅, feeds truncated ✅, RSS data→JSON ✅
 
 ### Page 3: Political Prisoners (573 lines, 0 lazy components) — ✅ truncation + modal streamlined (Session 142, 145)
 **Current:** Large inline page with search/filter, prisoner cards, detail modal — no sub-components
@@ -159,11 +159,11 @@
   - Move DataExport to DataSources page
 - **Target reached:** 10 → 7 components, aspirational removed ✅
 
-### Page 9: Data Sources (240 lines, 0 lazy components) — ✅ framer-motion removed (Session 140)
-**Current:** Static informational page about data methodology. Clean and focused.
+### Page 9: Data Sources (252 lines, 1 lazy component) — ✅ framer-motion removed + DataExport added (Session 140, 146)
+**Current:** Static informational page about data methodology. Clean and focused. DataExport lazy-loaded.
 - [x] **Remove motion animations** — 17 motion.div/a usages removed ✅
+- [x] **Add DataExport here** — natural fit for data-oriented users ✅ (Session 146)
 - [ ] **No major structural changes needed** — already well-structured
-- [ ] **Consider: add DataExport here** — natural fit for data-oriented users
 - **Target:** Keep mostly as-is ✅
 
 ### Page 10: Resistance Directory (244 lines, 0 lazy components) — LOW priority
@@ -197,11 +197,12 @@
   - ✅ RegionalIssues removed (4 specific regional components kept)
   - ✅ VictimMemorialWall removed (MemorialWall kept)
   - Remaining: OrganizationsDirectory ↔ ResistanceDirectory page
-- [ ] **Move hardcoded data to JSON files**:
+- [x] **Move hardcoded data to JSON files**:
   - [x] EducationalResources.jsx `modules`/`resources`/`categories` arrays → educational_modules.json ✅ (Session 141)
   - [x] TakeAction.jsx `actions` array (~80 lines) → take_action_steps.json with icon mapping ✅ (Session 143)
   - ✅ CommunitySupport.jsx `supportRequests` array — removed entirely (Session 140)
   - ✅ IntelligenceFeeds.jsx `rssFeeds` — already in liveDataService.js
+  - [x] liveDataSources.js feed config → live_data_feeds.json ✅ (Session 146)
 
 ---
 
@@ -417,13 +418,13 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — IN PROGRESS (Session 137-145). All priority pages done:
-   - **✅ DONE:** TakeAction (15→8, 8→5 actions, actions→JSON, show-more), EducationalResources (17→13, 7→4 tabs, data→JSON), IntelligenceFeeds (11→9, ResearchDashboard moved in, feed truncation), SecurityCenter (8→6, 6→4 tabs)
-   - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→5, urgentCampaigns removed, quickActions 4→3, ResearchDashboard moved out), PoliticalPrisoners (motion removed, truncation added, modal streamlined), DataSources (motion removed)
+1. **🔴 Page simplification** — IN PROGRESS (Session 137-146). All priority pages done:
+   - **✅ DONE:** TakeAction (15→8, 8→5 actions, actions→JSON, show-more), EducationalResources (17→13, 7→4 tabs, data→JSON), IntelligenceFeeds (11→9, ResearchDashboard moved in, feed truncation, RSS→JSON), SecurityCenter (8→6, 6→4 tabs)
+   - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→5, urgentCampaigns removed, quickActions 4→3, ResearchDashboard moved out), PoliticalPrisoners (motion removed, truncation added, modal streamlined), DataSources (motion removed, DataExport added)
    - **✅ DONE:** ResistanceResources (10→7, aspirational removed), EducationalResources data→JSON
    - **✅ DONE:** framer-motion completely removed — dependency uninstalled, vendor bundle eliminated (Session 144)
    - **LOW:** ResistanceDirectory (keep as-is)
-   - **Cross-cutting complete:** All data→JSON migrations done ✅, framer-motion eliminated ✅, TakeAction 8→5 ✅
+   - **Cross-cutting complete:** All data→JSON migrations done ✅ (20 JSON files), framer-motion eliminated ✅, TakeAction 8→5 ✅, DataExport on DataSources ✅
 2. **Navigation simplification** — ✅ Session 136: sidebar 11→7 items, width w-64→w-56
 3. **Content updates** — Monitor breaking developments, update sanctions list with 2026 actions
 4. **Cross-cutting:** Remove aspirational components, consolidate overlaps, move hardcoded data to JSON
@@ -475,22 +476,22 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 145, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1218 tests (72 files, all passing)
+### Current State Summary (as of Session 146, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1228 tests (73 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
-- **Page Simplification:** ALL pages simplified + data extracted. TakeAction 15→8→5 actions, actions→JSON, show-more (S138,S143,S145). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→9+ResearchDashboard+feed truncation (S139,S143,S144). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→5 (S140,S142,S143). ResistanceResources 10→7 (S141). PoliticalPrisoners: truncation+modal streamlined (S140,S142,S145). 25 aspirational components deleted. ALL data→JSON migrations complete.
+- **Page Simplification:** ALL pages simplified + data extracted. TakeAction 15→8→5 actions, actions→JSON, show-more (S138,S143,S145). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→9+ResearchDashboard+feed truncation+RSS→JSON (S139,S143,S144,S146). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→5 (S140,S142,S143). ResistanceResources 10→7 (S141). PoliticalPrisoners: truncation+modal streamlined (S140,S142,S145). DataSources: DataExport added (S146). 25 aspirational components deleted. ALL data→JSON migrations complete (20 files).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
 - **Bundle:** Main bundle 301KB (97KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All 5/5 JSON migrations complete. Educational modules + take action steps in JSON. 19 total JSON data files.
+- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All data→JSON migrations complete. Educational modules + take action steps + RSS feeds in JSON. 20 total JSON data files.
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
 - **Lint:** 0 errors, 7 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 19 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1218 tests across 72 files.
+- **Test Coverage:** All 20 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1228 tests across 73 files.
 
 ---
 
