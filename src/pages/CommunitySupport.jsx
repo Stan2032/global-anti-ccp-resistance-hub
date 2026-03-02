@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { 
   ChevronRight,
 } from 'lucide-react'
@@ -18,16 +17,16 @@ const CommunitySupport = () => {
       {/* Quick Links to Redistributed Features */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
-          { title: 'Volunteer & Donate', desc: 'Sign up to volunteer or support activists financially', page: '/take-action', section: 'Volunteer & Diaspora Support' },
-          { title: 'Report CCP Activity', desc: 'Report overseas police stations, surveillance, or intimidation', page: '/security', section: 'Security → Tools tab' },
-          { title: 'Key Dates & Events', desc: 'Calendar of important resistance dates and commemorations', page: '/education', section: 'Education → Learn tab' },
-          { title: 'Survivor Stories', desc: 'Read testimonies from survivors of CCP persecution', page: '/education', section: 'Education → Learn tab' },
+          { title: 'Volunteer & Donate', desc: 'Sign up to volunteer or support activists financially', page: '/take-action', slug: 'volunteer_support' },
+          { title: 'Report CCP Activity', desc: 'Report overseas police stations, surveillance, or intimidation', page: '/security', slug: 'security_tools' },
+          { title: 'Key Dates & Events', desc: 'Calendar of important resistance dates and commemorations', page: '/education', slug: 'key_dates' },
+          { title: 'Survivor Stories', desc: 'Read testimonies from survivors of CCP persecution', page: '/education', slug: 'survivor_stories' },
         ].map((item, idx) => (
           <a key={idx} href={item.page} className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors block">
             <h3 className="text-white font-semibold mb-2">{item.title}</h3>
             <p className="text-slate-400 text-sm mb-3">{item.desc}</p>
             <span className="text-[#4afa82] font-mono text-sm flex items-center space-x-2">
-              <span>$ go --{item.section.toLowerCase().replace(/[^a-z0-9]+/g, '_')}</span>
+              <span>$ go --{item.slug}</span>
               <ChevronRight className="w-4 h-4" />
             </span>
           </a>
