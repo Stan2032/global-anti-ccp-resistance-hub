@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 138)
+> Last Updated: March 2, 2026 (Session 139)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -59,19 +59,18 @@
 - [ ] **Remove inline `urgentCampaigns` array** — overlaps with EmergencyAlerts content
 - **Target:** 6 components → 4 (EmergencyAlerts, LiveStatistics, NewsAggregator + UrgentCaseTimer, NewsDigest)
 
-### Page 2: Intelligence Feeds (360 lines, 11 lazy components) — HIGH priority
-**Current:** 3 tabs: Feeds (inline RSS items), Regional (5 components), Operations (6 components)
-- [ ] **Reduce Regional tab** — 5 components (HongKong, Xinjiang, Tibet, Taiwan, RegionalIssues) is overwhelming
-  - Consider: show summary cards linking to dedicated sub-pages instead of embedding all 5
-- [ ] **Reduce Operations tab** — 6 components (CCPOfficials, WorldThreatMap, DetentionFacilities, PoliceStationsMap, SanctionedOfficials, GlobalInfluenceMap) is far too many
-  - Remove GlobalInfluenceMap (overlaps WorldThreatMap)
-  - Remove PoliceStationsMap if data is also in DetentionFacilities
-  - Consider: show 3 most important, link to /resources for rest
+### Page 2: Intelligence Feeds (345 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 139)
+**Was:** 360 lines, 11 lazy components, 3 tabs (Feeds/Regional with 5 components/Operations with 6 components)
+**Now:** 345 lines, 8 lazy components (HongKongStatus, TibetStatus, XinjiangStatus, TaiwanDefenseStatus, CCPOfficials, WorldThreatMap, DetentionFacilities, SanctionedOfficials)
+- [x] **Remove GlobalInfluenceMap** — overlaps WorldThreatMap ✅
+- [x] **Remove PoliceStationsMap** — overlaps DetentionFacilities ✅
+- [x] **Remove RegionalIssues** — generic, overlaps 4 specific regional components ✅
+- [x] **Component files deleted** — 3 orphan .jsx files removed (1,021 lines) ✅
 - [ ] **Simplify Feeds tab** — currently has 9 RSS sources rendered inline with hardcoded data
   - Move RSS source definitions to JSON data file
   - Show fewer items by default (5 instead of all)
 - [ ] **Research: inline RSS data** — 93 lines of hardcoded `rssFeeds` array (lines 28-120) should be JSON
-- **Target:** 11 components → 6-7 (cut 4 from Operations tab)
+- **Target reached:** 11 → 8 components ✅
 
 ### Page 3: Political Prisoners (587 lines, 0 lazy components) — MEDIUM priority
 **Current:** Large inline page with search/filter, prisoner cards, detail modal — no sub-components
@@ -115,16 +114,20 @@
 - [x] **Component files deleted** — 4 orphan .jsx files removed ✅
 - [ ] **Move inline `modules` array** → JSON file (still 50+ lines inline)
 
-### Page 6: Security Center (613 lines, 8 lazy components) — HIGH priority
-**Current:** 6 tabs (assess, legacy-assessment, tools, guides, protect, whistleblower, threats) + complex security assessment
-- [ ] **Reduce 6 tabs to 3-4**: Assess | Tools | Guides | Threats (merge protect into guides, merge whistleblower into tools)
-- [ ] **Simplify security assessment** — currently 100+ lines of assessment logic with questions, scoring, category breakdown
-  - Keep assessment but remove redundant "legacy-assessment" tab
-- [ ] **Remove WhistleblowerPortal** — aspirational (no real secure submission system)
-- [ ] **Remove OfflineModeManager** — aspirational (PWA caching handles this)
+### Page 6: Security Center (419 lines, 6 lazy components) — ✅ SIMPLIFIED (Session 139)
+**Was:** 613 lines, 8 lazy components, 6 tabs (assess, legacy-assessment, tools, guides, protect, whistleblower, threats), framer-motion
+**Now:** 419 lines, 6 lazy components, 4 tabs (Assess, Tools, Guides, Tech Threats), no framer-motion
+- [x] **Reduce 6 tabs to 4**: Assess | Tools | Guides | Threats ✅ (Protect merged into Guides, Whistleblower removed, legacy-assessment removed)
+- [x] **Remove WhistleblowerPortal** — aspirational (no real secure submission system) ✅
+- [x] **Remove OfflineModeManager** — aspirational (PWA caching handles this) ✅
+- [x] **Remove legacy-assessment tab** — hidden/redundant with SecurityQuiz ✅
+- [x] **Merge Protect tab into Guides** — WitnessProtection now under Guides tab ✅
+- [x] **Remove motion animations** — all 19 motion.div/motion.a/motion.button → static HTML ✅
+- [x] **Clean up unused state/imports** — legacy assessment state, handlers, 9 unused icons removed ✅
+- [x] **Component files deleted** — 2 orphan .jsx files removed (874 lines) ✅
+- [x] **17 tests added** — all passing ✅
 - [ ] **Move security assessment questions to JSON** — currently imported from JSON already ✅
-- [ ] **Remove motion animations** — 19 motion.div usages
-- **Target:** 8 components → 5-6, 6 tabs → 3-4
+- **Target reached:** 8 → 6 components, 6 → 4 tabs ✅
 
 ### Page 7: Community Support (559 lines, 10 lazy components) — HIGH priority
 **Current:** 5 tabs (support, events, stories, report, volunteer, contact) + 6 hardcoded support requests + 10 lazy components
@@ -172,18 +175,23 @@
 - **Target:** Keep as-is
 
 ### Cross-Cutting Simplification Tasks
-- [ ] **Remove framer-motion from pages that don't need it** — CommunitySupport (13), DataSources (17), SecurityCenter (19), PoliticalPrisoners (7) = ~56 motion.div imports across 4 pages
+- [ ] **Remove framer-motion from pages that don't need it** — CommunitySupport (13), DataSources (17), PoliticalPrisoners (7) = ~37 motion.div imports across 3 pages
   - ✅ EducationalResources: all motion removed (Session 138)
+  - ✅ SecurityCenter: all motion removed (Session 139)
   - Research: removing motion.div → static div saves bundle size (vendor-motion is 116KB/38KB gzip)
   - Start with pages that use motion only for fade-in (no real interactivity)
-- [x] **Audit for aspirational components** — 11 removed in Session 138: ✅
-  - ✅ Removed: ActionTracker, CampaignProgress, GovernmentResponseTracker, SocialMediaToolkit, PetitionGenerator, LetterCampaign, ForcedLaborSupplyChain, ReadingProgress, PodcastPlayer, KnowledgeQuiz, AcademicCitationGenerator
-  - Remaining aspirational: ImpactMetrics, EventRSVP, EventMap, SolidarityWall, Bookmarks, OfflineModeManager, WhistleblowerPortal
-- [x] **Consolidate overlapping components** — 4 of 7 pairs resolved: ✅
+- [x] **Audit for aspirational components** — 16 removed total: ✅
+  - ✅ Session 138: ActionTracker, CampaignProgress, GovernmentResponseTracker, SocialMediaToolkit, PetitionGenerator, LetterCampaign, ForcedLaborSupplyChain, ReadingProgress, PodcastPlayer, KnowledgeQuiz, AcademicCitationGenerator (11)
+  - ✅ Session 139: GlobalInfluenceMap, PoliceStationsMap, RegionalIssues, WhistleblowerPortal, OfflineModeManager (5)
+  - Remaining aspirational: ImpactMetrics, EventRSVP, EventMap, SolidarityWall, Bookmarks
+- [x] **Consolidate overlapping components** — 6 of 7 pairs resolved: ✅
   - ✅ PetitionGenerator removed (PetitionLinks kept)
   - ✅ ForcedLaborSupplyChain removed (ForcedLabourList kept)
   - ✅ LetterCampaign removed (ContactRepresentatives kept)
-  - Remaining: VictimMemorialWall ↔ MemorialWall, PoliceStationsMap ↔ DetentionFacilities, GlobalInfluenceMap ↔ WorldThreatMap, OrganizationsDirectory ↔ ResistanceDirectory page
+  - ✅ GlobalInfluenceMap removed (WorldThreatMap kept)
+  - ✅ PoliceStationsMap removed (DetentionFacilities kept)
+  - ✅ RegionalIssues removed (4 specific regional components kept)
+  - Remaining: VictimMemorialWall ↔ MemorialWall, OrganizationsDirectory ↔ ResistanceDirectory page
 - [ ] **Move hardcoded data to JSON files**:
   - TakeAction.jsx `actions` array (~80 lines)
   - EducationalResources.jsx `modules` array (~50 lines)
@@ -404,9 +412,10 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — IN PROGRESS (Session 137-138). Two HIGHEST priority pages done:
+1. **🔴 Page simplification** — IN PROGRESS (Session 137-139). Four HIGH/HIGHEST priority pages done:
    - **✅ DONE:** TakeAction (15→8 components, 552→413 lines), EducationalResources (17→13 components, 7→4 tabs, 622→434 lines)
-   - **HIGH:** IntelligenceFeeds (11→7 components), SecurityCenter (8→5 components), CommunitySupport (10→4 or merge)
+   - **✅ DONE:** IntelligenceFeeds (11→8 components, 360→345 lines), SecurityCenter (8→6 components, 6→4 tabs, 613→419 lines, framer-motion removed)
+   - **HIGH:** CommunitySupport (10→4 or merge into other pages)
    - **MEDIUM:** Dashboard (8→4 components), PoliticalPrisoners (reduce visual noise), ResistanceResources (redistribute)
    - **LOW:** DataSources (minor motion removal), ResistanceDirectory (keep as-is)
 2. **Navigation simplification** — ✅ Session 136: sidebar 11→7 items, width w-64→w-56
@@ -460,11 +469,11 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 138, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 85 components (was 96), 1154 tests (67 files, all passing)
+### Current State Summary (as of Session 139, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components (was 85), 1171 tests (68 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
-- **Page Simplification:** TakeAction simplified 15→8 components (Session 138). EducationalResources simplified 17→13 components, 7→4 tabs, framer-motion removed (Session 138). 11 orphan component files deleted. Next: IntelligenceFeeds, SecurityCenter, CommunitySupport.
+- **Page Simplification:** TakeAction 15→8 (S138). EducationalResources 17→13, 7→4 tabs (S138). IntelligenceFeeds 11→8 (S139). SecurityCenter 8→6, 6→4 tabs, framer-motion removed (S139). 16 orphan component files deleted. Next: CommunitySupport, Dashboard.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
@@ -474,7 +483,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
 - **Lint:** 0 errors, 7 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 17 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1154 tests across 67 files.
+- **Test Coverage:** All 17 JSON data files, all 4 Supabase forms, all 3 hooks, key components tested. 1171 tests across 68 files.
 
 ---
 
