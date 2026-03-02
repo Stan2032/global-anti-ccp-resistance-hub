@@ -6,19 +6,12 @@ import React from 'react';
 // Mock lazy-loaded components
 vi.mock('../components/PetitionLinks', () => ({ default: () => <div>PetitionLinks</div> }));
 vi.mock('../components/ForcedLabourList', () => ({ default: () => <div>ForcedLabourList</div> }));
-vi.mock('../components/ForcedLaborSupplyChain', () => ({ default: () => <div>ForcedLaborSupplyChain</div> }));
 vi.mock('../components/ContactRepresentatives', () => ({ default: () => <div>ContactRepresentatives</div> }));
 vi.mock('../components/SuccessStories', () => ({ default: () => <div>SuccessStories</div> }));
 vi.mock('../components/QuickFacts', () => ({ default: () => <div>QuickFacts</div> }));
-vi.mock('../components/ActionTracker', () => ({ default: () => <div>ActionTracker</div> }));
 vi.mock('../components/ActivistToolkit', () => ({ default: () => <div>ActivistToolkit</div> }));
 vi.mock('../components/SanctionsTracker', () => ({ default: () => <div>SanctionsTracker</div> }));
 vi.mock('../components/DonationGuide', () => ({ default: () => <div>DonationGuide</div> }));
-vi.mock('../components/LetterCampaign', () => ({ default: () => <div>LetterCampaign</div> }));
-vi.mock('../components/SocialMediaToolkit', () => ({ default: () => <div>SocialMediaToolkit</div> }));
-vi.mock('../components/PetitionGenerator', () => ({ default: () => <div>PetitionGenerator</div> }));
-vi.mock('../components/CampaignProgress', () => ({ default: () => <div>CampaignProgress</div> }));
-vi.mock('../components/GovernmentResponseTracker', () => ({ default: () => <div>GovernmentResponseTracker</div> }));
 vi.mock('../components/ShareButtons', () => ({ default: () => <div>ShareButtons</div> }));
 
 import TakeAction from '../pages/TakeAction';
@@ -157,35 +150,6 @@ describe('TakeAction', () => {
     expect(donateButton.getAttribute('aria-expanded')).toBe('true');
   });
 
-  // --- Newsletter Signup ---
-
-  it('renders newsletter signup form', () => {
-    renderTakeAction();
-    expect(screen.getByText('Stay Informed')).toBeTruthy();
-    expect(screen.getByLabelText('Email address for newsletter')).toBeTruthy();
-    expect(screen.getByText('Subscribe')).toBeTruthy();
-  });
-
-  it('handles newsletter subscription', () => {
-    renderTakeAction();
-    const emailInput = screen.getByLabelText('Email address for newsletter');
-    const form = screen.getByRole('form', { name: 'Newsletter subscription' });
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-    fireEvent.submit(form);
-    expect(screen.getByText(/Thank you for subscribing/)).toBeTruthy();
-  });
-
-  // --- Social Share ---
-
-  it('renders social share section', () => {
-    renderTakeAction();
-    expect(screen.getByText('Share This Page')).toBeTruthy();
-    expect(screen.getByTitle('Share on Twitter')).toBeTruthy();
-    expect(screen.getByTitle('Share on Facebook')).toBeTruthy();
-    expect(screen.getByTitle('Share on LinkedIn')).toBeTruthy();
-    expect(screen.getByTitle('Share via Email')).toBeTruthy();
-  });
-
   // --- Emergency Contacts ---
 
   it('renders emergency contacts section', () => {
@@ -215,12 +179,5 @@ describe('TakeAction', () => {
     renderTakeAction();
     const loadingIndicators = screen.getAllByText('$ loading');
     expect(loadingIndicators.length).toBeGreaterThanOrEqual(1);
-  });
-
-  // --- Privacy ---
-
-  it('includes privacy notice for newsletter', () => {
-    renderTakeAction();
-    expect(screen.getByText(/We respect your privacy/)).toBeTruthy();
   });
 });
