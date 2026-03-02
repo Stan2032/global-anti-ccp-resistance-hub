@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 157)
+> Last Updated: March 2, 2026 (Session 159)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -505,8 +505,8 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 151, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1257 tests (76 files, all passing)
+### Current State Summary (as of Session 159, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1597 tests (104 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
@@ -514,15 +514,15 @@
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
-- **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
-- **Bundle:** Main bundle 301KB (97KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
+- **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed. Supabase Auth: login/logout/admin check (Session 157). Service_role key detection guard (Session 158).
+- **Bundle:** Main bundle 302KB (97KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 63 political prisoners (incl Kwok Yin-sang), 47 sanctioned entities, 34 officials, 30 forced labor companies, 155+ total entries. All data→JSON migrations complete. 21 total JSON data files. EmergencyAlerts: 5 alerts with auto-expiry. Joshua Wong profile updated through Feb 2026 appeal dismissal. 22 recent news items. 12 centralized statistics (incl HK NSL arrests, UFLPA entity list).
-- **Content:** Sanctions verified current as of Mar 2026. Joshua Wong HK47 appeal dismissed Feb 2026, new foreign collusion charge ongoing. Kwok Yin-sang case added (first family prosecution under Art 23). Gao Zhisheng profile enriched with wife's Capitol Hill appeal Aug 2025. UN forced labor report Jan 2026 added to news.
+- **Data:** 63 political prisoners (incl Kwok Yin-sang), 47 sanctioned entities, 34 officials, 30 forced labor companies, 155+ total entries. All data→JSON migrations complete. 21 total JSON data files. EmergencyAlerts: 5 alerts with auto-expiry. Joshua Wong profile updated through Feb 2026 appeal dismissal. 25 recent news items. 12 centralized statistics (incl HK NSL arrests, UFLPA entity list).
+- **Content:** Sanctions verified current as of Mar 2026. Joshua Wong HK47 appeal dismissed Feb 2026, new foreign collusion charge ongoing (next hearing Mar 6, 2026). Kwok Yin-sang case added (first family prosecution under Art 23). Gao Zhisheng profile enriched with wife's Capitol Hill appeal Aug 2025. UN forced labor report Jan 2026 added to news.
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-- **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
+- **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks (useDocumentTitle, useLiveData, useWebRTCLeakCheck, useGlobalSearch), key components tested. Mobile nav tested. Emergency alerts tested (13 tests incl expiry). 1257 tests across 76 files.
+- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks, key components tested. Mobile nav tested. Emergency alerts tested (13 tests incl expiry). AdminDashboard, CCPOfficials, ForcedLabourList, ContactRepresentatives, ActivistToolkit, DiasporaSupport tested (Session 159). 1597 tests across 104 files.
 
 ---
 
