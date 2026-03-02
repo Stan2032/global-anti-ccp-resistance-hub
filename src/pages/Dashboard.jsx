@@ -12,8 +12,6 @@ const SectionLoader = () => (
 
 const NewsAggregator = lazy(() => import('../components/NewsAggregator'));
 const UrgentCaseTimer = lazy(() => import('../components/UrgentCaseTimer'));
-const ImpactMetrics = lazy(() => import('../components/ImpactMetrics'));
-const CountdownTimer = lazy(() => import('../components/CountdownTimer'));
 const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
 const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
 const NewsDigest = lazy(() => import('../components/NewsDigest'));
@@ -321,12 +319,6 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
-
-      {/* ─── Impact & Statistics ───────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><ImpactMetrics /></Suspense>
-
-      {/* ─── Important Dates ───────────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><CountdownTimer /></Suspense>
 
       {/* ─── Live Statistics ───────────────────────────────────── */}
       <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>

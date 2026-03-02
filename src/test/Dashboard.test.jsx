@@ -6,8 +6,6 @@ import React from 'react';
 // Mock lazy-loaded components
 vi.mock('../components/NewsAggregator', () => ({ default: () => <div>NewsAggregator</div> }));
 vi.mock('../components/UrgentCaseTimer', () => ({ default: () => <div>UrgentCaseTimer</div> }));
-vi.mock('../components/ImpactMetrics', () => ({ default: () => <div>ImpactMetrics</div> }));
-vi.mock('../components/CountdownTimer', () => ({ default: () => <div>CountdownTimer</div> }));
 vi.mock('../components/LiveStatistics', () => ({ default: () => <div>LiveStatistics</div> }));
 vi.mock('../components/EmergencyAlerts', () => ({ default: () => <div>EmergencyAlerts</div> }));
 vi.mock('../components/NewsDigest', () => ({ default: () => <div>NewsDigest</div> }));

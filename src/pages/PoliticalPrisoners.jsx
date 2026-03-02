@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
@@ -155,11 +154,8 @@ const UrgencyBadge = ({ urgency }) => {
 
 const PrisonerCard = ({ prisoner, onClick }) => {
   return (
-    <motion.button
+    <button
       type="button"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.02 }}
       className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all text-left w-full"
       onClick={() => onClick(prisoner)}
       aria-label={`View details for ${prisoner.name}`}
@@ -231,7 +227,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
           </div>
         )}
       </div>
-    </motion.button>
+    </button>
   );
 };
 
@@ -239,19 +235,14 @@ const PrisonerModal = ({ prisoner, onClose }) => {
   if (!prisoner) return null;
   
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={`Details for ${prisoner.name}`}
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+      <div
         className="bg-[#111820] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
@@ -408,8 +399,8 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
