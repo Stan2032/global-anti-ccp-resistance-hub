@@ -373,6 +373,22 @@
         "action_needed": "Monitor the March 6, 2026 High Court hearing for developments. Support international campaigns calling for Wong's release and the repeal of Hong Kong's National Security Law."
       },
       "error": ""
+    },
+    {
+      "input": "Japan moves toward Uyghur forced labor import ban February 2026",
+      "output": {
+        "topic": "Japan moves toward Uyghur forced labor import ban February 2026",
+        "headline": "Japan drafting its own Uyghur Forced Labor Prevention Act modeled on US UFLPA",
+        "summary": "Senior Japanese lawmakers from the ruling LDP, led by Keiji Furuya (chair of the Japan Uyghur Parliamentary Association), announced plans to draft a Japanese version of the US Uyghur Forced Labor Prevention Act. The bill would ban imports from Xinjiang unless importers can prove goods were not made with forced labor. Human Rights Watch urged Japan to make the rules broad, covering all high-risk regions.",
+        "date": "2026-02-27",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/news/2026/02/27/japan-should-adopt-regulation-to-counter-uyghur-forced-labor",
+        "significance": "HIGH",
+        "related_prisoners": "Uyghur forced labor victims",
+        "international_response": "HRW and Uyghur diaspora groups strongly support the initiative. Would align Japan with US UFLPA and EU due diligence directives.",
+        "action_needed": "Monitor Japanese legislative process. Support advocacy for strong import restrictions. Encourage other G7 countries to follow suit."
+      },
+      "error": ""
     }
   ]
 }
