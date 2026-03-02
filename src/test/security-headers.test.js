@@ -77,6 +77,33 @@ describe('Security Headers', () => {
     });
   });
 
+  describe('Cache-Control headers', () => {
+    it('sets immutable caching for hashed assets (/assets/*)', () => {
+      expect(headersContent).toContain('/assets/*');
+      expect(headersContent).toContain('max-age=31536000');
+      expect(headersContent).toContain('immutable');
+    });
+
+    it('prevents caching of index.html for SPA updates', () => {
+      // index.html must use no-cache so users always get latest bundle references
+      const indexSection = headersContent.split('/index.html')[1];
+      expect(indexSection).toBeDefined();
+      expect(indexSection).toContain('no-cache');
+    });
+
+    it('prevents caching of service worker', () => {
+      expect(headersContent).toContain('/sw.js');
+      const swSection = headersContent.split('/sw.js')[1];
+      expect(swSection).toBeDefined();
+      expect(swSection).toContain('no-cache');
+    });
+
+    it('caches manifest.json for 1 day', () => {
+      expect(headersContent).toContain('/manifest.json');
+      expect(headersContent).toContain('max-age=86400');
+    });
+  });
+
   describe('index.html security', () => {
     it('has X-Content-Type-Options meta tag', () => {
       expect(indexContent).toContain('X-Content-Type-Options');
