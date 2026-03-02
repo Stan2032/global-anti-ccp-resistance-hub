@@ -188,6 +188,14 @@ const TIMELINE = [
     category: 'persecution',
     sourceUrl: 'https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/',
   },
+  {
+    date: '2026-02-14',
+    year: '2026',
+    title: 'Appeal dismissed — HK47 convictions upheld',
+    detail: 'The Hong Kong Court of Appeal dismissed all appeals from the Hong Kong 47 mass NSL prosecution, upholding the convictions and sentences of all defendants including Wong\'s 4 years 8 months. This closes the last avenue for reducing his subversion sentence. Combined with the pending foreign collusion charge (which carries life imprisonment), his imprisonment could extend indefinitely.',
+    category: 'persecution',
+    sourceUrl: 'https://www.independent.co.uk/news/hong-kong-beijing-joshua-wong-court-of-appeal-b2925457.html',
+  },
 ];
 
 const CHARGES = [
@@ -203,7 +211,7 @@ const CHARGES = [
     charge: 'Conspiracy to collude with foreign forces',
     law: 'National Security Law, Article 29',
     filed: 'June 6, 2025',
-    verdict: 'PENDING — next hearing August 8, 2025',
+    verdict: 'PENDING — proceedings ongoing 2026',
     sentence: 'Faces up to LIFE IMPRISONMENT',
     detail: 'Accused of conspiring with Nathan Law (now in exile in the UK) and "other persons unknown" to encourage foreign countries or organizations to impose sanctions on Hong Kong or China between July and November 2020. Amnesty International called these charges "designed to prolong his stay behind bars" and prevent his scheduled January 2027 release.',
   },

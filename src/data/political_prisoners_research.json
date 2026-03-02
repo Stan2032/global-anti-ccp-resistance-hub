@@ -166,13 +166,13 @@
         "prisoner_name": "Joshua Wong",
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
-        "sentence": "4 years and 8 months for subversion",
-        "latest_news": "June 2025: Charged with conspiring to collude with foreign forces under the National Security Law.",
+        "sentence": "4 years and 8 months for subversion; faces new foreign collusion charge (max: life imprisonment)",
+        "latest_news": "February 2026: Court of Appeal dismissed all HK47 appeals, upholding Wong's 4yr 8mo sentence. Foreign collusion proceedings ongoing.",
         "health_status": "Unknown",
-        "international_response": "The UK, US, and Australia condemned the verdict and sentencing in the Hong Kong 47 trial.",
-        "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
+        "international_response": "The UK, US, and Australia condemned the verdict and sentencing. Amnesty International called new charges 'designed to prolong his stay behind bars.'",
+        "source_url": "https://www.independent.co.uk/news/hong-kong-beijing-joshua-wong-court-of-appeal-b2925457.html",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20"
+        "last_verified": "2026-03-02"
       },
       "error": ""
     },

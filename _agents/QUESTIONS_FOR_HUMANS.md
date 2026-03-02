@@ -67,6 +67,13 @@ These are permanent directives that apply to all agents:
 
 **Agent recommendation:** Option A — it's a single header addition via `public/_headers` and significantly improves accessibility for at-risk users.
 
+**Setup Steps (for human owner):**
+1. Log into Cloudflare Dashboard → your site → **Network** → scroll to **Onion Routing** → toggle ON
+2. Cloudflare automatically generates a `.onion` address and serves the `Onion-Location` header
+3. No code changes needed — Cloudflare handles the header injection when Onion Routing is enabled
+4. Test by visiting site in Tor Browser — it should auto-redirect to the `.onion` address
+5. The `.onion` address will appear in Cloudflare dashboard after enabling
+
 ---
 
 ### Q10. Test Coverage Strategy — Breadth vs. Depth
@@ -81,15 +88,21 @@ These are permanent directives that apply to all agents:
 
 ---
 
-### Q11. EmergencyAlerts — Content Freshness
+### Q11. EmergencyAlerts — Content Freshness ✅ IMPLEMENTED (Session 149-150)
 **Asked:** Session 128 (Mar 1, 2026)
 **Context:** The EmergencyAlerts component has 4 hardcoded alerts, the oldest from November 2024. For a "live" alerts feature, stale content may reduce credibility. Options:
-- **A) Make alerts data-driven** — move to a JSON file that can be updated without code changes
-- **B) Add expiry dates** — automatically hide alerts older than N months
+- **A) Make alerts data-driven** — move to a JSON file that can be updated without code changes ✅ Done Session 149
+- **B) Add expiry dates** — automatically hide alerts older than N months ✅ Done Session 150
 - **C) Keep as-is** — static alerts are fine for an archival reference
-- **D) Add a "last reviewed" date** — show when alerts were last verified as current
+- **D) Add a "last reviewed" date** — show when alerts were last verified as current ✅ Done Session 150
 
-**Agent recommendation:** Option A + B — move to JSON data file with an `expires` field, consistent with the existing data-driven pattern.
+**Implemented:** Options A + B + D
+- Alerts in `src/data/emergency_alerts.json` (21st JSON data file)
+- `expires` field: alerts auto-hide after date passes (no code changes needed)
+- `lastVerified` field: shown on each alert as verification date
+- Jimmy Lai alert: no expiry (ongoing campaign), lastVerified 2026-03-02
+- Taiwan military alert: expires 2025-06-18 (already expired, auto-hidden)
+- 13 data integrity tests (incl expiry validation)
 
 ---
 
