@@ -20,49 +20,49 @@ const QuickStartGuide = () => {
     {
       id: 1,
       title: 'Welcome to the Resistance Hub',
-      description: 'This platform is your central resource for activism against CCP authoritarianism. Let\'s get you started with a quick tour.',
+      description: 'Your central resource for activism against CCP authoritarianism.',
       Icon: Hand,
       action: null,
     },
     {
       id: 2,
       title: 'Explore the Dashboard',
-      description: 'The Dashboard shows breaking news, live statistics, and urgent alerts. It\'s your home base for staying informed.',
+      description: 'Breaking news, live statistics, and urgent alerts — all in one place.',
       Icon: BarChart3,
-      action: { label: 'Go to Dashboard', path: '/' },
+      action: { label: 'Dashboard', path: '/' },
     },
     {
       id: 3,
       title: 'Learn About the Issues',
-      description: 'Visit the Education Center to understand the Uyghur genocide, Hong Kong crackdown, Tibetan oppression, and more.',
+      description: 'Uyghur genocide, Hong Kong crackdown, Tibetan oppression, and more.',
       Icon: BookOpen,
-      action: { label: 'Education Center', path: '/education' },
+      action: { label: 'Education', path: '/education' },
     },
     {
       id: 4,
       title: 'Take Action',
-      description: 'Ready to help? Sign petitions, contact representatives, and join campaigns on the Take Action page.',
+      description: 'Sign petitions, contact representatives, and join campaigns.',
       Icon: Megaphone,
       action: { label: 'Take Action', path: '/take-action' },
     },
     {
       id: 5,
       title: 'Stay Secure',
-      description: 'If you\'re at risk, visit the Security Center for digital security tools and safety guidelines.',
+      description: 'Digital security tools and safety guidelines for at-risk users.',
       Icon: Lock,
-      action: { label: 'Security Center', path: '/security' },
+      action: { label: 'Security', path: '/security' },
     },
     {
       id: 6,
-      title: 'Join the Community',
-      description: 'Connect with other activists, find events, and get support on the Community page.',
+      title: 'Connect with Others',
+      description: 'Find other activists, events, and support on the Community page.',
       Icon: Handshake,
       action: { label: 'Community', path: '/community' },
     },
     {
       id: 7,
       title: 'You\'re Ready!',
-      description: 'You now know the basics. Remember: every action matters. Use the keyboard shortcut Cmd/Ctrl+K to search anytime.',
+      description: 'Use Cmd/Ctrl+K to search anytime. Every action matters.',
       Icon: PartyPopper,
       action: null,
     },
@@ -125,117 +125,94 @@ const QuickStartGuide = () => {
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <>
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/50 z-40"
-        onClick={() => setIsOpen(false)}
-      />
+    /* Non-blocking bottom-right toast — doesn't overlay page content */
+    <div className="fixed bottom-4 right-4 z-40 w-80 max-w-[calc(100vw-2rem)] bg-[#111820] border border-[#1c2a35] shadow-2xl">
+      {/* Progress Bar */}
+      <div className="h-1 bg-[#0a0e14] overflow-hidden">
+        <div 
+          className="h-full bg-[#22d3ee] transition-all duration-300"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
 
-      {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-[#111820] border border-[#1c2a35] max-w-lg w-full shadow-2xl">
-          {/* Progress Bar */}
-          <div className="h-1 bg-[#111820] overflow-hidden">
-            <div 
-              className="h-full bg-[#22d3ee] transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
+      <div className="p-4">
+        {/* Header row */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <step.Icon className="w-5 h-5 text-[#22d3ee]" />
+            <span className="text-xs text-slate-400 font-mono">
+              {currentStep + 1}/{steps.length}
+            </span>
           </div>
+          <button
+            onClick={dismissGuide}
+            className="text-slate-500 hover:text-slate-300 transition-colors text-xs font-mono"
+          >
+            ✕ close
+          </button>
+        </div>
 
-          {/* Content */}
-          <div className="p-6">
-            {/* Step Indicator */}
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-400">
-                Step {currentStep + 1} of {steps.length}
-              </span>
+        {/* Title & Description */}
+        <h3 className="text-sm font-bold text-white mb-1">
+          {step.title}
+        </h3>
+        <p className="text-xs text-slate-400 mb-3">
+          {step.description}
+        </p>
+
+        {/* Action Button */}
+        {step.action && (
+          <Link
+            to={step.action.path}
+            onClick={() => {
+              markStepComplete(step.id);
+              setIsOpen(false);
+            }}
+            className="block w-full bg-[#22d3ee]/15 hover:bg-[#22d3ee]/25 text-[#22d3ee] text-center py-1.5 text-xs font-mono font-medium transition-colors border border-[#22d3ee]/30 mb-3"
+          >
+            $ go {step.action.path}
+          </Link>
+        )}
+
+        {/* Navigation */}
+        <div className="flex items-center justify-between">
+          <button
+            onClick={prevStep}
+            disabled={currentStep === 0}
+            className={`text-xs font-mono transition-colors ${
+              currentStep === 0
+                ? 'text-slate-700 cursor-not-allowed'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            ← back
+          </button>
+
+          <div className="flex space-x-1">
+            {steps.map((_, idx) => (
               <button
-                onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Icon */}
-            <div className="mb-4 text-center flex justify-center">
-              <step.Icon className="w-12 h-12 text-[#22d3ee]" />
-            </div>
-
-            {/* Title & Description */}
-            <h2 className="text-xl font-bold text-white text-center mb-2">
-              {step.title}
-            </h2>
-            <p className="text-slate-400 text-center mb-6">
-              {step.description}
-            </p>
-
-            {/* Action Button */}
-            {step.action && (
-              <Link
-                to={step.action.path}
-                onClick={() => {
-                  markStepComplete(step.id);
-                  setIsOpen(false);
-                }}
-                className="block w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-center py-3 font-medium transition-colors mb-4"
-              >
-                {step.action.label} →
-              </Link>
-            )}
-
-            {/* Navigation */}
-            <div className="flex items-center justify-between">
-              <button
-                onClick={prevStep}
-                disabled={currentStep === 0}
-                className={`px-4 py-2 font-medium transition-colors ${
-                  currentStep === 0
-                    ? 'text-slate-600 cursor-not-allowed'
-                    : 'text-slate-300 hover:text-white'
+                key={idx}
+                onClick={() => setCurrentStep(idx)}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  idx === currentStep
+                    ? 'bg-[#22d3ee]'
+                    : completedSteps.includes(steps[idx].id)
+                    ? 'bg-green-500'
+                    : 'bg-[#1c2a35]'
                 }`}
-              >
-                ← Back
-              </button>
-
-              <div className="flex space-x-1">
-                {steps.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentStep(idx)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      idx === currentStep
-                        ? 'bg-[#22d3ee]'
-                        : completedSteps.includes(steps[idx].id)
-                        ? 'bg-green-500'
-                        : 'bg-[#1c2a35]'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={nextStep}
-                className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] font-medium transition-colors"
-              >
-                {currentStep === steps.length - 1 ? 'Finish' : 'Next →'}
-              </button>
-            </div>
-
-            {/* Skip */}
-            {currentStep < steps.length - 1 && (
-              <button
-                onClick={dismissGuide}
-                className="w-full mt-4 text-sm text-slate-500 hover:text-slate-400 transition-colors"
-              >
-                Skip tutorial
-              </button>
-            )}
+              />
+            ))}
           </div>
+
+          <button
+            onClick={nextStep}
+            className="text-xs font-mono bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-3 py-1 font-medium transition-colors"
+          >
+            {currentStep === steps.length - 1 ? 'done' : 'next →'}
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

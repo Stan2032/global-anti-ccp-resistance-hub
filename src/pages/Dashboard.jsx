@@ -97,32 +97,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Critical Alert — terminal urgent */}
-      <div className="bg-red-900/15 border-l-2 border-l-red-500 border border-[#1c2a35] p-4 sm:p-6">
-        <div className="flex items-start gap-4">
-          <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">!!</span>
-              <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to 20 Years</h2>
-              <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-mono animate-pulse">CRITICAL</span>
-            </div>
-            <p className="text-red-200 text-sm mb-3">
-              Hong Kong media mogul and pro-democracy activist Jimmy Lai was sentenced to 20 years in prison on February 9, 2026, 
-              under the National Security Law. International condemnation has been swift.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/prisoners" className="px-4 py-2 bg-red-900/40 hover:bg-red-900/60 text-red-200 font-mono text-sm font-medium transition-colors border border-red-900/50 hover:border-red-500">
-                $ view_case --details
-              </Link>
-              <Link to="/take-action" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-red-300 font-mono text-sm font-medium transition-colors border border-[#1c2a35] hover:border-red-500">
-                $ join_campaign
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Stats Grid — terminal data display */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((stat, index) => (

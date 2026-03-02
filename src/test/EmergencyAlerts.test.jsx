@@ -26,47 +26,60 @@ beforeEach(() => {
 describe('EmergencyAlerts', () => {
   // --- Rendering ---
 
-  it('renders all active alerts (non-expired)', () => {
+  it('renders first 2 active alerts initially', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
     expect(screen.getByText(/100\+ Global Brands Linked/)).toBeTruthy();
-    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
-    expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
+    // Remaining alerts hidden behind "show more"
+    expect(screen.queryByText(/Hong Kong 47: Appeals Dismissed/)).toBeFalsy();
+    expect(screen.queryByText(/ESCALATION: Family Member Prosecuted/)).toBeFalsy();
     // Taiwan military alert is expired (expires 2025-06-18) — should NOT appear
     expect(screen.queryByText(/Taiwan Reports Increased PLA Activity/)).toBeFalsy();
   });
 
-  it('shows alert summaries', () => {
+  it('shows all active alerts after clicking show more', () => {
+    render(<EmergencyAlerts />);
+    fireEvent.click(screen.getByText(/show --more/));
+    expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
+    expect(screen.getByText(/100\+ Global Brands Linked/)).toBeTruthy();
+    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
+    expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
+  });
+
+  it('shows alert summaries for initially visible alerts', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/Hong Kong media tycoon Jimmy Lai sentenced/)).toBeTruthy();
     expect(screen.getByText(/Major investigation identifies/)).toBeTruthy();
-    expect(screen.getByText(/Court of Appeal upholds convictions/)).toBeTruthy();
-    expect(screen.getByText(/Father of US-based activist sentenced/)).toBeTruthy();
+    // Hidden behind "show more"
+    expect(screen.queryByText(/Court of Appeal upholds convictions/)).toBeFalsy();
+    expect(screen.queryByText(/Father of US-based activist sentenced/)).toBeFalsy();
   });
 
-  it('renders alert type badges', () => {
+  it('renders alert type badges for visible alerts', () => {
     render(<EmergencyAlerts />);
     const criticalBadges = screen.getAllByText('critical');
-    expect(criticalBadges.length).toBe(2);
+    expect(criticalBadges.length).toBe(1);
     const warningBadges = screen.getAllByText('warning');
-    expect(warningBadges.length).toBe(2);
+    expect(warningBadges.length).toBe(1);
   });
 
-  it('renders alert dates', () => {
+  it('renders alert dates for visible alerts', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText('2025-12-15')).toBeTruthy();
     expect(screen.getByText('2025-05-15')).toBeTruthy();
-    expect(screen.getByText('2024-11-19')).toBeTruthy();
-    expect(screen.getByText('2026-02-26')).toBeTruthy();
+    // Hidden behind "show more"
+    expect(screen.queryByText('2024-11-19')).toBeFalsy();
+    expect(screen.queryByText('2026-02-26')).toBeFalsy();
   });
 
   // --- External Links ---
 
-  it('renders external action links for alerts', () => {
+  it('renders external action links for visible alerts', () => {
     render(<EmergencyAlerts />);
     expect(screen.getAllByText('Free Jimmy Lai Campaign').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Coalition to End Forced Labour').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('NPR Report').length).toBeGreaterThanOrEqual(1);
+    // NPR Report is on the hidden Kwok alert
+    expect(screen.queryByText('NPR Report')).toBeFalsy();
   });
 
   it('action links open in new tab with noopener', () => {
@@ -78,10 +91,10 @@ describe('EmergencyAlerts', () => {
 
   // --- Expand / Collapse ---
 
-  it('renders expand buttons for all alerts', () => {
+  it('renders expand buttons for visible alerts', () => {
     render(<EmergencyAlerts />);
     const expandButtons = screen.getAllByText(/expand --details/);
-    expect(expandButtons.length).toBe(4);
+    expect(expandButtons.length).toBe(2);
   });
 
   it('expands alert details when expand button is clicked', () => {
@@ -192,12 +205,12 @@ describe('EmergencyAlerts', () => {
   it('dismiss buttons have aria-label', () => {
     render(<EmergencyAlerts />);
     const dismissButtons = screen.getAllByLabelText('Dismiss alert');
-    expect(dismissButtons.length).toBe(4);
+    expect(dismissButtons.length).toBe(2);
   });
 
   it('expand buttons have aria-label', () => {
     render(<EmergencyAlerts />);
     const expandButtons = screen.getAllByLabelText('Expand alert details');
-    expect(expandButtons.length).toBe(4);
+    expect(expandButtons.length).toBe(2);
   });
 });

@@ -53,21 +53,6 @@ describe('Dashboard', () => {
     expect(screen.getByText('systems: online')).toBeTruthy();
   });
 
-  // --- Critical Alert ---
-
-  it('renders the Jimmy Lai urgent alert', () => {
-    renderDashboard();
-    expect(screen.getByText(/URGENT: Jimmy Lai Sentenced to 20 Years/)).toBeTruthy();
-    expect(screen.getByText('CRITICAL')).toBeTruthy();
-    expect(screen.getByText(/National Security Law/)).toBeTruthy();
-  });
-
-  it('has action links in the alert', () => {
-    renderDashboard();
-    expect(screen.getByText('$ view_case --details')).toBeTruthy();
-    expect(screen.getByText('$ join_campaign')).toBeTruthy();
-  });
-
   // --- Stats Grid ---
 
   it('renders all 4 stat card titles', () => {
