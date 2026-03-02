@@ -3,10 +3,9 @@ import { render, screen, act, fireEvent } from '@testing-library/react';
 import React from 'react';
 import {
   ThemeProvider,
-  useTheme,
   ThemeToggle,
-  THEMES,
 } from '../contexts/ThemeContext';
+import { useTheme, THEMES } from '../contexts/themeUtils';
 import fs from 'fs';
 import path from 'path';
 

@@ -7,7 +7,7 @@ import {
   AccessibleProgress,
   AccessibleAlert,
 } from '../components/Accessibility';
-import { LanguageProvider } from '../components/LanguageSelector';
+import { LanguageProvider } from '../contexts/LanguageContext';
 
 const renderWithLanguage = (ui) => render(<LanguageProvider>{ui}</LanguageProvider>);
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLanguage } from './LanguageSelector';
+import { useLanguage } from '../contexts/languageUtils';
 
 /**
  * Skip Links Component
