@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 159)
+> Last Updated: March 2, 2026 (Session 160)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -52,6 +52,7 @@
 - [x] **Mobile navigation**: 13 tests added for hamburger menu (Session 149) — toggle, 7 nav items, backdrop close, active state, urgent campaign, branding
 - [x] **Dark mode**: Theme CSS variables + Tailwind overrides for light/high-contrast (Session 121)
 - [x] **Sort By for Live Feed (Session 155)**: Added "Sort by" dropdown to Intelligence Feeds page — Relevancy (default), Newest First, Oldest First. Integrated with existing search + source filter. 6 tests added.
+- [x] **Dashboard usability (Session 160)**: Emergency alerts collapse after 2 (show more button), QuickStartGuide converted from blocking modal to non-blocking bottom-right toast, removed duplicate hardcoded Jimmy Lai alert.
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -505,11 +506,12 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 159, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1597 tests (104 files, all passing)
+### Current State Summary (as of Session 160, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1596 tests (104 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
+- **Usability (Session 160):** Emergency alerts collapse (top 2 shown, rest behind "show more"). QuickStartGuide is non-blocking toast (was full-screen modal). Duplicate hardcoded Jimmy Lai alert removed.
 - **ESLint:** 0 errors, 0 warnings (was 0+4). LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
@@ -522,7 +524,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks, key components tested. Mobile nav tested. Emergency alerts tested (13 tests incl expiry). AdminDashboard, CCPOfficials, ForcedLabourList, ContactRepresentatives, ActivistToolkit, DiasporaSupport tested (Session 159). 1597 tests across 104 files.
+- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks, key components tested. Mobile nav tested. Emergency alerts tested (19 tests incl expiry + collapse). AdminDashboard, CCPOfficials, ForcedLabourList, ContactRepresentatives, ActivistToolkit, DiasporaSupport tested (Session 159). 1596 tests across 104 files.
 
 ---
 
