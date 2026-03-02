@@ -22,6 +22,8 @@ const IntelligenceFeeds = () => {
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('feeds');
+  const [showAllFeeds, setShowAllFeeds] = useState(false);
+  const FEED_DISPLAY_COUNT = 5;
 
   // Filter feeds based on source and search
   const filteredFeeds = useMemo(() => {
@@ -33,6 +35,8 @@ const IntelligenceFeeds = () => {
       return matchesSource && matchesSearch;
     });
   }, [feeds, selectedSource, searchQuery]);
+
+  const displayedFeeds = showAllFeeds ? filteredFeeds : filteredFeeds.slice(0, FEED_DISPLAY_COUNT);
 
   // Format relative time
   const formatTime = (dateStr) => {
@@ -142,7 +146,7 @@ const IntelligenceFeeds = () => {
             type="text"
             placeholder="Search articles..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => { setSearchQuery(e.target.value); setShowAllFeeds(false); }}
             className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
@@ -150,7 +154,7 @@ const IntelligenceFeeds = () => {
         {/* Source Filter */}
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setSelectedSource('all')}
+            onClick={() => { setSelectedSource('all'); setShowAllFeeds(false); }}
             className={`px-3 py-2 text-sm font-medium transition-colors ${
               selectedSource === 'all'
                 ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
@@ -162,7 +166,7 @@ const IntelligenceFeeds = () => {
           {Object.entries(sources).map(([key, source]) => (
             <button
               key={key}
-              onClick={() => setSelectedSource(key)}
+              onClick={() => { setSelectedSource(key); setShowAllFeeds(false); }}
               className={`px-3 py-2 text-sm font-medium transition-colors ${
                 selectedSource === key
                   ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
@@ -229,7 +233,7 @@ const IntelligenceFeeds = () => {
 
         {/* Feed Items */}
         <div className="space-y-4">
-          {filteredFeeds.map((item) => (
+          {displayedFeeds.map((item) => (
             <article
               key={item.id}
               className="bg-[#111820] border border-[#1c2a35] p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
@@ -285,12 +289,26 @@ const IntelligenceFeeds = () => {
             </article>
           ))}
         </div>
+
+        {/* Show All / Show Less */}
+        {filteredFeeds.length > FEED_DISPLAY_COUNT && (
+          <div className="text-center mt-4">
+            <button
+              onClick={() => setShowAllFeeds(!showAllFeeds)}
+              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
+            >
+              {showAllFeeds
+                ? '$ show --less'
+                : `$ show --all ${filteredFeeds.length} articles`}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Stats Footer */}
       <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
         <p className="text-slate-400 text-sm">
-          Showing {filteredFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
+          Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
         </p>
         <p className="text-slate-500 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
