@@ -407,11 +407,16 @@ const PrisonerModal = ({ prisoner, onClose }) => {
 const PoliticalPrisoners = () => {
   const [selectedPrisoner, setSelectedPrisoner] = useState(null);
   const [filter, setFilter] = useState('ALL');
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 15;
   
   const filteredPrisoners = PRISONERS_DATA.filter(p => {
     if (filter === 'ALL') return true;
     return p.status === filter;
   });
+
+  const displayedPrisoners = showAll ? filteredPrisoners : filteredPrisoners.slice(0, INITIAL_DISPLAY_COUNT);
+  const hasMore = filteredPrisoners.length > INITIAL_DISPLAY_COUNT;
   
   const stats = {
     total: PRISONERS_DATA.length,
@@ -478,7 +483,7 @@ const PoliticalPrisoners = () => {
           {['ALL', 'IMPRISONED', 'DISAPPEARED', 'DECEASED', 'AT RISK', 'EXILE', 'RELEASED'].map(status => (
             <button
               key={status}
-              onClick={() => setFilter(status)}
+              onClick={() => { setFilter(status); setShowAll(false); }}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 filter === status
                   ? 'bg-red-900/30 text-red-300 border border-red-500'
@@ -510,7 +515,7 @@ const PoliticalPrisoners = () => {
 
         {/* Prisoner Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPrisoners.map((prisoner, index) => (
+          {displayedPrisoners.map((prisoner, index) => (
             <PrisonerCard
               key={index}
               prisoner={prisoner}
@@ -518,6 +523,20 @@ const PoliticalPrisoners = () => {
             />
           ))}
         </div>
+
+        {/* Show All / Show Less */}
+        {hasMore && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
+            >
+              {showAll
+                ? '$ show --less'
+                : `$ show --all ${filteredPrisoners.length} cases`}
+            </button>
+          </div>
+        )}
         
         {/* Case Study Deep Dives */}
         <div className="mt-12">

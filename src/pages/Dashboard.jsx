@@ -58,38 +58,10 @@ const Dashboard = () => {
     },
   ];
 
-  const urgentCampaigns = [
-    {
-      id: 1,
-      title: 'Free Jimmy Lai',
-      description: 'Hong Kong media mogul sentenced to 20 years on Feb 9, 2026',
-      urgent: true,
-      supporters: 125000,
-      link: '/take-action',
-    },
-    {
-      id: 2,
-      title: 'Stop Uyghur Genocide',
-      description: 'End forced labor and detention in Xinjiang',
-      urgent: true,
-      supporters: 890000,
-      link: '/take-action',
-    },
-    {
-      id: 3,
-      title: 'Stand with Taiwan',
-      description: 'Support Taiwan against military threats',
-      urgent: false,
-      supporters: 456000,
-      link: '/take-action',
-    },
-  ];
-
   const quickActions = [
     { title: 'Take Action', Icon: Megaphone, href: '/take-action', color: 'red' },
-    { title: 'Join Campaign', Icon: Target, href: '/take-action', color: 'blue' },
     { title: 'Security', Icon: Lock, href: '/security', color: 'green' },
-    { title: 'Find Resources', Icon: BookOpen, href: '/resources', color: 'cyan' },
+    { title: 'Education', Icon: BookOpen, href: '/education', color: 'cyan' },
   ];
 
   return (
@@ -248,37 +220,6 @@ const Dashboard = () => {
                 </Link>
               ))}
             </div>
-          </div>
-
-          {/* Urgent Campaigns */}
-          <div className="bg-[#111820] border border-[#1c2a35] p-4">
-            <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5 text-red-400" /> urgent_campaigns
-            </h2>
-            <div className="space-y-2">
-              {urgentCampaigns.map((campaign) => (
-                <Link
-                  key={campaign.id}
-                  to={campaign.link}
-                  className="block p-3 bg-[#0a0e14] hover:bg-[#0a0e14]/80 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-medium text-white text-sm font-mono">{campaign.title}</span>
-                    {campaign.urgent && (
-                      <span className="px-1.5 py-0.5 bg-red-600 text-white text-xs font-mono">!</span>
-                    )}
-                  </div>
-                  <p className="text-xs text-slate-400 mb-2">{campaign.description}</p>
-                  <div className="text-xs text-slate-500 font-mono">
-                    <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>
-                    {campaign.supporters.toLocaleString()} supporters (est.)
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <Link to="/take-action" className="block mt-4 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
-              $ list --all-campaigns →
-            </Link>
           </div>
         </div>
       </div>

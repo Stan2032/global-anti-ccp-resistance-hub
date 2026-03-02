@@ -138,44 +138,11 @@ describe('Dashboard', () => {
     expect(screen.getByText('quick_actions')).toBeTruthy();
   });
 
-  it('renders all 4 quick action buttons', () => {
+  it('renders all 3 quick action buttons', () => {
     renderDashboard();
     expect(screen.getByText('Take Action')).toBeTruthy();
-    expect(screen.getByText('Join Campaign')).toBeTruthy();
     expect(screen.getByText('Security')).toBeTruthy();
-    expect(screen.getByText('Find Resources')).toBeTruthy();
-  });
-
-  // --- Urgent Campaigns ---
-
-  it('renders urgent campaigns section', () => {
-    renderDashboard();
-    expect(screen.getByText('urgent_campaigns')).toBeTruthy();
-  });
-
-  it('renders all 3 urgent campaigns', () => {
-    renderDashboard();
-    expect(screen.getByText('Free Jimmy Lai')).toBeTruthy();
-    expect(screen.getByText('Stop Uyghur Genocide')).toBeTruthy();
-    expect(screen.getByText('Stand with Taiwan')).toBeTruthy();
-  });
-
-  it('shows supporter counts', () => {
-    renderDashboard();
-    expect(screen.getByText('125,000 supporters (est.)')).toBeTruthy();
-    expect(screen.getByText('890,000 supporters (est.)')).toBeTruthy();
-    expect(screen.getByText('456,000 supporters (est.)')).toBeTruthy();
-  });
-
-  it('shows urgent badges on urgent campaigns', () => {
-    renderDashboard();
-    const urgentBadges = screen.getAllByText('!');
-    expect(urgentBadges.length).toBe(2); // Free Jimmy Lai + Stop Uyghur Genocide
-  });
-
-  it('has link to all campaigns', () => {
-    renderDashboard();
-    expect(screen.getByText('$ list --all-campaigns →')).toBeTruthy();
+    expect(screen.getByText('Education')).toBeTruthy();
   });
 
   // --- Essential Tools ---
