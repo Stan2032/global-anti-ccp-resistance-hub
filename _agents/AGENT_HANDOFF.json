@@ -53,7 +53,7 @@
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md_BACKEND_GUIDE.md_CONTENT_GUIDE.md",
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
     "cloudflare_live_url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/",
-    "bundle_optimization": "socket.io_removed_vendor_splitting_main_bundle_304KB_97KB_gzip",
+    "bundle_optimization": "framer_motion_removed_vendor_splitting_main_bundle_301KB_97KB_gzip",
     "site_cleanup_status": "99_percent_complete_session_118",
     "content_deduplication": "src_data_statistics_js_10_stats_central_source_of_truth",
     "client_side_encryption": "src_utils_encryption_js_RSA_OAEP_AES_256_GCM_for_PII",
