@@ -15,7 +15,13 @@ const EmergencyAlerts = () => {
 
   const alerts = alertsData;
 
-  const activeAlerts = alerts.filter(alert => alert.active && !dismissedAlerts.includes(alert.id));
+  const now = new Date().toISOString().split('T')[0];
+  const activeAlerts = alerts.filter(alert => {
+    if (!alert.active) return false;
+    if (dismissedAlerts.includes(alert.id)) return false;
+    if (alert.expires && alert.expires < now) return false;
+    return true;
+  });
 
   const dismissAlert = (alertId) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
@@ -75,6 +81,9 @@ const EmergencyAlerts = () => {
                       {alert.type}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
+                    {alert.lastVerified && (
+                      <span className="text-xs text-slate-500 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
+                    )}
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
                   <p className="text-sm text-slate-300 mt-1">{alert.summary}</p>

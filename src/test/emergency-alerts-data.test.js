@@ -92,4 +92,40 @@ describe('Emergency Alerts data integrity', () => {
       expect(combined).not.toMatch(/\bCPC\b/);
     }
   });
+
+  it('expires field is valid ISO date format when present', () => {
+    for (const alert of data) {
+      if (alert.expires) {
+        expect(alert.expires).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        const parsed = new Date(alert.expires);
+        expect(parsed.toString()).not.toBe('Invalid Date');
+      }
+    }
+  });
+
+  it('lastVerified field is valid ISO date format when present', () => {
+    for (const alert of data) {
+      if (alert.lastVerified) {
+        expect(alert.lastVerified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        const parsed = new Date(alert.lastVerified);
+        expect(parsed.toString()).not.toBe('Invalid Date');
+      }
+    }
+  });
+
+  it('expires date is after the alert date when present', () => {
+    for (const alert of data) {
+      if (alert.expires) {
+        expect(alert.expires > alert.date).toBe(true);
+      }
+    }
+  });
+
+  it('ongoing critical alerts without expiry have lastVerified', () => {
+    for (const alert of data) {
+      if (alert.type === 'critical' && !alert.expires) {
+        expect(alert.lastVerified).toBeDefined();
+      }
+    }
+  });
 });

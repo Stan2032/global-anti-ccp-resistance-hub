@@ -6,6 +6,7 @@
     "summary": "Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL",
     "details": "On December 15, 2025, Jimmy Lai was found guilty on all charges including \"conspiracy to collude with foreign forces\" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL. This verdict represents a devastating blow to press freedom in Hong Kong.\n\nACTION NEEDED:\n• Contact your representatives to demand his release\n• Share his story on social media with #FreeJimmyLai\n• Support the Committee for Freedom in Hong Kong\n• Sign petitions calling for sanctions on HK officials",
     "date": "2025-12-15",
+    "lastVerified": "2026-03-02",
     "links": [
       { "name": "Free Jimmy Lai Campaign", "url": "https://www.freejimmylai.com" },
       { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" }
@@ -19,6 +20,8 @@
     "summary": "Updated ASPI report identifies additional companies in forced labor supply chains",
     "details": "The Australian Strategic Policy Institute has released an updated report identifying 57 major global brands with links to Uyghur forced labor in their supply chains.\n\nKEY FINDINGS:\n• Fashion, technology, and automotive sectors most affected\n• Many companies have failed to conduct adequate due diligence\n• Some companies have made improvements, others have not\n\nWHAT YOU CAN DO:\n• Check the full list before making purchases\n• Contact companies to demand supply chain transparency\n• Support the UFLPA enforcement",
     "date": "2024-12-15",
+    "expires": "2026-06-15",
+    "lastVerified": "2026-03-02",
     "links": [
       { "name": "ASPI Report", "url": "https://www.aspi.org.au/report/uyghurs-sale" },
       { "name": "Coalition to End Forced Labour", "url": "https://enduyghurforcedlabour.org" }
@@ -32,6 +35,8 @@
     "summary": "Taiwan defense ministry reports 47 PLA aircraft detected in past 24 hours",
     "details": "Taiwan's Ministry of National Defense has reported increased People's Liberation Army activity near the Taiwan Strait, with 47 aircraft and 12 naval vessels detected in the past 24 hours.\n\nCONTEXT:\n• This follows recent diplomatic tensions\n• Taiwan has raised its alert level\n• International observers are monitoring the situation\n\nSTAY INFORMED:\n• Follow Taiwan's Ministry of National Defense updates\n• Monitor reputable news sources\n• Support Taiwan solidarity initiatives",
     "date": "2024-12-18",
+    "expires": "2025-06-18",
+    "lastVerified": "2026-03-02",
     "links": [
       { "name": "Taiwan MND", "url": "https://www.mnd.gov.tw" },
       { "name": "Taiwan News", "url": "https://www.taiwannews.com.tw" }
@@ -41,10 +46,12 @@
   {
     "id": "hk-47-sentencing",
     "type": "critical",
-    "title": "Hong Kong 47: Mass Sentencing Underway",
+    "title": "Hong Kong 47: Mass Sentencing Complete",
     "summary": "45 pro-democracy activists sentenced in largest NSL case",
     "details": "The Hong Kong 47 case has concluded with 45 activists receiving sentences ranging from 4 to 10 years in prison. This is the largest prosecution under the National Security Law.\n\nNOTABLE SENTENCES:\n• Benny Tai: 10 years\n• Joshua Wong: 4 years 8 months\n• Claudia Mo: 4 years 2 months\n• Gwyneth Ho: 7 years\n\nThis case represents a systematic dismantling of Hong Kong's pro-democracy movement.",
     "date": "2024-11-19",
+    "expires": "2026-05-19",
+    "lastVerified": "2026-03-02",
     "links": [
       { "name": "Hong Kong Watch HK47", "url": "https://www.hongkongwatch.org/hk47" }
     ],
