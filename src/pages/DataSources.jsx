@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { 
   Database, 
   ExternalLink, 
@@ -9,9 +9,18 @@ import {
   RefreshCw,
   Building,
   Newspaper,
-  GraduationCap
+  GraduationCap,
+  Download
 } from 'lucide-react';
 import dataSourcesData from '../data/data_sources.json';
+
+const DataExport = lazy(() => import('../components/DataExport'));
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  </div>
+);
 
 const ICON_MAP = {
   Shield: Shield,
@@ -177,6 +186,20 @@ const DataSources = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Export Data */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-6">
+            <Download className="w-8 h-8 text-[#22d3ee]" />
+            <h2 className="text-3xl font-bold">Export Data</h2>
+          </div>
+          <p className="text-slate-300 mb-6">
+            Download our verified datasets for research, analysis, or integration into your own projects.
+          </p>
+          <Suspense fallback={<SectionLoader />}>
+            <DataExport />
+          </Suspense>
         </div>
 
         {/* Full Documentation */}
