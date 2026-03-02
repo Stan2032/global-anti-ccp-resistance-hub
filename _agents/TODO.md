@@ -239,7 +239,7 @@
 - [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
 
 ### Technical Improvements
-- [ ] **Offline Mode**: Cache critical content for offline access
+- [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
 - [ ] **Push Notifications**: Alert users to breaking news and urgent actions
 - [ ] **Analytics Dashboard**: Track platform usage (privacy-respecting)
 - [ ] **API Development**: Create public API for researchers to access data
