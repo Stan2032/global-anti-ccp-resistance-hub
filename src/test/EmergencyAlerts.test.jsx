@@ -29,8 +29,8 @@ describe('EmergencyAlerts', () => {
   it('renders all active alerts (non-expired)', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
-    expect(screen.getByText(/New Report: 57 Global Brands/)).toBeTruthy();
-    expect(screen.getByText(/Hong Kong 47: Mass Sentencing/)).toBeTruthy();
+    expect(screen.getByText(/100\+ Global Brands Linked/)).toBeTruthy();
+    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
     expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
     // Taiwan military alert is expired (expires 2025-06-18) — should NOT appear
     expect(screen.queryByText(/Taiwan Reports Increased PLA Activity/)).toBeFalsy();
@@ -39,8 +39,8 @@ describe('EmergencyAlerts', () => {
   it('shows alert summaries', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/Hong Kong media tycoon Jimmy Lai sentenced/)).toBeTruthy();
-    expect(screen.getByText(/Updated ASPI report identifies/)).toBeTruthy();
-    expect(screen.getByText(/45 pro-democracy activists sentenced/)).toBeTruthy();
+    expect(screen.getByText(/Major investigation identifies/)).toBeTruthy();
+    expect(screen.getByText(/Court of Appeal upholds convictions/)).toBeTruthy();
     expect(screen.getByText(/Father of US-based activist sentenced/)).toBeTruthy();
   });
 
@@ -55,7 +55,7 @@ describe('EmergencyAlerts', () => {
   it('renders alert dates', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText('2025-12-15')).toBeTruthy();
-    expect(screen.getByText('2024-12-15')).toBeTruthy();
+    expect(screen.getByText('2025-05-15')).toBeTruthy();
     expect(screen.getByText('2024-11-19')).toBeTruthy();
     expect(screen.getByText('2026-02-26')).toBeTruthy();
   });
@@ -65,7 +65,7 @@ describe('EmergencyAlerts', () => {
   it('renders external action links for alerts', () => {
     render(<EmergencyAlerts />);
     expect(screen.getAllByText('Free Jimmy Lai Campaign').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('ASPI Report').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Coalition to End Forced Labour').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('NPR Report').length).toBeGreaterThanOrEqual(1);
   });
 
@@ -161,8 +161,8 @@ describe('EmergencyAlerts', () => {
 
     // Two alerts should be dismissed, two remaining (HK47 + Kwok)
     expect(screen.queryByText(/URGENT: Jimmy Lai Sentenced/)).toBeFalsy();
-    expect(screen.queryByText(/New Report: 57 Global Brands/)).toBeFalsy();
-    expect(screen.getByText(/Hong Kong 47: Mass Sentencing/)).toBeTruthy();
+    expect(screen.queryByText(/100\+ Global Brands Linked/)).toBeFalsy();
+    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
     expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
   });
 

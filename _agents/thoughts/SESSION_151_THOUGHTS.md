@@ -51,7 +51,7 @@ The statistics.test.js tests check for specific keys in the STATISTICS object. A
 - Build: 301KB (97KB gzip) — unchanged
 
 ## What's Left for Next Session
-1. Source URL health check (verify key links still resolve)
+1. Source URL health check (verify key links still resolve) — **NOTE: sandbox doesn't allow outbound HTTP via curl. Need to use web_fetch tool or manual browser checks instead.**
 2. Check if any profile source links need updating
 3. Consider adding Gui Minhai's approaching sentence end date (Feb 2030) as a content element
 4. Medium-term: Offline Mode if owner prioritizes (Q7)
