@@ -165,7 +165,7 @@ const ResistanceResources = () => {
 
       {/* Main Resource Sections Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {resourceSections.map((section, index) => (
+        {resourceSections.map((section) => (
           <div
             key={section.title}
             className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"

@@ -19,7 +19,7 @@ beforeEach(() => {
   mockLocalStorage._reset();
   mockLocalStorage.getItem.mockReset();
   mockLocalStorage.setItem.mockReset();
-  mockLocalStorage.getItem.mockImplementation((key) => null);
+  mockLocalStorage.getItem.mockImplementation(() => null);
   Object.defineProperty(window, 'localStorage', { value: mockLocalStorage, writable: true });
 });
 
