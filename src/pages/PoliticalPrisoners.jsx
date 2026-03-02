@@ -247,10 +247,10 @@ const PrisonerModal = ({ prisoner, onClose }) => {
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6">
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-2xl font-bold text-white">{prisoner.name}</h2>
-              <p className="text-gray-400">{prisoner.chineseName}</p>
+              {prisoner.chineseName && <p className="text-gray-400">{prisoner.chineseName}</p>}
             </div>
             <button onClick={onClose} className="text-gray-400 hover:text-white">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,47 +259,64 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             </button>
           </div>
           
-          <div className="flex items-center gap-2 mb-6">
+          {/* Key Facts — Status, Location, Sentence in a compact grid */}
+          <div className="flex items-center gap-2 mb-4">
             <StatusBadge status={prisoner.status} />
             <UrgencyBadge urgency={prisoner.urgency} />
           </div>
           
+          <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+            <div className="bg-[#0a0e14]/50 p-3">
+              <span className="text-gray-500 block">Location</span>
+              <span className="text-gray-200">{prisoner.location}</span>
+            </div>
+            {prisoner.sentence && (
+              <div className="bg-[#0a0e14]/50 p-3">
+                <span className="text-gray-500 block">Sentence</span>
+                <span className="text-gray-200">{prisoner.sentence}</span>
+              </div>
+            )}
+          </div>
+          
           <div className="space-y-4">
             <div>
-              <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Background</h3>
-              <p className="text-gray-200">{prisoner.background}</p>
+              <p className="text-gray-200 text-sm">{prisoner.background}</p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Location</h3>
-                <p className="text-gray-200">{prisoner.location}</p>
-              </div>
-              {prisoner.sentence && (
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Sentence</h3>
-                  <p className="text-gray-200">{prisoner.sentence}</p>
-                </div>
-              )}
-            </div>
-            
-            {prisoner.charges && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Charges</h3>
-                <ul className="list-disc list-inside text-gray-200">
-                  {prisoner.charges.map((charge, i) => (
-                    <li key={i}>{charge}</li>
-                  ))}
-                </ul>
+            {(prisoner.healthConcerns || prisoner.healthStatus) && (
+              <div className="bg-red-900/30 border border-red-700 p-3 text-sm">
+                <h3 className="font-semibold text-red-400 mb-1">Health Alert</h3>
+                <p className="text-gray-200">
+                  {prisoner.healthStatus || 'Serious health concerns have been reported.'}
+                  {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
+                  {prisoner.tortureDocumented && ' Torture has been documented.'}
+                </p>
               </div>
             )}
             
-            {prisoner.awards && (
+            {prisoner.latestNews && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Recognition</h3>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest Developments</h3>
+                <p className="text-gray-200 text-sm">{prisoner.latestNews}</p>
+                {prisoner.internationalResponse && (
+                  <p className="text-gray-300 text-sm mt-2"><span className="text-gray-500">Int'l response:</span> {prisoner.internationalResponse}</p>
+                )}
+              </div>
+            )}
+            
+            {!prisoner.latestNews && prisoner.internationalResponse && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
+                <p className="text-gray-200 text-sm">{prisoner.internationalResponse}</p>
+              </div>
+            )}
+            
+            {prisoner.awards && prisoner.awards.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Recognition</h3>
                 <div className="flex flex-wrap gap-2">
                   {prisoner.awards.map((award, i) => (
-                    <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded">
+                    <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded text-sm">
                       {award}
                     </span>
                   ))}
@@ -307,70 +324,29 @@ const PrisonerModal = ({ prisoner, onClose }) => {
               </div>
             )}
             
-            {prisoner.healthConcerns && (
-              <div className="bg-red-900/30 border border-red-700 p-4">
-                <h3 className="text-sm font-semibold text-red-400 uppercase mb-1">Health Alert</h3>
-                <p className="text-gray-200">
-                  Serious health concerns have been reported. 
-                  {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
-                  {prisoner.tortureDocumented && ' Torture has been documented.'}
-                </p>
-              </div>
-            )}
-            
-            {prisoner.legacy && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Legacy</h3>
-                <p className="text-gray-200">{prisoner.legacy}</p>
-              </div>
-            )}
-            
-            {prisoner.latestNews && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest News</h3>
-                <p className="text-gray-200">{prisoner.latestNews}</p>
-              </div>
-            )}
-            
-            {prisoner.internationalResponse && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
-                <p className="text-gray-200">{prisoner.internationalResponse}</p>
-              </div>
-            )}
-            
-            {prisoner.healthStatus && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Health Status</h3>
-                <p className="text-gray-200">{prisoner.healthStatus}</p>
-              </div>
-            )}
-            
             {prisoner.source && prisoner.source.url && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2">Source Information</h3>
-                <SourceAttribution source={prisoner.source} compact={false} />
+              <div className="pt-2 border-t border-[#1c2a35]">
+                <SourceAttribution source={prisoner.source} compact={true} />
               </div>
             )}
           </div>
           
           {prisoner.profilePath && (
-            <div className="mt-6 pt-6 border-t border-[#1c2a35]">
+            <div className="mt-4 pt-4 border-t border-[#1c2a35]">
               <Link
                 to={prisoner.profilePath}
                 className="flex items-center justify-between bg-[#4afa82]/10 hover:bg-[#4afa82]/20 border border-[#4afa82]/30 p-4 transition-colors"
               >
                 <div>
                   <p className="text-[#4afa82] font-mono text-sm font-semibold">$ view_full_profile --detailed</p>
-                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response, and sourced documentation</p>
+                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response</p>
                 </div>
                 <span className="text-[#4afa82] text-lg">→</span>
               </Link>
             </div>
           )}
 
-          <div className="mt-6 pt-6 border-t border-[#1c2a35]">
-            <h3 className="text-sm font-semibold text-gray-400 uppercase mb-3">Take Action</h3>
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <div className="flex flex-wrap gap-2">
               <a
                 href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background} #FreePoliticalPrisoners #HumanRights`}
