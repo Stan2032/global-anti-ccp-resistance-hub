@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 147)
+> Last Updated: March 2, 2026 (Session 148)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -83,9 +83,9 @@
 - [x] **Research: data already in JSON** — ✅ verified: all data from political_prisoners_research.json (line 7)
 - **Target:** Keep structure, reduce visual noise ✅ (truncation + modal done)
 
-### Page 4: Take Action (306 lines, 8 lazy components) — ✅ SIMPLIFIED (Session 138, 143, 145)
+### Page 4: Take Action (326 lines, 9 lazy components) — ✅ SIMPLIFIED (Session 138, 143, 145, 148)
 **Was:** 552 lines, 15 lazy components, email form, duplicate share section
-**Now:** 306 lines, 8 lazy components (PetitionLinks, ForcedLabourList, ContactRepresentatives, SuccessStories, QuickFacts, ActivistToolkit, SanctionsTracker, DonationGuide)
+**Now:** 326 lines, 9 lazy components (PetitionLinks, ForcedLabourList, ContactRepresentatives, SuccessStories, QuickFacts, ActivistToolkit, SanctionsTracker, DonationGuide, CompanyTracker)
 - [x] **Remove email subscribe form** — owner DEFERRED email features ✅
 - [x] **Reduce 15 lazy components to 8** — removed 7 aspirational/overlapping: ✅
   - ✅ PetitionGenerator (overlaps PetitionLinks)
@@ -101,9 +101,9 @@
 - [x] **Add "show more" pattern** — show top 3 actions expanded, rest collapsed ✅ (Session 143)
 - [x] **Simplify 8→5 action steps** — merged petitions+boycott, awareness+solidarity, info+security+report ✅ (Session 145)
 
-### Page 5: Education Center (347 lines, 13 lazy components) — ✅ SIMPLIFIED (Session 138) + data extracted (Session 141)
+### Page 5: Education Center (369 lines, 16 lazy components) — ✅ SIMPLIFIED (Session 138) + data extracted (Session 141) + components added (Session 148)
 **Was:** 622 lines, 17 lazy components, 7 tabs, 8 modules, framer-motion
-**Now:** 347 lines, 13 lazy components, 4 tabs, 5 modules, no framer-motion
+**Now:** 369 lines, 16 lazy components, 4 tabs, 5 modules, no framer-motion
 - [x] **Reduce 7 tabs to 4**: Learn | Media | Research | Tools ✅ (History merged into Learn, FAQ merged into Tools, Progress removed)
 - [x] **Remove ReadingProgress** — aspirational feature (no real user session tracking) ✅
 - [x] **Remove AcademicCitationGenerator** — niche utility, rarely used ✅
@@ -116,9 +116,9 @@
 - [x] **Component files deleted** — 4 orphan .jsx files removed ✅
 - [x] **Move inline `modules` array** → JSON file (educational_modules.json) ✅ (Session 141)
 
-### Page 6: Security Center (419 lines, 6 lazy components) — ✅ SIMPLIFIED (Session 139)
+### Page 6: Security Center (424 lines, 7 lazy components) — ✅ SIMPLIFIED (Session 139, 148)
 **Was:** 613 lines, 8 lazy components, 6 tabs (assess, legacy-assessment, tools, guides, protect, whistleblower, threats), framer-motion
-**Now:** 419 lines, 6 lazy components, 4 tabs (Assess, Tools, Guides, Tech Threats), no framer-motion
+**Now:** 424 lines, 7 lazy components, 4 tabs (Assess, Tools, Guides, Tech Threats), no framer-motion
 - [x] **Reduce 6 tabs to 4**: Assess | Tools | Guides | Threats ✅ (Protect merged into Guides, Whistleblower removed, legacy-assessment removed)
 - [x] **Remove WhistleblowerPortal** — aspirational (no real secure submission system) ✅
 - [x] **Remove OfflineModeManager** — aspirational (PWA caching handles this) ✅
@@ -144,23 +144,23 @@
 - [ ] **Consider merging into other pages** — EventCalendar→Education, SurvivorStories→Education, VolunteerSignup→TakeAction, ContactForm→Security, ReportSighting→Security
 - **Target reached:** 10 → 6 components, 6 → 4 tabs ✅
 
-### Page 8: Resistance Resources (306 lines, 7 lazy components) — ✅ SIMPLIFIED (Session 141)
+### Page 8: Resistance Resources (264 lines, 2 lazy components) — ✅ SIMPLIFIED (Session 141, 148)
 **Was:** 330 lines, 10 lazy components, framer-motion, 3 aspirational components
-**Now:** 306 lines, 7 lazy components (DataExport, CompanyTracker, ForcedLaborTracker, AcademicExperts, MediaBiasGuide, HistoricalDocuments, LegalResourcesHub), no framer-motion
+**Now:** 264 lines, 2 lazy components (DataExport, ForcedLaborTracker), no framer-motion
 - [x] **Page is not in nav** — already removed from navigation in Session 136 ✅
 - [x] **Remove Bookmarks** — aspirational (no user session persistence) ✅ (Session 141)
 - [x] **Remove MediaGallery** — aspirational (no curated media library) ✅ (Session 141)
 - [x] **Remove OrganizationsDirectory** — overlaps with ResistanceDirectory page ✅ (Session 141)
 - [x] **Remove framer-motion** — 2 motion.div usages removed ✅ (Session 141)
 - [x] **12 tests added** — all passing ✅ (Session 141)
-- [ ] **Consider merging sub-components into other pages** (future):
-  - Move CompanyTracker to Take Action (fits with boycott actions)
-  - Move AcademicExperts to Education
-  - Move MediaBiasGuide to Education
-  - Move HistoricalDocuments to Education
-  - Move LegalResourcesHub to Security
-  - Move DataExport to DataSources page
-- **Target reached:** 10 → 7 components, aspirational removed ✅
+- [x] **Merge sub-components into other pages** ✅ (Session 148):
+  - ✅ Moved AcademicExperts to Education Research tab
+  - ✅ Moved MediaBiasGuide to Education Media tab
+  - ✅ Moved HistoricalDocuments to Education Learn tab
+  - ✅ Moved CompanyTracker to TakeAction (after boycott section)
+  - ✅ Moved LegalResourcesHub to Security Tools tab
+  - ✅ DataExport already on DataSources page (Session 146)
+- **Target exceeded:** 10 → 2 components, all redistributed ✅
 
 ### Page 9: Data Sources (252 lines, 1 lazy component) — ✅ framer-motion removed + DataExport added (Session 140, 146)
 **Current:** Static informational page about data methodology. Clean and focused. DataExport lazy-loaded.
@@ -421,15 +421,15 @@
 ## 🎯 CURRENT SPRINT
 
 ### Up Next
-1. **🔴 Page simplification** — ✅ COMPLETE (Session 137-146). All priority pages done:
-   - **✅ DONE:** TakeAction (15→8, 8→5 actions, actions→JSON, show-more), EducationalResources (17→13, 7→4 tabs, data→JSON), IntelligenceFeeds (11→9, ResearchDashboard moved in, feed truncation, RSS→JSON), SecurityCenter (8→6, 6→4 tabs)
+1. **🔴 Page simplification** — ✅ COMPLETE (Session 137-148). All priority pages done:
+   - **✅ DONE:** TakeAction (15→9, CompanyTracker added S148, 5 actions, actions→JSON, show-more), EducationalResources (17→16, +AcademicExperts+MediaBiasGuide+HistoricalDocuments S148), IntelligenceFeeds (11→9, ResearchDashboard moved in, feed truncation, RSS→JSON), SecurityCenter (8→7, +LegalResourcesHub S148)
    - **✅ DONE:** CommunitySupport (10→6, 6→4 tabs, -77%), Dashboard (8→5, urgentCampaigns removed, quickActions 4→3, ResearchDashboard moved out), PoliticalPrisoners (motion removed, truncation added, modal streamlined), DataSources (motion removed, DataExport added)
-   - **✅ DONE:** ResistanceResources (10→7, aspirational removed), EducationalResources data→JSON
+   - **✅ DONE:** ResistanceResources (10→2, 5 components redistributed to other pages S148)
    - **✅ DONE:** framer-motion completely removed — dependency uninstalled, vendor bundle eliminated (Session 144)
    - **LOW:** ResistanceDirectory (keep as-is)
-   - **Cross-cutting complete:** All data→JSON migrations done ✅ (20 JSON files), framer-motion eliminated ✅, TakeAction 8→5 ✅, DataExport on DataSources ✅
+   - **Cross-cutting complete:** All data→JSON migrations done ✅ (20 JSON files), framer-motion eliminated ✅, TakeAction 8→5 actions ✅, DataExport on DataSources ✅, Resources redistributed ✅
 2. **Navigation simplification** — ✅ Session 136: sidebar 11→7 items, width w-64→w-56
-3. **ESLint cleanup** — ✅ Session 147: 7 errors + 7 warnings → 0 errors + 4 warnings. useGlobalSearch extracted to hooks/, test config fixed.
+3. **ESLint cleanup** — ✅ Session 148: 0 errors + 0 warnings. Split mixed component/non-component exports: LanguageSelector→languageUtils.js+LanguageContext.jsx, ThemeContext→themeUtils.js+ThemeContext.jsx.
 4. **Content updates** — ✅ Session 147: Jimmy Lai fraud appeal overturned Feb 26, 2026 added. Sanctions verified current. Monitor breaking developments.
 5. **Backend connection Phase 2** — Supabase client + service layer done ✅. Remaining: add Supabase Auth for admin
 
@@ -479,13 +479,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 147, Mar 2, 2026)
+### Current State Summary (as of Session 148, Mar 2, 2026)
 - **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1236 tests (74 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav.
-- **Page Simplification:** ALL pages simplified + data extracted. TakeAction 15→8→5 actions, actions→JSON, show-more (S138,S143,S145). EducationalResources 17→13+data→JSON (S138,S141). IntelligenceFeeds 11→9+ResearchDashboard+feed truncation+RSS→JSON (S139,S143,S144,S146). SecurityCenter 8→6, 6→4 tabs (S139). CommunitySupport 10→6, -77% (S140). Dashboard 8→5 (S140,S142,S143). ResistanceResources 10→7 (S141). PoliticalPrisoners: truncation+modal streamlined (S140,S142,S145). DataSources: DataExport added (S146). 25 aspirational components deleted. ALL data→JSON migrations complete (20 files).
+- **Page Simplification:** ALL pages simplified + data extracted + components redistributed. TakeAction 15→9 (CompanyTracker added S148). EducationalResources 17→16 (AcademicExperts+MediaBiasGuide+HistoricalDocuments added S148). SecurityCenter 8→7 (LegalResourcesHub added S148). ResistanceResources 10→2 (5 moved out S148). 25 aspirational components deleted. ALL data→JSON migrations complete (20 files).
+- **ESLint:** 0 errors, 0 warnings (was 0+4). LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
-- **ESLint:** 0 errors, 4 warnings (was 7+7). useGlobalSearch extracted to hooks/ (S147). Accessibility unused exports removed (S147). Test argsIgnorePattern added.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids.
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
@@ -495,7 +495,7 @@
 - **Content:** Sanctions verified current as of Mar 2026. Jimmy Lai profile updated through Feb 26, 2026 fraud appeal.
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
-- **Lint:** 0 errors, 4 warnings. 0 npm vulnerabilities.
+- **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
 - **Test Coverage:** All 20 JSON data files, all 4 Supabase forms, all 4 hooks (useDocumentTitle, useLiveData, useWebRTCLeakCheck, useGlobalSearch), key components tested. 1236 tests across 74 files.
 
 ---
