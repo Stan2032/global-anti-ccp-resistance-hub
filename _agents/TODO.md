@@ -14,7 +14,7 @@
 ### Human-Answered Tasks (Q6-Q10, Session 153)
 - [ ] **Implement basic cache (Q6)**: Add Cloudflare Workers Cache API or KV for backend caching. Update `BACKEND_GUIDE.md` to reflect actual implementation.
 - [ ] **Supabase Auth admin login (Q8)**: Implement single admin login via Supabase Auth (email/password). Add roles later if needed. This enables viewing submitted form data (incident reports, volunteer signups, newsletter subscribers, contact messages).
-- [ ] **Cloudflare Onion Routing (Q9)**: Human owner needs to enable in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed — Cloudflare handles the header injection. Setup steps in `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md`.
+- [x] **Cloudflare Onion Routing (Q9)**: ✅ Step-by-step guide created (`ONION_ROUTING_SETUP.md`). Human owner needs to enable in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed — Cloudflare handles the header injection.
 
 ### Standing Instructions (from Q7, Q10)
 - **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
