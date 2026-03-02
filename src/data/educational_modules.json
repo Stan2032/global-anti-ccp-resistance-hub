@@ -1,0 +1,93 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "title": "Propaganda Detection Fundamentals",
+      "category": "propaganda",
+      "description": "Learn to identify common CCP propaganda techniques and narratives",
+      "duration": "4 hours",
+      "level": "Beginner",
+      "lessons": 12,
+      "topics": ["Narrative Techniques", "Visual Manipulation", "Emotional Exploitation"]
+    },
+    {
+      "id": 2,
+      "title": "Digital Security for Activists",
+      "category": "security",
+      "description": "Protect yourself and your organization from digital surveillance",
+      "duration": "6 hours",
+      "level": "Intermediate",
+      "lessons": 15,
+      "topics": ["VPN/Tor", "Encryption", "Device Security", "Operational Security"]
+    },
+    {
+      "id": 3,
+      "title": "Hong Kong Democracy Movement History",
+      "category": "history",
+      "description": "Comprehensive overview of Hong Kong's struggle for democracy",
+      "duration": "5 hours",
+      "level": "Beginner",
+      "lessons": 10,
+      "topics": ["1997 Handover", "2019 Protests", "National Security Law", "Current Situation"]
+    },
+    {
+      "id": 4,
+      "title": "Uyghur Rights Advocacy",
+      "category": "advocacy",
+      "description": "Effective strategies for advocating for Uyghur human rights",
+      "duration": "4.5 hours",
+      "level": "Intermediate",
+      "lessons": 11,
+      "topics": ["Documentation", "International Advocacy", "Corporate Accountability", "Legal Action"]
+    },
+    {
+      "id": 5,
+      "title": "Fact-Checking & Verification",
+      "category": "skills",
+      "description": "Master techniques for verifying information and debunking false claims",
+      "duration": "3 hours",
+      "level": "Intermediate",
+      "lessons": 8,
+      "topics": ["Source Verification", "Image Analysis", "Timeline Verification", "Expert Consultation"]
+    }
+  ],
+  "resources": [
+    {
+      "id": 1,
+      "title": "CCP Propaganda Analysis Report",
+      "type": "PDF",
+      "size": "2.4 MB"
+    },
+    {
+      "id": 2,
+      "title": "Xinjiang Human Rights Documentation",
+      "type": "PDF",
+      "size": "5.8 MB"
+    },
+    {
+      "id": 3,
+      "title": "Hong Kong National Security Law Analysis",
+      "type": "PDF",
+      "size": "1.9 MB"
+    },
+    {
+      "id": 4,
+      "title": "Digital Security Handbook",
+      "type": "PDF",
+      "size": "3.2 MB"
+    },
+    {
+      "id": 5,
+      "title": "Propaganda Techniques Visual Guide",
+      "type": "PDF",
+      "size": "4.1 MB"
+    }
+  ],
+  "categories": [
+    { "id": "all", "name": "All Courses", "count": 5 },
+    { "id": "propaganda", "name": "Propaganda Analysis", "count": 1 },
+    { "id": "security", "name": "Digital Security", "count": 1 },
+    { "id": "history", "name": "History & Context", "count": 1 },
+    { "id": "advocacy", "name": "Advocacy & Skills", "count": 2 }
+  ]
+}
