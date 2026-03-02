@@ -12,7 +12,7 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### Human-Answered Tasks (Q6-Q10, Session 153)
-- [ ] **Implement basic cache (Q6)**: Add Cloudflare Workers Cache API or KV for backend caching. Update `BACKEND_GUIDE.md` to reflect actual implementation.
+- [x] **Implement basic cache (Q6)**: ✅ Two-layer caching implemented: (1) Static asset Cache-Control headers in `_headers` (immutable for hashed assets, no-cache for HTML/SW), (2) Backend feed routes wired to in-memory cacheService (TTL 5-30 min, tag-based invalidation, LRU eviction). BACKEND_GUIDE.md updated with full caching documentation.
 - [ ] **Supabase Auth admin login (Q8)**: Implement single admin login via Supabase Auth (email/password). Add roles later if needed. This enables viewing submitted form data (incident reports, volunteer signups, newsletter subscribers, contact messages).
 - [x] **Cloudflare Onion Routing (Q9)**: ✅ Step-by-step guide created (`ONION_ROUTING_SETUP.md`). Human owner needs to enable in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed — Cloudflare handles the header injection.
 

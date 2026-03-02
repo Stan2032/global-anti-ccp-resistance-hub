@@ -289,3 +289,55 @@ Replace the Supabase calls with D1 Worker calls and the rest of the app stays th
 **Q: What about email delivery (newsletters, notifications)?**
 A: Email delivery is a separate concern (deferred). The newsletter form stores subscriptions;
 an email service (Resend, Postmark, or Mailgun free tier) can be added later.
+
+---
+
+## Caching Architecture
+
+The site uses a two-layer caching strategy for optimal performance.
+
+### Layer 1: Static Asset Caching (Cloudflare CDN)
+
+Configured via `public/_headers`:
+
+| Path | Cache-Control | Purpose |
+|------|--------------|---------|
+| `/assets/*` | `public, max-age=31536000, immutable` | Vite-hashed JS/CSS bundles (1 year, safe because filenames change on rebuild) |
+| `/index.html` | `no-cache` | Always fetch latest SPA shell (small file, ensures updates propagate) |
+| `/sw.js` | `no-cache` | Service worker must always be fresh |
+| `/manifest.json` | `public, max-age=86400` | PWA manifest (1 day) |
+
+**How it works:** Vite generates content-hashed filenames (e.g., `index-CvqHDFfR.js`). Since the hash changes on every build, it's safe to cache these files forever (`immutable`). The `index.html` entry point is never cached, so users always get the latest bundle references.
+
+### Layer 2: Backend API Caching (In-Memory)
+
+When the Express backend is deployed, feed API responses are cached using the built-in `cacheService`:
+
+| Endpoint | TTL | Cache-Control | Tags |
+|----------|-----|---------------|------|
+| `GET /api/v1/feeds` | 10 min | `max-age=600` | `feeds` |
+| `GET /api/v1/feeds/sources` | 30 min | `max-age=1800` | `feeds`, `sources` |
+| `GET /api/v1/feeds/stats` | 5 min | `max-age=300` | `feeds`, `stats` |
+
+**Features:**
+- **TTL-based expiration** — cache entries automatically expire
+- **Tag-based invalidation** — `POST /api/v1/feeds/poll` clears all `feeds` cache entries
+- **LRU eviction** — oldest entries removed when cache reaches 1000 entries
+- **X-Cache header** — responses include `X-Cache: HIT` or `X-Cache: MISS` for debugging
+
+**Cache service location:** `backend/src/services/cacheService.js`
+
+### Future: Cloudflare Workers KV (Optional)
+
+For distributed caching across Cloudflare's global edge network, Cloudflare KV can be added:
+
+```jsonc
+// wrangler.jsonc — add KV namespace binding
+{
+  "kv_namespaces": [
+    { "binding": "CACHE", "id": "your-kv-namespace-id" }
+  ]
+}
+```
+
+This would replace the in-memory cache with edge-distributed storage, beneficial when the backend scales beyond a single Worker instance. For the current deployment, the in-memory cache is sufficient.
