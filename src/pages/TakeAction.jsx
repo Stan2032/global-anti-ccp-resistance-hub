@@ -24,8 +24,11 @@ const DonationGuide = lazy(() => import('../components/DonationGuide'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 3;
 
   const actions = actionsData.map(a => ({ ...a, Icon: ICON_MAP[a.icon] || AlertTriangle }));
+  const displayedActions = showAll ? actions : actions.slice(0, INITIAL_DISPLAY_COUNT);
 
   const impactStats = [
     { label: 'Political Prisoners Documented', value: '10,000+' },
@@ -86,7 +89,7 @@ const TakeAction = () => {
         <h2 className="text-2xl font-bold text-white">Eight Things You Can Do</h2>
         
         <div className="grid gap-6">
-          {actions.map((action) => (
+          {displayedActions.map((action) => (
             <div 
               key={action.number}
               className={`bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all ${
@@ -206,9 +209,21 @@ const TakeAction = () => {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Emergency Contacts */}
+        {/* Show More / Show Less */}
+        {actions.length > INITIAL_DISPLAY_COUNT && (
+          <div className="text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
+            >
+              {showAll
+                ? '$ show --less'
+                : `$ show --all ${actions.length} actions`}
+            </button>
+          </div>
+        )}
+      </div>
       <div className="bg-red-900/20 border border-red-700 p-6">
         <h2 className="text-xl font-bold text-red-300 mb-4">Emergency Contacts</h2>
         <p className="text-slate-300 mb-4">

@@ -71,16 +71,33 @@ describe('TakeAction', () => {
     expect(screen.getByText('Eight Things You Can Do')).toBeTruthy();
   });
 
-  it('renders all 8 action titles', () => {
+  it('renders first 3 action titles by default', () => {
     renderTakeAction();
     expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
     expect(screen.getByText('CONTACT YOUR REPRESENTATIVES')).toBeTruthy();
     expect(screen.getByText('SIGN ACTIVE PETITIONS')).toBeTruthy();
+    // Actions 4-8 hidden behind "Show more"
+    expect(screen.queryByText('BOYCOTT COMPLICIT COMPANIES')).toBeNull();
+  });
+
+  it('shows all 8 actions after clicking "show all"', () => {
+    renderTakeAction();
+    const showAllBtn = screen.getByText(/show --all 8 actions/);
+    fireEvent.click(showAllBtn);
+    expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
     expect(screen.getByText('BOYCOTT COMPLICIT COMPANIES')).toBeTruthy();
     expect(screen.getByText('REPORT CCP HARASSMENT')).toBeTruthy();
     expect(screen.getByText('SPREAD AWARENESS')).toBeTruthy();
     expect(screen.getByText('SUPPORT DIASPORA COMMUNITIES')).toBeTruthy();
     expect(screen.getByText('STAY INFORMED & SECURE')).toBeTruthy();
+  });
+
+  it('collapses back to 3 actions after clicking "show less"', () => {
+    renderTakeAction();
+    fireEvent.click(screen.getByText(/show --all 8 actions/));
+    expect(screen.getByText('BOYCOTT COMPLICIT COMPANIES')).toBeTruthy();
+    fireEvent.click(screen.getByText('$ show --less'));
+    expect(screen.queryByText('BOYCOTT COMPLICIT COMPANIES')).toBeNull();
   });
 
   // --- Expandable Actions ---
@@ -122,6 +139,7 @@ describe('TakeAction', () => {
 
   it('shows companies to boycott list', () => {
     renderTakeAction();
+    fireEvent.click(screen.getByText(/show --all 8 actions/));
     const boycottButton = screen.getByText('BOYCOTT COMPLICIT COMPANIES').closest('button');
     fireEvent.click(boycottButton);
     expect(screen.getByText('Companies to Avoid:')).toBeTruthy();
@@ -133,6 +151,7 @@ describe('TakeAction', () => {
 
   it('shows recommended security tools', () => {
     renderTakeAction();
+    fireEvent.click(screen.getByText(/show --all 8 actions/));
     const secureButton = screen.getByText('STAY INFORMED & SECURE').closest('button');
     fireEvent.click(secureButton);
     expect(screen.getByText('Recommended Tools:')).toBeTruthy();
