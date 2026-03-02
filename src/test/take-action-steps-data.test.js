@@ -14,7 +14,7 @@ describe('Take Action Steps data integrity', () => {
 
   it('take_action_steps.json exists and is valid JSON array', () => {
     expect(Array.isArray(data)).toBe(true);
-    expect(data.length).toBeGreaterThanOrEqual(8);
+    expect(data.length).toBeGreaterThanOrEqual(5);
   });
 
   it('each action has required fields', () => {

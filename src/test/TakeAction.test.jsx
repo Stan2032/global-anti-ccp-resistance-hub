@@ -33,7 +33,7 @@ describe('TakeAction', () => {
   it('renders the hero section', () => {
     renderTakeAction();
     expect(screen.getByText('Take Action Against CCP Authoritarianism')).toBeTruthy();
-    expect(screen.getByText(/Eight concrete ways you can help/)).toBeTruthy();
+    expect(screen.getByText(/Five concrete ways you can help/)).toBeTruthy();
   });
 
   it('has hero action buttons', () => {
@@ -66,38 +66,36 @@ describe('TakeAction', () => {
 
   // --- Eight Actions ---
 
-  it('renders the eight actions heading', () => {
+  it('renders the five actions heading', () => {
     renderTakeAction();
-    expect(screen.getByText('Eight Things You Can Do')).toBeTruthy();
+    expect(screen.getByText('Five Things You Can Do')).toBeTruthy();
   });
 
   it('renders first 3 action titles by default', () => {
     renderTakeAction();
     expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
     expect(screen.getByText('CONTACT YOUR REPRESENTATIVES')).toBeTruthy();
-    expect(screen.getByText('SIGN ACTIVE PETITIONS')).toBeTruthy();
-    // Actions 4-8 hidden behind "Show more"
-    expect(screen.queryByText('BOYCOTT COMPLICIT COMPANIES')).toBeNull();
+    expect(screen.getByText('SIGN PETITIONS & BOYCOTT')).toBeTruthy();
+    // Actions 4-5 hidden behind "Show more"
+    expect(screen.queryByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeNull();
   });
 
-  it('shows all 8 actions after clicking "show all"', () => {
+  it('shows all 5 actions after clicking "show all"', () => {
     renderTakeAction();
-    const showAllBtn = screen.getByText(/show --all 8 actions/);
+    const showAllBtn = screen.getByText(/show --all 5 actions/);
     fireEvent.click(showAllBtn);
     expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
-    expect(screen.getByText('BOYCOTT COMPLICIT COMPANIES')).toBeTruthy();
-    expect(screen.getByText('REPORT CCP HARASSMENT')).toBeTruthy();
-    expect(screen.getByText('SPREAD AWARENESS')).toBeTruthy();
-    expect(screen.getByText('SUPPORT DIASPORA COMMUNITIES')).toBeTruthy();
-    expect(screen.getByText('STAY INFORMED & SECURE')).toBeTruthy();
+    expect(screen.getByText('SIGN PETITIONS & BOYCOTT')).toBeTruthy();
+    expect(screen.getByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeTruthy();
+    expect(screen.getByText('STAY INFORMED & STAY SECURE')).toBeTruthy();
   });
 
   it('collapses back to 3 actions after clicking "show less"', () => {
     renderTakeAction();
-    fireEvent.click(screen.getByText(/show --all 8 actions/));
-    expect(screen.getByText('BOYCOTT COMPLICIT COMPANIES')).toBeTruthy();
+    fireEvent.click(screen.getByText(/show --all 5 actions/));
+    expect(screen.getByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeTruthy();
     fireEvent.click(screen.getByText('$ show --less'));
-    expect(screen.queryByText('BOYCOTT COMPLICIT COMPANIES')).toBeNull();
+    expect(screen.queryByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeNull();
   });
 
   // --- Expandable Actions ---
@@ -139,9 +137,8 @@ describe('TakeAction', () => {
 
   it('shows companies to boycott list', () => {
     renderTakeAction();
-    fireEvent.click(screen.getByText(/show --all 8 actions/));
-    const boycottButton = screen.getByText('BOYCOTT COMPLICIT COMPANIES').closest('button');
-    fireEvent.click(boycottButton);
+    const petitionButton = screen.getByText('SIGN PETITIONS & BOYCOTT').closest('button');
+    fireEvent.click(petitionButton);
     expect(screen.getByText('Companies to Avoid:')).toBeTruthy();
     expect(screen.getByText('Shein')).toBeTruthy();
     expect(screen.getByText('Temu')).toBeTruthy();
@@ -151,8 +148,8 @@ describe('TakeAction', () => {
 
   it('shows recommended security tools', () => {
     renderTakeAction();
-    fireEvent.click(screen.getByText(/show --all 8 actions/));
-    const secureButton = screen.getByText('STAY INFORMED & SECURE').closest('button');
+    fireEvent.click(screen.getByText(/show --all 5 actions/));
+    const secureButton = screen.getByText('STAY INFORMED & STAY SECURE').closest('button');
     fireEvent.click(secureButton);
     expect(screen.getByText('Recommended Tools:')).toBeTruthy();
     // 'Signal' appears in both tools and action links, so check for at least one

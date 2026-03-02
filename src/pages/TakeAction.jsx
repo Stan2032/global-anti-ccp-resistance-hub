@@ -1,10 +1,10 @@
 import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield, BarChart3 } from 'lucide-react';
+import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
 import actionsData from '../data/take_action_steps.json';
 
-const ICON_MAP = { Heart, Landmark, PenLine, Ban, AlertTriangle, Megaphone, Handshake, Shield };
+const ICON_MAP = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
@@ -46,7 +46,7 @@ const TakeAction = () => {
             Take Action Against CCP Authoritarianism
           </h1>
           <p className="text-lg text-slate-300 mb-6">
-            Eight concrete ways you can help fight for human rights and democracy. 
+            Five concrete ways you can help fight for human rights and democracy. 
             Every action matters - from signing petitions to contacting your representatives.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -86,7 +86,7 @@ const TakeAction = () => {
 
       {/* Actions Grid */}
       <div id="actions" className="space-y-6">
-        <h2 className="text-2xl font-bold text-white">Eight Things You Can Do</h2>
+        <h2 className="text-2xl font-bold text-white">Five Things You Can Do</h2>
         
         <div className="grid gap-6">
           {displayedActions.map((action) => (
