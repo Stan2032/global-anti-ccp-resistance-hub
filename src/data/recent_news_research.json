@@ -389,6 +389,22 @@
         "action_needed": "Monitor Japanese legislative process. Support advocacy for strong import restrictions. Encourage other G7 countries to follow suit."
       },
       "error": ""
+    },
+    {
+      "input": "Anna Kwok father Kwok Yin-sang sentenced 8 months Article 23 February 2026",
+      "output": {
+        "topic": "Hong Kong: First family member sentenced under Article 23",
+        "headline": "Father of US-based activist Anna Kwok sentenced to 8 months under national security law",
+        "summary": "Kwok Yin-sang, father of Hong Kong Democracy Council executive director Anna Kwok, sentenced to 8 months for handling financial assets of his daughter, a designated absconder. First known prosecution of a family member under Article 23 national security provisions. Anna Kwok stated: Hong Kong jailed my dad to stop me from speaking out.",
+        "date": "2026-02-26",
+        "source": "Multiple international outlets (AP, BBC, WTOP)",
+        "source_url": "https://wtop.com/world/2026/02/the-father-of-a-us-based-hong-kong-activist-is-sentenced-to-8-months-under-national-security-law/",
+        "significance": "HIGH",
+        "related_prisoners": "Kwok Yin-sang, Anna Kwok (in exile)",
+        "international_response": "Human rights organizations expressed alarm at the precedent of targeting family members as a form of transnational repression.",
+        "action_needed": "Monitor for similar family member prosecutions. Support HKDC advocacy on this precedent."
+      },
+      "error": ""
     }
   ]
 }
