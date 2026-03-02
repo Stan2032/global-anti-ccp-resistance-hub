@@ -22,6 +22,8 @@ const ActivistToolkit = lazy(() => import('../components/ActivistToolkit'));
 const SanctionsTracker = lazy(() => import('../components/SanctionsTracker'));
 const DonationGuide = lazy(() => import('../components/DonationGuide'));
 const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
+const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
+const DiasporaSupport = lazy(() => import('../components/DiasporaSupport'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
@@ -304,6 +306,16 @@ const TakeAction = () => {
       {/* Donation Guide */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
+      </div>
+
+      {/* Volunteer Signup */}
+      <div className="mt-8">
+        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
+      </div>
+
+      {/* Diaspora Support Resources */}
+      <div className="mt-8">
+        <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
       </div>
 
       {/* Share Section */}

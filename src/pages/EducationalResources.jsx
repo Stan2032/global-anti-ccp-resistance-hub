@@ -29,6 +29,8 @@ const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes
 const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
 const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
 const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
+const EventCalendar = lazy(() => import('../components/EventCalendar'));
+const SurvivorStories = lazy(() => import('../components/SurvivorStories'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('learn')
@@ -287,6 +289,14 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-6">
             <h2 className="text-xl font-bold text-white mb-4 font-mono">── historical_documents ──</h2>
             <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── key_dates ──</h2>
+            <Suspense fallback={<SectionLoader />}><EventCalendar /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-6">
+            <h2 className="text-xl font-bold text-white mb-4 font-mono">── survivor_testimonies ──</h2>
+            <Suspense fallback={<SectionLoader />}><SurvivorStories /></Suspense>
           </div>
         </div>
       )}

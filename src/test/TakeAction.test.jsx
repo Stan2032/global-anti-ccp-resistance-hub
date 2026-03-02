@@ -13,6 +13,8 @@ vi.mock('../components/ActivistToolkit', () => ({ default: () => <div>ActivistTo
 vi.mock('../components/SanctionsTracker', () => ({ default: () => <div>SanctionsTracker</div> }));
 vi.mock('../components/DonationGuide', () => ({ default: () => <div>DonationGuide</div> }));
 vi.mock('../components/CompanyTracker', () => ({ default: () => <div>CompanyTracker</div> }));
+vi.mock('../components/VolunteerSignup', () => ({ default: () => <div>VolunteerSignup</div> }));
+vi.mock('../components/DiasporaSupport', () => ({ default: () => <div>DiasporaSupport</div> }));
 vi.mock('../components/ShareButtons', () => ({ default: () => <div>ShareButtons</div> }));
 
 import TakeAction from '../pages/TakeAction';

@@ -19,6 +19,8 @@ vi.mock('../components/ConfuciusInstitutes', () => ({ default: () => <div>Confuc
 vi.mock('../components/AcademicExperts', () => ({ default: () => <div>AcademicExperts</div> }));
 vi.mock('../components/MediaBiasGuide', () => ({ default: () => <div>MediaBiasGuide</div> }));
 vi.mock('../components/HistoricalDocuments', () => ({ default: () => <div>HistoricalDocuments</div> }));
+vi.mock('../components/EventCalendar', () => ({ default: () => <div>EventCalendar</div> }));
+vi.mock('../components/SurvivorStories', () => ({ default: () => <div>SurvivorStories</div> }));
 
 import EducationalResources from '../pages/EducationalResources';
 

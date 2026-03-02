@@ -31,6 +31,8 @@ const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
 const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
 const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
 const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
+const ReportSighting = lazy(() => import('../components/ReportSighting'));
+const ContactForm = lazy(() => import('../components/ContactForm'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -337,6 +339,16 @@ const SecurityCenter = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── legal_resources ──</h2>
             <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
+          </div>
+          {/* Report CCP Activity */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── report_activity ──</h2>
+            <Suspense fallback={<SectionLoader />}><ReportSighting /></Suspense>
+          </div>
+          {/* Contact Form */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── contact_form ──</h2>
+            <Suspense fallback={<SectionLoader />}><ContactForm /></Suspense>
           </div>
         </div>
       )}

@@ -1,14 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
-
-// Mock lazy-loaded components
-vi.mock('../components/EventCalendar', () => ({ default: () => <div>EventCalendar</div> }));
-vi.mock('../components/DiasporaSupport', () => ({ default: () => <div>DiasporaSupport</div> }));
-vi.mock('../components/ReportSighting', () => ({ default: () => <div>ReportSighting</div> }));
-vi.mock('../components/SurvivorStories', () => ({ default: () => <div>SurvivorStories</div> }));
-vi.mock('../components/VolunteerSignup', () => ({ default: () => <div>VolunteerSignup</div> }));
-vi.mock('../components/ContactForm', () => ({ default: () => <div>ContactForm</div> }));
 
 import CommunitySupport from '../pages/CommunitySupport';
 
@@ -25,27 +17,28 @@ describe('CommunitySupport', () => {
     expect(screen.getByText(/Mutual aid network connecting activists/)).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Quick Links to Redistributed Features ---
 
-  it('renders 4 tabs', () => {
+  it('shows quick links to redistributed features', () => {
     render(<CommunitySupport />);
-    expect(screen.getByText('Support')).toBeTruthy();
-    expect(screen.getByText('Events')).toBeTruthy();
-    expect(screen.getByText('Stories')).toBeTruthy();
-    expect(screen.getByText('Report')).toBeTruthy();
+    expect(screen.getByText('Volunteer & Donate')).toBeTruthy();
+    expect(screen.getByText('Report CCP Activity')).toBeTruthy();
+    expect(screen.getByText('Key Dates & Events')).toBeTruthy();
+    expect(screen.getByText('Survivor Stories')).toBeTruthy();
   });
 
-  it('does not render removed tabs (Volunteer, Contact as separate tabs)', () => {
+  it('links point to correct pages', () => {
     render(<CommunitySupport />);
-    const allButtons = screen.getAllByRole('button');
-    const tabTexts = allButtons.map(b => b.textContent);
-    expect(tabTexts).not.toContain('Volunteer');
-    expect(tabTexts).not.toContain('Contact');
+    const links = screen.getAllByRole('link');
+    const hrefs = links.map(l => l.getAttribute('href'));
+    expect(hrefs).toContain('/take-action');
+    expect(hrefs).toContain('/security');
+    expect(hrefs).toContain('/education');
   });
 
-  // --- Default Support Tab ---
+  // --- Support Resources ---
 
-  it('defaults to Support tab with resources', () => {
+  it('renders support resources section', () => {
     render(<CommunitySupport />);
     expect(screen.getByText('── support_resources ──')).toBeTruthy();
     expect(screen.getByText('Emergency Relocation Guide')).toBeTruthy();
@@ -54,47 +47,16 @@ describe('CommunitySupport', () => {
     expect(screen.getByText('Fundraising Toolkit')).toBeTruthy();
   });
 
-  it('shows volunteer signup section on Support tab', () => {
+  // --- No tabs (all components redistributed) ---
+
+  it('does not render tabs (components moved to other pages)', () => {
     render(<CommunitySupport />);
-    expect(screen.getByText('── volunteer_signup ──')).toBeTruthy();
-  });
-
-  it('shows contact form section on Support tab', () => {
-    render(<CommunitySupport />);
-    expect(screen.getByText('── contact_form ──')).toBeTruthy();
-  });
-
-  it('renders read_guide buttons for resources', () => {
-    render(<CommunitySupport />);
-    const guideButtons = screen.getAllByText('$ read_guide');
-    expect(guideButtons.length).toBe(4);
-  });
-
-  // --- Events Tab ---
-
-  it('switches to Events tab', () => {
-    render(<CommunitySupport />);
-    fireEvent.click(screen.getByText('Events'));
-    // EventCalendar is lazy — Suspense fallback shows
-    const loaders = screen.getAllByText('$ loading');
-    expect(loaders.length).toBeGreaterThanOrEqual(1);
-  });
-
-  // --- Stories Tab ---
-
-  it('switches to Stories tab', () => {
-    render(<CommunitySupport />);
-    fireEvent.click(screen.getByText('Stories'));
-    const loaders = screen.getAllByText('$ loading');
-    expect(loaders.length).toBeGreaterThanOrEqual(1);
-  });
-
-  // --- Report Tab ---
-
-  it('switches to Report tab', () => {
-    render(<CommunitySupport />);
-    fireEvent.click(screen.getByText('Report'));
-    expect(screen.getByText('── diaspora_support ──')).toBeTruthy();
+    const buttons = screen.queryAllByRole('button');
+    const tabTexts = buttons.map(b => b.textContent);
+    expect(tabTexts).not.toContain('Support');
+    expect(tabTexts).not.toContain('Events');
+    expect(tabTexts).not.toContain('Stories');
+    expect(tabTexts).not.toContain('Report');
   });
 
   // --- No framer-motion ---
@@ -110,19 +72,16 @@ describe('CommunitySupport', () => {
   it('does not render fake support requests', () => {
     render(<CommunitySupport />);
     expect(screen.queryByText('Legal Support for Hong Kong Activist')).toBeNull();
-    expect(screen.queryByText('Emergency Relocation Assistance')).toBeNull();
   });
 
   it('does not render fake volunteer profiles', () => {
     render(<CommunitySupport />);
     expect(screen.queryByText('Anonymous Volunteer')).toBeNull();
-    expect(screen.queryByText('47')).toBeNull(); // completedTasks
   });
 
   it('does not render fake community statistics', () => {
     render(<CommunitySupport />);
     expect(screen.queryByText('8,734')).toBeNull();
     expect(screen.queryByText('Active Members')).toBeNull();
-    expect(screen.queryByText('Requests Fulfilled')).toBeNull();
   });
 });
