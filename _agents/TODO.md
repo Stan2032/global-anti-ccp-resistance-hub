@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 2, 2026 (Session 149)
+> Last Updated: March 2, 2026 (Session 150)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -23,6 +23,14 @@
   - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
   - Subtask: Watch for NSL sentence appeal filing
   - Subtask: Monitor health status and UN appeals
+- [x] **Monitor Joshua Wong case** — ✅ Updated Session 150
+  - ✅ Jun 6, 2025: New foreign collusion charge filed (max: life imprisonment)
+  - ✅ Feb 14, 2026: HK47 appeal dismissed — 4yr 8mo sentence upheld
+  - Subtask: Monitor foreign collusion trial proceedings
+- [x] **Add Kwok Yin-sang case** — ✅ Session 150
+  - First family member prosecuted under Article 23 (Feb 26, 2026)
+  - Father of US-based activist Anna Kwok, sentenced 8 months
+  - Added to political_prisoners_research.json + emergency_alerts.json
 - [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
@@ -437,7 +445,7 @@
    - **Cross-cutting complete:** All data→JSON migrations done ✅ (21 JSON files), framer-motion eliminated ✅, Community fully merged ✅
 2. **Navigation simplification** — ✅ Session 136: sidebar 11→7 items, width w-64→w-56
 3. **ESLint cleanup** — ✅ Session 148: 0 errors + 0 warnings. Split mixed component/non-component exports: LanguageSelector→languageUtils.js+LanguageContext.jsx, ThemeContext→themeUtils.js+ThemeContext.jsx.
-4. **Content updates** — ✅ Session 147: Jimmy Lai fraud appeal overturned Feb 26, 2026 added. Sanctions verified current. Monitor breaking developments.
+4. **Content updates** — ✅ Session 147-150: Jimmy Lai fraud appeal overturned Feb 26, 2026 added. Joshua Wong HK47 appeal dismissed Feb 2026, foreign collusion proceedings ongoing. Kwok Yin-sang case added (first family prosecution, Feb 2026). Sanctions verified current. Monitor breaking developments.
 5. **Backend connection Phase 2** — Supabase client + service layer done ✅. Remaining: add Supabase Auth for admin
 
 ### What Needs Human Decisions
@@ -486,11 +494,11 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 149, Mar 2, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1253 tests (76 files, all passing)
+### Current State Summary (as of Session 150, Mar 2, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 71 components (was 74), 1257 tests (76 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
-- **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON (21st data file, Session 149).
+- **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
 - **ESLint:** 0 errors, 0 warnings (was 0+4). LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
@@ -498,12 +506,12 @@
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed.
 - **Bundle:** Main bundle 301KB (97KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
 - **Profile Pages:** 15/15 built (0 coming soon)
-- **Data:** 62 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 154+ total entries. All data→JSON migrations complete. 21 total JSON data files (incl emergency_alerts.json). Jimmy Lai data updated through Feb 2026 (fraud appeal overturned).
-- **Content:** Sanctions verified current as of Mar 2026. Jimmy Lai profile updated through Feb 26, 2026 fraud appeal.
+- **Data:** 63 political prisoners (incl Kwok Yin-sang), 47 sanctioned entities, 34 officials, 30 forced labor companies, 155+ total entries. All data→JSON migrations complete. 21 total JSON data files. EmergencyAlerts: 5 alerts with auto-expiry. Joshua Wong profile updated through Feb 2026 appeal dismissal.
+- **Content:** Sanctions verified current as of Mar 2026. Joshua Wong HK47 appeal dismissed Feb 2026, new foreign collusion charge ongoing. Kwok Yin-sang case added (first family prosecution under Art 23).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks (useDocumentTitle, useLiveData, useWebRTCLeakCheck, useGlobalSearch), key components tested. Mobile nav tested. 1253 tests across 76 files.
+- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks (useDocumentTitle, useLiveData, useWebRTCLeakCheck, useGlobalSearch), key components tested. Mobile nav tested. Emergency alerts tested (13 tests incl expiry). 1257 tests across 76 files.
 
 ---
 

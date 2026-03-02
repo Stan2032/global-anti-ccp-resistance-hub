@@ -188,13 +188,13 @@ export async function fetchStatistics() {
     verifiedOrganizations: 49,
     detentionFacilities: 380,
     activeCampaigns: null,
-    politicalPrisoners: 62,
-    lastUpdated: '2026-02-20',
+    politicalPrisoners: 63,
+    lastUpdated: '2026-03-02',
     dataNote: 'Counts reflect entries documented in this platform\'s verified database, not global totals.',
     sources: {
       organizations: 'human_rights_orgs_research.json — 49 verified human rights organizations',
       facilities: 'ASPI Xinjiang Data Project (xjdp.aspi.org.au) — 380+ identified facilities',
-      prisoners: 'political_prisoners_research.json — 62 verified individual cases (CECC, HRW, Amnesty)',
+      prisoners: 'political_prisoners_research.json — 63 verified individual cases (CECC, HRW, Amnesty)',
     },
   };
 }
