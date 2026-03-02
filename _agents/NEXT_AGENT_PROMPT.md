@@ -21,10 +21,12 @@ This is not a neutral project. It exists because real people — journalists, la
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
 - Contains 310+ source files, 71 active React components, 1257 passing Vitest tests across 76 test files
+- **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
+- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 21 JSON data files, 22 recent news items
 
 ### What Has Been Done
 The following has been accomplished:
-1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
+1. **Data integrity**: 165+ data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **15 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
 4. **Terminal design system**: Applied across all 128+ component files — zero old-style Tailwind classes remain (no bg-slate-*, no border-slate-*, no rounded-lg, no bg-gradient-to-*)
@@ -97,13 +99,13 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v9.1)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v12.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── research/               # Research files and verification logs
 │   ├── planning/               # Planning TODOs
 │   ├── archive/                # Historical handoff documents (58 files)
-│   └── thoughts/               # Comprehensive session notes (2 files: Sessions 83-97, 98-106)
+│   └── thoughts/               # Session decision logs (Sessions 83-97, 98-106, 150, 151, 152)
 ├── src/
 │   ├── App.jsx                 # Main router — all routes, sidebar, header
 │   ├── index.css               # Global CSS, terminal theme, print styles
@@ -165,10 +167,12 @@ npm run build                            # Production build (~5s)
 Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next steps: add Supabase Auth for admin dashboard and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
 
 ### Priority 2: Content Monitoring
-- Monitor Jimmy Lai appeal proceedings
-- Monitor Joshua Wong NSL collusion case
-- Update sanctions tracker with any new 2026 actions from US/EU/UK/Canada/Australia
+- Monitor Jimmy Lai NSL sentence appeal filing (sentenced Feb 9, 2026 to 20 years)
+- Monitor Joshua Wong foreign collusion trial proceedings (new charge Jun 6, 2025, max: life imprisonment)
+- Gui Minhai's 10-year sentence approaches end (Feb 2030) — plan content update
+- Check for new individual sanctions from US/EU/UK/Canada/Australia
 - Add new political prisoner cases as they emerge
+- Keep emergency alerts fresh (check `expires` dates in emergency_alerts.json)
 
 ### Priority 3: Full Translation
 Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human rights content (profile pages, data entries) should NOT be machine-translated — needs volunteer translators.
@@ -184,7 +188,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes
 - ✅ **Flag Icons**: Proper SVG flags for East Turkestan and Tibet
 - ✅ **RSS Feeds**: 9 feeds from trusted sources with ALWAYS_RELEVANT_SOURCES
-- ✅ **Sanctions Tracker**: 35 entries in structured JSON with data integrity tests
+- ✅ **Sanctions Tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs
 - ✅ **Security**: react-router 7.13.0 (3 CVEs fixed), clipboard error handling (9 components)
 - ✅ **Accessibility**: WCAG AA verified, ARIA dialog roles on modals, Escape key support
 - ✅ **Print Styles**: @media print A4 layout for profile pages
