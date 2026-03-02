@@ -14,13 +14,14 @@ vi.mock('../services/authService', () => ({
 vi.mock('../services/supabaseClient', () => ({
   default: null,
   isSupabaseConfigured: vi.fn(() => true),
+  isServiceRoleKeyError: vi.fn(() => false),
 }));
 
 import { AuthProvider } from '../contexts/AuthContext';
 import { useAuth } from '../contexts/authUtils';
 import AdminLogin from '../pages/AdminLogin';
 import ProtectedRoute from '../components/ProtectedRoute';
-import { isSupabaseConfigured } from '../services/supabaseClient';
+import { isSupabaseConfigured, isServiceRoleKeyError } from '../services/supabaseClient';
 import { signIn, getSession, checkIsAdmin } from '../services/authService';
 
 const renderWithProviders = (ui, { route = '/' } = {}) => {
@@ -37,6 +38,7 @@ describe('AdminLogin', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     isSupabaseConfigured.mockReturnValue(true);
+    isServiceRoleKeyError.mockReturnValue(false);
     getSession.mockResolvedValue(null);
     checkIsAdmin.mockResolvedValue(false);
   });
@@ -68,6 +70,16 @@ describe('AdminLogin', () => {
     renderWithProviders(<AdminLogin />);
     await waitFor(() => {
       expect(screen.getByText('Supabase Not Configured')).toBeTruthy();
+    });
+  });
+
+  it('shows wrong API key error when service_role key is detected', async () => {
+    isServiceRoleKeyError.mockReturnValue(true);
+    isSupabaseConfigured.mockReturnValue(false);
+    renderWithProviders(<AdminLogin />);
+    await waitFor(() => {
+      expect(screen.getByText('Wrong API Key')).toBeTruthy();
+      expect(screen.getByText(/Forbidden use of secret API key/)).toBeTruthy();
     });
   });
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authUtils';
-import { isSupabaseConfigured } from '../services/supabaseClient';
-import { Lock, AlertTriangle } from 'lucide-react';
+import { isSupabaseConfigured, isServiceRoleKeyError } from '../services/supabaseClient';
+import { Lock, AlertTriangle, ShieldAlert } from 'lucide-react';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -32,6 +32,41 @@ const AdminLogin = () => {
     }
     // Navigation handled by useEffect when isAdmin updates
   };
+
+  if (isServiceRoleKeyError()) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="bg-[#111820] border border-red-500/50 p-8 max-w-md w-full">
+          <div className="flex items-center gap-3 mb-4">
+            <ShieldAlert className="w-6 h-6 text-red-400" />
+            <h1 className="text-xl font-bold text-white font-mono">Wrong API Key</h1>
+          </div>
+          <p className="text-red-300 text-sm mb-4 font-mono">
+            error: Forbidden use of secret API key in browser
+          </p>
+          <p className="text-slate-300 text-sm mb-4">
+            You set <code className="text-red-400">VITE_SUPABASE_ANON_KEY</code> to the{' '}
+            <strong className="text-red-400">service_role (secret)</strong> key. This key bypasses all
+            Row Level Security and must <strong>never</strong> be in client-side code.
+          </p>
+          <div className="bg-[#0a0e14] border border-[#1c2a35] p-4 text-sm font-mono mb-4">
+            <p className="text-slate-400 mb-2">$ fix:</p>
+            <ol className="text-slate-300 space-y-2 list-decimal list-inside">
+              <li>Go to <span className="text-[#4afa82]">Supabase Dashboard → Settings → API</span></li>
+              <li>Find the key labeled <span className="text-[#4afa82]">anon / public</span></li>
+              <li>Copy that key (NOT the <span className="text-red-400">service_role / secret</span> one)</li>
+              <li>Update <span className="text-[#4afa82]">VITE_SUPABASE_ANON_KEY</span> in your environment</li>
+              <li>Redeploy</li>
+            </ol>
+          </div>
+          <p className="text-slate-500 text-xs">
+            The anon key is safe to expose — RLS policies protect your data.
+            See <code>SUPABASE_AUTH_SETUP.md</code> for details.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isSupabaseConfigured()) {
     return (

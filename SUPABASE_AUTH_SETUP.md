@@ -224,10 +224,12 @@ Make sure your `.env` (or Cloudflare Pages environment) has:
 
 ```
 VITE_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key-here
+VITE_SUPABASE_ANON_KEY=your-anon-public-key-here
 ```
 
-These are the same variables already in `.env.example`.
+> ⚠️ **CRITICAL:** Use the key labeled **"anon / public"** from Supabase Dashboard → Settings → API.
+> Do **NOT** use the "service_role / secret" key — it bypasses all Row Level Security.
+> If you use the wrong key, you'll see: _"Forbidden use of secret API key in browser"_
 
 ---
 
@@ -261,6 +263,21 @@ These are the same variables already in `.env.example`.
 ---
 
 ## Troubleshooting
+
+### ⚠️ "Forbidden use of secret API key in browser"
+**This is the most common setup mistake.** You put the **service_role (secret)** key into `VITE_SUPABASE_ANON_KEY` instead of the **anon (public)** key.
+
+**How to fix:**
+1. Go to **Supabase Dashboard → Settings → API**
+2. You'll see **two** keys under "Project API keys":
+   - **`anon` / `public`** — ✅ Use THIS one for `VITE_SUPABASE_ANON_KEY`
+   - **`service_role` / `secret`** — ❌ NEVER put this in client code
+3. Copy the **anon** key and update your environment variable
+4. Redeploy your site
+
+**Why it matters:** The service_role key bypasses all Row Level Security — anyone who inspects your frontend JavaScript could extract it and read/write ALL your data. The anon key is safe to expose because RLS policies control what it can access.
+
+**How to tell them apart:** Both are JWTs (long base64 strings). The anon key's payload contains `"role": "anon"`, while the service_role key contains `"role": "service_role"`. The app now detects this automatically and blocks the service_role key from being used.
 
 ### "Invalid login credentials"
 - Check that the user exists in Authentication → Users
