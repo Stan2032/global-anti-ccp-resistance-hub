@@ -1065,6 +1065,23 @@
         "verification_note": "Imprisoned for sending prayer money for self-immolated uncle Taphun (self-immolated Mar 2022). Released Nov 16, 2024 in poor health. Source: Tibet Watch (Tier 2). Case documents pattern of punishing religious expression and familial ties to self-immolation protesters."
       },
       "error": ""
+    },
+    {
+      "input": "Kwok Yin-sang - Father of US-based activist Anna Kwok, prosecuted for family ties",
+      "output": {
+        "prisoner_name": "Kwok Yin-sang",
+        "status": "DETAINED",
+        "location": "Hong Kong",
+        "sentence": "8 months imprisonment",
+        "latest_news": "Feb 26, 2026: Sentenced to 8 months for handling financial assets of his daughter Anna Kwok, a US-based pro-democracy activist. First known case of a family member being prosecuted under Article 23 national security provisions for providing financial support to a designated 'absconder.'",
+        "health_status": "Unknown",
+        "international_response": "International human rights organizations expressed alarm at the precedent of prosecuting family members. Case seen as escalation of transnational repression.",
+        "source_url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law",
+        "confidence": "HIGH",
+        "last_verified": "2026-03-02",
+        "verification_note": "First family member prosecution under Article 23 provisions. Anna Kwok is executive director of Hong Kong Democracy Council based in Washington DC. Charged for handling daughter's financial assets. Sources: NPR affiliate KUNM, multiple international outlets."
+      },
+      "error": ""
     }
   ]
 }

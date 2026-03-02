@@ -56,5 +56,20 @@
       { "name": "Hong Kong Watch HK47", "url": "https://www.hongkongwatch.org/hk47" }
     ],
     "active": true
+  },
+  {
+    "id": "kwok-family-prosecution",
+    "type": "warning",
+    "title": "ESCALATION: Family Member Prosecuted Under Article 23",
+    "summary": "Father of US-based activist sentenced for handling daughter's finances — first family prosecution",
+    "details": "On February 26, 2026, Kwok Yin-sang was sentenced to 8 months in prison in Hong Kong for handling the financial assets of his daughter Anna Kwok, a US-based pro-democracy activist and executive director of the Hong Kong Democracy Council.\n\nThis marks the FIRST known case of a family member being prosecuted under Article 23 national security provisions for providing financial support to a designated 'absconder.'\n\nWHY THIS MATTERS:\n• Sets dangerous precedent — family members are now targets\n• Extends transnational repression to relatives who remain in Hong Kong\n• Designed to isolate overseas activists by threatening their families\n• Could deter Hong Kongers from supporting exiled relatives\n\nACTION:\n• Share this case to raise awareness of Article 23's expanding reach\n• Support organizations documenting transnational repression\n• Contact representatives about sanctions targeting officials involved",
+    "date": "2026-02-26",
+    "expires": "2026-08-26",
+    "lastVerified": "2026-03-02",
+    "links": [
+      { "name": "NPR Report", "url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law" },
+      { "name": "Hong Kong Democracy Council", "url": "https://www.hkdc.us" }
+    ],
+    "active": true
   }
 ]
