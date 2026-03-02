@@ -21,6 +21,7 @@ const QuickFacts = lazy(() => import('../components/QuickFacts'));
 const ActivistToolkit = lazy(() => import('../components/ActivistToolkit'));
 const SanctionsTracker = lazy(() => import('../components/SanctionsTracker'));
 const DonationGuide = lazy(() => import('../components/DonationGuide'));
+const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
@@ -273,6 +274,11 @@ const TakeAction = () => {
       {/* Boycott List Section */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
+      </div>
+
+      {/* Company Accountability Tracker */}
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
       </div>
 
       {/* Success Stories Section */}

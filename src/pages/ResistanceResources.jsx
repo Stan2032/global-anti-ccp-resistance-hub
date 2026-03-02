@@ -9,9 +9,7 @@ const SectionLoader = () => (
 );
 
 const DataExport = lazy(() => import('../components/DataExport'));
-const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
 const ForcedLaborTracker = lazy(() => import('../components/ForcedLaborTracker'));
-const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -259,19 +257,9 @@ const ResistanceResources = () => {
       {/* Data Export Section */}
       <Suspense fallback={<SectionLoader />}><DataExport /></Suspense>
 
-      {/* Company Accountability Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
-      </div>
-
       {/* Wide Research: Forced Labor Tracker */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><ForcedLaborTracker /></Suspense>
-      </div>
-
-      {/* Legal Resources Hub */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
       </div>
 
       {/* Footer note */}

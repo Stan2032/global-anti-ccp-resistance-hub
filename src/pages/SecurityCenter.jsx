@@ -30,6 +30,7 @@ const SafetyChecklist = lazy(() => import('../components/SafetyChecklist'));
 const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
 const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
 const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
+const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -331,6 +332,11 @@ const SecurityCenter = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── exit_ban_tracker ──</h2>
             <Suspense fallback={<SectionLoader />}><ChinaExitBan /></Suspense>
+          </div>
+          {/* Legal Resources Hub */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── legal_resources ──</h2>
+            <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
           </div>
         </div>
       )}

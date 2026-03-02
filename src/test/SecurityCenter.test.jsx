@@ -9,6 +9,7 @@ vi.mock('../components/SafetyChecklist', () => ({ default: () => <div>SafetyChec
 vi.mock('../components/WitnessProtection', () => ({ default: () => <div>WitnessProtection</div> }));
 vi.mock('../components/ChinaExitBan', () => ({ default: () => <div>ChinaExitBan</div> }));
 vi.mock('../components/ChinaTechThreats', () => ({ default: () => <div>ChinaTechThreats</div> }));
+vi.mock('../components/LegalResourcesHub', () => ({ default: () => <div>LegalResourcesHub</div> }));
 
 // Mock useWebRTCLeakCheck hook
 vi.mock('../hooks/useWebRTCLeakCheck', () => ({
