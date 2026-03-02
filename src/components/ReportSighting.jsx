@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Siren, Video, AlertTriangle, Theater, Smartphone, Landmark, ClipboardList, Search, Shield, Globe } from 'lucide-react';
 
 const SIGHTING_TYPES = [
@@ -115,9 +114,7 @@ const ReportSighting = () => {
 
   if (submitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+      <div
         className="bg-amber-900/30 border border-amber-500 p-8 text-center"
       >
         <div className="text-6xl mb-4">⚠️</div>
@@ -157,7 +154,7 @@ const ReportSighting = () => {
             Security Resources
           </a>
         </div>
-      </motion.div>
+      </div>
     );
   }
 
@@ -211,15 +208,10 @@ const ReportSighting = () => {
       </div>
 
       <div className="p-6">
-        <AnimatePresence mode="wait">
+        <>
           {/* Step 1: Select Type */}
           {step === 1 && (
-            <motion.div
-              key="step1"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-            >
+            <div>
               <h3 className="text-lg font-semibold text-white mb-4">
                 What type of activity are you reporting?
               </h3>
@@ -238,20 +230,14 @@ const ReportSighting = () => {
                   </button>
                 ))}
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Step 2: Details */}
           {step === 2 && (
-            <motion.div
-              key="step2"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-            >
+            <div>
               <div className="flex items-center gap-3 mb-6">
-                {selectedType?.Icon && <selectedType.Icon className="w-8 h-8" />}
-                  aria-label="Type filter"
+                {selectedType?.Icon && <selectedType.Icon className="w-8 h-8" aria-label="Type filter" />}
                 <div>
                   <h3 className="text-lg font-semibold text-white">{selectedType?.label}</h3>
                   <p className="text-sm text-gray-400">{selectedType?.description}</p>
@@ -352,17 +338,12 @@ const ReportSighting = () => {
                   </button>
                 </div>
               </form>
-            </motion.div>
+            </div>
           )}
 
           {/* Step 3: Review & Submit */}
           {step === 3 && (
-            <motion.div
-              key="step3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-            >
+            <div>
               <h3 className="text-lg font-semibold text-white mb-4">Review Your Report</h3>
 
               <div className="bg-[#111820] p-4 mb-6">
@@ -459,9 +440,9 @@ const ReportSighting = () => {
                   Submit Report
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
+        </>
       </div>
 
       {/* Footer Resources */}

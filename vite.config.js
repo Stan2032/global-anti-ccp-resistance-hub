@@ -15,7 +15,6 @@ export default defineConfig({
           // Split large vendor libraries into cacheable chunks
           'vendor-react': ['react', 'react-dom'],
           'vendor-router': ['react-router', 'react-router-dom'],
-          'vendor-motion': ['framer-motion'],
         },
       },
     },
