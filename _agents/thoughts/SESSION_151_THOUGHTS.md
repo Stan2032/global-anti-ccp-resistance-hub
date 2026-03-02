@@ -49,10 +49,13 @@ The statistics.test.js tests check for specific keys in the STATISTICS object. A
 - Recent news: 22 items (was 20) — added UN forced labor + HK47 appeal
 - ESLint: 0 errors, 0 warnings
 - Build: 301KB (97KB gzip) — unchanged
+- CodeQL: 0 alerts
+- Code review: No comments
 
 ## What's Left for Next Session
-1. Source URL health check (verify key links still resolve) — **NOTE: sandbox doesn't allow outbound HTTP via curl. Need to use web_fetch tool or manual browser checks instead.**
+1. Source URL health check (verify key links still resolve) — **NOTE: sandbox doesn't allow outbound HTTP via curl or web_fetch. URLs verified via web_search citations instead.**
 2. Check if any profile source links need updating
 3. Consider adding Gui Minhai's approaching sentence end date (Feb 2030) as a content element
 4. Medium-term: Offline Mode if owner prioritizes (Q7)
 5. Continue monitoring news for breaking developments
+6. Monitor Jimmy Lai NSL sentence appeal filing
