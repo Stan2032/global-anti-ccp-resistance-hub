@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
@@ -155,11 +154,8 @@ const UrgencyBadge = ({ urgency }) => {
 
 const PrisonerCard = ({ prisoner, onClick }) => {
   return (
-    <motion.button
+    <button
       type="button"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.02 }}
       className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all text-left w-full"
       onClick={() => onClick(prisoner)}
       aria-label={`View details for ${prisoner.name}`}
@@ -231,7 +227,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
           </div>
         )}
       </div>
-    </motion.button>
+    </button>
   );
 };
 
@@ -239,27 +235,22 @@ const PrisonerModal = ({ prisoner, onClose }) => {
   if (!prisoner) return null;
   
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={`Details for ${prisoner.name}`}
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+      <div
         className="bg-[#111820] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6">
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-2xl font-bold text-white">{prisoner.name}</h2>
-              <p className="text-gray-400">{prisoner.chineseName}</p>
+              {prisoner.chineseName && <p className="text-gray-400">{prisoner.chineseName}</p>}
             </div>
             <button onClick={onClose} className="text-gray-400 hover:text-white">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,47 +259,64 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             </button>
           </div>
           
-          <div className="flex items-center gap-2 mb-6">
+          {/* Key Facts — Status, Location, Sentence in a compact grid */}
+          <div className="flex items-center gap-2 mb-4">
             <StatusBadge status={prisoner.status} />
             <UrgencyBadge urgency={prisoner.urgency} />
           </div>
           
+          <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+            <div className="bg-[#0a0e14]/50 p-3">
+              <span className="text-gray-500 block">Location</span>
+              <span className="text-gray-200">{prisoner.location}</span>
+            </div>
+            {prisoner.sentence && (
+              <div className="bg-[#0a0e14]/50 p-3">
+                <span className="text-gray-500 block">Sentence</span>
+                <span className="text-gray-200">{prisoner.sentence}</span>
+              </div>
+            )}
+          </div>
+          
           <div className="space-y-4">
             <div>
-              <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Background</h3>
-              <p className="text-gray-200">{prisoner.background}</p>
+              <p className="text-gray-200 text-sm">{prisoner.background}</p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Location</h3>
-                <p className="text-gray-200">{prisoner.location}</p>
-              </div>
-              {prisoner.sentence && (
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Sentence</h3>
-                  <p className="text-gray-200">{prisoner.sentence}</p>
-                </div>
-              )}
-            </div>
-            
-            {prisoner.charges && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Charges</h3>
-                <ul className="list-disc list-inside text-gray-200">
-                  {prisoner.charges.map((charge, i) => (
-                    <li key={i}>{charge}</li>
-                  ))}
-                </ul>
+            {(prisoner.healthConcerns || prisoner.healthStatus) && (
+              <div className="bg-red-900/30 border border-red-700 p-3 text-sm">
+                <h3 className="font-semibold text-red-400 mb-1">Health Alert</h3>
+                <p className="text-gray-200">
+                  {prisoner.healthStatus || 'Serious health concerns have been reported.'}
+                  {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
+                  {prisoner.tortureDocumented && ' Torture has been documented.'}
+                </p>
               </div>
             )}
             
-            {prisoner.awards && (
+            {prisoner.latestNews && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Recognition</h3>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest Developments</h3>
+                <p className="text-gray-200 text-sm">{prisoner.latestNews}</p>
+                {prisoner.internationalResponse && (
+                  <p className="text-gray-300 text-sm mt-2"><span className="text-gray-500">Int'l response:</span> {prisoner.internationalResponse}</p>
+                )}
+              </div>
+            )}
+            
+            {!prisoner.latestNews && prisoner.internationalResponse && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
+                <p className="text-gray-200 text-sm">{prisoner.internationalResponse}</p>
+              </div>
+            )}
+            
+            {prisoner.awards && prisoner.awards.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Recognition</h3>
                 <div className="flex flex-wrap gap-2">
                   {prisoner.awards.map((award, i) => (
-                    <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded">
+                    <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded text-sm">
                       {award}
                     </span>
                   ))}
@@ -316,70 +324,29 @@ const PrisonerModal = ({ prisoner, onClose }) => {
               </div>
             )}
             
-            {prisoner.healthConcerns && (
-              <div className="bg-red-900/30 border border-red-700 p-4">
-                <h3 className="text-sm font-semibold text-red-400 uppercase mb-1">Health Alert</h3>
-                <p className="text-gray-200">
-                  Serious health concerns have been reported. 
-                  {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
-                  {prisoner.tortureDocumented && ' Torture has been documented.'}
-                </p>
-              </div>
-            )}
-            
-            {prisoner.legacy && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Legacy</h3>
-                <p className="text-gray-200">{prisoner.legacy}</p>
-              </div>
-            )}
-            
-            {prisoner.latestNews && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest News</h3>
-                <p className="text-gray-200">{prisoner.latestNews}</p>
-              </div>
-            )}
-            
-            {prisoner.internationalResponse && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
-                <p className="text-gray-200">{prisoner.internationalResponse}</p>
-              </div>
-            )}
-            
-            {prisoner.healthStatus && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Health Status</h3>
-                <p className="text-gray-200">{prisoner.healthStatus}</p>
-              </div>
-            )}
-            
             {prisoner.source && prisoner.source.url && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2">Source Information</h3>
-                <SourceAttribution source={prisoner.source} compact={false} />
+              <div className="pt-2 border-t border-[#1c2a35]">
+                <SourceAttribution source={prisoner.source} compact={true} />
               </div>
             )}
           </div>
           
           {prisoner.profilePath && (
-            <div className="mt-6 pt-6 border-t border-[#1c2a35]">
+            <div className="mt-4 pt-4 border-t border-[#1c2a35]">
               <Link
                 to={prisoner.profilePath}
                 className="flex items-center justify-between bg-[#4afa82]/10 hover:bg-[#4afa82]/20 border border-[#4afa82]/30 p-4 transition-colors"
               >
                 <div>
                   <p className="text-[#4afa82] font-mono text-sm font-semibold">$ view_full_profile --detailed</p>
-                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response, and sourced documentation</p>
+                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response</p>
                 </div>
                 <span className="text-[#4afa82] text-lg">→</span>
               </Link>
             </div>
           )}
 
-          <div className="mt-6 pt-6 border-t border-[#1c2a35]">
-            <h3 className="text-sm font-semibold text-gray-400 uppercase mb-3">Take Action</h3>
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <div className="flex flex-wrap gap-2">
               <a
                 href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background} #FreePoliticalPrisoners #HumanRights`}
@@ -408,19 +375,24 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
 const PoliticalPrisoners = () => {
   const [selectedPrisoner, setSelectedPrisoner] = useState(null);
   const [filter, setFilter] = useState('ALL');
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 15;
   
   const filteredPrisoners = PRISONERS_DATA.filter(p => {
     if (filter === 'ALL') return true;
     return p.status === filter;
   });
+
+  const displayedPrisoners = showAll ? filteredPrisoners : filteredPrisoners.slice(0, INITIAL_DISPLAY_COUNT);
+  const hasMore = filteredPrisoners.length > INITIAL_DISPLAY_COUNT;
   
   const stats = {
     total: PRISONERS_DATA.length,
@@ -487,7 +459,7 @@ const PoliticalPrisoners = () => {
           {['ALL', 'IMPRISONED', 'DISAPPEARED', 'DECEASED', 'AT RISK', 'EXILE', 'RELEASED'].map(status => (
             <button
               key={status}
-              onClick={() => setFilter(status)}
+              onClick={() => { setFilter(status); setShowAll(false); }}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 filter === status
                   ? 'bg-red-900/30 text-red-300 border border-red-500'
@@ -519,7 +491,7 @@ const PoliticalPrisoners = () => {
 
         {/* Prisoner Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPrisoners.map((prisoner, index) => (
+          {displayedPrisoners.map((prisoner, index) => (
             <PrisonerCard
               key={index}
               prisoner={prisoner}
@@ -527,6 +499,20 @@ const PoliticalPrisoners = () => {
             />
           ))}
         </div>
+
+        {/* Show All / Show Less */}
+        {hasMore && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
+            >
+              {showAll
+                ? '$ show --less'
+                : `$ show --all ${filteredPrisoners.length} cases`}
+            </button>
+          </div>
+        )}
         
         {/* Case Study Deep Dives */}
         <div className="mt-12">

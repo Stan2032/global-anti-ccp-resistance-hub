@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckCircle, Globe, FileText, Search, ShieldCheck, Wrench, AlertTriangle, Phone, Mail } from 'lucide-react';
 
 const SectionLoader = () => (
@@ -10,15 +9,7 @@ const SectionLoader = () => (
 );
 
 const DataExport = lazy(() => import('../components/DataExport'));
-const Bookmarks = lazy(() => import('../components/Bookmarks'));
-const MediaGallery = lazy(() => import('../components/MediaGallery'));
-const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
-const OrganizationsDirectory = lazy(() => import('../components/OrganizationsDirectory'));
 const ForcedLaborTracker = lazy(() => import('../components/ForcedLaborTracker'));
-const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
-const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
-const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
-const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 
 const ResistanceResources = () => {
   // Resource hub sections that link to dedicated pages
@@ -144,16 +135,14 @@ const ResistanceResources = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+      <div
         className="bg-[#111820] p-6 border border-[#1c2a35]"
       >
         <h1 className="text-3xl font-bold text-white mb-2">Resource Hub</h1>
         <p className="text-slate-300">
           Your central navigation point for all resistance resources. Each section links to dedicated pages with comprehensive tools and information.
         </p>
-      </motion.div>
+      </div>
 
       {/* Security Notice */}
       <div className="bg-yellow-900/30 border border-yellow-700/50 p-4">
@@ -171,12 +160,9 @@ const ResistanceResources = () => {
 
       {/* Main Resource Sections Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {resourceSections.map((section, index) => (
-          <motion.div
+        {resourceSections.map((section) => (
+          <div
             key={section.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
             className="bg-[#111820] border border-[#1c2a35] overflow-hidden hover:border-[#2a9a52] transition-colors"
           >
             <div className={`bg-[#111820] ${section.color} p-4`}>
@@ -201,7 +187,7 @@ const ResistanceResources = () => {
                 {section.linkText} →
               </Link>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -271,49 +257,9 @@ const ResistanceResources = () => {
       {/* Data Export Section */}
       <Suspense fallback={<SectionLoader />}><DataExport /></Suspense>
 
-      {/* Personal Bookmarks */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><Bookmarks /></Suspense>
-      </div>
-
-      {/* Media Gallery */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><MediaGallery /></Suspense>
-      </div>
-
-      {/* Company Accountability Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
-      </div>
-
-      {/* Organizations Directory */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><OrganizationsDirectory /></Suspense>
-      </div>
-
       {/* Wide Research: Forced Labor Tracker */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><ForcedLaborTracker /></Suspense>
-      </div>
-
-      {/* Wide Research: Academic Experts */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><AcademicExperts /></Suspense>
-      </div>
-
-      {/* Media Bias Guide */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><MediaBiasGuide /></Suspense>
-      </div>
-
-      {/* Historical Documents Archive */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
-      </div>
-
-      {/* Legal Resources Hub */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
       </div>
 
       {/* Footer note */}

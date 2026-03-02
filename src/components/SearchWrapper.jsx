@@ -1,5 +1,6 @@
 import React from 'react';
-import GlobalSearch, { useGlobalSearch } from './GlobalSearch';
+import GlobalSearch from './GlobalSearch';
+import useGlobalSearch from '../hooks/useGlobalSearch';
 
 // Wrapper component that uses the hook and provides search functionality
 const SearchWrapper = ({ children }) => {

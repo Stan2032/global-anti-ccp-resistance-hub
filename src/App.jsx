@@ -2,7 +2,9 @@ import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { Heart } from 'lucide-react'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
-import LanguageSelector, { LanguageProvider, useLanguage } from './components/LanguageSelector'
+import LanguageSelector from './components/LanguageSelector'
+import { LanguageProvider } from './contexts/LanguageContext'
+import { useLanguage } from './contexts/languageUtils'
 import { SkipLinks } from './components/Accessibility'
 import { SearchButton } from './components/SearchWrapper'
 import useDocumentTitle from './hooks/useDocumentTitle'
@@ -107,7 +109,7 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
   </header>
 );
 
-// Mobile Navigation Menu — terminal style
+// Mobile Navigation Menu — simplified
 const MobileNav = ({ isOpen, onClose }) => {
   const location = useLocation();
   const { t } = useLanguage();
@@ -115,15 +117,11 @@ const MobileNav = ({ isOpen, onClose }) => {
   const navItems = [
     { name: t('nav.dashboard'), href: '/' },
     { name: t('nav.intelligence'), href: '/intelligence' },
-    { name: t('nav.directory'), href: '/directory' },
     { name: t('nav.prisoners'), href: '/prisoners' },
     { name: t('nav.profiles'), href: '/profiles', indent: true },
     { name: t('nav.takeAction'), href: '/take-action' },
-    { name: t('nav.community'), href: '/community' },
-    { name: t('nav.resources'), href: '/resources' },
     { name: t('nav.education'), href: '/education' },
     { name: t('nav.security'), href: '/security' },
-    { name: t('nav.dataSources'), href: '/data-sources' },
   ];
 
   if (!isOpen) return null;
@@ -140,176 +138,111 @@ const MobileNav = ({ isOpen, onClose }) => {
         className="fixed top-14 left-0 bottom-0 w-72 max-w-[85vw] bg-[#111820] border-r border-[#1c2a35] z-50 overflow-y-auto lg:hidden"
         aria-label="Mobile navigation"
       >
-        <div className="p-3 border-b border-[#1c2a35]">
-          <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">┌─ navigation ─────────────┐</span>
-        </div>
-        <div className="p-3 space-y-0.5">
+        <div className="p-4 space-y-1">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.href || (item.href === '/profiles' && location.pathname.startsWith('/profiles/'));
+            const isActive = location.pathname === item.href || 
+              (item.href === '/profiles' && location.pathname.startsWith('/profiles/')) ||
+              (item.href === '/prisoners' && location.pathname === '/profiles');
             return (
               <Link
                 key={item.href}
                 to={item.href}
                 onClick={onClose}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-3 font-mono text-sm transition-colors ${
+                className={`flex items-center ${item.indent ? 'pl-8 pr-3' : 'px-3'} py-3 font-mono text-sm transition-colors ${
                   isActive
                     ? 'bg-[#4afa82]/10 text-[#4afa82] border-l-2 border-[#4afa82]'
                     : 'text-slate-300 hover:text-[#4afa82] hover:bg-white/5 border-l-2 border-transparent'
                 }`}
               >
-                <span className="text-[#1c2a35] mr-2 select-none" aria-hidden="true">{isActive ? '▸' : item.indent ? '└' : '│'}</span>
                 {item.indent ? <span className="text-xs">{item.name}</span> : item.name}
               </Link>
             );
           })}
         </div>
         
-        {/* Featured Campaigns */}
-        <div className="p-3 border-t border-[#1c2a35]">
-          <span className="font-mono text-xs text-[#1c2a35] select-none" aria-hidden="true">├─ urgent ─────────────────┤</span>
-          <div className="mt-2">
-            <Link to="/take-action" className="flex items-center px-3 py-3 bg-red-900/20 border border-red-900/50 text-red-300 hover:bg-red-900/30 font-mono text-sm">
-              <Heart className="w-4 h-4 mr-3 text-red-400" />
-              <div>
-                <div className="font-medium">Free Jimmy Lai</div>
-                <div className="text-xs text-red-400/80">URGENT — 20 years</div>
-              </div>
-            </Link>
-          </div>
-        </div>
-        
-        <div className="p-3 border-t border-[#1c2a35]">
-          <div className="bg-[#0a0e14] p-3 font-mono text-xs border border-[#1c2a35]">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-slate-400">security</span>
-              <Link to="/security" className="text-[#4afa82] hover:text-[#7dffaa]">
-                --help
-              </Link>
+        {/* Urgent Campaign */}
+        <div className="px-4 pb-4 border-t border-[#1c2a35] mt-2 pt-4">
+          <Link to="/take-action" className="flex items-center px-3 py-3 bg-red-900/20 border border-red-900/50 text-red-300 hover:bg-red-900/30 font-mono text-sm">
+            <Heart className="w-4 h-4 mr-3 text-red-400" />
+            <div>
+              <div className="font-medium">Free Jimmy Lai</div>
+              <div className="text-xs text-red-400/80">URGENT — 20 years</div>
             </div>
-            <p className="text-slate-500">use vpn + tor for safety</p>
-          </div>
-          <span className="font-mono text-xs text-[#1c2a35] select-none block mt-2" aria-hidden="true">└──────────────────────────┘</span>
+          </Link>
         </div>
       </nav>
     </>
   );
 };
 
-// Desktop Sidebar — terminal / ASCII aesthetic
+// Desktop Sidebar — clean terminal aesthetic
 const DesktopSidebar = () => {
   const location = useLocation();
   const { t } = useLanguage();
   
-  const sections = [
-    {
-      title: 'main',
-      items: [
-        { name: t('nav.dashboard'), href: '/' },
-        { name: t('nav.intelligence'), href: '/intelligence' },
-        { name: t('nav.directory'), href: '/directory' },
-      ]
-    },
-    {
-      title: 'human_rights',
-      items: [
-        { name: t('nav.prisoners'), href: '/prisoners' },
-        { name: t('nav.profiles'), href: '/profiles', indent: true },
-      ]
-    },
-    {
-      title: 'action',
-      items: [
-        { name: t('nav.takeAction'), href: '/take-action' },
-        { name: t('nav.community'), href: '/community' },
-      ]
-    },
-    {
-      title: 'resources',
-      items: [
-        { name: t('nav.resources'), href: '/resources' },
-        { name: t('nav.education'), href: '/education' },
-        { name: t('nav.security'), href: '/security' },
-        { name: t('nav.dataSources'), href: '/data-sources' },
-      ]
-    }
+  const navItems = [
+    { name: t('nav.dashboard'), href: '/' },
+    { name: t('nav.intelligence'), href: '/intelligence' },
+    { name: t('nav.prisoners'), href: '/prisoners' },
+    { name: t('nav.profiles'), href: '/profiles', indent: true },
+    { name: t('nav.takeAction'), href: '/take-action' },
+    { name: t('nav.education'), href: '/education' },
+    { name: t('nav.security'), href: '/security' },
   ];
 
   return (
-    <aside id="navigation" className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-[#111820] border-r border-[#1c2a35]" role="navigation" aria-label="Main navigation">
-      {/* Logo — ASCII terminal style */}
-      <div className="h-16 px-5 border-b border-[#1c2a35] flex items-center">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-[#4afa82] text-lg font-bold terminal-glow">[GRH]</span>
-          <div>
-            <h1 className="font-mono text-white text-sm font-semibold tracking-tight leading-none">resistance_hub</h1>
-            <p className="font-mono text-[#1c2a35] text-xs mt-0.5">// global coordination</p>
-          </div>
-        </div>
+    <aside id="navigation" className="hidden lg:flex lg:flex-col lg:w-56 lg:fixed lg:inset-y-0 bg-[#111820] border-r border-[#1c2a35]" role="navigation" aria-label="Main navigation">
+      {/* Logo */}
+      <div className="h-14 px-4 border-b border-[#1c2a35] flex items-center">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="font-mono text-[#4afa82] text-base font-bold">[GRH]</span>
+          <span className="font-mono text-white text-sm font-semibold">resistance_hub</span>
+        </Link>
       </div>
       
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
-        {sections.map((section, _sIdx) => (
-          <div key={section.title} className="mb-5">
-            <div className="flex items-center px-2 mb-2">
-              <span className="font-mono text-[#1c2a35] text-xs select-none mr-1" aria-hidden="true">──</span>
-              <span className="font-mono text-xs text-slate-500 uppercase tracking-wider">{section.title}</span>
-              <span className="font-mono text-[#1c2a35] text-xs select-none ml-1 flex-1" aria-hidden="true">{'─'.repeat(12)}</span>
-            </div>
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const isActive = location.pathname === item.href || (item.href === '/profiles' && location.pathname.startsWith('/profiles/'));
-                return (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`flex items-center ${item.indent ? 'px-3 pl-7' : 'px-3'} py-2 font-mono text-sm transition-all ${
-                      isActive
-                        ? 'text-[#4afa82] bg-[#4afa82]/8 border-l-2 border-[#4afa82]'
-                        : 'text-slate-400 hover:text-[#4afa82] hover:bg-white/3 border-l-2 border-transparent'
-                    }`}
-                  >
-                    <span className="text-[#1c2a35] mr-2 text-xs select-none" aria-hidden="true">{isActive ? '▸' : item.indent ? '└' : '│'}</span>
-                    {item.indent ? <span className="text-xs">{item.name}</span> : item.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+        <div className="space-y-0.5">
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.href || 
+              (item.href === '/profiles' && location.pathname.startsWith('/profiles/')) ||
+              (item.href === '/prisoners' && location.pathname === '/profiles');
+            return (
+              <Link
+                key={item.href}
+                to={item.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={`flex items-center ${item.indent ? 'pl-8 pr-3' : 'px-3'} py-2.5 font-mono text-sm transition-all ${
+                  isActive
+                    ? 'text-[#4afa82] bg-[#4afa82]/8 border-l-2 border-[#4afa82]'
+                    : 'text-slate-400 hover:text-[#4afa82] hover:bg-white/3 border-l-2 border-transparent'
+                }`}
+              >
+                {item.indent ? <span className="text-xs">{item.name}</span> : item.name}
+              </Link>
+            );
+          })}
+        </div>
         
         {/* Urgent Campaign */}
-        <div className="mt-4 border border-red-900/50 bg-red-900/10 p-3">
+        <div className="mt-6 border border-red-900/50 bg-red-900/10 p-3">
           <div className="flex items-center mb-2">
             <Heart className="w-4 h-4 text-red-400 mr-2" />
             <span className="font-mono text-sm font-semibold text-red-300">Free Jimmy Lai</span>
           </div>
-          <p className="font-mono text-xs text-red-400/80 mb-2">sentenced: 20 years</p>
-          <p className="font-mono text-xs text-red-400/80 mb-2">date: 2026-02-09</p>
+          <p className="font-mono text-xs text-red-400/80 mb-2">Sentenced to 20 years — Feb 9, 2026</p>
           <Link to="/take-action" className="block text-center py-1.5 bg-red-900/40 hover:bg-red-900/60 text-red-300 font-mono text-xs font-medium border border-red-900/50 transition-colors">
-            [ take_action ]
+            Take Action →
           </Link>
         </div>
       </nav>
       
       {/* Status Footer */}
       <div className="p-3 border-t border-[#1c2a35]">
-        <div className="bg-[#0a0e14] p-3 font-mono text-xs border border-[#1c2a35]">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-slate-500">status:</span>
-            <span className="text-[#4afa82]">● online</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-slate-500">build:</span>
-            <span className="text-slate-400">v2.11.0</span>
-          </div>
-          <div className="border-t border-[#1c2a35] mt-2 pt-2">
-            <Link to="/security" className="text-[#4afa82] hover:text-[#7dffaa] flex items-center gap-1">
-              <span aria-hidden="true">$</span> security --guide
-            </Link>
-          </div>
+        <div className="flex items-center justify-between font-mono text-xs px-1">
+          <span className="text-slate-500">status</span>
+          <span className="text-[#4afa82]">● online</span>
         </div>
       </div>
     </aside>
@@ -360,7 +293,7 @@ function AppLayout() {
       </div>
       
       {/* Main Content */}
-      <main id="main-content" className="lg:pl-64" role="main" aria-label="Main content">
+      <main id="main-content" className="lg:pl-56" role="main" aria-label="Main content">
         {/* Desktop Header — terminal command bar */}
         <header className="hidden lg:flex items-center justify-between h-14 px-8 bg-[#111820]/90 border-b border-[#1c2a35] sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">

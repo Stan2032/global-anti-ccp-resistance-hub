@@ -8,10 +8,8 @@ const TaiwanDefenseStatus = lazy(() => import('../components/TaiwanDefenseStatus
 const CCPOfficials = lazy(() => import('../components/CCPOfficials'));
 const WorldThreatMap = lazy(() => import('../components/WorldThreatMap'));
 const DetentionFacilities = lazy(() => import('../components/DetentionFacilities'));
-const PoliceStationsMap = lazy(() => import('../components/PoliceStationsMap'));
-const RegionalIssues = lazy(() => import('../components/RegionalIssues'));
 const SanctionedOfficials = lazy(() => import('../components/SanctionedOfficials'));
-const GlobalInfluenceMap = lazy(() => import('../components/GlobalInfluenceMap'));
+const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
@@ -24,6 +22,8 @@ const IntelligenceFeeds = () => {
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('feeds');
+  const [showAllFeeds, setShowAllFeeds] = useState(false);
+  const FEED_DISPLAY_COUNT = 5;
 
   // Filter feeds based on source and search
   const filteredFeeds = useMemo(() => {
@@ -35,6 +35,8 @@ const IntelligenceFeeds = () => {
       return matchesSource && matchesSearch;
     });
   }, [feeds, selectedSource, searchQuery]);
+
+  const displayedFeeds = showAllFeeds ? filteredFeeds : filteredFeeds.slice(0, FEED_DISPLAY_COUNT);
 
   // Format relative time
   const formatTime = (dateStr) => {
@@ -144,7 +146,7 @@ const IntelligenceFeeds = () => {
             type="text"
             placeholder="Search articles..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => { setSearchQuery(e.target.value); setShowAllFeeds(false); }}
             className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
@@ -152,7 +154,7 @@ const IntelligenceFeeds = () => {
         {/* Source Filter */}
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setSelectedSource('all')}
+            onClick={() => { setSelectedSource('all'); setShowAllFeeds(false); }}
             className={`px-3 py-2 text-sm font-medium transition-colors ${
               selectedSource === 'all'
                 ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
@@ -164,7 +166,7 @@ const IntelligenceFeeds = () => {
           {Object.entries(sources).map(([key, source]) => (
             <button
               key={key}
-              onClick={() => setSelectedSource(key)}
+              onClick={() => { setSelectedSource(key); setShowAllFeeds(false); }}
               className={`px-3 py-2 text-sm font-medium transition-colors ${
                 selectedSource === key
                   ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
@@ -177,29 +179,6 @@ const IntelligenceFeeds = () => {
         </div>
       </div>
 
-      {/* Source Info Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {Object.entries(sources).map(([key, source]) => (
-          <div key={key} className="bg-[#111820] border border-[#1c2a35] p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-semibold text-white">{source.name}</span>
-              <span className="px-2 py-0.5 bg-green-900/50 text-green-400 text-xs rounded-full border border-green-700">
-                LIVE
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 mb-2">{source.description}</p>
-            <a 
-              href={source.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs text-[#22d3ee] hover:text-white"
-            >
-              Visit source →
-            </a>
-          </div>
-        ))}
-      </div>
-
       {/* Error State */}
       {error && (
         <div className="bg-red-900/30 border border-red-700 p-4 text-red-300">
@@ -208,88 +187,128 @@ const IntelligenceFeeds = () => {
         </div>
       )}
 
-      {/* Loading State */}
-      {loading && feeds.length === 0 && (
+      {/* Loading Banner */}
+      {loading && (
+        <div className="bg-[#111820] border border-[#1c2a35] p-4" role="status">
+          <div className="flex items-center gap-3 mb-2">
+            <svg className="animate-spin w-4 h-4 text-[#4afa82]" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span className="font-mono text-sm text-[#4afa82]">
+              Fetching feeds from {Object.keys(sources).length} sources...
+            </span>
+          </div>
+          <div className="w-full bg-[#1c2a35] h-1">
+            <div className="bg-[#4afa82] h-1 animate-pulse" style={{ width: '60%' }}></div>
+          </div>
+        </div>
+      )}
+
+      {/* Loaded Confirmation */}
+      {!loading && feeds.length > 0 && (
+        <div className="bg-[#111820] border border-[#1c2a35] p-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-[#4afa82]">&#10003;</span>
+            <span className="font-mono text-sm text-slate-300">
+              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {Object.keys(sources).length} sources
+            </span>
+          </div>
+          {lastUpdated && (
+            <span className="text-xs text-slate-500">
+              {lastUpdated.toLocaleTimeString()}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Feed Container — stable min-height prevents layout bounce */}
+      <div className="min-h-[400px]">
+        {/* Empty State (only when not loading) */}
+        {!loading && filteredFeeds.length === 0 && (
+          <div className="text-center py-12 bg-[#111820] border border-[#1c2a35]">
+            <p className="text-slate-400">No articles found matching your criteria</p>
+          </div>
+        )}
+
+        {/* Feed Items */}
         <div className="space-y-4">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4 animate-pulse">
-              <div className="h-4 bg-[#1c2a35] rounded w-3/4 mb-3"></div>
-              <div className="h-3 bg-[#1c2a35] rounded w-full mb-2"></div>
-              <div className="h-3 bg-[#1c2a35] rounded w-2/3"></div>
-            </div>
+          {displayedFeeds.map((item) => (
+            <article
+              key={item.id}
+              className="bg-[#111820] border border-[#1c2a35] p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
+                  {sources[item.source]?.name || item.source.toUpperCase()}
+                </span>
+                <span className="text-xs text-slate-500">
+                  {formatTime(item.pubDate)}
+                </span>
+                {item.relevanceScore > 30 && (
+                  <span className="px-2 py-0.5 bg-red-900/50 text-red-300 text-xs rounded border border-red-700">
+                    HIGH RELEVANCE
+                  </span>
+                )}
+              </div>
+              
+              <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                </a>
+              </h2>
+              
+              {item.description && (
+                <p className="text-slate-400 text-sm mb-4 line-clamp-3">
+                  {item.description}
+                </p>
+              )}
+              
+              <div className="flex items-center justify-between">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#22d3ee] hover:text-white text-sm font-medium"
+                >
+                  Read full article →
+                </a>
+                <div className="flex items-center gap-2">
+                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                  </button>
+                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
-      )}
 
-      {/* Feed Items */}
-      {!loading && filteredFeeds.length === 0 && (
-        <div className="text-center py-12 bg-[#111820] border border-[#1c2a35]">
-          <p className="text-slate-400">No articles found matching your criteria</p>
-        </div>
-      )}
-
-      <div className="space-y-4">
-        {filteredFeeds.map((item) => (
-          <article
-            key={item.id}
-            className="bg-[#111820] border border-[#1c2a35] p-4 sm:p-6 hover:border-[#2a9a52] transition-colors"
-          >
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
-                {sources[item.source]?.name || item.source.toUpperCase()}
-              </span>
-              <span className="text-xs text-slate-500">
-                {formatTime(item.pubDate)}
-              </span>
-              {item.relevanceScore > 30 && (
-                <span className="px-2 py-0.5 bg-red-900/50 text-red-300 text-xs rounded border border-red-700">
-                  HIGH RELEVANCE
-                </span>
-              )}
-            </div>
-            
-            <h2 className="text-lg font-semibold text-white mb-2 hover:text-white">
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                {item.title}
-              </a>
-            </h2>
-            
-            {item.description && (
-              <p className="text-slate-400 text-sm mb-4 line-clamp-3">
-                {item.description}
-              </p>
-            )}
-            
-            <div className="flex items-center justify-between">
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#22d3ee] hover:text-white text-sm font-medium"
-              >
-                Read full article →
-              </a>
-              <div className="flex items-center gap-2">
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                  </svg>
-                </button>
-                <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-        ))}
+        {/* Show All / Show Less */}
+        {filteredFeeds.length > FEED_DISPLAY_COUNT && (
+          <div className="text-center mt-4">
+            <button
+              onClick={() => setShowAllFeeds(!showAllFeeds)}
+              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
+            >
+              {showAllFeeds
+                ? '$ show --less'
+                : `$ show --all ${filteredFeeds.length} articles`}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Stats Footer */}
       <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
         <p className="text-slate-400 text-sm">
-          Showing {filteredFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
+          Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
         </p>
         <p className="text-slate-500 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
@@ -315,10 +334,6 @@ const IntelligenceFeeds = () => {
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── taiwan_defense ──</h2>
             <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
           </div>
-          <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── regional_issues ──</h2>
-            <Suspense fallback={<SectionLoader />}><RegionalIssues /></Suspense>
-          </div>
         </div>
       )}
 
@@ -337,16 +352,12 @@ const IntelligenceFeeds = () => {
             <Suspense fallback={<SectionLoader />}><DetentionFacilities /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── overseas_police_stations ──</h2>
-            <Suspense fallback={<SectionLoader />}><PoliceStationsMap /></Suspense>
-          </div>
-          <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── sanctioned_officials ──</h2>
             <Suspense fallback={<SectionLoader />}><SanctionedOfficials /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
-            <h2 className="text-xl font-bold text-white mb-1 font-mono">── global_influence_map ──</h2>
-            <Suspense fallback={<SectionLoader />}><GlobalInfluenceMap /></Suspense>
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>
+            <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
           </div>
         </div>
       )}

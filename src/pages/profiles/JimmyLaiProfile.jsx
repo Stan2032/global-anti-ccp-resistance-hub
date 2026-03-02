@@ -146,6 +146,14 @@ const TIMELINE = [
     category: 'legal',
     source: 'https://www.hrw.org/news/2026/02/09/hong-kong-jimmy-lai-sentenced-20-years',
   },
+  {
+    date: '2026-02-26',
+    year: '2026',
+    title: 'Fraud conviction overturned on appeal',
+    detail: 'Hong Kong\'s Court of Appeal quashed Lai\'s separate fraud conviction related to improperly subletting Apple Daily office space. The court ruled the prosecution failed to prove false representations or liability for concealment. While legally significant, this does not affect his 20-year NSL sentence.',
+    category: 'legal',
+    source: 'https://www.abc.net.au/news/2026-02-26/jimmy-lai-fraud-sentence-overturned/106391580',
+  },
 ];
 
 const CHARGES = [

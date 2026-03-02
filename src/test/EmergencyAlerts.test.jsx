@@ -19,43 +19,45 @@ beforeEach(() => {
   mockLocalStorage._reset();
   mockLocalStorage.getItem.mockReset();
   mockLocalStorage.setItem.mockReset();
-  mockLocalStorage.getItem.mockImplementation((key) => null);
+  mockLocalStorage.getItem.mockImplementation(() => null);
   Object.defineProperty(window, 'localStorage', { value: mockLocalStorage, writable: true });
 });
 
 describe('EmergencyAlerts', () => {
   // --- Rendering ---
 
-  it('renders all 4 active alerts', () => {
+  it('renders all active alerts (non-expired)', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
-    expect(screen.getByText(/New Report: 57 Global Brands/)).toBeTruthy();
-    expect(screen.getByText(/Taiwan Reports Increased PLA Activity/)).toBeTruthy();
-    expect(screen.getByText(/Hong Kong 47: Mass Sentencing/)).toBeTruthy();
+    expect(screen.getByText(/100\+ Global Brands Linked/)).toBeTruthy();
+    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
+    expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
+    // Taiwan military alert is expired (expires 2025-06-18) — should NOT appear
+    expect(screen.queryByText(/Taiwan Reports Increased PLA Activity/)).toBeFalsy();
   });
 
   it('shows alert summaries', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText(/Hong Kong media tycoon Jimmy Lai sentenced/)).toBeTruthy();
-    expect(screen.getByText(/Updated ASPI report identifies/)).toBeTruthy();
-    expect(screen.getByText(/Taiwan defense ministry reports 47 PLA aircraft/)).toBeTruthy();
-    expect(screen.getByText(/45 pro-democracy activists sentenced/)).toBeTruthy();
+    expect(screen.getByText(/Major investigation identifies/)).toBeTruthy();
+    expect(screen.getByText(/Court of Appeal upholds convictions/)).toBeTruthy();
+    expect(screen.getByText(/Father of US-based activist sentenced/)).toBeTruthy();
   });
 
   it('renders alert type badges', () => {
     render(<EmergencyAlerts />);
     const criticalBadges = screen.getAllByText('critical');
     expect(criticalBadges.length).toBe(2);
-    expect(screen.getByText('warning')).toBeTruthy();
-    expect(screen.getByText('info')).toBeTruthy();
+    const warningBadges = screen.getAllByText('warning');
+    expect(warningBadges.length).toBe(2);
   });
 
   it('renders alert dates', () => {
     render(<EmergencyAlerts />);
     expect(screen.getByText('2025-12-15')).toBeTruthy();
-    expect(screen.getByText('2024-12-15')).toBeTruthy();
-    expect(screen.getByText('2024-12-18')).toBeTruthy();
+    expect(screen.getByText('2025-05-15')).toBeTruthy();
     expect(screen.getByText('2024-11-19')).toBeTruthy();
+    expect(screen.getByText('2026-02-26')).toBeTruthy();
   });
 
   // --- External Links ---
@@ -63,8 +65,8 @@ describe('EmergencyAlerts', () => {
   it('renders external action links for alerts', () => {
     render(<EmergencyAlerts />);
     expect(screen.getAllByText('Free Jimmy Lai Campaign').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('ASPI Report').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Taiwan MND').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Coalition to End Forced Labour').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('NPR Report').length).toBeGreaterThanOrEqual(1);
   });
 
   it('action links open in new tab with noopener', () => {
@@ -157,11 +159,11 @@ describe('EmergencyAlerts', () => {
     mockLocalStorage.getItem.mockReturnValue(JSON.stringify(['jimmy-lai-verdict', 'uyghur-forced-labor']));
     render(<EmergencyAlerts />);
 
-    // Two alerts should be dismissed, two remaining
+    // Two alerts should be dismissed, two remaining (HK47 + Kwok)
     expect(screen.queryByText(/URGENT: Jimmy Lai Sentenced/)).toBeFalsy();
-    expect(screen.queryByText(/New Report: 57 Global Brands/)).toBeFalsy();
-    expect(screen.getByText(/Taiwan Reports Increased PLA Activity/)).toBeTruthy();
-    expect(screen.getByText(/Hong Kong 47: Mass Sentencing/)).toBeTruthy();
+    expect(screen.queryByText(/100\+ Global Brands Linked/)).toBeFalsy();
+    expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
+    expect(screen.getByText(/ESCALATION: Family Member Prosecuted/)).toBeTruthy();
   });
 
   it('show-dismissed button restores all alerts', () => {
@@ -178,7 +180,7 @@ describe('EmergencyAlerts', () => {
 
   it('returns null when all alerts are dismissed', () => {
     mockLocalStorage.getItem.mockReturnValue(
-      JSON.stringify(['jimmy-lai-verdict', 'uyghur-forced-labor', 'taiwan-military', 'hk-47-sentencing'])
+      JSON.stringify(['jimmy-lai-verdict', 'uyghur-forced-labor', 'taiwan-military', 'hk-47-sentencing', 'kwok-family-prosecution'])
     );
     const { container } = render(<EmergencyAlerts />);
     // Component should render nothing

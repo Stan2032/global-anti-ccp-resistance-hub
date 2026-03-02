@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { lazy, Suspense } from 'react';
 import { 
   Database, 
   ExternalLink, 
@@ -10,9 +9,18 @@ import {
   RefreshCw,
   Building,
   Newspaper,
-  GraduationCap
+  GraduationCap,
+  Download
 } from 'lucide-react';
 import dataSourcesData from '../data/data_sources.json';
+
+const DataExport = lazy(() => import('../components/DataExport'));
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  </div>
+);
 
 const ICON_MAP = {
   Shield: Shield,
@@ -45,9 +53,7 @@ const DataSources = () => {
     <div className="min-h-screen bg-[#0a0e14] text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center space-x-3 mb-4">
@@ -58,13 +64,10 @@ const DataSources = () => {
             Every piece of information on this platform comes from verified, credible sources. 
             We never display simulated, fake, or placeholder data.
           </p>
-        </motion.div>
+        </div>
 
         {/* Our Commitment */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+        <div
           className="bg-[#22d3ee]/20 border border-[#1c2a35] p-6 mb-12"
         >
           <div className="flex items-start space-x-4">
@@ -95,13 +98,10 @@ const DataSources = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Live RSS Feeds */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <div
           className="mb-12"
         >
           <div className="flex items-center space-x-3 mb-6">
@@ -113,14 +113,11 @@ const DataSources = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {rssSources.map((source, index) => (
-              <motion.a
+              <a
                 key={index}
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.05 }}
                 className="bg-[#111820] border border-[#1c2a35] p-5 hover:bg-[#1c2a35] transition-colors group"
               >
                 <div className="flex items-start justify-between mb-3">
@@ -144,16 +141,13 @@ const DataSources = () => {
                     {source.frequency}
                   </span>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Major Data Sources */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+        <div
           className="mb-12"
         >
           <div className="flex items-center space-x-3 mb-6">
@@ -162,11 +156,8 @@ const DataSources = () => {
           </div>
           <div className="space-y-6">
             {majorSources.map((category, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
                 className="bg-[#111820] border border-[#1c2a35] p-6"
               >
                 <div className="flex items-center space-x-3 mb-4">
@@ -192,16 +183,27 @@ const DataSources = () => {
                   <FileText className="w-4 h-4" />
                   <span>Data File: <code className="bg-[#0a0e14] px-2 py-1 rounded">/src/data/{category.dataFile}</code></span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* Export Data */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-6">
+            <Download className="w-8 h-8 text-[#22d3ee]" />
+            <h2 className="text-3xl font-bold">Export Data</h2>
+          </div>
+          <p className="text-slate-300 mb-6">
+            Download our verified datasets for research, analysis, or integration into your own projects.
+          </p>
+          <Suspense fallback={<SectionLoader />}>
+            <DataExport />
+          </Suspense>
+        </div>
 
         {/* Full Documentation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+        <div
           className="bg-[#111820] border border-[#1c2a35] p-8 text-center"
         >
           <GraduationCap className="w-16 h-16 text-[#22d3ee] mx-auto mb-4" />
@@ -220,13 +222,10 @@ const DataSources = () => {
             <span>View Full DATA_SOURCES.md</span>
             <ExternalLink className="w-4 h-4" />
           </a>
-        </motion.div>
+        </div>
 
         {/* Report Issues */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
+        <div
           className="mt-12 bg-[#111820] border border-[#1c2a35] p-6"
         >
           <div className="flex items-start space-x-4">
@@ -248,7 +247,7 @@ const DataSources = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

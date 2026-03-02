@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
+import alertsData from '../data/emergency_alerts.json';
 
 const EmergencyAlerts = () => {
   const [dismissedAlerts, setDismissedAlerts] = useState(() => {
@@ -12,95 +13,15 @@ const EmergencyAlerts = () => {
     localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
   }, [dismissedAlerts]);
 
-  const alerts = [
-    {
-      id: 'jimmy-lai-verdict',
-      type: 'critical',
-      title: 'URGENT: Jimmy Lai Sentenced to 20 Years in Prison',
-      summary: 'Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL',
-      details: `On December 15, 2025, Jimmy Lai was found guilty on all charges including "conspiracy to collude with foreign forces" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL. This verdict represents a devastating blow to press freedom in Hong Kong.
+  const alerts = alertsData;
 
-ACTION NEEDED:
-• Contact your representatives to demand his release
-• Share his story on social media with #FreeJimmyLai
-• Support the Committee for Freedom in Hong Kong
-• Sign petitions calling for sanctions on HK officials`,
-      date: '2025-12-15',
-      links: [
-        { name: 'Free Jimmy Lai Campaign', url: 'https://www.freejimmylai.com' },
-        { name: 'Hong Kong Watch', url: 'https://www.hongkongwatch.org' },
-      ],
-      active: true,
-    },
-    {
-      id: 'uyghur-forced-labor',
-      type: 'warning',
-      title: 'New Report: 57 Global Brands Linked to Uyghur Forced Labor',
-      summary: 'Updated ASPI report identifies additional companies in forced labor supply chains',
-      details: `The Australian Strategic Policy Institute has released an updated report identifying 57 major global brands with links to Uyghur forced labor in their supply chains.
-
-KEY FINDINGS:
-• Fashion, technology, and automotive sectors most affected
-• Many companies have failed to conduct adequate due diligence
-• Some companies have made improvements, others have not
-
-WHAT YOU CAN DO:
-• Check the full list before making purchases
-• Contact companies to demand supply chain transparency
-• Support the UFLPA enforcement`,
-      date: '2024-12-15',
-      links: [
-        { name: 'ASPI Report', url: 'https://www.aspi.org.au/report/uyghurs-sale' },
-        { name: 'Coalition to End Forced Labour', url: 'https://enduyghurforcedlabour.org' },
-      ],
-      active: true,
-    },
-    {
-      id: 'taiwan-military',
-      type: 'info',
-      title: 'Taiwan Reports Increased PLA Activity Near Strait',
-      summary: 'Taiwan defense ministry reports 47 PLA aircraft detected in past 24 hours',
-      details: `Taiwan's Ministry of National Defense has reported increased People's Liberation Army activity near the Taiwan Strait, with 47 aircraft and 12 naval vessels detected in the past 24 hours.
-
-CONTEXT:
-• This follows recent diplomatic tensions
-• Taiwan has raised its alert level
-• International observers are monitoring the situation
-
-STAY INFORMED:
-• Follow Taiwan's Ministry of National Defense updates
-• Monitor reputable news sources
-• Support Taiwan solidarity initiatives`,
-      date: '2024-12-18',
-      links: [
-        { name: 'Taiwan MND', url: 'https://www.mnd.gov.tw' },
-        { name: 'Taiwan News', url: 'https://www.taiwannews.com.tw' },
-      ],
-      active: true,
-    },
-    {
-      id: 'hk-47-sentencing',
-      type: 'critical',
-      title: 'Hong Kong 47: Mass Sentencing Underway',
-      summary: '45 pro-democracy activists sentenced in largest NSL case',
-      details: `The Hong Kong 47 case has concluded with 45 activists receiving sentences ranging from 4 to 10 years in prison. This is the largest prosecution under the National Security Law.
-
-NOTABLE SENTENCES:
-• Benny Tai: 10 years
-• Joshua Wong: 4 years 8 months
-• Claudia Mo: 4 years 2 months
-• Gwyneth Ho: 7 years
-
-This case represents a systematic dismantling of Hong Kong's pro-democracy movement.`,
-      date: '2024-11-19',
-      links: [
-        { name: 'Hong Kong Watch HK47', url: 'https://www.hongkongwatch.org/hk47' },
-      ],
-      active: true,
-    },
-  ];
-
-  const activeAlerts = alerts.filter(alert => alert.active && !dismissedAlerts.includes(alert.id));
+  const now = new Date().toISOString().split('T')[0];
+  const activeAlerts = alerts.filter(alert => {
+    if (!alert.active) return false;
+    if (dismissedAlerts.includes(alert.id)) return false;
+    if (alert.expires && alert.expires < now) return false;
+    return true;
+  });
 
   const dismissAlert = (alertId) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
@@ -160,6 +81,9 @@ This case represents a systematic dismantling of Hong Kong's pro-democracy movem
                       {alert.type}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
+                    {alert.lastVerified && (
+                      <span className="text-xs text-slate-500 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
+                    )}
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
                   <p className="text-sm text-slate-300 mt-1">{alert.summary}</p>

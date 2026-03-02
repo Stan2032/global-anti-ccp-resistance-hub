@@ -124,9 +124,10 @@ const TIMELINE = [
   {
     date: '2025-08',
     year: '2025',
-    title: 'UN Special Rapporteur calls for disclosure',
-    detail: 'UN Special Rapporteur called on the Chinese government to disclose his whereabouts. As of 2026, his location, health, and whether he is alive remain unknown.',
+    title: '8th anniversary of disappearance — wife appeals on Capitol Hill',
+    detail: 'On the 8th anniversary of his disappearance, Gao\'s wife Geng He testified at a symposium on Capitol Hill, pleading: "Please do not let him disappeared forever." ChinaAid, Lawyers for Lawyers, and NCHRD issued coordinated demands for China to confirm whether he is alive. UN Special Rapporteur also called on the Chinese government to disclose his whereabouts. As of March 2026, his location, health status, and whether he is still alive remain completely unknown.',
     category: 'international',
+    sourceUrl: 'https://www.nchrd.org/2025/08/china-release-lawyer-gao-zhisheng-forcibly-disappeared-since-2017/',
   },
 ];
 

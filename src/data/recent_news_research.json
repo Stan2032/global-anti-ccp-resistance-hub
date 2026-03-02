@@ -5,7 +5,7 @@
       "output": {
         "topic": "Jimmy Lai trial verdict and sentencing December 2025",
         "headline": "Hong Kong court convicts pro-democracy activist and mogul Jimmy Lai",
-        "summary": "A Hong Kong court convicted pro-democracy activist and media mogul Jimmy Lai on charges of colluding with foreign forces and sedition on December 15, 2025. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence under the NSL. The international community has widely condemned the trial and sentencing as politically motivated and a significant blow to press freedom in Hong Kong.",
+        "summary": "A Hong Kong court convicted pro-democracy activist and media mogul Jimmy Lai on charges of colluding with foreign forces and sedition on December 15, 2025. On February 9, 2026, he was sentenced to 20 years in prison \u2014 the harshest sentence under the NSL. The international community has widely condemned the trial and sentencing as politically motivated and a significant blow to press freedom in Hong Kong.",
         "date": "2025-12-15",
         "source": "NPR",
         "source_url": "https://www.npr.org/2025/12/15/nx-s1-5642545/hong-kong-pro-democracy-activist-jimmy-lai-sentenced",
@@ -20,8 +20,8 @@
       "input": "Hong Kong 47 sentencing and appeals 2024",
       "output": {
         "topic": "Hong Kong 47 sentencing and appeals 2024",
-        "headline": "Hong Kong 47: Activist ‘Long Hair’ Leung Kwok-hung seeks to overturn conviction, sentence in national security case",
-        "summary": "47 pro-democracy activists were charged with “conspiracy to commit subversion” under the national security law. After a lengthy trial, 45 were jailed in November 2024 for up to a decade. Several, including Leung Kwok-hung, are now appealing their convictions and sentences.",
+        "headline": "Hong Kong 47: Activist \u2018Long Hair\u2019 Leung Kwok-hung seeks to overturn conviction, sentence in national security case",
+        "summary": "47 pro-democracy activists were charged with \u201cconspiracy to commit subversion\u201d under the national security law. After a lengthy trial, 45 were jailed in November 2024 for up to a decade. Several, including Leung Kwok-hung, are now appealing their convictions and sentences.",
         "date": "2024-12-16",
         "source": "Hong Kong Free Press",
         "source_url": "https://hongkongfp.com/2024/12/16/hong-kong-47-activist-long-hair-leung-kwok-hung-seeks-to-overturn-conviction-sentence-in-national-security-case/",
@@ -69,7 +69,7 @@
       "output": {
         "topic": "CCP overseas police station investigations closures 2024",
         "headline": "New York Resident Pleads Guilty to Operating Secret Police Station of the Chinese Government in Lower Manhattan",
-        "summary": "A New York resident, Chen Jinping, pleaded guilty to conspiring to act as an illegal agent of the Chinese government in connection with operating an undeclared overseas police station in Manhattan for the PRC’s Ministry of Public Security. The station, which closed in the fall of 2022, was the first known of its kind in the United States.",
+        "summary": "A New York resident, Chen Jinping, pleaded guilty to conspiring to act as an illegal agent of the Chinese government in connection with operating an undeclared overseas police station in Manhattan for the PRC\u2019s Ministry of Public Security. The station, which closed in the fall of 2022, was the first known of its kind in the United States.",
         "date": "2024-12-18",
         "source": "United States Department of Justice",
         "source_url": "https://www.justice.gov/archives/opa/pr/new-york-resident-pleads-guilty-operating-secret-police-station-chinese-government-lower",
@@ -132,15 +132,15 @@
       "input": "Chinese dissident arrests releases 2024",
       "output": {
         "topic": "Chinese dissident arrests releases 2024",
-        "headline": "China: Veteran Journalist Charged with ‘Picking Quarrels’",
-        "summary": "Chinese authorities have formally charged well-known journalist and author Du Bin with “picking quarrels and provoking trouble.” He was taken into custody on October 15, 2025, and faces up to 5 years in prison. This is the third time he has been detained, but the first time he has been formally charged.",
+        "headline": "China: Veteran Journalist Charged with \u2018Picking Quarrels\u2019",
+        "summary": "Chinese authorities have formally charged well-known journalist and author Du Bin with \u201cpicking quarrels and provoking trouble.\u201d He was taken into custody on October 15, 2025, and faces up to 5 years in prison. This is the third time he has been detained, but the first time he has been formally charged.",
         "date": "2025-12-12",
         "source": "Human Rights Watch",
         "source_url": "https://www.hrw.org/news/2025/12/12/china-veteran-journalist-charged-with-picking-quarrels",
         "significance": "HIGH",
         "related_prisoners": "Du Bin, Zhang Zhan, Dong Yuyu, Huang Xueqin, Jimmy Lai",
         "international_response": "Human Rights Watch has called for Du Bin's immediate and unconditional release. The UN High Commissioner for Human Rights has previously criticized the charge of 'picking quarrels and provoking troubles' as being at variance with China's international human rights obligations.",
-        "action_needed": "Concerned governments should publicly raise Du Bin’s case with the Chinese government and press for his immediate and unconditional release. Activists can share his story and advocate for his freedom."
+        "action_needed": "Concerned governments should publicly raise Du Bin\u2019s case with the Chinese government and press for his immediate and unconditional release. Activists can share his story and advocate for his freedom."
       },
       "error": ""
     },
@@ -148,7 +148,7 @@
       "input": "Transnational repression cases CCP 2024",
       "output": {
         "topic": "Transnational repression cases CCP 2024",
-        "headline": "Transnational Repression Grew in 2025—and It Will Only Get Worse",
+        "headline": "Transnational Repression Grew in 2025\u2014and It Will Only Get Worse",
         "summary": "China is the world's leading perpetrator of transnational repression, employing tactics like cyber-attacks, surveillance, and harassment against dissidents and their families overseas. A recent escalation involves the use of sexually explicit deepfakes to intimidate activists. Western governments have been criticized for their inadequate response, often prioritizing economic relationships with China over human rights concerns.",
         "date": "2025-12-19",
         "source": "Council on Foreign Relations",
@@ -213,7 +213,7 @@
       "output": {
         "topic": "Chinese journalist arrests imprisonments 2024",
         "headline": "Hong Kong pro-democracy publisher Jimmy Lai convicted of sedition and collusion",
-        "summary": "A Hong Kong court convicted 78-year-old British citizen and media tycoon Jimmy Lai of sedition and conspiracy to collude with foreign forces under the city's national security law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest NSL sentence to date. The decision has been widely condemned as a blow to press freedom.",
+        "summary": "A Hong Kong court convicted 78-year-old British citizen and media tycoon Jimmy Lai of sedition and conspiracy to collude with foreign forces under the city's national security law. On February 9, 2026, he was sentenced to 20 years in prison \u2014 the harshest NSL sentence to date. The decision has been widely condemned as a blow to press freedom.",
         "date": "2025-12-15",
         "source": "The Guardian",
         "source_url": "https://www.theguardian.com/world/2025/dec/15/uk-condemns-hong-kongs-politically-motivated-targeting-of-jimmy-lai-after-conviction",
@@ -245,13 +245,13 @@
       "output": {
         "topic": "Organ harvesting China Falun Gong evidence 2024",
         "headline": "2025 Annual Report from U.S. Commission on China Puts Falun Gong into Focus",
-        "summary": "On December 10, the Congressional-Executive Commission on China (CECC) released its 2025 Annual Report, spotlighting the Chinese Communist Party’s (CCP) continued persecution of Falun Gong. The report details abuses such as torture and forced organ harvesting, framing them as violations of the Convention Against Torture, which China ratified in 1988.",
+        "summary": "On December 10, the Congressional-Executive Commission on China (CECC) released its 2025 Annual Report, spotlighting the Chinese Communist Party\u2019s (CCP) continued persecution of Falun Gong. The report details abuses such as torture and forced organ harvesting, framing them as violations of the Convention Against Torture, which China ratified in 1988.",
         "date": "2025-12-18",
         "source": "Faluninfo.net",
         "source_url": "https://faluninfo.net/2025-annual-report-from-u-s-commission-on-china-puts-falun-gong-into-focus/",
         "significance": "HIGH",
         "related_prisoners": "Zuo Hongtao, Gao Xiaoying, Zhao Ying",
-        "international_response": "The U.S. Congressional-Executive Commission on China (CECC) released its 2025 annual report, highlighting the Chinese Communist Party’s (CCP) continued persecution of Falun Gong and related abuses—from torture and forced organ harvesting inside China to harassment and threats reaching the United States.",
+        "international_response": "The U.S. Congressional-Executive Commission on China (CECC) released its 2025 annual report, highlighting the Chinese Communist Party\u2019s (CCP) continued persecution of Falun Gong and related abuses\u2014from torture and forced organ harvesting inside China to harassment and threats reaching the United States.",
         "action_needed": "Raise awareness of the CECC report and support organizations like Shen Yun Performing Arts."
       },
       "error": ""
@@ -260,14 +260,14 @@
       "input": "Belt and Road Initiative human rights concerns 2024",
       "output": {
         "topic": "Belt and Road Initiative human rights concerns 2024",
-        "headline": "China’s Clean Energy Investments Abroad Are a Boon for Climate, but Human Rights and the Environment Are a Different Story",
+        "headline": "China\u2019s Clean Energy Investments Abroad Are a Boon for Climate, but Human Rights and the Environment Are a Different Story",
         "summary": "Across the globe, Chinese firms are embarking on an unprecedented effort to build the factories, mines and refineries needed to make EVs, batteries, solar panels and other clean energy technologies. While these investments are helping to reduce global emissions, many projects proceed despite local opposition and evidence of significant environmental, social and human rights impacts, including pollution, violations of labor laws, and threats to endangered species.",
         "date": "2025-12-17",
         "source": "Inside Climate News",
         "source_url": "https://insideclimatenews.org/news/17122025/china-oversea-clean-energy-investments/",
         "significance": "HIGH",
         "related_prisoners": "N/A",
-        "international_response": "Chinese officials deny violations of rights and emphasize the Belt and Road Initiative’s support for green economic growth. European and U.S. governments have expressed concerns about security risks associated with Chinese investments and the environmental and human rights impacts, but specific policy responses are not detailed.",
+        "international_response": "Chinese officials deny violations of rights and emphasize the Belt and Road Initiative\u2019s support for green economic growth. European and U.S. governments have expressed concerns about security risks associated with Chinese investments and the environmental and human rights impacts, but specific policy responses are not detailed.",
         "action_needed": "Activists are raising awareness about environmental and health risks, filing lawsuits, monitoring pollution, and organizing protests. They also advocate for stronger oversight, local input in permitting processes, and holding Chinese firms accountable for environmental and social impacts."
       },
       "error": ""
@@ -319,6 +319,44 @@
         "action_needed": "Activists can raise awareness about Rachung Gendun's case and the broader issue of Tibetan political prisoners. They can also support organizations like Tibet Watch and Students for a Free Tibet, and urge their governments to continue to press China on its human rights record in Tibet."
       },
       "error": ""
+    },
+    {
+      "input": "UN experts alarmed by forced labor of Uyghur Tibetan minorities January 2026",
+      "output": {
+        "topic": "UN experts alarmed by forced labor of Uyghur, Tibetan and other minorities",
+        "headline": "UN experts warn of record-level forced labor transfers affecting Uyghurs, Tibetans",
+        "summary": "In January 2026, UN Special Rapporteurs issued a joint statement expressing alarm at reports of forced labor affecting Uyghur, Tibetan, and other minorities in China. The experts highlighted that state-imposed labor transfer programs have reached record highs, with an estimated 13.75 million transfers planned in Xinjiang's current five-year plan. The statement called on China to immediately end all forms of forced labor and allow independent international monitoring.",
+        "date": "2026-01-15",
+        "source": "OHCHR",
+        "source_url": "https://www.ohchr.org/en/press-releases/2026/01/un-experts-alarmed-reports-forced-labour-uyghur-tibetan-and-other-minorities",
+        "significance": "First major UN statement of 2026 on forced labor, citing record-level labor transfers. Expands scope beyond Uyghurs to include Tibetans and other minorities \u2014 a critical broadening of the international community's recognition of systematic forced labor.",
+        "related_prisoners": [
+          "Ilham Tohti",
+          "Tashi Wangchuk"
+        ],
+        "international_response": "Multiple governments and NGOs cited the statement in renewed calls for supply chain due diligence legislation. EU forced labor regulation scheduled for 2027.",
+        "action_needed": "Support the Coalition to End Forced Labour in the Uyghur Region. Contact elected representatives to strengthen forced labor import ban enforcement."
+      },
+      "error": null
+    },
+    {
+      "input": "Hong Kong 47 appeal dismissed February 2026",
+      "output": {
+        "topic": "Hong Kong Court of Appeal upholds HK47 convictions",
+        "headline": "Hong Kong appeals court upholds jailing of 12 activists in 'Hong Kong 47' subversion case",
+        "summary": "On February 23, 2026, Hong Kong's Court of Appeal dismissed appeals from 12 of the 'Hong Kong 47' pro-democracy activists convicted of conspiracy to commit subversion. The sentences \u2014 ranging from 4 to 10 years \u2014 were upheld in full. Amnesty International called the ruling 'a missed opportunity to start restoring justice' and further evidence of the erosion of human rights in Hong Kong.",
+        "date": "2026-02-23",
+        "source": "Amnesty International",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/02/hong-kong-rejected-appeals-in-hk-47-case-a-missed-opportunity-to-start-restoring-justice/",
+        "significance": "Confirms that Hong Kong's judiciary provides no meaningful check on politically motivated prosecutions. All 47 defendants were charged for organizing an unofficial primary election in 2020 \u2014 a lawful democratic exercise.",
+        "related_prisoners": [
+          "Joshua Wong",
+          "Benny Tai"
+        ],
+        "international_response": "US, UK, EU, and Australia issued statements condemning the ruling. Multiple governments called for the immediate release of all political prisoners in Hong Kong.",
+        "action_needed": "Write to your government representatives demanding they publicly condemn the ruling and impose targeted sanctions on officials responsible."
+      },
+      "error": null
     }
   ]
 }

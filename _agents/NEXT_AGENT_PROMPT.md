@@ -20,18 +20,20 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 100+ React components, 1076 passing Vitest tests across 63 test files
+- Contains 310+ source files, 71 active React components, 1257 passing Vitest tests across 76 test files
+- **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
+- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 21 JSON data files, 22 recent news items
 
 ### What Has Been Done
 The following has been accomplished:
-1. **Data integrity**: 142 data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
+1. **Data integrity**: 165+ data entries verified with Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government records)
 2. **Security fixes**: 12 URL sanitization vulnerabilities fixed, fake VPN/Tor detection removed, honest disclaimers added, react-router updated to fix 3 CVEs
 3. **15 profile pages**: Each with 5-tab layout (Timeline, Charges, CCP Narratives, International Response, Sources)
 4. **Terminal design system**: Applied across all 128+ component files — zero old-style Tailwind classes remain (no bg-slate-*, no border-slate-*, no rounded-lg, no bg-gradient-to-*)
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 1076 Vitest tests across 63 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, and more)
+8. **Test infrastructure**: 1257 Vitest tests across 76 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, and more)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -62,7 +64,7 @@ The following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 1076 tests passing across 63 test files
+npx vitest run    # Should show 1257 tests passing across 76 test files
 ```
 
 ---
@@ -97,13 +99,13 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v9.1)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v12.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── research/               # Research files and verification logs
 │   ├── planning/               # Planning TODOs
 │   ├── archive/                # Historical handoff documents (58 files)
-│   └── thoughts/               # Comprehensive session notes (2 files: Sessions 83-97, 98-106)
+│   └── thoughts/               # Session decision logs (Sessions 83-97, 98-106, 150, 151, 152)
 ├── src/
 │   ├── App.jsx                 # Main router — all routes, sidebar, header
 │   ├── index.css               # Global CSS, terminal theme, print styles
@@ -131,7 +133,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 63 Vitest test files, 1076 tests
+│   └── test/                   # 66 Vitest test files, 1137 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -152,7 +154,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 1076 tests (63 files)
+npx vitest run                           # All 1257 tests (76 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -165,10 +167,12 @@ npm run build                            # Production build (~5s)
 Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next steps: add Supabase Auth for admin dashboard and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
 
 ### Priority 2: Content Monitoring
-- Monitor Jimmy Lai appeal proceedings
-- Monitor Joshua Wong NSL collusion case
-- Update sanctions tracker with any new 2026 actions from US/EU/UK/Canada/Australia
+- Monitor Jimmy Lai NSL sentence appeal filing (sentenced Feb 9, 2026 to 20 years)
+- Monitor Joshua Wong foreign collusion trial proceedings (new charge Jun 6, 2025, max: life imprisonment)
+- Gui Minhai's 10-year sentence approaches end (Feb 2030) — plan content update
+- Check for new individual sanctions from US/EU/UK/Canada/Australia
 - Add new political prisoner cases as they emerge
+- Keep emergency alerts fresh (check `expires` dates in emergency_alerts.json)
 
 ### Priority 3: Full Translation
 Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human rights content (profile pages, data entries) should NOT be machine-translated — needs volunteer translators.
@@ -184,7 +188,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes
 - ✅ **Flag Icons**: Proper SVG flags for East Turkestan and Tibet
 - ✅ **RSS Feeds**: 9 feeds from trusted sources with ALWAYS_RELEVANT_SOURCES
-- ✅ **Sanctions Tracker**: 35 entries in structured JSON with data integrity tests
+- ✅ **Sanctions Tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs
 - ✅ **Security**: react-router 7.13.0 (3 CVEs fixed), clipboard error handling (9 components)
 - ✅ **Accessibility**: WCAG AA verified, ARIA dialog roles on modals, Escape key support
 - ✅ **Print Styles**: @media print A4 layout for profile pages
@@ -247,14 +251,16 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-133  
-**Date:** March 1, 2026  
+**Handoff prepared by:** Sessions 1-150  
+**Date:** March 2, 2026  
 **Repository state:**
-- 1076 tests passing (63 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
+- 1257 tests passing (76 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
 - 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events
 - 0 orphan components, 8 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready
-- All 5/5 data migrations complete, 9 security headers (HSTS/COOP/CORP/CSP)  
+- All 5/5 data migrations complete, 21 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
+- ALL page simplification complete (25 aspirational components removed, framer-motion eliminated)
+- EmergencyAlerts data-driven with auto-expiry (expires + lastVerified fields)
 **Status:** ✅ MERGE READY — branch prepared for merge to main

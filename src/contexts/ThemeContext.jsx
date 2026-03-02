@@ -1,14 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
-
-const ThemeContext = createContext(null);
-
-export const THEMES = {
-  DARK: 'dark',
-  LIGHT: 'light',
-  SYSTEM: 'system',
-  HIGH_CONTRAST: 'high-contrast'
-};
+import { ThemeContext, THEMES, useTheme } from './themeUtils';
 
 // Theme color configurations
 const themeColors = {
@@ -136,14 +128,6 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
-
 // Theme Toggle Button Component
 export const ThemeToggle = ({ className = '' }) => {
   const { toggleTheme, themeConfig } = useTheme();
@@ -230,5 +214,3 @@ export const ThemeSelector = ({ className = '' }) => {
     </div>
   );
 };
-
-export default ThemeContext;

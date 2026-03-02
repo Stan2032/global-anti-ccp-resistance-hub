@@ -6,14 +6,14 @@
         "prisoner_name": "Jimmy Lai",
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
-        "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); previously sentenced to 5 years 9 months for fraud.",
-        "latest_news": "Feb 2026: Sentenced to 20 years in prison, the harshest sentence yet under Hong Kong's National Security Law.",
-        "health_status": "Deteriorating, according to his son.",
-        "international_response": "UK, US, and human rights groups condemned the verdict and called for his release.",
+        "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
+        "latest_news": "Feb 26, 2026: Court of Appeal quashed separate fraud conviction. NSL sentence of 20 years remains — the harshest under Hong Kong's National Security Law.",
+        "health_status": "Deteriorating, according to his son. Legal team filed urgent UN appeal citing health risks.",
+        "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated.",
         "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Conviction Dec 15, 2025 and sentencing Feb 9, 2026 to 20 years verified via BBC, HRW, CPJ, US State Dept."
+        "last_verified": "2026-03-02",
+        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (BBC, HRW, CPJ, US State Dept). Fraud conviction overturned Feb 26, 2026 (ABC, SCMP, UPI)."
       },
       "error": ""
     },
@@ -166,13 +166,13 @@
         "prisoner_name": "Joshua Wong",
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
-        "sentence": "4 years and 8 months for subversion",
-        "latest_news": "June 2025: Charged with conspiring to collude with foreign forces under the National Security Law.",
+        "sentence": "4 years and 8 months for subversion; faces new foreign collusion charge (max: life imprisonment)",
+        "latest_news": "February 2026: Court of Appeal dismissed all HK47 appeals, upholding Wong's 4yr 8mo sentence. Foreign collusion proceedings ongoing.",
         "health_status": "Unknown",
-        "international_response": "The UK, US, and Australia condemned the verdict and sentencing in the Hong Kong 47 trial.",
-        "source_url": "https://www.bbc.com/news/articles/cx2l4eynl4zo",
+        "international_response": "The UK, US, and Australia condemned the verdict and sentencing. Amnesty International called new charges 'designed to prolong his stay behind bars.'",
+        "source_url": "https://www.independent.co.uk/news/hong-kong-beijing-joshua-wong-court-of-appeal-b2925457.html",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20"
+        "last_verified": "2026-03-02"
       },
       "error": ""
     },
@@ -1063,6 +1063,23 @@
         "confidence": "HIGH",
         "last_verified": "2026-02-20",
         "verification_note": "Imprisoned for sending prayer money for self-immolated uncle Taphun (self-immolated Mar 2022). Released Nov 16, 2024 in poor health. Source: Tibet Watch (Tier 2). Case documents pattern of punishing religious expression and familial ties to self-immolation protesters."
+      },
+      "error": ""
+    },
+    {
+      "input": "Kwok Yin-sang - Father of US-based activist Anna Kwok, prosecuted for family ties",
+      "output": {
+        "prisoner_name": "Kwok Yin-sang",
+        "status": "DETAINED",
+        "location": "Hong Kong",
+        "sentence": "8 months imprisonment",
+        "latest_news": "Feb 26, 2026: Sentenced to 8 months for handling financial assets of his daughter Anna Kwok, a US-based pro-democracy activist. First known case of a family member being prosecuted under Article 23 national security provisions for providing financial support to a designated 'absconder.'",
+        "health_status": "Unknown",
+        "international_response": "International human rights organizations expressed alarm at the precedent of prosecuting family members. Case seen as escalation of transnational repression.",
+        "source_url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law",
+        "confidence": "HIGH",
+        "last_verified": "2026-03-02",
+        "verification_note": "First family member prosecution under Article 23 provisions. Anna Kwok is executive director of Hong Kong Democracy Council based in Washington DC. Charged for handling daughter's financial assets. Sources: NPR affiliate KUNM, multiple international outlets."
       },
       "error": ""
     }
