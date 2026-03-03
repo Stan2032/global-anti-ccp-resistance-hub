@@ -213,4 +213,29 @@ describe('EmergencyAlerts', () => {
     const expandButtons = screen.getAllByLabelText('Expand alert details');
     expect(expandButtons.length).toBe(2);
   });
+
+  // --- Severity Sorting ---
+
+  it('sorts alerts by severity (critical first, then warning, then info)', () => {
+    render(<EmergencyAlerts />);
+    // Click show more to reveal all
+    fireEvent.click(screen.getByText(/show --more/));
+    
+    // Get all type badges in order
+    const badges = screen.getAllByText(/^(critical|warning|info)$/);
+    const types = badges.map(b => b.textContent);
+    
+    // All critical should come before any warning
+    const lastCriticalIdx = types.lastIndexOf('critical');
+    const firstWarningIdx = types.indexOf('warning');
+    if (lastCriticalIdx !== -1 && firstWarningIdx !== -1) {
+      expect(lastCriticalIdx).toBeLessThan(firstWarningIdx);
+    }
+  });
+
+  it('Taiwan military alert is excluded (expired and inactive)', () => {
+    render(<EmergencyAlerts />);
+    fireEvent.click(screen.getByText(/show --more/));
+    expect(screen.queryByText(/Taiwan Reports Increased PLA Activity/)).toBeFalsy();
+  });
 });

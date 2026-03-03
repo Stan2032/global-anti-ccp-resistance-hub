@@ -1,6 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { User, Clock, MapPin, Cake } from 'lucide-react';
+import { Clock, MapPin, Cake, Calendar } from 'lucide-react';
 import { calculateAge } from '../utils/dateUtils';
+
+const formatDetentionDate = (dateStr) => {
+  const date = new Date(dateStr + 'T00:00:00');
+  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+};
 
 const UrgentCaseTimer = ({ compact = false }) => {
   const [timers, setTimers] = useState({});
@@ -114,7 +119,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                   {prisoner.status}
                 </span>
               </div>
-              <div className="mt-2 font-mono text-lg">
+              <div className="mt-2 font-mono text-lg" role="timer" aria-label={`${prisoner.name} detained ${timer.years} years, ${timer.days} days`}>
                 <span className="text-red-400">{timer.years}</span>
                 <span className="text-slate-500 text-sm">y </span>
                 <span className="text-red-400">{timer.days}</span>
@@ -164,7 +169,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
               </div>
 
               {/* Timer */}
-              <div className="bg-[#0a0e14] p-4 mb-4">
+              <div className="bg-[#0a0e14] p-4 mb-4" role="timer" aria-label={`${prisoner.name} detained ${timer.years} years, ${timer.days} days, ${timer.hours} hours`}>
                 <div className="grid grid-cols-5 gap-2 text-center">
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.years}</div>
@@ -198,6 +203,10 @@ const UrgentCaseTimer = ({ compact = false }) => {
                 <div className="flex items-center gap-2 text-slate-400">
                   <MapPin className="w-4 h-4" />
                   <span>{prisoner.location}</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-400">
+                  <Calendar className="w-4 h-4" />
+                  <span>Detained since: {formatDetentionDate(prisoner.detentionDate)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-400">
                   <Cake className="w-4 h-4" />

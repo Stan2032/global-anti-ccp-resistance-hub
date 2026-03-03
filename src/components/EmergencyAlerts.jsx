@@ -22,12 +22,15 @@ const EmergencyAlerts = () => {
   const alerts = alertsData;
 
   const now = new Date().toISOString().split('T')[0];
-  const activeAlerts = alerts.filter(alert => {
-    if (!alert.active) return false;
-    if (dismissedAlerts.includes(alert.id)) return false;
-    if (alert.expires && alert.expires < now) return false;
-    return true;
-  });
+  const severityOrder = { critical: 0, warning: 1, info: 2 };
+  const activeAlerts = alerts
+    .filter(alert => {
+      if (!alert.active) return false;
+      if (dismissedAlerts.includes(alert.id)) return false;
+      if (alert.expires && alert.expires < now) return false;
+      return true;
+    })
+    .sort((a, b) => (severityOrder[a.type] ?? 3) - (severityOrder[b.type] ?? 3));
 
   const displayedAlerts = showAll ? activeAlerts : activeAlerts.slice(0, INITIAL_DISPLAY_COUNT);
   const hiddenCount = activeAlerts.length - INITIAL_DISPLAY_COUNT;
