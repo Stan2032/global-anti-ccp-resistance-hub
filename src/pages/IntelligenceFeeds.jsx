@@ -25,6 +25,8 @@ const IntelligenceFeeds = () => {
   const [showAllFeeds, setShowAllFeeds] = useState(false);
   const [sortBy, setSortBy] = useState('relevancy');
   const FEED_DISPLAY_COUNT = 5;
+  const totalSourceCount = Object.keys(sources).length;
+  const progressPercent = totalSourceCount > 0 ? (loadedSources.size / totalSourceCount) * 100 : 0;
 
   const sortOptions = [
     { id: 'relevancy', label: 'Relevancy' },
@@ -239,11 +241,11 @@ const IntelligenceFeeds = () => {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
             <span className="font-mono text-sm text-[#4afa82]">
-              {loadedSources.size} of {Object.keys(sources).length} sources loaded
+              {loadedSources.size} of {totalSourceCount} sources loaded
             </span>
           </div>
           <div className="w-full bg-[#1c2a35] h-1 mb-3">
-            <div className="bg-[#4afa82] h-1 transition-all duration-300" style={{ width: `${Object.keys(sources).length > 0 ? (loadedSources.size / Object.keys(sources).length) * 100 : 0}%` }}></div>
+            <div className="bg-[#4afa82] h-1 transition-all duration-300" style={{ width: `${progressPercent}%` }}></div>
           </div>
           <div className="flex flex-wrap gap-2">
             {Object.entries(sources).map(([key, source]) => (
@@ -272,7 +274,7 @@ const IntelligenceFeeds = () => {
           <div className="flex items-center gap-2">
             <span className="text-[#4afa82]">&#10003;</span>
             <span className="font-mono text-sm text-slate-300">
-              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {Object.keys(sources).length} sources
+              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {totalSourceCount} sources
             </span>
           </div>
           {lastUpdated && (
@@ -369,7 +371,7 @@ const IntelligenceFeeds = () => {
       {/* Stats Footer */}
       <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
         <p className="text-slate-400 text-sm">
-          Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
+          Showing {displayedFeeds.length} of {feeds.length} articles from {totalSourceCount} verified sources
         </p>
         <p className="text-slate-400 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
