@@ -38,18 +38,10 @@ describe('ShareButtons', () => {
     expect(screen.getByText('WhatsApp')).toBeTruthy();
   });
 
-  it('renders hashtags in full mode', () => {
+  it('does not render hashtags (removed as performative activism)', () => {
     render(<ShareButtons />);
-    expect(screen.getByText('#FreeTibet')).toBeTruthy();
-    expect(screen.getByText('#FreeHongKong')).toBeTruthy();
-    expect(screen.getByText('#FreeUyghurs')).toBeTruthy();
-    expect(screen.getByText('#StandWithTaiwan')).toBeTruthy();
-  });
-
-  it('does not render hashtags in compact mode', () => {
-    render(<ShareButtons compact />);
-    expect(screen.queryByText('#FreeTibet')).toBeNull();
-    expect(screen.queryByText('#FreeHongKong')).toBeNull();
+    expect(screen.queryByText(/#Free/)).toBeNull();
+    expect(screen.queryByText(/#Stand/)).toBeNull();
   });
 
   // --- Links ---
@@ -61,11 +53,11 @@ describe('ShareButtons', () => {
     expect(twitterLink.getAttribute('rel')).toContain('noopener');
   });
 
-  it('twitter share URL includes hashtags', () => {
+  it('twitter share URL does not include hashtags', () => {
     render(<ShareButtons />);
     const twitterLink = screen.getByTitle('Share on Twitter/X');
     expect(twitterLink.getAttribute('href')).toContain('twitter.com/intent/tweet');
-    expect(twitterLink.getAttribute('href')).toContain('hashtags=');
+    expect(twitterLink.getAttribute('href')).not.toContain('hashtags=');
   });
 
   it('email share URL uses mailto: protocol', () => {
@@ -118,12 +110,6 @@ describe('ShareButtons', () => {
   });
 
   // --- Custom props ---
-
-  it('accepts custom hashtags', () => {
-    render(<ShareButtons hashtags={['TestTag', 'CustomTag']} />);
-    expect(screen.getByText('#TestTag')).toBeTruthy();
-    expect(screen.getByText('#CustomTag')).toBeTruthy();
-  });
 
   it('accepts custom title and text', () => {
     render(<ShareButtons title="Custom Title" text="Custom text for sharing" />);

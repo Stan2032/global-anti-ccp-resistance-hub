@@ -12,7 +12,6 @@ const QuickFacts = () => {
       description: 'Political prisoners currently detained in China',
       source: 'Dui Hua Foundation',
       sourceUrl: 'https://duihua.org/',
-      hashtags: '#FreePoliticalPrisoners #HumanRights',
       color: 'red'
     },
     {
@@ -22,7 +21,6 @@ const QuickFacts = () => {
       description: 'CCP police stations operating in 53 countries',
       source: 'Safeguard Defenders',
       sourceUrl: 'https://safeguarddefenders.com/',
-      hashtags: '#CCPPoliceStations #TransnationalRepression',
       color: 'orange'
     },
     {
@@ -32,7 +30,6 @@ const QuickFacts = () => {
       description: 'Uyghurs detained in "re-education" camps',
       source: 'Multiple sources including ASPI',
       sourceUrl: 'https://www.aspi.org.au/',
-      hashtags: '#UyghurGenocide #FreeUyghurs',
       color: 'cyan'
     },
     {
@@ -42,7 +39,6 @@ const QuickFacts = () => {
       description: 'Political prisoners under National Security Law',
       source: 'Hong Kong Watch',
       sourceUrl: 'https://www.hongkongwatch.org/',
-      hashtags: '#FreeHongKong #StandWithHongKong',
       color: 'yellow'
     },
     {
@@ -52,7 +48,6 @@ const QuickFacts = () => {
       description: 'Global brands linked to Uyghur forced labor',
       source: 'ASPI Uyghurs for Sale Report',
       sourceUrl: 'https://www.aspi.org.au/report/uyghurs-sale',
-      hashtags: '#EndForcedLabor #BoycottCCP',
       color: 'blue'
     },
     {
@@ -62,7 +57,6 @@ const QuickFacts = () => {
       description: 'Gedhun Choekyi Nyima (Panchen Lama) held since age 6',
       source: 'International Campaign for Tibet',
       sourceUrl: 'https://savetibet.org/',
-      hashtags: '#FreeTibet #PanchenLama',
       color: 'green'
     },
     {
@@ -72,7 +66,6 @@ const QuickFacts = () => {
       description: 'People "persuaded" to return to China (2021-2023)',
       source: 'Safeguard Defenders',
       sourceUrl: 'https://safeguarddefenders.com/',
-      hashtags: '#TransnationalRepression #CCPAbroad',
       color: 'cyan'
     },
     {
@@ -82,7 +75,6 @@ const QuickFacts = () => {
       description: 'China\'s ranking out of 180 countries',
       source: 'Reporters Without Borders',
       sourceUrl: 'https://rsf.org/',
-      hashtags: '#PressFreedom #FreeSpeech',
       color: 'pink'
     }
   ];
@@ -98,7 +90,7 @@ const QuickFacts = () => {
   };
 
   const copyToClipboard = async (fact) => {
-    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n${fact.sourceUrl}\n\n${fact.hashtags}\n\nLearn more: https://global-anti-ccp-resistance-hub.stane203.workers.dev/`;
+    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n${fact.sourceUrl}\n\nLearn more: https://global-anti-ccp-resistance-hub.stane203.workers.dev/`;
     
     try {
       await navigator.clipboard.writeText(text);
@@ -110,7 +102,7 @@ const QuickFacts = () => {
   };
 
   const shareToTwitter = (fact) => {
-    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n\n${fact.hashtags}`;
+    const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://global-anti-ccp-resistance-hub.stane203.workers.dev/')}`;
     window.open(url, '_blank', 'width=550,height=420');
   };
@@ -191,7 +183,7 @@ const QuickFacts = () => {
         <div className="grid md:grid-cols-3 gap-4 text-sm">
           <div className="space-y-2">
             <h4 className="font-medium text-slate-300">Social Media</h4>
-            <p className="text-slate-400">Share on Twitter, Facebook, or Instagram to raise awareness. Use the included hashtags for visibility.</p>
+            <p className="text-slate-400">Share on Twitter, Facebook, or Instagram to raise awareness.</p>
           </div>
           <div className="space-y-2">
             <h4 className="font-medium text-slate-300">Presentations</h4>

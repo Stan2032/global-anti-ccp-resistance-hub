@@ -552,7 +552,7 @@ export default function JimmyLaiProfile() {
                 {[
                   { action: 'Contact your representative', desc: 'Ask them to raise Lai\'s case with the Chinese government' },
                   { action: 'Support HKDC', link: 'https://hongkongdc.org', desc: 'Hong Kong Democracy Council' },
-                  { action: 'Share on social media', desc: 'Use #FreeJimmyLai and #StandWithHongKong' },
+                  { action: 'Share on social media', desc: 'Raise awareness of Lai\'s case with your network' },
                   { action: 'Support CPJ', link: 'https://cpj.org', desc: 'Committee to Protect Journalists' },
                 ].map((item, i) => (
                   <div key={i} className="bg-[#111820] rounded p-3 text-sm">

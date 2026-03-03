@@ -129,16 +129,9 @@ describe('Emergency Alerts data integrity', () => {
     }
   });
 
-  it('hashtags field is an array of strings when present', () => {
+  it('no alerts have hashtags field (removed as performative activism)', () => {
     for (const alert of data) {
-      if (alert.hashtags) {
-        expect(Array.isArray(alert.hashtags)).toBe(true);
-        for (const tag of alert.hashtags) {
-          expect(typeof tag).toBe('string');
-          expect(tag).not.toContain('#');
-          expect(tag).not.toContain(' ');
-        }
-      }
+      expect(alert.hashtags).toBeUndefined();
     }
   });
 

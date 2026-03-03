@@ -68,9 +68,9 @@ export function calculateTimeLeft(eventDate) {
 
 /**
  * Format an emergency alert for sharing on social media.
- * Generates optimized text with hashtags for Twitter/X, Telegram, etc.
+ * Generates clean text with title, summary, and link.
  *
- * @param {{ title: string, summary: string, hashtags?: string[], links?: Array<{url: string}> }} alert - Alert object
+ * @param {{ title: string, summary: string, links?: Array<{url: string}> }} alert - Alert object
  * @returns {string} Formatted share text
  */
 export function formatAlertForSharing(alert) {
@@ -80,9 +80,6 @@ export function formatAlertForSharing(alert) {
   if (alert.summary) lines.push(`\n${alert.summary}`);
   if (alert.links && alert.links.length > 0) {
     lines.push(`\n🔗 ${alert.links[0].url}`);
-  }
-  if (alert.hashtags && alert.hashtags.length > 0) {
-    lines.push(`\n${alert.hashtags.map(h => `#${h}`).join(' ')}`);
   }
   return lines.join('');
 }

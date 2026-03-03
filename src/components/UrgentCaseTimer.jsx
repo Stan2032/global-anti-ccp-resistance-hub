@@ -17,8 +17,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Stanley Prison, Hong Kong',
       description: 'Media tycoon and founder of Apple Daily. Convicted Dec 15, 2025. Sentenced to 20 years on Feb 9, 2026.',
       image: 'user',
-      actionUrl: '/prisoners',
-      hashtag: '#FreeJimmyLai'
+      actionUrl: '/prisoners'
     },
     {
       id: 'ilham-tohti',
@@ -31,8 +30,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Urumqi Prison, Xinjiang',
       description: 'Uyghur economist and professor. Sentenced to life for "separatism". Sakharov Prize winner.',
       image: 'user',
-      actionUrl: '/prisoners',
-      hashtag: '#FreeIlhamTohti'
+      actionUrl: '/prisoners'
     },
     {
       id: 'chow-hang-tung',
@@ -45,8 +43,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Hong Kong',
       description: 'Human rights lawyer and Tiananmen vigil organizer. Multiple sentences totaling over 6 years.',
       image: 'user',
-      actionUrl: '/prisoners',
-      hashtag: '#FreeChowHangTung'
+      actionUrl: '/prisoners'
     },
     {
       id: 'gedhun-choekyi-nyima',
@@ -59,8 +56,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
       location: 'Unknown, China',
       description: 'Recognized as 11th Panchen Lama by Dalai Lama at age 6. Disappeared 3 days later. Longest-held political prisoner.',
       image: 'user',
-      actionUrl: '/prisoners',
-      hashtag: '#FreePanchenLama'
+      actionUrl: '/prisoners'
     }
   ], []);
 
@@ -219,7 +215,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                 </a>
                 <button
                   onClick={async () => {
-                    const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. ${prisoner.hashtag} #FreePoliticalPrisoners`;
+                    const text = `${prisoner.name} (${prisoner.chinese}) has been detained for ${timer.years} years, ${timer.days} days. Learn more about political prisoners detained by the CCP.`;
                     try {
                       await navigator.clipboard.writeText(text);
                     } catch (err) {

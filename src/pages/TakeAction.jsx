@@ -335,7 +335,6 @@ const TakeAction = () => {
         <ShareButtons 
           title="Take Action Against CCP Authoritarianism"
           text="Join the global movement against CCP human rights abuses. Here's how you can help:"
-          hashtags={['FreeTibet', 'FreeHongKong', 'FreeUyghurs', 'StandWithTaiwan', 'FreeJimmyLai']}
         />
       </div>
     </div>

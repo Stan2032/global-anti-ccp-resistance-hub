@@ -78,22 +78,20 @@ describe('calculateAge', () => {
 });
 
 describe('formatAlertForSharing', () => {
-  it('formats an alert with title, summary, link, and hashtags', () => {
+  it('formats an alert with title, summary, and link', () => {
     const alert = {
       title: 'Test Alert',
       summary: 'This is a test summary.',
       links: [{ url: 'https://example.com', name: 'Example' }],
-      hashtags: ['FreeHK', 'HumanRights'],
     };
     const result = formatAlertForSharing(alert);
     expect(result).toContain('🚨 Test Alert');
     expect(result).toContain('This is a test summary.');
     expect(result).toContain('https://example.com');
-    expect(result).toContain('#FreeHK');
-    expect(result).toContain('#HumanRights');
+    expect(result).not.toContain('#');
   });
 
-  it('handles alert with no hashtags', () => {
+  it('does not include hashtags in share text', () => {
     const alert = { title: 'Alert', summary: 'Summary', links: [] };
     const result = formatAlertForSharing(alert);
     expect(result).toContain('🚨 Alert');
@@ -102,10 +100,9 @@ describe('formatAlertForSharing', () => {
   });
 
   it('handles alert with no links', () => {
-    const alert = { title: 'Alert', summary: 'Summary', links: [], hashtags: ['Test'] };
+    const alert = { title: 'Alert', summary: 'Summary', links: [] };
     const result = formatAlertForSharing(alert);
     expect(result).not.toContain('🔗');
-    expect(result).toContain('#Test');
   });
 
   it('returns empty string for null input', () => {
@@ -124,7 +121,6 @@ describe('formatAlertForSharing', () => {
         { url: 'https://first.com', name: 'First' },
         { url: 'https://second.com', name: 'Second' },
       ],
-      hashtags: [],
     };
     const result = formatAlertForSharing(alert);
     expect(result).toContain('https://first.com');

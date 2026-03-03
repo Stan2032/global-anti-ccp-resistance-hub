@@ -101,7 +101,7 @@ describe('QuickFacts', () => {
     expect(clipboardText).toContain('Political Prisoners');
     expect(clipboardText).toContain('1,000+');
     expect(clipboardText).toContain('Dui Hua Foundation');
-    expect(clipboardText).toContain('#FreePoliticalPrisoners');
+    expect(clipboardText).not.toContain('#');
   });
 
   it('shows "Copied!" indicator after clicking a card', async () => {
@@ -118,15 +118,15 @@ describe('QuickFacts', () => {
     });
   });
 
-  it('includes hashtags in clipboard text', async () => {
+  it('clipboard text does not include hashtags', async () => {
     render(<QuickFacts />);
     const statElement = screen.getByText('102+');
     const card = statElement.closest('div[class*="cursor-pointer"]');
     fireEvent.click(card);
 
     const clipboardText = navigator.clipboard.writeText.mock.calls[0][0];
-    expect(clipboardText).toContain('#CCPPoliceStations');
-    expect(clipboardText).toContain('#TransnationalRepression');
+    expect(clipboardText).toContain('CCP police stations');
+    expect(clipboardText).not.toContain('#');
   });
 
   // --- Twitter Share ---

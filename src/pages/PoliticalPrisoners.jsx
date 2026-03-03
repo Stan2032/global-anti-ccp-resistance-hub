@@ -356,7 +356,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <div className="flex flex-wrap gap-2">
               <a
-                href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background} #FreePoliticalPrisoners #HumanRights`}
+                href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#22d3ee]/20 hover:bg-[#22d3ee]/30 text-[#22d3ee] border border-[#22d3ee]/30 px-4 py-2 font-mono text-sm transition-colors"

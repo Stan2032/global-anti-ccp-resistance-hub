@@ -217,9 +217,9 @@ const ActivistToolkit = () => {
     },
     {
       id: 19,
-      title: 'Hashtag Guide',
+      title: 'Social Media Guide',
       category: 'social',
-      description: 'Effective hashtags by topic and platform',
+      description: 'Best practices for sharing human rights content online',
       format: 'PDF',
       size: '200KB',
       pages: 2,
