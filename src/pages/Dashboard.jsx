@@ -50,7 +50,7 @@ const Dashboard = () => {
     },
     {
       title: 'Political Prisoners',
-      value: stats?.politicalPrisoners || 62,
+      value: stats?.politicalPrisoners || 63,
       icon: AlertTriangle,
       color: 'orange',
       change: 'Documented cases',

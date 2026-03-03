@@ -149,7 +149,7 @@ export async function fetchAllFeeds() {
 /**
  * Fetch political prisoners data from verified JSON research file
  * Source: CECC Political Prisoner Database, HRW, Amnesty International, CPJ
- * Data file: src/data/political_prisoners_research.json (62 verified entries)
+ * Data file: src/data/political_prisoners_research.json (63 verified entries)
  */
 export async function fetchPoliticalPrisoners() {
   const { default: prisonersData } = await import('../data/political_prisoners_research.json');
@@ -176,7 +176,7 @@ export async function fetchPoliticalPrisoners() {
  * not from a live database. They represent documented/verified entries.
  * 
  * Sources:
- * - Political prisoners: CECC database, HRW, Amnesty (62 documented in our database)
+ * - Political prisoners: CECC database, HRW, Amnesty (63 documented in our database)
  * - Detention facilities: ASPI Xinjiang Data Project estimates 380+ facilities;
  *   broader estimates by researchers suggest 1,000+ across all regions
  *   (Source: ASPI, https://xjdp.aspi.org.au/)

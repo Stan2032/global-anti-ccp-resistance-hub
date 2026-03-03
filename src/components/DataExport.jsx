@@ -6,7 +6,7 @@ const datasets = [
     id: 'prisoners',
     name: 'Political Prisoners Database',
     description: 'Documented cases of political detention including names, charges, sentences, and status',
-    records: 62,
+    records: 63,
     lastUpdated: '2026-02-26',
     fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
     Icon: Link2

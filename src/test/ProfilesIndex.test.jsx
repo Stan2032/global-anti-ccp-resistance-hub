@@ -76,6 +76,6 @@ describe('ProfilesIndex', () => {
   it('should link back to political prisoners database', () => {
     renderWithRouter(<ProfilesIndex />);
     expect(screen.getByText('Political Prisoners Database')).toBeTruthy();
-    expect(screen.getByText(/62 total cases in database/)).toBeTruthy();
+    expect(screen.getByText(/63 total cases in database/)).toBeTruthy();
   });
 });
