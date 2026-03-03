@@ -14,6 +14,8 @@ import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
+import Breadcrumbs from './components/Breadcrumbs'
+import BackToTop from './components/BackToTop'
 
 // Non-critical shell components — lazy loaded to reduce initial bundle
 const GlobalSearch = lazy(() => import('./components/GlobalSearch'));
@@ -323,6 +325,7 @@ function AppLayout() {
         
         {/* Page Content */}
         <div className="p-4 sm:p-6 lg:p-8">
+          <Breadcrumbs />
           <RouteErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
             <Routes>
@@ -421,6 +424,9 @@ function AppLayout() {
       <Suspense fallback={null}>
         <PWAInstallBanner />
       </Suspense>
+      
+      {/* Back to Top button */}
+      <BackToTop />
     </div>
   );
 }
