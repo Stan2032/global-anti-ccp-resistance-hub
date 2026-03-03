@@ -23,8 +23,8 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
       setFeeds([]);
       await fetchFeedsProgressively((newItems) => {
         setFeeds(prev => [...prev, ...newItems]);
-        setLastUpdated(new Date());
       });
+      setLastUpdated(new Date());
     } catch (err) {
       setError(err.message);
     } finally {

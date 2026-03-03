@@ -114,7 +114,7 @@ async function fetchViaRSS2JSON(feedUrl, sourceName) {
   const items = [];
   data.items.slice(0, 20).forEach((item, index) => {
     const title = item.title || '';
-    const description = (item.description || '').replace(/<[^>]*>/g, '');
+    const description = cleanHTML(item.description || '');
     const link = item.link || '';
     const pubDate = item.pubDate || '';
     
@@ -167,8 +167,8 @@ async function fetchRSSFeed(feedUrl, sourceName) {
   try {
     const items = await fetchViaRSS2JSON(feedUrl, sourceName);
     return items;
-  } catch (_e) {
-    // RSS2JSON failed, try fallback
+  } catch (e) {
+    console.warn(`RSS2JSON failed for ${sourceName}, trying CORS proxy:`, e.message);
   }
   
   // Strategy 2: CORS proxy
