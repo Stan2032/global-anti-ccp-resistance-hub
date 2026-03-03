@@ -125,6 +125,12 @@ describe('exportUtils', () => {
       expect(md).toContain('a\\|b');
     });
 
+    it('escapes backslash characters in values', () => {
+      const records = [{ desc: 'path\\to\\file' }];
+      const md = recordsToMarkdown(records);
+      expect(md).toContain('path\\\\to\\\\file');
+    });
+
     it('replaces newlines with spaces', () => {
       const records = [{ desc: 'line1\nline2' }];
       const md = recordsToMarkdown(records);

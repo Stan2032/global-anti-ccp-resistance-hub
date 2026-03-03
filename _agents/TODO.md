@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 3, 2026 (Session 176)
+> Last Updated: March 3, 2026 (Session 177)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -64,6 +64,7 @@
 - [x] **Remove all hashtags (Session 174)**: Per human request — hashtags are considered performative activism. Removed hashtags from: emergency_alerts.json (all 6 alerts), formatAlertForSharing() utility, ShareButtons.jsx (prop + display + Twitter URL param), QuickFacts.jsx (all 8 facts + clipboard + twitter text + usage tips), UrgentCaseTimer.jsx (all 4 cases + share text), CaseStudies.jsx (data + rendering), ActivistToolkit.jsx (Hashtag Guide → Social Media Guide), PrintableReport.jsx, TakeAction.jsx, ccpTactics.js, recent_news_research.json, PoliticalPrisoners.jsx, VictimStories.jsx, EventCalendar.jsx, IlhamTohtiProfile.jsx, JimmyLaiProfile.jsx, and 2 emergency alert detail texts. Share functionality preserved — just without hashtags. 20 files changed. Tests updated. 1999 tests (134 files, all passing).
 - [x] **Data hygiene + Alert sorting + Timer accessibility (Session 175)**: Taiwan PLA alert deactivated (expired 9 months ago). EmergencyAlerts now sorts by severity (critical → warning → info) so most urgent alerts always appear first. UrgentCaseTimer enhanced: added `role="timer"` + `aria-label` to all detention counters (both compact and full), added "Detained since" formatted date (e.g. "December 3, 2020") with Calendar icon. 6 new tests (severity sort, Taiwan exclusion, ARIA timer role, aria-labels, detained-since dates). 2005 tests (134 files, all passing).
 - [x] **LiveStatistics data→JSON + design fix (Session 176)**: Extracted 8 inline statistics from LiveStatistics.jsx → live_statistics.json (23rd JSON data file). Each statistic now has sourceUrl and lastVerified fields for data provenance. Fixed design system violation: source attribution text was text-slate-600 (below minimum), corrected to text-slate-400. ICON_MAP pattern resolves icon name strings to Lucide components. 13 new data validation tests (structure, uniqueness, URL safety, CCP source exclusion, CPC terminology check). 2018 tests (135 files, all passing).
+- [x] **Real data export for researchers (Session 177)**: DataExport component now exports REAL data from 7 JSON files (was placeholder text). New exportUtils.js with extractRecords() (handles results[].output, flat array, sanctions[] patterns), recordsToCsv() (proper CSV with escaping), recordsToMarkdown() (markdown tables with pipe escaping + truncation). Dataset record counts now dynamic from JSON. Confucius Institutes dataset removed (no separate JSON file — data is part of organizations). 25 new tests (unit + real data integration). 2043 tests (136 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -517,8 +518,8 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 176, Mar 3, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2018 tests (135 files, all passing)
+### Current State Summary (as of Session 177, Mar 3, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2043 tests (136 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized. Contrast overhaul: ALL decorative text-[#1c2a35] replaced with visible text-slate-600/700 (Session 168). ALL text-gray-* standardized to text-slate-* (Session 168). ALL readable labels upgraded from text-slate-500 to text-slate-400 across 72 files (Session 169). ALL top-level containers use space-y-8 (Session 169).
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Keyboard shortcuts for power users: `/` search, `?` help, `g+d/i/p/r/t/e/s` navigation (Session 164). Dashboard section jump navigation bar (Session 171). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Intelligence Feeds (Session 171):** Per-source progressive loading with real progress bar (X/9 sources). onSourceDone callback in fetchFeedsProgressively(). loadedSources tracking in useLiveFeeds hook. Dashboard intelligence overview now imports actual FEED_SOURCES (9 sources, was hardcoded 4).
@@ -538,7 +539,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2018 tests across 135 files.
+- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2043 tests across 136 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration).
 
 ---
 

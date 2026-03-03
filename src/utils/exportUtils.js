@@ -13,7 +13,7 @@ export function extractRecords(data) {
 
 /** Convert an array of objects to CSV string */
 export function recordsToCsv(records, fields) {
-  if (!records.length) return '';
+  if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);
   const escapeCsv = (val) => {
     const str = val == null ? '' : String(val);
@@ -24,17 +24,19 @@ export function recordsToCsv(records, fields) {
   return [headers.join(','), ...rows].join('\n');
 }
 
+const MAX_CELL_LENGTH = 100;
+
 /** Convert an array of objects to Markdown table */
 export function recordsToMarkdown(records, fields) {
-  if (!records.length) return '';
+  if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);
   const headerRow = `| ${headers.join(' | ')} |`;
   const separator = `| ${headers.map(() => '---').join(' | ')} |`;
   const rows = records.map(r =>
     `| ${headers.map(h => {
       const val = r[h];
-      const str = val == null ? '' : String(val).replace(/\|/g, '\\|').replace(/\n/g, ' ');
-      return str.length > 100 ? str.slice(0, 97) + '...' : str;
+      const str = val == null ? '' : String(val).replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+      return str.length > MAX_CELL_LENGTH ? str.slice(0, MAX_CELL_LENGTH - 3) + '...' : str;
     }).join(' | ')} |`
   );
   return [headerRow, separator, ...rows].join('\n');
