@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { 
   fetchFeedsProgressively, 
-  fetchAllFeeds, 
   fetchPoliticalPrisoners, 
   fetchStatistics,
   FEED_SOURCES 

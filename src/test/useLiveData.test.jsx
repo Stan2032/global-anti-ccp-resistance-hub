@@ -136,7 +136,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('provides a refresh function', async () => {
-      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, _onSourceDone) => {
         onItems([{ title: 'First fetch' }]);
       });
       const { result } = renderHook(() => useLiveFeeds(0));
@@ -145,7 +145,7 @@ describe('useLiveData hooks', () => {
       });
       expect(result.current.feeds).toEqual([{ title: 'First fetch' }]);
 
-      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, _onSourceDone) => {
         onItems([{ title: 'Refreshed data' }]);
       });
       await act(async () => {
