@@ -492,7 +492,7 @@ const SafetyChecklist = () => {
               setCheckedItems([]);
             }
           }}
-          className="text-xs text-slate-400 hover:text-slate-400"
+          className="text-xs text-slate-400 hover:text-slate-300"
         >
           Reset Progress
         </button>
