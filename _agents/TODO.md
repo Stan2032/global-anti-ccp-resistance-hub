@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 3, 2026 (Session 161)
+> Last Updated: March 3, 2026 (Session 162)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -507,13 +507,13 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 161, Mar 3, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 73 components (was 71), 1657 tests (111 files, all passing)
+### Current State Summary (as of Session 162, Mar 3, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 73 components, 1743 tests (117 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
 - **Usability (Sessions 160-161):** Emergency alerts collapse (top 2 shown, rest behind "show more"). QuickStartGuide is non-blocking toast (was full-screen modal). Duplicate hardcoded Jimmy Lai alert removed. Breadcrumbs auto-generated from URL. Back to Top button after 400px scroll.
-- **ESLint:** 0 errors, 0 warnings (was 0+4). LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
+- **ESLint:** 0 errors, 0 warnings. LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
@@ -525,7 +525,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks, key components tested. Mobile nav tested. Emergency alerts tested (19 tests incl expiry + collapse). QuickStartGuide, ProtectedRoute, CaseStudies, WorldThreatMap, SearchWrapper, BackToTop, Breadcrumbs tested (Session 161). ~15 untested components remain. 1657 tests across 111 files.
+- **Test Coverage:** All 21 JSON data files, all 4 Supabase forms, all 4 hooks, key components tested. Mobile nav tested. Emergency alerts tested (19 tests incl expiry + collapse). Session 161: QuickStartGuide, ProtectedRoute, CaseStudies, WorldThreatMap, SearchWrapper, BackToTop, Breadcrumbs. Session 162: VictimStories, WitnessProtection, SourceVerification, HistoricalDocuments, IPACMembers, MediaManipulation. ~9 untested components remain. 1743 tests across 117 files.
 
 ---
 

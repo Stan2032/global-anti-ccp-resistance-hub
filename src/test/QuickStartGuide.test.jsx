@@ -26,8 +26,8 @@ beforeEach(() => {
   // Default: getItem returns null (simulates fresh user with no localStorage data).
   // Tests that need specific values override with mockImplementation.
   mockLocalStorage.getItem.mockImplementation(() => null);
-  mockLocalStorage.setItem.mockImplementation((key, value) => {});
-  mockLocalStorage.removeItem.mockImplementation((key) => {});
+  mockLocalStorage.setItem.mockImplementation((_key, _value) => {});
+  mockLocalStorage.removeItem.mockImplementation((_key) => {});
   Object.defineProperty(window, 'localStorage', { value: mockLocalStorage, writable: true });
 });
 
@@ -90,7 +90,7 @@ describe('QuickStartGuide', () => {
   });
 
   it('dismisses guide when close is clicked', () => {
-    const { container } = renderGuide();
+    renderGuide();
     fireEvent.click(screen.getByText(/close/));
     // Should save dismissal to localStorage
     expect(mockLocalStorage.setItem).toHaveBeenCalledWith('quickStartDismissed', 'true');
