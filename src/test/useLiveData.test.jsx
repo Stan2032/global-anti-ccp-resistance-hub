@@ -40,8 +40,9 @@ describe('useLiveData hooks', () => {
         { title: 'Hong Kong activist arrested', source: 'HKFP' },
         { title: 'Sanctions update', source: 'RFA' },
       ];
-      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
         onItems(mockFeeds);
+        if (onSourceDone) onSourceDone('hkfp');
       });
 
       const { result } = renderHook(() => useLiveFeeds(0)); // no refresh interval
@@ -59,9 +60,11 @@ describe('useLiveData hooks', () => {
     it('accumulates feeds progressively from multiple sources', async () => {
       const hkfpItems = [{ title: 'HK article', source: 'hkfp' }];
       const rfaItems = [{ title: 'RFA article', source: 'rfa' }];
-      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
         onItems(hkfpItems);
+        if (onSourceDone) onSourceDone('hkfp');
         onItems(rfaItems);
+        if (onSourceDone) onSourceDone('rfa');
       });
 
       const { result } = renderHook(() => useLiveFeeds(0));
@@ -71,6 +74,45 @@ describe('useLiveData hooks', () => {
 
       expect(result.current.feeds).toHaveLength(2);
       expect(result.current.feeds).toEqual([...hkfpItems, ...rfaItems]);
+    });
+
+    it('tracks loadedSources as each source completes', async () => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
+        onItems([{ title: 'Article', source: 'hkfp' }]);
+        if (onSourceDone) onSourceDone('hkfp');
+        if (onSourceDone) onSourceDone('rfa');
+      });
+
+      const { result } = renderHook(() => useLiveFeeds(0));
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(0);
+      });
+
+      expect(result.current.loadedSources).toBeInstanceOf(Set);
+      expect(result.current.loadedSources.has('hkfp')).toBe(true);
+      expect(result.current.loadedSources.has('rfa')).toBe(true);
+    });
+
+    it('resets loadedSources on refresh', async () => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
+        if (onSourceDone) onSourceDone('hkfp');
+      });
+
+      const { result } = renderHook(() => useLiveFeeds(0));
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(0);
+      });
+      expect(result.current.loadedSources.has('hkfp')).toBe(true);
+
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
+        if (onSourceDone) onSourceDone('rfa');
+      });
+      await act(async () => {
+        await result.current.refresh();
+      });
+
+      expect(result.current.loadedSources.has('hkfp')).toBe(false);
+      expect(result.current.loadedSources.has('rfa')).toBe(true);
     });
 
     it('handles fetch errors', async () => {
@@ -94,7 +136,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('provides a refresh function', async () => {
-      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
         onItems([{ title: 'First fetch' }]);
       });
       const { result } = renderHook(() => useLiveFeeds(0));
@@ -103,7 +145,7 @@ describe('useLiveData hooks', () => {
       });
       expect(result.current.feeds).toEqual([{ title: 'First fetch' }]);
 
-      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+      fetchFeedsProgressively.mockImplementation(async (onItems, onSourceDone) => {
         onItems([{ title: 'Refreshed data' }]);
       });
       await act(async () => {

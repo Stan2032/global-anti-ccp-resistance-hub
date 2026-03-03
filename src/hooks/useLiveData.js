@@ -15,15 +15,22 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [loadedSources, setLoadedSources] = useState(new Set());
 
   const refresh = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       setFeeds([]);
-      await fetchFeedsProgressively((newItems) => {
-        setFeeds(prev => [...prev, ...newItems]);
-      });
+      setLoadedSources(new Set());
+      await fetchFeedsProgressively(
+        (newItems) => {
+          setFeeds(prev => [...prev, ...newItems]);
+        },
+        (sourceName) => {
+          setLoadedSources(prev => new Set([...prev, sourceName]));
+        }
+      );
       setLastUpdated(new Date());
     } catch (err) {
       setError(err.message);
@@ -41,7 +48,7 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
     }
   }, [refresh, refreshInterval]);
 
-  return { feeds, loading, error, lastUpdated, refresh, sources: FEED_SOURCES };
+  return { feeds, loading, error, lastUpdated, refresh, sources: FEED_SOURCES, loadedSources };
 }
 
 /**

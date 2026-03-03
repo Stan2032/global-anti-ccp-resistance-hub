@@ -207,13 +207,17 @@ export async function fetchAllFeeds() {
 
 /**
  * Fetch feeds progressively — calls onItems(items) as each source finishes.
- * This allows the UI to show articles as they arrive instead of waiting for all sources.
+ * Also calls onSourceDone(sourceName) when each source completes (even if 0 items).
+ * This allows the UI to show articles as they arrive and track per-source progress.
  */
-export async function fetchFeedsProgressively(onItems) {
+export async function fetchFeedsProgressively(onItems, onSourceDone) {
   const feedPromises = Object.entries(RSS_FEEDS).map(async ([name, url]) => {
     const items = await fetchRSSFeed(url, name);
     if (items.length > 0) {
       onItems(items);
+    }
+    if (onSourceDone) {
+      onSourceDone(name);
     }
     return items;
   });
