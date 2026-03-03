@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Building2, Target, Link2, AlertTriangle, Zap, Radio, Megaphone, Lock, BookOpen, MessageSquare, Mail, Monitor, Shield } from 'lucide-react';
 import { useStatistics } from '../hooks/useLiveData';
+import { FEED_SOURCES } from '../services/liveDataService';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8">
@@ -149,7 +150,7 @@ const Dashboard = () => {
           <div className="p-4">
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="bg-[#0a0e14] p-4 text-center border border-[#1c2a35]">
-                <div className="text-2xl font-bold text-[#22d3ee] font-mono">4</div>
+                <div className="text-2xl font-bold text-[#22d3ee] font-mono">{Object.keys(FEED_SOURCES).length}</div>
                 <div className="text-xs text-slate-400 font-mono">verified_sources</div>
               </div>
               <div className="bg-[#0a0e14] p-4 text-center border border-[#1c2a35]">
@@ -158,16 +159,11 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="space-y-1">
-              {[
-                'ASPI - Australian Strategic Policy Institute',
-                'ICIJ - Investigative Journalists',
-                'Radio Free Asia',
-                'Hong Kong Free Press'
-              ].map((source, i) => (
+              {Object.values(FEED_SOURCES).map((source, i) => (
                 <div key={i} className="flex items-center gap-2 p-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
                   <span className="text-slate-600 font-mono text-xs select-none" aria-hidden="true">▸</span>
                   <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
-                  <span className="text-sm text-slate-300 font-mono">{source}</span>
+                  <span className="text-sm text-slate-300 font-mono">{source.name}</span>
                 </div>
               ))}
             </div>
@@ -209,26 +205,26 @@ const Dashboard = () => {
       </div>
 
       {/* ─── Recent Activity ───────────────────────────────────── */}
-      <div>
-        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+      <section id="recent-updates" aria-labelledby="recent-updates-heading">
+        <h2 id="recent-updates-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Recent Updates
         </h2>
         <Suspense fallback={<SectionLoader />}><RecentUpdates /></Suspense>
-      </div>
+      </section>
 
       {/* ─── Live News ─────────────────────────────────────────── */}
-      <div>
-        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+      <section id="live-news" aria-labelledby="live-news-heading">
+        <h2 id="live-news-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Live News
         </h2>
         <div className="bg-[#111820] border border-[#1c2a35] p-6">
           <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
         </div>
-      </div>
+      </section>
 
       {/* ─── Essential Security Tools ──────────────────────────── */}
-      <div>
-        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+      <section id="security-tools" aria-labelledby="security-tools-heading">
+        <h2 id="security-tools-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Security Tools
         </h2>
         <div className="bg-[#111820] border border-[#1c2a35] p-6">
@@ -257,23 +253,23 @@ const Dashboard = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ─── Live Statistics ───────────────────────────────────── */}
-      <div>
-        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+      <section id="statistics" aria-labelledby="statistics-heading">
+        <h2 id="statistics-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Statistics
         </h2>
         <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
-      </div>
+      </section>
 
       {/* ─── News Digest ───────────────────────────────────────── */}
-      <div>
-        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+      <section id="news-digest" aria-labelledby="news-digest-heading">
+        <h2 id="news-digest-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> News Digest
         </h2>
         <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
-      </div>
+      </section>
 
       {/* Footer */}
       <div className="text-center text-slate-500 text-sm py-4 font-mono border-t border-[#1c2a35] mt-4">
