@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 3, 2026 (Session 166)
+> Last Updated: March 3, 2026 (Session 167)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -55,6 +55,7 @@
 - [x] **Dashboard usability (Session 160)**: Emergency alerts collapse after 2 (show more button), QuickStartGuide converted from blocking modal to non-blocking bottom-right toast, removed duplicate hardcoded Jimmy Lai alert.
 - [x] **Breadcrumbs + Back to Top (Session 161)**: Auto-generated breadcrumb navigation on all sub-pages (e.g., `home > Profiles > Jimmy Lai`). Back to Top floating button appears after 400px scroll. 61 new tests for 7 components (BackToTop, Breadcrumbs, QuickStartGuide, ProtectedRoute, CaseStudies, WorldThreatMap, SearchWrapper).
 - [x] **RecentUpdates changelog (Session 166)**: Dashboard widget showing chronological feed of 12 verified data changes (new cases, sanctions, case updates, reports). Category badges (ALERT, DATA, VERIFIED, CASE, NEW, REPORT), "show more" pattern (5 initially), links to related pages. New `recent_updates.json` data file (22nd JSON). 25 tests. Replaced auto-generated RecentActivity with curated editorial approach.
+- [x] **Region filter tabs on Profiles page (Session 167)**: Filter profiles by Hong Kong (6), Mainland China (5), Uyghur & Tibet (3), Cross-Border (1). Accessible tablist/tabpanel with counts and aria-selected state. Dual Session 166 discrepancy fixed (test count 1933→1936). 11 new filter tests (1947 total).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -508,25 +509,25 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 166, Mar 3, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 77 components, 1936 tests (132 files, all passing)
+### Current State Summary (as of Session 167, Mar 3, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 77 components, 1947 tests (132 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Keyboard shortcuts for power users: `/` search, `?` help, `g+d/i/p/r/t/e/s` navigation (Session 164). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
-- **Usability (Sessions 160-166):** Emergency alerts collapse (top 2 shown, rest behind "show more"). QuickStartGuide is non-blocking toast (was full-screen modal). Duplicate hardcoded Jimmy Lai alert removed. Breadcrumbs auto-generated from URL. Back to Top button after 400px scroll. Keyboard shortcuts with `?` help modal (Session 164). PrintableReport component for offline activist distribution (Session 165). RecentUpdates changelog widget on Dashboard — chronological feed of 12 verified data changes with category badges, show-more pattern, and links to related pages (Session 166).
+- **Usability (Sessions 160-167):** Emergency alerts collapse (top 2 shown, rest behind "show more"). QuickStartGuide is non-blocking toast (was full-screen modal). Duplicate hardcoded Jimmy Lai alert removed. Breadcrumbs auto-generated from URL. Back to Top button after 400px scroll. Keyboard shortcuts with `?` help modal (Session 164). PrintableReport component for offline activist distribution (Session 165). RecentUpdates changelog widget on Dashboard — chronological feed of 12 verified data changes with category badges, show-more pattern, and links to related pages (Session 166). Region filter tabs on Profiles page: Hong Kong (6), Mainland China (5), Uyghur & Tibet (3), Cross-Border (1) with accessible tablist/tabpanel, counts, and instant filtering (Session 167).
 - **ESLint:** 0 errors, 0 warnings. LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147).
 - **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
 - **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
 - **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast.
 - **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed. Supabase Auth: login/logout/admin check (Session 157). Service_role key detection guard (Session 158).
 - **Bundle:** Main bundle 308KB (99KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
-- **Profile Pages:** 15/15 built (0 coming soon)
+- **Profile Pages:** 15/15 built (0 coming soon). Region filter tabs: Hong Kong, Mainland China, Uyghur & Tibet, Cross-Border (Session 167).
 - **Data:** 63 political prisoners (incl Kwok Yin-sang), 47 sanctioned entities, 34 officials, 30 forced labor companies, 155+ total entries. All data→JSON migrations complete. 22 total JSON data files (incl recent_updates.json). EmergencyAlerts: 6 alerts with auto-expiry (incl Joshua Wong Mar 6 hearing alert, Session 164). Joshua Wong profile updated through Feb 2026 appeal dismissal. 25 recent news items. 12 centralized statistics (incl HK NSL arrests, UFLPA entity list). Political prisoners count updated to 63 across all components (Session 165).
 - **Content:** Sanctions verified current as of Mar 2026. Joshua Wong HK47 appeal dismissed Feb 2026, new foreign collusion charge ongoing (next hearing Mar 6, 2026). Joshua Wong hearing CRITICAL alert added (Session 164). Kwok Yin-sang case added (first family prosecution under Art 23). Gao Zhisheng profile enriched with wife's Capitol Hill appeal Aug 2025. UN forced labor report Jan 2026 added to news.
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** ALL 77 components tested. All 22 JSON data files, all 4 Supabase forms, all 5 hooks tested. Session 166 added RecentUpdates component + 25 tests. 0 untested components remain. 1936 tests across 132 files.
+- **Test Coverage:** ALL 77 components tested. All 22 JSON data files, all 4 Supabase forms, all 5 hooks tested. Session 167 added 11 region filter tests to ProfilesIndex. 0 untested components remain. 1947 tests across 132 files.
 
 ---
 

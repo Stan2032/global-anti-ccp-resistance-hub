@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   User, Clock, Scale, AlertTriangle, ExternalLink,
-  ArrowRight, Heart, MapPin, Calendar
+  ArrowRight, Heart, MapPin, Calendar, Filter
 } from 'lucide-react';
 
 const PROFILES = [
@@ -17,6 +17,7 @@ const PROFILES = [
     role: 'Media Entrepreneur & Publisher',
     summary: 'Founder of Apple Daily newspaper. Arrested under the National Security Law for his pro-democracy journalism.',
     location: 'Stanley Prison, Hong Kong',
+    region: 'hong-kong',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-red-500',
@@ -34,6 +35,7 @@ const PROFILES = [
     role: 'Uyghur Economist & Professor',
     summary: 'Advocate for Han-Uyghur dialogue, sentenced to life for "separatism" despite promoting ethnic harmony.',
     location: 'Urumqi Prison, Xinjiang',
+    region: 'uyghur-tibet',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-cyan-500',
@@ -51,6 +53,7 @@ const PROFILES = [
     role: '11th Panchen Lama',
     summary: 'Second-highest Tibetan Buddhist leader. Abducted by the CCP at age 6, the world\'s youngest political prisoner.',
     location: 'Unknown — enforced disappearance since 1995',
+    region: 'uyghur-tibet',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-[#22d3ee]',
@@ -69,6 +72,7 @@ const PROFILES = [
     role: 'Nobel Peace Prize Laureate',
     summary: 'Author of Charter 08. First Nobel laureate to die in state custody since Carl von Ossietzky in 1938.',
     location: 'Died in custody — July 13, 2017',
+    region: 'mainland',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-yellow-500',
@@ -86,6 +90,7 @@ const PROFILES = [
     role: 'Pro-Democracy Activist',
     summary: 'Founded Scholarism at 14. Sentenced in the Hong Kong 47 case, now facing life on new NSL charge.',
     location: 'Prison, Hong Kong',
+    region: 'hong-kong',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-yellow-500',
@@ -103,6 +108,7 @@ const PROFILES = [
     role: 'Publisher & Swedish Citizen',
     summary: 'Abducted from Thailand in 2015 for publishing books critical of CCP leaders. Swedish citizenship revoked under duress.',
     location: 'Unknown prison, China',
+    region: 'cross-border',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-[#22d3ee]',
@@ -120,6 +126,7 @@ const PROFILES = [
     role: 'Citizen Journalist',
     summary: 'Jailed for reporting on COVID-19 outbreak in Wuhan. Sentenced again in 2025 after initial release.',
     location: 'Prison, China',
+    region: 'mainland',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-slate-500',
@@ -137,6 +144,7 @@ const PROFILES = [
     role: 'Human Rights Lawyer',
     summary: 'Named top 10 lawyer by Ministry of Justice in 2001, then convicted for defending Falun Gong practitioners. Disappeared August 2017.',
     location: 'Unknown',
+    region: 'mainland',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-[#22d3ee]',
@@ -154,6 +162,7 @@ const PROFILES = [
     role: 'Pro-Democracy Activist, Former Legislator',
     summary: 'Co-founder of Demosistō and youngest legislator in Hong Kong history. Fled to London after the National Security Law was imposed. HK$1 million bounty offered for his arrest.',
     location: 'London, UK (exile)',
+    region: 'hong-kong',
     themeGradient: 'from-yellow-900/30 to-[#0a0e14]',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-yellow-500',
@@ -171,6 +180,7 @@ const PROFILES = [
     role: 'Bishop Emeritus of Hong Kong, Cardinal',
     summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees. Convicted under the Societies Ordinance. NSL charge remains under review.',
     location: 'Hong Kong',
+    region: 'hong-kong',
     themeGradient: 'from-amber-900/30 to-[#0a0e14]',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-amber-500',
@@ -188,6 +198,7 @@ const PROFILES = [
     role: 'Law Professor & Democracy Advocate',
     summary: 'Associate Professor at HKU for 30 years. Organized pro-democracy primary elections. Received the longest sentence in the Hong Kong 47 case.',
     location: 'Prison, Hong Kong',
+    region: 'hong-kong',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-red-500',
@@ -205,6 +216,7 @@ const PROFILES = [
     role: 'Pro-Democracy Activist',
     summary: 'Former Demosistō member. Served prison sentence, then fled to Canada in December 2023 rather than comply with NSL bail conditions.',
     location: 'Toronto, Canada (exile)',
+    region: 'hong-kong',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-yellow-500',
@@ -222,6 +234,7 @@ const PROFILES = [
     role: 'Tibetan Language Rights Advocate',
     summary: 'Imprisoned for 5 years for advocating Tibetan language education through legal channels. Featured in a NYT documentary. Released 2021, under surveillance.',
     location: 'Yushu, Qinghai Province, China',
+    region: 'uyghur-tibet',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-cyan-500',
@@ -239,6 +252,7 @@ const PROFILES = [
     role: 'Real Estate Tycoon & Former CCP Member',
     summary: 'CCP insider sentenced to 18 years on corruption charges after publishing an essay criticizing Xi Jinping\'s COVID-19 response.',
     location: 'Prison, China',
+    region: 'mainland',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-red-500',
@@ -256,12 +270,21 @@ const PROFILES = [
     role: 'Legal Scholar & Civil Rights Advocate',
     summary: 'Founder of the New Citizens Movement. Sentenced to 14 years for "subversion of state power" after peacefully advocating government transparency.',
     location: 'Prison, China',
+    region: 'mainland',
     themeGradient: '',
     themeBorder: 'border-[#1c2a35]',
     themeLeftBorder: 'border-l-emerald-500',
     themeAccent: 'text-emerald-400',
     built: true,
   },
+];
+
+const REGION_FILTERS = [
+  { id: 'all', label: 'All Profiles' },
+  { id: 'hong-kong', label: 'Hong Kong' },
+  { id: 'mainland', label: 'Mainland China' },
+  { id: 'uyghur-tibet', label: 'Uyghur & Tibet' },
+  { id: 'cross-border', label: 'Cross-Border' },
 ];
 
 const statusStyles = {
@@ -338,8 +361,12 @@ const ProfileCard = ({ profile }) => {
 };
 
 const ProfilesIndex = () => {
+  const [activeRegion, setActiveRegion] = useState('all');
   const builtProfiles = PROFILES.filter(p => p.built);
   const upcomingProfiles = PROFILES.filter(p => !p.built);
+  const filteredProfiles = activeRegion === 'all'
+    ? builtProfiles
+    : builtProfiles.filter(p => p.region === activeRegion);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -369,13 +396,44 @@ const ProfilesIndex = () => {
         </div>
       </div>
 
+      {/* Region Filter Tabs */}
+      <div className="mb-6" role="tablist" aria-label="Filter profiles by region">
+        <div className="flex flex-wrap gap-2">
+          {REGION_FILTERS.map((filter) => {
+            const count = filter.id === 'all'
+              ? builtProfiles.length
+              : builtProfiles.filter(p => p.region === filter.id).length;
+            const isActive = activeRegion === filter.id;
+            return (
+              <button
+                key={filter.id}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="profiles-grid"
+                onClick={() => setActiveRegion(filter.id)}
+                className={`px-3 py-1.5 text-sm font-mono transition-colors ${
+                  isActive
+                    ? 'bg-[#4afa82]/10 text-[#4afa82] border border-[#4afa82]/30'
+                    : 'bg-[#111820] text-slate-400 border border-[#1c2a35] hover:text-white hover:border-slate-500'
+                }`}
+              >
+                {filter.label} <span className="text-xs opacity-70">({count})</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Built Profiles */}
-      <section className="mb-10" aria-label="Available profiles">
+      <section className="mb-10" aria-label="Available profiles" id="profiles-grid" role="tabpanel">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {builtProfiles.map((profile) => (
+          {filteredProfiles.map((profile) => (
             <ProfileCard key={profile.name} profile={profile} />
           ))}
         </div>
+        {filteredProfiles.length === 0 && (
+          <p className="text-slate-500 text-center py-8 font-mono">No profiles match this filter.</p>
+        )}
       </section>
 
       {/* Upcoming Profiles */}
