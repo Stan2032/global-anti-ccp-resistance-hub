@@ -99,6 +99,25 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Section Jump Navigation */}
+      <nav aria-label="Dashboard sections" className="flex flex-wrap gap-2 font-mono text-xs">
+        {[
+          { id: 'recent-updates', label: 'Updates' },
+          { id: 'live-news', label: 'News' },
+          { id: 'security-tools', label: 'Security' },
+          { id: 'statistics', label: 'Stats' },
+          { id: 'news-digest', label: 'Digest' },
+        ].map(section => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className="px-3 py-1.5 bg-[#111820] border border-[#1c2a35] text-slate-400 hover:text-[#4afa82] hover:border-[#2a9a52] transition-colors"
+          >
+            {section.label}
+          </a>
+        ))}
+      </nav>
+
       {/* Stats Grid — terminal data display */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((stat, index) => (

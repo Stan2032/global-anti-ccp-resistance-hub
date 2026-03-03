@@ -151,7 +151,8 @@ describe('Dashboard', () => {
   it('renders all 3 quick action buttons', () => {
     renderDashboard();
     expect(screen.getByText('Take Action')).toBeTruthy();
-    expect(screen.getByText('Security')).toBeTruthy();
+    // "Security" appears in both quick actions and jump nav — use getAllByText
+    expect(screen.getAllByText('Security').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Education')).toBeTruthy();
   });
 
@@ -210,5 +211,19 @@ describe('Dashboard', () => {
       const headingId = section.getAttribute('aria-labelledby');
       expect(section.querySelector(`#${headingId}`)).toBeTruthy();
     });
+  });
+
+  it('renders section jump navigation with anchor links', () => {
+    renderDashboard();
+    const nav = screen.getByLabelText('Dashboard sections');
+    expect(nav).toBeTruthy();
+    const links = nav.querySelectorAll('a');
+    expect(links.length).toBe(5);
+    const hrefs = Array.from(links).map(l => l.getAttribute('href'));
+    expect(hrefs).toContain('#recent-updates');
+    expect(hrefs).toContain('#live-news');
+    expect(hrefs).toContain('#security-tools');
+    expect(hrefs).toContain('#statistics');
+    expect(hrefs).toContain('#news-digest');
   });
 });
