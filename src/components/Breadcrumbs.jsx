@@ -64,7 +64,7 @@ const Breadcrumbs = () => {
         </li>
         {crumbs.map((crumb) => (
           <li key={crumb.path} className="flex items-center gap-1">
-            <ChevronRight className="w-3 h-3 text-[#1c2a35]" aria-hidden="true" />
+            <ChevronRight className="w-3 h-3 text-slate-600" aria-hidden="true" />
             {crumb.isLast ? (
               <span className="text-slate-300" aria-current="page">{crumb.label}</span>
             ) : (

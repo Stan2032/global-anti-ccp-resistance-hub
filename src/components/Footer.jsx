@@ -37,7 +37,7 @@ const Footer = () => {
     <footer className="bg-[#0a0e14] border-t border-[#1c2a35] mt-12">
       {/* ASCII top border */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="font-mono text-[#1c2a35] text-xs py-2 select-none overflow-hidden" aria-hidden="true">
+        <div className="font-mono text-slate-700 text-xs py-2 select-none overflow-hidden" aria-hidden="true">
           ╔{'═'.repeat(80)}╗
         </div>
       </div>
@@ -48,7 +48,7 @@ const Footer = () => {
           {/* Platform Links */}
           <div>
             <h3 className="font-mono text-[#4afa82] font-semibold mb-4 text-sm">
-              <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>platform
+              <span className="text-slate-700 mr-1" aria-hidden="true">│</span>platform
             </h3>
             <ul className="space-y-2">
               {footerLinks.platform.map(link => (
@@ -67,7 +67,7 @@ const Footer = () => {
           {/* Resources Links */}
           <div>
             <h3 className="font-mono text-[#4afa82] font-semibold mb-4 text-sm">
-              <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>resources
+              <span className="text-slate-700 mr-1" aria-hidden="true">│</span>resources
             </h3>
             <ul className="space-y-2">
               {footerLinks.resources.map(link => (
@@ -86,7 +86,7 @@ const Footer = () => {
           {/* Partner Organizations */}
           <div>
             <h3 className="font-mono text-[#4afa82] font-semibold mb-4 text-sm">
-              <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>organizations
+              <span className="text-slate-700 mr-1" aria-hidden="true">│</span>organizations
             </h3>
             <ul className="space-y-2">
               {footerLinks.organizations.map(link => (
@@ -97,7 +97,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="text-slate-400 hover:text-[#4afa82] text-sm transition-colors font-mono"
                   >
-                    {link.name} <span className="text-[#1c2a35]">↗</span>
+                    {link.name} <span className="text-slate-700">↗</span>
                   </a>
                 </li>
               ))}
@@ -208,7 +208,7 @@ const Footer = () => {
               content: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="hover:text-[#4afa82]">CC BY 4.0</a> | 
               code: <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" className="hover:text-[#4afa82]">MIT</a>
             </p>
-            <p className="mt-2 text-[#1c2a35] text-xs select-none" aria-hidden="true">
+            <p className="mt-2 text-slate-700 text-xs select-none" aria-hidden="true">
               光復香港 • 時代革命 • Free Tibet • Free Uyghurs • Stand with Taiwan
             </p>
             <p className="sr-only">
@@ -220,7 +220,7 @@ const Footer = () => {
 
       {/* ASCII bottom border */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="font-mono text-[#1c2a35] text-xs pb-2 select-none overflow-hidden" aria-hidden="true">
+        <div className="font-mono text-slate-700 text-xs pb-2 select-none overflow-hidden" aria-hidden="true">
           ╚{'═'.repeat(80)}╝
         </div>
       </div>

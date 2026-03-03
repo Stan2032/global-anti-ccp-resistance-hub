@@ -27,7 +27,7 @@ const PWAInstallBanner = lazy(() => import('./components/PWAInstallBanner'));
 // Loading component — terminal style
 const LoadingScreen = () => (
   <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono">
-    <pre className="text-[#1c2a35] text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
+    <pre className="text-slate-700 text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
 ┌──────────────────────────────────────┐
 │                                      │
 │   ██████╗ ██████╗ ██╗  ██╗          │
@@ -374,7 +374,7 @@ function AppLayout() {
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center max-w-lg">
-                    <pre className="font-mono text-[#1c2a35] text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
+                    <pre className="font-mono text-slate-700 text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
 ┌─────────────────────────────────────┐
 │  ███╗   ██╗ ██████╗ ████████╗      │
 │  ████╗  ██║██╔═══██╗╚══██╔══╝      │
