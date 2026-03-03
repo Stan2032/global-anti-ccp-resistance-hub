@@ -228,7 +228,7 @@ const ResistanceResources = () => {
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {emergencyContacts.map(contact => (
-            <div key={contact.name} className="bg-[#111820]/50 p-4">
+            <div key={contact.name} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
               <h3 className="font-bold text-white text-sm mb-1">{contact.name}</h3>
               <p className="text-xs text-slate-400 mb-2">{contact.description}</p>
               {contact.phone && (

@@ -243,7 +243,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
       aria-label={`Details for ${prisoner.name}`}
     >
       <div
-        className="bg-[#111820] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         <div className="p-6">
@@ -525,14 +525,14 @@ const PoliticalPrisoners = () => {
         </div>
         
         {/* Resources */}
-        <div className="mt-12 bg-[#111820] p-6">
+        <div className="mt-12 bg-[#111820] border border-[#1c2a35] p-6">
           <h2 className="text-xl font-bold text-white mb-4">Additional Resources</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <a
               href="https://www.cecc.gov/resources/political-prisoner-database"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#0a0e14] p-4 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
             >
               <h3 className="text-white font-semibold">CECC Database</h3>
               <p className="text-slate-400 text-sm">US Congressional database of 10,000+ political prisoners</p>
@@ -541,7 +541,7 @@ const PoliticalPrisoners = () => {
               href="https://duihua.org/resources/political-prisoners-database/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#0a0e14] p-4 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
             >
               <h3 className="text-white font-semibold">Dui Hua Foundation</h3>
               <p className="text-slate-400 text-sm">50,000+ prisoner records since 1980</p>
@@ -550,7 +550,7 @@ const PoliticalPrisoners = () => {
               href="https://shahit.biz/eng/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
+              className="bg-[#1c2a35] hover:bg-[#0a0e14] p-4 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
             >
               <h3 className="text-white font-semibold">Xinjiang Victims Database</h3>
               <p className="text-slate-400 text-sm">35,000+ documented Uyghur detainees</p>
