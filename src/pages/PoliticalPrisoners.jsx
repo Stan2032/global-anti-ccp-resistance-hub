@@ -4,6 +4,7 @@ import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
+import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
 
 // Map prisoner names to their detailed profile page paths
@@ -119,6 +120,12 @@ const mapJsonToComponentFormat = (jsonResults) => {
 
 // Convert JSON data to component format
 const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData.results);
+
+// Find most recent verification date across all prisoners
+const LATEST_VERIFIED = politicalPrisonersData.results.reduce((latest, item) => {
+  const d = item.output?.sources?.last_verified;
+  return d && d > latest ? d : latest;
+}, '');
 
 // Legacy hardcoded data removed — all prisoner data now sourced from
 // political_prisoners_research.json (60 entries, 100% source attribution)
@@ -407,10 +414,11 @@ const PoliticalPrisoners = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Political Prisoners</h1>
-          <p className="text-slate-400">
+          <p className="text-slate-400 mb-2">
             Documenting individuals detained by the CCP for their beliefs, speech, or peaceful activism.
             These cases represent only a fraction of the thousands held in China's prisons and detention facilities.
           </p>
+          {LATEST_VERIFIED && <DataFreshnessIndicator lastVerified={LATEST_VERIFIED} compact />}
         </div>
         
         {/* Detention Timers */}

@@ -128,4 +128,27 @@ describe('Emergency Alerts data integrity', () => {
       }
     }
   });
+
+  it('hashtags field is an array of strings when present', () => {
+    for (const alert of data) {
+      if (alert.hashtags) {
+        expect(Array.isArray(alert.hashtags)).toBe(true);
+        for (const tag of alert.hashtags) {
+          expect(typeof tag).toBe('string');
+          expect(tag).not.toContain('#');
+          expect(tag).not.toContain(' ');
+        }
+      }
+    }
+  });
+
+  it('eventDate field is valid ISO date format when present', () => {
+    for (const alert of data) {
+      if (alert.eventDate) {
+        expect(alert.eventDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        const parsed = new Date(alert.eventDate);
+        expect(parsed.toString()).not.toBe('Invalid Date');
+      }
+    }
+  });
 });

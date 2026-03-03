@@ -1,6 +1,6 @@
 /**
- * Date utilities for age calculation, date formatting, and event countdowns.
- * Used by profile pages, ProfilesIndex, and EventCountdown.
+ * Date utilities for age calculation, date formatting, event countdowns, and sharing.
+ * Used by profile pages, ProfilesIndex, EventCountdown, EmergencyAlerts, and DataFreshnessIndicator.
  */
 
 /**
@@ -64,4 +64,56 @@ export function calculateTimeLeft(eventDate) {
   const seconds = totalSeconds % 60;
   
   return { days, hours, minutes, seconds, isPast: false, isToday: false };
+}
+
+/**
+ * Format an emergency alert for sharing on social media.
+ * Generates optimized text with hashtags for Twitter/X, Telegram, etc.
+ *
+ * @param {{ title: string, summary: string, hashtags?: string[], links?: Array<{url: string}> }} alert - Alert object
+ * @returns {string} Formatted share text
+ */
+export function formatAlertForSharing(alert) {
+  if (!alert) return '';
+  const lines = [];
+  lines.push(`🚨 ${alert.title}`);
+  if (alert.summary) lines.push(`\n${alert.summary}`);
+  if (alert.links && alert.links.length > 0) {
+    lines.push(`\n🔗 ${alert.links[0].url}`);
+  }
+  if (alert.hashtags && alert.hashtags.length > 0) {
+    lines.push(`\n${alert.hashtags.map(h => `#${h}`).join(' ')}`);
+  }
+  return lines.join('');
+}
+
+/**
+ * Calculate days since a date string (YYYY-MM-DD).
+ * Returns 0 for today, negative for future dates.
+ *
+ * @param {string} dateStr - Date in YYYY-MM-DD format
+ * @returns {number} Days since the date (0 = today)
+ */
+export function daysSince(dateStr) {
+  if (!dateStr) return Infinity;
+  const now = new Date();
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const target = new Date(y, m - 1, d);
+  const diffMs = now.getTime() - target.getTime();
+  return Math.floor(diffMs / 86400000);
+}
+
+/**
+ * Format days since into a human-readable "freshness" label.
+ *
+ * @param {string} dateStr - Date in YYYY-MM-DD format
+ * @returns {{ label: string, level: 'fresh'|'recent'|'stale' }}
+ */
+export function getFreshnessInfo(dateStr) {
+  const days = daysSince(dateStr);
+  if (days <= 0) return { label: 'Verified today', level: 'fresh' };
+  if (days === 1) return { label: 'Verified yesterday', level: 'fresh' };
+  if (days <= 7) return { label: `Verified ${days} days ago`, level: 'fresh' };
+  if (days <= 30) return { label: `Verified ${days} days ago`, level: 'recent' };
+  return { label: `Verified ${days} days ago`, level: 'stale' };
 }

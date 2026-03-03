@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
-import { calculateAge } from '../utils/dateUtils';
+import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
+import { calculateAge, formatAlertForSharing, daysSince, getFreshnessInfo } from '../utils/dateUtils';
 
 describe('calculateAge', () => {
   afterEach(() => {
@@ -74,5 +74,135 @@ describe('calculateAge', () => {
     for (const { name, birthDate, expected } of urgentCases) {
       expect(calculateAge(birthDate), `${name} age`).toBe(expected);
     }
+  });
+});
+
+describe('formatAlertForSharing', () => {
+  it('formats an alert with title, summary, link, and hashtags', () => {
+    const alert = {
+      title: 'Test Alert',
+      summary: 'This is a test summary.',
+      links: [{ url: 'https://example.com', name: 'Example' }],
+      hashtags: ['FreeHK', 'HumanRights'],
+    };
+    const result = formatAlertForSharing(alert);
+    expect(result).toContain('🚨 Test Alert');
+    expect(result).toContain('This is a test summary.');
+    expect(result).toContain('https://example.com');
+    expect(result).toContain('#FreeHK');
+    expect(result).toContain('#HumanRights');
+  });
+
+  it('handles alert with no hashtags', () => {
+    const alert = { title: 'Alert', summary: 'Summary', links: [] };
+    const result = formatAlertForSharing(alert);
+    expect(result).toContain('🚨 Alert');
+    expect(result).toContain('Summary');
+    expect(result).not.toContain('#');
+  });
+
+  it('handles alert with no links', () => {
+    const alert = { title: 'Alert', summary: 'Summary', links: [], hashtags: ['Test'] };
+    const result = formatAlertForSharing(alert);
+    expect(result).not.toContain('🔗');
+    expect(result).toContain('#Test');
+  });
+
+  it('returns empty string for null input', () => {
+    expect(formatAlertForSharing(null)).toBe('');
+  });
+
+  it('returns empty string for undefined input', () => {
+    expect(formatAlertForSharing(undefined)).toBe('');
+  });
+
+  it('includes only the first link URL', () => {
+    const alert = {
+      title: 'Alert',
+      summary: 'Summary',
+      links: [
+        { url: 'https://first.com', name: 'First' },
+        { url: 'https://second.com', name: 'Second' },
+      ],
+      hashtags: [],
+    };
+    const result = formatAlertForSharing(alert);
+    expect(result).toContain('https://first.com');
+    expect(result).not.toContain('https://second.com');
+  });
+});
+
+describe('daysSince', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('returns 0 for today', () => {
+    vi.setSystemTime(new Date(2026, 2, 3, 12, 0, 0));
+    expect(daysSince('2026-03-03')).toBe(0);
+  });
+
+  it('returns 1 for yesterday', () => {
+    vi.setSystemTime(new Date(2026, 2, 4, 12, 0, 0));
+    expect(daysSince('2026-03-03')).toBe(1);
+  });
+
+  it('returns 7 for a week ago', () => {
+    vi.setSystemTime(new Date(2026, 2, 10, 12, 0, 0));
+    expect(daysSince('2026-03-03')).toBe(7);
+  });
+
+  it('returns Infinity for null', () => {
+    expect(daysSince(null)).toBe(Infinity);
+  });
+
+  it('returns Infinity for undefined', () => {
+    expect(daysSince(undefined)).toBe(Infinity);
+  });
+});
+
+describe('getFreshnessInfo', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('returns fresh level for today', () => {
+    vi.setSystemTime(new Date(2026, 2, 3, 12, 0, 0));
+    const result = getFreshnessInfo('2026-03-03');
+    expect(result.label).toBe('Verified today');
+    expect(result.level).toBe('fresh');
+  });
+
+  it('returns fresh level for yesterday', () => {
+    vi.setSystemTime(new Date(2026, 2, 4, 12, 0, 0));
+    const result = getFreshnessInfo('2026-03-03');
+    expect(result.label).toBe('Verified yesterday');
+    expect(result.level).toBe('fresh');
+  });
+
+  it('returns fresh level for ≤7 days', () => {
+    vi.setSystemTime(new Date(2026, 2, 10, 12, 0, 0));
+    const result = getFreshnessInfo('2026-03-03');
+    expect(result.level).toBe('fresh');
+  });
+
+  it('returns recent level for 8-30 days', () => {
+    vi.setSystemTime(new Date(2026, 2, 18, 12, 0, 0));
+    const result = getFreshnessInfo('2026-03-03');
+    expect(result.level).toBe('recent');
+  });
+
+  it('returns stale level for >30 days', () => {
+    vi.setSystemTime(new Date(2026, 4, 3, 12, 0, 0));
+    const result = getFreshnessInfo('2026-03-03');
+    expect(result.level).toBe('stale');
   });
 });

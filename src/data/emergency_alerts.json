@@ -9,6 +9,7 @@
     "eventDate": "2026-03-06",
     "expires": "2026-03-20",
     "lastVerified": "2026-03-03",
+    "hashtags": ["FreeJoshuaWong", "HongKong", "NSL", "PoliticalPrisoner"],
     "links": [
       { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" },
       { "name": "Amnesty International — HK", "url": "https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/hong-kong/" }
@@ -23,6 +24,7 @@
     "details": "On December 15, 2025, Jimmy Lai was found guilty on all charges including \"conspiracy to collude with foreign forces\" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL. This verdict represents a devastating blow to press freedom in Hong Kong.\n\nACTION NEEDED:\n• Contact your representatives to demand his release\n• Share his story on social media with #FreeJimmyLai\n• Support the Committee for Freedom in Hong Kong\n• Sign petitions calling for sanctions on HK officials",
     "date": "2025-12-15",
     "lastVerified": "2026-03-03",
+    "hashtags": ["FreeJimmyLai", "PressFreedom", "HongKong", "NSL"],
     "links": [
       { "name": "Free Jimmy Lai Campaign", "url": "https://www.freejimmylai.com" },
       { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" }
@@ -38,6 +40,7 @@
     "date": "2025-05-15",
     "expires": "2026-11-15",
     "lastVerified": "2026-03-03",
+    "hashtags": ["FreeUyghurs", "ForcedLabor", "UFLPA", "EndUyghurForcedLabour"],
     "links": [
       { "name": "Coalition to End Forced Labour", "url": "https://enduyghurforcedlabour.org" },
       { "name": "UHRP Sanctions Tracker", "url": "https://uhrp.org/sanctions-tracker/" }
@@ -53,6 +56,7 @@
     "date": "2024-12-18",
     "expires": "2025-06-18",
     "lastVerified": "2026-03-03",
+    "hashtags": ["StandWithTaiwan", "Taiwan", "PLA"],
     "links": [
       { "name": "Taiwan MND", "url": "https://www.mnd.gov.tw" },
       { "name": "Taiwan News", "url": "https://www.taiwannews.com.tw" }
@@ -68,6 +72,7 @@
     "date": "2024-11-19",
     "expires": "2026-08-23",
     "lastVerified": "2026-03-03",
+    "hashtags": ["HongKong47", "FreeHongKong", "NSL", "PoliticalPrisoners"],
     "links": [
       { "name": "Hong Kong Watch HK47", "url": "https://www.hongkongwatch.org/hk47" },
       { "name": "Amnesty Response", "url": "https://www.amnesty.org/en/latest/news/2026/02/hong-kong-rejected-appeals-in-hk-47-case-a-missed-opportunity-to-start-restoring-justice/" }
@@ -83,6 +88,7 @@
     "date": "2026-02-26",
     "expires": "2026-08-26",
     "lastVerified": "2026-03-03",
+    "hashtags": ["Article23", "TransnationalRepression", "HongKong", "FreedomUnderThreat"],
     "links": [
       { "name": "NPR Report", "url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law" },
       { "name": "Hong Kong Democracy Council", "url": "https://www.hkdc.us" }

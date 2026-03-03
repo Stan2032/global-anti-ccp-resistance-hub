@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
+import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
 import EventCountdown from './EventCountdown';
+import { formatAlertForSharing } from '../utils/dateUtils';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -12,6 +13,7 @@ const EmergencyAlerts = () => {
   });
   const [expandedAlert, setExpandedAlert] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
@@ -32,6 +34,17 @@ const EmergencyAlerts = () => {
 
   const dismissAlert = (alertId) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
+  };
+
+  const copyAlertText = async (alert) => {
+    try {
+      const text = formatAlertForSharing(alert);
+      await navigator.clipboard.writeText(text);
+      setCopiedId(alert.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      // Fallback for environments without clipboard API
+    }
   };
 
   const typeStyles = {
@@ -116,6 +129,18 @@ const EmergencyAlerts = () => {
                   {isExpanded ? '$ collapse ↑' : '$ expand --details →'}
                 </button>
                 <div className="flex space-x-2">
+                  <button
+                    onClick={() => copyAlertText(alert)}
+                    className={`text-xs font-mono px-2 py-1 border transition-colors flex items-center gap-1 ${
+                      copiedId === alert.id
+                        ? 'bg-green-900/30 border-green-600 text-green-400'
+                        : 'bg-[#111820] hover:bg-[#1c2a35] text-slate-300 border-[#1c2a35] hover:border-[#2a9a52]'
+                    }`}
+                    aria-label={copiedId === alert.id ? 'Alert copied to clipboard' : 'Copy alert for sharing'}
+                  >
+                    {copiedId === alert.id ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    {copiedId === alert.id ? 'Copied!' : 'Share'}
+                  </button>
                   {alert.links.slice(0, 2).map((link, idx) => (
                     <a
                       key={idx}
