@@ -16,6 +16,8 @@ import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
 import Breadcrumbs from './components/Breadcrumbs'
 import BackToTop from './components/BackToTop'
+import useKeyboardShortcuts from './hooks/useKeyboardShortcuts'
+import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp'
 
 // Non-critical shell components — lazy loaded to reduce initial bundle
 const GlobalSearch = lazy(() => import('./components/GlobalSearch'));
@@ -259,9 +261,16 @@ const DesktopSidebar = () => {
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false);
 
   // Update document title based on current route
   useDocumentTitle();
+
+  // Keyboard shortcuts for power users
+  useKeyboardShortcuts({
+    onOpenSearch: () => setSearchOpen(true),
+    onToggleHelp: () => setShortcutsHelpOpen(prev => !prev),
+  });
 
   // Global keyboard shortcut for search
   useEffect(() => {
@@ -414,6 +423,9 @@ function AppLayout() {
       <Suspense fallback={null}>
         <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
       </Suspense>
+      
+      {/* Keyboard Shortcuts Help */}
+      <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
       
       {/* Quick Start Guide for new users */}
       <Suspense fallback={null}>
