@@ -154,7 +154,7 @@ const DataSources = () => {
             <Database className="w-8 h-8 text-[#22d3ee]" />
             <h2 className="text-3xl font-bold">Major Data Sources by Category</h2>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {majorSources.map((category, index) => (
               <div
                 key={index}

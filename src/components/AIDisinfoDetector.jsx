@@ -217,7 +217,7 @@ const AIDisinfoDetector = () => {
 
       {/* Analysis Results */}
       {analysisResult && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Risk Score */}
           <div className={`border p-6 ${getRiskColorClass(analysisResult.riskColor)}`}>
             <div className="flex items-center justify-between mb-4">

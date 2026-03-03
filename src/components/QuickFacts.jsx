@@ -116,7 +116,7 @@ const QuickFacts = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#111820] p-6 border border-[#1c2a35]">
         <div className="flex items-center mb-4">

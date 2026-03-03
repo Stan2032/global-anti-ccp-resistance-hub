@@ -139,7 +139,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
 
   // Full version
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Clock className="w-6 h-6" /> Time in Detention</h2>
         <p className="text-slate-300">

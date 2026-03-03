@@ -264,7 +264,7 @@ export default function NathanLawProfile() {
   const daysInExile = Math.floor((new Date() - new Date('2020-07-02')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}

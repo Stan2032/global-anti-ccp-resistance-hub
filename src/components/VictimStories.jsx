@@ -185,7 +185,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Survivor Stories</h2>

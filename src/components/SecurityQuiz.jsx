@@ -165,7 +165,7 @@ const SecurityQuiz = () => {
     const maxScore = questions.length * 3;
     
     return (
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Results Header */}
         <div className="bg-[#111820] border border-[#1c2a35] p-6 text-center">
           <h2 className="text-2xl font-bold text-white mb-2">Security Assessment Results</h2>
