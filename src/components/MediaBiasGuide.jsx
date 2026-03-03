@@ -330,7 +330,7 @@ const MediaBiasGuide = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-slate-500 pt-3 border-t border-[#1c2a35]/50">
+            <div className="flex items-center gap-4 text-xs text-slate-400 pt-3 border-t border-[#1c2a35]/50">
               <span>Founded: {source.founded}</span>
               <span>Funding: {source.funding}</span>
             </div>

@@ -67,6 +67,16 @@ Your site will be live at your Cloudflare Workers URL (e.g., `https://global-ant
 3. Enter your domain (e.g., `resistancehub.org`)
 4. Follow the DNS instructions (either add a CNAME or transfer DNS to Cloudflare)
 
+### 6. (Recommended) Enable Onion Routing for Tor Access
+
+Enable Tor access so activists in censored regions can access the site anonymously:
+
+1. In your Cloudflare Dashboard → **Network** → **Onion Routing** → toggle **ON**
+2. Cloudflare automatically generates a `.onion` address and injects the `Onion-Location` header
+3. Tor Browser users will be automatically offered the `.onion` version
+
+> **Full guide:** See [ONION_ROUTING_SETUP.md](ONION_ROUTING_SETUP.md) for detailed setup, testing, and troubleshooting steps.
+
 ---
 
 ## How It Works
@@ -112,6 +122,7 @@ Every push to your production branch triggers an automatic redeploy.
 | `public/robots.txt` | Search engine directives |
 | `public/sitemap.xml` | SEO sitemap |
 | `public/manifest.json` | PWA manifest |
+| `ONION_ROUTING_SETUP.md` | Tor/onion routing setup guide |
 
 ---
 

@@ -3,7 +3,7 @@
 > **Location:** `_agents/QUESTIONS_FOR_HUMANS.md`
 > **Purpose:** Ongoing list of questions that require human input. Agents add questions here rather than blocking on decisions.
 > **Protocol:** Agents should check this file at session start. When a human answers, agents mark the question ✅ and implement.
-> **Previous decisions:** See `_agents/archive/QUESTIONS_FOR_HUMANS.md` for D1-D5 (all answered and implemented).
+> **Previous decisions:** See `_agents/archive/QUESTIONS_FOR_HUMANS.md` for D1-D5, and `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md` for Q6-Q11 (all answered and implemented).
 
 ---
 
@@ -21,92 +21,33 @@ These are permanent directives that apply to all agents:
 
 ## 🔴 OPEN QUESTIONS (Awaiting Human Decision)
 
-### Q6. Backend Cache System Documentation
-**Asked:** Session 127 (Feb 27, 2026)
-**Context:** `BACKEND_GUIDE.md` references a backend cache system, but no cache backend has been implemented. The documentation may set inaccurate expectations.
+### Q12: Custom Domain for Cloudflare Onion Routing (Session 155)
+
+**Context:** Cloudflare Onion Routing requires a custom domain — it's not available for `workers.dev` subdomains. You reported that the onion routing toggle doesn't appear in your dashboard, which confirms this limitation.
+
+**Question:** Do you plan to register/add a custom domain for the site? (This would also enable onion routing.)
+
 **Options:**
-- **A) Remove cache references** from backend docs (keep docs honest about current state)
-- **B) Keep as aspirational** — label clearly as "planned feature"
-- **C) Implement basic cache** — add Cloudflare KV or Workers Cache API
+- **A)** Yes, I'll register a custom domain (e.g., `resistancehub.org`) — Agent will update deployment docs when ready
+- **B)** Not now, defer onion routing indefinitely — Agent will remove it from short-term TODO
+- **C)** I already have a domain I want to use — Tell us the domain and we'll update the deployment config
 
-**Agent recommendation:** Option A — honesty first. Cache can be documented when built.
+**Agent recommendation:** A custom domain would benefit the project beyond just onion routing (better SEO, professional appearance, easier sharing). Domains are ~$10/year. However, this is entirely the owner's decision.
 
----
-
-### Q7. Priority Ranking for Medium-Term Features
-**Asked:** Session 127 (Feb 27, 2026)
-**Context:** The TODO.md lists many medium-term features without prioritization. Agents need guidance on what to build next. Key candidates:
-1. **Offline Mode** — cache critical content for censored regions (high impact for target audience)
-2. **API Development** — public API for researchers (enables ecosystem growth)
-3. **Video Testimonials** — embedded survivor interviews (powerful but needs content sourcing)
-4. **Discussion Forums** — moderated activist community space (complex, moderation risk)
-5. **Analytics Dashboard** — privacy-respecting usage tracking (helps measure impact)
-
-**Owner input needed:** Pick your top 2-3 priorities, or confirm agents should use their judgment.
-
----
-
-### Q8. Supabase Auth for Admin Dashboard
-**Asked:** Session 127 (Feb 27, 2026)
-**Context:** Supabase client + service layer is integrated, all 4 forms are wired. The next logical step is adding Supabase Auth so an admin can view submitted reports. But this raises questions:
-- Who should have admin access? Just the owner? Multiple trusted people?
-- Should there be role-based access (admin vs. moderator)?
-- Is a simple admin-only login sufficient for now?
-
-**Agent recommendation:** Start with single admin login via Supabase Auth (email/password). Add roles later if needed.
-
----
-
-### Q9. Tor Hidden Service (.onion)
-**Asked:** Session 127 (Feb 27, 2026)
-**Context:** The site serves activists in censored regions. A .onion address would allow access via Tor without exit node exposure. Cloudflare supports Onion Routing via the `Onion-Location` header.
-**Options:**
-- **A) Enable Cloudflare Onion Routing** — add `Onion-Location` header (minimal effort, Cloudflare handles it)
-- **B) Defer** — not a priority right now
-- **C) Set up dedicated .onion** — requires running a Tor hidden service (more complex)
-
-**Agent recommendation:** Option A — it's a single header addition via `public/_headers` and significantly improves accessibility for at-risk users.
-
-**Setup Steps (for human owner):**
-1. Log into Cloudflare Dashboard → your site → **Network** → scroll to **Onion Routing** → toggle ON
-2. Cloudflare automatically generates a `.onion` address and serves the `Onion-Location` header
-3. No code changes needed — Cloudflare handles the header injection when Onion Routing is enabled
-4. Test by visiting site in Tor Browser — it should auto-redirect to the `.onion` address
-5. The `.onion` address will appear in Cloudflare dashboard after enabling
-
----
-
-### Q10. Test Coverage Strategy — Breadth vs. Depth
-**Asked:** Session 128 (Mar 1, 2026)
-**Context:** We've grown from 654 tests (Session 120) to 947 tests (Session 128). Test coverage is now extensive but ~66 components still lack dedicated test files. Should agents:
-- **A) Continue adding component tests** — aim for 100% component coverage (systematic, catches regressions)
-- **B) Shift to integration/E2E tests** — test user flows across multiple components (higher value per test)
-- **C) Focus on non-test work** — sanctions data updates, new features, content improvements
-- **D) Mix** — alternate between test coverage and feature work each session
-
-**Agent recommendation:** Option D — alternating keeps the project balanced. Tests prevent regressions while features deliver user value.
-
----
-
-### Q11. EmergencyAlerts — Content Freshness ✅ IMPLEMENTED (Session 149-150)
-**Asked:** Session 128 (Mar 1, 2026)
-**Context:** The EmergencyAlerts component has 4 hardcoded alerts, the oldest from November 2024. For a "live" alerts feature, stale content may reduce credibility. Options:
-- **A) Make alerts data-driven** — move to a JSON file that can be updated without code changes ✅ Done Session 149
-- **B) Add expiry dates** — automatically hide alerts older than N months ✅ Done Session 150
-- **C) Keep as-is** — static alerts are fine for an archival reference
-- **D) Add a "last reviewed" date** — show when alerts were last verified as current ✅ Done Session 150
-
-**Implemented:** Options A + B + D
-- Alerts in `src/data/emergency_alerts.json` (21st JSON data file)
-- `expires` field: alerts auto-hide after date passes (no code changes needed)
-- `lastVerified` field: shown on each alert as verification date
-- Jimmy Lai alert: no expiry (ongoing campaign), lastVerified 2026-03-02
-- Taiwan military alert: expires 2025-06-18 (already expired, auto-hidden)
-- 13 data integrity tests (incl expiry validation)
+*When you encounter a decision that requires human input, add it here starting with Q13.*
 
 ---
 
 ## ✅ ANSWERED QUESTIONS
+
+### Q6-Q11: Answered Session 153 (Mar 2, 2026)
+See `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md` for full details.
+- **Q6: C)** Implement basic cache (Cloudflare KV or Workers Cache API) — added to TODO.md
+- **Q7: Use own judgement** — agents prioritize medium-term features based on project mission
+- **Q8: Single admin login** via Supabase Auth (email/password). Add roles later if needed. — added to TODO.md
+- **Q9: A)** Enable Cloudflare Onion Routing — ⚠️ Setup guide created but **DEFERRED**: requires custom domain (not available on `workers.dev`). See Q12.
+- **Q10: D) Mix** — alternate between test coverage and feature work each session
+- **Q11: Already done** ✅ — confirmed implemented in Sessions 149-150 (data-driven alerts + expiry + lastVerified)
 
 ### Q1-Q5: See `_agents/archive/QUESTIONS_FOR_HUMANS.md`
 All answered and implemented as of Session 42. Key decisions:

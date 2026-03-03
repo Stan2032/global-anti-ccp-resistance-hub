@@ -303,7 +303,7 @@ const IncidentReportForm = () => {
                 placeholder="e.g., Screenshots, photos, recordings, documents"
                 className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
               />
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-slate-400 mt-1">
                 Do not upload files here. If you have evidence, mention it and we'll provide secure upload instructions.
               </p>
             </div>
@@ -347,7 +347,7 @@ const IncidentReportForm = () => {
                   placeholder="your-secure-email@protonmail.com"
                   className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-400 mt-1">
                   We recommend using a secure email provider like ProtonMail
                 </p>
               </div>
@@ -443,7 +443,7 @@ const IncidentReportForm = () => {
 
       {/* Footer */}
       <div className="bg-[#0a0e14]/50 p-4 border-t border-[#1c2a35]">
-        <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-400">
           {backendConnected ? (
             <span className="flex items-center gap-1">
               <Lock className="w-3 h-3" /> Connected to secure backend

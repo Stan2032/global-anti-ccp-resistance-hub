@@ -119,13 +119,13 @@ const ReportSighting = () => {
       >
         <div className="text-6xl mb-4">⚠️</div>
         <h3 className="text-2xl font-bold text-amber-400 mb-4">Form Not Yet Active</h3>
-        <p className="text-gray-300 mb-6">
+        <p className="text-slate-300 mb-6">
           This reporting form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
           To report CCP activities, please use the official channels below:
         </p>
         <div className="bg-[#111820] p-4 mb-6 text-left">
           <h4 className="text-[#22d3ee] font-semibold mb-2">Report Directly To:</h4>
-          <ul className="text-sm text-gray-300 space-y-1">
+          <ul className="text-sm text-slate-300 space-y-1">
             <li>→ <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a> — CCP transnational repression</li>
             <li>→ <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">FBI Tips</a> — United States</li>
             <li>→ <a href="https://www.mi5.gov.uk/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">MI5</a> — United Kingdom</li>
@@ -134,7 +134,7 @@ const ReportSighting = () => {
         </div>
         <div className="bg-[#111820] p-4 mb-6 text-left">
           <h4 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> Security Reminder</h4>
-          <ul className="text-sm text-gray-300 space-y-1">
+          <ul className="text-sm text-slate-300 space-y-1">
             <li>• Clear your browser history if using a shared device</li>
             <li>• Consider using Tor for sensitive communications</li>
             <li>• If you feel unsafe, contact emergency services</li>
@@ -163,7 +163,7 @@ const ReportSighting = () => {
       {/* Header */}
       <div className="bg-[#0a0e14] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Search className="w-6 h-6" /> Report CCP Activity</h2>
-        <p className="text-gray-200">
+        <p className="text-slate-200">
           Help document transnational repression and CCP influence operations
         </p>
       </div>
@@ -174,7 +174,7 @@ const ReportSighting = () => {
           <Shield className="w-6 h-6 text-amber-400" />
           <div>
             <h4 className="font-semibold text-amber-400">Form Not Yet Connected (Coming Soon)</h4>
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-slate-300">
               This reporting form is not yet connected to a backend service. Submitted data is not stored or transmitted.
               For immediate reporting, please use the official channels listed at the bottom of this page.
             </p>
@@ -188,7 +188,7 @@ const ReportSighting = () => {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                step >= s ? 'bg-red-600 text-white' : 'bg-[#111820] text-gray-400'
+                step >= s ? 'bg-red-600 text-white' : 'bg-[#111820] text-slate-400'
               }`}>
                 {s}
               </div>
@@ -200,7 +200,7 @@ const ReportSighting = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center gap-8 mt-2 text-sm text-gray-400">
+        <div className="flex justify-center gap-8 mt-2 text-sm text-slate-400">
           <span className={step >= 1 ? 'text-red-400' : ''}>Type</span>
           <span className={step >= 2 ? 'text-red-400' : ''}>Details</span>
           <span className={step >= 3 ? 'text-red-400' : ''}>Review</span>
@@ -226,7 +226,7 @@ const ReportSighting = () => {
                       <type.Icon className="w-6 h-6" />
                       <span className="font-semibold text-white">{type.label}</span>
                     </div>
-                    <p className="text-sm text-gray-400">{type.description}</p>
+                    <p className="text-sm text-slate-400">{type.description}</p>
                   </button>
                 ))}
               </div>
@@ -240,14 +240,14 @@ const ReportSighting = () => {
                 {selectedType?.Icon && <selectedType.Icon className="w-8 h-8" aria-label="Type filter" />}
                 <div>
                   <h3 className="text-lg font-semibold text-white">{selectedType?.label}</h3>
-                  <p className="text-sm text-gray-400">{selectedType?.description}</p>
+                  <p className="text-sm text-slate-400">{selectedType?.description}</p>
                 </div>
               </div>
 
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
                       Country *
                     </label>
                     <select
@@ -264,7 +264,7 @@ const ReportSighting = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
                       City/Region
                     </label>
                     <input
@@ -279,7 +279,7 @@ const ReportSighting = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Date of Observation
                   </label>
                   <input
@@ -292,7 +292,7 @@ const ReportSighting = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Description *
                   </label>
                   <textarea
@@ -307,7 +307,7 @@ const ReportSighting = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Evidence/Documentation
                   </label>
                   <textarea
@@ -349,25 +349,25 @@ const ReportSighting = () => {
               <div className="bg-[#111820] p-4 mb-6">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-400">Type:</span>
+                    <span className="text-slate-400">Type:</span>
                     <p className="text-white">{selectedType?.label}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400">Location:</span>
+                    <span className="text-slate-400">Location:</span>
                     <p className="text-white">{formData.city}, {formData.country}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400">Date:</span>
+                    <span className="text-slate-400">Date:</span>
                     <p className="text-white">{formData.date || 'Not specified'}</p>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <span className="text-gray-400 text-sm">Description:</span>
+                  <span className="text-slate-400 text-sm">Description:</span>
                   <p className="text-white mt-1">{formData.description}</p>
                 </div>
                 {formData.evidence && (
                   <div className="mt-4">
-                    <span className="text-gray-400 text-sm">Evidence:</span>
+                    <span className="text-slate-400 text-sm">Evidence:</span>
                     <p className="text-white mt-1">{formData.evidence}</p>
                   </div>
                 )}
@@ -383,7 +383,7 @@ const ReportSighting = () => {
                   />
                   <div>
                     <span className="text-white font-medium">Submit anonymously</span>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-slate-400">
                       Your report will not include any identifying information
                     </p>
                   </div>
@@ -391,7 +391,7 @@ const ReportSighting = () => {
 
                 {!formData.anonymous && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
                       Contact Information (optional)
                     </label>
                     <input
@@ -415,7 +415,7 @@ const ReportSighting = () => {
                   />
                   <div>
                     <span className="text-white font-medium">I consent to share this information *</span>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-slate-400">
                       This report may be shared with human rights organizations, researchers, 
                       and government agencies investigating CCP activities
                     </p>
@@ -447,7 +447,7 @@ const ReportSighting = () => {
 
       {/* Footer Resources */}
       <div className="bg-[#0a0e14] p-4 border-t border-[#1c2a35]">
-        <h4 className="text-sm font-semibold text-gray-400 mb-2">Report to Official Channels:</h4>
+        <h4 className="text-sm font-semibold text-slate-400 mb-2">Report to Official Channels:</h4>
         <div className="flex flex-wrap gap-4 text-sm">
           <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             🇺🇸 FBI Tips

@@ -20,9 +20,9 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 310+ source files, 71 active React components, 1257 passing Vitest tests across 76 test files
+- Contains 290+ source files, 78 active React components, 1947 passing Vitest tests across 132 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
-- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 21 JSON data files, 22 recent news items
+- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 18 JSON data files, 22 recent news items
 
 ### What Has Been Done
 The following has been accomplished:
@@ -33,7 +33,7 @@ The following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 1257 Vitest tests across 76 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, and more)
+8. **Test infrastructure**: 1947 Vitest tests across 132 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, and more)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -64,7 +64,7 @@ The following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 1257 tests passing across 76 test files
+npx vitest run    # Should show 1947 tests passing across 132 test files
 ```
 
 ---
@@ -154,7 +154,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 1257 tests (76 files)
+npx vitest run                           # All 1947 tests (132 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -163,8 +163,11 @@ npm run build                            # Production build (~5s)
 
 ## What's Next (Priority Order)
 
-### Priority 1: Backend Connection (Phase 2)
-Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. Next steps: add Supabase Auth for admin dashboard and verify end-to-end with real Supabase credentials. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md` for deployment.
+### Priority 1: Backend Connection (Phase 2) — Answers from Q6, Q8
+- **Implement Supabase Auth (Q8)**: Single admin login via Supabase Auth (email/password). Enables viewing submitted form data. Add roles later if needed.
+- **Implement basic cache (Q6)**: Add Cloudflare Workers Cache API or KV for backend caching. Update BACKEND_GUIDE.md accordingly.
+- **Cloudflare Onion Routing (Q9)**: Human owner enables in Cloudflare Dashboard → Network → Onion Routing → toggle ON. No code changes needed.
+- All 4 forms already wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. See `SUPABASE_SETUP.md` and `CLOUDFLARE_DEPLOY.md`.
 
 ### Priority 2: Content Monitoring
 - Monitor Jimmy Lai NSL sentence appeal filing (sentenced Feb 9, 2026 to 20 years)
@@ -176,6 +179,10 @@ Supabase client + service layer is done. All 4 forms wired: IncidentReportForm, 
 
 ### Priority 3: Full Translation
 Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human rights content (profile pages, data entries) should NOT be machine-translated — needs volunteer translators.
+
+### Standing Instructions (from Human, Session 153)
+- **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
+- **Test strategy (Q10)**: Mix — alternate between test coverage and feature work each session.
 
 ---
 
@@ -232,9 +239,10 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 2. `_agents/TODO.md` — Active task list (pending items only)
 3. `_agents/TODO_COMPLETED.md` — Archive of everything already done + session history
 4. `_agents/STYLE_GUIDE.md` — Design system reference
-4. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v9.1)
-5. `_agents/thoughts/` — Comprehensive session notes (read both files)
-6. `_agents/archive/QUESTIONS_FOR_HUMANS.md` — All owner decisions (all answered, standing instructions above)
+5. `_agents/AGENT_HANDOFF.json` — Machine-readable project state (v12.0)
+6. `_agents/QUESTIONS_FOR_HUMANS.md` — All Q1-Q11 answered, no open questions
+7. `_agents/thoughts/` — Session decision logs (Sessions 150-153)
+8. `_agents/archive/QUESTIONS_FOR_HUMANS_Q6_Q11.md` — Q6-Q11 answered details
 
 ---
 
@@ -251,16 +259,17 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-150  
+**Handoff prepared by:** Sessions 1-153  
 **Date:** March 2, 2026  
 **Repository state:**
-- 1257 tests passing (76 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
+- 1947 tests passing (132 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
 - 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events
 - 0 orphan components, 8 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready
-- All 5/5 data migrations complete, 21 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
+- All 5/5 data migrations complete, 18 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
 - ALL page simplification complete (25 aspirational components removed, framer-motion eliminated)
 - EmergencyAlerts data-driven with auto-expiry (expires + lastVerified fields)
+- **ALL Q1-Q11 human questions answered** — no open questions remain
 **Status:** ✅ MERGE READY — branch prepared for merge to main

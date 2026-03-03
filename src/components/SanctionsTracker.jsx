@@ -52,7 +52,7 @@ const SanctionsTracker = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <div className="flex items-center justify-between mb-4">
@@ -222,7 +222,7 @@ const SanctionsTracker = () => {
             );
           })}
         </div>
-        <p className="text-xs text-slate-500 mt-3">
+        <p className="text-xs text-slate-400 mt-3">
           Data last verified: {sanctionsData.metadata.last_verified}. Sanctions may have been added since this date.
         </p>
       </div>

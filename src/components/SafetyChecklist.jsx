@@ -335,7 +335,7 @@ const SafetyChecklist = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
@@ -363,7 +363,7 @@ const SafetyChecklist = () => {
             style={{ width: `${(completedItems / totalItems) * 100}%` }}
           ></div>
         </div>
-        <div className="mt-2 text-xs text-slate-500">
+        <div className="mt-2 text-xs text-slate-400">
           {Math.round((completedItems / totalItems) * 100)}% complete
         </div>
       </div>
@@ -492,7 +492,7 @@ const SafetyChecklist = () => {
               setCheckedItems([]);
             }
           }}
-          className="text-xs text-slate-500 hover:text-slate-400"
+          className="text-xs text-slate-400 hover:text-slate-300"
         >
           Reset Progress
         </button>

@@ -292,7 +292,7 @@ const DonationGuide = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
@@ -388,7 +388,7 @@ const DonationGuide = () => {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3 className="font-bold text-white">{org.name}</h3>
-                  <p className="text-xs text-slate-500">{org.acronym} • {org.country}</p>
+                  <p className="text-xs text-slate-400">{org.acronym} • {org.country}</p>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded border ${ratingColors[org.rating]}`}>
                   {org.rating}
@@ -408,7 +408,7 @@ const DonationGuide = () => {
                 )}
               </div>
               
-              <p className="text-xs text-slate-500 mb-3">
+              <p className="text-xs text-slate-400 mb-3">
                 <strong>Impact:</strong> {org.impact}
               </p>
               

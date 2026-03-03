@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
 
+const INITIAL_DISPLAY_COUNT = 2;
+
 const EmergencyAlerts = () => {
   const [dismissedAlerts, setDismissedAlerts] = useState(() => {
     const saved = localStorage.getItem('dismissedAlerts');
     return saved ? JSON.parse(saved) : [];
   });
   const [expandedAlert, setExpandedAlert] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
@@ -22,6 +25,9 @@ const EmergencyAlerts = () => {
     if (alert.expires && alert.expires < now) return false;
     return true;
   });
+
+  const displayedAlerts = showAll ? activeAlerts : activeAlerts.slice(0, INITIAL_DISPLAY_COUNT);
+  const hiddenCount = activeAlerts.length - INITIAL_DISPLAY_COUNT;
 
   const dismissAlert = (alertId) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
@@ -62,7 +68,7 @@ const EmergencyAlerts = () => {
 
   return (
     <div className="space-y-3 mb-6">
-      {activeAlerts.map(alert => {
+      {displayedAlerts.map(alert => {
         const styles = typeStyles[alert.type];
         const isExpanded = expandedAlert === alert.id;
         
@@ -82,7 +88,7 @@ const EmergencyAlerts = () => {
                     </span>
                     <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
                     {alert.lastVerified && (
-                      <span className="text-xs text-slate-500 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
+                      <span className="text-xs text-slate-400 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
                     )}
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
@@ -146,12 +152,30 @@ const EmergencyAlerts = () => {
         );
       })}
       
+      {/* Show more alerts toggle */}
+      {hiddenCount > 0 && !showAll && (
+        <button
+          onClick={() => setShowAll(true)}
+          className="w-full py-2.5 bg-[#111820] hover:bg-[#1c2a35] border border-[#1c2a35] hover:border-[#2a9a52] text-sm text-slate-300 font-mono transition-colors"
+        >
+          $ show --more ({hiddenCount} more {hiddenCount === 1 ? 'alert' : 'alerts'})
+        </button>
+      )}
+      {showAll && hiddenCount > 0 && (
+        <button
+          onClick={() => setShowAll(false)}
+          className="w-full py-2 text-xs text-slate-400 hover:text-[#4afa82] font-mono transition-colors"
+        >
+          $ collapse --alerts
+        </button>
+      )}
+      
       {/* Show dismissed count */}
       {dismissedAlerts.length > 0 && (
         <div className="text-center">
           <button
             onClick={() => setDismissedAlerts([])}
-            className="text-xs text-slate-500 hover:text-[#4afa82] font-mono"
+            className="text-xs text-slate-400 hover:text-[#4afa82] font-mono"
           >
             $ show --dismissed ({dismissedAlerts.length})
           </button>

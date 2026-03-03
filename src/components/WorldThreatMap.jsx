@@ -139,19 +139,19 @@ const WorldThreatMap = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 bg-[#0a0e14]/50 border-b border-[#1c2a35]">
         <div className="text-center">
           <div className="text-xl font-bold text-red-400">{totalStations}</div>
-          <div className="text-xs text-slate-500">Police Stations</div>
+          <div className="text-xs text-slate-400">Police Stations</div>
         </div>
         <div className="text-center">
           <div className="text-xl font-bold text-orange-400">{totalCountries}</div>
-          <div className="text-xs text-slate-500">Countries</div>
+          <div className="text-xs text-slate-400">Countries</div>
         </div>
         <div className="text-center">
           <div className="text-xl font-bold text-yellow-400">230K+</div>
-          <div className="text-xs text-slate-500">"Persuaded" to Return</div>
+          <div className="text-xs text-slate-400">"Persuaded" to Return</div>
         </div>
         <div className="text-center">
           <div className="text-xl font-bold text-[#22d3ee]">14+</div>
-          <div className="text-xs text-slate-500">Gov Investigations</div>
+          <div className="text-xs text-slate-400">Gov Investigations</div>
         </div>
       </div>
 

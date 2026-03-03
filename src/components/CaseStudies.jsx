@@ -245,7 +245,7 @@ export default function CaseStudies() {
               </div>
               <h2 className="text-2xl font-bold text-white">{caseData.name}</h2>
               <p className="text-slate-400">{caseData.chineseName}</p>
-              <p className="text-sm text-slate-500 mt-1">{caseData.occupation}</p>
+              <p className="text-sm text-slate-400 mt-1">{caseData.occupation}</p>
             </div>
           </div>
           
@@ -255,19 +255,19 @@ export default function CaseStudies() {
         {/* Quick Facts */}
         <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Born</p>
+            <p className="text-xs text-slate-400 mb-1">Born</p>
             <p className="text-white font-medium">{caseData.birthYear}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Nationality</p>
+            <p className="text-xs text-slate-400 mb-1">Nationality</p>
             <p className="text-white font-medium">{caseData.nationality}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Status</p>
+            <p className="text-xs text-slate-400 mb-1">Status</p>
             <p className="text-white font-medium">{caseData.status}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Category</p>
+            <p className="text-xs text-slate-400 mb-1">Category</p>
             <p className="text-white font-medium">{caseData.category}</p>
           </div>
         </div>
@@ -289,7 +289,7 @@ export default function CaseStudies() {
             <div className="mt-4 space-y-3">
               {caseData.timeline.map((item, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="w-24 flex-shrink-0 text-sm text-slate-500">{item.date}</div>
+                  <div className="w-24 flex-shrink-0 text-sm text-slate-400">{item.date}</div>
                   <div className="flex-1">
                     <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
                     <p className="text-slate-300">{item.event}</p>
@@ -331,19 +331,19 @@ export default function CaseStudies() {
                 <div className="bg-[#0a0e14]/50 p-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-xs text-slate-500">Date</p>
+                      <p className="text-xs text-slate-400">Date</p>
                       <p className="text-white">{caseData.verdict.date}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Outcome</p>
+                      <p className="text-xs text-slate-400">Outcome</p>
                       <p className="text-red-400 font-semibold">{caseData.verdict.outcome}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Sentence</p>
+                      <p className="text-xs text-slate-400">Sentence</p>
                       <p className="text-white">{caseData.verdict.sentencing}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Court</p>
+                      <p className="text-xs text-slate-400">Court</p>
                       <p className="text-white">{caseData.verdict.judge}</p>
                     </div>
                   </div>
@@ -468,7 +468,7 @@ export default function CaseStudies() {
             </div>
             <p className="text-sm text-slate-400 line-clamp-2">{caseData.summary}</p>
             <div className="mt-3 flex items-center justify-between">
-              <span className="text-xs text-slate-500">{caseData.category}</span>
+              <span className="text-xs text-slate-400">{caseData.category}</span>
               <span className="text-[#22d3ee] text-sm">Read more →</span>
             </div>
           </button>

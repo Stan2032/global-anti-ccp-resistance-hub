@@ -4,6 +4,7 @@ import { Heart } from 'lucide-react'
 import { ThemeProvider, ThemeToggle } from './contexts/ThemeContext'
 import LanguageSelector from './components/LanguageSelector'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { AuthProvider } from './contexts/AuthContext'
 import { useLanguage } from './contexts/languageUtils'
 import { SkipLinks } from './components/Accessibility'
 import { SearchButton } from './components/SearchWrapper'
@@ -13,6 +14,10 @@ import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
+import Breadcrumbs from './components/Breadcrumbs'
+import BackToTop from './components/BackToTop'
+import useKeyboardShortcuts from './hooks/useKeyboardShortcuts'
+import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp'
 
 // Non-critical shell components — lazy loaded to reduce initial bundle
 const GlobalSearch = lazy(() => import('./components/GlobalSearch'));
@@ -22,7 +27,7 @@ const PWAInstallBanner = lazy(() => import('./components/PWAInstallBanner'));
 // Loading component — terminal style
 const LoadingScreen = () => (
   <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono">
-    <pre className="text-[#1c2a35] text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
+    <pre className="text-slate-700 text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
 ┌──────────────────────────────────────┐
 │                                      │
 │   ██████╗ ██████╗ ██╗  ██╗          │
@@ -73,6 +78,9 @@ const AgnesChowProfile = lazy(() => import('./pages/profiles/AgnesChowProfile'))
 const TashiWangchukProfile = lazy(() => import('./pages/profiles/TashiWangchukProfile'));
 const RenZhiqiangProfile = lazy(() => import('./pages/profiles/RenZhiqiangProfile'));
 const XuZhiyongProfile = lazy(() => import('./pages/profiles/XuZhiyongProfile'));
+const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 
 // Simple Mobile-First Header — terminal style
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
@@ -253,9 +261,16 @@ const DesktopSidebar = () => {
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false);
 
   // Update document title based on current route
   useDocumentTitle();
+
+  // Keyboard shortcuts for power users
+  useKeyboardShortcuts({
+    onOpenSearch: () => setSearchOpen(true),
+    onToggleHelp: () => setShortcutsHelpOpen(prev => !prev),
+  });
 
   // Global keyboard shortcut for search
   useEffect(() => {
@@ -319,6 +334,7 @@ function AppLayout() {
         
         {/* Page Content */}
         <div className="p-4 sm:p-6 lg:p-8">
+          <Breadcrumbs />
           <RouteErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
             <Routes>
@@ -353,10 +369,12 @@ function AppLayout() {
               <Route path="/profiles/tashi-wangchuk" element={<TashiWangchukProfile />} />
               <Route path="/profiles/ren-zhiqiang" element={<RenZhiqiangProfile />} />
               <Route path="/profiles/xu-zhiyong" element={<XuZhiyongProfile />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
               <Route path="*" element={
                 <div className="flex items-center justify-center min-h-[60vh]">
                   <div className="text-center max-w-lg">
-                    <pre className="font-mono text-[#1c2a35] text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
+                    <pre className="font-mono text-slate-700 text-xs mb-4 select-none hidden sm:block" aria-hidden="true">{`
 ┌─────────────────────────────────────┐
 │  ███╗   ██╗ ██████╗ ████████╗      │
 │  ████╗  ██║██╔═══██╗╚══██╔══╝      │
@@ -406,6 +424,9 @@ function AppLayout() {
         <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
       </Suspense>
       
+      {/* Keyboard Shortcuts Help */}
+      <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
+      
       {/* Quick Start Guide for new users */}
       <Suspense fallback={null}>
         <QuickStartGuide />
@@ -415,6 +436,9 @@ function AppLayout() {
       <Suspense fallback={null}>
         <PWAInstallBanner />
       </Suspense>
+      
+      {/* Back to Top button */}
+      <BackToTop />
     </div>
   );
 }
@@ -427,9 +451,11 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <LanguageProvider>
-          <Router basename={basename}>
-            <AppLayout />
-          </Router>
+          <AuthProvider>
+            <Router basename={basename}>
+              <AppLayout />
+            </Router>
+          </AuthProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>

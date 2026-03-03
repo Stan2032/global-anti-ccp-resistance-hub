@@ -202,7 +202,7 @@ const NewsAggregator = () => {
                   <span className={`px-2 py-0.5 rounded text-xs font-medium ${getPriorityColor(item.priority)}`}>
                     {item.priority}
                   </span>
-                  <span className="text-xs text-slate-500">{item.source}</span>
+                  <span className="text-xs text-slate-400">{item.source}</span>
                 </div>
                 <h3 className="font-semibold text-white group-hover:text-red-400 transition-colors">
                   {item.title}
@@ -211,7 +211,7 @@ const NewsAggregator = () => {
                   {item.summary}
                 </p>
               </div>
-              <span className="text-xs text-slate-500 whitespace-nowrap">
+              <span className="text-xs text-slate-400 whitespace-nowrap">
                 {item.date}
               </span>
             </div>

@@ -475,7 +475,7 @@ const LegalResourcesHub = () => {
                   <p className="text-slate-300 text-sm mb-3">{resource.description}</p>
 
                   <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
-                    <div className="text-xs text-slate-500">
+                    <div className="text-xs text-slate-400">
                       <span className="font-medium">{resource.organization}</span>
                       <span className="mx-2">•</span>
                       <span>Updated {resource.lastUpdated}</span>

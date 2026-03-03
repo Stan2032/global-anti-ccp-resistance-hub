@@ -245,4 +245,74 @@ describe('IntelligenceFeeds', () => {
     const container = document.querySelector('.min-h-\\[400px\\]');
     expect(container).toBeTruthy();
   });
+
+  // --- Sort By ---
+
+  it('renders Sort by dropdown with all options', () => {
+    render(<IntelligenceFeeds />);
+    const select = screen.getByLabelText('Sort by:');
+    expect(select).toBeTruthy();
+    expect(select.querySelector('option[value="relevancy"]').textContent).toBe('Relevancy');
+    expect(select.querySelector('option[value="newest"]').textContent).toBe('Newest First');
+    expect(select.querySelector('option[value="oldest"]').textContent).toBe('Oldest First');
+    expect(select.querySelector('option[value="source"]')).toBeNull();
+  });
+
+  it('defaults to Relevancy sort', () => {
+    render(<IntelligenceFeeds />);
+    const select = screen.getByLabelText('Sort by:');
+    expect(select.value).toBe('relevancy');
+  });
+
+  it('sorts by relevancy by default (highest score first)', () => {
+    mockHookReturn = {
+      ...mockHookReturn,
+      loading: false,
+      feeds: [
+        { id: '1', title: 'Low relevance item', description: 'Desc', source: 'icij', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
+        { id: '2', title: 'High relevance item', description: 'Desc', source: 'hkfp', pubDate: '2026-03-01T09:00:00Z', link: '#', relevanceScore: 50 },
+      ],
+      lastUpdated: new Date(),
+    };
+    render(<IntelligenceFeeds />);
+    const articles = screen.getAllByRole('article');
+    expect(articles[0].textContent).toContain('High relevance item');
+    expect(articles[1].textContent).toContain('Low relevance item');
+  });
+
+  it('sorts by newest first when selected', () => {
+    mockHookReturn = {
+      ...mockHookReturn,
+      loading: false,
+      feeds: [
+        { id: '1', title: 'Older article', description: 'Desc', source: 'icij', pubDate: '2026-02-01T10:00:00Z', link: '#', relevanceScore: 50 },
+        { id: '2', title: 'Newer article', description: 'Desc', source: 'hkfp', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
+      ],
+      lastUpdated: new Date(),
+    };
+    render(<IntelligenceFeeds />);
+    const select = screen.getByLabelText('Sort by:');
+    fireEvent.change(select, { target: { value: 'newest' } });
+    const articles = screen.getAllByRole('article');
+    expect(articles[0].textContent).toContain('Newer article');
+    expect(articles[1].textContent).toContain('Older article');
+  });
+
+  it('sorts by oldest first when selected', () => {
+    mockHookReturn = {
+      ...mockHookReturn,
+      loading: false,
+      feeds: [
+        { id: '1', title: 'Newer article', description: 'Desc', source: 'icij', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
+        { id: '2', title: 'Older article', description: 'Desc', source: 'hkfp', pubDate: '2026-02-01T10:00:00Z', link: '#', relevanceScore: 50 },
+      ],
+      lastUpdated: new Date(),
+    };
+    render(<IntelligenceFeeds />);
+    const select = screen.getByLabelText('Sort by:');
+    fireEvent.change(select, { target: { value: 'oldest' } });
+    const articles = screen.getAllByRole('article');
+    expect(articles[0].textContent).toContain('Older article');
+    expect(articles[1].textContent).toContain('Newer article');
+  });
 });

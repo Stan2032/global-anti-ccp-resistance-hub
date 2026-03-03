@@ -196,6 +196,14 @@ const TIMELINE = [
     category: 'persecution',
     sourceUrl: 'https://www.independent.co.uk/news/hong-kong-beijing-joshua-wong-court-of-appeal-b2925457.html',
   },
+  {
+    date: '2026-03-06',
+    year: '2026',
+    title: 'Foreign collusion case hearing — High Court',
+    detail: 'Wong\'s foreign collusion case, transferred to the High Court where life imprisonment can be imposed, is scheduled for hearing. The case was adjourned from earlier proceedings. He has not entered a plea. Amnesty International and international observers continue to condemn the charge as designed to prolong his imprisonment indefinitely.',
+    category: 'persecution',
+    sourceUrl: 'https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year',
+  },
 ];
 
 const CHARGES = [
@@ -211,9 +219,9 @@ const CHARGES = [
     charge: 'Conspiracy to collude with foreign forces',
     law: 'National Security Law, Article 29',
     filed: 'June 6, 2025',
-    verdict: 'PENDING — proceedings ongoing 2026',
+    verdict: 'PENDING — next hearing March 6, 2026 (High Court)',
     sentence: 'Faces up to LIFE IMPRISONMENT',
-    detail: 'Accused of conspiring with Nathan Law (now in exile in the UK) and "other persons unknown" to encourage foreign countries or organizations to impose sanctions on Hong Kong or China between July and November 2020. Amnesty International called these charges "designed to prolong his stay behind bars" and prevent his scheduled January 2027 release.',
+    detail: 'Accused of conspiring with Nathan Law (now in exile in the UK) and "other persons unknown" to encourage foreign countries or organizations to impose sanctions on Hong Kong or China between July and November 2020. Case transferred to the High Court where life imprisonment can be imposed. Amnesty International called these charges "designed to prolong his stay behind bars" and prevent his scheduled January 2027 release.',
   },
 ];
 
@@ -361,7 +369,7 @@ export default function JoshuaWongProfile() {
   const daysDetained = Math.floor((new Date() - new Date('2021-02-28')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -413,7 +421,7 @@ export default function JoshuaWongProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               "I love Hong Kong" — shouted as he was led from the courtroom after sentencing, November 19, 2024
             </p>
           </div>

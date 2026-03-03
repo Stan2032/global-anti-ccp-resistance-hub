@@ -184,7 +184,7 @@ const SanctionedOfficials = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Target className="w-6 h-6 text-red-400" /> Sanctioned CCP Officials</h2>
@@ -267,7 +267,7 @@ const SanctionedOfficials = () => {
               {/* Sanctioned By */}
               {official.sanctionedBy.length > 0 ? (
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs text-slate-500">Sanctioned by:</span>
+                  <span className="text-xs text-slate-400">Sanctioned by:</span>
                   <div className="flex gap-1">
                     {official.sanctionedBy.map((country, i) => (
                       <span key={i} className="text-lg" title={`${country} — ${official.sanctionDates[country] || ''}`}>

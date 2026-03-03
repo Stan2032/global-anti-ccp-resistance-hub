@@ -228,7 +228,7 @@ const ResistanceResources = () => {
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           {emergencyContacts.map(contact => (
-            <div key={contact.name} className="bg-[#111820]/50 p-4">
+            <div key={contact.name} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
               <h3 className="font-bold text-white text-sm mb-1">{contact.name}</h3>
               <p className="text-xs text-slate-400 mb-2">{contact.description}</p>
               {contact.phone && (
@@ -245,7 +245,7 @@ const ResistanceResources = () => {
                 href={contact.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-slate-500 hover:text-slate-300"
+                className="text-xs text-slate-400 hover:text-slate-300"
               >
                 Visit website →
               </a>
@@ -263,7 +263,7 @@ const ResistanceResources = () => {
       </div>
 
       {/* Footer note */}
-      <div className="text-center text-slate-500 text-sm">
+      <div className="text-center text-slate-400 text-sm">
         <p>
           This resource hub connects you to dedicated sections of the platform. 
           For comprehensive information on any topic, click through to the relevant page.

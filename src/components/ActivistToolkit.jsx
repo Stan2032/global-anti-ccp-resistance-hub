@@ -246,7 +246,7 @@ const ActivistToolkit = () => {
   const getCategoryInfo = (categoryId) => categories.find(c => c.id === categoryId);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
@@ -303,7 +303,7 @@ const ActivistToolkit = () => {
               <h3 className="font-bold text-white mb-1">{resource.title}</h3>
               <p className="text-sm text-slate-400 mb-3">{resource.description}</p>
               
-              <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+              <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
                 <span className="flex items-center gap-1">{categoryInfo && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}</span>
                 <span>{resource.size}</span>
               </div>

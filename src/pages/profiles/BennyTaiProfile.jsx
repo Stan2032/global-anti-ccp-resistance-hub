@@ -262,7 +262,7 @@ export default function BennyTaiProfile() {
   const daysDetained = Math.floor((new Date() - new Date('2021-01-06')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -317,7 +317,7 @@ export default function BennyTaiProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Received the longest sentence in the Hong Kong 47 case — 10 years for organizing a primary election.
             </p>
           </div>

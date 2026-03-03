@@ -212,7 +212,7 @@ export default function CCPOfficials() {
               </div>
               <h2 className="text-2xl font-bold text-white">{official.name}</h2>
               <p className="text-slate-400">{official.chineseName}</p>
-              <p className="text-sm text-slate-500 mt-1">{official.position}</p>
+              <p className="text-sm text-slate-400 mt-1">{official.position}</p>
             </div>
           </div>
         </div>
@@ -220,19 +220,19 @@ export default function CCPOfficials() {
         {/* Quick Facts */}
         <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Born</p>
+            <p className="text-xs text-slate-400 mb-1">Born</p>
             <p className="text-white font-medium">{official.birthYear}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">In Power Since</p>
+            <p className="text-xs text-slate-400 mb-1">In Power Since</p>
             <p className="text-white font-medium">{official.inPowerSince}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Category</p>
+            <p className="text-xs text-slate-400 mb-1">Category</p>
             <p className="text-white font-medium">{official.category}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Sanctioned</p>
+            <p className="text-xs text-slate-400 mb-1">Sanctioned</p>
             <p className={`font-medium ${official.sanctioned ? 'text-red-400' : 'text-slate-400'}`}>
               {official.sanctioned ? 'Yes' : 'No'}
             </p>
@@ -298,7 +298,7 @@ export default function CCPOfficials() {
             <div className="mt-4 space-y-3">
               {official.keyActions.map((action, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="w-16 flex-shrink-0 text-sm text-slate-500 font-medium">{action.year}</div>
+                  <div className="w-16 flex-shrink-0 text-sm text-slate-400 font-medium">{action.year}</div>
                   <div className="flex-1">
                     <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
                     <p className="text-slate-300">{action.action}</p>
@@ -357,19 +357,19 @@ export default function CCPOfficials() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{officials.length}</p>
-          <p className="text-xs text-slate-500">Officials Tracked</p>
+          <p className="text-xs text-slate-400">Officials Tracked</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-red-400">{officials.filter(o => o.sanctioned).length}</p>
-          <p className="text-xs text-slate-500">Sanctioned</p>
+          <p className="text-xs text-slate-400">Sanctioned</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(officials.map(o => o.region)).size}</p>
-          <p className="text-xs text-slate-500">Regions</p>
+          <p className="text-xs text-slate-400">Regions</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(officials.map(o => o.category)).size}</p>
-          <p className="text-xs text-slate-500">Categories</p>
+          <p className="text-xs text-slate-400">Categories</p>
         </div>
       </div>
 
@@ -441,7 +441,7 @@ export default function CCPOfficials() {
                   )}
                 </div>
                 <h3 className="text-white font-semibold truncate">{official.name}</h3>
-                <p className="text-xs text-slate-500">{official.chineseName}</p>
+                <p className="text-xs text-slate-400">{official.chineseName}</p>
               </div>
             </div>
             <p className="text-sm text-slate-400 line-clamp-2 mb-2">{official.position}</p>

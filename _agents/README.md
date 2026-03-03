@@ -29,9 +29,15 @@ _agents/
 │   └── SOURCE_BIAS_AUDIT.md     ← Referenced by sourceLinks.js
 ├── planning/                    ← Active planning docs
 │   └── SITE_CLEANUP_TODO.md     ← ~99% complete
-├── thoughts/                    ← Per-session agent thoughts (empty — notes archived)
-└── archive/                     ← 73 historical files (sessions, research, dead code)
-    └── README.md                ← Index of all archived files
+├── thoughts/                    ← Per-session agent thoughts
+│   ├── SESSION_150_THOUGHTS.md
+│   ├── SESSION_151_THOUGHTS.md
+│   ├── SESSION_152_THOUGHTS.md
+│   └── SESSION_153_THOUGHTS.md
+└── archive/                     ← 74 historical files (sessions, research, dead code, answered questions)
+    ├── README.md                ← Index of all archived files
+    ├── QUESTIONS_FOR_HUMANS.md  ← Q1-Q5 answered (Sessions 15-42)
+    └── QUESTIONS_FOR_HUMANS_Q6_Q11.md ← Q6-Q11 answered (Session 153)
 ```
 
 ## Standing Instructions (from Human)

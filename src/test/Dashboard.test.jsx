@@ -53,21 +53,6 @@ describe('Dashboard', () => {
     expect(screen.getByText('systems: online')).toBeTruthy();
   });
 
-  // --- Critical Alert ---
-
-  it('renders the Jimmy Lai urgent alert', () => {
-    renderDashboard();
-    expect(screen.getByText(/URGENT: Jimmy Lai Sentenced to 20 Years/)).toBeTruthy();
-    expect(screen.getByText('CRITICAL')).toBeTruthy();
-    expect(screen.getByText(/National Security Law/)).toBeTruthy();
-  });
-
-  it('has action links in the alert', () => {
-    renderDashboard();
-    expect(screen.getByText('$ view_case --details')).toBeTruthy();
-    expect(screen.getByText('$ join_campaign')).toBeTruthy();
-  });
-
   // --- Stats Grid ---
 
   it('renders all 4 stat card titles', () => {
@@ -90,7 +75,7 @@ describe('Dashboard', () => {
       stats: {
         verifiedOrganizations: 49,
         detentionFacilities: 380,
-        politicalPrisoners: 62,
+        politicalPrisoners: 63,
       },
       loading: false,
       error: null,
@@ -98,7 +83,7 @@ describe('Dashboard', () => {
     renderDashboard();
     expect(screen.getByText('49')).toBeTruthy();
     expect(screen.getByText('380+')).toBeTruthy();
-    expect(screen.getByText('62')).toBeTruthy();
+    expect(screen.getByText('63')).toBeTruthy();
   });
 
   it('shows stat labels', () => {

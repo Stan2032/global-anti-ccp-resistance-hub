@@ -165,7 +165,7 @@ const AcademicExperts = () => {
                 <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {expert.key_works && (
                     <div className="pt-3">
-                      <div className="text-xs text-slate-500 uppercase mb-1 flex items-center gap-1">
+                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
                         <BookOpen className="w-3 h-3" />
                         Key Works
                       </div>
@@ -175,7 +175,7 @@ const AcademicExperts = () => {
                   
                   {expert.media_presence && expert.media_presence !== 'None documented' && (
                     <div>
-                      <div className="text-xs text-slate-500 uppercase mb-1 flex items-center gap-1">
+                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
                         <Mic className="w-3 h-3" />
                         Media Presence
                       </div>
@@ -185,7 +185,7 @@ const AcademicExperts = () => {
 
                   {expert.ccp_targeting && expert.ccp_targeting !== 'None documented' && (
                     <div>
-                      <div className="text-xs text-slate-500 uppercase mb-1 flex items-center gap-1">
+                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
                         <AlertTriangle className="w-3 h-3 text-red-400" />
                         CCP Targeting
                       </div>

@@ -185,7 +185,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><BookOpen className="w-6 h-6" /> Survivor Stories</h2>
@@ -227,7 +227,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   {(() => { const catInfo = getCategoryInfo(story.category); return catInfo.Icon ? <catInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{catInfo.icon}</span>; })()}
-                  <span className="text-xs text-slate-500">{story.year}</span>
+                  <span className="text-xs text-slate-400">{story.year}</span>
                   {story.verified && (
                     <span className="text-xs bg-green-600 text-white px-2 py-0.5 rounded">VERIFIED</span>
                   )}
@@ -244,7 +244,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
             </blockquote>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-500 flex items-center gap-1"><MapPin className="w-3 h-3" /> {story.location}</span>
+              <span className="text-xs text-slate-400 flex items-center gap-1"><MapPin className="w-3 h-3" /> {story.location}</span>
               <button className="text-red-400 hover:text-red-300 text-sm font-medium">
                 Read full story →
               </button>

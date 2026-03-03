@@ -268,7 +268,7 @@ export default function GaoZhishengProfile() {
   const daysMissing = Math.floor((new Date() - new Date('2017-08-13')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -323,7 +323,7 @@ export default function GaoZhishengProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Last seen August 13, 2017. Chinese authorities refuse to disclose his whereabouts or confirm he is alive.
             </p>
           </div>

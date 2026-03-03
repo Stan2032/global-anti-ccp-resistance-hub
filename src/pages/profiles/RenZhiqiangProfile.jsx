@@ -240,7 +240,7 @@ export default function RenZhiqiangProfile() {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -292,7 +292,7 @@ export default function RenZhiqiangProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               A CCP insider sentenced to 18 years after criticizing Xi Jinping&#39;s COVID-19 response — demonstrating that no one within the party is safe from retribution.
             </p>
           </div>

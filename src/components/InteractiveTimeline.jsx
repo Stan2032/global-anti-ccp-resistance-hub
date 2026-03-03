@@ -165,7 +165,7 @@ export default function InteractiveTimeline() {
           {/* Year markers */}
           <div className="flex justify-between mb-2 px-4">
             {Array.from({ length: yearRange.max - yearRange.min + 1 }, (_, i) => yearRange.min + i).map(year => (
-              <span key={year} className="text-xs text-slate-500">{year}</span>
+              <span key={year} className="text-xs text-slate-400">{year}</span>
             ))}
           </div>
           
@@ -281,7 +281,7 @@ export default function InteractiveTimeline() {
         <div className="bg-[#0a0e14]/50 p-8 border border-[#1c2a35] text-center">
           <Info className="w-12 h-12 text-slate-500 mx-auto mb-4" />
           <p className="text-slate-400">Click on a timeline marker to view event details</p>
-          <p className="text-slate-500 text-sm mt-2">Or press Play to auto-advance through events</p>
+          <p className="text-slate-400 text-sm mt-2">Or press Play to auto-advance through events</p>
         </div>
       )}
 

@@ -299,7 +299,7 @@ export default function GuiMinhaiProfile() {
   const daysDetained = Math.floor((new Date() - new Date('2015-10-17')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -354,7 +354,7 @@ export default function GuiMinhaiProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Only one of the five Causeway Bay Books booksellers still imprisoned. Sentence due to end February 2030.
             </p>
           </div>

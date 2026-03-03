@@ -180,21 +180,21 @@ const ForcedLaborTracker = () => {
                 <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
                   {company.evidence && (
                     <div className="pt-3">
-                      <div className="text-xs text-slate-500 uppercase mb-1">Evidence</div>
+                      <div className="text-xs text-slate-400 uppercase mb-1">Evidence</div>
                       <p className="text-sm text-slate-300">{company.evidence}</p>
                     </div>
                   )}
                   
                   {company.company_response && company.company_response !== 'No public response' && (
                     <div>
-                      <div className="text-xs text-slate-500 uppercase mb-1">Company Response</div>
+                      <div className="text-xs text-slate-400 uppercase mb-1">Company Response</div>
                       <p className="text-sm text-[#22d3ee]">{company.company_response}</p>
                     </div>
                   )}
 
                   {company.uflpa_actions && company.uflpa_actions !== 'None' && (
                     <div>
-                      <div className="text-xs text-slate-500 uppercase mb-1">UFLPA Actions</div>
+                      <div className="text-xs text-slate-400 uppercase mb-1">UFLPA Actions</div>
                       <p className="text-sm text-yellow-300">{company.uflpa_actions}</p>
                     </div>
                   )}

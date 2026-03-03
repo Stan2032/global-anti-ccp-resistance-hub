@@ -599,7 +599,7 @@ export default function JimmyLaiProfile() {
                   <div className="flex items-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${source.tier === 1 ? 'bg-emerald-500' : 'bg-amber-500'}`} />
                     <span className="text-sm font-medium text-white">{source.name}</span>
-                    <span className="text-xs text-slate-500">Tier {source.tier}</span>
+                    <span className="text-xs text-slate-400">Tier {source.tier}</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-400" />
                 </a>

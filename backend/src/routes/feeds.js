@@ -1,10 +1,16 @@
 import express from 'express';
 import feedService from '../services/feedService.js';
 import feedScheduler from '../services/feedScheduler.js';
+import cacheService from '../services/cacheService.js';
 import { authenticateToken } from '../middleware/auth.js';
 import logger from '../utils/logger.js';
 
 const router = express.Router();
+
+// Cache TTLs
+const FEED_LIST_TTL = 10 * 60 * 1000; // 10 minutes for feed listings
+const FEED_SOURCES_TTL = 30 * 60 * 1000; // 30 minutes for source list
+const FEED_STATS_TTL = 5 * 60 * 1000; // 5 minutes for statistics
 
 /**
  * @route   GET /api/v1/feeds
@@ -30,17 +36,30 @@ router.get('/', async (req, res) => {
     if (breaking === 'true') filters.isBreaking = true;
     if (minRelevance) filters.minRelevanceScore = parseFloat(minRelevance);
 
+    // Build cache key from query parameters
+    const cacheKey = `feeds:list:${JSON.stringify({ limit, offset, ...filters })}`;
+    const cached = cacheService.get(cacheKey);
+    if (cached) {
+      res.set('X-Cache', 'HIT');
+      return res.json(cached);
+    }
+
     const items = await feedService.getRecentFeedItems(
       parseInt(limit),
       parseInt(offset),
       filters
     );
 
-    res.json({
+    const response = {
       success: true,
       count: items.length,
       items,
-    });
+    };
+
+    cacheService.set(cacheKey, response, { ttl: FEED_LIST_TTL, tags: ['feeds'] });
+    res.set('X-Cache', 'MISS');
+    res.set('Cache-Control', 'public, max-age=600');
+    res.json(response);
   } catch (error) {
     logger.error('Error fetching feed items:', error);
     res.status(500).json({
@@ -57,13 +76,25 @@ router.get('/', async (req, res) => {
  */
 router.get('/sources', async (req, res) => {
   try {
+    const cacheKey = 'feeds:sources';
+    const cached = cacheService.get(cacheKey);
+    if (cached) {
+      res.set('X-Cache', 'HIT');
+      return res.json(cached);
+    }
+
     const sources = await feedService.getActiveFeedSources();
 
-    res.json({
+    const response = {
       success: true,
       count: sources.length,
       sources,
-    });
+    };
+
+    cacheService.set(cacheKey, response, { ttl: FEED_SOURCES_TTL, tags: ['feeds', 'sources'] });
+    res.set('X-Cache', 'MISS');
+    res.set('Cache-Control', 'public, max-age=1800');
+    res.json(response);
   } catch (error) {
     logger.error('Error fetching feed sources:', error);
     res.status(500).json({
@@ -80,16 +111,29 @@ router.get('/sources', async (req, res) => {
  */
 router.get('/stats', async (req, res) => {
   try {
+    const cacheKey = 'feeds:stats';
+    const cached = cacheService.get(cacheKey);
+    if (cached) {
+      res.set('X-Cache', 'HIT');
+      return res.json(cached);
+    }
+
     const feedStats = await feedService.getFeedStatistics();
     const schedulerStats = feedScheduler.getStats();
 
-    res.json({
+    const response = {
       success: true,
       stats: {
         feeds: feedStats,
         scheduler: schedulerStats,
+        cache: cacheService.stats(),
       },
-    });
+    };
+
+    cacheService.set(cacheKey, response, { ttl: FEED_STATS_TTL, tags: ['feeds', 'stats'] });
+    res.set('X-Cache', 'MISS');
+    res.set('Cache-Control', 'public, max-age=300');
+    res.json(response);
   } catch (error) {
     logger.error('Error fetching feed stats:', error);
     res.status(500).json({
@@ -213,6 +257,9 @@ router.post('/poll', authenticateToken, async (req, res) => {
   try {
     // TODO: Add admin role check
     const result = await feedScheduler.pollNow();
+
+    // Invalidate feed cache after a fresh poll
+    cacheService.invalidateByTag('feeds');
 
     res.json({
       success: true,

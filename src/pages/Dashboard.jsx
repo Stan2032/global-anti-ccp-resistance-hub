@@ -15,6 +15,7 @@ const UrgentCaseTimer = lazy(() => import('../components/UrgentCaseTimer'));
 const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
 const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
 const NewsDigest = lazy(() => import('../components/NewsDigest'));
+const RecentUpdates = lazy(() => import('../components/RecentUpdates'));
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -50,7 +51,7 @@ const Dashboard = () => {
     },
     {
       title: 'Political Prisoners',
-      value: stats?.politicalPrisoners || 62,
+      value: stats?.politicalPrisoners || 63,
       icon: AlertTriangle,
       color: 'orange',
       change: 'Documented cases',
@@ -64,7 +65,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Emergency Alerts */}
       <Suspense fallback={<SectionLoader />}><EmergencyAlerts /></Suspense>
 
@@ -76,7 +77,7 @@ const Dashboard = () => {
               resistance_dashboard
             </h1>
             <p className="text-slate-400 font-mono text-sm">
-              <span className="text-[#1c2a35] mr-1" aria-hidden="true">──</span>
+              <span className="text-slate-600 mr-1" aria-hidden="true">──</span>
               coordinating worldwide resistance against CCP authoritarianism
             </p>
           </div>
@@ -97,41 +98,20 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Critical Alert — terminal urgent */}
-      <div className="bg-red-900/15 border-l-2 border-l-red-500 border border-[#1c2a35] p-4 sm:p-6">
-        <div className="flex items-start gap-4">
-          <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-mono text-[#1c2a35] text-xs select-none" aria-hidden="true">!!</span>
-              <h2 className="text-lg font-bold text-red-300">URGENT: Jimmy Lai Sentenced to 20 Years</h2>
-              <span className="px-2 py-0.5 bg-red-600 text-white text-xs font-mono animate-pulse">CRITICAL</span>
-            </div>
-            <p className="text-red-200 text-sm mb-3">
-              Hong Kong media mogul and pro-democracy activist Jimmy Lai was sentenced to 20 years in prison on February 9, 2026, 
-              under the National Security Law. International condemnation has been swift.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/prisoners" className="px-4 py-2 bg-red-900/40 hover:bg-red-900/60 text-red-200 font-mono text-sm font-medium transition-colors border border-red-900/50 hover:border-red-500">
-                $ view_case --details
-              </Link>
-              <Link to="/take-action" className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-red-300 font-mono text-sm font-medium transition-colors border border-[#1c2a35] hover:border-red-500">
-                $ join_campaign
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Stats Grid — terminal data display */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((stat, index) => (
           <div 
             key={index}
-            className="bg-[#111820] border border-[#1c2a35] hover:border-[#2a9a52] p-4 sm:p-6 transition-colors"
+            className={`bg-[#111820] border border-[#1c2a35] hover:border-[#2a9a52] p-4 sm:p-6 transition-colors border-l-2 ${
+              stat.color === 'blue' ? 'border-l-[#22d3ee]' :
+              stat.color === 'red' ? 'border-l-red-400' :
+              stat.color === 'green' ? 'border-l-[#4afa82]' :
+              'border-l-[#fbbf24]'
+            }`}
           >
             <div className="flex items-center justify-between mb-3">
-              <stat.icon className="w-5 h-5 text-slate-500" />
+              <stat.icon className="w-5 h-5 text-slate-400" />
               <span className={`text-xs font-mono px-2 py-0.5 ${
                 stat.color === 'blue' ? 'bg-cyan-900/30 text-[#22d3ee]' :
                 stat.color === 'red' ? 'bg-red-900/30 text-red-400' :
@@ -145,7 +125,7 @@ const Dashboard = () => {
               {statsLoading ? '...' : (typeof stat.value === 'number' ? stat.value.toLocaleString() : stat.value)}
             </div>
             <div className="text-sm text-slate-400 font-mono">
-              <span className="text-[#1c2a35] mr-1" aria-hidden="true">│</span>
+              <span className="text-slate-600 mr-1" aria-hidden="true">│</span>
               {stat.title}
             </div>
           </div>
@@ -184,8 +164,8 @@ const Dashboard = () => {
                 'Radio Free Asia',
                 'Hong Kong Free Press'
               ].map((source, i) => (
-                <div key={i} className="flex items-center gap-2 p-2 bg-[#0a0e14]/50">
-                  <span className="text-[#1c2a35] font-mono text-xs select-none" aria-hidden="true">▸</span>
+                <div key={i} className="flex items-center gap-2 p-2 bg-[#0a0e14]/50 border border-[#1c2a35]/50">
+                  <span className="text-slate-600 font-mono text-xs select-none" aria-hidden="true">▸</span>
                   <span className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full"></span>
                   <span className="text-sm text-slate-300 font-mono">{source}</span>
                 </div>
@@ -224,52 +204,81 @@ const Dashboard = () => {
       </div>
 
       {/* ─── Detention Timer ────────────────────────────────────── */}
-      <div className="bg-[#111820] border border-[#1c2a35] p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] border-l-2 border-l-red-400 p-6">
         <Suspense fallback={<SectionLoader />}><UrgentCaseTimer compact={true} /></Suspense>
       </div>
 
+      {/* ─── Recent Activity ───────────────────────────────────── */}
+      <div>
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> Recent Updates
+        </h2>
+        <Suspense fallback={<SectionLoader />}><RecentUpdates /></Suspense>
+      </div>
+
       {/* ─── Live News ─────────────────────────────────────────── */}
-      <div className="bg-[#111820] border border-[#1c2a35] p-6">
-        <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
+      <div>
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> Live News
+        </h2>
+        <div className="bg-[#111820] border border-[#1c2a35] p-6">
+          <Suspense fallback={<SectionLoader />}><NewsAggregator /></Suspense>
+        </div>
       </div>
 
       {/* ─── Essential Security Tools ──────────────────────────── */}
-      <div className="bg-[#111820] border border-[#1c2a35] p-6">
-        <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
-          <Link2 className="w-5 h-5 text-[#22d3ee]" /> essential_tools
+      <div>
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> Security Tools
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[
-            { name: 'Tor Browser', desc: 'Anonymous browsing', Icon: Shield, url: 'https://www.torproject.org/download/' },
-            { name: 'Signal', desc: 'Encrypted messaging', Icon: MessageSquare, url: 'https://signal.org/download/' },
-            { name: 'ProtonMail', desc: 'Secure email', Icon: Mail, url: 'https://proton.me/mail' },
-            { name: 'Tails OS', desc: 'Secure operating system', Icon: Monitor, url: 'https://tails.net/install/' },
-          ].map((resource, index) => (
-            <a
-              key={index}
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-[#0a0e14] hover:bg-[#0a0e14]/80 transition-colors text-center border border-[#1c2a35] hover:border-[#2a9a52]"
-            >
-              <resource.Icon className="w-5 h-5 mx-auto mb-2 text-slate-400" />
-              <span className="font-medium text-white text-sm font-mono block">{resource.name}</span>
-              <span className="text-xs text-slate-400">{resource.desc}</span>
-            </a>
-          ))}
+        <div className="bg-[#111820] border border-[#1c2a35] p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Link2 className="w-5 h-5 text-[#22d3ee]" />
+            <h3 className="font-semibold text-white">essential_tools</h3>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {[
+              { name: 'Tor Browser', desc: 'Anonymous browsing', Icon: Shield, url: 'https://www.torproject.org/download/' },
+              { name: 'Signal', desc: 'Encrypted messaging', Icon: MessageSquare, url: 'https://signal.org/download/' },
+              { name: 'ProtonMail', desc: 'Secure email', Icon: Mail, url: 'https://proton.me/mail' },
+              { name: 'Tails OS', desc: 'Secure operating system', Icon: Monitor, url: 'https://tails.net/install/' },
+            ].map((resource, index) => (
+              <a
+                key={index}
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-[#0a0e14] hover:bg-[#0a0e14]/80 transition-colors text-center border border-[#1c2a35] hover:border-[#2a9a52]"
+              >
+                <resource.Icon className="w-5 h-5 mx-auto mb-2 text-slate-400" />
+                <span className="font-medium text-white text-sm font-mono block">{resource.name}</span>
+                <span className="text-xs text-slate-400">{resource.desc}</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* ─── Live Statistics ───────────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
+      <div>
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> Statistics
+        </h2>
+        <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
+      </div>
 
       {/* ─── News Digest ───────────────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
+      <div>
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> News Digest
+        </h2>
+        <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
+      </div>
 
       {/* Footer */}
-      <div className="text-center text-slate-500 text-sm py-4 font-mono">
-        <p>resistance_hub v2.11 <span className="text-[#1c2a35]">│</span> secure <span className="text-[#1c2a35]">│</span> anonymous <span className="text-[#1c2a35]">│</span> decentralized</p>
-        <p className="mt-1 text-[#1c2a35]">// together we resist authoritarianism</p>
+      <div className="text-center text-slate-500 text-sm py-4 font-mono border-t border-[#1c2a35] mt-4">
+        <p>resistance_hub v2.11 <span className="text-slate-600">│</span> secure <span className="text-slate-600">│</span> anonymous <span className="text-slate-600">│</span> decentralized</p>
+        <p className="mt-1 text-slate-600">// together we resist authoritarianism</p>
       </div>
     </div>
   );

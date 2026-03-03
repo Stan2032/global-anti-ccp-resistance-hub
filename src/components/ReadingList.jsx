@@ -363,7 +363,7 @@ const ReadingList = () => {
             
             {/* ISBN & Links */}
             <div className="border-t border-[#1c2a35] pt-3 flex items-center justify-between">
-              <span className="text-xs text-slate-500">ISBN: {book.isbn}</span>
+              <span className="text-xs text-slate-400">ISBN: {book.isbn}</span>
               <div className="flex gap-2">
                 <a
                   href={`https://www.goodreads.com/search?q=${encodeURIComponent(book.isbn)}`}

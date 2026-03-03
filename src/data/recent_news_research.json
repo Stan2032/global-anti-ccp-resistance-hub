@@ -357,6 +357,54 @@
         "action_needed": "Write to your government representatives demanding they publicly condemn the ruling and impose targeted sanctions on officials responsible."
       },
       "error": null
+    },
+    {
+      "input": "Joshua Wong foreign collusion case transferred to High Court March 2026",
+      "output": {
+        "topic": "Joshua Wong foreign collusion case transferred to High Court March 2026",
+        "headline": "Joshua Wong foreign collusion case heading to High Court \u2014 next hearing March 6, 2026",
+        "summary": "Joshua Wong's foreign collusion case under Hong Kong's National Security Law has been transferred to the High Court, where life imprisonment can be imposed. The case, adjourned from earlier proceedings, is scheduled for its next hearing on March 6, 2026. Wong has not entered a plea. He was charged in June 2025 with conspiring with exiled activist Nathan Law to encourage foreign sanctions against Hong Kong/China.",
+        "date": "2026-03-02",
+        "source": "The Standard (Hong Kong)",
+        "source_url": "https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year",
+        "significance": "HIGH",
+        "related_prisoners": "Joshua Wong, Nathan Law (in exile)",
+        "international_response": "Amnesty International condemned the charges as designed to prolong imprisonment. The UK, US, and Australia have called for his release.",
+        "action_needed": "Monitor the March 6, 2026 High Court hearing for developments. Support international campaigns calling for Wong's release and the repeal of Hong Kong's National Security Law."
+      },
+      "error": ""
+    },
+    {
+      "input": "Japan moves toward Uyghur forced labor import ban February 2026",
+      "output": {
+        "topic": "Japan moves toward Uyghur forced labor import ban February 2026",
+        "headline": "Japan drafting its own Uyghur Forced Labor Prevention Act modeled on US UFLPA",
+        "summary": "Senior Japanese lawmakers from the ruling LDP, led by Keiji Furuya (chair of the Japan Uyghur Parliamentary Association), announced plans to draft a Japanese version of the US Uyghur Forced Labor Prevention Act. The bill would ban imports from Xinjiang unless importers can prove goods were not made with forced labor. Human Rights Watch urged Japan to make the rules broad, covering all high-risk regions.",
+        "date": "2026-02-27",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/news/2026/02/27/japan-should-adopt-regulation-to-counter-uyghur-forced-labor",
+        "significance": "HIGH",
+        "related_prisoners": "Uyghur forced labor victims",
+        "international_response": "HRW and Uyghur diaspora groups strongly support the initiative. Would align Japan with US UFLPA and EU due diligence directives.",
+        "action_needed": "Monitor Japanese legislative process. Support advocacy for strong import restrictions. Encourage other G7 countries to follow suit."
+      },
+      "error": ""
+    },
+    {
+      "input": "Anna Kwok father Kwok Yin-sang sentenced 8 months Article 23 February 2026",
+      "output": {
+        "topic": "Hong Kong: First family member sentenced under Article 23",
+        "headline": "Father of US-based activist Anna Kwok sentenced to 8 months under national security law",
+        "summary": "Kwok Yin-sang, father of Hong Kong Democracy Council executive director Anna Kwok, sentenced to 8 months for handling financial assets of his daughter, a designated absconder. First known prosecution of a family member under Article 23 national security provisions. Anna Kwok stated: Hong Kong jailed my dad to stop me from speaking out.",
+        "date": "2026-02-26",
+        "source": "Multiple international outlets (AP, BBC, WTOP)",
+        "source_url": "https://wtop.com/world/2026/02/the-father-of-a-us-based-hong-kong-activist-is-sentenced-to-8-months-under-national-security-law/",
+        "significance": "HIGH",
+        "related_prisoners": "Kwok Yin-sang, Anna Kwok (in exile)",
+        "international_response": "Human rights organizations expressed alarm at the precedent of targeting family members as a form of transnational repression.",
+        "action_needed": "Monitor for similar family member prosecutions. Support HKDC advocacy on this precedent."
+      },
+      "error": ""
     }
   ]
 }

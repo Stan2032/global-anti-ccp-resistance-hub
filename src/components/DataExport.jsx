@@ -6,7 +6,7 @@ const datasets = [
     id: 'prisoners',
     name: 'Political Prisoners Database',
     description: 'Documented cases of political detention including names, charges, sentences, and status',
-    records: 62,
+    records: 63,
     lastUpdated: '2026-02-26',
     fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
     Icon: Link2
@@ -197,7 +197,7 @@ const DataExport = () => {
   }, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <div className="flex items-center mb-4">
@@ -267,7 +267,7 @@ const DataExport = () => {
                     </div>
                   </div>
                   <p className="text-sm text-slate-400 mt-1">{dataset.description}</p>
-                  <div className="flex items-center space-x-4 mt-2 text-xs text-slate-500">
+                  <div className="flex items-center space-x-4 mt-2 text-xs text-slate-400">
                     <span>{dataset.records} records</span>
                     <span>Updated: {dataset.lastUpdated}</span>
                   </div>

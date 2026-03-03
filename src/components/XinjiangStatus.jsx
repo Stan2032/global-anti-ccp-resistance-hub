@@ -51,7 +51,7 @@ const XinjiangStatus = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-cyan-500 p-6">
         <div className="flex items-center gap-3 mb-4">
@@ -116,7 +116,7 @@ const XinjiangStatus = () => {
                   <span className="text-white">{item.country}</span>
                   <div className="text-right">
                     <span className="text-slate-300 text-sm">{item.action}</span>
-                    <span className="text-slate-500 text-xs ml-2">({item.year})</span>
+                    <span className="text-slate-400 text-xs ml-2">({item.year})</span>
                   </div>
                 </div>
               ))}
@@ -183,7 +183,7 @@ const XinjiangStatus = () => {
                     <span className="text-[#22d3ee] font-bold">{sector.share}</span>
                   </div>
                   <p className="text-slate-400 text-sm">{sector.description}</p>
-                  <p className="text-slate-500 text-xs mt-1">Estimated workers: {sector.workers}</p>
+                  <p className="text-slate-400 text-xs mt-1">Estimated workers: {sector.workers}</p>
                 </div>
               ))}
             </div>

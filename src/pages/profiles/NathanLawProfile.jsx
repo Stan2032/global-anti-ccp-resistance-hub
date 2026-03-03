@@ -264,7 +264,7 @@ export default function NathanLawProfile() {
   const daysInExile = Math.floor((new Date() - new Date('2020-07-02')) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <GlobalDisclaimer />
 
       {/* Back link */}
@@ -319,7 +319,7 @@ export default function NathanLawProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Wanted under the National Security Law. Granted political asylum in the UK. Passport cancelled by Hong Kong authorities.
             </p>
           </div>

@@ -261,7 +261,7 @@ const DocumentaryList = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-[#22d3ee] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><Film className="w-6 h-6" /> Essential Documentaries</h2>
@@ -322,7 +322,7 @@ const DocumentaryList = () => {
               
               {/* Where to Watch */}
               <div className="border-t border-[#1c2a35] pt-3">
-                <p className="text-xs text-slate-500 mb-1">Where to Watch:</p>
+                <p className="text-xs text-slate-400 mb-1">Where to Watch:</p>
                 <div className="flex flex-wrap gap-1">
                   {doc.whereToWatch.map((platform, i) => (
                     <span key={i} className="bg-[#111820] text-[#22d3ee] px-2 py-0.5 rounded text-xs">

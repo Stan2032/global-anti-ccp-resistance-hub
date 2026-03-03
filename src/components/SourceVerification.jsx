@@ -241,7 +241,7 @@ const SourceVerification = () => {
     : trustedSources;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-green-500">
         <div className="flex items-center mb-4">
@@ -330,7 +330,7 @@ const SourceVerification = () => {
                       ))}
                     </div>
                     {source.keyReports && (
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-400">
                         Key reports: {source.keyReports.join(', ')}
                       </div>
                     )}
@@ -363,7 +363,7 @@ const SourceVerification = () => {
                   </span>
                 </div>
                 <p className="text-sm text-slate-400 mb-2">{source.reason}</p>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-slate-400">
                   Examples: {source.examples.join(' • ')}
                 </div>
               </div>

@@ -23,18 +23,43 @@ const IntelligenceFeeds = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('feeds');
   const [showAllFeeds, setShowAllFeeds] = useState(false);
+  const [sortBy, setSortBy] = useState('relevancy');
   const FEED_DISPLAY_COUNT = 5;
+
+  const sortOptions = [
+    { id: 'relevancy', label: 'Relevancy' },
+    { id: 'newest', label: 'Newest First' },
+    { id: 'oldest', label: 'Oldest First' },
+  ];
 
   // Filter feeds based on source and search
   const filteredFeeds = useMemo(() => {
-    return feeds.filter(feed => {
+    const filtered = feeds.filter(feed => {
       const matchesSource = selectedSource === 'all' || feed.source === selectedSource;
       const matchesSearch = !searchQuery || 
         feed.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         feed.description.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesSource && matchesSearch;
     });
-  }, [feeds, selectedSource, searchQuery]);
+
+    // Sort based on selected sort option
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'newest':
+          return new Date(b.pubDate) - new Date(a.pubDate);
+        case 'oldest':
+          return new Date(a.pubDate) - new Date(b.pubDate);
+        case 'relevancy':
+        default:
+          if (b.relevanceScore !== a.relevanceScore) {
+            return b.relevanceScore - a.relevanceScore;
+          }
+          return new Date(b.pubDate) - new Date(a.pubDate);
+      }
+    });
+
+    return filtered;
+  }, [feeds, selectedSource, searchQuery, sortBy]);
 
   const displayedFeeds = showAllFeeds ? filteredFeeds : filteredFeeds.slice(0, FEED_DISPLAY_COUNT);
 
@@ -65,7 +90,7 @@ const IntelligenceFeeds = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6 sm:p-8 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -90,7 +115,7 @@ const IntelligenceFeeds = () => {
       </div>
 
       {/* Tab Bar */}
-      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
         {[
           { id: 'feeds', label: 'Live Feeds' },
           { id: 'regional', label: 'Regional Status' },
@@ -150,33 +175,48 @@ const IntelligenceFeeds = () => {
             className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
-        
-        {/* Source Filter */}
-        <div className="flex flex-wrap gap-2">
+
+        {/* Sort By */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="sort-select" className="text-xs text-slate-400 whitespace-nowrap font-mono">Sort by:</label>
+          <select
+            id="sort-select"
+            value={sortBy}
+            onChange={(e) => { setSortBy(e.target.value); setShowAllFeeds(false); }}
+            className="px-3 py-2.5 bg-[#111820] border border-[#1c2a35] text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent appearance-none cursor-pointer"
+          >
+            {sortOptions.map((opt) => (
+              <option key={opt.id} value={opt.id}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      
+      {/* Source Filter */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => { setSelectedSource('all'); setShowAllFeeds(false); }}
+          className={`px-3 py-2 text-sm font-medium transition-colors ${
+            selectedSource === 'all'
+              ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
+              : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
+          }`}
+        >
+          All Sources
+        </button>
+        {Object.entries(sources).map(([key, source]) => (
           <button
-            onClick={() => { setSelectedSource('all'); setShowAllFeeds(false); }}
+            key={key}
+            onClick={() => { setSelectedSource(key); setShowAllFeeds(false); }}
             className={`px-3 py-2 text-sm font-medium transition-colors ${
-              selectedSource === 'all'
+              selectedSource === key
                 ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
-            All Sources
+            {source.name}
           </button>
-          {Object.entries(sources).map(([key, source]) => (
-            <button
-              key={key}
-              onClick={() => { setSelectedSource(key); setShowAllFeeds(false); }}
-              className={`px-3 py-2 text-sm font-medium transition-colors ${
-                selectedSource === key
-                  ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
-                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-              }`}
-            >
-              {source.name}
-            </button>
-          ))}
-        </div>
+        ))}
       </div>
 
       {/* Error State */}
@@ -215,7 +255,7 @@ const IntelligenceFeeds = () => {
             </span>
           </div>
           {lastUpdated && (
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-400">
               {lastUpdated.toLocaleTimeString()}
             </span>
           )}
@@ -242,7 +282,7 @@ const IntelligenceFeeds = () => {
                 <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
                   {sources[item.source]?.name || item.source.toUpperCase()}
                 </span>
-                <span className="text-xs text-slate-500">
+                <span className="text-xs text-slate-400">
                   {formatTime(item.pubDate)}
                 </span>
                 {item.relevanceScore > 30 && (
@@ -310,7 +350,7 @@ const IntelligenceFeeds = () => {
         <p className="text-slate-400 text-sm">
           Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
         </p>
-        <p className="text-slate-500 text-xs mt-1">
+        <p className="text-slate-400 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
         </p>
       </div>

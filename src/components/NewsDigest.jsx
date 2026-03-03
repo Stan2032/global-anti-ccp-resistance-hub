@@ -149,7 +149,7 @@ const NewsDigest = () => {
             <div key={idx} className="bg-[#0a0e14]/50 p-3">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium text-white text-sm">{digest.title}</h4>
-                <span className="text-xs text-slate-500">{digest.date}</span>
+                <span className="text-xs text-slate-400">{digest.date}</span>
               </div>
               <ul className="text-xs text-slate-400 space-y-1">
                 {digest.highlights.map((highlight, hidx) => (
@@ -189,7 +189,7 @@ const NewsDigest = () => {
             placeholder="your@email.com"
             className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
           />
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-slate-400 mt-2">
             We respect your privacy. Unsubscribe anytime.
           </p>
         </div>
@@ -285,7 +285,7 @@ const NewsDigest = () => {
 
       {/* Backend status footer */}
       <div className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
-        <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-400">
           {backendConnected ? (
             <span className="flex items-center gap-1">
               <Lock className="w-3 h-3" /> Connected to secure backend

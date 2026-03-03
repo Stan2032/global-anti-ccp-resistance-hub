@@ -141,7 +141,7 @@ const SecurityCenter = () => {
       </div>
 
       {/* Tabs — consolidated from 6 to 4 */}
-      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
         {[
           { id: 'assess', label: 'Assess' },
           { id: 'tools', label: 'Tools' },

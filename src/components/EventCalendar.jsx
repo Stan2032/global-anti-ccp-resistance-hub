@@ -233,7 +233,7 @@ const EventCalendar = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2"><CalendarDays className="w-6 h-6" /> Resistance Calendar</h2>
@@ -314,7 +314,7 @@ const EventCalendar = () => {
             <p className="text-slate-300 text-sm mb-4">{event.description}</p>
             
             <div className="border-t border-[#1c2a35] pt-4">
-              <p className="text-xs text-slate-500 mb-2">Suggested Actions:</p>
+              <p className="text-xs text-slate-400 mb-2">Suggested Actions:</p>
               <div className="flex flex-wrap gap-2">
                 {event.actions.map((action, j) => (
                   <span key={j} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">

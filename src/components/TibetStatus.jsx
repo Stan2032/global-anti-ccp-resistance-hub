@@ -65,7 +65,7 @@ const TibetStatus = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-orange-500 p-6">
         <div className="flex items-center gap-3 mb-4">
@@ -155,7 +155,7 @@ const TibetStatus = () => {
                       'bg-green-900/50 text-green-300'
                     }`}>{prisoner.status}</span>
                   </div>
-                  <p className="text-slate-500 text-xs mt-1">Since: {prisoner.since}</p>
+                  <p className="text-slate-400 text-xs mt-1">Since: {prisoner.since}</p>
                 </div>
               ))}
             </div>
