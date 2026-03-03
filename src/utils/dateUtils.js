@@ -1,6 +1,6 @@
 /**
- * Date utilities for age calculation and date formatting.
- * Used by profile pages and ProfilesIndex to keep ages current.
+ * Date utilities for age calculation, date formatting, and event countdowns.
+ * Used by profile pages, ProfilesIndex, and EventCountdown.
  */
 
 /**
@@ -29,4 +29,39 @@ export function calculateAge(birthDate, deathDate) {
     age--;
   }
   return age;
+}
+
+/**
+ * Calculate time remaining until eventDate.
+ * eventDate should be YYYY-MM-DD string.
+ *
+ * @param {string|null|undefined} eventDate - Target date in YYYY-MM-DD format
+ * @returns {{ days: number, hours: number, minutes: number, seconds: number, isPast: boolean, isToday: boolean }}
+ */
+export function calculateTimeLeft(eventDate) {
+  if (!eventDate) return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
+  
+  const now = new Date();
+  const [year, month, day] = eventDate.split('-').map(Number);
+  const target = new Date(year, month - 1, day);
+  
+  const isToday = now.getFullYear() === year && now.getMonth() === month - 1 && now.getDate() === day;
+  
+  const diff = target.getTime() - now.getTime();
+  
+  if (diff <= 0 && !isToday) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
+  }
+
+  if (isToday) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: false, isToday: true };
+  }
+  
+  const totalSeconds = Math.floor(diff / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  
+  return { days, hours, minutes, seconds, isPast: false, isToday: false };
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
+import EventCountdown from './EventCountdown';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -93,6 +94,9 @@ const EmergencyAlerts = () => {
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
                   <p className="text-sm text-slate-300 mt-1">{alert.summary}</p>
+                  {alert.eventDate && (
+                    <EventCountdown eventDate={alert.eventDate} label={`Countdown to ${alert.title}`} />
+                  )}
                 </div>
                 <button
                   onClick={() => dismissAlert(alert.id)}
