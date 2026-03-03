@@ -306,7 +306,7 @@ export default function XuZhiyongProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               A Peking University PhD and legal scholar sentenced to 14 years for peacefully advocating government transparency and rule of law.
             </p>
           </div>

@@ -249,7 +249,7 @@ const ChinaTechThreats = () => {
                   </div>
                   <p className="text-slate-300 text-sm">{company.details}</p>
                   <div className="flex justify-between items-center mt-2">
-                    <span className="text-slate-500 text-xs">Presence: {company.countries}</span>
+                    <span className="text-slate-400 text-xs">Presence: {company.countries}</span>
                     <div className="flex gap-1">
                       {company.sanctions.map((flag, j) => (
                         <span key={j} className="text-sm">{flag}</span>
@@ -280,7 +280,7 @@ const ChinaTechThreats = () => {
                   </div>
                   <p className="text-slate-400 text-sm mb-1">Companies: {item.companies}</p>
                   <p className="text-slate-300 text-sm mb-1">Concern: {item.concern}</p>
-                  <p className="text-slate-500 text-xs">Affected: {item.affected}</p>
+                  <p className="text-slate-400 text-xs">Affected: {item.affected}</p>
                 </div>
               ))}
             </div>

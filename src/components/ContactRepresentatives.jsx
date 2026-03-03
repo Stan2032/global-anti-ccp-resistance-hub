@@ -381,7 +381,7 @@ Sincerely,
           </div>
         </div>
         
-        <p className="text-xs text-slate-500 mt-3">
+        <p className="text-xs text-slate-400 mt-3">
           Tip: Personalize this letter with your own experiences and concerns. Personal letters are more impactful than form letters.
         </p>
       </div>

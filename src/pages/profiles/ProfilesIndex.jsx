@@ -351,7 +351,7 @@ const ProfileCard = ({ profile }) => {
           </div>
         ) : (
           <div className="flex items-center justify-between pt-3 border-t border-[#1c2a35]/50">
-            <span className="text-xs text-slate-500 font-medium">Profile coming soon</span>
+            <span className="text-xs text-slate-400 font-medium">Profile coming soon</span>
             <Clock className="w-4 h-4 text-slate-600" />
           </div>
         )}
@@ -384,7 +384,7 @@ const ProfilesIndex = () => {
           Detailed profiles of individuals persecuted by the Chinese Communist Party — journalists, 
           activists, religious leaders, and scholars whose stories must not be forgotten.
         </p>
-        <div className="flex items-center gap-4 mt-4 text-sm text-slate-500">
+        <div className="flex items-center gap-4 mt-4 text-sm text-slate-400">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-green-500" />
             {builtProfiles.length} detailed profiles
@@ -432,7 +432,7 @@ const ProfilesIndex = () => {
           ))}
         </div>
         {filteredProfiles.length === 0 && (
-          <p className="text-slate-500 text-center py-8 font-mono">No profiles match this filter.</p>
+          <p className="text-slate-400 text-center py-8 font-mono">No profiles match this filter.</p>
         )}
       </section>
 
@@ -453,7 +453,7 @@ const ProfilesIndex = () => {
 
       {/* Source Note */}
       <div className="mt-10 p-4 bg-[#111820]/50 border border-[#1c2a35]/50">
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-slate-400">
           All profile information is sourced from Tier 1 outlets (BBC, Reuters, AP, HRW, Amnesty International, 
           CPJ, UN OHCHR) and Tier 2 sources (HKFP, RFA, NCHRD, Safeguard Defenders). No CCP state media sources 
           are used. See individual profiles for full source lists.

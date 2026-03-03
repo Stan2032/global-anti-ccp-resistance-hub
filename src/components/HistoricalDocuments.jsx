@@ -336,22 +336,22 @@ const HistoricalDocuments = () => {
 
             <div className="grid md:grid-cols-4 gap-3 mb-4 text-sm">
               <div>
-                <div className="text-slate-500 mb-1">Date</div>
+                <div className="text-slate-400 mb-1">Date</div>
                 <div className="text-slate-300 flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   {doc.date}
                 </div>
               </div>
               <div>
-                <div className="text-slate-500 mb-1">Source</div>
+                <div className="text-slate-400 mb-1">Source</div>
                 <div className="text-slate-300">{doc.source}</div>
               </div>
               <div>
-                <div className="text-slate-500 mb-1">Pages</div>
+                <div className="text-slate-400 mb-1">Pages</div>
                 <div className="text-slate-300">{doc.pages}</div>
               </div>
               <div>
-                <div className="text-slate-500 mb-1">Language</div>
+                <div className="text-slate-400 mb-1">Language</div>
                 <div className="text-slate-300">{doc.language}</div>
               </div>
             </div>
@@ -375,7 +375,7 @@ const HistoricalDocuments = () => {
                 View Document
               </a>
               {!doc.downloadable && (
-                <span className="text-xs text-slate-500 flex items-center gap-1">
+                <span className="text-xs text-slate-400 flex items-center gap-1">
                   <Lock className="w-3 h-3" />
                   View only (no download)
                 </span>

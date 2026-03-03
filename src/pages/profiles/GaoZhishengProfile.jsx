@@ -323,7 +323,7 @@ export default function GaoZhishengProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Last seen August 13, 2017. Chinese authorities refuse to disclose his whereabouts or confirm he is alive.
             </p>
           </div>

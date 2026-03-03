@@ -319,7 +319,7 @@ export default function NathanLawProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Wanted under the National Security Law. Granted political asylum in the UK. Passport cancelled by Hong Kong authorities.
             </p>
           </div>

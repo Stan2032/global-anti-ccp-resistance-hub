@@ -328,7 +328,7 @@ const LanguageGuide = () => {
             <p className="text-lg font-bold text-white mb-1">{phrase.english}</p>
             <p className="text-2xl text-[#22d3ee] mb-1 font-medium">{phrase.native}</p>
             <p className="text-sm text-slate-400 italic mb-2">{phrase.romanization}</p>
-            <p className="text-xs text-slate-500">{phrase.context}</p>
+            <p className="text-xs text-slate-400">{phrase.context}</p>
           </div>
         ))}
       </div>

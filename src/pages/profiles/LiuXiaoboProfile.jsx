@@ -411,7 +411,7 @@ export default function LiuXiaoboProfile() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <span className="text-xs text-slate-500 font-mono">{event.year}</span>
+                        <span className="text-xs text-slate-400 font-mono">{event.year}</span>
                         <h3 className="text-white font-semibold group-hover:text-yellow-300 transition-colors">
                           {event.title}
                         </h3>
@@ -499,7 +499,7 @@ export default function LiuXiaoboProfile() {
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3 text-center">
                   <div className="text-xl font-bold text-yellow-400">{stat.value}</div>
                   <div className="text-sm text-slate-300">{stat.label}</div>
-                  <div className="text-xs text-slate-500">{stat.sub}</div>
+                  <div className="text-xs text-slate-400">{stat.sub}</div>
                 </div>
               ))}
             </div>
@@ -623,7 +623,7 @@ export default function LiuXiaoboProfile() {
                   <div>
                     <h4 className="text-white font-semibold text-sm">{r.org}</h4>
                     <p className="text-slate-300 text-sm mt-1">{r.action}</p>
-                    <span className="text-slate-500 text-xs">{r.year}</span>
+                    <span className="text-slate-400 text-xs">{r.year}</span>
                   </div>
                 </div>
               ))}
@@ -656,7 +656,7 @@ export default function LiuXiaoboProfile() {
               <p className="text-slate-400 text-sm">
                 — Liu Xiaobo, statement prepared for his trial, December 23, 2009
               </p>
-              <p className="text-slate-500 text-xs mt-2">
+              <p className="text-slate-400 text-xs mt-2">
                 His full statement, titled &quot;I Have No Enemies: My Final Statement,&quot; was read by his wife Liu Xia at the Nobel ceremony. In it, he forgave his persecutors and expressed hope for China&apos;s future.
               </p>
             </div>

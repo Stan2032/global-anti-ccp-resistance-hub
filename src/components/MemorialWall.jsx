@@ -289,19 +289,19 @@ export default function MemorialWall() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-red-400">{tiananmenDeaths}</p>
-            <p className="text-xs text-slate-500">Tiananmen 1989</p>
+            <p className="text-xs text-slate-400">Tiananmen 1989</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-orange-400">{totalSelfImmolations}+</p>
-            <p className="text-xs text-slate-500">Tibetan Self-Immolations</p>
+            <p className="text-xs text-slate-400">Tibetan Self-Immolations</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-[#22d3ee]">Unknown</p>
-            <p className="text-xs text-slate-500">Uyghur Deaths in Camps</p>
+            <p className="text-xs text-slate-400">Uyghur Deaths in Camps</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3 text-center">
             <p className="text-lg font-bold text-[#22d3ee]">60,000+/yr</p>
-            <p className="text-xs text-slate-500">Organ Harvesting Est.</p>
+            <p className="text-xs text-slate-400">Organ Harvesting Est.</p>
           </div>
         </div>
       </div>
@@ -358,7 +358,7 @@ export default function MemorialWall() {
                 
                 <h3 className="text-white font-semibold text-lg">{victim.name}</h3>
                 {victim.chineseName && (
-                  <p className="text-slate-500 text-sm">{victim.chineseName}</p>
+                  <p className="text-slate-400 text-sm">{victim.chineseName}</p>
                 )}
                 {victim.aka && (
                   <p className="text-slate-400 text-sm italic">"{victim.aka}"</p>
@@ -418,7 +418,7 @@ export default function MemorialWall() {
               <strong className="text-white">{candlesLit.length}</strong> candles lit in remembrance
             </span>
           </div>
-          <p className="text-xs text-slate-500">Your tributes are saved locally</p>
+          <p className="text-xs text-slate-400">Your tributes are saved locally</p>
         </div>
       </div>
 
@@ -469,31 +469,31 @@ export default function MemorialWall() {
                 <p className="text-slate-400">{selectedVictim.chineseName}</p>
               )}
               {selectedVictim.aka && (
-                <p className="text-slate-500 italic">Also known as: "{selectedVictim.aka}"</p>
+                <p className="text-slate-400 italic">Also known as: "{selectedVictim.aka}"</p>
               )}
               
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
-                  <p className="text-xs text-slate-500">Date of Death</p>
+                  <p className="text-xs text-slate-400">Date of Death</p>
                   <p className="text-white">{selectedVictim.dateOfDeath || selectedVictim.yearOfDeath}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Location</p>
+                  <p className="text-xs text-slate-400">Location</p>
                   <p className="text-white">{selectedVictim.placeOfDeath}</p>
                 </div>
                 <div className="col-span-2">
-                  <p className="text-xs text-slate-500">Cause</p>
+                  <p className="text-xs text-slate-400">Cause</p>
                   <p className="text-white">{selectedVictim.cause}</p>
                 </div>
               </div>
               
               <div className="mt-4">
-                <p className="text-xs text-slate-500 mb-1">Story</p>
+                <p className="text-xs text-slate-400 mb-1">Story</p>
                 <p className="text-slate-300">{selectedVictim.description}</p>
               </div>
               
               <div className="mt-4">
-                <p className="text-xs text-slate-500 mb-1">Source</p>
+                <p className="text-xs text-slate-400 mb-1">Source</p>
                 <p className="text-slate-400 text-sm">{selectedVictim.source}</p>
               </div>
               

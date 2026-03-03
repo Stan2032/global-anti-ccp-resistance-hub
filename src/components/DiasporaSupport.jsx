@@ -234,7 +234,7 @@ const DiasporaSupport = () => {
             
             {resource.services && (
               <div className="mb-4">
-                <p className="text-xs text-slate-500 mb-2">Services:</p>
+                <p className="text-xs text-slate-400 mb-2">Services:</p>
                 <div className="flex flex-wrap gap-2">
                   {resource.services.map((service, j) => (
                     <span key={j} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">

@@ -177,7 +177,7 @@ export default function DetentionFacilities() {
               </div>
               <h2 className="text-2xl font-bold text-white">{facility.name}</h2>
               <p className="text-slate-400">{facility.chineseName}</p>
-              <p className="text-sm text-slate-500 mt-1 flex items-center gap-1">
+              <p className="text-sm text-slate-400 mt-1 flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
                 {facility.city}, {facility.region}
               </p>
@@ -188,19 +188,19 @@ export default function DetentionFacilities() {
         {/* Quick Facts */}
         <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Estimated Capacity</p>
+            <p className="text-xs text-slate-400 mb-1">Estimated Capacity</p>
             <p className="text-white font-medium">{facility.estimatedCapacity}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">First Documented</p>
+            <p className="text-xs text-slate-400 mb-1">First Documented</p>
             <p className="text-white font-medium">{facility.firstDocumented}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Region</p>
+            <p className="text-xs text-slate-400 mb-1">Region</p>
             <p className="text-white font-medium">{facility.region}</p>
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
-            <p className="text-xs text-slate-500 mb-1">Status</p>
+            <p className="text-xs text-slate-400 mb-1">Status</p>
             <p className={`font-medium ${facility.status === 'Active' ? 'text-red-400' : 'text-slate-400'}`}>
               {facility.status}
             </p>
@@ -268,7 +268,7 @@ export default function DetentionFacilities() {
         {/* Coordinates */}
         {facility.coordinates && (
           <div className="px-6 pb-6">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               Coordinates: {facility.coordinates.lat.toFixed(4)}°N, {facility.coordinates.lng.toFixed(4)}°E
             </p>
           </div>
@@ -305,19 +305,19 @@ export default function DetentionFacilities() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{facilities.length}</p>
-          <p className="text-xs text-slate-500">Facilities Documented</p>
+          <p className="text-xs text-slate-400">Facilities Documented</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-red-400">{totalCapacity.toLocaleString()}+</p>
-          <p className="text-xs text-slate-500">Est. Total Capacity</p>
+          <p className="text-xs text-slate-400">Est. Total Capacity</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{new Set(facilities.map(f => f.region)).size}</p>
-          <p className="text-xs text-slate-500">Regions</p>
+          <p className="text-xs text-slate-400">Regions</p>
         </div>
         <div className="bg-[#0a0e14]/50 p-4 text-center">
           <p className="text-2xl font-bold text-white">{facilities.filter(f => f.status === 'Active').length}</p>
-          <p className="text-xs text-slate-500">Active Facilities</p>
+          <p className="text-xs text-slate-400">Active Facilities</p>
         </div>
       </div>
 
@@ -383,7 +383,7 @@ export default function DetentionFacilities() {
                   )}
                 </div>
                 <h3 className="text-white font-semibold truncate">{facility.name}</h3>
-                <p className="text-xs text-slate-500">{facility.chineseName}</p>
+                <p className="text-xs text-slate-400">{facility.chineseName}</p>
               </div>
             </div>
             <div className="flex items-center justify-between">
@@ -391,7 +391,7 @@ export default function DetentionFacilities() {
                 <MapPin className="w-3 h-3" />
                 {facility.city}, {facility.region}
               </div>
-              <span className="text-xs text-slate-500">Cap: {facility.estimatedCapacity}</span>
+              <span className="text-xs text-slate-400">Cap: {facility.estimatedCapacity}</span>
             </div>
           </button>
         ))}

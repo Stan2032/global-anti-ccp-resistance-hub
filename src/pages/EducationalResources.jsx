@@ -83,7 +83,7 @@ const EducationalResources = () => {
             {module.level}
           </span>
         </div>
-        <span className="text-slate-500">{module.lessons} lessons</span>
+        <span className="text-slate-400">{module.lessons} lessons</span>
       </div>
     </button>
   )
@@ -126,21 +126,21 @@ const EducationalResources = () => {
         >
           <p className="text-slate-400 text-sm">Total Courses</p>
           <p className="text-2xl font-bold text-white mt-1">5</p>
-          <p className="text-xs text-slate-500 mt-1">Comprehensive modules</p>
+          <p className="text-xs text-slate-400 mt-1">Comprehensive modules</p>
         </div>
         <div
           className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Resources</p>
           <p className="text-2xl font-bold text-white mt-1">5</p>
-          <p className="text-xs text-slate-500 mt-1">Downloadable materials</p>
+          <p className="text-xs text-slate-400 mt-1">Downloadable materials</p>
         </div>
         <div
           className="bg-[#111820] border border-[#1c2a35] p-4"
         >
           <p className="text-slate-400 text-sm">Topics Covered</p>
           <p className="text-2xl font-bold text-white mt-1">20+</p>
-          <p className="text-xs text-slate-500 mt-1">Key subject areas</p>
+          <p className="text-xs text-slate-400 mt-1">Key subject areas</p>
         </div>
       </div>
 

@@ -210,7 +210,7 @@ const Dashboard = () => {
 
       {/* ─── Recent Activity ───────────────────────────────────── */}
       <div>
-        <h2 className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Recent Updates
         </h2>
         <Suspense fallback={<SectionLoader />}><RecentUpdates /></Suspense>
@@ -218,7 +218,7 @@ const Dashboard = () => {
 
       {/* ─── Live News ─────────────────────────────────────────── */}
       <div>
-        <h2 className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Live News
         </h2>
         <div className="bg-[#111820] border border-[#1c2a35] p-6">
@@ -228,7 +228,7 @@ const Dashboard = () => {
 
       {/* ─── Essential Security Tools ──────────────────────────── */}
       <div>
-        <h2 className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Security Tools
         </h2>
         <div className="bg-[#111820] border border-[#1c2a35] p-6">
@@ -261,7 +261,7 @@ const Dashboard = () => {
 
       {/* ─── Live Statistics ───────────────────────────────────── */}
       <div>
-        <h2 className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> Statistics
         </h2>
         <Suspense fallback={<SectionLoader />}><LiveStatistics /></Suspense>
@@ -269,7 +269,7 @@ const Dashboard = () => {
 
       {/* ─── News Digest ───────────────────────────────────────── */}
       <div>
-        <h2 className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
+        <h2 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
           <span className="text-slate-600" aria-hidden="true">──</span> News Digest
         </h2>
         <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>

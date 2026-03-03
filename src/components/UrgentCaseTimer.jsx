@@ -110,7 +110,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-medium text-white">{prisoner.name}</span>
-                  <span className="text-slate-500 text-sm ml-2">{prisoner.chinese}</span>
+                  <span className="text-slate-400 text-sm ml-2">{prisoner.chinese}</span>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded ${
                   prisoner.statusColor === 'red' ? 'bg-red-600' : 'bg-[#1c2a35]'
@@ -172,23 +172,23 @@ const UrgentCaseTimer = ({ compact = false }) => {
                 <div className="grid grid-cols-5 gap-2 text-center">
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.years}</div>
-                    <div className="text-xs text-slate-500">YEARS</div>
+                    <div className="text-xs text-slate-400">YEARS</div>
                   </div>
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.days}</div>
-                    <div className="text-xs text-slate-500">DAYS</div>
+                    <div className="text-xs text-slate-400">DAYS</div>
                   </div>
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.hours}</div>
-                    <div className="text-xs text-slate-500">HOURS</div>
+                    <div className="text-xs text-slate-400">HOURS</div>
                   </div>
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.minutes}</div>
-                    <div className="text-xs text-slate-500">MINS</div>
+                    <div className="text-xs text-slate-400">MINS</div>
                   </div>
                   <div>
                     <div className="text-3xl font-mono font-bold text-red-400">{timer.seconds}</div>
-                    <div className="text-xs text-slate-500">SECS</div>
+                    <div className="text-xs text-slate-400">SECS</div>
                   </div>
                 </div>
                 <div className="text-center mt-2 text-sm text-slate-400">

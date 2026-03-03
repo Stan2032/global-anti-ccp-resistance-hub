@@ -222,7 +222,7 @@ const SanctionsTracker = () => {
             );
           })}
         </div>
-        <p className="text-xs text-slate-500 mt-3">
+        <p className="text-xs text-slate-400 mt-3">
           Data last verified: {sanctionsData.metadata.last_verified}. Sanctions may have been added since this date.
         </p>
       </div>

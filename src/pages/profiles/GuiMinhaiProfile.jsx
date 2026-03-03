@@ -354,7 +354,7 @@ export default function GuiMinhaiProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Only one of the five Causeway Bay Books booksellers still imprisoned. Sentence due to end February 2030.
             </p>
           </div>

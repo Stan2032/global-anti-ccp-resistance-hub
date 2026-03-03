@@ -362,7 +362,7 @@ const CompanyTracker = () => {
                 </button>
               )}
               
-              <div className="flex items-center justify-between text-xs text-slate-500">
+              <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>Updated: {company.lastUpdated}</span>
                 <span className="capitalize">{company.category.replace('-', ' ')}</span>
               </div>
@@ -465,7 +465,7 @@ const CompanyTracker = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-xs text-slate-500">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-xs text-slate-400">
         <GlobalDisclaimer type="changing" />
       </div>
     </div>

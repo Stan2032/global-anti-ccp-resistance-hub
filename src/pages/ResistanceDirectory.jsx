@@ -168,7 +168,7 @@ const ResistanceDirectory = () => {
 
             <p className="text-sm text-slate-400 mb-3 line-clamp-2">{org.description}</p>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
               <span className="flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
                 {org.headquarters}
@@ -225,7 +225,7 @@ const ResistanceDirectory = () => {
         <p className="text-slate-400 text-sm">
           Showing {filteredOrgs.length} of {organizations.length} verified organizations
         </p>
-        <p className="text-slate-500 text-xs mt-1">
+        <p className="text-slate-400 text-xs mt-1">
           All organizations are independently verified • Click an organization to view details
         </p>
       </div>

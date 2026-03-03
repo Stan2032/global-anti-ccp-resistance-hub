@@ -218,7 +218,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                         )}
                       </div>
                       <p className="text-xs text-slate-400">{story.location}</p>
-                      <p className="text-xs text-slate-500">{story.year}</p>
+                      <p className="text-xs text-slate-400">{story.year}</p>
                     </div>
                   </div>
                   <span className="text-xs px-2 py-1 bg-[#111820] rounded text-slate-300 inline-flex items-center gap-1">
@@ -240,7 +240,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                       {story.fullStory}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="text-xs text-slate-500">Sources:</span>
+                      <span className="text-xs text-slate-400">Sources:</span>
                       {story.sources.map((source, idx) => (
                         <span key={idx} className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">
                           {source}

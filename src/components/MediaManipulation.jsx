@@ -235,7 +235,7 @@ const MediaManipulation = () => {
             </div>
             
             <div className="border-t border-[#1c2a35] pt-4">
-              <p className="text-xs text-slate-500 mb-2">Concerns:</p>
+              <p className="text-xs text-slate-400 mb-2">Concerns:</p>
               <div className="flex flex-wrap gap-2">
                 {media.concerns.map((concern, j) => (
                   <span key={j} className="bg-red-900/50 text-red-300 text-xs px-2 py-1 rounded">

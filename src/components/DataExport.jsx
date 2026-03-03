@@ -267,7 +267,7 @@ const DataExport = () => {
                     </div>
                   </div>
                   <p className="text-sm text-slate-400 mt-1">{dataset.description}</p>
-                  <div className="flex items-center space-x-4 mt-2 text-xs text-slate-500">
+                  <div className="flex items-center space-x-4 mt-2 text-xs text-slate-400">
                     <span>{dataset.records} records</span>
                     <span>Updated: {dataset.lastUpdated}</span>
                   </div>

@@ -88,7 +88,7 @@ const EmergencyAlerts = () => {
                     </span>
                     <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
                     {alert.lastVerified && (
-                      <span className="text-xs text-slate-500 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
+                      <span className="text-xs text-slate-400 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
                     )}
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
@@ -164,7 +164,7 @@ const EmergencyAlerts = () => {
       {showAll && hiddenCount > 0 && (
         <button
           onClick={() => setShowAll(false)}
-          className="w-full py-2 text-xs text-slate-500 hover:text-[#4afa82] font-mono transition-colors"
+          className="w-full py-2 text-xs text-slate-400 hover:text-[#4afa82] font-mono transition-colors"
         >
           $ collapse --alerts
         </button>
@@ -175,7 +175,7 @@ const EmergencyAlerts = () => {
         <div className="text-center">
           <button
             onClick={() => setDismissedAlerts([])}
-            className="text-xs text-slate-500 hover:text-[#4afa82] font-mono"
+            className="text-xs text-slate-400 hover:text-[#4afa82] font-mono"
           >
             $ show --dismissed ({dismissedAlerts.length})
           </button>

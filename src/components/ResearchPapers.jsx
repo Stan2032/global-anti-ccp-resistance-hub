@@ -319,11 +319,11 @@ const ResearchPapers = () => {
               >
                 <div className="flex items-start justify-between mb-2">
                   <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs rounded">{paper.type}</span>
-                  <span className="text-xs text-slate-500">{paper.year}</span>
+                  <span className="text-xs text-slate-400">{paper.year}</span>
                 </div>
                 <h4 className="font-bold text-white text-sm mb-2 line-clamp-2">{paper.title}</h4>
                 <p className="text-xs text-slate-400 mb-2">{paper.authors[0]}</p>
-                <div className="flex items-center text-xs text-slate-500">
+                <div className="flex items-center text-xs text-slate-400">
                   <span>{paper.pages} pages</span>
                   <span className="mx-2">•</span>
                   <span>{paper.citations} citations</span>
@@ -342,7 +342,7 @@ const ResearchPapers = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-1 bg-[#111820] text-slate-300 text-xs rounded">{paper.type}</span>
-                  <span className="text-xs text-slate-500">{paper.year}</span>
+                  <span className="text-xs text-slate-400">{paper.year}</span>
                   {paper.featured && (
                     <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 text-xs rounded">⭐ Essential</span>
                   )}

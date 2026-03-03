@@ -218,7 +218,7 @@ const DisinfoTracker = () => {
                   {alert.spreadLevel}
                 </span>
               </div>
-              <span className="text-xs text-slate-500">{alert.dateSpotted}</span>
+              <span className="text-xs text-slate-400">{alert.dateSpotted}</span>
             </div>
 
             {/* False Claim */}
@@ -228,7 +228,7 @@ const DisinfoTracker = () => {
                 <span className="text-xs font-medium text-red-400 uppercase">False Claim</span>
               </div>
               <p className="text-white font-medium italic">"{alert.claim}"</p>
-              <p className="text-xs text-slate-500 mt-1">Source: {alert.source}</p>
+              <p className="text-xs text-slate-400 mt-1">Source: {alert.source}</p>
             </div>
 
             {/* Reality */}
@@ -242,7 +242,7 @@ const DisinfoTracker = () => {
 
             {/* Debunked By */}
             <div>
-              <div className="text-xs text-slate-500 mb-2">Debunked by:</div>
+              <div className="text-xs text-slate-400 mb-2">Debunked by:</div>
               <div className="flex flex-wrap gap-2">
                 {alert.debunkedBy.map((source, idx) => (
                   <span 

@@ -388,7 +388,7 @@ const DonationGuide = () => {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3 className="font-bold text-white">{org.name}</h3>
-                  <p className="text-xs text-slate-500">{org.acronym} • {org.country}</p>
+                  <p className="text-xs text-slate-400">{org.acronym} • {org.country}</p>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded border ${ratingColors[org.rating]}`}>
                   {org.rating}
@@ -408,7 +408,7 @@ const DonationGuide = () => {
                 )}
               </div>
               
-              <p className="text-xs text-slate-500 mb-3">
+              <p className="text-xs text-slate-400 mb-3">
                 <strong>Impact:</strong> {org.impact}
               </p>
               

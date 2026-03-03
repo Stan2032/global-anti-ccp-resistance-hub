@@ -160,7 +160,7 @@ const Footer = () => {
               <span className="font-mono text-[#4afa82] text-lg font-bold terminal-glow">[GRH]</span>
               <div>
                 <p className="text-white font-mono font-semibold text-sm">resistance_hub</p>
-                <p className="text-xs text-slate-500 font-mono">v2.11.0 // open_source</p>
+                <p className="text-xs text-slate-400 font-mono">v2.11.0 // open_source</p>
               </div>
             </div>
 
@@ -203,7 +203,7 @@ const Footer = () => {
 
           {/* Copyright & License */}
           <div className="mt-6 text-center font-mono">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               © {currentYear} Global Resistance Network | 
               content: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="hover:text-[#4afa82]">CC BY 4.0</a> | 
               code: <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" className="hover:text-[#4afa82]">MIT</a>

@@ -176,12 +176,12 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-slate-500">Location:</span>
+            <span className="text-slate-400">Location:</span>
             <span className="text-slate-300">{prisoner.location}</span>
           </div>
           {prisoner.sentence && (
             <div className="flex justify-between">
-              <span className="text-slate-500">Sentence:</span>
+              <span className="text-slate-400">Sentence:</span>
               <span className="text-slate-300">{prisoner.sentence}</span>
             </div>
           )}
@@ -197,7 +197,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         
         {prisoner.awards && prisoner.awards.length > 0 && (
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-            <p className="text-xs text-slate-500">Awards:</p>
+            <p className="text-xs text-slate-400">Awards:</p>
             <div className="flex flex-wrap gap-1 mt-1">
               {prisoner.awards.map((award, i) => (
                 <span key={i} className="bg-yellow-900/50 text-yellow-300 text-xs px-2 py-0.5 rounded">
@@ -267,12 +267,12 @@ const PrisonerModal = ({ prisoner, onClose }) => {
           
           <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
             <div className="bg-[#0a0e14]/50 p-3">
-              <span className="text-slate-500 block">Location</span>
+              <span className="text-slate-400 block">Location</span>
               <span className="text-slate-200">{prisoner.location}</span>
             </div>
             {prisoner.sentence && (
               <div className="bg-[#0a0e14]/50 p-3">
-                <span className="text-slate-500 block">Sentence</span>
+                <span className="text-slate-400 block">Sentence</span>
                 <span className="text-slate-200">{prisoner.sentence}</span>
               </div>
             )}
@@ -299,7 +299,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
                 <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">Latest Developments</h3>
                 <p className="text-slate-200 text-sm">{prisoner.latestNews}</p>
                 {prisoner.internationalResponse && (
-                  <p className="text-slate-300 text-sm mt-2"><span className="text-slate-500">Int'l response:</span> {prisoner.internationalResponse}</p>
+                  <p className="text-slate-300 text-sm mt-2"><span className="text-slate-400">Int'l response:</span> {prisoner.internationalResponse}</p>
                 )}
               </div>
             )}

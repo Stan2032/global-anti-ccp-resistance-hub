@@ -321,7 +321,7 @@ export default function AgnesChowProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Currently in exile in Toronto, Canada. Wanted under the National Security Law. Cannot return to Hong Kong.
             </p>
           </div>

@@ -70,7 +70,7 @@ const AdminDashboard = () => {
             <Shield className="w-6 h-6 text-[#4afa82]" />
             <div>
               <h1 className="text-xl font-bold text-white font-mono">Admin Dashboard</h1>
-              <p className="text-slate-500 text-xs font-mono">{user?.email}</p>
+              <p className="text-slate-400 text-xs font-mono">{user?.email}</p>
             </div>
           </div>
           <button
@@ -135,7 +135,7 @@ const AdminDashboard = () => {
               <thead>
                 <tr className="border-b border-[#1c2a35]">
                   {Object.keys(data[0]).map(key => (
-                    <th key={key} className="text-left px-4 py-3 text-slate-500 text-xs font-medium">
+                    <th key={key} className="text-left px-4 py-3 text-slate-500 text-xs font-medium text-slate-400">
                       {key}
                     </th>
                   ))}

@@ -330,7 +330,7 @@ const SourceVerification = () => {
                       ))}
                     </div>
                     {source.keyReports && (
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-400">
                         Key reports: {source.keyReports.join(', ')}
                       </div>
                     )}
@@ -363,7 +363,7 @@ const SourceVerification = () => {
                   </span>
                 </div>
                 <p className="text-sm text-slate-400 mb-2">{source.reason}</p>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-slate-400">
                   Examples: {source.examples.join(' • ')}
                 </div>
               </div>

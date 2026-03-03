@@ -221,7 +221,7 @@ const ResearchDashboard = () => {
                       </div>
                       <StatusBadge status="HIGH" />
                     </div>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
+                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
                       <span>{news.date}</span>
                       <span>{news.source}</span>
                     </div>
@@ -304,7 +304,7 @@ const ResearchDashboard = () => {
                         Action: {news.actionNeeded}
                       </p>
                     )}
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
+                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
                       <span>{news.date}</span>
                       <span>{news.source}</span>
                     </div>
@@ -352,7 +352,7 @@ const ResearchDashboard = () => {
                         {station.latestNews}
                       </p>
                     )}
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
+                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
                       <span>Linked to: {station.linkedTo}</span>
                       {station.closureDate && station.closureDate !== 'N/A' && (
                         <span>Closed: {station.closureDate}</span>

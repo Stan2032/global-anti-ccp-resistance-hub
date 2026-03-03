@@ -180,7 +180,7 @@ const LiveStatistics = () => {
               <p className="text-slate-400">Real-time statistics on CCP repression</p>
             </div>
           </div>
-          <div className="text-right text-xs text-slate-500">
+          <div className="text-right text-xs text-slate-400">
             <div>Data compiled from verified sources</div>
             <div>Last updated: {lastUpdated.toLocaleDateString()}</div>
           </div>
@@ -217,7 +217,7 @@ const LiveStatistics = () => {
               </div>
               
               <h3 className="font-medium text-white text-sm mb-1">{stat.label}</h3>
-              <p className="text-xs text-slate-500 mb-2">{stat.description}</p>
+              <p className="text-xs text-slate-400 mb-2">{stat.description}</p>
               
               <div className="text-xs text-slate-600">
                 Source: {stat.source}

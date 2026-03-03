@@ -274,7 +274,7 @@ export default function TashiWangchukProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Imprisoned for 5 years for advocating that Tibetan children should learn their own language — a right guaranteed under Chinese law.
             </p>
           </div>

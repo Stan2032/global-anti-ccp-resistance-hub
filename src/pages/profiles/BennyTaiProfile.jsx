@@ -317,7 +317,7 @@ export default function BennyTaiProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Received the longest sentence in the Hong Kong 47 case — 10 years for organizing a primary election.
             </p>
           </div>

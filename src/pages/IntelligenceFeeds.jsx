@@ -255,7 +255,7 @@ const IntelligenceFeeds = () => {
             </span>
           </div>
           {lastUpdated && (
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-400">
               {lastUpdated.toLocaleTimeString()}
             </span>
           )}
@@ -282,7 +282,7 @@ const IntelligenceFeeds = () => {
                 <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getSourceColor(item.source)}`}>
                   {sources[item.source]?.name || item.source.toUpperCase()}
                 </span>
-                <span className="text-xs text-slate-500">
+                <span className="text-xs text-slate-400">
                   {formatTime(item.pubDate)}
                 </span>
                 {item.relevanceScore > 30 && (
@@ -350,7 +350,7 @@ const IntelligenceFeeds = () => {
         <p className="text-slate-400 text-sm">
           Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
         </p>
-        <p className="text-slate-500 text-xs mt-1">
+        <p className="text-slate-400 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
         </p>
       </div>

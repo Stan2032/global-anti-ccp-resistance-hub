@@ -155,7 +155,7 @@ const TibetStatus = () => {
                       'bg-green-900/50 text-green-300'
                     }`}>{prisoner.status}</span>
                   </div>
-                  <p className="text-slate-500 text-xs mt-1">Since: {prisoner.since}</p>
+                  <p className="text-slate-400 text-xs mt-1">Since: {prisoner.since}</p>
                 </div>
               ))}
             </div>

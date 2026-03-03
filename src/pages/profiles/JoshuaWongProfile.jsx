@@ -421,7 +421,7 @@ export default function JoshuaWongProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               "I love Hong Kong" — shouted as he was led from the courtroom after sentencing, November 19, 2024
             </p>
           </div>

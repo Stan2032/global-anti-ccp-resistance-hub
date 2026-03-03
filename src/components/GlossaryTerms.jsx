@@ -315,7 +315,7 @@ const GlossaryTerms = () => {
               <div>
                 <h3 className="font-bold text-white text-lg">{item.term}</h3>
                 <p className="text-cyan-400">
-                  {item.chinese} <span className="text-slate-500">({item.pinyin})</span>
+                  {item.chinese} <span className="text-slate-400">({item.pinyin})</span>
                 </p>
               </div>
               <span className="bg-[#111820] text-slate-300 px-2 py-1 rounded text-xs capitalize self-start">
@@ -327,7 +327,7 @@ const GlossaryTerms = () => {
             
             {/* Related Terms */}
             <div className="flex flex-wrap gap-1">
-              <span className="text-xs text-slate-500 mr-1">Related:</span>
+              <span className="text-xs text-slate-400 mr-1">Related:</span>
               {item.related.map((rel, i) => (
                 <button
                   key={i}

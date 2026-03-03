@@ -245,7 +245,7 @@ const ResistanceResources = () => {
                 href={contact.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-slate-500 hover:text-slate-300"
+                className="text-xs text-slate-400 hover:text-slate-300"
               >
                 Visit website →
               </a>
@@ -263,7 +263,7 @@ const ResistanceResources = () => {
       </div>
 
       {/* Footer note */}
-      <div className="text-center text-slate-500 text-sm">
+      <div className="text-center text-slate-400 text-sm">
         <p>
           This resource hub connects you to dedicated sections of the platform. 
           For comprehensive information on any topic, click through to the relevant page.

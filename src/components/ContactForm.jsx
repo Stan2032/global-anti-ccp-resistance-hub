@@ -202,7 +202,7 @@ const ContactForm = () => {
 
       {/* Backend status footer */}
       <div className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
-        <div className="flex items-center justify-center gap-4 text-xs text-slate-500">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-400">
           {backendConnected ? (
             <span className="flex items-center gap-1">
               <Lock className="w-3 h-3" /> Connected to secure backend

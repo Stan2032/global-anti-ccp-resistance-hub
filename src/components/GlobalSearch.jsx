@@ -257,7 +257,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                 <div className="p-8 text-center">
                   <Search className="w-10 h-10 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-400">No results found for "{query}"</p>
-                  <p className="text-sm text-slate-500 mt-1">Try different keywords</p>
+                  <p className="text-sm text-slate-400 mt-1">Try different keywords</p>
                 </div>
               )}
             </div>
@@ -266,7 +266,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
           {/* Quick Links (when no query) */}
           {!query && (
             <div className="p-4">
-              <p className="text-xs text-slate-500 uppercase tracking-wide mb-3">Quick Links</p>
+              <p className="text-xs text-slate-400 uppercase tracking-wide mb-3">Quick Links</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
                   { title: 'Political Prisoners', path: '/prisoners', Icon: Link },
@@ -290,7 +290,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
           )}
 
           {/* Footer */}
-          <div className="px-4 py-3 border-t border-[#1c2a35] flex items-center justify-between text-xs text-slate-500">
+          <div className="px-4 py-3 border-t border-[#1c2a35] flex items-center justify-between text-xs text-slate-400">
             <div className="flex items-center space-x-4">
               <span className="flex items-center">
                 <kbd className="px-1.5 py-0.5 bg-[#111820] rounded mr-1">↑</kbd>

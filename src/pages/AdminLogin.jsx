@@ -59,7 +59,7 @@ const AdminLogin = () => {
               <li>Redeploy</li>
             </ol>
           </div>
-          <p className="text-slate-500 text-xs">
+          <p className="text-slate-400 text-xs">
             The anon key is safe to expose — RLS policies protect your data.
             See <code>SUPABASE_AUTH_SETUP.md</code> for details.
           </p>
@@ -80,7 +80,7 @@ const AdminLogin = () => {
             Admin login requires Supabase. Set <code className="text-[#4afa82]">VITE_SUPABASE_URL</code> and{' '}
             <code className="text-[#4afa82]">VITE_SUPABASE_ANON_KEY</code> environment variables.
           </p>
-          <p className="text-slate-500 text-xs">
+          <p className="text-slate-400 text-xs">
             See <code>SUPABASE_AUTH_SETUP.md</code> for the full setup guide.
           </p>
         </div>

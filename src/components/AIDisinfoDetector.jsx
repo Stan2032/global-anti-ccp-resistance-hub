@@ -164,7 +164,7 @@ const AIDisinfoDetector = () => {
           className="w-full h-40 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 resize-none"
         />
         <div className="flex items-center justify-between mt-2">
-          <span className="text-sm text-slate-500">
+          <span className="text-sm text-slate-400">
             {inputText.split(/\s+/).filter(w => w).length} words
           </span>
           <button
@@ -200,7 +200,7 @@ const AIDisinfoDetector = () => {
               <div key={index} className="bg-[#0a0e14]/50 border border-[#1c2a35]/50 p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-white text-sm">{example.title}</h4>
-                  <span className="text-xs text-slate-500">Expected: {example.expectedRisk}</span>
+                  <span className="text-xs text-slate-400">Expected: {example.expectedRisk}</span>
                 </div>
                 <p className="text-sm text-slate-400 mb-3 line-clamp-3">{example.text}</p>
                 <button
@@ -348,7 +348,7 @@ const AIDisinfoDetector = () => {
                   </span>
                 ))}
                 {pattern.keywords.length > 5 && (
-                  <span className="px-2 py-1 text-xs text-slate-500">
+                  <span className="px-2 py-1 text-xs text-slate-400">
                     +{pattern.keywords.length - 5} more
                   </span>
                 )}

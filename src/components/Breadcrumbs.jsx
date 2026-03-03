@@ -55,7 +55,7 @@ const Breadcrumbs = () => {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-4">
-      <ol className="flex items-center gap-1 text-xs font-mono text-slate-500 flex-wrap">
+      <ol className="flex items-center gap-1 text-xs font-mono text-slate-400 flex-wrap">
         <li>
           <Link to="/" className="flex items-center gap-1 hover:text-[#4afa82] transition-colors" aria-label="Dashboard">
             <Home className="w-3 h-3" />

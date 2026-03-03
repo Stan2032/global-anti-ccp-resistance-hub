@@ -276,7 +276,7 @@ const ChinaExitBan = () => {
             
             <p className="text-slate-300 text-sm mb-3">{case_.description}</p>
             
-            <div className="flex items-center justify-between text-xs text-slate-500">
+            <div className="flex items-center justify-between text-xs text-slate-400">
               <span>Since: {case_.detained_since}</span>
               <span>Source: {case_.source}</span>
             </div>

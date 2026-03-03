@@ -267,7 +267,7 @@ const SanctionedOfficials = () => {
               {/* Sanctioned By */}
               {official.sanctionedBy.length > 0 ? (
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs text-slate-500">Sanctioned by:</span>
+                  <span className="text-xs text-slate-400">Sanctioned by:</span>
                   <div className="flex gap-1">
                     {official.sanctionedBy.map((country, i) => (
                       <span key={i} className="text-lg" title={`${country} — ${official.sanctionDates[country] || ''}`}>

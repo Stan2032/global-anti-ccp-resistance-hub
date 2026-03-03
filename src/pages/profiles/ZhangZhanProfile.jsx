@@ -330,7 +330,7 @@ export default function ZhangZhanProfile() {
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 mt-3 italic">
+            <p className="text-xs text-slate-400 mt-3 italic">
               Sentenced twice for the same vague charge. Currently serving a second 4-year term.
             </p>
           </div>

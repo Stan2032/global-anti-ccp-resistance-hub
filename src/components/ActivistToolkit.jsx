@@ -303,7 +303,7 @@ const ActivistToolkit = () => {
               <h3 className="font-bold text-white mb-1">{resource.title}</h3>
               <p className="text-sm text-slate-400 mb-3">{resource.description}</p>
               
-              <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+              <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
                 <span className="flex items-center gap-1">{categoryInfo && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}</span>
                 <span>{resource.size}</span>
               </div>

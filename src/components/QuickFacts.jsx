@@ -151,7 +151,7 @@ const QuickFacts = () => {
                   Copied!
                 </span>
               ) : (
-                <span className="text-slate-500 text-xs">Click to copy</span>
+                <span className="text-slate-400 text-xs">Click to copy</span>
               )}
             </div>
             
