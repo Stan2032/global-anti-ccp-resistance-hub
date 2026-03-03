@@ -1,0 +1,98 @@
+[
+  {
+    "id": "2026-03-03-wong-hearing-alert",
+    "date": "2026-03-03",
+    "category": "alert",
+    "title": "Joshua Wong hearing alert added",
+    "description": "CRITICAL alert: Foreign collusion hearing at High Court on March 6, 2026. Carries maximum life imprisonment.",
+    "relatedPage": "/profiles/joshua-wong"
+  },
+  {
+    "id": "2026-03-03-prisoner-count-63",
+    "date": "2026-03-03",
+    "category": "data",
+    "title": "Political prisoner count updated to 63",
+    "description": "Kwok Yin-sang case added — first family prosecution under Article 23. Father of US-based activist Anna Kwok, sentenced 8 months.",
+    "relatedPage": "/prisoners"
+  },
+  {
+    "id": "2026-03-02-sanctions-verified",
+    "date": "2026-03-02",
+    "category": "verification",
+    "title": "Sanctions database verified current",
+    "description": "All 47 sanctioned entities verified against US Treasury SDN, UK FCDO, and EU Council lists. US Mar 2025 round (6 HK officials for transnational repression) confirmed included.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "2026-02-26-lai-fraud-overturned",
+    "date": "2026-02-26",
+    "category": "case_update",
+    "title": "Jimmy Lai fraud conviction overturned on appeal",
+    "description": "Hong Kong Court of Appeal overturns separate fraud conviction — however, 20-year NSL sentence remains in effect.",
+    "relatedPage": "/profiles/jimmy-lai"
+  },
+  {
+    "id": "2026-02-26-kwok-yin-sang",
+    "date": "2026-02-26",
+    "category": "new_case",
+    "title": "New case: Kwok Yin-sang (Article 23 prosecution)",
+    "description": "First family member prosecuted under Hong Kong's Article 23 legislation. Father of US-based activist Anna Kwok, charged with 'colluding with external forces'. Sentenced to 8 months.",
+    "relatedPage": "/prisoners"
+  },
+  {
+    "id": "2026-02-14-wong-appeal-dismissed",
+    "date": "2026-02-14",
+    "category": "case_update",
+    "title": "Joshua Wong HK47 appeal dismissed",
+    "description": "4-year 8-month subversion sentence upheld. Amnesty International condemns decision. Separate foreign collusion charge (max: life) still pending.",
+    "relatedPage": "/profiles/joshua-wong"
+  },
+  {
+    "id": "2026-02-09-lai-sentenced",
+    "date": "2026-02-09",
+    "category": "case_update",
+    "title": "Jimmy Lai sentenced to 20 years",
+    "description": "Harshest sentence ever imposed under Hong Kong's National Security Law. Found guilty on all charges including conspiracy to collude with foreign forces.",
+    "relatedPage": "/profiles/jimmy-lai"
+  },
+  {
+    "id": "2026-01-15-un-forced-labor-report",
+    "date": "2026-01-15",
+    "category": "report",
+    "title": "UN forced labor report published",
+    "description": "United Nations publishes January 2026 report on forced labor in Xinjiang. Documents ongoing state-imposed labor transfer programs and supply chain links.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "2026-01-10-uflpa-entity-list",
+    "date": "2026-01-10",
+    "category": "data",
+    "title": "UFLPA entity list updated to 144 companies",
+    "description": "US Uyghur Forced Labor Prevention Act entity list grows to 144 banned companies. 37 entities added in January 2025 round.",
+    "relatedPage": "/take-action"
+  },
+  {
+    "id": "2025-12-15-lai-guilty",
+    "date": "2025-12-15",
+    "category": "case_update",
+    "title": "Jimmy Lai found guilty on all NSL charges",
+    "description": "Hong Kong court convicts pro-democracy media tycoon on all 3 National Security Law charges. Sentencing to follow.",
+    "relatedPage": "/profiles/jimmy-lai"
+  },
+  {
+    "id": "2025-12-01-nsl-arrest-stats",
+    "date": "2025-12-01",
+    "category": "data",
+    "title": "NSL arrest statistics updated",
+    "description": "Hong Kong NSL data: 386 arrested, 176 convicted to date. Statistics sourced from Hong Kong Watch and CECC reports.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "2025-11-15-gao-zhisheng-update",
+    "date": "2025-11-15",
+    "category": "case_update",
+    "title": "Gao Zhisheng profile enriched",
+    "description": "Added wife Geng He's August 2025 Capitol Hill testimony appealing for international help locating her disappeared husband.",
+    "relatedPage": "/profiles/gao-zhisheng"
+  }
+]

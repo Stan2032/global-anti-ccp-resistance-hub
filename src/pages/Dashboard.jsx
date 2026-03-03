@@ -15,7 +15,7 @@ const UrgentCaseTimer = lazy(() => import('../components/UrgentCaseTimer'));
 const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
 const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
 const NewsDigest = lazy(() => import('../components/NewsDigest'));
-const RecentActivity = lazy(() => import('../components/RecentActivity'));
+const RecentUpdates = lazy(() => import('../components/RecentUpdates'));
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -204,7 +204,7 @@ const Dashboard = () => {
       </div>
 
       {/* ─── Recent Activity ───────────────────────────────────── */}
-      <Suspense fallback={<SectionLoader />}><RecentActivity /></Suspense>
+      <Suspense fallback={<SectionLoader />}><RecentUpdates /></Suspense>
 
       {/* ─── Live News ─────────────────────────────────────────── */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
