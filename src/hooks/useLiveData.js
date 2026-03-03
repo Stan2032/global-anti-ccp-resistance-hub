@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { 
+  fetchFeedsProgressively, 
   fetchAllFeeds, 
   fetchPoliticalPrisoners, 
   fetchStatistics,
@@ -7,7 +8,7 @@ import {
 } from '../services/liveDataService';
 
 /**
- * Hook for fetching live RSS feeds
+ * Hook for fetching live RSS feeds progressively (articles appear as each source loads)
  */
 export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
   const [feeds, setFeeds] = useState([]);
@@ -19,9 +20,11 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
     try {
       setLoading(true);
       setError(null);
-      const data = await fetchAllFeeds();
-      setFeeds(data);
-      setLastUpdated(new Date());
+      setFeeds([]);
+      await fetchFeedsProgressively((newItems) => {
+        setFeeds(prev => [...prev, ...newItems]);
+        setLastUpdated(new Date());
+      });
     } catch (err) {
       setError(err.message);
     } finally {

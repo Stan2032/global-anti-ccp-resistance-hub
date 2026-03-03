@@ -4,6 +4,7 @@ import { renderHook, act } from '@testing-library/react';
 // Mock the liveDataService module
 vi.mock('../services/liveDataService', () => ({
   fetchAllFeeds: vi.fn(),
+  fetchFeedsProgressively: vi.fn(),
   fetchPoliticalPrisoners: vi.fn(),
   fetchStatistics: vi.fn(),
   FEED_SOURCES: [
@@ -13,7 +14,7 @@ vi.mock('../services/liveDataService', () => ({
 }));
 
 import { useLiveFeeds, usePoliticalPrisoners, useStatistics } from '../hooks/useLiveData';
-import { fetchAllFeeds, fetchPoliticalPrisoners, fetchStatistics } from '../services/liveDataService';
+import { fetchFeedsProgressively, fetchPoliticalPrisoners, fetchStatistics } from '../services/liveDataService';
 
 describe('useLiveData hooks', () => {
   beforeEach(() => {
@@ -27,7 +28,7 @@ describe('useLiveData hooks', () => {
 
   describe('useLiveFeeds', () => {
     it('starts in loading state', () => {
-      fetchAllFeeds.mockReturnValue(new Promise(() => {})); // never resolves
+      fetchFeedsProgressively.mockReturnValue(new Promise(() => {})); // never resolves
       const { result } = renderHook(() => useLiveFeeds());
       expect(result.current.loading).toBe(true);
       expect(result.current.feeds).toEqual([]);
@@ -39,7 +40,9 @@ describe('useLiveData hooks', () => {
         { title: 'Hong Kong activist arrested', source: 'HKFP' },
         { title: 'Sanctions update', source: 'RFA' },
       ];
-      fetchAllFeeds.mockResolvedValue(mockFeeds);
+      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+        onItems(mockFeeds);
+      });
 
       const { result } = renderHook(() => useLiveFeeds(0)); // no refresh interval
       // Flush microtasks to let the async effect resolve
@@ -53,8 +56,25 @@ describe('useLiveData hooks', () => {
       expect(result.current.lastUpdated).toBeInstanceOf(Date);
     });
 
+    it('accumulates feeds progressively from multiple sources', async () => {
+      const hkfpItems = [{ title: 'HK article', source: 'hkfp' }];
+      const rfaItems = [{ title: 'RFA article', source: 'rfa' }];
+      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+        onItems(hkfpItems);
+        onItems(rfaItems);
+      });
+
+      const { result } = renderHook(() => useLiveFeeds(0));
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(0);
+      });
+
+      expect(result.current.feeds).toHaveLength(2);
+      expect(result.current.feeds).toEqual([...hkfpItems, ...rfaItems]);
+    });
+
     it('handles fetch errors', async () => {
-      fetchAllFeeds.mockRejectedValue(new Error('Network failure'));
+      fetchFeedsProgressively.mockRejectedValue(new Error('Network failure'));
 
       const { result } = renderHook(() => useLiveFeeds(0));
       await act(async () => {
@@ -67,53 +87,57 @@ describe('useLiveData hooks', () => {
     });
 
     it('exposes FEED_SOURCES', () => {
-      fetchAllFeeds.mockReturnValue(new Promise(() => {}));
+      fetchFeedsProgressively.mockReturnValue(new Promise(() => {}));
       const { result } = renderHook(() => useLiveFeeds(0));
       expect(result.current.sources).toHaveLength(2);
       expect(result.current.sources[0].id).toBe('hkfp');
     });
 
     it('provides a refresh function', async () => {
-      fetchAllFeeds.mockResolvedValue([{ title: 'First fetch' }]);
+      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+        onItems([{ title: 'First fetch' }]);
+      });
       const { result } = renderHook(() => useLiveFeeds(0));
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
       });
       expect(result.current.feeds).toEqual([{ title: 'First fetch' }]);
 
-      fetchAllFeeds.mockResolvedValue([{ title: 'Refreshed data' }]);
+      fetchFeedsProgressively.mockImplementation(async (onItems) => {
+        onItems([{ title: 'Refreshed data' }]);
+      });
       await act(async () => {
         await result.current.refresh();
       });
 
       expect(result.current.feeds).toEqual([{ title: 'Refreshed data' }]);
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(2);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(2);
     });
 
     it('sets up auto-refresh interval', async () => {
-      fetchAllFeeds.mockResolvedValue([]);
+      fetchFeedsProgressively.mockImplementation(async () => {});
       renderHook(() => useLiveFeeds(60000)); // 60s interval
 
       // Initial fetch
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
       });
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(1);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(1);
 
       // Advance timer to trigger interval
       await act(async () => {
         await vi.advanceTimersByTimeAsync(60000);
       });
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(2);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(2);
     });
 
     it('cleans up interval on unmount', async () => {
-      fetchAllFeeds.mockResolvedValue([]);
+      fetchFeedsProgressively.mockImplementation(async () => {});
       const { unmount } = renderHook(() => useLiveFeeds(60000));
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
       });
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(1);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(1);
 
       unmount();
 
@@ -121,22 +145,22 @@ describe('useLiveData hooks', () => {
       await act(async () => {
         await vi.advanceTimersByTimeAsync(120000);
       });
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(1);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(1);
     });
 
     it('skips interval when refreshInterval is 0', async () => {
-      fetchAllFeeds.mockResolvedValue([]);
+      fetchFeedsProgressively.mockImplementation(async () => {});
       renderHook(() => useLiveFeeds(0));
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
       });
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(1);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(1);
 
       await act(async () => {
         await vi.advanceTimersByTimeAsync(600000); // 10 minutes
       });
       // Still only the initial fetch
-      expect(fetchAllFeeds).toHaveBeenCalledTimes(1);
+      expect(fetchFeedsProgressively).toHaveBeenCalledTimes(1);
     });
   });
 
