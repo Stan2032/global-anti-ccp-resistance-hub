@@ -19,13 +19,12 @@ describe('DataExport', () => {
 
   // --- Dataset Selection ---
 
-  it('renders all 8 datasets', () => {
+  it('renders all 7 datasets', () => {
     render(<DataExport />);
     expect(screen.getByText('Political Prisoners Database')).toBeTruthy();
     expect(screen.getByText('Overseas Police Stations')).toBeTruthy();
     expect(screen.getByText('Human Rights Organizations')).toBeTruthy();
     expect(screen.getByText('Sanctioned Officials & Entities')).toBeTruthy();
-    expect(screen.getByText('Confucius Institutes')).toBeTruthy();
     expect(screen.getByText('Forced Labor Companies')).toBeTruthy();
     expect(screen.getByText('Historical Timeline')).toBeTruthy();
     expect(screen.getByText('Detention Facilities')).toBeTruthy();
@@ -63,7 +62,7 @@ describe('DataExport', () => {
   it('selects all datasets when Select All is clicked', () => {
     render(<DataExport />);
     fireEvent.click(screen.getByText('Select All'));
-    expect(screen.getByText(/8 datasets selected/)).toBeTruthy();
+    expect(screen.getByText(/7 datasets selected/)).toBeTruthy();
   });
 
   it('clears all datasets when Clear is clicked', () => {

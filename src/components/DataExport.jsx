@@ -1,82 +1,94 @@
-import React, { useState, useCallback } from 'react';
-import { Link2, ShieldAlert, Users, Ban, Building, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
+import { extractRecords, recordsToCsv, recordsToMarkdown } from '../utils/exportUtils';
+import prisonersData from '../data/political_prisoners_research.json';
+import policeStationsData from '../data/police_stations_research.json';
+import organizationsData from '../data/human_rights_orgs_research.json';
+import sanctionsData from '../data/sanctions_tracker.json';
+import companiesData from '../data/forced_labor_companies_research.json';
+import timelineData from '../data/timeline_events.json';
+import detentionData from '../data/detention_facilities_research.json';
 
-const datasets = [
-  {
-    id: 'prisoners',
-    name: 'Political Prisoners Database',
-    description: 'Documented cases of political detention including names, charges, sentences, and status',
-    records: 63,
-    lastUpdated: '2026-02-26',
-    fields: ['name', 'status', 'detention_date', 'charges', 'sentence', 'location', 'category'],
-    Icon: Link2
-  },
-  {
-    id: 'police_stations',
-    name: 'Overseas Police Stations',
-    description: 'CCP police service stations operating in foreign countries',
-    records: 30,
-    lastUpdated: '2026-02-26',
-    fields: ['country', 'city', 'status', 'source', 'government_action'],
-    Icon: ShieldAlert
-  },
-  {
-    id: 'organizations',
-    name: 'Human Rights Organizations',
-    description: 'Human rights and advocacy organizations fighting CCP abuses',
-    records: 49,
-    lastUpdated: '2026-02-26',
-    fields: ['name', 'category', 'focus_area', 'website', 'location', 'description'],
-    Icon: Users
-  },
-  {
-    id: 'sanctions',
-    name: 'Sanctioned Officials & Entities',
-    description: 'CCP officials and entities under Magnitsky and other sanctions across 5 countries',
-    records: 47,
-    lastUpdated: '2026-02-26',
-    fields: ['name', 'position', 'sanctions', 'reason', 'date'],
-    Icon: Ban
-  },
-  {
-    id: 'confucius',
-    name: 'Confucius Institutes',
-    description: 'Confucius Institutes at universities worldwide',
-    records: 36,
-    lastUpdated: '2026-02-26',
-    fields: ['university', 'country', 'status', 'closure_date', 'reason'],
-    Icon: Building
-  },
-  {
-    id: 'companies',
-    name: 'Forced Labor Companies',
-    description: 'Companies linked to Uyghur forced labor under UFLPA enforcement',
-    records: 30,
-    lastUpdated: '2026-02-26',
-    fields: ['name', 'industry', 'status', 'evidence', 'alternatives'],
-    Icon: Factory
-  },
-  {
-    id: 'timeline',
-    name: 'Historical Timeline',
-    description: 'Key events in CCP repression history (1989-2026)',
-    records: 31,
-    lastUpdated: '2026-02-26',
-    fields: ['date', 'title', 'description', 'category', 'significance', 'sources'],
-    Icon: Calendar
-  },
-  {
-    id: 'detention',
-    name: 'Detention Facilities',
-    description: 'Documented internment camps and detention facilities in Xinjiang',
-    records: 20,
-    lastUpdated: '2026-02-26',
-    fields: ['name', 'location', 'latitude', 'longitude', 'capacity', 'evidence'],
-    Icon: UserX
-  }
-];
+const DATA_MAP = {
+  prisoners: { raw: prisonersData, label: 'Political Prisoners Database' },
+  police_stations: { raw: policeStationsData, label: 'Overseas Police Stations' },
+  organizations: { raw: organizationsData, label: 'Human Rights Organizations' },
+  sanctions: { raw: sanctionsData, label: 'Sanctioned Officials & Entities' },
+  companies: { raw: companiesData, label: 'Forced Labor Companies' },
+  timeline: { raw: timelineData, label: 'Historical Timeline' },
+  detention: { raw: detentionData, label: 'Detention Facilities' },
+};
+
+function buildDatasets() {
+  return [
+    {
+      id: 'prisoners',
+      name: 'Political Prisoners Database',
+      description: 'Documented cases of political detention including names, charges, sentences, and status',
+      records: extractRecords(prisonersData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['prisoner_name', 'status', 'location', 'sentence', 'latest_news', 'source_url', 'last_verified'],
+      Icon: Link2
+    },
+    {
+      id: 'police_stations',
+      name: 'Overseas Police Stations',
+      description: 'CCP police service stations operating in foreign countries',
+      records: extractRecords(policeStationsData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['country', 'city', 'status', 'government_response', 'source_url'],
+      Icon: ShieldAlert
+    },
+    {
+      id: 'organizations',
+      name: 'Human Rights Organizations',
+      description: 'Human rights and advocacy organizations fighting CCP abuses',
+      records: extractRecords(organizationsData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['organization', 'focus_area', 'org_type', 'headquarters', 'website'],
+      Icon: Users
+    },
+    {
+      id: 'sanctions',
+      name: 'Sanctioned Officials & Entities',
+      description: 'CCP officials and entities under Magnitsky and other sanctions across 5 countries',
+      records: extractRecords(sanctionsData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['target', 'role', 'country', 'type', 'reason', 'date'],
+      Icon: Ban
+    },
+    {
+      id: 'companies',
+      name: 'Forced Labor Companies',
+      description: 'Companies linked to Uyghur forced labor under UFLPA enforcement',
+      records: extractRecords(companiesData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['company', 'industry', 'connection_type', 'status', 'source_url'],
+      Icon: Factory
+    },
+    {
+      id: 'timeline',
+      name: 'Historical Timeline',
+      description: 'Key events in CCP repression history (1989-2026)',
+      records: extractRecords(timelineData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['date', 'title', 'description', 'category', 'significance'],
+      Icon: Calendar
+    },
+    {
+      id: 'detention',
+      name: 'Detention Facilities',
+      description: 'Documented internment camps and detention facilities in Xinjiang',
+      records: extractRecords(detentionData).length,
+      lastUpdated: '2026-03-03',
+      fields: ['region', 'facility_count', 'estimated_capacity', 'key_facilities', 'status', 'source_url'],
+      Icon: UserX
+    }
+  ];
+}
 
 const DataExport = () => {
+  const datasets = useMemo(() => buildDatasets(), []);
   const [selectedDatasets, setSelectedDatasets] = useState([]);
   const [exportFormat, setExportFormat] = useState('json');
   const [isExporting, setIsExporting] = useState(false);
@@ -108,30 +120,31 @@ const DataExport = () => {
   };
 
   const generateExportData = useCallback(() => {
-    // This would normally fetch real data - for now we generate sample structure
     const exportData = {};
     
     selectedDatasets.forEach(id => {
       const dataset = datasets.find(d => d.id === id);
-      if (dataset) {
+      const mapping = DATA_MAP[id];
+      if (dataset && mapping) {
+        const records = extractRecords(mapping.raw);
         exportData[id] = {
           metadata: {
             name: dataset.name,
             description: dataset.description,
-            records: dataset.records,
+            records: records.length,
             lastUpdated: dataset.lastUpdated,
             exportedAt: new Date().toISOString(),
             source: 'Global Anti-CCP Resistance Hub',
             license: 'CC BY 4.0 - Attribution required'
           },
           schema: dataset.fields,
-          data: `[${dataset.records} records - download to view full data]`
+          data: records
         };
       }
     });
 
     return exportData;
-  }, [selectedDatasets]);
+  }, [selectedDatasets, datasets]);
 
   const handleExport = useCallback(async () => {
     if (selectedDatasets.length === 0) return;
@@ -152,20 +165,23 @@ const DataExport = () => {
         mimeType = 'application/json';
         break;
       case 'csv': {
-        // Generate CSV for each dataset
         const csvParts = Object.entries(data).map(([, value]) => {
-          return `# ${value.metadata.name}\n# ${value.metadata.description}\n# Records: ${value.metadata.records}\n# Last Updated: ${value.metadata.lastUpdated}\n\n${value.schema.join(',')}\n[Data rows would appear here]`;
+          const header = `# ${value.metadata.name}\n# ${value.metadata.description}\n# Records: ${value.metadata.records}\n# Last Updated: ${value.metadata.lastUpdated}\n# Source: ${value.metadata.source}\n# License: ${value.metadata.license}\n`;
+          const csv = recordsToCsv(value.data, value.schema);
+          return header + '\n' + csv;
         });
-        content = csvParts.join('\n\n---\n\n');
+        content = csvParts.join('\n\n');
         filename = `resistance-hub-export-${timestamp}.csv`;
         mimeType = 'text/csv';
         break;
       }
       case 'markdown': {
         const mdParts = Object.entries(data).map(([, value]) => {
-          return `# ${value.metadata.name}\n\n${value.metadata.description}\n\n- **Records:** ${value.metadata.records}\n- **Last Updated:** ${value.metadata.lastUpdated}\n- **Source:** ${value.metadata.source}\n- **License:** ${value.metadata.license}\n\n## Schema\n\n| Field |\n|-------|\n${value.schema.map(f => `| ${f} |`).join('\n')}\n`;
+          const header = `# ${value.metadata.name}\n\n${value.metadata.description}\n\n- **Records:** ${value.metadata.records}\n- **Last Updated:** ${value.metadata.lastUpdated}\n- **Source:** ${value.metadata.source}\n- **License:** ${value.metadata.license}\n`;
+          const table = recordsToMarkdown(value.data, value.schema);
+          return header + '\n' + table;
         });
-        content = `# Resistance Hub Data Export\n\nExported: ${new Date(timestamp).toISOString()}\n\n---\n\n${mdParts.join('\n---\n\n')}`;
+        content = `# Resistance Hub Data Export\n\nExported: ${new Date(timestamp).toISOString()}\n\n---\n\n${mdParts.join('\n\n---\n\n')}`;
         filename = `resistance-hub-export-${timestamp}.md`;
         mimeType = 'text/markdown';
         break;
