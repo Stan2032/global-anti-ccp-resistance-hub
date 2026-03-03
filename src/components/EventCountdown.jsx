@@ -35,7 +35,7 @@ const EventCountdown = ({ eventDate, label = 'Time remaining' }) => {
       <div className="flex items-center gap-2 mt-2" role="timer" aria-label={label}>
         <Clock className="w-3 h-3 text-red-400 animate-pulse" />
         <span className="font-mono text-xs font-bold text-red-400 uppercase tracking-wider animate-pulse">
-          ⚡ Event today
+          <span aria-hidden="true">⚡</span> Event today
         </span>
       </div>
     );
