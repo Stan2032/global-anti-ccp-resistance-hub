@@ -290,7 +290,7 @@ const REGION_FILTERS = [
 const statusStyles = {
   red: { badge: 'bg-red-900/50 text-red-300 border-red-700/50', dot: 'bg-red-500' },
   cyan: { badge: 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]', dot: 'bg-[#22d3ee]' },
-  gray: { badge: 'bg-gray-800/50 text-gray-300 border-gray-600/50', dot: 'bg-gray-400' },
+  gray: { badge: 'bg-gray-800/50 text-slate-300 border-gray-600/50', dot: 'bg-gray-400' },
   yellow: { badge: 'bg-yellow-900/50 text-yellow-300 border-yellow-700/50', dot: 'bg-yellow-500' },
 };
 

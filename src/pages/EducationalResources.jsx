@@ -145,7 +145,7 @@ const EducationalResources = () => {
       </div>
 
       {/* Tabs — consolidated from 7 to 4 */}
-      <div className="flex space-x-1 border-b border-[#1c2a35] overflow-x-auto">
+      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
         {[
           { id: 'learn', label: 'Learn' },
           { id: 'media', label: 'Media' },

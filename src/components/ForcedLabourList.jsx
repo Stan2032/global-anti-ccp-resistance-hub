@@ -310,7 +310,7 @@ const ForcedLabourList = () => {
       case 'HIGH RISK': return 'bg-orange-900/30 text-orange-400 border-orange-800';
       case 'IMPLICATED': return 'bg-yellow-900/30 text-yellow-400 border-yellow-800';
       case 'IMPROVED': return 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]';
-      default: return 'bg-gray-900/30 text-gray-400 border-gray-800';
+      default: return 'bg-gray-900/30 text-slate-400 border-gray-800';
     }
   };
 

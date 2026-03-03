@@ -306,7 +306,7 @@ export default function LiuXiaoboProfile() {
       {/* Back Navigation */}
       <div className="bg-[#111820] border-b border-[#1c2a35]">
         <div className="max-w-5xl mx-auto px-4 py-3">
-          <Link to="/take-action" className="inline-flex items-center gap-2 text-gray-400 hover:text-yellow-400 transition-colors">
+          <Link to="/take-action" className="inline-flex items-center gap-2 text-slate-400 hover:text-yellow-400 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Back to Take Action
           </Link>
@@ -323,14 +323,14 @@ export default function LiuXiaoboProfile() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
                 <h1 className="text-3xl font-bold text-white">{PROFILE.name}</h1>
-                <span className="text-xl text-gray-400">{PROFILE.chineseName}</span>
+                <span className="text-xl text-slate-400">{PROFILE.chineseName}</span>
               </div>
-              <p className="text-gray-300 mb-3">{PROFILE.occupation}</p>
+              <p className="text-slate-300 mb-3">{PROFILE.occupation}</p>
               <div className="flex flex-wrap gap-3 text-sm">
-                <span className="px-3 py-1 rounded-full bg-[#111820] text-gray-300 border border-[#1c2a35] flex items-center gap-1">
+                <span className="px-3 py-1 rounded-full bg-[#111820] text-slate-300 border border-[#1c2a35] flex items-center gap-1">
                   <Calendar className="w-3 h-3" /> {PROFILE.birthDate} — {PROFILE.deathDate}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-[#111820] text-gray-300 border border-[#1c2a35] flex items-center gap-1">
+                <span className="px-3 py-1 rounded-full bg-[#111820] text-slate-300 border border-[#1c2a35] flex items-center gap-1">
                   <MapPin className="w-3 h-3" /> {PROFILE.birthPlace}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-yellow-900/40 text-yellow-300 border border-yellow-700 flex items-center gap-1">
@@ -338,12 +338,12 @@ export default function LiuXiaoboProfile() {
                 </span>
               </div>
               <div className="mt-3">
-                <span className="px-4 py-1.5 rounded-full bg-[#111820] text-gray-300 border border-[#1c2a35] text-sm font-semibold inline-flex items-center gap-2">
+                <span className="px-4 py-1.5 rounded-full bg-[#111820] text-slate-300 border border-[#1c2a35] text-sm font-semibold inline-flex items-center gap-2">
                   <Heart className="w-3.5 h-3.5 text-red-400" />
                   {PROFILE.status}
                 </span>
               </div>
-              <p className="text-gray-400 text-sm mt-2">
+              <p className="text-slate-400 text-sm mt-2">
                 Died age {calculateAge(PROFILE.birthDate, PROFILE.deathDate)} • {PROFILE.deathPlace} • First Nobel Peace Prize laureate to die in state custody since Carl von Ossietzky (Nazi Germany, 1938)
               </p>
             </div>
@@ -364,7 +364,7 @@ export default function LiuXiaoboProfile() {
                   className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     activeTab === tab.id
                       ? 'border-yellow-400 text-yellow-400'
-                      : 'border-transparent text-gray-400 hover:text-gray-200'
+                      : 'border-transparent text-slate-400 hover:text-slate-200'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -386,14 +386,14 @@ export default function LiuXiaoboProfile() {
               <Clock className="w-6 h-6 text-yellow-400" />
               Life Timeline
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               From literary critic to China&apos;s most famous political prisoner — and the empty chair that shook a superpower.
             </p>
 
             {/* Category Legend */}
             <div className="flex flex-wrap gap-2 mb-6">
               {Object.entries(categoryLabels).map(([key, label]) => (
-                <span key={key} className="flex items-center gap-1.5 text-xs text-gray-400">
+                <span key={key} className="flex items-center gap-1.5 text-xs text-slate-400">
                   <span className={`w-2.5 h-2.5 rounded-full ${categoryColors[key]}`} />
                   {label}
                 </span>
@@ -411,16 +411,16 @@ export default function LiuXiaoboProfile() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <span className="text-xs text-gray-500 font-mono">{event.year}</span>
+                        <span className="text-xs text-slate-500 font-mono">{event.year}</span>
                         <h3 className="text-white font-semibold group-hover:text-yellow-300 transition-colors">
                           {event.title}
                         </h3>
                       </div>
-                      {expandedEvents[i] ? <ChevronUp className="w-4 h-4 text-gray-500 mt-1" /> : <ChevronDown className="w-4 h-4 text-gray-500 mt-1" />}
+                      {expandedEvents[i] ? <ChevronUp className="w-4 h-4 text-slate-500 mt-1" /> : <ChevronDown className="w-4 h-4 text-slate-500 mt-1" />}
                     </div>
                   </button>
                   {expandedEvents[i] && (
-                    <div className="mt-2 p-3 bg-[#111820] border border-[#1c2a35] text-sm text-gray-300">
+                    <div className="mt-2 p-3 bg-[#111820] border border-[#1c2a35] text-sm text-slate-300">
                       {event.detail}
                       {event.source && (
                         <a href={event.source} target="_blank" rel="noopener noreferrer" className="block mt-2 text-yellow-400 hover:text-yellow-300 text-xs flex items-center gap-1">
@@ -442,7 +442,7 @@ export default function LiuXiaoboProfile() {
               <Scale className="w-6 h-6 text-yellow-400" />
               Charter 08 & Criminal Charges
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               Imprisoned for 11 years for writing words about democracy. His &quot;crime&quot; was co-authoring a document calling for the same rights that exist in every democratic nation.
             </p>
 
@@ -451,18 +451,18 @@ export default function LiuXiaoboProfile() {
               <h3 className="text-lg font-bold text-yellow-300 mb-3 flex items-center gap-2">
                 <FileText className="w-5 h-5" /> What Is Charter 08?
               </h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-slate-300 text-sm mb-4">
                 Charter 08 (零八宪章) is a manifesto released on December 10, 2008 (International Human Rights Day), inspired by Czechoslovakia&apos;s Charter 77. Co-authored by Liu Xiaobo and initially signed by over 300 Chinese intellectuals and activists, it eventually gathered more than 10,000 signatures. It called for:
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {CHARTER_08_DEMANDS.map((demand, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
                     <Star className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0" />
                     {demand}
                   </li>
                 ))}
               </ul>
-              <p className="text-gray-400 text-xs mt-4">
+              <p className="text-slate-400 text-xs mt-4">
                 Full text available at:{' '}
                 <a href="https://hongkongfp.com/2017/07/14/full-charter-08-liu-xiaobos-pro-democracy-manifesto-china-led-jailing/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300">
                   HKFP — Charter 08 in English <ExternalLink className="w-3 h-3 inline" />
@@ -477,11 +477,11 @@ export default function LiuXiaoboProfile() {
                   <AlertTriangle className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-white font-bold">{c.charge}</h3>
-                    <p className="text-gray-400 text-xs mt-1">{c.article}</p>
-                    <p className="text-gray-300 text-sm mt-3">{c.evidence}</p>
+                    <p className="text-slate-400 text-xs mt-1">{c.article}</p>
+                    <p className="text-slate-300 text-sm mt-3">{c.evidence}</p>
                     <div className="mt-3 px-3 py-2 bg-red-900/30 border border-red-700/50 rounded text-sm">
                       <span className="text-red-300 font-semibold">Verdict: </span>
-                      <span className="text-gray-300">{c.verdict}</span>
+                      <span className="text-slate-300">{c.verdict}</span>
                     </div>
                   </div>
                 </div>
@@ -498,8 +498,8 @@ export default function LiuXiaoboProfile() {
               ].map((stat, i) => (
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3 text-center">
                   <div className="text-xl font-bold text-yellow-400">{stat.value}</div>
-                  <div className="text-sm text-gray-300">{stat.label}</div>
-                  <div className="text-xs text-gray-500">{stat.sub}</div>
+                  <div className="text-sm text-slate-300">{stat.label}</div>
+                  <div className="text-xs text-slate-500">{stat.sub}</div>
                 </div>
               ))}
             </div>
@@ -510,10 +510,10 @@ export default function LiuXiaoboProfile() {
                 <Heart className="w-5 h-5 text-red-400" />
                 Liu Xia — Punished for Loving Him
               </h3>
-              <p className="text-gray-300 text-sm mb-3">
+              <p className="text-slate-300 text-sm mb-3">
                 Liu Xia (刘霞), a poet and artist, married Liu Xiaobo in 1996 while he was serving his third prison term. She was never charged with any crime, yet she became one of China&apos;s most prominent victims of collective punishment:
               </p>
-              <ul className="space-y-2 text-sm text-gray-300">
+              <ul className="space-y-2 text-sm text-slate-300">
                 <li className="flex items-start gap-2">
                   <span className="text-red-400 mt-1">•</span>
                   <span><strong>2010:</strong> Placed under house arrest immediately after Liu Xiaobo won the Nobel Prize. No legal basis. No charges.</span>
@@ -542,7 +542,7 @@ export default function LiuXiaoboProfile() {
               <Shield className="w-6 h-6 text-yellow-400" />
               CCP Narrative Analysis
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               What the CCP claims vs. what independent evidence shows. Zero CCP state media sources used below.
             </p>
 
@@ -560,10 +560,10 @@ export default function LiuXiaoboProfile() {
                       <Globe className="w-4 h-4" />
                       REALITY:
                     </h4>
-                    <p className="text-gray-300 text-sm">{n.reality}</p>
+                    <p className="text-slate-300 text-sm">{n.reality}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {n.sources.map((s, j) => (
-                        <span key={j} className="px-2 py-0.5 bg-[#1c2a35] text-gray-300 text-xs rounded">
+                        <span key={j} className="px-2 py-0.5 bg-[#1c2a35] text-slate-300 text-xs rounded">
                           {s}
                         </span>
                       ))}
@@ -573,8 +573,8 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
 
-            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4 text-sm text-gray-400">
-              <strong className="text-gray-300">Source methodology:</strong> All rebuttals sourced from independent international media and human rights organizations. Deliberately excluded: Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media. One People&apos;s Daily English editorial (en.people.cn) was identified as CCP propaganda during research and excluded.
+            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4 text-sm text-slate-400">
+              <strong className="text-slate-300">Source methodology:</strong> All rebuttals sourced from independent international media and human rights organizations. Deliberately excluded: Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media. One People&apos;s Daily English editorial (en.people.cn) was identified as CCP propaganda during research and excluded.
             </div>
           </div>
         )}
@@ -586,7 +586,7 @@ export default function LiuXiaoboProfile() {
               <Award className="w-6 h-6 text-yellow-400" />
               Legacy & International Impact
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               Liu Xiaobo&apos;s legacy transcends his imprisonment and death. His words and courage continue to inspire movements for democracy worldwide.
             </p>
 
@@ -607,8 +607,8 @@ export default function LiuXiaoboProfile() {
                       <Award className="w-4 h-4 text-yellow-400 flex-shrink-0" />
                       <span className="text-white font-semibold text-sm">{a.award}</span>
                     </div>
-                    <p className="text-gray-400 text-xs mt-1">{a.org} • {a.year}</p>
-                    <p className="text-gray-300 text-xs mt-1">{a.note}</p>
+                    <p className="text-slate-400 text-xs mt-1">{a.org} • {a.year}</p>
+                    <p className="text-slate-300 text-xs mt-1">{a.note}</p>
                   </div>
                 ))}
               </div>
@@ -622,8 +622,8 @@ export default function LiuXiaoboProfile() {
                   <Flag className="w-4 h-4 text-yellow-400 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold text-sm">{r.org}</h4>
-                    <p className="text-gray-300 text-sm mt-1">{r.action}</p>
-                    <span className="text-gray-500 text-xs">{r.year}</span>
+                    <p className="text-slate-300 text-sm mt-1">{r.action}</p>
+                    <span className="text-slate-500 text-xs">{r.year}</span>
                   </div>
                 </div>
               ))}
@@ -635,7 +635,7 @@ export default function LiuXiaoboProfile() {
                 <BookOpen className="w-5 h-5 text-yellow-400" />
                 Historical Significance
               </h3>
-              <div className="space-y-3 text-sm text-gray-300">
+              <div className="space-y-3 text-sm text-slate-300">
                 <p>
                   Liu Xiaobo is the <strong className="text-white">only Nobel Peace Prize laureate to have died in state custody since Carl von Ossietzky</strong>, who died under Nazi surveillance in 1938. The parallel is deliberate and damning — it places the CCP&apos;s treatment of political dissidents in the same historical category as fascist regimes.
                 </p>
@@ -653,10 +653,10 @@ export default function LiuXiaoboProfile() {
               <blockquote className="text-lg italic text-yellow-300 mb-3">
                 &quot;I have no enemies and no hatred.&quot;
               </blockquote>
-              <p className="text-gray-400 text-sm">
+              <p className="text-slate-400 text-sm">
                 — Liu Xiaobo, statement prepared for his trial, December 23, 2009
               </p>
-              <p className="text-gray-500 text-xs mt-2">
+              <p className="text-slate-500 text-xs mt-2">
                 His full statement, titled &quot;I Have No Enemies: My Final Statement,&quot; was read by his wife Liu Xia at the Nobel ceremony. In it, he forgave his persecutors and expressed hope for China&apos;s future.
               </p>
             </div>
@@ -670,7 +670,7 @@ export default function LiuXiaoboProfile() {
               <FileText className="w-6 h-6 text-yellow-400" />
               Sources & References
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               {SOURCES.length} sources used for this profile. Zero CCP state media outlets cited.
             </p>
 
@@ -692,19 +692,19 @@ export default function LiuXiaoboProfile() {
                     <h4 className="text-white font-semibold text-sm group-hover:text-yellow-300 transition-colors flex items-center gap-1">
                       {s.name} <ExternalLink className="w-3 h-3 opacity-50" />
                     </h4>
-                    <p className="text-gray-400 text-xs mt-0.5">{s.description}</p>
+                    <p className="text-slate-400 text-xs mt-0.5">{s.description}</p>
                   </div>
                 </a>
               ))}
             </div>
 
-            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4 text-sm text-gray-400">
-              <strong className="text-gray-300">Source tier definitions:</strong>
+            <div className="mt-6 bg-[#111820] border border-[#1c2a35] p-4 text-sm text-slate-400">
+              <strong className="text-slate-300">Source tier definitions:</strong>
               <ul className="mt-2 space-y-1">
                 <li><span className="text-emerald-400">Tier 1 (Gold standard):</span> Government records, Nobel Committee, BBC, HRW, Amnesty, NCHRD, Britannica, Freedom Now, PEN, European Parliament</li>
                 <li><span className="text-[#22d3ee]">Tier 2 (Reliable):</span> HKFP, The Guardian — editorially independent, well-sourced</li>
               </ul>
-              <p className="mt-2"><strong className="text-gray-300">Excluded:</strong> Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media</p>
+              <p className="mt-2"><strong className="text-slate-300">Excluded:</strong> Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media</p>
             </div>
           </div>
         )}

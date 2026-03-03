@@ -13,20 +13,20 @@ const StatusBadge = ({ status }) => {
     'DETAINED': 'bg-red-500/20 text-red-400 border-red-500/30',
     'RELEASED': 'bg-green-500/20 text-green-400 border-green-500/30',
     'DISAPPEARED': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
-    'DECEASED': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+    'DECEASED': 'bg-gray-500/20 text-slate-400 border-gray-500/30',
     'EXILE': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'AT RISK': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'CLOSED': 'bg-green-500/20 text-green-400 border-green-500/30',
     'UNDER INVESTIGATION': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'OPERATING': 'bg-red-500/20 text-red-400 border-red-500/30',
-    'UNKNOWN': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+    'UNKNOWN': 'bg-gray-500/20 text-slate-400 border-gray-500/30',
     'HIGH': 'bg-red-500/20 text-red-400 border-red-500/30',
     'MEDIUM': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     'LOW': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]'
   };
   
   return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[status] || 'bg-gray-500/20 text-gray-400'}`}>
+    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${colors[status] || 'bg-gray-500/20 text-slate-400'}`}>
       {status}
     </span>
   );

@@ -164,7 +164,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-xl font-bold text-white">{prisoner.name}</h3>
-            <p className="text-gray-400 text-sm">{prisoner.chineseName}</p>
+            <p className="text-slate-400 text-sm">{prisoner.chineseName}</p>
           </div>
           <div className="flex items-center">
             <StatusBadge status={prisoner.status} />
@@ -172,17 +172,17 @@ const PrisonerCard = ({ prisoner, onClick }) => {
           </div>
         </div>
         
-        <p className="text-gray-300 text-sm mb-4 line-clamp-2">{prisoner.background}</p>
+        <p className="text-slate-300 text-sm mb-4 line-clamp-2">{prisoner.background}</p>
         
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-gray-500">Location:</span>
-            <span className="text-gray-300">{prisoner.location}</span>
+            <span className="text-slate-500">Location:</span>
+            <span className="text-slate-300">{prisoner.location}</span>
           </div>
           {prisoner.sentence && (
             <div className="flex justify-between">
-              <span className="text-gray-500">Sentence:</span>
-              <span className="text-gray-300">{prisoner.sentence}</span>
+              <span className="text-slate-500">Sentence:</span>
+              <span className="text-slate-300">{prisoner.sentence}</span>
             </div>
           )}
           {prisoner.healthConcerns && (
@@ -197,7 +197,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
         
         {prisoner.awards && prisoner.awards.length > 0 && (
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-            <p className="text-xs text-gray-500">Awards:</p>
+            <p className="text-xs text-slate-500">Awards:</p>
             <div className="flex flex-wrap gap-1 mt-1">
               {prisoner.awards.map((award, i) => (
                 <span key={i} className="bg-yellow-900/50 text-yellow-300 text-xs px-2 py-0.5 rounded">
@@ -250,9 +250,9 @@ const PrisonerModal = ({ prisoner, onClose }) => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-2xl font-bold text-white">{prisoner.name}</h2>
-              {prisoner.chineseName && <p className="text-gray-400">{prisoner.chineseName}</p>}
+              {prisoner.chineseName && <p className="text-slate-400">{prisoner.chineseName}</p>}
             </div>
-            <button onClick={onClose} className="text-gray-400 hover:text-white">
+            <button onClick={onClose} className="text-slate-400 hover:text-white">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -267,26 +267,26 @@ const PrisonerModal = ({ prisoner, onClose }) => {
           
           <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
             <div className="bg-[#0a0e14]/50 p-3">
-              <span className="text-gray-500 block">Location</span>
-              <span className="text-gray-200">{prisoner.location}</span>
+              <span className="text-slate-500 block">Location</span>
+              <span className="text-slate-200">{prisoner.location}</span>
             </div>
             {prisoner.sentence && (
               <div className="bg-[#0a0e14]/50 p-3">
-                <span className="text-gray-500 block">Sentence</span>
-                <span className="text-gray-200">{prisoner.sentence}</span>
+                <span className="text-slate-500 block">Sentence</span>
+                <span className="text-slate-200">{prisoner.sentence}</span>
               </div>
             )}
           </div>
           
           <div className="space-y-4">
             <div>
-              <p className="text-gray-200 text-sm">{prisoner.background}</p>
+              <p className="text-slate-200 text-sm">{prisoner.background}</p>
             </div>
             
             {(prisoner.healthConcerns || prisoner.healthStatus) && (
               <div className="bg-red-900/30 border border-red-700 p-3 text-sm">
                 <h3 className="font-semibold text-red-400 mb-1">Health Alert</h3>
-                <p className="text-gray-200">
+                <p className="text-slate-200">
                   {prisoner.healthStatus || 'Serious health concerns have been reported.'}
                   {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
                   {prisoner.tortureDocumented && ' Torture has been documented.'}
@@ -296,24 +296,24 @@ const PrisonerModal = ({ prisoner, onClose }) => {
             
             {prisoner.latestNews && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Latest Developments</h3>
-                <p className="text-gray-200 text-sm">{prisoner.latestNews}</p>
+                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">Latest Developments</h3>
+                <p className="text-slate-200 text-sm">{prisoner.latestNews}</p>
                 {prisoner.internationalResponse && (
-                  <p className="text-gray-300 text-sm mt-2"><span className="text-gray-500">Int'l response:</span> {prisoner.internationalResponse}</p>
+                  <p className="text-slate-300 text-sm mt-2"><span className="text-slate-500">Int'l response:</span> {prisoner.internationalResponse}</p>
                 )}
               </div>
             )}
             
             {!prisoner.latestNews && prisoner.internationalResponse && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">International Response</h3>
-                <p className="text-gray-200 text-sm">{prisoner.internationalResponse}</p>
+                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">International Response</h3>
+                <p className="text-slate-200 text-sm">{prisoner.internationalResponse}</p>
               </div>
             )}
             
             {prisoner.awards && prisoner.awards.length > 0 && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase mb-1">Recognition</h3>
+                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">Recognition</h3>
                 <div className="flex flex-wrap gap-2">
                   {prisoner.awards.map((award, i) => (
                     <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded text-sm">
@@ -402,12 +402,12 @@ const PoliticalPrisoners = () => {
   };
   
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Political Prisoners</h1>
-          <p className="text-gray-400">
+          <p className="text-slate-400">
             Documenting individuals detained by the CCP for their beliefs, speech, or peaceful activism.
             These cases represent only a fraction of the thousands held in China's prisons and detention facilities.
           </p>
@@ -420,21 +420,21 @@ const PoliticalPrisoners = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-[#111820] p-4 text-center">
+          <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
             <p className="text-3xl font-bold text-white">{stats.total}</p>
-            <p className="text-gray-400 text-sm">Documented Cases</p>
+            <p className="text-slate-400 text-sm">Documented Cases</p>
           </div>
-          <div className="bg-[#111820] p-4 text-center">
-            <p className="text-3xl font-bold text-red-500">{stats.imprisoned}</p>
-            <p className="text-gray-400 text-sm">Currently Imprisoned</p>
+          <div className="bg-[#111820] border border-[#1c2a35] border-l-2 border-l-red-400 p-4 text-center">
+            <p className="text-3xl font-bold text-red-400">{stats.imprisoned}</p>
+            <p className="text-slate-400 text-sm">Currently Imprisoned</p>
           </div>
-          <div className="bg-[#111820] p-4 text-center">
-            <p className="text-3xl font-bold text-yellow-500">{stats.disappeared}</p>
-            <p className="text-gray-400 text-sm">Disappeared</p>
+          <div className="bg-[#111820] border border-[#1c2a35] border-l-2 border-l-[#fbbf24] p-4 text-center">
+            <p className="text-3xl font-bold text-[#fbbf24]">{stats.disappeared}</p>
+            <p className="text-slate-400 text-sm">Disappeared</p>
           </div>
-          <div className="bg-[#111820] p-4 text-center">
-            <p className="text-3xl font-bold text-orange-500">{stats.critical}</p>
-            <p className="text-gray-400 text-sm">Critical Urgency</p>
+          <div className="bg-[#111820] border border-[#1c2a35] border-l-2 border-l-orange-400 p-4 text-center">
+            <p className="text-3xl font-bold text-orange-400">{stats.critical}</p>
+            <p className="text-slate-400 text-sm">Critical Urgency</p>
           </div>
         </div>
         
@@ -446,7 +446,7 @@ const PoliticalPrisoners = () => {
             </svg>
             <div>
               <h3 className="text-red-400 font-semibold">BREAKING: Jimmy Lai Found GUILTY (Dec 15, 2025)</h3>
-              <p className="text-gray-300 text-sm mt-1">
+              <p className="text-slate-300 text-sm mt-1">
                 78-year-old media mogul Jimmy Lai has been convicted of sedition and collusion with foreign forces under Hong Kong's National Security Law. 
                 He was sentenced to 20 years in prison on February 9, 2026. His case marks the death of press freedom in Hong Kong.
               </p>
@@ -463,7 +463,7 @@ const PoliticalPrisoners = () => {
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 filter === status
                   ? 'bg-red-900/30 text-red-300 border border-red-500'
-                  : 'bg-[#111820] text-gray-300 hover:bg-[#1c2a35]'
+                  : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
               }`}
             >
               {status === 'ALL' ? 'All Cases' : status}
@@ -535,7 +535,7 @@ const PoliticalPrisoners = () => {
               className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">CECC Database</h3>
-              <p className="text-gray-400 text-sm">US Congressional database of 10,000+ political prisoners</p>
+              <p className="text-slate-400 text-sm">US Congressional database of 10,000+ political prisoners</p>
             </a>
             <a
               href="https://duihua.org/resources/political-prisoners-database/"
@@ -544,7 +544,7 @@ const PoliticalPrisoners = () => {
               className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Dui Hua Foundation</h3>
-              <p className="text-gray-400 text-sm">50,000+ prisoner records since 1980</p>
+              <p className="text-slate-400 text-sm">50,000+ prisoner records since 1980</p>
             </a>
             <a
               href="https://shahit.biz/eng/"
@@ -553,7 +553,7 @@ const PoliticalPrisoners = () => {
               className="bg-[#1c2a35] hover:bg-[#111820] p-4 transition-colors"
             >
               <h3 className="text-white font-semibold">Xinjiang Victims Database</h3>
-              <p className="text-gray-400 text-sm">35,000+ documented Uyghur detainees</p>
+              <p className="text-slate-400 text-sm">35,000+ documented Uyghur detainees</p>
             </a>
           </div>
         </div>

@@ -170,7 +170,7 @@ export default function DetentionFacilities() {
                   {facility.type}
                 </span>
                 <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                  facility.status === 'Active' ? 'bg-red-900 text-red-300' : 'bg-gray-700 text-gray-300'
+                  facility.status === 'Active' ? 'bg-red-900 text-red-300' : 'bg-gray-700 text-slate-300'
                 }`}>
                   {facility.status}
                 </span>
@@ -201,7 +201,7 @@ export default function DetentionFacilities() {
           </div>
           <div className="bg-[#0a0e14]/50 p-3">
             <p className="text-xs text-slate-500 mb-1">Status</p>
-            <p className={`font-medium ${facility.status === 'Active' ? 'text-red-400' : 'text-gray-400'}`}>
+            <p className={`font-medium ${facility.status === 'Active' ? 'text-red-400' : 'text-slate-400'}`}>
               {facility.status}
             </p>
           </div>
