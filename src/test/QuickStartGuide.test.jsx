@@ -23,10 +23,9 @@ beforeEach(() => {
   mockLocalStorage.getItem.mockReset();
   mockLocalStorage.setItem.mockReset();
   mockLocalStorage.removeItem.mockReset();
-  mockLocalStorage.getItem.mockImplementation((key) => {
-    // Access the current store
-    return null;
-  });
+  // Default: getItem returns null (simulates fresh user with no localStorage data).
+  // Tests that need specific values override with mockImplementation.
+  mockLocalStorage.getItem.mockImplementation(() => null);
   mockLocalStorage.setItem.mockImplementation((key, value) => {});
   mockLocalStorage.removeItem.mockImplementation((key) => {});
   Object.defineProperty(window, 'localStorage', { value: mockLocalStorage, writable: true });
@@ -85,7 +84,7 @@ describe('QuickStartGuide', () => {
     renderGuide();
     // Navigate to last step (7 steps, click next 6 times)
     for (let i = 0; i < 6; i++) {
-      fireEvent.click(screen.getByText(i < 5 ? 'next →' : 'next →'));
+      fireEvent.click(screen.getByText('next →'));
     }
     expect(screen.getByText('done')).toBeTruthy();
   });
