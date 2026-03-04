@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-performance-content-audit",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Performance budget + content completeness \u2014 17 new enforcement tests",
+    "description": "New performance-budget.test.js (9 tests) enforces growth limits: component count under 100, page count under 20, JSON files under 30, no single file over 100KB or 600 lines, lazy-loading enforcement. New content-completeness.test.js (8 tests) validates data quality: no placeholders, no empty critical fields, prisoner/alert/sanctions completeness, ISO date format, no duplicate IDs.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-security-import-audit",
     "date": "2026-03-04",
     "category": "verification",

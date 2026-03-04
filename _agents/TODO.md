@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 191)
+> Last Updated: March 4, 2026 (Session 192)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -79,6 +79,7 @@
 - [x] **Defensive coding audit (Session 189)**: Added null/undefined guards to 7 data-consuming components: LiveStatistics, RecentUpdates, PoliticalPrisoners, CCPOfficials, SanctionsTracker, AcademicExperts, ForcedLaborTracker, DetentionFacilities, SanctionedOfficials. All `.results`, `.sanctions`, `.facilities` access now uses optional chaining with `|| []` fallback. New defensive-coding.test.js (8 tests) enforces guards on all JSON imports — detects unguarded `.map()`, unguarded array spreads, and missing optional chaining. Added recent_updates.json entry (24 entries total). 2312 tests (147 files, all passing).
 - [x] **Meta-test coverage audit (Session 190)**: New meta-test-coverage.test.js (17 tests) enforces test discipline: every component has a test file, every page has a test file, profile pages have coverage, test naming convention (PascalCase/camelCase/kebab-case), orphan test detection, lazy-loading enforcement (React.lazy + Suspense + fallback) for all heavy pages, App.jsx route-level lazy loading. Prevents untested components from shipping. Added recent_updates.json entry (25 entries total). 2329 tests (148 files, all passing).
 - [x] **Security audit + import hygiene (Session 191)**: New security-audit.test.js (9 tests) — automated scanning for XSS risks: dangerouslySetInnerHTML, eval/Function, innerHTML (limited to PrintableReport print window), document.write, target="_blank" without rel="noopener noreferrer", hardcoded secrets/API keys, HTML-style inline handlers, script tags in JSON data, sensitive storage. New import-hygiene.test.js (7 tests) — tree-shakeable imports, no wildcard imports from large libs, no barrel files for JSON data, no duplicate imports, no test utils in production code, no CommonJS require(). Added recent_updates.json entry (26 entries total). 2345 tests (150 files, all passing).
+- [x] **Performance budget + content completeness (Session 192)**: New performance-budget.test.js (9 tests) — enforces growth limits: component count under 100, page count under 20, JSON data files under 30, test file minimum floor (140+), no single JSON file over 100KB, no single component/page over 600 lines, App.jsx lazy-loading enforcement, total source file cap (200). New content-completeness.test.js (8 tests) — validates data quality across all JSON: no placeholder text (TODO/TBD/Lorem ipsum), no empty critical fields (name/title/id), prisoner records have prisoner_name+status, emergency alerts have title+summary+type+active, sanctions have target+country+reason, ISO date format enforcement, no duplicate IDs. Added recent_updates.json entry (27 entries total). 2362 tests (152 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
