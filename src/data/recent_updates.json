@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-route-integrity-tests",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Route integrity tests — 16 new tests validating all internal links",
+    "description": "New route-integrity.test.js validates that all Link to='' targets in components/pages match routes defined in App.jsx. Checks recent_updates.json relatedPage entries, redirect targets, essential routes, profile slug format. Catches broken internal links at test time.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-sitemap-countdown-robustness",
     "date": "2026-03-04",
     "category": "verification",
