@@ -91,7 +91,7 @@ describe('Import Hygiene', () => {
     expect(violations, `Test utilities in production code:\n${violations.join('\n')}`).toEqual([]);
   });
 
-  it('all relative imports use correct extensions or are resolvable', () => {
+  it('source files contain relative imports (scanner validation)', () => {
     const importPattern = /import\s+.*\s+from\s+['"](\.\.[^'"]+|\.\/[^'"]+)['"]/;
     let importCount = 0;
     for (const file of sourceFiles) {

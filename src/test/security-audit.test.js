@@ -57,8 +57,8 @@ describe('Security Audit', () => {
       const content = readFileSync(file, 'utf-8');
       const lines = content.split('\n');
       lines.forEach((line, i) => {
-        // Match eval( but not evaluate, evaluated, etc.
-        if (/\beval\s*\(/.test(line) && !/evaluate|evaluation/i.test(line)) {
+        // Match eval( but not evaluate, evaluated, etc. — use word boundary
+        if (/\beval\s*\(/.test(line) && !/\b(?:evaluate|evaluation|evaluat)\b/i.test(line)) {
           violations.push(`${relative(SRC_DIR, file)}:${i + 1}: eval() — ${line.trim()}`);
         }
         if (/new\s+Function\s*\(/.test(line)) {
@@ -132,7 +132,7 @@ describe('Security Audit', () => {
     ];
     for (const file of allSourceFiles) {
       const relPath = relative(SRC_DIR, file);
-      // Skip test files and config files that use placeholder/env vars
+      // Skip test files and supabase config (uses placeholder env var references)
       if (relPath.includes('test/') || relPath.includes('supabase')) continue;
       const content = readFileSync(file, 'utf-8');
       const lines = content.split('\n');
