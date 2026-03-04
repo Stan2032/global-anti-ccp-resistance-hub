@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-meta-test-coverage-audit",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Meta-test coverage audit — 17 new tests enforcing test discipline",
+    "description": "New meta-test-coverage.test.js validates every component and page has a dedicated test file, enforces test naming conventions, detects orphan tests, and ensures all pages with lazy-loaded components use React.lazy + Suspense with loading fallbacks. Prevents untested components from shipping.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-defensive-coding-audit",
     "date": "2026-03-04",
     "category": "verification",
