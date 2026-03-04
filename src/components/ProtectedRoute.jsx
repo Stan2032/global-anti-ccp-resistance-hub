@@ -14,12 +14,12 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="flex items-center justify-center min-h-[60vh]" role="status" aria-label="Authenticating">
         <div className="text-center">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-[#4afa82] font-mono text-sm">$</span>
             <span className="text-white font-mono text-sm">authenticating</span>
-            <span className="text-[#4afa82] font-mono text-sm animate-pulse">█</span>
+            <span className="text-[#4afa82] font-mono text-sm animate-pulse" aria-hidden="true">█</span>
           </div>
         </div>
       </div>

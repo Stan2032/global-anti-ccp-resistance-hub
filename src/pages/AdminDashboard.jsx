@@ -118,7 +118,7 @@ const AdminDashboard = () => {
         </div>
 
         {loading ? (
-          <div className="p-8 text-center">
+          <div className="p-8 text-center" role="status" aria-live="polite">
             <span className="text-[#4afa82] font-mono text-sm animate-pulse">$ loading data...</span>
           </div>
         ) : error ? (

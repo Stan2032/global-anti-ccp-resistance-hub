@@ -19,8 +19,8 @@ import {
 } from 'lucide-react'
 
 const SectionLoader = () => (
-  <div className="flex items-center justify-center py-8">
-    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
   </div>
 );
 
@@ -196,7 +196,7 @@ const SecurityCenter = () => {
               {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
               {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
               {(webrtcStatus === 'idle' || webrtcStatus === 'unsupported' || webrtcStatus === 'error') && <ShieldQuestion className="w-5 h-5 text-slate-400" />}
-              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-[#22d3ee] animate-spin" />}
+              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-[#22d3ee] animate-spin" aria-hidden="true" />}
               <h3 className="text-xl font-bold text-white">WebRTC Leak Test</h3>
             </div>
             <p className="text-slate-400 text-sm mb-4">
@@ -216,7 +216,7 @@ const SecurityCenter = () => {
 
             {webrtcStatus === 'running' && (
               <div className="flex items-center gap-2 text-[#22d3ee]">
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
                 <span className="text-sm">Checking for WebRTC leaks...</span>
               </div>
             )}

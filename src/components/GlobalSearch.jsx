@@ -206,8 +206,8 @@ const GlobalSearch = ({ isOpen, onClose }) => {
           {query && (
             <div className="max-h-96 overflow-y-auto">
               {isLoading ? (
-                <div className="p-4 text-center text-slate-400">
-                  <div className="animate-spin w-5 h-5 border-2 border-[#1c2a35] border-t-transparent rounded-full mx-auto mb-2" />
+                <div className="p-4 text-center text-slate-400" role="status" aria-live="polite">
+                  <div className="animate-spin w-5 h-5 border-2 border-[#1c2a35] border-t-transparent rounded-full mx-auto mb-2" aria-hidden="true" />
                   Searching...
                 </div>
               ) : results.length > 0 ? (

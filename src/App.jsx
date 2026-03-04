@@ -27,7 +27,7 @@ const PWAInstallBanner = lazy(() => import('./components/PWAInstallBanner'));
 
 // Loading component — terminal style
 const LoadingScreen = () => (
-  <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono">
+  <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono" role="status" aria-label="Loading application">
     <pre className="text-slate-700 text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
 ┌──────────────────────────────────────┐
 │                                      │
@@ -42,7 +42,7 @@ const LoadingScreen = () => (
     <div className="flex items-center gap-2 mb-3">
       <span className="text-[#4afa82] font-mono text-sm">$</span>
       <span className="text-white font-mono text-sm">loading system</span>
-      <span className="text-[#4afa82] font-mono text-sm animate-blink">█</span>
+      <span className="text-[#4afa82] font-mono text-sm animate-blink" aria-hidden="true">█</span>
     </div>
     <div className="flex gap-1">
       <div className="w-2 h-2 bg-[#4afa82] animate-pulse" style={{animationDelay: '0ms'}}></div>

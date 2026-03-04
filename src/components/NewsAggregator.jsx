@@ -144,7 +144,7 @@ const NewsAggregator = () => {
 
   if (loading) {
     return (
-      <div className="bg-[#111820] border border-[#1c2a35] p-6">
+      <div className="bg-[#111820] border border-[#1c2a35] p-6" role="status" aria-live="polite" aria-label="Loading intelligence feeds">
         <div className="animate-pulse space-y-4">
           <div className="h-6 bg-[#111820] rounded w-1/3"></div>
           <div className="h-4 bg-[#111820] rounded w-full"></div>
