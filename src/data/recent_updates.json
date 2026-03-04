@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-profile-tests",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Profile page test coverage — all 15 profiles tested",
+    "description": "New profile-pages.test.jsx with 144 tests: renders, names, Chinese names, status badges, back links, tab navigation, Sources section with CCP source exclusion, ARIA accessibility, no-hashtags compliance, and data integrity for all 15 political prisoner profiles.",
+    "relatedPage": "/profiles"
+  },
+  {
     "id": "2026-03-04-policy-tests",
     "date": "2026-03-04",
     "category": "verification",
