@@ -3,7 +3,7 @@
     "id": "2026-03-04-defensive-coding-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Defensive coding audit — null guards on 7 data-consuming components",
+    "title": "Defensive coding audit — null guards on 9 data-consuming components",
     "description": "Added optional chaining and fallback guards to LiveStatistics, RecentUpdates, PoliticalPrisoners, CCPOfficials, SanctionsTracker, AcademicExperts, ForcedLaborTracker, DetentionFacilities, SanctionedOfficials. New defensive-coding.test.js (8 tests) enforces guards on all JSON data imports. Prevents crashes from malformed or empty data.",
     "relatedPage": "/data-sources"
   },
