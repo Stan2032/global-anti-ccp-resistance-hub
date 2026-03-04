@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 182)
+> Last Updated: March 4, 2026 (Session 183)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -70,6 +70,7 @@
 - [x] **No-hashtags policy + design enforcement + DataSources tests (Session 180)**: New no-hashtags-policy.test.js (5 tests): automated enforcement of user's no-hashtags policy — scans all JSX/JS source files and JSON data files for activist hashtag patterns, verifies no "hashtags" field in data, verifies ShareButtons has no hashtags prop. New 10th design system check: text-slate-600/700/800/900 only allowed for aria-hidden, decorative icons, disabled states, select-none, separators. Fixed 3 readable-text contrast violations (AdminLogin, AdminDashboard, Dashboard). New DataSources.test.jsx (15 tests): first test coverage for DataSources page (header, commitment, RSS feeds, categories, export, docs, issues). Added recent_updates.json entry (15 entries total). 2072 tests (139 files, all passing).
 - [x] **Profile page test coverage (Session 181)**: New profile-pages.test.jsx (144 tests): first dedicated test coverage for all 15 political prisoner profiles. Tests: renders without crashing, displays name/Chinese name, status badge, back navigation, tab structure, Sources tab with CCP source exclusion statement, Timeline default content, ARIA accessibility (tablist/tabpanel/aria-selected), GlobalDisclaimer, no-hashtags compliance, data integrity (unique names, valid statuses). Added recent_updates.json entry (16 entries total). 2216 tests (140 files, all passing).
 - [x] **100% page test coverage (Session 182)**: New ResistanceDirectory.test.jsx (22 tests): the last untested page now has dedicated test coverage. Tests: header, stats, search filtering, category pills, dropdown filter, org card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page and component in the app now has dedicated tests. Added recent_updates.json entry (17 entries total). 2238 tests (141 files, all passing).
+- [x] **Cross-JSON data consistency tests (Session 183)**: New cross-data-consistency.test.js (12 tests): validates referential integrity across all 19 JSON data files. Tests: all JSON files loadable, prisoner-alert cross-references (Joshua Wong/Jimmy Lai in both databases), critical alert freshness (lastVerified within 60 days), sanctions-officials overlap, recent_updates route path and category validation, date ordering, detention facility regions, CPC terminology prohibition, non-empty content, forced labor company uniqueness, cross-file date format consistency. Added recent_updates.json entry (18 entries total). 2250 tests (142 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

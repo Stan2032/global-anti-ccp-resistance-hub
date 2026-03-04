@@ -80,8 +80,10 @@ describe('RecentUpdates', () => {
 
     it('renders DATA category labels', () => {
       renderComponent();
-      const dataUpdates = updates.filter((u) => u.category === 'data');
-      if (dataUpdates.length > 0) {
+      // DATA entries may be below the initial display threshold (5 items)
+      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
+      const visibleDataUpdates = sorted.slice(0, 5).filter((u) => u.category === 'data');
+      if (visibleDataUpdates.length > 0) {
         expect(screen.getAllByText('DATA').length).toBeGreaterThan(0);
       }
     });

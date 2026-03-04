@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-data-consistency",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Cross-JSON data consistency validation — 12 new integrity tests",
+    "description": "New cross-data-consistency.test.js validates relationships between 19 JSON data files: prisoner-alert cross-references, sanctions-officials overlap, route path validity, category validation, date ordering, correct party naming enforcement, date format consistency, and non-empty content checks.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-directory-tests",
     "date": "2026-03-04",
     "category": "verification",
