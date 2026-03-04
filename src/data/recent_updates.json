@@ -1,9 +1,17 @@
 [
   {
+    "id": "2026-03-04-security-import-audit",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Security audit + import hygiene \u2014 16 new enforcement tests",
+    "description": "New security-audit.test.js (9 tests) scans for XSS risks: dangerouslySetInnerHTML, eval, innerHTML, document.write, hardcoded secrets, inline handlers, script injection in JSON data, sensitive storage. New import-hygiene.test.js (7 tests) enforces tree-shakeable imports, no barrel files, no duplicate imports, no test utils in production code.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-meta-test-coverage-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Meta-test coverage audit — 17 new tests enforcing test discipline",
+    "title": "Meta-test coverage audit \u2014 17 new tests enforcing test discipline",
     "description": "New meta-test-coverage.test.js validates every component and page has a dedicated test file, enforces test naming conventions, detects orphan tests, and ensures all pages with lazy-loaded components use React.lazy + Suspense with loading fallbacks. Prevents untested components from shipping.",
     "relatedPage": "/data-sources"
   },
@@ -11,7 +19,7 @@
     "id": "2026-03-04-defensive-coding-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Defensive coding audit — null guards on 9 data-consuming components",
+    "title": "Defensive coding audit \u2014 null guards on 9 data-consuming components",
     "description": "Added optional chaining and fallback guards to LiveStatistics, RecentUpdates, PoliticalPrisoners, CCPOfficials, SanctionsTracker, AcademicExperts, ForcedLaborTracker, DetentionFacilities, SanctionedOfficials. New defensive-coding.test.js (8 tests) enforces guards on all JSON data imports. Prevents crashes from malformed or empty data.",
     "relatedPage": "/data-sources"
   },
@@ -19,7 +27,7 @@
     "id": "2026-03-04-route-integrity-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Route integrity tests — 16 new tests validating all internal links",
+    "title": "Route integrity tests \u2014 16 new tests validating all internal links",
     "description": "New route-integrity.test.js validates that all Link to='' targets in components/pages match routes defined in App.jsx. Checks recent_updates.json relatedPage entries, redirect targets, essential routes, profile slug format. Catches broken internal links at test time.",
     "relatedPage": "/data-sources"
   },
@@ -28,22 +36,22 @@
     "date": "2026-03-04",
     "category": "verification",
     "title": "Sitemap freshness + EventCountdown input validation + 10 new tests",
-    "description": "Updated sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (lastmod not older than 30 days). Added calculateTimeLeft input validation — malformed dates, non-strings, partial dates now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests in dateUtils.test.js.",
+    "description": "Updated sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (lastmod not older than 30 days). Added calculateTimeLeft input validation \u2014 malformed dates, non-strings, partial dates now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests in dateUtils.test.js.",
     "relatedPage": "/data-sources"
   },
   {
     "id": "2026-03-04-performance-resilience",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Performance & resilience — ShellErrorBoundary, React.memo, 10 new tests",
-    "description": "New ShellErrorBoundary component wraps non-critical shell components (GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner) — silently catches errors without crashing main content. Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing three-tier error boundary architecture.",
+    "title": "Performance & resilience \u2014 ShellErrorBoundary, React.memo, 10 new tests",
+    "description": "New ShellErrorBoundary component wraps non-critical shell components (GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner) \u2014 silently catches errors without crashing main content. Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing three-tier error boundary architecture.",
     "relatedPage": "/data-sources"
   },
   {
     "id": "2026-03-04-keyboard-navigation",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Keyboard navigation audit — 8 tests, 5 Escape key fixes, aria-modal fix",
+    "title": "Keyboard navigation audit \u2014 8 tests, 5 Escape key fixes, aria-modal fix",
     "description": "New keyboard-navigation.test.js with 8 tests: modal Escape key enforcement, event listener cleanup, aria-modal validation, clickable div keyboard support, focus-visible styles, skip-to-content, selectedX+overlay pattern. Fixed 4 components missing Escape key on modals (CCPOfficials, CaseStudies, DetentionFacilities, PoliticalPrisoners) and added aria-modal to KeyboardShortcutsHelp dialog.",
     "relatedPage": "/data-sources"
   },
@@ -51,7 +59,7 @@
     "id": "2026-03-04-accessibility-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Accessibility audit — 10 automated checks, 3 button fixes",
+    "title": "Accessibility audit \u2014 10 automated checks, 3 button fixes",
     "description": "New accessibility-audit.test.js with 10 tests: img alt attributes, autoFocus prohibition, icon sizing consistency, tabIndex ordering, target=_blank safety, form input labels, icon-only button labels, landmark structure, skip-to-content. Fixed 3 icon-only buttons missing aria-labels (InteractiveTimeline prev/next/play, EducationalResources download).",
     "relatedPage": "/data-sources"
   },
@@ -59,7 +67,7 @@
     "id": "2026-03-04-data-consistency",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Cross-JSON data consistency validation — 12 new integrity tests",
+    "title": "Cross-JSON data consistency validation \u2014 12 new integrity tests",
     "description": "New cross-data-consistency.test.js validates relationships between 19 JSON data files: prisoner-alert cross-references, sanctions-officials overlap, route path validity, category validation, date ordering, correct party naming enforcement, date format consistency, and non-empty content checks.",
     "relatedPage": "/data-sources"
   },
@@ -67,7 +75,7 @@
     "id": "2026-03-04-directory-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Full test coverage — all pages now have dedicated tests",
+    "title": "Full test coverage \u2014 all pages now have dedicated tests",
     "description": "New ResistanceDirectory.test.jsx with 22 tests: header, stats, search filtering, category pills, dropdown filter, organization card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page in the app now has dedicated test coverage.",
     "relatedPage": "/directory"
   },
@@ -75,7 +83,7 @@
     "id": "2026-03-04-profile-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Profile page test coverage — all 15 profiles tested",
+    "title": "Profile page test coverage \u2014 all 15 profiles tested",
     "description": "New profile-pages.test.jsx with 144 tests: renders, names, Chinese names, status badges, back links, tab navigation, Sources section with CCP source exclusion, ARIA accessibility, no-hashtags compliance, and data integrity for all 15 political prisoner profiles.",
     "relatedPage": "/profiles"
   },
@@ -83,7 +91,7 @@
     "id": "2026-03-04-policy-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "No-hashtags policy + design system — 10 automated checks",
+    "title": "No-hashtags policy + design system \u2014 10 automated checks",
     "description": "Automated no-hashtags enforcement test (5 tests). 10th design system check for text-slate-600+ violations. Fixed 3 text contrast violations. DataSources page tests (15 tests). URL validation across 19 data files.",
     "relatedPage": "/data-sources"
   },
@@ -91,7 +99,7 @@
     "id": "2026-03-04-design-enforcement",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Design system enforcement — 9 automated checks",
+    "title": "Design system enforcement \u2014 9 automated checks",
     "description": "Fixed 10 text contrast violations across 8 files. Added automated text-slate-500 enforcement test. All readable text now verified text-slate-400 or brighter.",
     "relatedPage": "/intelligence"
   },
@@ -116,7 +124,7 @@
     "date": "2026-03-03",
     "category": "data",
     "title": "Political prisoner count updated to 63",
-    "description": "Kwok Yin-sang case added — first family prosecution under Article 23. Father of US-based activist Anna Kwok, sentenced 8 months.",
+    "description": "Kwok Yin-sang case added \u2014 first family prosecution under Article 23. Father of US-based activist Anna Kwok, sentenced 8 months.",
     "relatedPage": "/prisoners"
   },
   {
@@ -132,7 +140,7 @@
     "date": "2026-02-26",
     "category": "case_update",
     "title": "Jimmy Lai fraud conviction overturned on appeal",
-    "description": "Hong Kong Court of Appeal overturns separate fraud conviction — however, 20-year NSL sentence remains in effect.",
+    "description": "Hong Kong Court of Appeal overturns separate fraud conviction \u2014 however, 20-year NSL sentence remains in effect.",
     "relatedPage": "/profiles/jimmy-lai"
   },
   {
