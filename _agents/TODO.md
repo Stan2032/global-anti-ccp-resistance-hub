@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 181)
+> Last Updated: March 4, 2026 (Session 182)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -69,6 +69,7 @@
 - [x] **URL validation + data verification (Session 179)**: New url-validation.test.js with 6 tests: validates all URLs in 19 JSON data files are well-formed, have no formatting artifacts, no localhost/dev endpoints, and data provenance checks. Updated lastVerified dates across emergency_alerts.json and live_statistics.json (→2026-03-04). Added recent_updates.json entry for Session 178 design system work. Fixed RecentUpdates test to handle "show more" threshold with 14 entries. 2051 tests (137 files, all passing).
 - [x] **No-hashtags policy + design enforcement + DataSources tests (Session 180)**: New no-hashtags-policy.test.js (5 tests): automated enforcement of user's no-hashtags policy — scans all JSX/JS source files and JSON data files for activist hashtag patterns, verifies no "hashtags" field in data, verifies ShareButtons has no hashtags prop. New 10th design system check: text-slate-600/700/800/900 only allowed for aria-hidden, decorative icons, disabled states, select-none, separators. Fixed 3 readable-text contrast violations (AdminLogin, AdminDashboard, Dashboard). New DataSources.test.jsx (15 tests): first test coverage for DataSources page (header, commitment, RSS feeds, categories, export, docs, issues). Added recent_updates.json entry (15 entries total). 2072 tests (139 files, all passing).
 - [x] **Profile page test coverage (Session 181)**: New profile-pages.test.jsx (144 tests): first dedicated test coverage for all 15 political prisoner profiles. Tests: renders without crashing, displays name/Chinese name, status badge, back navigation, tab structure, Sources tab with CCP source exclusion statement, Timeline default content, ARIA accessibility (tablist/tabpanel/aria-selected), GlobalDisclaimer, no-hashtags compliance, data integrity (unique names, valid statuses). Added recent_updates.json entry (16 entries total). 2216 tests (140 files, all passing).
+- [x] **100% page test coverage (Session 182)**: New ResistanceDirectory.test.jsx (22 tests): the last untested page now has dedicated test coverage. Tests: header, stats, search filtering, category pills, dropdown filter, org card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page and component in the app now has dedicated tests. Added recent_updates.json entry (17 entries total). 2238 tests (141 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

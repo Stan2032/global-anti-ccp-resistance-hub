@@ -54,8 +54,10 @@ describe('RecentUpdates', () => {
   describe('Category Labels', () => {
     it('renders ALERT category labels', () => {
       renderComponent();
-      const alertUpdates = updates.filter((u) => u.category === 'alert');
-      if (alertUpdates.length > 0) {
+      // ALERT entries may be below the initial display threshold (5 items)
+      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
+      const visibleAlertUpdates = sorted.slice(0, 5).filter((u) => u.category === 'alert');
+      if (visibleAlertUpdates.length > 0) {
         expect(screen.getAllByText('ALERT').length).toBeGreaterThan(0);
       }
     });

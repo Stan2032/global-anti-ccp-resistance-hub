@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-directory-tests",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Full test coverage — all pages now have dedicated tests",
+    "description": "New ResistanceDirectory.test.jsx with 22 tests: header, stats, search filtering, category pills, dropdown filter, organization card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page in the app now has dedicated test coverage.",
+    "relatedPage": "/directory"
+  },
+  {
     "id": "2026-03-04-profile-tests",
     "date": "2026-03-04",
     "category": "verification",
