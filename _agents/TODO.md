@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 188)
+> Last Updated: March 4, 2026 (Session 189)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -76,6 +76,7 @@
 - [x] **Performance & resilience (Session 186)**: New ShellErrorBoundary component (renders null on error) wraps 4 non-critical shell components: GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner. Three-tier error boundary architecture: ErrorBoundary (app-level, full-page fallback) → RouteErrorBoundary (route-level, recovery UI for chunk errors) → ShellErrorBoundary (shell-level, silent null). Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing all patterns. Added recent_updates.json entry (21 entries total). 2278 tests (145 files, all passing).
 - [x] **Sitemap freshness + countdown robustness (Session 187)**: Updated all 26 sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (rejects lastmod older than 30 days). Hardened calculateTimeLeft() with input validation — malformed dates, non-string types, partial formats now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests + 1 sitemap freshness test. Added recent_updates.json entry (22 entries total). 2288 tests (145 files, all passing).
 - [x] **Route integrity tests (Session 188)**: New route-integrity.test.js (16 tests) validates all internal navigation links match routes in App.jsx. Checks: Link to="" targets in components/pages, recent_updates.json relatedPage entries, Navigate redirect targets, essential route definitions, profile slug format (lowercase, hyphens). Catches broken internal links at test time. Added recent_updates.json entry (23 entries total). 2304 tests (146 files, all passing).
+- [x] **Defensive coding audit (Session 189)**: Added null/undefined guards to 7 data-consuming components: LiveStatistics, RecentUpdates, PoliticalPrisoners, CCPOfficials, SanctionsTracker, AcademicExperts, ForcedLaborTracker, DetentionFacilities, SanctionedOfficials. All `.results`, `.sanctions`, `.facilities` access now uses optional chaining with `|| []` fallback. New defensive-coding.test.js (8 tests) enforces guards on all JSON imports — detects unguarded `.map()`, unguarded array spreads, and missing optional chaining. Added recent_updates.json entry (24 entries total). 2312 tests (147 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

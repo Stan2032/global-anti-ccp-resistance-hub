@@ -82,8 +82,9 @@ const extractSanctionYear = (official) => {
 };
 
 // Build officials list entirely from JSON data
-const officials = sanctionedOfficialsData.results.map((result) => {
-  const official = result.output;
+const officials = (sanctionedOfficialsData?.results || []).map((result) => {
+  const official = result?.output;
+  if (!official) return null;
   const sanctionedBy = mapSanctionData(official);
   
   return {
@@ -110,7 +111,7 @@ const officials = sanctionedOfficialsData.results.map((result) => {
     }] : [],
     currentStatus: official.current_status
   };
-});
+}).filter(Boolean);
 
 // Government sanction list sources
 const sanctionSources = [

@@ -72,7 +72,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
 const LiveStatistics = () => {
   const [lastUpdated] = useState(new Date());
 
-  const statistics = statisticsData.map(stat => ({
+  const statistics = (statisticsData || []).map(stat => ({
     ...stat,
     Icon: ICON_MAP[stat.icon] || null,
     emoji: stat.icon === 'flag-hk' ? '🇭🇰' : null,

@@ -22,7 +22,7 @@ const formatDate = (dateStr) => {
 const RecentUpdates = () => {
   const [showAll, setShowAll] = useState(false);
 
-  const sortedUpdates = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedUpdates = [...(updates || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
   const displayedUpdates = showAll ? sortedUpdates : sortedUpdates.slice(0, INITIAL_DISPLAY_COUNT);
   const hasMore = sortedUpdates.length > INITIAL_DISPLAY_COUNT;
 

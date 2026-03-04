@@ -27,7 +27,7 @@ const SanctionsTracker = () => {
     { id: 'visa', name: 'Visa Bans' },
   ];
 
-  const sanctions = sanctionsData.sanctions;
+  const sanctions = sanctionsData?.sanctions || [];
 
   const filteredSanctions = sanctions.filter(s => {
     const countryMatch = activeCountry === 'all' || s.country === activeCountry;

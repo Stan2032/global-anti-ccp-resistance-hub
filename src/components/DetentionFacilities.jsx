@@ -73,7 +73,7 @@ const processResearchSources = () => {
   const sources = [];
   const seen = new Set();
   
-  detentionResearchData.results.forEach(result => {
+  (detentionResearchData?.results || []).forEach(result => {
     const data = result.output;
     if (data.source_url && !seen.has(data.source_url)) {
       seen.add(data.source_url);

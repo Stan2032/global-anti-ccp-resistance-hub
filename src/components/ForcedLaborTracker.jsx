@@ -46,7 +46,7 @@ const ForcedLaborTracker = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [expandedCompany, setExpandedCompany] = useState(null);
 
-  const companies = companiesData.results.map(r => r.output);
+  const companies = (companiesData?.results || []).map(r => r.output);
 
   const industries = [...new Set(companies.map(c => c.industry))].filter(Boolean);
   const statuses = [...new Set(companies.map(c => c.status))].filter(Boolean);

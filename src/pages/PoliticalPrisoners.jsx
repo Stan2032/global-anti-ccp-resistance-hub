@@ -25,8 +25,10 @@ const PROFILE_PATHS = {
 
 // Mapping function to convert JSON data to component format
 const mapJsonToComponentFormat = (jsonResults) => {
+  if (!jsonResults?.length) return [];
   return jsonResults.map((item) => {
-    const output = item.output;
+    const output = item?.output;
+    if (!output) return null;
     
     // Map status
     let status = output.status;
@@ -115,14 +117,14 @@ const mapJsonToComponentFormat = (jsonResults) => {
       confidence: output.confidence,
       profilePath: PROFILE_PATHS[output.prisoner_name] || null,
     };
-  });
+  }).filter(Boolean);
 };
 
 // Convert JSON data to component format
-const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData.results);
+const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData?.results);
 
 // Find most recent verification date across all prisoners
-const LATEST_VERIFIED = politicalPrisonersData.results.reduce((latest, item) => {
+const LATEST_VERIFIED = (politicalPrisonersData?.results || []).reduce((latest, item) => {
   const d = item.output?.sources?.last_verified;
   return d && d > latest ? d : latest;
 }, '');
