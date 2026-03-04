@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-design-enforcement",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Design system enforcement — 9 automated checks",
+    "description": "Fixed 10 text contrast violations across 8 files. Added automated text-slate-500 enforcement test. All readable text now verified text-slate-400 or brighter.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "2026-03-04-data-export-real",
     "date": "2026-03-04",
     "category": "data",

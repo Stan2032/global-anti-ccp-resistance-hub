@@ -63,7 +63,15 @@ describe('RecentUpdates', () => {
     it('renders CASE category labels', () => {
       renderComponent();
       const caseUpdates = updates.filter((u) => u.category === 'case_update');
-      if (caseUpdates.length > 0) {
+      // CASE entries may be below the initial display threshold (5 items)
+      // Only check if there are case_update entries in the top 5
+      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
+      const visibleCaseUpdates = sorted.slice(0, 5).filter((u) => u.category === 'case_update');
+      if (visibleCaseUpdates.length > 0) {
+        expect(screen.getAllByText('CASE').length).toBeGreaterThan(0);
+      } else if (caseUpdates.length > 0) {
+        // Expand to see all entries
+        fireEvent.click(screen.getByRole('button', { expanded: false }));
         expect(screen.getAllByText('CASE').length).toBeGreaterThan(0);
       }
     });

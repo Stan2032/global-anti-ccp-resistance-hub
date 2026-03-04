@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 178)
+> Last Updated: March 4, 2026 (Session 179)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -66,6 +66,7 @@
 - [x] **LiveStatistics data→JSON + design fix (Session 176)**: Extracted 8 inline statistics from LiveStatistics.jsx → live_statistics.json (23rd JSON data file). Each statistic now has sourceUrl and lastVerified fields for data provenance. Fixed design system violation: source attribution text was text-slate-600 (below minimum), corrected to text-slate-400. ICON_MAP pattern resolves icon name strings to Lucide components. 13 new data validation tests (structure, uniqueness, URL safety, CCP source exclusion, CPC terminology check). 2018 tests (135 files, all passing).
 - [x] **Real data export for researchers (Session 177)**: DataExport component now exports REAL data from 7 JSON files (was placeholder text). New exportUtils.js with extractRecords() (handles results[].output, flat array, sanctions[] patterns), recordsToCsv() (proper CSV with escaping), recordsToMarkdown() (markdown tables with pipe escaping + truncation). Dataset record counts now dynamic from JSON. Confucius Institutes dataset removed (no separate JSON file — data is part of organizations). 25 new tests (unit + real data integration). 2043 tests (136 files, all passing).
 - [x] **Design system enforcement + text contrast fixes (Session 178)**: Fixed 10 remaining text-slate-500 violations across 8 files (App.jsx, RecentUpdates, WorldThreatMap, SecurityQuiz, AdminDashboard, KeyboardShortcutsHelp, Dashboard, SecurityCenter). All readable text now uses text-slate-400 or brighter. Removed duplicate CSS class on AdminDashboard table headers. New automated design system test enforces text-slate-500 rules (allowed only for decorative icons, disabled states, pipe separators, bullet decorators). Added recent_updates.json entry for Session 177 data export. 2045 tests (136 files, all passing).
+- [x] **URL validation + data verification (Session 179)**: New url-validation.test.js with 6 tests: validates all URLs in 19 JSON data files are well-formed, have no formatting artifacts, no localhost/dev endpoints, and data provenance checks. Updated lastVerified dates across emergency_alerts.json and live_statistics.json (→2026-03-04). Added recent_updates.json entry for Session 178 design system work. Fixed RecentUpdates test to handle "show more" threshold with 14 entries. 2051 tests (137 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -519,8 +520,8 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 178, Mar 4, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2045 tests (136 files, all passing)
+### Current State Summary (as of Session 179, Mar 4, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2051 tests (137 files, all passing)
 - **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (9 automated checks) + URL health tests. ALL non-terminal accent colors standardized. Contrast overhaul: ALL decorative text-[#1c2a35] replaced with visible text-slate-600/700 (Session 168). ALL text-gray-* standardized to text-slate-* (Session 168). ALL readable labels upgraded from text-slate-500 to text-slate-400 across 72+ files (Session 169, 178). ALL top-level containers use space-y-8 (Session 169). Session 178: Automated text-slate-500 enforcement test added — catches future violations.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Keyboard shortcuts for power users: `/` search, `?` help, `g+d/i/p/r/t/e/s` navigation (Session 164). Dashboard section jump navigation bar (Session 171). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Intelligence Feeds (Session 171):** Per-source progressive loading with real progress bar (X/9 sources). onSourceDone callback in fetchFeedsProgressively(). loadedSources tracking in useLiveFeeds hook. Dashboard intelligence overview now imports actual FEED_SOURCES (9 sources, was hardcoded 4).
@@ -540,7 +541,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2045 tests across 136 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration). Design system: 9 automated compliance checks (Session 178).
+- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2051 tests across 137 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration). Design system: 9 automated compliance checks (Session 178). URL validation: 6 tests across all 19 JSON data files (Session 179).
 
 ---
 
