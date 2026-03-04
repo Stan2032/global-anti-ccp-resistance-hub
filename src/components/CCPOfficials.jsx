@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
 import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown, ChevronUp } from 'lucide-react';
@@ -155,6 +155,12 @@ export default function CCPOfficials() {
   const [sanctionedOnly, setSanctionedOnly] = useState(false);
   const [selectedOfficial, setSelectedOfficial] = useState(null);
   const [expandedSections, setExpandedSections] = useState({});
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedOfficial(null); };
+    if (selectedOfficial) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedOfficial]);
 
   const regions = ['all', ...new Set(officials.map(o => o.region))];
   const categories = ['all', ...new Set(officials.map(o => o.category))];

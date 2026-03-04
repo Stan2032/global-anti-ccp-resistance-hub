@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
@@ -392,6 +392,12 @@ const PoliticalPrisoners = () => {
   const [filter, setFilter] = useState('ALL');
   const [showAll, setShowAll] = useState(false);
   const INITIAL_DISPLAY_COUNT = 15;
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedPrisoner(null); };
+    if (selectedPrisoner) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedPrisoner]);
   
   const filteredPrisoners = PRISONERS_DATA.filter(p => {
     if (filter === 'ALL') return true;

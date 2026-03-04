@@ -41,6 +41,7 @@ const KeyboardShortcutsHelp = ({ isOpen, onClose }) => {
       <div
         className="relative bg-[#111820] border border-[#1c2a35] max-w-md w-full max-h-[80vh] overflow-y-auto"
         role="dialog"
+        aria-modal="true"
         aria-label="Keyboard shortcuts"
       >
         <div className="p-5 border-b border-[#1c2a35]">

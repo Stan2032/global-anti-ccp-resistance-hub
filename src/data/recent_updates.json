@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-keyboard-navigation",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Keyboard navigation audit — 8 tests, 5 Escape key fixes, aria-modal fix",
+    "description": "New keyboard-navigation.test.js with 8 tests: modal Escape key enforcement, event listener cleanup, aria-modal validation, clickable div keyboard support, focus-visible styles, skip-to-content, selectedX+overlay pattern. Fixed 4 components missing Escape key on modals (CCPOfficials, CaseStudies, DetentionFacilities, PoliticalPrisoners) and added aria-modal to KeyboardShortcutsHelp dialog.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-accessibility-audit",
     "date": "2026-03-04",
     "category": "verification",

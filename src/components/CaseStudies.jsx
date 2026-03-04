@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Heart, Share2, BookOpen, Clock, Globe, FileText } from 'lucide-react';
 
@@ -188,6 +188,12 @@ const caseStudies = [
 export default function CaseStudies() {
   const [selectedCase, setSelectedCase] = useState(null);
   const [expandedSections, setExpandedSections] = useState({});
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedCase(null); };
+    if (selectedCase) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedCase]);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
