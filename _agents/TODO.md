@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 185)
+> Last Updated: March 4, 2026 (Session 186)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -73,6 +73,7 @@
 - [x] **Cross-JSON data consistency tests (Session 183)**: New cross-data-consistency.test.js (12 tests): validates referential integrity across all 19 JSON data files. Tests: all JSON files loadable, prisoner-alert cross-references (Joshua Wong/Jimmy Lai in both databases), critical alert freshness (lastVerified within 60 days), sanctions-officials overlap, recent_updates route path and category validation, date ordering, detention facility regions, CPC terminology prohibition, non-empty content, forced labor company uniqueness, cross-file date format consistency. Added recent_updates.json entry (18 entries total). 2250 tests (142 files, all passing).
 - [x] **Accessibility audit + fixes (Session 184)**: New accessibility-audit.test.js (10 tests): automated accessibility compliance scanning across all JSX source files. Tests: img alt attributes, autoFocus prohibition, icon sizing consistency, tabIndex ordering, target=_blank safety, form input labels, icon-only button aria-labels, landmark structure (App.jsx + Footer.jsx), skip-to-content. Fixed 3 icon-only buttons missing aria-labels: InteractiveTimeline prev/next/play controls, EducationalResources download button. Added recent_updates.json entry (19 entries total). 2260 tests (143 files, all passing).
 - [x] **Keyboard navigation audit + fixes (Session 185)**: New keyboard-navigation.test.js (8 tests): modal Escape key enforcement, event listener cleanup validation, aria-modal on role="dialog", clickable div keyboard support, focus-visible styles, skip-to-content, selectedX+overlay pattern enforcement. Fixed 4 components missing Escape key on detail modals (CCPOfficials, CaseStudies, DetentionFacilities, PoliticalPrisoners). Added aria-modal="true" to KeyboardShortcutsHelp dialog. Added recent_updates.json entry (20 entries total). 2268 tests (144 files, all passing).
+- [x] **Performance & resilience (Session 186)**: New ShellErrorBoundary component (renders null on error) wraps 4 non-critical shell components: GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner. Three-tier error boundary architecture: ErrorBoundary (app-level, full-page fallback) → RouteErrorBoundary (route-level, recovery UI for chunk errors) → ShellErrorBoundary (shell-level, silent null). Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing all patterns. Added recent_updates.json entry (21 entries total). 2278 tests (145 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

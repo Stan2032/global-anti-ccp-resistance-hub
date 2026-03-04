@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
 import Breadcrumbs from './components/Breadcrumbs'
 import BackToTop from './components/BackToTop'
+import ShellErrorBoundary from './components/ShellErrorBoundary'
 import useKeyboardShortcuts from './hooks/useKeyboardShortcuts'
 import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp'
 
@@ -420,22 +421,30 @@ function AppLayout() {
       </main>
       
       {/* Global Search Modal */}
-      <Suspense fallback={null}>
-        <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* Keyboard Shortcuts Help */}
-      <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
+      <ShellErrorBoundary>
+        <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
+      </ShellErrorBoundary>
       
       {/* Quick Start Guide for new users */}
-      <Suspense fallback={null}>
-        <QuickStartGuide />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <QuickStartGuide />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* PWA Install Banner */}
-      <Suspense fallback={null}>
-        <PWAInstallBanner />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <PWAInstallBanner />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* Back to Top button */}
       <BackToTop />
