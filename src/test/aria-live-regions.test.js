@@ -119,7 +119,7 @@ describe('ARIA Live Regions — loading states are announced to screen readers',
       const content = fs.readFileSync(file, 'utf-8');
       if (content.includes('role="status"')) count++;
     }
-    // We fixed 7 SectionLoaders + App.jsx + GlobalSearch + NewsAggregator + AdminDashboard + ProtectedRoute + IntelligenceFeeds
+    // Minimum threshold: pages with SectionLoader + key loading components
     expect(count).toBeGreaterThanOrEqual(8);
   });
 
@@ -129,8 +129,7 @@ describe('ARIA Live Regions — loading states are announced to screen readers',
       const content = fs.readFileSync(file, 'utf-8');
       const lines = content.split('\n');
       for (let i = 0; i < lines.length; i++) {
-        if (lines[i].includes('█') && !lines[i].includes('aria-hidden') && !lines[i].includes('select-none')) {
-          // Exclude ASCII art blocks (pre tags, multi-line art)
+        if (lines[i].includes('█') && !lines[i].includes('aria-hidden')) {
           const context = lines.slice(Math.max(0, i - 3), i + 1).join('\n');
           if (!context.includes('<pre') && !context.includes('aria-hidden="true"') && !context.includes('│')) {
             violations.push(`${relPath(file)}:${i + 1}: decorative █ without aria-hidden`);
