@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-accessibility-audit",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Accessibility audit — 10 automated checks, 3 button fixes",
+    "description": "New accessibility-audit.test.js with 10 tests: img alt attributes, autoFocus prohibition, icon sizing consistency, tabIndex ordering, target=_blank safety, form input labels, icon-only button labels, landmark structure, skip-to-content. Fixed 3 icon-only buttons missing aria-labels (InteractiveTimeline prev/next/play, EducationalResources download).",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-data-consistency",
     "date": "2026-03-04",
     "category": "verification",

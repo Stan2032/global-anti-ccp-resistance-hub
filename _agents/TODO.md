@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 183)
+> Last Updated: March 4, 2026 (Session 184)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -71,6 +71,7 @@
 - [x] **Profile page test coverage (Session 181)**: New profile-pages.test.jsx (144 tests): first dedicated test coverage for all 15 political prisoner profiles. Tests: renders without crashing, displays name/Chinese name, status badge, back navigation, tab structure, Sources tab with CCP source exclusion statement, Timeline default content, ARIA accessibility (tablist/tabpanel/aria-selected), GlobalDisclaimer, no-hashtags compliance, data integrity (unique names, valid statuses). Added recent_updates.json entry (16 entries total). 2216 tests (140 files, all passing).
 - [x] **100% page test coverage (Session 182)**: New ResistanceDirectory.test.jsx (22 tests): the last untested page now has dedicated test coverage. Tests: header, stats, search filtering, category pills, dropdown filter, org card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page and component in the app now has dedicated tests. Added recent_updates.json entry (17 entries total). 2238 tests (141 files, all passing).
 - [x] **Cross-JSON data consistency tests (Session 183)**: New cross-data-consistency.test.js (12 tests): validates referential integrity across all 19 JSON data files. Tests: all JSON files loadable, prisoner-alert cross-references (Joshua Wong/Jimmy Lai in both databases), critical alert freshness (lastVerified within 60 days), sanctions-officials overlap, recent_updates route path and category validation, date ordering, detention facility regions, CPC terminology prohibition, non-empty content, forced labor company uniqueness, cross-file date format consistency. Added recent_updates.json entry (18 entries total). 2250 tests (142 files, all passing).
+- [x] **Accessibility audit + fixes (Session 184)**: New accessibility-audit.test.js (10 tests): automated accessibility compliance scanning across all JSX source files. Tests: img alt attributes, autoFocus prohibition, icon sizing consistency, tabIndex ordering, target=_blank safety, form input labels, icon-only button aria-labels, landmark structure (App.jsx + Footer.jsx), skip-to-content. Fixed 3 icon-only buttons missing aria-labels: InteractiveTimeline prev/next/play controls, EducationalResources download button. Added recent_updates.json entry (19 entries total). 2260 tests (143 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

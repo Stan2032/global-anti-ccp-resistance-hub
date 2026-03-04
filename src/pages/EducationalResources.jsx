@@ -102,6 +102,7 @@ const EducationalResources = () => {
         </div>
         <button
           className="p-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 transition-colors"
+          aria-label={`Download ${resource.title}`}
         >
           <Download className="w-5 h-5 text-white" />
         </button>

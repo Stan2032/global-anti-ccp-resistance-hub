@@ -137,6 +137,7 @@ export default function InteractiveTimeline() {
         <button
           onClick={handlePrevious}
           className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
+          aria-label="Previous event"
         >
           <ChevronLeft className="w-5 h-5 text-slate-300" />
         </button>
@@ -145,12 +146,14 @@ export default function InteractiveTimeline() {
           className={`p-3 transition-colors ${
             isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
           }`}
+          aria-label={isPlaying ? 'Pause timeline' : 'Play timeline'}
         >
           {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white" />}
         </button>
         <button
           onClick={handleNext}
           className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
+          aria-label="Next event"
         >
           <ChevronRight className="w-5 h-5 text-slate-300" />
         </button>
