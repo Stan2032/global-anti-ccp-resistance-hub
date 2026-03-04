@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 4, 2026 (Session 179)
+> Last Updated: March 4, 2026 (Session 180)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -67,6 +67,7 @@
 - [x] **Real data export for researchers (Session 177)**: DataExport component now exports REAL data from 7 JSON files (was placeholder text). New exportUtils.js with extractRecords() (handles results[].output, flat array, sanctions[] patterns), recordsToCsv() (proper CSV with escaping), recordsToMarkdown() (markdown tables with pipe escaping + truncation). Dataset record counts now dynamic from JSON. Confucius Institutes dataset removed (no separate JSON file — data is part of organizations). 25 new tests (unit + real data integration). 2043 tests (136 files, all passing).
 - [x] **Design system enforcement + text contrast fixes (Session 178)**: Fixed 10 remaining text-slate-500 violations across 8 files (App.jsx, RecentUpdates, WorldThreatMap, SecurityQuiz, AdminDashboard, KeyboardShortcutsHelp, Dashboard, SecurityCenter). All readable text now uses text-slate-400 or brighter. Removed duplicate CSS class on AdminDashboard table headers. New automated design system test enforces text-slate-500 rules (allowed only for decorative icons, disabled states, pipe separators, bullet decorators). Added recent_updates.json entry for Session 177 data export. 2045 tests (136 files, all passing).
 - [x] **URL validation + data verification (Session 179)**: New url-validation.test.js with 6 tests: validates all URLs in 19 JSON data files are well-formed, have no formatting artifacts, no localhost/dev endpoints, and data provenance checks. Updated lastVerified dates across emergency_alerts.json and live_statistics.json (→2026-03-04). Added recent_updates.json entry for Session 178 design system work. Fixed RecentUpdates test to handle "show more" threshold with 14 entries. 2051 tests (137 files, all passing).
+- [x] **No-hashtags policy + design enforcement + DataSources tests (Session 180)**: New no-hashtags-policy.test.js (5 tests): automated enforcement of user's no-hashtags policy — scans all JSX/JS source files and JSON data files for activist hashtag patterns, verifies no "hashtags" field in data, verifies ShareButtons has no hashtags prop. New 10th design system check: text-slate-600/700/800/900 only allowed for aria-hidden, decorative icons, disabled states, select-none, separators. Fixed 3 readable-text contrast violations (AdminLogin, AdminDashboard, Dashboard). New DataSources.test.jsx (15 tests): first test coverage for DataSources page (header, commitment, RSS feeds, categories, export, docs, issues). Added recent_updates.json entry (15 entries total). 2072 tests (139 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

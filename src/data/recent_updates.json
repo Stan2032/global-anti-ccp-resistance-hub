@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-policy-tests",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "No-hashtags policy + design system — 10 automated checks",
+    "description": "Automated no-hashtags enforcement test (5 tests). 10th design system check for text-slate-600+ violations. Fixed 3 text contrast violations. DataSources page tests (15 tests). URL validation across 19 data files.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-design-enforcement",
     "date": "2026-03-04",
     "category": "verification",

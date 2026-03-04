@@ -240,4 +240,41 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('text-slate-600/700/800/900 is only used for decorative/aria-hidden elements, icons, separators, and disabled states', () => {
+    // Design rule: Readable text must be text-slate-400 or brighter.
+    // text-slate-600+ is allowed ONLY for:
+    //   - aria-hidden="true" decorative elements (ASCII art, borders, fingerprints)
+    //   - Decorative icons (same element has w-N h-N sizing)
+    //   - Pipe/arrow/dash separators (│, |, ──, ↗, ▸)
+    //   - Disabled states (cursor-not-allowed)
+    //   - select-none (non-interactive decorative text)
+    const violations = [];
+    for (const filePath of jsxFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      const relativePath = filePath.replace(SRC_DIR + '/', '');
+      const lines = content.split('\n');
+      lines.forEach((line, idx) => {
+        if (!/text-slate-[6-9]\d\d/.test(line)) return;
+        // Skip: aria-hidden="true" on same element or parent context
+        if (/aria-hidden/.test(line)) return;
+        // Skip: decorative icons (w-N h-N sizing)
+        if (/w-\d+\s+h-\d+|h-\d+\s+w-\d+/.test(line)) return;
+        // Skip: disabled states
+        if (/cursor-not-allowed/.test(line)) return;
+        // Skip: select-none (non-interactive decorative text)
+        if (/select-none/.test(line)) return;
+        // Skip: pipe/dash/arrow separator content
+        if (/>\s*[│|──↗▸]\s*</.test(line)) return;
+        // Skip: hover modifiers
+        if (/hover:text-slate-[6-9]/.test(line) && !/(?<!hover:)text-slate-[6-9]\d\d/.test(line.replace(/hover:text-slate-[6-9]\d\d/g, ''))) return;
+        violations.push(`${relativePath}:${idx + 1}: ${line.trim().substring(0, 120)}`);
+      });
+    }
+    expect(violations,
+      `text-slate-600+ used on readable text (should be text-slate-400 or brighter):\n` +
+      `  Allowed ONLY for: aria-hidden, decorative icons (w-N h-N), disabled, select-none, separators\n` +
+      violations.join('\n')
+    ).toEqual([]);
+  });
 });

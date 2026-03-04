@@ -146,7 +146,7 @@ const AdminDashboard = () => {
                   <tr key={row.id || i} className="border-b border-[#1c2a35]/50 hover:bg-[#1c2a35]/20">
                     {Object.values(row).map((val, j) => (
                       <td key={j} className="px-4 py-2.5 text-slate-300 text-xs max-w-xs truncate">
-                        {val === null ? <span className="text-slate-600">null</span> :
+                        {val === null ? <span className="text-slate-500 cursor-not-allowed">null</span> :
                          typeof val === 'object' ? JSON.stringify(val) :
                          String(val)}
                       </td>
@@ -160,7 +160,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Info */}
-      <div className="text-slate-600 text-xs font-mono text-center">
+      <div className="text-slate-400 text-xs font-mono text-center">
         Encrypted fields (name, email, messages) appear as ciphertext. 
         Non-PII fields (status, dates, types) are readable.
       </div>
