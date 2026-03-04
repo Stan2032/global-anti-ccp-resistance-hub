@@ -87,7 +87,7 @@ const KeyboardShortcutsHelp = ({ isOpen, onClose }) => {
         </div>
 
         <div className="px-5 pb-4 text-center">
-          <span className="text-slate-500 font-mono text-xs">
+          <span className="text-slate-400 font-mono text-xs">
             Press <kbd className="px-1.5 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-slate-400 text-xs rounded">?</kbd> or <kbd className="px-1.5 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-slate-400 text-xs rounded">Esc</kbd> to close
           </span>
         </div>

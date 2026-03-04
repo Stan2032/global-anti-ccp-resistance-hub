@@ -193,4 +193,51 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('text-slate-500 is only used for decorative icons, disabled states, pipe separators, and bullet decorators', () => {
+    // Design rule: ALL readable text must be text-slate-400 or brighter.
+    // text-slate-500 is reserved for:
+    //   - Decorative icons (same element has w-N h-N sizing)
+    //   - Disabled states (same element or className has cursor-not-allowed)
+    //   - Pipe separators: content is just |
+    //   - Bullet decorators: content is just •
+    //   - Hover modifiers: hover:text-slate-500
+    //   - Unit labels in timer displays (y, d, h, m, s suffixes)
+    //   - Close/dismiss button icons with hover override (hover:text-slate-300 etc.)
+    const violations = [];
+    for (const filePath of jsxFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      const relativePath = filePath.replace(SRC_DIR + '/', '');
+      const lines = content.split('\n');
+      lines.forEach((line, idx) => {
+        if (!line.includes('text-slate-500')) return;
+        // Skip: hover modifier only (hover:text-slate-500)
+        if (/hover:text-slate-500/.test(line) && !/(?<!hover:)text-slate-500/.test(line.replace(/hover:text-slate-500/g, ''))) return;
+        // Skip: decorative icon (w-N h-N on same element)
+        if (/w-\d+\s+h-\d+|h-\d+\s+w-\d+/.test(line)) return;
+        // Skip: disabled states
+        if (/cursor-not-allowed/.test(line)) return;
+        // Skip: pipe separator or bullet content
+        if (/>\s*\|\s*</.test(line) || />\s*•\s*</.test(line)) return;
+        // Skip: timer unit labels (single char content like y, d, h, m, s)
+        if (/>\s*[ydhms]\s*</.test(line)) return;
+        // Skip: hover override on same element (e.g. hover:text-slate-300, hover:text-white)
+        if (/hover:text-(?:slate-[1-4]\d\d|white|green|red|cyan|yellow|\[#)/.test(line)) return;
+        // Skip: ChevronUp/ChevronDown icons in collapsible elements
+        if (/Chevron(?:Up|Down|Left|Right)/.test(line)) return;
+        // Skip: icon-only wrappers (parent div/span containing only an icon on next line)
+        if (/^<(?:div|span)\s+className="text-slate-500"\s*>$/.test(line.trim())) return;
+        // Skip: decorative separator text ("then" between key combos)
+        if (/>then</.test(line)) return;
+        // Skip: inactive/not-loaded tab states in ternary expressions
+        if (/[?:].*text-slate-500.*bg-\[#/.test(line)) return;
+        violations.push(`${relativePath}:${idx + 1}: ${line.trim().substring(0, 120)}`);
+      });
+    }
+    expect(violations,
+      `text-slate-500 used on readable text (should be text-slate-400 or brighter):\n` +
+      `  Allowed ONLY for: decorative icons (w-N h-N), disabled (cursor-not-allowed), pipes (|), bullets (•)\n` +
+      violations.join('\n')
+    ).toEqual([]);
+  });
 });

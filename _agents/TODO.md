@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 3, 2026 (Session 177)
+> Last Updated: March 4, 2026 (Session 178)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -65,6 +65,7 @@
 - [x] **Data hygiene + Alert sorting + Timer accessibility (Session 175)**: Taiwan PLA alert deactivated (expired 9 months ago). EmergencyAlerts now sorts by severity (critical → warning → info) so most urgent alerts always appear first. UrgentCaseTimer enhanced: added `role="timer"` + `aria-label` to all detention counters (both compact and full), added "Detained since" formatted date (e.g. "December 3, 2020") with Calendar icon. 6 new tests (severity sort, Taiwan exclusion, ARIA timer role, aria-labels, detained-since dates). 2005 tests (134 files, all passing).
 - [x] **LiveStatistics data→JSON + design fix (Session 176)**: Extracted 8 inline statistics from LiveStatistics.jsx → live_statistics.json (23rd JSON data file). Each statistic now has sourceUrl and lastVerified fields for data provenance. Fixed design system violation: source attribution text was text-slate-600 (below minimum), corrected to text-slate-400. ICON_MAP pattern resolves icon name strings to Lucide components. 13 new data validation tests (structure, uniqueness, URL safety, CCP source exclusion, CPC terminology check). 2018 tests (135 files, all passing).
 - [x] **Real data export for researchers (Session 177)**: DataExport component now exports REAL data from 7 JSON files (was placeholder text). New exportUtils.js with extractRecords() (handles results[].output, flat array, sanctions[] patterns), recordsToCsv() (proper CSV with escaping), recordsToMarkdown() (markdown tables with pipe escaping + truncation). Dataset record counts now dynamic from JSON. Confucius Institutes dataset removed (no separate JSON file — data is part of organizations). 25 new tests (unit + real data integration). 2043 tests (136 files, all passing).
+- [x] **Design system enforcement + text contrast fixes (Session 178)**: Fixed 10 remaining text-slate-500 violations across 8 files (App.jsx, RecentUpdates, WorldThreatMap, SecurityQuiz, AdminDashboard, KeyboardShortcutsHelp, Dashboard, SecurityCenter). All readable text now uses text-slate-400 or brighter. Removed duplicate CSS class on AdminDashboard table headers. New automated design system test enforces text-slate-500 rules (allowed only for decorative icons, disabled states, pipe separators, bullet decorators). Added recent_updates.json entry for Session 177 data export. 2045 tests (136 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -518,9 +519,9 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 177, Mar 3, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2043 tests (136 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (8 automated checks) + URL health tests. ALL non-terminal accent colors standardized. Contrast overhaul: ALL decorative text-[#1c2a35] replaced with visible text-slate-600/700 (Session 168). ALL text-gray-* standardized to text-slate-* (Session 168). ALL readable labels upgraded from text-slate-500 to text-slate-400 across 72 files (Session 169). ALL top-level containers use space-y-8 (Session 169).
+### Current State Summary (as of Session 178, Mar 4, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2045 tests (136 files, all passing)
+- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (9 automated checks) + URL health tests. ALL non-terminal accent colors standardized. Contrast overhaul: ALL decorative text-[#1c2a35] replaced with visible text-slate-600/700 (Session 168). ALL text-gray-* standardized to text-slate-* (Session 168). ALL readable labels upgraded from text-slate-500 to text-slate-400 across 72+ files (Session 169, 178). ALL top-level containers use space-y-8 (Session 169). Session 178: Automated text-slate-500 enforcement test added — catches future violations.
 - **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Keyboard shortcuts for power users: `/` search, `?` help, `g+d/i/p/r/t/e/s` navigation (Session 164). Dashboard section jump navigation bar (Session 171). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
 - **Intelligence Feeds (Session 171):** Per-source progressive loading with real progress bar (X/9 sources). onSourceDone callback in fetchFeedsProgressively(). loadedSources tracking in useLiveFeeds hook. Dashboard intelligence overview now imports actual FEED_SOURCES (9 sources, was hardcoded 4).
 - **Emergency Alerts (Session 172-175):** EventCountdown component integrated — alerts with eventDate field show live countdown (days/hours/minutes/seconds). Joshua Wong hearing countdown active. calculateTimeLeft() utility in dateUtils.js. Shows "Event today" with pulsing red on event day. Session 173: Share/Copy button on each alert — copies formatted text to clipboard. formatAlertForSharing() utility generates clean social media text. Session 174: All hashtags removed per human request (considered performative activism). Share functionality preserved without hashtags. Session 175: Alerts now sorted by severity (critical → warning → info). Taiwan PLA alert deactivated (expired). UrgentCaseTimer enhanced with role="timer" ARIA attributes and "Detained since" formatted dates.
@@ -539,7 +540,7 @@
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
 - **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2043 tests across 136 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration).
+- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2045 tests across 136 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration). Design system: 9 automated compliance checks (Session 178).
 
 ---
 

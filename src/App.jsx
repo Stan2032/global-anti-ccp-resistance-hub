@@ -249,7 +249,7 @@ const DesktopSidebar = () => {
       {/* Status Footer */}
       <div className="p-3 border-t border-[#1c2a35]">
         <div className="flex items-center justify-between font-mono text-xs px-1">
-          <span className="text-slate-500">status</span>
+          <span className="text-slate-400">status</span>
           <span className="text-[#4afa82]">● online</span>
         </div>
       </div>
@@ -396,7 +396,7 @@ function AppLayout() {
                     <p className="text-slate-400 font-mono text-sm mb-2">
                       <span className="text-red-400">error:</span> requested path does not exist
                     </p>
-                    <p className="text-slate-500 font-mono text-xs mb-8">
+                    <p className="text-slate-400 font-mono text-xs mb-8">
                       the page may have been moved or deleted.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -319,7 +319,7 @@ const SecurityCenter = () => {
                     <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] transition-colors flex-shrink-0 mt-0.5" />
                   </div>
                   <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
-                  <p className="text-slate-500 text-xs mt-2">Provider: {tool.provider}</p>
+                  <p className="text-slate-400 text-xs mt-2">Provider: {tool.provider}</p>
                 </a>
               ))}
             </div>
@@ -408,7 +408,7 @@ const SecurityCenter = () => {
                   >
                     <h3 className="text-white font-semibold">{contact.name}</h3>
                     <p className="text-slate-400 text-sm mt-1">{contact.description}</p>
-                    <p className="text-slate-500 text-xs mt-2 font-medium">{contact.type}</p>
+                    <p className="text-slate-400 text-xs mt-2 font-medium">{contact.type}</p>
                     <a
                       href={contact.contact}
                       target="_blank"

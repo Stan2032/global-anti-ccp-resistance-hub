@@ -127,7 +127,7 @@ const AdminDashboard = () => {
           </div>
         ) : data.length === 0 ? (
           <div className="p-8 text-center">
-            <span className="text-slate-500 font-mono text-sm">No records found</span>
+            <span className="text-slate-400 font-mono text-sm">No records found</span>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -135,7 +135,7 @@ const AdminDashboard = () => {
               <thead>
                 <tr className="border-b border-[#1c2a35]">
                   {Object.keys(data[0]).map(key => (
-                    <th key={key} className="text-left px-4 py-3 text-slate-500 text-xs font-medium text-slate-400">
+                    <th key={key} className="text-left px-4 py-3 text-xs font-medium text-slate-400">
                       {key}
                     </th>
                   ))}

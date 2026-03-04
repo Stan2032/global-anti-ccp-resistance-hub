@@ -291,7 +291,7 @@ const Dashboard = () => {
       </section>
 
       {/* Footer */}
-      <div className="text-center text-slate-500 text-sm py-4 font-mono border-t border-[#1c2a35] mt-4">
+      <div className="text-center text-slate-400 text-sm py-4 font-mono border-t border-[#1c2a35] mt-4">
         <p>resistance_hub v2.11 <span className="text-slate-600">│</span> secure <span className="text-slate-600">│</span> anonymous <span className="text-slate-600">│</span> decentralized</p>
         <p className="mt-1 text-slate-600">// together we resist authoritarianism</p>
       </div>
