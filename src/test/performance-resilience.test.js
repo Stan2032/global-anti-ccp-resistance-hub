@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync } from 'fs';
-import { resolve, join, relative } from 'path';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
 /**
  * Performance & Resilience Tests

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
-import { calculateAge, formatAlertForSharing, daysSince, getFreshnessInfo } from '../utils/dateUtils';
+import { calculateAge, formatAlertForSharing, daysSince, getFreshnessInfo, calculateTimeLeft } from '../utils/dateUtils';
 
 describe('calculateAge', () => {
   afterEach(() => {
@@ -200,5 +200,72 @@ describe('getFreshnessInfo', () => {
     vi.setSystemTime(new Date(2026, 4, 3, 12, 0, 0));
     const result = getFreshnessInfo('2026-03-03');
     expect(result.level).toBe('stale');
+  });
+});
+
+describe('calculateTimeLeft', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 2, 4, 12, 0, 0)); // March 4, 2026 noon
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('returns countdown for future date', () => {
+    const result = calculateTimeLeft('2026-03-06');
+    expect(result.isPast).toBe(false);
+    expect(result.isToday).toBe(false);
+    expect(result.days).toBeGreaterThanOrEqual(1);
+  });
+
+  it('returns isToday for current date', () => {
+    const result = calculateTimeLeft('2026-03-04');
+    expect(result.isToday).toBe(true);
+    expect(result.isPast).toBe(false);
+  });
+
+  it('returns isPast for past date', () => {
+    const result = calculateTimeLeft('2026-03-01');
+    expect(result.isPast).toBe(true);
+    expect(result.isToday).toBe(false);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for null', () => {
+    const result = calculateTimeLeft(null);
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for undefined', () => {
+    const result = calculateTimeLeft(undefined);
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for malformed date string', () => {
+    const result = calculateTimeLeft('not-a-date');
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for empty string', () => {
+    const result = calculateTimeLeft('');
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for numeric value', () => {
+    const result = calculateTimeLeft(12345);
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
+  });
+
+  it('returns fallback for partial date', () => {
+    const result = calculateTimeLeft('2026-03');
+    expect(result.isPast).toBe(true);
+    expect(result.days).toBe(0);
   });
 });

@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-03-04-sitemap-countdown-robustness",
+    "date": "2026-03-04",
+    "category": "verification",
+    "title": "Sitemap freshness + EventCountdown input validation + 10 new tests",
+    "description": "Updated sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (lastmod not older than 30 days). Added calculateTimeLeft input validation — malformed dates, non-strings, partial dates now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests in dateUtils.test.js.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "2026-03-04-performance-resilience",
     "date": "2026-03-04",
     "category": "verification",

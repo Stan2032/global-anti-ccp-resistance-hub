@@ -39,11 +39,17 @@ export function calculateAge(birthDate, deathDate) {
  * @returns {{ days: number, hours: number, minutes: number, seconds: number, isPast: boolean, isToday: boolean }}
  */
 export function calculateTimeLeft(eventDate) {
-  if (!eventDate) return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
+  const fallback = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
+  if (!eventDate || typeof eventDate !== 'string') return fallback;
+  
+  const parts = eventDate.split('-');
+  if (parts.length !== 3) return fallback;
+  const [year, month, day] = parts.map(Number);
+  if (isNaN(year) || isNaN(month) || isNaN(day)) return fallback;
   
   const now = new Date();
-  const [year, month, day] = eventDate.split('-').map(Number);
   const target = new Date(year, month - 1, day);
+  if (isNaN(target.getTime())) return fallback;
   
   const isToday = now.getFullYear() === year && now.getMonth() === month - 1 && now.getDate() === day;
   
