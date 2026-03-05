@@ -21,6 +21,7 @@ import detentionData from '../data/detention_facilities_research.json';
 import emergencyAlertsData from '../data/emergency_alerts.json';
 import liveStatisticsData from '../data/live_statistics.json';
 import recentUpdatesData from '../data/recent_updates.json';
+import internationalResponsesData from '../data/international_responses_research.json';
 
 // ── Helpers ─────────────────────────────────────────────
 
@@ -95,6 +96,11 @@ export const dataApi = {
           count: this.getStatistics().length,
           description: 'Key statistics on CCP human rights violations',
           fields: ['label', 'value', 'suffix', 'description', 'source', 'sourceUrl'],
+        },
+        international_responses: {
+          count: this.getInternationalResponses().length,
+          description: 'Country-level responses to CCP human rights violations',
+          fields: ['country', 'genocide_recognition', 'sanctions_imposed', 'legislative_actions', 'diplomatic_actions', 'pending_proposals', 'overall_stance', 'source_url'],
         },
       },
       lastUpdated: '2026-03-05',
@@ -246,6 +252,21 @@ export const dataApi = {
     );
   },
 
+  // ── International Responses ──────────────────────────
+  getInternationalResponses() {
+    return extractResults(internationalResponsesData);
+  },
+
+  getInternationalResponseByCountry(country) {
+    return this.getInternationalResponses().find(
+      (r) => r.country?.toLowerCase() === country.toLowerCase()
+    ) || null;
+  },
+
+  searchInternationalResponses(query) {
+    return this.getInternationalResponses().filter((r) => matchesSearch(r, query));
+  },
+
   // ── Cross-dataset queries ───────────────────────────
   /**
    * Global search across all datasets. Returns results grouped by dataset.
@@ -259,6 +280,7 @@ export const dataApi = {
       sanctioned_officials: this.searchSanctionedOfficials(query),
       forced_labor_companies: this.searchForcedLaborCompanies(query),
       timeline_events: this.getTimelineEvents().filter((e) => matchesSearch(e, query)),
+      international_responses: this.searchInternationalResponses(query),
     };
   },
 

@@ -26,6 +26,7 @@ const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
 const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
 const DiasporaSupport = lazy(() => import('../components/DiasporaSupport'));
 const PrintableReport = lazy(() => import('../components/PrintableReport'));
+const InternationalResponseTracker = lazy(() => import('../components/InternationalResponseTracker'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
@@ -308,6 +309,11 @@ const TakeAction = () => {
       {/* Sanctions Tracker */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
+      </div>
+
+      {/* International Response Tracker */}
+      <div className="mt-8">
+        <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
       </div>
 
       {/* Donation Guide */}

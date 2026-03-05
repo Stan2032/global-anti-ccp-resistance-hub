@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-206-international-responses",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "International Response Tracker — how 30 countries respond to CCP violations",
+    "description": "New InternationalResponseTracker component visualises international responses across 30 countries with five dimensions: genocide recognition, sanctions, legislative actions, diplomatic actions, and pending proposals. Stance classification (Strong/Moderate/Limited/Weak), search, filter by stance, expandable country cards, copy-to-clipboard. Integrated dataApi with getInternationalResponses methods.",
+    "relatedPage": "/take-action"
+  },
+  {
     "id": "session-205-case-timeline",
     "date": "2026-03-05",
     "category": "data",
