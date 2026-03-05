@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-203-data-comparison",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Regional Data Comparison Tool for researchers",
+    "description": "New DataComparisonTool component enables side-by-side comparison of CCP human rights violation data across 4 regions (Hong Kong, Xinjiang, Tibet, Mainland). Features comparison table with bar indicators, expandable status/country breakdowns, copy-to-clipboard summary with CC BY 4.0 attribution. 31 new tests.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-202-influence-network",
     "date": "2026-03-05",
     "category": "data",
