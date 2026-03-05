@@ -27,6 +27,7 @@ const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
 const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
+const ContentAnalytics = lazy(() => import('../components/ContentAnalytics'));
 const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
 const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
 const EventCalendar = lazy(() => import('../components/EventCalendar'));
@@ -328,6 +329,9 @@ const EducationalResources = () => {
       {activeTab === 'research' && (
         <div className="space-y-8">
           <div>
+            <Suspense fallback={<SectionLoader />}><ContentAnalytics /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
             <Suspense fallback={<SectionLoader />}><ResearchPapers /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
