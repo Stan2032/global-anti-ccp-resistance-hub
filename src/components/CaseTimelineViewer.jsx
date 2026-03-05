@@ -35,7 +35,7 @@ const CATEGORY_COLORS = {
   uyghur: 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#22d3ee]/30',
   tibet: 'bg-red-400/20 text-red-400 border-red-400/30',
   mainland: 'bg-slate-300/20 text-slate-300 border-slate-300/30',
-  falungong: 'bg-purple-400/20 text-purple-400 border-purple-400/30',
+  falungong: 'bg-orange-400/20 text-orange-400 border-orange-400/30',
   global: 'bg-[#4afa82]/20 text-[#4afa82] border-[#4afa82]/30',
 };
 
@@ -44,7 +44,7 @@ const CATEGORY_DOT_COLORS = {
   uyghur: 'bg-[#22d3ee]',
   tibet: 'bg-red-400',
   mainland: 'bg-slate-300',
-  falungong: 'bg-purple-400',
+  falungong: 'bg-orange-400',
   global: 'bg-[#4afa82]',
 };
 
@@ -184,7 +184,7 @@ export default function CaseTimelineViewer() {
 
   return (
     <section
-      className="bg-[#0a0e14] border border-[#1c2a35] rounded-lg font-mono"
+      className="bg-[#0a0e14] border border-[#1c2a35] rounded font-mono"
       aria-label="Case Timeline Viewer"
     >
       {/* Header */}
@@ -282,7 +282,7 @@ export default function CaseTimelineViewer() {
                     }}
                   >
                     <span className="flex items-center gap-2">
-                      <User className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
+                      <User className="w-4 h-4 text-slate-500" aria-hidden="true" />
                       {prisoner.prisoner_name}
                     </span>
                     {prisoner.status && (
@@ -305,7 +305,7 @@ export default function CaseTimelineViewer() {
       {/* Prisoner Info Card */}
       {selectedPrisoner && (
         <div className="p-4 sm:p-6 border-b border-[#1c2a35]">
-          <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4">
+          <div className="bg-[#111820] border border-[#1c2a35] rounded p-4">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -452,7 +452,7 @@ export default function CaseTimelineViewer() {
                         aria-hidden="true"
                       />
 
-                      <div className="bg-[#111820] border border-[#1c2a35] rounded-lg p-4 hover:border-[#2a3a48] transition-colors">
+                      <div className="bg-[#111820] border border-[#1c2a35] rounded p-4 hover:border-[#2a3a48] transition-colors">
                         {/* Date & Meta */}
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <time

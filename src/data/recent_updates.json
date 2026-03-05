@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-205-case-timeline",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Case Timeline Viewer — cross-reference prisoner cases with events",
+    "description": "New CaseTimelineViewer component links 63 political prisoners to 34 timeline events using keyword matching. Select any prisoner to see their case progression: arrests, trials, sentencings, and related events in chronological order. Searchable dropdown, category badges, copy-to-clipboard. 37 new tests.",
+    "relatedPage": "/prisoners"
+  },
+  {
     "id": "session-204-advocacy-letters",
     "date": "2026-03-05",
     "category": "data",

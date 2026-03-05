@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "13.3",
-    "date": "2026-03-05T22:05:00Z",
+    "version": "13.4",
+    "date": "2026-03-05T22:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 204,
+    "sessions_completed": 205,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "320+",
-    "frontend_tests": 2606,
-    "test_files": 161,
+    "frontend_tests": 2643,
+    "test_files": 162,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -677,6 +677,21 @@
       "AdvocacyLetterGenerator.test.jsx: 36 new tests",
       "recent_updates.json: 37 entries total",
       "2606 tests (161 files), build clean, 0 ESLint"
+    ]
+  },
+  "session_205_changes": {
+    "summary": "Case Timeline Viewer — cross-reference political prisoners with timeline events",
+    "changes": [
+      "New CaseTimelineViewer.jsx: links 63 prisoners to 34 timeline events via keyword matching",
+      "CASE_KEYWORDS map for 12 key prisoners (Jimmy Lai, Joshua Wong, Ilham Tohti, etc.)",
+      "Prisoner info card: status badge, sentence, location, health, latest news",
+      "Vertical chronological timeline with category badges and significance indicators",
+      "Copy-to-clipboard: full case timeline text with CC BY 4.0 attribution",
+      "Terminal palette compliant: orange for falungong, no rounded-lg, no purple",
+      "Integrated into Political Prisoners page (lazy-loaded, after Case Studies)",
+      "CaseTimelineViewer.test.jsx: 37 new tests",
+      "recent_updates.json: 38 entries total",
+      "2643 tests (162 files), build clean, 0 ESLint"
     ]
   }
 }

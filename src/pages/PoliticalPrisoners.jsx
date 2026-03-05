@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
@@ -6,6 +6,9 @@ import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
 import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
+
+const CaseTimelineViewer = lazy(() => import('../components/CaseTimelineViewer'));
+const SectionLoader = () => (<div className="flex items-center justify-center py-8" role="status" aria-label="Loading section"><span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span></div>);
 
 // Map prisoner names to their detailed profile page paths
 const PROFILE_PATHS = {
@@ -533,6 +536,11 @@ const PoliticalPrisoners = () => {
         {/* Case Study Deep Dives */}
         <div className="mt-12">
           <CaseStudies />
+        </div>
+
+        {/* Case Timeline Viewer */}
+        <div className="mt-12">
+          <Suspense fallback={<SectionLoader />}><CaseTimelineViewer /></Suspense>
         </div>
 
         {/* Memorial Wall */}
