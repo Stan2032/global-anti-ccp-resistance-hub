@@ -86,10 +86,10 @@ const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 // Simple Mobile-First Header — terminal style
 const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
   <header className="bg-[#111820] border-b border-[#1c2a35] sticky top-0 z-50">
-    <div className="flex items-center justify-between h-14 px-4">
+    <div className="flex items-center justify-between h-14 px-3 gap-2">
       <button
         onClick={onMenuToggle}
-        className="p-2 -ml-2 text-slate-300 hover:text-[#4afa82] active:text-white"
+        className="flex-shrink-0 p-2 -ml-1 text-slate-300 hover:text-[#4afa82] active:text-white"
         aria-label="Toggle menu"
       >
         {isMenuOpen ? (
@@ -103,14 +103,14 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
         )}
       </button>
       
-      <div className="flex items-center gap-2">
-        <span className="font-mono text-[#4afa82] text-sm font-bold tracking-tight">[GRH]</span>
-        <span className="font-mono text-white text-sm font-semibold">resistance_hub</span>
+      <div className="flex items-center gap-1.5 min-w-0">
+        <span className="font-mono text-[#4afa82] text-sm font-bold tracking-tight whitespace-nowrap">[GRH]</span>
+        <span className="font-mono text-white text-sm font-semibold truncate">resistance_hub</span>
       </div>
       
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-1.5 flex-shrink-0">
         <LanguageSelector />
-        <Link to="/security" className="px-2 py-1 bg-transparent text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors">
+        <Link to="/security" className="px-2 py-1 bg-transparent text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors whitespace-nowrap">
           sec
         </Link>
       </div>

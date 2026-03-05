@@ -96,16 +96,16 @@ const EmergencyAlerts = () => {
           >
             {/* Header */}
             <div className="p-4">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-1">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
                     <span className={`font-mono ${styles.prefixColor} text-xs select-none`} aria-hidden="true">{styles.prefix}</span>
-                    <span className={`text-xs font-mono font-bold px-2 py-0.5 ${styles.badge} text-white uppercase`}>
+                    <span className={`text-xs font-mono font-bold px-2 py-0.5 ${styles.badge} text-white uppercase whitespace-nowrap`}>
                       {alert.type}
                     </span>
-                    <span className="text-xs text-slate-400 font-mono">{alert.date}</span>
+                    <span className="text-xs text-slate-400 font-mono whitespace-nowrap">{alert.date}</span>
                     {alert.lastVerified && (
-                      <span className="text-xs text-slate-400 font-mono" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
+                      <span className="text-xs text-slate-400 font-mono whitespace-nowrap" title={`Last verified: ${alert.lastVerified}`}>✓ {alert.lastVerified}</span>
                     )}
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
@@ -116,14 +116,14 @@ const EmergencyAlerts = () => {
                 </div>
                 <button
                   onClick={() => dismissAlert(alert.id)}
-                  className="text-slate-500 hover:text-slate-300 ml-4 font-mono"
+                  className="flex-shrink-0 text-slate-500 hover:text-slate-300 font-mono p-2"
                   aria-label="Dismiss alert"
                 >
                   <span aria-hidden="true">✕</span>
                 </button>
               </div>
               
-              <div className="flex items-center justify-between mt-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 mt-3">
                 <button
                   onClick={() => setExpandedAlert(isExpanded ? null : alert.id)}
                   className="text-sm text-[#4afa82] hover:text-[#7dffaa] font-mono"
@@ -131,7 +131,7 @@ const EmergencyAlerts = () => {
                 >
                   {isExpanded ? '$ collapse ↑' : '$ expand --details →'}
                 </button>
-                <div className="flex space-x-2">
+                <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => copyAlertText(alert)}
                     className={`text-xs font-mono px-2 py-1 border transition-colors flex items-center gap-1 ${

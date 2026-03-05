@@ -70,20 +70,20 @@ export default function PWAInstallBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-[#111820] border-t border-[#1c2a35] shadow-2xl animate-slide-up">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 bg-[#111820] border-t border-[#1c2a35] shadow-2xl animate-slide-up">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-3 sm:gap-4">
           {/* Icon */}
-          <div className="flex-shrink-0 p-3 bg-red-600">
-            <Smartphone className="w-8 h-8 text-white" />
+          <div className="flex-shrink-0 p-2 sm:p-3 bg-red-600">
+            <Smartphone className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
           </div>
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-white mb-1">
+            <h3 className="text-base sm:text-lg font-bold text-white mb-1">
               Install Resistance Hub
             </h3>
-            <p className="text-sm text-slate-300 mb-3">
+            <p className="text-xs sm:text-sm text-slate-300 mb-3">
               Add to your home screen for quick access, offline support, and a native app experience.
             </p>
 
@@ -124,7 +124,7 @@ export default function PWAInstallBanner() {
             )}
 
             {/* Benefits */}
-            <div className="flex flex-wrap gap-3 mt-3 text-xs text-slate-400">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-xs text-slate-400">
               <span className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
                 Works offline

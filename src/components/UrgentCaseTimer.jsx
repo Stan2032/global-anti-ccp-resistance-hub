@@ -108,12 +108,12 @@ const UrgentCaseTimer = ({ compact = false }) => {
           
           return (
             <div key={prisoner.id} className="bg-[#0a0e14]/50 p-3 border border-[#1c2a35]">
-              <div className="flex items-center justify-between">
-                <div>
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                <div className="min-w-0">
                   <span className="font-medium text-white">{prisoner.name}</span>
                   <span className="text-slate-400 text-sm ml-2">{prisoner.chinese}</span>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded ${
+                <span className={`text-xs px-2 py-0.5 rounded whitespace-nowrap flex-shrink-0 ${
                   prisoner.statusColor === 'red' ? 'bg-red-600' : 'bg-[#1c2a35]'
                 }`}>
                   {prisoner.status}
@@ -156,12 +156,12 @@ const UrgentCaseTimer = ({ compact = false }) => {
           return (
             <div key={prisoner.id} className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-red-500/50 transition-colors">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div>
+              <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
+                <div className="min-w-0">
                   <h3 className="text-xl font-bold text-white">{prisoner.name}</h3>
                   <p className="text-red-400">{prisoner.chinese}</p>
                 </div>
-                <span className={`px-3 py-1 rounded text-xs font-bold ${
+                <span className={`flex-shrink-0 px-3 py-1 rounded text-xs font-bold whitespace-nowrap ${
                   prisoner.statusColor === 'red' ? 'bg-red-600 text-white' : 'bg-[#1c2a35] text-white'
                 }`}>
                   {prisoner.status}
@@ -170,25 +170,25 @@ const UrgentCaseTimer = ({ compact = false }) => {
 
               {/* Timer */}
               <div className="bg-[#0a0e14] p-4 mb-4" role="timer" aria-label={`${prisoner.name} detained ${timer.years} years, ${timer.days} days, ${timer.hours} hours`}>
-                <div className="grid grid-cols-5 gap-2 text-center">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 text-center">
                   <div>
-                    <div className="text-3xl font-mono font-bold text-red-400">{timer.years}</div>
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-red-400">{timer.years}</div>
                     <div className="text-xs text-slate-400">YEARS</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-mono font-bold text-red-400">{timer.days}</div>
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-red-400">{timer.days}</div>
                     <div className="text-xs text-slate-400">DAYS</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-mono font-bold text-red-400">{timer.hours}</div>
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-red-400">{timer.hours}</div>
                     <div className="text-xs text-slate-400">HOURS</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-mono font-bold text-red-400">{timer.minutes}</div>
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-red-400">{timer.minutes}</div>
                     <div className="text-xs text-slate-400">MINS</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-mono font-bold text-red-400">{timer.seconds}</div>
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-red-400">{timer.seconds}</div>
                     <div className="text-xs text-slate-400">SECS</div>
                   </div>
                 </div>

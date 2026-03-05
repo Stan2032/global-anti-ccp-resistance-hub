@@ -91,15 +91,15 @@ const LiveStatistics = () => {
     <div className="space-y-8">
       {/* Header */}
       <div className="bg-[#0a0e14] border border-[#1c2a35] border-l-2 border-l-red-500 p-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div className="flex items-center">
-            <BarChart3 className="w-8 h-8 mr-3 text-red-400" />
+            <BarChart3 className="w-8 h-8 mr-3 text-red-400 flex-shrink-0" />
             <div>
               <h2 className="text-2xl font-bold text-white">The Human Cost</h2>
               <p className="text-slate-400">Real-time statistics on CCP repression</p>
             </div>
           </div>
-          <div className="text-right text-xs text-slate-400">
+          <div className="sm:text-right text-xs text-slate-400">
             <div>Data compiled from verified sources</div>
             <div>Last updated: {lastUpdated.toLocaleDateString()}</div>
           </div>
