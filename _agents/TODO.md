@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 5, 2026 (Session 199)
+> Last Updated: March 5, 2026 (Session 200)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -84,6 +84,7 @@
 - [x] **Public data API module (Session 197)**: New `src/services/dataApi.js` — structured access layer for all 8 research JSON datasets. Provides: `getPoliticalPrisoners()`, `getSanctions()`, `getSanctionedOfficials()`, `getTimelineEvents()`, `getForcedLaborCompanies()`, `getDetentionFacilities()`, `getAlerts()`, `getStatistics()`, `getRecentUpdates()`. Each dataset has search, filter-by-field, and find-by-name methods. Cross-dataset: `globalSearch()`, `getHongKongData()`, `getUyghurData()`, `getDatasetSummary()`. New data-api.test.js (46 tests) covers all methods + data integrity (source URLs, no CCP media, no CPC terminology, valid dates). Sitemap lastmod dates refreshed to 2026-03-05. Added recent_updates.json entry (30 entries total). 2415 tests (154 files, all passing).
 - [x] **Test coverage cleanup + cross-dataset validation (Session 198)**: Removed orphaned MobileNavigation.test.jsx (229 lines — component was inlined into App.jsx). Added ShellErrorBoundary.test.jsx (7 tests — silent error handling, sibling isolation, null render on error). Added cross-dataset-relationships.test.js (27 tests — API summary consistency, timeline coverage, sanctions multi-country validation, regional data aggregation, prisoner status enums, data quantity thresholds). Updated meta-test-coverage.test.js (removed ShellErrorBoundary exception + MobileNavigation orphan skip). 100% component test coverage achieved. 2436 tests (155 files, all passing).
 - [x] **Content Analytics dashboard (Session 199)**: New `src/components/ContentAnalytics.jsx` — privacy-respecting research database metrics dashboard. Uses `dataApi` to aggregate insights from all 8 datasets: dataset summary cards (8), prisoner status breakdown, sanctions by country bar chart, timeline coverage by decade, geographic coverage (HK/Uyghur/Tibet/Mainland), recent data activity timeline. Terminal palette compliant. Lazy-loaded into Education Center Research tab. ContentAnalytics.test.jsx (30 tests). Added recent_updates.json entry (32 entries total). 2466 tests (156 files, all passing).
+- [x] **API Reference documentation (Session 200)**: New `src/components/DataApiDocs.jsx` — auto-generated interactive API documentation for the dataApi module. Shows all 16 methods grouped by category (Metadata, Political Prisoners, Sanctions, Officials, Timeline, Cross-Dataset) with descriptions, parameter types, return types, copy-to-clipboard examples, and live data counts. Integrated into Data Sources page. DataApiDocs.test.jsx (28 tests). Added recent_updates.json entry (33 entries total). 2494 tests (157 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -275,7 +276,7 @@
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
 - [ ] **Push Notifications**: Alert users to breaking news and urgent actions
 - [x] **Analytics Dashboard**: ✅ Phase 1 (Session 199): ContentAnalytics component — privacy-respecting content metrics dashboard aggregating insights from all 8 datasets. No user tracking. Integrated into Education Research tab. Phase 2: Server-side usage analytics (if needed).
-- [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. Phase 2: REST API via Cloudflare Workers.
+- [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). Phase 2: REST API via Cloudflare Workers.
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery

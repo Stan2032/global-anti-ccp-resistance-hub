@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-200-api-docs",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Interactive API documentation for researchers",
+    "description": "New DataApiDocs component provides auto-generated interactive API reference for the dataApi module. Shows all 16 methods with descriptions, parameters, return types, and live examples with real data counts. Integrated into Data Sources page. 28 new tests. 2494 tests across 157 files.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-199-content-analytics",
     "date": "2026-03-05",
     "category": "data",
