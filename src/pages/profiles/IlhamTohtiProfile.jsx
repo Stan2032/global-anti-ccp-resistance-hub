@@ -602,7 +602,7 @@ export default function IlhamTohtiProfile() {
                 {[
                   { action: 'Contact your representative', desc: 'Urge them to raise Tohti\'s case with the Chinese government' },
                   { action: 'Support UHRP', link: 'https://uhrp.org', desc: 'Uyghur Human Rights Project' },
-                  { action: 'Share on social media', desc: 'Use #FreeIlhamTohti and #FreeUyghurs' },
+                  { action: 'Share on social media', desc: 'Raise awareness of Tohti\'s case with your network' },
                   { action: 'Support Scholars at Risk', link: 'https://www.scholarsatrisk.org', desc: 'Protecting threatened scholars worldwide' },
                 ].map((item, i) => (
                   <div key={i} className="bg-[#111820] rounded p-3 text-sm">

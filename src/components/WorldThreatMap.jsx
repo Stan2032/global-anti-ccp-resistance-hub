@@ -376,7 +376,7 @@ const WorldThreatMap = () => {
               <span className="text-slate-400">China (Source)</span>
             </div>
           </div>
-          <div className="text-slate-500">
+          <div className="text-slate-400">
             Source: <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a>
           </div>
         </div>

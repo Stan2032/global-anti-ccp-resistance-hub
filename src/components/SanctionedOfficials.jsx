@@ -124,7 +124,7 @@ const SanctionedOfficials = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const officials = useMemo(() => {
-    const fromResearch = researchData.results
+    const fromResearch = (researchData?.results || [])
       .filter((entry) => !entry.error || entry.error === '')
       .map(transformResearchEntry);
     return [...fromResearch, ...HARDCODED_ENTITIES];

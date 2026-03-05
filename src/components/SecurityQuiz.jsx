@@ -171,7 +171,7 @@ const SecurityQuiz = () => {
           <h2 className="text-2xl font-bold text-white mb-2">Security Assessment Results</h2>
           <div className="text-6xl font-bold my-4">
             <span className={securityLevel.color}>{score}</span>
-            <span className="text-slate-500">/{maxScore}</span>
+            <span className="text-slate-400">/{maxScore}</span>
           </div>
           <span className={`inline-block px-4 py-2 rounded-full text-white font-bold ${securityLevel.bg}`}>
             {securityLevel.level}

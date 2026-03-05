@@ -110,4 +110,33 @@ describe('FEED_SOURCES', () => {
       expect(names).not.toContain(media);
     }
   });
+
+  it('should have all 9 configured RSS feed sources', () => {
+    const keys = Object.keys(FEED_SOURCES);
+    expect(keys).toContain('icij');
+    expect(keys).toContain('rfa');
+    expect(keys).toContain('hkfp');
+    expect(keys).toContain('aspi');
+    expect(keys).toContain('hrw');
+    expect(keys).toContain('amnesty');
+    expect(keys).toContain('cpj');
+    expect(keys).toContain('guardian');
+    expect(keys).toContain('bbc');
+    expect(keys.length).toBe(9);
+  });
+});
+
+describe('fetchAllFeeds (multi-proxy)', () => {
+  it('should use RSS2JSON as primary strategy with CORS proxy fallback', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    const source = fs.readFileSync(
+      path.resolve(__dirname, '../services/liveDataService.js'),
+      'utf-8'
+    );
+    expect(source).toContain('api.rss2json.com');
+    expect(source).toContain('api.allorigins.win');
+    expect(source).toContain('fetchViaRSS2JSON');
+    expect(source).toContain('fetchViaCORSProxy');
+  });
 });

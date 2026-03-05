@@ -9,6 +9,22 @@ vi.mock('../components/UrgentCaseTimer', () => ({ default: () => <div>UrgentCase
 vi.mock('../components/LiveStatistics', () => ({ default: () => <div>LiveStatistics</div> }));
 vi.mock('../components/EmergencyAlerts', () => ({ default: () => <div>EmergencyAlerts</div> }));
 vi.mock('../components/NewsDigest', () => ({ default: () => <div>NewsDigest</div> }));
+vi.mock('../components/RecentUpdates', () => ({ default: () => <div>RecentUpdates</div> }));
+
+// Mock FEED_SOURCES from liveDataService
+vi.mock('../services/liveDataService', () => ({
+  FEED_SOURCES: {
+    icij: { name: 'ICIJ', fullName: 'International Consortium of Investigative Journalists' },
+    rfa: { name: 'Radio Free Asia', fullName: 'Radio Free Asia' },
+    hkfp: { name: 'HKFP', fullName: 'Hong Kong Free Press' },
+    aspi: { name: 'ASPI', fullName: 'Australian Strategic Policy Institute' },
+    hrw: { name: 'HRW', fullName: 'Human Rights Watch' },
+    amnesty: { name: 'Amnesty', fullName: 'Amnesty International' },
+    cpj: { name: 'CPJ', fullName: 'Committee to Protect Journalists' },
+    guardian: { name: 'Guardian', fullName: 'The Guardian' },
+    bbc: { name: 'BBC', fullName: 'BBC News' },
+  },
+}));
 
 // Mock useStatistics hook
 let mockStatsReturn = {
@@ -102,12 +118,22 @@ describe('Dashboard', () => {
     expect(screen.getByText('$ feeds --live →')).toBeTruthy();
   });
 
-  it('lists verified intelligence sources', () => {
+  it('lists verified intelligence sources from FEED_SOURCES', () => {
     renderDashboard();
-    expect(screen.getByText('ASPI - Australian Strategic Policy Institute')).toBeTruthy();
-    expect(screen.getByText('ICIJ - Investigative Journalists')).toBeTruthy();
+    expect(screen.getByText('ICIJ')).toBeTruthy();
     expect(screen.getByText('Radio Free Asia')).toBeTruthy();
-    expect(screen.getByText('Hong Kong Free Press')).toBeTruthy();
+    expect(screen.getByText('HKFP')).toBeTruthy();
+    expect(screen.getByText('ASPI')).toBeTruthy();
+    expect(screen.getByText('HRW')).toBeTruthy();
+    expect(screen.getByText('Amnesty')).toBeTruthy();
+    expect(screen.getByText('CPJ')).toBeTruthy();
+    expect(screen.getByText('Guardian')).toBeTruthy();
+    expect(screen.getByText('BBC')).toBeTruthy();
+  });
+
+  it('shows correct source count from FEED_SOURCES', () => {
+    renderDashboard();
+    expect(screen.getByText('9')).toBeTruthy();
   });
 
   it('has link to live feeds', () => {
@@ -125,7 +151,8 @@ describe('Dashboard', () => {
   it('renders all 3 quick action buttons', () => {
     renderDashboard();
     expect(screen.getByText('Take Action')).toBeTruthy();
-    expect(screen.getByText('Security')).toBeTruthy();
+    // "Security" appears in both quick actions and jump nav — use getAllByText
+    expect(screen.getAllByText('Security').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Education')).toBeTruthy();
   });
 
@@ -162,5 +189,41 @@ describe('Dashboard', () => {
     // Lazy components show loading fallback or actual content
     const loadingIndicators = screen.getAllByText('$ loading');
     expect(loadingIndicators.length).toBeGreaterThanOrEqual(1);
+  });
+
+  // --- Accessible Section Landmarks ---
+
+  it('renders section landmarks with IDs for navigation', () => {
+    renderDashboard();
+    const container = document.body;
+    expect(container.querySelector('#recent-updates')).toBeTruthy();
+    expect(container.querySelector('#live-news')).toBeTruthy();
+    expect(container.querySelector('#security-tools')).toBeTruthy();
+    expect(container.querySelector('#statistics')).toBeTruthy();
+    expect(container.querySelector('#news-digest')).toBeTruthy();
+  });
+
+  it('renders section headings with aria-labelledby', () => {
+    renderDashboard();
+    const sections = document.querySelectorAll('section[aria-labelledby]');
+    expect(sections.length).toBe(5);
+    sections.forEach(section => {
+      const headingId = section.getAttribute('aria-labelledby');
+      expect(section.querySelector(`#${headingId}`)).toBeTruthy();
+    });
+  });
+
+  it('renders section jump navigation with anchor links', () => {
+    renderDashboard();
+    const nav = screen.getByLabelText('Dashboard sections');
+    expect(nav).toBeTruthy();
+    const links = nav.querySelectorAll('a');
+    expect(links.length).toBe(5);
+    const hrefs = Array.from(links).map(l => l.getAttribute('href'));
+    expect(hrefs).toContain('#recent-updates');
+    expect(hrefs).toContain('#live-news');
+    expect(hrefs).toContain('#security-tools');
+    expect(hrefs).toContain('#statistics');
+    expect(hrefs).toContain('#news-digest');
   });
 });

@@ -1,26 +1,35 @@
 import { useState, useEffect, useCallback } from 'react';
 import { 
-  fetchAllFeeds, 
+  fetchFeedsProgressively, 
   fetchPoliticalPrisoners, 
   fetchStatistics,
   FEED_SOURCES 
 } from '../services/liveDataService';
 
 /**
- * Hook for fetching live RSS feeds
+ * Hook for fetching live RSS feeds progressively (articles appear as each source loads)
  */
 export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
   const [feeds, setFeeds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [loadedSources, setLoadedSources] = useState(new Set());
 
   const refresh = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await fetchAllFeeds();
-      setFeeds(data);
+      setFeeds([]);
+      setLoadedSources(new Set());
+      await fetchFeedsProgressively(
+        (newItems) => {
+          setFeeds(prev => [...prev, ...newItems]);
+        },
+        (sourceName) => {
+          setLoadedSources(prev => new Set([...prev, sourceName]));
+        }
+      );
       setLastUpdated(new Date());
     } catch (err) {
       setError(err.message);
@@ -38,7 +47,7 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
     }
   }, [refresh, refreshInterval]);
 
-  return { feeds, loading, error, lastUpdated, refresh, sources: FEED_SOURCES };
+  return { feeds, loading, error, lastUpdated, refresh, sources: FEED_SOURCES, loadedSources };
 }
 
 /**

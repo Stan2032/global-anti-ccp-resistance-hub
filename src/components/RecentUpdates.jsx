@@ -22,7 +22,7 @@ const formatDate = (dateStr) => {
 const RecentUpdates = () => {
   const [showAll, setShowAll] = useState(false);
 
-  const sortedUpdates = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedUpdates = [...(updates || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
   const displayedUpdates = showAll ? sortedUpdates : sortedUpdates.slice(0, INITIAL_DISPLAY_COUNT);
   const hasMore = sortedUpdates.length > INITIAL_DISPLAY_COUNT;
 
@@ -33,7 +33,7 @@ const RecentUpdates = () => {
           <Clock className="w-5 h-5 text-[#4afa82]" />
           <h2 className="font-semibold text-white">recent_updates</h2>
         </div>
-        <span className="text-xs font-mono text-slate-500">{sortedUpdates.length} entries</span>
+        <span className="text-xs font-mono text-slate-400">{sortedUpdates.length} entries</span>
       </div>
 
       <div className="divide-y divide-[#1c2a35]">
@@ -52,7 +52,7 @@ const RecentUpdates = () => {
                     <span className={`text-xs font-mono px-1.5 py-0.5 ${config.bg} ${config.color}`}>
                       {config.label}
                     </span>
-                    <span className="text-xs font-mono text-slate-500">
+                    <span className="text-xs font-mono text-slate-400">
                       {formatDate(update.date)}
                     </span>
                   </div>

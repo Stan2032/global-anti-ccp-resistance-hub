@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Siren, AlertTriangle, Info, ExternalLink } from 'lucide-react';
+import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
+import EventCountdown from './EventCountdown';
+import { formatAlertForSharing } from '../utils/dateUtils';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -11,6 +13,7 @@ const EmergencyAlerts = () => {
   });
   const [expandedAlert, setExpandedAlert] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
@@ -19,18 +22,32 @@ const EmergencyAlerts = () => {
   const alerts = alertsData;
 
   const now = new Date().toISOString().split('T')[0];
-  const activeAlerts = alerts.filter(alert => {
-    if (!alert.active) return false;
-    if (dismissedAlerts.includes(alert.id)) return false;
-    if (alert.expires && alert.expires < now) return false;
-    return true;
-  });
+  const severityOrder = { critical: 0, warning: 1, info: 2 };
+  const activeAlerts = alerts
+    .filter(alert => {
+      if (!alert.active) return false;
+      if (dismissedAlerts.includes(alert.id)) return false;
+      if (alert.expires && alert.expires < now) return false;
+      return true;
+    })
+    .sort((a, b) => (severityOrder[a.type] ?? 3) - (severityOrder[b.type] ?? 3));
 
   const displayedAlerts = showAll ? activeAlerts : activeAlerts.slice(0, INITIAL_DISPLAY_COUNT);
   const hiddenCount = activeAlerts.length - INITIAL_DISPLAY_COUNT;
 
   const dismissAlert = (alertId) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
+  };
+
+  const copyAlertText = async (alert) => {
+    try {
+      const text = formatAlertForSharing(alert);
+      await navigator.clipboard.writeText(text);
+      setCopiedId(alert.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      // Fallback for environments without clipboard API
+    }
   };
 
   const typeStyles = {
@@ -93,6 +110,9 @@ const EmergencyAlerts = () => {
                   </div>
                   <h3 className="font-bold text-white">{alert.title}</h3>
                   <p className="text-sm text-slate-300 mt-1">{alert.summary}</p>
+                  {alert.eventDate && (
+                    <EventCountdown eventDate={alert.eventDate} label={`Countdown to ${alert.title}`} />
+                  )}
                 </div>
                 <button
                   onClick={() => dismissAlert(alert.id)}
@@ -112,6 +132,18 @@ const EmergencyAlerts = () => {
                   {isExpanded ? '$ collapse ↑' : '$ expand --details →'}
                 </button>
                 <div className="flex space-x-2">
+                  <button
+                    onClick={() => copyAlertText(alert)}
+                    className={`text-xs font-mono px-2 py-1 border transition-colors flex items-center gap-1 ${
+                      copiedId === alert.id
+                        ? 'bg-green-900/30 border-green-600 text-green-400'
+                        : 'bg-[#111820] hover:bg-[#1c2a35] text-slate-300 border-[#1c2a35] hover:border-[#2a9a52]'
+                    }`}
+                    aria-label={copiedId === alert.id ? 'Alert copied to clipboard' : 'Copy alert for sharing'}
+                  >
+                    {copiedId === alert.id ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    {copiedId === alert.id ? 'Copied!' : 'Share'}
+                  </button>
                   {alert.links.slice(0, 2).map((link, idx) => (
                     <a
                       key={idx}

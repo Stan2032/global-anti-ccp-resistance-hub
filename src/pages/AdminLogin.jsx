@@ -144,7 +144,7 @@ const AdminLogin = () => {
           </button>
         </form>
 
-        <p className="text-slate-600 text-xs font-mono mt-6 text-center">
+        <p className="text-slate-400 text-xs font-mono mt-6 text-center">
           admin access only — unauthorized access is logged
         </p>
       </div>

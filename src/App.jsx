@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop'
 import RouteAnnouncer from './components/RouteAnnouncer'
 import Breadcrumbs from './components/Breadcrumbs'
 import BackToTop from './components/BackToTop'
+import ShellErrorBoundary from './components/ShellErrorBoundary'
 import useKeyboardShortcuts from './hooks/useKeyboardShortcuts'
 import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp'
 
@@ -26,7 +27,7 @@ const PWAInstallBanner = lazy(() => import('./components/PWAInstallBanner'));
 
 // Loading component — terminal style
 const LoadingScreen = () => (
-  <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono">
+  <div className="bg-[#0a0e14] min-h-screen flex items-center justify-center flex-col font-mono" role="status" aria-label="Loading application">
     <pre className="text-slate-700 text-xs mb-6 hidden sm:block select-none" aria-hidden="true">{`
 ┌──────────────────────────────────────┐
 │                                      │
@@ -41,7 +42,7 @@ const LoadingScreen = () => (
     <div className="flex items-center gap-2 mb-3">
       <span className="text-[#4afa82] font-mono text-sm">$</span>
       <span className="text-white font-mono text-sm">loading system</span>
-      <span className="text-[#4afa82] font-mono text-sm animate-blink">█</span>
+      <span className="text-[#4afa82] font-mono text-sm animate-blink" aria-hidden="true">█</span>
     </div>
     <div className="flex gap-1">
       <div className="w-2 h-2 bg-[#4afa82] animate-pulse" style={{animationDelay: '0ms'}}></div>
@@ -249,7 +250,7 @@ const DesktopSidebar = () => {
       {/* Status Footer */}
       <div className="p-3 border-t border-[#1c2a35]">
         <div className="flex items-center justify-between font-mono text-xs px-1">
-          <span className="text-slate-500">status</span>
+          <span className="text-slate-400">status</span>
           <span className="text-[#4afa82]">● online</span>
         </div>
       </div>
@@ -396,7 +397,7 @@ function AppLayout() {
                     <p className="text-slate-400 font-mono text-sm mb-2">
                       <span className="text-red-400">error:</span> requested path does not exist
                     </p>
-                    <p className="text-slate-500 font-mono text-xs mb-8">
+                    <p className="text-slate-400 font-mono text-xs mb-8">
                       the page may have been moved or deleted.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -420,22 +421,30 @@ function AppLayout() {
       </main>
       
       {/* Global Search Modal */}
-      <Suspense fallback={null}>
-        <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* Keyboard Shortcuts Help */}
-      <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
+      <ShellErrorBoundary>
+        <KeyboardShortcutsHelp isOpen={shortcutsHelpOpen} onClose={() => setShortcutsHelpOpen(false)} />
+      </ShellErrorBoundary>
       
       {/* Quick Start Guide for new users */}
-      <Suspense fallback={null}>
-        <QuickStartGuide />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <QuickStartGuide />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* PWA Install Banner */}
-      <Suspense fallback={null}>
-        <PWAInstallBanner />
-      </Suspense>
+      <ShellErrorBoundary>
+        <Suspense fallback={null}>
+          <PWAInstallBanner />
+        </Suspense>
+      </ShellErrorBoundary>
       
       {/* Back to Top button */}
       <BackToTop />

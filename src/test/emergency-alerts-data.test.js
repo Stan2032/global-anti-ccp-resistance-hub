@@ -128,4 +128,20 @@ describe('Emergency Alerts data integrity', () => {
       }
     }
   });
+
+  it('no alerts have hashtags field (removed as performative activism)', () => {
+    for (const alert of data) {
+      expect(alert.hashtags).toBeUndefined();
+    }
+  });
+
+  it('eventDate field is valid ISO date format when present', () => {
+    for (const alert of data) {
+      if (alert.eventDate) {
+        expect(alert.eventDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        const parsed = new Date(alert.eventDate);
+        expect(parsed.toString()).not.toBe('Invalid Date');
+      }
+    }
+  });
 });

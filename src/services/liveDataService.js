@@ -16,8 +16,11 @@ const RSS_FEEDS = {
   bbc: 'https://feeds.bbci.co.uk/news/world/asia/china/rss.xml',
 };
 
-// CORS proxy for fetching RSS feeds from browser
+// CORS proxy fallback for fetching RSS feeds from browser
 const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+// Primary strategy: RSS2JSON API (purpose-built for RSS, more reliable)
+const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 // Keywords for relevance scoring
 const CCP_KEYWORDS = [
@@ -99,24 +102,80 @@ function cleanHTML(html) {
 }
 
 /**
- * Fetch RSS feed with CORS proxy
+ * Fetch RSS feed via RSS2JSON API (returns JSON, no XML parsing needed)
  */
-async function fetchRSSFeed(feedUrl, sourceName) {
-  try {
-    const response = await fetch(CORS_PROXY + encodeURIComponent(feedUrl), {
-      headers: {
-        'Accept': 'application/xml, text/xml, application/rss+xml',
-      },
+async function fetchViaRSS2JSON(feedUrl, sourceName) {
+  const response = await fetch(RSS2JSON_API + encodeURIComponent(feedUrl));
+  if (!response.ok) throw new Error(`RSS2JSON HTTP ${response.status}`);
+  
+  const data = await response.json();
+  if (data.status !== 'ok' || !data.items) throw new Error('RSS2JSON invalid response');
+  
+  const items = [];
+  data.items.slice(0, 20).forEach((item, index) => {
+    const title = item.title || '';
+    const description = cleanHTML(item.description || '');
+    const link = item.link || '';
+    const pubDate = item.pubDate || '';
+    
+    const text = `${title} ${description}`.toLowerCase();
+    let relevanceScore = 0;
+    CCP_KEYWORDS.forEach(keyword => {
+      if (text.includes(keyword.toLowerCase())) {
+        relevanceScore += 10;
+      }
     });
     
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    if (relevanceScore > 0 || ALWAYS_RELEVANT_SOURCES.includes(sourceName)) {
+      items.push({
+        id: `${sourceName}-${index}-${Date.now()}`,
+        title: title.trim(),
+        link: link.trim(),
+        description: cleanHTML(description).substring(0, 300),
+        pubDate: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
+        source: sourceName,
+        relevanceScore,
+      });
     }
-    
-    const xmlText = await response.text();
-    return parseRSSFeed(xmlText, sourceName);
+  });
+  
+  return items;
+}
+
+/**
+ * Fetch RSS feed with CORS proxy (XML parsing fallback)
+ */
+async function fetchViaCORSProxy(feedUrl, sourceName) {
+  const response = await fetch(CORS_PROXY + encodeURIComponent(feedUrl), {
+    headers: {
+      'Accept': 'application/xml, text/xml, application/rss+xml',
+    },
+  });
+  if (!response.ok) throw new Error(`CORS proxy HTTP ${response.status}`);
+  
+  const xmlText = await response.text();
+  return parseRSSFeed(xmlText, sourceName);
+}
+
+/**
+ * Fetch RSS feed with fallback strategies:
+ * 1. RSS2JSON API (most reliable, purpose-built for RSS)
+ * 2. allorigins.win CORS proxy (fallback)
+ */
+async function fetchRSSFeed(feedUrl, sourceName) {
+  // Strategy 1: RSS2JSON API
+  try {
+    const items = await fetchViaRSS2JSON(feedUrl, sourceName);
+    return items;
+  } catch (e) {
+    console.warn(`RSS2JSON failed for ${sourceName}, trying CORS proxy:`, e.message);
+  }
+  
+  // Strategy 2: CORS proxy
+  try {
+    return await fetchViaCORSProxy(feedUrl, sourceName);
   } catch (error) {
-    console.error(`Error fetching ${sourceName} feed:`, error);
+    console.error(`Error fetching ${sourceName} feed (all strategies failed):`, error);
     return [];
   }
 }
@@ -144,6 +203,26 @@ export async function fetchAllFeeds() {
   });
   
   return allItems;
+}
+
+/**
+ * Fetch feeds progressively — calls onItems(items) as each source finishes.
+ * Also calls onSourceDone(sourceName) when each source completes (even if 0 items).
+ * This allows the UI to show articles as they arrive and track per-source progress.
+ */
+export async function fetchFeedsProgressively(onItems, onSourceDone) {
+  const feedPromises = Object.entries(RSS_FEEDS).map(async ([name, url]) => {
+    const items = await fetchRSSFeed(url, name);
+    if (items.length > 0) {
+      onItems(items);
+    }
+    if (onSourceDone) {
+      onSourceDone(name);
+    }
+    return items;
+  });
+
+  await Promise.allSettled(feedPromises);
 }
 
 /**
@@ -270,6 +349,7 @@ export const FEED_SOURCES = {
 
 export default {
   fetchAllFeeds,
+  fetchFeedsProgressively,
   fetchPoliticalPrisoners,
   fetchStatistics,
   FEED_SOURCES,

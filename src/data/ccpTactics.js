@@ -285,7 +285,7 @@ export const ADVANCED_TACTICS = {
         methods: [
           'Bot networks amplifying pro-CCP content',
           'Trolling and harassment of critics',
-          'Flooding hashtags to drown out dissent',
+          'Flooding social media trends to drown out dissent',
           'TikTok algorithm manipulation'
         ]
       },

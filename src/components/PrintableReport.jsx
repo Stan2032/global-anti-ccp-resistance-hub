@@ -17,7 +17,7 @@ const ACTION_ITEMS = [
   'Contact your elected representatives about CCP human rights abuses',
   'Check the UFLPA Entity List before purchasing — avoid forced labor products',
   'Support organizations like Hong Kong Watch, Safeguard Defenders, UHRP',
-  'Share verified information on social media with appropriate hashtags',
+  'Share verified information on social media to raise awareness',
   'Attend vigils, rallies, and awareness events in your community',
   'Report suspected CCP interference to local authorities',
 ];

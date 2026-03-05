@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Heart, Share2, BookOpen, Clock, Globe, FileText } from 'lucide-react';
 
@@ -57,7 +57,7 @@ const caseStudies = [
     howToHelp: [
       { action: 'Sign petition', link: 'https://www.change.org/p/free-jimmy-lai', description: 'Join 500,000+ signatures calling for his release' },
       { action: 'Contact representatives', description: 'Urge your government to raise his case' },
-      { action: 'Share on social media', hashtags: ['#FreeJimmyLai', '#StandWithHongKong'] },
+      { action: 'Share on social media', description: 'Raise awareness of his case with your network' },
       { action: 'Support HKDC', link: 'https://hongkongdc.org', description: 'Hong Kong Democracy Council advocacy' },
     ],
     sources: [
@@ -172,7 +172,7 @@ const caseStudies = [
     howToHelp: [
       { action: 'Support ICT', link: 'https://savetibet.org', description: 'International Campaign for Tibet' },
       { action: 'Sign petitions', description: 'Call for proof of life and release' },
-      { action: 'Raise awareness', hashtags: ['#FreePanchenLama', '#FreeTibet'] },
+      { action: 'Raise awareness', description: 'Share information about the Panchen Lama with your network' },
     ],
     sources: [
       { name: 'International Campaign for Tibet', url: 'https://savetibet.org/panchen-lama' },
@@ -188,6 +188,12 @@ const caseStudies = [
 export default function CaseStudies() {
   const [selectedCase, setSelectedCase] = useState(null);
   const [expandedSections, setExpandedSections] = useState({});
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedCase(null); };
+    if (selectedCase) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedCase]);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -396,13 +402,6 @@ export default function CaseStudies() {
                   <a href={action.link} target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:text-white text-sm flex items-center gap-1">
                     Visit <ExternalLink className="w-3 h-3" />
                   </a>
-                )}
-                {action.hashtags && (
-                  <div className="flex gap-2 mt-2">
-                    {action.hashtags.map((tag, j) => (
-                      <span key={j} className="text-[#22d3ee] text-sm">{tag}</span>
-                    ))}
-                  </div>
                 )}
               </div>
             ))}

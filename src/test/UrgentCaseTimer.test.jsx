@@ -130,5 +130,37 @@ describe('UrgentCaseTimer', () => {
       // Compact uses "Xy Xd Xh Xm Xs" format, not grid with YEARS/DAYS labels
       expect(screen.queryByText('YEARS')).toBeNull();
     });
+
+    it('compact timer has role="timer" attribute', () => {
+      render(<UrgentCaseTimer compact />);
+      const timers = screen.getAllByRole('timer');
+      expect(timers.length).toBe(3); // 3 cases in compact mode
+    });
+  });
+
+  // --- Accessibility ---
+
+  describe('Accessibility', () => {
+    it('full timers have role="timer" attribute', () => {
+      render(<UrgentCaseTimer />);
+      const timers = screen.getAllByRole('timer');
+      expect(timers.length).toBe(4);
+    });
+
+    it('timer aria-labels include prisoner name and detention duration', () => {
+      render(<UrgentCaseTimer />);
+      const timers = screen.getAllByRole('timer');
+      expect(timers[0].getAttribute('aria-label')).toContain('Jimmy Lai');
+      expect(timers[0].getAttribute('aria-label')).toContain('years');
+      expect(timers[0].getAttribute('aria-label')).toContain('days');
+    });
+
+    it('shows "Detained since" date for each prisoner', () => {
+      render(<UrgentCaseTimer />);
+      expect(screen.getByText(/Detained since: December 3, 2020/)).toBeTruthy();
+      expect(screen.getByText(/Detained since: January 15, 2014/)).toBeTruthy();
+      expect(screen.getByText(/Detained since: June 4, 2021/)).toBeTruthy();
+      expect(screen.getByText(/Detained since: May 17, 1995/)).toBeTruthy();
+    });
   });
 });

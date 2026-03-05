@@ -7,9 +7,9 @@ import actionsData from '../data/take_action_steps.json';
 const ICON_MAP = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
 
 const SectionLoader = () => (
-  <div className="flex items-center justify-center py-8">
+  <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
     <span className="font-mono text-[#4afa82] text-sm">$ loading</span>
-    <span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+    <span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
   </div>
 );
 
@@ -335,7 +335,6 @@ const TakeAction = () => {
         <ShareButtons 
           title="Take Action Against CCP Authoritarianism"
           text="Join the global movement against CCP human rights abuses. Here's how you can help:"
-          hashtags={['FreeTibet', 'FreeHongKong', 'FreeUyghurs', 'StandWithTaiwan', 'FreeJimmyLai']}
         />
       </div>
     </div>

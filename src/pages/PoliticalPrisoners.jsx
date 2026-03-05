@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
+import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
 
 // Map prisoner names to their detailed profile page paths
@@ -24,8 +25,10 @@ const PROFILE_PATHS = {
 
 // Mapping function to convert JSON data to component format
 const mapJsonToComponentFormat = (jsonResults) => {
+  if (!jsonResults?.length) return [];
   return jsonResults.map((item) => {
-    const output = item.output;
+    const output = item?.output;
+    if (!output) return null;
     
     // Map status
     let status = output.status;
@@ -114,11 +117,17 @@ const mapJsonToComponentFormat = (jsonResults) => {
       confidence: output.confidence,
       profilePath: PROFILE_PATHS[output.prisoner_name] || null,
     };
-  });
+  }).filter(Boolean);
 };
 
 // Convert JSON data to component format
-const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData.results);
+const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData?.results);
+
+// Find most recent verification date across all prisoners
+const LATEST_VERIFIED = (politicalPrisonersData?.results || []).reduce((latest, item) => {
+  const d = item.output?.sources?.last_verified;
+  return d && d > latest ? d : latest;
+}, '');
 
 // Legacy hardcoded data removed — all prisoner data now sourced from
 // political_prisoners_research.json (60 entries, 100% source attribution)
@@ -349,7 +358,7 @@ const PrisonerModal = ({ prisoner, onClose }) => {
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <div className="flex flex-wrap gap-2">
               <a
-                href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background} #FreePoliticalPrisoners #HumanRights`}
+                href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#22d3ee]/20 hover:bg-[#22d3ee]/30 text-[#22d3ee] border border-[#22d3ee]/30 px-4 py-2 font-mono text-sm transition-colors"
@@ -385,6 +394,12 @@ const PoliticalPrisoners = () => {
   const [filter, setFilter] = useState('ALL');
   const [showAll, setShowAll] = useState(false);
   const INITIAL_DISPLAY_COUNT = 15;
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedPrisoner(null); };
+    if (selectedPrisoner) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedPrisoner]);
   
   const filteredPrisoners = PRISONERS_DATA.filter(p => {
     if (filter === 'ALL') return true;
@@ -407,10 +422,11 @@ const PoliticalPrisoners = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Political Prisoners</h1>
-          <p className="text-slate-400">
+          <p className="text-slate-400 mb-2">
             Documenting individuals detained by the CCP for their beliefs, speech, or peaceful activism.
             These cases represent only a fraction of the thousands held in China's prisons and detention facilities.
           </p>
+          {LATEST_VERIFIED && <DataFreshnessIndicator lastVerified={LATEST_VERIFIED} compact />}
         </div>
         
         {/* Detention Timers */}

@@ -12,19 +12,21 @@ const SanctionedOfficials = lazy(() => import('../components/SanctionedOfficials
 const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 
 const SectionLoader = () => (
-  <div className="flex items-center justify-center py-8">
-    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
   </div>
 );
 
 const IntelligenceFeeds = () => {
-  const { feeds, loading, error, lastUpdated, refresh, sources } = useLiveFeeds(300000);
+  const { feeds, loading, error, lastUpdated, refresh, sources, loadedSources } = useLiveFeeds(300000);
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('feeds');
   const [showAllFeeds, setShowAllFeeds] = useState(false);
   const [sortBy, setSortBy] = useState('relevancy');
   const FEED_DISPLAY_COUNT = 5;
+  const totalSourceCount = Object.keys(sources).length;
+  const progressPercent = totalSourceCount > 0 ? (loadedSources.size / totalSourceCount) * 100 : 0;
 
   const sortOptions = [
     { id: 'relevancy', label: 'Relevancy' },
@@ -145,7 +147,7 @@ const IntelligenceFeeds = () => {
         >
           {loading ? (
             <>
-              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -208,12 +210,15 @@ const IntelligenceFeeds = () => {
           <button
             key={key}
             onClick={() => { setSelectedSource(key); setShowAllFeeds(false); }}
-            className={`px-3 py-2 text-sm font-medium transition-colors ${
+            className={`px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1.5 ${
               selectedSource === key
                 ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
+            {loading && loadedSources.has(key) && (
+              <span className="text-[#4afa82] text-xs">&#10003;</span>
+            )}
             {source.name}
           </button>
         ))}
@@ -230,17 +235,35 @@ const IntelligenceFeeds = () => {
       {/* Loading Banner */}
       {loading && (
         <div className="bg-[#111820] border border-[#1c2a35] p-4" role="status">
-          <div className="flex items-center gap-3 mb-2">
-            <svg className="animate-spin w-4 h-4 text-[#4afa82]" fill="none" viewBox="0 0 24 24">
+          <div className="flex items-center gap-3 mb-3">
+            <svg className="animate-spin w-4 h-4 text-[#4afa82]" fill="none" viewBox="0 0 24 24" aria-hidden="true">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
             <span className="font-mono text-sm text-[#4afa82]">
-              Fetching feeds from {Object.keys(sources).length} sources...
+              {loadedSources.size} of {totalSourceCount} sources loaded
             </span>
           </div>
-          <div className="w-full bg-[#1c2a35] h-1">
-            <div className="bg-[#4afa82] h-1 animate-pulse" style={{ width: '60%' }}></div>
+          <div className="w-full bg-[#1c2a35] h-1 mb-3">
+            <div className="bg-[#4afa82] h-1 transition-all duration-300" style={{ width: `${progressPercent}%` }}></div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(sources).map(([key, source]) => (
+              <span
+                key={key}
+                className={`inline-flex items-center gap-1.5 px-2 py-1 text-xs font-mono border transition-all duration-300 ${
+                  loadedSources.has(key)
+                    ? 'border-[#4afa82]/40 text-[#4afa82] bg-[#4afa82]/5'
+                    : 'border-[#1c2a35] text-slate-500 bg-[#111820]'
+                }`}
+              >
+                {loadedSources.has(key)
+                  ? <span className="text-[#4afa82]">&#10003;</span>
+                  : <span className="w-2 h-2 border border-slate-500 rounded-full animate-pulse inline-block"></span>
+                }
+                {source.name}
+              </span>
+            ))}
           </div>
         </div>
       )}
@@ -251,7 +274,7 @@ const IntelligenceFeeds = () => {
           <div className="flex items-center gap-2">
             <span className="text-[#4afa82]">&#10003;</span>
             <span className="font-mono text-sm text-slate-300">
-              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {Object.keys(sources).length} sources
+              {feeds.length} {feeds.length === 1 ? 'article' : 'articles'} loaded from {totalSourceCount} sources
             </span>
           </div>
           {lastUpdated && (
@@ -348,7 +371,7 @@ const IntelligenceFeeds = () => {
       {/* Stats Footer */}
       <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
         <p className="text-slate-400 text-sm">
-          Showing {displayedFeeds.length} of {feeds.length} articles from {Object.keys(sources).length} verified sources
+          Showing {displayedFeeds.length} of {feeds.length} articles from {totalSourceCount} verified sources
         </p>
         <p className="text-slate-400 text-xs mt-1">
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords

@@ -180,7 +180,7 @@ const EventCalendar = () => {
       name: 'Jimmy Lai Arrest Anniversary',
       type: 'commemoration',
       description: 'Anniversary of Jimmy Lai\'s arrest under NSL',
-      actions: ['#FreeJimmyLai', 'Contact representatives', 'Support Apple Daily legacy']
+      actions: ['Raise awareness for Jimmy Lai', 'Contact representatives', 'Support Apple Daily legacy']
     },
     {
       date: 'December 25',

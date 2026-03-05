@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown, ChevronUp } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import detentionResearchData from '../data/detention_facilities_research.json';
@@ -73,7 +73,7 @@ const processResearchSources = () => {
   const sources = [];
   const seen = new Set();
   
-  detentionResearchData.results.forEach(result => {
+  (detentionResearchData?.results || []).forEach(result => {
     const data = result.output;
     if (data.source_url && !seen.has(data.source_url)) {
       seen.add(data.source_url);
@@ -114,6 +114,12 @@ export default function DetentionFacilities() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFacility, setSelectedFacility] = useState(null);
   const [expandedSections, setExpandedSections] = useState({});
+
+  useEffect(() => {
+    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedFacility(null); };
+    if (selectedFacility) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedFacility]);
 
   const filteredFacilities = facilities.filter(facility => {
     if (selectedRegion !== 'All Regions' && facility.region !== selectedRegion) return false;

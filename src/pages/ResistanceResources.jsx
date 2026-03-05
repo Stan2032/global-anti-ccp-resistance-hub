@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckCircle, Globe, FileText, Search, ShieldCheck, Wrench, AlertTriangle, Phone, Mail } from 'lucide-react';
 
 const SectionLoader = () => (
-  <div className="flex items-center justify-center py-8">
-    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5">█</span>
+  <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
   </div>
 );
 

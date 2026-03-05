@@ -118,7 +118,7 @@ const AdminDashboard = () => {
         </div>
 
         {loading ? (
-          <div className="p-8 text-center">
+          <div className="p-8 text-center" role="status" aria-live="polite">
             <span className="text-[#4afa82] font-mono text-sm animate-pulse">$ loading data...</span>
           </div>
         ) : error ? (
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
           </div>
         ) : data.length === 0 ? (
           <div className="p-8 text-center">
-            <span className="text-slate-500 font-mono text-sm">No records found</span>
+            <span className="text-slate-400 font-mono text-sm">No records found</span>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -135,7 +135,7 @@ const AdminDashboard = () => {
               <thead>
                 <tr className="border-b border-[#1c2a35]">
                   {Object.keys(data[0]).map(key => (
-                    <th key={key} className="text-left px-4 py-3 text-slate-500 text-xs font-medium text-slate-400">
+                    <th key={key} className="text-left px-4 py-3 text-xs font-medium text-slate-400">
                       {key}
                     </th>
                   ))}
@@ -146,7 +146,7 @@ const AdminDashboard = () => {
                   <tr key={row.id || i} className="border-b border-[#1c2a35]/50 hover:bg-[#1c2a35]/20">
                     {Object.values(row).map((val, j) => (
                       <td key={j} className="px-4 py-2.5 text-slate-300 text-xs max-w-xs truncate">
-                        {val === null ? <span className="text-slate-600">null</span> :
+                        {val === null ? <span className="text-slate-500 cursor-not-allowed">null</span> :
                          typeof val === 'object' ? JSON.stringify(val) :
                          String(val)}
                       </td>
@@ -160,7 +160,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Info */}
-      <div className="text-slate-600 text-xs font-mono text-center">
+      <div className="text-slate-400 text-xs font-mono text-center">
         Encrypted fields (name, email, messages) appear as ciphertext. 
         Non-PII fields (status, dates, types) are readable.
       </div>

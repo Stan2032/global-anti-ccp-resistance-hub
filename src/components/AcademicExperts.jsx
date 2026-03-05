@@ -30,7 +30,7 @@ const AcademicExperts = () => {
   const [expertiseFilter, setExpertiseFilter] = useState('all');
   const [expandedExpert, setExpandedExpert] = useState(null);
 
-  const experts = expertsData.results.map(r => r.output);
+  const experts = (expertsData?.results || []).map(r => r.output);
 
   const expertiseAreas = [...new Set(experts.map(e => e.expertise))].filter(Boolean);
 

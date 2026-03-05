@@ -21,6 +21,7 @@ let mockHookReturn = {
   error: null,
   lastUpdated: null,
   refresh: mockRefresh,
+  loadedSources: new Set(),
   sources: {
     icij: { name: 'ICIJ', url: 'https://www.icij.org', description: 'Global investigative journalists' },
     rfa: { name: 'Radio Free Asia', url: 'https://www.rfa.org', description: 'Independent news covering Asia' },
@@ -43,6 +44,7 @@ describe('IntelligenceFeeds', () => {
       error: null,
       lastUpdated: null,
       refresh: mockRefresh,
+      loadedSources: new Set(),
       sources: {
         icij: { name: 'ICIJ', url: 'https://www.icij.org', description: 'Global investigative journalists' },
         rfa: { name: 'Radio Free Asia', url: 'https://www.rfa.org', description: 'Independent news covering Asia' },
@@ -84,12 +86,44 @@ describe('IntelligenceFeeds', () => {
   it('shows loading banner when feeds are loading', () => {
     render(<IntelligenceFeeds />);
     expect(screen.getByRole('status')).toBeTruthy();
-    expect(screen.getByText(/Fetching feeds from 3 sources/)).toBeTruthy();
+    expect(screen.getByText(/0 of 3 sources loaded/)).toBeTruthy();
   });
 
   it('does not show loaded confirmation while loading', () => {
     render(<IntelligenceFeeds />);
     expect(screen.queryByText(/articles loaded from/)).toBeNull();
+  });
+
+  // --- Per-source loading progress ---
+
+  it('shows per-source progress indicators in loading banner', () => {
+    mockHookReturn = {
+      ...mockHookReturn,
+      loading: true,
+      loadedSources: new Set(['icij']),
+    };
+    render(<IntelligenceFeeds />);
+    expect(screen.getByText(/1 of 3 sources loaded/)).toBeTruthy();
+  });
+
+  it('shows all source names in the loading banner', () => {
+    render(<IntelligenceFeeds />);
+    const status = screen.getByRole('status');
+    expect(status.textContent).toContain('ICIJ');
+    expect(status.textContent).toContain('Radio Free Asia');
+    expect(status.textContent).toContain('HKFP');
+  });
+
+  it('shows checkmark for loaded sources in loading banner', () => {
+    mockHookReturn = {
+      ...mockHookReturn,
+      loading: true,
+      loadedSources: new Set(['hkfp']),
+    };
+    render(<IntelligenceFeeds />);
+    // The checkmark character ✓ (&#10003;) appears for loaded sources
+    const status = screen.getByRole('status');
+    expect(status.textContent).toContain('✓');
   });
 
   // --- Loaded State ---
@@ -134,9 +168,10 @@ describe('IntelligenceFeeds', () => {
   it('renders source filter buttons for all sources', () => {
     render(<IntelligenceFeeds />);
     expect(screen.getByText('All Sources')).toBeTruthy();
-    expect(screen.getByText('ICIJ')).toBeTruthy();
-    expect(screen.getByText('Radio Free Asia')).toBeTruthy();
-    expect(screen.getByText('HKFP')).toBeTruthy();
+    // Source names appear in both filter buttons and loading progress — use getAllByText
+    expect(screen.getAllByText('ICIJ').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Radio Free Asia').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('HKFP').length).toBeGreaterThanOrEqual(1);
   });
 
   // --- Feed Items ---

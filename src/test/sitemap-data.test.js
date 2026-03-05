@@ -104,6 +104,16 @@ describe('Sitemap Data Integrity', () => {
         expect(date, `Invalid lastmod date: ${date}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       }
     });
+
+    it('lastmod dates are not older than 30 days', () => {
+      const lastmods = [...sitemapContent.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1]);
+      const now = new Date();
+      for (const dateStr of lastmods) {
+        const date = new Date(dateStr);
+        const daysDiff = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+        expect(daysDiff, `Stale lastmod: ${dateStr} (${daysDiff} days old)`).toBeLessThanOrEqual(30);
+      }
+    });
   });
 
   describe('priority values are valid', () => {
