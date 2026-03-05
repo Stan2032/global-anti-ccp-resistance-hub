@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-199-content-analytics",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Content Analytics dashboard — research database metrics",
+    "description": "New ContentAnalytics component aggregates insights from all 8 research datasets. Shows dataset summary cards, prisoner status breakdown, sanctions by country, timeline coverage by decade, geographic analysis, and recent activity. Privacy-respecting: no user tracking. 30 new tests. 2466 tests across 156 files.",
+    "relatedPage": "/education"
+  },
+  {
     "id": "session-198-test-coverage",
     "date": "2026-03-05",
     "category": "verification",
