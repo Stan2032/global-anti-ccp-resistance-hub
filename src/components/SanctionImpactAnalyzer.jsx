@@ -376,7 +376,6 @@ export default function SanctionImpactAnalyzer() {
           filteredOfficials.map((official) => {
             const style = COVERAGE_STYLES[official.coverageCategory];
             const isExpanded = expandedOfficial === official.name;
-            const sanctionedCountries = SANCTIONING_COUNTRIES.filter((c) => official.sanctions[c]);
             const unsanctionedCountries = SANCTIONING_COUNTRIES.filter((c) => !official.sanctions[c]);
 
             return (
