@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-202-influence-network",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "CCP Influence Network — cross-dataset relationship visualization",
+    "description": "New InfluenceNetwork component shows connections between sanctioned officials, political prisoners, sanctions, detention facilities, forced labor companies, and timeline events across 4 regions (Xinjiang, Hong Kong, Tibet, Central). Includes most-sanctioned officials ranking, international sanctions by country breakdown, and regional deep-dive panels. 23 new tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-201-data-changelog",
     "date": "2026-03-05",
     "category": "data",

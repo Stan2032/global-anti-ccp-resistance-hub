@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 5, 2026 (Session 201)
+> Last Updated: March 5, 2026 (Session 202)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -86,6 +86,7 @@
 - [x] **Content Analytics dashboard (Session 199)**: New `src/components/ContentAnalytics.jsx` — privacy-respecting research database metrics dashboard. Uses `dataApi` to aggregate insights from all 8 datasets: dataset summary cards (8), prisoner status breakdown, sanctions by country bar chart, timeline coverage by decade, geographic coverage (HK/Uyghur/Tibet/Mainland), recent data activity timeline. Terminal palette compliant. Lazy-loaded into Education Center Research tab. ContentAnalytics.test.jsx (30 tests). Added recent_updates.json entry (32 entries total). 2466 tests (156 files, all passing).
 - [x] **API Reference documentation (Session 200)**: New `src/components/DataApiDocs.jsx` — auto-generated interactive API documentation for the dataApi module. Shows all 16 methods grouped by category (Metadata, Political Prisoners, Sanctions, Officials, Timeline, Cross-Dataset) with descriptions, parameter types, return types, copy-to-clipboard examples, and live data counts. Integrated into Data Sources page. DataApiDocs.test.jsx (28 tests). Added recent_updates.json entry (33 entries total). 2494 tests (157 files, all passing).
 - [x] **Data Changelog (Session 201)**: New `src/components/DataChangelog.jsx` — research data provenance and verification tracker. Shows dataset health overview (Fresh/Current/Aging status for all 8 datasets), expandable details per dataset (verification date, file path, notes, days since verified), recent data changes timeline (filtered from recent_updates.json), and source policy disclosure. Integrated into Data Sources page. DataChangelog.test.jsx (22 tests). Added recent_updates.json entry (34 entries total). 2516 tests (158 files, all passing).
+- [x] **CCP Influence Network (Session 202)**: New `src/components/InfluenceNetwork.jsx` — cross-dataset relationship visualization showing connections between sanctioned officials, political prisoners, sanctions, detention facilities, forced labor companies, and timeline events across 4 regions (Xinjiang, Hong Kong, Tibet, Central/National). Features: summary stats (6 datasets), region selector with expandable detail panels (officials, prisoners, timeline, sanctions per region), most-sanctioned officials ranking (3+ countries), international sanctions by country breakdown. Terminal palette compliant. Integrated into Intelligence Feeds → CCP Operations tab. InfluenceNetwork.test.jsx (23 tests). Added recent_updates.json entry (35 entries total). 2539 tests (159 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
