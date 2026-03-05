@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-204-advocacy-letters",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Advocacy Letter Generator for all 63 political prisoners",
+    "description": "New AdvocacyLetterGenerator component generates personalized advocacy letters using real case data from dataApi. Select any of 63 documented prisoners and 5 target countries to create tailored letters with sentence details, location, health status, and international response. Copy-to-clipboard. 36 new tests.",
+    "relatedPage": "/take-action"
+  },
+  {
     "id": "session-203-data-comparison",
     "date": "2026-03-05",
     "category": "data",

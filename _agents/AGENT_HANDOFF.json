@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "13.2",
-    "date": "2026-03-05T21:50:00Z",
+    "version": "13.3",
+    "date": "2026-03-05T22:05:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 203,
+    "sessions_completed": 204,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "320+",
-    "frontend_tests": 2570,
-    "test_files": 160,
+    "frontend_tests": 2606,
+    "test_files": 161,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -661,6 +661,22 @@
       "Fixed RecentUpdates.test.jsx: VERIFIED category check uses visible items only",
       "recent_updates.json: 36 entries total",
       "2570 tests (160 files), build clean, 0 ESLint"
+    ]
+  },
+  "session_204_changes": {
+    "summary": "Advocacy Letter Generator — data-driven personalized letters for all 63 political prisoners",
+    "changes": [
+      "New AdvocacyLetterGenerator.jsx: generates personalized advocacy letters using real dataApi prisoner data",
+      "Prisoner selector: search/filter across all 63 prisoners, sorted by status then name",
+      "5 target countries: US, UK, Canada, Australia, EU — greeting adapts per country",
+      "Letters include: sentence details, location, health status, international response",
+      "Copy-to-clipboard with full subject + body",
+      "Case summary panel with status badge and source URL",
+      "Terminal palette compliant, no CCP state media cited",
+      "Integrated into Take Action page (lazy-loaded, after Contact Representatives)",
+      "AdvocacyLetterGenerator.test.jsx: 36 new tests",
+      "recent_updates.json: 37 entries total",
+      "2606 tests (161 files), build clean, 0 ESLint"
     ]
   }
 }

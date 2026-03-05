@@ -16,6 +16,7 @@ const SectionLoader = () => (
 const PetitionLinks = lazy(() => import('../components/PetitionLinks'));
 const ForcedLabourList = lazy(() => import('../components/ForcedLabourList'));
 const ContactRepresentatives = lazy(() => import('../components/ContactRepresentatives'));
+const AdvocacyLetterGenerator = lazy(() => import('../components/AdvocacyLetterGenerator'));
 const SuccessStories = lazy(() => import('../components/SuccessStories'));
 const QuickFacts = lazy(() => import('../components/QuickFacts'));
 const ActivistToolkit = lazy(() => import('../components/ActivistToolkit'));
@@ -272,6 +273,11 @@ const TakeAction = () => {
       {/* Contact Representatives Section */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
+      </div>
+
+      {/* Advocacy Letter Generator */}
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+        <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
       </div>
 
       {/* Boycott List Section */}
