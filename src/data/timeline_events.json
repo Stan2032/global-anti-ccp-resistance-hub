@@ -471,5 +471,57 @@
       "BBC",
       "CNBC"
     ]
+  },
+  {
+    "id": 32,
+    "date": "2026-02-14",
+    "title": "Joshua Wong HK47 Appeal Dismissed",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Hong Kong Court of Appeal upholds Joshua Wong's 4-year 8-month sentence in the HK47 mass subversion case.",
+    "details": "Wong's appeal against his conviction and sentence was dismissed alongside several co-defendants. The court ruled the original sentences were appropriate. Wong still faces a separate foreign collusion charge filed in June 2025 carrying a maximum penalty of life imprisonment, with the next hearing scheduled for March 6, 2026.",
+    "sentence": "4 years 8 months (upheld)",
+    "impact": "Appeals process exhausted for several HK47 defendants",
+    "sources": [
+      "Hong Kong Free Press",
+      "Reuters",
+      "Amnesty International",
+      "BBC"
+    ]
+  },
+  {
+    "id": 33,
+    "date": "2026-02-26",
+    "title": "Jimmy Lai Fraud Conviction Overturned",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Hong Kong Court of Appeal overturns Jimmy Lai's 2022 fraud conviction — a rare legal victory.",
+    "details": "The appellate court found that prosecutors failed to prove Lai's guilt in the fraud case related to use of office space by a consultancy firm within Apple Daily premises. Judges ruled the trial court's rationale was 'unsupportable.' While this reduces his total prison time slightly, Lai remains imprisoned serving a 20-year NSL sentence. The Hong Kong Department of Justice is reviewing whether to seek a further appeal.",
+    "sentence": "Fraud conviction overturned (5yr 9mo vacated)",
+    "impact": "Rare legal win, but 20-year NSL sentence remains",
+    "sources": [
+      "Al Jazeera",
+      "BBC",
+      "DW News",
+      "CBS News",
+      "Reuters"
+    ]
+  },
+  {
+    "id": 34,
+    "date": "2026-02-26",
+    "title": "First Family Member Sentenced Under Article 23",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Kwok Yin-sang, 69, sentenced to 8 months — the first family member prosecuted for a relative's overseas activism.",
+    "details": "Kwok Yin-sang, father of Washington-based activist Anna Kwok, was convicted of attempting to deal with financial assets (an education insurance policy) deemed as 'supporting an absconder' under Article 23. Anna Kwok is wanted under the NSL for her advocacy abroad. This case sets a dangerous precedent for targeting family members of overseas activists, a tactic previously more common in mainland China's repression of Uyghur and Tibetan dissidents.",
+    "sentence": "8 months imprisonment",
+    "impact": "Precedent for targeting family members of overseas activists",
+    "sources": [
+      "NPR",
+      "US News & World Report",
+      "CIVICUS Monitor",
+      "Hong Kong Free Press"
+    ]
   }
 ]
