@@ -41,7 +41,7 @@ The following has been accomplished:
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
-16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
+16. **Timeline**: 34 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries (includes Joshua Wong HK47 appeal dismissed, Jimmy Lai fraud conviction overturned, and first Article 23 family prosecution)
 17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 5/5 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read entirely from JSON.
 18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
@@ -264,7 +264,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 **Repository state:**
 - 2369 tests passing (153 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
-- 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events
+- 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
 - 0 orphan components, 10 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready
