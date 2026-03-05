@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 5, 2026 (Session 196)
+> Last Updated: March 5, 2026 (Session 197)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -81,6 +81,7 @@
 - [x] **Security audit + import hygiene (Session 191)**: New security-audit.test.js (9 tests) — automated scanning for XSS risks: dangerouslySetInnerHTML, eval/Function, innerHTML (limited to PrintableReport print window), document.write, target="_blank" without rel="noopener noreferrer", hardcoded secrets/API keys, HTML-style inline handlers, script tags in JSON data, sensitive storage. New import-hygiene.test.js (7 tests) — tree-shakeable imports, no wildcard imports from large libs, no barrel files for JSON data, no duplicate imports, no test utils in production code, no CommonJS require(). Added recent_updates.json entry (26 entries total). 2345 tests (150 files, all passing).
 - [x] **Performance budget + content completeness (Session 192)**: New performance-budget.test.js (9 tests) — enforces growth limits: component count under 100, page count under 20, JSON data files under 30, test file minimum floor (140+), no single JSON file over 100KB, no single component/page over 600 lines, App.jsx lazy-loading enforcement, total source file cap (200). New content-completeness.test.js (8 tests) — validates data quality across all JSON: no placeholder text (TODO/TBD/Lorem ipsum), no empty critical fields (name/title/id), prisoner records have prisoner_name+status, emergency alerts have title+summary+type+active, sanctions have target+country+reason, ISO date format enforcement, no duplicate IDs. Added recent_updates.json entry (27 entries total). 2362 tests (152 files, all passing).
 - [x] **ARIA live region audit (Session 193)**: Added role="status" and aria-label="Loading section" to all 7 SectionLoader definitions (Dashboard, EducationalResources, TakeAction, IntelligenceFeeds, ResistanceResources, SecurityCenter, DataSources). Added role="status" to App.jsx LoadingScreen, GlobalSearch searching state, NewsAggregator skeleton, AdminDashboard loading, ProtectedRoute authenticating state. Added aria-hidden="true" to all decorative animate-spin spinners (AIDisinfoDetector, DataExport, IntelligenceFeeds x2, SecurityCenter x2) and cursor block characters (█). New aria-live-regions.test.js (7 tests) enforces: SectionLoaders have role="status", LoadingScreen has role="status", spinners have aria-hidden, search containers have aria-live, loading text has role="status", minimum 8+ components with role="status", decorative █ has aria-hidden. Added recent_updates.json entry (28 entries total). 2369 tests (153 files, all passing).
+- [x] **Public data API module (Session 197)**: New `src/services/dataApi.js` — structured access layer for all 8 research JSON datasets. Provides: `getPoliticalPrisoners()`, `getSanctions()`, `getSanctionedOfficials()`, `getTimelineEvents()`, `getForcedLaborCompanies()`, `getDetentionFacilities()`, `getAlerts()`, `getStatistics()`, `getRecentUpdates()`. Each dataset has search, filter-by-field, and find-by-name methods. Cross-dataset: `globalSearch()`, `getHongKongData()`, `getUyghurData()`, `getDatasetSummary()`. New data-api.test.js (46 tests) covers all methods + data integrity (source URLs, no CCP media, no CPC terminology, valid dates). Sitemap lastmod dates refreshed to 2026-03-05. Added recent_updates.json entry (30 entries total). 2415 tests (154 files, all passing).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -272,7 +273,7 @@
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
 - [ ] **Push Notifications**: Alert users to breaking news and urgent actions
 - [ ] **Analytics Dashboard**: Track platform usage (privacy-respecting)
-- [ ] **API Development**: Create public API for researchers to access data
+- [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. Phase 2: REST API via Cloudflare Workers.
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery

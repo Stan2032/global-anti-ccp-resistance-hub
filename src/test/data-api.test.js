@@ -415,7 +415,7 @@ describe('Data API', () => {
         Object.values(obj).forEach((val) => {
           if (typeof val === 'string') {
             // Allow "CPC" in compound words like "CECC" or URL paths, but not standalone "CPC"
-            const hasCPC = /\bCPC\b/.test(val) && !/CECC|CPC\.gov/.test(val);
+            const hasCPC = /\bCPC\b/.test(val) && !/CECC|CPC\\.gov/.test(val);
             expect(hasCPC).toBe(false);
           }
         });

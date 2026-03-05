@@ -97,7 +97,7 @@ export const dataApi = {
           fields: ['label', 'value', 'suffix', 'description', 'source', 'sourceUrl'],
         },
       },
-      lastUpdated: new Date().toISOString().split('T')[0],
+      lastUpdated: '2026-03-05',
       license: 'CC BY 4.0',
       sourcePolicy: 'Tier 1-2 sources only (BBC, Reuters, HRW, Amnesty, government records). CCP state media never cited.',
     };

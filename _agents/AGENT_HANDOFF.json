@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "12.5",
-    "date": "2026-03-05T15:30:00Z",
+    "version": "12.6",
+    "date": "2026-03-05T18:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 196,
+    "sessions_completed": 197,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "320+",
-    "frontend_tests": 2369,
-    "test_files": 153,
+    "frontend_tests": 2415,
+    "test_files": 154,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -29,7 +29,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 196,
+    "sessions_completed": 197,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -569,5 +569,15 @@
     "build_time": "4.9s",
     "eslint_errors": 0,
     "eslint_warnings": 1
+  },
+  "session_197_changes": {
+    "summary": "Public data API module + sitemap refresh",
+    "changes": [
+      "New dataApi.js service: unified access layer for all 8 JSON datasets",
+      "New data-api.test.js: 46 comprehensive tests (methods + data integrity)",
+      "Sitemap lastmod dates refreshed to 2026-03-05",
+      "Recent updates entry added (30 total)",
+      "Total: 2415 tests (154 files), build 4.8s, 0 ESLint, 0 CodeQL"
+    ]
   }
 }
