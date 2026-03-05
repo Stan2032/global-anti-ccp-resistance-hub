@@ -116,7 +116,7 @@ const EmergencyAlerts = () => {
                 </div>
                 <button
                   onClick={() => dismissAlert(alert.id)}
-                  className="flex-shrink-0 text-slate-500 hover:text-slate-300 font-mono p-1"
+                  className="flex-shrink-0 text-slate-500 hover:text-slate-300 font-mono p-2"
                   aria-label="Dismiss alert"
                 >
                   <span aria-hidden="true">✕</span>
