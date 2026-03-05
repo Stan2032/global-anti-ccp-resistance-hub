@@ -491,10 +491,19 @@ a, button, input, select, textarea,
   p a,
   li a,
   span a,
-  td a {
+  td a,
+  h1 a, h2 a, h3 a, h4 a {
     min-height: auto;
     min-width: auto;
     display: inline;
+  }
+
+  /* Tiny icon-only buttons (dismiss, close) need smaller touch targets 
+     to avoid inflating compact card headers */
+  button[aria-label="Dismiss alert"],
+  button[aria-label="Dismiss"] {
+    min-height: 32px;
+    min-width: 32px;
   }
 }
 

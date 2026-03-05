@@ -147,9 +147,9 @@ const NewsDigest = () => {
         <div className="space-y-3">
           {recentDigests.map((digest, idx) => (
             <div key={idx} className="bg-[#0a0e14]/50 p-3">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex flex-wrap items-center justify-between gap-1 mb-2">
                 <h4 className="font-medium text-white text-sm">{digest.title}</h4>
-                <span className="text-xs text-slate-400">{digest.date}</span>
+                <span className="text-xs text-slate-400 whitespace-nowrap">{digest.date}</span>
               </div>
               <ul className="text-xs text-slate-400 space-y-1">
                 {digest.highlights.map((highlight, hidx) => (

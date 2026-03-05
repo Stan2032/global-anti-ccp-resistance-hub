@@ -44,7 +44,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Platform Links */}
           <div>
             <h3 className="font-mono text-[#4afa82] font-semibold mb-4 text-sm">

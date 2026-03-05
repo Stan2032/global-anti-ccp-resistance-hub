@@ -119,7 +119,7 @@ const Dashboard = () => {
       </nav>
 
       {/* Stats Grid — terminal data display */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((stat, index) => (
           <div 
             key={index}
@@ -130,9 +130,9 @@ const Dashboard = () => {
               'border-l-[#fbbf24]'
             }`}
           >
-            <div className="flex items-center justify-between mb-3">
-              <stat.icon className="w-5 h-5 text-slate-400" />
-              <span className={`text-xs font-mono px-2 py-0.5 ${
+            <div className="flex items-center justify-between mb-3 gap-2">
+              <stat.icon className="w-5 h-5 text-slate-400 flex-shrink-0" />
+              <span className={`text-xs font-mono px-2 py-0.5 truncate ${
                 stat.color === 'blue' ? 'bg-cyan-900/30 text-[#22d3ee]' :
                 stat.color === 'red' ? 'bg-red-900/30 text-red-400' :
                 stat.color === 'green' ? 'bg-[#4afa82]/10 text-[#4afa82]' :
@@ -156,12 +156,12 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Intelligence Preview */}
         <div className="lg:col-span-2 bg-[#111820] border border-[#1c2a35]">
-          <div className="p-4 border-b border-[#1c2a35] flex items-center justify-between">
+          <div className="p-4 border-b border-[#1c2a35] flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Radio className="w-5 h-5 text-[#22d3ee]" />
+              <Radio className="w-5 h-5 text-[#22d3ee] flex-shrink-0" />
               <h2 className="font-semibold text-white">intelligence_overview</h2>
             </div>
-            <Link to="/intelligence" className="flex items-center gap-2 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono">
+            <Link to="/intelligence" className="flex items-center gap-2 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono whitespace-nowrap">
               <span className="w-2 h-2 bg-[#4afa82] rounded-full animate-pulse"></span>
               <span>$ feeds --live →</span>
             </Link>
