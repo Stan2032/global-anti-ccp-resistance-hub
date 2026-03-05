@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-207-sanction-impact",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Sanction Impact Analyzer — cross-dataset analysis of 34 officials across 5 countries",
+    "description": "New SanctionImpactAnalyzer component cross-references sanctioned officials with sanctions tracker data to show sanction coverage per official. Coverage classification (Full/Strong/Partial/Gap), country breakdown bars, search, expandable official details with per-country sanction status, advocacy opportunity alerts for coverage gaps, copy-to-clipboard.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-206-international-responses",
     "date": "2026-03-05",
     "category": "data",

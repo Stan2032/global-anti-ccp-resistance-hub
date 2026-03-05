@@ -9,6 +9,7 @@ const CCPOfficials = lazy(() => import('../components/CCPOfficials'));
 const WorldThreatMap = lazy(() => import('../components/WorldThreatMap'));
 const DetentionFacilities = lazy(() => import('../components/DetentionFacilities'));
 const SanctionedOfficials = lazy(() => import('../components/SanctionedOfficials'));
+const SanctionImpactAnalyzer = lazy(() => import('../components/SanctionImpactAnalyzer'));
 const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 const InfluenceNetwork = lazy(() => import('../components/InfluenceNetwork'));
 
@@ -421,6 +422,10 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── sanctioned_officials ──</h2>
             <Suspense fallback={<SectionLoader />}><SanctionedOfficials /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── sanction_impact_analysis ──</h2>
+            <Suspense fallback={<SectionLoader />}><SanctionImpactAnalyzer /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>
