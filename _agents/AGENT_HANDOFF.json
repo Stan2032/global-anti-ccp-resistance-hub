@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "12.4",
-    "date": "2026-03-03T18:30:00Z",
+    "version": "12.5",
+    "date": "2026-03-05T15:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 170,
+    "sessions_completed": 196,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -18,9 +18,9 @@
     "_agents/STYLE_GUIDE.md"
   ],
   "repository_metrics": {
-    "total_files": "310+",
-    "frontend_tests": 1947,
-    "test_files": 132,
+    "total_files": "320+",
+    "frontend_tests": 2369,
+    "test_files": 153,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -29,7 +29,7 @@
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 156,
+    "sessions_completed": 196,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -551,5 +551,23 @@
     "profiles_enriched": [
       "Gao Zhisheng (wife Capitol Hill testimony)"
     ]
+  },
+  "session_196_changes": {
+    "summary": "Agent alignment + documentation freshness update",
+    "changes": [
+      "Updated AGENT_HANDOFF.json metrics to 2369 tests (153 files)",
+      "Updated NEXT_AGENT_PROMPT.md with current test counts",
+      "Updated TODO.md session header to Session 196",
+      "Verified build (4.9s), all tests passing, 0 ESLint errors",
+      "Verified emergency alerts freshness (Joshua Wong hearing March 6 active)",
+      "Verified sitemap lastmod dates current (March 4)",
+      "Verified all 27 recent_updates entries valid"
+    ],
+    "tests_added": 0,
+    "tests_total": 2369,
+    "test_files": 153,
+    "build_time": "4.9s",
+    "eslint_errors": 0,
+    "eslint_warnings": 1
   }
 }
