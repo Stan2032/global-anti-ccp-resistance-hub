@@ -1,10 +1,10 @@
 {
   "handoff": {
-    "version": "12.9",
-    "date": "2026-03-05T20:30:00Z",
+    "version": "13.0",
+    "date": "2026-03-05T20:58:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 200,
+    "sessions_completed": 201,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "320+",
-    "frontend_tests": 2494,
-    "test_files": 157,
+    "frontend_tests": 2516,
+    "test_files": 158,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 15,
@@ -615,6 +615,20 @@
       "DataApiDocs.test.jsx: 28 new tests",
       "recent_updates.json: 33 entries total",
       "2494 tests (157 files), build clean, 0 ESLint"
+    ]
+  },
+  "session_201_changes": {
+    "summary": "Data Changelog — research data provenance tracker",
+    "changes": [
+      "New DataChangelog.jsx: dataset verification status + change history",
+      "Health overview: Fresh/Current/Aging indicators for all 8 datasets",
+      "Expandable details: verification date, file path, notes, days-since-verified",
+      "Recent data changes timeline filtered from recent_updates.json",
+      "Source policy disclosure section",
+      "Integrated into Data Sources page (lazy-loaded)",
+      "DataChangelog.test.jsx: 22 new tests",
+      "recent_updates.json: 34 entries total",
+      "2516 tests (158 files), build clean, 0 ESLint"
     ]
   }
 }

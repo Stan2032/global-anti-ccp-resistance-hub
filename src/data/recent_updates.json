@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-201-data-changelog",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Data Changelog — research data provenance tracker",
+    "description": "New DataChangelog component shows verification status for all 8 datasets with freshness indicators, expandable details (verification dates, file paths, notes), recent data change timeline, and source policy. Integrated into Data Sources page. 22 new tests. Supports researcher citation needs.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-200-api-docs",
     "date": "2026-03-05",
     "category": "data",
