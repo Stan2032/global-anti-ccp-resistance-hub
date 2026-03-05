@@ -489,7 +489,7 @@ const PoliticalPrisoners = () => {
         
         {/* Featured Profiles Banner */}
         <div className="bg-[#111820] border border-[#1c2a35] p-5 mb-8">
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold text-white font-mono mb-1">── featured_profiles ──</h2>
               <p className="text-slate-400 text-sm">
@@ -498,7 +498,7 @@ const PoliticalPrisoners = () => {
             </div>
             <Link
               to="/profiles"
-              className="flex-shrink-0 ml-4 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap"
+              className="flex-shrink-0 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap text-center"
             >
               $ view_all_profiles →
             </Link>

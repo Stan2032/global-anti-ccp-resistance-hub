@@ -157,9 +157,9 @@ const Dashboard = () => {
         {/* Intelligence Preview */}
         <div className="lg:col-span-2 bg-[#111820] border border-[#1c2a35]">
           <div className="p-4 border-b border-[#1c2a35] flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <Radio className="w-5 h-5 text-[#22d3ee] flex-shrink-0" />
-              <h2 className="font-semibold text-white">intelligence_overview</h2>
+              <h2 className="font-semibold text-white truncate">intelligence_overview</h2>
             </div>
             <Link to="/intelligence" className="flex items-center gap-2 text-[#4afa82] hover:text-[#7dffaa] text-sm font-mono whitespace-nowrap">
               <span className="w-2 h-2 bg-[#4afa82] rounded-full animate-pulse"></span>

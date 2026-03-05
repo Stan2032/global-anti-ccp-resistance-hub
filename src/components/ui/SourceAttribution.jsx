@@ -80,8 +80,8 @@ const SourceAttribution = ({ source, compact = false }) => {
 
   return (
     <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4">
-      <div className="flex items-start justify-between">
-        <div className="flex items-start space-x-3 flex-1">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex items-start space-x-3 flex-1 min-w-0">
           {/* Source Icon */}
           <div className={`flex-shrink-0 mt-1 ${getCredibilityColor(source.type)}`}>
             {getSourceIcon(source.type)}
@@ -140,7 +140,7 @@ const SourceAttribution = ({ source, compact = false }) => {
           href={source.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 ml-4 inline-flex items-center space-x-1 px-3 py-1.5 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-xs font-medium rounded transition-colors"
+          className="flex-shrink-0 inline-flex items-center space-x-1 px-3 py-1.5 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-xs font-medium rounded transition-colors"
         >
           <span>View Source</span>
           <ExternalLink className="w-3 h-3" />

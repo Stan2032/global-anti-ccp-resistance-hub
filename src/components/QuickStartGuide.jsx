@@ -126,7 +126,7 @@ const QuickStartGuide = () => {
 
   return (
     /* Non-blocking bottom-right toast — doesn't overlay page content */
-    <div className="fixed bottom-4 right-4 z-40 w-80 max-w-[calc(100vw-2rem)] bg-[#111820] border border-[#1c2a35] shadow-2xl">
+    <div className="fixed bottom-4 right-4 z-40 w-80 max-w-[calc(100vw-2rem)] bg-[#111820] border border-[#1c2a35] shadow-2xl overflow-hidden">
       {/* Progress Bar */}
       <div className="h-1 bg-[#0a0e14] overflow-hidden">
         <div 
