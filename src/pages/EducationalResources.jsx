@@ -27,6 +27,7 @@ const MediaManipulation = lazy(() => import('../components/MediaManipulation'));
 const AIDisinfoDetector = lazy(() => import('../components/AIDisinfoDetector'));
 const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes'));
 const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
+const HumanRightsOrgDirectory = lazy(() => import('../components/HumanRightsOrgDirectory'));
 const ContentAnalytics = lazy(() => import('../components/ContentAnalytics'));
 const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
 const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
@@ -341,6 +342,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── academic_experts ──</h2>
             <Suspense fallback={<SectionLoader />}><AcademicExperts /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── human_rights_organizations ──</h2>
+            <Suspense fallback={<SectionLoader />}><HumanRightsOrgDirectory /></Suspense>
           </div>
         </div>
       )}

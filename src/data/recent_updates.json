@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-208-hr-org-directory",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Human Rights Organization Directory — 49 verified organizations searchable by focus area and type",
+    "description": "New HumanRightsOrgDirectory component provides an interactive directory of 49 verified human rights organizations. Filter by focus area (Uyghur/Tibet/HK/General China/Legal/Media/Research/Taiwan) and type (Advocacy/Research/Legal/etc.). Expandable cards with key work, latest news, credibility indicators, website and donation links. New dataApi methods: getHumanRightsOrgs, getHumanRightsOrgsByFocus, getHumanRightsOrgsByType, searchHumanRightsOrgs. 10th dataset exposed via dataApi.",
+    "relatedPage": "/education"
+  },
+  {
     "id": "session-207-sanction-impact",
     "date": "2026-03-05",
     "category": "data",

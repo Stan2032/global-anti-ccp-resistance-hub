@@ -22,6 +22,7 @@ import emergencyAlertsData from '../data/emergency_alerts.json';
 import liveStatisticsData from '../data/live_statistics.json';
 import recentUpdatesData from '../data/recent_updates.json';
 import internationalResponsesData from '../data/international_responses_research.json';
+import humanRightsOrgsData from '../data/human_rights_orgs_research.json';
 
 // ── Helpers ─────────────────────────────────────────────
 
@@ -102,8 +103,13 @@ export const dataApi = {
           description: 'Country-level responses to CCP human rights violations',
           fields: ['country', 'genocide_recognition', 'sanctions_imposed', 'legislative_actions', 'diplomatic_actions', 'pending_proposals', 'overall_stance', 'source_url'],
         },
+        human_rights_orgs: {
+          count: this.getHumanRightsOrgs().length,
+          description: 'Verified human rights organizations working on China issues',
+          fields: ['organization', 'focus_area', 'org_type', 'founded_year', 'headquarters', 'website', 'donation_url', 'key_work', 'credibility', 'latest_news', 'source_url'],
+        },
       },
-      lastUpdated: '2026-03-05',
+      lastUpdated: '2026-03-06',
       license: 'CC BY 4.0',
       sourcePolicy: 'Tier 1-2 sources only (BBC, Reuters, HRW, Amnesty, government records). CCP state media never cited.',
     };
@@ -267,6 +273,27 @@ export const dataApi = {
     return this.getInternationalResponses().filter((r) => matchesSearch(r, query));
   },
 
+  // ── Human Rights Organizations ──────────────────────
+  getHumanRightsOrgs() {
+    return extractResults(humanRightsOrgsData);
+  },
+
+  getHumanRightsOrgsByFocus(focusArea) {
+    return this.getHumanRightsOrgs().filter(
+      (o) => o.focus_area?.toLowerCase() === focusArea.toLowerCase()
+    );
+  },
+
+  getHumanRightsOrgsByType(orgType) {
+    return this.getHumanRightsOrgs().filter(
+      (o) => o.org_type?.toLowerCase().includes(orgType.toLowerCase())
+    );
+  },
+
+  searchHumanRightsOrgs(query) {
+    return this.getHumanRightsOrgs().filter((o) => matchesSearch(o, query));
+  },
+
   // ── Cross-dataset queries ───────────────────────────
   /**
    * Global search across all datasets. Returns results grouped by dataset.
@@ -281,6 +308,7 @@ export const dataApi = {
       forced_labor_companies: this.searchForcedLaborCompanies(query),
       timeline_events: this.getTimelineEvents().filter((e) => matchesSearch(e, query)),
       international_responses: this.searchInternationalResponses(query),
+      human_rights_orgs: this.searchHumanRightsOrgs(query),
     };
   },
 
