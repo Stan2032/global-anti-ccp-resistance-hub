@@ -304,7 +304,7 @@ export default function LegalCaseTracker() {
                   </span>
                   {latestDate && (
                     <span className="text-xs text-slate-400 hidden sm:inline flex-shrink-0">
-                      {latestDate}
+                      Latest: {latestDate}
                     </span>
                   )}
                   {isExpanded ? (

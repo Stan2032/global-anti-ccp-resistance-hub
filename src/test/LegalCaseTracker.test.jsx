@@ -334,5 +334,7 @@ describe('LegalCaseTracker', () => {
     // Should not contain "CPC" referring to the party (allow "CPC" in other contexts)
     expect(allText).not.toContain('"CPC"');
     expect(allText).not.toContain('Communist Party of China');
+    // Positive: "CCP" should be used where the party is referenced
+    expect(allText).toContain('CCP');
   });
 });
