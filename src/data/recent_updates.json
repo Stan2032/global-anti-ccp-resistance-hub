@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-213-prisoner-dashboard",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Prisoner Status Dashboard — at-a-glance monitoring of all political prisoners",
+    "description": "New PrisonerStatusDashboard component provides comprehensive monitoring of all 63 documented political prisoners. Shows: summary stats (total/detained/health alerts/disappeared), status distribution bar, health classification overview (Critical/Concerning/Stable/Unknown using keyword analysis), interactive filters (status, health, sort), expandable prisoner rows with sentence/health/news/response details, regional distribution chart, source methodology. Copy-to-clipboard with CC BY 4.0 attribution. Integrated into Political Prisoners page. Terminal palette compliant. 33 comprehensive tests.",
+    "relatedPage": "/prisoners"
+  },
+  {
     "id": "session-212-source-diversity",
     "date": "2026-03-06",
     "category": "data",
