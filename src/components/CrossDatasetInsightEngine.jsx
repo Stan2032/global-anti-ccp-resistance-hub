@@ -272,7 +272,7 @@ const DATASET_LABELS = {
   companies: 'Forced Labor',
   facilities: 'Detention Facilities',
   stations: 'Police Stations',
-  responses: 'Int\'l Responses',
+  responses: 'Intl Responses',
   orgs: 'HR Organizations',
   timeline: 'Timeline Events',
 };
