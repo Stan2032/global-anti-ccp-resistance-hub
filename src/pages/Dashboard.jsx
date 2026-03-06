@@ -17,6 +17,7 @@ const LiveStatistics = lazy(() => import('../components/LiveStatistics'));
 const EmergencyAlerts = lazy(() => import('../components/EmergencyAlerts'));
 const NewsDigest = lazy(() => import('../components/NewsDigest'));
 const RecentUpdates = lazy(() => import('../components/RecentUpdates'));
+const NotificationCenter = lazy(() => import('../components/NotificationCenter'));
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
@@ -107,6 +108,7 @@ const Dashboard = () => {
           { id: 'security-tools', label: 'Security' },
           { id: 'statistics', label: 'Stats' },
           { id: 'news-digest', label: 'Digest' },
+          { id: 'notifications', label: 'Notifications' },
         ].map(section => (
           <a
             key={section.id}
@@ -288,6 +290,14 @@ const Dashboard = () => {
           <span className="text-slate-600" aria-hidden="true">──</span> News Digest
         </h2>
         <Suspense fallback={<SectionLoader />}><NewsDigest /></Suspense>
+      </section>
+
+      {/* ─── Notification Center ───────────────────────────────── */}
+      <section id="notifications" aria-labelledby="notifications-heading">
+        <h2 id="notifications-heading" className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+          <span className="text-slate-600" aria-hidden="true">──</span> Notifications
+        </h2>
+        <Suspense fallback={<SectionLoader />}><NotificationCenter /></Suspense>
       </section>
 
       {/* Footer */}

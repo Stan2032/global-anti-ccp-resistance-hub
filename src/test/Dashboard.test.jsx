@@ -206,7 +206,7 @@ describe('Dashboard', () => {
   it('renders section headings with aria-labelledby', () => {
     renderDashboard();
     const sections = document.querySelectorAll('section[aria-labelledby]');
-    expect(sections.length).toBe(5);
+    expect(sections.length).toBe(6);
     sections.forEach(section => {
       const headingId = section.getAttribute('aria-labelledby');
       expect(section.querySelector(`#${headingId}`)).toBeTruthy();
@@ -218,12 +218,13 @@ describe('Dashboard', () => {
     const nav = screen.getByLabelText('Dashboard sections');
     expect(nav).toBeTruthy();
     const links = nav.querySelectorAll('a');
-    expect(links.length).toBe(5);
+    expect(links.length).toBe(6);
     const hrefs = Array.from(links).map(l => l.getAttribute('href'));
     expect(hrefs).toContain('#recent-updates');
     expect(hrefs).toContain('#live-news');
     expect(hrefs).toContain('#security-tools');
     expect(hrefs).toContain('#statistics');
     expect(hrefs).toContain('#news-digest');
+    expect(hrefs).toContain('#notifications');
   });
 });

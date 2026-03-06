@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 6, 2026 (Session 216)
+> Last Updated: March 6, 2026 (Session 217)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -239,7 +239,7 @@
 
 ### Technical Improvements
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
-- [ ] **Push Notifications**: Alert users to breaking news and urgent actions
+- [x] **Push Notifications**: ✅ Phase 1 (Session 217): NotificationCenter component — centralized notification hub aggregating emergency alerts, platform updates, and sanctions data. 4 notification categories with filters, browser push permission management, service worker v3 integration, per-category preferences with localStorage persistence, search, expandable cards. Privacy-first (no server tracking). Phase 2: Server-side push via Web Push API.
 - [x] **Analytics Dashboard**: ✅ Phase 1 (Session 199): ContentAnalytics component — privacy-respecting content metrics dashboard aggregating insights from all 8 datasets. No user tracking. Integrated into Education Research tab. Phase 2: Server-side usage analytics (if needed).
 - [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). Phase 2: REST API via Cloudflare Workers.
 - [ ] **Backup System**: Automated backups of all content

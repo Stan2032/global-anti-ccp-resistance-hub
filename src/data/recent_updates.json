@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-217-notification-center",
+    "date": "2026-03-06",
+    "category": "new_entry",
+    "title": "Notification Center — browser push notification preferences and alert feed",
+    "description": "New NotificationCenter component providing a centralized notification hub. Aggregates alerts from 3 data sources: emergency alerts (critical cases), recent platform updates, and sanctions tracker. Features: 4 notification categories (Critical Alerts, Sanctions and Legal, Data Updates, Action Required) with filter buttons, expandable notification cards with date and source, browser push notification permission management, service worker integration status, per-category preference toggles with local storage persistence, search, show-more pattern, copy-to-clipboard with CC BY 4.0 attribution. Privacy-first design: all preferences stored locally, no server tracking. Integrated into Dashboard page. 41 comprehensive tests.",
+    "relatedPage": "/"
+  },
+  {
     "id": "session-216-data-integrity-monitor",
     "date": "2026-03-06",
     "category": "data",
