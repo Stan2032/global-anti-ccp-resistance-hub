@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-215-cross-dataset-insight-engine",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Cross-Dataset Insight Engine — automated relationship discovery across 10 datasets",
+    "description": "New CrossDatasetInsightEngine component cross-references all 10 primary datasets to surface hidden connections. Discovers: geographic convergence (regions referenced across 3+ datasets), actor networks (officials linked to prisoners/cases/sanctions), legal impact chains (cases with cross-border sanctions responses), economic clusters (forced labor industries and UFLPA enforcement), temporal correlations (events triggering sanctions in same year). Features: 5 insight categories with strength indicators, category filter buttons, search, distribution bar, expandable cards with connected records, copy-to-clipboard. Integrated into Data Sources page. 13th dataApi method (getAllDatasets). Archive housekeeping: moved 8 old session thoughts (150-157) to archive. 36 comprehensive tests.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-214-legal-case-tracker",
     "date": "2026-03-06",
     "category": "data",

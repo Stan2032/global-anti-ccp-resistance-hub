@@ -397,6 +397,24 @@ export const dataApi = {
       timeline: this.getTimelineEventsByCategory('uyghur'),
     };
   },
+
+  /**
+   * Get a snapshot of all datasets for cross-referencing.
+   */
+  getAllDatasets() {
+    return {
+      prisoners: this.getPoliticalPrisoners(),
+      officials: this.getSanctionedOfficials(),
+      sanctions: this.getSanctions(),
+      cases: this.getLegalCases(),
+      companies: this.getForcedLaborCompanies(),
+      facilities: this.getDetentionFacilities(),
+      stations: this.getPoliceStations(),
+      responses: this.getInternationalResponses(),
+      orgs: this.getHumanRightsOrgs(),
+      timeline: this.getTimelineEvents(),
+    };
+  },
 };
 
 export default dataApi;
