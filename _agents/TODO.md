@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 6, 2026 (Session 217)
+> Last Updated: March 6, 2026 (Session 218)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -235,7 +235,7 @@
 ## 🟠 MEDIUM-TERM (1-3 months)
 
 ### New Features
-- [ ] **Video Testimonials**: Embedded video interviews with survivors (with consent)
+- [x] **Video Testimonials**: ✅ Phase 1 (Session 218): VideoTestimonials component — 10 verified survivor/advocate testimony videos with consent tracking, content warning gates, category/region/search filters, Tier 1-2 source links (BBC, PBS, Al Jazeera, Uyghur Tribunal, CNN, NYT). Privacy-first (no embedded players). Integrated into Education Media tab. Phase 2: Embedded player support (privacy-preserving).
 
 ### Technical Improvements
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.

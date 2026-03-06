@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-218-video-testimonials",
+    "date": "2026-03-06",
+    "category": "new_entry",
+    "title": "Video Testimonials — 10 verified survivor and advocate video testimonies with consent tracking",
+    "description": "New VideoTestimonials component providing a curated gallery of 10 verified video testimonies from survivors, advocates, and family members across East Turkestan, Hong Kong, Tibet, and mainland China. Features: category filters (Detention Survivors, Political Persecution, Advocates, Family Members), region filters, search, expandable cards with content warning gates, consent verification badges, source links to Tier 1-2 outlets (BBC, PBS, Al Jazeera, Uyghur Tribunal, CNN, NYT), transcript availability indicators, copy-to-clipboard. Privacy-first: no embedded players, no tracking cookies. Integrated into Education Media tab. 40 comprehensive tests.",
+    "relatedPage": "/education"
+  },
+  {
     "id": "session-217-notification-center",
     "date": "2026-03-06",
     "category": "new_entry",
