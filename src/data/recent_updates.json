@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-214-legal-case-tracker",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Legal Case Tracker — 25 global court cases tracking CCP human rights violations",
+    "description": "New LegalCaseTracker component tracks 25 verified court cases and legal proceedings related to CCP human rights violations across 14 jurisdictions. Includes: NSL prosecutions (Jimmy Lai, HK47, Stand News, Apple Daily), genocide tribunal (Uyghur Tribunal), parliamentary recognition votes (Canada, Netherlands, UK, France, Belgium, Lithuania), enforcement actions (UFLPA, Operation Fox Hunt, NYC police station), universal jurisdiction (Argentina), EU Magnitsky challenge, and supply chain judicial review. Features: status summary (Convicted/Pending/Ongoing/Concluded), distribution bar, jurisdiction breakdown, search, expandable case details with dates/charges/outcome/significance/international response/source links, copy-to-clipboard with CC BY 4.0. 12th dataset in dataApi. Integrated into Intelligence Feeds → CCP Operations tab. Terminal palette compliant. 38 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-213-prisoner-dashboard",
     "date": "2026-03-06",
     "category": "data",

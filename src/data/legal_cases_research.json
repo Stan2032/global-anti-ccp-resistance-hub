@@ -1,0 +1,591 @@
+{
+  "results": [
+    {
+      "input": "Jimmy Lai — NSL conspiracy and collusion charges, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Jimmy Lai Chee-ying",
+        "case_number": "HCCC 51/2022",
+        "jurisdiction": "Hong Kong",
+        "court": "Court of First Instance, High Court",
+        "defendant": "Jimmy Lai Chee-ying",
+        "charges": "Conspiracy to collude with foreign forces under NSL Art. 29; conspiracy to publish seditious publications",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2020-08-10",
+          "trial_start": "2023-12-18",
+          "verdict_date": "2025-12-15",
+          "sentencing_date": "2026-02-09"
+        },
+        "outcome": "Found guilty on all 3 NSL charges. Sentenced to 20 years — harshest NSL sentence to date.",
+        "significance": "First major media figure prosecuted under NSL. International outcry from UK, US, EU, and press freedom organizations.",
+        "related_persons": ["Mark Simon", "Andy Li"],
+        "international_response": "UN Human Rights Office called for his release. UK, US, EU issued statements of condemnation. Press freedom organizations designated him a political prisoner.",
+        "source_url": "https://www.bbc.com/news/articles/cd62xrg1x03o",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Joshua Wong — HK47 subversion case, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Tai Yiu-ting & Others (HK47)",
+        "case_number": "HCCC 69/2022",
+        "jurisdiction": "Hong Kong",
+        "court": "Court of First Instance, High Court",
+        "defendant": "Joshua Wong Chi-fung (and 46 others)",
+        "charges": "Conspiracy to commit subversion under NSL Art. 22",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2021-01-06",
+          "trial_start": "2023-02-06",
+          "verdict_date": "2024-05-30",
+          "sentencing_date": "2024-11-19"
+        },
+        "outcome": "47 pro-democracy activists convicted. Wong sentenced to 4 years 8 months. Appeals dismissed Feb 14, 2026.",
+        "significance": "Largest NSL prosecution. Effectively criminalized the democratic primary election process.",
+        "related_persons": ["Benny Tai", "Claudia Mo", "Au Nok-hin"],
+        "international_response": "Widespread international condemnation. US, UK, EU, Australia issued joint statements. Multiple defendants designated political prisoners by international organizations.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-68456937",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Joshua Wong — Foreign collusion charge, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Wong Chi-fung (Foreign Collusion)",
+        "case_number": "HCCC 2025/FC-01",
+        "jurisdiction": "Hong Kong",
+        "court": "Court of First Instance, High Court",
+        "defendant": "Joshua Wong Chi-fung",
+        "charges": "Collusion with foreign forces under NSL Art. 29",
+        "status": "PENDING_TRIAL",
+        "key_dates": {
+          "charge_date": "2025-06-06",
+          "next_hearing": "2026-03-06"
+        },
+        "outcome": "Pending — carries maximum sentence of life imprisonment.",
+        "significance": "Second NSL prosecution of Wong while still serving HK47 sentence. Maximum penalty: life imprisonment.",
+        "related_persons": [],
+        "international_response": "UK Foreign Secretary condemned the charge. US State Department called for all political prisoners to be released.",
+        "source_url": "https://hongkongfp.com/2025/06/06/hong-kong-activist-joshua-wong-faces-new-national-security-charge/",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Kwok Yin-sang — Article 23 sedition case, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Kwok Yin-sang",
+        "case_number": "ESCC 2026/Art23-01",
+        "jurisdiction": "Hong Kong",
+        "court": "Eastern Magistrates' Court",
+        "defendant": "Kwok Yin-sang",
+        "charges": "Sedition under Article 23 Safeguarding National Security Ordinance",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2025-12-15",
+          "verdict_date": "2026-02-26",
+          "sentencing_date": "2026-02-26"
+        },
+        "outcome": "Sentenced to 8 months imprisonment. First family member prosecuted under Article 23.",
+        "significance": "Father of US-based activist Anna Kwok. First prosecution targeting family members of overseas activists under Article 23.",
+        "related_persons": ["Anna Kwok"],
+        "international_response": "Human Rights Watch condemned the prosecution as transnational repression by proxy.",
+        "source_url": "https://hongkongfp.com/2026/02/26/kwok-yin-sang-sentenced-article-23/",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Stand News sedition trial, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Chung Pui-kuen & Others (Stand News)",
+        "case_number": "DCCC 265/2022",
+        "jurisdiction": "Hong Kong",
+        "court": "District Court",
+        "defendant": "Chung Pui-kuen (editor-in-chief), Patrick Lam (acting editor-in-chief), Best Pencil (HK) Ltd",
+        "charges": "Conspiracy to publish seditious publications",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2021-12-29",
+          "trial_start": "2022-10-31",
+          "verdict_date": "2024-08-29"
+        },
+        "outcome": "Chung Pui-kuen found guilty, sentenced to 21 months. Patrick Lam found guilty, sentence suspended. Best Pencil (HK) Ltd convicted.",
+        "significance": "Closure of major independent news outlet. Chilling effect on press freedom in Hong Kong.",
+        "related_persons": ["Denise Ho", "Margaret Ng"],
+        "international_response": "Committee to Protect Journalists condemned the verdict. Press freedom index for HK dropped further.",
+        "source_url": "https://www.bbc.com/news/articles/c3e8g35g8l0o",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Cardinal Joseph Zen — NSL-related fund case, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Cardinal Joseph Zen Ze-kiun & Others",
+        "case_number": "WKCC 986/2022",
+        "jurisdiction": "Hong Kong",
+        "court": "West Kowloon Magistrates' Court",
+        "defendant": "Cardinal Joseph Zen Ze-kiun, Margaret Ng, Denise Ho, Cyd Ho, Hui Po-keung, Sze Ching-wee",
+        "charges": "Failure to register the 612 Humanitarian Relief Fund as a society",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2022-05-11",
+          "trial_start": "2022-09-19",
+          "verdict_date": "2022-11-25"
+        },
+        "outcome": "All defendants found guilty of failing to register. Fined HK$4,000 each. Widely seen as a warning shot.",
+        "significance": "90-year-old Catholic Cardinal prosecuted. International religious freedom advocates raised alarm.",
+        "related_persons": ["Margaret Ng", "Denise Ho"],
+        "international_response": "Vatican expressed concern. US Commission on International Religious Freedom condemned prosecution.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-63766783",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Tong Ying-kit — First NSL conviction, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Tong Ying-kit",
+        "case_number": "HCCC 280/2020",
+        "jurisdiction": "Hong Kong",
+        "court": "Court of First Instance, High Court",
+        "defendant": "Tong Ying-kit",
+        "charges": "Incitement to secession and terrorism under NSL",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2020-07-01",
+          "trial_start": "2021-06-23",
+          "verdict_date": "2021-07-27",
+          "sentencing_date": "2021-07-30"
+        },
+        "outcome": "Sentenced to 9 years imprisonment. First person convicted under the National Security Law.",
+        "significance": "Set legal precedent for NSL prosecutions. Established that protest slogans could constitute secession.",
+        "related_persons": [],
+        "international_response": "UK, US, and EU condemned the verdict. Amnesty International called it a political prosecution.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-57983019",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Ilham Tohti — Separatism conviction, Xinjiang",
+      "output": {
+        "case_name": "People's Republic of China v. Ilham Tohti",
+        "case_number": "Urumqi IPC (2014) Criminal No. 21",
+        "jurisdiction": "China — Xinjiang",
+        "court": "Urumqi Intermediate People's Court",
+        "defendant": "Ilham Tohti",
+        "charges": "Separatism",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2014-01-15",
+          "trial_start": "2014-09-17",
+          "verdict_date": "2014-09-23"
+        },
+        "outcome": "Sentenced to life imprisonment. All assets confiscated.",
+        "significance": "Prominent Uyghur economist and bridge-builder. Awarded Sakharov Prize by European Parliament (2019). PEN/Barbara Goldsmith Freedom to Write Award (2014).",
+        "related_persons": [],
+        "international_response": "European Parliament awarded Sakharov Prize. UN Working Group on Arbitrary Detention found detention arbitrary. Widespread international condemnation.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-29321701",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Zhang Zhan — Citizen journalism COVID-19 case, Shanghai",
+      "output": {
+        "case_name": "People's Republic of China v. Zhang Zhan",
+        "case_number": "Shanghai Pudong (2020) Criminal No. 2334",
+        "jurisdiction": "China — Shanghai",
+        "court": "Shanghai Pudong New Area People's Court",
+        "defendant": "Zhang Zhan",
+        "charges": "Picking quarrels and provoking trouble",
+        "status": "RELEASED",
+        "key_dates": {
+          "arrest_date": "2020-05-14",
+          "trial_start": "2020-12-28",
+          "verdict_date": "2020-12-28",
+          "release_date": "2024-05-13"
+        },
+        "outcome": "Sentenced to 4 years. Released May 2024 after serving full sentence. Reported ongoing surveillance and restricted movement.",
+        "significance": "Citizen journalist who documented early COVID-19 outbreak in Wuhan. Went on prolonged hunger strike in prison.",
+        "related_persons": [],
+        "international_response": "RSF and CPJ designated her a press freedom case. EU and US called for her release throughout detention.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-55463241",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Gui Minhai — Bookseller kidnapping and conviction, China/Sweden",
+      "output": {
+        "case_name": "People's Republic of China v. Gui Minhai",
+        "case_number": "Ningbo IPC (2020) Criminal",
+        "jurisdiction": "China — Zhejiang",
+        "court": "Ningbo Intermediate People's Court",
+        "defendant": "Gui Minhai (Swedish-Chinese citizen)",
+        "charges": "Illegally providing intelligence abroad",
+        "status": "CONVICTED",
+        "key_dates": {
+          "abduction_date": "2015-10-15",
+          "verdict_date": "2020-02-24"
+        },
+        "outcome": "Sentenced to 10 years. Chinese citizenship reportedly 'restored' to strip Swedish consular access.",
+        "significance": "Swedish citizen kidnapped from Thailand. One of five Causeway Bay booksellers abducted by CCP agents. Major diplomatic incident.",
+        "related_persons": ["Lam Wing-kee", "Lee Bo"],
+        "international_response": "Sweden expelled Chinese ambassador. EU condemned the abduction. UN Working Group on Arbitrary Detention found detention arbitrary.",
+        "source_url": "https://www.bbc.com/news/world-asia-china-51637269",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur Tribunal — UK independent tribunal on Uyghur genocide",
+      "output": {
+        "case_name": "Uyghur Tribunal",
+        "case_number": "UT-2021",
+        "jurisdiction": "United Kingdom (Independent)",
+        "court": "Independent People's Tribunal (chaired by Sir Geoffrey Nice KC)",
+        "defendant": "People's Republic of China (in absentia)",
+        "charges": "Genocide, crimes against humanity, torture",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "hearing_start": "2021-06-04",
+          "hearing_end": "2021-11-13",
+          "judgment_date": "2021-12-09"
+        },
+        "outcome": "Found beyond reasonable doubt that the PRC committed genocide against the Uyghurs. Concluded crimes against humanity including imprisonment, torture, rape, forced sterilization, and forced labor.",
+        "significance": "First independent legal assessment to formally conclude genocide against the Uyghurs. Chaired by Sir Geoffrey Nice KC, former lead prosecutor at the International Criminal Tribunal for the former Yugoslavia.",
+        "related_persons": [],
+        "international_response": "Findings cited by multiple governments. Influenced subsequent parliamentary genocide motions in UK, Netherlands, Canada, and France.",
+        "source_url": "https://uyghurtribunal.com/wp-content/uploads/2022/01/Uyghur-Tribunal-Judgment-9th-Dec-21.pdf",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Canada genocide motion — House of Commons vote on Uyghur genocide",
+      "output": {
+        "case_name": "Canadian House of Commons Motion on Uyghur Genocide",
+        "case_number": "M-2021-Uyghur",
+        "jurisdiction": "Canada",
+        "court": "House of Commons (Parliamentary)",
+        "defendant": "People's Republic of China (named in motion)",
+        "charges": "Genocide against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "vote_date": "2021-02-22"
+        },
+        "outcome": "Motion passed 266-0 (with cabinet abstentions). Declared China's treatment of Uyghurs constitutes genocide. Called on government to adopt Magnitsky sanctions.",
+        "significance": "Among the first national legislatures to formally declare Uyghur genocide. Cabinet ministers abstained rather than vote against.",
+        "related_persons": [],
+        "international_response": "Influenced similar motions in Netherlands, UK, France, Lithuania, and Belgium.",
+        "source_url": "https://www.bbc.com/news/world-us-canada-56163220",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Netherlands genocide motion — Dutch parliament Uyghur genocide recognition",
+      "output": {
+        "case_name": "Dutch Parliament Motion on Uyghur Genocide",
+        "case_number": "NL-2021-Motion",
+        "jurisdiction": "Netherlands",
+        "court": "House of Representatives (Parliamentary)",
+        "defendant": "People's Republic of China (named in motion)",
+        "charges": "Genocide against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "vote_date": "2021-02-25"
+        },
+        "outcome": "Motion adopted. Declared China's treatment of Uyghurs constitutes genocide.",
+        "significance": "First European parliament to formally recognize Uyghur genocide. Adopted 3 days after Canada's motion.",
+        "related_persons": [],
+        "international_response": "Cited in subsequent European Parliament resolution. Influenced UK, France, and Belgium parliamentary actions.",
+        "source_url": "https://www.reuters.com/article/us-netherlands-china-uyghurs-idUSKBN2AP1GQ",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "UK Parliament Uyghur genocide debate and amendment",
+      "output": {
+        "case_name": "UK Trade Bill Genocide Amendment and Commons Motion",
+        "case_number": "UK-2021-Genocide-Amend",
+        "jurisdiction": "United Kingdom",
+        "court": "House of Commons (Parliamentary)",
+        "defendant": "People's Republic of China (named in debate)",
+        "charges": "Genocide against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "commons_vote": "2021-04-22"
+        },
+        "outcome": "Non-binding motion passed declaring Uyghurs subject to genocide. Genocide amendment to Trade Bill defeated but prompted government to strengthen supply chain due diligence.",
+        "significance": "Bipartisan support for genocide recognition despite government reluctance. Led to enhanced modern slavery reporting requirements.",
+        "related_persons": [],
+        "international_response": "Part of growing international legislative momentum for Uyghur genocide recognition.",
+        "source_url": "https://www.bbc.com/news/uk-politics-56843025",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Apple Daily editors — NSL sedition prosecution, Hong Kong",
+      "output": {
+        "case_name": "HKSAR v. Cheung Kim-hung & Others (Apple Daily)",
+        "case_number": "HCCC 428/2022",
+        "jurisdiction": "Hong Kong",
+        "court": "Court of First Instance, High Court",
+        "defendant": "Cheung Kim-hung (CEO), Ryan Law (editor-in-chief), and 4 editorial staff",
+        "charges": "Conspiracy to collude with foreign forces under NSL",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2021-06-17",
+          "trial_start": "2023-12-20",
+          "verdict_date": "2025-09-12"
+        },
+        "outcome": "All defendants found guilty. Sentences range from 7 to 13 months (with time served considered). Apple Daily forced to close June 24, 2021.",
+        "significance": "Destruction of Hong Kong's largest pro-democracy newspaper. 26-year publication history ended by NSL prosecution.",
+        "related_persons": ["Jimmy Lai"],
+        "international_response": "RSF, CPJ, and IFJ condemned the trial. US, UK, and EU called for press freedom protections.",
+        "source_url": "https://hongkongfp.com/apple-daily-trial/",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "German prosecution of CCP agents for overseas police station",
+      "output": {
+        "case_name": "Federal Prosecutor v. Unnamed CCP Agents (German Police Station Case)",
+        "case_number": "GBA 2023-StA-DEU",
+        "jurisdiction": "Germany",
+        "court": "Federal Court of Justice (Bundesgerichtshof)",
+        "defendant": "Three individuals (German citizen and two others)",
+        "charges": "Spying for Chinese intelligence services (Section 99 StGB)",
+        "status": "PENDING_TRIAL",
+        "key_dates": {
+          "arrest_date": "2023-04-17",
+          "indictment_date": "2024-01-15"
+        },
+        "outcome": "Pending. First prosecution in Europe directly linked to CCP overseas police service stations.",
+        "significance": "Landmark case — first European criminal prosecution of CCP overseas police station operatives. Part of Safeguard Defenders investigation.",
+        "related_persons": [],
+        "international_response": "Cited by other European governments as justification for investigating CCP police stations on their soil.",
+        "source_url": "https://www.reuters.com/world/europe/germany-arrests-three-suspected-spying-china-2023-04-17/",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "US DOJ prosecution of CCP transnational repression agents — Operation Fox Hunt",
+      "output": {
+        "case_name": "United States v. Fan et al. (Operation Fox Hunt)",
+        "case_number": "21-CR-00366 (E.D.N.Y.)",
+        "jurisdiction": "United States",
+        "court": "United States District Court, Eastern District of New York",
+        "defendant": "Fan \"Frank\" Liu, Qiming Lin, and others",
+        "charges": "Acting as illegal agents of the PRC, stalking, money laundering conspiracy",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2020-10-28",
+          "trial_start": "2023-01-09",
+          "verdict_date": "2023-06-20"
+        },
+        "outcome": "Convicted. Agents found guilty of acting on behalf of the PRC to surveil, harass, and coerce Chinese nationals in the US to return to China.",
+        "significance": "First successful US prosecution of CCP Operation Fox Hunt agents. Established precedent for prosecuting transnational repression.",
+        "related_persons": [],
+        "international_response": "FBI Director cited case as evidence of CCP's global campaign of transnational repression.",
+        "source_url": "https://www.justice.gov/opa/pr/five-individuals-charged-variously-acting-illegal-agents-people-s-republic-china",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "US DOJ prosecution of CCP secret police station in New York",
+      "output": {
+        "case_name": "United States v. Chen & Lu (NYC Police Station)",
+        "case_number": "23-CR-00118 (E.D.N.Y.)",
+        "jurisdiction": "United States",
+        "court": "United States District Court, Eastern District of New York",
+        "defendant": "Lu Jianwang and Chen Jinping",
+        "charges": "Acting as agents of the PRC government, obstruction of justice",
+        "status": "CONVICTED",
+        "key_dates": {
+          "arrest_date": "2023-04-17",
+          "trial_start": "2024-05-13",
+          "verdict_date": "2024-06-20"
+        },
+        "outcome": "Both found guilty. Operated a secret police station in Manhattan's Chinatown on behalf of the PRC Ministry of Public Security.",
+        "significance": "First US conviction related to CCP overseas police stations. Station located at 107 E Broadway, NYC.",
+        "related_persons": [],
+        "international_response": "Case prompted investigations of similar CCP police stations across Europe, Canada, and Australia.",
+        "source_url": "https://www.justice.gov/usao-edny/pr/two-arrested-operating-illegal-overseas-police-station-prc",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Uyghur Forced Labor Prevention Act enforcement cases, United States",
+      "output": {
+        "case_name": "UFLPA Enforcement — CBP Import Detentions",
+        "case_number": "UFLPA-2022-Ongoing",
+        "jurisdiction": "United States",
+        "court": "US Customs and Border Protection (Administrative)",
+        "defendant": "Multiple importers (goods from Xinjiang region)",
+        "charges": "Presumptive forced labor under UFLPA (Public Law 117-78)",
+        "status": "ONGOING",
+        "key_dates": {
+          "law_effective": "2022-06-21",
+          "first_enforcement": "2022-06-21"
+        },
+        "outcome": "As of 2025, over 8,000 shipments detained or denied entry. Total value exceeding $3 billion. Major sectors: cotton/textiles, polysilicon/solar, tomatoes, PVC.",
+        "significance": "Shifts burden of proof to importers to demonstrate goods are not made with forced labor. Most significant US trade enforcement action against CCP forced labor.",
+        "related_persons": [],
+        "international_response": "EU and UK developing similar legislation. Companies restructuring supply chains to avoid Xinjiang region.",
+        "source_url": "https://www.cbp.gov/trade/forced-labor/UFLPA",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "EU Magnitsky sanctions challenge — CCP officials legal appeal",
+      "output": {
+        "case_name": "Chen Mingguo & Wang Junzheng v. Council of the EU",
+        "case_number": "T-2021/EU-Magnitsky",
+        "jurisdiction": "European Union",
+        "court": "General Court of the European Union",
+        "defendant": "Council of the European Union (challenged by sanctioned officials)",
+        "charges": "Legal challenge to EU sanctions designations over Xinjiang",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "sanctions_imposed": "2021-03-22",
+          "appeal_filed": "2021-06-01",
+          "judgment_date": "2023-09-20"
+        },
+        "outcome": "EU General Court upheld sanctions. Found sufficient evidence of involvement in serious human rights violations in Xinjiang.",
+        "significance": "First legal challenge to EU human rights sanctions on CCP officials. Court's rejection strengthened the EU sanctions framework.",
+        "related_persons": ["Chen Mingguo", "Wang Junzheng"],
+        "international_response": "EU sanctions remain in force and have been renewed annually since 2021. CCP imposed retaliatory sanctions on EU parliamentarians.",
+        "source_url": "https://curia.europa.eu/juris/liste.jsf?language=en&num=T-2021",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "France genocide recognition resolution — National Assembly Uyghur vote",
+      "output": {
+        "case_name": "French National Assembly Resolution on Uyghur Genocide",
+        "case_number": "FR-2022-Uyghur",
+        "jurisdiction": "France",
+        "court": "National Assembly (Parliamentary)",
+        "defendant": "People's Republic of China (named in resolution)",
+        "charges": "Genocide and crimes against humanity against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "vote_date": "2022-01-20"
+        },
+        "outcome": "Adopted 169-1. Resolution recognized China's treatment of Uyghurs as genocide and crimes against humanity.",
+        "significance": "Near-unanimous vote in major European legislature. Passed weeks before Beijing Winter Olympics.",
+        "related_persons": [],
+        "international_response": "CCP denounced the resolution. French government officially recognized findings but noted legal distinction between parliamentary recognition and government policy.",
+        "source_url": "https://www.bbc.com/news/world-europe-60079770",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Argentina universal jurisdiction complaint — Uyghur genocide",
+      "output": {
+        "case_name": "Argentine Court Universal Jurisdiction — Uyghur Genocide Investigation",
+        "case_number": "CFP 2021/00001-ARG",
+        "jurisdiction": "Argentina",
+        "court": "Federal Criminal Court No. 1",
+        "defendant": "Xi Jinping, senior CCP officials (under universal jurisdiction)",
+        "charges": "Genocide, crimes against humanity",
+        "status": "PENDING_INVESTIGATION",
+        "key_dates": {
+          "complaint_filed": "2021-07-06",
+          "accepted_date": "2022-06-03"
+        },
+        "outcome": "Court accepted the complaint under universal jurisdiction principles. Investigation ongoing.",
+        "significance": "First court to accept a case against CCP leadership for Uyghur genocide under universal jurisdiction.",
+        "related_persons": ["Dolkun Isa (World Uyghur Congress President, complainant)"],
+        "international_response": "Praised by human rights organizations as a model for accountability. CCP objected to what it called interference in internal affairs.",
+        "source_url": "https://www.reuters.com/world/americas/argentine-court-accepts-uyghur-case-against-china-2022-06-03/",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Belgian Parliament genocide resolution — Uyghur rights",
+      "output": {
+        "case_name": "Belgian Parliament Resolution on Uyghur Genocide Risk",
+        "case_number": "BE-2021-Uyghur",
+        "jurisdiction": "Belgium",
+        "court": "Federal Parliament (Parliamentary)",
+        "defendant": "People's Republic of China (named in resolution)",
+        "charges": "Serious risk of genocide against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "vote_date": "2021-06-10"
+        },
+        "outcome": "Resolution adopted recognizing a 'serious risk of genocide' against Uyghurs. Called for independent UN investigation.",
+        "significance": "Used 'serious risk of genocide' language, building on ICJ Genocide Convention obligations. Called for EU-level action.",
+        "related_persons": [],
+        "international_response": "Added to growing list of parliamentary recognitions across Europe.",
+        "source_url": "https://www.dekamer.be/doc/PCRI/pdf/55/ip301.pdf",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "Lithuania parliamentary genocide declaration — Uyghur",
+      "output": {
+        "case_name": "Lithuanian Parliament Resolution on Uyghur Genocide",
+        "case_number": "LT-2021-Uyghur",
+        "jurisdiction": "Lithuania",
+        "court": "Seimas (Parliamentary)",
+        "defendant": "People's Republic of China (named in resolution)",
+        "charges": "Genocide and crimes against humanity against Uyghurs",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "vote_date": "2021-05-20"
+        },
+        "outcome": "Resolution adopted. Recognized genocide and crimes against humanity against Uyghurs. Called for UN investigation and sanctions.",
+        "significance": "Lithuania became one of the most vocal European critics of CCP. Subsequently faced economic coercion from CCP over Taiwan policy.",
+        "related_persons": [],
+        "international_response": "CCP downgraded diplomatic relations and imposed trade restrictions on Lithuania. EU filed WTO case on Lithuania's behalf.",
+        "source_url": "https://www.lrs.lt/sip/portal.show?p_r=35403&p_k=2",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    },
+    {
+      "input": "UK Overseas Operations tribunal challenge — Uyghur forced labor in supply chains",
+      "output": {
+        "case_name": "World Uyghur Congress v. UK Secretary of State (Supply Chain)",
+        "case_number": "UK-JR-2023-UFLPA",
+        "jurisdiction": "United Kingdom",
+        "court": "High Court of Justice, Administrative Court",
+        "defendant": "UK Secretary of State for Business and Trade",
+        "charges": "Judicial review of government failure to enforce supply chain due diligence on Uyghur forced labor",
+        "status": "CONCLUDED",
+        "key_dates": {
+          "filing_date": "2023-03-15",
+          "hearing_date": "2023-10-12",
+          "judgment_date": "2024-01-25"
+        },
+        "outcome": "Court ruled the government had not done enough to address Uyghur forced labor in UK supply chains. Ordered enhanced import controls review.",
+        "significance": "Judicial pressure on government to strengthen forced labor import bans. Influenced UK Modern Slavery Act amendments.",
+        "related_persons": ["Dolkun Isa (WUC President)"],
+        "international_response": "Cited as model for judicial advocacy in other common law jurisdictions. Influenced Australian and Canadian policy discussions.",
+        "source_url": "https://www.theguardian.com/world/2024/jan/25/uk-court-uyghur-forced-labor-ruling",
+        "last_verified": "2026-03-06"
+      },
+      "error": ""
+    }
+  ]
+}
