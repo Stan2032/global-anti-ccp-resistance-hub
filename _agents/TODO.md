@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 6, 2026 (Session 219)
+> Last Updated: March 6, 2026 (Session 220)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -272,7 +272,7 @@
 - [ ] **Oral History Project**: Recorded testimonies from survivors
 - [ ] **Academic Partnership**: Collaborate with universities for research
 - [ ] **Annual Report**: Comprehensive yearly report on CCP human rights abuses
-- [ ] **Policy Recommendations**: Evidence-based policy briefs for governments
+- [x] **Policy Recommendations**: ✅ Phase 1 (Session 220): PolicyBriefGenerator component — evidence-based briefs for 4 audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas, cross-referencing 8 datasets. Integrated into Take Action page. Phase 2: PDF export, multilingual briefs.
 - [ ] **Legal Analysis**: International law analysis of CCP actions
 - [ ] **Economic Impact Studies**: Research on forced labor in supply chains
 

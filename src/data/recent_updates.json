@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-220-policy-brief-generator",
+    "date": "2026-03-06",
+    "category": "new_entry",
+    "title": "Policy Brief Generator — evidence-based briefs cross-referencing 8 verified datasets",
+    "description": "New PolicyBriefGenerator component producing structured policy briefs for 4 target audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas (Political Detention, Forced Labor, Transnational Repression, Genocide Recognition, Hong Kong NSL, Sanctions Policy). Cross-references political prisoners, sanctions, forced labor, detention facilities, legal cases, international responses, police stations, and sanctioned officials datasets. Features: audience-specific recommendations, executive summaries with live data counts, collapsible findings/recommendations/citations sections, topic search, copy-to-clipboard with full brief text. Integrated into Take Action page. 49 comprehensive tests.",
+    "relatedPage": "/take-action"
+  },
+  {
     "id": "session-219-supply-chain-risk-mapper",
     "date": "2026-03-06",
     "category": "new_entry",

@@ -27,6 +27,7 @@ const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
 const DiasporaSupport = lazy(() => import('../components/DiasporaSupport'));
 const PrintableReport = lazy(() => import('../components/PrintableReport'));
 const InternationalResponseTracker = lazy(() => import('../components/InternationalResponseTracker'));
+const PolicyBriefGenerator = lazy(() => import('../components/PolicyBriefGenerator'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
@@ -279,6 +280,11 @@ const TakeAction = () => {
       {/* Advocacy Letter Generator */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
+      </div>
+
+      {/* Policy Brief Generator */}
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+        <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
       </div>
 
       {/* Boycott List Section */}
