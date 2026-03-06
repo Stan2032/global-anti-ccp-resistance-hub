@@ -23,6 +23,7 @@ import liveStatisticsData from '../data/live_statistics.json';
 import recentUpdatesData from '../data/recent_updates.json';
 import internationalResponsesData from '../data/international_responses_research.json';
 import humanRightsOrgsData from '../data/human_rights_orgs_research.json';
+import policeStationsData from '../data/police_stations_research.json';
 
 // ── Helpers ─────────────────────────────────────────────
 
@@ -107,6 +108,11 @@ export const dataApi = {
           count: this.getHumanRightsOrgs().length,
           description: 'Verified human rights organizations working on China issues',
           fields: ['organization', 'focus_area', 'org_type', 'founded_year', 'headquarters', 'website', 'donation_url', 'key_work', 'credibility', 'latest_news', 'source_url'],
+        },
+        police_stations: {
+          count: this.getPoliceStations().length,
+          description: 'CCP overseas police service stations operating in foreign countries',
+          fields: ['country', 'city', 'status', 'closure_date', 'arrests_made', 'government_response', 'linked_to', 'latest_news', 'source_url'],
         },
       },
       lastUpdated: '2026-03-06',
@@ -294,6 +300,27 @@ export const dataApi = {
     return this.getHumanRightsOrgs().filter((o) => matchesSearch(o, query));
   },
 
+  // ── Overseas Police Stations ───────────────────────────
+  getPoliceStations() {
+    return extractResults(policeStationsData);
+  },
+
+  getPoliceStationsByCountry(country) {
+    return this.getPoliceStations().filter(
+      (s) => s.country?.toLowerCase() === country.toLowerCase()
+    );
+  },
+
+  getPoliceStationsByStatus(status) {
+    return this.getPoliceStations().filter(
+      (s) => s.status?.toLowerCase() === status.toLowerCase()
+    );
+  },
+
+  searchPoliceStations(query) {
+    return this.getPoliceStations().filter((s) => matchesSearch(s, query));
+  },
+
   // ── Cross-dataset queries ───────────────────────────
   /**
    * Global search across all datasets. Returns results grouped by dataset.
@@ -309,6 +336,7 @@ export const dataApi = {
       timeline_events: this.getTimelineEvents().filter((e) => matchesSearch(e, query)),
       international_responses: this.searchInternationalResponses(query),
       human_rights_orgs: this.searchHumanRightsOrgs(query),
+      police_stations: this.searchPoliceStations(query),
     };
   },
 

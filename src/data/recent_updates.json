@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-209-police-stations",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Overseas Police Station Tracker — 30 CCP stations across 27 countries with status tracking",
+    "description": "New OverseasPoliceStationTracker component documents CCP overseas police service stations used for transnational repression. 30 stations across 27 countries with status tracking (Closed/Under Investigation/Operating/Unknown). Status filter buttons, search, expandable station details with government response, arrest details, linked provinces. New dataApi methods: getPoliceStations, getPoliceStationsByCountry, getPoliceStationsByStatus, searchPoliceStations. 11th dataset exposed via dataApi.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-208-hr-org-directory",
     "date": "2026-03-06",
     "category": "data",
