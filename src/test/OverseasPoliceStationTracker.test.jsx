@@ -47,8 +47,21 @@ describe('OverseasPoliceStationTracker', () => {
     });
   });
 
+  it('dataApi.getPoliceStationsByCountry returns empty for unknown country', () => {
+    const none = dataApi.getPoliceStationsByCountry('Atlantis');
+    expect(none.length).toBe(0);
+  });
+
   it('dataApi.getPoliceStationsByStatus filters by status', () => {
     const closed = dataApi.getPoliceStationsByStatus('CLOSED');
+    expect(closed.length).toBeGreaterThan(0);
+    closed.forEach((s) => {
+      expect(s.status).toBe('CLOSED');
+    });
+  });
+
+  it('dataApi.getPoliceStationsByStatus is case-insensitive', () => {
+    const closed = dataApi.getPoliceStationsByStatus('closed');
     expect(closed.length).toBeGreaterThan(0);
     closed.forEach((s) => {
       expect(s.status).toBe('CLOSED');
