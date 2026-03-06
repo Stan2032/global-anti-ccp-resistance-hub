@@ -90,8 +90,9 @@ describe('RecentUpdates', () => {
 
     it('renders VERIFIED category labels for verification updates', () => {
       renderComponent();
-      const verificationUpdates = updates.filter((u) => u.category === 'verification');
-      if (verificationUpdates.length > 0) {
+      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const visibleVerificationUpdates = sorted.slice(0, 5).filter((u) => u.category === 'verification');
+      if (visibleVerificationUpdates.length > 0) {
         expect(screen.getAllByText('VERIFIED').length).toBeGreaterThan(0);
       }
     });

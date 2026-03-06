@@ -20,9 +20,9 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 290+ source files, 78 active React components, 1947 passing Vitest tests across 132 test files
+- Contains 320+ source files, 90 active React components, 2821 passing Vitest tests across 166 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
-- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 18 JSON data files, 22 recent news items
+- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 19 JSON data files, 22 recent news items
 
 ### What Has Been Done
 The following has been accomplished:
@@ -33,7 +33,7 @@ The following has been accomplished:
 5. **Page consolidation**: 4 orphan pages merged into parent pages, 8 orphan components integrated into page tabs
 6. **Accessibility**: WCAG AA contrast ratios verified, ARIA labels on all decorative elements, 20 contrast tests, ARIA dialog roles on 4 modal overlays, Escape key support
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
-8. **Test infrastructure**: 1947 Vitest tests across 132 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, and more)
+8. **Test infrastructure**: 2821 Vitest tests across 166 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, route integrity, defensive coding, meta-test coverage, security audit, import hygiene, performance budget, content completeness, ARIA live regions, keyboard navigation, and more)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
 10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
@@ -41,7 +41,7 @@ The following has been accomplished:
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
-16. **Timeline**: 31 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries
+16. **Timeline**: 34 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries (includes Joshua Wong HK47 appeal dismissed, Jimmy Lai fraud conviction overturned, and first Article 23 family prosecution)
 17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 5/5 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read entirely from JSON.
 18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
@@ -64,7 +64,7 @@ The following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 1947 tests passing across 132 test files
+npx vitest run    # Should show 2821 tests passing across 166 test files
 ```
 
 ---
@@ -99,7 +99,7 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v12.0)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v12.5)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── research/               # Research files and verification logs
@@ -133,7 +133,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 66 Vitest test files, 1137 tests
+│   └── test/                   # 166 Vitest test files, 2821 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -154,7 +154,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 1947 tests (132 files)
+npx vitest run                           # All 2821 tests (166 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~5s)
 ```
@@ -259,17 +259,18 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-153  
-**Date:** March 2, 2026  
+**Handoff prepared by:** Sessions 1-196  
+**Date:** March 5, 2026  
 **Repository state:**
-- 1947 tests passing (132 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
+- 2821 tests passing (166 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
-- 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 31 timeline events
-- 0 orphan components, 8 design system compliance checks, CCP influence detection centralized
+- 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
+- 0 orphan components, 10 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready
-- All 5/5 data migrations complete, 18 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
+- All 5/5 data migrations complete, 23 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
 - ALL page simplification complete (25 aspirational components removed, framer-motion eliminated)
 - EmergencyAlerts data-driven with auto-expiry (expires + lastVerified fields)
-- **ALL Q1-Q11 human questions answered** — no open questions remain
-**Status:** ✅ MERGE READY — branch prepared for merge to main
+- 27 recent_updates entries, route integrity enforced, defensive coding guards on all data components
+- **ALL Q1-Q11 human questions answered** — Q12 open (custom domain for onion routing)
+**Status:** ✅ Active development

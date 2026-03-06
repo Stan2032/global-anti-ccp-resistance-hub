@@ -16,6 +16,7 @@ const SectionLoader = () => (
 const PetitionLinks = lazy(() => import('../components/PetitionLinks'));
 const ForcedLabourList = lazy(() => import('../components/ForcedLabourList'));
 const ContactRepresentatives = lazy(() => import('../components/ContactRepresentatives'));
+const AdvocacyLetterGenerator = lazy(() => import('../components/AdvocacyLetterGenerator'));
 const SuccessStories = lazy(() => import('../components/SuccessStories'));
 const QuickFacts = lazy(() => import('../components/QuickFacts'));
 const ActivistToolkit = lazy(() => import('../components/ActivistToolkit'));
@@ -25,6 +26,7 @@ const CompanyTracker = lazy(() => import('../components/CompanyTracker'));
 const VolunteerSignup = lazy(() => import('../components/VolunteerSignup'));
 const DiasporaSupport = lazy(() => import('../components/DiasporaSupport'));
 const PrintableReport = lazy(() => import('../components/PrintableReport'));
+const InternationalResponseTracker = lazy(() => import('../components/InternationalResponseTracker'));
 
 const TakeAction = () => {
   const [expandedAction, setExpandedAction] = useState(null);
@@ -274,6 +276,11 @@ const TakeAction = () => {
         <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
       </div>
 
+      {/* Advocacy Letter Generator */}
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+        <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
+      </div>
+
       {/* Boycott List Section */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
@@ -302,6 +309,11 @@ const TakeAction = () => {
       {/* Sanctions Tracker */}
       <div className="mt-8">
         <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
+      </div>
+
+      {/* International Response Tracker */}
+      <div className="mt-8">
+        <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
       </div>
 
       {/* Donation Guide */}

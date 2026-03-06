@@ -38,7 +38,6 @@ function getTestNames() {
 
 // Known exceptions: components tested as part of larger integration tests
 const COVERAGE_EXCEPTIONS = [
-  'ShellErrorBoundary',  // Tested in performance-resilience.test.js
   'ScrollToTop',         // Tested in ScrollToTop.test.jsx (different case match)
   'FlagIcons',           // Tested in FlagIcons.test.jsx
 ];
@@ -133,7 +132,7 @@ describe('Meta-Test Coverage Audit', () => {
       if (jsonDataTestPattern.test(test)) continue; // JSON data validation tests
       if (componentSet.has(lower) || pageSet.has(lower)) continue;
       // Special cases - ui/ subdirectory components, grouped test files
-      if (['profile-pages', 'MobileNavigation', 'AdminAuth', 'GlobalDisclaimer', 'SourceAttribution'].includes(test)) continue;
+      if (['profile-pages', 'AdminAuth', 'GlobalDisclaimer', 'SourceAttribution'].includes(test)) continue;
       if (lower === 'profilesindex') continue;
       // Data service/feed tests
       if (/^live-data/.test(test)) continue;

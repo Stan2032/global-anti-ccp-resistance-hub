@@ -34,7 +34,7 @@ describe('DataExport', () => {
     render(<DataExport />);
     expect(screen.getByText('63 records')).toBeTruthy(); // prisoners
     expect(screen.getByText('47 records')).toBeTruthy(); // sanctions
-    expect(screen.getByText('31 records')).toBeTruthy(); // timeline
+    expect(screen.getByText('34 records')).toBeTruthy(); // timeline
   });
 
   it('renders Select All and Clear buttons', () => {

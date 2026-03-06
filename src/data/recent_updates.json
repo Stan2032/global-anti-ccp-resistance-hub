@@ -1,5 +1,117 @@
 [
   {
+    "id": "session-209-police-stations",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Overseas Police Station Tracker — 30 CCP stations across 27 countries with status tracking",
+    "description": "New OverseasPoliceStationTracker component documents CCP overseas police service stations used for transnational repression. 30 stations across 27 countries with status tracking (Closed/Under Investigation/Operating/Unknown). Status filter buttons, search, expandable station details with government response, arrest details, linked provinces. New dataApi methods: getPoliceStations, getPoliceStationsByCountry, getPoliceStationsByStatus, searchPoliceStations. 11th dataset exposed via dataApi.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-208-hr-org-directory",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Human Rights Organization Directory — 49 verified organizations searchable by focus area and type",
+    "description": "New HumanRightsOrgDirectory component provides an interactive directory of 49 verified human rights organizations. Filter by focus area (Uyghur/Tibet/HK/General China/Legal/Media/Research/Taiwan) and type (Advocacy/Research/Legal/etc.). Expandable cards with key work, latest news, credibility indicators, website and donation links. New dataApi methods: getHumanRightsOrgs, getHumanRightsOrgsByFocus, getHumanRightsOrgsByType, searchHumanRightsOrgs. 10th dataset exposed via dataApi.",
+    "relatedPage": "/education"
+  },
+  {
+    "id": "session-207-sanction-impact",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Sanction Impact Analyzer — cross-dataset analysis of 34 officials across 5 countries",
+    "description": "New SanctionImpactAnalyzer component cross-references sanctioned officials with sanctions tracker data to show sanction coverage per official. Coverage classification (Full/Strong/Partial/Gap), country breakdown bars, search, expandable official details with per-country sanction status, advocacy opportunity alerts for coverage gaps, copy-to-clipboard.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-206-international-responses",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "International Response Tracker — how 30 countries respond to CCP violations",
+    "description": "New InternationalResponseTracker component visualises international responses across 30 countries with five dimensions: genocide recognition, sanctions, legislative actions, diplomatic actions, and pending proposals. Stance classification (Strong/Moderate/Limited/Weak), search, filter by stance, expandable country cards, copy-to-clipboard. Integrated dataApi with getInternationalResponses methods.",
+    "relatedPage": "/take-action"
+  },
+  {
+    "id": "session-205-case-timeline",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Case Timeline Viewer — cross-reference prisoner cases with events",
+    "description": "New CaseTimelineViewer component links 63 political prisoners to 34 timeline events using keyword matching. Select any prisoner to see their case progression: arrests, trials, sentencings, and related events in chronological order. Searchable dropdown, category badges, copy-to-clipboard. 37 new tests.",
+    "relatedPage": "/prisoners"
+  },
+  {
+    "id": "session-204-advocacy-letters",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Advocacy Letter Generator for all 63 political prisoners",
+    "description": "New AdvocacyLetterGenerator component generates personalized advocacy letters using real case data from dataApi. Select any of 63 documented prisoners and 5 target countries to create tailored letters with sentence details, location, health status, and international response. Copy-to-clipboard. 36 new tests.",
+    "relatedPage": "/take-action"
+  },
+  {
+    "id": "session-203-data-comparison",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Regional Data Comparison Tool for researchers",
+    "description": "New DataComparisonTool component enables side-by-side comparison of CCP human rights violation data across 4 regions (Hong Kong, Xinjiang, Tibet, Mainland). Features comparison table with bar indicators, expandable status/country breakdowns, copy-to-clipboard summary with CC BY 4.0 attribution. 31 new tests.",
+    "relatedPage": "/data-sources"
+  },
+  {
+    "id": "session-202-influence-network",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "CCP Influence Network — cross-dataset relationship visualization",
+    "description": "New InfluenceNetwork component shows connections between sanctioned officials, political prisoners, sanctions, detention facilities, forced labor companies, and timeline events across 4 regions (Xinjiang, Hong Kong, Tibet, Central). Includes most-sanctioned officials ranking, international sanctions by country breakdown, and regional deep-dive panels. 23 new tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-201-data-changelog",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Data Changelog — research data provenance tracker",
+    "description": "New DataChangelog component shows verification status for all 8 datasets with freshness indicators, expandable details (verification dates, file paths, notes), recent data change timeline, and source policy. Integrated into Data Sources page. 22 new tests. Supports researcher citation needs.",
+    "relatedPage": "/data-sources"
+  },
+  {
+    "id": "session-200-api-docs",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Interactive API documentation for researchers",
+    "description": "New DataApiDocs component provides auto-generated interactive API reference for the dataApi module. Shows all 16 methods with descriptions, parameters, return types, and live examples with real data counts. Integrated into Data Sources page. 28 new tests. 2494 tests across 157 files.",
+    "relatedPage": "/data-sources"
+  },
+  {
+    "id": "session-199-content-analytics",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Content Analytics dashboard — research database metrics",
+    "description": "New ContentAnalytics component aggregates insights from all 8 research datasets. Shows dataset summary cards, prisoner status breakdown, sanctions by country, timeline coverage by decade, geographic analysis, and recent activity. Privacy-respecting: no user tracking. 30 new tests. 2466 tests across 156 files.",
+    "relatedPage": "/education"
+  },
+  {
+    "id": "session-198-test-coverage",
+    "date": "2026-03-05",
+    "category": "verification",
+    "title": "Test coverage: 100% component coverage + cross-dataset validation",
+    "description": "ShellErrorBoundary now has dedicated test (7 tests). New cross-dataset relationship validation (27 tests) ensures data consistency across all 8 research datasets. Orphaned MobileNavigation test removed. 2436 tests across 155 files.",
+    "relatedPage": "/data-sources"
+  },
+  {
+    "id": "session-197-data-api",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Public data API module for researchers",
+    "description": "New structured data access layer (dataApi.js) provides programmatic access to all 8 research datasets with search, filter, and cross-dataset query capabilities. 46 new tests. Foundation for future public REST API.",
+    "relatedPage": "/data-sources"
+  },
+  {
+    "id": "session-196-timeline-update",
+    "date": "2026-03-05",
+    "category": "data",
+    "title": "Timeline expanded to 34 events",
+    "description": "Added 3 verified timeline events: Joshua Wong HK47 appeal dismissed (Feb 14), Jimmy Lai fraud conviction overturned (Feb 26), first Article 23 family prosecution of Kwok Yin-sang (Feb 26). All sourced from Tier 1-2 media.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "2026-03-04-aria-live-regions",
     "date": "2026-03-04",
     "category": "verification",

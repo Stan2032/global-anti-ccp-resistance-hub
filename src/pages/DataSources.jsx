@@ -15,6 +15,9 @@ import {
 import dataSourcesData from '../data/data_sources.json';
 
 const DataExport = lazy(() => import('../components/DataExport'));
+const DataApiDocs = lazy(() => import('../components/DataApiDocs'));
+const DataChangelog = lazy(() => import('../components/DataChangelog'));
+const DataComparisonTool = lazy(() => import('../components/DataComparisonTool'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -186,6 +189,27 @@ const DataSources = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* API Reference */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <DataApiDocs />
+          </Suspense>
+        </div>
+
+        {/* Data Changelog */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <DataChangelog />
+          </Suspense>
+        </div>
+
+        {/* Regional Comparison */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <DataComparisonTool />
+          </Suspense>
         </div>
 
         {/* Export Data */}
