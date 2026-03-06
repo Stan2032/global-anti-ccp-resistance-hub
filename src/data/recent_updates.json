@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-219-supply-chain-risk-mapper",
+    "date": "2026-03-06",
+    "category": "new_entry",
+    "title": "Supply Chain Risk Mapper — corporate forced labor risk analysis with UFLPA enforcement tracking",
+    "description": "New SupplyChainRiskMapper component cross-referencing 30 companies against forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Features: automated risk classification (Critical/High/Moderate/Low), industry sector breakdown with stacked risk bars, legal landscape view with scope and enforcement details, search + industry + risk filters, expandable company cards with evidence/response/UFLPA status, compliance advisory. Integrated into Intelligence CCP Operations tab. 40 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-218-video-testimonials",
     "date": "2026-03-06",
     "category": "new_entry",

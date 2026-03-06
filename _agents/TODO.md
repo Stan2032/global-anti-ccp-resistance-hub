@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 6, 2026 (Session 218)
+> Last Updated: March 6, 2026 (Session 219)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -266,7 +266,7 @@
 - [ ] **Whistleblower Portal**: Secure submission system for leaked documents
 - [x] **Legal Case Tracker**: ✅ LegalCaseTracker component — 25 cases, 14 jurisdictions (Session 214)
 - [x] **Sanctions Impact Tracker**: ✅ SanctionImpactAnalyzer component — 34 officials, 47 sanctions (Session 207)
-- [ ] **Corporate Accountability Scores**: Comprehensive ratings for companies
+- [x] **Corporate Accountability Scores**: ✅ Phase 1 (Session 219): SupplyChainRiskMapper component — automated risk classification of 30 companies (Critical/High/Moderate/Low) cross-referencing forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Industry breakdown, legal landscape, expandable evidence cards. Phase 2: Scoring methodology with weighted factors.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors
