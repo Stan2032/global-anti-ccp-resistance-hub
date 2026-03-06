@@ -29,6 +29,7 @@ const ConfuciusInstitutes = lazy(() => import('../components/ConfuciusInstitutes
 const AcademicExperts = lazy(() => import('../components/AcademicExperts'));
 const HumanRightsOrgDirectory = lazy(() => import('../components/HumanRightsOrgDirectory'));
 const ContentAnalytics = lazy(() => import('../components/ContentAnalytics'));
+const TimelineGapAnalyzer = lazy(() => import('../components/TimelineGapAnalyzer'));
 const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
 const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
 const EventCalendar = lazy(() => import('../components/EventCalendar'));
@@ -331,6 +332,10 @@ const EducationalResources = () => {
         <div className="space-y-8">
           <div>
             <Suspense fallback={<SectionLoader />}><ContentAnalytics /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── timeline_gap_analysis ──</h2>
+            <Suspense fallback={<SectionLoader />}><TimelineGapAnalyzer /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <Suspense fallback={<SectionLoader />}><ResearchPapers /></Suspense>
