@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-216-data-integrity-monitor",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Data Integrity Monitor — automated health checks for all 12 research datasets",
+    "description": "New DataIntegrityMonitor component runs automated validation checks on all 12 datasets: record count verification, required field completeness, source URL coverage and format validation, CCP state media exclusion, duplicate detection, and freshness tracking. Features: 3-status summary cards (Pass/Warning/Fail), health score bar, status filters, search, expandable dataset cards showing individual check results and schema fields, copy-to-clipboard. Archive housekeeping: trimmed task list completed items. 33 comprehensive tests.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-215-cross-dataset-insight-engine",
     "date": "2026-03-06",
     "category": "data",
