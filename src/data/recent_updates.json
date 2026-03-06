@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-211-timeline-gap-analyzer",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Timeline Gap Analyzer — identify periods needing more research coverage",
+    "description": "New TimelineGapAnalyzer component helps researchers identify temporal gaps in documented CCP human rights violations. Analyzes 34 timeline events (1989-2026) to show: temporal gaps (years with no events), decade-by-decade event density with expandable category breakdowns, coverage by category (HK/Tibet/Uyghur/Mainland/etc), major gaps requiring research (2+ consecutive years), actionable research priorities list. Copy-to-clipboard analysis with CC BY 4.0 attribution. Integrated into Education Center → Research tab. Terminal palette compliant. 29 comprehensive tests.",
+    "relatedPage": "/education"
+  },
+  {
     "id": "session-211-agent-alignment",
     "date": "2026-03-06",
     "category": "verification",
