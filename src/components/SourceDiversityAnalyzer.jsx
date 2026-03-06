@@ -53,6 +53,7 @@ function extractDomain(url) {
     const hostname = new URL(url).hostname.replace(/^www\./, '');
     return hostname;
   } catch {
+    // Malformed URLs (non-http strings, text source names) are expected — return null to skip
     return null;
   }
 }

@@ -202,7 +202,9 @@ describe('SourceDiversityAnalyzer', () => {
   it('does not list CCP state media in top sources', () => {
     render(<SourceDiversityAnalyzer />);
     // Get text from the top sources section specifically, not the quality assessment disclaimer
-    const topSourcesSection = screen.getByText('Top Sources (All Datasets)').closest('div');
+    const topSourcesHeading = screen.getByText('Top Sources (All Datasets)');
+    const topSourcesSection = topSourcesHeading.closest('div');
+    expect(topSourcesSection).not.toBeNull();
     const topText = topSourcesSection.textContent;
     // CCP state media should never appear as an actual data source
     expect(topText).not.toContain('Xinhua');
