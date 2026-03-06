@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-212-source-diversity",
+    "date": "2026-03-06",
+    "category": "data",
+    "title": "Source Diversity Analyzer — assess source quality and diversity across all datasets",
+    "description": "New SourceDiversityAnalyzer component provides research-grade source quality analysis across 8 datasets. Shows: global source statistics (total references, unique domains, Tier 1/2 percentages), tier distribution bar chart, concentration risk alerts (sources over 25%), top 10 global sources with tier badges, per-dataset breakdown with quality ratings (Excellent/Good/Fair/Needs Review), interactive dataset selector with diversity scores, and CCP source exclusion policy. Copy-to-clipboard with CC BY 4.0 attribution. Integrated into Data Sources page. Terminal palette compliant. 28 comprehensive tests.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-211-timeline-gap-analyzer",
     "date": "2026-03-06",
     "category": "data",

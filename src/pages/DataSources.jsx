@@ -18,6 +18,7 @@ const DataExport = lazy(() => import('../components/DataExport'));
 const DataApiDocs = lazy(() => import('../components/DataApiDocs'));
 const DataChangelog = lazy(() => import('../components/DataChangelog'));
 const DataComparisonTool = lazy(() => import('../components/DataComparisonTool'));
+const SourceDiversityAnalyzer = lazy(() => import('../components/SourceDiversityAnalyzer'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -202,6 +203,13 @@ const DataSources = () => {
         <div className="mb-12">
           <Suspense fallback={<SectionLoader />}>
             <DataChangelog />
+          </Suspense>
+        </div>
+
+        {/* Source Diversity */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <SourceDiversityAnalyzer />
           </Suspense>
         </div>
 
