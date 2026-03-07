@@ -20,6 +20,7 @@ const MediaNarrativeTracker = lazy(() => import('../components/MediaNarrativeTra
 const GenocideLegalFramework = lazy(() => import('../components/GenocideLegalFramework'));
 const DiplomaticCoercionTracker = lazy(() => import('../components/DiplomaticCoercionTracker'));
 const CensorshipCircumventionGuide = lazy(() => import('../components/CensorshipCircumventionGuide'));
+const EconomicImpactAnalyzer = lazy(() => import('../components/EconomicImpactAnalyzer'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -466,6 +467,10 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── censorship_circumvention ──</h2>
             <Suspense fallback={<SectionLoader />}><CensorshipCircumventionGuide /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── economic_impact ──</h2>
+            <Suspense fallback={<SectionLoader />}><EconomicImpactAnalyzer /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>

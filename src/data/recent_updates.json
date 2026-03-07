@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-228-economic-impact-analyzer",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Economic Impact Analyzer — forced labor supply chain impact analysis",
+    "description": "New EconomicImpactAnalyzer component analyzing economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK MSA, Canada MSA, Australia MSA, US Tariff Act s307, Japan HRDD). Features: risk classification, 3-view analysis (Sector Analysis, Company Risk, Legislative Landscape), search, copy report. Cross-references 4 datasets. 46 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-227-censorship-circumvention-guide",
     "date": "2026-03-07",
     "category": "new_entry",

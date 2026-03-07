@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 227)
+> Last Updated: March 7, 2026 (Session 228)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -283,7 +283,7 @@
 - [ ] **Annual Report**: Comprehensive yearly report on CCP human rights abuses
 - [x] **Policy Recommendations**: ✅ Phase 1 (Session 220): PolicyBriefGenerator component — evidence-based briefs for 4 audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas, cross-referencing 8 datasets. Integrated into Take Action page. Phase 2: PDF export, multilingual briefs.
 - [x] **Legal Analysis**: ✅ Phase 1 (Session 224): GenocideLegalFramework component — international law analysis mapping CCP actions to treaty obligations. Phase 2: ICJ proceedings tracker, advisory opinion analysis.
-- [ ] **Economic Impact Studies**: Research on forced labor in supply chains
+- [ ] **Economic Impact Studies**: ✅ Phase 1 (Session 228): EconomicImpactAnalyzer component — analyzes economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK/Canada/Australia Modern Slavery Acts, US Tariff Act s307, Japan HRDD Guidelines). WRO tracking, trade value estimates, risk classification. Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 46 tests. Phase 2: Quantitative impact scoring methodology.
 
 ### Internationalization
 - [ ] **Full Translation**: Complete translation into 10+ languages
