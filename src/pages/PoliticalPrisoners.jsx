@@ -8,6 +8,7 @@ import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
 
 const CaseTimelineViewer = lazy(() => import('../components/CaseTimelineViewer'));
+const PrisonerStatusDashboard = lazy(() => import('../components/PrisonerStatusDashboard'));
 const SectionLoader = () => (<div className="flex items-center justify-center py-8" role="status" aria-label="Loading section"><span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span></div>);
 
 // Map prisoner names to their detailed profile page paths
@@ -131,10 +132,6 @@ const LATEST_VERIFIED = (politicalPrisonersData?.results || []).reduce((latest, 
   const d = item.output?.sources?.last_verified;
   return d && d > latest ? d : latest;
 }, '');
-
-// Legacy hardcoded data removed — all prisoner data now sourced from
-// political_prisoners_research.json (60 entries, 100% source attribution)
-// See: src/data/political_prisoners_research.json
 
 
 const StatusBadge = ({ status }) => {
@@ -533,6 +530,11 @@ const PoliticalPrisoners = () => {
           </div>
         )}
         
+        {/* Prisoner Status Dashboard */}
+        <div className="mt-12">
+          <Suspense fallback={<SectionLoader />}><PrisonerStatusDashboard /></Suspense>
+        </div>
+
         {/* Case Study Deep Dives */}
         <div className="mt-12">
           <CaseStudies />

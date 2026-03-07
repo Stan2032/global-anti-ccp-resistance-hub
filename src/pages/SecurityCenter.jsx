@@ -33,6 +33,7 @@ const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
 const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 const ReportSighting = lazy(() => import('../components/ReportSighting'));
 const ContactForm = lazy(() => import('../components/ContactForm'));
+const DiasporaSecurityAdvisor = lazy(() => import('../components/DiasporaSecurityAdvisor'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -147,6 +148,7 @@ const SecurityCenter = () => {
           { id: 'tools', label: 'Tools' },
           { id: 'guides', label: 'Guides' },
           { id: 'threats', label: 'Tech Threats' },
+          { id: 'diaspora', label: 'Diaspora' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -429,6 +431,10 @@ const SecurityCenter = () => {
       {/* Tech Threats Tab */}
       {activeTab === 'threats' && (
         <Suspense fallback={<SectionLoader />}><ChinaTechThreats /></Suspense>
+      )}
+
+      {activeTab === 'diaspora' && (
+        <Suspense fallback={<SectionLoader />}><DiasporaSecurityAdvisor /></Suspense>
       )}
     </div>
   )

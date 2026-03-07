@@ -18,6 +18,9 @@ const DataExport = lazy(() => import('../components/DataExport'));
 const DataApiDocs = lazy(() => import('../components/DataApiDocs'));
 const DataChangelog = lazy(() => import('../components/DataChangelog'));
 const DataComparisonTool = lazy(() => import('../components/DataComparisonTool'));
+const SourceDiversityAnalyzer = lazy(() => import('../components/SourceDiversityAnalyzer'));
+const CrossDatasetInsightEngine = lazy(() => import('../components/CrossDatasetInsightEngine'));
+const DataIntegrityMonitor = lazy(() => import('../components/DataIntegrityMonitor'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -202,6 +205,27 @@ const DataSources = () => {
         <div className="mb-12">
           <Suspense fallback={<SectionLoader />}>
             <DataChangelog />
+          </Suspense>
+        </div>
+
+        {/* Data Integrity Monitor */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <DataIntegrityMonitor />
+          </Suspense>
+        </div>
+
+        {/* Source Diversity */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <SourceDiversityAnalyzer />
+          </Suspense>
+        </div>
+
+        {/* Cross-Dataset Insights */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <CrossDatasetInsightEngine />
           </Suspense>
         </div>
 

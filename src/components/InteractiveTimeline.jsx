@@ -164,12 +164,34 @@ export default function InteractiveTimeline() {
 
       {/* Timeline Visualization */}
       <div className="relative mb-6 overflow-x-auto" ref={timelineRef}>
-        <div className="min-w-full py-8" style={{ transform: `scaleX(${zoomLevel})`, transformOrigin: 'left' }}>
-          {/* Year markers */}
-          <div className="flex justify-between mb-2 px-4">
-            {Array.from({ length: yearRange.max - yearRange.min + 1 }, (_, i) => yearRange.min + i).map(year => (
-              <span key={year} className="text-xs text-slate-400">{year}</span>
-            ))}
+        <div className="min-w-[540px] py-8" style={{ transform: `scaleX(${zoomLevel})`, transformOrigin: 'left' }}>
+          {/* Year markers — adaptive interval to prevent overlap */}
+          <div className="relative h-6 mb-2 mx-4">
+            {(() => {
+              const span = yearRange.max - yearRange.min;
+              const step = span > 25 ? 5 : span > 15 ? 3 : span > 8 ? 2 : 1;
+              const minGap = Math.max(2, Math.floor(step / 2));
+              const years = [];
+              for (let y = yearRange.min; y <= yearRange.max; y++) {
+                const isFirst = y === yearRange.min;
+                const isLast = y === yearRange.max;
+                const isStep = y % step === 0;
+                if (isFirst || isLast) { years.push(y); continue; }
+                if (isStep && (y - yearRange.min) >= minGap && (yearRange.max - y) >= minGap) years.push(y);
+              }
+              return years.map(year => {
+                const pct = span === 0 ? 50 : ((year - yearRange.min) / span) * 100;
+                return (
+                  <span
+                    key={year}
+                    className="absolute text-xs text-slate-400 -translate-x-1/2 whitespace-nowrap"
+                    style={{ left: `${pct}%` }}
+                  >
+                    {year}
+                  </span>
+                );
+              });
+            })()}
           </div>
           
           {/* Timeline line */}

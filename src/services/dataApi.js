@@ -24,6 +24,7 @@ import recentUpdatesData from '../data/recent_updates.json';
 import internationalResponsesData from '../data/international_responses_research.json';
 import humanRightsOrgsData from '../data/human_rights_orgs_research.json';
 import policeStationsData from '../data/police_stations_research.json';
+import legalCasesData from '../data/legal_cases_research.json';
 
 // ── Helpers ─────────────────────────────────────────────
 
@@ -113,6 +114,11 @@ export const dataApi = {
           count: this.getPoliceStations().length,
           description: 'CCP overseas police service stations operating in foreign countries',
           fields: ['country', 'city', 'status', 'closure_date', 'arrests_made', 'government_response', 'linked_to', 'latest_news', 'source_url'],
+        },
+        legal_cases: {
+          count: this.getLegalCases().length,
+          description: 'Court cases and legal proceedings related to CCP human rights violations worldwide',
+          fields: ['case_name', 'jurisdiction', 'court', 'defendant', 'charges', 'status', 'key_dates', 'outcome', 'significance', 'international_response', 'source_url'],
         },
       },
       lastUpdated: '2026-03-06',
@@ -321,6 +327,27 @@ export const dataApi = {
     return this.getPoliceStations().filter((s) => matchesSearch(s, query));
   },
 
+  // ── Legal Cases ─────────────────────────────────────
+  getLegalCases() {
+    return extractResults(legalCasesData);
+  },
+
+  getLegalCasesByJurisdiction(jurisdiction) {
+    return this.getLegalCases().filter(
+      (c) => c.jurisdiction?.toLowerCase().includes(jurisdiction.toLowerCase())
+    );
+  },
+
+  getLegalCasesByStatus(status) {
+    return this.getLegalCases().filter(
+      (c) => c.status?.toLowerCase() === status.toLowerCase()
+    );
+  },
+
+  searchLegalCases(query) {
+    return this.getLegalCases().filter((c) => matchesSearch(c, query));
+  },
+
   // ── Cross-dataset queries ───────────────────────────
   /**
    * Global search across all datasets. Returns results grouped by dataset.
@@ -337,6 +364,7 @@ export const dataApi = {
       international_responses: this.searchInternationalResponses(query),
       human_rights_orgs: this.searchHumanRightsOrgs(query),
       police_stations: this.searchPoliceStations(query),
+      legal_cases: this.searchLegalCases(query),
     };
   },
 
@@ -367,6 +395,24 @@ export const dataApi = {
       facilities: this.getDetentionFacilities(),
       sanctions: this.searchSanctions('Uyghur'),
       timeline: this.getTimelineEventsByCategory('uyghur'),
+    };
+  },
+
+  /**
+   * Get a snapshot of all datasets for cross-referencing.
+   */
+  getAllDatasets() {
+    return {
+      prisoners: this.getPoliticalPrisoners(),
+      officials: this.getSanctionedOfficials(),
+      sanctions: this.getSanctions(),
+      cases: this.getLegalCases(),
+      companies: this.getForcedLaborCompanies(),
+      facilities: this.getDetentionFacilities(),
+      stations: this.getPoliceStations(),
+      responses: this.getInternationalResponses(),
+      orgs: this.getHumanRightsOrgs(),
+      timeline: this.getTimelineEvents(),
     };
   },
 };

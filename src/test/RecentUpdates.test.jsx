@@ -208,7 +208,7 @@ describe('RecentUpdates', () => {
     });
 
     it('all categories are valid', () => {
-      const validCategories = ['alert', 'data', 'verification', 'case_update', 'new_case', 'report'];
+      const validCategories = ['alert', 'data', 'verification', 'case_update', 'new_case', 'new_entry', 'report'];
       updates.forEach((update) => {
         expect(validCategories).toContain(update.category);
       });

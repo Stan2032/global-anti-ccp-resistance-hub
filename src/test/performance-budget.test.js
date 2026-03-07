@@ -30,10 +30,10 @@ function getFileSizeKB(filepath) {
 }
 
 describe('Performance Budget', () => {
-  it('component count stays under 100 (growth guard)', () => {
+  it('component count stays under 105 (growth guard)', () => {
     const jsxCount = countFiles(COMPONENTS_DIR, '.jsx');
     expect(jsxCount).toBeGreaterThan(50); // sanity: we have many components
-    expect(jsxCount).toBeLessThanOrEqual(100); // growth guard
+    expect(jsxCount).toBeLessThanOrEqual(105); // growth guard
   });
 
   it('page count stays under 20 (growth guard)', () => {

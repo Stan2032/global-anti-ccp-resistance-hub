@@ -306,7 +306,7 @@ License: CC BY 4.0`;
                       aria-label={`${percentage}% coverage`}
                     />
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">{percentage}% of total</div>
+                  <div className="text-xs text-slate-400 mt-1">{percentage}% of total</div>
                 </div>
               );
             })}
@@ -337,7 +337,7 @@ License: CC BY 4.0`;
       </div>
 
       {/* Footer Note */}
-      <div className="text-sm text-slate-500 text-center">
+      <div className="text-sm text-slate-400 text-center">
         Analysis based on {analysis.totalEvents} documented events from {analysis.yearRange}.
         <br />
         This tool helps identify research gaps — not all years will have major documented events.

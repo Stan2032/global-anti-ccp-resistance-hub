@@ -13,6 +13,10 @@ const SanctionImpactAnalyzer = lazy(() => import('../components/SanctionImpactAn
 const OverseasPoliceStationTracker = lazy(() => import('../components/OverseasPoliceStationTracker'));
 const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 const InfluenceNetwork = lazy(() => import('../components/InfluenceNetwork'));
+const LegalCaseTracker = lazy(() => import('../components/LegalCaseTracker'));
+const SupplyChainRiskMapper = lazy(() => import('../components/SupplyChainRiskMapper'));
+const TransnationalRepressionTracker = lazy(() => import('../components/TransnationalRepressionTracker'));
+const MediaNarrativeTracker = lazy(() => import('../components/MediaNarrativeTracker'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -431,6 +435,22 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── overseas_police_stations ──</h2>
             <Suspense fallback={<SectionLoader />}><OverseasPoliceStationTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── legal_case_tracker ──</h2>
+            <Suspense fallback={<SectionLoader />}><LegalCaseTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── supply_chain_risk ──</h2>
+            <Suspense fallback={<SectionLoader />}><SupplyChainRiskMapper /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── transnational_repression ──</h2>
+            <Suspense fallback={<SectionLoader />}><TransnationalRepressionTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── media_narrative_tracker ──</h2>
+            <Suspense fallback={<SectionLoader />}><MediaNarrativeTracker /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>

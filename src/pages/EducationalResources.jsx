@@ -34,6 +34,7 @@ const MediaBiasGuide = lazy(() => import('../components/MediaBiasGuide'));
 const HistoricalDocuments = lazy(() => import('../components/HistoricalDocuments'));
 const EventCalendar = lazy(() => import('../components/EventCalendar'));
 const SurvivorStories = lazy(() => import('../components/SurvivorStories'));
+const VideoTestimonials = lazy(() => import('../components/VideoTestimonials'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('learn')
@@ -323,6 +324,10 @@ const EducationalResources = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── media_bias_guide ──</h2>
             <Suspense fallback={<SectionLoader />}><MediaBiasGuide /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── video_testimonials ──</h2>
+            <Suspense fallback={<SectionLoader />}><VideoTestimonials /></Suspense>
           </div>
         </div>
       )}
