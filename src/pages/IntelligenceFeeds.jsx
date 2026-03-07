@@ -182,7 +182,7 @@ const IntelligenceFeeds = () => {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); setShowAllFeeds(false); }}
-            className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
+            className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
 

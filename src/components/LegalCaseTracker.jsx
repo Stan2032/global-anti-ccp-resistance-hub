@@ -228,7 +228,7 @@ export default function LegalCaseTracker() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search cases, jurisdictions, defendants..."
-            className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] text-sm text-slate-300 placeholder-slate-600 focus:border-[#4afa82] focus:outline-none"
+            className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] text-sm text-slate-300 placeholder:text-slate-400 focus:border-[#4afa82] focus:outline-none"
             aria-label="Search legal cases"
           />
         </div>

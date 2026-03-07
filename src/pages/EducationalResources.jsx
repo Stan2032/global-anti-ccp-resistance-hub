@@ -184,7 +184,7 @@ const EducationalResources = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">

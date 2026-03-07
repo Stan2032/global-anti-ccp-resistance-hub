@@ -172,7 +172,7 @@ const VolunteerSignup = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name (can be pseudonym)"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-green-500"
               />
             </div>
             <div>
@@ -184,7 +184,7 @@ const VolunteerSignup = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-green-500"
               />
             </div>
             <div>
@@ -236,7 +236,7 @@ const VolunteerSignup = () => {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="Tell us about your experience, motivation, or how you'd like to help"
             rows={3}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-green-500"
           />
         </div>
 

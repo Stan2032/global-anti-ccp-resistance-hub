@@ -225,7 +225,7 @@ export default function CaseTimelineViewer() {
               aria-controls="prisoner-listbox"
               aria-autocomplete="list"
               aria-label="Search and select a political prisoner"
-              className="w-full bg-[#111820] border border-[#1c2a35] rounded px-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]/50 focus:ring-1 focus:ring-[#4afa82]/30 transition-colors"
+              className="w-full bg-[#111820] border border-[#1c2a35] rounded px-10 py-2.5 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]/50 focus:ring-1 focus:ring-[#4afa82]/30 transition-colors"
               placeholder="Search by name..."
               value={isDropdownOpen ? searchQuery : (selectedPrisoner?.prisoner_name || '')}
               onChange={(e) => {
