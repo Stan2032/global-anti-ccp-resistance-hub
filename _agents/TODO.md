@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 222)
+> Last Updated: March 7, 2026 (Session 223)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -271,6 +271,7 @@
 - [x] **Corporate Accountability Scores**: ✅ Phase 1 (Session 219): SupplyChainRiskMapper component — automated risk classification of 30 companies (Critical/High/Moderate/Low) cross-referencing forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Industry breakdown, legal landscape, expandable evidence cards. Phase 2: Scoring methodology with weighted factors.
 - [x] **Transnational Repression Tracker**: ✅ Session 221: TransnationalRepressionTracker component — cross-references 30 police stations, 25 legal cases, and 30 international responses to map CCP overseas operations. Threat-level classification per country, government response tracking, 3 analytical views (Threat Overview, Operations Map, Government Responses). Integrated into Intelligence CCP Operations tab. 38 tests.
 - [x] **Diaspora Security Advisor**: ✅ Session 222: DiasporaSecurityAdvisor component — personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels. Activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research). Integrated into Security Center Diaspora tab. 32 tests. Also fixed InteractiveTimeline year label overlap.
+- [x] **Media Narrative Tracker**: ✅ Session 223: MediaNarrativeTracker component — tracks 12 CCP propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from 7 datasets. Evidence-based debunks with counter-source links, narrative timeline, frequency classification. Integrated into Intelligence CCP Operations tab. 31 tests.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors

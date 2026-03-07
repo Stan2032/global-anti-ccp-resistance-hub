@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-223-media-narrative-tracker",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Media Narrative Tracker — debunking 12 CCP propaganda narratives with verified evidence",
+    "description": "New MediaNarrativeTracker component tracking 12 CCP state media propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from political prisoners, detention facilities, forced labor companies, international responses, police stations, and legal cases. Features: evidence-based debunks with counter-source links, narrative timeline (first appeared → last used), frequency classification (persistent/recurring/declining), category filter buttons, search, expandable cards with cross-referenced evidence counts, copy intelligence report. 31 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-222-diaspora-security-advisor",
     "date": "2026-03-07",
     "category": "new_entry",
