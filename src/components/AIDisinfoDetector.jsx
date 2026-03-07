@@ -161,7 +161,7 @@ const AIDisinfoDetector = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Paste article text, social media post, or any content you want to analyze for propaganda patterns..."
-          className="w-full h-40 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 resize-none"
+          className="w-full h-40 p-4 bg-[#0a0e14]/50 border border-[#1c2a35]/50 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22d3ee]/50 resize-none"
         />
         <div className="flex items-center justify-between mt-2">
           <span className="text-sm text-slate-400">

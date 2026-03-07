@@ -332,7 +332,7 @@ export default function SanctionImpactAnalyzer() {
               placeholder="Search officials..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder-slate-500 focus:outline-none focus:border-[#4afa82]/50"
+              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]/50"
               aria-label="Search sanctioned officials"
             />
           </div>

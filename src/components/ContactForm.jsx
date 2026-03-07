@@ -126,7 +126,7 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
             <div>
@@ -138,7 +138,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
           </div>
@@ -170,7 +170,7 @@ const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="How can we help you?"
             rows={5}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
           />
         </div>
 

@@ -194,7 +194,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search pages, profiles, topics, actions..."
-              className="flex-1 px-4 py-4 bg-transparent text-white placeholder-slate-400 focus:outline-none"
+              className="flex-1 px-4 py-4 bg-transparent text-white placeholder:text-slate-400 focus:outline-none"
               aria-label="Global search"
             />
             <kbd className="hidden md:inline-flex items-center px-2 py-1 text-xs text-slate-400 bg-[#111820] rounded">

@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 223)
+> Last Updated: March 7, 2026 (Session 228)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -52,6 +52,7 @@
 > 47 completed items covering: mobile responsiveness, dark mode, sort/filter, dashboard usability, breadcrumbs, recent updates, region filters, contrast overhaul, deep usability, per-source loading, event countdown, alert sharing, data hygiene, live statistics JSON extraction, real data export, design system enforcement, URL validation, no-hashtags policy, profile page tests, 100% page test coverage, cross-JSON consistency, accessibility audit, keyboard navigation, performance resilience, sitemap freshness, route integrity, defensive coding, meta-test coverage, security audit, performance budget, ARIA live regions, data API, content analytics, API docs, data changelog, influence network, data comparison, advocacy letters, case timeline, international response tracker, sanction impact analyzer, HR org directory, overseas police stations, source diversity, prisoner dashboard, legal case tracker, cross-dataset insights, data integrity monitor.
 
 - [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). Remaining audit: check ALL components at zoom levels 100%/125%/150% × viewports 375/768/1280px for any other text overlap or truncation issues. *(Originally reported by human, Session 221)*
+- [x] **Placeholder text standardization**: ✅ Session 225 — All 48 placeholder instances across 30 files standardized to `placeholder:text-slate-400` (Tailwind v3+ syntax). Fixed 2 `placeholder-slate-600` violations, converted 19 `placeholder-slate-500` and 9 `placeholder-slate-400` (old syntax). Added 11th design system compliance test preventing reintroduction. Focus colors also standardized: 7 components fixed from non-terminal colors (emerald/green/cyan/amber/red) to terminal palette (`#4afa82`/`#22d3ee`).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -272,14 +273,17 @@
 - [x] **Transnational Repression Tracker**: ✅ Session 221: TransnationalRepressionTracker component — cross-references 30 police stations, 25 legal cases, and 30 international responses to map CCP overseas operations. Threat-level classification per country, government response tracking, 3 analytical views (Threat Overview, Operations Map, Government Responses). Integrated into Intelligence CCP Operations tab. 38 tests.
 - [x] **Diaspora Security Advisor**: ✅ Session 222: DiasporaSecurityAdvisor component — personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels. Activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research). Integrated into Security Center Diaspora tab. 32 tests. Also fixed InteractiveTimeline year label overlap.
 - [x] **Media Narrative Tracker**: ✅ Session 223: MediaNarrativeTracker component — tracks 12 CCP propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from 7 datasets. Evidence-based debunks with counter-source links, narrative timeline, frequency classification. Integrated into Intelligence CCP Operations tab. 31 tests.
+- [x] **Genocide Legal Framework**: ✅ Session 224: GenocideLegalFramework component — maps 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention Articles II(a)-II(e), Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). 10 genocide recognition entries (governments + tribunals). Cross-references 7 datasets. Legal text display, severity classification, evidence cross-referencing. Integrated into Intelligence CCP Operations tab. 44 tests.
+- [x] **Diplomatic Coercion Tracker**: ✅ Session 226: DiplomaticCoercionTracker component — maps 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types (Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference). 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes). Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 43 tests.
+- [x] **Censorship Circumvention Guide**: ✅ Session 227: CensorshipCircumventionGuide component — documents 18 CCP internet censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluates 10 circumvention tools with safety ratings (Tor, Signal, Psiphon, Tails, Briar, Proton Mail, obfs4, V2Ray, WireGuard, Lantern). 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide). Cross-references 3 datasets. Integrated into Intelligence CCP Operations tab. 42 tests.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors
 - [ ] **Academic Partnership**: Collaborate with universities for research
 - [ ] **Annual Report**: Comprehensive yearly report on CCP human rights abuses
 - [x] **Policy Recommendations**: ✅ Phase 1 (Session 220): PolicyBriefGenerator component — evidence-based briefs for 4 audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas, cross-referencing 8 datasets. Integrated into Take Action page. Phase 2: PDF export, multilingual briefs.
-- [ ] **Legal Analysis**: International law analysis of CCP actions
-- [ ] **Economic Impact Studies**: Research on forced labor in supply chains
+- [x] **Legal Analysis**: ✅ Phase 1 (Session 224): GenocideLegalFramework component — international law analysis mapping CCP actions to treaty obligations. Phase 2: ICJ proceedings tracker, advisory opinion analysis.
+- [ ] **Economic Impact Studies**: ✅ Phase 1 (Session 228): EconomicImpactAnalyzer component — analyzes economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK/Canada/Australia Modern Slavery Acts, US Tariff Act s307, Japan HRDD Guidelines). WRO tracking, trade value estimates, risk classification. Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 46 tests. Phase 2: Quantitative impact scoring methodology.
 
 ### Internationalization
 - [ ] **Full Translation**: Complete translation into 10+ languages

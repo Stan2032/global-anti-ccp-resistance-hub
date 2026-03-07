@@ -279,7 +279,7 @@ const ResearchPapers = () => {
           placeholder="Search papers by title, author, or topic..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-3 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
         />
         <Search className="absolute left-3 top-3.5 text-slate-500 w-5 h-5" />
       </div>
