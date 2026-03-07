@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-221-transnational-repression-tracker",
+    "date": "2026-03-06",
+    "category": "new_entry",
+    "title": "Transnational Repression Tracker — mapping CCP overseas operations across 30 countries",
+    "description": "New TransnationalRepressionTracker component cross-referencing 30 police stations, 25 legal cases, and 30 international responses to map CCP transnational repression operations. Features: threat-level classification (Critical/High/Moderate/Low) per country, government response tracking (Enforcement/Investigation/Acknowledged/No Action), 3 analytical views (Threat Overview, Operations Map, Government Responses), expandable country cards with police station details, legal case summaries, and international response data. Search + threat level + response filters. Copy intelligence report. Integrated into Intelligence CCP Operations tab. 38 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-220-policy-brief-generator",
     "date": "2026-03-06",
     "category": "new_entry",

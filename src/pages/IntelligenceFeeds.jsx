@@ -15,6 +15,7 @@ const ResearchDashboard = lazy(() => import('../components/ResearchDashboard'));
 const InfluenceNetwork = lazy(() => import('../components/InfluenceNetwork'));
 const LegalCaseTracker = lazy(() => import('../components/LegalCaseTracker'));
 const SupplyChainRiskMapper = lazy(() => import('../components/SupplyChainRiskMapper'));
+const TransnationalRepressionTracker = lazy(() => import('../components/TransnationalRepressionTracker'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -441,6 +442,10 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── supply_chain_risk ──</h2>
             <Suspense fallback={<SectionLoader />}><SupplyChainRiskMapper /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── transnational_repression ──</h2>
+            <Suspense fallback={<SectionLoader />}><TransnationalRepressionTracker /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>
