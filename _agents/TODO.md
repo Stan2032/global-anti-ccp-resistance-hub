@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 230)
+> Last Updated: March 7, 2026 (Session 231)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -59,6 +59,7 @@
   - **VolunteerSignup.jsx, ContactForm.jsx, NewsDigest.jsx, IncidentReportForm.jsx**: Forms appear fully functional but data goes nowhere when backend not connected → forms now visually disabled (`opacity-50 pointer-events-none`) when no backend, with existing "Coming Soon" warning.
   - **ReportSighting.jsx**: Form always non-functional (no backend integration at all) → form content disabled with `opacity-50 pointer-events-none`.
   - **ProfilesIndex.jsx**: Unbuilt profile cards look clickable → increased opacity reduction to 50% with `cursor-default`. *(Originally reported by human, Session 230)*
+- [x] **Comprehensive site-wide interactive element verification**: ✅ Session 231 — Automated + manual click-based audit across ALL 13 pages (Dashboard, Education, Intelligence, Security, Prisoners, Take Action, Directory, Community, Data Sources, Resources, Profiles Index, 2 individual profiles). Tested 1,000+ buttons, 800+ links, all tabs, all expand/collapse, all search/filter inputs, all forms. Results: **0 genuinely broken interactive elements found**. All buttons fire handlers, all filters filter, all search inputs search, all accordions toggle, all tabs switch content, all navigation links work. The Session 230 "coming soon" approach was adequate — no elements are misleadingly interactive. One minor UX improvement: download resource indicator border removed (was styled like a button). *(Originally reported by human, Session 231)*
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

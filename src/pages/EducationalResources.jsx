@@ -105,7 +105,7 @@ const EducationalResources = () => {
           </div>
         </div>
         <div
-          className="p-2 bg-[#111820] border border-[#1c2a35]"
+          className="p-2 bg-[#111820] opacity-30"
           title="Download coming soon"
           aria-label={`Download ${resource.title} — coming soon`}
         >
