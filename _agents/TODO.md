@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 6, 2026 (Session 221)
+> Last Updated: March 7, 2026 (Session 222)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -51,7 +51,7 @@
 > ✅ **ALL COMPLETE** — Sessions 50-215. See `_agents/TODO_COMPLETED.md` and session history for details.
 > 47 completed items covering: mobile responsiveness, dark mode, sort/filter, dashboard usability, breadcrumbs, recent updates, region filters, contrast overhaul, deep usability, per-source loading, event countdown, alert sharing, data hygiene, live statistics JSON extraction, real data export, design system enforcement, URL validation, no-hashtags policy, profile page tests, 100% page test coverage, cross-JSON consistency, accessibility audit, keyboard navigation, performance resilience, sitemap freshness, route integrity, defensive coding, meta-test coverage, security audit, performance budget, ARIA live regions, data API, content analytics, API docs, data changelog, influence network, data comparison, advocacy letters, case timeline, international response tracker, sanction impact analyzer, HR org directory, overseas police stations, source diversity, prisoner dashboard, legal case tracker, cross-dataset insights, data integrity monitor.
 
-- [ ] **Visual overlap fixes**: Timeline year labels overlap on some views — need more spacing between each year. Audit all components at multiple zoom levels (100%, 125%, 150%) and viewport widths (375px, 768px, 1280px) to ensure no text overlapping or truncation issues. *(Reported by human, Session 221)*
+- [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). Remaining audit: check ALL components at zoom levels 100%/125%/150% × viewports 375/768/1280px for any other text overlap or truncation issues. *(Originally reported by human, Session 221)*
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -270,6 +270,7 @@
 - [x] **Sanctions Impact Tracker**: ✅ SanctionImpactAnalyzer component — 34 officials, 47 sanctions (Session 207)
 - [x] **Corporate Accountability Scores**: ✅ Phase 1 (Session 219): SupplyChainRiskMapper component — automated risk classification of 30 companies (Critical/High/Moderate/Low) cross-referencing forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Industry breakdown, legal landscape, expandable evidence cards. Phase 2: Scoring methodology with weighted factors.
 - [x] **Transnational Repression Tracker**: ✅ Session 221: TransnationalRepressionTracker component — cross-references 30 police stations, 25 legal cases, and 30 international responses to map CCP overseas operations. Threat-level classification per country, government response tracking, 3 analytical views (Threat Overview, Operations Map, Government Responses). Integrated into Intelligence CCP Operations tab. 38 tests.
+- [x] **Diaspora Security Advisor**: ✅ Session 222: DiasporaSecurityAdvisor component — personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels. Activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research). Integrated into Security Center Diaspora tab. 32 tests. Also fixed InteractiveTimeline year label overlap.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors

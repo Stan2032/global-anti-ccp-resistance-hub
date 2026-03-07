@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-222-diaspora-security-advisor",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Diaspora Security Advisor + Timeline year overlap fix",
+    "description": "New DiasporaSecurityAdvisor component providing personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels (Critical/High/Moderate/Low). Features: activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research), expandable country cards with police station details, government response data, and emergency contacts. Also fixed InteractiveTimeline year label overlap: adaptive 5-year intervals with min-gap endpoint exclusion, min-width for mobile horizontal scroll. Verified zero overlaps at 375/768/1280px viewports.",
+    "relatedPage": "/security"
+  },
+  {
     "id": "session-221-transnational-repression-tracker",
     "date": "2026-03-06",
     "category": "new_entry",
