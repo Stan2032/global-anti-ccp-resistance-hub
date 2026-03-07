@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 223)
+> Last Updated: March 7, 2026 (Session 224)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -272,13 +272,14 @@
 - [x] **Transnational Repression Tracker**: ✅ Session 221: TransnationalRepressionTracker component — cross-references 30 police stations, 25 legal cases, and 30 international responses to map CCP overseas operations. Threat-level classification per country, government response tracking, 3 analytical views (Threat Overview, Operations Map, Government Responses). Integrated into Intelligence CCP Operations tab. 38 tests.
 - [x] **Diaspora Security Advisor**: ✅ Session 222: DiasporaSecurityAdvisor component — personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels. Activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research). Integrated into Security Center Diaspora tab. 32 tests. Also fixed InteractiveTimeline year label overlap.
 - [x] **Media Narrative Tracker**: ✅ Session 223: MediaNarrativeTracker component — tracks 12 CCP propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from 7 datasets. Evidence-based debunks with counter-source links, narrative timeline, frequency classification. Integrated into Intelligence CCP Operations tab. 31 tests.
+- [x] **Genocide Legal Framework**: ✅ Session 224: GenocideLegalFramework component — maps 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention Articles II(a)-II(e), Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). 10 genocide recognition entries (governments + tribunals). Cross-references 7 datasets. Legal text display, severity classification, evidence cross-referencing. Integrated into Intelligence CCP Operations tab. 44 tests.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors
 - [ ] **Academic Partnership**: Collaborate with universities for research
 - [ ] **Annual Report**: Comprehensive yearly report on CCP human rights abuses
 - [x] **Policy Recommendations**: ✅ Phase 1 (Session 220): PolicyBriefGenerator component — evidence-based briefs for 4 audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas, cross-referencing 8 datasets. Integrated into Take Action page. Phase 2: PDF export, multilingual briefs.
-- [ ] **Legal Analysis**: International law analysis of CCP actions
+- [x] **Legal Analysis**: ✅ Phase 1 (Session 224): GenocideLegalFramework component — international law analysis mapping CCP actions to treaty obligations. Phase 2: ICJ proceedings tracker, advisory opinion analysis.
 - [ ] **Economic Impact Studies**: Research on forced labor in supply chains
 
 ### Internationalization
