@@ -34,6 +34,7 @@ const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
 const ReportSighting = lazy(() => import('../components/ReportSighting'));
 const ContactForm = lazy(() => import('../components/ContactForm'));
 const DiasporaSecurityAdvisor = lazy(() => import('../components/DiasporaSecurityAdvisor'));
+const WhistleblowerGuide = lazy(() => import('../components/WhistleblowerGuide'));
 
 const SecurityCenter = () => {
   const [activeTab, setActiveTab] = useState('assess')
@@ -374,6 +375,12 @@ const SecurityCenter = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── witness_protection ──</h2>
             <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
+          </div>
+
+          {/* Whistleblower Security Guide */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── whistleblower_guide ──</h2>
+            <Suspense fallback={<SectionLoader />}><WhistleblowerGuide /></Suspense>
           </div>
 
           {/* Emergency Section */}

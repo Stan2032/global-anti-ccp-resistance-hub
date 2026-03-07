@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 228)
+> Last Updated: March 7, 2026 (Session 229)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -266,7 +266,7 @@
 - [ ] **Automated News Aggregation**: AI-curated news from trusted sources
 - [ ] **Virtual Reality Experiences**: Immersive education about detention camps
 - [ ] **Blockchain Verification**: Immutable record of documented abuses
-- [ ] **Whistleblower Portal**: Secure submission system for leaked documents
+- [ ] **Whistleblower Portal**: ✅ Phase 1 (Session 229): WhistleblowerGuide component — 15 operational security protocols across 5 categories (Identity Protection, Secure Communications, Document Handling, Digital Security, Physical Security). 10 verified submission channels (SecureDrop instances at Guardian/WaPo/NYT/BBC, ICIJ, HRW, Amnesty, ASPI, Citizen Lab, Safeguard Defenders). 6 legal protection frameworks (US WPA, EU Directive, UK PIDA, Canada PSDPA, Australia PID Act, UN mechanisms). Cross-references 3 datasets. Integrated into SecurityCenter Guides tab. 49 tests. Phase 2: Secure submission system for leaked documents.
 - [x] **Legal Case Tracker**: ✅ LegalCaseTracker component — 25 cases, 14 jurisdictions (Session 214)
 - [x] **Sanctions Impact Tracker**: ✅ SanctionImpactAnalyzer component — 34 officials, 47 sanctions (Session 207)
 - [x] **Corporate Accountability Scores**: ✅ Phase 1 (Session 219): SupplyChainRiskMapper component — automated risk classification of 30 companies (Critical/High/Moderate/Low) cross-referencing forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Industry breakdown, legal landscape, expandable evidence cards. Phase 2: Scoring methodology with weighted factors.

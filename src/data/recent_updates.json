@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-229-whistleblower-guide",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Whistleblower Security Guide — OpSec protocols and secure submission channels",
+    "description": "New WhistleblowerGuide component providing 15 operational security protocols across 5 categories (Identity Protection, Secure Communications, Document Handling, Digital Security, Physical Security), 10 verified submission channels (SecureDrop instances, HRW, Amnesty, ICIJ, ASPI, Citizen Lab, Safeguard Defenders), and 6 legal protection frameworks. Features: risk classification, 3-view analysis (Security Protocols, Submission Channels, Legal Protections), search, copy report. Cross-references 3 datasets. 49 comprehensive tests.",
+    "relatedPage": "/security"
+  },
+  {
     "id": "session-228-economic-impact-analyzer",
     "date": "2026-03-07",
     "category": "new_entry",
