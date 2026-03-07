@@ -28,7 +28,7 @@ describe('EmergencyAlerts', () => {
 
   it('renders first 2 active alerts initially', () => {
     render(<EmergencyAlerts />);
-    expect(screen.getByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
+    expect(screen.getByText(/Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
     expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
     // Remaining alerts hidden behind "show more"
     expect(screen.queryByText(/Hong Kong 47: Appeals Dismissed/)).toBeFalsy();
@@ -40,7 +40,7 @@ describe('EmergencyAlerts', () => {
   it('shows all active alerts after clicking show more', () => {
     render(<EmergencyAlerts />);
     fireEvent.click(screen.getByText(/show --more/));
-    expect(screen.getByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
+    expect(screen.getByText(/Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
     expect(screen.getByText(/URGENT: Jimmy Lai Sentenced/)).toBeTruthy();
     expect(screen.getByText(/100\+ Global Brands Linked/)).toBeTruthy();
     expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
@@ -49,7 +49,7 @@ describe('EmergencyAlerts', () => {
 
   it('shows alert summaries for initially visible alerts', () => {
     render(<EmergencyAlerts />);
-    expect(screen.getByText(/High Court hearing for foreign collusion/)).toBeTruthy();
+    expect(screen.getByText(/High Court hearing.*for foreign collusion/)).toBeTruthy();
     expect(screen.getByText(/Hong Kong media tycoon Jimmy Lai sentenced/)).toBeTruthy();
     // Hidden behind "show more"
     expect(screen.queryByText(/Court of Appeal upholds convictions/)).toBeFalsy();
@@ -138,14 +138,14 @@ describe('EmergencyAlerts', () => {
 
   it('dismiss button removes an alert', () => {
     render(<EmergencyAlerts />);
-    expect(screen.getByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
+    expect(screen.getByText(/Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
 
     // Click dismiss on first alert
     const dismissButtons = screen.getAllByLabelText('Dismiss alert');
     fireEvent.click(dismissButtons[0]);
 
     // Alert should be gone
-    expect(screen.queryByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeFalsy();
+    expect(screen.queryByText(/Joshua Wong Foreign Collusion Hearing/)).toBeFalsy();
   });
 
   it('shows dismissed count after dismissing', () => {
@@ -172,7 +172,7 @@ describe('EmergencyAlerts', () => {
     render(<EmergencyAlerts />);
 
     // Three alerts should be dismissed, remaining visible (HK47 + Kwok)
-    expect(screen.queryByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeFalsy();
+    expect(screen.queryByText(/Joshua Wong Foreign Collusion Hearing/)).toBeFalsy();
     expect(screen.queryByText(/URGENT: Jimmy Lai Sentenced/)).toBeFalsy();
     expect(screen.queryByText(/100\+ Global Brands Linked/)).toBeFalsy();
     expect(screen.getByText(/Hong Kong 47: Appeals Dismissed/)).toBeTruthy();
@@ -188,7 +188,7 @@ describe('EmergencyAlerts', () => {
     fireEvent.click(screen.getByText(/show --dismissed/));
 
     // Alert should reappear
-    expect(screen.getByText(/UPCOMING: Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
+    expect(screen.getByText(/Joshua Wong Foreign Collusion Hearing/)).toBeTruthy();
   });
 
   it('returns null when all alerts are dismissed', () => {

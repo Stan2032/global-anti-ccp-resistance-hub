@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-224-genocide-legal-framework",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Genocide Legal Framework — mapping CCP violations to international law instruments",
+    "description": "New GenocideLegalFramework component mapping 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention, Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). All 5 articles of the Genocide Convention (II(a)-II(e)) analyzed with documented actions, key findings, and cross-referenced evidence from 7 verified datasets. Genocide Recognitions view tracks 10 formal recognitions from governments and tribunals. Features: legal text display, severity classification, evidence cross-referencing, copy report, category filter buttons, search. 44 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-223-media-narrative-tracker",
     "date": "2026-03-07",
     "category": "new_entry",
