@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-227-censorship-circumvention-guide",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Censorship Circumvention Guide — documenting CCP internet censorship and verified tools",
+    "description": "New CensorshipCircumventionGuide component documenting 18 CCP censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluating 10 circumvention tools with safety ratings. Features: risk classification, 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide), search, copy report. Cross-references 3 datasets. 42 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-226-diplomatic-coercion-tracker",
     "date": "2026-03-07",
     "category": "new_entry",

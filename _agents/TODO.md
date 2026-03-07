@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 226)
+> Last Updated: March 7, 2026 (Session 227)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -275,6 +275,7 @@
 - [x] **Media Narrative Tracker**: ✅ Session 223: MediaNarrativeTracker component — tracks 12 CCP propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from 7 datasets. Evidence-based debunks with counter-source links, narrative timeline, frequency classification. Integrated into Intelligence CCP Operations tab. 31 tests.
 - [x] **Genocide Legal Framework**: ✅ Session 224: GenocideLegalFramework component — maps 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention Articles II(a)-II(e), Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). 10 genocide recognition entries (governments + tribunals). Cross-references 7 datasets. Legal text display, severity classification, evidence cross-referencing. Integrated into Intelligence CCP Operations tab. 44 tests.
 - [x] **Diplomatic Coercion Tracker**: ✅ Session 226: DiplomaticCoercionTracker component — maps 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types (Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference). 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes). Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 43 tests.
+- [x] **Censorship Circumvention Guide**: ✅ Session 227: CensorshipCircumventionGuide component — documents 18 CCP internet censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluates 10 circumvention tools with safety ratings (Tor, Signal, Psiphon, Tails, Briar, Proton Mail, obfs4, V2Ray, WireGuard, Lantern). 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide). Cross-references 3 datasets. Integrated into Intelligence CCP Operations tab. 42 tests.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors
