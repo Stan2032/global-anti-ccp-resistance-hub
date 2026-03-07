@@ -191,7 +191,7 @@ const IncidentReportForm = () => {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="p-6">
+      <form onSubmit={handleSubmit} className={`p-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Step 1: Incident Type */}
         {step === 1 && (
           <div className="space-y-4">

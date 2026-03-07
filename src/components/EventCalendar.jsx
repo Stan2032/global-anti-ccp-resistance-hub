@@ -334,7 +334,7 @@ const EventCalendar = () => {
           Add these events to your calendar to never miss an important date.
         </p>
         <div className="flex flex-wrap gap-4">
-          <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors">
+          <button disabled className="bg-[#111820] border border-[#1c2a35] text-slate-400 px-4 py-2 rounded text-sm cursor-not-allowed">
             Subscribe to Calendar (Coming Soon)
           </button>
           <button 

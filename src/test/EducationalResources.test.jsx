@@ -122,7 +122,7 @@ describe('EducationalResources', () => {
     expect(screen.getAllByText('Topics Covered').length).toBeGreaterThanOrEqual(2); // stat card + details
     expect(screen.getByText('Narrative Techniques')).toBeTruthy();
     expect(screen.getByText('Visual Manipulation')).toBeTruthy();
-    expect(screen.getByText('$ start_course')).toBeTruthy();
+    expect(screen.getByText(/Course content coming soon/)).toBeTruthy();
   });
 
   it('shows downloadable resources', () => {

@@ -112,7 +112,7 @@ const ContactForm = () => {
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={`space-y-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Name and Email */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-4"><MessageCircle className="w-4 h-4 inline mr-1" /> Your Details</h3>

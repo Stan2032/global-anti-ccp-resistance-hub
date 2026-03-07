@@ -176,7 +176,7 @@ const NewsDigest = () => {
       )}
 
       {/* Subscription Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={`space-y-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Email */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Mail className="w-4 h-4" /> Email Address</h3>

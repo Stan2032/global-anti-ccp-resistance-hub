@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 229)
+> Last Updated: March 7, 2026 (Session 230)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -53,6 +53,12 @@
 
 - [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). Remaining audit: check ALL components at zoom levels 100%/125%/150% × viewports 375/768/1280px for any other text overlap or truncation issues. *(Originally reported by human, Session 221)*
 - [x] **Placeholder text standardization**: ✅ Session 225 — All 48 placeholder instances across 30 files standardized to `placeholder:text-slate-400` (Tailwind v3+ syntax). Fixed 2 `placeholder-slate-600` violations, converted 19 `placeholder-slate-500` and 9 `placeholder-slate-400` (old syntax). Added 11th design system compliance test preventing reintroduction. Focus colors also standardized: 7 components fixed from non-terminal colors (emerald/green/cyan/amber/red) to terminal palette (`#4afa82`/`#22d3ee`).
+- [x] **Non-functional interactive elements audit & fix**: ✅ Session 230 — Full site audit for broken buttons, forms, and misleading UI. Fixed 9 issues across 8 files:
+  - **EducationalResources.jsx**: "Start Course" button (no onClick) → replaced with "Course content coming soon" notice. Download buttons (no onClick, no URL) → replaced with disabled-style indicators.
+  - **EventCalendar.jsx**: "Subscribe to Calendar" button (styled active but non-functional) → changed to disabled style with `cursor-not-allowed`.
+  - **VolunteerSignup.jsx, ContactForm.jsx, NewsDigest.jsx, IncidentReportForm.jsx**: Forms appear fully functional but data goes nowhere when backend not connected → forms now visually disabled (`opacity-50 pointer-events-none`) when no backend, with existing "Coming Soon" warning.
+  - **ReportSighting.jsx**: Form always non-functional (no backend integration at all) → form content disabled with `opacity-50 pointer-events-none`.
+  - **ProfilesIndex.jsx**: Unbuilt profile cards look clickable → increased opacity reduction to 50% with `cursor-default`. *(Originally reported by human, Session 230)*
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)

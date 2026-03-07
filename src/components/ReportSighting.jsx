@@ -207,7 +207,7 @@ const ReportSighting = () => {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-6 opacity-50 pointer-events-none">
         <>
           {/* Step 1: Select Type */}
           {step === 1 && (
