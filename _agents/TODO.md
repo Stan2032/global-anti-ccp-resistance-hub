@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 224)
+> Last Updated: March 7, 2026 (Session 225)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -52,6 +52,7 @@
 > 47 completed items covering: mobile responsiveness, dark mode, sort/filter, dashboard usability, breadcrumbs, recent updates, region filters, contrast overhaul, deep usability, per-source loading, event countdown, alert sharing, data hygiene, live statistics JSON extraction, real data export, design system enforcement, URL validation, no-hashtags policy, profile page tests, 100% page test coverage, cross-JSON consistency, accessibility audit, keyboard navigation, performance resilience, sitemap freshness, route integrity, defensive coding, meta-test coverage, security audit, performance budget, ARIA live regions, data API, content analytics, API docs, data changelog, influence network, data comparison, advocacy letters, case timeline, international response tracker, sanction impact analyzer, HR org directory, overseas police stations, source diversity, prisoner dashboard, legal case tracker, cross-dataset insights, data integrity monitor.
 
 - [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). Remaining audit: check ALL components at zoom levels 100%/125%/150% × viewports 375/768/1280px for any other text overlap or truncation issues. *(Originally reported by human, Session 221)*
+- [x] **Placeholder text standardization**: ✅ Session 225 — All 48 placeholder instances across 30 files standardized to `placeholder:text-slate-400` (Tailwind v3+ syntax). Fixed 2 `placeholder-slate-600` violations, converted 19 `placeholder-slate-500` and 9 `placeholder-slate-400` (old syntax). Added 11th design system compliance test preventing reintroduction. Focus colors also standardized: 7 components fixed from non-terminal colors (emerald/green/cyan/amber/red) to terminal palette (`#4afa82`/`#22d3ee`).
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
