@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-226-diplomatic-coercion-tracker",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Diplomatic Coercion Tracker — mapping CCP economic & diplomatic coercion globally",
+    "description": "New DiplomaticCoercionTracker component tracking 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types: Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference. Features: severity classification, 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes), search, copy report. Cross-references 4 datasets. 43 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-224-genocide-legal-framework",
     "date": "2026-03-07",
     "category": "new_entry",
