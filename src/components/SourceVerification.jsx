@@ -290,7 +290,7 @@ const SourceVerification = () => {
               placeholder="Search sources by name or topic..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 pl-10 text-white placeholder:text-slate-400 focus:outline-none focus:border-green-500"
+              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 pl-10 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
             />
             <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
           </div>
