@@ -7,27 +7,33 @@
  *   VITE_SUPABASE_ANON_KEY — the public "anon" key (safe to expose in client code)
  *
  * ⚠️  NEVER use the service_role key here — it bypasses RLS and must stay server-side.
- *     The anon key is the shorter one labeled "anon / public" in the Supabase dashboard.
+ *     The anon key is the shorter one labelled "anon / public" in the Supabase dashboard.
  *
  * Usage:
  *   import supabase from '../services/supabaseClient';
  *   const { data, error } = await supabase.from('table').select('*');
  */
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+/** Decoded JWT payload shape (minimal fields we inspect). */
+interface JwtPayload {
+  role?: string;
+  [key: string]: unknown;
+}
+
+const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseAnonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 /**
  * Decode a JWT payload without verifying the signature.
  * Returns the parsed JSON payload, or null on failure.
  */
-function decodeJwtPayload(token) {
+function decodeJwtPayload(token: string): JwtPayload | null {
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return null;
     const payload = atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'));
-    return JSON.parse(payload);
+    return JSON.parse(payload) as JwtPayload;
   } catch {
     return null;
   }
@@ -38,7 +44,7 @@ function decodeJwtPayload(token) {
  * These keys have `"role": "service_role"` in the JWT payload and must NEVER
  * be used in browser code — they bypass Row Level Security.
  */
-export function isServiceRoleKey(key) {
+export function isServiceRoleKey(key: string | undefined | null): boolean {
   if (!key) return false;
   const payload = decodeJwtPayload(key);
   return payload?.role === 'service_role';
@@ -52,27 +58,23 @@ if (supabaseAnonKey && isServiceRoleKey(supabaseAnonKey)) {
   console.error(
     '[Supabase] ❌ CRITICAL: You have set VITE_SUPABASE_ANON_KEY to the service_role (secret) key!\n' +
     'This key bypasses Row Level Security and must NEVER be exposed in browser code.\n\n' +
-    'FIX: In your Supabase Dashboard → Settings → API, copy the key labeled "anon / public"\n' +
-    '(NOT the one labeled "service_role / secret") and update your environment variable.\n\n' +
+    'FIX: In your Supabase Dashboard → Settings → API, copy the key labelled "anon / public"\n' +
+    '(NOT the one labelled "service_role / secret") and update your environment variable.\n\n' +
     'The Supabase client has been disabled to protect your data.'
   );
 }
 
-/**
- * Returns true when the service_role key was accidentally used instead of anon.
- */
-export const isServiceRoleKeyError = () => _serviceRoleError;
+/** Returns true when the service_role key was accidentally used instead of anon. */
+export const isServiceRoleKeyError = (): boolean => _serviceRoleError;
 
 // Only create the client if credentials are configured AND the key is safe.
 // This allows the site to build and run without Supabase (static-only mode).
-const supabase =
+const supabase: SupabaseClient | null =
   supabaseUrl && supabaseAnonKey && !_serviceRoleError
     ? createClient(supabaseUrl, supabaseAnonKey)
     : null;
 
-/**
- * Returns true when Supabase credentials are configured and the client is available.
- */
-export const isSupabaseConfigured = () => supabase !== null;
+/** Returns true when Supabase credentials are configured and the client is available. */
+export const isSupabaseConfigured = (): boolean => supabase !== null;
 
 export default supabase;

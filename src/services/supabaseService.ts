@@ -10,23 +10,66 @@
  *
  * @module supabaseService
  */
-import supabase, { isSupabaseConfigured } from './supabaseClient.js';
+import supabase, { isSupabaseConfigured } from './supabaseClient';
 import { encryptSubmission } from '../utils/encryption';
 
-/**
- * @typedef {Object} SupabaseResult
- * @property {Object|Object[]|null} data - Returned row(s), or null on error
- * @property {string|null} error - Error message, or null on success
- */
+/** Standard result returned by write operations. */
+export interface SupabaseResult {
+  /** Returned row(s), or null on error */
+  data: Record<string, unknown> | Record<string, unknown>[] | null;
+  /** Error message, or null on success */
+  error: string | null;
+}
 
-/**
- * @typedef {Object} PaginatedResult
- * @property {Object[]|null} data - Returned rows, or null on error
- * @property {number} [count] - Total row count (for pagination)
- * @property {string|null} error - Error message, or null on success
- */
+/** Paginated result returned by read operations. */
+export interface PaginatedResult {
+  /** Returned rows, or null on error */
+  data: Record<string, unknown>[] | null;
+  /** Total row count (for pagination) */
+  count?: number | null;
+  /** Error message, or null on success */
+  error: string | null;
+}
 
-const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
+/** Incident report submission payload. */
+export interface IncidentReport {
+  title: string;
+  description: string;
+  incidentType?: string;
+  location?: string;
+  dateOfIncident?: string;
+  severity?: 'critical' | 'high' | 'medium' | 'low';
+  sourceUrl?: string;
+  contactEmail?: string;
+}
+
+/** Volunteer sign-up submission payload. */
+export interface VolunteerData {
+  name: string;
+  email: string;
+  skills?: string[];
+  languages?: string[];
+  availability?: string;
+  message?: string;
+}
+
+/** Contact message submission payload. */
+export interface ContactMessage {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+}
+
+/** Pagination and sorting options for fetchRows. */
+export interface FetchRowsOptions {
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  ascending?: boolean;
+}
+
+const NOT_CONFIGURED: SupabaseResult = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
 
 // ─── INCIDENT REPORTS ────────────────────────────────────────────────
 
@@ -34,19 +77,8 @@ const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VIT
  * Submit an incident report.
  * Writes to the `incident_reports` table (see SUPABASE_SETUP.md for schema).
  * PII fields (contact_email, description, location) are encrypted before storage.
- *
- * @param {Object} report - Incident report data
- * @param {string} report.title - Report title
- * @param {string} report.description - Incident description
- * @param {string} [report.incidentType] - Type of incident
- * @param {string} [report.location] - Location of incident
- * @param {string} [report.dateOfIncident] - Date of incident (ISO 8601)
- * @param {'critical'|'high'|'medium'|'low'} [report.severity='medium'] - Severity level
- * @param {string} [report.sourceUrl] - Source URL for verification
- * @param {string} [report.contactEmail] - Reporter's email (encrypted)
- * @returns {Promise<SupabaseResult>} Inserted row or error
  */
-export async function submitIncidentReport(report) {
+export async function submitIncidentReport(report: IncidentReport): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -63,7 +95,7 @@ export async function submitIncidentReport(report) {
 
   const encrypted = await encryptSubmission(row, ['contact_email', 'description', 'location']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('incident_reports')
     .insert([encrypted])
     .select();
@@ -76,17 +108,8 @@ export async function submitIncidentReport(report) {
 /**
  * Submit a volunteer sign-up.
  * PII fields (name, email, message) are encrypted before storage.
- *
- * @param {Object} volunteer - Volunteer data
- * @param {string} volunteer.name - Volunteer's name (encrypted)
- * @param {string} volunteer.email - Volunteer's email (encrypted)
- * @param {string[]} [volunteer.skills] - List of skills
- * @param {string[]} [volunteer.languages] - Languages spoken
- * @param {string} [volunteer.availability] - Availability description
- * @param {string} [volunteer.message] - Personal message (encrypted)
- * @returns {Promise<SupabaseResult>} Inserted row or error
  */
-export async function submitVolunteerSignup(volunteer) {
+export async function submitVolunteerSignup(volunteer: VolunteerData): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -101,7 +124,7 @@ export async function submitVolunteerSignup(volunteer) {
 
   const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('volunteer_signups')
     .insert([encrypted])
     .select();
@@ -114,14 +137,11 @@ export async function submitVolunteerSignup(volunteer) {
 /**
  * Subscribe to the newsletter.
  * Uses upsert to avoid duplicate entries for the same email.
- *
- * @param {string} email - Subscriber's email address
- * @returns {Promise<SupabaseResult>} Upserted row or error
  */
-export async function subscribeNewsletter(email) {
+export async function subscribeNewsletter(email: string): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('newsletter_subscribers')
     .upsert([{ email }], {
       onConflict: 'email',
@@ -137,15 +157,8 @@ export async function subscribeNewsletter(email) {
 /**
  * Submit a contact message.
  * PII fields (name, email, message) are encrypted before storage.
- *
- * @param {Object} message - Contact message data
- * @param {string} message.name - Sender's name (encrypted)
- * @param {string} message.email - Sender's email (encrypted)
- * @param {string} [message.subject] - Message subject
- * @param {string} message.message - Message body (encrypted)
- * @returns {Promise<SupabaseResult>} Inserted row or error
  */
-export async function submitContactMessage(message) {
+export async function submitContactMessage(message: ContactMessage): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -157,7 +170,7 @@ export async function submitContactMessage(message) {
 
   const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('contact_messages')
     .insert([encrypted])
     .select();
@@ -170,22 +183,17 @@ export async function submitContactMessage(message) {
 /**
  * Fetch a paginated list of rows from any public table.
  * Caller is responsible for RLS policies allowing this.
- *
- * @param {string} table - Supabase table name
- * @param {Object} [options] - Pagination and sorting options
- * @param {number} [options.page=1] - Page number (1-based)
- * @param {number} [options.pageSize=25] - Rows per page
- * @param {string} [options.orderBy='created_at'] - Column to sort by
- * @param {boolean} [options.ascending=false] - Sort direction
- * @returns {Promise<PaginatedResult>} Paginated rows with count, or error
  */
-export async function fetchRows(table, { page = 1, pageSize = 25, orderBy = 'created_at', ascending = false } = {}) {
+export async function fetchRows(
+  table: string,
+  { page = 1, pageSize = 25, orderBy = 'created_at', ascending = false }: FetchRowsOptions = {}
+): Promise<PaginatedResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  const { data, error, count } = await supabase
+  const { data, error, count } = await supabase!
     .from(table)
     .select('*', { count: 'exact' })
     .order(orderBy, { ascending })

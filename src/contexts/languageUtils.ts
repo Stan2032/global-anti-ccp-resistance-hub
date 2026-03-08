@@ -6,7 +6,7 @@
  *
  * @module languageUtils
  */
-import React from 'react';
+import React, { type ComponentType } from 'react';
 import { EastTurkestanFlag, TibetanFlag } from '../components/FlagIcons';
 
 // Import comprehensive language files
@@ -19,30 +19,101 @@ import jaTranslations from '../locales/ja.json';
 import ugTranslations from '../locales/ug.json';
 import boTranslations from '../locales/bo.json';
 
-/**
- * @typedef {Object} LanguageEntry
- * @property {string} name - Display name of the language
- * @property {string} [flag] - Emoji flag character
- * @property {import('react').ComponentType} [FlagIcon] - Custom flag component (for non-emoji flags)
- * @property {boolean} [rtl] - Whether the language is right-to-left
- * @property {Object} localeData - Full locale JSON translations
- * @property {Object<string, string>} nav - Navigation label translations
- * @property {Object<string, string>} common - Common UI label translations
- * @property {Object<string, string>} alerts - Security alert translations
- * @property {Object<string, string>} prisoners - Prisoner database translations
- */
+/** Navigation label translations. */
+export interface NavigationLabels {
+  dashboard: string;
+  intelligence: string;
+  directory: string;
+  prisoners: string;
+  threats: string;
+  takeAction: string;
+  campaigns: string;
+  community: string;
+  tactics: string;
+  education: string;
+  security: string;
+  resources: string;
+}
 
-/**
- * @typedef {Object} LanguageState
- * @property {string} language - Current language code (e.g., 'en', 'zh-CN')
- * @property {(lang: string) => void} setLanguage - Change the active language
- * @property {(key: string) => string} t - Translation function (dot-notation keys)
- * @property {LanguageEntry} translations - Current language translations
- */
+/** Common UI label translations. */
+export interface CommonLabels {
+  search: string;
+  filter: string;
+  all: string;
+  critical: string;
+  high: string;
+  medium: string;
+  low: string;
+  learnMore: string;
+  takeAction: string;
+  share: string;
+  donate: string;
+  signPetition: string;
+  contactRep: string;
+  viewDetails: string;
+  close: string;
+  submit: string;
+  cancel: string;
+  back: string;
+  next: string;
+}
 
-/** @type {Object<string, LanguageEntry>} */
+/** Security alert translations. */
+export interface AlertLabels {
+  securityWarning: string;
+  useVPN: string;
+  inChina: string;
+  emergency: string;
+  reportIncident: string;
+}
+
+/** Prisoner database translations. */
+export interface PrisonerLabels {
+  title: string;
+  detained: string;
+  imprisoned: string;
+  disappeared: string;
+  released: string;
+  deceased: string;
+  healthConcerns: string;
+  tortureDocumented: string;
+}
+
+/** A single language entry containing display metadata and translations. */
+export interface LanguageEntry {
+  /** Display name of the language */
+  name: string;
+  /** Emoji flag character */
+  flag?: string;
+  /** Custom flag component (for non-emoji flags) */
+  FlagIcon?: ComponentType;
+  /** Whether the language is right-to-left */
+  rtl?: boolean;
+  /** Full locale JSON translations */
+  localeData: Record<string, unknown>;
+  /** Navigation label translations */
+  nav: NavigationLabels;
+  /** Common UI label translations */
+  common: CommonLabels;
+  /** Security alert translations */
+  alerts: AlertLabels;
+  /** Prisoner database translations */
+  prisoners: PrisonerLabels;
+}
+
+/** State exposed by the LanguageProvider. */
+export interface LanguageState {
+  /** Current language code (e.g. 'en', 'zh-CN') */
+  language: string;
+  /** Change the active language */
+  setLanguage: (lang: string) => void;
+  /** Translation function (dot-notation keys) */
+  t: (key: string) => string;
+  /** Current language translations */
+  translations: LanguageEntry;
+}
 // Translations for key UI elements and critical content
-export const translations = {
+export const translations: Record<string, LanguageEntry> = {
   en: {
     name: 'English',
     flag: '🇬🇧',
@@ -503,17 +574,14 @@ export const translations = {
 };
 
 // Create a context for language
-/** @type {import('react').Context<Partial<LanguageState>>} */
-export const LanguageContext = React.createContext({
+export const LanguageContext = React.createContext<LanguageState>({
   language: 'en',
   setLanguage: () => {},
-  t: (key) => key,
+  t: (key: string) => key,
   translations: translations.en
 });
 
 /**
  * Hook to access the current language state and translation function.
- *
- * @returns {LanguageState} Language state with t() translation function
  */
-export const useLanguage = () => React.useContext(LanguageContext);
+export const useLanguage = (): LanguageState => React.useContext(LanguageContext);

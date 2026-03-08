@@ -12,7 +12,7 @@ import { resolve } from 'path';
 const SERVICES_DIR = resolve(__dirname, '../services');
 
 describe('Push Service — module integrity', () => {
-  const content = readFileSync(resolve(SERVICES_DIR, 'pushService.js'), 'utf-8');
+  const content = readFileSync(resolve(SERVICES_DIR, 'pushService.ts'), 'utf-8');
 
   it('exports isPushSupported function', () => {
     expect(content).toContain('export function isPushSupported');

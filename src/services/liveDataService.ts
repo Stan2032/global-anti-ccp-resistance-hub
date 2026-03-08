@@ -11,39 +11,98 @@
  * @module liveDataService
  */
 
-/**
- * @typedef {Object} FeedItem
- * @property {string} id - Unique identifier (source-index-timestamp)
- * @property {string} title - Article title
- * @property {string} link - URL to the article
- * @property {string} description - First 300 chars of cleaned article text
- * @property {string} pubDate - ISO 8601 publication date
- * @property {string} source - Feed source key (e.g., "bbc", "hrw")
- * @property {number} relevanceScore - Relevance score based on keyword matching
- */
+/** A single feed item parsed from an RSS/Atom source. */
+export interface FeedItem {
+  /** Unique identifier (source-index-timestamp) */
+  id: string;
+  /** Article title */
+  title: string;
+  /** URL to the article */
+  link: string;
+  /** First 300 chars of cleaned article text */
+  description: string;
+  /** ISO 8601 publication date */
+  pubDate: string;
+  /** Feed source key (e.g. "bbc", "hrw") */
+  source: string;
+  /** Relevance score based on keyword matching */
+  relevanceScore: number;
+}
 
-/**
- * @typedef {Object} FeedSourceMeta
- * @property {string} name - Short name
- * @property {string} fullName - Full organisation name
- * @property {string} url - Website URL
- * @property {string} description - Brief description
- * @property {'high'|'medium'|'low'} reliability - Reliability rating
- */
+/** Metadata for a feed source. */
+export interface FeedSourceMeta {
+  /** Short name */
+  name: string;
+  /** Full organisation name */
+  fullName: string;
+  /** Website URL */
+  url: string;
+  /** Brief description */
+  description: string;
+  /** Reliability rating */
+  reliability: 'high' | 'medium' | 'low';
+}
 
-/**
- * @typedef {Object} PlatformStatistics
- * @property {number} verifiedOrganizations - Count of verified human rights organisations
- * @property {number} detentionFacilities - Estimated count of detention facilities
- * @property {number|null} activeCampaigns - Active campaigns count (null if not tracked)
- * @property {number} politicalPrisoners - Count of documented political prisoners
- * @property {string} lastUpdated - Date of last update (YYYY-MM-DD)
- * @property {string} dataNote - Disclaimer about the data
- * @property {Object<string, string>} sources - Source descriptions per category
- */
+/** Platform-level statistics derived from verified data files. */
+export interface PlatformStatistics {
+  /** Count of verified human rights organisations */
+  verifiedOrganizations: number;
+  /** Estimated count of detention facilities */
+  detentionFacilities: number;
+  /** Active campaigns count (null if not tracked) */
+  activeCampaigns: number | null;
+  /** Count of documented political prisoners */
+  politicalPrisoners: number;
+  /** Date of last update (YYYY-MM-DD) */
+  lastUpdated: string;
+  /** Disclaimer about the data */
+  dataNote: string;
+  /** Source descriptions per category */
+  sources: Record<string, string>;
+}
+
+/** Shape returned by the RSS2JSON API. */
+interface Rss2JsonResponse {
+  status: string;
+  items?: Array<{
+    title?: string;
+    description?: string;
+    link?: string;
+    pubDate?: string;
+  }>;
+}
+
+/** Shape of a political prisoner record from the research JSON. */
+interface PrisonerResearchRecord {
+  input: string;
+  error?: unknown;
+  output?: {
+    prisoner_name: string;
+    status?: string;
+    sentence?: string;
+    location?: string;
+    latest_news?: string;
+    source_url?: string;
+    confidence?: string;
+    last_verified?: string;
+  };
+}
+
+/** Normalised political prisoner returned by fetchPoliticalPrisoners. */
+export interface NormalisedPrisoner {
+  id: number;
+  name: string;
+  status: string;
+  sentence: string;
+  location: string;
+  description: string;
+  source: string;
+  confidence: string;
+  lastUpdated: string;
+}
 
 // RSS Feed URLs (using CORS proxies for client-side fetching)
-const RSS_FEEDS = {
+const RSS_FEEDS: Record<string, string> = {
   icij: 'https://www.icij.org/feed/',
   rfa: 'https://www.rfa.org/english/news/rss2.xml',
   hkfp: 'https://hongkongfp.com/feed/',
@@ -62,7 +121,7 @@ const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
 const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 // Keywords for relevance scoring
-const CCP_KEYWORDS = [
+const CCP_KEYWORDS: string[] = [
   'china', 'chinese', 'ccp', 'beijing', 'xi jinping', 'communist party',
   'hong kong', 'taiwan', 'uyghur', 'xinjiang', 'tibet', 'tibetan',
   'human rights', 'detention', 'surveillance', 'censorship', 'repression',
@@ -74,19 +133,14 @@ const CCP_KEYWORDS = [
 ];
 
 // Sources whose content is always relevant (no keyword filtering needed)
-const ALWAYS_RELEVANT_SOURCES = ['hkfp', 'rfa', 'hrw', 'amnesty', 'cpj'];
+const ALWAYS_RELEVANT_SOURCES: string[] = ['hkfp', 'rfa', 'hrw', 'amnesty', 'cpj'];
 
-/**
- * Parse RSS/Atom XML feed
- * @param {string} xmlText - Raw XML text of the feed
- * @param {string} sourceName - Source identifier key
- * @returns {FeedItem[]} Parsed and filtered feed items
- */
-function parseRSSFeed(xmlText, sourceName) {
+/** Parse RSS/Atom XML feed. */
+function parseRSSFeed(xmlText: string, sourceName: string): FeedItem[] {
   const parser = new DOMParser();
   const doc = parser.parseFromString(xmlText, 'text/xml');
   
-  const items = [];
+  const items: FeedItem[] = [];
   
   // Try RSS format first
   let entries = doc.querySelectorAll('item');
@@ -135,30 +189,23 @@ function parseRSSFeed(xmlText, sourceName) {
   return items;
 }
 
-/**
- * Clean HTML tags from text
- * @param {string} html - HTML string to clean
- * @returns {string} Plain text content
- */
-function cleanHTML(html) {
+/** Clean HTML tags from text. */
+function cleanHTML(html: string): string {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || '';
 }
 
 /**
- * Fetch RSS feed via RSS2JSON API (returns JSON, no XML parsing needed)
- * @param {string} feedUrl - RSS feed URL
- * @param {string} sourceName - Source identifier key
- * @returns {Promise<FeedItem[]>} Parsed feed items
+ * Fetch RSS feed via RSS2JSON API (returns JSON, no XML parsing needed).
  */
-async function fetchViaRSS2JSON(feedUrl, sourceName) {
+async function fetchViaRSS2JSON(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
   const response = await fetch(RSS2JSON_API + encodeURIComponent(feedUrl));
   if (!response.ok) throw new Error(`RSS2JSON HTTP ${response.status}`);
   
-  const data = await response.json();
+  const data: Rss2JsonResponse = await response.json();
   if (data.status !== 'ok' || !data.items) throw new Error('RSS2JSON invalid response');
   
-  const items = [];
+  const items: FeedItem[] = [];
   data.items.slice(0, 20).forEach((item, index) => {
     const title = item.title || '';
     const description = cleanHTML(item.description || '');
@@ -189,13 +236,8 @@ async function fetchViaRSS2JSON(feedUrl, sourceName) {
   return items;
 }
 
-/**
- * Fetch RSS feed with CORS proxy (XML parsing fallback)
- * @param {string} feedUrl - RSS feed URL
- * @param {string} sourceName - Source identifier key
- * @returns {Promise<FeedItem[]>} Parsed feed items
- */
-async function fetchViaCORSProxy(feedUrl, sourceName) {
+/** Fetch RSS feed with CORS proxy (XML parsing fallback). */
+async function fetchViaCORSProxy(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
   const response = await fetch(CORS_PROXY + encodeURIComponent(feedUrl), {
     headers: {
       'Accept': 'application/xml, text/xml, application/rss+xml',
@@ -211,41 +253,35 @@ async function fetchViaCORSProxy(feedUrl, sourceName) {
  * Fetch RSS feed with fallback strategies:
  * 1. RSS2JSON API (most reliable, purpose-built for RSS)
  * 2. allorigins.win CORS proxy (fallback)
- * @param {string} feedUrl - RSS feed URL
- * @param {string} sourceName - Source identifier key
- * @returns {Promise<FeedItem[]>} Parsed feed items (empty array on failure)
  */
-async function fetchRSSFeed(feedUrl, sourceName) {
+async function fetchRSSFeed(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
   // Strategy 1: RSS2JSON API
   try {
     const items = await fetchViaRSS2JSON(feedUrl, sourceName);
     return items;
-  } catch (e) {
-    console.warn(`RSS2JSON failed for ${sourceName}, trying CORS proxy:`, e.message);
+  } catch (e: unknown) {
+    console.warn(`RSS2JSON failed for ${sourceName}, trying CORS proxy:`, (e as Error).message);
   }
   
   // Strategy 2: CORS proxy
   try {
     return await fetchViaCORSProxy(feedUrl, sourceName);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`Error fetching ${sourceName} feed (all strategies failed):`, error);
     return [];
   }
 }
 
-/**
- * Fetch all RSS feeds and combine results, sorted by relevance then date.
- * @returns {Promise<FeedItem[]>} Combined and sorted feed items from all sources
- */
-export async function fetchAllFeeds() {
+/** Fetch all RSS feeds and combine results, sorted by relevance then date. */
+export async function fetchAllFeeds(): Promise<FeedItem[]> {
   const feedPromises = Object.entries(RSS_FEEDS).map(([name, url]) =>
     fetchRSSFeed(url, name)
   );
   
   const results = await Promise.allSettled(feedPromises);
   
-  const allItems = results
-    .filter(result => result.status === 'fulfilled')
+  const allItems: FeedItem[] = results
+    .filter((result): result is PromiseFulfilledResult<FeedItem[]> => result.status === 'fulfilled')
     .flatMap(result => result.value);
   
   // Sort by relevance score and date
@@ -253,7 +289,7 @@ export async function fetchAllFeeds() {
     if (b.relevanceScore !== a.relevanceScore) {
       return b.relevanceScore - a.relevanceScore;
     }
-    return new Date(b.pubDate) - new Date(a.pubDate);
+    return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
   });
   
   return allItems;
@@ -263,11 +299,11 @@ export async function fetchAllFeeds() {
  * Fetch feeds progressively — calls onItems(items) as each source finishes.
  * Also calls onSourceDone(sourceName) when each source completes (even if 0 items).
  * This allows the UI to show articles as they arrive and track per-source progress.
- * @param {(items: FeedItem[]) => void} onItems - Callback receiving new items as they arrive
- * @param {(sourceName: string) => void} [onSourceDone] - Callback when a source finishes loading
- * @returns {Promise<void>}
  */
-export async function fetchFeedsProgressively(onItems, onSourceDone) {
+export async function fetchFeedsProgressively(
+  onItems: (items: FeedItem[]) => void,
+  onSourceDone?: (sourceName: string) => void
+): Promise<void> {
   const feedPromises = Object.entries(RSS_FEEDS).map(async ([name, url]) => {
     const items = await fetchRSSFeed(url, name);
     if (items.length > 0) {
@@ -283,31 +319,32 @@ export async function fetchFeedsProgressively(onItems, onSourceDone) {
 }
 
 /**
- * Fetch political prisoners data from verified JSON research file
+ * Fetch political prisoners data from verified JSON research file.
  * Source: CECC Political Prisoner Database, HRW, Amnesty International, CPJ
  * Data file: src/data/political_prisoners_research.json (63 verified entries)
- * @returns {Promise<Array<{id: number, name: string, status: string, sentence: string, location: string, description: string, source: string, confidence: string, lastUpdated: string}>>}
  */
-export async function fetchPoliticalPrisoners() {
-  const { default: prisonersData } = await import('../data/political_prisoners_research.json');
+export async function fetchPoliticalPrisoners(): Promise<NormalisedPrisoner[]> {
+  const { default: prisonersData } = await import('../data/political_prisoners_research.json') as {
+    default: { results: PrisonerResearchRecord[] };
+  };
   
   return prisonersData.results
-    .filter(r => !r.error && r.output)
-    .map((r, index) => ({
+    .filter((r: PrisonerResearchRecord) => !r.error && r.output)
+    .map((r: PrisonerResearchRecord, index: number) => ({
       id: index + 1,
-      name: r.output.prisoner_name,
-      status: r.output.status?.toLowerCase() || 'unknown',
-      sentence: r.output.sentence || '',
-      location: r.output.location || '',
-      description: r.output.latest_news || r.input,
-      source: r.output.source_url || 'https://www.cecc.gov/victims',
-      confidence: r.output.confidence || 'MEDIUM',
-      lastUpdated: r.output.last_verified || '',
+      name: r.output!.prisoner_name,
+      status: r.output!.status?.toLowerCase() || 'unknown',
+      sentence: r.output!.sentence || '',
+      location: r.output!.location || '',
+      description: r.output!.latest_news || r.input,
+      source: r.output!.source_url || 'https://www.cecc.gov/victims',
+      confidence: r.output!.confidence || 'MEDIUM',
+      lastUpdated: r.output!.last_verified || '',
     }));
 }
 
 /**
- * Fetch platform statistics derived from verified data files
+ * Fetch platform statistics derived from verified data files.
  *
  * Numbers are derived from actual data in the repository's JSON files,
  * not from a live database. They represent documented/verified entries.
@@ -319,9 +356,8 @@ export async function fetchPoliticalPrisoners() {
  *   (Source: ASPI, https://xjdp.aspi.org.au/)
  * - Verified organisations: human_rights_orgs_research.json (49 documented)
  * - Active campaigns: Illustrative target — no live tracking
- * @returns {Promise<PlatformStatistics>}
  */
-export async function fetchStatistics() {
+export async function fetchStatistics(): Promise<PlatformStatistics> {
   return {
     verifiedOrganizations: 49,
     detentionFacilities: 380,
@@ -337,11 +373,8 @@ export async function fetchStatistics() {
   };
 }
 
-/**
- * Source metadata for all feed sources.
- * @type {Object<string, FeedSourceMeta>}
- */
-export const FEED_SOURCES = {
+/** Source metadata for all feed sources. */
+export const FEED_SOURCES: Record<string, FeedSourceMeta> = {
   icij: {
     name: 'ICIJ',
     fullName: 'International Consortium of Investigative Journalists',
@@ -353,7 +386,7 @@ export const FEED_SOURCES = {
     name: 'Radio Free Asia',
     fullName: 'Radio Free Asia',
     url: 'https://www.rfa.org',
-    description: 'Independent news organization covering Asia',
+    description: 'Independent news organisation covering Asia',
     reliability: 'high',
   },
   hkfp: {
@@ -374,7 +407,7 @@ export const FEED_SOURCES = {
     name: 'HRW',
     fullName: 'Human Rights Watch',
     url: 'https://www.hrw.org',
-    description: 'International human rights organization',
+    description: 'International human rights organisation',
     reliability: 'high',
   },
   amnesty: {
@@ -388,7 +421,7 @@ export const FEED_SOURCES = {
     name: 'CPJ',
     fullName: 'Committee to Protect Journalists',
     url: 'https://cpj.org',
-    description: 'Press freedom advocacy organization',
+    description: 'Press freedom advocacy organisation',
     reliability: 'high',
   },
   guardian: {

@@ -17,10 +17,20 @@
 
 const API_BASE = '/api/v1/push';
 
-/**
- * Convert a base64 string to a Uint8Array for applicationServerKey
- */
-function urlBase64ToUint8Array(base64String) {
+/** Result of a push subscribe/unsubscribe operation. */
+export interface PushResult {
+  success: boolean;
+  error?: string;
+}
+
+/** Current push subscription status. */
+export interface PushStatus {
+  subscribed: boolean;
+  endpoint?: string | null;
+}
+
+/** Convert a base64 string to a Uint8Array for applicationServerKey. */
+function urlBase64ToUint8Array(base64String: string): Uint8Array {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
   const rawData = atob(base64);
@@ -31,10 +41,8 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-/**
- * Check if push notifications are supported
- */
-export function isPushSupported() {
+/** Check if push notifications are supported. */
+export function isPushSupported(): boolean {
   return (
     typeof window !== 'undefined' &&
     'serviceWorker' in navigator &&
@@ -43,20 +51,16 @@ export function isPushSupported() {
   );
 }
 
-/**
- * Get the VAPID public key from environment
- */
-function getVapidPublicKey() {
+/** Get the VAPID public key from the environment. */
+function getVapidPublicKey(): string | null {
   // eslint-disable-next-line no-undef
   return import.meta?.env?.VITE_VAPID_PUBLIC_KEY || null;
 }
 
-/**
- * Subscribe to push notifications
- * @param {string[]} categories - Notification categories to subscribe to
- * @returns {Promise<{success: boolean, error?: string}>}
- */
-export async function subscribeToPush(categories = ['critical', 'sanctions', 'data', 'action']) {
+/** Subscribe to push notifications. */
+export async function subscribeToPush(
+  categories: string[] = ['critical', 'sanctions', 'data', 'action']
+): Promise<PushResult> {
   if (!isPushSupported()) {
     return { success: false, error: 'Push notifications not supported in this browser' };
   }
@@ -94,21 +98,18 @@ export async function subscribeToPush(categories = ['critical', 'sanctions', 'da
     });
 
     if (!response.ok) {
-      const data = await response.json().catch(() => ({}));
-      return { success: false, error: data.error || `Server error: ${response.status}` };
+      const data: Record<string, unknown> = await response.json().catch(() => ({}));
+      return { success: false, error: (data.error as string) || `Server error: ${response.status}` };
     }
 
     return { success: true };
-  } catch (err) {
-    return { success: false, error: err.message };
+  } catch (err: unknown) {
+    return { success: false, error: (err as Error).message };
   }
 }
 
-/**
- * Unsubscribe from push notifications
- * @returns {Promise<{success: boolean, error?: string}>}
- */
-export async function unsubscribeFromPush() {
+/** Unsubscribe from push notifications. */
+export async function unsubscribeFromPush(): Promise<PushResult> {
   if (!isPushSupported()) {
     return { success: false, error: 'Push notifications not supported' };
   }
@@ -130,16 +131,13 @@ export async function unsubscribeFromPush() {
     }
 
     return { success: true };
-  } catch (err) {
-    return { success: false, error: err.message };
+  } catch (err: unknown) {
+    return { success: false, error: (err as Error).message };
   }
 }
 
-/**
- * Get current push subscription status
- * @returns {Promise<{subscribed: boolean, endpoint?: string}>}
- */
-export async function getPushStatus() {
+/** Get current push subscription status. */
+export async function getPushStatus(): Promise<PushStatus> {
   if (!isPushSupported()) {
     return { subscribed: false };
   }
