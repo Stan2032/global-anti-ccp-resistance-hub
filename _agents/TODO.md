@@ -357,7 +357,7 @@
 ### User Requests (to be prioritized)
 - [ ] ~~Email newsletter subscription~~ — **DEFERRED by owner** (decide later)
 - [ ] RSS feed for platform updates
-- [ ] Embeddable widgets for other websites
+- [x] ~~Embeddable widgets for other websites~~ ✅ (Session 234: EmbedWidget component — prisoner cards, statistics badges, alert banners with inline HTML/CSS, no JS required. CC BY 4.0 attribution auto-included.)
 - [ ] Browser extension for quick access
 - [ ] Desktop app (Electron)
 - [ ] Voice assistant integration
