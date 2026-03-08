@@ -3,16 +3,29 @@
  * Used by profile pages, ProfilesIndex, EventCountdown, EmergencyAlerts, and DataFreshnessIndicator.
  */
 
-/**
- * Calculate age from a birth date string.
- * Handles formats: "December 8, 1947", "1964" (year only), "April 25, 1989"
- * If a death date is provided, calculates age at death instead.
- *
- * @param {string} birthDate - Birth date string
- * @param {string} [deathDate] - Optional death date string
- * @returns {number} Calculated age
- */
-export function calculateAge(birthDate, deathDate) {
+export interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  isPast: boolean;
+  isToday: boolean;
+}
+
+export interface AlertForSharing {
+  title: string;
+  summary?: string;
+  links?: Array<{ url: string }>;
+}
+
+export interface FreshnessInfo {
+  label: string;
+  level: 'fresh' | 'recent' | 'stale';
+}
+
+// Calculates age from a birth date string, optionally at a given death date.
+// Handles formats: "December 8, 1947", "1964" (year only), "April 25, 1989".
+export function calculateAge(birthDate: string, deathDate?: string): number {
   const endDate = deathDate ? new Date(deathDate) : new Date();
   const birth = new Date(birthDate);
 
@@ -31,15 +44,9 @@ export function calculateAge(birthDate, deathDate) {
   return age;
 }
 
-/**
- * Calculate time remaining until eventDate.
- * eventDate should be YYYY-MM-DD string.
- *
- * @param {string|null|undefined} eventDate - Target date in YYYY-MM-DD format
- * @returns {{ days: number, hours: number, minutes: number, seconds: number, isPast: boolean, isToday: boolean }}
- */
-export function calculateTimeLeft(eventDate) {
-  const fallback = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
+// Calculates time remaining until eventDate (YYYY-MM-DD).
+export function calculateTimeLeft(eventDate: string | null | undefined): TimeLeft {
+  const fallback: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
   if (!eventDate || typeof eventDate !== 'string') return fallback;
   
   const parts = eventDate.split('-');
@@ -72,16 +79,10 @@ export function calculateTimeLeft(eventDate) {
   return { days, hours, minutes, seconds, isPast: false, isToday: false };
 }
 
-/**
- * Format an emergency alert for sharing on social media.
- * Generates clean text with title, summary, and link.
- *
- * @param {{ title: string, summary: string, links?: Array<{url: string}> }} alert - Alert object
- * @returns {string} Formatted share text
- */
-export function formatAlertForSharing(alert) {
+// Formats an emergency alert for sharing on social media.
+export function formatAlertForSharing(alert: AlertForSharing | null): string {
   if (!alert) return '';
-  const lines = [];
+  const lines: string[] = [];
   lines.push(`🚨 ${alert.title}`);
   if (alert.summary) lines.push(`\n${alert.summary}`);
   if (alert.links && alert.links.length > 0) {
@@ -90,14 +91,8 @@ export function formatAlertForSharing(alert) {
   return lines.join('');
 }
 
-/**
- * Calculate days since a date string (YYYY-MM-DD).
- * Returns 0 for today, negative for future dates.
- *
- * @param {string} dateStr - Date in YYYY-MM-DD format
- * @returns {number} Days since the date (0 = today)
- */
-export function daysSince(dateStr) {
+// Calculates days since a date string (YYYY-MM-DD). Returns 0 for today, negative for future dates.
+export function daysSince(dateStr: string): number {
   if (!dateStr) return Infinity;
   const now = new Date();
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -106,13 +101,8 @@ export function daysSince(dateStr) {
   return Math.floor(diffMs / 86400000);
 }
 
-/**
- * Format days since into a human-readable "freshness" label.
- *
- * @param {string} dateStr - Date in YYYY-MM-DD format
- * @returns {{ label: string, level: 'fresh'|'recent'|'stale' }}
- */
-export function getFreshnessInfo(dateStr) {
+// Formats days since into a human-readable "freshness" label and categorisation level.
+export function getFreshnessInfo(dateStr: string): FreshnessInfo {
   const days = daysSince(dateStr);
   if (days <= 0) return { label: 'Verified today', level: 'fresh' };
   if (days === 1) return { label: 'Verified yesterday', level: 'fresh' };

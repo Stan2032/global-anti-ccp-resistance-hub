@@ -1,0 +1,46 @@
+/**
+ * Export utilities for data conversion (CSV, Markdown).
+ * Used by the DataExport component.
+ */
+
+// Extracts a records array from JSON data.
+// Handles flat arrays, `{ results: [{ output }] }` wrappers, and `{ sanctions: [] }` wrappers.
+export function extractRecords(data: unknown): Record<string, unknown>[] {
+  if (Array.isArray(data)) return data as Record<string, unknown>[];
+  const obj = data as Record<string, unknown> | null | undefined;
+  if (obj?.results) return (obj.results as Record<string, unknown>[]).map(r => (r.output as Record<string, unknown>) || r);
+  if (obj?.sanctions) return obj.sanctions as Record<string, unknown>[];
+  return [];
+}
+
+// Converts an array of objects to a CSV string.
+export function recordsToCsv(records: Record<string, unknown>[], fields?: string[]): string {
+  if (!records?.length) return '';
+  const headers = fields || Object.keys(records[0]);
+  const escapeCsv = (val: unknown): string => {
+    const str = val == null ? '' : String(val);
+    return str.includes(',') || str.includes('"') || str.includes('\n')
+      ? `"${str.replace(/"/g, '""')}"` : str;
+  };
+  const rows = records.map(r => headers.map(h => escapeCsv(r[h])).join(','));
+  return [headers.join(','), ...rows].join('\n');
+}
+
+const MAX_CELL_LENGTH = 100;
+
+// Converts an array of objects to a Markdown table string.
+// Cell values are truncated to MAX_CELL_LENGTH characters.
+export function recordsToMarkdown(records: Record<string, unknown>[], fields?: string[]): string {
+  if (!records?.length) return '';
+  const headers = fields || Object.keys(records[0]);
+  const headerRow = `| ${headers.join(' | ')} |`;
+  const separator = `| ${headers.map(() => '---').join(' | ')} |`;
+  const rows = records.map(r =>
+    `| ${headers.map(h => {
+      const val = r[h];
+      const str = val == null ? '' : String(val).replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+      return str.length > MAX_CELL_LENGTH ? str.slice(0, MAX_CELL_LENGTH - 3) + '...' : str;
+    }).join(' | ')} |`
+  );
+  return [headerRow, separator, ...rows].join('\n');
+}

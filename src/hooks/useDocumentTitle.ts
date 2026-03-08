@@ -3,20 +3,16 @@
  *
  * Provides SEO-friendly titles and descriptions for every page.
  * Automatically updates on navigation via react-router's useLocation.
- *
- * @module useDocumentTitle
  */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-/**
- * @typedef {Object} RouteMeta
- * @property {string} title - Page title (appended to BASE_TITLE)
- * @property {string} description - Meta description for SEO
- */
+export interface RouteMeta {
+  title: string;
+  description: string;
+}
 
-/** @type {Object<string, RouteMeta>} */
-const ROUTE_META = {
+const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: 'Dashboard',
     description: 'Global coordination hub tracking CCP human rights abuses, political prisoners, and resistance movements worldwide.',
@@ -106,15 +102,9 @@ const ROUTE_META = {
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
 const BASE_DESCRIPTION = 'Join the global movement against CCP authoritarianism. Track political prisoners, access live intelligence, and take action to defend human rights.';
 
-/**
- * Hook that sets `document.title` and the meta description tag
- * based on the current route pathname.
- *
- * Falls back to the base title/description for unrecognised paths.
- *
- * @returns {void}
- */
-export default function useDocumentTitle() {
+// Sets document.title and the meta description tag based on the current route.
+// Falls back to the base title/description for unrecognised paths.
+export default function useDocumentTitle(): void {
   const location = useLocation();
 
   useEffect(() => {

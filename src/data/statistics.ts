@@ -1,5 +1,5 @@
 /**
- * Centralized Statistics & Facts
+ * Centralised Statistics & Facts
  *
  * Single source of truth for frequently cited statistics across the site.
  * Components should import from here instead of hardcoding numbers.
@@ -11,20 +11,16 @@
  *   - lastVerified: date the statistic was last fact-checked
  *
  * When updating a statistic, change it HERE and it updates everywhere.
- *
- * @module statistics
  */
 
-/**
- * @typedef {Object} StatisticEntry
- * @property {string} value - Displayable number, range, or text
- * @property {string} context - Brief explanatory text
- * @property {string[]} sources - Array of credible source names
- * @property {string} lastVerified - Date of last verification (YYYY-MM-DD)
- */
+export interface StatisticEntry {
+  value: string;
+  context: string;
+  sources: string[];
+  lastVerified: string;
+}
 
-/** @type {Object<string, StatisticEntry>} */
-export const STATISTICS = {
+export const STATISTICS: Record<string, StatisticEntry> = {
   uyghurDetention: {
     value: '1-3 million',
     context: 'Uyghurs and other Turkic Muslims detained in internment camps since 2017',
@@ -110,24 +106,15 @@ export const STATISTICS = {
   },
 };
 
-/**
- * Helper to format a statistic for display.
- * Returns a string like "1-3 million Uyghurs detained"
- * @param {string} key - Key from STATISTICS object
- * @returns {string} Formatted statistic string, or empty string if key not found
- */
-export function formatStat(key) {
+// Formats a statistic for display, e.g. "1-3 million Uyghurs detained".
+export function formatStat(key: string): string {
   const stat = STATISTICS[key];
   if (!stat) return '';
   return `${stat.value} ${stat.context}`;
 }
 
-/**
- * Get the source list for a statistic.
- * @param {string} key - Key from STATISTICS object
- * @returns {string[]} Array of source names, or empty array if key not found
- */
-export function getStatSources(key) {
+// Returns the source list for a given statistic, or an empty array if not recognised.
+export function getStatSources(key: string): string[] {
   const stat = STATISTICS[key];
   return stat ? stat.sources : [];
 }
