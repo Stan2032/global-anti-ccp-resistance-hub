@@ -1,9 +1,8 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React, { useState, useEffect } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
 import EventCountdown from './EventCountdown';
-import { formatAlertForSharing } from '../utils/dateUtils';
+import { formatAlertForSharing, type AlertForSharing } from '../utils/dateUtils';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -19,9 +18,9 @@ const EmergencyAlerts = () => {
     const saved = localStorage.getItem('dismissedAlerts');
     return saved ? JSON.parse(saved) : [];
   });
-  const [expandedAlert, setExpandedAlert] = useState(null);
+  const [expandedAlert, setExpandedAlert] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
-  const [copiedId, setCopiedId] = useState(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
@@ -30,7 +29,7 @@ const EmergencyAlerts = () => {
   const alerts = alertsData;
 
   const now = new Date().toISOString().split('T')[0];
-  const severityOrder = { critical: 0, warning: 1, info: 2 };
+  const severityOrder: Record<string, number> = { critical: 0, warning: 1, info: 2 };
   const activeAlerts = alerts
     .filter(alert => {
       if (!alert.active) return false;
@@ -43,22 +42,22 @@ const EmergencyAlerts = () => {
   const displayedAlerts = showAll ? activeAlerts : activeAlerts.slice(0, INITIAL_DISPLAY_COUNT);
   const hiddenCount = activeAlerts.length - INITIAL_DISPLAY_COUNT;
 
-  const dismissAlert = (alertId) => {
+  const dismissAlert = (alertId: string) => {
     setDismissedAlerts([...dismissedAlerts, alertId]);
   };
 
-  const copyAlertText = async (alert) => {
+  const copyAlertText = async (alert: AlertForSharing & { id: string; type: string }) => {
     try {
       const text = formatAlertForSharing(alert);
       await navigator.clipboard.writeText(text);
-      setCopiedId(alert.id);
+      setCopiedId(alert.id as string);
       setTimeout(() => setCopiedId(null), 2000);
     } catch {
       // Fallback for environments without clipboard API
     }
   };
 
-  const typeStyles = {
+  const typeStyles: Record<string, { bg: string; border: string; Icon: React.ComponentType<{ className?: string }>; badge: string; prefixColor: string; prefix: string }> = {
     critical: {
       bg: 'bg-red-900/20',
       border: 'border-l-2 border-l-red-500',

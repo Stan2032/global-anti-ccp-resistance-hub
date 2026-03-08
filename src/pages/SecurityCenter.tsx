@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * SecurityCenter — Digital security resources including WebRTC leak checks,
  * security quiz, safety checklists, whistleblower guide, and censorship
@@ -25,6 +24,20 @@ import {
   ShieldAlert,
   ShieldQuestion
 } from 'lucide-react'
+
+interface SecurityTool {
+  name: string;
+  description: string;
+  status: string;
+  features: string[];
+  download: string;
+}
+
+interface SecurityGuide {
+  title: string;
+  difficulty: string;
+  topics: string[];
+}
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -53,7 +66,7 @@ const SecurityCenter = () => {
   const emergencyContacts = securityData.emergencyContacts
   const securityGuides = securityData.securityGuides
 
-  const ToolCard = ({ tool }) => (
+  const ToolCard = ({ tool }: { tool: SecurityTool }) => (
     <div
       className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
@@ -74,7 +87,7 @@ const SecurityCenter = () => {
       <div className="mb-4">
         <p className="text-slate-400 text-xs font-medium mb-2">Features:</p>
         <ul className="space-y-1">
-          {tool.features.map((feature, idx) => (
+          {tool.features.map((feature: string, idx: number) => (
             <li key={idx} className="text-slate-300 text-sm flex items-center">
               <CheckCircle className="w-3 h-3 text-green-400 mr-2" />
               {feature}
@@ -95,7 +108,7 @@ const SecurityCenter = () => {
     </div>
   )
 
-  const GuideCard = ({ guide }) => (
+  const GuideCard = ({ guide }: { guide: SecurityGuide }) => (
     <div
       className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
     >
@@ -114,7 +127,7 @@ const SecurityCenter = () => {
       </div>
 
       <div className="space-y-2">
-        {guide.topics.map((topic, idx) => (
+        {guide.topics.map((topic: string, idx: number) => (
           <div key={idx} className="flex items-center text-slate-300 text-sm">
             <div className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full mr-2"></div>
             {topic}

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * UrgentCaseTimer — Live countdown timers for urgent political prisoner
  * cases. Shows days detained, age, and key dates with visual urgency
@@ -10,13 +9,13 @@ import { useState, useEffect, useMemo } from 'react';
 import { Clock, MapPin, Cake, Calendar } from 'lucide-react';
 import { calculateAge } from '../utils/dateUtils';
 
-const formatDetentionDate = (dateStr) => {
+const formatDetentionDate = (dateStr: string) => {
   const date = new Date(dateStr + 'T00:00:00');
   return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 };
 
 const UrgentCaseTimer = ({ compact = false }) => {
-  const [timers, setTimers] = useState({});
+  const [timers, setTimers] = useState<Record<string, { years: number; days: number; hours: number; minutes: number; seconds: number; totalDays: number }>>({});
 
   const urgentCases = useMemo(() => [
     {
@@ -76,11 +75,11 @@ const UrgentCaseTimer = ({ compact = false }) => {
   useEffect(() => {
     const calculateTime = () => {
       const now = new Date();
-      const newTimers = {};
+      const newTimers: Record<string, { years: number; days: number; hours: number; minutes: number; seconds: number; totalDays: number }> = {};
       
       urgentCases.forEach(prisoner => {
         const detentionDate = new Date(prisoner.detentionDate);
-        const diff = now - detentionDate;
+        const diff = now.getTime() - detentionDate.getTime();
         
         const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
         const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));

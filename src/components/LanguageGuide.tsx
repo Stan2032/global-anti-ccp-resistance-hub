@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * LanguageGuide — Phrasebook and terminology guide covering key terms
  * in Mandarin, Cantonese, Uyghur, and Tibetan. Includes pronunciation
@@ -12,7 +11,7 @@ import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 
 const LanguageGuide = () => {
   const [activeLanguage, setActiveLanguage] = useState('cantonese');
-  const [copiedPhrase, setCopiedPhrase] = useState(null);
+  const [copiedPhrase, setCopiedPhrase] = useState<string | number | null>(null);
 
   const languages = [
     { id: 'cantonese', name: 'Cantonese', flag: '🇭🇰', region: 'Hong Kong' },
@@ -245,7 +244,7 @@ const LanguageGuide = () => {
     ],
   };
 
-  const copyToClipboard = async (text, id) => {
+  const copyToClipboard = async (text: string, id: string | number) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedPhrase(id);
@@ -256,9 +255,9 @@ const LanguageGuide = () => {
   };
 
   const currentLanguage = languages.find(l => l.id === activeLanguage);
-  const currentPhrases = phrases[activeLanguage] || [];
+  const currentPhrases = (phrases as Record<string, { english: string; native: string; romanization: string; context: string; category: string }[]>)[activeLanguage] || [];
 
-  const categoryColors = {
+  const categoryColors: Record<string, string> = {
     slogan: 'bg-red-900/30 border-red-700/50',
     support: 'bg-green-900/30 border-green-700/50',
     identity: 'bg-[#111820] border-[#1c2a35]',
@@ -316,7 +315,7 @@ const LanguageGuide = () => {
 
       {/* Phrases Grid */}
       <div className="grid md:grid-cols-2 gap-4">
-        {currentPhrases.map((phrase, index) => (
+        {currentPhrases.map((phrase: { english: string; native: string; romanization: string; context: string; category: string }, index: number) => (
           <div 
             key={index}
             className={`border p-4 ${categoryColors[phrase.category]}`}

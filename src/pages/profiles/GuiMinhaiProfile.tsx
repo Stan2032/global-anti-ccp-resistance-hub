@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * GuiMinhaiProfile — Detailed profile of Gui Minhai, Swedish-Chinese
  * publisher abducted from Thailand by Chinese agents. Causeway Bay
@@ -15,6 +14,21 @@ import {
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
   ArrowLeft, Shield, Newspaper, Flag, Heart, Book
 } from 'lucide-react';
+
+
+interface TimelineEventType {
+  year: string;
+  title: string;
+  detail: string;
+  category: string;
+  sourceUrl?: string;
+}
+
+interface TimelineEventProps {
+  event: TimelineEventType;
+  isExpanded: boolean;
+  onToggle: () => void;
+}
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against Amnesty International, Safeguard Defenders, NCHRD,
@@ -240,7 +254,7 @@ const SOURCES = [
 ];
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
-const CATEGORY_COLORS = {
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string }> = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   business: { bg: 'bg-[#111820]', text: 'text-[#22d3ee]', label: 'Publishing' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
@@ -249,7 +263,7 @@ const CATEGORY_COLORS = {
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }) => {
+const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
   const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
   return (
     <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
@@ -283,9 +297,9 @@ const TimelineEvent = ({ event, isExpanded, onToggle }) => {
 
 export default function GuiMinhaiProfile() {
   const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState(new Set());
+  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
 
-  const toggleEvent = (idx) => {
+  const toggleEvent = (idx: number) => {
     setExpandedEvents((prev) => {
       const next = new Set(prev);
       next.has(idx) ? next.delete(idx) : next.add(idx);
@@ -304,7 +318,7 @@ export default function GuiMinhaiProfile() {
     { id: 'sources', label: 'Sources', icon: BookOpen },
   ];
 
-  const daysDetained = Math.floor((new Date() - new Date('2015-10-17')) / (1000 * 60 * 60 * 24));
+  const daysDetained = Math.floor((new Date().getTime() - new Date('2015-10-17').getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">

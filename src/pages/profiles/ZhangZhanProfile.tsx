@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ZhangZhanProfile — Detailed profile of Zhang Zhan, citizen journalist
  * imprisoned for reporting on COVID-19 in Wuhan. Subjected to forced
@@ -15,6 +14,21 @@ import {
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
   ArrowLeft, Shield, Newspaper, Flag, Heart, Book
 } from 'lucide-react';
+
+
+interface TimelineEventType {
+  year: string;
+  title: string;
+  detail: string;
+  category: string;
+  sourceUrl?: string;
+}
+
+interface TimelineEventProps {
+  event: TimelineEventType;
+  isExpanded: boolean;
+  onToggle: () => void;
+}
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against CPJ, Amnesty International, OHCHR, BBC, RSF, NCHRD, and HKFP.
@@ -216,7 +230,7 @@ const SOURCES = [
 ];
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
-const CATEGORY_COLORS = {
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string }> = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   journalism: { bg: 'bg-[#0a0e14]/60', text: 'text-slate-200', label: 'Journalism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
@@ -225,7 +239,7 @@ const CATEGORY_COLORS = {
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }) => {
+const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
   const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
   return (
     <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
@@ -259,9 +273,9 @@ const TimelineEvent = ({ event, isExpanded, onToggle }) => {
 
 export default function ZhangZhanProfile() {
   const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState(new Set());
+  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
 
-  const toggleEvent = (idx) => {
+  const toggleEvent = (idx: number) => {
     setExpandedEvents((prev) => {
       const next = new Set(prev);
       next.has(idx) ? next.delete(idx) : next.add(idx);
@@ -280,7 +294,7 @@ export default function ZhangZhanProfile() {
     { id: 'sources', label: 'Sources', icon: BookOpen },
   ];
 
-  const daysDetained = Math.floor((new Date() - new Date('2020-05-14')) / (1000 * 60 * 60 * 24));
+  const daysDetained = Math.floor((new Date().getTime() - new Date('2020-05-14').getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">

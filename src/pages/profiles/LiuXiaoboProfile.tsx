@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * LiuXiaoboProfile — Detailed profile of Liu Xiaobo, Nobel Peace Prize
  * laureate and Charter 08 author who died in custody in 2017.
@@ -269,7 +268,7 @@ const SOURCES = [
 ];
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   life: 'bg-gray-500',
   academic: 'bg-[#22d3ee]',
   political: 'bg-amber-500',
@@ -280,7 +279,7 @@ const categoryColors = {
   legacy: 'bg-emerald-500',
 };
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   life: 'Personal',
   academic: 'Academic',
   political: 'Political',
@@ -302,9 +301,9 @@ const TABS = [
 
 export default function LiuXiaoboProfile() {
   const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState({});
+  const [expandedEvents, setExpandedEvents] = useState<Record<number, boolean>>({});
 
-  const toggleEvent = (index) => {
+  const toggleEvent = (index: number) => {
     setExpandedEvents(prev => ({ ...prev, [index]: !prev[index] }));
   };
 
