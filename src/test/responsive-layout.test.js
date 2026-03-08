@@ -41,7 +41,6 @@ describe('Responsive layout compliance', () => {
   it('no fixed widths wider than 480px without responsive prefix', () => {
     // Fixed widths like w-[500px] or w-[600px] will overflow 375px mobile.
     // Allowed: w-[NNNpx] with sm:/md:/lg: prefix, or inside min-w-/max-w- context
-    const FIXED_WIDTH = /(?<![:\w-])w-\[(\d+)px\]/g;
     const violations = [];
     for (const filePath of jsxFiles) {
       const content = readFileSync(filePath, 'utf-8');
@@ -78,7 +77,6 @@ describe('Responsive layout compliance', () => {
   it('no hardcoded min-width wider than 540px without horizontal scroll container', () => {
     // min-w-[NNN] > 540px on a non-scroll container will break mobile.
     // Exception: elements inside overflow-x-auto or overflow-x-scroll containers
-    const MIN_WIDTH = /min-w-\[(\d+)px\]/g;
     const violations = [];
     for (const filePath of jsxFiles) {
       const content = readFileSync(filePath, 'utf-8');
