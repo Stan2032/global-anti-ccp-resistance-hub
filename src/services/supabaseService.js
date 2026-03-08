@@ -11,7 +11,7 @@
  * @module supabaseService
  */
 import supabase, { isSupabaseConfigured } from './supabaseClient.js';
-import { encryptSubmission } from '../utils/encryption.js';
+import { encryptSubmission } from '../utils/encryption';
 
 /**
  * @typedef {Object} SupabaseResult

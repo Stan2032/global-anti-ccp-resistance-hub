@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { isCCPDomain } from '../utils/sourceLinks.js';
+import { isCCPDomain } from '../utils/sourceLinks';
 
 const DATA_PATH = resolve(__dirname, '../data/political_prisoners_research.json');
 

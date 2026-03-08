@@ -6,27 +6,25 @@
  *
  * @module useGlobalSearch
  */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 
-/**
- * @typedef {Object} GlobalSearchState
- * @property {boolean} isOpen - Whether the search overlay is visible
- * @property {(value: boolean) => void} setIsOpen - Direct setter
- * @property {() => void} open - Open the search overlay
- * @property {() => void} close - Close the search overlay
- */
+/** State and controls returned by the useGlobalSearch hook. */
+export interface GlobalSearchState {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  open: () => void;
+  close: () => void;
+}
 
 /**
  * Hook that manages global search overlay visibility.
  * Registers a keyboard listener for Cmd/Ctrl+K to toggle the overlay.
- *
- * @returns {GlobalSearchState} Search overlay state and controls
  */
-const useGlobalSearch = () => {
+const useGlobalSearch = (): GlobalSearchState => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       // Cmd/Ctrl + K to open search
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();

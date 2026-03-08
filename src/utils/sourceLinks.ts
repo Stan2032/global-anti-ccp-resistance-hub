@@ -1,6 +1,6 @@
 /**
  * Source Links Utility
- * 
+ *
  * Maps well-known source organisation names to their URLs, types,
  * verification status, and bias risk level.
  *
@@ -13,7 +13,65 @@
  * See SOURCE_BIAS_AUDIT.md for full assessment methodology.
  */
 
-const SOURCE_REGISTRY = {
+/** Bias risk categorisation for a source. */
+export type BiasRisk = 'none' | 'low' | 'medium' | 'ccp';
+
+/** Entry in the source registry describing a known organisation. */
+export interface SourceRegistryEntry {
+  url: string;
+  type: string;
+  verified: boolean;
+  biasRisk: BiasRisk;
+  notes?: string;
+}
+
+/** Resolved source attribution object returned by resolveSource. */
+export interface SourceAttribution {
+  name: string;
+  url: string | null;
+  type: string;
+  verified: boolean;
+  biasRisk: BiasRisk;
+  notes: string | null;
+}
+
+/** CCP influence risk assessment returned by getCCPInfluenceRisk. */
+export interface CCPInfluenceRiskEntry {
+  name: string;
+  category: string;
+  risk: string;
+  reason: string;
+  source?: string;
+  action: string;
+}
+
+/** Structured source risk assessment returned by assessSourceRisk. */
+export interface SourceRiskAssessment {
+  level: string;
+  details: string;
+  action?: string;
+  category?: string;
+  verified?: boolean;
+}
+
+/** Entry in the CCP elevated-risk registry. */
+export interface CCPElevatedRiskEntry {
+  name: string;
+  domain: string | null;
+  category: string;
+  risk: string;
+  reason: string;
+  source: string;
+}
+
+/** Structure of the CCP state media blocklist. */
+export interface CCPNeverCiteRegistry {
+  names: string[];
+  domains: string[];
+  reason: string;
+}
+
+const SOURCE_REGISTRY: Record<string, SourceRegistryEntry> = {
   'Amnesty International': {
     url: 'https://www.amnesty.org/',
     type: 'NGO Report',
@@ -342,15 +400,15 @@ const SOURCE_REGISTRY = {
 
 /**
  * CCP State Media Registry — NEVER CITE
- * 
+ *
  * These are direct CCP propaganda organs. They operate under CCP editorial
  * control and produce content that serves CCP messaging objectives.
  * Any source matching these names or domains must be rejected.
- * 
+ *
  * This is the single source of truth — all test files should import from here
  * rather than maintaining their own blocklists.
  */
-export const CCP_NEVER_CITE = {
+export const CCP_NEVER_CITE: CCPNeverCiteRegistry = {
   names: [
     'xinhua',
     'cgtn',
@@ -394,7 +452,7 @@ export const CCP_NEVER_CITE = {
 
 /**
  * CCP Elevated Risk Sources — CROSS-REFERENCE REQUIRED
- * 
+ *
  * These are entities with documented CCP funding, ownership, or influence that
  * may produce content aligned with CCP messaging. They are NOT necessarily
  * always wrong — but claims from these sources must be independently verified.
@@ -406,7 +464,7 @@ export const CCP_NEVER_CITE = {
  *   'ccp_think_tank'     - Think tanks with documented CCP funding/ties
  *   'elite_capture'      - Organisations with documented CCP co-optation
  */
-export const CCP_ELEVATED_RISK = [
+export const CCP_ELEVATED_RISK: CCPElevatedRiskEntry[] = [
   // CCP Proxy Media — ownership/editorial control by CCP-linked entities
   {
     name: 'South China Morning Post',
@@ -533,11 +591,8 @@ export const CCP_ELEVATED_RISK = [
 /**
  * Check if a source name matches a CCP state media outlet (NEVER CITE).
  * Uses case-insensitive partial matching against CCP_NEVER_CITE.names.
- * 
- * @param {string} sourceName - Source name or URL to check
- * @returns {boolean} true if source is CCP state media
  */
-export function isCCPStateMedia(sourceName) {
+export function isCCPStateMedia(sourceName: string): boolean {
   if (!sourceName) return false;
   const lower = sourceName.toLowerCase();
   return CCP_NEVER_CITE.names.some(name => lower.includes(name)) ||
@@ -546,11 +601,8 @@ export function isCCPStateMedia(sourceName) {
 
 /**
  * Check if a source URL matches a CCP state media domain.
- * 
- * @param {string} url - URL to check
- * @returns {boolean} true if URL points to CCP state media
  */
-export function isCCPDomain(url) {
+export function isCCPDomain(url: string): boolean {
   if (!url) return false;
   const lower = url.toLowerCase();
   return CCP_NEVER_CITE.domains.some(domain => lower.includes(domain));
@@ -559,11 +611,8 @@ export function isCCPDomain(url) {
 /**
  * Check if a source is a known CCP-influenced entity that requires cross-referencing.
  * Returns the risk entry if found, null otherwise.
- * 
- * @param {string} sourceName - Source name or URL to check
- * @returns {Object|null} Risk entry if CCP-influenced, null if clean
  */
-export function getCCPInfluenceRisk(sourceName) {
+export function getCCPInfluenceRisk(sourceName: string): CCPInfluenceRiskEntry | null {
   if (!sourceName) return null;
   const lower = sourceName.toLowerCase();
   
@@ -604,11 +653,8 @@ export function getCCPInfluenceRisk(sourceName) {
 /**
  * Assess the overall risk level of a source.
  * Returns a structured assessment.
- * 
- * @param {string} sourceName - Source name to assess
- * @returns {Object} Assessment with level ('clean', 'low', 'medium', 'high', 'ccp'), details
  */
-export function assessSourceRisk(sourceName) {
+export function assessSourceRisk(sourceName: string): SourceRiskAssessment {
   if (!sourceName) return { level: 'unknown', details: 'No source provided' };
   
   // Check CCP influence
@@ -643,11 +689,8 @@ export function assessSourceRisk(sourceName) {
 
 /**
  * Convert a plain-text source name into a SourceAttribution-compatible object.
- * 
- * @param {string} sourceName - The name of the source organisation
- * @returns {Object} Source attribution object with name, url, type, verified, biasRisk, notes
  */
-export function resolveSource(sourceName) {
+export function resolveSource(sourceName: string): SourceAttribution {
   const entry = SOURCE_REGISTRY[sourceName];
   if (entry) {
     return {
@@ -673,11 +716,8 @@ export function resolveSource(sourceName) {
 
 /**
  * Convert an array of source name strings into SourceAttribution objects.
- * 
- * @param {string[]} sourceNames - Array of source name strings
- * @returns {Object[]} Array of source attribution objects
  */
-export function resolveSources(sourceNames) {
+export function resolveSources(sourceNames: string[]): SourceAttribution[] {
   if (!sourceNames || !Array.isArray(sourceNames)) return [];
   return sourceNames.map(resolveSource);
 }
