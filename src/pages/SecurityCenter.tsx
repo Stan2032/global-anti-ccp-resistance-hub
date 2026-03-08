@@ -1,0 +1,458 @@
+// @ts-nocheck — Phase 2 migration: types to be added
+/**
+ * SecurityCenter — Digital security resources including WebRTC leak checks,
+ * security quiz, safety checklists, whistleblower guide, and censorship
+ * circumvention tools. Critical for users in censored regions.
+ *
+ * @module SecurityCenter
+ */
+import { useState, lazy, Suspense } from 'react'
+import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
+import securityData from '../data/security_center_data.json'
+import { 
+  Shield, 
+  AlertTriangle,
+  CheckCircle,
+  Eye,
+  Download,
+  Phone,
+  AlertCircle,
+  ChevronRight,
+  ExternalLink,
+  Play,
+  Loader2,
+  ShieldCheck,
+  ShieldAlert,
+  ShieldQuestion
+} from 'lucide-react'
+
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
+    <span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
+  </div>
+);
+
+const IncidentReportForm = lazy(() => import('../components/IncidentReportForm'));
+const SecurityQuiz = lazy(() => import('../components/SecurityQuiz'));
+const SafetyChecklist = lazy(() => import('../components/SafetyChecklist'));
+const WitnessProtection = lazy(() => import('../components/WitnessProtection'));
+const ChinaExitBan = lazy(() => import('../components/ChinaExitBan'));
+const ChinaTechThreats = lazy(() => import('../components/ChinaTechThreats'));
+const LegalResourcesHub = lazy(() => import('../components/LegalResourcesHub'));
+const ReportSighting = lazy(() => import('../components/ReportSighting'));
+const ContactForm = lazy(() => import('../components/ContactForm'));
+const DiasporaSecurityAdvisor = lazy(() => import('../components/DiasporaSecurityAdvisor'));
+const WhistleblowerGuide = lazy(() => import('../components/WhistleblowerGuide'));
+
+const SecurityCenter = () => {
+  const [activeTab, setActiveTab] = useState('assess')
+  const { status: webrtcStatus, leakedIPs, isLeaking, runCheck: runWebRTCCheck } = useWebRTCLeakCheck()
+
+  const securityTools = securityData.securityTools
+  const connectionTestTools = securityData.connectionTestTools
+  const emergencyContacts = securityData.emergencyContacts
+  const securityGuides = securityData.securityGuides
+
+  const ToolCard = ({ tool }) => (
+    <div
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-white font-semibold">{tool.name}</h3>
+          <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
+        </div>
+        <span className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+          tool.status === 'essential'
+            ? 'bg-red-900 text-red-100'
+            : 'bg-yellow-900 text-yellow-100'
+        }`}>
+          {tool.status === 'essential' ? 'Essential' : 'Advanced'}
+        </span>
+      </div>
+
+      <div className="mb-4">
+        <p className="text-slate-400 text-xs font-medium mb-2">Features:</p>
+        <ul className="space-y-1">
+          {tool.features.map((feature, idx) => (
+            <li key={idx} className="text-slate-300 text-sm flex items-center">
+              <CheckCircle className="w-3 h-3 text-green-400 mr-2" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <a
+        href={tool.download}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 font-medium transition-colors flex items-center justify-center space-x-2"
+      >
+        <Download className="w-4 h-4" />
+        <span>Download</span>
+      </a>
+    </div>
+  )
+
+  const GuideCard = ({ guide }) => (
+    <div
+      className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-white font-semibold">{guide.title}</h3>
+          <span className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium ${
+            guide.difficulty === 'Beginner' ? 'bg-green-900 text-green-100' :
+            guide.difficulty === 'Intermediate' ? 'bg-yellow-900 text-yellow-100' :
+            'bg-red-900 text-red-100'
+          }`}>
+            {guide.difficulty}
+          </span>
+        </div>
+        <ChevronRight className="w-5 h-5 text-slate-400" />
+      </div>
+
+      <div className="space-y-2">
+        {guide.topics.map((topic, idx) => (
+          <div key={idx} className="flex items-center text-slate-300 text-sm">
+            <div className="w-1.5 h-1.5 bg-[#22d3ee] rounded-full mr-2"></div>
+            {topic}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold gradient-text">Security Center</h1>
+        <p className="text-slate-400 mt-2">
+          Comprehensive security assessment, tools, and training for resistance activists
+        </p>
+      </div>
+
+      {/* Critical Alert */}
+      <div
+        className="bg-red-900 border border-red-700 p-4"
+      >
+        <div className="flex items-start">
+          <AlertTriangle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
+          <div>
+            <h3 className="text-red-100 font-semibold">Security Notice</h3>
+            <p className="text-red-200 text-sm mt-1">
+              CCP actively targets resistance activists with surveillance, hacking, and intimidation. 
+              Implement these security measures immediately to protect yourself and your organization.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs — consolidated from 6 to 4 */}
+      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
+        {[
+          { id: 'assess', label: 'Assess' },
+          { id: 'tools', label: 'Tools' },
+          { id: 'guides', label: 'Guides' },
+          { id: 'threats', label: 'Tech Threats' },
+          { id: 'diaspora', label: 'Diaspora' },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
+                : 'text-slate-400 hover:text-slate-300'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Assess Tab (was: assessment + checklist) */}
+      {activeTab === 'assess' && (
+        <div className="space-y-8">
+          <div>
+            <Suspense fallback={<SectionLoader />}><SecurityQuiz /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── safety_checklist ──</h2>
+            <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
+          </div>
+        </div>
+      )}
+
+      {/* Tools Tab (was: tools + report) */}
+      {activeTab === 'tools' && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-2">Essential Security Tools</h2>
+            <p className="text-slate-400 mb-6">
+              Download and install these tools to protect your communications and devices
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {securityTools.map((tool) => (
+              <ToolCard key={tool.id} tool={tool} />
+            ))}
+          </div>
+
+          {/* WebRTC Leak Test — runs entirely in your browser */}
+          <div className="mt-8 border-t border-[#1c2a35] pt-8">
+            <div className="flex items-center gap-2 mb-2">
+              {webrtcStatus === 'complete' && isLeaking === false && <ShieldCheck className="w-5 h-5 text-green-400" />}
+              {webrtcStatus === 'complete' && isLeaking === true && <ShieldAlert className="w-5 h-5 text-red-400" />}
+              {(webrtcStatus === 'idle' || webrtcStatus === 'unsupported' || webrtcStatus === 'error') && <ShieldQuestion className="w-5 h-5 text-slate-400" />}
+              {webrtcStatus === 'running' && <Loader2 className="w-5 h-5 text-[#22d3ee] animate-spin" aria-hidden="true" />}
+              <h3 className="text-xl font-bold text-white">WebRTC Leak Test</h3>
+            </div>
+            <p className="text-slate-400 text-sm mb-4">
+              WebRTC can expose your real IP address even when using a VPN. This test runs
+              entirely in your browser — no data is sent to any server.
+            </p>
+
+            {webrtcStatus === 'idle' && (
+              <button
+                onClick={runWebRTCCheck}
+                className="flex items-center gap-2 bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono transition-colors"
+              >
+                <Play className="w-4 h-4" />
+                $ run_webrtc_test
+              </button>
+            )}
+
+            {webrtcStatus === 'running' && (
+              <div className="flex items-center gap-2 text-[#22d3ee]">
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                <span className="text-sm">Checking for WebRTC leaks...</span>
+              </div>
+            )}
+
+            {webrtcStatus === 'unsupported' && (
+              <div className="bg-[#111820] border border-[#2a9a52] p-4">
+                <p className="text-slate-400 text-sm">
+                  Your browser does not support WebRTC, which means it cannot leak your IP through this method.
+                  This is actually a good thing for privacy.
+                </p>
+              </div>
+            )}
+
+            {webrtcStatus === 'error' && (
+              <div className="bg-[#111820] border border-yellow-700 p-4">
+                <p className="text-yellow-400 text-sm">
+                  Could not complete the WebRTC leak test. Your browser may be blocking WebRTC
+                  (which is good for privacy) or an unexpected error occurred.
+                </p>
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-2 text-[#4afa82] hover:text-[#7dffaa] text-sm underline"
+                >
+                  Try again
+                </button>
+              </div>
+            )}
+
+            {webrtcStatus === 'complete' && (
+              <div className={`p-4 border ${isLeaking ? 'bg-red-900/30 border-red-700' : 'bg-green-900/30 border-green-700'}`}>
+                <div className="flex items-center gap-2 mb-3">
+                  {isLeaking ? (
+                    <>
+                      <ShieldAlert className="w-5 h-5 text-red-400" />
+                      <span className="text-red-300 font-semibold">WebRTC is leaking your IP address</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-5 h-5 text-green-400" />
+                      <span className="text-green-300 font-semibold">No public IP leak detected</span>
+                    </>
+                  )}
+                </div>
+
+                {leakedIPs.length > 0 && (
+                  <div className="space-y-1 mb-3">
+                    <p className="text-slate-400 text-xs font-medium">Detected addresses:</p>
+                    {leakedIPs.map((ip, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm">
+                        <span className={`px-1.5 py-0.5 rounded text-xs ${ip.type === 'public' ? 'bg-red-800 text-red-200' : 'bg-[#1c2a35] text-slate-300'}`}>
+                          {ip.type}
+                        </span>
+                        <code className="text-slate-300 font-mono text-xs">{ip.address}</code>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {isLeaking && (
+                  <div className="mt-3 pt-3 border-t border-red-800">
+                    <p className="text-red-200 text-sm font-medium mb-2">How to fix this:</p>
+                    <ul className="text-slate-400 text-sm space-y-1">
+                      <li>• <strong>Firefox:</strong> Go to <code className="text-slate-300">about:config</code> and set <code className="text-slate-300">media.peerconnection.enabled</code> to <code className="text-slate-300">false</code></li>
+                      <li>• <strong>Chrome:</strong> Install the <a href="https://chrome.google.com/webstore/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml" target="_blank" rel="noopener noreferrer" className="text-[#4afa82] hover:underline">WebRTC Leak Prevent</a> extension</li>
+                      <li>• <strong>Tor Browser:</strong> WebRTC is disabled by default — use Tor Browser for maximum protection</li>
+                    </ul>
+                  </div>
+                )}
+
+                <button
+                  onClick={runWebRTCCheck}
+                  className="mt-3 text-[#4afa82] hover:text-[#7dffaa] text-sm underline"
+                >
+                  Run test again
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Verify Your Connection */}
+          <div className="mt-8 border-t border-[#1c2a35] pt-8">
+            <h3 className="text-xl font-bold text-white mb-2">Verify Your Connection</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              This platform cannot detect whether you are using a VPN or Tor. Use these reputable 
+              third-party tools to self-test whether your connection is properly secured.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {connectionTestTools.map((tool) => (
+                <a
+                  key={tool.id}
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#4afa82] transition-colors group"
+                >
+                  <div className="flex items-start justify-between">
+                    <h4 className="text-white font-medium group-hover:text-[#4afa82] transition-colors">
+                      {tool.name}
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] transition-colors flex-shrink-0 mt-0.5" />
+                  </div>
+                  <p className="text-slate-400 text-sm mt-1">{tool.description}</p>
+                  <p className="text-slate-400 text-xs mt-2">Provider: {tool.provider}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Incident Report */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── incident_report ──</h2>
+            <Suspense fallback={<SectionLoader />}><IncidentReportForm /></Suspense>
+          </div>
+          {/* China Exit Ban Tracker */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── exit_ban_tracker ──</h2>
+            <Suspense fallback={<SectionLoader />}><ChinaExitBan /></Suspense>
+          </div>
+          {/* Legal Resources Hub */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── legal_resources ──</h2>
+            <Suspense fallback={<SectionLoader />}><LegalResourcesHub /></Suspense>
+          </div>
+          {/* Report CCP Activity */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── report_activity ──</h2>
+            <Suspense fallback={<SectionLoader />}><ReportSighting /></Suspense>
+          </div>
+          {/* Contact Form */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── contact_form ──</h2>
+            <Suspense fallback={<SectionLoader />}><ContactForm /></Suspense>
+          </div>
+        </div>
+      )}
+
+      {/* Guides Tab (was: guides + emergency + protect) */}
+      {activeTab === 'guides' && (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-2">Security Training Guides</h2>
+            <p className="text-slate-400 mb-6">
+              Comprehensive guides covering all aspects of digital and operational security
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {securityGuides.map((guide) => (
+              <GuideCard key={guide.id} guide={guide} />
+            ))}
+          </div>
+
+          {/* Witness Protection (merged from Protect tab) */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── witness_protection ──</h2>
+            <Suspense fallback={<SectionLoader />}><WitnessProtection /></Suspense>
+          </div>
+
+          {/* Whistleblower Security Guide */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── whistleblower_guide ──</h2>
+            <Suspense fallback={<SectionLoader />}><WhistleblowerGuide /></Suspense>
+          </div>
+
+          {/* Emergency Section */}
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── emergency_procedures ──</h2>
+            <div
+              className="bg-red-900 border border-red-700 p-6 mt-4"
+            >
+              <div className="flex items-start">
+                <AlertCircle className="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-red-100 font-semibold text-lg">Emergency Procedures</h3>
+                  <p className="text-red-200 text-sm mt-1">
+                    If you are in immediate danger or your security has been compromised:
+                  </p>
+                  <ul className="text-red-200 text-sm mt-3 space-y-1 ml-4 list-disc">
+                    <li>Stop all online activity immediately</li>
+                    <li>Power off your device without saving</li>
+                    <li>Move to a safe location with a different device</li>
+                    <li>Contact emergency support below</li>
+                    <li>Do not attempt to retrieve data</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h3 className="text-xl font-bold text-white mb-4 font-mono">── emergency_contacts ──</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {emergencyContacts.map((contact) => (
+                  <div
+                    key={contact.id}
+                    className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-[#2a9a52] transition-colors"
+                  >
+                    <h3 className="text-white font-semibold">{contact.name}</h3>
+                    <p className="text-slate-400 text-sm mt-1">{contact.description}</p>
+                    <p className="text-slate-400 text-xs mt-2 font-medium">{contact.type}</p>
+                    <a
+                      href={contact.contact}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 w-full bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-4 py-2 font-mono font-medium transition-colors flex items-center justify-center space-x-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>$ contact</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tech Threats Tab */}
+      {activeTab === 'threats' && (
+        <Suspense fallback={<SectionLoader />}><ChinaTechThreats /></Suspense>
+      )}
+
+      {activeTab === 'diaspora' && (
+        <Suspense fallback={<SectionLoader />}><DiasporaSecurityAdvisor /></Suspense>
+      )}
+    </div>
+  )
+}
+
+export default SecurityCenter
