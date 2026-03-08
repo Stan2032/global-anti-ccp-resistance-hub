@@ -1,3 +1,10 @@
+/**
+ * ProfilesIndex — Index page listing all individual profiles of people
+ * targeted by the CCP. Provides search, filtering, and navigation to
+ * detailed profile pages.
+ *
+ * @module ProfilesIndex
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {

@@ -1,3 +1,9 @@
+/**
+ * AgnesChowProfile — Detailed profile of Agnes Chow, Hong Kong
+ * pro-democracy activist convicted under the National Security Law.
+ *
+ * @module AgnesChowProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

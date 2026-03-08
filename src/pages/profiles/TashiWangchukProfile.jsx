@@ -1,3 +1,10 @@
+/**
+ * TashiWangchukProfile — Detailed profile of Tashi Wangchuk, Tibetan
+ * language rights activist imprisoned for "inciting separatism" after
+ * appearing in a New York Times documentary.
+ *
+ * @module TashiWangchukProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';

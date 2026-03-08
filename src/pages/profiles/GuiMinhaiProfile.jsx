@@ -1,3 +1,10 @@
+/**
+ * GuiMinhaiProfile — Detailed profile of Gui Minhai, Swedish-Chinese
+ * publisher abducted from Thailand by Chinese agents. Causeway Bay
+ * Books case.
+ *
+ * @module GuiMinhaiProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

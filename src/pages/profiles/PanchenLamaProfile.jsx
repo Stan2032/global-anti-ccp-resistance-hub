@@ -1,3 +1,10 @@
+/**
+ * PanchenLamaProfile — Detailed profile of Gedhun Choekyi Nyima,
+ * the 11th Panchen Lama, disappeared by Chinese authorities in 1995
+ * at age six.
+ *
+ * @module PanchenLamaProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';

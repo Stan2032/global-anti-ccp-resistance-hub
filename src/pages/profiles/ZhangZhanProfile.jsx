@@ -1,3 +1,10 @@
+/**
+ * ZhangZhanProfile — Detailed profile of Zhang Zhan, citizen journalist
+ * imprisoned for reporting on COVID-19 in Wuhan. Subjected to forced
+ * feeding during hunger strikes.
+ *
+ * @module ZhangZhanProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

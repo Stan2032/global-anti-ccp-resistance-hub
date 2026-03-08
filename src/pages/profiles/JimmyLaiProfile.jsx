@@ -1,3 +1,9 @@
+/**
+ * JimmyLaiProfile — Detailed profile of Jimmy Lai, Hong Kong media
+ * mogul and Apple Daily founder sentenced under the National Security Law.
+ *
+ * @module JimmyLaiProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

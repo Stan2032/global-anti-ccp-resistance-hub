@@ -1,3 +1,9 @@
+/**
+ * LiuXiaoboProfile — Detailed profile of Liu Xiaobo, Nobel Peace Prize
+ * laureate and Charter 08 author who died in custody in 2017.
+ *
+ * @module LiuXiaoboProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

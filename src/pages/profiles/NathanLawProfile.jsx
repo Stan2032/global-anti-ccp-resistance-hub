@@ -1,3 +1,10 @@
+/**
+ * NathanLawProfile — Detailed profile of Nathan Law, Hong Kong
+ * pro-democracy activist and youngest elected legislator, now in
+ * exile in the UK.
+ *
+ * @module NathanLawProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

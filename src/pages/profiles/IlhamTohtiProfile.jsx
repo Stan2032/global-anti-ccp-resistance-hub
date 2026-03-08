@@ -1,3 +1,9 @@
+/**
+ * IlhamTohtiProfile — Detailed profile of Ilham Tohti, Uyghur economist
+ * serving a life sentence for "separatism". Sakharov Prize laureate.
+ *
+ * @module IlhamTohtiProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

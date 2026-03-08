@@ -1,3 +1,10 @@
+/**
+ * XuZhiyongProfile — Detailed profile of Xu Zhiyong, legal scholar
+ * and New Citizens' Movement founder sentenced for "subversion of
+ * state power".
+ *
+ * @module XuZhiyongProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';

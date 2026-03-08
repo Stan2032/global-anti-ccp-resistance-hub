@@ -1,3 +1,9 @@
+/**
+ * BennyTaiProfile — Detailed profile of Benny Tai, legal scholar
+ * and Occupy Central co-founder convicted under the National Security Law.
+ *
+ * @module BennyTaiProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

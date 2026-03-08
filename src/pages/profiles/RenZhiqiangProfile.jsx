@@ -1,3 +1,10 @@
+/**
+ * RenZhiqiangProfile — Detailed profile of Ren Zhiqiang, property
+ * tycoon sentenced to 18 years after criticising Xi Jinping's handling
+ * of COVID-19.
+ *
+ * @module RenZhiqiangProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
