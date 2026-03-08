@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/languageUtils';
+import type { ComponentType } from 'react';
+
+interface LanguageOption {
+  code: string;
+  name: string;
+  flag?: string;
+  FlagIcon?: ComponentType<{ className?: string }>;
+}
 
 /**
  * LanguageSelector — Dropdown for switching the UI language.
@@ -8,11 +16,12 @@ import { useLanguage } from '../contexts/languageUtils';
  *
  * @returns {React.ReactElement} Language selection dropdown
  */
-const LanguageSelector = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const LanguageSelector: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { language, setLanguage, availableLanguages } = useLanguage();
 
-  const currentLang = availableLanguages.find(l => l.code === language) || availableLanguages[0];
+  const langs = (availableLanguages ?? []) as LanguageOption[];
+  const currentLang = langs.find(l => l.code === language) ?? langs[0];
 
   return (
     <div className="relative">
@@ -32,7 +41,7 @@ const LanguageSelector = () => {
             onClick={() => setIsOpen(false)}
           />
           <div className="absolute right-0 mt-2 w-48 max-w-[calc(100vw-2rem)] bg-[#111820] border border-[#1c2a35] shadow-xl z-50">
-            {availableLanguages.map((lang) => (
+            {langs.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => {
@@ -41,8 +50,8 @@ const LanguageSelector = () => {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#111820] transition-colors ${
                   language === lang.code ? 'bg-[#111820]' : ''
-                } ${lang.code === availableLanguages[0].code ? 'rounded-t-lg' : ''} ${
-                  lang.code === availableLanguages[availableLanguages.length - 1].code ? 'rounded-b-lg' : ''
+                } ${lang.code === langs[0].code ? 'rounded-t-lg' : ''} ${
+                  lang.code === langs[langs.length - 1].code ? 'rounded-b-lg' : ''
                 }`}
               >
                 <span className="text-xl">{lang.FlagIcon ? <lang.FlagIcon className="w-5 h-5" /> : lang.flag}</span>

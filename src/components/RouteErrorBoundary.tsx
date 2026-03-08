@@ -2,6 +2,16 @@ import React from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+interface RouteErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface RouteErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+  isChunkError: boolean;
+}
+
 /**
  * Error boundary for lazy-loaded route components.
  * Catches chunk-load failures and renders a recoverable error UI
@@ -14,13 +24,13 @@ import { Link } from 'react-router-dom';
  * @param {React.ReactNode} props.children - Route content to wrap
  * @returns {React.ReactNode} Children or recoverable error UI
  */
-class RouteErrorBoundary extends React.Component {
-  constructor(props) {
+class RouteErrorBoundary extends React.Component<RouteErrorBoundaryProps, RouteErrorBoundaryState> {
+  constructor(props: RouteErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null, isChunkError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error): RouteErrorBoundaryState {
     const isChunkError = error?.name === 'ChunkLoadError' ||
       error?.message?.includes('Loading chunk') ||
       error?.message?.includes('dynamically imported module') ||
@@ -29,11 +39,11 @@ class RouteErrorBoundary extends React.Component {
     return { hasError: true, error, isChunkError };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     console.error('Route error boundary caught:', error, errorInfo);
   }
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     this.setState({ hasError: false, error: null, isChunkError: false });
   };
 

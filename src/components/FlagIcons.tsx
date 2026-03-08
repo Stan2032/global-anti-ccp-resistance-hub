@@ -1,11 +1,15 @@
 import React from 'react';
 
+interface FlagIconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
+
 /**
  * East Turkestan flag (Kök Bayraq / Blue Flag)
  * Light blue field with white crescent moon and five-pointed star.
  * Used to represent the Uyghur people and East Turkestan.
  */
-export const EastTurkestanFlag = ({ className = 'w-5 h-5', ...props }) => (
+export const EastTurkestanFlag: React.FC<FlagIconProps> = ({ className = 'w-5 h-5', ...props }) => (
   <svg
     viewBox="0 0 30 20"
     className={className}
@@ -28,7 +32,7 @@ export const EastTurkestanFlag = ({ className = 'w-5 h-5', ...props }) => (
  * Features a mountain with the sun above, red and blue rays,
  * and yellow border — the flag of the Tibetan people.
  */
-export const TibetanFlag = ({ className = 'w-5 h-5', ...props }) => (
+export const TibetanFlag: React.FC<FlagIconProps> = ({ className = 'w-5 h-5', ...props }) => (
   <svg
     viewBox="0 0 30 20"
     className={className}

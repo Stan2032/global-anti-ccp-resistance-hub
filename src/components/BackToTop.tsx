@@ -7,8 +7,8 @@ import { ArrowUp } from 'lucide-react';
  *
  * @returns {React.ReactElement|null} Floating button or null when not visible
  */
-const BackToTop = () => {
-  const [visible, setVisible] = useState(false);
+const BackToTop: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {

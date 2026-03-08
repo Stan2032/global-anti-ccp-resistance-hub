@@ -5,9 +5,10 @@
  * @returns {React.ReactElement} Hidden live-region element
  */
 import { useMemo } from 'react';
+import type React from 'react';
 import { useLocation } from 'react-router-dom';
 
-const ROUTE_LABELS = {
+const ROUTE_LABELS: Record<string, string> = {
   '/': 'Dashboard',
   '/intelligence': 'Intelligence Feeds',
   '/directory': 'Resistance Directory',
@@ -27,7 +28,7 @@ const ROUTE_LABELS = {
  *
  * @returns {React.ReactElement} Hidden live-region element
  */
-export default function RouteAnnouncer() {
+export default function RouteAnnouncer(): React.ReactElement {
   const { pathname } = useLocation();
 
   const announcement = useMemo(() => {

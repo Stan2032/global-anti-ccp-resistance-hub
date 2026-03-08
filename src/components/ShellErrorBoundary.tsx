@@ -1,5 +1,13 @@
 import React from 'react';
 
+interface ShellErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ShellErrorBoundaryState {
+  hasError: boolean;
+}
+
 /**
  * Lightweight error boundary for non-critical shell components
  * (search modal, PWA banner, quick start guide, etc.)
@@ -15,17 +23,17 @@ import React from 'react';
  * @param {React.ReactNode} props.children - Child components to wrap
  * @returns {React.ReactNode|null} Children or null on error
  */
-class ShellErrorBoundary extends React.Component {
-  constructor(props) {
+class ShellErrorBoundary extends React.Component<ShellErrorBoundaryProps, ShellErrorBoundaryState> {
+  constructor(props: ShellErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(): ShellErrorBoundaryState {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     console.error('Shell component error (non-critical):', error, errorInfo);
   }
 

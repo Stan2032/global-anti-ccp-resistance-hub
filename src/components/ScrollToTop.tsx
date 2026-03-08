@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
  *
  * @returns {null} Renders nothing (side-effect only)
  */
-export default function ScrollToTop() {
+export default function ScrollToTop(): null {
   const { pathname } = useLocation();
 
   useEffect(() => {

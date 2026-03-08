@@ -2,6 +2,14 @@ import React from 'react';
 import GlobalSearch from './GlobalSearch';
 import useGlobalSearch from '../hooks/useGlobalSearch';
 
+interface SearchContext {
+  openSearch: () => void;
+}
+
+interface SearchWrapperProps {
+  children: React.ReactNode | ((ctx: SearchContext) => React.ReactNode);
+}
+
 /**
  * SearchWrapper — Provides global search modal state to child components.
  * Uses useGlobalSearch hook and renders GlobalSearch modal.
@@ -10,7 +18,7 @@ import useGlobalSearch from '../hooks/useGlobalSearch';
  * @param {React.ReactNode|((ctx: {openSearch: () => void}) => React.ReactNode)} props.children - Children or render function receiving search controls
  * @returns {React.ReactElement} Children with search modal
  */
-const SearchWrapper = ({ children }) => {
+const SearchWrapper: React.FC<SearchWrapperProps> = ({ children }) => {
   const { isOpen, setIsOpen, close } = useGlobalSearch();
 
   return (
@@ -27,6 +35,11 @@ const SearchWrapper = ({ children }) => {
   );
 };
 
+interface SearchButtonProps {
+  onClick: () => void;
+  className?: string;
+}
+
 /**
  * SearchButton — Trigger button for the global search modal.
  * Shows search icon, placeholder text, and keyboard shortcut hint.
@@ -36,7 +49,7 @@ const SearchWrapper = ({ children }) => {
  * @param {string} [props.className=''] - Additional CSS classes
  * @returns {React.ReactElement} Search trigger button
  */
-export const SearchButton = ({ onClick, className = '' }) => (
+export const SearchButton: React.FC<SearchButtonProps> = ({ onClick, className = '' }) => (
   <button
     onClick={onClick}
     className={`flex items-center space-x-2 px-4 py-2 bg-[#111820] border border-[#1c2a35] text-slate-400 hover:text-white hover:bg-[#111820] transition-colors ${className}`}

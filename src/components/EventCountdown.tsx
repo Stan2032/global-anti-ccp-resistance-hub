@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import { calculateTimeLeft } from '../utils/dateUtils';
+import type { TimeLeft } from '../utils/dateUtils';
+
+interface EventCountdownProps {
+  eventDate: string;
+  label?: string;
+}
 
 /**
  * EventCountdown — Live countdown timer to a future event date.
@@ -12,8 +18,8 @@ import { calculateTimeLeft } from '../utils/dateUtils';
  * @param {string} [props.label='Time remaining'] - Label text above the countdown
  * @returns {React.ReactElement|null} Countdown display or null if no eventDate
  */
-const EventCountdown = ({ eventDate, label = 'Time remaining' }) => {
-  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(eventDate));
+const EventCountdown: React.FC<EventCountdownProps> = ({ eventDate, label = 'Time remaining' }) => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(eventDate));
 
   useEffect(() => {
     const timer = setInterval(() => {
