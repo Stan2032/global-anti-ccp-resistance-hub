@@ -1,6 +1,45 @@
 /**
  * Live Data Service
  * Fetches real-time data from various sources
+ *
+ * Implements a dual-strategy RSS fetching approach:
+ * 1. RSS2JSON API (primary, most reliable)
+ * 2. allorigins.win CORS proxy (fallback)
+ *
+ * Filters content by relevance to CCP human rights topics using keyword scoring.
+ *
+ * @module liveDataService
+ */
+
+/**
+ * @typedef {Object} FeedItem
+ * @property {string} id - Unique identifier (source-index-timestamp)
+ * @property {string} title - Article title
+ * @property {string} link - URL to the article
+ * @property {string} description - First 300 chars of cleaned article text
+ * @property {string} pubDate - ISO 8601 publication date
+ * @property {string} source - Feed source key (e.g., "bbc", "hrw")
+ * @property {number} relevanceScore - Relevance score based on keyword matching
+ */
+
+/**
+ * @typedef {Object} FeedSourceMeta
+ * @property {string} name - Short name
+ * @property {string} fullName - Full organization name
+ * @property {string} url - Website URL
+ * @property {string} description - Brief description
+ * @property {'high'|'medium'|'low'} reliability - Reliability rating
+ */
+
+/**
+ * @typedef {Object} PlatformStatistics
+ * @property {number} verifiedOrganizations - Count of verified human rights organizations
+ * @property {number} detentionFacilities - Estimated count of detention facilities
+ * @property {number|null} activeCampaigns - Active campaigns count (null if not tracked)
+ * @property {number} politicalPrisoners - Count of documented political prisoners
+ * @property {string} lastUpdated - Date of last update (YYYY-MM-DD)
+ * @property {string} dataNote - Disclaimer about the data
+ * @property {Object<string, string>} sources - Source descriptions per category
  */
 
 // RSS Feed URLs (using CORS proxies for client-side fetching)
@@ -39,6 +78,9 @@ const ALWAYS_RELEVANT_SOURCES = ['hkfp', 'rfa', 'hrw', 'amnesty', 'cpj'];
 
 /**
  * Parse RSS/Atom XML feed
+ * @param {string} xmlText - Raw XML text of the feed
+ * @param {string} sourceName - Source identifier key
+ * @returns {FeedItem[]} Parsed and filtered feed items
  */
 function parseRSSFeed(xmlText, sourceName) {
   const parser = new DOMParser();
@@ -95,6 +137,8 @@ function parseRSSFeed(xmlText, sourceName) {
 
 /**
  * Clean HTML tags from text
+ * @param {string} html - HTML string to clean
+ * @returns {string} Plain text content
  */
 function cleanHTML(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -103,6 +147,9 @@ function cleanHTML(html) {
 
 /**
  * Fetch RSS feed via RSS2JSON API (returns JSON, no XML parsing needed)
+ * @param {string} feedUrl - RSS feed URL
+ * @param {string} sourceName - Source identifier key
+ * @returns {Promise<FeedItem[]>} Parsed feed items
  */
 async function fetchViaRSS2JSON(feedUrl, sourceName) {
   const response = await fetch(RSS2JSON_API + encodeURIComponent(feedUrl));
@@ -144,6 +191,9 @@ async function fetchViaRSS2JSON(feedUrl, sourceName) {
 
 /**
  * Fetch RSS feed with CORS proxy (XML parsing fallback)
+ * @param {string} feedUrl - RSS feed URL
+ * @param {string} sourceName - Source identifier key
+ * @returns {Promise<FeedItem[]>} Parsed feed items
  */
 async function fetchViaCORSProxy(feedUrl, sourceName) {
   const response = await fetch(CORS_PROXY + encodeURIComponent(feedUrl), {
@@ -161,6 +211,9 @@ async function fetchViaCORSProxy(feedUrl, sourceName) {
  * Fetch RSS feed with fallback strategies:
  * 1. RSS2JSON API (most reliable, purpose-built for RSS)
  * 2. allorigins.win CORS proxy (fallback)
+ * @param {string} feedUrl - RSS feed URL
+ * @param {string} sourceName - Source identifier key
+ * @returns {Promise<FeedItem[]>} Parsed feed items (empty array on failure)
  */
 async function fetchRSSFeed(feedUrl, sourceName) {
   // Strategy 1: RSS2JSON API
@@ -181,7 +234,8 @@ async function fetchRSSFeed(feedUrl, sourceName) {
 }
 
 /**
- * Fetch all RSS feeds and combine results
+ * Fetch all RSS feeds and combine results, sorted by relevance then date.
+ * @returns {Promise<FeedItem[]>} Combined and sorted feed items from all sources
  */
 export async function fetchAllFeeds() {
   const feedPromises = Object.entries(RSS_FEEDS).map(([name, url]) =>
@@ -209,6 +263,9 @@ export async function fetchAllFeeds() {
  * Fetch feeds progressively — calls onItems(items) as each source finishes.
  * Also calls onSourceDone(sourceName) when each source completes (even if 0 items).
  * This allows the UI to show articles as they arrive and track per-source progress.
+ * @param {(items: FeedItem[]) => void} onItems - Callback receiving new items as they arrive
+ * @param {(sourceName: string) => void} [onSourceDone] - Callback when a source finishes loading
+ * @returns {Promise<void>}
  */
 export async function fetchFeedsProgressively(onItems, onSourceDone) {
   const feedPromises = Object.entries(RSS_FEEDS).map(async ([name, url]) => {
@@ -229,6 +286,7 @@ export async function fetchFeedsProgressively(onItems, onSourceDone) {
  * Fetch political prisoners data from verified JSON research file
  * Source: CECC Political Prisoner Database, HRW, Amnesty International, CPJ
  * Data file: src/data/political_prisoners_research.json (63 verified entries)
+ * @returns {Promise<Array<{id: number, name: string, status: string, sentence: string, location: string, description: string, source: string, confidence: string, lastUpdated: string}>>}
  */
 export async function fetchPoliticalPrisoners() {
   const { default: prisonersData } = await import('../data/political_prisoners_research.json');
@@ -250,10 +308,10 @@ export async function fetchPoliticalPrisoners() {
 
 /**
  * Fetch platform statistics derived from verified data files
- * 
+ *
  * Numbers are derived from actual data in the repository's JSON files,
  * not from a live database. They represent documented/verified entries.
- * 
+ *
  * Sources:
  * - Political prisoners: CECC database, HRW, Amnesty (63 documented in our database)
  * - Detention facilities: ASPI Xinjiang Data Project estimates 380+ facilities;
@@ -261,6 +319,7 @@ export async function fetchPoliticalPrisoners() {
  *   (Source: ASPI, https://xjdp.aspi.org.au/)
  * - Verified organizations: human_rights_orgs_research.json (49 documented)
  * - Active campaigns: Illustrative target — no live tracking
+ * @returns {Promise<PlatformStatistics>}
  */
 export async function fetchStatistics() {
   return {
@@ -279,7 +338,8 @@ export async function fetchStatistics() {
 }
 
 /**
- * Source metadata
+ * Source metadata for all feed sources.
+ * @type {Object<string, FeedSourceMeta>}
  */
 export const FEED_SOURCES = {
   icij: {

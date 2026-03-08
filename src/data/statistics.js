@@ -11,7 +11,19 @@
  *   - lastVerified: date the statistic was last fact-checked
  *
  * When updating a statistic, change it HERE and it updates everywhere.
+ *
+ * @module statistics
  */
+
+/**
+ * @typedef {Object} StatisticEntry
+ * @property {string} value - Displayable number, range, or text
+ * @property {string} context - Brief explanatory text
+ * @property {string[]} sources - Array of credible source names
+ * @property {string} lastVerified - Date of last verification (YYYY-MM-DD)
+ */
+
+/** @type {Object<string, StatisticEntry>} */
 
 export const STATISTICS = {
   uyghurDetention: {
@@ -102,6 +114,8 @@ export const STATISTICS = {
 /**
  * Helper to format a statistic for display.
  * Returns a string like "1-3 million Uyghurs detained"
+ * @param {string} key - Key from STATISTICS object
+ * @returns {string} Formatted statistic string, or empty string if key not found
  */
 export function formatStat(key) {
   const stat = STATISTICS[key];
@@ -111,6 +125,8 @@ export function formatStat(key) {
 
 /**
  * Get the source list for a statistic.
+ * @param {string} key - Key from STATISTICS object
+ * @returns {string[]} Array of source names, or empty array if key not found
  */
 export function getStatSources(key) {
   const stat = STATISTICS[key];
