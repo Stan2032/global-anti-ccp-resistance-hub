@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { translations, LanguageContext } from './languageUtils';
 import enTranslations from '../locales/en.json';
 
-export const LanguageProvider = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState(() => {
     // Check localStorage for saved preference
     if (typeof window !== 'undefined') {
@@ -22,16 +22,18 @@ export const LanguageProvider = ({ children }) => {
   }, [language]);
 
   // Translation function — checks inline translations first, then locale JSON files
-  const t = (key) => {
+  const t = (key: string): string => {
     const keys = key.split('.');
     // 1. Try inline translations for current language
-    let value = translations[language];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let value: any = translations[language];
     for (const k of keys) {
       value = value?.[k];
     }
     // 2. If not found inline, try locale JSON file
     if (!value && translations[language]?.localeData) {
-      let localeValue = translations[language].localeData;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let localeValue: any = translations[language].localeData;
       for (const k of keys) {
         localeValue = localeValue?.[k];
       }
@@ -43,14 +45,16 @@ export const LanguageProvider = ({ children }) => {
     }
     // 4. Fall back to English inline, then English locale file
     if (!value) {
-      let enValue = translations.en;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let enValue: any = translations.en;
       for (const k of keys) {
         enValue = enValue?.[k];
       }
       value = enValue;
     }
     if (!value && enTranslations) {
-      let enLocale = enTranslations;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let enLocale: any = enTranslations;
       for (const k of keys) {
         enLocale = enLocale?.[k];
       }

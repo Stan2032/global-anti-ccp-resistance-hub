@@ -4,14 +4,22 @@
  * Wraps the app and exposes: user, isAdmin, loading, login, logout.
  * Admin status is checked via the admin_users table after sign-in.
  */
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { signIn, signOut, getSession, checkIsAdmin, onAuthStateChange } from '../services/authService';
 import { isSupabaseConfigured } from '../services/supabaseClient';
 
-const AuthContext = createContext(null);
+interface AuthContextValue {
+  user: unknown;
+  isAdmin: boolean;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<unknown>;
+  logout: () => Promise<void>;
+}
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+const AuthContext = createContext<AuthContextValue | null>(null);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<unknown>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(() => isSupabaseConfigured());
 
@@ -21,7 +29,7 @@ export function AuthProvider({ children }) {
     }
 
     // Check existing session on mount
-    getSession().then(async (session) => {
+    getSession().then(async (session: { user?: unknown } | null) => {
       if (session?.user) {
         setUser(session.user);
         const admin = await checkIsAdmin();
@@ -31,7 +39,7 @@ export function AuthProvider({ children }) {
     });
 
     // Listen for auth changes (sign in, sign out, token refresh)
-    const subscription = onAuthStateChange(async (event, session) => {
+    const subscription = onAuthStateChange(async (_event: string, session: { user?: unknown } | null) => {
       if (session?.user) {
         setUser(session.user);
         const admin = await checkIsAdmin();
@@ -47,7 +55,7 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email: string, password: string) => {
     const result = await signIn(email, password);
     return result;
   };

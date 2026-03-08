@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
-import { ThemeContext, THEMES, useTheme } from './themeUtils';
+import { ThemeContext, THEMES, useTheme, type ThemeState } from './themeUtils';
+
+interface ThemeColorConfig {
+  name: string;
+  Icon: React.ComponentType<{ className?: string }>;
+  bg: string;
+  bgSecondary: string;
+  text: string;
+  textSecondary: string;
+  border: string;
+  accent: string;
+  icon?: string;
+}
 
 // Theme color configurations
-const themeColors = {
+const themeColors: Record<string, ThemeColorConfig> = {
   dark: {
     name: 'Dark Mode',
     Icon: Moon,
@@ -36,22 +48,22 @@ const themeColors = {
   }
 };
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(() => {
     // Check localStorage first
     const saved = localStorage.getItem('resistance-hub-theme');
-    if (saved && Object.values(THEMES).includes(saved)) {
+    if (saved && (Object.values(THEMES) as string[]).includes(saved)) {
       return saved;
     }
     // Default to dark (the original design)
-    return THEMES.DARK;
+    return THEMES.DARK as string;
   });
 
   const [resolvedTheme, setResolvedTheme] = useState(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const savedTheme = localStorage.getItem('resistance-hub-theme') || THEMES.DARK;
     if (savedTheme === THEMES.SYSTEM) {
-      return mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT;
+      return mediaQuery.matches ? (THEMES.DARK as string) : (THEMES.LIGHT as string);
     }
     return savedTheme;
   });
@@ -94,7 +106,7 @@ export const ThemeProvider = ({ children }) => {
     // Update meta theme-color
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      const colors = {
+      const colors: Record<string, string> = {
         dark: '#0f172a',
         light: '#f9fafb',
         'high-contrast': '#000000'
@@ -104,13 +116,13 @@ export const ThemeProvider = ({ children }) => {
   }, [resolvedTheme]);
 
   const toggleTheme = () => {
-    const themes = [THEMES.DARK, THEMES.LIGHT, THEMES.HIGH_CONTRAST];
+    const themes = [THEMES.DARK, THEMES.LIGHT, THEMES.HIGH_CONTRAST] as string[];
     const currentIndex = themes.indexOf(resolvedTheme);
     const nextIndex = (currentIndex + 1) % themes.length;
     setTheme(themes[nextIndex]);
   };
 
-  const value = {
+  const value: ThemeState = {
     theme,
     resolvedTheme,
     setTheme,
@@ -129,7 +141,7 @@ export const ThemeProvider = ({ children }) => {
 };
 
 // Theme Toggle Button Component
-export const ThemeToggle = ({ className = '' }) => {
+export const ThemeToggle = ({ className = '' }: { className?: string }) => {
   const { toggleTheme, themeConfig } = useTheme();
 
   return (
@@ -147,7 +159,7 @@ export const ThemeToggle = ({ className = '' }) => {
 };
 
 // Theme Selector Dropdown Component
-export const ThemeSelector = ({ className = '' }) => {
+export const ThemeSelector = ({ className = '' }: { className?: string }) => {
   const { theme, setTheme, themeConfig } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -198,7 +210,7 @@ export const ThemeSelector = ({ className = '' }) => {
                       : 'text-slate-300 hover:bg-[#1c2a35]'
                   }`}
                 >
-                  <span aria-hidden="true">{t.Icon ? <t.Icon className="w-4 h-4" /> : t.icon}</span>
+                  <span aria-hidden="true"><t.Icon className="w-4 h-4" /></span>
                   <span className="text-sm">{t.name}</span>
                   {theme === t.id && (
                     <svg className="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
