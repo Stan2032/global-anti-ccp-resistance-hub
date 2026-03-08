@@ -1,5 +1,5 @@
 /**
- * EconomicImpactAnalyzer — Analyzes economic dimensions of CCP human rights
+ * EconomicImpactAnalyzer — Analyses economic dimensions of CCP human rights
  * issues including trade impacts, supply chain risks, and sanctions effects.
  *
  * @module EconomicImpactAnalyzer

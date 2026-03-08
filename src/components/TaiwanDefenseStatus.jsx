@@ -1,5 +1,5 @@
 /**
- * TaiwanDefenseStatus — Status dashboard for Taiwan cross-strait relations,
+ * TaiwanDefenseStatus — Status dashboard for Taiwan cross-strait defence,
  * military readiness, and international support for Taiwan's sovereignty.
  *
  * @module TaiwanDefenseStatus

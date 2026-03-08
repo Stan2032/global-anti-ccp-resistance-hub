@@ -4,7 +4,7 @@ import { FileText, Users, Copy, Check, ChevronDown, ChevronUp, Globe, Shield, Sc
 
 /**
  * PolicyBriefGenerator — Evidence-based policy brief generation
- * cross-referencing political prisoners, sanctions, forced labor,
+ * cross-referencing political prisoners, sanctions, forced labour,
  * detention facilities, legal cases, international responses, and
  * police stations datasets to produce actionable recommendations.
  *

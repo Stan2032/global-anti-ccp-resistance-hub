@@ -1,6 +1,6 @@
 /**
  * DiplomaticCoercionTracker — Tracks diplomatic and economic coercion
- * tactics used by the CCP against nations and international organizations.
+ * tactics used by the CCP against nations and international organisations.
  *
  * @module DiplomaticCoercionTracker
  */

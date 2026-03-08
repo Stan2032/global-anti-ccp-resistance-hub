@@ -1,6 +1,6 @@
 /**
  * ForcedLaborTracker — Monitors companies and supply chains linked to
- * forced labor in Xinjiang and other regions. Searchable database with
+ * forced labour in Xinjiang and other regions. Searchable database with
  * risk assessments and source verification.
  *
  * @module ForcedLaborTracker

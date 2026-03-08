@@ -1,6 +1,6 @@
 /**
  * XinjiangStatus — Regional status dashboard for Xinjiang/East Turkestan
- * covering detention camps, surveillance, forced labor, and cultural erasure.
+ * covering detention camps, surveillance, forced labour, and cultural erasure.
  *
  * @module XinjiangStatus
  */

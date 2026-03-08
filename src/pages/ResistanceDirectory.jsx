@@ -1,5 +1,5 @@
 /**
- * ResistanceDirectory — Searchable directory of human rights organizations,
+ * ResistanceDirectory — Searchable directory of human rights organisations,
  * IPAC members, and advocacy groups fighting CCP authoritarianism worldwide.
  *
  * @module ResistanceDirectory
@@ -19,7 +19,7 @@ const ResistanceDirectory = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedOrg, setSelectedOrg] = useState(null);
 
-  // Filter organizations
+  // Filter organisations
   const filteredOrgs = useMemo(() => {
     return organizations.filter(org => {
       const matchesSearch = !searchQuery || 

@@ -8,12 +8,12 @@ import { ExternalLink, CheckCircle, AlertCircle, FileText, Building, Newspaper, 
  * Every piece of information should be traceable to its original source.
  * 
  * @param {Object} source - Source information object
- * @param {string} source.name - Name of the source organization/publication
+ * @param {string} source.name - Name of the source organisation/publication
  * @param {string} source.url - Direct URL to the source document/article
  * @param {string} source.date - Publication or access date (ISO format)
  * @param {string} source.type - Type of source (Government, NGO Report, News Report, Academic Research, etc.)
  * @param {boolean} source.verified - Whether the source has been verified
- * @param {string} [source.organization] - Organization name (optional)
+ * @param {string} [source.organization] - Organisation name (optional)
  * @param {string} [source.description] - Brief description (optional)
  * @param {boolean} [compact=false] - Show compact version
  */

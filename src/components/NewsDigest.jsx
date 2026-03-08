@@ -1,6 +1,6 @@
 /**
  * NewsDigest — Curated daily digest of key developments. Supports
- * email subscription via Supabase and provides categorized summaries.
+ * email subscription via Supabase and provides categorised summaries.
  *
  * @module NewsDigest
  */

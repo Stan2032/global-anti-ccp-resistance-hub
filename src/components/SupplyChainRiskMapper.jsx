@@ -4,7 +4,7 @@ import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Sh
 
 /**
  * SupplyChainRiskMapper — Corporate supply chain risk analysis
- * cross-referencing forced labor, sanctions, and international responses.
+ * cross-referencing forced labour, sanctions, and international responses.
  * Risk classification, industry breakdown, UFLPA tracking, legal landscape.
  * All data sourced from verified JSON via dataApi. CC BY 4.0.
  */

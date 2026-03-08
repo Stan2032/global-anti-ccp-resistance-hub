@@ -1,5 +1,5 @@
 /**
- * SanctionImpactAnalyzer — Analyzes the effectiveness and impact of
+ * SanctionImpactAnalyzer — Analyses the effectiveness and impact of
  * sanctions against CCP entities. Cross-references sanctions data with
  * diplomatic and economic indicators.
  *

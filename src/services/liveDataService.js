@@ -25,7 +25,7 @@
 /**
  * @typedef {Object} FeedSourceMeta
  * @property {string} name - Short name
- * @property {string} fullName - Full organization name
+ * @property {string} fullName - Full organisation name
  * @property {string} url - Website URL
  * @property {string} description - Brief description
  * @property {'high'|'medium'|'low'} reliability - Reliability rating
@@ -33,7 +33,7 @@
 
 /**
  * @typedef {Object} PlatformStatistics
- * @property {number} verifiedOrganizations - Count of verified human rights organizations
+ * @property {number} verifiedOrganizations - Count of verified human rights organisations
  * @property {number} detentionFacilities - Estimated count of detention facilities
  * @property {number|null} activeCampaigns - Active campaigns count (null if not tracked)
  * @property {number} politicalPrisoners - Count of documented political prisoners
@@ -317,7 +317,7 @@ export async function fetchPoliticalPrisoners() {
  * - Detention facilities: ASPI Xinjiang Data Project estimates 380+ facilities;
  *   broader estimates by researchers suggest 1,000+ across all regions
  *   (Source: ASPI, https://xjdp.aspi.org.au/)
- * - Verified organizations: human_rights_orgs_research.json (49 documented)
+ * - Verified organisations: human_rights_orgs_research.json (49 documented)
  * - Active campaigns: Illustrative target — no live tracking
  * @returns {Promise<PlatformStatistics>}
  */

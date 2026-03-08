@@ -1,6 +1,6 @@
 /**
  * DisinfoTracker — Monitors identified CCP disinformation campaigns.
- * Categorized by target region, tactic type, and platform with
+ * Categorised by target region, tactic type, and platform with
  * evidence documentation.
  *
  * @module DisinfoTracker

@@ -67,7 +67,7 @@
  * @property {string} id - Unique identifier
  * @property {string} company - Company name
  * @property {string} [industry] - Industry sector
- * @property {string} [connection_type] - Type of forced labor connection
+ * @property {string} [connection_type] - Type of forced labour connection
  * @property {string} [evidence] - Evidence details
  * @property {string} [uflpa_actions] - UFLPA enforcement actions
  * @property {string} [status] - Current status
@@ -128,9 +128,9 @@
 /**
  * @typedef {Object} HumanRightsOrg
  * @property {string} id - Unique identifier
- * @property {string} organization - Organization name
+ * @property {string} organization - Organisation name
  * @property {string} [focus_area] - Primary focus area
- * @property {string} [org_type] - Organization type
+ * @property {string} [org_type] - Organisation type
  * @property {number} [founded_year] - Year founded
  * @property {string} [headquarters] - HQ location
  * @property {string} [website] - Official website
@@ -149,7 +149,7 @@
  * @property {string} [closure_date] - Date closed if applicable
  * @property {boolean} [arrests_made] - Whether arrests were made
  * @property {string} [government_response] - Host government response
- * @property {string} [linked_to] - Linked CCP organization
+ * @property {string} [linked_to] - Linked CCP organisation
  * @property {string} source_url - Primary source URL
  */
 
@@ -266,7 +266,7 @@ export const dataApi = {
         },
         forced_labor_companies: {
           count: this.getForcedLaborCompanies().length,
-          description: 'Companies linked to Uyghur forced labor supply chains',
+          description: 'Companies linked to Uyghur forced labour supply chains',
           fields: ['company', 'industry', 'connection_type', 'evidence', 'uflpa_actions', 'status', 'source_url'],
         },
         detention_facilities: {
@@ -291,7 +291,7 @@ export const dataApi = {
         },
         human_rights_orgs: {
           count: this.getHumanRightsOrgs().length,
-          description: 'Verified human rights organizations working on China issues',
+          description: 'Verified human rights organisations working on China issues',
           fields: ['organization', 'focus_area', 'org_type', 'founded_year', 'headquarters', 'website', 'donation_url', 'key_work', 'credibility', 'latest_news', 'source_url'],
         },
         police_stations: {
@@ -440,14 +440,14 @@ export const dataApi = {
     );
   },
 
-  // ── Forced Labor Companies ──────────────────────────
-  /** @returns {ForcedLaborCompany[]} All companies linked to forced labor */
+  // ── Forced Labour Companies ──────────────────────────
+  /** @returns {ForcedLaborCompany[]} All companies linked to forced labour */
   getForcedLaborCompanies() {
     return extractResults(forcedLaborData);
   },
 
   /**
-   * Filter forced labor companies by industry.
+   * Filter forced labour companies by industry.
    * @param {string} industry - Industry sector
    * @returns {ForcedLaborCompany[]} Companies in that industry
    */
@@ -458,7 +458,7 @@ export const dataApi = {
   },
 
   /**
-   * Search forced labor companies across all text fields.
+   * Search forced labour companies across all text fields.
    * @param {string} query - Search query
    * @returns {ForcedLaborCompany[]} Matching companies
    */
@@ -580,16 +580,16 @@ export const dataApi = {
     return this.getInternationalResponses().filter((r) => matchesSearch(r, query));
   },
 
-  // ── Human Rights Organizations ──────────────────────
-  /** @returns {HumanRightsOrg[]} All verified human rights organizations */
+  // ── Human Rights Organisations ──────────────────────
+  /** @returns {HumanRightsOrg[]} All verified human rights organisations */
   getHumanRightsOrgs() {
     return extractResults(humanRightsOrgsData);
   },
 
   /**
-   * Filter organizations by focus area.
+   * Filter organisations by focus area.
    * @param {string} focusArea - Focus area to filter by
-   * @returns {HumanRightsOrg[]} Organizations with that focus
+   * @returns {HumanRightsOrg[]} Organisations with that focus
    */
   getHumanRightsOrgsByFocus(focusArea) {
     return this.getHumanRightsOrgs().filter(
@@ -598,9 +598,9 @@ export const dataApi = {
   },
 
   /**
-   * Filter organizations by type.
-   * @param {string} orgType - Organization type
-   * @returns {HumanRightsOrg[]} Organizations of that type
+   * Filter organisations by type.
+   * @param {string} orgType - Organisation type
+   * @returns {HumanRightsOrg[]} Organisations of that type
    */
   getHumanRightsOrgsByType(orgType) {
     return this.getHumanRightsOrgs().filter(
@@ -609,9 +609,9 @@ export const dataApi = {
   },
 
   /**
-   * Search organizations across all text fields.
+   * Search organisations across all text fields.
    * @param {string} query - Search query
-   * @returns {HumanRightsOrg[]} Matching organizations
+   * @returns {HumanRightsOrg[]} Matching organisations
    */
   searchHumanRightsOrgs(query) {
     return this.getHumanRightsOrgs().filter((o) => matchesSearch(o, query));

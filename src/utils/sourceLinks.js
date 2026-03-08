@@ -1,7 +1,7 @@
 /**
  * Source Links Utility
  * 
- * Maps well-known source organization names to their URLs, types,
+ * Maps well-known source organisation names to their URLs, types,
  * verification status, and bias risk level.
  *
  * biasRisk values:
@@ -70,7 +70,7 @@ const SOURCE_REGISTRY = {
     type: 'News Report',
     verified: true,
     biasRisk: 'none',
-    notes: 'Independent non-profit news organization; editorially independent.'
+    notes: 'Independent non-profit news organisation; editorially independent.'
   },
   'ASPI - Australian Strategic Policy Institute': {
     url: 'https://www.aspi.org.au/',
@@ -222,7 +222,7 @@ const SOURCE_REGISTRY = {
     type: 'Government',
     verified: true,
     biasRisk: 'none',
-    notes: 'Leaked Chinese government documents; authenticity verified by forensic experts and multiple independent international news organizations (BBC, Der Spiegel, Le Monde, etc.).'
+    notes: 'Leaked Chinese government documents; authenticity verified by forensic experts and multiple independent international news organisations (BBC, Der Spiegel, Le Monde, etc.).'
   },
   'Dr. Adrian Zenz': {
     url: 'https://adrianzenz.medium.com/',
@@ -404,7 +404,7 @@ export const CCP_NEVER_CITE = {
  *   'united_front'       - United Front Work Department affiliates  
  *   'confucius_institute' - CI-affiliated academic publications
  *   'ccp_think_tank'     - Think tanks with documented CCP funding/ties
- *   'elite_capture'      - Organizations with documented CCP co-optation
+ *   'elite_capture'      - Organisations with documented CCP co-optation
  */
 export const CCP_ELEVATED_RISK = [
   // CCP Proxy Media — ownership/editorial control by CCP-linked entities
@@ -455,7 +455,7 @@ export const CCP_ELEVATED_RISK = [
     domain: null,
     category: 'united_front',
     risk: 'high',
-    reason: 'Identified by ASPI as United Front-linked organization used for political influence operations abroad.',
+    reason: 'Identified by ASPI as United Front-linked organisation used for political influence operations abroad.',
     source: 'ASPI, "The Party Speaks for You", 2020'
   },
   {
@@ -463,7 +463,7 @@ export const CCP_ELEVATED_RISK = [
     domain: null,
     category: 'united_front',
     risk: 'high',
-    reason: 'Front organization for PLA General Political Department. Used for intelligence gathering and influence operations.',
+    reason: 'Front organisation for PLA General Political Department. Used for intelligence gathering and influence operations.',
     source: 'US-China Economic and Security Review Commission, 2011'
   },
   {
@@ -644,7 +644,7 @@ export function assessSourceRisk(sourceName) {
 /**
  * Convert a plain-text source name into a SourceAttribution-compatible object.
  * 
- * @param {string} sourceName - The name of the source organization
+ * @param {string} sourceName - The name of the source organisation
  * @returns {Object} Source attribution object with name, url, type, verified, biasRisk, notes
  */
 export function resolveSource(sourceName) {
@@ -660,7 +660,7 @@ export function resolveSource(sourceName) {
     };
   }
 
-  // Return a basic object for unrecognized sources
+  // Return a basic object for unrecognised sources
   return {
     name: sourceName,
     url: null,

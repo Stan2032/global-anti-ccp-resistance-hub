@@ -1,6 +1,6 @@
 /**
  * NewsAggregator — Aggregates live news feeds from Tier 1-2 sources
- * covering CCP human rights issues. Organized by region and topic
+ * covering CCP human rights issues. Organised by region and topic
  * with real-time updates from RSS processors.
  *
  * @module NewsAggregator

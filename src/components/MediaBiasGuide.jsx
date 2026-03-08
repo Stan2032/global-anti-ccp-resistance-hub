@@ -1,6 +1,6 @@
 /**
  * MediaBiasGuide — Educational guide helping users identify CCP state
- * media, evaluate source reliability, and recognize propaganda patterns.
+ * media, evaluate source reliability, and recognise propaganda patterns.
  *
  * @module MediaBiasGuide
  */

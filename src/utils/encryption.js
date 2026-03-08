@@ -3,7 +3,7 @@
  *
  * Uses the Web Crypto API (built into all modern browsers) to encrypt
  * sensitive fields BEFORE they leave the user's browser. This provides
- * defense-in-depth: even if the database is breached, PII remains encrypted.
+ * defence-in-depth: even if the database is breached, PII remains encrypted.
  *
  * Encryption model: Hybrid RSA-OAEP + AES-GCM
  *   1. A random AES-256-GCM key is generated per submission

@@ -21,7 +21,7 @@ import {
 
 /**
  * HumanRightsOrgDirectory — Interactive directory of 49 verified human
- * rights organizations working on China-related issues.
+ * rights organisations working on China-related issues.
  *
  * Uses dataApi.getHumanRightsOrgs() to display:
  *   - Searchable/filterable org directory
