@@ -1,3 +1,10 @@
+/**
+ * GlossaryTerms — Searchable glossary of key terms related to CCP
+ * human rights issues. Includes definitions, categories, and
+ * cross-references to platform statistics.
+ *
+ * @module GlossaryTerms
+ */
 import { useState } from 'react';
 import { BookOpen } from 'lucide-react';
 import { STATISTICS } from '../data/statistics';
@@ -273,7 +280,7 @@ const GlossaryTerms = () => {
           placeholder="Search terms in English or Chinese..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+          className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#22d3ee]"
         />
         {searchQuery && (
           <button

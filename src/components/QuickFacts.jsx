@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { BarChart3, Megaphone } from 'lucide-react';
 
+/**
+ * QuickFacts — Shareable statistics cards with verified data points.
+ * Each fact includes a source link, copy-to-clipboard, and category color.
+ *
+ * @returns {React.ReactElement} Grid of fact cards
+ */
 const QuickFacts = () => {
   const [copiedId, setCopiedId] = useState(null);
 

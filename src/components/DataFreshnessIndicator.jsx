@@ -1,3 +1,12 @@
+/**
+ * DataFreshnessIndicator — Visual indicator showing how recently a
+ * data source was verified. Uses colour-coded badges (green/amber/red)
+ * based on days since last verification.
+ *
+ * @param {Object} props
+ * @param {string} props.lastVerified - ISO date of last verification
+ * @returns {React.ReactElement} Freshness badge
+ */
 import { getFreshnessInfo } from '../utils/dateUtils';
 import { CheckCircle2, Clock, AlertTriangle } from 'lucide-react';
 

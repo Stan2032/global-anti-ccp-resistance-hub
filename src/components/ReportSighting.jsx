@@ -1,3 +1,9 @@
+/**
+ * ReportSighting — Guide for reporting sightings of overseas CCP police
+ * stations, surveillance activities, or other CCP operations abroad.
+ *
+ * @module ReportSighting
+ */
 import React, { useState } from 'react';
 import { Siren, Video, AlertTriangle, Theater, Smartphone, Landmark, ClipboardList, Search, Shield, Globe } from 'lucide-react';
 
@@ -207,7 +213,7 @@ const ReportSighting = () => {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-6 opacity-50 pointer-events-none">
         <>
           {/* Step 1: Select Type */}
           {step === 1 && (

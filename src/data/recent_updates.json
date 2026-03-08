@@ -1,5 +1,53 @@
 [
   {
+    "id": "session-235-jimmy-lai-no-appeal",
+    "date": "2026-03-08",
+    "category": "alert",
+    "title": "Data Update: Jimmy Lai confirms no appeal of 20-year NSL sentence",
+    "description": "Updated political prisoner data, emergency alert, and timeline for Jimmy Lai's confirmation that he will not appeal his 20-year NSL conviction. Added UN call for release (UN News, Feb 2026) and NBC News confirmation of no-appeal decision. Lai, age 78, effectively faces life imprisonment. Also added new timeline event (id 35).",
+    "relatedPage": "/prisoners"
+  },
+  {
+    "id": "session-229-whistleblower-guide",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Whistleblower Security Guide — OpSec protocols and secure submission channels",
+    "description": "New WhistleblowerGuide component providing 15 operational security protocols across 5 categories (Identity Protection, Secure Communications, Document Handling, Digital Security, Physical Security), 10 verified submission channels (SecureDrop instances, HRW, Amnesty, ICIJ, ASPI, Citizen Lab, Safeguard Defenders), and 6 legal protection frameworks. Features: risk classification, 3-view analysis (Security Protocols, Submission Channels, Legal Protections), search, copy report. Cross-references 3 datasets. 49 comprehensive tests.",
+    "relatedPage": "/security"
+  },
+  {
+    "id": "session-228-economic-impact-analyzer",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Economic Impact Analyzer — forced labor supply chain impact analysis",
+    "description": "New EconomicImpactAnalyzer component analyzing economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK MSA, Canada MSA, Australia MSA, US Tariff Act s307, Japan HRDD). Features: risk classification, 3-view analysis (Sector Analysis, Company Risk, Legislative Landscape), search, copy report. Cross-references 4 datasets. 46 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-227-censorship-circumvention-guide",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Censorship Circumvention Guide — documenting CCP internet censorship and verified tools",
+    "description": "New CensorshipCircumventionGuide component documenting 18 CCP censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluating 10 circumvention tools with safety ratings. Features: risk classification, 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide), search, copy report. Cross-references 3 datasets. 42 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-226-diplomatic-coercion-tracker",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Diplomatic Coercion Tracker — mapping CCP economic & diplomatic coercion globally",
+    "description": "New DiplomaticCoercionTracker component tracking 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types: Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference. Features: severity classification, 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes), search, copy report. Cross-references 4 datasets. 43 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
+    "id": "session-224-genocide-legal-framework",
+    "date": "2026-03-07",
+    "category": "new_entry",
+    "title": "Genocide Legal Framework — mapping CCP violations to international law instruments",
+    "description": "New GenocideLegalFramework component mapping 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention, Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). All 5 articles of the Genocide Convention (II(a)-II(e)) analyzed with documented actions, key findings, and cross-referenced evidence from 7 verified datasets. Genocide Recognitions view tracks 10 formal recognitions from governments and tribunals. Features: legal text display, severity classification, evidence cross-referencing, copy report, category filter buttons, search. 44 comprehensive tests.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-223-media-narrative-tracker",
     "date": "2026-03-07",
     "category": "new_entry",

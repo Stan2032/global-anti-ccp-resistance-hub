@@ -1,3 +1,10 @@
+/**
+ * ResearchDashboard — Analytical dashboard aggregating key data points
+ * across all datasets. Provides summary statistics, trend indicators,
+ * and cross-dataset insights for researchers.
+ *
+ * @module ResearchDashboard
+ */
 import React, { useState } from 'react';
 import { 
   Users, Newspaper, MapPin, AlertTriangle, CheckCircle, 
@@ -141,7 +148,7 @@ const ResearchDashboard = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
+              className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
             />
           </div>
           {activeTab === 'prisoners' && (

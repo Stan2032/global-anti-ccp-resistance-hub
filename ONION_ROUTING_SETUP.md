@@ -44,7 +44,9 @@ Enable Tor access for the **Global Anti-CCP Resistance Hub** via Cloudflare's bu
 3. Create a Worker route or custom domain mapping for the Worker
 4. Then the Onion Routing option will appear under Network settings
 
-> **Status (Session 155):** Human owner reports the Onion Routing option is not visible in their Cloudflare dashboard. This is most likely because the site is deployed on `workers.dev` without a custom domain. **Deferred** until a custom domain is added.
+> 📖 **Full step-by-step guide:** See **[guides/CUSTOM_DOMAIN_SETUP.md](guides/CUSTOM_DOMAIN_SETUP.md)** — a detailed dashboard walkthrough that covers domain purchase, Cloudflare setup, Workers connection, HTTPS, and Onion Routing (Parts 1-5). Written as "I'm looking at my dashboard, what do I do next?"
+
+> **Status (Session 236):** Onion Routing deferred pending custom domain acquisition. Custom domain setup guide available at `guides/CUSTOM_DOMAIN_SETUP.md`.
 
 ### Step 1: Log into Cloudflare Dashboard
 

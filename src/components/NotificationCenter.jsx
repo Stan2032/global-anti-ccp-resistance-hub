@@ -1,3 +1,12 @@
+/**
+ * NotificationCenter — Aggregated notification feed from all platform data sources.
+ *
+ * Pulls from emergency alerts, recent updates, and sanctions tracker to build
+ * a unified notification feed. Supports category filtering, search, browser
+ * notification permissions, and clipboard export.
+ *
+ * @module NotificationCenter
+ */
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, ChevronUp, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
@@ -118,6 +127,11 @@ function buildClipboardText(notifications, prefs) {
 
 // ── Component ───────────────────────────────────────────
 
+/**
+ * NotificationCenter component.
+ *
+ * @returns {React.ReactElement} Notification center with filters and settings
+ */
 export default function NotificationCenter() {
   const [activeCategory, setActiveCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');

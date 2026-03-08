@@ -1,3 +1,9 @@
+/**
+ * JoshuaWongProfile — Detailed profile of Joshua Wong, Hong Kong
+ * democracy activist sentenced under the National Security Law.
+ *
+ * @module JoshuaWongProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

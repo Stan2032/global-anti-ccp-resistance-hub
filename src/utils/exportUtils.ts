@@ -3,19 +3,21 @@
  * Used by the DataExport component.
  */
 
-/** Extract records array from JSON data (handles results[].output pattern and flat arrays) */
-export function extractRecords(data) {
-  if (Array.isArray(data)) return data;
-  if (data?.results) return data.results.map(r => r.output || r);
-  if (data?.sanctions) return data.sanctions;
+// Extracts a records array from JSON data.
+// Handles flat arrays, `{ results: [{ output }] }` wrappers, and `{ sanctions: [] }` wrappers.
+export function extractRecords(data: unknown): Record<string, unknown>[] {
+  if (Array.isArray(data)) return data as Record<string, unknown>[];
+  const obj = data as Record<string, unknown> | null | undefined;
+  if (obj?.results) return (obj.results as Record<string, unknown>[]).map(r => (r.output as Record<string, unknown>) || r);
+  if (obj?.sanctions) return obj.sanctions as Record<string, unknown>[];
   return [];
 }
 
-/** Convert an array of objects to CSV string */
-export function recordsToCsv(records, fields) {
+// Converts an array of objects to a CSV string.
+export function recordsToCsv(records: Record<string, unknown>[], fields?: string[]): string {
   if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);
-  const escapeCsv = (val) => {
+  const escapeCsv = (val: unknown): string => {
     const str = val == null ? '' : String(val);
     return str.includes(',') || str.includes('"') || str.includes('\n')
       ? `"${str.replace(/"/g, '""')}"` : str;
@@ -26,8 +28,9 @@ export function recordsToCsv(records, fields) {
 
 const MAX_CELL_LENGTH = 100;
 
-/** Convert an array of objects to Markdown table */
-export function recordsToMarkdown(records, fields) {
+// Converts an array of objects to a Markdown table string.
+// Cell values are truncated to MAX_CELL_LENGTH characters.
+export function recordsToMarkdown(records: Record<string, unknown>[], fields?: string[]): string {
   if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);
   const headerRow = `| ${headers.join(' | ')} |`;

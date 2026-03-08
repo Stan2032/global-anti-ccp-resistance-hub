@@ -1,3 +1,9 @@
+/**
+ * MediaManipulation — Documents CCP media manipulation tactics including
+ * bot networks, astroturfing, and narrative control strategies.
+ *
+ * @module MediaManipulation
+ */
 import { useState } from 'react';
 import { Monitor, Landmark, Smartphone, Bot, Drama, Radio, BarChart3, Globe, Search } from 'lucide-react';
 

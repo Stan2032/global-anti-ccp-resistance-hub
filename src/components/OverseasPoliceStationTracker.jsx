@@ -1,3 +1,10 @@
+/**
+ * OverseasPoliceStationTracker — Maps and documents CCP overseas police
+ * stations identified by Safeguard Defenders. Searchable by country
+ * with evidence links and operational details.
+ *
+ * @module OverseasPoliceStationTracker
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import {
@@ -234,7 +241,7 @@ export default function OverseasPoliceStationTracker() {
               placeholder="Search by country, city, response..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder-slate-500 focus:outline-none focus:border-[#4afa82]/50"
+              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]/50"
               aria-label="Search police stations"
             />
           </div>

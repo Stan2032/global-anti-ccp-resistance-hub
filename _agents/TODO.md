@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 7, 2026 (Session 223)
+> Last Updated: March 8, 2026 (Session 239)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -14,7 +14,7 @@
 ### Human-Answered Tasks (Q6-Q10, Session 153)
 - [x] **Implement basic cache (Q6)**: ✅ Two-layer caching implemented: (1) Static asset Cache-Control headers in `_headers` (immutable for hashed assets, no-cache for HTML/SW), (2) Backend feed routes wired to in-memory cacheService (TTL 5-30 min, tag-based invalidation, LRU eviction). BACKEND_GUIDE.md updated with full caching documentation.
 - [x] **Supabase Auth admin login (Q8)**: ✅ IMPLEMENTED Session 157. Frontend auth code: AuthContext + authUtils (auth state management), authService.js (login/logout/admin check), ProtectedRoute (route guard), AdminLogin page (email/password form with "not configured" fallback), AdminDashboard page (tabbed data viewer for all 4 tables). Comprehensive setup guide: `SUPABASE_AUTH_SETUP.md` (7 steps including SQL for admin_users table, RLS policies, and troubleshooting). Human needs to run SQL in Steps 2-4 in Supabase Dashboard.
-- [ ] **Cloudflare Onion Routing (Q9)**: ⚠️ DEFERRED — Human reports no onion routing option visible in Cloudflare dashboard. Root cause: Onion Routing requires a custom domain (not available for `workers.dev` subdomains). Setup guide updated in `ONION_ROUTING_SETUP.md`. Will revisit when custom domain is added. See Q12.
+- [ ] **Cloudflare Onion Routing (Q9)**: ⚠️ DEFERRED — Requires custom domain (not available for `workers.dev` subdomains). Full step-by-step custom domain + onion routing guide available at `guides/CUSTOM_DOMAIN_SETUP.md` (rewritten Session 236 — detailed dashboard walkthrough). Also see `ONION_ROUTING_SETUP.md`. Will activate when custom domain is acquired.
 
 ### Standing Instructions (from Q7, Q10)
 - **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
@@ -27,12 +27,12 @@
   - Subtask: Check UK FCDO sanctions list for updates ✅
   - Subtask: Check EU Council sanctions for new entries ✅ (entity-level only in 2025)
   - Subtask: Verify source_url links still resolve
-- [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 147
+- [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 235
   - ✅ Dec 15, 2025: Found guilty on all 3 NSL charges
   - ✅ Feb 9, 2026: Sentenced to 20 years (harshest NSL sentence)
   - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
-  - Subtask: Watch for NSL sentence appeal filing
-  - Subtask: Monitor health status and UN appeals
+  - ✅ Mar 2026: Confirmed will NOT appeal NSL sentence (NBC News). UN calls for release (UN News)
+  - Subtask: Monitor health status and international pressure
 - [x] **Monitor Joshua Wong case** — ✅ Updated Session 150
   - ✅ Jun 6, 2025: New foreign collusion charge filed (max: life imprisonment)
   - ✅ Feb 14, 2026: HK47 appeal dismissed — 4yr 8mo sentence upheld
@@ -51,7 +51,15 @@
 > ✅ **ALL COMPLETE** — Sessions 50-215. See `_agents/TODO_COMPLETED.md` and session history for details.
 > 47 completed items covering: mobile responsiveness, dark mode, sort/filter, dashboard usability, breadcrumbs, recent updates, region filters, contrast overhaul, deep usability, per-source loading, event countdown, alert sharing, data hygiene, live statistics JSON extraction, real data export, design system enforcement, URL validation, no-hashtags policy, profile page tests, 100% page test coverage, cross-JSON consistency, accessibility audit, keyboard navigation, performance resilience, sitemap freshness, route integrity, defensive coding, meta-test coverage, security audit, performance budget, ARIA live regions, data API, content analytics, API docs, data changelog, influence network, data comparison, advocacy letters, case timeline, international response tracker, sanction impact analyzer, HR org directory, overseas police stations, source diversity, prisoner dashboard, legal case tracker, cross-dataset insights, data integrity monitor.
 
-- [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). Remaining audit: check ALL components at zoom levels 100%/125%/150% × viewports 375/768/1280px for any other text overlap or truncation issues. *(Originally reported by human, Session 221)*
+- [x] **Visual overlap fixes**: ✅ InteractiveTimeline year labels fixed (Session 222) — adaptive 5-year intervals with min-gap endpoint exclusion, min-w-[540px] for mobile horizontal scroll. Verified zero overlaps at 375px (30px gaps), 768px (52px gaps), 1280px (69px gaps). **Full visual audit complete (Sessions 232-233)**: All 11 pages tested at 100%/125%/150% zoom × 375/768/1280px viewports (99 combinations). Zero horizontal overflow, zero heading truncation, zero content-too-narrow issues. Session 232 fixed: QuickStartGuide dot overflow at 375px (WCAG 44px touch target inflating decorative dots), TakeAction horizontal scroll at 375px (p-6→p-4 sm:p-6 + AdvocacyLetterGenerator flex-wrap), added overflow-x-hidden on App root. *(Originally reported by human, Session 221)*
+- [x] **Placeholder text standardization**: ✅ Session 225 — All 48 placeholder instances across 30 files standardized to `placeholder:text-slate-400` (Tailwind v3+ syntax). Fixed 2 `placeholder-slate-600` violations, converted 19 `placeholder-slate-500` and 9 `placeholder-slate-400` (old syntax). Added 11th design system compliance test preventing reintroduction. Focus colors also standardized: 7 components fixed from non-terminal colors (emerald/green/cyan/amber/red) to terminal palette (`#4afa82`/`#22d3ee`).
+- [x] **Non-functional interactive elements audit & fix**: ✅ Session 230 — Full site audit for broken buttons, forms, and misleading UI. Fixed 9 issues across 8 files:
+  - **EducationalResources.jsx**: "Start Course" button (no onClick) → replaced with "Course content coming soon" notice. Download buttons (no onClick, no URL) → replaced with disabled-style indicators.
+  - **EventCalendar.jsx**: "Subscribe to Calendar" button (styled active but non-functional) → changed to disabled style with `cursor-not-allowed`.
+  - **VolunteerSignup.jsx, ContactForm.jsx, NewsDigest.jsx, IncidentReportForm.jsx**: Forms appear fully functional but data goes nowhere when backend not connected → forms now visually disabled (`opacity-50 pointer-events-none`) when no backend, with existing "Coming Soon" warning.
+  - **ReportSighting.jsx**: Form always non-functional (no backend integration at all) → form content disabled with `opacity-50 pointer-events-none`.
+  - **ProfilesIndex.jsx**: Unbuilt profile cards look clickable → increased opacity reduction to 50% with `cursor-default`. *(Originally reported by human, Session 230)*
+- [x] **Comprehensive site-wide interactive element verification**: ✅ Session 231 — Automated + manual click-based audit across ALL 13 pages (Dashboard, Education, Intelligence, Security, Prisoners, Take Action, Directory, Community, Data Sources, Resources, Profiles Index, 2 individual profiles). Tested 1,000+ buttons, 800+ links, all tabs, all expand/collapse, all search/filter inputs, all forms. Results: **0 genuinely broken interactive elements found**. All buttons fire handlers, all filters filter, all search inputs search, all accordions toggle, all tabs switch content, all navigation links work. The Session 230 "coming soon" approach was adequate — no elements are misleadingly interactive. One minor UX improvement: download resource indicator border removed (was styled like a button). *(Originally reported by human, Session 231)*
 
 ### Navigation Simplification (Session 136)
 - [x] **Sidebar nav reduced**: 11 items → 7 items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security)
@@ -241,9 +249,9 @@
 
 ### Technical Improvements
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
-- [x] **Push Notifications**: ✅ Phase 1 (Session 217): NotificationCenter component — centralized notification hub aggregating emergency alerts, platform updates, and sanctions data. 4 notification categories with filters, browser push permission management, service worker v3 integration, per-category preferences with localStorage persistence, search, expandable cards. Privacy-first (no server tracking). Phase 2: Server-side push via Web Push API.
+- [x] **Push Notifications**: ✅ Phase 1 (Session 217): NotificationCenter component — centralized notification hub aggregating emergency alerts, platform updates, and sanctions data. 4 notification categories with filters, browser push permission management, service worker v3 integration, per-category preferences with localStorage persistence, search, expandable cards. Privacy-first (no server tracking). ✅ Phase 2 (Session 234): pushService.js frontend module (subscribe/unsubscribe/status), Web Push API integration ready. Server-side push endpoint documented in `guides/WEB_PUSH_SETUP.md`. Requires VAPID key generation + Cloudflare KV/Supabase for subscription storage.
 - [x] **Analytics Dashboard**: ✅ Phase 1 (Session 199): ContentAnalytics component — privacy-respecting content metrics dashboard aggregating insights from all 8 datasets. No user tracking. Integrated into Education Research tab. Phase 2: Server-side usage analytics (if needed).
-- [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). Phase 2: REST API via Cloudflare Workers.
+- [x] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). ✅ Phase 2 (Session 234): Cloudflare Workers REST API (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting (100 req/min), query filters (q, region, category, limit, offset), global search. Falls through to SPA for non-API routes. Setup guide: `guides/CLOUDFLARE_WORKERS_API_SETUP.md`.
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery
@@ -265,21 +273,24 @@
 - [ ] **Automated News Aggregation**: AI-curated news from trusted sources
 - [ ] **Virtual Reality Experiences**: Immersive education about detention camps
 - [ ] **Blockchain Verification**: Immutable record of documented abuses
-- [ ] **Whistleblower Portal**: Secure submission system for leaked documents
+- [ ] **Whistleblower Portal**: ✅ Phase 1 (Session 229): WhistleblowerGuide component — 15 operational security protocols across 5 categories (Identity Protection, Secure Communications, Document Handling, Digital Security, Physical Security). 10 verified submission channels (SecureDrop instances at Guardian/WaPo/NYT/BBC, ICIJ, HRW, Amnesty, ASPI, Citizen Lab, Safeguard Defenders). 6 legal protection frameworks (US WPA, EU Directive, UK PIDA, Canada PSDPA, Australia PID Act, UN mechanisms). Cross-references 3 datasets. Integrated into SecurityCenter Guides tab. 49 tests. Phase 2: Secure submission system for leaked documents.
 - [x] **Legal Case Tracker**: ✅ LegalCaseTracker component — 25 cases, 14 jurisdictions (Session 214)
 - [x] **Sanctions Impact Tracker**: ✅ SanctionImpactAnalyzer component — 34 officials, 47 sanctions (Session 207)
 - [x] **Corporate Accountability Scores**: ✅ Phase 1 (Session 219): SupplyChainRiskMapper component — automated risk classification of 30 companies (Critical/High/Moderate/Low) cross-referencing forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Industry breakdown, legal landscape, expandable evidence cards. Phase 2: Scoring methodology with weighted factors.
 - [x] **Transnational Repression Tracker**: ✅ Session 221: TransnationalRepressionTracker component — cross-references 30 police stations, 25 legal cases, and 30 international responses to map CCP overseas operations. Threat-level classification per country, government response tracking, 3 analytical views (Threat Overview, Operations Map, Government Responses). Integrated into Intelligence CCP Operations tab. 38 tests.
 - [x] **Diaspora Security Advisor**: ✅ Session 222: DiasporaSecurityAdvisor component — personalized security guidance for diaspora communities across 42 countries. Cross-references 30 police stations, 30 international responses, and 25 legal cases to assess per-country risk levels. Activity-specific safety tips for 6 activity types (Protests, Online Activism, Journalism, Legal Advocacy, Community Organizing, Academic Research). Integrated into Security Center Diaspora tab. 32 tests. Also fixed InteractiveTimeline year label overlap.
 - [x] **Media Narrative Tracker**: ✅ Session 223: MediaNarrativeTracker component — tracks 12 CCP propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from 7 datasets. Evidence-based debunks with counter-source links, narrative timeline, frequency classification. Integrated into Intelligence CCP Operations tab. 31 tests.
+- [x] **Genocide Legal Framework**: ✅ Session 224: GenocideLegalFramework component — maps 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention Articles II(a)-II(e), Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). 10 genocide recognition entries (governments + tribunals). Cross-references 7 datasets. Legal text display, severity classification, evidence cross-referencing. Integrated into Intelligence CCP Operations tab. 44 tests.
+- [x] **Diplomatic Coercion Tracker**: ✅ Session 226: DiplomaticCoercionTracker component — maps 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types (Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference). 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes). Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 43 tests.
+- [x] **Censorship Circumvention Guide**: ✅ Session 227: CensorshipCircumventionGuide component — documents 18 CCP internet censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluates 10 circumvention tools with safety ratings (Tor, Signal, Psiphon, Tails, Briar, Proton Mail, obfs4, V2Ray, WireGuard, Lantern). 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide). Cross-references 3 datasets. Integrated into Intelligence CCP Operations tab. 42 tests.
 
 ### Research & Documentation
 - [ ] **Oral History Project**: Recorded testimonies from survivors
 - [ ] **Academic Partnership**: Collaborate with universities for research
 - [ ] **Annual Report**: Comprehensive yearly report on CCP human rights abuses
 - [x] **Policy Recommendations**: ✅ Phase 1 (Session 220): PolicyBriefGenerator component — evidence-based briefs for 4 audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas, cross-referencing 8 datasets. Integrated into Take Action page. Phase 2: PDF export, multilingual briefs.
-- [ ] **Legal Analysis**: International law analysis of CCP actions
-- [ ] **Economic Impact Studies**: Research on forced labor in supply chains
+- [x] **Legal Analysis**: ✅ Phase 1 (Session 224): GenocideLegalFramework component — international law analysis mapping CCP actions to treaty obligations. Phase 2: ICJ proceedings tracker, advisory opinion analysis.
+- [ ] **Economic Impact Studies**: ✅ Phase 1 (Session 228): EconomicImpactAnalyzer component — analyzes economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK/Canada/Australia Modern Slavery Acts, US Tariff Act s307, Japan HRDD Guidelines). WRO tracking, trade value estimates, risk classification. Cross-references 4 datasets. Integrated into Intelligence CCP Operations tab. 46 tests. Phase 2: Quantitative impact scoring methodology.
 
 ### Internationalization
 - [ ] **Full Translation**: Complete translation into 10+ languages
@@ -346,7 +357,7 @@
 ### User Requests (to be prioritized)
 - [ ] ~~Email newsletter subscription~~ — **DEFERRED by owner** (decide later)
 - [ ] RSS feed for platform updates
-- [ ] Embeddable widgets for other websites
+- [x] ~~Embeddable widgets for other websites~~ ✅ (Session 234: EmbedWidget component — prisoner cards, statistics badges, alert banners with inline HTML/CSS, no JS required. CC BY 4.0 attribution auto-included.)
 - [ ] Browser extension for quick access
 - [ ] Desktop app (Electron)
 - [ ] Voice assistant integration
@@ -393,7 +404,7 @@
 - [x] ~~Implement CI/CD improvements~~ ✅ (GitHub Actions deploy.yml to Cloudflare Workers)
 - [x] ~~Add automated security scanning~~ ✅ (CodeQL via GitHub, 0 alerts)
 - [ ] Set up monitoring and alerting
-- [ ] Implement rate limiting
+- [x] ~~Implement rate limiting~~ ✅ (Session 234: 100 req/min per IP in api/worker.js, API key bypass)
 - [ ] Add DDoS protection (Cloudflare provides basic protection)
 - [x] ~~Configure proper caching headers~~ ✅ (public/_headers with security + cache headers)
 
@@ -404,8 +415,8 @@
 ### Documentation
 - [x] ~~Create developer documentation~~ ✅ (ARCHITECTURE.md + README.md)
 - [x] ~~Write contribution guidelines~~ ✅ (CONTRIBUTING.md)
-- [ ] Document API endpoints (when backend API is deployed)
-- [ ] Create user guides
+- [x] ~~Document API endpoints~~ ✅ (Session 234: REST API reference in DataApiDocs component + guides/CLOUDFLARE_WORKERS_API_SETUP.md)
+- [x] ~~Create user guides~~ ✅ (guides/ folder: API setup, Web Push, Custom Domain, Supabase DB management)
 - [x] ~~Write security documentation~~ ✅ (SecurityCenter page + SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md)
 - [x] ~~Maintain changelog~~ ✅ (archived — session notes serve this purpose)
 

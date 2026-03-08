@@ -4,6 +4,10 @@ import React from 'react';
  * Top-level error boundary that catches rendering errors and displays
  * a user-friendly fallback with a "Try Again" option that resets state
  * without requiring a full page reload.
+ *
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Child components to wrap
+ * @returns {React.ReactNode} Children or error fallback UI
  */
 class ErrorBoundary extends React.Component {
   constructor(props) {

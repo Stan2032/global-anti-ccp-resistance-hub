@@ -6,7 +6,7 @@ import { AlertTriangle, Info, Shield } from 'lucide-react';
  * 
  * Types:
  * - verify: "Always verify information from multiple sources"
- * - sensitive: "Verify organizations before sharing sensitive information"
+ * - sensitive: "Verify organisations before sharing sensitive information"
  * - changing: "Information may change; verify current status"
  * - security: "Take security precautions when accessing sensitive content"
  */

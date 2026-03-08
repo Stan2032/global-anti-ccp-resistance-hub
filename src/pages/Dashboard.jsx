@@ -1,3 +1,12 @@
+/**
+ * Dashboard — Main landing page with live statistics, emergency alerts,
+ * quick-start guide, and navigation to all platform sections.
+ *
+ * Lazy-loads heavy sub-components (LiveStatistics, EmergencyAlerts, etc.)
+ * to keep initial bundle small. Integrates useLiveData for real-time feeds.
+ *
+ * @module Dashboard
+ */
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Building2, Target, Link2, AlertTriangle, Zap, Radio, Megaphone, Lock, BookOpen, MessageSquare, Mail, Monitor, Shield } from 'lucide-react';

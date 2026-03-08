@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 /**
- * BackToTop — floating button that appears after scrolling down.
+ * BackToTop — floating button that appears after scrolling 400px down.
  * Smoothly scrolls the user back to the top of the page.
+ *
+ * @returns {React.ReactElement|null} Floating button or null when not visible
  */
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);

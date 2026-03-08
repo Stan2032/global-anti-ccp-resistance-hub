@@ -1,3 +1,10 @@
+/**
+ * NewsAggregator — Aggregates live news feeds from Tier 1-2 sources
+ * covering CCP human rights issues. Organised by region and topic
+ * with real-time updates from RSS processors.
+ *
+ * @module NewsAggregator
+ */
 import React, { useState, useEffect } from 'react';
 import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText } from 'lucide-react';
 import { dataProcessor } from '../data/liveDataSources';

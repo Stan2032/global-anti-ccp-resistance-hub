@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/languageUtils';
 
 /**
- * Skip Links Component
- * Provides keyboard users with quick navigation to main content areas
- * Uses i18n translations (8 languages) and terminal design system colors
+ * SkipLinks — Provides keyboard users with quick navigation to main content areas.
+ * Uses i18n translations (8 languages) and terminal design system colors.
+ *
+ * @returns {React.ReactElement} Skip-link navigation (sr-only until focused)
  */
 const SKIP_LINK_CLASSES = 'fixed top-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
 
@@ -23,8 +24,12 @@ export const SkipLinks = () => {
 };
 
 /**
- * Visually Hidden Component
- * For screen reader only content
+ * VisuallyHidden — Renders content that is only visible to screen readers.
+ *
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Content to hide visually
+ * @param {React.ElementType} [props.as='span'] - HTML element to render as
+ * @returns {React.ReactElement} Hidden element
  */
 export const VisuallyHidden = ({ children, as: Component = 'span' }) => {
   return (

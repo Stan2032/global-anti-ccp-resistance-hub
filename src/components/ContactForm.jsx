@@ -1,3 +1,10 @@
+/**
+ * ContactForm — Encrypted contact form for submitting tips, corrections,
+ * or partnership enquiries. Integrates with Supabase and uses client-side
+ * encryption for PII protection.
+ *
+ * @module ContactForm
+ */
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, Lock, Info, CheckCircle } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
@@ -112,7 +119,7 @@ const ContactForm = () => {
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={`space-y-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Name and Email */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-4"><MessageCircle className="w-4 h-4 inline mr-1" /> Your Details</h3>
@@ -126,7 +133,7 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
             <div>
@@ -138,7 +145,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
               />
             </div>
           </div>
@@ -170,7 +177,7 @@ const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="How can we help you?"
             rows={5}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#1c2a35]"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#1c2a35]"
           />
         </div>
 

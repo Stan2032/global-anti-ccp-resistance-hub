@@ -3,7 +3,7 @@
  *
  * Uses the Web Crypto API (built into all modern browsers) to encrypt
  * sensitive fields BEFORE they leave the user's browser. This provides
- * defense-in-depth: even if the database is breached, PII remains encrypted.
+ * defence-in-depth: even if the database is breached, PII remains encrypted.
  *
  * Encryption model: Hybrid RSA-OAEP + AES-GCM
  *   1. A random AES-256-GCM key is generated per submission
@@ -19,12 +19,31 @@
  * Key generation: See BACKEND_GUIDE.md for instructions.
  */
 
-const ENCRYPTION_KEY_ENV = import.meta.env.VITE_ENCRYPTION_PUBLIC_KEY || '';
+/** Represents an AES-GCM encrypted value with its initialisation vector. */
+export interface EncryptedValue {
+  ciphertext: string;
+  iv: string;
+}
+
+/** Metadata attached to an encrypted submission describing how it was encrypted. */
+export interface EncryptionMetadata {
+  version: number;
+  algorithm: string;
+  wrappedKey: string;
+  encryptedFields: string[];
+}
+
+/** A submission object whose PII fields have been replaced with encrypted values. */
+export type EncryptedSubmission = Record<string, unknown> & {
+  _encryption: EncryptionMetadata;
+};
+
+const ENCRYPTION_KEY_ENV: string = import.meta.env.VITE_ENCRYPTION_PUBLIC_KEY || '';
 
 /**
  * Returns true when a public encryption key is configured.
  */
-export function isEncryptionConfigured() {
+export function isEncryptionConfigured(): boolean {
   return ENCRYPTION_KEY_ENV.length > 0;
 }
 
@@ -32,12 +51,12 @@ export function isEncryptionConfigured() {
  * Import the admin's RSA public key from the environment variable.
  * The key is expected as a base64-encoded JWK string.
  */
-async function importPublicKey() {
+async function importPublicKey(): Promise<CryptoKey | null> {
   if (!isEncryptionConfigured()) return null;
 
   try {
     const jwkJson = atob(ENCRYPTION_KEY_ENV);
-    const jwk = JSON.parse(jwkJson);
+    const jwk: JsonWebKey = JSON.parse(jwkJson);
     return await crypto.subtle.importKey(
       'jwk',
       jwk,
@@ -54,7 +73,7 @@ async function importPublicKey() {
 /**
  * Generate a random AES-256-GCM key for this submission.
  */
-async function generateAESKey() {
+async function generateAESKey(): Promise<CryptoKey> {
   return crypto.subtle.generateKey(
     { name: 'AES-GCM', length: 256 },
     true,   // extractable — so we can wrap it with RSA
@@ -66,7 +85,7 @@ async function generateAESKey() {
  * Encrypt a single string value using AES-256-GCM.
  * Returns { ciphertext, iv } as base64 strings.
  */
-async function encryptValue(aesKey, plaintext) {
+async function encryptValue(aesKey: CryptoKey, plaintext: string): Promise<EncryptedValue> {
   const encoder = new TextEncoder();
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const encrypted = await crypto.subtle.encrypt(
@@ -76,7 +95,7 @@ async function encryptValue(aesKey, plaintext) {
   );
   return {
     ciphertext: arrayBufferToBase64(encrypted),
-    iv: arrayBufferToBase64(iv),
+    iv: arrayBufferToBase64(iv.buffer),
   };
 }
 
@@ -84,7 +103,7 @@ async function encryptValue(aesKey, plaintext) {
  * Wrap (encrypt) the AES key with the admin's RSA public key.
  * Returns the wrapped key as a base64 string.
  */
-async function wrapAESKey(rsaPublicKey, aesKey) {
+async function wrapAESKey(rsaPublicKey: CryptoKey, aesKey: CryptoKey): Promise<string> {
   const wrapped = await crypto.subtle.wrapKey('raw', aesKey, rsaPublicKey, {
     name: 'RSA-OAEP',
   });
@@ -94,14 +113,12 @@ async function wrapAESKey(rsaPublicKey, aesKey) {
 /**
  * Encrypt specified fields in a submission object.
  *
- * @param {Object} data - The form data object
- * @param {string[]} fieldsToEncrypt - Array of field names containing PII
- * @returns {Object} The data object with PII fields replaced by encrypted values,
- *                   plus an `_encryption` metadata field.
- *
  * If encryption is not configured, returns the original data unchanged.
  */
-export async function encryptSubmission(data, fieldsToEncrypt) {
+export async function encryptSubmission(
+  data: Record<string, unknown>,
+  fieldsToEncrypt: string[],
+): Promise<Record<string, unknown>> {
   if (!isEncryptionConfigured()) return data;
 
   const rsaPublicKey = await importPublicKey();
@@ -109,7 +126,7 @@ export async function encryptSubmission(data, fieldsToEncrypt) {
 
   try {
     const aesKey = await generateAESKey();
-    const encryptedData = { ...data };
+    const encryptedData: Record<string, unknown> = { ...data };
 
     for (const field of fieldsToEncrypt) {
       if (encryptedData[field] && typeof encryptedData[field] === 'string') {
@@ -135,7 +152,7 @@ export async function encryptSubmission(data, fieldsToEncrypt) {
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
-function arrayBufferToBase64(buffer) {
+function arrayBufferToBase64(buffer: ArrayBuffer | ArrayBufferLike): string {
   const bytes = new Uint8Array(buffer);
   let binary = '';
   for (let i = 0; i < bytes.length; i++) {

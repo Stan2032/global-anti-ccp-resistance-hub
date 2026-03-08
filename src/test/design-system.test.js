@@ -277,4 +277,24 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('placeholder text uses standardized placeholder:text-slate-400 syntax (no old placeholder-slate-* classes)', () => {
+    // Design rule: All placeholder text uses Tailwind v3+ modifier syntax.
+    // Correct:   placeholder:text-slate-400
+    // Incorrect: placeholder-slate-400, placeholder-slate-500, placeholder-slate-600
+    const OLD_PLACEHOLDER = /placeholder-slate-\d+/g;
+    const violations = [];
+    for (const filePath of jsxFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      const matches = content.match(OLD_PLACEHOLDER);
+      if (matches) {
+        const relativePath = filePath.replace(SRC_DIR + '/', '');
+        violations.push(`${relativePath}: ${[...new Set(matches)].join(', ')}`);
+      }
+    }
+    expect(violations,
+      `Old-style placeholder-slate-* classes found (use placeholder:text-slate-400 instead):\n` +
+      violations.join('\n')
+    ).toEqual([]);
+  });
 });

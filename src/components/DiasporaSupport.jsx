@@ -1,3 +1,10 @@
+/**
+ * DiasporaSupport — Support resources for diaspora communities including
+ * legal aid, mental health services, community organisations, and
+ * emergency contacts.
+ *
+ * @module DiasporaSupport
+ */
 import { useState } from 'react';
 import { Library, Scale, Heart, ShieldCheck, Shield, Users, Handshake, AlertCircle, AlertTriangle } from 'lucide-react';
 

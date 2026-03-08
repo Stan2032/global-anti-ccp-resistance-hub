@@ -1,3 +1,12 @@
+/**
+ * KeyboardShortcutsHelp — Modal overlay showing available keyboard
+ * shortcuts for power users. Triggered by pressing '?'.
+ *
+ * @param {Object} props
+ * @param {boolean} props.isOpen - Whether the modal is visible
+ * @param {() => void} props.onClose - Callback to close the modal
+ * @returns {React.ReactElement|null} Shortcuts modal or null when closed
+ */
 import React, { useEffect } from 'react';
 
 const shortcuts = [

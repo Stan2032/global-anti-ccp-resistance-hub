@@ -1,3 +1,10 @@
+/**
+ * ConfuciusInstitutes — Tracks Confucius Institutes worldwide and
+ * documents concerns about academic freedom, surveillance, and
+ * CCP soft-power influence on campuses.
+ *
+ * @module ConfuciusInstitutes
+ */
 import { useState } from 'react';
 import { Globe, GraduationCap, Megaphone, AlertTriangle } from 'lucide-react';
 

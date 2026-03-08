@@ -1,3 +1,10 @@
+/**
+ * DiasporaSecurityAdvisor — Security guidance tailored for diaspora
+ * communities targeted by CCP transnational repression. Covers threat
+ * assessment by country, legal protections, and reporting mechanisms.
+ *
+ * @module DiasporaSecurityAdvisor
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';

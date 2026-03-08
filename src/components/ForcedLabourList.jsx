@@ -1,3 +1,9 @@
+/**
+ * ForcedLabourList — Documented list of entities involved in forced labour
+ * practices. Includes company profiles, evidence links, and compliance status.
+ *
+ * @module ForcedLabourList
+ */
 import React, { useState } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 

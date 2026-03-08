@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { isCCPStateMedia } from '../utils/sourceLinks.js';
+import { isCCPStateMedia } from '../utils/sourceLinks';
 
 const DATA_DIR = resolve(__dirname, '../data');
 

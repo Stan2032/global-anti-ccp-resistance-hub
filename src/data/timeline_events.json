@@ -523,5 +523,22 @@
       "CIVICUS Monitor",
       "Hong Kong Free Press"
     ]
+  },
+  {
+    "id": 35,
+    "date": "2026-03-07",
+    "title": "Jimmy Lai Confirms He Will Not Appeal NSL Sentence",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Jimmy Lai, 78, has confirmed he will not appeal his 20-year National Security Law sentence, ending his legal options.",
+    "details": "Hong Kong media mogul Jimmy Lai has confirmed through his legal team that he will not appeal his conviction and 20-year sentence for conspiracy to collude with foreign forces under the National Security Law. The decision means Lai, age 78, effectively faces spending the rest of his life in prison. The United Nations has called for his immediate release, with the UN Human Rights Office condemning the sentence as a violation of international legal standards and press freedom protections. Amnesty International called the sentence 'a devastating blow to press freedom in Hong Kong.'",
+    "sentence": "20 years (no appeal)",
+    "impact": "Lai effectively faces life imprisonment; UN intensifies calls for release",
+    "sources": [
+      "NBC News",
+      "UN News",
+      "Amnesty International",
+      "BBC"
+    ]
   }
 ]

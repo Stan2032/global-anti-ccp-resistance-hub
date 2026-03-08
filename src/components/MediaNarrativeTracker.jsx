@@ -1,3 +1,10 @@
+/**
+ * MediaNarrativeTracker — Tracks evolving CCP propaganda narratives
+ * across state media outlets. Searchable with timeline analysis
+ * and counter-narrative resources.
+ *
+ * @module MediaNarrativeTracker
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Newspaper, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';

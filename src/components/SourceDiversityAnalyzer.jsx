@@ -1,8 +1,15 @@
+/**
+ * SourceDiversityAnalyser — Evaluates source diversity across platform
+ * datasets. Checks for over-reliance on single sources and flags
+ * potential bias concentration.
+ *
+ * @module SourceDiversityAnalyzer
+ */
 import React, { useMemo, useState } from 'react';
 import { Copy, Check, BarChart3, Shield, AlertTriangle, Globe } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
-// Tier 1 (Gold) sources — major international outlets and human rights organizations
+// Tier 1 (Gold) sources — major international outlets and human rights organisations
 const TIER_1_DOMAINS = {
   'bbc.com': 'BBC',
   'bbc.co.uk': 'BBC',

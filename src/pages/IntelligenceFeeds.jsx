@@ -1,3 +1,10 @@
+/**
+ * IntelligenceFeeds — Live news aggregation and regional status dashboards
+ * for Hong Kong, Tibet, Xinjiang, and Taiwan. Provides real-time threat
+ * monitoring with AI disinfo detection.
+ *
+ * @module IntelligenceFeeds
+ */
 import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { useLiveFeeds } from '../hooks/useLiveData';
 
@@ -17,6 +24,10 @@ const LegalCaseTracker = lazy(() => import('../components/LegalCaseTracker'));
 const SupplyChainRiskMapper = lazy(() => import('../components/SupplyChainRiskMapper'));
 const TransnationalRepressionTracker = lazy(() => import('../components/TransnationalRepressionTracker'));
 const MediaNarrativeTracker = lazy(() => import('../components/MediaNarrativeTracker'));
+const GenocideLegalFramework = lazy(() => import('../components/GenocideLegalFramework'));
+const DiplomaticCoercionTracker = lazy(() => import('../components/DiplomaticCoercionTracker'));
+const CensorshipCircumventionGuide = lazy(() => import('../components/CensorshipCircumventionGuide'));
+const EconomicImpactAnalyzer = lazy(() => import('../components/EconomicImpactAnalyzer'));
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -181,7 +192,7 @@ const IntelligenceFeeds = () => {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); setShowAllFeeds(false); }}
-            className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
+            className="w-full px-4 py-2.5 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82] focus:border-transparent"
           />
         </div>
 
@@ -451,6 +462,22 @@ const IntelligenceFeeds = () => {
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── media_narrative_tracker ──</h2>
             <Suspense fallback={<SectionLoader />}><MediaNarrativeTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── genocide_legal_framework ──</h2>
+            <Suspense fallback={<SectionLoader />}><GenocideLegalFramework /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── diplomatic_coercion ──</h2>
+            <Suspense fallback={<SectionLoader />}><DiplomaticCoercionTracker /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── censorship_circumvention ──</h2>
+            <Suspense fallback={<SectionLoader />}><CensorshipCircumventionGuide /></Suspense>
+          </div>
+          <div className="border-t border-[#1c2a35] pt-8">
+            <h2 className="text-xl font-bold text-white mb-1 font-mono">── economic_impact ──</h2>
+            <Suspense fallback={<SectionLoader />}><EconomicImpactAnalyzer /></Suspense>
           </div>
           <div className="border-t border-[#1c2a35] pt-8">
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── research_database ──</h2>

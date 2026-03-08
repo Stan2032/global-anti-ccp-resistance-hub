@@ -7,19 +7,82 @@
  *
  * PII fields are encrypted client-side before storage when an encryption
  * public key is configured (see BACKEND_GUIDE.md).
+ *
+ * @module supabaseService
  */
-import supabase, { isSupabaseConfigured } from './supabaseClient.js';
-import { encryptSubmission } from '../utils/encryption.js';
+import supabase, { isSupabaseConfigured } from './supabaseClient';
+import { encryptSubmission } from '../utils/encryption';
 
-const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
+/** Standard result returned by write operations. */
+export interface SupabaseResult {
+  /** Returned row(s), or null on error */
+  data: Record<string, unknown> | Record<string, unknown>[] | null;
+  /** Error message, or null on success */
+  error: string | null;
+}
+
+/** Paginated result returned by read operations. */
+export interface PaginatedResult {
+  /** Returned rows, or null on error */
+  data: Record<string, unknown>[] | null;
+  /** Total row count (for pagination) */
+  count?: number | null;
+  /** Error message, or null on success */
+  error: string | null;
+}
+
+/** Incident report submission payload. */
+export interface IncidentReport {
+  title: string;
+  description: string;
+  incidentType?: string;
+  location?: string;
+  dateOfIncident?: string;
+  severity?: 'critical' | 'high' | 'medium' | 'low';
+  sourceUrl?: string;
+  contactEmail?: string;
+}
+
+/** Volunteer sign-up submission payload. */
+export interface VolunteerData {
+  name: string;
+  email: string;
+  skills?: string[];
+  languages?: string[];
+  availability?: string;
+  message?: string;
+}
+
+/** Contact message submission payload. */
+export interface ContactMessage {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+}
+
+/** Pagination and sorting options for fetchRows. */
+export interface FetchRowsOptions {
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  ascending?: boolean;
+}
+
+const NOT_CONFIGURED: SupabaseResult & PaginatedResult = {
+  data: null,
+  error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.',
+  count: null,
+};
 
 // ─── INCIDENT REPORTS ────────────────────────────────────────────────
 
 /**
  * Submit an incident report.
  * Writes to the `incident_reports` table (see SUPABASE_SETUP.md for schema).
+ * PII fields (contact_email, description, location) are encrypted before storage.
  */
-export async function submitIncidentReport(report) {
+export async function submitIncidentReport(report: IncidentReport): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -36,7 +99,7 @@ export async function submitIncidentReport(report) {
 
   const encrypted = await encryptSubmission(row, ['contact_email', 'description', 'location']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('incident_reports')
     .insert([encrypted])
     .select();
@@ -48,8 +111,9 @@ export async function submitIncidentReport(report) {
 
 /**
  * Submit a volunteer sign-up.
+ * PII fields (name, email, message) are encrypted before storage.
  */
-export async function submitVolunteerSignup(volunteer) {
+export async function submitVolunteerSignup(volunteer: VolunteerData): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -64,7 +128,7 @@ export async function submitVolunteerSignup(volunteer) {
 
   const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('volunteer_signups')
     .insert([encrypted])
     .select();
@@ -76,11 +140,12 @@ export async function submitVolunteerSignup(volunteer) {
 
 /**
  * Subscribe to the newsletter.
+ * Uses upsert to avoid duplicate entries for the same email.
  */
-export async function subscribeNewsletter(email) {
+export async function subscribeNewsletter(email: string): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('newsletter_subscribers')
     .upsert([{ email }], {
       onConflict: 'email',
@@ -95,8 +160,9 @@ export async function subscribeNewsletter(email) {
 
 /**
  * Submit a contact message.
+ * PII fields (name, email, message) are encrypted before storage.
  */
-export async function submitContactMessage(message) {
+export async function submitContactMessage(message: ContactMessage): Promise<SupabaseResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const row = {
@@ -108,7 +174,7 @@ export async function submitContactMessage(message) {
 
   const encrypted = await encryptSubmission(row, ['name', 'email', 'message']);
 
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('contact_messages')
     .insert([encrypted])
     .select();
@@ -122,13 +188,16 @@ export async function submitContactMessage(message) {
  * Fetch a paginated list of rows from any public table.
  * Caller is responsible for RLS policies allowing this.
  */
-export async function fetchRows(table, { page = 1, pageSize = 25, orderBy = 'created_at', ascending = false } = {}) {
+export async function fetchRows(
+  table: string,
+  { page = 1, pageSize = 25, orderBy = 'created_at', ascending = false }: FetchRowsOptions = {}
+): Promise<PaginatedResult> {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  const { data, error, count } = await supabase
+  const { data, error, count } = await supabase!
     .from(table)
     .select('*', { count: 'exact' })
     .order(orderBy, { ascending })

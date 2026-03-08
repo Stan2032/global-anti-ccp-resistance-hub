@@ -87,6 +87,13 @@ function buildDatasets() {
   ];
 }
 
+/**
+ * DataExport — Download verified datasets in CSV or Markdown format.
+ * Covers political prisoners, overseas police stations, organisations,
+ * sanctions, forced labour companies, timeline events, and detention facilities.
+ *
+ * @returns {React.ReactElement} Data export interface with dataset cards
+ */
 const DataExport = () => {
   const datasets = useMemo(() => buildDatasets(), []);
   const [selectedDatasets, setSelectedDatasets] = useState([]);

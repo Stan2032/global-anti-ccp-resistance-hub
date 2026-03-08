@@ -1,3 +1,10 @@
+/**
+ * ProfilesIndex — Index page listing all individual profiles of people
+ * targeted by the CCP. Provides search, filtering, and navigation to
+ * detailed profile pages.
+ *
+ * @module ProfilesIndex
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -299,7 +306,7 @@ const ProfileCard = ({ profile }) => {
   const CardWrapper = profile.built ? Link : 'div';
   const wrapperProps = profile.built
     ? { to: profile.path, className: 'group block' }
-    : { className: 'block opacity-75' };
+    : { className: 'block opacity-50 cursor-default' };
 
   return (
     <CardWrapper {...wrapperProps}>

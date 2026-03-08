@@ -1,3 +1,9 @@
+/**
+ * SecurityQuiz — Interactive digital security quiz that scores users'
+ * knowledge of VPN usage, device hygiene, and communication safety.
+ *
+ * @module SecurityQuiz
+ */
 import { useState } from 'react';
 import { ClipboardList, AlertTriangle, Link as LinkIcon, Lock } from 'lucide-react';
 

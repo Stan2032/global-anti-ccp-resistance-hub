@@ -1,3 +1,10 @@
+/**
+ * CommunitySupport — Community engagement page with contact form, incident
+ * reporting, volunteer opportunities, and support resources for diaspora
+ * communities affected by CCP policies.
+ *
+ * @module CommunitySupport
+ */
 import { 
   ChevronRight,
 } from 'lucide-react'

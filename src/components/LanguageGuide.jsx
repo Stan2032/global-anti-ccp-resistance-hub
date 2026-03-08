@@ -1,3 +1,10 @@
+/**
+ * LanguageGuide — Phrasebook and terminology guide covering key terms
+ * in Mandarin, Cantonese, Uyghur, and Tibetan. Includes pronunciation
+ * tips and cultural context.
+ *
+ * @module LanguageGuide
+ */
 import React, { useState } from 'react';
 import { Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';

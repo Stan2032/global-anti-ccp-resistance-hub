@@ -1,3 +1,10 @@
+/**
+ * TimelineGapAnalyzer — Identifies temporal gaps in the historical
+ * timeline data. Highlights periods with sparse documentation for
+ * research prioritisation.
+ *
+ * @module TimelineGapAnalyzer
+ */
 import { useState, useMemo } from 'react';
 import { Calendar, AlertCircle, TrendingUp, Search, Copy, CheckCircle } from 'lucide-react';
 import dataApi from '../services/dataApi';

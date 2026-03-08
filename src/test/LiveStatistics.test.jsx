@@ -69,7 +69,7 @@ describe('LiveStatistics', () => {
   it('renders HK Political Prisoners statistic', () => {
     render(<LiveStatistics />);
     expect(screen.getByText('HK Political Prisoners')).toBeTruthy();
-    expect(screen.getByText('Imprisoned under National Security Law')).toBeTruthy();
+    expect(screen.getByText(/Arrested under National Security Law/)).toBeTruthy();
     expect(screen.getAllByText(/Hong Kong Watch/).length).toBeGreaterThanOrEqual(1);
   });
 

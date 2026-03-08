@@ -267,11 +267,11 @@ const AdvocacyLetterGenerator = () => {
       {letter && (
         <div className="bg-[#111820] border border-[#1c2a35]">
           {/* Letter Header */}
-          <div className="flex items-center justify-between p-4 border-b border-[#1c2a35]">
-            <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
+          <div className="flex flex-wrap items-center justify-between gap-2 p-4 border-b border-[#1c2a35]">
+            <div className="flex items-center gap-2 min-w-0">
+              <Globe className="w-4 h-4 text-[#22d3ee] shrink-0" aria-hidden="true" />
               <span className="text-sm font-mono text-white">generated_letter</span>
-              <span className="text-xs text-slate-400 font-mono">
+              <span className="text-xs text-slate-400 font-mono truncate">
                 ({COUNTRIES.find(c => c.code === selectedCountry)?.name})
               </span>
             </div>

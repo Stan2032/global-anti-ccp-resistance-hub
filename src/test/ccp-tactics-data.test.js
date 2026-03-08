@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { CCP_TACTICS } from '../data/ccpTactics.js';
-import { isCCPStateMedia } from '../utils/sourceLinks.js';
+import { isCCPStateMedia } from '../utils/sourceLinks';
 
 describe('CCP Tactics Data Integrity', () => {
   describe('Top-level structure', () => {

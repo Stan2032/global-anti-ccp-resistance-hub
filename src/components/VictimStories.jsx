@@ -1,3 +1,10 @@
+/**
+ * VictimStories — Documented accounts of CCP human rights violations
+ * organised by region and violation type. Source-verified with
+ * evidence links.
+ *
+ * @module VictimStories
+ */
 import { useState, useEffect } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
 

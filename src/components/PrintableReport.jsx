@@ -1,3 +1,10 @@
+/**
+ * PrintableReport — Generates printer-friendly reports from platform
+ * data. Supports PDF-style layout with charts, summaries, and
+ * source citations.
+ *
+ * @module PrintableReport
+ */
 import React, { useState, useRef } from 'react';
 import { Printer, Download, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';

@@ -6,7 +6,7 @@ import {
   isCCPDomain,
   getCCPInfluenceRisk,
   assessSourceRisk
-} from '../utils/sourceLinks.js';
+} from '../utils/sourceLinks';
 
 describe('CCP Influence Detection System', () => {
   describe('CCP_NEVER_CITE registry', () => {

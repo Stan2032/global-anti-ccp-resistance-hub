@@ -10,7 +10,7 @@ import { dataApi } from '../services/dataApi';
  * InfluenceNetwork — Cross-dataset relationship visualization.
  *
  * Shows connections between CCP power structures, sanctioned officials,
- * political prisoners, detention facilities, and forced labor companies.
+ * political prisoners, detention facilities, and forced labour companies.
  * All data derived from verified research datasets via dataApi.
  *
  * No external graph libraries — pure CSS/React implementation.

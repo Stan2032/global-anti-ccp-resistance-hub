@@ -1,3 +1,10 @@
+/**
+ * InternationalResponseTracker — Monitors international governmental and
+ * institutional responses to CCP human rights abuses. Tracks resolutions,
+ * statements, and policy actions.
+ *
+ * @module InternationalResponseTracker
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import {
@@ -233,7 +240,7 @@ export default function InternationalResponseTracker() {
               placeholder="Search countries…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder-slate-600 focus:border-[#4afa82] focus:outline-none"
+              className="w-full pl-10 pr-3 py-2 bg-[#0d1117] border border-[#1c2a35] rounded text-sm text-slate-300 placeholder:text-slate-400 focus:border-[#4afa82] focus:outline-none"
               aria-label="Search countries"
             />
           </div>

@@ -6,6 +6,11 @@ import { calculateTimeLeft } from '../utils/dateUtils';
  * EventCountdown — Live countdown timer to a future event date.
  * Shows days, hours, minutes, seconds in terminal-style monospace display.
  * Shows "EVENT TODAY" when the date arrives, and "EVENT PASSED" after.
+ *
+ * @param {Object} props
+ * @param {string} props.eventDate - Target date string (parseable by Date constructor)
+ * @param {string} [props.label='Time remaining'] - Label text above the countdown
+ * @returns {React.ReactElement|null} Countdown display or null if no eventDate
  */
 const EventCountdown = ({ eventDate, label = 'Time remaining' }) => {
   const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(eventDate));

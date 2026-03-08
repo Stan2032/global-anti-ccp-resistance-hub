@@ -4,7 +4,7 @@ import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Sh
 
 /**
  * SupplyChainRiskMapper — Corporate supply chain risk analysis
- * cross-referencing forced labor, sanctions, and international responses.
+ * cross-referencing forced labour, sanctions, and international responses.
  * Risk classification, industry breakdown, UFLPA tracking, legal landscape.
  * All data sourced from verified JSON via dataApi. CC BY 4.0.
  */
@@ -444,7 +444,7 @@ export default function SupplyChainRiskMapper() {
           </p>
 
           {industryRisk.map((ind) => {
-            const maxCount = Math.max(...industryRisk.map((i) => i.total));
+            const _maxCount = Math.max(...industryRisk.map((i) => i.total));
             return (
               <div key={ind.industry} className="bg-[#111820] border border-[#1c2a35] p-4">
                 <div className="flex items-center justify-between mb-2">

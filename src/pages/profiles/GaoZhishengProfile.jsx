@@ -1,3 +1,10 @@
+/**
+ * GaoZhishengProfile — Detailed profile of Gao Zhisheng, human rights
+ * lawyer disappeared after years of detention and torture for defending
+ * Falun Gong practitioners and Christians.
+ *
+ * @module GaoZhishengProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

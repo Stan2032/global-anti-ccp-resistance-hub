@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isServiceRoleKey } from '../services/supabaseClient.js';
+import { isServiceRoleKey } from '../services/supabaseClient';
 
 /**
  * Tests for service_role key detection.

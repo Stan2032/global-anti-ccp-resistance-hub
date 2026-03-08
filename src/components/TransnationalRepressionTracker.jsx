@@ -1,3 +1,10 @@
+/**
+ * TransnationalRepressionTracker — Documents CCP transnational repression
+ * tactics including harassment, intimidation, and coercion of diaspora
+ * communities worldwide.
+ *
+ * @module TransnationalRepressionTracker
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
@@ -253,7 +260,7 @@ const TransnationalRepressionTracker = () => {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search countries, cities, cases..."
-            className="w-full bg-[#0d1117] border border-[#1c2a35] pl-9 pr-3 py-2 text-sm font-mono text-slate-300 placeholder-slate-500 focus:border-[#22d3ee] focus:outline-none"
+            className="w-full bg-[#0d1117] border border-[#1c2a35] pl-9 pr-3 py-2 text-sm font-mono text-slate-300 placeholder:text-slate-400 focus:border-[#22d3ee] focus:outline-none"
             aria-label="Search transnational repression data"
           />
         </div>

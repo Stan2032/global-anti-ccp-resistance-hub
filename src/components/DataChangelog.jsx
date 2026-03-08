@@ -1,3 +1,10 @@
+/**
+ * DataChangelog — Chronological log of all data changes, additions,
+ * and corrections across platform datasets. Provides transparency
+ * on data provenance and update frequency.
+ *
+ * @module DataChangelog
+ */
 import React, { useState, useMemo } from 'react';
 import {
   History,

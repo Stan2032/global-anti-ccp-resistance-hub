@@ -1,3 +1,9 @@
+/**
+ * CCPOfficials — Profiles of CCP officials implicated in human rights
+ * abuses. Sourced from government records, Tier 1-2 media, and sanctions lists.
+ *
+ * @module CCPOfficials
+ */
 import React, { useState, useEffect } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
@@ -390,7 +396,7 @@ export default function CCPOfficials() {
             placeholder="Search officials..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"
           />
         </div>
         <select

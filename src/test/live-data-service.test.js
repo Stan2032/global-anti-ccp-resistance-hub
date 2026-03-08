@@ -131,7 +131,7 @@ describe('fetchAllFeeds (multi-proxy)', () => {
     const fs = await import('fs');
     const path = await import('path');
     const source = fs.readFileSync(
-      path.resolve(__dirname, '../services/liveDataService.js'),
+      path.resolve(__dirname, '../services/liveDataService.ts'),
       'utf-8'
     );
     expect(source).toContain('api.rss2json.com');

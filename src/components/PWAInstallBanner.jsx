@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
 
+/**
+ * PWAInstallBanner — Prompts users to install the app as a PWA.
+ * Handles both Chrome/Edge (beforeinstallprompt) and iOS (manual instructions).
+ * Auto-dismisses for 7 days when closed.
+ *
+ * @returns {React.ReactElement|null} Install banner or null when not applicable
+ */
 export default function PWAInstallBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);

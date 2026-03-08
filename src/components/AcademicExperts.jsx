@@ -1,3 +1,10 @@
+/**
+ * AcademicExperts — Directory of academic experts and researchers
+ * specialising in CCP human rights issues. Searchable by field,
+ * institution, and region of expertise.
+ *
+ * @module AcademicExperts
+ */
 import React, { useState } from 'react';
 import { 
   GraduationCap, Search, ExternalLink, ChevronDown, ChevronUp,
@@ -95,7 +102,7 @@ const AcademicExperts = () => {
             placeholder="Search by name, affiliation, or work..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder-slate-400 focus:outline-none focus:border-[#4afa82]"
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
         <select

@@ -1,3 +1,9 @@
+/**
+ * NewsDigest — Curated daily digest of key developments. Supports
+ * email subscription via Supabase and provides categorised summaries.
+ *
+ * @module NewsDigest
+ */
 import React, { useState } from 'react';
 import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
@@ -176,7 +182,7 @@ const NewsDigest = () => {
       )}
 
       {/* Subscription Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={`space-y-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Email */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-3 flex items-center gap-1"><Mail className="w-4 h-4" /> Email Address</h3>
@@ -187,7 +193,7 @@ const NewsDigest = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
           <p className="text-xs text-slate-400 mt-2">
             We respect your privacy. Unsubscribe anytime.

@@ -1,3 +1,9 @@
+/**
+ * TaiwanDefenseStatus — Status dashboard for Taiwan cross-strait defence,
+ * military readiness, and international support for Taiwan's sovereignty.
+ *
+ * @module TaiwanDefenseStatus
+ */
 import { useState } from 'react';
 import { BookOpen } from 'lucide-react';
 

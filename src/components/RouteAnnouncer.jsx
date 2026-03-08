@@ -1,3 +1,9 @@
+/**
+ * RouteAnnouncer — Invisible live-region that announces route changes
+ * to screen readers. Uses ARIA live region to communicate page transitions.
+ *
+ * @returns {React.ReactElement} Hidden live-region element
+ */
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -16,7 +22,10 @@ const ROUTE_LABELS = {
 };
 
 /**
- * Invisible live-region that announces route changes to screen readers.
+ * RouteAnnouncer — invisible live-region that announces route changes
+ * to screen readers. Uses ARIA live region to communicate page transitions.
+ *
+ * @returns {React.ReactElement} Hidden live-region element
  */
 export default function RouteAnnouncer() {
   const { pathname } = useLocation();

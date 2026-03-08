@@ -1,3 +1,10 @@
+/**
+ * VideoTestimonials — Curated collection of video testimonies from
+ * survivors, experts, and advocates. Searchable with safety warnings
+ * for sensitive content.
+ *
+ * @module VideoTestimonials
+ */
 import React, { useState, useMemo } from 'react';
 import { Video, Play, Shield, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Copy, Check, Search, Clock, MapPin, Globe, Eye, EyeOff, FileText } from 'lucide-react';
 

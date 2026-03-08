@@ -1,3 +1,10 @@
+/**
+ * DisinfoTracker — Monitors identified CCP disinformation campaigns.
+ * Categorised by target region, tactic type, and platform with
+ * evidence documentation.
+ *
+ * @module DisinfoTracker
+ */
 import React, { useState } from 'react';
 import {
   ClipboardList, Building2, Mountain, Bug, Globe, Siren, Lightbulb, BookOpen, PenSquare,

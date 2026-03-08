@@ -1,3 +1,10 @@
+/**
+ * DonationGuide — Vetted donation recommendations for organisations
+ * fighting CCP human rights abuses. Categorised by focus area with
+ * credibility assessments.
+ *
+ * @module DonationGuide
+ */
 import React, { useState } from 'react';
 import { Globe, Megaphone, Scale, FlaskConical, Newspaper, Handshake, Heart, Lightbulb } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';

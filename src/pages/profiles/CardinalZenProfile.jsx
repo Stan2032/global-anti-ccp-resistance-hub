@@ -1,3 +1,10 @@
+/**
+ * CardinalZenProfile — Detailed profile of Cardinal Joseph Zen,
+ * retired Bishop of Hong Kong and pro-democracy advocate arrested
+ * under the National Security Law.
+ *
+ * @module CardinalZenProfile
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';

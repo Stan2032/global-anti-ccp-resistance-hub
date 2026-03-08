@@ -1,3 +1,10 @@
+/**
+ * DataIntegrityMonitor — Monitors data quality across all datasets.
+ * Checks for missing fields, broken links, stale records, and
+ * source verification status.
+ *
+ * @module DataIntegrityMonitor
+ */
 import React, { useState, useMemo } from 'react';
 import { ShieldCheck, AlertTriangle, CheckCircle, XCircle, ChevronDown, ChevronUp, Copy, Check, Activity, Database, Clock, Link2, Search } from 'lucide-react';
 import { dataApi } from '../services/dataApi';

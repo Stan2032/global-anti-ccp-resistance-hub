@@ -1,3 +1,10 @@
+/**
+ * VolunteerSignup — Volunteer registration form with skill-based
+ * matching. Integrates with Supabase and uses client-side encryption
+ * for personal data protection.
+ *
+ * @module VolunteerSignup
+ */
 import React, { useState } from 'react';
 import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, PartyPopper, UserPlus, Flame, FileText, Wrench, MessageCircle, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
@@ -158,7 +165,7 @@ const VolunteerSignup = () => {
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={`space-y-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Basic Info */}
         <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
           <h3 className="font-medium text-white mb-4"><FileText className="w-4 h-4 inline mr-1" /> Basic Information</h3>
@@ -172,7 +179,7 @@ const VolunteerSignup = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name (can be pseudonym)"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div>
@@ -184,7 +191,7 @@ const VolunteerSignup = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div>
@@ -194,7 +201,7 @@ const VolunteerSignup = () => {
                 required
                 value={formData.availability}
                 onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-green-500"
+                className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white focus:outline-none focus:border-[#4afa82]"
               >
                 <option value="">Select availability</option>
                 {availabilityOptions.map(opt => (
@@ -236,7 +243,7 @@ const VolunteerSignup = () => {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="Tell us about your experience, motivation, or how you'd like to help"
             rows={3}
-            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-green-500"
+            className="w-full bg-[#0a0e14] border border-[#1c2a35] px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
 

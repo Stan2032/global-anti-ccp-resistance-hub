@@ -1,3 +1,10 @@
+/**
+ * DataComparisonTool — Side-by-side comparison of records across
+ * datasets. Helps researchers identify cross-references, conflicts,
+ * and corroborating evidence.
+ *
+ * @module DataComparisonTool
+ */
 import React, { useState, useMemo } from 'react';
 import {
   GitCompareArrows,

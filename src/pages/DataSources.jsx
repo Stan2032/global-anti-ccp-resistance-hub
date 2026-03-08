@@ -1,3 +1,10 @@
+/**
+ * DataSources — Transparency page documenting all data sources, methodology,
+ * verification processes, and dataset export tools. Includes data comparison,
+ * changelog, freshness indicators, and integrity monitoring.
+ *
+ * @module DataSources
+ */
 import React, { lazy, Suspense } from 'react';
 import { 
   Database, 
@@ -16,6 +23,7 @@ import dataSourcesData from '../data/data_sources.json';
 
 const DataExport = lazy(() => import('../components/DataExport'));
 const DataApiDocs = lazy(() => import('../components/DataApiDocs'));
+const EmbedWidget = lazy(() => import('../components/EmbedWidget'));
 const DataChangelog = lazy(() => import('../components/DataChangelog'));
 const DataComparisonTool = lazy(() => import('../components/DataComparisonTool'));
 const SourceDiversityAnalyzer = lazy(() => import('../components/SourceDiversityAnalyzer'));
@@ -198,6 +206,13 @@ const DataSources = () => {
         <div className="mb-12">
           <Suspense fallback={<SectionLoader />}>
             <DataApiDocs />
+          </Suspense>
+        </div>
+
+        {/* Embeddable Widgets */}
+        <div className="mb-12">
+          <Suspense fallback={<SectionLoader />}>
+            <EmbedWidget />
           </Suspense>
         </div>
 

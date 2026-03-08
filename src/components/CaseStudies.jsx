@@ -1,3 +1,10 @@
+/**
+ * CaseStudies — In-depth case studies documenting individual stories
+ * of CCP repression. Includes source-verified timelines, legal context,
+ * and impact assessments.
+ *
+ * @module CaseStudies
+ */
 import React, { useState, useEffect } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Heart, Share2, BookOpen, Clock, Globe, FileText } from 'lucide-react';

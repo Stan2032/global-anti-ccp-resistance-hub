@@ -1,3 +1,10 @@
+/**
+ * SanctionsTracker — Tracks international sanctions imposed on CCP officials
+ * and entities. Displays sanction details by country with legal basis,
+ * dates, and source attribution.
+ *
+ * @module SanctionsTracker
+ */
 import React, { useState } from 'react';
 import { ExternalLink, Globe, Scale, CalendarDays, ScrollText, Tag, Megaphone, BookOpen } from 'lucide-react';
 import SourceAttribution from './ui/SourceAttribution';

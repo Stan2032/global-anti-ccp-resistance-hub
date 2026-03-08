@@ -1,4 +1,12 @@
-import React from 'react';
+/**
+ * Language utilities — translations, context, and hook for the i18n system.
+ *
+ * Supports 8 languages: English, Simplified Chinese, Traditional Chinese,
+ * Vietnamese, Korean, Japanese, Uyghur (RTL), and Tibetan.
+ *
+ * @module languageUtils
+ */
+import React, { type ComponentType } from 'react';
 import { EastTurkestanFlag, TibetanFlag } from '../components/FlagIcons';
 
 // Import comprehensive language files
@@ -11,8 +19,101 @@ import jaTranslations from '../locales/ja.json';
 import ugTranslations from '../locales/ug.json';
 import boTranslations from '../locales/bo.json';
 
+/** Navigation label translations. */
+export interface NavigationLabels {
+  dashboard: string;
+  intelligence: string;
+  directory: string;
+  prisoners: string;
+  threats: string;
+  takeAction: string;
+  campaigns: string;
+  community: string;
+  tactics: string;
+  education: string;
+  security: string;
+  resources: string;
+}
+
+/** Common UI label translations. */
+export interface CommonLabels {
+  search: string;
+  filter: string;
+  all: string;
+  critical: string;
+  high: string;
+  medium: string;
+  low: string;
+  learnMore: string;
+  takeAction: string;
+  share: string;
+  donate: string;
+  signPetition: string;
+  contactRep: string;
+  viewDetails: string;
+  close: string;
+  submit: string;
+  cancel: string;
+  back: string;
+  next: string;
+}
+
+/** Security alert translations. */
+export interface AlertLabels {
+  securityWarning: string;
+  useVPN: string;
+  inChina: string;
+  emergency: string;
+  reportIncident: string;
+}
+
+/** Prisoner database translations. */
+export interface PrisonerLabels {
+  title: string;
+  detained: string;
+  imprisoned: string;
+  disappeared: string;
+  released: string;
+  deceased: string;
+  healthConcerns: string;
+  tortureDocumented: string;
+}
+
+/** A single language entry containing display metadata and translations. */
+export interface LanguageEntry {
+  /** Display name of the language */
+  name: string;
+  /** Emoji flag character */
+  flag?: string;
+  /** Custom flag component (for non-emoji flags) */
+  FlagIcon?: ComponentType;
+  /** Whether the language is right-to-left */
+  rtl?: boolean;
+  /** Full locale JSON translations */
+  localeData: Record<string, unknown>;
+  /** Navigation label translations */
+  nav: NavigationLabels;
+  /** Common UI label translations */
+  common: CommonLabels;
+  /** Security alert translations */
+  alerts: AlertLabels;
+  /** Prisoner database translations */
+  prisoners: PrisonerLabels;
+}
+
+/** State exposed by the LanguageProvider. */
+export interface LanguageState {
+  /** Current language code (e.g. 'en', 'zh-CN') */
+  language: string;
+  /** Change the active language */
+  setLanguage: (lang: string) => void;
+  /** Translation function (dot-notation keys) */
+  t: (key: string) => string;
+  /** Current language translations */
+  translations: LanguageEntry;
+}
 // Translations for key UI elements and critical content
-export const translations = {
+export const translations: Record<string, LanguageEntry> = {
   en: {
     name: 'English',
     flag: '🇬🇧',
@@ -473,11 +574,14 @@ export const translations = {
 };
 
 // Create a context for language
-export const LanguageContext = React.createContext({
+export const LanguageContext = React.createContext<LanguageState>({
   language: 'en',
   setLanguage: () => {},
-  t: (key) => key,
+  t: (key: string) => key,
   translations: translations.en
 });
 
-export const useLanguage = () => React.useContext(LanguageContext);
+/**
+ * Hook to access the current language state and translation function.
+ */
+export const useLanguage = (): LanguageState => React.useContext(LanguageContext);

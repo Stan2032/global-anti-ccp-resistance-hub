@@ -1,7 +1,18 @@
+/**
+ * useDocumentTitle — Sets page title and meta description based on current route.
+ *
+ * Provides SEO-friendly titles and descriptions for every page.
+ * Automatically updates on navigation via react-router's useLocation.
+ */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const ROUTE_META = {
+export interface RouteMeta {
+  title: string;
+  description: string;
+}
+
+const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: 'Dashboard',
     description: 'Global coordination hub tracking CCP human rights abuses, political prisoners, and resistance movements worldwide.',
@@ -91,7 +102,9 @@ const ROUTE_META = {
 const BASE_TITLE = 'Global Anti-CCP Resistance Hub';
 const BASE_DESCRIPTION = 'Join the global movement against CCP authoritarianism. Track political prisoners, access live intelligence, and take action to defend human rights.';
 
-export default function useDocumentTitle() {
+// Sets document.title and the meta description tag based on the current route.
+// Falls back to the base title/description for unrecognised paths.
+export default function useDocumentTitle(): void {
   const location = useLocation();
 
   useEffect(() => {

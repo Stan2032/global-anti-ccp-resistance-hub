@@ -1,3 +1,10 @@
+/**
+ * IncidentReportForm — Secure form for reporting CCP-related incidents
+ * including transnational repression, surveillance, and intimidation.
+ * Uses client-side encryption via Supabase.
+ *
+ * @module IncidentReportForm
+ */
 import { useState } from 'react';
 import { AlertTriangle, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';
@@ -191,7 +198,7 @@ const IncidentReportForm = () => {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="p-6">
+      <form onSubmit={handleSubmit} className={`p-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
         {/* Step 1: Incident Type */}
         {step === 1 && (
           <div className="space-y-4">
@@ -241,7 +248,7 @@ const IncidentReportForm = () => {
                   value={formData.location}
                   onChange={handleChange}
                   placeholder="e.g., London, UK"
-                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
                 />
               </div>
               <div>
@@ -254,7 +261,7 @@ const IncidentReportForm = () => {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
                 />
               </div>
             </div>
@@ -270,7 +277,7 @@ const IncidentReportForm = () => {
                 onChange={handleChange}
                 rows={5}
                 placeholder="Please describe what happened in as much detail as you feel comfortable sharing..."
-                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
                 required
               />
             </div>
@@ -286,7 +293,7 @@ const IncidentReportForm = () => {
                 value={formData.perpetrators}
                 onChange={handleChange}
                 placeholder="e.g., Unknown individuals, Chinese embassy staff, CSSA members"
-                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
               />
             </div>
 
@@ -301,7 +308,7 @@ const IncidentReportForm = () => {
                 value={formData.evidence}
                 onChange={handleChange}
                 placeholder="e.g., Screenshots, photos, recordings, documents"
-                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
               />
               <p className="text-xs text-slate-400 mt-1">
                 Do not upload files here. If you have evidence, mention it and we'll provide secure upload instructions.
@@ -345,7 +352,7 @@ const IncidentReportForm = () => {
                   value={formData.contactEmail}
                   onChange={handleChange}
                   placeholder="your-secure-email@protonmail.com"
-                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
                 />
                 <p className="text-xs text-slate-400 mt-1">
                   We recommend using a secure email provider like ProtonMail

@@ -1,3 +1,10 @@
+/**
+ * IPACMembers — Directory of Inter-Parliamentary Alliance on China
+ * members. Lists parliamentarians by country who advocate for
+ * accountability on CCP human rights issues.
+ *
+ * @module IPACMembers
+ */
 import { useState } from 'react';
 import { Building2 } from 'lucide-react';
 

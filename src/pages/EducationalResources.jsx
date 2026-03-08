@@ -1,9 +1,16 @@
+/**
+ * EducationalResources — Learning center with courses, research papers,
+ * documentaries, reading lists, glossary, and language guides covering
+ * CCP human rights issues across all affected regions.
+ *
+ * @module EducationalResources
+ */
 import { useState, lazy, Suspense } from 'react'
 import { 
-  Play, 
   Clock, 
   Download,
-  Search
+  Search,
+  Info
 } from 'lucide-react'
 import educationalData from '../data/educational_modules.json'
 
@@ -94,7 +101,7 @@ const EducationalResources = () => {
 
   const ResourceCard = ({ resource }) => (
     <div
-      className="bg-[#111820] border border-[#1c2a35] p-4 hover:border-[#2a9a52] transition-colors"
+      className="bg-[#111820] border border-[#1c2a35] p-4"
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
@@ -104,12 +111,13 @@ const EducationalResources = () => {
             <span>{resource.size}</span>
           </div>
         </div>
-        <button
-          className="p-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 transition-colors"
-          aria-label={`Download ${resource.title}`}
+        <div
+          className="p-2 bg-[#111820] opacity-30"
+          title="Download coming soon"
+          aria-label={`Download ${resource.title} — coming soon`}
         >
-          <Download className="w-5 h-5 text-white" />
-        </button>
+          <Download className="w-5 h-5 text-slate-500" />
+        </div>
       </div>
     </div>
   )
@@ -184,7 +192,7 @@ const EducationalResources = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-[#4afa82]"
+                className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
               />
             </div>
             <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -256,12 +264,12 @@ const EducationalResources = () => {
                       </div>
                     </div>
 
-                    <button
-                      className="mt-6 w-full bg-[#4afa82]/10 hover:bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 px-6 py-3 font-mono font-medium transition-colors flex items-center justify-center space-x-2"
+                    <div
+                      className="mt-6 w-full bg-[#111820] text-slate-400 border border-[#1c2a35] px-6 py-3 font-mono font-medium flex items-center justify-center space-x-2"
                     >
-                      <Play className="w-5 h-5" />
-                      <span>$ start_course</span>
-                    </button>
+                      <Info className="w-5 h-5" />
+                      <span>Course content coming soon — use the resources below to start learning</span>
+                    </div>
                   </>
                 )
               })()}

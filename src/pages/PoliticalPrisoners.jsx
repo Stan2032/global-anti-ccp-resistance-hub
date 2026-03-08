@@ -1,3 +1,11 @@
+/**
+ * PoliticalPrisoners — Searchable database of documented political detentions.
+ *
+ * Features prisoner profiles, case studies, memorial wall, status dashboard,
+ * and urgent case timers. All data sourced from Tier 1-2 outlets.
+ *
+ * @module PoliticalPrisoners
+ */
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
