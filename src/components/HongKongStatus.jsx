@@ -1,3 +1,9 @@
+/**
+ * HongKongStatus — Real-time status dashboard for Hong Kong covering
+ * National Security Law enforcement, press freedom, and civil liberties.
+ *
+ * @module HongKongStatus
+ */
 import { useState } from 'react';
 
 const HongKongStatus = () => {

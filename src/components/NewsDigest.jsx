@@ -1,3 +1,9 @@
+/**
+ * NewsDigest — Curated daily digest of key developments. Supports
+ * email subscription via Supabase and provides categorized summaries.
+ *
+ * @module NewsDigest
+ */
 import React, { useState } from 'react';
 import { Globe, Building2, Mountain, Megaphone, Scale, Link2, Globe2, Inbox, Calendar, Tag, Newspaper, ClipboardList, Mail, BookOpen, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';

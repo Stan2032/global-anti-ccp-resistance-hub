@@ -1,3 +1,10 @@
+/**
+ * AIDisinfoDetector — AI-powered analysis tool for detecting potential
+ * CCP disinformation patterns in text. Uses heuristic scoring with
+ * educational explanations of detection methodology.
+ *
+ * @module AIDisinfoDetector
+ */
 import React, { useState } from 'react';
 import { Brain, AlertTriangle, CheckCircle, Search, ExternalLink, TrendingUp, Eye } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';

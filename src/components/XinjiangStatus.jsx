@@ -1,3 +1,9 @@
+/**
+ * XinjiangStatus — Regional status dashboard for Xinjiang/East Turkestan
+ * covering detention camps, surveillance, forced labor, and cultural erasure.
+ *
+ * @module XinjiangStatus
+ */
 import { useState } from 'react';
 import { Mountain, BarChart3, BookOpen } from 'lucide-react';
 

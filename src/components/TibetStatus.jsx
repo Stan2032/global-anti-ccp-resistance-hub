@@ -1,3 +1,9 @@
+/**
+ * TibetStatus — Regional status dashboard for Tibet covering cultural
+ * preservation, religious freedom, and political developments.
+ *
+ * @module TibetStatus
+ */
 import { useState } from 'react';
 import { Mountain, AlertTriangle, BookOpen } from 'lucide-react';
 

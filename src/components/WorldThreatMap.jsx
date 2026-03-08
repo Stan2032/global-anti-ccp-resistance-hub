@@ -1,3 +1,9 @@
+/**
+ * WorldThreatMap — Interactive global map visualization of CCP influence
+ * operations, overseas police stations, and transnational repression incidents.
+ *
+ * @module WorldThreatMap
+ */
 import { useState } from 'react';
 import { Globe, MapPin } from 'lucide-react';
 

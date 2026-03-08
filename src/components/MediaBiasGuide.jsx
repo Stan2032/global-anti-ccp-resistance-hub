@@ -1,3 +1,9 @@
+/**
+ * MediaBiasGuide — Educational guide helping users identify CCP state
+ * media, evaluate source reliability, and recognize propaganda patterns.
+ *
+ * @module MediaBiasGuide
+ */
 import React, { useState } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, Info, ExternalLink, Search } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
