@@ -15,7 +15,6 @@ export interface ThemeColours {
   textSecondary: string;
   border: string;
   accent: string;
-  icon?: string;
 }
 
 /** State exposed by the ThemeProvider. */

@@ -261,18 +261,19 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-196  
-**Date:** March 5, 2026  
+**Handoff prepared by:** Sessions 1-243  
+**Date:** March 8, 2026  
 **Repository state:**
-- 3561 tests passing (187 files), build clean, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts
+- 3577 tests passing (188 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
+- TypeScript Phase 1 COMPLETE: 20 .ts files with 50+ exported interfaces
+- TypeScript Phase 2 IN PROGRESS: 16 .tsx files converted (main, 3 contexts, 12 components)
+  - 14 test files updated to scan both .jsx and .tsx for incremental migration
+  - ~260 .jsx files remaining (99 components, 12 pages, 16 profiles, + test files)
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
-- 15 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
+- 16 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
 - 0 orphan components, 10 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready
 - All 5/5 data migrations complete, 23 JSON data files, 9 security headers (HSTS/COOP/CORP/CSP)
-- ALL page simplification complete (25 aspirational components removed, framer-motion eliminated)
-- EmergencyAlerts data-driven with auto-expiry (expires + lastVerified fields)
-- 27 recent_updates entries, route integrity enforced, defensive coding guards on all data components
 - **ALL Q1-Q11 human questions answered** — Q12 open (custom domain for onion routing)
 **Status:** ✅ Active development

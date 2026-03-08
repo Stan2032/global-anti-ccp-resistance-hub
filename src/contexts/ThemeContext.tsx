@@ -11,7 +11,6 @@ interface ThemeColorConfig {
   textSecondary: string;
   border: string;
   accent: string;
-  icon?: string;
 }
 
 // Theme color configurations
@@ -152,7 +151,7 @@ export const ThemeToggle = ({ className = '' }: { className?: string }) => {
       title={`Theme: ${themeConfig.name}`}
     >
       <span className="text-lg" aria-hidden="true">
-        {themeConfig.Icon ? <themeConfig.Icon className="w-4 h-4" /> : themeConfig.icon}
+        {themeConfig.Icon && <themeConfig.Icon className="w-4 h-4" />}
       </span>
     </button>
   );
@@ -178,7 +177,7 @@ export const ThemeSelector = ({ className = '' }: { className?: string }) => {
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        <span aria-hidden="true">{themeConfig.icon}</span>
+        <span aria-hidden="true">{themeConfig.Icon && <themeConfig.Icon className="w-4 h-4" />}</span>
         <span className="text-sm text-slate-300">{themeConfig.name}</span>
         <svg className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
