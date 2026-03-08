@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 8, 2026 (Session 233)
+> Last Updated: March 8, 2026 (Session 234)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -249,9 +249,9 @@
 
 ### Technical Improvements
 - [x] **Offline Mode**: ✅ Service worker enhanced (Session 155): multi-strategy caching (cache-first for hashed assets, network-first for navigation, stale-while-revalidate for static files). Precaches app shell + icons. Offline page enhanced with cached page links. Bumped to v3.
-- [x] **Push Notifications**: ✅ Phase 1 (Session 217): NotificationCenter component — centralized notification hub aggregating emergency alerts, platform updates, and sanctions data. 4 notification categories with filters, browser push permission management, service worker v3 integration, per-category preferences with localStorage persistence, search, expandable cards. Privacy-first (no server tracking). Phase 2: Server-side push via Web Push API.
+- [x] **Push Notifications**: ✅ Phase 1 (Session 217): NotificationCenter component — centralized notification hub aggregating emergency alerts, platform updates, and sanctions data. 4 notification categories with filters, browser push permission management, service worker v3 integration, per-category preferences with localStorage persistence, search, expandable cards. Privacy-first (no server tracking). ✅ Phase 2 (Session 234): pushService.js frontend module (subscribe/unsubscribe/status), Web Push API integration ready. Server-side push endpoint documented in `guides/WEB_PUSH_SETUP.md`. Requires VAPID key generation + Cloudflare KV/Supabase for subscription storage.
 - [x] **Analytics Dashboard**: ✅ Phase 1 (Session 199): ContentAnalytics component — privacy-respecting content metrics dashboard aggregating insights from all 8 datasets. No user tracking. Integrated into Education Research tab. Phase 2: Server-side usage analytics (if needed).
-- [ ] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). Phase 2: REST API via Cloudflare Workers.
+- [x] **API Development**: Create public API for researchers to access data — ✅ Phase 1 (Session 197): Client-side `dataApi.js` module with structured access to all 8 datasets + search/filter/cross-dataset queries. ✅ Phase 1.5 (Session 200): Interactive API reference documentation (DataApiDocs component). ✅ Phase 2 (Session 234): Cloudflare Workers REST API (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting (100 req/min), query filters (q, region, category, limit, offset), global search. Falls through to SPA for non-API routes. Setup guide: `guides/CLOUDFLARE_WORKERS_API_SETUP.md`.
 - [ ] **Backup System**: Automated backups of all content
 - [ ] **Load Testing**: Ensure platform can handle traffic spikes
 - [ ] **CDN Integration**: Faster global content delivery
