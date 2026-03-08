@@ -1,3 +1,10 @@
+/**
+ * TakeAction — Advocacy hub with petitions, letter generators, donation guides,
+ * and volunteer sign-up. Provides concrete steps for users to take action
+ * against CCP human rights abuses.
+ *
+ * @module TakeAction
+ */
 import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 } from 'lucide-react';

@@ -1,3 +1,9 @@
+/**
+ * AdminLogin — Authentication page for admin access. Integrates with
+ * Supabase Auth and provides clear feedback when Supabase is not configured.
+ *
+ * @module AdminLogin
+ */
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authUtils';

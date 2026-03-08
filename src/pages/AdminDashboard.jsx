@@ -1,3 +1,10 @@
+/**
+ * AdminDashboard — Protected admin panel for managing platform content.
+ * Requires Supabase authentication. Displays submission queues, contact
+ * messages, and platform statistics.
+ *
+ * @module AdminDashboard
+ */
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/authUtils';
 import supabase from '../services/supabaseClient';

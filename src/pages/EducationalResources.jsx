@@ -1,3 +1,10 @@
+/**
+ * EducationalResources — Learning center with courses, research papers,
+ * documentaries, reading lists, glossary, and language guides covering
+ * CCP human rights issues across all affected regions.
+ *
+ * @module EducationalResources
+ */
 import { useState, lazy, Suspense } from 'react'
 import { 
   Clock, 

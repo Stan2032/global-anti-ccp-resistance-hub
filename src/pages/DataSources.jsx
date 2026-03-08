@@ -1,3 +1,10 @@
+/**
+ * DataSources — Transparency page documenting all data sources, methodology,
+ * verification processes, and dataset export tools. Includes data comparison,
+ * changelog, freshness indicators, and integrity monitoring.
+ *
+ * @module DataSources
+ */
 import React, { lazy, Suspense } from 'react';
 import { 
   Database, 

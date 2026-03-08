@@ -1,3 +1,10 @@
+/**
+ * SecurityCenter — Digital security resources including WebRTC leak checks,
+ * security quiz, safety checklists, whistleblower guide, and censorship
+ * circumvention tools. Critical for users in censored regions.
+ *
+ * @module SecurityCenter
+ */
 import { useState, lazy, Suspense } from 'react'
 import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import securityData from '../data/security_center_data.json'

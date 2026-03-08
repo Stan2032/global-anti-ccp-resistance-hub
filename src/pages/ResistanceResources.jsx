@@ -1,3 +1,10 @@
+/**
+ * ResistanceResources — Curated collection of tools, guides, and materials
+ * for activists, journalists, and researchers working on CCP-related
+ * human rights issues.
+ *
+ * @module ResistanceResources
+ */
 import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Megaphone, Landmark, BookOpen, Radio, Handshake, Camera, CheckCircle, Globe, FileText, Search, ShieldCheck, Wrench, AlertTriangle, Phone, Mail } from 'lucide-react';

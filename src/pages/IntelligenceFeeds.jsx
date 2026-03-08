@@ -1,3 +1,10 @@
+/**
+ * IntelligenceFeeds — Live news aggregation and regional status dashboards
+ * for Hong Kong, Tibet, Xinjiang, and Taiwan. Provides real-time threat
+ * monitoring with AI disinfo detection.
+ *
+ * @module IntelligenceFeeds
+ */
 import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { useLiveFeeds } from '../hooks/useLiveData';
 

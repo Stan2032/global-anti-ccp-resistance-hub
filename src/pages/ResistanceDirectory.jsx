@@ -1,3 +1,9 @@
+/**
+ * ResistanceDirectory — Searchable directory of human rights organizations,
+ * IPAC members, and advocacy groups fighting CCP authoritarianism worldwide.
+ *
+ * @module ResistanceDirectory
+ */
 import React, { useState, useMemo } from 'react';
 import IPACMembers from '../components/IPACMembers';
 import GlobalDisclaimer from '../components/ui/GlobalDisclaimer';
