@@ -81,8 +81,21 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
 }
 
 /**
+ * @typedef {Object} PoliticalPrisonerEntry
+ * @property {number} id - Sequential record identifier
+ * @property {string} name - Prisoner's name
+ * @property {string} status - Current status (e.g., "imprisoned", "released")
+ * @property {string} sentence - Sentence details
+ * @property {string} location - Detention location
+ * @property {string} description - Latest news or case summary
+ * @property {string} source - Source URL
+ * @property {string} confidence - Data confidence level
+ * @property {string} lastUpdated - Last verification date
+ */
+
+/**
  * @typedef {Object} PoliticalPrisonersResult
- * @property {Array<{id: number, name: string, status: string, sentence: string, location: string, description: string, source: string, confidence: string, lastUpdated: string}>} prisoners
+ * @property {PoliticalPrisonerEntry[]} prisoners - Array of political prisoner records
  * @property {boolean} loading - Whether data is still loading
  * @property {string|null} error - Error message if fetch failed
  */

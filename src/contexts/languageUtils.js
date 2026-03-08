@@ -503,7 +503,7 @@ export const translations = {
 };
 
 // Create a context for language
-/** @type {import('react').Context<LanguageState>} */
+/** @type {import('react').Context<Partial<LanguageState>>} */
 export const LanguageContext = React.createContext({
   language: 'en',
   setLanguage: () => {},
