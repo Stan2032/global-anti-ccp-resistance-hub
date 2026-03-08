@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ContactForm — Encrypted contact form for submitting tips, corrections,
  * or partnership enquiries. Integrates with Supabase and uses client-side
@@ -21,7 +20,7 @@ const ContactForm = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const subjectOptions = [
     { id: 'general', name: 'General Inquiry' },
@@ -33,7 +32,7 @@ const ContactForm = () => {
     { id: 'other', name: 'Other' },
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (backendConnected) {
       setSubmitting(true);

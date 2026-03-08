@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ResearchDashboard — Analytical dashboard aggregating key data points
  * across all datasets. Provides summary statistics, trend indicators,
@@ -16,8 +15,8 @@ import {
 // Import research data
 import { politicalPrisoners, recentNews, policeStations, researchStats } from '../data/researchData';
 
-const StatusBadge = ({ status }) => {
-  const colors = {
+const StatusBadge = ({ status }: { status: string }) => {
+  const colors: Record<string, string> = {
     'DETAINED': 'bg-red-500/20 text-red-400 border-red-500/30',
     'RELEASED': 'bg-green-500/20 text-green-400 border-green-500/30',
     'DISAPPEARED': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',

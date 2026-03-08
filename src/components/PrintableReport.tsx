@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * PrintableReport — Generates printer-friendly reports from platform
  * data. Supports PDF-style layout with charts, summaries, and
@@ -33,7 +32,7 @@ const ACTION_ITEMS = [
 const PrintableReport = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const reportRef = useRef(null);
+  const reportRef = useRef<HTMLDivElement>(null);
 
   const now = new Date();
   const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });

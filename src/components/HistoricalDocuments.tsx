@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * HistoricalDocuments — Archive of primary source documents related to
  * CCP human rights abuses. Searchable with date filtering and
@@ -233,7 +232,7 @@ const HistoricalDocuments = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const getSignificanceColor = (significance) => {
+  const getSignificanceColor = (significance: string) => {
     if (significance === 'Critical') return 'text-red-400 bg-red-500/10 border-red-500/30';
     if (significance === 'High') return 'text-orange-400 bg-orange-500/10 border-orange-500/30';
     return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30';

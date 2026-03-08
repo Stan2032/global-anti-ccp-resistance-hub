@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * EventCalendar — Calendar of key dates, commemorations, and advocacy
  * events related to CCP human rights issues.
@@ -219,7 +218,7 @@ const EventCalendar = () => {
     ? events
     : events.filter(e => e.month === selectedMonth);
 
-  const getTypeColor = (type) => {
+  const getTypeColor = (type: string) => {
     switch (type) {
       case 'commemoration': return 'bg-[#22d3ee]';
       case 'protest': return 'bg-red-600';
@@ -229,7 +228,7 @@ const EventCalendar = () => {
     }
   };
 
-  const getTypeIcon = (type) => {
+  const getTypeIcon = (type: string) => {
     switch (type) {
       case 'commemoration': return Flame;
       case 'protest': return Heart;

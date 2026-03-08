@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React, { useState } from 'react';
 import {
   Search, FileText, RefreshCw, Calendar, AlertTriangle, ScanEye, Lightbulb,
@@ -380,7 +379,7 @@ const SourceVerification = () => {
             {verificationTips.map((tip, idx) => (
               <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
                 <div className="flex items-center space-x-3 mb-2">
-                  <span className="text-2xl">{tip.Icon ? <tip.Icon className="w-6 h-6" /> : tip.icon}</span>
+                  <span className="text-2xl">{tip.Icon && <tip.Icon className="w-6 h-6" />}</span>
                   <h4 className="font-medium text-white">{tip.title}</h4>
                 </div>
                 <p className="text-sm text-slate-400">{tip.description}</p>

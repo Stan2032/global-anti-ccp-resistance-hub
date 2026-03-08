@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * FAQ — Frequently asked questions with expandable accordion interface.
  * Covers platform purpose, data sources, and security practices.
@@ -9,7 +8,7 @@ import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 
 const FAQ = () => {
-  const [openQuestion, setOpenQuestion] = useState(null);
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [

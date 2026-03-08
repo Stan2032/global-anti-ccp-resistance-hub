@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ChinaExitBan — Information on China's exit ban system. Documents
  * cases, legal framework, and guidance for those at risk of travel
@@ -172,7 +171,7 @@ const ChinaExitBan = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     if (status.includes('EXIT BAN')) return 'bg-red-600';
     if (status.includes('IMPRISONED') || status.includes('DETAINED')) return 'bg-red-700';
     if (status.includes('RELEASED')) return 'bg-green-600';

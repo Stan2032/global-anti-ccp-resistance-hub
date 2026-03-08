@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * DocumentaryList — Curated directory of documentaries covering CCP
  * human rights issues. Filterable by region and topic.
@@ -258,7 +257,7 @@ const DocumentaryList = () => {
     ? documentaries 
     : documentaries.filter(d => d.category === selectedCategory);
 
-  const getRelevanceColor = (relevance) => {
+  const getRelevanceColor = (relevance: string) => {
     switch (relevance) {
       case 'CRITICAL': return 'bg-red-600';
       case 'HIGH': return 'bg-orange-600';

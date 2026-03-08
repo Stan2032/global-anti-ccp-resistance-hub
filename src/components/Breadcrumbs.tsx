@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 
@@ -10,7 +9,7 @@ import { ChevronRight, Home } from 'lucide-react';
  * @returns {React.ReactElement|null} Breadcrumb navigation or null for root
  */
 
-const ROUTE_LABELS = {
+const ROUTE_LABELS: Record<string, string> = {
   '': 'Dashboard',
   'intelligence': 'Intelligence',
   'prisoners': 'Political Prisoners',

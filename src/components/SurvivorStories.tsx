@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * SurvivorStories — First-person testimonies from survivors of CCP
  * detention, surveillance, and repression. Categorised by region.
@@ -10,7 +9,7 @@ import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquar
 
 const SurvivorStories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [expandedStory, setExpandedStory] = useState(null);
+  const [expandedStory, setExpandedStory] = useState<number | null>(null);
 
   const categories = [
     { id: 'all', name: 'All Stories', Icon: BookOpen },
@@ -164,7 +163,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
     ? stories 
     : stories.filter(s => s.category === activeCategory);
 
-  const getCategoryInfo = (categoryId) => categories.find(c => c.id === categoryId);
+  const getCategoryInfo = (categoryId: string) => categories.find(c => c.id === categoryId);
 
   return (
     <div className="space-y-8">

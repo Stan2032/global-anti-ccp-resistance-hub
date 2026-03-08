@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * PetitionLinks — Curated directory of active petitions and campaigns
  * related to CCP human rights issues. Categorised by urgency and topic.
@@ -9,7 +8,7 @@ import { useState } from 'react';
 import { PenLine, Megaphone } from 'lucide-react';
 
 const PetitionLinks = () => {
-  const [expandedPetition, setExpandedPetition] = useState(null);
+  const [expandedPetition, setExpandedPetition] = useState<number | null>(null);
 
   const petitions = [
     {
@@ -86,7 +85,7 @@ const PetitionLinks = () => {
     }
   ];
 
-  const getUrgencyColor = (urgency) => {
+  const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
       case 'CRITICAL': return 'bg-red-600 text-white';
       case 'HIGH': return 'bg-orange-500 text-white';

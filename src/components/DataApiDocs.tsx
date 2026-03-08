@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React, { useState, useMemo } from 'react';
 import { Code, Database, Search, Filter, Globe, ChevronDown, ChevronUp, Copy, CheckCircle, BookOpen } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
@@ -210,8 +209,8 @@ const METHOD_GROUPS = [
 ];
 
 const DataApiDocs = () => {
-  const [expandedGroup, setExpandedGroup] = useState('metadata');
-  const [copiedMethod, setCopiedMethod] = useState(null);
+  const [expandedGroup, setExpandedGroup] = useState<string | null>('metadata');
+  const [copiedMethod, setCopiedMethod] = useState<string | null>(null);
 
   const summary = useMemo(() => {
     const s = dataApi.getDatasetSummary();
@@ -220,14 +219,14 @@ const DataApiDocs = () => {
   }, []);
   const totalMethods = METHOD_GROUPS.reduce((sum, g) => sum + g.methods.length, 0);
 
-  const handleCopy = (text) => {
+  const handleCopy = (text: string) => {
     navigator.clipboard?.writeText(text).then(() => {
       setCopiedMethod(text);
       setTimeout(() => setCopiedMethod(null), 2000);
     });
   };
 
-  const toggleGroup = (id) => {
+  const toggleGroup = (id: string) => {
     setExpandedGroup(prev => prev === id ? null : id);
   };
 

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * DataSources — Transparency page documenting all data sources, methodology,
  * verification processes, and dataset export tools. Includes data comparison,
@@ -37,7 +36,7 @@ const SectionLoader = () => (
   </div>
 );
 
-const ICON_MAP = {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Shield: Shield,
   Building: Building,
   FileText: FileText,
@@ -55,7 +54,7 @@ const DataSources = () => {
     dataFile: cat.data_file,
   }));
 
-  const getCredibilityColor = (credibility) => {
+  const getCredibilityColor = (credibility: string) => {
     switch (credibility) {
       case 'High': return 'text-green-400 bg-green-400/10 border-green-400/30';
       case 'Medium': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30';

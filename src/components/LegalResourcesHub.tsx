@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * LegalResourcesHub — Directory of legal resources, pro-bono contacts,
  * and asylum guidance for victims of CCP repression.
@@ -334,8 +333,8 @@ const LegalResourcesHub = () => {
     return matchesCountry && matchesTopic && matchesSearch;
   });
 
-  const getTypeColor = (type) => {
-    const colors = {
+  const getTypeColor = (type: string) => {
+    const colors: Record<string, string> = {
       'Guide': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]',
       'Directory': 'text-green-400 bg-green-500/10 border-green-500/30',
       'Legal Document': 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#1c2a35]'

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React from 'react';
 import { AlertTriangle, Info, Shield } from 'lucide-react';
 
@@ -12,7 +11,7 @@ import { AlertTriangle, Info, Shield } from 'lucide-react';
  * - security: "Take security precautions when accessing sensitive content"
  */
 
-const disclaimerContent = {
+const disclaimerContent: Record<string, { icon: React.ComponentType<{ className?: string }>; title: string; text: string; color: string }> = {
   verify: {
     icon: Info,
     title: 'Verification Notice',
@@ -39,7 +38,7 @@ const disclaimerContent = {
   },
 };
 
-const colorClasses = {
+const colorClasses: Record<string, { bg: string; border: string; icon: string; title: string; text: string }> = {
   blue: {
     bg: 'bg-[#111820]',
     border: 'border-[#1c2a35]',

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ActivistToolkit — Downloadable resources, templates, and toolkits
  * for activists. Includes social media graphics, protest materials,
@@ -251,7 +250,7 @@ const ActivistToolkit = () => {
     ? resources
     : resources.filter(r => r.category === activeCategory);
 
-  const getCategoryInfo = (categoryId) => categories.find(c => c.id === categoryId);
+  const getCategoryInfo = (categoryId: string) => categories.find(c => c.id === categoryId);
 
   return (
     <div className="space-y-8">

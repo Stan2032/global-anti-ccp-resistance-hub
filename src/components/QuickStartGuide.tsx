@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * QuickStartGuide — Step-by-step onboarding wizard for new users.
  * Walks through key platform features with animated progress dots
@@ -76,7 +75,7 @@ const QuickStartGuide = () => {
     },
   ];
 
-  const markStepComplete = (stepId) => {
+  const markStepComplete = (stepId: number) => {
     if (!completedSteps.includes(stepId)) {
       const newCompleted = [...completedSteps, stepId];
       setCompletedSteps(newCompleted);

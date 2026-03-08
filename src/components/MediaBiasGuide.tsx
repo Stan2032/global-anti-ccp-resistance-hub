@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * MediaBiasGuide — Educational guide helping users identify CCP state
  * media, evaluate source reliability, and recognise propaganda patterns.
@@ -227,13 +226,13 @@ const MediaBiasGuide = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const getRatingIcon = (category) => {
+  const getRatingIcon = (category: string) => {
     if (category === 'Trustworthy') return <CheckCircle className="w-5 h-5 text-green-400" />;
     if (category === 'Use with Caution') return <AlertTriangle className="w-5 h-5 text-yellow-400" />;
     return <XCircle className="w-5 h-5 text-red-400" />;
   };
 
-  const getRatingColor = (category) => {
+  const getRatingColor = (category: string) => {
     if (category === 'Trustworthy') return 'text-green-400 bg-green-500/10 border-green-500/30';
     if (category === 'Use with Caution') return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30';
     return 'text-red-400 bg-red-500/10 border-red-500/30';

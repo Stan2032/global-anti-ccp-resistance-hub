@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { Heart } from 'lucide-react'
@@ -84,8 +83,13 @@ const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 
+interface MobileHeaderProps {
+  onMenuToggle: () => void;
+  isMenuOpen: boolean;
+}
+
 // Simple Mobile-First Header — terminal style
-const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
+const MobileHeader: React.FC<MobileHeaderProps> = ({ onMenuToggle, isMenuOpen }) => (
   <header className="bg-[#111820] border-b border-[#1c2a35] sticky top-0 z-50">
     <div className="flex items-center justify-between h-14 px-3 gap-2">
       <button
@@ -119,8 +123,13 @@ const MobileHeader = ({ onMenuToggle, isMenuOpen }) => (
   </header>
 );
 
+interface MobileNavProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 // Mobile Navigation Menu — simplified
-const MobileNav = ({ isOpen, onClose }) => {
+const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
   const { t } = useLanguage();
   
@@ -276,7 +285,7 @@ function AppLayout() {
 
   // Global keyboard shortcut for search
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         setSearchOpen(prev => !prev);

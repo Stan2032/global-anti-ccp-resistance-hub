@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * DisinfoTracker — Monitors identified CCP disinformation campaigns.
  * Categorised by target region, tactic type, and platform with
@@ -138,13 +137,13 @@ const DisinfoTracker = () => {
     },
   ];
 
-  const severityColors = {
+  const severityColors: Record<string, string> = {
     critical: 'bg-red-900/30 border-red-700/50',
     high: 'bg-orange-900/30 border-orange-700/50',
     medium: 'bg-yellow-900/30 border-yellow-700/50',
   };
 
-  const severityBadges = {
+  const severityBadges: Record<string, string> = {
     critical: 'bg-red-900/50 text-red-400',
     high: 'bg-orange-900/50 text-orange-400',
     medium: 'bg-yellow-900/50 text-yellow-400',

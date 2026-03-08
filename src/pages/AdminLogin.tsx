@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * AdminLogin — Authentication page for admin access. Integrates with
  * Supabase Auth and provides clear feedback when Supabase is not configured.
@@ -26,7 +25,7 @@ const AdminLogin = () => {
     }
   }, [user, isAdmin, navigate]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSubmitting(true);

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * MediaManipulation — Documents CCP media manipulation tactics including
  * bot networks, astroturfing, and narrative control strategies.
@@ -163,7 +162,7 @@ const MediaManipulation = () => {
     ? mediaOutlets
     : mediaOutlets.filter(m => m.category === selectedCategory);
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     if (status.includes('FOREIGN AGENT')) return 'bg-yellow-600';
     if (status.includes('INVESTIGATION')) return 'bg-orange-600';
     if (status.includes('SURVEILLANCE') || status.includes('ACTIVE')) return 'bg-red-600';
