@@ -1,3 +1,9 @@
+/**
+ * ReadingList — Curated reading list of essential books and publications
+ * on CCP human rights abuses, organised by topic.
+ *
+ * @module ReadingList
+ */
 import { useState } from 'react';
 import { BookOpen } from 'lucide-react';
 

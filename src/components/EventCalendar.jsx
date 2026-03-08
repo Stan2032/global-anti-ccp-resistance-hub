@@ -1,3 +1,9 @@
+/**
+ * EventCalendar — Calendar of key dates, commemorations, and advocacy
+ * events related to CCP human rights issues.
+ *
+ * @module EventCalendar
+ */
 import { useState } from 'react';
 import { Flame, Heart, Handshake, Megaphone, CalendarDays, Smartphone } from 'lucide-react';
 

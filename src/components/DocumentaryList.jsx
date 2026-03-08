@@ -1,3 +1,9 @@
+/**
+ * DocumentaryList — Curated directory of documentaries covering CCP
+ * human rights issues. Filterable by region and topic.
+ *
+ * @module DocumentaryList
+ */
 import { useState } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { Film } from 'lucide-react';

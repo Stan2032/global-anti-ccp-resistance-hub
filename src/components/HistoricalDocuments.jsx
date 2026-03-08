@@ -1,3 +1,10 @@
+/**
+ * HistoricalDocuments — Archive of primary source documents related to
+ * CCP human rights abuses. Searchable with date filtering and
+ * classification tags.
+ *
+ * @module HistoricalDocuments
+ */
 import React, { useState } from 'react';
 import { FileText, Download, ExternalLink, Search, Calendar, Lock } from 'lucide-react';
 

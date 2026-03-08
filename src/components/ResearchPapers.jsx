@@ -1,3 +1,9 @@
+/**
+ * ResearchPapers — Searchable collection of academic papers, reports,
+ * and policy briefs on CCP human rights issues.
+ *
+ * @module ResearchPapers
+ */
 import React, { useState } from 'react';
 import { BookOpen, Search, FileText, BarChart3, MailX, PenLine } from 'lucide-react';
 

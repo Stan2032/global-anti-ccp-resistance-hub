@@ -1,3 +1,10 @@
+/**
+ * InteractiveTimeline — Zoomable, filterable timeline of CCP human
+ * rights events. Supports autoplay, keyboard navigation, and source
+ * attribution for each event.
+ *
+ * @module InteractiveTimeline
+ */
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, Play, Pause, ZoomIn, ZoomOut, Filter, Info, ExternalLink } from 'lucide-react';
 import SourceAttribution from './ui/SourceAttribution';

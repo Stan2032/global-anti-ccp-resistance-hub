@@ -1,3 +1,13 @@
+/**
+ * GlobalSearch — Full-screen search modal with fuzzy matching across all
+ * platform content. Supports keyboard navigation (↑↓ to select, Enter
+ * to navigate, Escape to close).
+ *
+ * @param {Object} props
+ * @param {boolean} props.isOpen - Whether the modal is visible
+ * @param {() => void} props.onClose - Callback to close the modal
+ * @returns {React.ReactElement|null} Search modal or null when closed
+ */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {

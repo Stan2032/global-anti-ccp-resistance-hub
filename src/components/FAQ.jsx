@@ -1,3 +1,9 @@
+/**
+ * FAQ — Frequently asked questions with expandable accordion interface.
+ * Covers platform purpose, data sources, and security practices.
+ *
+ * @module FAQ
+ */
 import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 

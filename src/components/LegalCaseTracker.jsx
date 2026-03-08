@@ -1,3 +1,9 @@
+/**
+ * LegalCaseTracker — Tracks active and concluded legal cases against
+ * CCP entities. Searchable by jurisdiction, case type, and outcome.
+ *
+ * @module LegalCaseTracker
+ */
 import React, { useState, useMemo } from 'react';
 import { Scale, Search, Copy, Check, ChevronDown, ChevronUp, Filter, ExternalLink, Calendar, Globe, Shield, AlertTriangle } from 'lucide-react';
 import { dataApi } from '../services/dataApi';

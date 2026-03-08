@@ -1,3 +1,9 @@
+/**
+ * LegalResourcesHub — Directory of legal resources, pro-bono contacts,
+ * and asylum guidance for victims of CCP repression.
+ *
+ * @module LegalResourcesHub
+ */
 import React, { useState } from 'react';
 import { Scale, Search, ExternalLink, AlertTriangle, CheckCircle, FileText, Phone, Mail } from 'lucide-react';
 

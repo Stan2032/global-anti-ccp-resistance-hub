@@ -1,3 +1,10 @@
+/**
+ * QuickStartGuide — Step-by-step onboarding wizard for new users.
+ * Walks through key platform features with animated progress dots
+ * and keyboard navigation support.
+ *
+ * @module QuickStartGuide
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';

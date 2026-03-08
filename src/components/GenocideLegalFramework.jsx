@@ -1,3 +1,10 @@
+/**
+ * GenocideLegalFramework — Legal analysis of genocide determinations
+ * and international law as applied to CCP atrocities. Cross-references
+ * treaties, court rulings, and parliamentary resolutions.
+ *
+ * @module GenocideLegalFramework
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Scale, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
