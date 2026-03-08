@@ -95,7 +95,7 @@ async function encryptValue(aesKey: CryptoKey, plaintext: string): Promise<Encry
   );
   return {
     ciphertext: arrayBufferToBase64(encrypted),
-    iv: arrayBufferToBase64(iv),
+    iv: arrayBufferToBase64(iv.buffer),
   };
 }
 
@@ -152,7 +152,7 @@ export async function encryptSubmission(
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
-function arrayBufferToBase64(buffer: ArrayBuffer): string {
+function arrayBufferToBase64(buffer: ArrayBuffer | ArrayBufferLike): string {
   const bytes = new Uint8Array(buffer);
   let binary = '';
   for (let i = 0; i < bytes.length; i++) {

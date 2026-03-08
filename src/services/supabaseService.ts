@@ -69,7 +69,11 @@ export interface FetchRowsOptions {
   ascending?: boolean;
 }
 
-const NOT_CONFIGURED: SupabaseResult = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
+const NOT_CONFIGURED: SupabaseResult & PaginatedResult = {
+  data: null,
+  error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.',
+  count: null,
+};
 
 // ─── INCIDENT REPORTS ────────────────────────────────────────────────
 
