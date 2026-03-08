@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync, existsSync } from 'fs';
 import { resolve } from 'path';
 
 /**
@@ -43,7 +43,8 @@ function extractLinkTargets(content) {
 }
 
 describe('Route Integrity', () => {
-  const appContent = readFileSync(resolve(SRC_DIR, 'App.jsx'), 'utf-8');
+  const appFile = existsSync(resolve(SRC_DIR, 'App.tsx')) ? 'App.tsx' : 'App.jsx';
+  const appContent = readFileSync(resolve(SRC_DIR, appFile), 'utf-8');
   const routePaths = extractRoutePaths(appContent);
 
   // Known redirect routes (these aren't real destinations, they redirect)
@@ -56,7 +57,7 @@ describe('Route Integrity', () => {
     [...routePaths].filter(p => !redirectRoutes.has(p) && !specialRoutes.has(p))
   );
 
-  it('App.jsx defines at least 20 routes', () => {
+  it('App defines at least 20 routes', () => {
     expect(routePaths.size).toBeGreaterThanOrEqual(20);
   });
 
@@ -74,7 +75,7 @@ describe('Route Integrity', () => {
         const full = resolve(dir, entry.name);
         if (entry.isDirectory() && entry.name !== 'test' && entry.name !== 'node_modules') {
           scanDir(full);
-        } else if (entry.isFile() && /\.(jsx|js)$/.test(entry.name) && !entry.name.endsWith('.test.js') && !entry.name.endsWith('.test.jsx')) {
+        } else if (entry.isFile() && /\.(jsx|tsx|js|ts)$/.test(entry.name) && !entry.name.endsWith('.test.js') && !entry.name.endsWith('.test.jsx') && !entry.name.endsWith('.test.ts') && !entry.name.endsWith('.test.tsx')) {
           sourceFiles.push(full);
         }
       }

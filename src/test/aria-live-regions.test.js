@@ -24,8 +24,10 @@ function relPath(file) {
 describe('ARIA Live Regions — loading states are announced to screen readers', () => {
   const jsxFiles = [
     ...getFiles(path.join(SRC_DIR, 'components'), '.jsx'),
+    ...getFiles(path.join(SRC_DIR, 'components'), '.tsx'),
     ...getFiles(path.join(SRC_DIR, 'pages'), '.jsx'),
-    path.join(SRC_DIR, 'App.jsx'),
+    ...getFiles(path.join(SRC_DIR, 'pages'), '.tsx'),
+    ...[path.join(SRC_DIR, 'App.tsx'), path.join(SRC_DIR, 'App.jsx')],
   ].filter(f => fs.existsSync(f));
 
   it('SectionLoader components include role="status"', () => {
@@ -45,8 +47,10 @@ describe('ARIA Live Regions — loading states are announced to screen readers',
     expect(violations, `SectionLoader without role="status":\n${violations.join('\n')}`).toEqual([]);
   });
 
-  it('LoadingScreen in App.jsx includes role="status"', () => {
-    const appFile = path.join(SRC_DIR, 'App.jsx');
+  it('LoadingScreen in App includes role="status"', () => {
+    const appFile = fs.existsSync(path.join(SRC_DIR, 'App.tsx'))
+      ? path.join(SRC_DIR, 'App.tsx')
+      : path.join(SRC_DIR, 'App.jsx');
     if (!fs.existsSync(appFile)) return;
     const content = fs.readFileSync(appFile, 'utf-8');
     const match = content.match(/const LoadingScreen\s*=\s*\(\)\s*=>\s*\(/);
@@ -80,7 +84,9 @@ describe('ARIA Live Regions — loading states are announced to screen readers',
   });
 
   it('search result containers have aria-live for dynamic content', () => {
-    const searchFile = path.join(SRC_DIR, 'components', 'GlobalSearch.jsx');
+    const searchFile = fs.existsSync(path.join(SRC_DIR, 'components', 'GlobalSearch.tsx'))
+      ? path.join(SRC_DIR, 'components', 'GlobalSearch.tsx')
+      : path.join(SRC_DIR, 'components', 'GlobalSearch.jsx');
     if (!fs.existsSync(searchFile)) return;
     const content = fs.readFileSync(searchFile, 'utf-8');
     // Loading state should have aria-live or role="status"

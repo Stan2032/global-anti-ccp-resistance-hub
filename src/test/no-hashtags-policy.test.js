@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { resolve, join } from 'path';
 
 /**
@@ -39,7 +39,7 @@ function findFiles(dir, extensions) {
 const HASHTAG_PATTERN = /#(?:Free|Stand|Save|Stop|Support|Resist|Boycott|End|Protect|Justice|Remember|Solidarity|Fight)[A-Z]\w+/g;
 
 describe('No-Hashtags Policy', () => {
-  const jsxFiles = findFiles(SRC_DIR, ['.jsx', '.js']).filter(f => !f.includes('/test/'));
+  const jsxFiles = findFiles(SRC_DIR, ['.jsx', '.tsx', '.js', '.ts']).filter(f => !f.includes('/test/'));
   const jsonFiles = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 
   it('finds source files to scan', () => {
@@ -93,7 +93,9 @@ describe('No-Hashtags Policy', () => {
   });
 
   it('ShareButtons component has no hashtags prop', () => {
-    const shareButtonsPath = resolve(SRC_DIR, 'components', 'ShareButtons.jsx');
+    const shareButtonsPath = existsSync(resolve(SRC_DIR, 'components', 'ShareButtons.tsx'))
+      ? resolve(SRC_DIR, 'components', 'ShareButtons.tsx')
+      : resolve(SRC_DIR, 'components', 'ShareButtons.jsx');
     const content = readFileSync(shareButtonsPath, 'utf-8');
     expect(content).not.toMatch(/hashtags/i);
   });

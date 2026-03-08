@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { resolve, join, relative } from 'path';
 
 /**
@@ -16,6 +16,11 @@ import { resolve, join, relative } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
+function resolveFile(dir, baseName) {
+  const tsxPath = resolve(dir, baseName.replace(/\.jsx$/, '.tsx'));
+  return existsSync(tsxPath) ? tsxPath : resolve(dir, baseName);
+}
+
 function findJsxFiles(dir) {
   const files = [];
   for (const entry of readdirSync(dir)) {
@@ -24,7 +29,7 @@ function findJsxFiles(dir) {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx')) {
+    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
@@ -124,8 +129,8 @@ describe('Keyboard navigation & focus management', () => {
     expect(focusStyleCount).toBeGreaterThan(20);
   });
 
-  it('skip-to-content link exists in App.jsx', () => {
-    const appContent = readFileSync(resolve(SRC_DIR, 'App.jsx'), 'utf-8');
+  it('skip-to-content link exists in App', () => {
+    const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
     expect(appContent).toContain('main-content');
   });
 

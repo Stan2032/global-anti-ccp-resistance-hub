@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 
 /**
@@ -13,10 +13,16 @@ import { resolve } from 'path';
  */
 
 const SRC_DIR = resolve(__dirname, '..');
-const appContent = readFileSync(resolve(SRC_DIR, 'App.jsx'), 'utf-8');
+
+function resolveFile(dir, baseName) {
+  const tsxPath = resolve(dir, baseName.replace(/\.jsx$/, '.tsx'));
+  return existsSync(tsxPath) ? tsxPath : resolve(dir, baseName);
+}
+
+const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
 
 describe('Performance & resilience', () => {
-  it('App.jsx imports ShellErrorBoundary', () => {
+  it('App imports ShellErrorBoundary', () => {
     expect(appContent).toContain("import ShellErrorBoundary from './components/ShellErrorBoundary'");
   });
 
@@ -35,24 +41,24 @@ describe('Performance & resilience', () => {
     expect(appContent).toMatch(regex);
   });
 
-  it('ShellErrorBoundary.jsx exists and renders null on error', () => {
-    const shellBoundary = readFileSync(resolve(SRC_DIR, 'components', 'ShellErrorBoundary.jsx'), 'utf-8');
+  it('ShellErrorBoundary exists and renders null on error', () => {
+    const shellBoundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'ShellErrorBoundary.jsx'), 'utf-8');
     expect(shellBoundary).toContain('class ShellErrorBoundary');
     expect(shellBoundary).toContain('getDerivedStateFromError');
     expect(shellBoundary).toContain('return null');
     expect(shellBoundary).toContain('componentDidCatch');
   });
 
-  it('ErrorBoundary.jsx exists with recovery UI', () => {
-    const boundary = readFileSync(resolve(SRC_DIR, 'components', 'ErrorBoundary.jsx'), 'utf-8');
+  it('ErrorBoundary exists with recovery UI', () => {
+    const boundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'ErrorBoundary.jsx'), 'utf-8');
     expect(boundary).toContain('class ErrorBoundary');
     expect(boundary).toContain('getDerivedStateFromError');
     expect(boundary).toContain('Try Again');
     expect(boundary).toContain('handleReset');
   });
 
-  it('RouteErrorBoundary.jsx handles chunk load errors', () => {
-    const routeBoundary = readFileSync(resolve(SRC_DIR, 'components', 'RouteErrorBoundary.jsx'), 'utf-8');
+  it('RouteErrorBoundary handles chunk load errors', () => {
+    const routeBoundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'RouteErrorBoundary.jsx'), 'utf-8');
     expect(routeBoundary).toContain('ChunkLoadError');
     expect(routeBoundary).toContain('isChunkError');
     expect(routeBoundary).toContain('Failed to load page');
@@ -68,7 +74,7 @@ describe('Performance & resilience', () => {
   });
 
   it('Footer uses React.memo for render optimization', () => {
-    const footer = readFileSync(resolve(SRC_DIR, 'components', 'Footer.jsx'), 'utf-8');
+    const footer = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'Footer.jsx'), 'utf-8');
     expect(footer).toMatch(/export default React\.memo\(Footer\)/);
   });
 

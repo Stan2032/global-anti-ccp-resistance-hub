@@ -15,7 +15,7 @@ import { resolve, join, relative } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
-function findSourceFiles(dir, extensions = ['.jsx', '.js']) {
+function findSourceFiles(dir, extensions = ['.jsx', '.tsx', '.js', '.ts']) {
   const files = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readdirSync, readFileSync, statSync } from 'fs';
+import { readdirSync, readFileSync, statSync, existsSync } from 'fs';
 import { resolve, join } from 'path';
 
 /**
@@ -20,9 +20,9 @@ const PAGES_DIR = resolve(SRC_DIR, 'pages');
 const DATA_DIR = resolve(SRC_DIR, 'data');
 const TEST_DIR = resolve(SRC_DIR, 'test');
 
-function countFiles(dir, ext) {
+function countFiles(dir, ...exts) {
   if (!statSync(dir).isDirectory()) return 0;
-  return readdirSync(dir).filter(f => f.endsWith(ext)).length;
+  return readdirSync(dir).filter(f => exts.some(ext => f.endsWith(ext))).length;
 }
 
 function getFileSizeKB(filepath) {
@@ -31,13 +31,13 @@ function getFileSizeKB(filepath) {
 
 describe('Performance Budget', () => {
   it('component count stays under 112 (growth guard)', () => {
-    const jsxCount = countFiles(COMPONENTS_DIR, '.jsx');
+    const jsxCount = countFiles(COMPONENTS_DIR, '.jsx', '.tsx');
     expect(jsxCount).toBeGreaterThan(50); // sanity: we have many components
     expect(jsxCount).toBeLessThanOrEqual(112); // growth guard
   });
 
   it('page count stays under 20 (growth guard)', () => {
-    const pageCount = countFiles(PAGES_DIR, '.jsx');
+    const pageCount = countFiles(PAGES_DIR, '.jsx', '.tsx');
     expect(pageCount).toBeGreaterThan(5); // sanity: we have pages
     expect(pageCount).toBeLessThanOrEqual(20); // growth guard
   });
@@ -50,7 +50,7 @@ describe('Performance Budget', () => {
 
   it('test file count keeps growing (minimum floor at 140)', () => {
     const testCount = readdirSync(TEST_DIR).filter(
-      f => f.endsWith('.test.js') || f.endsWith('.test.jsx')
+      f => f.endsWith('.test.js') || f.endsWith('.test.jsx') || f.endsWith('.test.ts') || f.endsWith('.test.tsx')
     ).length;
     expect(testCount).toBeGreaterThanOrEqual(140); // minimum test discipline
   });
@@ -68,7 +68,7 @@ describe('Performance Budget', () => {
   });
 
   it('no single component file exceeds 615 lines', () => {
-    const jsxFiles = readdirSync(COMPONENTS_DIR).filter(f => f.endsWith('.jsx'));
+    const jsxFiles = readdirSync(COMPONENTS_DIR).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'));
     const oversized = [];
     for (const file of jsxFiles) {
       const lines = readFileSync(join(COMPONENTS_DIR, file), 'utf-8').split('\n').length;
@@ -80,7 +80,7 @@ describe('Performance Budget', () => {
   });
 
   it('no single page file exceeds 615 lines', () => {
-    const jsxFiles = readdirSync(PAGES_DIR).filter(f => f.endsWith('.jsx'));
+    const jsxFiles = readdirSync(PAGES_DIR).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'));
     const oversized = [];
     for (const file of jsxFiles) {
       const lines = readFileSync(join(PAGES_DIR, file), 'utf-8').split('\n').length;
@@ -91,16 +91,17 @@ describe('Performance Budget', () => {
     expect(oversized, `Pages over 615 lines:\n${oversized.join('\n')}`).toEqual([]);
   });
 
-  it('App.jsx lazy-loads all heavy page components', () => {
-    const appContent = readFileSync(resolve(SRC_DIR, 'App.jsx'), 'utf-8');
+  it('App lazy-loads all heavy page components', () => {
+    const appFile = existsSync(resolve(SRC_DIR, 'App.tsx')) ? 'App.tsx' : 'App.jsx';
+    const appContent = readFileSync(resolve(SRC_DIR, appFile), 'utf-8');
     const lazyImports = (appContent.match(/lazy\(/g) || []).length;
     // App.jsx should lazy-load most pages
     expect(lazyImports).toBeGreaterThanOrEqual(10);
   });
 
   it('total source code (components + pages) stays under 200 files', () => {
-    const componentCount = countFiles(COMPONENTS_DIR, '.jsx');
-    const pageCount = countFiles(PAGES_DIR, '.jsx');
+    const componentCount = countFiles(COMPONENTS_DIR, '.jsx', '.tsx');
+    const pageCount = countFiles(PAGES_DIR, '.jsx', '.tsx');
     const total = componentCount + pageCount;
     expect(total).toBeLessThanOrEqual(200);
   });

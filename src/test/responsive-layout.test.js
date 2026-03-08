@@ -24,7 +24,7 @@ function findJsxFiles(dir) {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx')) {
+    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
@@ -68,7 +68,7 @@ describe('Responsive layout compliance', () => {
   });
 
   it('App root has overflow-x-hidden to prevent stray horizontal scroll', () => {
-    const appPath = jsxFiles.find(f => f.endsWith('/App.jsx'));
+    const appPath = jsxFiles.find(f => f.endsWith('/App.tsx') || f.endsWith('/App.jsx'));
     expect(appPath).toBeTruthy();
     const content = readFileSync(appPath, 'utf-8');
     expect(content).toContain('overflow-x-hidden');
