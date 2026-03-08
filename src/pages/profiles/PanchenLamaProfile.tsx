@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * PanchenLamaProfile — Detailed profile of Gedhun Choekyi Nyima,
  * the 11th Panchen Lama, disappeared by Chinese authorities in 1995
@@ -250,7 +249,7 @@ const SOURCES = [
   { name: 'Tibet.net (Central Tibetan Administration)', url: 'https://tibet.net/wp-content/uploads/2025/12/Panchen-Lama-Briefing-Paper.pdf', tier: 2 },
 ];
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   life: 'border-green-500/50 text-green-300',
   context: 'border-[#1c2a35]/50 text-slate-300',
   religious: 'border-[#1c2a35]/50 text-[#22d3ee]',
@@ -270,7 +269,7 @@ const categoryLabels = {
 
 export default function PanchenLamaProfile() {
   const [activeSection, setActiveSection] = useState('timeline');
-  const [expandedEvent, setExpandedEvent] = useState(null);
+  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   const sections = [
     { id: 'timeline', label: 'Timeline', icon: Clock },

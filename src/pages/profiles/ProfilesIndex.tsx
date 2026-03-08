@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ProfilesIndex — Index page listing all individual profiles of people
  * targeted by the CCP. Provides search, filtering, and navigation to
@@ -295,22 +294,21 @@ const REGION_FILTERS = [
   { id: 'cross-border', label: 'Cross-Border' },
 ];
 
-const statusStyles = {
+const statusStyles: Record<string, { badge: string; dot: string }> = {
   red: { badge: 'bg-red-900/50 text-red-300 border-red-700/50', dot: 'bg-red-500' },
   cyan: { badge: 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]', dot: 'bg-[#22d3ee]' },
   gray: { badge: 'bg-gray-800/50 text-slate-300 border-gray-600/50', dot: 'bg-gray-400' },
   yellow: { badge: 'bg-yellow-900/50 text-yellow-300 border-yellow-700/50', dot: 'bg-yellow-500' },
 };
 
-const ProfileCard = ({ profile }) => {
+const ProfileCard = ({ profile }: { profile: typeof PROFILES[number] }) => {
   const status = statusStyles[profile.statusColor] || statusStyles.red;
-  const CardWrapper = profile.built ? Link : 'div';
+
   const wrapperProps = profile.built
     ? { to: profile.path, className: 'group block' }
     : { className: 'block opacity-50 cursor-default' };
 
-  return (
-    <CardWrapper {...wrapperProps}>
+  const content = (
       <article
         className={`bg-[#0a0e14] border-l-2 ${profile.themeLeftBorder} border ${profile.themeBorder} p-6 transition-all duration-200 ${
           profile.built ? 'hover:border-[#4afa82]/50 hover:shadow-lg hover:shadow-[#4afa82]/10 hover:-translate-y-0.5' : ''
@@ -364,7 +362,12 @@ const ProfileCard = ({ profile }) => {
           </div>
         )}
       </article>
-    </CardWrapper>
+  );
+
+  return profile.built ? (
+    <Link to={profile.path} className="group block">{content}</Link>
+  ) : (
+    <div className="block opacity-50 cursor-default">{content}</div>
   );
 };
 

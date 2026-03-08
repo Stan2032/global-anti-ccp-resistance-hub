@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * AcademicExperts — Directory of academic experts and researchers
  * specialising in CCP human rights issues. Searchable by field,
@@ -16,8 +15,8 @@ import {
 // Import research data
 import expertsData from '../data/academic_experts_research.json';
 
-const ExpertiseBadge = ({ expertise }) => {
-  const colors = {
+const ExpertiseBadge = ({ expertise }: { expertise: string }) => {
+  const colors: Record<string, string> = {
     'Xinjiang/Uyghur': 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#1c2a35]',
     'Tibet': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     'Hong Kong': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
@@ -36,7 +35,7 @@ const ExpertiseBadge = ({ expertise }) => {
 const AcademicExperts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expertiseFilter, setExpertiseFilter] = useState('all');
-  const [expandedExpert, setExpandedExpert] = useState(null);
+  const [expandedExpert, setExpandedExpert] = useState<number | null>(null);
 
   const experts = (expertsData?.results || []).map(r => r.output);
 
@@ -129,7 +128,7 @@ const AcademicExperts = () => {
             >
               <div 
                 className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
-                onClick={() => setExpandedExpert(expandedExpert === idx ? null : idx)}
+                onClick={() => setExpandedExpert(expandedExpert === idx ? null : idx as number)}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">

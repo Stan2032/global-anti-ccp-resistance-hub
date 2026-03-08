@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * DonationGuide — Vetted donation recommendations for organisations
  * fighting CCP human rights abuses. Categorised by focus area with
@@ -292,9 +291,9 @@ const DonationGuide = () => {
     return categoryMatch && causeMatch;
   });
 
-  const getCategoryInfo = (categoryId) => categories.find(c => c.id === categoryId);
+  const getCategoryInfo = (categoryId: string) => categories.find(c => c.id === categoryId);
 
-  const ratingColors = {
+  const ratingColors: Record<string, string> = {
     'Highly Recommended': 'bg-green-900/30 text-green-400 border-green-700/50',
     'Recommended': 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
   };

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 import React, { useState } from 'react';
 import { BarChart3, Megaphone } from 'lucide-react';
 
@@ -9,7 +8,7 @@ import { BarChart3, Megaphone } from 'lucide-react';
  * @returns {React.ReactElement} Grid of fact cards
  */
 const QuickFacts = () => {
-  const [copiedId, setCopiedId] = useState(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const facts = [
     {
@@ -86,7 +85,7 @@ const QuickFacts = () => {
     }
   ];
 
-  const colorClasses = {
+  const colorClasses: Record<string, string> = {
     red: 'border-l-red-500 border-[#1c2a35]',
     orange: 'border-l-orange-500 border-[#1c2a35]',
     cyan: 'border-l-[#22d3ee] border-[#1c2a35]',
@@ -96,7 +95,7 @@ const QuickFacts = () => {
     pink: 'border-l-[#22d3ee] border-[#1c2a35]'
   };
 
-  const copyToClipboard = async (fact) => {
+  const copyToClipboard = async (fact: { id: number; category: string; stat: string; description: string; source: string; sourceUrl: string; color: string }) => {
     const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}\n${fact.sourceUrl}\n\nLearn more: https://global-anti-ccp-resistance-hub.stane203.workers.dev/`;
     
     try {
@@ -108,7 +107,7 @@ const QuickFacts = () => {
     }
   };
 
-  const shareToTwitter = (fact) => {
+  const shareToTwitter = (fact: { id: number; category: string; stat: string; description: string; source: string; sourceUrl: string; color: string }) => {
     const text = `📊 ${fact.category}: ${fact.stat}\n\n${fact.description}\n\nSource: ${fact.source}`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://global-anti-ccp-resistance-hub.stane203.workers.dev/')}`;
     window.open(url, '_blank', 'width=550,height=420');

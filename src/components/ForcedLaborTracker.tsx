@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ForcedLaborTracker — Monitors companies and supply chains linked to
  * forced labour in Xinjiang and other regions. Searchable database with
@@ -16,8 +15,8 @@ import {
 // Import research data
 import companiesData from '../data/forced_labor_companies_research.json';
 
-const StatusBadge = ({ status }) => {
-  const config = {
+const StatusBadge = ({ status }: { status: string }) => {
+  const config: Record<string, { color: string; icon: typeof Ban }> = {
     'Avoid': { color: 'bg-red-500/20 text-red-400 border-red-500/30', icon: Ban },
     'Concern': { color: 'bg-orange-500/20 text-orange-400 border-orange-500/30', icon: AlertCircle },
     'Improving': { color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30', icon: TrendingUp },
@@ -35,8 +34,8 @@ const StatusBadge = ({ status }) => {
   );
 };
 
-const IndustryIcon = ({ industry }) => {
-  const icons = {
+const IndustryIcon = ({ industry }: { industry: string }) => {
+  const icons: Record<string, typeof ShoppingBag> = {
     'Apparel': ShoppingBag,
     'Technology': Cpu,
     'Automotive': Car,
@@ -52,7 +51,7 @@ const ForcedLaborTracker = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [industryFilter, setIndustryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [expandedCompany, setExpandedCompany] = useState(null);
+  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
 
   const companies = (companiesData?.results || []).map(r => r.output);
 

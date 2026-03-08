@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * WitnessProtection — Resources and guidance for witnesses and survivors
  * of CCP repression. Covers legal asylum, relocation, and safety planning.
@@ -10,8 +9,8 @@ import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield, S
 
 const WitnessProtection = () => {
   const [activeSection, setActiveSection] = useState('overview');
-  const [riskLevel, setRiskLevel] = useState(null);
-  const [riskAnswers, setRiskAnswers] = useState({});
+  const [riskLevel, setRiskLevel] = useState<string | null>(null);
+  const [riskAnswers, setRiskAnswers] = useState<Record<string, string>>({});
 
   const sections = [
     { id: 'overview', name: 'Overview', Icon: ClipboardList },

@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ForcedLabourList — Documented list of entities involved in forced labour
  * practices. Includes company profiles, evidence links, and compliance status.
@@ -11,7 +10,7 @@ import GlobalDisclaimer from './ui/GlobalDisclaimer';
 const ForcedLabourList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showAlternatives, setShowAlternatives] = useState({});
+  const [showAlternatives, setShowAlternatives] = useState<Record<string, boolean>>({});
 
   const categories = [
     { key: 'all', label: 'All', count: 0 },
@@ -311,7 +310,7 @@ const ForcedLabourList = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch(status) {
       case 'CRITICAL': return 'bg-red-900/30 text-red-400 border-red-800';
       case 'HIGH RISK': return 'bg-orange-900/30 text-orange-400 border-orange-800';

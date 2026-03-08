@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * KeyboardShortcutsHelp — Modal overlay showing available keyboard
  * shortcuts for power users. Triggered by pressing '?'.
@@ -23,10 +22,10 @@ const shortcuts = [
   { keys: ['Esc'], description: 'Close modal' },
 ];
 
-const KeyboardShortcutsHelp = ({ isOpen, onClose }) => {
+const KeyboardShortcutsHelp = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   useEffect(() => {
     if (!isOpen) return;
-    const handleKey = (e) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || e.key === '?') {
         e.preventDefault();
         onClose();

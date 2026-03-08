@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * RecentUpdates — Chronological feed of recent data updates and
  * platform changes. Shows what has been added, updated, or verified.
@@ -21,7 +20,7 @@ const CATEGORY_CONFIG = {
   report: { label: 'REPORT', color: 'text-[#22d3ee]', bg: 'bg-cyan-900/30', Icon: FileText },
 };
 
-const formatDate = (dateStr) => {
+const formatDate = (dateStr: string) => {
   const date = new Date(dateStr + 'T00:00:00');
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 };
@@ -29,7 +28,7 @@ const formatDate = (dateStr) => {
 const RecentUpdates = () => {
   const [showAll, setShowAll] = useState(false);
 
-  const sortedUpdates = [...(updates || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedUpdates = [...(updates || [])].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const displayedUpdates = showAll ? sortedUpdates : sortedUpdates.slice(0, INITIAL_DISPLAY_COUNT);
   const hasMore = sortedUpdates.length > INITIAL_DISPLAY_COUNT;
 
@@ -45,7 +44,7 @@ const RecentUpdates = () => {
 
       <div className="divide-y divide-[#1c2a35]">
         {displayedUpdates.map((update) => {
-          const config = CATEGORY_CONFIG[update.category] || CATEGORY_CONFIG.data;
+          const config = (CATEGORY_CONFIG as Record<string, typeof CATEGORY_CONFIG.data>)[update.category] || CATEGORY_CONFIG.data;
           const CategoryIcon = config.Icon;
 
           return (

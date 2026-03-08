@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * SanctionsTracker — Tracks international sanctions imposed on CCP officials
  * and entities. Displays sanction details by country with legal basis,
@@ -12,7 +11,7 @@ import SourceAttribution from './ui/SourceAttribution';
 import { resolveSource } from '../utils/sourceLinks';
 import sanctionsData from '../data/sanctions_tracker.json';
 
-const LAW_LINKS = sanctionsData.law_links;
+const LAW_LINKS: Record<string, string> = sanctionsData.law_links;
 
 const SanctionsTracker = () => {
   const [activeCountry, setActiveCountry] = useState('all');
@@ -43,9 +42,9 @@ const SanctionsTracker = () => {
     return countryMatch && typeMatch;
   });
 
-  const getCountryInfo = (countryId) => countries.find(c => c.id === countryId);
+  const getCountryInfo = (countryId: string) => countries.find(c => c.id === countryId);
 
-  const typeColors = {
+  const typeColors: Record<string, string> = {
     individual: 'bg-red-900/30 border-red-700/50',
     entity: 'bg-orange-900/30 border-orange-700/50',
     trade: 'bg-yellow-900/30 border-yellow-700/50',

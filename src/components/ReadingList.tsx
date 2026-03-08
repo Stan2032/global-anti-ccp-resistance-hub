@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ReadingList — Curated reading list of essential books and publications
  * on CCP human rights abuses, organised by topic.
@@ -262,7 +261,7 @@ const ReadingList = () => {
 
   // Sort books
   if (sortBy === 'relevance') {
-    const relevanceOrder = { 'CRITICAL': 0, 'HIGH': 1, 'MEDIUM': 2 };
+    const relevanceOrder: Record<string, number> = { 'CRITICAL': 0, 'HIGH': 1, 'MEDIUM': 2 };
     filteredBooks = [...filteredBooks].sort((a, b) => relevanceOrder[a.relevance] - relevanceOrder[b.relevance]);
   } else if (sortBy === 'year') {
     filteredBooks = [...filteredBooks].sort((a, b) => b.year - a.year);
@@ -270,7 +269,7 @@ const ReadingList = () => {
     filteredBooks = [...filteredBooks].sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  const getRelevanceColor = (relevance) => {
+  const getRelevanceColor = (relevance: string) => {
     switch (relevance) {
       case 'CRITICAL': return 'bg-red-600';
       case 'HIGH': return 'bg-orange-600';

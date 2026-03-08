@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * IlhamTohtiProfile — Detailed profile of Ilham Tohti, Uyghur economist
  * serving a life sentence for "separatism". Sakharov Prize laureate.
@@ -266,7 +265,7 @@ const SOURCES = [
 
 // ─── COMPONENT ─────────────────────────────────────────────────────
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   life: 'border-[#1c2a35] bg-[#22d3ee]/10',
   academic: 'border-emerald-500 bg-emerald-500/10',
   advocacy: 'border-cyan-500 bg-cyan-500/10',
@@ -283,7 +282,7 @@ const categoryLabels = {
 };
 
 export default function IlhamTohtiProfile() {
-  const [expandedEvent, setExpandedEvent] = useState(null);
+  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
   const [showAllNarratives, setShowAllNarratives] = useState(false);
   const [activeSection, setActiveSection] = useState('timeline');
 
@@ -474,7 +473,7 @@ export default function IlhamTohtiProfile() {
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               {[
                 { label: 'Trial Length', value: '2 days' },
-                { label: 'Days Imprisoned', value: `${Math.floor((new Date('2026-02-20') - new Date('2014-01-15')) / (1000 * 60 * 60 * 24))}+` },
+                { label: 'Days Imprisoned', value: `${Math.floor((new Date('2014-01-15').getTime() - new Date('2014-01-15').getTime()) / (1000 * 60 * 60 * 24))}+` },
                 { label: 'Sentence', value: 'Life' },
                 { label: 'Family Contact', value: 'None since 2017' },
               ].map(({ label, value }) => (

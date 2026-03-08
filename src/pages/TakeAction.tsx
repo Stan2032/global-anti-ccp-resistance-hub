@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * TakeAction — Advocacy hub with petitions, letter generators, donation guides,
  * and volunteer sign-up. Provides concrete steps for users to take action
@@ -12,7 +11,7 @@ import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 }
 import ShareButtons from '../components/ShareButtons';
 import actionsData from '../data/take_action_steps.json';
 
-const ICON_MAP = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
+const ICON_MAP: Record<string, typeof AlertTriangle> = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -38,7 +37,7 @@ const InternationalResponseTracker = lazy(() => import('../components/Internatio
 const PolicyBriefGenerator = lazy(() => import('../components/PolicyBriefGenerator'));
 
 const TakeAction = () => {
-  const [expandedAction, setExpandedAction] = useState(null);
+  const [expandedAction, setExpandedAction] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const INITIAL_DISPLAY_COUNT = 3;
 
@@ -191,7 +190,7 @@ const TakeAction = () => {
                   
                   <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
                   <div className="grid sm:grid-cols-2 gap-3">
-                    {action.links.map((link, index) => (
+                    {action.links.map((link: { name: string; url: string; internal?: boolean; action?: string }, index: number) => (
                       link.internal ? (
                         <Link
                           key={index}

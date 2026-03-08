@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * ContactRepresentatives — Directory of elected representatives and
  * advocacy targets. Helps users contact their MPs, senators, and MEPs
@@ -274,10 +273,10 @@ Sincerely,
     }
   };
 
-  const currentTemplate = letterTemplates[selectedTopic];
-  const currentLinks = contactLinks[selectedCountry];
+  const currentTemplate = (letterTemplates as Record<string, { subject: string; body: string }>)[selectedTopic];
+  const currentLinks = (contactLinks as Record<string, { name: string; links: { name: string; url: string }[] }>)[selectedCountry];
 
-  const copyToClipboard = async (text) => {
+  const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -325,7 +324,7 @@ Sincerely,
           Find Your Representatives ({currentLinks.name})
         </h3>
         <div className="grid gap-2 md:grid-cols-3">
-          {currentLinks.links.map((link, index) => (
+          {currentLinks.links.map((link: { name: string; url: string }, index: number) => (
             <a
               key={index}
               href={link.url}

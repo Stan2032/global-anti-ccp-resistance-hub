@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * NewsDigest — Curated daily digest of key developments. Supports
  * email subscription via Supabase and provides categorised summaries.
@@ -19,7 +18,7 @@ const NewsDigest = () => {
   });
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const frequencies = [
     { id: 'daily', name: 'Daily Digest', description: 'Every morning' },
@@ -72,7 +71,7 @@ const NewsDigest = () => {
     },
   ];
 
-  const toggleTopic = (topicId) => {
+  const toggleTopic = (topicId: string) => {
     if (topicId === 'all') {
       setPreferences({ ...preferences, topics: ['all'] });
     } else {
@@ -83,7 +82,7 @@ const NewsDigest = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (backendConnected) {
       setSubmitting(true);

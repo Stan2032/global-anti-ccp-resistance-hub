@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * IncidentReportForm — Secure form for reporting CCP-related incidents
  * including transnational repression, surveillance, and intimidation.
@@ -28,7 +27,7 @@ const IncidentReportForm = () => {
   
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [step, setStep] = useState(1);
 
   const incidentTypes = [
@@ -43,15 +42,16 @@ const IncidentReportForm = () => {
     { value: 'other', label: 'Other', description: 'Other forms of transnational repression' },
   ];
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = 'checked' in e.target ? (e.target as HTMLInputElement).checked : false;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (backendConnected) {
       setSubmitting(true);
@@ -61,9 +61,9 @@ const IncidentReportForm = () => {
         description: formData.description,
         incidentType: formData.incidentType,
         location: formData.location,
-        dateOfIncident: formData.date || null,
+        dateOfIncident: formData.date || undefined,
         severity: 'medium',
-        contactEmail: formData.anonymous ? null : formData.contactEmail,
+        contactEmail: formData.anonymous ? undefined : (formData.contactEmail || undefined),
       });
       setSubmitting(false);
       if (error) {

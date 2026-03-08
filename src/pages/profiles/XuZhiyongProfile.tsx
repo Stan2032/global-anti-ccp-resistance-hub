@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * XuZhiyongProfile — Detailed profile of Xu Zhiyong, legal scholar
  * and New Citizens' Movement founder sentenced for "subversion of
@@ -197,7 +196,7 @@ const SOURCES = [
 ];
 
 // ─── CATEGORY COLORS ───────────────────────────────────────────────
-const CATEGORY_COLORS = {
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string }> = {
   life: { bg: 'bg-[#111820]', text: 'text-slate-200', label: 'Personal' },
   activism: { bg: 'bg-emerald-900/60', text: 'text-emerald-200', label: 'Activism' },
   persecution: { bg: 'bg-red-900/60', text: 'text-red-200', label: 'Persecution' },
@@ -206,7 +205,7 @@ const CATEGORY_COLORS = {
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }) => {
+const TimelineEvent = ({ event, isExpanded, onToggle }: { event: { category: string; year: string; title: string; detail?: string; description?: string; sourceUrl?: string }; isExpanded: boolean; onToggle: () => void }) => {
   const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
   return (
     <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
@@ -242,7 +241,7 @@ export default function XuZhiyongProfile() {
   const [activeTab, setActiveTab] = useState('timeline');
   const [expandedEvents, setExpandedEvents] = useState(new Set());
 
-  const toggleEvent = (idx) => {
+  const toggleEvent = (idx: number) => {
     setExpandedEvents((prev) => {
       const next = new Set(prev);
       next.has(idx) ? next.delete(idx) : next.add(idx);

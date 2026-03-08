@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * SecurityQuiz — Interactive digital security quiz that scores users'
  * knowledge of VPN usage, device hygiene, and communication safety.
@@ -10,7 +9,7 @@ import { ClipboardList, AlertTriangle, Link as LinkIcon, Lock } from 'lucide-rea
 
 const SecurityQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -137,15 +136,15 @@ const SecurityQuiz = () => {
     },
   ];
 
-  const handleAnswer = (points) => {
+  const handleAnswer = (points: number) => {
     setAnswers({ ...answers, [currentQuestion]: points });
     
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Calculate final score
-      const totalPoints = Object.values({ ...answers, [currentQuestion]: points }).reduce((a, b) => a + b, 0);
-      setScore(totalPoints);
+      const totalPoints = Object.values({ ...answers, [currentQuestion]: points }).reduce((a: number, b: number) => a + b, 0);
+      setScore(totalPoints as number);
       setShowResults(true);
     }
   };

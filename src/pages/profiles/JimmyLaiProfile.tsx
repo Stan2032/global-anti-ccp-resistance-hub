@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 /**
  * JimmyLaiProfile — Detailed profile of Jimmy Lai, Hong Kong media
  * mogul and Apple Daily founder sentenced under the National Security Law.
@@ -256,7 +255,7 @@ const SOURCES = [
 
 // ─── COMPONENT ─────────────────────────────────────────────────────
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   life: 'border-[#1c2a35] bg-[#22d3ee]/10',
   business: 'border-emerald-500 bg-emerald-500/10',
   political: 'border-amber-500 bg-amber-500/10',
@@ -271,7 +270,7 @@ const categoryLabels = {
 };
 
 export default function JimmyLaiProfile() {
-  const [expandedEvent, setExpandedEvent] = useState(null);
+  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
   const [showAllNarratives, setShowAllNarratives] = useState(false);
   const [activeSection, setActiveSection] = useState('timeline');
 
@@ -459,7 +458,7 @@ export default function JimmyLaiProfile() {
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               {[
                 { label: 'Court Days', value: '156' },
-                { label: 'Days Detained', value: `${Math.floor((new Date('2026-02-20') - new Date('2020-12-03')) / (1000 * 60 * 60 * 24))}+` },
+                { label: 'Days Detained', value: `${Math.floor((new Date('2020-12-03').getTime() - new Date('2020-12-03').getTime()) / (1000 * 60 * 60 * 24))}+` },
                 { label: 'Sentence', value: '20 years' },
                 { label: 'Jury', value: 'None' },
               ].map(({ label, value }) => (
