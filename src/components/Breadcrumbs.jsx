@@ -5,6 +5,8 @@ import { ChevronRight, Home } from 'lucide-react';
  * Breadcrumbs — shows current location hierarchy.
  * Helps users navigate back through the site structure.
  * Auto-generates breadcrumbs from the current URL path.
+ *
+ * @returns {React.ReactElement|null} Breadcrumb navigation or null for root
  */
 
 const ROUTE_LABELS = {

@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom';
  * Error boundary for lazy-loaded route components.
  * Catches chunk-load failures and renders a recoverable error UI
  * within the existing page layout (preserving navigation).
- * 
+ *
  * This is critical for users in censored regions where network
  * interruptions can prevent lazy chunks from loading.
+ *
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Route content to wrap
+ * @returns {React.ReactNode} Children or recoverable error UI
  */
 class RouteErrorBoundary extends React.Component {
   constructor(props) {

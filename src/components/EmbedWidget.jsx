@@ -92,6 +92,11 @@ function generateAlertBanner(alert) {
 </div>`;
 }
 
+/**
+ * EmbedWidget component.
+ *
+ * @returns {React.ReactElement} Widget configuration and preview interface
+ */
 export default function EmbedWidget() {
   const [selectedType, setSelectedType] = useState('prisoner-card');
   const [selectedPrisoner, setSelectedPrisoner] = useState('');

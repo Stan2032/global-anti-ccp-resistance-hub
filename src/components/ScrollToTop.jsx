@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /**
- * Scrolls the window to the top on every route change and moves focus
- * to the main content area so screen-reader users are aware of the
- * navigation.
+ * ScrollToTop — scrolls window to top on every route change and moves
+ * focus to the main content area so screen-reader users are aware of
+ * the navigation.
+ *
+ * @returns {null} Renders nothing (side-effect only)
  */
 export default function ScrollToTop() {
   const { pathname } = useLocation();

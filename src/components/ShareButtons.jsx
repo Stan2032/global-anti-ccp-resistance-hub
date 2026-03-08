@@ -1,5 +1,16 @@
 import { useState } from 'react';
 
+/**
+ * ShareButtons — Social sharing buttons with copy-to-clipboard.
+ * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp, Signal, and Email.
+ *
+ * @param {Object} props
+ * @param {string} [props.title='Global Anti-CCP Resistance Hub'] - Share title
+ * @param {string} [props.text='Join the global movement against CCP authoritarianism'] - Share text
+ * @param {string} [props.url=window.location.href] - URL to share
+ * @param {boolean} [props.compact=false] - Show compact layout (fewer buttons, no labels)
+ * @returns {React.ReactElement} Share buttons row
+ */
 const ShareButtons = ({ 
   title = "Global Anti-CCP Resistance Hub", 
   text = "Join the global movement against CCP authoritarianism",

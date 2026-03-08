@@ -9,6 +9,18 @@ const ICON_MAP = {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
 };
 
+/**
+ * AnimatedCounter — Smoothly animates a number from 0 to a target value.
+ * Uses IntersectionObserver to start animation when visible.
+ *
+ * @param {Object} props
+ * @param {number} props.end - Target number to count to
+ * @param {number} [props.duration=2000] - Animation duration in ms
+ * @param {string} [props.prefix=''] - Text before the number
+ * @param {string} [props.suffix=''] - Text after the number
+ * @param {number} [props.decimals=0] - Number of decimal places
+ * @returns {React.ReactElement} Animated counter display
+ */
 const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decimals = 0 }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(null);

@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Siren, Phone, Mail, Lock } from 'lucide-react';
 
+/**
+ * Footer — Site-wide footer with links, emergency contacts, and legal notice.
+ * Displayed on every page via App.jsx.
+ *
+ * @returns {React.ReactElement} Footer component
+ */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 

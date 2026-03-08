@@ -6,6 +6,13 @@ import { formatAlertForSharing } from '../utils/dateUtils';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
+/**
+ * EmergencyAlerts — Displays active emergency alerts with severity-based styling.
+ * Alerts can be dismissed (persisted to localStorage), expanded for details,
+ * and shared via clipboard. Includes countdown timers for dated events.
+ *
+ * @returns {React.ReactElement|null} Alert list or null when no active alerts
+ */
 const EmergencyAlerts = () => {
   const [dismissedAlerts, setDismissedAlerts] = useState(() => {
     const saved = localStorage.getItem('dismissedAlerts');

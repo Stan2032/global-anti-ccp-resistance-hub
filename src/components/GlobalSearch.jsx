@@ -62,6 +62,16 @@ const searchableContent = [
   { type: 'resource', title: 'Books', description: 'Essential reading list', path: '/education', Icon: BookOpen, keywords: ['books', 'reading', 'literature'] },
 ];
 
+/**
+ * GlobalSearch — Full-screen search modal with fuzzy matching across all platform content.
+ * Searches pages, profiles, components, and data sources. Supports keyboard navigation
+ * (↑↓ to select, Enter to navigate, Escape to close).
+ *
+ * @param {Object} props
+ * @param {boolean} props.isOpen - Whether the modal is visible
+ * @param {() => void} props.onClose - Callback to close the modal
+ * @returns {React.ReactElement|null} Search modal or null when closed
+ */
 const GlobalSearch = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);

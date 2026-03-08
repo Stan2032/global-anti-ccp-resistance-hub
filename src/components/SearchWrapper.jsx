@@ -2,7 +2,14 @@ import React from 'react';
 import GlobalSearch from './GlobalSearch';
 import useGlobalSearch from '../hooks/useGlobalSearch';
 
-// Wrapper component that uses the hook and provides search functionality
+/**
+ * SearchWrapper — Provides global search modal state to child components.
+ * Uses useGlobalSearch hook and renders GlobalSearch modal.
+ *
+ * @param {Object} props
+ * @param {React.ReactNode|((ctx: {openSearch: () => void}) => React.ReactNode)} props.children - Children or render function receiving search controls
+ * @returns {React.ReactElement} Children with search modal
+ */
 const SearchWrapper = ({ children }) => {
   const { isOpen, setIsOpen, close } = useGlobalSearch();
 
@@ -20,7 +27,15 @@ const SearchWrapper = ({ children }) => {
   );
 };
 
-// Search trigger button component
+/**
+ * SearchButton — Trigger button for the global search modal.
+ * Shows search icon, placeholder text, and keyboard shortcut hint.
+ *
+ * @param {Object} props
+ * @param {() => void} props.onClick - Click handler (typically opens search)
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @returns {React.ReactElement} Search trigger button
+ */
 export const SearchButton = ({ onClick, className = '' }) => (
   <button
     onClick={onClick}

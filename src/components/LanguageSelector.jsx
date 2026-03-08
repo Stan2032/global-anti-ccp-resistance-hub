@@ -2,6 +2,12 @@ import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/languageUtils';
 
+/**
+ * LanguageSelector — Dropdown for switching the UI language.
+ * Supports 8 languages including RTL (Uyghur) and custom flag icons (Tibet).
+ *
+ * @returns {React.ReactElement} Language selection dropdown
+ */
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, availableLanguages } = useLanguage();
