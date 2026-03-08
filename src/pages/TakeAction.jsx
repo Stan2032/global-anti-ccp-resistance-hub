@@ -268,42 +268,42 @@ const TakeAction = () => {
       </div>
 
       {/* Petitions Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
       </div>
 
       {/* Contact Representatives Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
       </div>
 
       {/* Advocacy Letter Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
       </div>
 
       {/* Policy Brief Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
       </div>
 
       {/* Boycott List Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
       </div>
 
       {/* Company Accountability Tracker */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
       </div>
 
       {/* Success Stories Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
       </div>
 
       {/* Quick Facts Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-6 mb-8">
+      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
         <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
       </div>
 

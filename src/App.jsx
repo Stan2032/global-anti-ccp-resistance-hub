@@ -286,7 +286,7 @@ function AppLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0e14]">
+    <div className="min-h-screen bg-[#0a0e14] overflow-x-hidden">
       {/* Skip Links for Accessibility */}
       <SkipLinks />
       

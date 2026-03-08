@@ -135,18 +135,18 @@ const QuickStartGuide = () => {
         />
       </div>
 
-      <div className="p-4">
+      <div className="p-4 overflow-hidden">
         {/* Header row */}
         <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <step.Icon className="w-5 h-5 text-[#22d3ee]" />
+          <div className="flex items-center gap-2 min-w-0">
+            <step.Icon className="w-5 h-5 text-[#22d3ee] shrink-0" />
             <span className="text-xs text-slate-400 font-mono">
               {currentStep + 1}/{steps.length}
             </span>
           </div>
           <button
             onClick={dismissGuide}
-            className="text-slate-500 hover:text-slate-300 transition-colors text-xs font-mono"
+            className="text-slate-500 hover:text-slate-300 transition-colors text-xs font-mono shrink-0"
           >
             ✕ close
           </button>
@@ -175,11 +175,11 @@ const QuickStartGuide = () => {
         )}
 
         {/* Navigation */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={prevStep}
             disabled={currentStep === 0}
-            className={`text-xs font-mono transition-colors ${
+            className={`text-xs font-mono transition-colors shrink-0 ${
               currentStep === 0
                 ? 'text-slate-700 cursor-not-allowed'
                 : 'text-slate-400 hover:text-white'
@@ -188,11 +188,13 @@ const QuickStartGuide = () => {
             ← back
           </button>
 
-          <div className="flex space-x-1">
+          <div className="flex gap-1 shrink-0">
             {steps.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentStep(idx)}
+                aria-label={`Go to step ${idx + 1}`}
+                style={{ minWidth: 6, minHeight: 6 }}
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                   idx === currentStep
                     ? 'bg-[#22d3ee]'
@@ -206,7 +208,7 @@ const QuickStartGuide = () => {
 
           <button
             onClick={nextStep}
-            className="text-xs font-mono bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-3 py-1 font-medium transition-colors"
+            className="text-xs font-mono bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-3 py-1 font-medium transition-colors shrink-0"
           >
             {currentStep === steps.length - 1 ? 'done' : 'next →'}
           </button>
