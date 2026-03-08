@@ -53,7 +53,6 @@ export function isPushSupported(): boolean {
 
 /** Get the VAPID public key from the environment. */
 function getVapidPublicKey(): string | null {
-  // eslint-disable-next-line no-undef
   return import.meta?.env?.VITE_VAPID_PUBLIC_KEY || null;
 }
 

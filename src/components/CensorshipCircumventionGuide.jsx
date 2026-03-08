@@ -128,7 +128,7 @@ const CIRCUMVENTION_TOOLS = [
     source: 'Tor Project, Citizen Lab', url: 'https://bridges.torproject.org/' },
 ];
 
-function classifyMethodRisk(methods) {
+function _classifyMethodRisk(methods) {
   const critical = methods.filter(m => m.risk === 'critical').length;
   if (critical >= 3) return 'critical';
   if (critical >= 1) return 'high';
@@ -224,7 +224,7 @@ const CensorshipCircumventionGuide = () => {
   ];
 
   const getRiskStyle = (risk) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
-  const getCategoryInfo = (catId) => CENSORSHIP_CATEGORIES.find(c => c.id === catId) || CENSORSHIP_CATEGORIES[0];
+  const _getCategoryInfo = (catId) => CENSORSHIP_CATEGORIES.find(c => c.id === catId) || CENSORSHIP_CATEGORIES[0];
   const getSafetyStyle = (safety) => TOOL_SAFETY.find(s => s.id === safety) || TOOL_SAFETY[0];
 
   return (

@@ -105,7 +105,7 @@ describe('PrisonerStatusDashboard', () => {
 
   it('filters by status when clicking a status button', () => {
     render(<PrisonerStatusDashboard />);
-    const showingBefore = screen.getByText(/^Showing \d+ of \d+ prisoners$/).textContent;
+    const _showingBefore = screen.getByText(/^Showing \d+ of \d+ prisoners$/).textContent;
     
     // Find any status filter button that is not "All"
     const statusButtons = screen.getAllByRole('button').filter(b =>

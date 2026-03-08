@@ -287,7 +287,7 @@ describe('NotificationCenter', () => {
 
   it('shows "Show all" button when there are more than 10 notifications', () => {
     render(<NotificationCenter />);
-    const showAllBtn = screen.queryByText(/Show all \d+ notifications/);
+    const _showAllBtn = screen.queryByText(/Show all \d+ notifications/);
     // May or may not have >10 depending on data, check both cases
     const count = screen.getByText(/Showing \d+ of \d+ notifications/);
     expect(count).toBeTruthy();
