@@ -194,6 +194,7 @@ const QuickStartGuide = () => {
                 key={idx}
                 onClick={() => setCurrentStep(idx)}
                 aria-label={`Go to step ${idx + 1}`}
+                aria-current={idx === currentStep ? 'step' : undefined}
                 style={{ minWidth: 6, minHeight: 6 }}
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                   idx === currentStep
