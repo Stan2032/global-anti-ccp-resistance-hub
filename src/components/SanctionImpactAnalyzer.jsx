@@ -1,3 +1,10 @@
+/**
+ * SanctionImpactAnalyzer — Analyzes the effectiveness and impact of
+ * sanctions against CCP entities. Cross-references sanctions data with
+ * diplomatic and economic indicators.
+ *
+ * @module SanctionImpactAnalyzer
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import {

@@ -1,3 +1,9 @@
+/**
+ * DetentionFacilities — Database of detention facilities used for political
+ * imprisonment. Filterable by region with satellite evidence and capacity data.
+ *
+ * @module DetentionFacilities
+ */
 import React, { useState, useEffect } from 'react';
 import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown, ChevronUp } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';

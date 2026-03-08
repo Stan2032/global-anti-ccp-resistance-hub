@@ -1,3 +1,9 @@
+/**
+ * CompanyTracker — Tracks companies complicit in CCP human rights abuses.
+ * Provides risk analysis, compliance monitoring, and industry breakdowns.
+ *
+ * @module CompanyTracker
+ */
 import React, { useState, useMemo } from 'react';
 import { Building2, Ban, AlertTriangle, TrendingUp, BarChart3, BookOpen, Search, Landmark, Briefcase, Handshake } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';

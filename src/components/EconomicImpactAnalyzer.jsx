@@ -1,3 +1,9 @@
+/**
+ * EconomicImpactAnalyzer — Analyzes economic dimensions of CCP human rights
+ * issues including trade impacts, supply chain risks, and sanctions effects.
+ *
+ * @module EconomicImpactAnalyzer
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { TrendingUp, Search, ChevronDown, ChevronUp, Copy, Check, Factory, Scale, Globe, AlertTriangle, DollarSign, Building, FileText, Shield } from 'lucide-react';

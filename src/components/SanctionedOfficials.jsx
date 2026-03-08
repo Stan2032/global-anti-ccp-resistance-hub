@@ -1,3 +1,9 @@
+/**
+ * SanctionedOfficials — Directory of CCP officials under international
+ * sanctions. Searchable and filterable by country and sanction type.
+ *
+ * @module SanctionedOfficials
+ */
 import { useState, useMemo } from 'react';
 import { ExternalLink, Target, Megaphone } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';

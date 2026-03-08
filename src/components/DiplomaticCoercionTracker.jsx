@@ -1,3 +1,9 @@
+/**
+ * DiplomaticCoercionTracker — Tracks diplomatic and economic coercion
+ * tactics used by the CCP against nations and international organizations.
+ *
+ * @module DiplomaticCoercionTracker
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
