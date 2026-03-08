@@ -25,14 +25,12 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const t = (key: string): string => {
     const keys = key.split('.');
     // 1. Try inline translations for current language
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let value: any = translations[language];
     for (const k of keys) {
       value = value?.[k];
     }
     // 2. If not found inline, try locale JSON file
     if (!value && translations[language]?.localeData) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let localeValue: any = translations[language].localeData;
       for (const k of keys) {
         localeValue = localeValue?.[k];
@@ -45,7 +43,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
     // 4. Fall back to English inline, then English locale file
     if (!value) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let enValue: any = translations.en;
       for (const k of keys) {
         enValue = enValue?.[k];
@@ -53,7 +50,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       value = enValue;
     }
     if (!value && enTranslations) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let enLocale: any = enTranslations;
       for (const k of keys) {
         enLocale = enLocale?.[k];

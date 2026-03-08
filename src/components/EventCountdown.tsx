@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
-import { calculateTimeLeft } from '../utils/dateUtils';
-import type { TimeLeft } from '../utils/dateUtils';
+import { calculateTimeLeft, type TimeLeft } from '../utils/dateUtils';
 
 interface EventCountdownProps {
   eventDate: string;

@@ -7,10 +7,8 @@
  * @param {string} props.lastVerified - ISO date of last verification
  * @returns {React.ReactElement} Freshness badge
  */
-import { getFreshnessInfo } from '../utils/dateUtils';
-import type { FreshnessInfo } from '../utils/dateUtils';
-import { CheckCircle2, Clock, AlertTriangle } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { getFreshnessInfo, type FreshnessInfo } from '../utils/dateUtils';
+import { CheckCircle2, Clock, AlertTriangle, type LucideIcon } from 'lucide-react';
 
 interface LevelConfigEntry {
   Icon: LucideIcon;

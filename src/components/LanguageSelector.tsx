@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, type ComponentType } from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/languageUtils';
-import type { ComponentType } from 'react';
 
 interface LanguageOption {
   code: string;

@@ -4,8 +4,7 @@
  *
  * @returns {React.ReactElement} Hidden live-region element
  */
-import { useMemo } from 'react';
-import type React from 'react';
+import { useMemo, type ReactElement } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ROUTE_LABELS: Record<string, string> = {
@@ -26,9 +25,9 @@ const ROUTE_LABELS: Record<string, string> = {
  * RouteAnnouncer — invisible live-region that announces route changes
  * to screen readers. Uses ARIA live region to communicate page transitions.
  *
- * @returns {React.ReactElement} Hidden live-region element
+ * @returns {ReactElement} Hidden live-region element
  */
-export default function RouteAnnouncer(): React.ReactElement {
+export default function RouteAnnouncer(): ReactElement {
   const { pathname } = useLocation();
 
   const announcement = useMemo(() => {
