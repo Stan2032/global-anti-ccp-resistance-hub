@@ -152,7 +152,7 @@ describe('Defensive Coding — Data Safety', () => {
 
   it('exportUtils handles null/empty input gracefully', () => {
     // Dynamic import would require async, so we test the patterns statically
-    const exportUtilsPath = resolve(SRC_DIR, 'utils', 'exportUtils.js');
+    const exportUtilsPath = resolve(SRC_DIR, 'utils', 'exportUtils.ts');
     const content = readFileSync(exportUtilsPath, 'utf-8');
 
     // extractRecords should handle null input
@@ -164,7 +164,7 @@ describe('Defensive Coding — Data Safety', () => {
   });
 
   it('dateUtils functions have input validation', () => {
-    const dateUtilsPath = resolve(SRC_DIR, 'utils', 'dateUtils.js');
+    const dateUtilsPath = resolve(SRC_DIR, 'utils', 'dateUtils.ts');
     const content = readFileSync(dateUtilsPath, 'utf-8');
 
     // calculateTimeLeft should validate input
