@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-235-jimmy-lai-no-appeal",
+    "date": "2026-03-08",
+    "category": "alert",
+    "title": "Data Update: Jimmy Lai confirms no appeal of 20-year NSL sentence",
+    "description": "Updated political prisoner data, emergency alert, and timeline for Jimmy Lai's confirmation that he will not appeal his 20-year NSL conviction. Added UN call for release (UN News, Feb 2026) and NBC News confirmation of no-appeal decision. Lai, age 78, effectively faces life imprisonment. Also added new timeline event (id 35).",
+    "relatedPage": "/prisoners"
+  },
+  {
     "id": "session-229-whistleblower-guide",
     "date": "2026-03-07",
     "category": "new_entry",

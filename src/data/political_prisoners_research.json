@@ -7,13 +7,13 @@
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
         "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
-        "latest_news": "Feb 26, 2026: Court of Appeal quashed separate fraud conviction. NSL sentence of 20 years remains — the harshest under Hong Kong's National Security Law.",
-        "health_status": "Deteriorating, according to his son. Legal team filed urgent UN appeal citing health risks.",
-        "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated.",
+        "latest_news": "Mar 2026: Jimmy Lai has confirmed he will NOT appeal his 20-year NSL conviction. UN News called for his release (Feb 2026). Separate fraud conviction overturned on appeal Feb 26, 2026.",
+        "health_status": "Deteriorating, according to his son. Legal team filed urgent UN appeal citing health risks. Age 78.",
+        "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated. UN News specifically called for his release in Feb 2026.",
         "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
         "confidence": "HIGH",
-        "last_verified": "2026-03-02",
-        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (BBC, HRW, CPJ, US State Dept). Fraud conviction overturned Feb 26, 2026 (ABC, SCMP, UPI)."
+        "last_verified": "2026-03-08",
+        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (BBC, HRW, CPJ, US State Dept). Fraud conviction overturned Feb 26, 2026 (ABC, SCMP, UPI). Confirmed won't appeal NSL sentence (NBC News, Mar 2026). UN calls for release (UN News, Feb 2026)."
       },
       "error": ""
     },
