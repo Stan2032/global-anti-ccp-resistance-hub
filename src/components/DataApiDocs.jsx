@@ -270,15 +270,15 @@ const DataApiDocs = () => {
           Access the same data via HTTP endpoints. No authentication required for read access.
         </p>
         <div className="bg-[#111820] border border-[#1c2a35] p-3 font-mono text-sm space-y-1">
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/</span> <span className="text-slate-500">── API info + endpoints</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/prisoners</span> <span className="text-slate-500">── Political prisoners</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/sanctions</span> <span className="text-slate-500">── Sanctions tracker</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/officials</span> <span className="text-slate-500">── Sanctioned officials</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/facilities</span> <span className="text-slate-500">── Detention facilities</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/companies</span> <span className="text-slate-500">── Forced labor companies</span></div>
-          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/search?q=X</span> <span className="text-slate-500">── Global search</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/</span> <span className="text-slate-400">── API info + endpoints</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/prisoners</span> <span className="text-slate-400">── Political prisoners</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/sanctions</span> <span className="text-slate-400">── Sanctions tracker</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/officials</span> <span className="text-slate-400">── Sanctioned officials</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/facilities</span> <span className="text-slate-400">── Detention facilities</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/companies</span> <span className="text-slate-400">── Forced labor companies</span></div>
+          <div><span className="text-[#4afa82]">GET</span> <span className="text-slate-300">/api/v1/search?q=X</span> <span className="text-slate-400">── Global search</span></div>
         </div>
-        <div className="mt-3 text-xs text-slate-500 font-mono">
+        <div className="mt-3 text-xs text-slate-400 font-mono">
           Query params: ?q=search&amp;region=X&amp;category=X&amp;limit=N&amp;offset=N
         </div>
       </div>

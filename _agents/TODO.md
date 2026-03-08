@@ -404,7 +404,7 @@
 - [x] ~~Implement CI/CD improvements~~ ✅ (GitHub Actions deploy.yml to Cloudflare Workers)
 - [x] ~~Add automated security scanning~~ ✅ (CodeQL via GitHub, 0 alerts)
 - [ ] Set up monitoring and alerting
-- [ ] Implement rate limiting
+- [x] ~~Implement rate limiting~~ ✅ (Session 234: 100 req/min per IP in api/worker.js, API key bypass)
 - [ ] Add DDoS protection (Cloudflare provides basic protection)
 - [x] ~~Configure proper caching headers~~ ✅ (public/_headers with security + cache headers)
 
@@ -415,7 +415,7 @@
 ### Documentation
 - [x] ~~Create developer documentation~~ ✅ (ARCHITECTURE.md + README.md)
 - [x] ~~Write contribution guidelines~~ ✅ (CONTRIBUTING.md)
-- [ ] Document API endpoints (when backend API is deployed)
+- [x] ~~Document API endpoints~~ ✅ (Session 234: REST API reference in DataApiDocs component + guides/CLOUDFLARE_WORKERS_API_SETUP.md)
 - [ ] Create user guides
 - [x] ~~Write security documentation~~ ✅ (SecurityCenter page + SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md)
 - [x] ~~Maintain changelog~~ ✅ (archived — session notes serve this purpose)
