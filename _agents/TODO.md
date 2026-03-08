@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 8, 2026 (Session 235)
+> Last Updated: March 8, 2026 (Session 236)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -14,7 +14,7 @@
 ### Human-Answered Tasks (Q6-Q10, Session 153)
 - [x] **Implement basic cache (Q6)**: ✅ Two-layer caching implemented: (1) Static asset Cache-Control headers in `_headers` (immutable for hashed assets, no-cache for HTML/SW), (2) Backend feed routes wired to in-memory cacheService (TTL 5-30 min, tag-based invalidation, LRU eviction). BACKEND_GUIDE.md updated with full caching documentation.
 - [x] **Supabase Auth admin login (Q8)**: ✅ IMPLEMENTED Session 157. Frontend auth code: AuthContext + authUtils (auth state management), authService.js (login/logout/admin check), ProtectedRoute (route guard), AdminLogin page (email/password form with "not configured" fallback), AdminDashboard page (tabbed data viewer for all 4 tables). Comprehensive setup guide: `SUPABASE_AUTH_SETUP.md` (7 steps including SQL for admin_users table, RLS policies, and troubleshooting). Human needs to run SQL in Steps 2-4 in Supabase Dashboard.
-- [ ] **Cloudflare Onion Routing (Q9)**: ⚠️ DEFERRED — Human reports no onion routing option visible in Cloudflare dashboard. Root cause: Onion Routing requires a custom domain (not available for `workers.dev` subdomains). Setup guide updated in `ONION_ROUTING_SETUP.md`. Will revisit when custom domain is added. See Q12.
+- [ ] **Cloudflare Onion Routing (Q9)**: ⚠️ DEFERRED — Requires custom domain (not available for `workers.dev` subdomains). Full step-by-step custom domain + onion routing guide available at `guides/CUSTOM_DOMAIN_SETUP.md` (rewritten Session 236 — detailed dashboard walkthrough). Also see `ONION_ROUTING_SETUP.md`. Will activate when custom domain is acquired.
 
 ### Standing Instructions (from Q7, Q10)
 - **Feature priority (Q7)**: Agents use own judgement. Recommended order: Offline Mode > API Development > Analytics Dashboard.
