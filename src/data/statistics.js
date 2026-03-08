@@ -24,7 +24,6 @@
  */
 
 /** @type {Object<string, StatisticEntry>} */
-
 export const STATISTICS = {
   uyghurDetention: {
     value: '1-3 million',
