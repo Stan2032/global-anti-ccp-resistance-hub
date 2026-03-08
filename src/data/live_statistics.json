@@ -63,11 +63,11 @@
     "decimals": 0,
     "icon": "flag-hk",
     "color": "blue",
-    "description": "Imprisoned under National Security Law",
-    "source": "Hong Kong Watch",
+    "description": "Arrested under National Security Law (Amnesty report: 80% for legitimate expression)",
+    "source": "Hong Kong Watch, Amnesty International",
     "sourceUrl": "https://hongkongwatch.org",
     "trend": "+12 this month",
-    "lastVerified": "2026-03-04"
+    "lastVerified": "2026-03-08"
   },
   {
     "id": "forced-returns",

@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 8, 2026 (Session 234)
+> Last Updated: March 8, 2026 (Session 235)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -27,12 +27,12 @@
   - Subtask: Check UK FCDO sanctions list for updates ✅
   - Subtask: Check EU Council sanctions for new entries ✅ (entity-level only in 2025)
   - Subtask: Verify source_url links still resolve
-- [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 147
+- [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 235
   - ✅ Dec 15, 2025: Found guilty on all 3 NSL charges
   - ✅ Feb 9, 2026: Sentenced to 20 years (harshest NSL sentence)
   - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
-  - Subtask: Watch for NSL sentence appeal filing
-  - Subtask: Monitor health status and UN appeals
+  - ✅ Mar 2026: Confirmed will NOT appeal NSL sentence (NBC News). UN calls for release (UN News)
+  - Subtask: Monitor health status and international pressure
 - [x] **Monitor Joshua Wong case** — ✅ Updated Session 150
   - ✅ Jun 6, 2025: New foreign collusion charge filed (max: life imprisonment)
   - ✅ Feb 14, 2026: HK47 appeal dismissed — 4yr 8mo sentence upheld
@@ -416,7 +416,7 @@
 - [x] ~~Create developer documentation~~ ✅ (ARCHITECTURE.md + README.md)
 - [x] ~~Write contribution guidelines~~ ✅ (CONTRIBUTING.md)
 - [x] ~~Document API endpoints~~ ✅ (Session 234: REST API reference in DataApiDocs component + guides/CLOUDFLARE_WORKERS_API_SETUP.md)
-- [ ] Create user guides
+- [x] ~~Create user guides~~ ✅ (guides/ folder: API setup, Web Push, Custom Domain, Supabase DB management)
 - [x] ~~Write security documentation~~ ✅ (SecurityCenter page + SUPABASE_SETUP.md + CLOUDFLARE_DEPLOY.md)
 - [x] ~~Maintain changelog~~ ✅ (archived — session notes serve this purpose)
 
