@@ -1,3 +1,9 @@
+/**
+ * SurvivorStories — First-person testimonies from survivors of CCP
+ * detention, surveillance, and repression. Categorised by region.
+ *
+ * @module SurvivorStories
+ */
 import React, { useState } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquare, User } from 'lucide-react';
 

@@ -1,3 +1,10 @@
+/**
+ * UrgentCaseTimer — Live countdown timers for urgent political prisoner
+ * cases. Shows days detained, age, and key dates with visual urgency
+ * indicators.
+ *
+ * @module UrgentCaseTimer
+ */
 import { useState, useEffect, useMemo } from 'react';
 import { Clock, MapPin, Cake, Calendar } from 'lucide-react';
 import { calculateAge } from '../utils/dateUtils';

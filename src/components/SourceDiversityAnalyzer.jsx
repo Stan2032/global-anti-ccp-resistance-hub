@@ -1,3 +1,10 @@
+/**
+ * SourceDiversityAnalyser — Evaluates source diversity across platform
+ * datasets. Checks for over-reliance on single sources and flags
+ * potential bias concentration.
+ *
+ * @module SourceDiversityAnalyzer
+ */
 import React, { useMemo, useState } from 'react';
 import { Copy, Check, BarChart3, Shield, AlertTriangle, Globe } from 'lucide-react';
 import { dataApi } from '../services/dataApi';

@@ -1,3 +1,9 @@
+/**
+ * PetitionLinks — Curated directory of active petitions and campaigns
+ * related to CCP human rights issues. Categorised by urgency and topic.
+ *
+ * @module PetitionLinks
+ */
 import { useState } from 'react';
 import { PenLine, Megaphone } from 'lucide-react';
 

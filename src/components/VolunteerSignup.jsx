@@ -1,3 +1,10 @@
+/**
+ * VolunteerSignup — Volunteer registration form with skill-based
+ * matching. Integrates with Supabase and uses client-side encryption
+ * for personal data protection.
+ *
+ * @module VolunteerSignup
+ */
 import React, { useState } from 'react';
 import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scale, ClipboardList, Handshake, PartyPopper, UserPlus, Flame, FileText, Wrench, MessageCircle, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';

@@ -1,3 +1,10 @@
+/**
+ * ContactForm — Encrypted contact form for submitting tips, corrections,
+ * or partnership enquiries. Integrates with Supabase and uses client-side
+ * encryption for PII protection.
+ *
+ * @module ContactForm
+ */
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, Lock, Info, CheckCircle } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';

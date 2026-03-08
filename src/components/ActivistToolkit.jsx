@@ -1,3 +1,10 @@
+/**
+ * ActivistToolkit — Downloadable resources, templates, and toolkits
+ * for activists. Includes social media graphics, protest materials,
+ * and advocacy frameworks.
+ *
+ * @module ActivistToolkit
+ */
 import React, { useState } from 'react';
 import { Package, Palette, FileText, BarChart3, BookOpen, Smartphone, Wrench, Image, Download } from 'lucide-react';
 

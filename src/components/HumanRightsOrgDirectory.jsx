@@ -1,3 +1,10 @@
+/**
+ * HumanRightsOrgDirectory — Searchable directory of human rights
+ * organisations working on China-related issues. Filterable by
+ * focus area, type, and region.
+ *
+ * @module HumanRightsOrgDirectory
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import {

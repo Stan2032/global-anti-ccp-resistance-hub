@@ -1,3 +1,9 @@
+/**
+ * MemorialWall — Commemorative wall honouring victims of CCP repression.
+ * Searchable and filterable with source-attributed profiles.
+ *
+ * @module MemorialWall
+ */
 import React, { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';

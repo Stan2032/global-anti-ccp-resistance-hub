@@ -1,3 +1,10 @@
+/**
+ * CaseTimelineViewer — Visual timeline viewer for individual political
+ * prisoner cases. Cross-references events from the dataApi with
+ * prisoner profiles.
+ *
+ * @module CaseTimelineViewer
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import {

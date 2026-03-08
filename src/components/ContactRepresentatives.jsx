@@ -1,3 +1,10 @@
+/**
+ * ContactRepresentatives — Directory of elected representatives and
+ * advocacy targets. Helps users contact their MPs, senators, and MEPs
+ * about CCP human rights issues.
+ *
+ * @module ContactRepresentatives
+ */
 import { useState } from 'react';
 import { Megaphone, Building, Link2, Target } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';

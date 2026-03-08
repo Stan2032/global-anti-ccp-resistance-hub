@@ -1,3 +1,9 @@
+/**
+ * SuccessStories — Documented cases where international pressure or
+ * advocacy led to positive outcomes for victims of CCP repression.
+ *
+ * @module SuccessStories
+ */
 import { useState } from 'react';
 import { Trophy, Lightbulb, Target } from 'lucide-react';
 

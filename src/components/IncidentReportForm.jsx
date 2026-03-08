@@ -1,3 +1,10 @@
+/**
+ * IncidentReportForm — Secure form for reporting CCP-related incidents
+ * including transnational repression, surveillance, and intimidation.
+ * Uses client-side encryption via Supabase.
+ *
+ * @module IncidentReportForm
+ */
 import { useState } from 'react';
 import { AlertTriangle, Lock, Info } from 'lucide-react';
 import { isSupabaseConfigured } from '../services/supabaseClient';

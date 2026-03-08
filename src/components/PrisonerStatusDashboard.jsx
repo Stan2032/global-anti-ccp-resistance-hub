@@ -1,3 +1,10 @@
+/**
+ * PrisonerStatusDashboard — Analytics dashboard visualising political
+ * prisoner statistics. Shows status breakdowns, detention trends,
+ * and regional distribution.
+ *
+ * @module PrisonerStatusDashboard
+ */
 import React, { useMemo, useState } from 'react';
 import { Copy, Check, AlertTriangle, Heart, Clock, Users, Eye, ChevronDown, ChevronUp, Shield } from 'lucide-react';
 import { dataApi } from '../services/dataApi';

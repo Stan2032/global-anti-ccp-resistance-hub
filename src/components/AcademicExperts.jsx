@@ -1,3 +1,10 @@
+/**
+ * AcademicExperts — Directory of academic experts and researchers
+ * specialising in CCP human rights issues. Searchable by field,
+ * institution, and region of expertise.
+ *
+ * @module AcademicExperts
+ */
 import React, { useState } from 'react';
 import { 
   GraduationCap, Search, ExternalLink, ChevronDown, ChevronUp,

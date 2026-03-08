@@ -1,3 +1,9 @@
+/**
+ * RecentUpdates — Chronological feed of recent data updates and
+ * platform changes. Shows what has been added, updated, or verified.
+ *
+ * @module RecentUpdates
+ */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ChevronDown, ChevronUp, AlertTriangle, Database, FileCheck, UserPlus, FileText, RefreshCw } from 'lucide-react';

@@ -1,3 +1,10 @@
+/**
+ * CrossDatasetInsightEngine — Analyses connections between datasets
+ * (prisoners, sanctions, organisations, cases). Surfaces cross-references
+ * and patterns for researchers.
+ *
+ * @module CrossDatasetInsightEngine
+ */
 import React, { useState, useMemo } from 'react';
 import { Network, Search, Copy, Check, ChevronDown, ChevronUp, Zap, Globe, Users, Scale, Factory, Building, Shield, AlertTriangle, TrendingUp, Link2 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
