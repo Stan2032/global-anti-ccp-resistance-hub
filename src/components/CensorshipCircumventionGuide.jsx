@@ -1,3 +1,10 @@
+/**
+ * CensorshipCircumventionGuide — Technical guide to bypassing internet
+ * censorship in China. Covers VPNs, Tor, domain fronting, and secure
+ * messaging tools with risk assessments.
+ *
+ * @module CensorshipCircumventionGuide
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Shield, Search, ChevronDown, ChevronUp, Copy, Check, Wifi, WifiOff, Lock, Eye, EyeOff, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';

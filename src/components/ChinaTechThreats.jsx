@@ -1,3 +1,10 @@
+/**
+ * ChinaTechThreats — Documents surveillance technologies and digital
+ * threats originating from Chinese state-linked entities. Covers apps,
+ * hardware, and infrastructure risks.
+ *
+ * @module ChinaTechThreats
+ */
 import { useState } from 'react';
 import { Monitor, AlertTriangle, BookOpen } from 'lucide-react';
 

@@ -1,3 +1,10 @@
+/**
+ * WhistleblowerGuide — Comprehensive guide for securely reporting CCP
+ * human rights abuses. Covers secure channels, anonymity tools, legal
+ * protections, and evidence preservation.
+ *
+ * @module WhistleblowerGuide
+ */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { ShieldAlert, Search, ChevronDown, ChevronUp, Copy, Check, Lock, Eye, FileText, Globe, AlertTriangle, Shield, Key, Users, MessageSquare, Server } from 'lucide-react';

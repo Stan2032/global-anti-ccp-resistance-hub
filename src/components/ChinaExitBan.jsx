@@ -1,3 +1,10 @@
+/**
+ * ChinaExitBan — Information on China's exit ban system. Documents
+ * cases, legal framework, and guidance for those at risk of travel
+ * restrictions imposed by PRC authorities.
+ *
+ * @module ChinaExitBan
+ */
 import { useState } from 'react';
 import { Ban, AlertTriangle, Megaphone } from 'lucide-react';
 

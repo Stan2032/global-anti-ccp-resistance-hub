@@ -1,3 +1,10 @@
+/**
+ * SafetyChecklist — Categorised safety checklists for device security,
+ * online privacy, travel precautions, and legal preparedness. Progress
+ * is persisted to localStorage.
+ *
+ * @module SafetyChecklist
+ */
 import React, { useState, useEffect } from 'react';
 import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
 

@@ -1,3 +1,9 @@
+/**
+ * WitnessProtection — Resources and guidance for witnesses and survivors
+ * of CCP repression. Covers legal asylum, relocation, and safety planning.
+ *
+ * @module WitnessProtection
+ */
 import React, { useState } from 'react';
 import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield, Square } from 'lucide-react';
 
