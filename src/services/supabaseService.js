@@ -7,9 +7,24 @@
  *
  * PII fields are encrypted client-side before storage when an encryption
  * public key is configured (see BACKEND_GUIDE.md).
+ *
+ * @module supabaseService
  */
 import supabase, { isSupabaseConfigured } from './supabaseClient.js';
 import { encryptSubmission } from '../utils/encryption.js';
+
+/**
+ * @typedef {Object} SupabaseResult
+ * @property {Object|Object[]|null} data - Returned row(s), or null on error
+ * @property {string|null} error - Error message, or null on success
+ */
+
+/**
+ * @typedef {Object} PaginatedResult
+ * @property {Object[]|null} data - Returned rows, or null on error
+ * @property {number} [count] - Total row count (for pagination)
+ * @property {string|null} error - Error message, or null on success
+ */
 
 const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' };
 
@@ -18,6 +33,18 @@ const NOT_CONFIGURED = { data: null, error: 'Supabase is not configured. Set VIT
 /**
  * Submit an incident report.
  * Writes to the `incident_reports` table (see SUPABASE_SETUP.md for schema).
+ * PII fields (contact_email, description, location) are encrypted before storage.
+ *
+ * @param {Object} report - Incident report data
+ * @param {string} report.title - Report title
+ * @param {string} report.description - Incident description
+ * @param {string} [report.incidentType] - Type of incident
+ * @param {string} [report.location] - Location of incident
+ * @param {string} [report.dateOfIncident] - Date of incident (ISO 8601)
+ * @param {'critical'|'high'|'medium'|'low'} [report.severity='medium'] - Severity level
+ * @param {string} [report.sourceUrl] - Source URL for verification
+ * @param {string} [report.contactEmail] - Reporter's email (encrypted)
+ * @returns {Promise<SupabaseResult>} Inserted row or error
  */
 export async function submitIncidentReport(report) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
@@ -48,6 +75,16 @@ export async function submitIncidentReport(report) {
 
 /**
  * Submit a volunteer sign-up.
+ * PII fields (name, email, message) are encrypted before storage.
+ *
+ * @param {Object} volunteer - Volunteer data
+ * @param {string} volunteer.name - Volunteer's name (encrypted)
+ * @param {string} volunteer.email - Volunteer's email (encrypted)
+ * @param {string[]} [volunteer.skills] - List of skills
+ * @param {string[]} [volunteer.languages] - Languages spoken
+ * @param {string} [volunteer.availability] - Availability description
+ * @param {string} [volunteer.message] - Personal message (encrypted)
+ * @returns {Promise<SupabaseResult>} Inserted row or error
  */
 export async function submitVolunteerSignup(volunteer) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
@@ -76,6 +113,10 @@ export async function submitVolunteerSignup(volunteer) {
 
 /**
  * Subscribe to the newsletter.
+ * Uses upsert to avoid duplicate entries for the same email.
+ *
+ * @param {string} email - Subscriber's email address
+ * @returns {Promise<SupabaseResult>} Upserted row or error
  */
 export async function subscribeNewsletter(email) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
@@ -95,6 +136,14 @@ export async function subscribeNewsletter(email) {
 
 /**
  * Submit a contact message.
+ * PII fields (name, email, message) are encrypted before storage.
+ *
+ * @param {Object} message - Contact message data
+ * @param {string} message.name - Sender's name (encrypted)
+ * @param {string} message.email - Sender's email (encrypted)
+ * @param {string} [message.subject] - Message subject
+ * @param {string} message.message - Message body (encrypted)
+ * @returns {Promise<SupabaseResult>} Inserted row or error
  */
 export async function submitContactMessage(message) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;
@@ -121,6 +170,14 @@ export async function submitContactMessage(message) {
 /**
  * Fetch a paginated list of rows from any public table.
  * Caller is responsible for RLS policies allowing this.
+ *
+ * @param {string} table - Supabase table name
+ * @param {Object} [options] - Pagination and sorting options
+ * @param {number} [options.page=1] - Page number (1-based)
+ * @param {number} [options.pageSize=25] - Rows per page
+ * @param {string} [options.orderBy='created_at'] - Column to sort by
+ * @param {boolean} [options.ascending=false] - Sort direction
+ * @returns {Promise<PaginatedResult>} Paginated rows with count, or error
  */
 export async function fetchRows(table, { page = 1, pageSize = 25, orderBy = 'created_at', ascending = false } = {}) {
   if (!isSupabaseConfigured()) return NOT_CONFIGURED;

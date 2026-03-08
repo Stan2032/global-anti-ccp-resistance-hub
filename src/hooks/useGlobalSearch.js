@@ -1,6 +1,27 @@
+/**
+ * useGlobalSearch — Keyboard-driven search overlay hook.
+ *
+ * Listens for Cmd/Ctrl+K to toggle a global search overlay.
+ * Returns state and helpers for the SearchWrapper component.
+ *
+ * @module useGlobalSearch
+ */
 import { useState, useEffect } from 'react';
 
-// Hook for global search keyboard shortcut (Cmd/Ctrl + K)
+/**
+ * @typedef {Object} GlobalSearchState
+ * @property {boolean} isOpen - Whether the search overlay is visible
+ * @property {(value: boolean) => void} setIsOpen - Direct setter
+ * @property {() => void} open - Open the search overlay
+ * @property {() => void} close - Close the search overlay
+ */
+
+/**
+ * Hook that manages global search overlay visibility.
+ * Registers a keyboard listener for Cmd/Ctrl+K to toggle the overlay.
+ *
+ * @returns {GlobalSearchState} Search overlay state and controls
+ */
 const useGlobalSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
 

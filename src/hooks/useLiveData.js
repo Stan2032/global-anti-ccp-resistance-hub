@@ -1,3 +1,13 @@
+/**
+ * useLiveData — Hooks for fetching live data from RSS feeds and JSON datasets.
+ *
+ * Provides three hooks:
+ * - useLiveFeeds — progressive RSS feed loading with auto-refresh
+ * - usePoliticalPrisoners — political prisoner database
+ * - useStatistics — dashboard statistics
+ *
+ * @module useLiveData
+ */
 import { useState, useEffect, useCallback } from 'react';
 import { 
   fetchFeedsProgressively, 
@@ -7,7 +17,27 @@ import {
 } from '../services/liveDataService';
 
 /**
- * Hook for fetching live RSS feeds progressively (articles appear as each source loads)
+ * @typedef {import('../services/liveDataService').FeedItem} FeedItem
+ * @typedef {import('../services/liveDataService').FeedSourceMeta} FeedSourceMeta
+ * @typedef {import('../services/liveDataService').PlatformStatistics} PlatformStatistics
+ */
+
+/**
+ * @typedef {Object} LiveFeedsResult
+ * @property {FeedItem[]} feeds - Currently loaded feed items
+ * @property {boolean} loading - Whether feeds are still loading
+ * @property {string|null} error - Error message if fetch failed
+ * @property {Date|null} lastUpdated - Timestamp of last successful refresh
+ * @property {() => Promise<void>} refresh - Manually trigger a refresh
+ * @property {Object<string, FeedSourceMeta>} sources - Feed source metadata
+ * @property {Set<string>} loadedSources - Set of source keys that have finished loading
+ */
+
+/**
+ * Hook for fetching live RSS feeds progressively (articles appear as each source loads).
+ *
+ * @param {number} [refreshInterval=300000] - Auto-refresh interval in ms (default 5 min, 0 to disable)
+ * @returns {LiveFeedsResult} Feed data, loading state, and refresh controls
  */
 export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
   const [feeds, setFeeds] = useState([]);
@@ -51,7 +81,16 @@ export function useLiveFeeds(refreshInterval = 300000) { // 5 minutes default
 }
 
 /**
- * Hook for fetching political prisoners data
+ * @typedef {Object} PoliticalPrisonersResult
+ * @property {Array<{id: number, name: string, status: string, sentence: string, location: string, description: string, source: string, confidence: string, lastUpdated: string}>} prisoners
+ * @property {boolean} loading - Whether data is still loading
+ * @property {string|null} error - Error message if fetch failed
+ */
+
+/**
+ * Hook for fetching political prisoners data from the verified JSON dataset.
+ *
+ * @returns {PoliticalPrisonersResult} Prisoner data and loading state
  */
 export function usePoliticalPrisoners() {
   const [prisoners, setPrisoners] = useState([]);
@@ -77,7 +116,16 @@ export function usePoliticalPrisoners() {
 }
 
 /**
- * Hook for fetching dashboard statistics
+ * @typedef {Object} StatisticsResult
+ * @property {PlatformStatistics|null} stats - Statistics data or null while loading
+ * @property {boolean} loading - Whether data is still loading
+ * @property {string|null} error - Error message if fetch failed
+ */
+
+/**
+ * Hook for fetching dashboard statistics from the verified JSON dataset.
+ *
+ * @returns {StatisticsResult} Statistics data and loading state
  */
 export function useStatistics() {
   const [stats, setStats] = useState(null);

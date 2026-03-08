@@ -1,3 +1,11 @@
+/**
+ * Language utilities — translations, context, and hook for the i18n system.
+ *
+ * Supports 8 languages: English, Simplified Chinese, Traditional Chinese,
+ * Vietnamese, Korean, Japanese, Uyghur (RTL), and Tibetan.
+ *
+ * @module languageUtils
+ */
 import React from 'react';
 import { EastTurkestanFlag, TibetanFlag } from '../components/FlagIcons';
 
@@ -11,6 +19,28 @@ import jaTranslations from '../locales/ja.json';
 import ugTranslations from '../locales/ug.json';
 import boTranslations from '../locales/bo.json';
 
+/**
+ * @typedef {Object} LanguageEntry
+ * @property {string} name - Display name of the language
+ * @property {string} [flag] - Emoji flag character
+ * @property {import('react').ComponentType} [FlagIcon] - Custom flag component (for non-emoji flags)
+ * @property {boolean} [rtl] - Whether the language is right-to-left
+ * @property {Object} localeData - Full locale JSON translations
+ * @property {Object<string, string>} nav - Navigation label translations
+ * @property {Object<string, string>} common - Common UI label translations
+ * @property {Object<string, string>} alerts - Security alert translations
+ * @property {Object<string, string>} prisoners - Prisoner database translations
+ */
+
+/**
+ * @typedef {Object} LanguageState
+ * @property {string} language - Current language code (e.g., 'en', 'zh-CN')
+ * @property {(lang: string) => void} setLanguage - Change the active language
+ * @property {(key: string) => string} t - Translation function (dot-notation keys)
+ * @property {LanguageEntry} translations - Current language translations
+ */
+
+/** @type {Object<string, LanguageEntry>} */
 // Translations for key UI elements and critical content
 export const translations = {
   en: {
@@ -473,6 +503,7 @@ export const translations = {
 };
 
 // Create a context for language
+/** @type {import('react').Context<LanguageState>} */
 export const LanguageContext = React.createContext({
   language: 'en',
   setLanguage: () => {},
@@ -480,4 +511,9 @@ export const LanguageContext = React.createContext({
   translations: translations.en
 });
 
+/**
+ * Hook to access the current language state and translation function.
+ *
+ * @returns {LanguageState} Language state with t() translation function
+ */
 export const useLanguage = () => React.useContext(LanguageContext);
