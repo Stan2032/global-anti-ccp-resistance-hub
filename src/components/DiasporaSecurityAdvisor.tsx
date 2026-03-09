@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * DiasporaSecurityAdvisor — Security guidance tailored for diaspora
@@ -9,11 +7,32 @@
  * @module DiasporaSecurityAdvisor
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, PoliceStation, InternationalResponse, LegalCase } from '../services/dataApi';
 import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
 // DiasporaSecurityAdvisor — personalized security guidance for diaspora communities
 // by country, cross-referencing police stations, international responses, and legal cases.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.
+
+type RiskLevel = 'critical' | 'high' | 'moderate' | 'low';
+
+type SafetyTipCategory = keyof typeof SAFETY_TIPS;
+
+interface RiskStyle {
+  id: string;
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+}
+
+interface CountryProfile {
+  country: string;
+  stations: PoliceStation[];
+  response: InternationalResponse | null;
+  cases: LegalCase[];
+  risk: RiskLevel;
+  advisory: string[];
+}
 const ACTIVITY_TYPES = [
   { id: 'all', label: 'All Activities' },
   { id: 'protest', label: 'Protests & Rallies', icon: Users, risk: 'high' },
@@ -77,12 +96,12 @@ const SAFETY_TIPS = {
     'Report any academic intimidation to your institution\'s security office',
   ],
 };
-function assessCountryRisk(stations, response, cases) {
+function assessCountryRisk(stations: PoliceStation[], response: InternationalResponse | null, cases: LegalCase[]): RiskLevel {
   let score = 0;
   const activeStations = stations.filter(s => s.status === 'ACTIVE').length;
   const closedStations = stations.filter(s => s.status === 'CLOSED').length;
   const investigating = stations.filter(s => s.status === 'UNDER INVESTIGATION').length;
-  const hasArrest = stations.some(s => (s.arrests_made || '').toLowerCase() === 'yes');
+  const hasArrest = stations.some(s => String(s.arrests_made ?? '').toLowerCase() === 'yes');
   if (activeStations > 0) score += 30;
   if (investigating > 0) score += 10;
   if (closedStations > 0) score -= 10;
@@ -103,8 +122,8 @@ function assessCountryRisk(stations, response, cases) {
   if (score >= 0) return 'moderate';
   return 'low';
 }
-function generateAdvisory(country, risk, stations, response, activity) {
-  const lines = [];
+function generateAdvisory(country: string, risk: RiskLevel, stations: PoliceStation[], response: InternationalResponse | null, activity: string): string[] {
+  const lines: string[] = [];
   const activeStations = stations.filter(s => s.status === 'ACTIVE');
   const closedStations = stations.filter(s => s.status === 'CLOSED');
   if (activeStations.length > 0) {
@@ -123,7 +142,7 @@ function generateAdvisory(country, risk, stations, response, activity) {
     lines.push('No known international response data — exercise increased caution.');
   }
   if (activity && activity !== 'all') {
-    const tips = SAFETY_TIPS[activity];
+    const tips = SAFETY_TIPS[activity as SafetyTipCategory];
     if (tips) lines.push(`Activity-specific guidance (${ACTIVITY_TYPES.find(a => a.id === activity)?.label}):`);
   }
   return lines;
@@ -132,14 +151,14 @@ const DiasporaSecurityAdvisor = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedActivity, setSelectedActivity] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedCountry, setExpandedCountry] = useState(null);
+  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const stations = dataApi.getPoliceStations();
   const responses = dataApi.getInternationalResponses();
   const cases = dataApi.getLegalCases();
   const countryProfiles = useMemo(() => {
-    const countryMap = {};
-    const allCountries = new Set();
+    const countryMap: Record<string, CountryProfile> = {};
+    const allCountries = new Set<string>();
     stations.forEach(s => allCountries.add(s.country));
     responses.forEach(r => allCountries.add(r.country));
     const transnationalCases = cases.filter(c => {
@@ -158,7 +177,7 @@ const DiasporaSecurityAdvisor = () => {
       const advisory = generateAdvisory(country, risk, countryStations, countryResponse, selectedActivity);
       countryMap[country] = { country, stations: countryStations, response: countryResponse, cases: countryCases, risk, advisory };
     });
-    const levelOrder = { critical: 0, high: 1, moderate: 2, low: 3 };
+    const levelOrder: Record<RiskLevel, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
     return Object.values(countryMap).sort((a, b) => levelOrder[a.risk] - levelOrder[b.risk] || a.country.localeCompare(b.country));
   }, [stations, responses, cases, selectedActivity]);
   const filtered = useMemo(() => {
@@ -175,7 +194,7 @@ const DiasporaSecurityAdvisor = () => {
     withActiveStations: countryProfiles.filter(cp => cp.stations.some(s => s.status === 'ACTIVE')).length,
     withProtection: countryProfiles.filter(cp => cp.response && (cp.response.overall_stance || '').toLowerCase().includes('strong')).length,
   }), [countryProfiles]);
-  const getRiskStyle = (level) => RISK_LEVELS.find(r => r.id === level) || RISK_LEVELS[3];
+  const getRiskStyle = (level: string): RiskStyle => RISK_LEVELS.find(r => r.id === level) || RISK_LEVELS[3];
   const handleCopyReport = async () => {
     const target = selectedCountry ? filtered : countryProfiles;
     const lines = [
@@ -280,13 +299,13 @@ const DiasporaSecurityAdvisor = () => {
                     ))}
                   </div>
                   {/* Activity-Specific Tips */}
-                  {selectedActivity !== 'all' && SAFETY_TIPS[selectedActivity] && (
+                  {selectedActivity !== 'all' && SAFETY_TIPS[selectedActivity as SafetyTipCategory] && (
                     <div className="space-y-2">
                       <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
                         {ACTIVITY_TYPES.find(a => a.id === selectedActivity)?.label} Safety Tips
                       </h4>
                       <ul className="space-y-1.5">
-                        {SAFETY_TIPS[selectedActivity].map((tip, i) => (
+                        {SAFETY_TIPS[selectedActivity as SafetyTipCategory].map((tip: string, i: number) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
                             <Lock className="w-3.5 h-3.5 text-[#22d3ee] mt-0.5 flex-shrink-0" aria-hidden="true" />
                             <span>{tip}</span>
