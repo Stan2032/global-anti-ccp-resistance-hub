@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 
@@ -11,12 +10,37 @@
 import { useState } from 'react';
 import { Globe, MapPin } from 'lucide-react';
 
+type RegionName = 'Europe' | 'North America' | 'South America' | 'Asia Pacific' | 'Africa' | 'Middle East';
+
+interface CountryData {
+  name: string;
+  policeStations: number;
+  cities: string[];
+  threats: string[];
+}
+
+interface RegionData {
+  countries: CountryData[];
+  totalStations: number;
+  riskLevel: string;
+}
+
+interface Hotspot {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  type: string;
+  description: string;
+  severity: string;
+}
+
 const WorldThreatMap = () => {
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [hoveredCountry, setHoveredCountry] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState<RegionName | null>(null);
+  const [hoveredCountry, setHoveredCountry] = useState<Hotspot | null>(null);
 
   // Accurate data for CCP overseas police stations from Safeguard Defenders (synchronized with PoliceStationsMap)
-  const threatData = {
+  const threatData: Record<RegionName, RegionData> = {
     'Europe': {
       countries: [
         { name: 'Italy', policeStations: 9, cities: ['Rome', 'Milan', 'Florence', 'Prato', 'Venice', 'Bologna', 'Naples', 'Turin', 'Genoa'], threats: ['Largest concentration in Europe', 'Diaspora control', 'Business pressure'] },
@@ -115,7 +139,7 @@ const WorldThreatMap = () => {
     { id: 'inner_mongolia', name: 'Inner Mongolia', x: 72, y: 32, type: 'repression', description: 'Language suppression, cultural erasure', severity: 'HIGH' },
   ];
 
-  const getRiskColor = (level) => {
+  const getRiskColor = (level: string) => {
     switch (level) {
       case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
       case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
@@ -354,7 +378,7 @@ const WorldThreatMap = () => {
           <div className="text-center py-4">
             <p className="text-slate-400 mb-4">Click on a region to see detailed threat information</p>
             <div className="flex flex-wrap justify-center gap-2">
-              {Object.keys(threatData).map((region) => (
+              {(Object.keys(threatData) as RegionName[]).map((region) => (
                 <button
                   key={region}
                   onClick={() => setSelectedRegion(region)}
