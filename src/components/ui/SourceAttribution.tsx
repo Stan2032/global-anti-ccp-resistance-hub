@@ -1,30 +1,45 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 import React from 'react';
 import { ExternalLink, CheckCircle, AlertCircle, FileText, Building, Newspaper, GraduationCap } from 'lucide-react';
+
+/** Represents a data source with attribution metadata */
+interface Source {
+  name: string;
+  url: string | null;
+  date?: string;
+  type?: string;
+  verified?: boolean;
+  organization?: string;
+  description?: string;
+}
+
+interface SourceAttributionProps {
+  source: Source;
+  compact?: boolean;
+}
+
+interface SourcesListProps {
+  sources: Source[];
+  title?: string;
+  compact?: boolean;
+}
+
+interface InlineSourceProps {
+  source: Source;
+  number?: number | string;
+}
 
 /**
  * SourceAttribution Component
  * 
  * Displays transparent source attribution for all data points.
  * Every piece of information should be traceable to its original source.
- * 
- * @param {Object} source - Source information object
- * @param {string} source.name - Name of the source organisation/publication
- * @param {string} source.url - Direct URL to the source document/article
- * @param {string} source.date - Publication or access date (ISO format)
- * @param {string} source.type - Type of source (Government, NGO Report, News Report, Academic Research, etc.)
- * @param {boolean} source.verified - Whether the source has been verified
- * @param {string} [source.organization] - Organisation name (optional)
- * @param {string} [source.description] - Brief description (optional)
- * @param {boolean} [compact=false] - Show compact version
  */
-const SourceAttribution = ({ source, compact = false }) => {
+const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) => {
   if (!source || !source.url) {
     return null;
   }
 
-  const getSourceIcon = (type) => {
+  const getSourceIcon = (type: string | undefined) => {
     const iconClass = "w-4 h-4";
     switch (type?.toLowerCase()) {
       case 'government':
@@ -45,7 +60,7 @@ const SourceAttribution = ({ source, compact = false }) => {
     }
   };
 
-  const getCredibilityColor = (type) => {
+  const getCredibilityColor = (type: string | undefined) => {
     const typeStr = type?.toLowerCase() || '';
     if (typeStr.includes('government') || typeStr.includes('official')) return 'text-[#22d3ee]';
     if (typeStr.includes('ngo') || typeStr.includes('human rights')) return 'text-green-400';
@@ -54,7 +69,7 @@ const SourceAttribution = ({ source, compact = false }) => {
     return 'text-slate-400';
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string | undefined) => {
     if (!dateString) return null;
     try {
       const date = new Date(dateString);
@@ -157,7 +172,7 @@ const SourceAttribution = ({ source, compact = false }) => {
  * 
  * Displays multiple sources in a clean list format
  */
-export const SourcesList = ({ sources, title = "Sources", compact = false }) => {
+export const SourcesList = ({ sources, title = "Sources", compact = false }: SourcesListProps) => {
   if (!sources || sources.length === 0) {
     return null;
   }
@@ -173,7 +188,7 @@ export const SourcesList = ({ sources, title = "Sources", compact = false }) => 
       )}
       
       <div className="space-y-2">
-        {sources.map((source, index) => (
+        {sources.map((source: Source, index: number) => (
           <SourceAttribution key={index} source={source} compact={compact} />
         ))}
       </div>
@@ -186,7 +201,7 @@ export const SourcesList = ({ sources, title = "Sources", compact = false }) => 
  * 
  * Inline source citation for use within text
  */
-export const InlineSource = ({ source, number }) => {
+export const InlineSource = ({ source, number }: InlineSourceProps) => {
   if (!source || !source.url) {
     return null;
   }
