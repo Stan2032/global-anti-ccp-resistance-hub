@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * ResistanceDirectory — Searchable directory of human rights organisations,
  * IPAC members, and advocacy groups fighting CCP authoritarianism worldwide.
@@ -12,14 +10,28 @@ import GlobalDisclaimer from '../components/ui/GlobalDisclaimer';
 import { Users, Search, ExternalLink, Globe, MapPin, Calendar, CheckCircle, Filter } from 'lucide-react';
 import organizationsData from '../../organizations-data.json';
 
-const organizations = organizationsData.organizations;
+interface Organisation {
+  id: string;
+  name: string;
+  acronym: string | null;
+  category: string;
+  region: string;
+  headquarters: string;
+  website: string;
+  description: string;
+  focus: string[];
+  verified: boolean;
+  established: number;
+}
+
+const organizations: Organisation[] = organizationsData.organizations;
 const categories = [...new Set(organizations.map(org => org.category))].sort();
 const combinedYears = new Date().getFullYear() - Math.min(...organizations.map(o => o.established));
 
 const ResistanceDirectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedOrg, setSelectedOrg] = useState(null);
+  const [selectedOrg, setSelectedOrg] = useState<Organisation | null>(null);
 
   // Filter organisations
   const filteredOrgs = useMemo(() => {
@@ -34,8 +46,8 @@ const ResistanceDirectory = () => {
   }, [searchQuery, selectedCategory]);
 
   // Category colors
-  const getCategoryColor = (category) => {
-    const colors = {
+  const getCategoryColor = (category: string): string => {
+    const colors: Record<string, string> = {
       'Uyghur Rights': 'bg-[#111820]/50 text-[#22d3ee] border-[#1c2a35]',
       'Tibetan Rights': 'bg-orange-900/50 text-orange-300 border-orange-700',
       'Hong Kong Democracy': 'bg-yellow-900/50 text-yellow-300 border-yellow-700',
@@ -162,7 +174,7 @@ const ResistanceDirectory = () => {
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="font-semibold text-white">{org.name}</h3>
                   {org.verified && (
-                    <CheckCircle className="w-4 h-4 text-green-400" title="Verified Organization" />
+                    <CheckCircle className="w-4 h-4 text-green-400" aria-label="Verified Organization" />
                   )}
                 </div>
                 {org.acronym && (
