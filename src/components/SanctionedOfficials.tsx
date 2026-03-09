@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * SanctionedOfficials — Directory of CCP officials under international
@@ -12,14 +10,60 @@ import { ExternalLink, Target, Megaphone } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import researchData from '../data/sanctioned_officials_research.json';
 
-const AREA_TO_CATEGORY = {
+interface SanctionDates {
+  [country: string]: string;
+}
+
+interface Official {
+  name: string;
+  chinese: string;
+  position: string;
+  category: string;
+  sanctionedBy: string[];
+  sanctionDates: SanctionDates;
+  reason: string;
+  currentStatus: string;
+  details: string | null;
+  sourceUrl: string;
+}
+
+interface ResearchOutput {
+  name: string;
+  position: string;
+  responsibility_area: string;
+  us_sanctions: string;
+  uk_sanctions: string;
+  eu_sanctions: string;
+  canada_sanctions: string;
+  australia_sanctions: string;
+  key_abuses: string;
+  current_status: string;
+  source_url: string;
+  [key: string]: unknown;
+}
+
+interface ResearchEntry {
+  input: string;
+  output: ResearchOutput;
+  error: string;
+}
+
+interface SourceEntry {
+  name: string;
+  url: string;
+  type: string;
+  verified: boolean;
+  description: string;
+}
+
+const AREA_TO_CATEGORY: Record<string, string> = {
   'Xinjiang': 'xinjiang',
   'Hong Kong': 'hongkong',
   'Tibet': 'tibet',
   'General': 'central',
 };
 
-const SANCTION_FIELDS = [
+const SANCTION_FIELDS: { field: keyof ResearchOutput; label: string }[] = [
   { field: 'us_sanctions', label: 'US' },
   { field: 'uk_sanctions', label: 'UK' },
   { field: 'eu_sanctions', label: 'EU' },
@@ -27,7 +71,7 @@ const SANCTION_FIELDS = [
   { field: 'australia_sanctions', label: 'Australia' },
 ];
 
-const CHINESE_NAMES = {
+const CHINESE_NAMES: Record<string, string> = {
   'Chen Quanguo': '陈全国',
   'Zhu Hailun': '朱海仑',
   'Wang Junzheng': '王君正',
@@ -49,7 +93,7 @@ const CHINESE_NAMES = {
   'Pema Thinley': '白玛赤林',
 };
 
-const HARDCODED_ENTITIES = [
+const HARDCODED_ENTITIES: Official[] = [
   {
     name: 'Hikvision Executives',
     chinese: '海康威视',
@@ -76,13 +120,14 @@ const HARDCODED_ENTITIES = [
   },
 ];
 
-function parseSanctionValue(value) {
+function parseSanctionValue(value: unknown): string | null {
   if (!value || value === 'No') return null;
-  const match = value.match(/^Yes\s*-\s*(.+)$/i);
+  const str = String(value);
+  const match = str.match(/^Yes\s*-\s*(.+)$/i);
   return match ? match[1].trim() : 'Yes';
 }
 
-function inferSourceType(url) {
+function inferSourceType(url: string | null): string {
   if (!url) return 'Government';
   try {
     const hostname = new URL(url).hostname;
@@ -101,10 +146,10 @@ function inferSourceType(url) {
   return 'Government';
 }
 
-function transformResearchEntry(entry) {
+function transformResearchEntry(entry: ResearchEntry): Official {
   const { output } = entry;
-  const sanctionedBy = [];
-  const sanctionDates = {};
+  const sanctionedBy: string[] = [];
+  const sanctionDates: SanctionDates = {};
 
   for (const { field, label } of SANCTION_FIELDS) {
     const date = parseSanctionValue(output[field]);
@@ -162,7 +207,7 @@ const SanctionedOfficials = () => {
     const seen = new Set();
     return officials
       .filter((o) => o.sourceUrl)
-      .reduce((acc, o) => {
+      .reduce<SourceEntry[]>((acc, o) => {
         if (!seen.has(o.sourceUrl)) {
           seen.add(o.sourceUrl);
           acc.push({
@@ -177,12 +222,12 @@ const SanctionedOfficials = () => {
       }, []);
   }, [officials]);
 
-  const getFlagEmoji = (country) => {
-    const flags = { 'US': '🇺🇸', 'UK': '🇬🇧', 'EU': '🇪🇺', 'Canada': '🇨🇦', 'Australia': '🇦🇺' };
+  const getFlagEmoji = (country: string): string => {
+    const flags: Record<string, string> = { 'US': '🇺🇸', 'UK': '🇬🇧', 'EU': '🇪🇺', 'Canada': '🇨🇦', 'Australia': '🇦🇺' };
     return flags[country] || country;
   };
 
-  const getStatusBadge = (official) => {
+  const getStatusBadge = (official: Official) => {
     if (official.currentStatus === 'ENTITY LIST') {
       return { label: 'ENTITY LIST', className: 'bg-orange-600 text-white' };
     }
