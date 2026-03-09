@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * SafetyChecklist — Categorised safety checklists for device security,
  * online privacy, travel precautions, and legal preparedness. Progress
@@ -10,18 +8,34 @@
 import React, { useState, useEffect } from 'react';
 import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
 
-const SafetyChecklist = () => {
-  const [checkedItems, setCheckedItems] = useState(() => {
+type Priority = 'critical' | 'high' | 'medium';
+
+interface ChecklistItem {
+  id: string;
+  title: string;
+  description: string;
+  priority: Priority;
+  resources: string[];
+}
+
+interface Category {
+  id: string;
+  name: string;
+  Icon: React.ComponentType<{ className?: string }>;
+}
+
+const SafetyChecklist: React.FC = () => {
+  const [checkedItems, setCheckedItems] = useState<string[]>(() => {
     const saved = localStorage.getItem('safetyChecklist');
-    return saved ? JSON.parse(saved) : [];
+    return saved ? (JSON.parse(saved) as string[]) : [];
   });
-  const [activeCategory, setActiveCategory] = useState('digital');
+  const [activeCategory, setActiveCategory] = useState<string>('digital');
 
   useEffect(() => {
     localStorage.setItem('safetyChecklist', JSON.stringify(checkedItems));
   }, [checkedItems]);
 
-  const categories = [
+  const categories: Category[] = [
     { id: 'digital', name: 'Digital Security', Icon: Monitor },
     { id: 'physical', name: 'Physical Safety', Icon: Shield },
     { id: 'communication', name: 'Communication', Icon: Smartphone },
@@ -30,7 +44,7 @@ const SafetyChecklist = () => {
     { id: 'emergency', name: 'Emergency Plan', Icon: Siren },
   ];
 
-  const checklistItems = {
+  const checklistItems: Record<string, ChecklistItem[]> = {
     digital: [
       {
         id: 'd1',
@@ -318,7 +332,7 @@ const SafetyChecklist = () => {
     ],
   };
 
-  const toggleItem = (itemId) => {
+  const toggleItem = (itemId: string): void => {
     if (checkedItems.includes(itemId)) {
       setCheckedItems(checkedItems.filter(id => id !== itemId));
     } else {
@@ -331,13 +345,13 @@ const SafetyChecklist = () => {
   const completedItems = checkedItems.length;
   const categoryCompleted = currentItems.filter(item => checkedItems.includes(item.id)).length;
 
-  const priorityColors = {
+  const priorityColors: Record<Priority, string> = {
     critical: 'border-red-700/50 bg-red-900/20',
     high: 'border-orange-700/50 bg-orange-900/20',
     medium: 'border-yellow-700/50 bg-yellow-900/20',
   };
 
-  const priorityBadges = {
+  const priorityBadges: Record<Priority, string> = {
     critical: 'bg-red-900/50 text-red-400',
     high: 'bg-orange-900/50 text-orange-400',
     medium: 'bg-yellow-900/50 text-yellow-400',
