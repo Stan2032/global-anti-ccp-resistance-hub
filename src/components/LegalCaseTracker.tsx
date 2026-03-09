@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * LegalCaseTracker — Tracks active and concluded legal cases against
@@ -9,7 +7,7 @@
  */
 import React, { useState, useMemo } from 'react';
 import { Scale, Search, Copy, Check, ChevronDown, ChevronUp, Filter, ExternalLink, Calendar, Globe, Shield, AlertTriangle } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type LegalCase } from '../services/dataApi';
 
 // ── Status configuration ──────────────────────────────
 
@@ -22,11 +20,22 @@ const STATUS_CONFIG = {
   RELEASED: { label: 'Released', color: 'text-slate-300', bg: 'bg-slate-800/30', border: 'border-slate-400/30', dot: 'bg-slate-400' },
 };
 
-const STATUS_ORDER = ['CONVICTED', 'PENDING_TRIAL', 'PENDING_INVESTIGATION', 'ONGOING', 'CONCLUDED', 'RELEASED'];
+type StatusKey = keyof typeof STATUS_CONFIG;
+
+/** Extended legal case with additional fields used in this component */
+interface TrackedLegalCase extends LegalCase {
+  case_number?: string;
+  international_response?: string;
+  related_persons?: string[];
+  last_verified?: string;
+  key_dates?: Record<string, string>;
+}
+
+const STATUS_ORDER: StatusKey[] = ['CONVICTED', 'PENDING_TRIAL', 'PENDING_INVESTIGATION', 'ONGOING', 'CONCLUDED', 'RELEASED'];
 
 // ── Clipboard ─────────────────────────────────────────
 
-function buildClipboardText(cases, statusFilter) {
+function buildClipboardText(cases: TrackedLegalCase[], statusFilter: string) {
   const lines = [
     'Legal Case Tracker — Global Anti-CCP Resistance Hub',
     `Generated: ${new Date().toISOString().slice(0, 10)}`,
@@ -49,12 +58,12 @@ function buildClipboardText(cases, statusFilter) {
 
 export default function LegalCaseTracker() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState<StatusKey | ''>('');
   const [expandedCase, setExpandedCase] = useState('');
   const [copied, setCopied] = useState(false);
 
   const cases = useMemo(() => {
-    const data = dataApi.getLegalCases();
+    const data = dataApi.getLegalCases() as TrackedLegalCase[];
     return [...data].sort((a, b) => {
       // Sort by most recent key date descending
       const dateA = getLatestDate(a);
@@ -64,7 +73,7 @@ export default function LegalCaseTracker() {
   }, []);
 
   const statusCounts = useMemo(() => {
-    const counts = {};
+    const counts: Record<string, number> = {};
     STATUS_ORDER.forEach((s) => { counts[s] = 0; });
     cases.forEach((c) => {
       const s = c.status?.toUpperCase() || 'CONCLUDED';
@@ -74,7 +83,7 @@ export default function LegalCaseTracker() {
   }, [cases]);
 
   const jurisdictionCounts = useMemo(() => {
-    const counts = {};
+    const counts: Record<string, number> = {};
     cases.forEach((c) => {
       const j = c.jurisdiction || 'Unknown';
       counts[j] = (counts[j] || 0) + 1;
@@ -100,7 +109,7 @@ export default function LegalCaseTracker() {
     return list;
   }, [cases, searchQuery, statusFilter]);
 
-  const handleToggle = (caseName) => {
+  const handleToggle = (caseName: string) => {
     setExpandedCase((prev) => (prev === caseName ? '' : caseName));
   };
 
@@ -125,7 +134,7 @@ export default function LegalCaseTracker() {
     }
   };
 
-  const handleStatusFilter = (status) => {
+  const handleStatusFilter = (status: StatusKey) => {
     setStatusFilter((prev) => (prev === status ? '' : status));
   };
 
@@ -280,8 +289,8 @@ export default function LegalCaseTracker() {
           </div>
         ) : (
           filteredCases.map((legalCase) => {
-            const status = (legalCase.status || 'CONCLUDED').toUpperCase();
-            const config = STATUS_CONFIG[status] || STATUS_CONFIG.CONCLUDED;
+            const statusStr = (legalCase.status || 'CONCLUDED').toUpperCase();
+            const config = STATUS_CONFIG[statusStr as StatusKey] || STATUS_CONFIG.CONCLUDED;
             const isExpanded = expandedCase === legalCase.case_name;
             const latestDate = getLatestDate(legalCase);
 
@@ -397,7 +406,7 @@ export default function LegalCaseTracker() {
                       )}
 
                       {/* Related Persons */}
-                      {legalCase.related_persons?.length > 0 && (
+                      {legalCase.related_persons && legalCase.related_persons.length > 0 && (
                         <div>
                           <span className="text-slate-400 text-xs block mb-1">Related Persons</span>
                           <div className="flex flex-wrap gap-1">
@@ -453,14 +462,14 @@ export default function LegalCaseTracker() {
 
 // ── Helpers ───────────────────────────────────────────
 
-function getLatestDate(legalCase) {
+function getLatestDate(legalCase: TrackedLegalCase): string {
   if (!legalCase.key_dates) return '';
   const dates = Object.values(legalCase.key_dates).filter(Boolean);
   if (dates.length === 0) return '';
   return dates.sort().reverse()[0];
 }
 
-function formatDateLabel(key) {
+function formatDateLabel(key: string): string {
   return key
     .replace(/_/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase());
