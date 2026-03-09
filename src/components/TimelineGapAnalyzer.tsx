@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * TimelineGapAnalyzer — Identifies temporal gaps in the historical
@@ -12,14 +10,40 @@ import { useState, useMemo } from 'react';
 import { Calendar, AlertCircle, TrendingUp, Search, Copy, CheckCircle } from 'lucide-react';
 import dataApi from '../services/dataApi';
 
+interface DecadeData {
+  total: number;
+  critical: number;
+  high: number;
+  medium: number;
+  categories: Record<string, number>;
+}
+
+interface GapRange {
+  start: number;
+  end: number;
+}
+
+interface AnalysisResult {
+  totalEvents: number;
+  yearRange: string;
+  totalYears: number;
+  yearsWithEvents: number;
+  gapYears: number;
+  gapRanges: GapRange[];
+  decades: Record<number, DecadeData>;
+  categoryTotals: Record<string, number>;
+  minYear: number;
+  maxYear: number;
+}
+
 export default function TimelineGapAnalyzer() {
-  const [selectedDecade, setSelectedDecade] = useState(null);
+  const [selectedDecade, setSelectedDecade] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
 
   const events = dataApi.getTimelineEvents();
 
   // Analyze timeline coverage
-  const analysis = useMemo(() => {
+  const analysis = useMemo((): AnalysisResult | null => {
     if (!events.length) return null;
 
     const years = events.map((e) => parseInt(e.date.substring(0, 4)));
@@ -28,7 +52,7 @@ export default function TimelineGapAnalyzer() {
 
     // Identify gaps (years with no events)
     const yearsWithEvents = new Set(years);
-    const gaps = [];
+    const gaps: number[] = [];
     for (let year = minYear; year <= maxYear; year++) {
       if (!yearsWithEvents.has(year)) {
         gaps.push(year);
@@ -36,8 +60,8 @@ export default function TimelineGapAnalyzer() {
     }
 
     // Group consecutive gaps into ranges
-    const gapRanges = [];
-    let currentRange = null;
+    const gapRanges: GapRange[] = [];
+    let currentRange: GapRange | null = null;
     for (const year of gaps) {
       if (!currentRange) {
         currentRange = { start: year, end: year };
@@ -51,7 +75,7 @@ export default function TimelineGapAnalyzer() {
     if (currentRange) gapRanges.push(currentRange);
 
     // Decade breakdown
-    const decades = {};
+    const decades: Record<number, DecadeData> = {};
     events.forEach((e) => {
       const year = parseInt(e.date.substring(0, 4));
       const decade = Math.floor(year / 10) * 10;
@@ -75,7 +99,7 @@ export default function TimelineGapAnalyzer() {
     });
 
     // Category totals
-    const categoryTotals = {};
+    const categoryTotals: Record<string, number> = {};
     events.forEach((e) => {
       const cat = e.category || 'other';
       categoryTotals[cat] = (categoryTotals[cat] || 0) + 1;
