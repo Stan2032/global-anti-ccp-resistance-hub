@@ -137,6 +137,7 @@ export interface HumanRightsOrg {
   donation_url?: string;
   key_work?: string;
   credibility?: string;
+  latest_news?: string;
   source_url: string;
   [key: string]: unknown;
 }

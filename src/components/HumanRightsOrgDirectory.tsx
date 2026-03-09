@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * HumanRightsOrgDirectory — Searchable directory of human rights
@@ -9,7 +7,7 @@
  * @module HumanRightsOrgDirectory
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type HumanRightsOrg } from '../services/dataApi';
 import {
   Building2,
   Search,
@@ -67,7 +65,7 @@ const TYPE_ICONS = {
   'Direct Support': Heart,
 };
 
-function getTypeIcon(orgType) {
+function getTypeIcon(orgType: string | undefined) {
   if (!orgType) return Building2;
   for (const [key, Icon] of Object.entries(TYPE_ICONS)) {
     if (orgType.toLowerCase().includes(key.toLowerCase())) return Icon;
@@ -75,7 +73,7 @@ function getTypeIcon(orgType) {
   return Building2;
 }
 
-function getFocusConfig(focusArea) {
+function getFocusConfig(focusArea: string | undefined) {
   return FOCUS_AREAS.find((f) => f.key === focusArea) || {
     key: focusArea,
     label: focusArea || 'Unknown',
@@ -86,7 +84,7 @@ function getFocusConfig(focusArea) {
 
 // ── Clipboard ─────────────────────────────────────────
 
-function buildClipboardText(orgs, focusFilter, typeFilter) {
+function buildClipboardText(orgs: HumanRightsOrg[], focusFilter: string, typeFilter: string) {
   const lines = [];
   const filters = [focusFilter, typeFilter].filter(Boolean).join(' + ') || 'All';
   lines.push(`HUMAN RIGHTS ORGANIZATIONS DIRECTORY — ${filters}`);
@@ -120,7 +118,7 @@ export default function HumanRightsOrgDirectory() {
 
   // Unique org types from data
   const orgTypes = useMemo(() => {
-    const types = new Set();
+    const types = new Set<string>();
     orgs.forEach((o) => {
       if (o.org_type) {
         // Split combined types like "Advocacy, Research"
@@ -132,7 +130,7 @@ export default function HumanRightsOrgDirectory() {
 
   // Focus area counts
   const focusCounts = useMemo(() => {
-    const counts = {};
+    const counts: Record<string, number> = {};
     FOCUS_AREAS.forEach((f) => { counts[f.key] = 0; });
     orgs.forEach((o) => {
       if (o.focus_area && counts[o.focus_area] !== undefined) {
@@ -165,7 +163,7 @@ export default function HumanRightsOrgDirectory() {
   }, [orgs, searchQuery, focusFilter, typeFilter]);
 
   // ── Handlers ────────────────────────────────────────
-  const handleToggle = (id) => {
+  const handleToggle = (id: string) => {
     setExpandedOrg((prev) => (prev === id ? '' : id));
   };
 
@@ -190,11 +188,11 @@ export default function HumanRightsOrgDirectory() {
     }
   };
 
-  const handleFocusFilter = (key) => {
+  const handleFocusFilter = (key: string) => {
     setFocusFilter((prev) => (prev === key ? '' : key));
   };
 
-  const handleTypeFilter = (type) => {
+  const handleTypeFilter = (type: string) => {
     setTypeFilter((prev) => (prev === type ? '' : type));
   };
 
