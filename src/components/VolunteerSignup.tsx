@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * VolunteerSignup — Volunteer registration form with skill-based
  * matching. Integrates with Supabase and uses client-side encryption
@@ -12,9 +10,17 @@ import { Globe, PenTool, Search, Smartphone, Palette, Clapperboard, Laptop, Scal
 import { isSupabaseConfigured } from '../services/supabaseClient';
 import { submitVolunteerSignup } from '../services/supabaseService';
 
+interface VolunteerFormData {
+  name: string;
+  email: string;
+  skills: string[];
+  availability: string;
+  message: string;
+}
+
 const VolunteerSignup = () => {
   const backendConnected = isSupabaseConfigured();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<VolunteerFormData>({
     name: '',
     email: '',
     skills: [],
@@ -23,7 +29,7 @@ const VolunteerSignup = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const skillOptions = [
     { id: 'translation', name: 'Translation', Icon: Globe },
@@ -46,16 +52,16 @@ const VolunteerSignup = () => {
     { id: 'flexible', name: 'Flexible/As needed' },
   ];
 
-  const toggleSelection = (field, value) => {
+  const toggleSelection = (field: 'skills', value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].includes(value)
-        ? prev[field].filter(v => v !== value)
+        ? prev[field].filter((v: string) => v !== value)
         : [...prev[field], value]
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (backendConnected) {
       setSubmitting(true);
