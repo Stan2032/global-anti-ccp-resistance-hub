@@ -38,8 +38,8 @@ function getTestNames() {
 
 // Known exceptions: components tested as part of larger integration tests
 const COVERAGE_EXCEPTIONS = [
-  'ScrollToTop',         // Tested in ScrollToTop.test.jsx (different case match)
-  'FlagIcons',           // Tested in FlagIcons.test.jsx
+  'ScrollToTop',         // Tested in ScrollToTop.test.tsx (different case match)
+  'FlagIcons',           // Tested in FlagIcons.test.tsx
 ];
 
 describe('Meta-Test Coverage Audit', () => {
@@ -76,7 +76,7 @@ describe('Meta-Test Coverage Audit', () => {
     const untested = [];
     // Pages that are tested as part of larger test suites
     const pageExceptions = [
-      'AdminLogin', // Tested via AdminAuth.test.jsx
+      'AdminLogin', // Tested via AdminAuth.test.tsx
     ];
     for (const page of pages) {
       if (pageExceptions.includes(page)) continue;
@@ -92,16 +92,16 @@ describe('Meta-Test Coverage Audit', () => {
     expect(untested, `Pages without test files:\n${untested.join('\n')}`).toEqual([]);
   });
 
-  it('profile pages have test coverage via profile-pages.test.jsx', () => {
+  it('profile pages have test coverage via profile-pages.test.tsx', () => {
     const profilesDir = resolve(PAGES_DIR, 'profiles');
     if (!existsSync(profilesDir)) return;
     const profiles = readdirSync(profilesDir)
       .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && f.includes('Profile'));
     expect(profiles.length).toBeGreaterThanOrEqual(14);
 
-    // Verify profile-pages.test.jsx exists
-    const profileTest = resolve(TEST_DIR, 'profile-pages.test.jsx');
-    expect(existsSync(profileTest), 'profile-pages.test.jsx should exist').toBe(true);
+    // Verify profile-pages.test.tsx exists
+    const profileTest = resolve(TEST_DIR, 'profile-pages.test.tsx');
+    expect(existsSync(profileTest), 'profile-pages.test.tsx should exist').toBe(true);
   });
 
   it('test files follow naming convention (PascalCase, camelCase, or kebab-case)', () => {
