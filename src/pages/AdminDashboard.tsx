@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 
 /**
  * AdminDashboard — Protected admin panel for managing platform content.
@@ -12,6 +11,9 @@ import { useAuth } from '../contexts/authUtils';
 import supabase from '../services/supabaseClient';
 import { Shield, FileText, Users, Mail, MessageSquare, LogOut, RefreshCw } from 'lucide-react';
 
+/** Generic row returned from any admin table query */
+type DataRow = Record<string, unknown> & { id?: string | number };
+
 const TABS = [
   { id: 'incidents', label: 'Incident Reports', icon: FileText, table: 'incident_reports' },
   { id: 'volunteers', label: 'Volunteers', icon: Users, table: 'volunteer_signups' },
@@ -22,16 +24,17 @@ const TABS = [
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('incidents');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DataRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [counts, setCounts] = useState({});
+  const [counts, setCounts] = useState<Record<string, number>>({});
   const [refreshKey, setRefreshKey] = useState(0);
 
   // Fetch counts for all tabs
   useEffect(() => {
     const fetchCounts = async () => {
-      const newCounts = {};
+      if (!supabase) return;
+      const newCounts: Record<string, number> = {};
       for (const tab of TABS) {
         const { count } = await supabase
           .from(tab.table)
@@ -49,6 +52,7 @@ const AdminDashboard = () => {
       setLoading(true);
       setError('');
       const tab = TABS.find(t => t.id === activeTab);
+      if (!tab || !supabase) { setLoading(false); return; }
       const { data: rows, error: fetchError } = await supabase
         .from(tab.table)
         .select('*')
@@ -79,7 +83,7 @@ const AdminDashboard = () => {
             <Shield className="w-6 h-6 text-[#4afa82]" />
             <div>
               <h1 className="text-xl font-bold text-white font-mono">Admin Dashboard</h1>
-              <p className="text-slate-400 text-xs font-mono">{user?.email}</p>
+              <p className="text-slate-400 text-xs font-mono">{String(user?.email ?? '')}</p>
             </div>
           </div>
           <button
