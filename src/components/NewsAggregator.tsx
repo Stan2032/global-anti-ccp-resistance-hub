@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -9,11 +8,31 @@
  * @module NewsAggregator
  */
 import React, { useState, useEffect } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText } from 'lucide-react';
 import { dataProcessor } from '../data/liveDataSources';
 
+/** Represents a single news or threat item from RSS feed aggregation */
+interface NewsItem {
+  id: string;
+  title: string;
+  url: string;
+  source: string;
+  date: string;
+  category: string;
+  priority: string;
+  summary: string;
+}
+
+interface CategoryWithIcon {
+  id: string;
+  name: string;
+  Icon?: LucideIcon;
+  icon?: string;
+}
+
 const NewsAggregator = () => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -125,7 +144,7 @@ const NewsAggregator = () => {
   */
   // ^^^ All hardcoded data removed - now using real RSS feeds from dataProcessor
 
-  const categories = [
+  const categories: CategoryWithIcon[] = [
     { id: 'all', name: 'All News', Icon: Newspaper },
     { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
     { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
@@ -138,7 +157,7 @@ const NewsAggregator = () => {
     ? news 
     : news.filter(item => item.category === selectedCategory);
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = (priority: string): string => {
     switch (priority) {
       case 'CRITICAL': return 'bg-red-600';
       case 'HIGH': return 'bg-orange-600';
@@ -147,7 +166,7 @@ const NewsAggregator = () => {
     }
   };
 
-  const getCategoryInfo = (category) => {
+  const getCategoryInfo = (category: string): Pick<CategoryWithIcon, 'Icon' | 'icon'> => {
     const cat = categories.find(c => c.id === category);
     return cat || { Icon: FileText };
   };
