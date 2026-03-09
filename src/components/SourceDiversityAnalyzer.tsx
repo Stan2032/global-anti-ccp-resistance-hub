@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * SourceDiversityAnalyser — Evaluates source diversity across platform
@@ -57,7 +55,48 @@ const TIER_2_DOMAINS = {
   'legislation.gov.au': 'Australian Government',
 };
 
-function extractDomain(url) {
+interface TierCounts {
+  tier1: number;
+  tier2: number;
+  other: number;
+  unknown: number;
+}
+
+interface DatasetBreakdown {
+  totalUrls: number;
+  uniqueDomains: number;
+  tierCounts: TierCounts;
+  tier1Pct: number;
+  tier2Pct: number;
+  topSources: [string, number][];
+  diversityScore: number;
+}
+
+interface ConcentrationRisk {
+  domain: string;
+  name: string;
+  count: number;
+  percentage: number;
+}
+
+interface GlobalAnalysis {
+  totalReferences: number;
+  uniqueDomains: number;
+  tier1: number;
+  tier2: number;
+  other: number;
+  tier1Pct: number;
+  tier2Pct: number;
+  topSources: [string, number][];
+  concentrationRisks: ConcentrationRisk[];
+}
+
+interface AnalysisResult {
+  datasets: Record<string, DatasetBreakdown>;
+  global: GlobalAnalysis;
+}
+
+function extractDomain(url: unknown): string | null {
   if (!url || typeof url !== 'string') return null;
   try {
     const hostname = new URL(url).hostname.replace(/^www\./, '');
@@ -68,7 +107,7 @@ function extractDomain(url) {
   }
 }
 
-function classifySource(domain) {
+function classifySource(domain: string | null) {
   if (!domain) return 'unknown';
   for (const d of Object.keys(TIER_1_DOMAINS)) {
     if (domain === d || domain.endsWith('.' + d)) return 'tier1';
@@ -79,7 +118,7 @@ function classifySource(domain) {
   return 'other';
 }
 
-function getSourceName(domain) {
+function getSourceName(domain: string | null): string {
   if (!domain) return 'Unknown';
   for (const [d, name] of Object.entries(TIER_1_DOMAINS)) {
     if (domain === d || domain.endsWith('.' + d)) return name;
@@ -94,7 +133,7 @@ export default function SourceDiversityAnalyzer() {
   const [copied, setCopied] = useState(false);
   const [selectedDataset, setSelectedDataset] = useState('all');
 
-  const analysis = useMemo(() => {
+  const analysis = useMemo((): AnalysisResult => {
     const datasets = {
       'Political Prisoners': dataApi.getPoliticalPrisoners(),
       'Sanctions': dataApi.getSanctions(),
@@ -106,8 +145,8 @@ export default function SourceDiversityAnalyzer() {
       'Police Stations': dataApi.getPoliceStations(),
     };
 
-    const allSources = {};
-    const datasetBreakdowns = {};
+    const allSources: Record<string, number> = {};
+    const datasetBreakdowns: Record<string, DatasetBreakdown> = {};
 
     for (const [name, records] of Object.entries(datasets)) {
       const urls = [];
@@ -125,7 +164,7 @@ export default function SourceDiversityAnalyzer() {
         }
       }
 
-      const domainCounts = {};
+      const domainCounts: Record<string, number> = {};
       const tierCounts = { tier1: 0, tier2: 0, other: 0, unknown: 0 };
       const uniqueDomains = new Set();
 
