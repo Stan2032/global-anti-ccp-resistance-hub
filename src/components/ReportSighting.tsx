@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * ReportSighting — Guide for reporting sightings of overseas CCP police
  * stations, surveillance activities, or other CCP operations abroad.

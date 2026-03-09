@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DetentionFacilities — Database of detention facilities used for political
  * imprisonment. Filterable by region with satellite evidence and capacity data.

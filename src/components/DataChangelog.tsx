@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DataChangelog — Chronological log of all data changes, additions,
  * and corrections across platform datasets. Provides transparency

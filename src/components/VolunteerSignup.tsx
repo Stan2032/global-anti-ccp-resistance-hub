@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * VolunteerSignup — Volunteer registration form with skill-based
  * matching. Integrates with Supabase and uses client-side encryption

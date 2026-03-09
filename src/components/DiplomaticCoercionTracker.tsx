@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DiplomaticCoercionTracker — Tracks diplomatic and economic coercion
  * tactics used by the CCP against nations and international organisations.

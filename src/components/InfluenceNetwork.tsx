@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React, { useState, useMemo } from 'react';
 import {
   Network, Users, Shield, MapPin, AlertTriangle,

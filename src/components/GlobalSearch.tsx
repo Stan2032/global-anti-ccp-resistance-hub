@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * GlobalSearch — Full-screen search modal with fuzzy matching across all
  * platform content. Supports keyboard navigation (↑↓ to select, Enter

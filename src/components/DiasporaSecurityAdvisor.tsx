@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DiasporaSecurityAdvisor — Security guidance tailored for diaspora
  * communities targeted by CCP transnational repression. Covers threat

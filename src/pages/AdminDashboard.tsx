@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * AdminDashboard — Protected admin panel for managing platform content.
  * Requires Supabase authentication. Displays submission queues, contact

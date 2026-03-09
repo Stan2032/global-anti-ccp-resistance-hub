@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * CaseTimelineViewer — Visual timeline viewer for individual political
  * prisoner cases. Cross-references events from the dataApi with

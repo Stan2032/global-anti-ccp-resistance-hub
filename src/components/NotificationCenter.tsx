@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * NotificationCenter — Aggregated notification feed from all platform data sources.
  *

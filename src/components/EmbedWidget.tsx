@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * EmbedWidget — Generates embeddable code snippets for other websites
  *

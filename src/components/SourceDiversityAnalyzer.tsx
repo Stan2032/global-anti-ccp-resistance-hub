@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * SourceDiversityAnalyser — Evaluates source diversity across platform
  * datasets. Checks for over-reliance on single sources and flags

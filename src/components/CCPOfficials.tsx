@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * CCPOfficials — Profiles of CCP officials implicated in human rights
  * abuses. Sourced from government records, Tier 1-2 media, and sanctions lists.

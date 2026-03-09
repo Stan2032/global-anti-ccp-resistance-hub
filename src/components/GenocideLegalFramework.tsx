@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * GenocideLegalFramework — Legal analysis of genocide determinations
  * and international law as applied to CCP atrocities. Cross-references

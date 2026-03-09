@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,

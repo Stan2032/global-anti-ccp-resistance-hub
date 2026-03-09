@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DataComparisonTool — Side-by-side comparison of records across
  * datasets. Helps researchers identify cross-references, conflicts,

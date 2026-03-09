@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * LegalCaseTracker — Tracks active and concluded legal cases against
  * CCP entities. Searchable by jurisdiction, case type, and outcome.

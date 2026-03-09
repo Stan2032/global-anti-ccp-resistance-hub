@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React, { useMemo } from 'react';
 import {
   Database, Users, Shield, Clock, Globe, BarChart3,

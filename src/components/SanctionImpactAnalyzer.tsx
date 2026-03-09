@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * SanctionImpactAnalyzer — Analyses the effectiveness and impact of
  * sanctions against CCP entities. Cross-references sanctions data with

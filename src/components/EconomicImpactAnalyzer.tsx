@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * EconomicImpactAnalyzer — Analyses economic dimensions of CCP human rights
  * issues including trade impacts, supply chain risks, and sanctions effects.

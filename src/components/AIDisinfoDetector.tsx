@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * AIDisinfoDetector — AI-powered analysis tool for detecting potential
  * CCP disinformation patterns in text. Uses heuristic scoring with

@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * CensorshipCircumventionGuide — Technical guide to bypassing internet
  * censorship in China. Covers VPNs, Tor, domain fronting, and secure

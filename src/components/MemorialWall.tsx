@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * MemorialWall — Commemorative wall honouring victims of CCP repression.
  * Searchable and filterable with source-attributed profiles.

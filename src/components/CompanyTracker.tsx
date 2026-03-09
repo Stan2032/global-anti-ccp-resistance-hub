@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * CompanyTracker — Tracks companies complicit in CCP human rights abuses.
  * Provides risk analysis, compliance monitoring, and industry breakdowns.

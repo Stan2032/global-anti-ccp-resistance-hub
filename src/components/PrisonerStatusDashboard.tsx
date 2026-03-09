@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * PrisonerStatusDashboard — Analytics dashboard visualising political
  * prisoner statistics. Shows status breakdowns, detention trends,

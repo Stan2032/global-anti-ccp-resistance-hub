@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * PoliticalPrisoners — Searchable database of documented political detentions.
  *

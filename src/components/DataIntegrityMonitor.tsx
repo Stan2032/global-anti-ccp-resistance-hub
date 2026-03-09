@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * DataIntegrityMonitor — Monitors data quality across all datasets.
  * Checks for missing fields, broken links, stale records, and

@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React from 'react';
 import { ExternalLink, CheckCircle, AlertCircle, FileText, Building, Newspaper, GraduationCap } from 'lucide-react';
 

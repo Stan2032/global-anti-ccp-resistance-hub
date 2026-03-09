@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * SafetyChecklist — Categorised safety checklists for device security,
  * online privacy, travel precautions, and legal preparedness. Progress

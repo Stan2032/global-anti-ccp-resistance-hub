@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
 

@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * SanctionedOfficials — Directory of CCP officials under international
  * sanctions. Searchable and filterable by country and sanction type.

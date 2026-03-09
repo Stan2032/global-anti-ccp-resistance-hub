@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * ResistanceDirectory — Searchable directory of human rights organisations,
  * IPAC members, and advocacy groups fighting CCP authoritarianism worldwide.

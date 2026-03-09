@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * EducationalResources — Learning center with courses, research papers,
  * documentaries, reading lists, glossary, and language guides covering

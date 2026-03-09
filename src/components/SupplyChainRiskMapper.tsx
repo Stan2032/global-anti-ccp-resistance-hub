@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';

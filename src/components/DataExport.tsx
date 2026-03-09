@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
 import { extractRecords, recordsToCsv, recordsToMarkdown } from '../utils/exportUtils';

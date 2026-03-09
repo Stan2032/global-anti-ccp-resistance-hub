@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * WorldThreatMap — Interactive global map visualization of CCP influence
  * operations, overseas police stations, and transnational repression incidents.

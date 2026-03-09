@@ -1,4 +1,5 @@
 // @ts-nocheck — Phase 2 migration: types to be added
+
 /**
  * InteractiveTimeline — Zoomable, filterable timeline of CCP human
  * rights events. Supports autoplay, keyboard navigation, and source
