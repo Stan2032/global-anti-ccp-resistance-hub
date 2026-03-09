@@ -1,9 +1,30 @@
-// @ts-nocheck
-
-
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
+import type { ForcedLabourCompany } from '../services/dataApi';
 import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
+
+type RiskLevel = 'Critical' | 'High' | 'Moderate' | 'Low';
+
+interface RiskStyle {
+  badge: string;
+  dot: string;
+  bar: string;
+  label: string;
+  description: string;
+}
+
+interface CompanyWithRisk extends ForcedLabourCompany {
+  riskLevel: RiskLevel;
+}
+
+interface IndustryRiskEntry {
+  industry: string;
+  total: number;
+  Critical: number;
+  High: number;
+  Moderate: number;
+  Low: number;
+}
 
 /**
  * SupplyChainRiskMapper — Corporate supply chain risk analysis
@@ -14,9 +35,9 @@ import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Sh
 
 // ── Risk classification ───────────────────────────────
 
-const RISK_LEVELS = ['Critical', 'High', 'Moderate', 'Low'];
+const RISK_LEVELS: RiskLevel[] = ['Critical', 'High', 'Moderate', 'Low'];
 
-const RISK_STYLES = {
+const RISK_STYLES: Record<RiskLevel, RiskStyle> = {
   Critical: { badge: 'bg-red-400/20 text-red-400 border border-red-400/30', dot: 'bg-red-400', bar: 'bg-red-400', label: 'Critical Risk', description: 'Direct evidence of forced labor + active enforcement' },
   High: { badge: 'bg-orange-400/20 text-orange-400 border border-orange-400/30', dot: 'bg-orange-400', bar: 'bg-orange-400', label: 'High Risk', description: 'Supply chain links to forced labor with documented evidence' },
   Moderate: { badge: 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30', dot: 'bg-yellow-400', bar: 'bg-yellow-400', label: 'Moderate Risk', description: 'Indirect connections or pending investigations' },
@@ -35,7 +56,7 @@ const KEY_LEGISLATION = [
 
 // ── Helpers ───────────────────────────────────────────
 
-function classifyRisk(company) {
+function classifyRisk(company: ForcedLabourCompany): RiskLevel {
   const status = (company.status || '').toLowerCase();
   const uflpa = (company.uflpa_actions || '').toLowerCase();
   const evidence = (company.evidence || '').toLowerCase();
@@ -69,8 +90,8 @@ function classifyRisk(company) {
   return 'Low';
 }
 
-function getIndustryIcon(industry) {
-  const map = {
+function getIndustryIcon(industry: string | undefined): string {
+  const map: Record<string, string> = {
     Apparel: '👕',
     Technology: '💻',
     Electronics: '📱',
@@ -80,6 +101,7 @@ function getIndustryIcon(industry) {
     Retail: '🏪',
     Food: '🍽️',
   };
+  if (!industry) return '🏭';
   return map[industry] || '🏭';
 }
 
@@ -89,7 +111,7 @@ export default function SupplyChainRiskMapper() {
   const [searchQuery, setSearchQuery] = useState('');
   const [industryFilter, setIndustryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
-  const [expandedId, setExpandedId] = useState(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [activeView, setActiveView] = useState('companies');
   const [copied, setCopied] = useState(false);
 
@@ -114,13 +136,13 @@ export default function SupplyChainRiskMapper() {
   }, [companies]);
 
   const riskDistribution = useMemo(() => {
-    const dist = { Critical: 0, High: 0, Moderate: 0, Low: 0 };
+    const dist: Record<RiskLevel, number> = { Critical: 0, High: 0, Moderate: 0, Low: 0 };
     companies.forEach((c) => { dist[c.riskLevel]++; });
     return dist;
   }, [companies]);
 
   const industryRisk = useMemo(() => {
-    const map = {};
+    const map: Record<string, IndustryRiskEntry> = {};
     companies.forEach((c) => {
       const ind = c.industry || 'Unknown';
       if (!map[ind]) map[ind] = { industry: ind, total: 0, Critical: 0, High: 0, Moderate: 0, Low: 0 };
