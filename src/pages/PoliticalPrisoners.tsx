@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 
+
 /**
  * PoliticalPrisoners — Searchable database of documented political detentions.
  *

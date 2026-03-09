@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 
+
 /**
  * GlobalSearch — Full-screen search modal with fuzzy matching across all
  * platform content. Supports keyboard navigation (↑↓ to select, Enter
