@@ -1,7 +1,29 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
+
+/** Browser event fired when the app is eligible for PWA installation */
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>;
+  userChoice: Promise<{ outcome: string }>;
+}
+
+declare global {
+  interface WindowEventMap {
+    beforeinstallprompt: BeforeInstallPromptEvent;
+  }
+  interface Window {
+    MSStream?: unknown;
+  }
+  interface Navigator {
+    standalone?: boolean;
+  }
+}
+
+declare module 'react' {
+  interface StyleHTMLAttributes<T> {
+    jsx?: boolean | string;
+  }
+}
 
 /**
  * PWAInstallBanner — Prompts users to install the app as a PWA.
@@ -12,7 +34,7 @@ import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
  */
 export default function PWAInstallBanner() {
   const [showBanner, setShowBanner] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS] = useState(() => /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
   const [isStandalone] = useState(() => {
     return window.matchMedia('(display-mode: standalone)').matches 
@@ -34,7 +56,7 @@ export default function PWAInstallBanner() {
     if (dismissed || isStandalone) return;
 
     // Listen for beforeinstallprompt event (Chrome, Edge, etc.)
-    const handleBeforeInstallPrompt = (e) => {
+    const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
       e.preventDefault();
       setDeferredPrompt(e);
       setShowBanner(true);
@@ -43,7 +65,7 @@ export default function PWAInstallBanner() {
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     // For iOS, show banner after a delay if not in standalone mode
-    let timer;
+    let timer: ReturnType<typeof setTimeout> | undefined;
     if (isIOS) {
       timer = setTimeout(() => {
         setShowBanner(true);
