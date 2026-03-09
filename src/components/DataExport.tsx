@@ -1,9 +1,8 @@
-// @ts-nocheck
-
 
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { extractRecords, recordsToCsv, recordsToMarkdown } from '../utils/exportUtils';
 import prisonersData from '../data/political_prisoners_research.json';
 import policeStationsData from '../data/police_stations_research.json';
@@ -12,6 +11,34 @@ import sanctionsData from '../data/sanctions_tracker.json';
 import companiesData from '../data/forced_labor_companies_research.json';
 import timelineData from '../data/timeline_events.json';
 import detentionData from '../data/detention_facilities_research.json';
+
+type DatasetId = keyof typeof DATA_MAP;
+
+interface ExportMetadata {
+  name: string;
+  description: string;
+  records: number;
+  lastUpdated: string;
+  exportedAt: string;
+  source: string;
+  license: string;
+}
+
+interface ExportEntry {
+  metadata: ExportMetadata;
+  schema: string[];
+  data: Record<string, unknown>[];
+}
+
+interface Dataset {
+  id: string;
+  name: string;
+  description: string;
+  records: number;
+  lastUpdated: string;
+  fields: string[];
+  Icon: LucideIcon;
+}
 
 const DATA_MAP = {
   prisoners: { raw: prisonersData, label: 'Political Prisoners Database' },
@@ -100,7 +127,7 @@ function buildDatasets() {
  */
 const DataExport = () => {
   const datasets = useMemo(() => buildDatasets(), []);
-  const [selectedDatasets, setSelectedDatasets] = useState([]);
+  const [selectedDatasets, setSelectedDatasets] = useState<string[]>([]);
   const [exportFormat, setExportFormat] = useState('json');
   const [isExporting, setIsExporting] = useState(false);
   const [exportComplete, setExportComplete] = useState(false);
@@ -111,7 +138,7 @@ const DataExport = () => {
     { id: 'markdown', name: 'Markdown', description: 'Formatted text - best for documentation', Icon: FileText },
   ];
 
-  const toggleDataset = (id) => {
+  const toggleDataset = (id: string) => {
     setSelectedDatasets(prev => 
       prev.includes(id) 
         ? prev.filter(d => d !== id)
@@ -131,11 +158,11 @@ const DataExport = () => {
   };
 
   const generateExportData = useCallback(() => {
-    const exportData = {};
+    const exportData: Record<string, ExportEntry> = {};
     
     selectedDatasets.forEach(id => {
       const dataset = datasets.find(d => d.id === id);
-      const mapping = DATA_MAP[id];
+      const mapping = DATA_MAP[id as DatasetId];
       if (dataset && mapping) {
         const records = extractRecords(mapping.raw);
         exportData[id] = {
