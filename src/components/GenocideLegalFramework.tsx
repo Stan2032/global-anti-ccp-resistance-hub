@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 
 /**
@@ -10,8 +8,42 @@
  * @module GenocideLegalFramework
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import {
+  dataApi,
+  type PoliticalPrisoner,
+  type DetentionFacility,
+  type ForcedLabourCompany,
+  type InternationalResponse,
+  type PoliceStation,
+  type LegalCase,
+  type Sanction,
+} from '../services/dataApi';
 import { Scale, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
+
+interface LegalViolation {
+  id: string;
+  category: string;
+  article: string;
+  title: string;
+  legalText: string;
+  documentedActions: string;
+  evidenceType: string[];
+  evidenceKeywords: Record<string, string>;
+  severity: string;
+  recognitions: number;
+  keyFindings: string[];
+  sources: { name: string; url: string }[];
+}
+
+interface AllData {
+  prisoners: PoliticalPrisoner[];
+  facilities: DetentionFacility[];
+  companies: ForcedLabourCompany[];
+  responses: InternationalResponse[];
+  stations: PoliceStation[];
+  cases: LegalCase[];
+  sanctions: Sanction[];
+}
 // GenocideLegalFramework — Maps CCP actions to international legal instruments.
 // Cross-references 7 datasets. All data from verified Tier 1-2 sources. CC BY 4.0.
 
@@ -24,7 +56,7 @@ const LEGAL_CATEGORIES = [
   { id: 'minority_rights', label: 'Minority Rights', color: 'text-[#22d3ee]', desc: 'UN Declaration on the Rights of Persons Belonging to National or Ethnic, Religious and Linguistic Minorities (1992)' },
 ];
 
-const LEGAL_VIOLATIONS = [
+const LEGAL_VIOLATIONS: LegalViolation[] = [
   {
     id: 'genocide-art2a',
     category: 'genocide',
@@ -292,8 +324,8 @@ const RECOGNITION_COUNTRIES = [
   { country: 'China Tribunal', year: 2019, body: 'Independent people\'s tribunal', type: 'Tribunal judgment', details: 'Sir Geoffrey Nice QC: forced organ harvesting proven beyond reasonable doubt' },
 ];
 
-function getEvidenceCounts(violation, allData) {
-  const counts = {};
+function getEvidenceCounts(violation: LegalViolation, allData: AllData): Record<string, number> {
+  const counts: Record<string, number> = {};
   if (violation.evidenceType.includes('political_prisoners')) {
     const kw = violation.evidenceKeywords.prisoners || '';
     counts.prisoners = kw ? allData.prisoners.filter(p => {
@@ -341,7 +373,7 @@ function getEvidenceCounts(violation, allData) {
 const GenocideLegalFramework = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedViolation, setExpandedViolation] = useState(null);
+  const [expandedViolation, setExpandedViolation] = useState<string | null>(null);
   const [activeView, setActiveView] = useState('violations');
   const [copied, setCopied] = useState(false);
 
@@ -380,7 +412,7 @@ const GenocideLegalFramework = () => {
     recognitions: RECOGNITION_COUNTRIES.length,
   }), [allData]);
 
-  const getCategoryStyle = (catId) => LEGAL_CATEGORIES.find(c => c.id === catId) || LEGAL_CATEGORIES[0];
+  const getCategoryStyle = (catId: string) => LEGAL_CATEGORIES.find(c => c.id === catId) || LEGAL_CATEGORIES[0];
 
   const handleCopyReport = async () => {
     const lines = [
