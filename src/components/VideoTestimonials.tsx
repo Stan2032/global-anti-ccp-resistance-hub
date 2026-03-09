@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * VideoTestimonials — Curated collection of video testimonies from
  * survivors, experts, and advocates. Searchable with safety warnings
@@ -204,8 +202,8 @@ export default function VideoTestimonials() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeRegion, setActiveRegion] = useState('All Regions');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedId, setExpandedId] = useState(null);
-  const [warningDismissed, setWarningDismissed] = useState({});
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [warningDismissed, setWarningDismissed] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
 
   // ── Derived data ────────────────────────────────────
@@ -220,13 +218,13 @@ export default function VideoTestimonials() {
   }, [activeCategory, activeRegion, searchQuery]);
 
   const regionCounts = useMemo(() => {
-    const counts = {};
+    const counts: Record<string, number> = {};
     TESTIMONIALS.forEach((t) => { counts[t.region] = (counts[t.region] || 0) + 1; });
     return counts;
   }, []);
 
   const categoryCounts = useMemo(() => {
-    const counts = { all: TESTIMONIALS.length };
+    const counts: Record<string, number> = { all: TESTIMONIALS.length };
     TESTIMONIALS.forEach((t) => { counts[t.category] = (counts[t.category] || 0) + 1; });
     return counts;
   }, []);
