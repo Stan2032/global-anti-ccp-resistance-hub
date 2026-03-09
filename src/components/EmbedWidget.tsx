@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * EmbedWidget — Generates embeddable code snippets for other websites
  *
@@ -16,7 +14,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { Code, Copy, CheckCircle, Eye, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, PoliticalPrisoner, Statistic, EmergencyAlert } from '../services/dataApi';
 
 const SITE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
@@ -41,12 +39,12 @@ const WIDGET_TYPES = [
   },
 ];
 
-function generatePrisonerCard(prisoner) {
+function generatePrisonerCard(prisoner: PoliticalPrisoner | null): string {
   if (!prisoner) return '';
-  const name = prisoner.prisoner_name || prisoner.name || 'Unknown';
+  const name = prisoner.prisoner_name || String(prisoner.name ?? '') || 'Unknown';
   const status = prisoner.status || 'Detained';
   const sentence = prisoner.sentence || 'Unknown';
-  const location = prisoner.location || prisoner.detention_facility || '';
+  const location = prisoner.location || String(prisoner.detention_facility ?? '');
   const statusColor = status.toLowerCase().includes('released') ? '#4afa82' :
     status.toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444';
 
@@ -63,7 +61,7 @@ function generatePrisonerCard(prisoner) {
 </div>`;
 }
 
-function generateStatsBadge(stats) {
+function generateStatsBadge(stats: Statistic[]): string {
   if (!stats || !Array.isArray(stats)) return '';
   const items = stats.slice(0, 4);
   const statDivs = items.map(s =>
@@ -80,7 +78,7 @@ ${statDivs}
 </div>`;
 }
 
-function generateAlertBanner(alert) {
+function generateAlertBanner(alert: EmergencyAlert | undefined): string {
   if (!alert) return '';
   const bgColor = alert.type === 'critical' ? '#7f1d1d' : '#78350f';
   const borderColor = alert.type === 'critical' ? '#ef4444' : '#fbbf24';
@@ -115,7 +113,7 @@ export default function EmbedWidget() {
   const selectedPrisonerObj = useMemo(() => {
     if (!selectedPrisoner) return prisoners[0] || null;
     return prisoners.find(p =>
-      (p.prisoner_name || p.name || '').toLowerCase() === selectedPrisoner.toLowerCase()
+      String(p.prisoner_name || p.name || '').toLowerCase() === selectedPrisoner.toLowerCase()
     ) || prisoners[0] || null;
   }, [selectedPrisoner, prisoners]);
 
@@ -185,8 +183,8 @@ export default function EmbedWidget() {
             className="w-full bg-[#0a0e14] border border-[#1c2a35] text-white p-2 font-mono text-sm"
           >
             {prisoners.map((p) => (
-              <option key={p.id || p.prisoner_name} value={p.prisoner_name || p.name || ''}>
-                {p.prisoner_name || p.name || 'Unknown'} — {p.status || 'Unknown'}
+              <option key={p.id || p.prisoner_name} value={String(p.prisoner_name || p.name || '')}>
+                {String(p.prisoner_name || p.name || 'Unknown')} — {p.status || 'Unknown'}
               </option>
             ))}
           </select>
@@ -211,7 +209,7 @@ export default function EmbedWidget() {
             {selectedType === 'prisoner-card' && selectedPrisonerObj && (
               <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 400, background: '#0a0e14', border: '1px solid #1c2a35', borderLeft: `3px solid ${(selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444'}`, padding: 16, color: '#e2e8f0' }}>
                 <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Political Prisoner</div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 4 }}>{selectedPrisonerObj.prisoner_name || selectedPrisonerObj.name}</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 4 }}>{selectedPrisonerObj.prisoner_name || String(selectedPrisonerObj.name)}</div>
                 <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 8 }}>
                   <span style={{ color: (selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444' }}>● {selectedPrisonerObj.status}</span>
                   {selectedPrisonerObj.sentence && selectedPrisonerObj.sentence !== 'Unknown' && <span style={{ marginLeft: 12 }}>Sentence: {selectedPrisonerObj.sentence}</span>}
