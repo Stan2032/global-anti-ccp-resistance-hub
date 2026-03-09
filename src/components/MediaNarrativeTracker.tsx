@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 
@@ -10,7 +9,7 @@
  * @module MediaNarrativeTracker
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type PoliticalPrisoner, type DetentionFacility, type ForcedLabourCompany, type InternationalResponse, type PoliceStation, type LegalCase, type Sanction } from '../services/dataApi';
 import { Newspaper, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';
 // MediaNarrativeTracker — Tracks CCP state media propaganda narratives,
 // cross-referencing with verified evidence from political prisoners, detention
@@ -220,8 +219,20 @@ const PROPAGANDA_NARRATIVES = [
   },
 ];
 
-function getEvidenceCounts(narrative, allData) {
-  const counts = {};
+type NarrativeItem = typeof PROPAGANDA_NARRATIVES[number];
+
+interface EvidenceData {
+  prisoners: PoliticalPrisoner[];
+  facilities: DetentionFacility[];
+  companies: ForcedLabourCompany[];
+  responses: InternationalResponse[];
+  stations: PoliceStation[];
+  cases: LegalCase[];
+  sanctions: Sanction[];
+}
+
+function getEvidenceCounts(narrative: NarrativeItem, allData: EvidenceData): Record<string, number> {
+  const counts: Record<string, number> = {};
   if (narrative.evidenceType.includes('political_prisoners')) {
     const kw = narrative.evidenceKeywords.prisoners || '';
     counts.prisoners = kw ? allData.prisoners.filter(p => {
@@ -269,7 +280,7 @@ function getEvidenceCounts(narrative, allData) {
 const MediaNarrativeTracker = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedNarrative, setExpandedNarrative] = useState(null);
+  const [expandedNarrative, setExpandedNarrative] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = dataApi.getPoliticalPrisoners();
@@ -306,7 +317,7 @@ const MediaNarrativeTracker = () => {
     totalEvidence: Object.values(allData).reduce((sum, arr) => sum + arr.length, 0),
   }), [allData]);
 
-  const getCategoryStyle = (catId) => NARRATIVE_CATEGORIES.find(c => c.id === catId) || NARRATIVE_CATEGORIES[0];
+  const getCategoryStyle = (catId: string) => NARRATIVE_CATEGORIES.find(c => c.id === catId) || NARRATIVE_CATEGORIES[0];
 
   const handleCopyReport = async () => {
     const lines = [
