@@ -1,15 +1,22 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
   BarChart3, TrendingUp, Search, AlertTriangle, BookOpen,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import statisticsData from '../data/live_statistics.json';
 
-const ICON_MAP = {
+const ICON_MAP: Record<string, LucideIcon> = {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
 };
+
+interface AnimatedCounterProps {
+  end: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}
 
 /**
  * AnimatedCounter — Smoothly animates a number from 0 to a target value.
@@ -23,9 +30,9 @@ const ICON_MAP = {
  * @param {number} [props.decimals=0] - Number of decimal places
  * @returns {React.ReactElement} Animated counter display
  */
-const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decimals = 0 }) => {
+const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decimals = 0 }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
-  const countRef = useRef(null);
+  const countRef = useRef<HTMLSpanElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -48,10 +55,10 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
   useEffect(() => {
     if (!isVisible) return;
 
-    let startTime;
+    let startTime: number | undefined;
     const startValue = 0;
     
-    const animate = (timestamp) => {
+    const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       
@@ -69,7 +76,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
     requestAnimationFrame(animate);
   }, [end, duration, isVisible]);
 
-  const formatNumber = (num) => {
+  const formatNumber = (num: number) => {
     if (decimals > 0) {
       return num.toFixed(decimals);
     }
@@ -92,7 +99,7 @@ const LiveStatistics = () => {
     emoji: stat.icon === 'flag-hk' ? '🇭🇰' : null,
   }));
 
-  const colorClasses = {
+  const colorClasses: Record<string, { bg: string; border: string; text: string }> = {
     red: { bg: 'bg-red-900/30', border: 'border-red-700/50', text: 'text-red-400' },
     cyan: { bg: 'bg-[#111820]', border: 'border-[#1c2a35]', text: 'text-[#22d3ee]' },
     orange: { bg: 'bg-orange-900/30', border: 'border-orange-700/50', text: 'text-orange-400' },
