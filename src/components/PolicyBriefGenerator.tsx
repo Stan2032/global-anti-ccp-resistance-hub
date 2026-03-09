@@ -1,9 +1,46 @@
-// @ts-nocheck
-
 
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import {
+  dataApi,
+  type PoliticalPrisoner,
+  type Sanction,
+  type ForcedLabourCompany,
+  type DetentionFacility,
+  type LegalCase,
+  type InternationalResponse,
+  type PoliceStation,
+  type SanctionedOfficial,
+} from '../services/dataApi';
 import { FileText, Users, Copy, Check, ChevronDown, ChevronUp, Globe, Shield, Scale, Search, AlertTriangle, ExternalLink, Landmark, BarChart3 } from 'lucide-react';
+
+// ── Local type definitions ────────────────────────────
+
+interface EvidenceCitation {
+  label: string;
+  url: string;
+}
+
+interface PolicyBrief {
+  title: string;
+  executive_summary: string;
+  key_findings: string[];
+  recommendations: string[];
+  evidence_citations: EvidenceCitation[];
+  data_points: Record<string, number>;
+}
+
+interface BriefDatasets {
+  prisoners: PoliticalPrisoner[];
+  sanctions: Sanction[];
+  companies: ForcedLabourCompany[];
+  facilities: DetentionFacility[];
+  cases: LegalCase[];
+  responses: InternationalResponse[];
+  stations: PoliceStation[];
+  officials: SanctionedOfficial[];
+}
+
+type SectionKey = 'findings' | 'recommendations' | 'citations';
 
 /**
  * PolicyBriefGenerator — Evidence-based policy brief generation
@@ -37,7 +74,7 @@ const TOPICS = [
 
 // ── Brief generation logic ────────────────────────────
 
-function generateBrief(audience, topic, data) {
+function generateBrief(audience: string, topic: string, data: BriefDatasets): PolicyBrief {
   const { prisoners, sanctions, companies, facilities, cases, responses, stations, officials } = data;
 
   const detainedCount = prisoners.filter(p => (p.status || '').toUpperCase() === 'DETAINED').length;
@@ -54,7 +91,7 @@ function generateBrief(audience, topic, data) {
     .filter(r => (r.genocide_recognition || '').toLowerCase().includes('yes') || (r.genocide_recognition || '').toLowerCase().includes('recognized'))
     .map(r => r.country);
 
-  const brief = {
+  const brief: PolicyBrief = {
     title: '',
     executive_summary: '',
     key_findings: [],
@@ -147,7 +184,7 @@ function generateBrief(audience, topic, data) {
     brief.data_points = { recognitions: countriesRecognizingGenocide.length, facilities: facilityCount, cases: caseCount };
 
   } else if (topic === 'hong-kong-nsl') {
-    const hkPrisoners = prisoners.filter(p => (p.location || '').toLowerCase().includes('hong kong') || (p.charges || '').toLowerCase().includes('nsl'));
+    const hkPrisoners = prisoners.filter(p => (p.location || '').toLowerCase().includes('hong kong') || ((p.charges as string | undefined) || '').toLowerCase().includes('nsl'));
 
     brief.title = audience === 'legislator'
       ? 'Legislative Brief: Hong Kong National Security Law Impact'
@@ -278,7 +315,7 @@ export default function PolicyBriefGenerator() {
   }, [searchQuery]);
 
   // ── Toggle section ──────────────────────────────────
-  const toggleSection = (section) => {
+  const toggleSection = (section: SectionKey) => {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
