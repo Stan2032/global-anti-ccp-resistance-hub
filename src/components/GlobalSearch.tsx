@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 
 /**
@@ -20,9 +18,36 @@ import {
   ShieldAlert, PenLine, Landmark, Siren, CircleDollarSign, Ban, Film,
   FileText, Mic, Search,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+interface SearchableItem {
+  type: string;
+  title: string;
+  description: string;
+  path: string;
+  Icon?: LucideIcon;
+  icon?: string;
+  keywords: string[];
+}
+
+interface ScoredItem extends SearchableItem {
+  score: number;
+}
+
+interface GlobalSearchProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface QuickLink {
+  title: string;
+  path: string;
+  Icon: LucideIcon;
+  icon?: string;
+}
 
 // Searchable content database (static — declared outside component to avoid re-creation on each render)
-const searchableContent = [
+const searchableContent: SearchableItem[] = [
   // Pages
   { type: 'page', title: 'Dashboard', description: 'Overview of resistance activities', path: '/', Icon: BarChart3, keywords: ['home', 'overview', 'stats'] },
   { type: 'page', title: 'Intelligence Feeds', description: 'Live news, updates, and regional threats', path: '/intelligence', Icon: Newspaper, keywords: ['news', 'rss', 'feeds', 'map', 'regions', 'countries', 'threats'] },
@@ -86,16 +111,16 @@ const searchableContent = [
  * @param {() => void} props.onClose - Callback to close the modal
  * @returns {React.ReactElement|null} Search modal or null when closed
  */
-const GlobalSearch = ({ isOpen, onClose }) => {
+const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<ScoredItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   // Search function
-  const performSearch = useCallback((searchQuery) => {
+  const performSearch = useCallback((searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([]);
       return;
@@ -159,7 +184,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   // Keyboard navigation
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
@@ -187,7 +212,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
   };
 
   // Handle result click
-  const handleResultClick = (result) => {
+  const handleResultClick = (result: { path: string }) => {
     navigate(result.path);
     onClose();
     setQuery('');
@@ -297,7 +322,7 @@ const GlobalSearch = ({ isOpen, onClose }) => {
                   { title: 'Take Action', path: '/take-action', Icon: Megaphone },
                   { title: 'Report Incident', path: '/community', Icon: Siren },
                   { title: 'Security Quiz', path: '/security', Icon: Lock },
-                ].map(link => (
+                ].map((link: QuickLink) => (
                   <button
                     key={link.path}
                     onClick={() => handleResultClick(link)}
