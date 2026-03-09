@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -69,15 +68,15 @@ const IntelligenceFeeds = () => {
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'newest':
-          return new Date(b.pubDate) - new Date(a.pubDate);
+          return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
         case 'oldest':
-          return new Date(a.pubDate) - new Date(b.pubDate);
+          return new Date(a.pubDate).getTime() - new Date(b.pubDate).getTime();
         case 'relevancy':
         default:
           if (b.relevanceScore !== a.relevanceScore) {
             return b.relevanceScore - a.relevanceScore;
           }
-          return new Date(b.pubDate) - new Date(a.pubDate);
+          return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
       }
     });
 
@@ -87,10 +86,10 @@ const IntelligenceFeeds = () => {
   const displayedFeeds = showAllFeeds ? filteredFeeds : filteredFeeds.slice(0, FEED_DISPLAY_COUNT);
 
   // Format relative time
-  const formatTime = (dateStr) => {
+  const formatTime = (dateStr: string) => {
     const date = new Date(dateStr);
     const now = new Date();
-    const diffMs = now - date;
+    const diffMs = now.getTime() - date.getTime();
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMs / 3600000);
     const diffDays = Math.floor(diffMs / 86400000);
@@ -102,8 +101,8 @@ const IntelligenceFeeds = () => {
   };
 
   // Get source badge color
-  const getSourceColor = (source) => {
-    const colors = {
+  const getSourceColor = (source: string) => {
+    const colors: Record<string, string> = {
       icij: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       rfa: 'bg-[#111820] text-[#22d3ee] border-[#1c2a35]',
       hkfp: 'bg-[#4afa82]/10 text-[#4afa82] border-[#4afa82]/30',
