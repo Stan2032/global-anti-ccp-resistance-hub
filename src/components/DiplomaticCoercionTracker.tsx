@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * DiplomaticCoercionTracker — Tracks diplomatic and economic coercion
@@ -8,12 +6,34 @@
  * @module DiplomaticCoercionTracker
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, InternationalResponse, Sanction, PoliceStation } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
 // DiplomaticCoercionTracker — Maps CCP diplomatic & economic coercion against
 // nations criticizing its human rights record. Cross-references sanctions,
 // international responses, police stations, and legal cases.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.
+
+interface CoercionIncident {
+  type: string;
+  year: number;
+  detail: string;
+  source: string;
+}
+
+interface CoercionCountryEntry {
+  country: string;
+  incidents: CoercionIncident[];
+  trigger: string;
+  response: string;
+}
+
+interface CoercionProfile extends CoercionCountryEntry {
+  severity: string;
+  matchedResponse: InternationalResponse | undefined;
+  sanctionCount: number;
+  stationCount: number;
+  totalIncidents: number;
+}
 
 const COERCION_TYPES = [
   { id: 'trade', label: 'Trade Restrictions', icon: DollarSign, description: 'Import bans, tariffs, informal boycotts, customs delays' },
@@ -119,11 +139,11 @@ const COERCION_INCIDENTS = [
   ], trigger: 'Democratic governance; US arms sales; Pelosi visit; Lai Ching-te inauguration', response: 'firm' },
 ];
 
-function classifySeverity(country) {
+function classifySeverity(country: CoercionCountryEntry): string {
   const count = country.incidents.length;
-  const hasHostage = country.incidents.some(i => i.type === 'hostage');
-  const hasTrade = country.incidents.some(i => i.type === 'trade');
-  const hasDiplomatic = country.incidents.some(i => i.type === 'diplomatic');
+  const hasHostage = country.incidents.some((i: CoercionIncident) => i.type === 'hostage');
+  const hasTrade = country.incidents.some((i: CoercionIncident) => i.type === 'trade');
+  const hasDiplomatic = country.incidents.some((i: CoercionIncident) => i.type === 'diplomatic');
 
   if (hasHostage || count >= 3) return 'severe';
   if (hasTrade && hasDiplomatic) return 'significant';
@@ -131,15 +151,15 @@ function classifySeverity(country) {
   return 'low';
 }
 
-function buildCoercionProfiles(coercionData, responses, sanctions, stations) {
-  return coercionData.map(cd => {
-    const matchedResponse = responses.find(r =>
+function buildCoercionProfiles(coercionData: CoercionCountryEntry[], responses: InternationalResponse[], sanctions: Sanction[], stations: PoliceStation[]): CoercionProfile[] {
+  return coercionData.map((cd: CoercionCountryEntry) => {
+    const matchedResponse = responses.find((r: InternationalResponse) =>
       r.country && cd.country && r.country.toLowerCase() === cd.country.toLowerCase()
     );
-    const matchedSanctions = sanctions.filter(s =>
+    const matchedSanctions = sanctions.filter((s: Sanction) =>
       s.country && cd.country && s.country.toLowerCase().includes(cd.country.toLowerCase())
     );
-    const matchedStations = stations.filter(s =>
+    const matchedStations = stations.filter((s: PoliceStation) =>
       s.country && cd.country && s.country.toLowerCase() === cd.country.toLowerCase()
     );
     const severity = classifySeverity(cd);
@@ -151,8 +171,8 @@ function buildCoercionProfiles(coercionData, responses, sanctions, stations) {
       stationCount: matchedStations.length,
       totalIncidents: cd.incidents.length,
     };
-  }).sort((a, b) => {
-    const order = { severe: 0, significant: 1, moderate: 2, low: 3 };
+  }).sort((a: CoercionProfile, b: CoercionProfile) => {
+    const order: Record<string, number> = { severe: 0, significant: 1, moderate: 2, low: 3 };
     return order[a.severity] - order[b.severity] || b.totalIncidents - a.totalIncidents;
   });
 }
@@ -162,7 +182,7 @@ const DiplomaticCoercionTracker = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [severityFilter, setSeverityFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [expandedCountry, setExpandedCountry] = useState(null);
+  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const responses = useMemo(() => dataApi.getInternationalResponses(), []);
@@ -240,9 +260,9 @@ const DiplomaticCoercionTracker = () => {
     { id: 'outcomes', label: 'Response Outcomes' },
   ];
 
-  const getSeverityStyle = (level) => SEVERITY_LEVELS.find(s => s.id === level) || SEVERITY_LEVELS[3];
-  const getResponseStyle = (status) => RESPONSE_LEVELS.find(r => r.id === status) || RESPONSE_LEVELS[3];
-  const getTypeInfo = (typeId) => COERCION_TYPES.find(ct => ct.id === typeId) || COERCION_TYPES[0];
+  const getSeverityStyle = (level: string) => SEVERITY_LEVELS.find(s => s.id === level) || SEVERITY_LEVELS[3];
+  const getResponseStyle = (status: string) => RESPONSE_LEVELS.find(r => r.id === status) || RESPONSE_LEVELS[3];
+  const getTypeInfo = (typeId: string) => COERCION_TYPES.find(ct => ct.id === typeId) || COERCION_TYPES[0];
 
   return (
     <section aria-label="Diplomatic Coercion Tracker" className="bg-[#0a0e14] border border-[#1c2a35] p-4 sm:p-6 space-y-6">
