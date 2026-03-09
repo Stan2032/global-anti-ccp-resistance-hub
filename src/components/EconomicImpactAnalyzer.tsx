@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -9,6 +8,13 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
+import type { ForcedLabourCompany } from '../services/dataApi';
+
+/** Enriched company record with derived sector and risk classification */
+interface EnrichedCompany extends ForcedLabourCompany {
+  sector: string;
+  risk: string;
+}
 import { TrendingUp, Search, ChevronDown, ChevronUp, Copy, Check, Factory, Scale, Globe, AlertTriangle, DollarSign, Building, FileText, Shield } from 'lucide-react';
 // EconomicImpactAnalyzer — Analyzes economic impact of CCP forced labor
 // across global supply chains. Cross-references forced labor companies,
@@ -87,12 +93,12 @@ const INDUSTRY_IMPACTS = [
     source: 'CBP, AP, BBC, CGTN Watch' },
 ];
 
-function mapIndustryToSector(industry) {
-  const map = { 'Apparel': 'apparel', 'Electronics': 'electronics', 'Retail': 'retail', 'Technology': 'technology', 'Automotive': 'automotive', 'Food & Beverage': 'food' };
+function mapIndustryToSector(industry: string = ''): string {
+  const map: Record<string, string> = { 'Apparel': 'apparel', 'Electronics': 'electronics', 'Retail': 'retail', 'Technology': 'technology', 'Automotive': 'automotive', 'Food & Beverage': 'food' };
   return map[industry] || 'retail';
 }
 
-function classifyCompanyRisk(company) {
+function classifyCompanyRisk(company: ForcedLabourCompany): string {
   const evidence = (company.evidence || '').toLowerCase();
   const uflpa = (company.uflpa_actions || '').toLowerCase();
   if (uflpa.includes('withhold release') || uflpa.includes('entity list') || evidence.includes('forced labor confirmed')) return 'critical';
@@ -105,7 +111,7 @@ const EconomicImpactAnalyzer = () => {
   const [activeView, setActiveView] = useState('sectors');
   const [searchQuery, setSearchQuery] = useState('');
   const [sectorFilter, setSectorFilter] = useState('all');
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const companies = useMemo(() => dataApi.getForcedLaborCompanies(), []);
@@ -113,8 +119,8 @@ const EconomicImpactAnalyzer = () => {
   const responses = useMemo(() => dataApi.getInternationalResponses(), []);
   const cases = useMemo(() => dataApi.getLegalCases(), []);
 
-  const enrichedCompanies = useMemo(() => {
-    return companies.map(c => ({
+  const enrichedCompanies = useMemo((): EnrichedCompany[] => {
+    return companies.map((c): EnrichedCompany => ({
       ...c,
       sector: mapIndustryToSector(c.industry),
       risk: classifyCompanyRisk(c),
@@ -181,7 +187,7 @@ const EconomicImpactAnalyzer = () => {
       '',
       '── COMPANY RISK CLASSIFICATION ──',
       ...enrichedCompanies.sort((a, b) => {
-        const order = { critical: 0, high: 1, moderate: 2, low: 3 };
+        const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
         return (order[a.risk] || 3) - (order[b.risk] || 3);
       }).map(c => `[${c.risk.toUpperCase()}] ${c.company}: ${c.connection_type}`),
       '',
@@ -200,8 +206,8 @@ const EconomicImpactAnalyzer = () => {
     { id: 'legislative', label: 'Legislative Landscape' },
   ];
 
-  const getRiskStyle = (risk) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
-  const getSectorInfo = (sectorId) => INDUSTRY_SECTORS.find(s => s.id === sectorId) || INDUSTRY_SECTORS[0];
+  const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
+  const getSectorInfo = (sectorId: string) => INDUSTRY_SECTORS.find(s => s.id === sectorId) || INDUSTRY_SECTORS[0];
 
   return (
     <section aria-label="Economic Impact Analyzer" className="bg-[#0a0e14] border border-[#1c2a35] p-4 sm:p-6 space-y-6">
@@ -399,7 +405,7 @@ const EconomicImpactAnalyzer = () => {
             <p className="text-slate-400 text-sm font-mono text-center py-4">No companies match your search</p>
           ) : (
             filteredCompanies.sort((a, b) => {
-              const order = { critical: 0, high: 1, moderate: 2, low: 3 };
+              const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
               return (order[a.risk] || 3) - (order[b.risk] || 3);
             }).map(company => {
               const riskStyle = getRiskStyle(company.risk);
@@ -467,7 +473,7 @@ const EconomicImpactAnalyzer = () => {
             <p className="text-slate-400 text-sm font-mono text-center py-4">No legislation matches your search</p>
           ) : (
             filteredFrameworks.sort((a, b) => {
-              const order = { critical: 0, high: 1, moderate: 2, low: 3 };
+              const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
               return (order[a.impact] || 3) - (order[b.impact] || 3);
             }).map(law => {
               const impactStyle = getRiskStyle(law.impact);

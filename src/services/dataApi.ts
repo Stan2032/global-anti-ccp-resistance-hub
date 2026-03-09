@@ -71,6 +71,7 @@ export interface ForcedLabourCompany {
   connection_type?: string;
   evidence?: string;
   uflpa_actions?: string;
+  company_response?: string;
   status?: string;
   source_url: string;
   [key: string]: unknown;
