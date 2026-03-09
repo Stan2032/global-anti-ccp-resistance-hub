@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * AIDisinfoDetector — AI-powered analysis tool for detecting potential
@@ -12,9 +10,27 @@ import React, { useState } from 'react';
 import { Brain, AlertTriangle, CheckCircle, Search, ExternalLink, TrendingUp, Eye } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
+interface DetectedPattern {
+  category: string;
+  score: number;
+  foundKeywords: string[];
+}
+
+interface AnalysisResult {
+  riskScore: number;
+  riskLevel: string;
+  riskColor: RiskColorKey;
+  riskDescription: string;
+  detectedPatterns: DetectedPattern[];
+  flaggedKeywords: string[];
+  wordCount: number;
+}
+
+type RiskColorKey = 'red' | 'yellow' | 'blue' | 'green';
+
 const AIDisinfoDetector = () => {
   const [inputText, setInputText] = useState('');
-  const [analysisResult, setAnalysisResult] = useState(null);
+  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   // Common CCP propaganda patterns and keywords
@@ -60,8 +76,8 @@ const AIDisinfoDetector = () => {
     setTimeout(() => {
       const lowerText = inputText.toLowerCase();
       let totalScore = 0;
-      let detectedPatterns = [];
-      let flaggedKeywords = [];
+      const detectedPatterns: DetectedPattern[] = [];
+      const flaggedKeywords: string[] = [];
 
       // Check for propaganda patterns
       propagandaPatterns.forEach(pattern => {
@@ -87,7 +103,7 @@ const AIDisinfoDetector = () => {
       const riskScore = Math.min(Math.round(totalScore * 50), 100);
 
       // Determine risk level
-      let riskLevel, riskColor, riskDescription;
+      let riskLevel: string, riskColor: RiskColorKey, riskDescription: string;
       if (riskScore >= 70) {
         riskLevel = 'High Risk';
         riskColor = 'red';
@@ -133,7 +149,7 @@ const AIDisinfoDetector = () => {
     }
   ];
 
-  const getRiskColorClass = (color) => {
+  const getRiskColorClass = (color: RiskColorKey) => {
     const colors = {
       red: 'text-red-400 bg-red-500/10 border-red-500/30',
       yellow: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
