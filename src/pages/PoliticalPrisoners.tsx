@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 
 /**
  * PoliticalPrisoners — Searchable database of documented political detentions.
@@ -18,6 +15,60 @@ import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
 import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
+
+/** Shape of each result entry in the imported JSON research data */
+interface PrisonerJsonItem {
+  input: string;
+  output: {
+    prisoner_name: string;
+    status: string;
+    location: string;
+    sentence: string;
+    latest_news: string;
+    health_status: string;
+    international_response: string;
+    source_url: string;
+    confidence: string;
+    last_verified: string;
+    verification_note: string;
+    additional_sources?: string[];
+  };
+  error: string;
+}
+
+/** Source attribution metadata attached to each prisoner record */
+interface PrisonerSource {
+  name: string;
+  url: string;
+  type: string;
+  verified: boolean;
+  description: string;
+  date: string;
+}
+
+/** Normalised prisoner record used throughout the component */
+interface Prisoner {
+  name: string;
+  chineseName: string;
+  status: string;
+  location: string;
+  charges: string[];
+  sentence: string;
+  background: string;
+  arrestDate: string;
+  urgency: string;
+  healthConcerns: boolean;
+  internationalAttention: string;
+  internationalResponse: string;
+  latestNews: string;
+  healthStatus: string;
+  source: PrisonerSource;
+  confidence: string;
+  profilePath: string | null;
+  awards?: string[];
+  hungerStrike?: boolean;
+  tortureDocumented?: boolean;
+}
 
 const CaseTimelineViewer = lazy(() => import('../components/CaseTimelineViewer'));
 const PrisonerStatusDashboard = lazy(() => import('../components/PrisonerStatusDashboard'));
@@ -40,9 +91,9 @@ const PROFILE_PATHS = {
 };
 
 // Mapping function to convert JSON data to component format
-const mapJsonToComponentFormat = (jsonResults) => {
+const mapJsonToComponentFormat = (jsonResults: PrisonerJsonItem[]): Prisoner[] => {
   if (!jsonResults?.length) return [];
-  return jsonResults.map((item) => {
+  return jsonResults.map((item: PrisonerJsonItem) => {
     const output = item?.output;
     if (!output) return null;
     
@@ -131,23 +182,25 @@ const mapJsonToComponentFormat = (jsonResults) => {
       healthStatus: output.health_status,
       source: source, // Add source object
       confidence: output.confidence,
-      profilePath: PROFILE_PATHS[output.prisoner_name] || null,
+      profilePath: PROFILE_PATHS[output.prisoner_name as keyof typeof PROFILE_PATHS] || null,
     };
-  }).filter(Boolean);
+  }).filter((p): p is Prisoner => p !== null);
 };
 
 // Convert JSON data to component format
-const PRISONERS_DATA = mapJsonToComponentFormat(politicalPrisonersData?.results);
+const PRISONERS_DATA = mapJsonToComponentFormat(
+  politicalPrisonersData?.results as PrisonerJsonItem[]
+);
 
 // Find most recent verification date across all prisoners
 const LATEST_VERIFIED = (politicalPrisonersData?.results || []).reduce((latest, item) => {
-  const d = item.output?.sources?.last_verified;
+  const d = item.output?.last_verified;
   return d && d > latest ? d : latest;
 }, '');
 
 
-const StatusBadge = ({ status }) => {
-  const colors = {
+const StatusBadge = ({ status }: { status: string }) => {
+  const colors: Record<string, string> = {
     IMPRISONED: 'bg-red-600',
     DISAPPEARED: 'bg-yellow-600',
     DECEASED: 'bg-gray-600',
@@ -163,7 +216,7 @@ const StatusBadge = ({ status }) => {
   );
 };
 
-const UrgencyBadge = ({ urgency }) => {
+const UrgencyBadge = ({ urgency }: { urgency: string }) => {
   if (urgency !== 'CRITICAL') return null;
   
   return (
@@ -173,7 +226,7 @@ const UrgencyBadge = ({ urgency }) => {
   );
 };
 
-const PrisonerCard = ({ prisoner, onClick }) => {
+const PrisonerCard = ({ prisoner, onClick }: { prisoner: Prisoner; onClick: (prisoner: Prisoner) => void }) => {
   return (
     <button
       type="button"
@@ -252,7 +305,7 @@ const PrisonerCard = ({ prisoner, onClick }) => {
   );
 };
 
-const PrisonerModal = ({ prisoner, onClose }) => {
+const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () => void }) => {
   if (!prisoner) return null;
   
   return (
@@ -402,13 +455,13 @@ const PrisonerModal = ({ prisoner, onClose }) => {
 };
 
 const PoliticalPrisoners = () => {
-  const [selectedPrisoner, setSelectedPrisoner] = useState(null);
+  const [selectedPrisoner, setSelectedPrisoner] = useState<Prisoner | null>(null);
   const [filter, setFilter] = useState('ALL');
   const [showAll, setShowAll] = useState(false);
   const INITIAL_DISPLAY_COUNT = 15;
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedPrisoner(null); };
+    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedPrisoner(null); };
     if (selectedPrisoner) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedPrisoner]);
