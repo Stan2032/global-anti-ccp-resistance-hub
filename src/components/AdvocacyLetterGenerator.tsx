@@ -1,8 +1,6 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 import { useState, useMemo } from 'react';
 import { FileText, Users, Copy, Check, ChevronDown, ChevronUp, Globe, AlertTriangle, Search } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type PoliticalPrisoner } from '../services/dataApi';
 
 /**
  * AdvocacyLetterGenerator — Data-driven personalized advocacy letters.
@@ -22,7 +20,7 @@ const COUNTRIES = [
   { code: 'eu', name: 'European Union', flag: '🇪🇺', greeting: 'Dear Member of the European Parliament', title: 'MEP' },
 ];
 
-const STATUS_LABELS = {
+const STATUS_LABELS: Record<string, string> = {
   'DETAINED': 'currently detained',
   'DECEASED': 'who died in custody or as a result of persecution',
   'DISAPPEARED': 'who has been forcibly disappeared',
@@ -31,7 +29,7 @@ const STATUS_LABELS = {
   'AT RISK': 'who is currently at risk of detention',
 };
 
-function buildLetter(prisoner, country) {
+function buildLetter(prisoner: PoliticalPrisoner, country: string) {
   const statusPhrase = STATUS_LABELS[prisoner.status] || 'currently at risk';
   const countryConfig = COUNTRIES.find(c => c.code === country) || COUNTRIES[0];
 
@@ -83,7 +81,7 @@ Sincerely,
 
 const AdvocacyLetterGenerator = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
-  const [selectedPrisoner, setSelectedPrisoner] = useState(null);
+  const [selectedPrisoner, setSelectedPrisoner] = useState<PoliticalPrisoner | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showPrisonerList, setShowPrisonerList] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -92,7 +90,7 @@ const AdvocacyLetterGenerator = () => {
     const all = dataApi.getPoliticalPrisoners();
     return all.sort((a, b) => {
       // Detained first, then by name
-      const statusOrder = { 'DETAINED': 0, 'DISAPPEARED': 1, 'AT RISK': 2, 'EXILE': 3, 'RELEASED': 4, 'DECEASED': 5 };
+      const statusOrder: Record<string, number> = { 'DETAINED': 0, 'DISAPPEARED': 1, 'AT RISK': 2, 'EXILE': 3, 'RELEASED': 4, 'DECEASED': 5 };
       const diff = (statusOrder[a.status] ?? 6) - (statusOrder[b.status] ?? 6);
       if (diff !== 0) return diff;
       return (a.prisoner_name || '').localeCompare(b.prisoner_name || '');
@@ -129,14 +127,14 @@ const AdvocacyLetterGenerator = () => {
     }
   };
 
-  const selectPrisoner = (prisoner) => {
+  const selectPrisoner = (prisoner: PoliticalPrisoner) => {
     setSelectedPrisoner(prisoner);
     setShowPrisonerList(false);
     setSearchQuery('');
     setCopied(false);
   };
 
-  const statusColor = (status) => {
+  const statusColor = (status: string) => {
     switch (status) {
       case 'DETAINED': return 'text-red-400 bg-red-900/30';
       case 'DISAPPEARED': return 'text-[#22d3ee] bg-cyan-900/30';
