@@ -1,11 +1,8 @@
-// @ts-nocheck
-
-
 import React, { useMemo } from 'react';
 import {
   Database, Users, Shield, Clock, Globe, BarChart3,
   AlertTriangle, Building2, Scale, TrendingUp, CheckCircle,
-  Calendar, FileText, Activity
+  Calendar, FileText, Activity, type LucideIcon
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
@@ -23,7 +20,7 @@ import { dataApi } from '../services/dataApi';
  * - Recent activity timeline
  */
 
-const STATUS_COLORS = {
+const STATUS_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   'DETAINED': { bg: 'bg-red-500/10', text: 'text-red-400', border: 'border-red-500/30' },
   'DECEASED': { bg: 'bg-slate-500/10', text: 'text-slate-300', border: 'border-slate-500/30' },
   'DISAPPEARED': { bg: 'bg-cyan-500/10', text: 'text-[#22d3ee]', border: 'border-cyan-500/30' },
@@ -32,7 +29,7 @@ const STATUS_COLORS = {
   'AT RISK': { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/30' },
 };
 
-const CATEGORY_COLORS = {
+const CATEGORY_COLORS: Record<string, string> = {
   alert: 'text-red-400 bg-red-400/10 border-red-400/30',
   data: 'text-[#22d3ee] bg-[#22d3ee]/10 border-[#22d3ee]/30',
   verification: 'text-green-400 bg-green-400/10 border-green-400/30',
@@ -41,13 +38,30 @@ const CATEGORY_COLORS = {
   report: 'text-slate-300 bg-slate-400/10 border-slate-400/30',
 };
 
+/** Displayable fields expected on recent update entries */
+interface DisplayUpdate {
+  id: string;
+  date: string;
+  title: string;
+  category?: string;
+  [key: string]: unknown;
+}
+
+interface DatasetCardProps {
+  icon: LucideIcon;
+  label: string;
+  count: number;
+  detail: string;
+  color: string;
+}
+
 const ContentAnalytics = () => {
   const analytics = useMemo(() => {
     const summary = dataApi.getDatasetSummary();
     const prisoners = dataApi.getPoliticalPrisoners();
     const sanctions = dataApi.getSanctions();
     const timeline = dataApi.getTimelineEvents();
-    const updates = dataApi.getRecentUpdates();
+    const updates = dataApi.getRecentUpdates() as DisplayUpdate[];
     const alerts = dataApi.getAlerts();
     const facilities = dataApi.getDetentionFacilities();
     const companies = dataApi.getForcedLaborCompanies();
@@ -56,21 +70,21 @@ const ContentAnalytics = () => {
     const totalRecords = Object.values(summary.datasets).reduce((sum, d) => sum + d.count, 0);
 
     // Prisoner status breakdown
-    const prisonersByStatus = {};
+    const prisonersByStatus: Record<string, number> = {};
     prisoners.forEach(p => {
       const status = p.status || 'UNKNOWN';
       prisonersByStatus[status] = (prisonersByStatus[status] || 0) + 1;
     });
 
     // Sanctions by country
-    const sanctionsByCountry = {};
+    const sanctionsByCountry: Record<string, number> = {};
     sanctions.forEach(s => {
       const country = s.country || 'unknown';
       sanctionsByCountry[country] = (sanctionsByCountry[country] || 0) + 1;
     });
 
     // Timeline by decade
-    const timelineByDecade = {};
+    const timelineByDecade: Record<string, number> = {};
     timeline.forEach(e => {
       const year = parseInt(e.date?.substring(0, 4));
       if (!isNaN(year)) {
@@ -80,7 +94,7 @@ const ContentAnalytics = () => {
     });
 
     // Timeline by category
-    const timelineByCategory = {};
+    const timelineByCategory: Record<string, number> = {};
     timeline.forEach(e => {
       const cat = e.category || 'other';
       timelineByCategory[cat] = (timelineByCategory[cat] || 0) + 1;
@@ -105,7 +119,7 @@ const ContentAnalytics = () => {
     };
 
     // Recent updates by category
-    const updatesByCategory = {};
+    const updatesByCategory: Record<string, number> = {};
     (updates || []).forEach(u => {
       const cat = u.category || 'other';
       updatesByCategory[cat] = (updatesByCategory[cat] || 0) + 1;
@@ -132,7 +146,7 @@ const ContentAnalytics = () => {
     };
   }, []);
 
-  const COUNTRY_LABELS = {
+  const COUNTRY_LABELS: Record<string, string> = {
     us: 'United States',
     uk: 'United Kingdom',
     eu: 'European Union',
@@ -331,7 +345,7 @@ const ContentAnalytics = () => {
         </h3>
         <div className="space-y-2">
           {analytics.updates.slice(0, 5).map((update) => {
-            const catColors = CATEGORY_COLORS[update.category] || 'text-slate-400 bg-slate-400/10 border-slate-400/30';
+            const catColors = CATEGORY_COLORS[update.category || ''] || 'text-slate-400 bg-slate-400/10 border-slate-400/30';
             return (
               <div key={update.id} className="flex items-start gap-3 p-2 hover:bg-[#0a0e14] transition-colors">
                 <Calendar className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
@@ -367,8 +381,8 @@ const ContentAnalytics = () => {
 };
 
 /** Reusable dataset summary card */
-const DatasetCard = ({ icon: Icon, label, count, detail, color }) => {
-  const borderColors = {
+const DatasetCard = ({ icon: Icon, label, count, detail, color }: DatasetCardProps) => {
+  const borderColors: Record<string, string> = {
     red: 'border-l-red-400',
     cyan: 'border-l-[#22d3ee]',
     yellow: 'border-l-[#fbbf24]',
