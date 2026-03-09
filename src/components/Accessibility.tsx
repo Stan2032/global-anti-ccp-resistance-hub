@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/languageUtils';
 
@@ -34,11 +31,17 @@ export const SkipLinks = () => {
  * @param {React.ElementType} [props.as='span'] - HTML element to render as
  * @returns {React.ReactElement} Hidden element
  */
-export const VisuallyHidden = ({ children, as: Component = 'span' }) => {
+interface VisuallyHiddenProps {
+  children: React.ReactNode;
+  as?: React.ElementType;
+}
+
+export const VisuallyHidden = ({ children, as: Component = 'span' }: VisuallyHiddenProps) => {
+  const Tag: React.ElementType = Component;
   return (
-    <Component className="sr-only">
+    <Tag className="sr-only">
       {children}
-    </Component>
+    </Tag>
   );
 };
 
@@ -46,7 +49,7 @@ export const VisuallyHidden = ({ children, as: Component = 'span' }) => {
  * Focus Trap Hook
  * Traps focus within a container (useful for modals)
  */
-const useFocusTrap = (containerRef, isActive) => {
+const useFocusTrap = (containerRef: React.RefObject<HTMLElement | null>, isActive: boolean) => {
   useEffect(() => {
     if (!isActive || !containerRef.current) return;
 
@@ -54,10 +57,12 @@ const useFocusTrap = (containerRef, isActive) => {
     const focusableElements = container.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+    const firstElement = focusableElements[0] as HTMLElement | undefined;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement | undefined;
 
-    const handleKeyDown = (e) => {
+    if (!firstElement || !lastElement) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
 
       if (e.shiftKey) {
@@ -86,7 +91,12 @@ const useFocusTrap = (containerRef, isActive) => {
  * Announce to Screen Readers
  * Creates a live region for dynamic announcements
  */
-export const LiveRegion = ({ message, priority = 'polite' }) => {
+interface LiveRegionProps {
+  message: React.ReactNode;
+  priority?: 'polite' | 'assertive';
+}
+
+export const LiveRegion = ({ message, priority = 'polite' }: LiveRegionProps) => {
   return (
     <div
       role="status"
@@ -103,6 +113,12 @@ export const LiveRegion = ({ message, priority = 'polite' }) => {
  * Accessible Button Component
  * Button with proper ARIA attributes
  */
+interface AccessibleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: boolean;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+}
+
 export const AccessibleButton = ({
   children,
   onClick,
@@ -112,7 +128,7 @@ export const AccessibleButton = ({
   ariaDescribedBy,
   className = '',
   ...props
-}) => {
+}: AccessibleButtonProps) => {
   return (
     <button
       onClick={onClick}
@@ -139,6 +155,12 @@ export const AccessibleButton = ({
  * Accessible Card Component
  * Card with proper semantic structure
  */
+interface AccessibleCardProps extends React.HTMLAttributes<HTMLElement> {
+  title?: string;
+  description?: string;
+  as?: React.ElementType;
+}
+
 export const AccessibleCard = ({
   children,
   title,
@@ -146,9 +168,10 @@ export const AccessibleCard = ({
   as: Component = 'article',
   className = '',
   ...props
-}) => {
+}: AccessibleCardProps) => {
+  const Tag: React.ElementType = Component;
   return (
-    <Component
+    <Tag
       className={`focus-within:ring-2 focus-within:ring-[#4afa82] ${className}`}
       aria-label={title}
       {...props}
@@ -164,7 +187,7 @@ export const AccessibleCard = ({
         </p>
       )}
       {children}
-    </Component>
+    </Tag>
   );
 };
 
@@ -172,10 +195,10 @@ export const AccessibleCard = ({
  * Keyboard Navigation Hook
  * Handles arrow key navigation in lists
  */
-const useKeyboardNavigation = (items, onSelect) => {
+const useKeyboardNavigation = <T,>(items: T[], onSelect?: (item: T, index: number) => void) => {
   const [focusedIndex, setFocusedIndex] = React.useState(0);
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
@@ -209,7 +232,20 @@ const useKeyboardNavigation = (items, onSelect) => {
 /**
  * Accessible Tab Panel Component
  */
-export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }) => {
+interface TabItem {
+  id: string;
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+}
+
+interface AccessibleTabsProps {
+  tabs: TabItem[];
+  activeTab: string;
+  onTabChange: (id: string) => void;
+  children: React.ReactNode;
+}
+
+export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }: AccessibleTabsProps) => {
   return (
     <div>
       <div role="tablist" aria-label="Content tabs" className="flex space-x-2 mb-4">
@@ -263,7 +299,13 @@ export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }) => {
 /**
  * Progress Indicator with ARIA
  */
-export const AccessibleProgress = ({ value, max = 100, label }) => {
+interface AccessibleProgressProps {
+  value: number;
+  max?: number;
+  label?: string;
+}
+
+export const AccessibleProgress = ({ value, max = 100, label }: AccessibleProgressProps) => {
   const percentage = Math.round((value / max) * 100);
   
   return (
@@ -294,7 +336,16 @@ export const AccessibleProgress = ({ value, max = 100, label }) => {
 /**
  * Alert Component with proper ARIA role
  */
-export const AccessibleAlert = ({ type = 'info', title, children, onDismiss }) => {
+type AlertType = 'info' | 'warning' | 'error' | 'success';
+
+interface AccessibleAlertProps {
+  type?: AlertType;
+  title?: React.ReactNode;
+  children: React.ReactNode;
+  onDismiss?: () => void;
+}
+
+export const AccessibleAlert = ({ type = 'info', title, children, onDismiss }: AccessibleAlertProps) => {
   const typeStyles = {
     info: 'bg-[#111820]/50 border-[#1c2a35] text-[#22d3ee]',
     warning: 'bg-yellow-900/50 border-yellow-700 text-yellow-300',
