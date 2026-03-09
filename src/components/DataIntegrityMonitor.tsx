@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * DataIntegrityMonitor — Monitors data quality across all datasets.
@@ -12,24 +10,58 @@ import React, { useState, useMemo } from 'react';
 import { ShieldCheck, AlertTriangle, CheckCircle, XCircle, ChevronDown, ChevronUp, Copy, Check, Activity, Database, Clock, Link2, Search } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
+// ── Type definitions ───────────────────────────────────
+
+type CheckStatus = 'pass' | 'warn' | 'fail';
+type FreshnessStatus = 'fresh' | 'current' | 'stale';
+type StatusKey = CheckStatus | FreshnessStatus;
+
+interface StatusConfig {
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+  icon: typeof CheckCircle;
+}
+
+interface DataCheck {
+  name: string;
+  status: CheckStatus;
+  detail: string;
+}
+
+interface DatasetReport {
+  key: string;
+  name: string;
+  description: string;
+  count: number;
+  fields: string[];
+  checks: DataCheck[];
+  freshness: FreshnessStatus;
+  freshnessLabel: string;
+  passCount: number;
+  failCount: number;
+  overallStatus: CheckStatus;
+}
+
 // ── Health status thresholds ───────────────────────────
 
 const FRESHNESS_THRESHOLDS = { fresh: 7, current: 30 }; // days
 
-function daysSince(dateStr) {
+function daysSince(dateStr: string | null): number {
   if (!dateStr) return Infinity;
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return Infinity;
   return Math.floor((Date.now() - d.getTime()) / 86400000);
 }
 
-function freshnessStatus(days) {
+function freshnessStatus(days: number): FreshnessStatus {
   if (days <= FRESHNESS_THRESHOLDS.fresh) return 'fresh';
   if (days <= FRESHNESS_THRESHOLDS.current) return 'current';
   return 'stale';
 }
 
-const STATUS_CONFIG = {
+const STATUS_CONFIG: Record<StatusKey, StatusConfig> = {
   fresh: { label: 'Fresh', color: 'text-[#4afa82]', bg: 'bg-green-900/20', border: 'border-[#4afa82]/30', icon: CheckCircle },
   current: { label: 'Current', color: 'text-[#fbbf24]', bg: 'bg-yellow-900/20', border: 'border-[#fbbf24]/30', icon: Clock },
   stale: { label: 'Stale', color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-400/30', icon: AlertTriangle },
@@ -40,7 +72,7 @@ const STATUS_CONFIG = {
 
 // ── Validation checks ──────────────────────────────────
 
-function validateUrl(url) {
+function validateUrl(url: unknown): boolean {
   if (!url || typeof url !== 'string') return false;
   try {
     const u = new URL(url);
@@ -50,14 +82,14 @@ function validateUrl(url) {
 
 const CCP_DOMAINS = ['xinhua', 'globaltimes', 'chinadaily', 'cgtn', 'cctv', 'people.com.cn', 'ecns.cn'];
 
-function hasCcpSource(url) {
+function hasCcpSource(url: unknown): boolean {
   if (!url || typeof url !== 'string') return false;
   const lower = url.toLowerCase();
   return CCP_DOMAINS.some((d) => lower.includes(d));
 }
 
-function runDatasetChecks(name, records, fields) {
-  const checks = [];
+function runDatasetChecks(name: string, records: Record<string, unknown>[], fields: string[]): DataCheck[] {
+  const checks: DataCheck[] = [];
   const count = records.length;
 
   // Record count
@@ -122,7 +154,7 @@ function runDatasetChecks(name, records, fields) {
   // Duplicate detection (by first field)
   if (fields && fields[0] && count > 0) {
     const primaryField = fields[0];
-    const values = records.map((r) => (r[primaryField] || '').toLowerCase().trim()).filter(Boolean);
+    const values = records.map((r) => ((r[primaryField] || '') as string).toLowerCase().trim()).filter(Boolean);
     const unique = new Set(values);
     const dupes = values.length - unique.size;
     checks.push({
@@ -137,11 +169,11 @@ function runDatasetChecks(name, records, fields) {
 
 // ── Build full integrity report ────────────────────────
 
-function buildIntegrityReport() {
+function buildIntegrityReport(): DatasetReport[] {
   const summary = dataApi.getDatasetSummary();
-  const datasets = [];
+  const datasets: DatasetReport[] = [];
 
-  const dataFetchers = {
+  const dataFetchers: Record<string, (() => Record<string, unknown>[]) | undefined> = {
     political_prisoners: () => dataApi.getPoliticalPrisoners(),
     sanctions: () => dataApi.getSanctions(),
     sanctioned_officials: () => dataApi.getSanctionedOfficials(),
@@ -165,11 +197,12 @@ function buildIntegrityReport() {
 
     // Freshness from lastVerified dates in records
     const dateFields = ['last_verified', 'lastVerified', 'date'];
-    let latestDate = null;
-    records.forEach((r) => {
-      dateFields.forEach((df) => {
-        if (r[df] && (!latestDate || r[df] > latestDate)) {
-          latestDate = r[df];
+    let latestDate: string | null = null;
+    records.forEach((r: Record<string, unknown>) => {
+      dateFields.forEach((df: string) => {
+        const dateVal = r[df] as string;
+        if (dateVal && (!latestDate || dateVal > latestDate)) {
+          latestDate = dateVal;
         }
       });
     });
@@ -205,7 +238,7 @@ function buildIntegrityReport() {
 
 // ── Clipboard ──────────────────────────────────────────
 
-function buildClipboardText(datasets) {
+function buildClipboardText(datasets: DatasetReport[]): string {
   const lines = [
     'Data Integrity Monitor — Global Anti-CCP Resistance Hub',
     `Generated: ${new Date().toISOString().slice(0, 10)}`,
@@ -301,7 +334,7 @@ export default function DataIntegrityMonitor() {
 
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
-        {(['pass', 'warn', 'fail']).map((status) => {
+        {(['pass', 'warn', 'fail'] as const).map((status) => {
           const cfg = STATUS_CONFIG[status];
           const Icon = cfg.icon;
           const active = statusFilter === status;
