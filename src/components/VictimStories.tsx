@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -10,18 +9,40 @@
  */
 import { useState, useEffect } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+interface Story {
+  id: number;
+  name: string;
+  category: string;
+  location: string;
+  title: string;
+  summary: string;
+  fullStory: string;
+  quote: string;
+  year: number;
+  verified: boolean;
+  sources: string[];
+}
+
+interface Category {
+  id: string;
+  name: string;
+  Icon?: LucideIcon;
+  icon?: string;
+}
 
 const VictimStories = () => {
-  const [selectedStory, setSelectedStory] = useState(null);
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedStory(null); };
+    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedStory(null); };
     if (selectedStory) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedStory]);
 
-  const stories = [
+  const stories: Story[] = [
     {
       id: 1,
       name: 'Mihrigul Tursun',
@@ -176,7 +197,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
     }
   ];
 
-  const categories = [
+  const categories: Category[] = [
     { id: 'all', name: 'All Stories', Icon: BookOpen },
     { id: 'uyghur', name: 'Uyghur', Icon: Landmark },
     { id: 'hongkong', name: 'Hong Kong', Icon: Building2 },
@@ -189,7 +210,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
     ? stories
     : stories.filter(s => s.category === selectedCategory);
 
-  const getCategoryInfo = (category) => {
+  const getCategoryInfo = (category: string): Category => {
     const cat = categories.find(c => c.id === category);
     return cat || categories[0];
   };
@@ -304,7 +325,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
 
               {/* Full Story */}
               <div className="prose prose-invert max-w-none mb-6">
-                {selectedStory.fullStory.split('\n\n').map((paragraph, i) => (
+                {selectedStory.fullStory.split('\n\n').map((paragraph: string, i: number) => (
                   <p key={i} className="text-slate-300 mb-4">{paragraph}</p>
                 ))}
               </div>
@@ -313,7 +334,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               <div className="bg-[#0a0e14]/50 p-4">
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
                 <div className="flex flex-wrap gap-2">
-                  {selectedStory.sources.map((source, i) => (
+                  {selectedStory.sources.map((source: string, i: number) => (
                     <span key={i} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
                       {source}
                     </span>
