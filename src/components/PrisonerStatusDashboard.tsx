@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * PrisonerStatusDashboard — Analytics dashboard visualising political
@@ -10,9 +8,30 @@
  */
 import React, { useMemo, useState } from 'react';
 import { Copy, Check, AlertTriangle, Heart, Clock, Users, Eye, ChevronDown, ChevronUp, Shield } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type PoliticalPrisoner } from '../services/dataApi';
 
-const STATUS_CONFIG = {
+/** Style configuration for a single prisoner status category. */
+interface StatusConfigEntry {
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+  sort: number;
+}
+
+type HealthClassification = 'critical' | 'concerning' | 'stable' | 'unknown';
+
+/** Enriched prisoner record with derived analytics fields. */
+interface EnrichedPrisoner extends PoliticalPrisoner {
+  healthClass: HealthClassification;
+  region: string;
+  normalizedStatus: string;
+  statusConf: StatusConfigEntry;
+  isUrgent: boolean;
+  hasHealthAlert: boolean;
+}
+
+const STATUS_CONFIG: Record<string, StatusConfigEntry> = {
   DETAINED: { label: 'Detained', color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-400/30', sort: 1 },
   IMPRISONED: { label: 'Imprisoned', color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-400/30', sort: 1 },
   DISAPPEARED: { label: 'Disappeared', color: 'text-yellow-400', bg: 'bg-yellow-900/20', border: 'border-yellow-400/30', sort: 2 },
@@ -28,7 +47,7 @@ const HEALTH_KEYWORDS = {
   unknown: ['unknown', 'no information', 'no access', 'denied visit', 'incommunicado'],
 };
 
-function classifyHealth(healthStatus) {
+function classifyHealth(healthStatus: string | undefined): HealthClassification {
   if (!healthStatus) return 'unknown';
   const lower = healthStatus.toLowerCase();
   if (HEALTH_KEYWORDS.critical.some(k => lower.includes(k))) return 'critical';
@@ -37,7 +56,7 @@ function classifyHealth(healthStatus) {
   return 'stable';
 }
 
-function getHealthConfig(classification) {
+function getHealthConfig(classification: string): { label: string; color: string; icon: string } {
   switch (classification) {
     case 'critical': return { label: 'Critical', color: 'text-red-400', icon: '🔴' };
     case 'concerning': return { label: 'Concerning', color: 'text-yellow-400', icon: '🟡' };
@@ -46,7 +65,7 @@ function getHealthConfig(classification) {
   }
 }
 
-function classifyRegion(prisoner) {
+function classifyRegion(prisoner: PoliticalPrisoner): string {
   const fields = [
     prisoner.location,
     prisoner.prisoner_name,
@@ -65,13 +84,13 @@ export default function PrisonerStatusDashboard() {
   const [copied, setCopied] = useState(false);
   const [statusFilter, setStatusFilter] = useState('all');
   const [healthFilter, setHealthFilter] = useState('all');
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState('urgency');
 
   const analysis = useMemo(() => {
     const prisoners = dataApi.getPoliticalPrisoners();
 
-    const enriched = prisoners.map(p => {
+    const enriched: EnrichedPrisoner[] = prisoners.map(p => {
       const healthClass = classifyHealth(p.health_status);
       const region = classifyRegion(p);
       const status = (p.status || 'UNKNOWN').toUpperCase();
@@ -88,9 +107,9 @@ export default function PrisonerStatusDashboard() {
       };
     });
 
-    const statusCounts = {};
-    const healthCounts = { critical: 0, concerning: 0, stable: 0, unknown: 0 };
-    const regionCounts = {};
+    const statusCounts: Record<string, number> = {};
+    const healthCounts: Record<HealthClassification, number> = { critical: 0, concerning: 0, stable: 0, unknown: 0 };
+    const regionCounts: Record<string, number> = {};
 
     for (const p of enriched) {
       statusCounts[p.normalizedStatus] = (statusCounts[p.normalizedStatus] || 0) + 1;
@@ -123,11 +142,11 @@ export default function PrisonerStatusDashboard() {
     list = [...list].sort((a, b) => {
       if (sortBy === 'urgency') {
         if (a.statusConf.sort !== b.statusConf.sort) return a.statusConf.sort - b.statusConf.sort;
-        const healthOrder = { critical: 0, concerning: 1, unknown: 2, stable: 3 };
+        const healthOrder: Record<string, number> = { critical: 0, concerning: 1, unknown: 2, stable: 3 };
         return (healthOrder[a.healthClass] || 9) - (healthOrder[b.healthClass] || 9);
       }
       if (sortBy === 'health') {
-        const healthOrder = { critical: 0, concerning: 1, unknown: 2, stable: 3 };
+        const healthOrder: Record<string, number> = { critical: 0, concerning: 1, unknown: 2, stable: 3 };
         return (healthOrder[a.healthClass] || 9) - (healthOrder[b.healthClass] || 9);
       }
       if (sortBy === 'name') {
@@ -344,7 +363,7 @@ export default function PrisonerStatusDashboard() {
               >
                 All
               </button>
-              {['critical', 'concerning', 'unknown', 'stable'].map(h => {
+              {(['critical', 'concerning', 'unknown', 'stable'] satisfies HealthClassification[]).map(h => {
                 const conf = getHealthConfig(h);
                 return (
                   <button
@@ -464,10 +483,10 @@ export default function PrisonerStatusDashboard() {
                         </a>
                       </div>
                     )}
-                    {p.confidence && (
+                    {!!p.confidence && (
                       <div className="flex items-center space-x-1 pt-1">
                         <Shield className="w-3 h-3 text-slate-400" aria-hidden="true" />
-                        <span className="text-xs text-slate-400">Confidence: {p.confidence}</span>
+                        <span className="text-xs text-slate-400">Confidence: {String(p.confidence)}</span>
                       </div>
                     )}
                   </div>
