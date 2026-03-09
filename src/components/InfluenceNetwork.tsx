@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 import React, { useState, useMemo } from 'react';
 import {
   Network, Users, Shield, MapPin, AlertTriangle,
@@ -8,6 +5,15 @@ import {
   Target, Globe, Activity, Eye
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import type { SanctionedOfficial, PoliticalPrisoner, Sanction, TimelineEvent } from '../services/dataApi';
+
+interface RegionConfigEntry {
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+  description: string;
+}
 
 /**
  * InfluenceNetwork — Cross-dataset relationship visualization.
@@ -19,7 +25,7 @@ import { dataApi } from '../services/dataApi';
  * No external graph libraries — pure CSS/React implementation.
  */
 
-const REGION_CONFIG = {
+const REGION_CONFIG: Record<string, RegionConfigEntry> = {
   xinjiang: {
     label: 'Xinjiang',
     color: 'text-red-400',
@@ -52,7 +58,7 @@ const REGION_CONFIG = {
 
 const SANCTION_COUNTRIES = ['us', 'uk', 'eu', 'canada', 'australia'];
 
-const SANCTION_FIELDS = {
+const SANCTION_FIELDS: Record<string, string> = {
   us: 'us_sanctions',
   uk: 'uk_sanctions',
   eu: 'eu_sanctions',
@@ -63,7 +69,7 @@ const SANCTION_FIELDS = {
 /**
  * Categorize a sanctioned official into a region.
  */
-function getOfficialRegion(official) {
+function getOfficialRegion(official: SanctionedOfficial): string {
   const area = (official.responsibility_area || '').toLowerCase();
   if (area.includes('xinjiang')) return 'xinjiang';
   if (area.includes('hong kong')) return 'hongkong';
@@ -74,7 +80,7 @@ function getOfficialRegion(official) {
 /**
  * Count how many countries have sanctioned an official.
  */
-function countSanctions(official) {
+function countSanctions(official: SanctionedOfficial): number {
   let count = 0;
   for (const country of SANCTION_COUNTRIES) {
     const field = SANCTION_FIELDS[country];
@@ -89,7 +95,7 @@ function countSanctions(official) {
 /**
  * Get the sanctions list for an official.
  */
-function getSanctionsList(official) {
+function getSanctionsList(official: SanctionedOfficial): string[] {
   const result = [];
   for (const country of SANCTION_COUNTRIES) {
     const field = SANCTION_FIELDS[country];
@@ -102,8 +108,8 @@ function getSanctionsList(official) {
 }
 
 const InfluenceNetwork = () => {
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [expandedSection, setExpandedSection] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   // Build network data from all datasets
   const network = useMemo(() => {
@@ -115,7 +121,7 @@ const InfluenceNetwork = () => {
     const timeline = dataApi.getTimelineEvents();
 
     // Group officials by region
-    const officialsByRegion = {};
+    const officialsByRegion: Record<string, SanctionedOfficial[]> = {};
     for (const r of Object.keys(REGION_CONFIG)) {
       officialsByRegion[r] = [];
     }
@@ -127,7 +133,7 @@ const InfluenceNetwork = () => {
     }
 
     // Group prisoners by region (rough keyword match)
-    const prisonersByRegion = {
+    const prisonersByRegion: Record<string, PoliticalPrisoner[]> = {
       xinjiang: prisoners.filter((p) => {
         const text = `${p.prisoner_name} ${p.location} ${p.latest_news || ''}`.toLowerCase();
         return text.includes('uyghur') || text.includes('xinjiang') || text.includes('urumqi');
@@ -148,7 +154,7 @@ const InfluenceNetwork = () => {
     };
 
     // Timeline events by category
-    const timelineByRegion = {
+    const timelineByRegion: Record<string, TimelineEvent[]> = {
       xinjiang: timeline.filter((e) => e.category === 'uyghur'),
       hongkong: timeline.filter((e) => e.category === 'hongkong'),
       tibet: timeline.filter((e) => e.category === 'tibet'),
@@ -158,7 +164,7 @@ const InfluenceNetwork = () => {
     };
 
     // Sanctions by target region (rough mapping)
-    const sanctionsByRegion = {
+    const sanctionsByRegion: Record<string, Sanction[]> = {
       xinjiang: sanctions.filter((s) => {
         const text = `${s.target} ${s.reason} ${s.role || ''}`.toLowerCase();
         return text.includes('xinjiang') || text.includes('uyghur');
@@ -179,7 +185,7 @@ const InfluenceNetwork = () => {
     };
 
     // Count total sanctions per country
-    const sanctionCountByCountry = {};
+    const sanctionCountByCountry: Record<string, number> = {};
     for (const country of SANCTION_COUNTRIES) {
       sanctionCountByCountry[country] = sanctions.filter(
         (s) => s.country === country
@@ -209,7 +215,7 @@ const InfluenceNetwork = () => {
     };
   }, []);
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string) => {
     setExpandedSection((prev) => (prev === section ? null : section));
   };
 

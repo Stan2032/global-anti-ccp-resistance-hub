@@ -55,6 +55,7 @@ export interface SanctionedOfficial {
 }
 
 export interface TimelineEvent {
+  id: string;
   date: string;
   title: string;
   category?: string;
