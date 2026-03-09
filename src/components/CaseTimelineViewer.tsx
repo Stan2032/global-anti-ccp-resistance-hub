@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 
 /**
  * CaseTimelineViewer — Visual timeline viewer for individual political
@@ -10,7 +7,7 @@
  * @module CaseTimelineViewer
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type PoliticalPrisoner, type TimelineEvent } from '../services/dataApi';
 import {
   Search,
   ChevronDown,
@@ -26,7 +23,7 @@ import {
   FileText,
 } from 'lucide-react';
 
-const CASE_KEYWORDS = {
+const CASE_KEYWORDS: Record<string, string[]> = {
   'Jimmy Lai': ['Jimmy Lai', 'Apple Daily', 'National Security Law'],
   'Joshua Wong': ['Joshua Wong', 'Hong Kong 47', 'HK47'],
   'Ilham Tohti': ['Ilham Tohti', 'Uyghur', 'Xinjiang'],
@@ -41,7 +38,7 @@ const CASE_KEYWORDS = {
   'Cardinal Joseph Zen': ['Cardinal Zen', 'Joseph Zen'],
 };
 
-const CATEGORY_COLORS = {
+const CATEGORY_COLORS: Record<string, string> = {
   hongkong: 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30',
   uyghur: 'bg-[#22d3ee]/20 text-[#22d3ee] border-[#22d3ee]/30',
   tibet: 'bg-red-400/20 text-red-400 border-red-400/30',
@@ -50,7 +47,7 @@ const CATEGORY_COLORS = {
   global: 'bg-[#4afa82]/20 text-[#4afa82] border-[#4afa82]/30',
 };
 
-const CATEGORY_DOT_COLORS = {
+const CATEGORY_DOT_COLORS: Record<string, string> = {
   hongkong: 'bg-yellow-400',
   uyghur: 'bg-[#22d3ee]',
   tibet: 'bg-red-400',
@@ -59,29 +56,29 @@ const CATEGORY_DOT_COLORS = {
   global: 'bg-[#4afa82]',
 };
 
-const SIGNIFICANCE_CONFIG = {
+const SIGNIFICANCE_CONFIG: Record<string, { color: string; label: string }> = {
   critical: { color: 'bg-red-500', label: 'Critical' },
   high: { color: 'bg-yellow-500', label: 'High' },
   medium: { color: 'bg-slate-500', label: 'Medium' },
 };
 
-const STATUS_STYLES = {
+const STATUS_STYLES: Record<string, string> = {
   DETAINED: 'bg-red-900/30 text-red-400 border-red-400/30',
   DISAPPEARED: 'bg-yellow-900/30 text-yellow-400 border-yellow-400/30',
   RELEASED: 'bg-green-900/30 text-green-400 border-green-400/30',
 };
 
-function getKeywordsForPrisoner(name) {
+function getKeywordsForPrisoner(name: string): string[] {
   return CASE_KEYWORDS[name] || [name];
 }
 
-function matchesKeywords(text, keywords) {
+function matchesKeywords(text: string | undefined, keywords: string[]): boolean {
   if (!text) return false;
   const lower = text.toLowerCase();
   return keywords.some((kw) => lower.includes(kw.toLowerCase()));
 }
 
-function formatDate(dateStr) {
+function formatDate(dateStr: string | undefined): string {
   if (!dateStr) return 'Unknown date';
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
   try {
@@ -97,7 +94,7 @@ function formatDate(dateStr) {
   }
 }
 
-function buildClipboardText(prisoner, events) {
+function buildClipboardText(prisoner: PoliticalPrisoner, events: TimelineEvent[]): string {
   const lines = [];
   lines.push(`CASE TIMELINE: ${prisoner.prisoner_name}`);
   lines.push('='.repeat(50));
@@ -107,7 +104,7 @@ function buildClipboardText(prisoner, events) {
   lines.push('');
   lines.push(`Related Events (${events.length}):`);
   lines.push('-'.repeat(50));
-  events.forEach((event) => {
+  events.forEach((event: TimelineEvent) => {
     lines.push(`[${event.date}] ${event.title}`);
     lines.push(`  Category: ${event.category} | Significance: ${event.significance}`);
     if (event.description) lines.push(`  ${event.description}`);
@@ -144,11 +141,12 @@ export default function CaseTimelineViewer() {
     [prisoners, selectedPrisonerId]
   );
 
-  const matchedEvents = useMemo(() => {
+  const matchedEvents = useMemo<TimelineEvent[]>(() => {
     if (!selectedPrisoner) return [];
     const keywords = getKeywordsForPrisoner(selectedPrisoner.prisoner_name);
     const matches = allEvents.filter((event) => {
-      const searchableFields = [event.title, event.description, event.details];
+      const details = typeof event.details === 'string' ? event.details : undefined;
+      const searchableFields = [event.title, event.description, details];
       return searchableFields.some((field) => matchesKeywords(field, keywords));
     });
     return [...matches].sort((a, b) => {
@@ -158,7 +156,7 @@ export default function CaseTimelineViewer() {
     });
   }, [selectedPrisoner, allEvents]);
 
-  const handleSelectPrisoner = (prisonerName) => {
+  const handleSelectPrisoner = (prisonerName: string) => {
     setSelectedPrisonerId(prisonerName);
     setIsDropdownOpen(false);
     setSearchQuery('');
@@ -187,7 +185,7 @@ export default function CaseTimelineViewer() {
     }
   };
 
-  const handleKeyDownDropdown = (e) => {
+  const handleKeyDownDropdown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsDropdownOpen(false);
     }
@@ -446,14 +444,16 @@ export default function CaseTimelineViewer() {
               />
 
               <div className="space-y-4">
-                {matchedEvents.map((event) => {
-                  const catColor = CATEGORY_DOT_COLORS[event.category] || 'bg-slate-400';
-                  const catBadge = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.mainland;
-                  const sigConfig = SIGNIFICANCE_CONFIG[event.significance] || SIGNIFICANCE_CONFIG.medium;
+                {matchedEvents.map((event: TimelineEvent) => {
+                  const category = event.category ?? '';
+                  const significance = event.significance ?? '';
+                  const catColor = CATEGORY_DOT_COLORS[category] || 'bg-slate-400';
+                  const catBadge = CATEGORY_COLORS[category] || CATEGORY_COLORS.mainland;
+                  const sigConfig = SIGNIFICANCE_CONFIG[significance] || SIGNIFICANCE_CONFIG.medium;
 
                   return (
                     <div
-                      key={event.id ?? `${event.date}-${event.title}`}
+                      key={event.id != null ? String(event.id) : `${event.date}-${event.title}`}
                       role="listitem"
                       className="relative pl-7 sm:pl-8"
                     >
@@ -506,14 +506,14 @@ export default function CaseTimelineViewer() {
                         )}
 
                         {/* Details (expandable content) */}
-                        {event.details && (
+                        {typeof event.details === 'string' && (
                           <p className="text-xs text-slate-400 mt-2 leading-relaxed border-t border-[#1c2a35] pt-2">
                             {event.details}
                           </p>
                         )}
 
                         {/* Impact */}
-                        {event.impact && (
+                        {typeof event.impact === 'string' && (
                           <div className="mt-2 pt-2 border-t border-[#1c2a35]">
                             <span className="text-[10px] text-slate-400 uppercase font-semibold">Impact: </span>
                             <span className="text-xs text-slate-300">{event.impact}</span>
