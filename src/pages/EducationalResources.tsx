@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * EducationalResources — Learning center with courses, research papers,
  * documentaries, reading lists, glossary, and language guides covering
@@ -7,7 +5,7 @@
  *
  * @module EducationalResources
  */
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, type FC } from 'react'
 import { 
   Clock, 
   Download,
@@ -15,6 +13,32 @@ import {
   Info
 } from 'lucide-react'
 import educationalData from '../data/educational_modules.json'
+
+interface EducationalModule {
+  id: number
+  title: string
+  category: string
+  description: string
+  duration: string
+  level: string
+  lessons: number
+  topics: string[]
+}
+
+interface EducationalResource {
+  id: number
+  title: string
+  type: string
+  size: string
+}
+
+interface ModuleCardProps {
+  module: EducationalModule
+}
+
+interface ResourceCardProps {
+  resource: EducationalResource
+}
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -47,7 +71,7 @@ const VideoTestimonials = lazy(() => import('../components/VideoTestimonials'));
 
 const EducationalResources = () => {
   const [activeTab, setActiveTab] = useState('learn')
-  const [selectedModule, setSelectedModule] = useState(null)
+  const [selectedModule, setSelectedModule] = useState<number | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
 
@@ -64,7 +88,7 @@ const EducationalResources = () => {
     return matchesCategory && matchesSearch
   })
 
-  const ModuleCard = ({ module }) => (
+  const ModuleCard: FC<ModuleCardProps> = ({ module }) => (
     <button
       type="button"
       onClick={() => setSelectedModule(module.id)}
@@ -101,7 +125,7 @@ const EducationalResources = () => {
     </button>
   )
 
-  const ResourceCard = ({ resource }) => (
+  const ResourceCard: FC<ResourceCardProps> = ({ resource }) => (
     <div
       className="bg-[#111820] border border-[#1c2a35] p-4"
     >
@@ -228,6 +252,7 @@ const EducationalResources = () => {
             >
               {(() => {
                 const module = modules.find(m => m.id === selectedModule)
+                if (!module) return null
                 return (
                   <>
                     <div className="flex items-start justify-between mb-6">
