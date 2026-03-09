@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -36,8 +35,15 @@ const types = ['All Types', 'Internment Camp', 'Prison', 'Detention Center', 'Ma
 // Process research data into source attribution format
 const MAX_DESCRIPTION_LENGTH = 100;
 
-// Trusted source domain mappings for categorization
-const TRUSTED_SOURCES = {
+interface TrustedSource {
+  type: string;
+  org: string;
+  name?: string;
+  nameTemplate?: string;
+}
+
+// Trusted source domain mappings for categorisation
+const TRUSTED_SOURCES: Record<string, TrustedSource> = {
   'xjdp.aspi.org.au': { type: 'NGO Report', org: 'Australian Strategic Policy Institute (ASPI)', name: 'ASPI Xinjiang Data Project' },
   'www.rand.org': { type: 'Academic Research', org: 'RAND Corporation', name: 'Tibet Prison Analysis' },
   'www.ap.org': { type: 'News Report', org: 'Associated Press', nameTemplate: 'AP Investigation: {region}' },
@@ -51,12 +57,12 @@ const TRUSTED_SOURCES = {
   'faluninfo.net': { type: 'News Report', org: 'Falun Dafa Info Center', nameTemplate: '{region}' }
 };
 
-const truncateDescription = (text, maxLength) => {
+const truncateDescription = (text: string | undefined, maxLength: number): string => {
   if (!text) return 'See source';
   return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 };
 
-const categorizeDomain = (domain, region) => {
+const categorizeDomain = (domain: string, region: string) => {
   // Check exact domain match first
   if (TRUSTED_SOURCES[domain]) {
     const source = TRUSTED_SOURCES[domain];
@@ -78,8 +84,18 @@ const categorizeDomain = (domain, region) => {
   };
 };
 
-const processResearchSources = () => {
-  const sources = [];
+interface ResearchSource {
+  name: string;
+  url: string;
+  type: string;
+  organization: string;
+  verified: boolean;
+  description: string;
+  date: string;
+}
+
+const processResearchSources = (): ResearchSource[] => {
+  const sources: ResearchSource[] = [];
   const seen = new Set();
   
   (detentionResearchData?.results || []).forEach(result => {
@@ -121,11 +137,11 @@ export default function DetentionFacilities() {
   const [selectedRegion, setSelectedRegion] = useState('All Regions');
   const [selectedType, setSelectedType] = useState('All Types');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFacility, setSelectedFacility] = useState(null);
-  const [expandedSections, setExpandedSections] = useState({});
+  const [selectedFacility, setSelectedFacility] = useState<string | null>(null);
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedFacility(null); };
+    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedFacility(null); };
     if (selectedFacility) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedFacility]);
@@ -138,15 +154,15 @@ export default function DetentionFacilities() {
     return true;
   });
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string) => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
   };
 
-  const getTypeColor = (type) => {
-    const colors = {
+  const getTypeColor = (type: string): string => {
+    const colors: Record<string, string> = {
       'Internment Camp': 'bg-red-600',
       'Prison': 'bg-orange-600',
       'Detention Center': 'bg-yellow-600',
@@ -163,6 +179,7 @@ export default function DetentionFacilities() {
 
   if (selectedFacility) {
     const facility = facilities.find(f => f.id === selectedFacility);
+    if (!facility) return null;
     
     return (
       <div className="bg-[#111820]/50 border border-[#1c2a35]">
