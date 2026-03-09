@@ -3,13 +3,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 describe('PWAInstallBanner', () => {
-  let PWAInstallBanner;
+  let PWAInstallBanner: any;
 
   beforeEach(async () => {
     vi.resetModules();
 
     // Mock localStorage
-    const store = {};
+    const store: Record<string, any> = {};
     vi.stubGlobal('localStorage', {
       getItem: vi.fn((key) => store[key] || null),
       setItem: vi.fn((key, val) => { store[key] = val; }),

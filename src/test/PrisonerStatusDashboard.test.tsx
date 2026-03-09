@@ -24,8 +24,8 @@ describe('PrisonerStatusDashboard', () => {
     render(<PrisonerStatusDashboard />);
     const totalLabel = screen.getByText('Total Documented');
     const card = totalLabel.closest('.p-4');
-    const numEl = card.querySelector('.font-mono.text-2xl');
-    const count = parseInt(numEl.textContent, 10);
+    const numEl = card!.querySelector('.font-mono.text-2xl');
+    const count = parseInt(numEl!.textContent, 10);
     expect(count).toBeGreaterThan(0);
   });
 
@@ -33,8 +33,8 @@ describe('PrisonerStatusDashboard', () => {
     render(<PrisonerStatusDashboard />);
     const detainedLabel = screen.getByText('Currently Detained');
     const card = detainedLabel.closest('.p-4');
-    const numEl = card.querySelector('.font-mono.text-2xl');
-    const count = parseInt(numEl.textContent, 10);
+    const numEl = card!.querySelector('.font-mono.text-2xl');
+    const count = parseInt(numEl!.textContent, 10);
     expect(count).toBeGreaterThan(0);
   });
 
@@ -285,7 +285,7 @@ describe('PrisonerStatusDashboard', () => {
     const showingText = screen.getByText(/^Showing \d+ of \d+ prisoners$/).textContent;
     const match = showingText.match(/Showing (\d+) of (\d+)/);
     expect(match).not.toBeNull();
-    expect(match[1]).toBe(match[2]);
+    expect(match![1]).toBe(match![2]);
   });
 
   it('no empty prisoner names in list', () => {

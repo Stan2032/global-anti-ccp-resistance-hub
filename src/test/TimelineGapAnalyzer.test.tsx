@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TimelineGapAnalyzer from '../components/TimelineGapAnalyzer';
 import dataApi from '../services/dataApi';
@@ -58,7 +58,7 @@ describe('TimelineGapAnalyzer', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    dataApi.getTimelineEvents.mockReturnValue(mockEvents);
+    (dataApi.getTimelineEvents as any).mockReturnValue(mockEvents);
   });
 
   // --- Basic Rendering ---
@@ -228,7 +228,7 @@ describe('TimelineGapAnalyzer', () => {
     fireEvent.click(copyButton);
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
-    const copiedText = navigator.clipboard.writeText.mock.calls[0][0];
+    const copiedText = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(copiedText).toContain('Timeline Coverage Analysis');
     expect(copiedText).toContain('Total Events: 5');
     expect(copiedText).toContain('Year Range: 1989-2020');
@@ -248,7 +248,7 @@ describe('TimelineGapAnalyzer', () => {
   // --- Empty State ---
 
   it('handles empty timeline data gracefully', () => {
-    dataApi.getTimelineEvents.mockReturnValue([]);
+    (dataApi.getTimelineEvents as any).mockReturnValue([]);
     render(<TimelineGapAnalyzer />);
     expect(screen.getByText('No timeline data available.')).toBeInTheDocument();
   });

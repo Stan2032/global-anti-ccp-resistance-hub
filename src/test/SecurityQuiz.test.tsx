@@ -51,7 +51,7 @@ describe('SecurityQuiz', () => {
 
   // --- Scoring & Results ---
 
-  const answerAllQuestions = (selectBest) => {
+  const answerAllQuestions = (selectBest: any) => {
     render(<SecurityQuiz />);
     const bestAnswers = [
       'Always, with a reputable provider',          // Q1: 3 pts
@@ -130,9 +130,9 @@ describe('SecurityQuiz', () => {
   it('resource links open in new tab with noopener', () => {
     answerAllQuestions(true);
     const effLink = screen.getByText('EFF Surveillance Self-Defense').closest('a');
-    expect(effLink.getAttribute('target')).toBe('_blank');
-    expect(effLink.getAttribute('rel')).toContain('noopener');
-    expect(effLink.getAttribute('href')).toBe('https://ssd.eff.org/');
+    expect(effLink!.getAttribute('target')).toBe('_blank');
+    expect(effLink!.getAttribute('rel')).toContain('noopener');
+    expect(effLink!.getAttribute('href')).toBe('https://ssd.eff.org/');
   });
 
   // --- Reset ---

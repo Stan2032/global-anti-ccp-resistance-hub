@@ -63,33 +63,33 @@ describe('EmbedWidget', () => {
     const { container } = render(<EmbedWidget />);
     const pre = container.querySelector('pre');
     expect(pre).toBeTruthy();
-    expect(pre.textContent).toContain('Resistance Hub');
+    expect(pre!.textContent).toContain('Resistance Hub');
   });
 
   it('generated code includes inline styles (no external CSS needed)', () => {
     const { container } = render(<EmbedWidget />);
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('style=');
+    expect(pre!.textContent).toContain('style=');
   });
 
   it('generated code includes color scheme from design system', () => {
     const { container } = render(<EmbedWidget />);
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('#0a0e14');
+    expect(pre!.textContent).toContain('#0a0e14');
   });
 
   it('can switch to Statistics Badge type', () => {
     const { container } = render(<EmbedWidget />);
     fireEvent.click(screen.getByText('Statistics Badge'));
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('CCP Human Rights Violations');
+    expect(pre!.textContent).toContain('CCP Human Rights Violations');
   });
 
   it('can switch to Alert Banner type', () => {
     const { container } = render(<EmbedWidget />);
     fireEvent.click(screen.getByText('Alert Banner'));
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('ALERT');
+    expect(pre!.textContent).toContain('ALERT');
   });
 
   it('can switch back to Prisoner Card type', () => {
@@ -97,7 +97,7 @@ describe('EmbedWidget', () => {
     fireEvent.click(screen.getByText('Statistics Badge'));
     fireEvent.click(screen.getByText('Political Prisoner Card'));
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('Political Prisoner');
+    expect(pre!.textContent).toContain('Political Prisoner');
   });
 
   it('attribution note mentions no JavaScript required', () => {
@@ -108,6 +108,6 @@ describe('EmbedWidget', () => {
   it('generated code links back to the platform', () => {
     const { container } = render(<EmbedWidget />);
     const pre = container.querySelector('pre');
-    expect(pre.textContent).toContain('resistance-hub');
+    expect(pre!.textContent).toContain('resistance-hub');
   });
 });

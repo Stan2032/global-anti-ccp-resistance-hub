@@ -4,8 +4,8 @@ import React from 'react';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }) => <span data-testid="source">{source?.name || 'source'}</span>,
-  SourcesList: ({ sources, title }) => (
+  default: ({ source }: any) => <span data-testid="source">{source?.name || 'source'}</span>,
+  SourcesList: ({ sources, title }: any) => (
     <div data-testid="sources-list">
       <span>{title}</span>
       <span>{sources?.length || 0} sources</span>
@@ -143,9 +143,9 @@ describe('DetentionFacilities', () => {
     const toggleButton = screen.getByText('Documented Evidence').closest('button');
     expect(toggleButton).toBeTruthy();
     // Click to collapse
-    fireEvent.click(toggleButton);
+    fireEvent.click(toggleButton!);
     // Click again to expand
-    fireEvent.click(toggleButton);
+    fireEvent.click(toggleButton!);
     // Should still show evidence header
     expect(screen.getByText('Documented Evidence')).toBeTruthy();
   });
@@ -162,9 +162,9 @@ describe('DetentionFacilities', () => {
   it('resource links use HTTPS and open in new tab', () => {
     render(<DetentionFacilities />);
     const aspiLink = screen.getByText('ASPI Xinjiang Data Project').closest('a');
-    expect(aspiLink.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
-    expect(aspiLink.getAttribute('target')).toBe('_blank');
-    expect(aspiLink.getAttribute('rel')).toContain('noopener');
+    expect(aspiLink!.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
+    expect(aspiLink!.getAttribute('target')).toBe('_blank');
+    expect(aspiLink!.getAttribute('rel')).toContain('noopener');
   });
 
   // --- Sources List ---

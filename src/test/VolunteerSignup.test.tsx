@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 
@@ -26,31 +26,31 @@ describe('VolunteerSignup', () => {
   });
 
   it('shows "Coming Soon" notice when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<VolunteerSignup />);
     expect(screen.getByText('Form Not Yet Connected (Coming Soon)')).toBeTruthy();
   });
 
   it('hides "Coming Soon" notice when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<VolunteerSignup />);
     expect(screen.queryByText('Form Not Yet Connected (Coming Soon)')).toBeNull();
   });
 
   it('shows "not yet active" footer when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<VolunteerSignup />);
     expect(screen.getByText(/Form not yet active/)).toBeTruthy();
   });
 
   it('shows "Connected to secure backend" footer when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<VolunteerSignup />);
     expect(screen.getByText(/Connected to secure backend/)).toBeTruthy();
   });
 
   it('submits without calling Supabase when not configured', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<VolunteerSignup />);
 
     fireEvent.change(screen.getByLabelText('Name *'), { target: { value: 'Jane' } });
@@ -65,8 +65,8 @@ describe('VolunteerSignup', () => {
   });
 
   it('calls submitVolunteerSignup when backend is connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitVolunteerSignup.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitVolunteerSignup as any).mockResolvedValue({ data: [{}], error: null });
     render(<VolunteerSignup />);
 
     fireEvent.change(screen.getByLabelText('Name *'), { target: { value: 'Jane' } });
@@ -87,8 +87,8 @@ describe('VolunteerSignup', () => {
   });
 
   it('shows error message when Supabase submission fails', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitVolunteerSignup.mockResolvedValue({ data: null, error: 'Database error' });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitVolunteerSignup as any).mockResolvedValue({ data: null, error: 'Database error' });
     render(<VolunteerSignup />);
 
     fireEvent.change(screen.getByLabelText('Name *'), { target: { value: 'Jane' } });
@@ -104,8 +104,8 @@ describe('VolunteerSignup', () => {
   });
 
   it('shows backend-aware success message when connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitVolunteerSignup.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitVolunteerSignup as any).mockResolvedValue({ data: [{}], error: null });
     render(<VolunteerSignup />);
 
     fireEvent.change(screen.getByLabelText('Name *'), { target: { value: 'Jane' } });

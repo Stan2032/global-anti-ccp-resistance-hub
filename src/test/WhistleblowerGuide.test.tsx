@@ -265,7 +265,7 @@ describe('WhistleblowerGuide', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const clipboardText = navigator.clipboard.writeText.mock.calls.at(-1)[0];
+    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('WHISTLEBLOWER SECURITY GUIDE');
     expect(clipboardText).toContain('CC BY 4.0');
   });
@@ -273,7 +273,7 @@ describe('WhistleblowerGuide', () => {
   it('copy report contains critical warning', () => {
     render(<WhistleblowerGuide />);
     fireEvent.click(screen.getByLabelText('Copy intelligence report to clipboard'));
-    const clipboardText = navigator.clipboard.writeText.mock.calls.at(-1)[0];
+    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('CRITICAL SECURITY WARNING');
     expect(clipboardText).toContain('VERIFIED SUBMISSION CHANNELS');
   });
@@ -285,7 +285,7 @@ describe('WhistleblowerGuide', () => {
     const text = region.textContent;
     const match = text.match(/(\d+)\s+security protocols/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(14);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(14);
   });
 
   it('has at least 10 submission channels', () => {
@@ -294,7 +294,7 @@ describe('WhistleblowerGuide', () => {
     const text = region.textContent;
     const match = text.match(/(\d+)\s+submission channels/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(10);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(10);
   });
 
   it('has at least 5 legal frameworks', () => {
@@ -303,7 +303,7 @@ describe('WhistleblowerGuide', () => {
     const text = region.textContent;
     const match = text.match(/(\d+)\s+legal frameworks/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(5);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(5);
   });
 
   // ── No CCP Sources ─────────────────────────────────────

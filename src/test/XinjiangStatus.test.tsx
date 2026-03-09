@@ -66,8 +66,8 @@ describe('XinjiangStatus', () => {
     render(<XinjiangStatus />);
     fireEvent.click(screen.getByText('Detention Camps'));
     const aspiLink = screen.getByText('ASPI Xinjiang Data Project').closest('a');
-    expect(aspiLink.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
-    expect(aspiLink.getAttribute('target')).toBe('_blank');
+    expect(aspiLink!.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
+    expect(aspiLink!.getAttribute('target')).toBe('_blank');
   });
 
   // --- Forced Labor Tab ---
@@ -129,8 +129,8 @@ describe('XinjiangStatus', () => {
   it('resource links open in new tab', () => {
     render(<XinjiangStatus />);
     const uhrpLink = screen.getByText('UHRP').closest('a');
-    expect(uhrpLink.getAttribute('target')).toBe('_blank');
-    expect(uhrpLink.getAttribute('rel')).toContain('noopener');
-    expect(uhrpLink.getAttribute('href')).toBe('https://uhrp.org/');
+    expect(uhrpLink!.getAttribute('target')).toBe('_blank');
+    expect(uhrpLink!.getAttribute('rel')).toContain('noopener');
+    expect(uhrpLink!.getAttribute('href')).toBe('https://uhrp.org/');
   });
 });

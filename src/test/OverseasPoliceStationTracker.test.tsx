@@ -124,8 +124,8 @@ describe('OverseasPoliceStationTracker', () => {
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
-    fireEvent.click(closedBtn);
-    expect(closedBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(closedBtn!);
+    expect(closedBtn!.getAttribute('aria-pressed')).toBe('true');
     const closed = dataApi.getPoliceStationsByStatus('CLOSED');
     const expandable = screen.getAllByRole('button').filter(
       (b) => b.getAttribute('aria-expanded') !== null
@@ -138,10 +138,10 @@ describe('OverseasPoliceStationTracker', () => {
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
-    fireEvent.click(closedBtn);
-    expect(closedBtn.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(closedBtn);
-    expect(closedBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(closedBtn!);
+    expect(closedBtn!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(closedBtn!);
+    expect(closedBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('shows Clear button when filter is active', () => {
@@ -149,7 +149,7 @@ describe('OverseasPoliceStationTracker', () => {
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
-    fireEvent.click(closedBtn);
+    fireEvent.click(closedBtn!);
     expect(screen.getByText('Clear')).toBeTruthy();
   });
 
@@ -158,7 +158,7 @@ describe('OverseasPoliceStationTracker', () => {
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
-    fireEvent.click(closedBtn);
+    fireEvent.click(closedBtn!);
     fireEvent.click(screen.getByText('Clear'));
     const expandable = screen.getAllByRole('button').filter(
       (b) => b.getAttribute('aria-expanded') !== null
@@ -390,7 +390,7 @@ describe('OverseasPoliceStationTracker', () => {
     render(<OverseasPoliceStationTracker />);
     const input = screen.getByLabelText('Search police stations');
     expect(input.tagName).toBe('INPUT');
-    expect(input.type).toBe('text');
+    expect((input as HTMLInputElement).type).toBe('text');
   });
 
   // --- No CCP State Media ---

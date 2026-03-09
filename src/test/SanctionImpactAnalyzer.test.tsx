@@ -114,8 +114,8 @@ describe('SanctionImpactAnalyzer', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const fullBtn = coverageButtons.find((b) => b.textContent.includes('Full Coverage'));
-    fireEvent.click(fullBtn);
-    expect(fullBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(fullBtn!);
+    expect(fullBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking a coverage filter twice clears it', () => {
@@ -124,10 +124,10 @@ describe('SanctionImpactAnalyzer', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const fullBtn = coverageButtons.find((b) => b.textContent.includes('Full Coverage'));
-    fireEvent.click(fullBtn);
-    expect(fullBtn.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(fullBtn);
-    expect(fullBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(fullBtn!);
+    expect(fullBtn!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(fullBtn!);
+    expect(fullBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('shows Clear button when coverage filter is active', () => {
@@ -136,7 +136,7 @@ describe('SanctionImpactAnalyzer', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const fullBtn = coverageButtons.find((b) => b.textContent.includes('Full Coverage'));
-    fireEvent.click(fullBtn);
+    fireEvent.click(fullBtn!);
     expect(screen.getByText('Clear')).toBeTruthy();
   });
 
@@ -146,7 +146,7 @@ describe('SanctionImpactAnalyzer', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const fullBtn = coverageButtons.find((b) => b.textContent.includes('Full Coverage'));
-    fireEvent.click(fullBtn);
+    fireEvent.click(fullBtn!);
     fireEvent.click(screen.getByText('Clear'));
     const updatedButtons = screen.getAllByRole('button').filter(
       (b) => b.getAttribute('aria-pressed') !== null
@@ -265,8 +265,8 @@ describe('SanctionImpactAnalyzer', () => {
     fireEvent.click(expandable[0]);
     const sourceLink = screen.getByText('Source');
     expect(sourceLink.closest('a')).toBeTruthy();
-    expect(sourceLink.closest('a').getAttribute('target')).toBe('_blank');
-    expect(sourceLink.closest('a').getAttribute('rel')).toBe('noopener noreferrer');
+    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
+    expect(sourceLink!.closest('a')!.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
   it('clicking expanded official collapses it', () => {
@@ -369,7 +369,7 @@ describe('SanctionImpactAnalyzer', () => {
     const officials = dataApi.getSanctionedOfficials();
     const chen = officials.find((o) => o.name === 'Chen Quanguo');
     expect(chen).toBeTruthy();
-    expect(chen.position).toBeTruthy();
+    expect(chen!.position).toBeTruthy();
   });
 
   it('all officials have required fields', () => {
@@ -385,7 +385,7 @@ describe('SanctionImpactAnalyzer', () => {
     expect(chen).toBeTruthy();
     const countries = ['us', 'uk', 'eu', 'canada', 'australia'];
     const sanctionCount = countries.filter((c) => {
-      const val = chen[`${c}_sanctions`];
+      const val = chen![`${c}_sanctions`];
       return val && String(val).toLowerCase().startsWith('yes');
     }).length;
     expect(sanctionCount).toBe(5);

@@ -106,7 +106,7 @@ describe('TakeAction', () => {
   it('expands action when clicked', () => {
     renderTakeAction();
     const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton);
+    fireEvent.click(donateButton!);
     // Should show the action links
     expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
     expect(screen.getByText('Hong Kong Watch')).toBeTruthy();
@@ -117,23 +117,23 @@ describe('TakeAction', () => {
   it('collapses action when clicked again', () => {
     renderTakeAction();
     const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton);
+    fireEvent.click(donateButton!);
     expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
-    fireEvent.click(donateButton);
+    fireEvent.click(donateButton!);
     expect(screen.queryByText('Uyghur Human Rights Project')).toBeNull();
   });
 
   it('shows stats in expanded action', () => {
     renderTakeAction();
     const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton);
+    fireEvent.click(donateButton!);
     expect(screen.getByText(/29 in-depth reports/)).toBeTruthy();
   });
 
   it('shows sample message template for contact representatives', () => {
     renderTakeAction();
     const contactButton = screen.getByText('CONTACT YOUR REPRESENTATIVES').closest('button');
-    fireEvent.click(contactButton);
+    fireEvent.click(contactButton!);
     expect(screen.getByText('Sample Message:')).toBeTruthy();
     expect(screen.getByText(/I am writing to urge you/)).toBeTruthy();
   });
@@ -141,7 +141,7 @@ describe('TakeAction', () => {
   it('shows companies to boycott list', () => {
     renderTakeAction();
     const petitionButton = screen.getByText('SIGN PETITIONS & BOYCOTT').closest('button');
-    fireEvent.click(petitionButton);
+    fireEvent.click(petitionButton!);
     expect(screen.getByText('Companies to Avoid:')).toBeTruthy();
     expect(screen.getByText('Shein')).toBeTruthy();
     expect(screen.getByText('Temu')).toBeTruthy();
@@ -153,7 +153,7 @@ describe('TakeAction', () => {
     renderTakeAction();
     fireEvent.click(screen.getByText(/show --all 5 actions/));
     const secureButton = screen.getByText('STAY INFORMED & STAY SECURE').closest('button');
-    fireEvent.click(secureButton);
+    fireEvent.click(secureButton!);
     expect(screen.getByText('Recommended Tools:')).toBeTruthy();
     // 'Signal' appears in both tools and action links, so check for at least one
     expect(screen.getAllByText('Signal').length).toBeGreaterThanOrEqual(1);
@@ -164,9 +164,9 @@ describe('TakeAction', () => {
   it('has aria-expanded attributes on action buttons', () => {
     renderTakeAction();
     const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    expect(donateButton.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(donateButton);
-    expect(donateButton.getAttribute('aria-expanded')).toBe('true');
+    expect(donateButton!.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(donateButton!);
+    expect(donateButton!.getAttribute('aria-expanded')).toBe('true');
   });
 
   // --- Emergency Contacts ---
@@ -188,8 +188,8 @@ describe('TakeAction', () => {
   it('links to emergency contact websites', () => {
     renderTakeAction();
     const frontLine = screen.getByText('Front Line Defenders').closest('a');
-    expect(frontLine.getAttribute('href')).toBe('https://www.frontlinedefenders.org/en/emergency-contact');
-    expect(frontLine.getAttribute('rel')).toContain('noopener');
+    expect(frontLine!.getAttribute('href')).toBe('https://www.frontlinedefenders.org/en/emergency-contact');
+    expect(frontLine!.getAttribute('rel')).toContain('noopener');
   });
 
   // --- Lazy-loaded Sections ---

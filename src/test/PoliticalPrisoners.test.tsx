@@ -7,7 +7,7 @@ import React from 'react';
 vi.mock('../components/UrgentCaseTimer', () => ({ default: () => <div>UrgentCaseTimer</div> }));
 vi.mock('../components/CaseStudies', () => ({ default: () => <div>CaseStudies</div> }));
 vi.mock('../components/MemorialWall', () => ({ default: () => <div>MemorialWall</div> }));
-vi.mock('../components/ui/SourceAttribution', () => ({ default: ({ source }) => <div>Source: {source?.name}</div> }));
+vi.mock('../components/ui/SourceAttribution', () => ({ default: ({ source }: any) => <div>Source: {source?.name}</div> }));
 
 import PoliticalPrisoners from '../pages/PoliticalPrisoners';
 
@@ -64,9 +64,9 @@ describe('PoliticalPrisoners', () => {
     // Filter button is the first "IMPRISONED" text in a button element
     const imprisonedButtons = screen.getAllByText('IMPRISONED');
     const filterBtn = imprisonedButtons.find(el => el.tagName === 'BUTTON');
-    fireEvent.click(filterBtn);
+    fireEvent.click(filterBtn!);
     // After filtering, the button should be active (red styling)
-    expect(filterBtn.className).toContain('text-red-300');
+    expect(filterBtn!.className).toContain('text-red-300');
   });
 
   // --- Featured Profiles Banner ---
@@ -125,7 +125,7 @@ describe('PoliticalPrisoners', () => {
     // Change filter — target the filter button specifically
     const imprisonedButtons = screen.getAllByText('IMPRISONED');
     const filterBtn = imprisonedButtons.find(el => el.tagName === 'BUTTON');
-    fireEvent.click(filterBtn);
+    fireEvent.click(filterBtn!);
     // Should reset to truncated (or show all if <15 match)
     const filteredCards = screen.getAllByRole('button', { name: /View details for/ });
     expect(filteredCards.length).toBeLessThanOrEqual(27); // 27 imprisoned, all fit within truncation or total
@@ -148,7 +148,7 @@ describe('PoliticalPrisoners', () => {
     // Find the close button (X icon)
     const dialog = screen.getByRole('dialog');
     const closeBtn = dialog.querySelector('button');
-    fireEvent.click(closeBtn);
+    fireEvent.click(closeBtn!);
     expect(screen.queryByRole('dialog')).toBeNull();
   });
 

@@ -253,7 +253,7 @@ describe('EconomicImpactAnalyzer', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const clipboardText = navigator.clipboard.writeText.mock.calls.at(-1)[0];
+    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('ECONOMIC IMPACT ANALYZER');
     expect(clipboardText).toContain('CC BY 4.0');
   });
@@ -261,7 +261,7 @@ describe('EconomicImpactAnalyzer', () => {
   it('copy report contains sector analysis', async () => {
     render(<EconomicImpactAnalyzer />);
     fireEvent.click(screen.getByLabelText('Copy intelligence report to clipboard'));
-    const clipboardText = navigator.clipboard.writeText.mock.calls.at(-1)[0];
+    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('SECTOR ANALYSIS');
     expect(clipboardText).toContain('LEGISLATIVE LANDSCAPE');
     expect(clipboardText).toContain('COMPANY RISK');
@@ -274,7 +274,7 @@ describe('EconomicImpactAnalyzer', () => {
     const text = container.textContent;
     const match = text.match(/(\d+)\s+companies analyzed/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(25);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(25);
   });
 
   it('has at least 6 industry sectors', () => {
@@ -283,7 +283,7 @@ describe('EconomicImpactAnalyzer', () => {
     const text = container.textContent;
     const match = text.match(/(\d+)\s+sectors/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(6);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(6);
   });
 
   it('has at least 6 legislative frameworks', () => {
@@ -292,7 +292,7 @@ describe('EconomicImpactAnalyzer', () => {
     const text = container.textContent;
     const match = text.match(/(\d+)\s+legislative frameworks/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(6);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(6);
   });
 
   // ── No CCP Sources ─────────────────────────────────────

@@ -19,7 +19,7 @@ describe('EastTurkestanFlag', () => {
     const { container } = render(<EastTurkestanFlag />);
     const rect = container.querySelector('rect');
     expect(rect).toBeTruthy();
-    expect(rect.getAttribute('fill')).toBe('#75AADB');
+    expect(rect!.getAttribute('fill')).toBe('#75AADB');
   });
 
   it('renders white circles for the crescent', () => {
@@ -32,13 +32,13 @@ describe('EastTurkestanFlag', () => {
     const { container } = render(<EastTurkestanFlag />);
     const polygon = container.querySelector('polygon');
     expect(polygon).toBeTruthy();
-    expect(polygon.getAttribute('fill')).toBe('white');
+    expect(polygon!.getAttribute('fill')).toBe('white');
   });
 
   it('applies the default className', () => {
     const { container } = render(<EastTurkestanFlag />);
     const svg = container.querySelector('svg');
-    expect(svg.getAttribute('class')).toContain('w-5 h-5');
+    expect(svg!.getAttribute('class')).toContain('w-5 h-5');
   });
 });
 
@@ -69,12 +69,12 @@ describe('TibetanFlag', () => {
     const { container } = render(<TibetanFlag />);
     const circle = container.querySelector('circle');
     expect(circle).toBeTruthy();
-    expect(circle.getAttribute('fill')).toBe('#F4D03F');
+    expect(circle!.getAttribute('fill')).toBe('#F4D03F');
   });
 
   it('applies the default className', () => {
     const { container } = render(<TibetanFlag />);
     const svg = container.querySelector('svg');
-    expect(svg.getAttribute('class')).toContain('w-5 h-5');
+    expect(svg!.getAttribute('class')).toContain('w-5 h-5');
   });
 });

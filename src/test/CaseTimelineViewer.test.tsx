@@ -86,7 +86,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     expect(screen.getByRole('listbox')).toBeTruthy();
-    fireEvent.keyDown(input.closest('[onkeydown]') || input.parentElement.parentElement, { key: 'Escape' });
+    fireEvent.keyDown(input.closest('[onkeydown]')! || input.parentElement!.parentElement, { key: 'Escape' });
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
@@ -104,7 +104,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.change(input, { target: { value: 'Jimmy' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
     expect(option).toBeTruthy();
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Jimmy Lai')).toBeTruthy();
   });
 
@@ -113,7 +113,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     // Status should appear in the info card
     expect(screen.getAllByText('DETAINED').length).toBeGreaterThanOrEqual(1);
   });
@@ -123,7 +123,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Sentence')).toBeTruthy();
   });
 
@@ -132,7 +132,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Location')).toBeTruthy();
   });
 
@@ -143,11 +143,11 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Related Events')).toBeTruthy();
     // Jimmy Lai should match multiple events (arrested, NSL, Apple Daily, etc.)
-    const badge = screen.getByText((content, el) =>
-      el?.classList?.contains('rounded-full') && parseInt(content) > 0
+    const badge = screen.getByText((content: string, el: Element | null) =>
+      !!(el?.classList?.contains('rounded-full') && parseInt(content) > 0)
     );
     expect(badge).toBeTruthy();
   });
@@ -157,7 +157,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Jimmy Lai Arrested')).toBeTruthy();
   });
 
@@ -166,7 +166,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Apple Daily Forced to Close')).toBeTruthy();
   });
 
@@ -175,7 +175,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Jimmy Lai Sentenced to 20 Years')).toBeTruthy();
   });
 
@@ -184,7 +184,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     const timeElements = screen.getAllByRole('listitem');
     expect(timeElements.length).toBeGreaterThanOrEqual(2);
   });
@@ -197,7 +197,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Ilham' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Ilham Tohti'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Ilham Tohti Arrested')).toBeTruthy();
   });
 
@@ -209,7 +209,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Liu Xiaobo' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Liu Xiaobo'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Charter 08 Published')).toBeTruthy();
     expect(screen.getByText('Liu Xiaobo Awarded Nobel Peace Prize')).toBeTruthy();
     expect(screen.getByText('Liu Xiaobo Dies in Custody')).toBeTruthy();
@@ -223,7 +223,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Joshua Wong' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Joshua Wong'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Joshua Wong HK47 Appeal Dismissed')).toBeTruthy();
   });
 
@@ -235,7 +235,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Gedhun' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Gedhun Choekyi Nyima'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Panchen Lama Abducted')).toBeTruthy();
   });
 
@@ -246,7 +246,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByText('Copy Timeline')).toBeTruthy();
   });
 
@@ -258,7 +258,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     fireEvent.click(screen.getByText('Copy Timeline'));
     expect(await screen.findByText('Copied')).toBeTruthy();
   });
@@ -270,7 +270,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getAllByText('hongkong').length).toBeGreaterThanOrEqual(1);
   });
 
@@ -280,7 +280,7 @@ describe('CaseTimelineViewer', () => {
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Ilham' } });
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Ilham Tohti'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getAllByText('uyghur').length).toBeGreaterThanOrEqual(1);
   });
 
@@ -292,13 +292,13 @@ describe('CaseTimelineViewer', () => {
     // Select Jimmy Lai first
     fireEvent.focus(input);
     const jimmyOption = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(jimmyOption);
+    fireEvent.click(jimmyOption!);
     expect(screen.getByText('Jimmy Lai Arrested')).toBeTruthy();
     // Now switch to Liu Xiaobo
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'Liu Xiaobo' } });
     const liuOption = screen.getAllByRole('option').find(o => o.textContent.includes('Liu Xiaobo'));
-    fireEvent.click(liuOption);
+    fireEvent.click(liuOption!);
     expect(screen.getByText('Liu Xiaobo Dies in Custody')).toBeTruthy();
     expect(screen.queryByText('Jimmy Lai Arrested')).toBeNull();
   });
@@ -327,7 +327,7 @@ describe('CaseTimelineViewer', () => {
     const input = screen.getByLabelText('Search and select a political prisoner');
     fireEvent.focus(input);
     const option = screen.getAllByRole('option').find(o => o.textContent.includes('Jimmy Lai'));
-    fireEvent.click(option);
+    fireEvent.click(option!);
     expect(screen.getByRole('list', { name: 'Case timeline events' })).toBeTruthy();
   });
 

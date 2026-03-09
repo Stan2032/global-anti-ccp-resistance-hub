@@ -5,13 +5,13 @@ import CompanyTracker from '../components/CompanyTracker';
 
 // Mock SourceAttribution and SourcesList (CompanyTracker imports both)
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }) => <div data-testid="source-attribution">{source?.name}</div>,
-  SourcesList: ({ sources }) => <div data-testid="sources-list">{sources?.length} sources</div>,
+  default: ({ source }: any) => <div data-testid="source-attribution">{source?.name}</div>,
+  SourcesList: ({ sources }: any) => <div data-testid="sources-list">{sources?.length} sources</div>,
 }));
 
 // Mock GlobalDisclaimer
 vi.mock('../components/ui/GlobalDisclaimer', () => ({
-  default: ({ type }) => <div data-testid="disclaimer">{type}</div>,
+  default: ({ type }: any) => <div data-testid="disclaimer">{type}</div>,
 }));
 
 describe('CompanyTracker', () => {
@@ -116,9 +116,9 @@ describe('CompanyTracker', () => {
   it('ASPI report link opens in new tab', () => {
     render(<CompanyTracker />);
     const aspiLink = screen.getByText('View Full Report').closest('a');
-    expect(aspiLink.getAttribute('target')).toBe('_blank');
-    expect(aspiLink.getAttribute('rel')).toContain('noopener');
-    expect(aspiLink.getAttribute('href')).toBe('https://www.aspi.org.au/report/uyghurs-sale');
+    expect(aspiLink!.getAttribute('target')).toBe('_blank');
+    expect(aspiLink!.getAttribute('rel')).toContain('noopener');
+    expect(aspiLink!.getAttribute('href')).toBe('https://www.aspi.org.au/report/uyghurs-sale');
   });
 
   // --- Disclaimer ---

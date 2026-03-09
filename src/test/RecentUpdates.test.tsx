@@ -26,7 +26,7 @@ describe('RecentUpdates', () => {
     it('renders the first 5 updates by default', () => {
       renderComponent();
       // Sort updates by date descending to match component behavior
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const firstFive = sorted.slice(0, 5);
       firstFive.forEach((update) => {
         expect(screen.getByText(update.title)).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('RecentUpdates', () => {
 
     it('does not show updates beyond the initial 5', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       if (sorted.length > 5) {
         // The 6th update should NOT be visible initially
         const sixthUpdate = sorted[5];
@@ -45,7 +45,7 @@ describe('RecentUpdates', () => {
 
     it('renders descriptions for displayed updates', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const firstUpdate = sorted[0];
       expect(screen.getByText(firstUpdate.description)).toBeInTheDocument();
     });
@@ -90,7 +90,7 @@ describe('RecentUpdates', () => {
 
     it('renders VERIFIED category labels for verification updates', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const visibleVerificationUpdates = sorted.slice(0, 5).filter((u) => u.category === 'verification');
       if (visibleVerificationUpdates.length > 0) {
         expect(screen.getAllByText('VERIFIED').length).toBeGreaterThan(0);
@@ -132,7 +132,7 @@ describe('RecentUpdates', () => {
         fireEvent.click(collapseBtn);
 
         // 6th update should be hidden again
-        const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+        const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         expect(screen.queryByText(sorted[5].title)).not.toBeInTheDocument();
       }
     });
@@ -150,7 +150,7 @@ describe('RecentUpdates', () => {
   describe('Links', () => {
     it('renders links for updates with relatedPage', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const firstFive = sorted.slice(0, 5);
       const linkedUpdates = firstFive.filter((u) => u.relatedPage);
 
@@ -165,7 +165,7 @@ describe('RecentUpdates', () => {
     it('renders formatted dates for displayed updates', () => {
       renderComponent();
       // Check that at least one formatted date appears (e.g. "Mar 3, 2026")
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const firstDate = new Date(sorted[0].date + 'T00:00:00');
       const formatted = firstDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       expect(screen.getAllByText(formatted).length).toBeGreaterThan(0);
@@ -173,7 +173,7 @@ describe('RecentUpdates', () => {
 
     it('sorts updates with newest first', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       const firstTitle = sorted[0].title;
       const secondTitle = sorted[1].title;
       // First entry should appear before second in the DOM

@@ -121,7 +121,7 @@ describe('LegalCaseTracker', () => {
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
     expect(laiButton).toBeTruthy();
-    expect(laiButton.textContent).toContain('Hong Kong');
+    expect(laiButton!.textContent).toContain('Hong Kong');
   });
 
   // ── Expand/Collapse ────────────────────────────────────
@@ -131,8 +131,8 @@ describe('LegalCaseTracker', () => {
     const caseButton = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-expanded') === 'false'
     );
-    fireEvent.click(caseButton);
-    expect(caseButton.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(caseButton!);
+    expect(caseButton!.getAttribute('aria-expanded')).toBe('true');
   });
 
   it('expanded case shows defendant information', () => {
@@ -140,7 +140,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('Defendant')).toBeTruthy();
   });
 
@@ -149,7 +149,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('Charges')).toBeTruthy();
   });
 
@@ -158,7 +158,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('Key Dates')).toBeTruthy();
   });
 
@@ -167,7 +167,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('Outcome')).toBeTruthy();
   });
 
@@ -176,7 +176,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('Significance')).toBeTruthy();
   });
 
@@ -185,7 +185,7 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     expect(screen.getByText('International Response')).toBeTruthy();
   });
 
@@ -194,11 +194,11 @@ describe('LegalCaseTracker', () => {
     const laiButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
     );
-    fireEvent.click(laiButton);
+    fireEvent.click(laiButton!);
     const sourceLink = screen.getByText('View source');
     expect(sourceLink).toBeTruthy();
-    expect(sourceLink.closest('a').getAttribute('target')).toBe('_blank');
-    expect(sourceLink.closest('a').getAttribute('rel')).toContain('noopener');
+    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
+    expect(sourceLink!.closest('a')!.getAttribute('rel')).toContain('noopener');
   });
 
   it('clicking expanded case collapses it', () => {
@@ -206,10 +206,10 @@ describe('LegalCaseTracker', () => {
     const caseButton = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-expanded') === 'false'
     );
-    fireEvent.click(caseButton);
-    expect(caseButton.getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(caseButton);
-    expect(caseButton.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(caseButton!);
+    expect(caseButton!.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(caseButton!);
+    expect(caseButton!.getAttribute('aria-expanded')).toBe('false');
   });
 
   // ── Copy ───────────────────────────────────────────────
@@ -278,7 +278,7 @@ describe('LegalCaseTracker', () => {
     const convicted = dataApi.getLegalCasesByStatus('CONVICTED');
     expect(convicted.length).toBeGreaterThan(0);
     convicted.forEach((c) => {
-      expect(c.status.toUpperCase()).toBe('CONVICTED');
+      expect(c.status!.toUpperCase()).toBe('CONVICTED');
     });
   });
 

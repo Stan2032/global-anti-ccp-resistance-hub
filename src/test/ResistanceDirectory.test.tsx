@@ -111,7 +111,7 @@ describe('ResistanceDirectory', () => {
     renderPage();
     // Click first organization card
     const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    fireEvent.click(orgCard);
+    fireEvent.click(orgCard!);
     // Should show expanded details with focus areas and visit link
     expect(screen.getByText('Focus Areas')).toBeTruthy();
     expect(screen.getByText('Visit Website')).toBeTruthy();
@@ -120,18 +120,18 @@ describe('ResistanceDirectory', () => {
   it('collapses organization details on second click', () => {
     renderPage();
     const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    fireEvent.click(orgCard);
+    fireEvent.click(orgCard!);
     expect(screen.getByText('Visit Website')).toBeTruthy();
-    fireEvent.click(orgCard);
+    fireEvent.click(orgCard!);
     expect(screen.queryByText('Visit Website')).toBeNull();
   });
 
   it('shows aria-expanded on org cards', () => {
     renderPage();
     const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    expect(orgCard.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(orgCard);
-    expect(orgCard.getAttribute('aria-expanded')).toBe('true');
+    expect(orgCard!.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(orgCard!);
+    expect(orgCard!.getAttribute('aria-expanded')).toBe('true');
   });
 
   // --- No Results ---

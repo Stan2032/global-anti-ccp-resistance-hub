@@ -42,7 +42,7 @@ describe('IncidentReportForm', () => {
   it('disables Continue button when no incident type selected', () => {
     render(<IncidentReportForm />);
     const continueBtn = screen.getByText('Continue');
-    expect(continueBtn.disabled).toBe(true);
+    expect((continueBtn as HTMLInputElement).disabled).toBe(true);
   });
 
   it('enables Continue button after selecting an incident type', () => {
@@ -50,7 +50,7 @@ describe('IncidentReportForm', () => {
     const radio = screen.getByDisplayValue('surveillance');
     fireEvent.click(radio);
     const continueBtn = screen.getByText('Continue');
-    expect(continueBtn.disabled).toBe(false);
+    expect((continueBtn as HTMLInputElement).disabled).toBe(false);
   });
 
   it('shows step indicators (1, 2, 3)', () => {
@@ -130,31 +130,31 @@ describe('IncidentReportForm', () => {
   it('Submit button is disabled without consent', () => {
     goToStep3();
     const submitBtn = screen.getByText('Submit Securely');
-    expect(submitBtn.closest('button').disabled).toBe(true);
+    expect((submitBtn!.closest('button') as HTMLButtonElement).disabled).toBe(true);
   });
 
   // --- Backend integration ---
 
   it('shows "Coming Soon" notice when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<IncidentReportForm />);
     expect(screen.getByText('Form Not Yet Connected (Coming Soon)')).toBeTruthy();
   });
 
   it('hides "Coming Soon" notice when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<IncidentReportForm />);
     expect(screen.queryByText('Form Not Yet Connected (Coming Soon)')).toBeNull();
   });
 
   it('shows "not yet active" footer when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<IncidentReportForm />);
     expect(screen.getByText(/Form not yet active/)).toBeTruthy();
   });
 
   it('shows "Connected to secure backend" footer when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<IncidentReportForm />);
     expect(screen.getByText(/Connected to secure backend/)).toBeTruthy();
   });
@@ -162,7 +162,7 @@ describe('IncidentReportForm', () => {
   // --- Submission ---
 
   it('submits without calling Supabase when not configured', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<IncidentReportForm />);
     // Navigate to step 3
     fireEvent.click(screen.getByDisplayValue('surveillance'));
@@ -180,8 +180,8 @@ describe('IncidentReportForm', () => {
   });
 
   it('calls submitIncidentReport when backend is connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitIncidentReport.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitIncidentReport as any).mockResolvedValue({ data: [{}], error: null });
     render(<IncidentReportForm />);
     // Navigate to step 3
     fireEvent.click(screen.getByDisplayValue('cyber_attack'));
@@ -206,8 +206,8 @@ describe('IncidentReportForm', () => {
   });
 
   it('shows error message when Supabase submission fails', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitIncidentReport.mockResolvedValue({ data: null, error: 'Database error' });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitIncidentReport as any).mockResolvedValue({ data: null, error: 'Database error' });
     render(<IncidentReportForm />);
     // Navigate to step 3
     fireEvent.click(screen.getByDisplayValue('harassment'));
@@ -226,7 +226,7 @@ describe('IncidentReportForm', () => {
   });
 
   it('shows success screen with reporting organizations', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<IncidentReportForm />);
     fireEvent.click(screen.getByDisplayValue('other'));
     fireEvent.click(screen.getByText('Continue'));
@@ -245,7 +245,7 @@ describe('IncidentReportForm', () => {
   });
 
   it('resets form when "Submit Another Report" is clicked', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<IncidentReportForm />);
     fireEvent.click(screen.getByDisplayValue('surveillance'));
     fireEvent.click(screen.getByText('Continue'));
@@ -263,8 +263,8 @@ describe('IncidentReportForm', () => {
   });
 
   it('shows backend-aware success message when connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    submitIncidentReport.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (submitIncidentReport as any).mockResolvedValue({ data: [{}], error: null });
     render(<IncidentReportForm />);
     fireEvent.click(screen.getByDisplayValue('academic'));
     fireEvent.click(screen.getByText('Continue'));

@@ -69,8 +69,8 @@ describe('InternationalResponseTracker', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const strongBtn = stanceButtons.find((b) => b.textContent.includes('Strong'));
-    fireEvent.click(strongBtn);
-    expect(strongBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(strongBtn!);
+    expect(strongBtn!.getAttribute('aria-pressed')).toBe('true');
     // United States should be visible (it has a "Strong" stance)
     expect(screen.getByText('United States')).toBeTruthy();
   });
@@ -81,10 +81,10 @@ describe('InternationalResponseTracker', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const strongBtn = stanceButtons.find((b) => b.textContent.includes('Strong'));
-    fireEvent.click(strongBtn);
-    expect(strongBtn.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(strongBtn);
-    expect(strongBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(strongBtn!);
+    expect(strongBtn!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(strongBtn!);
+    expect(strongBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('shows Clear button when stance filter is active', () => {
@@ -93,7 +93,7 @@ describe('InternationalResponseTracker', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const strongBtn = stanceButtons.find((b) => b.textContent.includes('Strong'));
-    fireEvent.click(strongBtn);
+    fireEvent.click(strongBtn!);
     expect(screen.getByText('Clear')).toBeTruthy();
   });
 
@@ -103,7 +103,7 @@ describe('InternationalResponseTracker', () => {
       (b) => b.getAttribute('aria-pressed') !== null
     );
     const strongBtn = stanceButtons.find((b) => b.textContent.includes('Strong'));
-    fireEvent.click(strongBtn);
+    fireEvent.click(strongBtn!);
     fireEvent.click(screen.getByText('Clear'));
     const updatedStanceButtons = screen.getAllByRole('button').filter(
       (b) => b.getAttribute('aria-pressed') !== null
@@ -199,8 +199,8 @@ describe('InternationalResponseTracker', () => {
     const usButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
     );
-    fireEvent.click(usButton);
-    expect(usButton.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(usButton!);
+    expect(usButton!.getAttribute('aria-expanded')).toBe('true');
   });
 
   it('expanded country shows dimension labels', () => {
@@ -208,7 +208,7 @@ describe('InternationalResponseTracker', () => {
     const usButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
     );
-    fireEvent.click(usButton);
+    fireEvent.click(usButton!);
     expect(screen.getByText('Genocide Recognition')).toBeTruthy();
     expect(screen.getByText('Sanctions Imposed')).toBeTruthy();
     expect(screen.getByText('Legislative Actions')).toBeTruthy();
@@ -220,7 +220,7 @@ describe('InternationalResponseTracker', () => {
     const usButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
     );
-    fireEvent.click(usButton);
+    fireEvent.click(usButton!);
     expect(screen.getByText('Overall Assessment')).toBeTruthy();
   });
 
@@ -229,11 +229,11 @@ describe('InternationalResponseTracker', () => {
     const usButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
     );
-    fireEvent.click(usButton);
+    fireEvent.click(usButton!);
     const sourceLink = screen.getByText('Source');
     expect(sourceLink.closest('a')).toBeTruthy();
-    expect(sourceLink.closest('a').getAttribute('target')).toBe('_blank');
-    expect(sourceLink.closest('a').getAttribute('rel')).toBe('noopener noreferrer');
+    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
+    expect(sourceLink!.closest('a')!.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
   it('clicking expanded country collapses it', () => {
@@ -241,10 +241,10 @@ describe('InternationalResponseTracker', () => {
     const usButton = screen.getAllByRole('button').find(
       (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
     );
-    fireEvent.click(usButton);
-    expect(usButton.getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(usButton);
-    expect(usButton.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(usButton!);
+    expect(usButton!.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(usButton!);
+    expect(usButton!.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('expanding a different country collapses the previous one', () => {
@@ -321,8 +321,8 @@ describe('InternationalResponseTracker', () => {
     const responses = dataApi.getInternationalResponses();
     const us = responses.find((r) => r.country === 'United States');
     expect(us).toBeTruthy();
-    expect(us.genocide_recognition).toBeTruthy();
-    expect(us.genocide_recognition.length).toBeGreaterThan(10);
+    expect(us!.genocide_recognition).toBeTruthy();
+    expect(us!.genocide_recognition!.length).toBeGreaterThan(10);
   });
 
   it('all responses have required fields', () => {
@@ -336,13 +336,13 @@ describe('InternationalResponseTracker', () => {
   it('dataApi getInternationalResponseByCountry works', () => {
     const us = dataApi.getInternationalResponseByCountry('United States');
     expect(us).toBeTruthy();
-    expect(us.country).toBe('United States');
+    expect(us!.country).toBe('United States');
   });
 
   it('dataApi getInternationalResponseByCountry is case-insensitive', () => {
     const us = dataApi.getInternationalResponseByCountry('united states');
     expect(us).toBeTruthy();
-    expect(us.country).toBe('United States');
+    expect(us!.country).toBe('United States');
   });
 
   it('dataApi getInternationalResponseByCountry returns null for unknown', () => {

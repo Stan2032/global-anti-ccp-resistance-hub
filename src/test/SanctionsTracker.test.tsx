@@ -4,7 +4,7 @@ import React from 'react';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }) => <span data-testid="source-attribution">{source?.name || 'source'}</span>,
+  default: ({ source }: any) => <span data-testid="source-attribution">{source?.name || 'source'}</span>,
 }));
 
 import SanctionsTracker from '../components/SanctionsTracker';
@@ -130,11 +130,11 @@ describe('SanctionsTracker', () => {
     expect(screen.getByText('Carrie Lam')).toBeTruthy();
     // Role (unique to Carrie Lam)
     const carrieLam = sanctionsData.sanctions.find(s => s.target === 'Carrie Lam');
-    expect(screen.getByText(carrieLam.role)).toBeTruthy();
+    expect(screen.getByText(carrieLam!.role)).toBeTruthy();
     // Reason may be shared across entries, so use getAllByText
-    expect(screen.getAllByText(carrieLam.reason).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(carrieLam!.reason).length).toBeGreaterThanOrEqual(1);
     // Date
-    expect(screen.getAllByText(carrieLam.date).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(carrieLam!.date).length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders law links for sanctions with known laws', () => {
@@ -142,7 +142,7 @@ describe('SanctionsTracker', () => {
     
     // Find a sanction with a law that has a link
     const sanctionWithLaw = sanctionsData.sanctions.find(
-      s => sanctionsData.law_links[s.law]
+      s => (sanctionsData.law_links as Record<string, any>)[s.law]
     );
     
     if (sanctionWithLaw) {
@@ -164,9 +164,9 @@ describe('SanctionsTracker', () => {
   it('links to CECC Victims Database with external target', () => {
     render(<SanctionsTracker />);
     const ceccLink = screen.getByText('CECC Victims Database').closest('a');
-    expect(ceccLink.href).toBe('https://www.cecc.gov/victims-database');
-    expect(ceccLink.target).toBe('_blank');
-    expect(ceccLink.rel).toContain('noopener');
+    expect(ceccLink!.href).toBe('https://www.cecc.gov/victims-database');
+    expect(ceccLink!.target).toBe('_blank');
+    expect(ceccLink!.rel).toContain('noopener');
   });
 
   // --- Sources ---

@@ -61,28 +61,28 @@ describe('PolicyBriefGenerator', () => {
   it('Legislators is active by default', () => {
     render(<PolicyBriefGenerator />);
     const btn = screen.getByText('Legislators').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Diplomats changes audience', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Diplomats'));
     const btn = screen.getByText('Diplomats').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Corporate Compliance changes audience', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Corporate Compliance'));
     const btn = screen.getByText('Corporate Compliance').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Civil Society changes audience', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Civil Society'));
     const btn = screen.getByText('Civil Society').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('shows audience descriptions', () => {
@@ -106,14 +106,14 @@ describe('PolicyBriefGenerator', () => {
   it('Political Detention is active by default', () => {
     render(<PolicyBriefGenerator />);
     const btn = screen.getByText('Political Detention').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking a topic changes selection', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Forced Labor & Supply Chains'));
     const btn = screen.getByText('Forced Labor & Supply Chains').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // ── Topic search ───────────────────────────────────────
@@ -193,14 +193,14 @@ describe('PolicyBriefGenerator', () => {
   it('key findings are expanded by default', () => {
     render(<PolicyBriefGenerator />);
     const findingsBtn = screen.getByText(/Key Findings/).closest('button');
-    expect(findingsBtn.getAttribute('aria-expanded')).toBe('true');
+    expect(findingsBtn!.getAttribute('aria-expanded')).toBe('true');
   });
 
   it('clicking Key Findings collapses section', () => {
     render(<PolicyBriefGenerator />);
     const findingsBtn = screen.getByText(/Key Findings/).closest('button');
-    fireEvent.click(findingsBtn);
-    expect(findingsBtn.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(findingsBtn!);
+    expect(findingsBtn!.getAttribute('aria-expanded')).toBe('false');
   });
 
   // ── Recommendations section ────────────────────────────
@@ -213,7 +213,7 @@ describe('PolicyBriefGenerator', () => {
   it('recommendations are expanded by default', () => {
     render(<PolicyBriefGenerator />);
     const recBtn = screen.getByText(/Recommendations/).closest('button');
-    expect(recBtn.getAttribute('aria-expanded')).toBe('true');
+    expect(recBtn!.getAttribute('aria-expanded')).toBe('true');
   });
 
   it('shows legislator-specific recommendations by default', () => {
@@ -249,14 +249,14 @@ describe('PolicyBriefGenerator', () => {
   it('citations are collapsed by default', () => {
     render(<PolicyBriefGenerator />);
     const citBtn = screen.getByText(/Evidence Citations/).closest('button');
-    expect(citBtn.getAttribute('aria-expanded')).toBe('false');
+    expect(citBtn!.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('clicking citations expands section', () => {
     render(<PolicyBriefGenerator />);
     const citBtn = screen.getByText(/Evidence Citations/).closest('button');
-    fireEvent.click(citBtn);
-    expect(citBtn.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(citBtn!);
+    expect(citBtn!.getAttribute('aria-expanded')).toBe('true');
   });
 
   // ── Copy to clipboard ─────────────────────────────────
@@ -275,7 +275,7 @@ describe('PolicyBriefGenerator', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Copy brief'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = navigator.clipboard.writeText.mock.calls[0][0];
+    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(text).toContain('POLICY BRIEF');
     expect(text).toContain('EXECUTIVE SUMMARY');
     expect(text).toContain('KEY FINDINGS');

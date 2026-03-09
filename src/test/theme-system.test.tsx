@@ -11,15 +11,15 @@ import path from 'path';
 
 // ─── Mock window.matchMedia for jsdom ────────────────────────
 const mockMatchMedia = (matches = false) => {
-  const listeners = [];
+  const listeners: any = [];
   return vi.fn().mockImplementation((query) => ({
     matches,
     media: query,
     onchange: null,
     addListener: vi.fn(),
     removeListener: vi.fn(),
-    addEventListener: (_event, handler) => listeners.push(handler),
-    removeEventListener: (_event, handler) => {
+    addEventListener: (_event: any, handler: any) => listeners.push(handler),
+    removeEventListener: (_event: any, handler: any) => {
       const idx = listeners.indexOf(handler);
       if (idx >= 0) listeners.splice(idx, 1);
     },
@@ -28,18 +28,18 @@ const mockMatchMedia = (matches = false) => {
 };
 
 // ─── WCAG 2.1 contrast ratio utilities ──────────────────────
-function relativeLuminance(hex) {
+function relativeLuminance(hex: any) {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
-  const linearize = (c) =>
+  const linearize = (c: any) =>
     c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
   return (
     0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
   );
 }
 
-function contrastRatio(c1, c2) {
+function contrastRatio(c1: any, c2: any) {
   let l1 = relativeLuminance(c1);
   let l2 = relativeLuminance(c2);
   if (l1 < l2) [l1, l2] = [l2, l1];

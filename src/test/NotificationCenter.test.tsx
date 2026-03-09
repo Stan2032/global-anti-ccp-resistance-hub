@@ -6,7 +6,7 @@ import { dataApi } from '../services/dataApi';
 
 // ── Mock localStorage ───────────────────────────────────
 const localStorageMock = (() => {
-  let store = {};
+  let store: Record<string, any> = {};
   return {
     getItem: vi.fn((key) => store[key] || null),
     setItem: vi.fn((key, value) => { store[key] = value; }),
@@ -70,9 +70,9 @@ describe('NotificationCenter', () => {
     const criticalBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Critical')
     );
-    expect(criticalBtn.getAttribute('aria-pressed')).toBe('false');
-    fireEvent.click(criticalBtn);
-    expect(criticalBtn.getAttribute('aria-pressed')).toBe('true');
+    expect(criticalBtn!.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(criticalBtn!);
+    expect(criticalBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking an active category button deactivates the filter', () => {
@@ -80,10 +80,10 @@ describe('NotificationCenter', () => {
     const criticalBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Critical')
     );
-    fireEvent.click(criticalBtn);
-    expect(criticalBtn.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(criticalBtn);
-    expect(criticalBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(criticalBtn!);
+    expect(criticalBtn!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(criticalBtn!);
+    expect(criticalBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   // ── Search ─────────────────────────────────────────────
@@ -264,7 +264,7 @@ describe('NotificationCenter', () => {
     render(<NotificationCenter />);
     fireEvent.click(screen.getByLabelText('Copy notification feed to clipboard'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const clipText = navigator.clipboard.writeText.mock.calls[0][0];
+    const clipText = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(clipText).toContain('Notification Center');
     expect(clipText).toContain('CC BY 4.0');
   });
@@ -345,7 +345,7 @@ describe('NotificationCenter', () => {
     const criticalBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Critical')
     );
-    fireEvent.click(criticalBtn);
+    fireEvent.click(criticalBtn!);
     // Then search for something that doesn't exist
     const input = screen.getByPlaceholderText('Search notifications...');
     fireEvent.change(input, { target: { value: 'xyznonexistent' } });

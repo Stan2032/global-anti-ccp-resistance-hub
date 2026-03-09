@@ -79,21 +79,21 @@ describe('TransnationalRepressionTracker', () => {
   it('Threat Overview is active by default', () => {
     render(<TransnationalRepressionTracker />);
     const btn = screen.getByText('Threat Overview').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Operations Map switches view', () => {
     render(<TransnationalRepressionTracker />);
     fireEvent.click(screen.getByText('Operations Map'));
     const btn = screen.getByText('Operations Map').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Government Responses switches view', () => {
     render(<TransnationalRepressionTracker />);
     fireEvent.click(screen.getByText('Government Responses'));
     const btn = screen.getByText('Government Responses').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -206,7 +206,7 @@ describe('TransnationalRepressionTracker', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = navigator.clipboard.writeText.mock.calls[0][0];
+    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(text).toContain('TRANSNATIONAL REPRESSION TRACKER');
     expect(text).toContain('Countries affected');
     expect(text).toContain('CC BY 4.0');

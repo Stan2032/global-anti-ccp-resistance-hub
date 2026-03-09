@@ -55,7 +55,7 @@ describe('InfluenceNetwork', () => {
   it('region buttons have aria-pressed attribute', () => {
     render(<InfluenceNetwork />);
     const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    expect(xinjiangBtn.getAttribute('aria-pressed')).toBe('false');
+    expect(xinjiangBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   // --- Region Selection ---
@@ -81,17 +81,17 @@ describe('InfluenceNetwork', () => {
   it('deselecting a region hides the detail panel', () => {
     render(<InfluenceNetwork />);
     const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn);
+    fireEvent.click(xinjiangBtn!);
     expect(screen.getByText(/Uyghur genocide/)).toBeTruthy();
-    fireEvent.click(xinjiangBtn);
+    fireEvent.click(xinjiangBtn!);
     expect(screen.queryByText(/Uyghur genocide/)).toBeNull();
   });
 
   it('sets aria-pressed to true when region is selected', () => {
     render(<InfluenceNetwork />);
     const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn);
-    expect(xinjiangBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(xinjiangBtn!);
+    expect(xinjiangBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('switching regions updates the detail panel', () => {
@@ -116,14 +116,14 @@ describe('InfluenceNetwork', () => {
   it('expanding officials section shows official names', () => {
     render(<InfluenceNetwork />);
     const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn);
+    fireEvent.click(xinjiangBtn!);
     // Find the section that starts with "Sanctioned Officials (" — the expandable header
     const officialsHeaders = screen.getAllByText(/Sanctioned Officials/);
     const expandableHeader = officialsHeaders.find(
       (el) => el.textContent.includes('(') && el.closest('button')
     );
     if (expandableHeader) {
-      fireEvent.click(expandableHeader.closest('button'));
+      fireEvent.click(expandableHeader.closest('button')!);
       // Should show at least one official card
       const cards = document.querySelectorAll('.bg-\\[\\#0a0e14\\]\\/50');
       expect(cards.length).toBeGreaterThanOrEqual(1);
@@ -133,16 +133,16 @@ describe('InfluenceNetwork', () => {
   it('section toggle buttons have aria-expanded', () => {
     render(<InfluenceNetwork />);
     const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn);
+    fireEvent.click(xinjiangBtn!);
     const officialsHeaders = screen.getAllByText(/Sanctioned Officials/);
     const expandableHeader = officialsHeaders.find(
       (el) => el.textContent.includes('(') && el.closest('button')
     );
     if (expandableHeader) {
       const btn = expandableHeader.closest('button');
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-      fireEvent.click(btn);
-      expect(btn.getAttribute('aria-expanded')).toBe('true');
+      expect(btn!.getAttribute('aria-expanded')).toBe('false');
+      fireEvent.click(btn!);
+      expect(btn!.getAttribute('aria-expanded')).toBe('true');
     }
   });
 

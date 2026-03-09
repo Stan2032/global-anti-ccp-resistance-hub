@@ -42,21 +42,21 @@ describe('AdvocacyLetterGenerator', () => {
   it('US is selected by default', () => {
     render(<AdvocacyLetterGenerator />);
     const usBtn = screen.getByText('US').closest('button');
-    expect(usBtn.getAttribute('aria-pressed')).toBe('true');
+    expect(usBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking a different country changes selection', () => {
     render(<AdvocacyLetterGenerator />);
     const ukBtn = screen.getByText('UK').closest('button');
-    fireEvent.click(ukBtn);
-    expect(ukBtn.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByText('US').closest('button').getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(ukBtn!);
+    expect(ukBtn!.getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByText('US').closest('button')!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('letter updates greeting when country changes', () => {
     render(<AdvocacyLetterGenerator />);
     expect(screen.getByText(/Dear Representative/)).toBeTruthy();
-    fireEvent.click(screen.getByText('UK').closest('button'));
+    fireEvent.click(screen.getByText('UK')!.closest('button')!);
     expect(screen.getByText(/Dear Member of Parliament/)).toBeTruthy();
   });
 
@@ -261,6 +261,6 @@ describe('AdvocacyLetterGenerator', () => {
   it('country buttons have aria-pressed', () => {
     render(<AdvocacyLetterGenerator />);
     const usBtn = screen.getByText('US').closest('button');
-    expect(usBtn.getAttribute('aria-pressed')).toBeTruthy();
+    expect(usBtn!.getAttribute('aria-pressed')).toBeTruthy();
   });
 });

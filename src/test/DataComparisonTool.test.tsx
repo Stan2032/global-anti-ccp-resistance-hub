@@ -46,8 +46,8 @@ describe('DataComparisonTool', () => {
     render(<DataComparisonTool />);
     const tibetBtn = screen.getByText('Tibet').closest('button');
     const mainlandBtn = screen.getByText('Mainland / National').closest('button');
-    expect(tibetBtn.getAttribute('aria-pressed')).toBe('false');
-    expect(mainlandBtn.getAttribute('aria-pressed')).toBe('false');
+    expect(tibetBtn!.getAttribute('aria-pressed')).toBe('false');
+    expect(mainlandBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('shows region selector instruction text', () => {
@@ -60,15 +60,15 @@ describe('DataComparisonTool', () => {
   it('can select a third region', () => {
     render(<DataComparisonTool />);
     const tibetBtn = screen.getByText('Tibet').closest('button');
-    fireEvent.click(tibetBtn);
-    expect(tibetBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(tibetBtn!);
+    expect(tibetBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('disables fourth region when 3 are selected', () => {
     render(<DataComparisonTool />);
-    fireEvent.click(screen.getByText('Tibet').closest('button'));
+    fireEvent.click(screen.getByText('Tibet')!.closest('button')!);
     const mainlandBtn = screen.getByText('Mainland / National').closest('button');
-    expect(mainlandBtn.disabled).toBe(true);
+    expect(mainlandBtn!.disabled).toBe(true);
   });
 
   it('can deselect a region (keeping at least 1)', () => {
@@ -76,20 +76,20 @@ describe('DataComparisonTool', () => {
     // Find the Hong Kong selector button (has aria-pressed)
     const hkBtns = screen.getAllByText('Hong Kong').map((el) => el.closest('button')).filter((btn) => btn?.getAttribute('aria-pressed') !== null);
     const hkBtn = hkBtns[0];
-    fireEvent.click(hkBtn);
-    expect(hkBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(hkBtn!);
+    expect(hkBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('cannot deselect the last region', () => {
     render(<DataComparisonTool />);
     // Deselect Hong Kong, leaving only Xinjiang
     const hkBtns = screen.getAllByText('Hong Kong').map((el) => el.closest('button')).filter((btn) => btn?.getAttribute('aria-pressed') !== null);
-    fireEvent.click(hkBtns[0]);
+    fireEvent.click(hkBtns[0]!);
     // Try to deselect Xinjiang — should stay selected
     const xjBtns = screen.getAllByText('Xinjiang / Uyghur').map((el) => el.closest('button')).filter((btn) => btn?.getAttribute('aria-pressed') !== null);
     const xjBtn = xjBtns[0];
-    fireEvent.click(xjBtn);
-    expect(xjBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(xjBtn!);
+    expect(xjBtn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // --- Comparison Table ---
@@ -137,29 +137,29 @@ describe('DataComparisonTool', () => {
   it('metric rows have aria-expanded attribute', () => {
     render(<DataComparisonTool />);
     const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    expect(prisonersRow.getAttribute('aria-expanded')).toBe('false');
+    expect(prisonersRow!.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('clicking a metric row expands its detail', () => {
     render(<DataComparisonTool />);
     const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonersRow);
-    expect(prisonersRow.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(prisonersRow!);
+    expect(prisonersRow!.getAttribute('aria-expanded')).toBe('true');
     expect(screen.getByText('Breakdown')).toBeTruthy();
   });
 
   it('clicking an expanded metric row collapses it', () => {
     render(<DataComparisonTool />);
     const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonersRow);
+    fireEvent.click(prisonersRow!);
     expect(screen.getByText('Breakdown')).toBeTruthy();
-    fireEvent.click(prisonersRow);
+    fireEvent.click(prisonersRow!);
     expect(screen.queryByText('Breakdown')).toBeNull();
   });
 
   it('expanding prisoners shows status breakdown', () => {
     render(<DataComparisonTool />);
-    fireEvent.click(screen.getByText('Political Prisoners').closest('button'));
+    fireEvent.click(screen.getByText('Political Prisoners')!.closest('button')!);
     // Should show at least DETAINED in breakdown
     const breakdownCells = screen.getAllByText(/DETAINED|RELEASED|DISAPPEARED|EXILE|AT RISK/);
     expect(breakdownCells.length).toBeGreaterThanOrEqual(1);
@@ -167,7 +167,7 @@ describe('DataComparisonTool', () => {
 
   it('expanding sanctions shows country breakdown', () => {
     render(<DataComparisonTool />);
-    fireEvent.click(screen.getByText('Sanctions Actions').closest('button'));
+    fireEvent.click(screen.getByText('Sanctions Actions')!.closest('button')!);
     // Should show country codes in breakdown
     const breakdownCells = screen.getAllByText(/US:|UK:|EU:|CANADA:|AUSTRALIA:/);
     expect(breakdownCells.length).toBeGreaterThanOrEqual(1);
@@ -218,7 +218,7 @@ describe('DataComparisonTool', () => {
     const headersBefore = container.querySelectorAll('.text-lg.font-bold.text-white');
     const countBefore = headersBefore.length;
 
-    fireEvent.click(screen.getByText('Tibet').closest('button'));
+    fireEvent.click(screen.getByText('Tibet')!.closest('button')!);
 
     const headersAfter = container.querySelectorAll('.text-lg.font-bold.text-white');
     // Should have more values (5 metrics * 3 regions = 15 vs 5 * 2 = 10)

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 
@@ -26,31 +26,31 @@ describe('NewsDigest', () => {
   });
 
   it('shows "Coming Soon" notice when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<NewsDigest />);
     expect(screen.getByText('Newsletter Coming Soon')).toBeTruthy();
   });
 
   it('hides "Coming Soon" notice when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<NewsDigest />);
     expect(screen.queryByText('Newsletter Coming Soon')).toBeNull();
   });
 
   it('shows "not yet active" footer when backend is not connected', () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<NewsDigest />);
     expect(screen.getByText(/Newsletter not yet active/)).toBeTruthy();
   });
 
   it('shows "Connected to secure backend" footer when backend is connected', () => {
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
     render(<NewsDigest />);
     expect(screen.getByText(/Connected to secure backend/)).toBeTruthy();
   });
 
   it('submits without calling Supabase when not configured', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     render(<NewsDigest />);
 
     fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'test@test.com' } });
@@ -64,8 +64,8 @@ describe('NewsDigest', () => {
   });
 
   it('calls subscribeNewsletter when backend is connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    subscribeNewsletter.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (subscribeNewsletter as any).mockResolvedValue({ data: [{}], error: null });
     render(<NewsDigest />);
 
     fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'user@example.com' } });
@@ -78,8 +78,8 @@ describe('NewsDigest', () => {
   });
 
   it('shows error message when Supabase subscription fails', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    subscribeNewsletter.mockResolvedValue({ data: null, error: 'Network error' });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (subscribeNewsletter as any).mockResolvedValue({ data: null, error: 'Network error' });
     render(<NewsDigest />);
 
     fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'test@test.com' } });
@@ -93,8 +93,8 @@ describe('NewsDigest', () => {
   });
 
   it('shows backend-aware success message when connected', async () => {
-    isSupabaseConfigured.mockReturnValue(true);
-    subscribeNewsletter.mockResolvedValue({ data: [{}], error: null });
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (subscribeNewsletter as any).mockResolvedValue({ data: [{}], error: null });
     render(<NewsDigest />);
 
     fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'user@example.com' } });

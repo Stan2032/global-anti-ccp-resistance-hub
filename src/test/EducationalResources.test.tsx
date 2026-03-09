@@ -118,7 +118,7 @@ describe('EducationalResources', () => {
   it('shows module details when clicked', () => {
     renderEducation();
     const module = screen.getByText('Propaganda Detection Fundamentals').closest('button');
-    fireEvent.click(module);
+    fireEvent.click(module!);
     expect(screen.getAllByText('Topics Covered').length).toBeGreaterThanOrEqual(2); // stat card + details
     expect(screen.getByText('Narrative Techniques')).toBeTruthy();
     expect(screen.getByText('Visual Manipulation')).toBeTruthy();
@@ -193,12 +193,12 @@ describe('EducationalResources', () => {
     renderEducation();
     const moduleCards = screen.getAllByText('Propaganda Detection Fundamentals');
     const moduleButton = moduleCards[0].closest('button');
-    expect(moduleButton.getAttribute('aria-pressed')).toBe('false');
-    fireEvent.click(moduleButton);
+    expect(moduleButton!.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(moduleButton!);
     // After click, the title appears twice (card + details), re-query
     const updatedCards = screen.getAllByText('Propaganda Detection Fundamentals');
     const updatedButton = updatedCards[0].closest('button');
-    expect(updatedButton.getAttribute('aria-pressed')).toBe('true');
+    expect(updatedButton!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // --- No framer-motion ---

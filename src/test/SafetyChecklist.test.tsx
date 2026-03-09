@@ -41,19 +41,19 @@ describe('SafetyChecklist', () => {
     render(<SafetyChecklist />);
     const vpnText = screen.getByText('Use a VPN');
     // Find the toggle button closest to this item
-    const toggleBtn = vpnText.closest('.flex-1').parentElement.querySelector('button');
-    fireEvent.click(toggleBtn);
-    expect(toggleBtn.textContent).toBe('✓');
+    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
+    fireEvent.click(toggleBtn!);
+    expect(toggleBtn!.textContent).toBe('✓');
   });
 
   it('untoggling a checked item removes the checkmark', () => {
     render(<SafetyChecklist />);
     const vpnText = screen.getByText('Use a VPN');
-    const toggleBtn = vpnText.closest('.flex-1').parentElement.querySelector('button');
-    fireEvent.click(toggleBtn);
-    expect(toggleBtn.textContent).toBe('✓');
-    fireEvent.click(toggleBtn);
-    expect(toggleBtn.textContent).toBe('');
+    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
+    fireEvent.click(toggleBtn!);
+    expect(toggleBtn!.textContent).toBe('✓');
+    fireEvent.click(toggleBtn!);
+    expect(toggleBtn!.textContent).toBe('');
   });
 
   // --- Category tabs ---

@@ -14,13 +14,13 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: any) => (
   <MemoryRouter>{children}</MemoryRouter>
 );
 
 describe('useKeyboardShortcuts', () => {
-  let mockOpenSearch;
-  let mockToggleHelp;
+  let mockOpenSearch: any;
+  let mockToggleHelp: any;
 
   beforeEach(() => {
     mockNavigate.mockClear();

@@ -78,21 +78,21 @@ describe('CensorshipCircumventionGuide', () => {
   it('Censorship Methods is active by default', () => {
     render(<CensorshipCircumventionGuide />);
     const btn = screen.getByText('Censorship Methods').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Circumvention Tools switches view', () => {
     render(<CensorshipCircumventionGuide />);
     fireEvent.click(screen.getByText('Circumvention Tools'));
     const btn = screen.getByText('Circumvention Tools').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Safety Guide switches view', () => {
     render(<CensorshipCircumventionGuide />);
     fireEvent.click(screen.getByText('Safety Guide'));
     const btn = screen.getByText('Safety Guide').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -232,7 +232,7 @@ describe('CensorshipCircumventionGuide', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = navigator.clipboard.writeText.mock.calls[navigator.clipboard.writeText.mock.calls.length - 1][0];
+    const text = (navigator.clipboard.writeText as any).mock.calls[(navigator.clipboard.writeText as any).mock.calls.length - 1][0];
     expect(text).toContain('CENSORSHIP CIRCUMVENTION GUIDE');
     expect(text).toContain('Censorship methods documented');
     expect(text).toContain('CC BY 4.0');
@@ -244,7 +244,7 @@ describe('CensorshipCircumventionGuide', () => {
     const container = screen.getByRole('region', { name: 'Censorship Circumvention Guide' });
     const match = container.textContent.match(/(\d+)\s+censorship methods/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(15);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(15);
   });
 
   it('has at least 8 circumvention tools', () => {
@@ -252,7 +252,7 @@ describe('CensorshipCircumventionGuide', () => {
     const container = screen.getByRole('region', { name: 'Censorship Circumvention Guide' });
     const match = container.textContent.match(/(\d+)\s+circumvention tools/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(8);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(8);
   });
 
   it('has at least 5 recommended tools', () => {
@@ -260,7 +260,7 @@ describe('CensorshipCircumventionGuide', () => {
     const container = screen.getByRole('region', { name: 'Censorship Circumvention Guide' });
     const match = container.textContent.match(/(\d+)\s+recommended tools/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(5);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(5);
   });
 
   // ── No CCP Sources ─────────────────────────────────────

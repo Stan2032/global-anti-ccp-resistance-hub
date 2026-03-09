@@ -19,20 +19,20 @@ describe('NewsAggregator', () => {
 
   it('renders loading skeleton initially', () => {
     // Make aggregateFeeds hang so we see loading state
-    dataProcessor.aggregateFeeds.mockReturnValue(new Promise(() => {}));
+    (dataProcessor.aggregateFeeds as any).mockReturnValue(new Promise(() => {}));
     const { container } = render(<NewsAggregator />);
     expect(container.querySelector('.animate-pulse')).toBeTruthy();
   });
 
   it('renders header after data loads', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({ news: [], threats: [] });
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({ news: [], threats: [] });
     render(<NewsAggregator />);
     const header = await screen.findByText('Latest Intelligence');
     expect(header).toBeTruthy();
   });
 
   it('renders category filter buttons', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({ news: [], threats: [] });
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({ news: [], threats: [] });
     render(<NewsAggregator />);
     await screen.findByText('Latest Intelligence');
     expect(screen.getByText('All News')).toBeTruthy();
@@ -44,7 +44,7 @@ describe('NewsAggregator', () => {
   });
 
   it('renders news items from RSS feed', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({
       news: [
         {
           title: 'Test Hong Kong News',
@@ -72,16 +72,16 @@ describe('NewsAggregator', () => {
   });
 
   it('renders View all intelligence link after data loads', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({ news: [], threats: [] });
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({ news: [], threats: [] });
     render(<NewsAggregator />);
     const link = await screen.findByText('View all intelligence →');
-    expect(link.closest('a').getAttribute('href')).toBe('/intelligence');
+    expect(link!.closest('a')!.getAttribute('href')).toBe('/intelligence');
   });
 
   it('handles fetch errors gracefully without crashing', async () => {
     // Suppress expected console.error
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    dataProcessor.aggregateFeeds.mockRejectedValue(new Error('Network error'));
+    (dataProcessor.aggregateFeeds as any).mockRejectedValue(new Error('Network error'));
     render(<NewsAggregator />);
     // Should show the header (empty news state, not a crash)
     const header = await screen.findByText('Latest Intelligence');
@@ -90,7 +90,7 @@ describe('NewsAggregator', () => {
   });
 
   it('combines news and threats from aggregateFeeds', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({
       news: [
         { title: 'News Item', source: 'ABC', date: '2026-03-01', category: 'hongkong', url: '#' },
       ],
@@ -105,7 +105,7 @@ describe('NewsAggregator', () => {
   });
 
   it('shows Live Updates indicator', async () => {
-    dataProcessor.aggregateFeeds.mockResolvedValue({ news: [], threats: [] });
+    (dataProcessor.aggregateFeeds as any).mockResolvedValue({ news: [], threats: [] });
     render(<NewsAggregator />);
     await screen.findByText('Latest Intelligence');
     expect(screen.getByText('Live Updates')).toBeTruthy();

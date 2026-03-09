@@ -5,7 +5,7 @@ import React from 'react';
 import ScrollToTop from '../components/ScrollToTop';
 
 describe('ScrollToTop', () => {
-  let scrollToSpy;
+  let scrollToSpy: any;
 
   beforeEach(() => {
     vi.useFakeTimers();

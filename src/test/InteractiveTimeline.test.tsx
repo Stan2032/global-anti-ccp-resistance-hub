@@ -5,7 +5,7 @@ import InteractiveTimeline from '../components/InteractiveTimeline';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }) => <span data-testid="source">{source?.name || 'source'}</span>,
+  default: ({ source }: any) => <span data-testid="source">{source?.name || 'source'}</span>,
 }));
 
 describe('InteractiveTimeline', () => {
@@ -97,7 +97,7 @@ describe('InteractiveTimeline', () => {
     // then category filters (7), then prev, play, next
     // Let's find by clicking forward and checking counter changes
     const nextBtn = buttons.find(b => b.querySelector('.lucide-chevron-right'));
-    fireEvent.click(nextBtn);
+    fireEvent.click(nextBtn!);
     // Should now show event details (since clicking next selects an event)
     expect(screen.getByText('2 / 35 events')).toBeTruthy();
   });
@@ -107,7 +107,7 @@ describe('InteractiveTimeline', () => {
     // Click Previous from index 0 to wrap to last
     const buttons = screen.getAllByRole('button');
     const prevBtn = buttons.find(b => b.querySelector('.lucide-chevron-left'));
-    fireEvent.click(prevBtn);
+    fireEvent.click(prevBtn!);
     expect(screen.getByText('35 / 35 events')).toBeTruthy();
   });
 
@@ -118,7 +118,7 @@ describe('InteractiveTimeline', () => {
     // Click the first timeline marker (event buttons have title attributes)
     const markers = screen.getAllByTitle(/./);
     // Filter to only timeline event markers (not zoom controls)
-    const eventMarkers = markers.filter(m => !['Zoom in', 'Zoom out'].includes(m.getAttribute('title')));
+    const eventMarkers = markers.filter(m => !['Zoom in', 'Zoom out'].includes(m.getAttribute('title')!));
     if (eventMarkers.length > 0) {
       fireEvent.click(eventMarkers[0]);
       // Should now show event details (no more placeholder)
@@ -133,7 +133,7 @@ describe('InteractiveTimeline', () => {
     const buttons = screen.getAllByRole('button');
     const playBtn = buttons.find(b => b.querySelector('.lucide-play'));
     
-    fireEvent.click(playBtn);
+    fireEvent.click(playBtn!);
     // After 3 seconds, should advance to next event
     await act(async () => {
       await vi.advanceTimersByTimeAsync(3000);
@@ -150,7 +150,7 @@ describe('InteractiveTimeline', () => {
     const playBtn = buttons.find(b => b.querySelector('.lucide-play'));
     
     // Start playing
-    fireEvent.click(playBtn);
+    fireEvent.click(playBtn!);
     await act(async () => {
       await vi.advanceTimersByTimeAsync(3000);
     });
@@ -158,7 +158,7 @@ describe('InteractiveTimeline', () => {
     
     // Pause
     const pauseBtn = screen.getAllByRole('button').find(b => b.querySelector('.lucide-pause'));
-    fireEvent.click(pauseBtn);
+    fireEvent.click(pauseBtn!);
     
     // Advance time — should NOT move forward
     await act(async () => {

@@ -6,7 +6,7 @@ import QuickStartGuide, { HelpMenu } from '../components/QuickStartGuide';
 
 // Mock localStorage
 const mockLocalStorage = (() => {
-  let store = {};
+  let store: Record<string, any> = {};
   return {
     getItem: vi.fn((key) => store[key] || null),
     setItem: vi.fn((key, value) => { store[key] = value; }),
@@ -71,7 +71,7 @@ describe('QuickStartGuide', () => {
   it('back button is disabled on first step', () => {
     renderGuide();
     const backBtn = screen.getByText('← back');
-    expect(backBtn.disabled).toBe(true);
+    expect((backBtn as HTMLInputElement).disabled).toBe(true);
   });
 
   it('shows action link for steps with actions', () => {

@@ -24,7 +24,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import { isSupabaseConfigured, isServiceRoleKeyError } from '../services/supabaseClient';
 import { signIn, getSession, checkIsAdmin } from '../services/authService';
 
-const renderWithProviders = (ui, { route = '/' } = {}) => {
+const renderWithProviders = (ui: any, { route = '/' } = {}) => {
   return render(
     <MemoryRouter initialEntries={[route]}>
       <AuthProvider>
@@ -37,10 +37,10 @@ const renderWithProviders = (ui, { route = '/' } = {}) => {
 describe('AdminLogin', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    isSupabaseConfigured.mockReturnValue(true);
-    isServiceRoleKeyError.mockReturnValue(false);
-    getSession.mockResolvedValue(null);
-    checkIsAdmin.mockResolvedValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(true);
+    (isServiceRoleKeyError as any).mockReturnValue(false);
+    (getSession as any).mockResolvedValue(null);
+    (checkIsAdmin as any).mockResolvedValue(false);
   });
 
   it('renders login form', async () => {
@@ -66,7 +66,7 @@ describe('AdminLogin', () => {
   });
 
   it('shows not configured message when Supabase is unavailable', async () => {
-    isSupabaseConfigured.mockReturnValue(false);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     renderWithProviders(<AdminLogin />);
     await waitFor(() => {
       expect(screen.getByText('Supabase Not Configured')).toBeTruthy();
@@ -74,8 +74,8 @@ describe('AdminLogin', () => {
   });
 
   it('shows wrong API key error when service_role key is detected', async () => {
-    isServiceRoleKeyError.mockReturnValue(true);
-    isSupabaseConfigured.mockReturnValue(false);
+    (isServiceRoleKeyError as any).mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(false);
     renderWithProviders(<AdminLogin />);
     await waitFor(() => {
       expect(screen.getByText('Wrong API Key')).toBeTruthy();
@@ -84,7 +84,7 @@ describe('AdminLogin', () => {
   });
 
   it('shows error on failed login', async () => {
-    signIn.mockResolvedValue({ user: null, error: 'Invalid credentials' });
+    (signIn as any).mockResolvedValue({ user: null, error: 'Invalid credentials' });
     renderWithProviders(<AdminLogin />);
     
     await waitFor(() => {
@@ -111,11 +111,11 @@ describe('AdminLogin', () => {
 describe('ProtectedRoute', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    isSupabaseConfigured.mockReturnValue(true);
+    (isSupabaseConfigured as any).mockReturnValue(true);
   });
 
   it('shows loading state initially', () => {
-    getSession.mockReturnValue(new Promise(() => {})); // Never resolves
+    (getSession as any).mockReturnValue(new Promise(() => {})); // Never resolves
     renderWithProviders(
       <ProtectedRoute><div>Dashboard</div></ProtectedRoute>
     );
@@ -123,7 +123,7 @@ describe('ProtectedRoute', () => {
   });
 
   it('redirects to login when not authenticated', async () => {
-    getSession.mockResolvedValue(null);
+    (getSession as any).mockResolvedValue(null);
     renderWithProviders(
       <ProtectedRoute><div>Dashboard</div></ProtectedRoute>,
       { route: '/admin' }
@@ -136,8 +136,8 @@ describe('ProtectedRoute', () => {
 
 describe('AuthContext', () => {
   it('provides auth values', async () => {
-    getSession.mockResolvedValue(null);
-    let authValues;
+    (getSession as any).mockResolvedValue(null);
+    let authValues: any;
     const TestComponent = () => {
       authValues = useAuth();
       return <div>test</div>;

@@ -58,7 +58,7 @@ describe('DocumentaryList', () => {
     render(<DocumentaryList />);
     // Click the Hong Kong filter button (contains count in parens)
     const hkBtn = screen.getAllByText(/Hong Kong/).find(el => el.tagName === 'BUTTON' || el.closest('button'));
-    fireEvent.click(hkBtn.closest('button') || hkBtn);
+    fireEvent.click(hkBtn!.closest('button')! || hkBtn);
     // Hong Kong docs visible
     expect(screen.getByText('Revolution of Our Times')).toBeTruthy();
     expect(screen.getByText('Do Not Split')).toBeTruthy();
@@ -69,10 +69,10 @@ describe('DocumentaryList', () => {
   it('returns to all documentaries when All is clicked', () => {
     render(<DocumentaryList />);
     const hkBtn = screen.getAllByText(/Hong Kong/).find(el => el.tagName === 'BUTTON' || el.closest('button'));
-    fireEvent.click(hkBtn.closest('button') || hkBtn);
+    fireEvent.click(hkBtn!.closest('button')! || hkBtn);
     expect(screen.queryByText('The Dissident')).toBeNull();
     const allBtn = screen.getAllByText(/^All/).find(el => el.tagName === 'BUTTON' || el.closest('button'));
-    fireEvent.click(allBtn.closest('button') || allBtn);
+    fireEvent.click(allBtn!.closest('button')! || allBtn);
     expect(screen.getByText('The Dissident')).toBeTruthy();
   });
 

@@ -15,11 +15,11 @@ vi.mock('../components/ResearchDashboard', () => ({ default: () => <div>Research
 
 // Mock useLiveFeeds hook
 const mockRefresh = vi.fn();
-let mockHookReturn = {
-  feeds: [],
+let mockHookReturn: any = {
+  feeds: [] as any[],
   loading: true,
   error: null,
-  lastUpdated: null,
+  lastUpdated: null as any,
   refresh: mockRefresh,
   loadedSources: new Set(),
   sources: {
@@ -39,10 +39,10 @@ describe('IntelligenceFeeds', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockHookReturn = {
-      feeds: [],
+      feeds: [] as any[],
       loading: true,
       error: null,
-      lastUpdated: null,
+      lastUpdated: null as any,
       refresh: mockRefresh,
       loadedSources: new Set(),
       sources: {
@@ -135,7 +135,7 @@ describe('IntelligenceFeeds', () => {
       feeds: [
         { id: '1', title: 'Test Article', description: 'Test desc', source: 'icij', pubDate: new Date().toISOString(), link: 'https://example.com', relevanceScore: 10 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.getByText(/1 article loaded from 3 sources/)).toBeTruthy();
@@ -148,7 +148,7 @@ describe('IntelligenceFeeds', () => {
       feeds: [
         { id: '1', title: 'Test Article', description: 'Test desc', source: 'icij', pubDate: new Date().toISOString(), link: 'https://example.com', relevanceScore: 10 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.queryByRole('status')).toBeNull();
@@ -184,7 +184,7 @@ describe('IntelligenceFeeds', () => {
         { id: '1', title: 'Hong Kong activist arrested', description: 'Breaking news', source: 'hkfp', pubDate: new Date().toISOString(), link: 'https://example.com/1', relevanceScore: 40 },
         { id: '2', title: 'Sanctions update from EU', description: 'New round', source: 'icij', pubDate: new Date().toISOString(), link: 'https://example.com/2', relevanceScore: 20 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.getByText('Hong Kong activist arrested')).toBeTruthy();
@@ -198,7 +198,7 @@ describe('IntelligenceFeeds', () => {
       feeds: [
         { id: '1', title: 'Important article', description: 'Desc', source: 'hkfp', pubDate: new Date().toISOString(), link: 'https://example.com', relevanceScore: 40 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.getByText('HIGH RELEVANCE')).toBeTruthy();
@@ -210,8 +210,8 @@ describe('IntelligenceFeeds', () => {
     mockHookReturn = {
       ...mockHookReturn,
       loading: false,
-      feeds: [],
-      lastUpdated: new Date(),
+      feeds: [] as any[],
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.getByText('No articles found matching your criteria')).toBeTruthy();
@@ -239,7 +239,7 @@ describe('IntelligenceFeeds', () => {
       feeds: [
         { id: '1', title: 'Article 1', description: 'Desc', source: 'hkfp', pubDate: new Date().toISOString(), link: 'https://example.com', relevanceScore: 10 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     expect(screen.getByText(/Showing 1 of 1 articles from 3 verified sources/)).toBeTruthy();
@@ -255,7 +255,7 @@ describe('IntelligenceFeeds', () => {
         { id: '1', title: 'Hong Kong protest', description: 'Desc', source: 'hkfp', pubDate: new Date().toISOString(), link: '#', relevanceScore: 10 },
         { id: '2', title: 'EU sanctions round', description: 'Desc', source: 'icij', pubDate: new Date().toISOString(), link: '#', relevanceScore: 10 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     const searchInput = screen.getByLabelText('Search');
@@ -267,7 +267,7 @@ describe('IntelligenceFeeds', () => {
   // --- Refresh ---
 
   it('calls refresh when Refresh button is clicked', () => {
-    mockHookReturn = { ...mockHookReturn, loading: false, lastUpdated: new Date() };
+    mockHookReturn = { ...mockHookReturn, loading: false, lastUpdated: new Date() as any };
     render(<IntelligenceFeeds />);
     fireEvent.click(screen.getByText('Refresh'));
     expect(mockRefresh).toHaveBeenCalledTimes(1);
@@ -287,16 +287,16 @@ describe('IntelligenceFeeds', () => {
     render(<IntelligenceFeeds />);
     const select = screen.getByLabelText('Sort by:');
     expect(select).toBeTruthy();
-    expect(select.querySelector('option[value="relevancy"]').textContent).toBe('Relevancy');
-    expect(select.querySelector('option[value="newest"]').textContent).toBe('Newest First');
-    expect(select.querySelector('option[value="oldest"]').textContent).toBe('Oldest First');
+    expect(select!.querySelector('option[value="relevancy"]')!.textContent).toBe('Relevancy');
+    expect(select!.querySelector('option[value="newest"]')!.textContent).toBe('Newest First');
+    expect(select!.querySelector('option[value="oldest"]')!.textContent).toBe('Oldest First');
     expect(select.querySelector('option[value="source"]')).toBeNull();
   });
 
   it('defaults to Relevancy sort', () => {
     render(<IntelligenceFeeds />);
     const select = screen.getByLabelText('Sort by:');
-    expect(select.value).toBe('relevancy');
+    expect((select as HTMLInputElement).value).toBe('relevancy');
   });
 
   it('sorts by relevancy by default (highest score first)', () => {
@@ -307,7 +307,7 @@ describe('IntelligenceFeeds', () => {
         { id: '1', title: 'Low relevance item', description: 'Desc', source: 'icij', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
         { id: '2', title: 'High relevance item', description: 'Desc', source: 'hkfp', pubDate: '2026-03-01T09:00:00Z', link: '#', relevanceScore: 50 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     const articles = screen.getAllByRole('article');
@@ -323,7 +323,7 @@ describe('IntelligenceFeeds', () => {
         { id: '1', title: 'Older article', description: 'Desc', source: 'icij', pubDate: '2026-02-01T10:00:00Z', link: '#', relevanceScore: 50 },
         { id: '2', title: 'Newer article', description: 'Desc', source: 'hkfp', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     const select = screen.getByLabelText('Sort by:');
@@ -341,7 +341,7 @@ describe('IntelligenceFeeds', () => {
         { id: '1', title: 'Newer article', description: 'Desc', source: 'icij', pubDate: '2026-03-01T10:00:00Z', link: '#', relevanceScore: 5 },
         { id: '2', title: 'Older article', description: 'Desc', source: 'hkfp', pubDate: '2026-02-01T10:00:00Z', link: '#', relevanceScore: 50 },
       ],
-      lastUpdated: new Date(),
+      lastUpdated: new Date() as any,
     };
     render(<IntelligenceFeeds />);
     const select = screen.getByLabelText('Sort by:');

@@ -71,14 +71,14 @@ describe('SupplyChainRiskMapper', () => {
   it('Company Risk view is active by default', () => {
     render(<SupplyChainRiskMapper />);
     const btn = screen.getByText('Company Risk').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Industry Breakdown switches view', () => {
     render(<SupplyChainRiskMapper />);
     fireEvent.click(screen.getByText('Industry Breakdown'));
     const btn = screen.getByText('Industry Breakdown').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
     expect(screen.getByText(/Risk distribution across/)).toBeTruthy();
   });
 
@@ -86,7 +86,7 @@ describe('SupplyChainRiskMapper', () => {
     render(<SupplyChainRiskMapper />);
     fireEvent.click(screen.getByText('Legal Landscape'));
     const btn = screen.getByText('Legal Landscape').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
     expect(screen.getByText(/key legislative frameworks/)).toBeTruthy();
   });
 
@@ -223,8 +223,8 @@ describe('SupplyChainRiskMapper', () => {
       const link = screen.queryByText('View source evidence');
       if (link) {
         const anchor = link.closest('a');
-        expect(anchor.getAttribute('target')).toBe('_blank');
-        expect(anchor.getAttribute('rel')).toContain('noopener');
+        expect(anchor!.getAttribute('target')).toBe('_blank');
+        expect(anchor!.getAttribute('rel')).toContain('noopener');
       }
     }
   });
@@ -300,7 +300,7 @@ describe('SupplyChainRiskMapper', () => {
     render(<SupplyChainRiskMapper />);
     fireEvent.click(screen.getByText('Copy report'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = navigator.clipboard.writeText.mock.calls[0][0];
+    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(text).toContain('Supply Chain Risk Assessment');
     expect(text).toContain('CC BY 4.0');
   });

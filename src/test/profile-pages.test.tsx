@@ -19,7 +19,7 @@ import TashiWangchukProfile from '../pages/profiles/TashiWangchukProfile';
 import XuZhiyongProfile from '../pages/profiles/XuZhiyongProfile';
 import ZhangZhanProfile from '../pages/profiles/ZhangZhanProfile';
 
-const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>);
+const renderWithRouter = (ui: any) => render(<MemoryRouter>{ui}</MemoryRouter>);
 
 // All 15 profiles with expected data
 // statusText: what to search for in rendered output (some profiles render status differently)
@@ -141,7 +141,7 @@ describe('Profile Pages — Accessibility', () => {
       const { container, unmount } = renderWithRouter(<Component />);
       const panel = container.querySelector('[role="tabpanel"]');
       expect(panel, `${name}: missing tabpanel`).toBeTruthy();
-      expect(panel.getAttribute('aria-labelledby'), `${name}: missing aria-labelledby`).toBeTruthy();
+      expect(panel!.getAttribute('aria-labelledby'), `${name}: missing aria-labelledby`).toBeTruthy();
       unmount();
     });
   });
@@ -175,12 +175,12 @@ describe('Profile Pages — Tab Navigation', () => {
   it('clicking different tabs changes visible content (Benny Tai)', () => {
     const { container } = renderWithRouter(<BennyTaiProfile />);
     const panel = container.querySelector('[role="tabpanel"]');
-    const timelineContent = panel.textContent;
+    const timelineContent = panel!.textContent;
 
     const chargesTab = screen.getByText(/charges/i, { selector: 'button' });
     fireEvent.click(chargesTab);
     const updatedPanel = container.querySelector('[role="tabpanel"]');
-    expect(updatedPanel.textContent).not.toBe(timelineContent);
+    expect(updatedPanel!.textContent).not.toBe(timelineContent);
   });
 });
 

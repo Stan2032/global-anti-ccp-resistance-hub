@@ -88,8 +88,8 @@ describe('GenocideLegalFramework', () => {
     fireEvent.change(search, { target: { value: 'Xinjiang' } });
     const countText = screen.getByText(/of \d+ violations shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeLessThan(12);
-    expect(parseInt(match[1])).toBeGreaterThan(0);
+    expect(parseInt(match![1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeGreaterThan(0);
   });
 
   it('filters by legal instrument dropdown', () => {
@@ -98,8 +98,8 @@ describe('GenocideLegalFramework', () => {
     fireEvent.change(select, { target: { value: 'genocide' } });
     const countText = screen.getByText(/of \d+ violations shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThan(0);
-    expect(parseInt(match[1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeGreaterThan(0);
+    expect(parseInt(match![1])).toBeLessThan(12);
   });
 
   // === CATEGORY BUTTONS ===
@@ -118,13 +118,13 @@ describe('GenocideLegalFramework', () => {
     fireEvent.click(btn);
     const countText = screen.getByText(/of \d+ violations shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThan(0);
-    expect(parseInt(match[1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeGreaterThan(0);
+    expect(parseInt(match![1])).toBeLessThan(12);
     // Click again to reset
     fireEvent.click(btn);
     const resetText = screen.getByText(/of \d+ violations shown/);
     const resetMatch = resetText.textContent.match(/^(\d+)/);
-    expect(parseInt(resetMatch[1])).toBeGreaterThanOrEqual(10);
+    expect(parseInt(resetMatch![1])).toBeGreaterThanOrEqual(10);
   });
 
   // === VIOLATION CARDS ===
@@ -228,7 +228,7 @@ describe('GenocideLegalFramework', () => {
     await vi.waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalled();
     });
-    const clipText = navigator.clipboard.writeText.mock.calls[0][0];
+    const clipText = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(clipText).toContain('CCP VIOLATIONS OF INTERNATIONAL LAW');
     expect(clipText).toContain('CC BY 4.0');
   });
@@ -300,7 +300,7 @@ describe('GenocideLegalFramework', () => {
     render(<GenocideLegalFramework />);
     const countText = screen.getByText(/of \d+ violations shown/);
     const match = countText.textContent.match(/of (\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(10);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(10);
   });
 
   it('has all 5 legal instrument categories represented', () => {
@@ -328,7 +328,7 @@ describe('GenocideLegalFramework', () => {
     fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
     const countText = screen.getByText(/\d+ formal genocide recognitions/);
     const match = countText.textContent.match(/(\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(8);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(8);
   });
 
   // === COMBINED SEARCH + CATEGORY FILTER ===
@@ -340,7 +340,7 @@ describe('GenocideLegalFramework', () => {
     fireEvent.change(search, { target: { value: 'zzz_nonexistent_term' } });
     const countText = screen.getByText(/of \d+ violations shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBe(0);
+    expect(parseInt(match![1])).toBe(0);
   });
 
   // === SPECIFIC LEGAL CONTENT ===

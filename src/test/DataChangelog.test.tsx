@@ -70,7 +70,7 @@ describe('DataChangelog', () => {
   it('expands dataset details when clicked', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.getByText(/Last verified:/)).toBeTruthy();
     expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
   });
@@ -78,23 +78,23 @@ describe('DataChangelog', () => {
   it('shows verification note when expanded', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.getByText(/63 records verified/)).toBeTruthy();
   });
 
   it('shows days ago when expanded', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.getByText(/days ago/)).toBeTruthy();
   });
 
   it('collapses on second click', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.queryByText('political_prisoners_research.json')).toBeNull();
   });
 
@@ -102,9 +102,9 @@ describe('DataChangelog', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
     const sanctionsBtn = screen.getByText('Sanctions Tracker').closest('button');
-    fireEvent.click(prisonerBtn);
+    fireEvent.click(prisonerBtn!);
     expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
-    fireEvent.click(sanctionsBtn);
+    fireEvent.click(sanctionsBtn!);
     expect(screen.queryByText('political_prisoners_research.json')).toBeNull();
     expect(screen.getByText('sanctions_tracker.json')).toBeTruthy();
   });
@@ -112,9 +112,9 @@ describe('DataChangelog', () => {
   it('has aria-expanded attribute on toggle buttons', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    expect(prisonerBtn.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(prisonerBtn);
-    expect(prisonerBtn.getAttribute('aria-expanded')).toBe('true');
+    expect(prisonerBtn!.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(prisonerBtn!);
+    expect(prisonerBtn!.getAttribute('aria-expanded')).toBe('true');
   });
 
   // ── Recent Changes ─────────────────────────────────────
@@ -187,12 +187,12 @@ describe('DataChangelog', () => {
     ];
     datasets.forEach((name) => {
       const btn = screen.getByText(name).closest('button');
-      fireEvent.click(btn);
+      fireEvent.click(btn!);
       // Use getAllByText since multiple dates may be visible
       const dateTexts = screen.getAllByText(/^\d{4}-\d{2}-\d{2}$/);
       expect(dateTexts.length).toBeGreaterThanOrEqual(1);
       // Collapse
-      fireEvent.click(btn);
+      fireEvent.click(btn!);
     });
   });
 

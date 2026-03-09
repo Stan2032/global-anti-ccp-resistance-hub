@@ -56,7 +56,7 @@ describe('HumanRightsOrgDirectory', () => {
     const research = dataApi.getHumanRightsOrgsByType('Research');
     expect(research.length).toBeGreaterThan(0);
     research.forEach((o) => {
-      expect(o.org_type.toLowerCase()).toContain('research');
+      expect(o.org_type!.toLowerCase()).toContain('research');
     });
   });
 
@@ -103,8 +103,8 @@ describe('HumanRightsOrgDirectory', () => {
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
-    fireEvent.click(uyghurBtn);
-    expect(uyghurBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(uyghurBtn!);
+    expect(uyghurBtn!.getAttribute('aria-pressed')).toBe('true');
     // Should only show Uyghur orgs now
     const uyghurOrgs = dataApi.getHumanRightsOrgsByFocus('Uyghur');
     const expandable = screen.getAllByRole('button').filter(
@@ -118,10 +118,10 @@ describe('HumanRightsOrgDirectory', () => {
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
-    fireEvent.click(uyghurBtn);
-    expect(uyghurBtn.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(uyghurBtn);
-    expect(uyghurBtn.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(uyghurBtn!);
+    expect(uyghurBtn!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(uyghurBtn!);
+    expect(uyghurBtn!.getAttribute('aria-pressed')).toBe('false');
   });
 
   // --- Type Filter ---
@@ -141,8 +141,8 @@ describe('HumanRightsOrgDirectory', () => {
     const legalBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent === 'Legal'
     );
-    fireEvent.click(legalBtn);
-    expect(legalBtn.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(legalBtn!);
+    expect(legalBtn!.getAttribute('aria-pressed')).toBe('true');
     const legalOrgs = dataApi.getHumanRightsOrgsByType('Legal');
     const expandable = screen.getAllByRole('button').filter(
       (b) => b.getAttribute('aria-expanded') !== null
@@ -197,7 +197,7 @@ describe('HumanRightsOrgDirectory', () => {
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
-    fireEvent.click(uyghurBtn);
+    fireEvent.click(uyghurBtn!);
     expect(screen.getByText('Clear')).toBeTruthy();
   });
 
@@ -206,7 +206,7 @@ describe('HumanRightsOrgDirectory', () => {
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
-    fireEvent.click(uyghurBtn);
+    fireEvent.click(uyghurBtn!);
     fireEvent.click(screen.getByText('Clear'));
     // All orgs should be shown again
     const expandable = screen.getAllByRole('button').filter(
@@ -407,6 +407,6 @@ describe('HumanRightsOrgDirectory', () => {
     render(<HumanRightsOrgDirectory />);
     const input = screen.getByLabelText('Search organizations');
     expect(input.tagName).toBe('INPUT');
-    expect(input.type).toBe('text');
+    expect((input as HTMLInputElement).type).toBe('text');
   });
 });

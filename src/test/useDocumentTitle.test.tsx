@@ -3,8 +3,8 @@ import { renderHook } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
-function wrapper({ initialEntries }) {
-  return ({ children }) => (
+function wrapper({ initialEntries }: any) {
+  return ({ children }: any) => (
     <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
   );
 }
@@ -57,7 +57,7 @@ describe('useDocumentTitle', () => {
       wrapper: wrapper({ initialEntries: ['/prisoners'] }),
     });
     const meta = document.querySelector('meta[name="description"]');
-    expect(meta.getAttribute('content')).toContain('political prisoners');
+    expect(meta!.getAttribute('content')).toContain('political prisoners');
   });
 
   it('falls back to the base description for unknown routes', () => {
@@ -65,6 +65,6 @@ describe('useDocumentTitle', () => {
       wrapper: wrapper({ initialEntries: ['/nonexistent'] }),
     });
     const meta = document.querySelector('meta[name="description"]');
-    expect(meta.getAttribute('content')).toContain('global movement against CCP');
+    expect(meta!.getAttribute('content')).toContain('global movement against CCP');
   });
 });

@@ -79,21 +79,21 @@ describe('DiplomaticCoercionTracker', () => {
   it('Country Overview is active by default', () => {
     render(<DiplomaticCoercionTracker />);
     const btn = screen.getByText('Country Overview').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Coercion Tactics switches view', () => {
     render(<DiplomaticCoercionTracker />);
     fireEvent.click(screen.getByText('Coercion Tactics'));
     const btn = screen.getByText('Coercion Tactics').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   it('clicking Response Outcomes switches view', () => {
     render(<DiplomaticCoercionTracker />);
     fireEvent.click(screen.getByText('Response Outcomes'));
     const btn = screen.getByText('Response Outcomes').closest('button');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
+    expect(btn!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -228,7 +228,7 @@ describe('DiplomaticCoercionTracker', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const lastCall = navigator.clipboard.writeText.mock.calls;
+    const lastCall = (navigator.clipboard.writeText as any).mock.calls;
     const text = lastCall[lastCall.length - 1][0];
     expect(text).toContain('DIPLOMATIC COERCION TRACKER');
     expect(text).toContain('Countries targeted');
@@ -258,7 +258,7 @@ describe('DiplomaticCoercionTracker', () => {
     // Stats bar shows "N coercion incidents"
     const match = container.textContent.match(/(\d+)\s+coercion incidents/);
     expect(match).toBeTruthy();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(40);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(40);
   });
 
   it('tracks hostage diplomacy specifically', () => {

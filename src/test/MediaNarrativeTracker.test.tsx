@@ -62,7 +62,7 @@ describe('MediaNarrativeTracker', () => {
     fireEvent.change(search, { target: { value: 'Xinjiang' } });
     const countText = screen.getByText(/of \d+ narratives shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeLessThan(12);
   });
 
   it('filters by category dropdown', () => {
@@ -71,8 +71,8 @@ describe('MediaNarrativeTracker', () => {
     fireEvent.change(select, { target: { value: 'denial' } });
     const countText = screen.getByText(/of \d+ narratives shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThan(0);
-    expect(parseInt(match[1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeGreaterThan(0);
+    expect(parseInt(match![1])).toBeLessThan(12);
   });
 
   // === CATEGORY BUTTONS ===
@@ -92,13 +92,13 @@ describe('MediaNarrativeTracker', () => {
     // Should filter to denial category only
     const countText = screen.getByText(/of \d+ narratives shown/);
     const match = countText.textContent.match(/^(\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThan(0);
-    expect(parseInt(match[1])).toBeLessThan(12);
+    expect(parseInt(match![1])).toBeGreaterThan(0);
+    expect(parseInt(match![1])).toBeLessThan(12);
     // Click again to reset
     fireEvent.click(btn);
     const resetText = screen.getByText(/of \d+ narratives shown/);
     const resetMatch = resetText.textContent.match(/^(\d+)/);
-    expect(parseInt(resetMatch[1])).toBeGreaterThanOrEqual(10);
+    expect(parseInt(resetMatch![1])).toBeGreaterThanOrEqual(10);
   });
 
   // === NARRATIVE CARDS ===
@@ -199,7 +199,7 @@ describe('MediaNarrativeTracker', () => {
     await vi.waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalled();
     });
-    const clipText = navigator.clipboard.writeText.mock.calls[0][0];
+    const clipText = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(clipText).toContain('CCP PROPAGANDA NARRATIVE ANALYSIS');
     expect(clipText).toContain('CC BY 4.0');
   });
@@ -235,7 +235,7 @@ describe('MediaNarrativeTracker', () => {
     render(<MediaNarrativeTracker />);
     const countText = screen.getByText(/of \d+ narratives shown/);
     const match = countText.textContent.match(/of (\d+)/);
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(10);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(10);
   });
 
   it('has all 5 narrative categories represented', () => {
@@ -269,7 +269,7 @@ describe('MediaNarrativeTracker', () => {
     const countText = screen.getByText(/of \d+ narratives shown/);
     const match = countText.textContent.match(/^(\d+)/);
     // A nonsense search + any category should return 0
-    expect(parseInt(match[1])).toBe(0);
+    expect(parseInt(match![1])).toBe(0);
   });
 
   // === EVIDENCE POINTS ===

@@ -54,7 +54,7 @@ describe('SuccessStories', () => {
     render(<SuccessStories />);
     // Find the Sanctions filter button
     const sanctionsBtn = screen.getAllByText(/Sanctions/).find(el => el.tagName === 'BUTTON' || el.closest('button'));
-    fireEvent.click(sanctionsBtn.closest('button') || sanctionsBtn);
+    fireEvent.click(sanctionsBtn!.closest('button')! || sanctionsBtn);
     expect(screen.getByText('Coordinated Magnitsky Sanctions')).toBeTruthy();
     expect(screen.getByText('Export Controls on AI Chips')).toBeTruthy();
     // Non-sanctions victory hidden
@@ -64,7 +64,7 @@ describe('SuccessStories', () => {
   it('returns to all victories when All Victories is clicked', () => {
     render(<SuccessStories />);
     const sanctionsBtn = screen.getAllByText(/Sanctions/).find(el => el.tagName === 'BUTTON' || el.closest('button'));
-    fireEvent.click(sanctionsBtn.closest('button') || sanctionsBtn);
+    fireEvent.click(sanctionsBtn!.closest('button')! || sanctionsBtn);
     expect(screen.queryByText('UFLPA Enacted')).toBeNull();
     fireEvent.click(screen.getByText(/All Victories/));
     expect(screen.getByText('UFLPA Enacted')).toBeTruthy();

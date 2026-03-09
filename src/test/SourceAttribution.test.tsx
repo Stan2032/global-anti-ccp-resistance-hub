@@ -12,12 +12,12 @@ describe('SourceAttribution', () => {
   };
 
   it('should render nothing when source is null', () => {
-    const { container } = render(<SourceAttribution source={null} />);
+    const { container } = render(<SourceAttribution source={null as any} />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render nothing when source has no URL', () => {
-    const { container } = render(<SourceAttribution source={{ name: 'Test' }} />);
+    const { container } = render(<SourceAttribution source={{ name: 'Test' } as any} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -29,9 +29,9 @@ describe('SourceAttribution', () => {
   it('should render a link to the source URL', () => {
     render(<SourceAttribution source={mockSource} />);
     const link = screen.getByText('View Source').closest('a');
-    expect(link.getAttribute('href')).toBe('https://www.amnesty.org/');
-    expect(link.getAttribute('target')).toBe('_blank');
-    expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(link!.getAttribute('href')).toBe('https://www.amnesty.org/');
+    expect(link!.getAttribute('target')).toBe('_blank');
+    expect(link!.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
   it('should render the source type badge', () => {
@@ -42,7 +42,7 @@ describe('SourceAttribution', () => {
   it('should render compact version when compact prop is true', () => {
     render(<SourceAttribution source={mockSource} compact />);
     const link = screen.getByText('Amnesty International').closest('a');
-    expect(link.getAttribute('href')).toBe('https://www.amnesty.org/');
+    expect(link!.getAttribute('href')).toBe('https://www.amnesty.org/');
   });
 
   it('should show verified indicator for verified sources', () => {
@@ -70,7 +70,7 @@ describe('SourcesList', () => {
   });
 
   it('should render nothing when sources is null', () => {
-    const { container } = render(<SourcesList sources={null} />);
+    const { container } = render(<SourcesList sources={null as any} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -89,7 +89,7 @@ describe('SourcesList', () => {
 
 describe('InlineSource', () => {
   it('should render nothing when source is null', () => {
-    const { container } = render(<InlineSource source={null} number={1} />);
+    const { container } = render(<InlineSource source={null as any} number={1} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -103,6 +103,6 @@ describe('InlineSource', () => {
     const source = { name: 'Test', url: 'https://test.com/' };
     render(<InlineSource source={source} number={1} />);
     const link = screen.getByText('[1]').closest('a');
-    expect(link.getAttribute('href')).toBe('https://test.com/');
+    expect(link!.getAttribute('href')).toBe('https://test.com/');
   });
 });
