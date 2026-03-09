@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * LegalCaseTracker — Tracks active and concluded legal cases against

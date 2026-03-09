@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * DetentionFacilities — Database of detention facilities used for political

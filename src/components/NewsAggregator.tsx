@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * NewsAggregator — Aggregates live news feeds from Tier 1-2 sources

@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * TimelineGapAnalyzer — Identifies temporal gaps in the historical

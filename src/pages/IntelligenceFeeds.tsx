@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * IntelligenceFeeds — Live news aggregation and regional status dashboards

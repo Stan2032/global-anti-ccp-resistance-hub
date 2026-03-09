@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * AIDisinfoDetector — AI-powered analysis tool for detecting potential

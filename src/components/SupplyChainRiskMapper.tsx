@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';

@@ -1,4 +1,5 @@
-// @ts-nocheck — Phase 2 migration: types to be added
+// @ts-nocheck
+
 
 /**
  * DiasporaSecurityAdvisor — Security guidance tailored for diaspora
