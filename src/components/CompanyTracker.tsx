@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * CompanyTracker — Tracks companies complicit in CCP human rights abuses.
  * Provides risk analysis, compliance monitoring, and industry breakdowns.
@@ -8,16 +6,57 @@
  */
 import React, { useState, useMemo } from 'react';
 import { Building2, Ban, AlertTriangle, TrendingUp, BarChart3, BookOpen, Search, Landmark, Briefcase, Handshake } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
 import forcedLaborData from '../data/forced_labor_companies_research.json';
 
+type CompanyStatus = 'avoid' | 'concern' | 'improving' | 'good';
+
+interface CompanySource {
+  name: string;
+  url: string;
+  type: string;
+  organization?: string;
+  verified: boolean;
+  date: string;
+}
+
+interface TrackedCompany {
+  id: number;
+  name: string;
+  category: string;
+  status: CompanyStatus;
+  issue: string;
+  evidence: string;
+  companyResponse?: string | null;
+  uflpaActions?: string | null;
+  action: string;
+  source: CompanySource;
+  lastUpdated: string;
+  isFromResearch?: boolean;
+}
+
+interface CategoryFilter {
+  id: string;
+  name: string;
+  icon?: React.ReactNode;
+}
+
+interface StatusEntry {
+  color: string;
+  badge: string;
+  label: string;
+  Icon?: LucideIcon;
+  description: string;
+}
+
 const CompanyTracker = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedCompany, setExpandedCompany] = useState(null);
+  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
 
-  const categories = [
+  const categories: CategoryFilter[] = [
     { id: 'all', name: 'All Companies' },
     { id: 'fashion', name: 'Fashion & Apparel' },
     { id: 'tech', name: 'Technology' },
@@ -28,7 +67,7 @@ const CompanyTracker = () => {
   ];
 
   // Map industry to category
-  const mapIndustryToCategory = (industry) => {
+  const mapIndustryToCategory = (industry: string): string => {
     const industryLower = industry.toLowerCase();
     if (industryLower.includes('apparel') || industryLower.includes('fashion') || industryLower.includes('textile')) return 'fashion';
     if (industryLower.includes('technology') || industryLower.includes('electronics') || industryLower.includes('semiconductor')) return 'tech';
@@ -40,7 +79,7 @@ const CompanyTracker = () => {
   };
 
   // Map status from JSON to component format
-  const mapStatus = (status) => {
+  const mapStatus = (status: string): CompanyStatus => {
     if (!status) return 'concern';
     const statusLower = status.toLowerCase();
     if (statusLower === 'avoid' || statusLower === 'high concern') return 'avoid';
@@ -49,7 +88,7 @@ const CompanyTracker = () => {
   };
 
   // Process JSON data into component format
-  const processedCompanies = useMemo(() => {
+  const processedCompanies = useMemo((): TrackedCompany[] => {
     if (!forcedLaborData?.results) return [];
     
     return forcedLaborData.results
@@ -119,7 +158,7 @@ const CompanyTracker = () => {
   // Merge processed JSON data with hardcoded companies
   const companies = useMemo(() => {
     // Hardcoded companies for additional context
-    const hardcoded = [
+    const hardcoded: TrackedCompany[] = [
       {
         id: 1,
         name: 'Shein',
@@ -193,7 +232,7 @@ const CompanyTracker = () => {
     
     const merged = [...processedCompanies, ...hardcoded];
     // Deduplicate by company name (case-insensitive)
-    const uniqueMap = new Map();
+    const uniqueMap = new Map<string, TrackedCompany>();
     merged.forEach(company => {
       const key = company.name.toLowerCase();
       if (!uniqueMap.has(key) || company.isFromResearch) {
@@ -203,7 +242,7 @@ const CompanyTracker = () => {
     });
     return Array.from(uniqueMap.values());
   }, [processedCompanies]);
-  const statusInfo = {
+  const statusInfo: Record<CompanyStatus, StatusEntry> = {
     avoid: {
       color: 'bg-red-900/30 border-red-700/50',
       badge: 'bg-red-900/50 text-red-400',
