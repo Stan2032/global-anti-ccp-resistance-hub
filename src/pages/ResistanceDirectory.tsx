@@ -174,7 +174,7 @@ const ResistanceDirectory = () => {
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="font-semibold text-white">{org.name}</h3>
                   {org.verified && (
-                    <CheckCircle className="w-4 h-4 text-green-400" aria-label="Verified Organization" />
+                    <span title="Verified Organization"><CheckCircle className="w-4 h-4 text-green-400" aria-label="Verified Organization" /></span>
                   )}
                 </div>
                 {org.acronym && (

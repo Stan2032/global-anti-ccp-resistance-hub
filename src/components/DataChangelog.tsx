@@ -19,8 +19,7 @@ import {
   Shield,
   RefreshCw,
 } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
-import type { RecentUpdate } from '../services/dataApi';
+import { dataApi, type RecentUpdate } from '../services/dataApi';
 
 /**
  * DataChangelog — Research data provenance and verification tracker.

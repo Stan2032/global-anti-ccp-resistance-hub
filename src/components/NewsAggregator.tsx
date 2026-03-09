@@ -8,8 +8,7 @@
  * @module NewsAggregator
  */
 import React, { useState, useEffect } from 'react';
-import type { LucideIcon } from 'lucide-react';
-import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText } from 'lucide-react';
+import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText, type LucideIcon } from 'lucide-react';
 import { dataProcessor } from '../data/liveDataSources';
 
 /** Represents a single news or threat item from RSS feed aggregation */

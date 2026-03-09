@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
-import type { ForcedLabourCompany } from '../services/dataApi';
+import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
 import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
 
 type RiskLevel = 'Critical' | 'High' | 'Moderate' | 'Low';

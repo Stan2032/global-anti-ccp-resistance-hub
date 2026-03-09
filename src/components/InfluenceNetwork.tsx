@@ -4,8 +4,7 @@ import {
   ChevronDown, ChevronUp, ExternalLink, Building2, Scale,
   Target, Globe, Activity, Eye
 } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
-import type { SanctionedOfficial, PoliticalPrisoner, Sanction, TimelineEvent } from '../services/dataApi';
+import { dataApi, type SanctionedOfficial, type PoliticalPrisoner, type Sanction, type TimelineEvent } from '../services/dataApi';
 
 interface RegionConfigEntry {
   label: string;

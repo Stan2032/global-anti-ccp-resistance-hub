@@ -8,8 +8,7 @@
  * @module VictimStories
  */
 import { useState, useEffect } from 'react';
-import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin, type LucideIcon } from 'lucide-react';
 
 interface Story {
   id: number;

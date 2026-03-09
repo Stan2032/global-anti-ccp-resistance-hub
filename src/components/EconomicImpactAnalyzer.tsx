@@ -7,8 +7,7 @@
  * @module EconomicImpactAnalyzer
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
-import type { ForcedLabourCompany } from '../services/dataApi';
+import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
 
 /** Enriched company record with derived sector and risk classification */
 interface EnrichedCompany extends ForcedLabourCompany {
