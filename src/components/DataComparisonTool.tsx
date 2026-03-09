@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * DataComparisonTool — Side-by-side comparison of records across
@@ -25,6 +23,41 @@ import {
   Check,
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import type {
+  PoliticalPrisoner,
+  Sanction,
+  SanctionedOfficial,
+  TimelineEvent,
+  DetentionFacility,
+} from '../services/dataApi';
+
+type RegionId = 'hongkong' | 'uyghur' | 'tibet' | 'mainland';
+
+interface Region {
+  id: RegionId;
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+}
+
+interface StatusBreakdown {
+  DETAINED: number;
+  RELEASED: number;
+  DISAPPEARED: number;
+  DECEASED: number;
+  EXILE: number;
+  'AT RISK': number;
+  [key: string]: number;
+}
+
+interface ComparisonMetric {
+  id: string;
+  label: string;
+  Icon: typeof Users;
+  getValue: (regionId: RegionId) => number;
+  getDetail: (regionId: RegionId) => string;
+}
 
 /**
  * DataComparisonTool — Side-by-side regional comparison for researchers.
@@ -36,27 +69,27 @@ import { dataApi } from '../services/dataApi';
  * No external dependencies. No user tracking. Privacy-respecting.
  */
 
-const REGIONS = [
+const REGIONS: Region[] = [
   { id: 'hongkong', label: 'Hong Kong', color: 'text-yellow-400', bg: 'bg-yellow-500/10', border: 'border-yellow-500/30' },
   { id: 'uyghur', label: 'Xinjiang / Uyghur', color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/30' },
   { id: 'tibet', label: 'Tibet', color: 'text-[#4afa82]', bg: 'bg-[#4afa82]/10', border: 'border-[#4afa82]/30' },
   { id: 'mainland', label: 'Mainland / National', color: 'text-[#22d3ee]', bg: 'bg-cyan-500/10', border: 'border-cyan-500/30' },
 ];
 
-const REGION_KEYWORDS = {
+const REGION_KEYWORDS: Record<RegionId, string[]> = {
   hongkong: ['hong kong', 'hk'],
   uyghur: ['uyghur', 'xinjiang', 'urumqi', 'uyghurs'],
   tibet: ['tibet', 'tibetan', 'lhasa'],
   mainland: ['mainland', 'beijing', 'national', 'china'],
 };
 
-function matchesRegion(text, regionId) {
+function matchesRegion(text: string, regionId: RegionId): boolean {
   if (!text) return false;
   const lower = text.toLowerCase();
   return REGION_KEYWORDS[regionId].some((kw) => lower.includes(kw));
 }
 
-function classifyPrisoner(prisoner) {
+function classifyPrisoner(prisoner: PoliticalPrisoner): RegionId {
   const text = [prisoner.prisoner_name, prisoner.location, prisoner.latest_news, prisoner.sentence]
     .filter(Boolean)
     .join(' ');
@@ -66,7 +99,7 @@ function classifyPrisoner(prisoner) {
   return 'mainland';
 }
 
-function classifyTimeline(event) {
+function classifyTimeline(event: TimelineEvent): RegionId {
   const cat = (event.category || '').toLowerCase();
   if (cat === 'hongkong') return 'hongkong';
   if (cat === 'uyghur') return 'uyghur';
@@ -74,7 +107,7 @@ function classifyTimeline(event) {
   return 'mainland';
 }
 
-function classifySanction(sanction) {
+function classifySanction(sanction: Sanction): RegionId {
   const text = [sanction.target, sanction.reason, sanction.role].filter(Boolean).join(' ');
   for (const region of REGIONS) {
     if (matchesRegion(text, region.id)) return region.id;
@@ -83,8 +116,8 @@ function classifySanction(sanction) {
 }
 
 const DataComparisonTool = () => {
-  const [selectedRegions, setSelectedRegions] = useState(['hongkong', 'uyghur']);
-  const [expandedMetric, setExpandedMetric] = useState(null);
+  const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(['hongkong', 'uyghur']);
+  const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const data = useMemo(() => {
@@ -95,11 +128,11 @@ const DataComparisonTool = () => {
     const facilities = dataApi.getDetentionFacilities();
 
     // Classify data by region
-    const prisonersByRegion = {};
-    const sanctionsByRegion = {};
-    const timelineByRegion = {};
-    const officialsByRegion = {};
-    const facilitiesByRegion = {};
+    const prisonersByRegion = {} as Record<RegionId, PoliticalPrisoner[]>;
+    const sanctionsByRegion = {} as Record<RegionId, Sanction[]>;
+    const timelineByRegion = {} as Record<RegionId, TimelineEvent[]>;
+    const officialsByRegion = {} as Record<RegionId, SanctionedOfficial[]>;
+    const facilitiesByRegion = {} as Record<RegionId, DetentionFacility[]>;
 
     for (const r of REGIONS) {
       prisonersByRegion[r.id] = [];
@@ -140,7 +173,7 @@ const DataComparisonTool = () => {
     });
 
     // Status breakdown per region
-    const statusByRegion = {};
+    const statusByRegion = {} as Record<RegionId, StatusBreakdown>;
     for (const r of REGIONS) {
       const regionPrisoners = prisonersByRegion[r.id];
       statusByRegion[r.id] = {
@@ -155,7 +188,7 @@ const DataComparisonTool = () => {
 
     // Sanctions by country per region
     const sanctionCountries = ['us', 'uk', 'eu', 'canada', 'australia'];
-    const sanctionsByCountryByRegion = {};
+    const sanctionsByCountryByRegion = {} as Record<RegionId, Record<string, number>>;
     for (const r of REGIONS) {
       sanctionsByCountryByRegion[r.id] = {};
       for (const country of sanctionCountries) {
@@ -183,7 +216,7 @@ const DataComparisonTool = () => {
     };
   }, []);
 
-  const toggleRegion = (regionId) => {
+  const toggleRegion = (regionId: RegionId) => {
     setSelectedRegions((prev) => {
       if (prev.includes(regionId)) {
         return prev.length > 1 ? prev.filter((r) => r !== regionId) : prev;
@@ -192,7 +225,7 @@ const DataComparisonTool = () => {
     });
   };
 
-  const toggleMetric = (metric) => {
+  const toggleMetric = (metric: string) => {
     setExpandedMetric((prev) => (prev === metric ? null : metric));
   };
 
@@ -224,7 +257,7 @@ const DataComparisonTool = () => {
 
   const selected = REGIONS.filter((r) => selectedRegions.includes(r.id));
 
-  const metrics = [
+  const metrics: ComparisonMetric[] = [
     {
       id: 'prisoners',
       label: 'Political Prisoners',
