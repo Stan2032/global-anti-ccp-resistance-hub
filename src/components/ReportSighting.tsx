@@ -1,5 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
-
 /**
  * ReportSighting — Guide for reporting sightings of overseas CCP police
  * stations, surveillance activities, or other CCP operations abroad.
@@ -7,9 +5,29 @@
  * @module ReportSighting
  */
 import React, { useState } from 'react';
-import { Siren, Video, AlertTriangle, Theater, Smartphone, Landmark, ClipboardList, Search, Shield, Globe } from 'lucide-react';
+import { Siren, Video, AlertTriangle, Theater, Smartphone, Landmark, ClipboardList, Search, Shield, Globe, type LucideIcon } from 'lucide-react';
 
-const SIGHTING_TYPES = [
+interface SightingType {
+  id: string;
+  label: string;
+  Icon: LucideIcon;
+  description: string;
+  fields: string[];
+}
+
+interface FormData {
+  type: string;
+  country: string;
+  city: string;
+  date: string;
+  description: string;
+  evidence: string;
+  contact: string;
+  anonymous: boolean;
+  consent: boolean;
+}
+
+const SIGHTING_TYPES: SightingType[] = [
   {
     id: 'police_station',
     label: 'Overseas Police Station',
@@ -73,8 +91,8 @@ const COUNTRIES = [
 
 const ReportSighting = () => {
   const [step, setStep] = useState(1);
-  const [selectedType, setSelectedType] = useState(null);
-  const [formData, setFormData] = useState({
+  const [selectedType, setSelectedType] = useState<SightingType | null>(null);
+  const [formData, setFormData] = useState<FormData>({
     type: '',
     country: '',
     city: '',
@@ -87,17 +105,17 @@ const ReportSighting = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleTypeSelect = (type) => {
+  const handleTypeSelect = (type: SightingType) => {
     setSelectedType(type);
     setFormData(prev => ({ ...prev, type: type.id }));
     setStep(2);
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // In a real implementation, this would send to a secure backend
     setSubmitted(true);
