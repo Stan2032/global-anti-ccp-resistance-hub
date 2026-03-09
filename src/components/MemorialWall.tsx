@@ -1,7 +1,3 @@
-// @ts-nocheck
-
-
-
 /**
  * MemorialWall — Commemorative wall honouring victims of CCP repression.
  * Searchable and filterable with source-attributed profiles.
@@ -12,7 +8,26 @@ import React, { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 
-const victims = [
+interface Victim {
+  id: number;
+  name: string;
+  chineseName?: string | null;
+  aka?: string;
+  dateOfDeath: string | null;
+  yearOfDeath: string;
+  placeOfDeath: string;
+  cause: string;
+  category: string;
+  description: string;
+  image: string | null;
+  verified: boolean;
+  source: string;
+}
+
+/** Map of victim category to its corresponding Tailwind background colour class. */
+type CategoryColorMap = Record<string, string>;
+
+const victims: Victim[] = [
   // Tiananmen Square
   {
     id: 1,
@@ -233,14 +248,14 @@ const categories = ['All', 'Tiananmen', 'Uyghur', 'Tibet', 'Hong Kong', 'Disside
 export default function MemorialWall() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedVictim, setSelectedVictim] = useState(null);
-  const [candlesLit, setCandlesLit] = useState(() => {
+  const [selectedVictim, setSelectedVictim] = useState<Victim | null>(null);
+  const [candlesLit, setCandlesLit] = useState<number[]>(() => {
     const saved = localStorage.getItem('memorial-candles');
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) as number[] : [];
   });
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedVictim(null); };
+    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedVictim(null); };
     if (selectedVictim) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedVictim]);
@@ -251,7 +266,7 @@ export default function MemorialWall() {
     return true;
   });
 
-  const lightCandle = (victimId) => {
+  const lightCandle = (victimId: number) => {
     if (!candlesLit.includes(victimId)) {
       const newCandles = [...candlesLit, victimId];
       setCandlesLit(newCandles);
@@ -259,8 +274,8 @@ export default function MemorialWall() {
     }
   };
 
-  const getCategoryColor = (category) => {
-    const colors = {
+  const getCategoryColor = (category: string): string => {
+    const colors: CategoryColorMap = {
       'Tiananmen': 'bg-red-600',
       'Uyghur': 'bg-[#22d3ee]',
       'Tibet': 'bg-orange-600',
