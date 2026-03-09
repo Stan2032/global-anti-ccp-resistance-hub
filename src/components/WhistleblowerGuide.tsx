@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 /**
@@ -116,7 +115,7 @@ const WhistleblowerGuide = () => {
   const [activeView, setActiveView] = useState('protocols');
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners(), []);
@@ -155,11 +154,12 @@ const WhistleblowerGuide = () => {
     verifiedChannels: SUBMISSION_CHANNELS.filter(c => c.trust === 'verified').length,
     categories: PROTOCOL_CATEGORIES.length,
     legalFrameworks: LEGAL_PROTECTIONS.length,
-    prisonersRetaliatedAgainst: prisoners.filter(p =>
-      (p.charges || '').toLowerCase().includes('leak') ||
-      (p.charges || '').toLowerCase().includes('state secret') ||
-      (p.charges || '').toLowerCase().includes('subver')
-    ).length,
+    prisonersRetaliatedAgainst: prisoners.filter(p => {
+      const charges = typeof p.charges === 'string' ? p.charges.toLowerCase() : '';
+      return charges.includes('leak') ||
+        charges.includes('state secret') ||
+        charges.includes('subver');
+    }).length,
   }), [prisoners]);
 
   const riskDistribution = useMemo(() => {
@@ -211,9 +211,9 @@ const WhistleblowerGuide = () => {
     { id: 'legal', label: 'Legal Protections' },
   ];
 
-  const getRiskStyle = (risk) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
-  const getCategoryInfo = (catId) => PROTOCOL_CATEGORIES.find(c => c.id === catId) || PROTOCOL_CATEGORIES[0];
-  const getTrustStyle = (trust) => CHANNEL_TRUST.find(t => t.id === trust) || CHANNEL_TRUST[0];
+  const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
+  const getCategoryInfo = (catId: string) => PROTOCOL_CATEGORIES.find(c => c.id === catId) || PROTOCOL_CATEGORIES[0];
+  const getTrustStyle = (trust: string) => CHANNEL_TRUST.find(t => t.id === trust) || CHANNEL_TRUST[0];
 
   return (
     <section aria-label="Whistleblower Security Guide" className="bg-[#0a0e14] border border-[#1c2a35] p-4 sm:p-6 space-y-6">
@@ -347,8 +347,8 @@ const WhistleblowerGuide = () => {
             <p className="text-slate-400 text-sm font-mono text-center py-4">No protocols match your search</p>
           ) : (
             filteredProtocols.sort((a, b) => {
-              const riskOrder = { critical: 0, high: 1, moderate: 2, low: 3 };
-              return (riskOrder[a.risk] || 3) - (riskOrder[b.risk] || 3);
+              const riskOrder: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
+              return (riskOrder[a.risk] ?? 3) - (riskOrder[b.risk] ?? 3);
             }).map(protocol => {
               const riskStyle = getRiskStyle(protocol.risk);
               const catInfo = getCategoryInfo(protocol.category);
@@ -448,7 +448,7 @@ const WhistleblowerGuide = () => {
             <p className="text-slate-400 text-sm font-mono text-center py-4">No legal frameworks match your search</p>
           ) : (
             filteredProtections.map(law => {
-              const strengthMap = { high: RISK_LEVELS[1], moderate: RISK_LEVELS[2], low: RISK_LEVELS[3] };
+              const strengthMap: Record<string, typeof RISK_LEVELS[number]> = { high: RISK_LEVELS[1], moderate: RISK_LEVELS[2], low: RISK_LEVELS[3] };
               const strengthStyle = strengthMap[law.strength] || RISK_LEVELS[2];
               const isExpanded = expandedItem === law.id;
               return (
