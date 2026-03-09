@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * SanctionImpactAnalyzer — Analyses the effectiveness and impact of
@@ -9,7 +7,7 @@
  * @module SanctionImpactAnalyzer
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, type SanctionedOfficial } from '../services/dataApi';
 import {
   Shield,
   Search,
@@ -40,11 +38,23 @@ import {
  * No external dependencies. No user tracking. Privacy-respecting.
  */
 
+// ── Type definitions ──────────────────────────────────
+
+type SanctioningCountry = 'us' | 'uk' | 'eu' | 'canada' | 'australia';
+type CoverageCategory = 'Full' | 'Strong' | 'Partial' | 'Gap';
+type SanctionMap = Record<SanctioningCountry, boolean>;
+
+interface EnrichedOfficial extends SanctionedOfficial {
+  sanctions: SanctionMap;
+  sanctionCount: number;
+  coverageCategory: CoverageCategory;
+}
+
 // ── Coverage classification ───────────────────────────
 
-const SANCTIONING_COUNTRIES = ['us', 'uk', 'eu', 'canada', 'australia'];
+const SANCTIONING_COUNTRIES: readonly SanctioningCountry[] = ['us', 'uk', 'eu', 'canada', 'australia'];
 
-const COVERAGE_ORDER = ['Full', 'Strong', 'Partial', 'Gap'];
+const COVERAGE_ORDER: readonly CoverageCategory[] = ['Full', 'Strong', 'Partial', 'Gap'];
 
 const COVERAGE_STYLES = {
   Full: {
@@ -77,7 +87,7 @@ const COVERAGE_STYLES = {
   },
 };
 
-const COUNTRY_LABELS = {
+const COUNTRY_LABELS: Record<SanctioningCountry, string> = {
   us: 'United States',
   uk: 'United Kingdom',
   eu: 'European Union',
@@ -85,7 +95,7 @@ const COUNTRY_LABELS = {
   australia: 'Australia',
 };
 
-const COUNTRY_FLAGS = {
+const COUNTRY_FLAGS: Record<SanctioningCountry, string> = {
   us: '🇺🇸',
   uk: '🇬🇧',
   eu: '🇪🇺',
@@ -93,25 +103,25 @@ const COUNTRY_FLAGS = {
   australia: '🇦🇺',
 };
 
-function isSanctioned(value) {
+function isSanctioned(value: unknown): boolean {
   if (!value) return false;
   const lower = String(value).toLowerCase();
   return lower.startsWith('yes') || lower.includes('designated') || lower.includes('sanctioned');
 }
 
-function getOfficialSanctions(official) {
-  const result = {};
+function getOfficialSanctions(official: SanctionedOfficial): SanctionMap {
+  const result: SanctionMap = { us: false, uk: false, eu: false, canada: false, australia: false };
   SANCTIONING_COUNTRIES.forEach((c) => {
     result[c] = isSanctioned(official[`${c}_sanctions`]);
   });
   return result;
 }
 
-function countSanctions(sanctions) {
+function countSanctions(sanctions: SanctionMap): number {
   return Object.values(sanctions).filter(Boolean).length;
 }
 
-function classifyCoverage(count) {
+function classifyCoverage(count: number): CoverageCategory {
   if (count >= 5) return 'Full';
   if (count >= 3) return 'Strong';
   if (count >= 1) return 'Partial';
@@ -120,7 +130,7 @@ function classifyCoverage(count) {
 
 // ── Clipboard ─────────────────────────────────────────
 
-function buildClipboardText(officials, coverageFilter) {
+function buildClipboardText(officials: EnrichedOfficial[], coverageFilter: string): string {
   const lines = [];
   const label = coverageFilter || 'All';
   lines.push(`SANCTION IMPACT ANALYSIS — ${label}`);
@@ -149,7 +159,7 @@ function buildClipboardText(officials, coverageFilter) {
 
 export default function SanctionImpactAnalyzer() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [coverageFilter, setCoverageFilter] = useState('');
+  const [coverageFilter, setCoverageFilter] = useState<CoverageCategory | ''>('');
   const [expandedOfficial, setExpandedOfficial] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -204,7 +214,7 @@ export default function SanctionImpactAnalyzer() {
 
   // ── Country breakdown ─────────────────────────────
   const countryBreakdown = useMemo(() => {
-    const counts = {};
+    const counts: Record<SanctioningCountry, number> = { us: 0, uk: 0, eu: 0, canada: 0, australia: 0 };
     SANCTIONING_COUNTRIES.forEach((c) => {
       counts[c] = enrichedOfficials.filter((o) => o.sanctions[c]).length;
     });
@@ -212,7 +222,7 @@ export default function SanctionImpactAnalyzer() {
   }, [enrichedOfficials]);
 
   // ── Handlers ──────────────────────────────────────
-  const handleToggle = (name) => {
+  const handleToggle = (name: string) => {
     setExpandedOfficial((prev) => (prev === name ? '' : name));
   };
 
@@ -237,7 +247,7 @@ export default function SanctionImpactAnalyzer() {
     }
   };
 
-  const handleCoverageFilter = (coverage) => {
+  const handleCoverageFilter = (coverage: CoverageCategory) => {
     setCoverageFilter((prev) => (prev === coverage ? '' : coverage));
   };
 
