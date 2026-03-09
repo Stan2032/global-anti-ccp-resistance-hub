@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 
 /**
  * CensorshipCircumventionGuide — Technical guide to bypassing internet
@@ -130,8 +129,8 @@ const CIRCUMVENTION_TOOLS = [
     source: 'Tor Project, Citizen Lab', url: 'https://bridges.torproject.org/' },
 ];
 
-function _classifyMethodRisk(methods) {
-  const critical = methods.filter(m => m.risk === 'critical').length;
+function _classifyMethodRisk(methods: typeof CENSORSHIP_METHODS) {
+  const critical = methods.filter((m: typeof CENSORSHIP_METHODS[number]) => m.risk === 'critical').length;
   if (critical >= 3) return 'critical';
   if (critical >= 1) return 'high';
   return 'moderate';
@@ -142,7 +141,7 @@ const CensorshipCircumventionGuide = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners(), []);
@@ -174,9 +173,9 @@ const CensorshipCircumventionGuide = () => {
     recommendedTools: CIRCUMVENTION_TOOLS.filter(t => t.safety === 'recommended').length,
     categories: CENSORSHIP_CATEGORIES.length,
     prisonersForSpeech: prisoners.filter(p =>
-      (p.charges || '').toLowerCase().includes('incit') ||
-      (p.charges || '').toLowerCase().includes('subver') ||
-      (p.charges || '').toLowerCase().includes('secess')
+      (String(p.charges ?? '')).toLowerCase().includes('incit') ||
+      (String(p.charges ?? '')).toLowerCase().includes('subver') ||
+      (String(p.charges ?? '')).toLowerCase().includes('secess')
     ).length,
   }), [prisoners]);
 
@@ -225,9 +224,9 @@ const CensorshipCircumventionGuide = () => {
     { id: 'safety', label: 'Safety Guide' },
   ];
 
-  const getRiskStyle = (risk) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
-  const _getCategoryInfo = (catId) => CENSORSHIP_CATEGORIES.find(c => c.id === catId) || CENSORSHIP_CATEGORIES[0];
-  const getSafetyStyle = (safety) => TOOL_SAFETY.find(s => s.id === safety) || TOOL_SAFETY[0];
+  const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
+  const _getCategoryInfo = (catId: string) => CENSORSHIP_CATEGORIES.find(c => c.id === catId) || CENSORSHIP_CATEGORIES[0];
+  const getSafetyStyle = (safety: string) => TOOL_SAFETY.find(s => s.id === safety) || TOOL_SAFETY[0];
 
   return (
     <section aria-label="Censorship Circumvention Guide" className="bg-[#0a0e14] border border-[#1c2a35] p-4 sm:p-6 space-y-6">
