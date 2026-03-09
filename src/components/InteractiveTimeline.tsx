@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * InteractiveTimeline — Zoomable, filterable timeline of CCP human
@@ -13,6 +11,9 @@ import { Calendar, ChevronLeft, ChevronRight, Play, Pause, ZoomIn, ZoomOut, Filt
 import SourceAttribution from './ui/SourceAttribution';
 import { resolveSource } from '../utils/sourceLinks';
 import timelineEvents from '../data/timeline_events.json';
+
+/** Derived from the JSON import so the type stays in sync with the data. */
+type TimelineEvent = (typeof timelineEvents)[number];
 
 // Categories kept inline since they include Tailwind CSS classes (not pure data)
 
@@ -28,12 +29,12 @@ const categories = [
 
 export default function InteractiveTimeline() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const timelineRef = useRef(null);
-  const playIntervalRef = useRef(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const filteredEvents = selectedCategory === 'all' 
     ? timelineEvents 
@@ -69,11 +70,11 @@ export default function InteractiveTimeline() {
     setSelectedEvent(filteredEvents[newIndex]);
   };
 
-  const getCategoryColor = (category) => {
+  const getCategoryColor = (category: string): string => {
     return categories.find(c => c.id === category)?.color || 'bg-[#1c2a35]';
   };
 
-  const getSignificanceStyle = (significance) => {
+  const getSignificanceStyle = (significance: string): string => {
     switch (significance) {
       case 'critical': return 'ring-2 ring-red-500';
       case 'high': return 'ring-2 ring-orange-500';
@@ -81,7 +82,7 @@ export default function InteractiveTimeline() {
     }
   };
 
-  const formatDate = (dateStr) => {
+  const formatDate = (dateStr: string): string => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
@@ -298,7 +299,7 @@ export default function InteractiveTimeline() {
             <div>
               <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
               <div className="flex flex-wrap gap-2">
-                {selectedEvent.sources.map((source, i) => {
+                {selectedEvent.sources.map((source: string, i: number) => {
                   const resolved = resolveSource(source);
                   return resolved.url ? (
                     <SourceAttribution key={i} source={resolved} compact />
