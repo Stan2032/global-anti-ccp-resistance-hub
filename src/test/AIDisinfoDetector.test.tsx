@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -29,7 +28,7 @@ describe('AIDisinfoDetector', () => {
   it('has Analyze Text button disabled when textarea is empty', () => {
     render(<AIDisinfoDetector />);
     const button = screen.getByText('Analyze Text').closest('button');
-    expect(button.disabled).toBe(true);
+    expect(button!.disabled).toBe(true);
   });
 
   it('enables Analyze Text button when text is entered', () => {
@@ -37,7 +36,7 @@ describe('AIDisinfoDetector', () => {
     const textarea = screen.getByLabelText('Paste text to analyze:');
     fireEvent.change(textarea, { target: { value: 'some text to analyze' } });
     const button = screen.getByText('Analyze Text').closest('button');
-    expect(button.disabled).toBe(false);
+    expect(button!.disabled).toBe(false);
   });
 
   it('renders example texts section', () => {
@@ -57,7 +56,7 @@ describe('AIDisinfoDetector', () => {
     const loadButtons = screen.getAllByText('Load Example');
     fireEvent.click(loadButtons[0]);
     const textarea = screen.getByLabelText('Paste text to analyze:');
-    expect(textarea.value).toContain('vocational training');
+    expect((textarea as HTMLInputElement).value).toContain('vocational training');
   });
 
   it('renders Common CCP Propaganda Patterns section', () => {

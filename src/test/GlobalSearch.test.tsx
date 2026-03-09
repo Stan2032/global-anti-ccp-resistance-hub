@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -342,7 +341,7 @@ describe('GlobalSearch', () => {
 
     // Backdrop is the first fixed overlay div
     const backdrop = container.querySelector('.fixed.inset-0');
-    fireEvent.click(backdrop);
+    fireEvent.click(backdrop!);
     expect(onClose).toHaveBeenCalled();
   });
 
@@ -351,7 +350,7 @@ describe('GlobalSearch', () => {
 
     // Quick links are visible when no query
     const prisonersLink = screen.getByText('Political Prisoners');
-    fireEvent.click(prisonersLink.closest('button'));
+    fireEvent.click(prisonersLink.closest('button')!);
 
     expect(mockNavigate).toHaveBeenCalledWith('/prisoners');
   });

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PetitionLinks from '../components/PetitionLinks';
@@ -74,12 +73,12 @@ describe('PetitionLinks', () => {
     render(<PetitionLinks />);
     const signLinks = screen.getAllByText('Sign Now');
     expect(signLinks.length).toBeGreaterThanOrEqual(1);
-    expect(signLinks[0].closest('a').getAttribute('href')).toMatch(/^https:\/\//);
+    expect(signLinks[0].closest('a')!.getAttribute('href')).toMatch(/^https:\/\//);
   });
 
   it('has target="_blank" on external links', () => {
     render(<PetitionLinks />);
     const signLinks = screen.getAllByText('Sign Now');
-    expect(signLinks[0].closest('a').getAttribute('target')).toBe('_blank');
+    expect(signLinks[0].closest('a')!.getAttribute('target')).toBe('_blank');
   });
 });

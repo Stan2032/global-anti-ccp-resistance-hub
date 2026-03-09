@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -70,7 +69,7 @@ describe('ReportSighting', () => {
     fireEvent.change(screen.getByLabelText('Description of observation'), { target: { value: 'Test description' } });
     fireEvent.click(screen.getByText('Continue →'));
     const submitBtn = screen.getByText('Submit Report');
-    expect(submitBtn.disabled).toBe(true);
+    expect((submitBtn as HTMLButtonElement).disabled).toBe(true);
   });
 
   it('submits form and shows confirmation message', () => {

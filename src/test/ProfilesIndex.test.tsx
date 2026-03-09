@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import ProfilesIndex from '../pages/profiles/ProfilesIndex';
 
-const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>);
+const renderWithRouter = (ui: React.ReactElement) => render(<MemoryRouter>{ui}</MemoryRouter>);
 
 describe('ProfilesIndex', () => {
   it('should render the page title', () => {

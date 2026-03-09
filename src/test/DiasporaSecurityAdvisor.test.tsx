@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import DiasporaSecurityAdvisor from '../components/DiasporaSecurityAdvisor';
@@ -173,7 +172,7 @@ describe('DiasporaSecurityAdvisor', () => {
     await vi.waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
     });
-    const clipboardText = navigator.clipboard.writeText.mock.calls[0][0];
+    const clipboardText = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(clipboardText).toContain('DIASPORA SECURITY ADVISORY');
     expect(clipboardText).toContain('CC BY 4.0');
   });

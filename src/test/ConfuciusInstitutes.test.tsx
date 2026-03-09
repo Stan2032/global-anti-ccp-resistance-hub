@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -64,7 +63,7 @@ describe('ConfuciusInstitutes', () => {
   it('renders the Show closed institutes checkbox checked by default', () => {
     render(<ConfuciusInstitutes />);
     const checkbox = screen.getByRole('checkbox');
-    expect(checkbox.checked).toBe(true);
+    expect((checkbox as HTMLInputElement).checked).toBe(true);
   });
 
   it('hides closed institutes when checkbox is unchecked', () => {

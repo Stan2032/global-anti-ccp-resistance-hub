@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -141,8 +140,8 @@ describe('FAQ', () => {
     render(<FAQ />);
     expect(screen.getByText('Still have questions?')).toBeTruthy();
     const eduLink = screen.getByText('Education Center');
-    expect(eduLink.closest('a').getAttribute('href')).toBe('/education');
+    expect(eduLink.closest('a')!.getAttribute('href')).toBe('/education');
     const resourcesLink = screen.getByText('Resources');
-    expect(resourcesLink.closest('a').getAttribute('href')).toBe('/resources');
+    expect(resourcesLink.closest('a')!.getAttribute('href')).toBe('/resources');
   });
 });

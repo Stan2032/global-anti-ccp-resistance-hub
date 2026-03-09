@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 // Mock GlobalDisclaimer
 vi.mock('../components/ui/GlobalDisclaimer', () => ({
-  default: ({ type }) => <div data-testid="disclaimer">{type}</div>,
+  default: ({ type }: { type: string }) => <div data-testid="disclaimer">{type}</div>,
 }));
 
 import ForcedLabourList from '../components/ForcedLabourList';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import DonationGuide from '../components/DonationGuide';
@@ -53,7 +52,7 @@ describe('DonationGuide', () => {
     render(<DonationGuide />);
     const donateLinks = screen.getAllByText('Donate');
     expect(donateLinks.length).toBeGreaterThanOrEqual(1);
-    expect(donateLinks[0].closest('a').getAttribute('href')).toMatch(/^https:\/\//);
+    expect(donateLinks[0].closest('a')!.getAttribute('href')).toMatch(/^https:\/\//);
   });
 
   // --- Category Filtering ---

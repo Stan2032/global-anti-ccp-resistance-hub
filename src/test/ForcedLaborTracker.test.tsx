@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ForcedLaborTracker from '../components/ForcedLaborTracker';
@@ -57,7 +56,7 @@ describe('ForcedLaborTracker', () => {
   it('expands company details on click', () => {
     render(<ForcedLaborTracker />);
     const companyHeaders = screen.getAllByRole('heading', { level: 4 });
-    const companyButton = companyHeaders[0].closest('button') || companyHeaders[0].parentElement.closest('button');
+    const companyButton = companyHeaders[0].closest('button') || companyHeaders[0].parentElement!.closest('button');
     if (companyButton) {
       fireEvent.click(companyButton);
       expect(screen.getAllByText(/Evidence|Company Response|View Source/i).length).toBeGreaterThanOrEqual(1);

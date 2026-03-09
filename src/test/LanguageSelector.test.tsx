@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -64,7 +63,7 @@ describe('LanguageSelector', () => {
     expect(screen.getByText('简体中文')).toBeTruthy();
     // Click the fixed overlay (backdrop)
     const overlay = document.querySelector('.fixed.inset-0');
-    fireEvent.click(overlay);
+    fireEvent.click(overlay!);
     expect(screen.queryByText('简体中文')).toBeNull();
   });
 });

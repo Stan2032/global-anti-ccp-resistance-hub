@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import RouteAnnouncer from '../components/RouteAnnouncer';
 
-function renderWithRouter(initialEntries) {
+function renderWithRouter(initialEntries: string[]) {
   return render(
     <MemoryRouter initialEntries={initialEntries}>
       <RouteAnnouncer />

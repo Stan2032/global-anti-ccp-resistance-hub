@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -158,7 +157,7 @@ describe('PrintableReport', () => {
       document: { write: mockWrite, close: mockClose },
       print: mockPrint,
     }));
-    vi.spyOn(window, 'open').mockImplementation(mockOpen);
+    (vi.spyOn(window, 'open') as any).mockImplementation(mockOpen);
 
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
@@ -169,7 +168,7 @@ describe('PrintableReport', () => {
     expect(mockClose).toHaveBeenCalled();
     expect(mockPrint).toHaveBeenCalled();
 
-    window.open.mockRestore();
+    (window.open as any).mockRestore();
   });
 
   it('handles blocked popup gracefully', () => {
@@ -182,7 +181,7 @@ describe('PrintableReport', () => {
       fireEvent.click(screen.getByLabelText('Print report'));
     }).not.toThrow();
 
-    window.open.mockRestore();
+    (window.open as any).mockRestore();
   });
 
   // --- Generated date ---

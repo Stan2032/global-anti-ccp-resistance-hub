@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -28,7 +27,7 @@ vi.mock('../services/liveDataService', () => ({
 }));
 
 // Mock useStatistics hook
-let mockStatsReturn = {
+let mockStatsReturn: any = {
   stats: null,
   loading: true,
   error: null,
@@ -171,8 +170,8 @@ describe('Dashboard', () => {
   it('links to external tool URLs', () => {
     renderDashboard();
     const torLink = screen.getByText('Tor Browser').closest('a');
-    expect(torLink.getAttribute('href')).toBe('https://www.torproject.org/download/');
-    expect(torLink.getAttribute('rel')).toContain('noopener');
+    expect(torLink!.getAttribute('href')).toBe('https://www.torproject.org/download/');
+    expect(torLink!.getAttribute('rel')).toContain('noopener');
   });
 
   // --- Footer ---

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -130,8 +129,8 @@ describe('TibetStatus', () => {
   it('resource links open in new tab', () => {
     render(<TibetStatus />);
     const ictLink = screen.getByText('ICT').closest('a');
-    expect(ictLink.getAttribute('target')).toBe('_blank');
-    expect(ictLink.getAttribute('rel')).toContain('noopener');
-    expect(ictLink.getAttribute('href')).toBe('https://savetibet.org/');
+    expect(ictLink!.getAttribute('target')).toBe('_blank');
+    expect(ictLink!.getAttribute('rel')).toContain('noopener');
+    expect(ictLink!.getAttribute('href')).toBe('https://savetibet.org/');
   });
 });

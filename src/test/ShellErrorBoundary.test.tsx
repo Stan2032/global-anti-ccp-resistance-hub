@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import ShellErrorBoundary from '../components/ShellErrorBoundary';
 
 // Component that throws when shouldThrow is true
-const ThrowingComponent = ({ shouldThrow }) => {
+const ThrowingComponent = ({ shouldThrow }: { shouldThrow: boolean }) => {
   if (shouldThrow) {
     throw new Error('Shell component failure');
   }

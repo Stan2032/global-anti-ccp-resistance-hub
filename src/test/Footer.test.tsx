@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -171,7 +170,7 @@ describe('Footer', () => {
       const { container } = renderFooter();
       const srOnly = container.querySelector('.sr-only');
       expect(srOnly).toBeTruthy();
-      expect(srOnly.textContent).toContain('Liberate Hong Kong');
+      expect(srOnly!.textContent).toContain('Liberate Hong Kong');
     });
   });
 });

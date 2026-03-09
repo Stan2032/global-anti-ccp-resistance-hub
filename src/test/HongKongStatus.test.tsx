@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -100,8 +99,8 @@ describe('HongKongStatus', () => {
   it('resource links open in new tab', () => {
     render(<HongKongStatus />);
     const hkwLink = screen.getByText('Hong Kong Watch').closest('a');
-    expect(hkwLink.getAttribute('target')).toBe('_blank');
-    expect(hkwLink.getAttribute('rel')).toContain('noopener');
-    expect(hkwLink.getAttribute('href')).toBe('https://www.hongkongwatch.org/');
+    expect(hkwLink!.getAttribute('target')).toBe('_blank');
+    expect(hkwLink!.getAttribute('rel')).toContain('noopener');
+    expect(hkwLink!.getAttribute('href')).toBe('https://www.hongkongwatch.org/');
   });
 });

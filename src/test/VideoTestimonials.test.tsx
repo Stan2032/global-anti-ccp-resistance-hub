@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -281,8 +280,8 @@ describe('VideoTestimonials', () => {
     fireEvent.click(expandBtns[0]);
     fireEvent.click(screen.getByText('I understand — show details'));
     const link = screen.getByText(/Watch on/).closest('a');
-    expect(link.getAttribute('target')).toBe('_blank');
-    expect(link.getAttribute('rel')).toContain('noopener');
+    expect(link!.getAttribute('target')).toBe('_blank');
+    expect(link!.getAttribute('rel')).toContain('noopener');
   });
 
   // ── Copy to clipboard ─────────────────────────────────
@@ -296,7 +295,7 @@ describe('VideoTestimonials', () => {
     render(<VideoTestimonials />);
     fireEvent.click(screen.getByText('Copy list'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = navigator.clipboard.writeText.mock.calls[0][0];
+    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
     expect(text).toContain('Video Testimonials');
     expect(text).toContain('CC BY 4.0');
   });

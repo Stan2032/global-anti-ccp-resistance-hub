@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -24,7 +23,7 @@ describe('SearchButton', () => {
   it('accepts custom className', () => {
     const { container } = render(<SearchButton onClick={() => {}} className="w-80" />);
     const button = container.querySelector('button');
-    expect(button.className).toContain('w-80');
+    expect(button!.className).toContain('w-80');
   });
 
   it('renders SVG search icon', () => {

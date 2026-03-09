@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -108,14 +107,14 @@ describe('DataExport', () => {
   it('disables Download button when no datasets selected', () => {
     render(<DataExport />);
     const button = screen.getByText('Download Export');
-    expect(button.closest('button').disabled).toBe(true);
+    expect((button.closest('button') as HTMLButtonElement).disabled).toBe(true);
   });
 
   it('enables Download button when datasets are selected', () => {
     render(<DataExport />);
     fireEvent.click(screen.getByText('Political Prisoners Database'));
     const button = screen.getByText('Download Export');
-    expect(button.closest('button').disabled).toBe(false);
+    expect((button.closest('button') as HTMLButtonElement).disabled).toBe(false);
   });
 
   // --- Export Summary ---

@@ -1,17 +1,16 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 // Mock SourceAttribution and SourcesList
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }) => <div data-testid="source-attribution">{source?.name}</div>,
-  SourcesList: ({ sources }) => <div data-testid="sources-list">{sources?.length} sources</div>,
+  default: ({ source }: any) => <div data-testid="source-attribution">{source?.name}</div>,
+  SourcesList: ({ sources }: any) => <div data-testid="sources-list">{sources?.length} sources</div>,
 }));
 
 // Mock GlobalDisclaimer
 vi.mock('../components/ui/GlobalDisclaimer', () => ({
-  default: ({ type }) => <div data-testid="disclaimer">{type}</div>,
+  default: ({ type }: { type: string }) => <div data-testid="disclaimer">{type}</div>,
 }));
 
 import CCPOfficials from '../components/CCPOfficials';

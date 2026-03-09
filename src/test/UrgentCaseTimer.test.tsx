@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
@@ -80,7 +79,7 @@ describe('UrgentCaseTimer', () => {
       const actionLinks = screen.getAllByText('Take Action');
       expect(actionLinks.length).toBe(4);
       actionLinks.forEach(link => {
-        expect(link.closest('a').getAttribute('href')).toBe('/prisoners');
+        expect(link.closest('a')!.getAttribute('href')).toBe('/prisoners');
       });
     });
 

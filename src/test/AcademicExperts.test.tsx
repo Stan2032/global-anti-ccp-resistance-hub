@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -65,7 +64,7 @@ describe('AcademicExperts', () => {
     render(<AcademicExperts />);
     const expertName = screen.getByText('Dr. Adrian Zenz');
     const clickableRow = expertName.closest('.cursor-pointer');
-    fireEvent.click(clickableRow);
+    fireEvent.click(clickableRow!);
     expect(screen.getByText('Key Works')).toBeTruthy();
   });
 

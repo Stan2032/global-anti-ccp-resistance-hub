@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -26,8 +25,8 @@ describe('DataIntegrityMonitor', () => {
   it('shows at least 10 datasets', () => {
     render(<DataIntegrityMonitor />);
     expect(screen.getByText(/\d+ datasets validated/)).toBeTruthy();
-    const match = screen.getByText(/(\d+) datasets validated/).textContent.match(/(\d+) datasets validated/);
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(10);
+    const match = screen.getByText(/(\d+) datasets validated/).textContent!.match(/(\d+) datasets validated/);
+    expect(parseInt(match![1])).toBeGreaterThanOrEqual(10);
   });
 
   // ── Status Summary Cards ───────────────────────────────

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import GlobalDisclaimer from '../components/ui/GlobalDisclaimer';
@@ -47,6 +46,6 @@ describe('GlobalDisclaimer', () => {
 
   it('should apply custom className', () => {
     const { container } = render(<GlobalDisclaimer className="custom-class" />);
-    expect(container.firstChild.classList.contains('custom-class')).toBe(true);
+    expect((container.firstChild as HTMLElement).classList.contains('custom-class')).toBe(true);
   });
 });

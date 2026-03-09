@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -24,14 +23,14 @@ describe('SourceDiversityAnalyzer', () => {
   it('displays non-zero source references', () => {
     render(<SourceDiversityAnalyzer />);
     const refEl = screen.getByText('Total References').previousElementSibling;
-    const count = parseInt(refEl.textContent, 10);
+    const count = parseInt(refEl!.textContent!, 10);
     expect(count).toBeGreaterThan(0);
   });
 
   it('displays non-zero unique domains', () => {
     render(<SourceDiversityAnalyzer />);
     const domainEl = screen.getByText('Unique Domains').previousElementSibling;
-    const count = parseInt(domainEl.textContent, 10);
+    const count = parseInt(domainEl!.textContent!, 10);
     expect(count).toBeGreaterThan(0);
   });
 
@@ -206,7 +205,7 @@ describe('SourceDiversityAnalyzer', () => {
     const topSourcesHeading = screen.getByText('Top Sources (All Datasets)');
     const topSourcesSection = topSourcesHeading.closest('div');
     expect(topSourcesSection).not.toBeNull();
-    const topText = topSourcesSection.textContent;
+    const topText = topSourcesSection!.textContent;
     // CCP state media should never appear as an actual data source
     expect(topText).not.toContain('Xinhua');
     expect(topText).not.toContain('CGTN');

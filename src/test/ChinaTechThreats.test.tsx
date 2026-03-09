@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -129,8 +128,8 @@ describe('ChinaTechThreats', () => {
   it('resource links open in new tab', () => {
     render(<ChinaTechThreats />);
     const aspiLink = screen.getByText('ASPI Tech Tracker').closest('a');
-    expect(aspiLink.getAttribute('target')).toBe('_blank');
-    expect(aspiLink.getAttribute('rel')).toContain('noopener');
-    expect(aspiLink.getAttribute('href')).toBe('https://www.aspi.org.au/report/mapping-chinas-tech-giants');
+    expect(aspiLink!.getAttribute('target')).toBe('_blank');
+    expect(aspiLink!.getAttribute('rel')).toContain('noopener');
+    expect(aspiLink!.getAttribute('href')).toBe('https://www.aspi.org.au/report/mapping-chinas-tech-giants');
   });
 });

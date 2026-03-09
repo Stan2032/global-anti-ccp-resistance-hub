@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -126,8 +125,8 @@ describe('TaiwanDefenseStatus', () => {
   it('resource links open in new tab', () => {
     render(<TaiwanDefenseStatus />);
     const csisLink = screen.getByText('CSIS China Power').closest('a');
-    expect(csisLink.getAttribute('target')).toBe('_blank');
-    expect(csisLink.getAttribute('rel')).toContain('noopener');
-    expect(csisLink.getAttribute('href')).toBe('https://www.csis.org/programs/china-power-project');
+    expect(csisLink!.getAttribute('target')).toBe('_blank');
+    expect(csisLink!.getAttribute('rel')).toContain('noopener');
+    expect(csisLink!.getAttribute('href')).toBe('https://www.csis.org/programs/china-power-project');
   });
 });

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
@@ -65,8 +64,8 @@ describe('KeyboardShortcutsHelp', () => {
   it('calls onClose when backdrop is clicked', () => {
     render(<KeyboardShortcutsHelp isOpen={true} onClose={mockClose} />);
     // Click the backdrop (the element behind the dialog)
-    const backdrop = screen.getByRole('dialog').parentElement.querySelector('[aria-hidden="true"]');
-    fireEvent.click(backdrop);
+    const backdrop = screen.getByRole('dialog').parentElement!.querySelector('[aria-hidden="true"]');
+    fireEvent.click(backdrop!);
     expect(mockClose).toHaveBeenCalledTimes(1);
   });
 

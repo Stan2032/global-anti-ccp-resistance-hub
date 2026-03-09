@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
@@ -14,12 +13,12 @@ describe('DataFreshnessIndicator', () => {
   });
 
   it('renders nothing when no lastVerified is provided', () => {
-    const { container } = render(<DataFreshnessIndicator />);
+    const { container } = render(<DataFreshnessIndicator lastVerified="" />);
     expect(container.innerHTML).toBe('');
   });
 
   it('renders nothing when lastVerified is null', () => {
-    const { container } = render(<DataFreshnessIndicator lastVerified={null} />);
+    const { container } = render(<DataFreshnessIndicator lastVerified={undefined as any} />);
     expect(container.innerHTML).toBe('');
   });
 

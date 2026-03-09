@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
-const renderAtPath = (path) => {
+const renderAtPath = (path: string) => {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <Breadcrumbs />
