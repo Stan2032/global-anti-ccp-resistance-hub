@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 /**
  * CrossDatasetInsightEngine — Analyses connections between datasets
  * (prisoners, sanctions, organisations, cases). Surfaces cross-references
@@ -10,11 +7,58 @@
  */
 import React, { useState, useMemo } from 'react';
 import { Network, Search, Copy, Check, ChevronDown, ChevronUp, Zap, Globe, Users, Scale, Factory, Building, Shield, AlertTriangle, TrendingUp, Link2 } from 'lucide-react';
-import { dataApi } from '../services/dataApi';
+import {
+  dataApi,
+  type PoliticalPrisoner,
+  type SanctionedOfficial,
+  type Sanction,
+  type LegalCase,
+  type ForcedLabourCompany,
+  type DetentionFacility,
+  type PoliceStation,
+  type InternationalResponse,
+  type HumanRightsOrg,
+  type TimelineEvent,
+} from '../services/dataApi';
+
+// ── Local type definitions ─────────────────────────────
+
+type CategoryKey = 'geographic' | 'actor' | 'legal' | 'economic' | 'temporal';
+type DatasetKey = 'prisoners' | 'officials' | 'sanctions' | 'cases' | 'companies' | 'facilities' | 'stations' | 'responses' | 'orgs' | 'timeline';
+
+interface InsightItem {
+  dataset: string;
+  label: string;
+  item: Record<string, unknown>;
+}
+
+interface Insight {
+  id: string;
+  category: CategoryKey;
+  strength: number;
+  title: string;
+  summary: string;
+  datasets: string[];
+  count: number;
+  items: InsightItem[];
+}
+
+interface CategoryConfig {
+  label: string;
+  color: string;
+  bg: string;
+  border: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+interface YearData {
+  events: TimelineEvent[];
+  sanctions: Sanction[];
+}
 
 // ── Insight categories ─────────────────────────────────
 
-const CATEGORY_CONFIG = {
+const CATEGORY_CONFIG: Record<CategoryKey, CategoryConfig> = {
   geographic: { label: 'Geographic', color: 'text-[#22d3ee]', bg: 'bg-cyan-900/20', border: 'border-[#22d3ee]/30', icon: Globe },
   actor: { label: 'Actor Network', color: 'text-[#a78bfa]', bg: 'bg-[#a78bfa]/20', border: 'border-[#a78bfa]/30', icon: Users },
   legal: { label: 'Legal', color: 'text-[#fbbf24]', bg: 'bg-yellow-900/20', border: 'border-[#fbbf24]/30', icon: Scale },
@@ -22,15 +66,15 @@ const CATEGORY_CONFIG = {
   temporal: { label: 'Temporal', color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-400/30', icon: TrendingUp },
 };
 
-const CATEGORY_ORDER = ['geographic', 'actor', 'legal', 'economic', 'temporal'];
+const CATEGORY_ORDER: CategoryKey[] = ['geographic', 'actor', 'legal', 'economic', 'temporal'];
 
 // ── Relationship extraction engine ─────────────────────
 
-function normalizeStr(s) {
+function normalizeStr(s: string | undefined | null): string {
   return (s || '').toLowerCase().trim();
 }
 
-function extractRegion(text) {
+function extractRegion(text: string): string | null {
   const t = normalizeStr(text);
   if (/hong\s?kong/.test(t)) return 'Hong Kong';
   if (/xinjiang|uyghur|uighur/.test(t)) return 'Xinjiang/Uyghur';
@@ -40,8 +84,8 @@ function extractRegion(text) {
   return null;
 }
 
-function extractRegions(obj) {
-  const regions = new Set();
+function extractRegions(obj: Record<string, unknown>): string[] {
+  const regions = new Set<string>();
   Object.values(obj).forEach((val) => {
     if (typeof val === 'string') {
       const r = extractRegion(val);
@@ -51,12 +95,23 @@ function extractRegions(obj) {
   return [...regions];
 }
 
-function buildInsights(prisoners, officials, sanctions, cases, companies, facilities, stations, responses, orgs, timeline) {
-  const insights = [];
+function buildInsights(
+  prisoners: PoliticalPrisoner[],
+  officials: SanctionedOfficial[],
+  sanctions: Sanction[],
+  cases: LegalCase[],
+  companies: ForcedLabourCompany[],
+  facilities: DetentionFacility[],
+  stations: PoliceStation[],
+  responses: InternationalResponse[],
+  orgs: HumanRightsOrg[],
+  timeline: TimelineEvent[],
+): Insight[] {
+  const insights: Insight[] = [];
 
   // ── Geographic Clusters ─────────────────────────
-  const regionMap = {};
-  const addToRegion = (region, dataset, item, label) => {
+  const regionMap: Record<string, InsightItem[]> = {};
+  const addToRegion = (region: string | null, dataset: string, item: Record<string, unknown>, label: string): void => {
     if (!region) return;
     if (!regionMap[region]) regionMap[region] = [];
     regionMap[region].push({ dataset, label, item });
@@ -88,7 +143,7 @@ function buildInsights(prisoners, officials, sanctions, cases, companies, facili
   });
 
   Object.entries(regionMap).forEach(([region, items]) => {
-    const datasetTypes = new Set(items.map((i) => i.dataset));
+    const datasetTypes = new Set<string>(items.map((i) => i.dataset));
     if (datasetTypes.size >= 3) {
       insights.push({
         id: `geo-${region}`,
@@ -124,7 +179,7 @@ function buildInsights(prisoners, officials, sanctions, cases, companies, facili
 
     const totalLinks = linkedPrisoners.length + linkedCases.length + linkedSanctions.length;
     if (totalLinks >= 2) {
-      const connections = [];
+      const connections: string[] = [];
       if (linkedPrisoners.length) connections.push(`${linkedPrisoners.length} prisoner(s)`);
       if (linkedCases.length) connections.push(`${linkedCases.length} case(s)`);
       if (linkedSanctions.length) connections.push(`${linkedSanctions.length} sanction(s)`);
@@ -195,7 +250,7 @@ function buildInsights(prisoners, officials, sanctions, cases, companies, facili
   }
 
   // ── Economic — industries cluster ─
-  const industryMap = {};
+  const industryMap: Record<string, ForcedLabourCompany[]> = {};
   companies.forEach((c) => {
     const ind = c.industry || 'Unknown';
     if (!industryMap[ind]) industryMap[ind] = [];
@@ -217,7 +272,7 @@ function buildInsights(prisoners, officials, sanctions, cases, companies, facili
   });
 
   // ── Temporal — timeline events linked to sanctions waves ─
-  const years = {};
+  const years: Record<string, YearData> = {};
   timeline.forEach((e) => {
     const yr = (e.date || '').slice(0, 4);
     if (yr) {
@@ -253,7 +308,7 @@ function buildInsights(prisoners, officials, sanctions, cases, companies, facili
 
 // ── Clipboard ──────────────────────────────────────────
 
-function buildClipboardText(insights, categoryFilter) {
+function buildClipboardText(insights: Insight[], categoryFilter: string): string {
   const filtered = categoryFilter ? insights.filter((i) => i.category === categoryFilter) : insights;
   const lines = [
     'Cross-Dataset Insight Engine — Global Anti-CCP Resistance Hub',
@@ -274,7 +329,7 @@ function buildClipboardText(insights, categoryFilter) {
 
 // ── Dataset label helper ───────────────────────────────
 
-const DATASET_LABELS = {
+const DATASET_LABELS: Record<DatasetKey, string> = {
   prisoners: 'Political Prisoners',
   officials: 'Sanctioned Officials',
   sanctions: 'Sanctions',
@@ -315,15 +370,14 @@ export default function CrossDatasetInsightEngine() {
     allData.stations, allData.responses, allData.orgs, allData.timeline
   ), [allData]);
 
-  const categoryCounts = useMemo(() => {
-    const counts = {};
-    CATEGORY_ORDER.forEach((c) => { counts[c] = 0; });
+  const categoryCounts = useMemo((): Record<CategoryKey, number> => {
+    const counts: Record<CategoryKey, number> = { geographic: 0, actor: 0, legal: 0, economic: 0, temporal: 0 };
     insights.forEach((i) => { counts[i.category] = (counts[i.category] || 0) + 1; });
     return counts;
   }, [insights]);
 
   const datasetCount = useMemo(() => {
-    const sets = new Set();
+    const sets = new Set<string>();
     insights.forEach((i) => i.datasets.forEach((d) => sets.add(d)));
     return sets.size;
   }, [insights]);
@@ -417,7 +471,7 @@ export default function CrossDatasetInsightEngine() {
             {CATEGORY_ORDER.map((cat) => {
               const pct = (categoryCounts[cat] / insights.length) * 100;
               if (pct === 0) return null;
-              const colorMap = {
+              const colorMap: Record<CategoryKey, string> = {
                 geographic: 'bg-[#22d3ee]',
                 actor: 'bg-[#a78bfa]',
                 legal: 'bg-[#fbbf24]',
@@ -438,7 +492,7 @@ export default function CrossDatasetInsightEngine() {
             {CATEGORY_ORDER.filter((c) => categoryCounts[c] > 0).map((cat) => (
               <span key={cat} className="flex items-center gap-1.5 text-xs text-slate-400">
                 <span className={`w-2 h-2 rounded-full ${
-                  { geographic: 'bg-[#22d3ee]', actor: 'bg-[#a78bfa]', legal: 'bg-[#fbbf24]', economic: 'bg-[#4afa82]', temporal: 'bg-red-400' }[cat]
+                  ({ geographic: 'bg-[#22d3ee]', actor: 'bg-[#a78bfa]', legal: 'bg-[#fbbf24]', economic: 'bg-[#4afa82]', temporal: 'bg-red-400' } as Record<CategoryKey, string>)[cat]
                 }`} aria-hidden="true" />
                 {CATEGORY_CONFIG[cat].label} ({categoryCounts[cat]})
               </span>
@@ -493,7 +547,7 @@ export default function CrossDatasetInsightEngine() {
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {insight.datasets.map((d) => (
                       <span key={d} className="text-xs font-mono px-1.5 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
-                        {DATASET_LABELS[d] || d}
+                        {DATASET_LABELS[d as DatasetKey] || d}
                       </span>
                     ))}
                   </div>
@@ -514,7 +568,7 @@ export default function CrossDatasetInsightEngine() {
                       key={idx}
                       className="flex items-center gap-2 text-xs font-mono bg-[#0a0e14] border border-[#1c2a35] px-3 py-2"
                     >
-                      <span className="text-[#22d3ee] flex-shrink-0">{DATASET_LABELS[item.dataset] || item.dataset}</span>
+                      <span className="text-[#22d3ee] flex-shrink-0">{DATASET_LABELS[item.dataset as DatasetKey] || item.dataset}</span>
                       <span className="text-slate-400" aria-hidden="true">→</span>
                       <span className="text-slate-200 truncate">{item.label}</span>
                     </div>
