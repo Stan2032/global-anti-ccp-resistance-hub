@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 /**
  * CCPOfficials — Profiles of CCP officials implicated in human rights
  * abuses. Sourced from government records, Tier 1-2 media, and sanctions lists.
@@ -13,8 +10,74 @@ import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
 import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import sanctionedOfficialsData from '../data/sanctioned_officials_research.json';
 
+interface KeyAction {
+  year: number;
+  action: string;
+}
+
+interface ResearchOutput {
+  name: string;
+  position: string;
+  responsibility_area: string;
+  us_sanctions?: string;
+  uk_sanctions?: string;
+  eu_sanctions?: string;
+  canada_sanctions?: string;
+  australia_sanctions?: string;
+  key_abuses?: string;
+  current_status: string;
+  source_url: string;
+  chinese_name?: string;
+  birth_year?: number;
+  in_power_since?: number;
+  key_actions?: KeyAction[];
+  detailed_responsibilities?: string[];
+}
+
+interface OfficialSource {
+  name: string;
+  url: string;
+  type: string;
+  verified: boolean;
+  date?: string;
+}
+
+interface SanctionSource {
+  name: string;
+  url: string;
+  type: string;
+  verified: boolean;
+  organization: string;
+  description: string;
+}
+
+interface CCPOfficial {
+  id: string;
+  name: string;
+  chineseName: string;
+  position: string;
+  level: string;
+  region: string;
+  category: string;
+  birthYear: number | null;
+  inPowerSince: number | null;
+  sanctioned: boolean;
+  sanctionedBy: string[];
+  photo: string | null;
+  responsibility: string[];
+  keyActions: KeyAction[];
+  sources: OfficialSource[];
+  currentStatus: string;
+}
+
+interface ExpandedSections {
+  responsibility?: boolean;
+  actions?: boolean;
+  [key: string]: boolean | undefined;
+}
+
 // Helper function to map JSON sanction data to component format
-const mapSanctionData = (jsonOfficial) => {
+const mapSanctionData = (jsonOfficial: ResearchOutput): string[] => {
   const sanctionedBy = [];
   if (jsonOfficial.us_sanctions && jsonOfficial.us_sanctions.toLowerCase().startsWith('yes')) {
     sanctionedBy.push('USA');
@@ -35,7 +98,7 @@ const mapSanctionData = (jsonOfficial) => {
 };
 
 // Helper function to determine level based on responsibility area
-const getOfficialLevel = (responsibilityArea) => {
+const getOfficialLevel = (responsibilityArea: string): string => {
   if (responsibilityArea === 'National' || responsibilityArea === 'General') {
     return 'National';
   }
@@ -43,8 +106,8 @@ const getOfficialLevel = (responsibilityArea) => {
 };
 
 // Helper function to determine category based on responsibility area
-const getOfficialCategory = (responsibilityArea) => {
-  const categoryMap = {
+const getOfficialCategory = (responsibilityArea: string): string => {
+  const categoryMap: Record<string, string> = {
     'Hong Kong': 'Regional',
     'Tibet': 'Regional',
     'Xinjiang': 'Regional',
@@ -54,8 +117,8 @@ const getOfficialCategory = (responsibilityArea) => {
 };
 
 // Helper function to get source name based on sanctions
-const getSourceName = (sanctionedBy) => {
-  const sourceMap = {
+const getSourceName = (sanctionedBy: string[]): string => {
+  const sourceMap: Record<string, string> = {
     'USA': 'US Treasury OFAC',
     'UK': 'UK Foreign Office',
     'EU': 'EU Sanctions',
@@ -71,7 +134,7 @@ const getSourceName = (sanctionedBy) => {
 };
 
 // Helper function to extract year from sanction data
-const extractSanctionYear = (official) => {
+const extractSanctionYear = (official: ResearchOutput): string | undefined => {
   const sanctionFields = [
     official.us_sanctions,
     official.uk_sanctions,
@@ -87,12 +150,12 @@ const extractSanctionYear = (official) => {
       }
     }
   }
-  return null;
+  return undefined;
 };
 
 // Build officials list entirely from JSON data
-const officials = (sanctionedOfficialsData?.results || []).map((result) => {
-  const official = result?.output;
+const officials = (sanctionedOfficialsData?.results || []).map((result): CCPOfficial | null => {
+  const official = result?.output as ResearchOutput | undefined;
   if (!official) return null;
   const sanctionedBy = mapSanctionData(official);
   
@@ -120,10 +183,10 @@ const officials = (sanctionedOfficialsData?.results || []).map((result) => {
     }] : [],
     currentStatus: official.current_status
   };
-}).filter(Boolean);
+}).filter((item): item is CCPOfficial => item !== null);
 
 // Government sanction list sources
-const sanctionSources = [
+const sanctionSources: SanctionSource[] = [
   {
     name: 'US Treasury OFAC - Specially Designated Nationals List',
     url: 'https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn-human-readable-lists',
@@ -163,11 +226,11 @@ export default function CCPOfficials() {
   const [regionFilter, setRegionFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [sanctionedOnly, setSanctionedOnly] = useState(false);
-  const [selectedOfficial, setSelectedOfficial] = useState(null);
-  const [expandedSections, setExpandedSections] = useState({});
+  const [selectedOfficial, setSelectedOfficial] = useState<string | null>(null);
+  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({});
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedOfficial(null); };
+    const handleEscape = (e: KeyboardEvent): void => { if (e.key === 'Escape') setSelectedOfficial(null); };
     if (selectedOfficial) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedOfficial]);
@@ -187,7 +250,7 @@ export default function CCPOfficials() {
     return true;
   });
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string): void => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
@@ -196,6 +259,7 @@ export default function CCPOfficials() {
 
   if (selectedOfficial) {
     const official = officials.find(o => o.id === selectedOfficial);
+    if (!official) return null;;
     
     return (
       <div className="bg-[#111820]/50 border border-[#1c2a35]">
@@ -340,7 +404,7 @@ export default function CCPOfficials() {
               <div className="flex flex-wrap gap-2">
                 {official.sources.filter(s => !s.url || s.url === '#').map((source, i) => (
                   <span key={i} className="px-2 py-1 bg-[#111820] rounded text-sm text-slate-300">
-                    {source.name || source}
+                    {source.name || ''}
                   </span>
                 ))}
               </div>
