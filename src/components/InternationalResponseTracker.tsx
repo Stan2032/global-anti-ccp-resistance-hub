@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * InternationalResponseTracker — Monitors international governmental and
@@ -9,7 +7,7 @@
  * @module InternationalResponseTracker
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
+import { dataApi, InternationalResponse } from '../services/dataApi';
 import {
   Globe,
   Search,
@@ -37,9 +35,13 @@ import {
 
 // ── Stance classification ─────────────────────────────
 
-const STANCE_ORDER = ['Strong', 'Moderate', 'Limited', 'Weak'];
+type StanceCategory = 'Strong' | 'Moderate' | 'Limited' | 'Weak';
 
-const STANCE_STYLES = {
+type EnrichedResponse = InternationalResponse & { stanceCategory: StanceCategory };
+
+const STANCE_ORDER: StanceCategory[] = ['Strong', 'Moderate', 'Limited', 'Weak'];
+
+const STANCE_STYLES: Record<StanceCategory, { badge: string; dot: string; bar: string; width: string }> = {
   Strong: {
     badge: 'bg-[#4afa82]/20 text-[#4afa82] border-[#4afa82]/30',
     dot: 'bg-[#4afa82]',
@@ -66,7 +68,7 @@ const STANCE_STYLES = {
   },
 };
 
-function classifyStance(overallStance) {
+function classifyStance(overallStance: string | undefined): StanceCategory {
   if (!overallStance) return 'Weak';
   const lower = overallStance.toLowerCase();
   if (lower.startsWith('strong')) return 'Strong';
@@ -77,7 +79,9 @@ function classifyStance(overallStance) {
 
 // ── Dimension icons & labels ──────────────────────────
 
-const DIMENSIONS = [
+type DimensionKey = 'genocide_recognition' | 'sanctions_imposed' | 'legislative_actions' | 'diplomatic_actions' | 'pending_proposals';
+
+const DIMENSIONS: { key: DimensionKey; label: string; Icon: typeof Scale }[] = [
   { key: 'genocide_recognition', label: 'Genocide Recognition', Icon: Scale },
   { key: 'sanctions_imposed', label: 'Sanctions Imposed', Icon: Shield },
   { key: 'legislative_actions', label: 'Legislative Actions', Icon: Landmark },
@@ -87,7 +91,7 @@ const DIMENSIONS = [
 
 // ── Clipboard ─────────────────────────────────────────
 
-function buildClipboardText(responses, stanceFilter) {
+function buildClipboardText(responses: EnrichedResponse[], stanceFilter: string) {
   const lines = [];
   const label = stanceFilter || 'All';
   lines.push(`INTERNATIONAL RESPONSES TO CCP VIOLATIONS — ${label}`);
@@ -146,14 +150,14 @@ export default function InternationalResponseTracker() {
   }, [enrichedResponses, searchQuery, stanceFilter]);
 
   const stanceCounts = useMemo(() => {
-    const counts = { Strong: 0, Moderate: 0, Limited: 0, Weak: 0 };
+    const counts: Record<StanceCategory, number> = { Strong: 0, Moderate: 0, Limited: 0, Weak: 0 };
     enrichedResponses.forEach((r) => {
       counts[r.stanceCategory] = (counts[r.stanceCategory] || 0) + 1;
     });
     return counts;
   }, [enrichedResponses]);
 
-  const handleToggle = (country) => {
+  const handleToggle = (country: string) => {
     setExpandedCountry((prev) => (prev === country ? '' : country));
   };
 
@@ -178,7 +182,7 @@ export default function InternationalResponseTracker() {
     }
   };
 
-  const handleStanceFilter = (stance) => {
+  const handleStanceFilter = (stance: StanceCategory) => {
     setStanceFilter((prev) => (prev === stance ? '' : stance));
   };
 
