@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * NotificationCenter — Aggregated notification feed from all platform data sources.
@@ -14,21 +12,38 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, ChevronUp, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
+// ── Types ───────────────────────────────────────────────
+
+type CategoryKey = 'critical' | 'sanctions' | 'data' | 'action';
+
+interface NotificationItem {
+  id: string;
+  category: CategoryKey;
+  title: string;
+  summary: string | undefined;
+  date: string | undefined;
+  source: string;
+  url: string | null;
+  priority: number;
+}
+
+type NotificationPrefs = Record<CategoryKey, boolean>;
+
 // ── Notification categories ─────────────────────────────
 
-const CATEGORIES = {
+const CATEGORIES: Record<CategoryKey, { label: string; color: string; bg: string; border: string; icon: React.ComponentType<{ className?: string }>; description: string }> = {
   critical: { label: 'Critical Alerts', color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-400/30', icon: AlertTriangle, description: 'Life-threatening situations, urgent court hearings, new detentions' },
   sanctions: { label: 'Sanctions & Legal', color: 'text-[#fbbf24]', bg: 'bg-yellow-900/20', border: 'border-[#fbbf24]/30', icon: Shield, description: 'New sanctions, legal case updates, policy changes' },
   data: { label: 'Data Updates', color: 'text-[#22d3ee]', bg: 'bg-cyan-900/20', border: 'border-[#22d3ee]/30', icon: Info, description: 'New research data, verified reports, dataset changes' },
   action: { label: 'Action Required', color: 'text-[#a78bfa]', bg: 'bg-[#a78bfa]/20', border: 'border-[#a78bfa]/30', icon: BellRing, description: 'Petition deadlines, advocacy opportunities, events' },
 };
 
-const CATEGORY_ORDER = ['critical', 'sanctions', 'data', 'action'];
+const CATEGORY_ORDER: CategoryKey[] = ['critical', 'sanctions', 'data', 'action'];
 
 // ── Build notification feed from live data ──────────────
 
-function buildNotificationFeed() {
-  const notifications = [];
+function buildNotificationFeed(): NotificationItem[] {
+  const notifications: NotificationItem[] = [];
 
   // Pull from emergency alerts (critical)
   const alerts = dataApi.getAlerts();
@@ -49,18 +64,19 @@ function buildNotificationFeed() {
   // Pull from recent updates (data / action)
   const updates = dataApi.getRecentUpdates();
   (updates || []).slice(0, 15).forEach((update) => {
-    const cat = update.category === 'alert' ? 'critical'
+    const cat: CategoryKey = update.category === 'alert' ? 'critical'
       : update.category === 'case' ? 'sanctions'
       : update.category === 'verified' ? 'data'
       : 'data';
+    const desc = typeof update.description === 'string' ? update.description : '';
     notifications.push({
-      id: `update-${update.id}`,
+      id: `update-${String(update.id)}`,
       category: cat,
-      title: update.title,
-      summary: update.description?.slice(0, 200) + (update.description?.length > 200 ? '…' : ''),
-      date: update.date,
+      title: String(update.title),
+      summary: desc.slice(0, 200) + (desc.length > 200 ? '…' : ''),
+      date: update.date as string | undefined,
       source: 'Platform Updates',
-      url: update.relatedPage || null,
+      url: typeof update.relatedPage === 'string' ? update.relatedPage : null,
       priority: cat === 'critical' ? 1 : cat === 'sanctions' ? 2 : 3,
     });
   });
@@ -106,7 +122,7 @@ function isServiceWorkerSupported() {
 
 // ── Clipboard ───────────────────────────────────────────
 
-function buildClipboardText(notifications, prefs) {
+function buildClipboardText(notifications: NotificationItem[], prefs: NotificationPrefs) {
   const lines = [
     'Notification Center — Global Anti-CCP Resistance Hub',
     `Generated: ${new Date().toISOString().slice(0, 10)}`,
@@ -144,7 +160,7 @@ export default function NotificationCenter() {
   const [copied, setCopied] = useState(false);
 
   // Notification preferences (stored in localStorage)
-  const [prefs, setPrefs] = useState(() => {
+  const [prefs, setPrefs] = useState<NotificationPrefs>(() => {
     try {
       const saved = localStorage.getItem('notification-prefs');
       return saved ? JSON.parse(saved) : { critical: true, sanctions: true, data: true, action: true };
@@ -185,12 +201,12 @@ export default function NotificationCenter() {
 
   const visibleNotifications = showAll ? filteredNotifications : filteredNotifications.slice(0, 10);
 
-  const toggleCategory = useCallback((cat) => {
+  const toggleCategory = useCallback((cat: CategoryKey) => {
     setActiveCategory((prev) => (prev === cat ? '' : cat));
   }, []);
 
-  const togglePref = useCallback((cat) => {
-    setPrefs((prev) => ({ ...prev, [cat]: !prev[cat] }));
+  const togglePref = useCallback((cat: CategoryKey) => {
+    setPrefs((prev: NotificationPrefs) => ({ ...prev, [cat]: !prev[cat] }));
   }, []);
 
   const requestPermission = useCallback(async () => {
