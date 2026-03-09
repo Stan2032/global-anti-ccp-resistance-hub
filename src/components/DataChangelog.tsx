@@ -1,4 +1,3 @@
-// @ts-nocheck — Phase 2 migration: types to be added
 
 /**
  * DataChangelog — Chronological log of all data changes, additions,
@@ -21,6 +20,7 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import type { RecentUpdate } from '../services/dataApi';
 
 /**
  * DataChangelog — Research data provenance and verification tracker.
@@ -29,6 +29,24 @@ import { dataApi } from '../services/dataApi';
  * and data provenance information. Helps researchers assess data
  * currency and cite appropriately.
  */
+
+// ── Local type definitions ────────────────────────────────
+
+type FreshnessStatus = 'fresh' | 'current' | 'aging' | 'stale';
+
+interface FreshnessResult {
+  status: FreshnessStatus;
+  label: string;
+  daysAgo: number;
+}
+
+/** Fields used when rendering recent changelog entries. */
+interface ChangelogUpdate extends RecentUpdate {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+}
 
 // ── Verification metadata per dataset ─────────────────────
 // These track when each dataset was last independently verified
@@ -105,10 +123,10 @@ const DATASET_VERIFICATION = [
  * @param {string} dateStr — ISO date string (YYYY-MM-DD)
  * @returns {{ status: string, label: string, daysAgo: number }}
  */
-function getFreshness(dateStr) {
+function getFreshness(dateStr: string): FreshnessResult {
   const verDate = new Date(dateStr);
   const now = new Date();
-  const daysAgo = Math.floor((now - verDate) / (1000 * 60 * 60 * 24));
+  const daysAgo = Math.floor((now.getTime() - verDate.getTime()) / (1000 * 60 * 60 * 24));
 
   if (daysAgo <= 3) return { status: 'fresh', label: 'Verified recently', daysAgo };
   if (daysAgo <= 7) return { status: 'current', label: 'Verified this week', daysAgo };
@@ -116,7 +134,7 @@ function getFreshness(dateStr) {
   return { status: 'stale', label: 'Needs re-verification', daysAgo };
 }
 
-const STATUS_COLORS = {
+const STATUS_COLORS: Record<FreshnessStatus, { bg: string; border: string; text: string; icon: typeof CheckCircle }> = {
   fresh: { bg: 'bg-green-400/10', border: 'border-green-400/30', text: 'text-green-400', icon: CheckCircle },
   current: { bg: 'bg-[#22d3ee]/10', border: 'border-[#22d3ee]/30', text: 'text-[#22d3ee]', icon: CheckCircle },
   aging: { bg: 'bg-yellow-400/10', border: 'border-yellow-400/30', text: 'text-yellow-400', icon: Clock },
@@ -124,7 +142,7 @@ const STATUS_COLORS = {
 };
 
 const DataChangelog = () => {
-  const [expandedDataset, setExpandedDataset] = useState(null);
+  const [expandedDataset, setExpandedDataset] = useState<string | null>(null);
   const [showAllUpdates, setShowAllUpdates] = useState(false);
 
   // Compute dataset health metrics
@@ -139,17 +157,17 @@ const DataChangelog = () => {
 
   // Get recent data-related updates
   const recentChanges = useMemo(() => {
-    const all = dataApi.getRecentUpdates();
+    const all = dataApi.getRecentUpdates() as ChangelogUpdate[];
     const dataUpdates = all.filter(
-      (u) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
+      (u: ChangelogUpdate) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
     );
     return showAllUpdates ? dataUpdates : dataUpdates.slice(0, 5);
   }, [showAllUpdates]);
 
   const totalDataUpdates = useMemo(() => {
-    const all = dataApi.getRecentUpdates();
+    const all = dataApi.getRecentUpdates() as ChangelogUpdate[];
     return all.filter(
-      (u) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
+      (u: ChangelogUpdate) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
     ).length;
   }, []);
 
@@ -163,7 +181,7 @@ const DataChangelog = () => {
     return { fresh, current, aging, stale, totalRecords };
   }, [datasets]);
 
-  const toggleDataset = (id) => {
+  const toggleDataset = (id: string) => {
     setExpandedDataset((prev) => (prev === id ? null : id));
   };
 
