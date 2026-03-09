@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 
 /**
@@ -77,13 +75,32 @@ const STATUS_CONFIG = {
   },
 };
 
-function getStatusConfig(status) {
-  return STATUS_CONFIG[status] || STATUS_CONFIG.UNKNOWN;
+/** Valid keys within STATUS_CONFIG */
+type StatusKey = keyof typeof STATUS_CONFIG;
+
+/** Shape of a police-station record as consumed by this component */
+interface StationRecord {
+  id: string;
+  country: string;
+  city: string;
+  status?: string;
+  closure_date?: string;
+  arrests_made?: string | boolean;
+  government_response?: string;
+  linked_to?: string;
+  source_url: string;
+  address?: string;
+  arrest_details?: string;
+  latest_news?: string;
+}
+
+function getStatusConfig(status: string) {
+  return STATUS_CONFIG[status as StatusKey] || STATUS_CONFIG.UNKNOWN;
 }
 
 // ── Clipboard ─────────────────────────────────────────
 
-function buildClipboardText(stations, statusFilter) {
+function buildClipboardText(stations: StationRecord[], statusFilter: string) {
   const lines = [];
   const label = statusFilter || 'All';
   lines.push(`CCP OVERSEAS POLICE STATIONS — ${label}`);
@@ -112,11 +129,14 @@ export default function OverseasPoliceStationTracker() {
   const [copied, setCopied] = useState(false);
 
   // ── Data ────────────────────────────────────────────
-  const stations = useMemo(() => dataApi.getPoliceStations(), []);
+  const stations = useMemo(
+    () => dataApi.getPoliceStations() as StationRecord[],
+    [],
+  );
 
   // Status counts
   const statusCounts = useMemo(() => {
-    const counts = {};
+    const counts: Record<string, number> = {};
     Object.keys(STATUS_CONFIG).forEach((k) => { counts[k] = 0; });
     stations.forEach((s) => {
       const key = s.status || 'UNKNOWN';
@@ -153,7 +173,7 @@ export default function OverseasPoliceStationTracker() {
   }, [stations, searchQuery, statusFilter]);
 
   // ── Handlers ────────────────────────────────────────
-  const handleToggle = (id) => {
+  const handleToggle = (id: string) => {
     setExpandedStation((prev) => (prev === id ? '' : id));
   };
 
@@ -168,7 +188,7 @@ export default function OverseasPoliceStationTracker() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleStatusFilter = (key) => {
+  const handleStatusFilter = (key: string) => {
     setStatusFilter((prev) => (prev === key ? '' : key));
   };
 
@@ -253,7 +273,7 @@ export default function OverseasPoliceStationTracker() {
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-slate-500" aria-hidden="true" />
               <span className="text-xs text-slate-400">
-                Showing: <span className="text-white">{STATUS_CONFIG[statusFilter]?.label}</span>
+                Showing: <span className="text-white">{STATUS_CONFIG[statusFilter as StatusKey]?.label}</span>
               </span>
               <button
                 onClick={() => setStatusFilter('')}
@@ -288,7 +308,7 @@ export default function OverseasPoliceStationTracker() {
         ) : (
           filteredStations.map((station) => {
             const isExpanded = expandedStation === station.id;
-            const statusCfg = getStatusConfig(station.status);
+            const statusCfg = getStatusConfig(station.status ?? 'UNKNOWN');
             const StatusIcon = statusCfg.Icon;
 
             return (
