@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /**
  * CaseStudies — In-depth case studies documenting individual stories
@@ -196,23 +194,23 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
-  const [selectedCase, setSelectedCase] = useState(null);
-  const [expandedSections, setExpandedSections] = useState({});
+  const [selectedCase, setSelectedCase] = useState<string | null>(null);
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') setSelectedCase(null); };
+    const handleEscape = (e: KeyboardEvent): void => { if (e.key === 'Escape') setSelectedCase(null); };
     if (selectedCase) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [selectedCase]);
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string): void => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
   };
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string): string => {
     switch (status) {
       case 'IMPRISONED': return 'bg-red-600';
       case 'DISAPPEARED': return 'bg-yellow-600';
@@ -221,7 +219,7 @@ export default function CaseStudies() {
     }
   };
 
-  const getUrgencyColor = (urgency) => {
+  const getUrgencyColor = (urgency: string): string => {
     switch (urgency) {
       case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
       case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
@@ -231,7 +229,8 @@ export default function CaseStudies() {
 
   if (selectedCase) {
     const caseData = caseStudies.find(c => c.id === selectedCase);
-    
+    if (!caseData) return null;
+
     return (
       <div className="bg-[#111820]/50 border border-[#1c2a35]">
         {/* Header */}
