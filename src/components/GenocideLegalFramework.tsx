@@ -1,5 +1,3 @@
-
-
 /**
  * GenocideLegalFramework — Legal analysis of genocide determinations
  * and international law as applied to CCP atrocities. Cross-references
@@ -8,6 +6,7 @@
  * @module GenocideLegalFramework
  */
 import { useState, useMemo } from 'react';
+import { LEGAL_CATEGORIES, RECOGNITION_COUNTRIES } from './genocideLegalFrameworkData';
 import {
   dataApi,
   type PoliticalPrisoner,
@@ -46,15 +45,6 @@ interface AllData {
 }
 // GenocideLegalFramework — Maps CCP actions to international legal instruments.
 // Cross-references 7 datasets. All data from verified Tier 1-2 sources. CC BY 4.0.
-
-const LEGAL_CATEGORIES = [
-  { id: 'all', label: 'All Instruments' },
-  { id: 'genocide', label: 'Genocide Convention', color: 'text-red-400', desc: 'UN Convention on the Prevention and Punishment of the Crime of Genocide (1948)' },
-  { id: 'torture', label: 'Convention against Torture', color: 'text-orange-400', desc: 'UN Convention against Torture and Other Cruel, Inhuman or Degrading Treatment (1984)' },
-  { id: 'iccpr', label: 'ICCPR', color: 'text-yellow-400', desc: 'International Covenant on Civil and Political Rights (1966)' },
-  { id: 'forced_labor', label: 'Forced Labor Conventions', color: 'text-[#a78bfa]', desc: 'ILO Forced Labour Convention (No. 29, 1930) and Abolition of Forced Labour Convention (No. 105, 1957)' },
-  { id: 'minority_rights', label: 'Minority Rights', color: 'text-[#22d3ee]', desc: 'UN Declaration on the Rights of Persons Belonging to National or Ethnic, Religious and Linguistic Minorities (1992)' },
-];
 
 const LEGAL_VIOLATIONS: LegalViolation[] = [
   {
@@ -311,19 +301,6 @@ const LEGAL_VIOLATIONS: LegalViolation[] = [
   },
 ];
 
-const RECOGNITION_COUNTRIES = [
-  { country: 'United States', year: 2021, body: 'US State Department', type: 'Genocide declaration', details: 'Secretary Pompeo declared genocide (Jan 2021), reaffirmed by Biden admin' },
-  { country: 'Canada', year: 2021, body: 'House of Commons', type: 'Parliamentary motion', details: 'Passed non-binding motion recognizing genocide (Feb 2021, 266-0)' },
-  { country: 'Netherlands', year: 2021, body: 'House of Representatives', type: 'Parliamentary motion', details: 'First European parliament to recognize genocide (Feb 2021)' },
-  { country: 'United Kingdom', year: 2021, body: 'House of Commons', type: 'Parliamentary motion', details: 'Declared genocide in Xinjiang (Apr 2021), rejected by government' },
-  { country: 'Lithuania', year: 2021, body: 'Seimas (Parliament)', type: 'Parliamentary resolution', details: 'Recognized genocide in Xinjiang (May 2021)' },
-  { country: 'Czech Republic', year: 2021, body: 'Senate', type: 'Senate resolution', details: 'Adopted resolution recognizing genocide (Jun 2021)' },
-  { country: 'Belgium', year: 2021, body: 'Parliament', type: 'Parliamentary resolution', details: 'Recognized "serious risk of genocide" (Jun 2021)' },
-  { country: 'France', year: 2022, body: 'National Assembly', type: 'Parliamentary resolution', details: 'Recognized genocide and crimes against humanity (Jan 2022)' },
-  { country: 'Uyghur Tribunal', year: 2021, body: 'Independent people\'s tribunal', type: 'Tribunal judgment', details: 'Sir Geoffrey Nice QC: genocide established beyond reasonable doubt (Dec 2021)' },
-  { country: 'China Tribunal', year: 2019, body: 'Independent people\'s tribunal', type: 'Tribunal judgment', details: 'Sir Geoffrey Nice QC: forced organ harvesting proven beyond reasonable doubt' },
-];
-
 function getEvidenceCounts(violation: LegalViolation, allData: AllData): Record<string, number> {
   const counts: Record<string, number> = {};
   if (violation.evidenceType.includes('political_prisoners')) {
@@ -376,7 +353,6 @@ const GenocideLegalFramework = () => {
   const [expandedViolation, setExpandedViolation] = useState<string | null>(null);
   const [activeView, setActiveView] = useState('violations');
   const [copied, setCopied] = useState(false);
-
   const prisoners = dataApi.getPoliticalPrisoners();
   const facilities = dataApi.getDetentionFacilities();
   const companies = dataApi.getForcedLaborCompanies();
@@ -384,11 +360,9 @@ const GenocideLegalFramework = () => {
   const stations = dataApi.getPoliceStations();
   const cases = dataApi.getLegalCases();
   const sanctions = dataApi.getSanctions();
-
   const allData = useMemo(() => ({
     prisoners, facilities, companies, responses, stations, cases, sanctions,
   }), [prisoners, facilities, companies, responses, stations, cases, sanctions]);
-
   const violationsWithEvidence = useMemo(() => {
     return LEGAL_VIOLATIONS.map(v => ({
       ...v,
@@ -411,7 +385,6 @@ const GenocideLegalFramework = () => {
     totalEvidence: Object.values(allData).reduce((sum, arr) => sum + arr.length, 0),
     recognitions: RECOGNITION_COUNTRIES.length,
   }), [allData]);
-
   const getCategoryStyle = (catId: string) => LEGAL_CATEGORIES.find(c => c.id === catId) || LEGAL_CATEGORIES[0];
 
   const handleCopyReport = async () => {

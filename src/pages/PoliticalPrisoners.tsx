@@ -1,4 +1,3 @@
-
 /**
  * PoliticalPrisoners — Searchable database of documented political detentions.
  *
@@ -14,6 +13,7 @@ import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
 import SourceAttribution from '../components/ui/SourceAttribution';
 import DataFreshnessIndicator from '../components/DataFreshnessIndicator';
+import { PROFILE_PATHS, NGO_SOURCES, NEWS_SOURCES, GOV_SOURCES } from './politicalPrisonersData';
 import politicalPrisonersData from '../data/political_prisoners_research.json';
 
 /** Shape of each result entry in the imported JSON research data */
@@ -35,7 +35,6 @@ interface PrisonerJsonItem {
   };
   error: string;
 }
-
 /** Source attribution metadata attached to each prisoner record */
 interface PrisonerSource {
   name: string;
@@ -45,7 +44,6 @@ interface PrisonerSource {
   description: string;
   date: string;
 }
-
 /** Normalised prisoner record used throughout the component */
 interface Prisoner {
   name: string;
@@ -73,22 +71,6 @@ interface Prisoner {
 const CaseTimelineViewer = lazy(() => import('../components/CaseTimelineViewer'));
 const PrisonerStatusDashboard = lazy(() => import('../components/PrisonerStatusDashboard'));
 const SectionLoader = () => (<div className="flex items-center justify-center py-8" role="status" aria-label="Loading section"><span className="font-mono text-[#4afa82] text-sm">$ loading</span><span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span></div>);
-
-// Map prisoner names to their detailed profile page paths
-const PROFILE_PATHS = {
-  'Jimmy Lai': '/profiles/jimmy-lai',
-  'Ilham Tohti': '/profiles/ilham-tohti',
-  'Gedhun Choekyi Nyima': '/profiles/panchen-lama',
-  'Liu Xiaobo': '/profiles/liu-xiaobo',
-  'Joshua Wong': '/profiles/joshua-wong',
-  'Gui Minhai': '/profiles/gui-minhai',
-  'Zhang Zhan': '/profiles/zhang-zhan',
-  'Gao Zhisheng': '/profiles/gao-zhisheng',
-  'Benny Tai': '/profiles/benny-tai',
-  'Nathan Law': '/profiles/nathan-law',
-  'Cardinal Joseph Zen': '/profiles/cardinal-zen',
-  'Agnes Chow': '/profiles/agnes-chow',
-};
 
 // Mapping function to convert JSON data to component format
 const mapJsonToComponentFormat = (jsonResults: PrisonerJsonItem[]): Prisoner[] => {
@@ -127,36 +109,9 @@ const mapJsonToComponentFormat = (jsonResults: PrisonerJsonItem[]): Prisoner[] =
       type: output.source_url ? (() => {
         const hostname = new URL(output.source_url).hostname.toLowerCase();
         
-        // Whitelist of known credible sources by type
-        const ngoSources = new Set([
-          'www.hrw.org', 'hrw.org',
-          'www.amnesty.org', 'amnesty.org',
-          'www.frontlinedefenders.org', 'frontlinedefenders.org',
-          'pen.org', 'www.pen-international.org',
-          'chinaaid.org', 'www.article19.org',
-          'www.hongkongwatch.org', 'savetibet.org',
-          'southmongolia.org', 'www.ibanet.org'
-        ]);
-        
-        const newsSources = new Set([
-          'www.bbc.com', 'bbc.com',
-          'www.reuters.com', 'reuters.com',
-          'www.theguardian.com', 'theguardian.com',
-          'apnews.com', 'www.aljazeera.com',
-          'hongkongfp.com', 'www.npr.org',
-          'www.voanews.com', 'www.rfa.org',
-          'thechinaproject.com', 'aninews.in',
-          'news.artnet.com', 'www.pillarcatholic.com'
-        ]);
-        
-        const govSources = new Set([
-          'humanrightscommission.house.gov',
-          'www.ohchr.org'
-        ]);
-        
-        if (ngoSources.has(hostname)) return 'NGO Report';
-        if (newsSources.has(hostname)) return 'News Report';
-        if (govSources.has(hostname)) return 'Government';
+        if (NGO_SOURCES.has(hostname)) return 'NGO Report';
+        if (NEWS_SOURCES.has(hostname)) return 'News Report';
+        if (GOV_SOURCES.has(hostname)) return 'Government';
         
         return 'News Report'; // Default fallback
       })() : 'Unknown',
@@ -186,7 +141,6 @@ const mapJsonToComponentFormat = (jsonResults: PrisonerJsonItem[]): Prisoner[] =
     };
   }).filter((p): p is Prisoner => p !== null);
 };
-
 // Convert JSON data to component format
 const PRISONERS_DATA = mapJsonToComponentFormat(
   politicalPrisonersData?.results as PrisonerJsonItem[]
@@ -197,7 +151,6 @@ const LATEST_VERIFIED = (politicalPrisonersData?.results || []).reduce((latest, 
   const d = item.output?.last_verified;
   return d && d > latest ? d : latest;
 }, '');
-
 
 const StatusBadge = ({ status }: { status: string }) => {
   const colors: Record<string, string> = {
@@ -215,7 +168,6 @@ const StatusBadge = ({ status }: { status: string }) => {
     </span>
   );
 };
-
 const UrgencyBadge = ({ urgency }: { urgency: string }) => {
   if (urgency !== 'CRITICAL') return null;
   
@@ -225,7 +177,6 @@ const UrgencyBadge = ({ urgency }: { urgency: string }) => {
     </span>
   );
 };
-
 const PrisonerCard = ({ prisoner, onClick }: { prisoner: Prisoner; onClick: (prisoner: Prisoner) => void }) => {
   return (
     <button
@@ -453,7 +404,6 @@ const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () 
     </div>
   );
 };
-
 const PoliticalPrisoners = () => {
   const [selectedPrisoner, setSelectedPrisoner] = useState<Prisoner | null>(null);
   const [filter, setFilter] = useState('ALL');

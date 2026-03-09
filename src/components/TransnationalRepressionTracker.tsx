@@ -1,4 +1,3 @@
-
 /**
  * TransnationalRepressionTracker — Documents CCP transnational repression
  * tactics including harassment, intimidation, and coercion of diaspora
@@ -7,9 +6,9 @@
  * @module TransnationalRepressionTracker
  */
 import { useState, useMemo } from 'react';
-import { dataApi } from '../services/dataApi';
-import type { PoliceStation, LegalCase, InternationalResponse } from '../services/dataApi';
+import { dataApi, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
+import { THREAT_LEVELS, OPERATION_TYPES, RESPONSE_STATUSES } from './transnationalRepressionData';
 // TransnationalRepressionTracker — Cross-references police stations, legal cases,
 // and international responses to map CCP transnational repression globally.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.
@@ -36,24 +35,6 @@ interface CountryProfile extends CountryData {
   operationCount: number;
 }
 
-const THREAT_LEVELS = [
-  { id: 'critical', label: 'Critical', color: 'text-red-400', bg: 'bg-red-400/10', border: 'border-red-400/30', dot: 'bg-red-400' },
-  { id: 'high', label: 'High', color: 'text-orange-400', bg: 'bg-orange-400/10', border: 'border-orange-400/30', dot: 'bg-orange-400' },
-  { id: 'moderate', label: 'Moderate', color: 'text-yellow-400', bg: 'bg-yellow-400/10', border: 'border-yellow-400/30', dot: 'bg-yellow-400' },
-  { id: 'low', label: 'Low', color: 'text-[#4afa82]', bg: 'bg-[#4afa82]/10', border: 'border-[#4afa82]/30', dot: 'bg-[#4afa82]' },
-];
-const OPERATION_TYPES = [
-  { id: 'police-station', label: 'Overseas Police Stations', icon: MapPin },
-  { id: 'fox-hunt', label: 'Fox Hunt / Sky Net', icon: Eye },
-  { id: 'legal-prosecution', label: 'Extraterritorial Prosecution', icon: Scale },
-  { id: 'harassment', label: 'Harassment & Intimidation', icon: AlertTriangle },
-];
-const RESPONSE_STATUSES = [
-  { id: 'enforcement', label: 'Enforcement Action', color: 'text-[#4afa82]' },
-  { id: 'investigation', label: 'Under Investigation', color: 'text-yellow-400' },
-  { id: 'acknowledged', label: 'Acknowledged', color: 'text-orange-400' },
-  { id: 'no-action', label: 'No Known Action', color: 'text-red-400' },
-];
 function classifyThreatLevel(countryData: CountryData): string {
   const { stations, cases, response } = countryData;
   const activeStations = stations.filter((s: PoliceStation) => s.status === 'ACTIVE').length;
