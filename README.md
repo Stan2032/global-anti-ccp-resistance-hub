@@ -32,12 +32,12 @@ This platform serves as a centralized resource for:
 - CCP Operations tab with detention facility mapping and overseas police stations
 
 ### Sanctions Tracker
-- 35 sanctioned individuals/entities across US, EU, UK, Canada, and Australia
+- 47 sanctioned individuals/entities across US, EU, UK, Canada, and Australia
 - Source URLs linking to official government registries (US Treasury SDN, UK FCDO, EU Council)
 - Structured JSON data in `src/data/sanctions_tracker.json`
 
 ### Political Prisoners Database
-- 62 documented political prisoners with source URLs in `src/data/political_prisoners_research.json`
+- 63 documented political prisoners with source URLs in `src/data/political_prisoners_research.json`
 - Status tracking (imprisoned, disappeared, deceased)
 - Action items for advocacy
 
@@ -56,7 +56,7 @@ This platform serves as a centralized resource for:
 - Information control and censorship
 
 ### CCP Influence Detection
-- Centralized system in `src/services/sourceLinks.js`
+- Centralized system in `src/utils/sourceLinks.ts`
 - 21 state media names + 13 domains in the never-cite blocklist
 - 15 elevated-risk entries for sources requiring extra scrutiny
 - 4 utility functions, 37 dedicated tests
@@ -93,14 +93,15 @@ This is a **static React SPA** — all data is compiled into the JavaScript bund
 
 ```
 src/
-├── pages/              # 10 main pages + 15 profiles in profiles/
-├── components/         # 100+ React components (lazy-loaded)
-├── data/               # 17 JSON/JS data files (the source of truth)
-├── services/           # Supabase client, live data service, source links
+├── pages/              # 10 main pages + 16 profiles in profiles/
+├── components/         # 109 React components (lazy-loaded)
+├── data/               # 20 JSON data files (the source of truth)
+├── services/           # Supabase client, data API, live data service, auth
 ├── hooks/              # useDocumentTitle, useLiveData, useWebRTCLeakCheck
 ├── contexts/           # ThemeContext, LanguageContext, SocketContext (stub)
 ├── locales/            # 8 locale JSON files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-└── test/               # 34 Vitest test files, 631 tests
+├── utils/              # dateUtils, sourceLinks, logger, encryption
+└── test/               # 192 Vitest test files, 3,602 tests
 ```
 
 ### Data Flow
@@ -109,13 +110,13 @@ All structured content lives in `src/data/` as JSON files:
 
 | File | Content | Used by |
 |------|---------|---------|
-| `political_prisoners_research.json` | 62 prisoners with sources | PoliticalPrisoners page |
+| `political_prisoners_research.json` | 63 prisoners with sources | PoliticalPrisoners page |
 | `sanctions_tracker.json` | 47 sanctions entries | SanctionsTracker component |
 | `detention_facilities_research.json` | 11 facilities with coordinates | DetentionFacilities component |
 | `sanctioned_officials_research.json` | 34 CCP officials tracked | CCPOfficials component |
-| `forced_labor_companies_research.json` | Companies linked to forced labor | ForcedLaborTracker component |
-| `timeline_events.json` | 31 events (1989–2026) | InteractiveTimeline component |
-| `confucius_institutes_research.json` | Confucius Institutes data | ConfuciusInstitutes component |
+| `forced_labor_companies_research.json` | 30 companies linked to forced labor | ForcedLaborTracker component |
+| `timeline_events.json` | 36 events (1989–2026) | InteractiveTimeline component |
+| `legal_cases_research.json` | Legal cases data | LegalCaseTracker component |
 | `security_center_data.json` | Security tools & recommendations | SecurityCenter page |
 | `data_sources.json` | 11 RSS sources + 4 source categories | DataSources page |
 
@@ -139,7 +140,7 @@ Components import JSON directly — Vite bundles it at build time. No API calls 
 ### Frontend (Static SPA)
 - **React 19** with **Vite 7** — fast builds, hot module replacement
 - **TailwindCSS 3** for styling (terminal/ASCII aesthetic)
-- **Framer Motion** for animations
+- **100% TypeScript** — zero JavaScript/JSX files remain (360+ .ts/.tsx files)
 - **React Router v7** for client-side navigation
 - **Lucide React** for icons
 - **Custom i18n** system with JSON locale files (8 languages, 194 keys each)
@@ -173,13 +174,13 @@ npm run dev             # Start dev server at http://localhost:5173
 
 ### Build
 ```bash
-npm run build           # Produces dist/ (~305KB main bundle, 97KB gzipped)
+npm run build           # Produces dist/ (~310KB main bundle, 99KB gzipped)
 npm run preview         # Preview production build locally
 ```
 
 ### Testing
 ```bash
-npm test                # Run all 631 tests across 34 files
+npm test                # Run all 3,602 tests across 192 files
 npm run test:watch      # Watch mode for development
 ```
 
