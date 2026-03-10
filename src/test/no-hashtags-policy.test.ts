@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, join } from 'path';
 
 /**
@@ -8,7 +8,7 @@ import { resolve, join } from 'path';
  * User policy (Session 174): Hashtags are considered performative activism
  * and must NOT appear anywhere in the codebase (source files or data files).
  *
- * This test scans ALL JSX, JS source files, and JSON data files to ensure
+ * This test scans ALL TSX and TS source files, and JSON data files to ensure
  * no hashtag patterns (#FreeXxx, #StandWithXxx, etc.) are present.
  *
  * Allowed: CSS hex colors (#fff, #4afa82), JS comments (// #region), 
@@ -39,7 +39,7 @@ function findFiles(dir: string, extensions: string[]): string[] {
 const HASHTAG_PATTERN = /#(?:Free|Stand|Save|Stop|Support|Resist|Boycott|End|Protect|Justice|Remember|Solidarity|Fight)[A-Z]\w+/g;
 
 describe('No-Hashtags Policy', () => {
-  const jsxFiles = findFiles(SRC_DIR, ['.jsx', '.tsx', '.js', '.ts']).filter((f: any) => !f.includes('/test/'));
+  const jsxFiles = findFiles(SRC_DIR, ['.tsx', '.ts']).filter((f: any) => !f.includes('/test/'));
   const jsonFiles = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 
   it('finds source files to scan', () => {
@@ -93,9 +93,7 @@ describe('No-Hashtags Policy', () => {
   });
 
   it('ShareButtons component has no hashtags prop', () => {
-    const shareButtonsPath = existsSync(resolve(SRC_DIR, 'components', 'ShareButtons.tsx'))
-      ? resolve(SRC_DIR, 'components', 'ShareButtons.tsx')
-      : resolve(SRC_DIR, 'components', 'ShareButtons.jsx');
+    const shareButtonsPath = resolve(SRC_DIR, 'components', 'ShareButtons.tsx');
     const content = readFileSync(shareButtonsPath, 'utf-8');
     expect(content).not.toMatch(/hashtags/i);
   });

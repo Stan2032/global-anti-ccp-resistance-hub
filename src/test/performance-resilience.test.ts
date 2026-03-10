@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 /**
@@ -14,12 +14,7 @@ import { resolve } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
-function resolveFile(dir: string, baseName: string) {
-  const tsxPath = resolve(dir, baseName.replace(/\.jsx$/, '.tsx'));
-  return existsSync(tsxPath) ? tsxPath : resolve(dir, baseName);
-}
-
-const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
+const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
 
 describe('Performance & resilience', () => {
   it('App imports ShellErrorBoundary', () => {
@@ -42,7 +37,7 @@ describe('Performance & resilience', () => {
   });
 
   it('ShellErrorBoundary exists and renders null on error', () => {
-    const shellBoundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'ShellErrorBoundary.jsx'), 'utf-8');
+    const shellBoundary = readFileSync(resolve(SRC_DIR, 'components', 'ShellErrorBoundary.tsx'), 'utf-8');
     expect(shellBoundary).toContain('class ShellErrorBoundary');
     expect(shellBoundary).toContain('getDerivedStateFromError');
     expect(shellBoundary).toContain('return null');
@@ -50,7 +45,7 @@ describe('Performance & resilience', () => {
   });
 
   it('ErrorBoundary exists with recovery UI', () => {
-    const boundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'ErrorBoundary.jsx'), 'utf-8');
+    const boundary = readFileSync(resolve(SRC_DIR, 'components', 'ErrorBoundary.tsx'), 'utf-8');
     expect(boundary).toContain('class ErrorBoundary');
     expect(boundary).toContain('getDerivedStateFromError');
     expect(boundary).toContain('Try Again');
@@ -58,7 +53,7 @@ describe('Performance & resilience', () => {
   });
 
   it('RouteErrorBoundary handles chunk load errors', () => {
-    const routeBoundary = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'RouteErrorBoundary.jsx'), 'utf-8');
+    const routeBoundary = readFileSync(resolve(SRC_DIR, 'components', 'RouteErrorBoundary.tsx'), 'utf-8');
     expect(routeBoundary).toContain('ChunkLoadError');
     expect(routeBoundary).toContain('isChunkError');
     expect(routeBoundary).toContain('Failed to load page');
@@ -74,7 +69,7 @@ describe('Performance & resilience', () => {
   });
 
   it('Footer uses React.memo for render optimization', () => {
-    const footer = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'Footer.jsx'), 'utf-8');
+    const footer = readFileSync(resolve(SRC_DIR, 'components', 'Footer.tsx'), 'utf-8');
     expect(footer).toMatch(/export default React\.memo\(Footer\)/);
   });
 

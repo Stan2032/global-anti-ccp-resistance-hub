@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 
 /**
@@ -28,7 +28,7 @@ function getSourceFiles(...dirs: string[]): string[] {
       const full = resolve(dir, entry.name);
       if (entry.isDirectory()) {
         files.push(...getSourceFiles(full));
-      } else if (entry.isFile() && /\.(jsx|tsx)$/.test(entry.name) && !entry.name.includes('.test.')) {
+      } else if (entry.isFile() && /\.tsx$/.test(entry.name) && !entry.name.includes('.test.')) {
         files.push(full);
       }
     }
@@ -174,8 +174,7 @@ describe('Defensive Coding — Data Safety', () => {
   });
 
   it('error boundaries exist at all 3 tiers', () => {
-    const appFile = existsSync(resolve(SRC_DIR, 'App.tsx')) ? 'App.tsx' : 'App.jsx';
-    const appContent = readFileSync(resolve(SRC_DIR, appFile), 'utf-8');
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
     // App-level ErrorBoundary
     expect(appContent).toContain('ErrorBoundary');
     // Route-level

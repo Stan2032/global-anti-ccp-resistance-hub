@@ -73,7 +73,7 @@ describe('URL health across all data files', () => {
 });
 
 describe('No CCP state media links in JSX source files', () => {
-  const jsxFiles = findFiles(SRC_DIR, ['.jsx', '.tsx']);
+  const jsxFiles = findFiles(SRC_DIR, ['.tsx']);
 
   it('finds JSX files to scan', () => {
     expect(jsxFiles.length).toBeGreaterThan(50);

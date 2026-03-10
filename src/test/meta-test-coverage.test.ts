@@ -15,18 +15,18 @@ const COMPONENTS_DIR = resolve(SRC_DIR, 'components');
 const PAGES_DIR = resolve(SRC_DIR, 'pages');
 const TEST_DIR = resolve(SRC_DIR, 'test');
 
-// Get all component JSX/TSX files (excluding ui/ subdirectory items that are tested via parent)
+// Get all component TSX files (excluding ui/ subdirectory items that are tested via parent)
 function getComponentNames() {
   return readdirSync(COMPONENTS_DIR)
-    .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && !f.includes('.test.'))
-    .map(f => f.replace(/\.(jsx|tsx)$/, ''));
+    .filter(f => f.endsWith('.tsx') && !f.includes('.test.'))
+    .map(f => f.replace(/\.tsx$/, ''));
 }
 
-// Get all page JSX/TSX files (top-level, not profiles)
+// Get all page TSX files (top-level, not profiles)
 function getPageNames() {
   return readdirSync(PAGES_DIR)
-    .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && !f.includes('.test.'))
-    .map(f => f.replace(/\.(jsx|tsx)$/, ''));
+    .filter(f => f.endsWith('.tsx') && !f.includes('.test.'))
+    .map(f => f.replace(/\.tsx$/, ''));
 }
 
 // Get all test file base names
@@ -96,7 +96,7 @@ describe('Meta-Test Coverage Audit', () => {
     const profilesDir = resolve(PAGES_DIR, 'profiles');
     if (!existsSync(profilesDir)) return;
     const profiles = readdirSync(profilesDir)
-      .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && f.includes('Profile'));
+      .filter(f => f.endsWith('.tsx') && f.includes('Profile'));
     expect(profiles.length).toBeGreaterThanOrEqual(14);
 
     // Verify profile-pages.test.tsx exists
@@ -148,9 +148,7 @@ describe('Lazy-Loading Enforcement', () => {
 
   for (const page of pages) {
     it(`${page} uses React.lazy for sub-components`, () => {
-      const tsxPath = resolve(PAGES_DIR, `${page}.tsx`);
-      const jsxPath = resolve(PAGES_DIR, `${page}.jsx`);
-      const filePath = existsSync(tsxPath) ? tsxPath : jsxPath;
+      const filePath = resolve(PAGES_DIR, `${page}.tsx`);
       if (!existsSync(filePath)) return;
       const content = readFileSync(filePath, 'utf-8');
 
@@ -170,7 +168,7 @@ describe('Lazy-Loading Enforcement', () => {
 
   it('all lazy-loaded components are wrapped in Suspense', () => {
     const pageFiles = readdirSync(PAGES_DIR)
-      .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && !f.includes('.test.'));
+      .filter(f => f.endsWith('.tsx') && !f.includes('.test.'));
 
     const missingFallback = [];
     for (const file of pageFiles) {
@@ -187,7 +185,7 @@ describe('Lazy-Loading Enforcement', () => {
 
   it('Suspense fallbacks provide loading indication', () => {
     const pageFiles = readdirSync(PAGES_DIR)
-      .filter(f => (f.endsWith('.jsx') || f.endsWith('.tsx')) && !f.includes('.test.'));
+      .filter(f => f.endsWith('.tsx') && !f.includes('.test.'));
 
     const emptyFallback = [];
     for (const file of pageFiles) {
@@ -204,8 +202,7 @@ describe('Lazy-Loading Enforcement', () => {
   });
 
   it('App uses route-level lazy loading', () => {
-    const appFile = existsSync(resolve(SRC_DIR, 'App.tsx')) ? 'App.tsx' : 'App.jsx';
-    const appContent = readFileSync(resolve(SRC_DIR, appFile), 'utf-8');
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
     const lazyRoutes = (appContent.match(/const\s+\w+\s*=\s*lazy\(/g) || []).length;
     // App should lazy-load at least the major page components
     expect(lazyRoutes).toBeGreaterThanOrEqual(5);

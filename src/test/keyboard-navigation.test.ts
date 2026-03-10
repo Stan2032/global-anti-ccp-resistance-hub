@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, join, relative } from 'path';
 
 /**
@@ -16,11 +16,6 @@ import { resolve, join, relative } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
-function resolveFile(dir: string, baseName: string) {
-  const tsxPath = resolve(dir, baseName.replace(/\.jsx$/, '.tsx'));
-  return existsSync(tsxPath) ? tsxPath : resolve(dir, baseName);
-}
-
 function findJsxFiles(dir: string): string[] {
   const files = [];
   for (const entry of readdirSync(dir)) {
@@ -29,7 +24,7 @@ function findJsxFiles(dir: string): string[] {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
+    } else if (entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
@@ -130,7 +125,7 @@ describe('Keyboard navigation & focus management', () => {
   });
 
   it('skip-to-content link exists in App', () => {
-    const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
     expect(appContent).toContain('main-content');
   });
 

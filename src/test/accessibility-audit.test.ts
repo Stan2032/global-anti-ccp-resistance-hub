@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, join, relative } from 'path';
 
 /**
  * Accessibility Compliance Tests
  *
- * Scans all JSX source files to enforce accessibility best practices:
+ * Scans all TSX source files to enforce accessibility best practices:
  * - All <img> elements must have alt attributes
  * - Interactive elements (onClick on div/span) must have role + keyboard support
  * - Form inputs should have associated labels or aria-label
@@ -16,11 +16,6 @@ import { resolve, join, relative } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
-function resolveFile(dir: string, baseName: string) {
-  const tsxPath = resolve(dir, baseName.replace(/\.jsx$/, '.tsx'));
-  return existsSync(tsxPath) ? tsxPath : resolve(dir, baseName);
-}
-
 function findJsxFiles(dir: string): string[] {
   const files = [];
   for (const entry of readdirSync(dir)) {
@@ -29,7 +24,7 @@ function findJsxFiles(dir: string): string[] {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
+    } else if (entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
@@ -167,18 +162,18 @@ describe('Accessibility compliance', () => {
   });
 
   it('main landmark structure exists in App', () => {
-    const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
     expect(appContent).toContain('role="main"');
     expect(appContent).toContain('role="navigation"');
     expect(appContent).toContain('<header');
     expect(appContent).toContain('id="main-content"');
     // Footer is in its own component, check it has <footer> element
-    const footerContent = readFileSync(resolveFile(resolve(SRC_DIR, 'components'), 'Footer.jsx'), 'utf-8');
+    const footerContent = readFileSync(resolve(SRC_DIR, 'components', 'Footer.tsx'), 'utf-8');
     expect(footerContent).toContain('<footer');
   });
 
   it('skip-to-content link exists for keyboard users', () => {
-    const appContent = readFileSync(resolveFile(SRC_DIR, 'App.jsx'), 'utf-8');
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
     // Should have a skip link or anchor that targets #main-content
     expect(appContent).toContain('main-content');
   });

@@ -18,7 +18,7 @@ import { resolve, join, relative } from 'path';
 
 const SRC_DIR = resolve(__dirname, '..');
 
-// Recursively find all .jsx/.tsx files in src/
+// Recursively find all .tsx files in src/
 function findJsxFiles(dir: string): string[] {
   const files = [];
   for (const entry of readdirSync(dir)) {
@@ -27,7 +27,7 @@ function findJsxFiles(dir: string): string[] {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
+    } else if (entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
@@ -107,7 +107,7 @@ describe('Terminal design system compliance', () => {
 
   it('no orphan component files in src/components/ (all must be imported somewhere)', () => {
     const componentsDir = resolve(SRC_DIR, 'components');
-    const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.jsx') || f.endsWith('.tsx'));
+    const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.tsx'));
 
     // Read all non-test source files for import scanning
     const allSourceFiles: string[] = [];
@@ -117,7 +117,7 @@ describe('Terminal design system compliance', () => {
         if (entry === 'node_modules' || entry === 'test') continue;
         const stat = statSync(full);
         if (stat.isDirectory()) findAllSourceFiles(full);
-        else if (entry.endsWith('.jsx') || entry.endsWith('.tsx') || entry.endsWith('.js') || entry.endsWith('.ts')) allSourceFiles.push(full);
+        else if (entry.endsWith('.tsx') || entry.endsWith('.ts')) allSourceFiles.push(full);
       }
     }
     findAllSourceFiles(SRC_DIR);

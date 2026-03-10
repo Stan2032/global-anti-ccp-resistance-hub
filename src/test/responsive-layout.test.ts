@@ -24,7 +24,7 @@ function findJsxFiles(dir: string): string[] {
     const stat = statSync(full);
     if (stat.isDirectory()) {
       files.push(...findJsxFiles(full));
-    } else if (entry.endsWith('.jsx') || entry.endsWith('.tsx')) {
+    } else if (entry.endsWith('.tsx')) {
       files.push(full);
     }
   }
