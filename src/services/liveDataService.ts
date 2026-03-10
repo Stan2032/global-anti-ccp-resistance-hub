@@ -11,6 +11,8 @@
  * @module liveDataService
  */
 
+import { logger } from '../utils/logger';
+
 /** A single feed item parsed from an RSS/Atom source. */
 export interface FeedItem {
   /** Unique identifier (source-index-timestamp) */
@@ -260,14 +262,14 @@ async function fetchRSSFeed(feedUrl: string, sourceName: string): Promise<FeedIt
     const items = await fetchViaRSS2JSON(feedUrl, sourceName);
     return items;
   } catch (e: unknown) {
-    console.warn(`RSS2JSON failed for ${sourceName}, trying CORS proxy:`, (e as Error).message);
+    logger.warn('feed', `RSS2JSON failed for ${sourceName}, trying CORS proxy:`, (e as Error).message);
   }
   
   // Strategy 2: CORS proxy
   try {
     return await fetchViaCORSProxy(feedUrl, sourceName);
   } catch (error: unknown) {
-    console.error(`Error fetching ${sourceName} feed (all strategies failed):`, error);
+    logger.error('feed', `Error fetching ${sourceName} feed (all strategies failed):`, error);
     return [];
   }
 }

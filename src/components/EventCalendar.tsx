@@ -6,6 +6,7 @@
  */
 import { useState } from 'react';
 import { Flame, Heart, Handshake, Megaphone, CalendarDays, Smartphone } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 const EventCalendar = () => {
   const [selectedMonth, setSelectedMonth] = useState('all');
@@ -349,7 +350,7 @@ const EventCalendar = () => {
               try {
                 await navigator.clipboard.writeText(text);
               } catch (err) {
-                console.error('Failed to copy:', err);
+                logger.warn('clipboard', 'Failed to copy:', err);
               }
             }}
             className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { logger } from '../utils/logger';
 
 /**
  * ShareButtons — Social sharing buttons with copy-to-clipboard.
@@ -104,7 +105,7 @@ const ShareButtons = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 

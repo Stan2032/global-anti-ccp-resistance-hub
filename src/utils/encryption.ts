@@ -20,6 +20,8 @@
  */
 
 /** Represents an AES-GCM encrypted value with its initialisation vector. */
+import { logger } from './logger';
+
 export interface EncryptedValue {
   ciphertext: string;
   iv: string;
@@ -65,7 +67,7 @@ async function importPublicKey(): Promise<CryptoKey | null> {
       ['wrapKey']
     );
   } catch {
-    console.warn('[encryption] Failed to import public key — data will be sent unencrypted.');
+    logger.warn('encryption', 'Failed to import public key — data will be sent unencrypted.');
     return null;
   }
 }
@@ -145,7 +147,7 @@ export async function encryptSubmission(
 
     return encryptedData;
   } catch {
-    console.warn('[encryption] Encryption failed — sending unencrypted.');
+    logger.warn('encryption', 'Encryption failed — sending unencrypted.');
     return data;
   }
 }

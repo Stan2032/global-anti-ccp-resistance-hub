@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart3, Megaphone } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 /**
  * QuickFacts — Shareable statistics cards with verified data points.
@@ -103,7 +104,7 @@ const QuickFacts = () => {
       setCopiedId(fact.id);
       setTimeout(() => setCopiedId(null), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 

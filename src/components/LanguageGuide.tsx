@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import { Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
+import { logger } from '../utils/logger';
 
 const LanguageGuide = () => {
   const [activeLanguage, setActiveLanguage] = useState('cantonese');
@@ -250,7 +251,7 @@ const LanguageGuide = () => {
       setCopiedPhrase(id);
       setTimeout(() => setCopiedPhrase(null), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 

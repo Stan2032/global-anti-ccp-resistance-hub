@@ -14,6 +14,7 @@
  *   const { data, error } = await supabase.from('table').select('*');
  */
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { logger } from '../utils/logger';
 
 /** Decoded JWT payload shape (minimal fields we inspect). */
 interface JwtPayload {
@@ -55,8 +56,9 @@ export function isServiceRoleKey(key: string | undefined | null): boolean {
 let _serviceRoleError = false;
 if (supabaseAnonKey && isServiceRoleKey(supabaseAnonKey)) {
   _serviceRoleError = true;
-  console.error(
-    '[Supabase] ❌ CRITICAL: You have set VITE_SUPABASE_ANON_KEY to the service_role (secret) key!\n' +
+  logger.error(
+    'supabase',
+    '❌ CRITICAL: You have set VITE_SUPABASE_ANON_KEY to the service_role (secret) key!\n' +
     'This key bypasses Row Level Security and must NEVER be exposed in browser code.\n\n' +
     'FIX: In your Supabase Dashboard → Settings → API, copy the key labelled "anon / public"\n' +
     '(NOT the one labelled "service_role / secret") and update your environment variable.\n\n' +

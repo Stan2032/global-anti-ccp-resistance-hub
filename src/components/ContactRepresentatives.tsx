@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { Megaphone, Building, Link2, Target } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 import { STATISTICS } from '../data/statistics';
+import { logger } from '../utils/logger';
 
 const ContactRepresentatives = () => {
   const [selectedCountry, setSelectedCountry] = useState('us');
@@ -282,7 +283,7 @@ Sincerely,
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 
