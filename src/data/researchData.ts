@@ -5,8 +5,69 @@ import politicalPrisonersData from './political_prisoners_research.json';
 import recentNewsData from './recent_news_research.json';
 import policeStationsData from './police_stations_research.json';
 
+export interface PoliticalPrisoner {
+  name: string;
+  status: string;
+  location: string;
+  sentence: string;
+  latestNews: string;
+  healthStatus: string;
+  internationalResponse: string;
+  sourceUrl: string;
+  confidence: string;
+}
+
+export interface NewsItem {
+  topic: string;
+  headline: string;
+  summary: string;
+  date: string;
+  source: string;
+  sourceUrl: string;
+  significance: string;
+  relatedPrisoners: string | string[];
+  internationalResponse: string;
+  actionNeeded: string;
+}
+
+export interface PoliceStation {
+  country: string;
+  city: string;
+  address: string;
+  status: string;
+  closureDate: string;
+  arrestsMade: string;
+  arrestDetails: string;
+  governmentResponse: string;
+  linkedTo: string;
+  latestNews: string;
+  sourceUrl: string;
+}
+
+export interface ResearchStats {
+  totalPrisoners: number;
+  prisonersByStatus: {
+    detained: number;
+    released: number;
+    disappeared: number;
+    deceased: number;
+    exile: number;
+    atRisk: number;
+  };
+  totalNewsTopics: number;
+  highSignificanceNews: number;
+  totalPoliceStations: number;
+  stationsByStatus: {
+    closed: number;
+    underInvestigation: number;
+    operating: number;
+    unknown: number;
+  };
+  lastUpdated: string;
+}
+
 // Process political prisoners data
-export const politicalPrisoners = politicalPrisonersData.results.map(item => ({
+export const politicalPrisoners: PoliticalPrisoner[] = politicalPrisonersData.results.map(item => ({
   name: item.output.prisoner_name,
   status: item.output.status,
   location: item.output.location,
@@ -19,7 +80,7 @@ export const politicalPrisoners = politicalPrisonersData.results.map(item => ({
 }));
 
 // Process recent news data
-export const recentNews = recentNewsData.results.map(item => ({
+export const recentNews: NewsItem[] = recentNewsData.results.map(item => ({
   topic: item.output.topic,
   headline: item.output.headline,
   summary: item.output.summary,
@@ -33,7 +94,7 @@ export const recentNews = recentNewsData.results.map(item => ({
 }));
 
 // Process police stations data
-export const policeStations = policeStationsData.results.map(item => ({
+export const policeStations: PoliceStation[] = policeStationsData.results.map(item => ({
   country: item.output.country,
   city: item.output.city,
   address: item.output.address,
@@ -48,7 +109,7 @@ export const policeStations = policeStationsData.results.map(item => ({
 }));
 
 // Statistics
-export const researchStats = {
+export const researchStats: ResearchStats = {
   totalPrisoners: politicalPrisoners.length,
   prisonersByStatus: {
     detained: politicalPrisoners.filter(p => p.status === 'DETAINED').length,

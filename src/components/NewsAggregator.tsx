@@ -9,19 +9,9 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText, type LucideIcon } from 'lucide-react';
-import { dataProcessor } from '../data/liveDataSources';
+import { dataProcessor, type FeedItemWithRegion } from '../data/liveDataSources';
 
 /** Represents a single news or threat item from RSS feed aggregation */
-interface NewsItem {
-  id: string;
-  title: string;
-  url: string;
-  source: string;
-  date: string;
-  category: string;
-  priority: string;
-  summary: string;
-}
 
 interface CategoryWithIcon {
   id: string;
@@ -31,7 +21,7 @@ interface CategoryWithIcon {
 }
 
 const NewsAggregator = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<FeedItemWithRegion[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -154,7 +144,7 @@ const NewsAggregator = () => {
 
   const filteredNews = selectedCategory === 'all' 
     ? news 
-    : news.filter(item => item.category === selectedCategory);
+    : news.filter(item => item.region === selectedCategory);
 
   const getPriorityColor = (priority: string): string => {
     switch (priority) {
@@ -218,7 +208,7 @@ const NewsAggregator = () => {
         {filteredNews.slice(0, 5).map((item) => (
           <a
             key={item.id}
-            href={item.url}
+            href={item.link}
             target="_blank"
             rel="noopener noreferrer"
             className="block bg-[#111820] border border-[#1c2a35] p-4 hover:border-red-500/50 transition-colors group"
@@ -226,9 +216,9 @@ const NewsAggregator = () => {
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  {(() => { const info = getCategoryInfo(item.category); return info.Icon ? <info.Icon className="w-5 h-5" /> : <span className="text-lg">{info.icon}</span>; })()}
-                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${getPriorityColor(item.priority)}`}>
-                    {item.priority}
+                  {(() => { const info = getCategoryInfo(item.region); return info.Icon ? <info.Icon className="w-5 h-5" /> : <span className="text-lg">{info.icon}</span>; })()}
+                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${getPriorityColor(item.severity)}`}>
+                    {item.severity}
                   </span>
                   <span className="text-xs text-slate-400">{item.source}</span>
                 </div>
@@ -236,11 +226,11 @@ const NewsAggregator = () => {
                   {item.title}
                 </h3>
                 <p className="text-sm text-slate-400 mt-1 line-clamp-2">
-                  {item.summary}
+                  {item.description}
                 </p>
               </div>
               <span className="text-xs text-slate-400 whitespace-nowrap">
-                {item.date}
+                {item.timestamp}
               </span>
             </div>
           </a>

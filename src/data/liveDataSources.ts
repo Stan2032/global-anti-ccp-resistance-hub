@@ -8,11 +8,57 @@ const DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
 
 export { liveDataFeeds };
 
+export interface FeedItem {
+  id: string;
+  title: string;
+  description: string;
+  timestamp: string;
+  source: string;
+  link: string;
+  severity: string;
+  verification: string;
+}
+
+export interface FeedItemWithRegion extends FeedItem {
+  region: string;
+}
+
+export interface FeedData {
+  news: FeedItemWithRegion[];
+  threats: FeedItemWithRegion[];
+  campaigns: FeedItemWithRegion[];
+  lastUpdated: string;
+  status: string;
+  error?: string;
+  feedsLoaded: {
+    news: number;
+    threats: number;
+    total: number;
+  };
+}
+
+export interface CategorizedData {
+  critical: FeedItemWithRegion[];
+  high: FeedItemWithRegion[];
+  medium: FeedItemWithRegion[];
+  low: FeedItemWithRegion[];
+}
+
+export interface FeedStats {
+  activeMonitoring: number;
+  documentsProcessed: number;
+  threatsDetected: number;
+  organizationsTracked: number;
+  lastUpdate: string;
+  dataSource: string;
+  feedStatus?: string;
+}
+
 // NO SIMULATED DATA - All data comes from real RSS feeds
 // If RSS feeds fail, we show empty state with clear error message
 
 // RSS Feed Parser using RSS2JSON API (CORS-friendly)
-const parseRSSFeed = async (feedUrl) => {
+const parseRSSFeed = async (feedUrl: string): Promise<FeedItem[]> => {
   try {
     // Use RSS2JSON API - properly supports CORS
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
@@ -31,7 +77,7 @@ const parseRSSFeed = async (feedUrl) => {
     }
     
     // Convert RSS2JSON format to our format
-    const feedItems = data.items.slice(0, 5).map((item, index) => ({
+    const feedItems: FeedItem[] = data.items.slice(0, 5).map((item: Record<string, string>, index: number) => ({
       id: `rss_${Date.now()}_${index}`,
       title: item.title || '',
       description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 200) + '...',
@@ -53,12 +99,12 @@ const parseRSSFeed = async (feedUrl) => {
 const RSS_CACHE_KEY = 'rss_feed_cache';
 const RSS_CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-const getCachedFeeds = () => {
+const getCachedFeeds = (): FeedData | null => {
   try {
     const cached = localStorage.getItem(RSS_CACHE_KEY);
     if (!cached) return null;
     
-    const { data, timestamp } = JSON.parse(cached);
+    const { data, timestamp } = JSON.parse(cached) as { data: FeedData; timestamp: number };
     const age = Date.now() - timestamp;
     
     if (age < RSS_CACHE_DURATION) {
@@ -75,7 +121,7 @@ const getCachedFeeds = () => {
   }
 };
 
-const setCachedFeeds = (data) => {
+const setCachedFeeds = (data: FeedData): void => {
   try {
     localStorage.setItem(RSS_CACHE_KEY, JSON.stringify({
       data,
@@ -89,7 +135,7 @@ const setCachedFeeds = (data) => {
 // Data aggregation and processing functions
 export const dataProcessor = {
   // Aggregate data from multiple sources with caching and parallel fetching
-  aggregateFeeds: async () => {
+  aggregateFeeds: async (): Promise<FeedData> => {
     try {
       // Check cache first
       const cached = getCachedFeeds();
@@ -100,7 +146,7 @@ export const dataProcessor = {
       if (DEBUG) console.log('Fetching fresh RSS data...');
       
       // Fetch ALL feeds in parallel (not sequential)
-      const allFeedPromises = [
+      const allFeedPromises: Promise<FeedItemWithRegion[]>[] = [
         ...liveDataFeeds.newsFeeds.map(feed => 
           parseRSSFeed(feed.url)
             .then(items => items.map(item => ({
@@ -108,9 +154,9 @@ export const dataProcessor = {
               region: feed.region,
               source: feed.name
             })))
-            .catch(err => {
+            .catch((err: unknown) => {
               console.warn(`Failed to fetch ${feed.name}:`, err);
-              return [];
+              return [] as FeedItemWithRegion[];
             })
         ),
         ...liveDataFeeds.humanRightsFeeds.map(feed => 
@@ -121,15 +167,15 @@ export const dataProcessor = {
               source: feed.name,
               severity: 'high'
             })))
-            .catch(err => {
+            .catch((err: unknown) => {
               console.warn(`Failed to fetch ${feed.name}:`, err);
-              return [];
+              return [] as FeedItemWithRegion[];
             })
         )
       ];
       
       // Wait for all feeds with 10 second timeout (reduced from 15)
-      const timeout = new Promise((resolve) => 
+      const timeout = new Promise<FeedItemWithRegion[][]>((resolve) => 
         setTimeout(() => {
           console.warn('RSS fetch timeout after 10s');
           resolve([]);
@@ -142,16 +188,16 @@ export const dataProcessor = {
       ]);
       
       // Flatten and separate news vs human rights feeds
-      const allItems = Array.isArray(results) ? results.flat() : [];
+      const allItems: FeedItemWithRegion[] = Array.isArray(results) ? results.flat() : [];
       const newsData = allItems.filter(item => item.severity !== 'high');
       const threatData = allItems.filter(item => item.severity === 'high');
       
       if (DEBUG) console.log(`Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
       
-      const feedData = {
+      const feedData: FeedData = {
         news: newsData,
         threats: threatData,
-        campaigns: [], // No campaign data source yet - show empty
+        campaigns: [],
         lastUpdated: new Date().toISOString(),
         status: (newsData.length === 0 && threatData.length === 0) ? 'feeds_unavailable' : 'operational',
         feedsLoaded: {
@@ -174,7 +220,7 @@ export const dataProcessor = {
         campaigns: [],
         lastUpdated: new Date().toISOString(),
         status: 'error',
-        error: error.message || 'Failed to load RSS feeds',
+        error: (error as Error).message || 'Failed to load RSS feeds',
         feedsLoaded: {
           news: 0,
           threats: 0,
@@ -185,8 +231,8 @@ export const dataProcessor = {
   },
 
   // Process and categorize incoming data
-  categorizeData: (data) => {
-    const categories = {
+  categorizeData: (data: FeedItemWithRegion[]): CategorizedData => {
+    const categories: CategorizedData = {
       critical: [],
       high: [],
       medium: [],
@@ -194,8 +240,9 @@ export const dataProcessor = {
     }
 
     data.forEach(item => {
-      if (categories[item.severity]) {
-        categories[item.severity].push(item)
+      const key = item.severity as keyof CategorizedData;
+      if (categories[key]) {
+        categories[key].push(item)
       }
     })
 
@@ -203,7 +250,7 @@ export const dataProcessor = {
   },
 
   // Generate statistics from actual feed data
-  generateStats: (feedData) => {
+  generateStats: (feedData: FeedData | null): FeedStats => {
     if (!feedData) {
       return {
         activeMonitoring: 0,
@@ -216,7 +263,7 @@ export const dataProcessor = {
     }
 
     // Calculate actual statistics from real RSS feed data
-    const allItems = [
+    const allItems: FeedItemWithRegion[] = [
       ...(feedData.news || []),
       ...(feedData.threats || []),
       ...(feedData.campaigns || [])

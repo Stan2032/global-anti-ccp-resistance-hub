@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CCP_TACTICS } from '../data/ccpTactics.js';
+import { CCP_TACTICS } from '../data/ccpTactics';
 import { isCCPStateMedia } from '../utils/sourceLinks';
 
 describe('CCP Tactics Data Integrity', () => {

@@ -4,7 +4,38 @@
  * influence, and repression - both domestically and internationally.
  */
 
-export const CCP_TACTICS = {
+export interface Tactic {
+  name: string;
+  description: string;
+  examples: string[];
+  sources: string[];
+}
+
+export interface TacticCategory {
+  title: string;
+  description: string;
+  tactics: Tactic[];
+}
+
+export interface SubTactic {
+  name: string;
+  description: string;
+  methods: string[];
+}
+
+export interface AdvancedTacticCategory {
+  title: string;
+  description: string;
+  subTactics: SubTactic[];
+  sources: string[];
+}
+
+export interface CounterTacticCategory {
+  title: string;
+  recommendations: string[];
+}
+
+export const CCP_TACTICS: Record<string, TacticCategory> = {
   domesticRepression: {
     title: 'Domestic Repression',
     description: 'Methods used by the CCP to control and suppress dissent within China',
@@ -207,7 +238,7 @@ export const CCP_TACTICS = {
 };
 
 // Additional detailed tactics
-export const ADVANCED_TACTICS = {
+export const ADVANCED_TACTICS: Record<string, AdvancedTacticCategory> = {
   unitedFrontWork: {
     title: 'United Front Work Department (UFWD)',
     description: 'The CCP\'s "magic weapon" for political warfare - a vast network coordinating influence operations globally',
@@ -341,7 +372,7 @@ export const ADVANCED_TACTICS = {
   }
 };
 
-export const COUNTER_TACTICS = {
+export const COUNTER_TACTICS: Record<string, CounterTacticCategory> = {
   personalSecurity: {
     title: 'Personal Security',
     recommendations: [
