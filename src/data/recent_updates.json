@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-259-logger-utility",
+    "date": "2026-03-10",
+    "category": "data",
+    "title": "Centralized Logging Utility — structured, environment-aware logging",
+    "description": "New centralized logger utility (src/utils/logger.ts) with 4 log levels (error, warn, info, debug), context prefixes, and environment-gating. Replaced all 27 raw console.log/warn/error calls across 14 production files. Added console hygiene guard test preventing reintroduction. Also updated agent documentation to reflect 100% TypeScript completion (360 files, 0 .js/.jsx), removed expired Taiwan emergency alert, and added expiry date to Jimmy Lai alert.",
+    "relatedPage": "/data-sources"
+  },
+  {
     "id": "session-235-jimmy-lai-no-appeal",
     "date": "2026-03-08",
     "category": "alert",

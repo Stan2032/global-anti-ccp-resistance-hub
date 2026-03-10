@@ -397,7 +397,7 @@
 - [ ] Document all components with JSDoc
 - [x] ~~Create component library/design system~~ ✅ (STYLE_GUIDE.md + 8 automated checks)
 - [x] ~~Standardize error handling~~ ✅ (ErrorBoundary + RouteErrorBoundary)
-- [ ] Implement logging system
+- [x] ~~Implement logging system~~ ✅ (Centralized `src/utils/logger.ts` — 4 levels, context prefixes, environment-gated. All 27 console.* calls migrated from 14 files. 8 tests.)
 
 ### Infrastructure
 - [ ] Set up staging environment
