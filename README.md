@@ -115,7 +115,7 @@ All structured content lives in `src/data/` as JSON files:
 | `detention_facilities_research.json` | 11 facilities with coordinates | DetentionFacilities component |
 | `sanctioned_officials_research.json` | 34 CCP officials tracked | CCPOfficials component |
 | `forced_labor_companies_research.json` | 30 companies linked to forced labor | ForcedLaborTracker component |
-| `timeline_events.json` | 36 events (1989–2026) | InteractiveTimeline component |
+| `timeline_events.json` | 38 events (1989–2026) | InteractiveTimeline component |
 | `legal_cases_research.json` | Legal cases data | LegalCaseTracker component |
 | `security_center_data.json` | Security tools & recommendations | SecurityCenter page |
 | `data_sources.json` | 11 RSS sources + 4 source categories | DataSources page |

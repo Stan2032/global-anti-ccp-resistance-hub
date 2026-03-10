@@ -77,7 +77,7 @@ describe('Timeline Events Data Integrity', () => {
   });
 
   describe('Category validation', () => {
-    const validCategories = ['mainland', 'hongkong', 'uyghur', 'tibet', 'falungong', 'global'];
+    const validCategories = ['mainland', 'hongkong', 'uyghur', 'tibet', 'falungong', 'global', 'international'];
 
     it('all events use valid categories', () => {
       for (const event of events) {

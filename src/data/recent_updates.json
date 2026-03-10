@@ -1,5 +1,13 @@
 [
   {
+    "id": "session-263-data-refresh",
+    "date": "2026-03-10",
+    "category": "data",
+    "title": "Data Refresh: Tibetan Uprising Day, China-Canada sanctions, HRW report",
+    "description": "Added 2 new timeline events (67th Tibetan National Uprising Day, China retaliates against Canadian human rights organizations). 3 new news items (Tibet solidarity protests, China-Canada sanctions, HRW World Report 2026 China chapter). Updated agent task list comprehensively with new subtasks. Created Session 263 thoughts document. Today is Tibetan National Uprising Day — March 10, 2026.",
+    "relatedPage": "/intelligence"
+  },
+  {
     "id": "session-261-data-refresh",
     "date": "2026-03-10",
     "category": "data",
@@ -11,7 +19,7 @@
     "id": "session-259-logger-utility",
     "date": "2026-03-10",
     "category": "data",
-    "title": "Centralized Logging Utility \u2014 structured, environment-aware logging",
+    "title": "Centralized Logging Utility — structured, environment-aware logging",
     "description": "New centralized logger utility (src/utils/logger.ts) with 4 log levels (error, warn, info, debug), context prefixes, and environment-gating. Replaced all 27 raw console.log/warn/error calls across 14 production files. Added console hygiene guard test preventing reintroduction. Also updated agent documentation to reflect 100% TypeScript completion (360 files, 0 .js/.jsx), removed expired Taiwan emergency alert, and added expiry date to Jimmy Lai alert.",
     "relatedPage": "/data-sources"
   },
@@ -27,7 +35,7 @@
     "id": "session-229-whistleblower-guide",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Whistleblower Security Guide \u2014 OpSec protocols and secure submission channels",
+    "title": "Whistleblower Security Guide — OpSec protocols and secure submission channels",
     "description": "New WhistleblowerGuide component providing 15 operational security protocols across 5 categories (Identity Protection, Secure Communications, Document Handling, Digital Security, Physical Security), 10 verified submission channels (SecureDrop instances, HRW, Amnesty, ICIJ, ASPI, Citizen Lab, Safeguard Defenders), and 6 legal protection frameworks. Features: risk classification, 3-view analysis (Security Protocols, Submission Channels, Legal Protections), search, copy report. Cross-references 3 datasets. 49 comprehensive tests.",
     "relatedPage": "/security"
   },
@@ -35,7 +43,7 @@
     "id": "session-228-economic-impact-analyzer",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Economic Impact Analyzer \u2014 forced labor supply chain impact analysis",
+    "title": "Economic Impact Analyzer — forced labor supply chain impact analysis",
     "description": "New EconomicImpactAnalyzer component analyzing economic impact of CCP forced labor across 30 companies in 6 industry sectors (Apparel, Electronics, Retail, Technology, Automotive, Food & Beverage). 8 legislative frameworks mapped (UFLPA, EU CSDDD, EU FLR, UK MSA, Canada MSA, Australia MSA, US Tariff Act s307, Japan HRDD). Features: risk classification, 3-view analysis (Sector Analysis, Company Risk, Legislative Landscape), search, copy report. Cross-references 4 datasets. 46 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -43,7 +51,7 @@
     "id": "session-227-censorship-circumvention-guide",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Censorship Circumvention Guide \u2014 documenting CCP internet censorship and verified tools",
+    "title": "Censorship Circumvention Guide — documenting CCP internet censorship and verified tools",
     "description": "New CensorshipCircumventionGuide component documenting 18 CCP censorship methods across 5 categories (Great Firewall, Content Filtering, VPN Crackdowns, Social Media Monitoring, Infrastructure Control) and evaluating 10 circumvention tools with safety ratings. Features: risk classification, 3-view analysis (Censorship Methods, Circumvention Tools, Safety Guide), search, copy report. Cross-references 3 datasets. 42 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -51,7 +59,7 @@
     "id": "session-226-diplomatic-coercion-tracker",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Diplomatic Coercion Tracker \u2014 mapping CCP economic & diplomatic coercion globally",
+    "title": "Diplomatic Coercion Tracker — mapping CCP economic & diplomatic coercion globally",
     "description": "New DiplomaticCoercionTracker component tracking 44 CCP coercion incidents across 17 countries (Australia, Lithuania, Canada, Norway, South Korea, Sweden, Czech Republic, UK, Netherlands, Japan, Philippines, Mongolia, Germany, France, India, New Zealand, Taiwan). 5 coercion types: Trade Restrictions, Hostage Diplomacy, Diplomatic Threats, Economic Leverage, Political Interference. Features: severity classification, 3-view analysis (Country Overview, Coercion Tactics, Response Outcomes), search, copy report. Cross-references 4 datasets. 43 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -59,7 +67,7 @@
     "id": "session-224-genocide-legal-framework",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Genocide Legal Framework \u2014 mapping CCP violations to international law instruments",
+    "title": "Genocide Legal Framework — mapping CCP violations to international law instruments",
     "description": "New GenocideLegalFramework component mapping 12 documented CCP violations to 5 international legal instruments (UN Genocide Convention, Convention against Torture, ICCPR, ILO Forced Labor Conventions, UN Minority Rights Declaration). All 5 articles of the Genocide Convention (II(a)-II(e)) analyzed with documented actions, key findings, and cross-referenced evidence from 7 verified datasets. Genocide Recognitions view tracks 10 formal recognitions from governments and tribunals. Features: legal text display, severity classification, evidence cross-referencing, copy report, category filter buttons, search. 44 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -67,8 +75,8 @@
     "id": "session-223-media-narrative-tracker",
     "date": "2026-03-07",
     "category": "new_entry",
-    "title": "Media Narrative Tracker \u2014 debunking 12 CCP propaganda narratives with verified evidence",
-    "description": "New MediaNarrativeTracker component tracking 12 CCP state media propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from political prisoners, detention facilities, forced labor companies, international responses, police stations, and legal cases. Features: evidence-based debunks with counter-source links, narrative timeline (first appeared \u2192 last used), frequency classification (persistent/recurring/declining), category filter buttons, search, expandable cards with cross-referenced evidence counts, copy intelligence report. 31 comprehensive tests.",
+    "title": "Media Narrative Tracker — debunking 12 CCP propaganda narratives with verified evidence",
+    "description": "New MediaNarrativeTracker component tracking 12 CCP state media propaganda narratives across 5 categories (Denial, Deflection, Whataboutism, Reframing, Intimidation). Each narrative cross-referenced with verified evidence from political prisoners, detention facilities, forced labor companies, international responses, police stations, and legal cases. Features: evidence-based debunks with counter-source links, narrative timeline (first appeared → last used), frequency classification (persistent/recurring/declining), category filter buttons, search, expandable cards with cross-referenced evidence counts, copy intelligence report. 31 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
   {
@@ -83,7 +91,7 @@
     "id": "session-221-transnational-repression-tracker",
     "date": "2026-03-06",
     "category": "new_entry",
-    "title": "Transnational Repression Tracker \u2014 mapping CCP overseas operations across 30 countries",
+    "title": "Transnational Repression Tracker — mapping CCP overseas operations across 30 countries",
     "description": "New TransnationalRepressionTracker component cross-referencing 30 police stations, 25 legal cases, and 30 international responses to map CCP transnational repression operations. Features: threat-level classification (Critical/High/Moderate/Low) per country, government response tracking (Enforcement/Investigation/Acknowledged/No Action), 3 analytical views (Threat Overview, Operations Map, Government Responses), expandable country cards with police station details, legal case summaries, and international response data. Search + threat level + response filters. Copy intelligence report. Integrated into Intelligence CCP Operations tab. 38 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -91,7 +99,7 @@
     "id": "session-220-policy-brief-generator",
     "date": "2026-03-06",
     "category": "new_entry",
-    "title": "Policy Brief Generator \u2014 evidence-based briefs cross-referencing 8 verified datasets",
+    "title": "Policy Brief Generator — evidence-based briefs cross-referencing 8 verified datasets",
     "description": "New PolicyBriefGenerator component producing structured policy briefs for 4 target audiences (Legislators, Diplomats, Corporate Compliance, Civil Society) across 6 topic areas (Political Detention, Forced Labor, Transnational Repression, Genocide Recognition, Hong Kong NSL, Sanctions Policy). Cross-references political prisoners, sanctions, forced labor, detention facilities, legal cases, international responses, police stations, and sanctioned officials datasets. Features: audience-specific recommendations, executive summaries with live data counts, collapsible findings/recommendations/citations sections, topic search, copy-to-clipboard with full brief text. Integrated into Take Action page. 49 comprehensive tests.",
     "relatedPage": "/take-action"
   },
@@ -99,7 +107,7 @@
     "id": "session-219-supply-chain-risk-mapper",
     "date": "2026-03-06",
     "category": "new_entry",
-    "title": "Supply Chain Risk Mapper \u2014 corporate forced labor risk analysis with UFLPA enforcement tracking",
+    "title": "Supply Chain Risk Mapper — corporate forced labor risk analysis with UFLPA enforcement tracking",
     "description": "New SupplyChainRiskMapper component cross-referencing 30 companies against forced labor data, sanctions, and 5 legislative frameworks (UFLPA, EU CSDDD, UK/Canada/Australia Modern Slavery Acts). Features: automated risk classification (Critical/High/Moderate/Low), industry sector breakdown with stacked risk bars, legal landscape view with scope and enforcement details, search + industry + risk filters, expandable company cards with evidence/response/UFLPA status, compliance advisory. Integrated into Intelligence CCP Operations tab. 40 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
@@ -107,7 +115,7 @@
     "id": "session-218-video-testimonials",
     "date": "2026-03-06",
     "category": "new_entry",
-    "title": "Video Testimonials \u2014 10 verified survivor and advocate video testimonies with consent tracking",
+    "title": "Video Testimonials — 10 verified survivor and advocate video testimonies with consent tracking",
     "description": "New VideoTestimonials component providing a curated gallery of 10 verified video testimonies from survivors, advocates, and family members across East Turkestan, Hong Kong, Tibet, and mainland China. Features: category filters (Detention Survivors, Political Persecution, Advocates, Family Members), region filters, search, expandable cards with content warning gates, consent verification badges, source links to Tier 1-2 outlets (BBC, PBS, Al Jazeera, Uyghur Tribunal, CNN, NYT), transcript availability indicators, copy-to-clipboard. Privacy-first: no embedded players, no tracking cookies. Integrated into Education Media tab. 40 comprehensive tests.",
     "relatedPage": "/education"
   },
@@ -115,7 +123,7 @@
     "id": "session-217-notification-center",
     "date": "2026-03-06",
     "category": "new_entry",
-    "title": "Notification Center \u2014 browser push notification preferences and alert feed",
+    "title": "Notification Center — browser push notification preferences and alert feed",
     "description": "New NotificationCenter component providing a centralized notification hub. Aggregates alerts from 3 data sources: emergency alerts (critical cases), recent platform updates, and sanctions tracker. Features: 4 notification categories (Critical Alerts, Sanctions and Legal, Data Updates, Action Required) with filter buttons, expandable notification cards with date and source, browser push notification permission management, service worker integration status, per-category preference toggles with local storage persistence, search, show-more pattern, copy-to-clipboard with CC BY 4.0 attribution. Privacy-first design: all preferences stored locally, no server tracking. Integrated into Dashboard page. 41 comprehensive tests.",
     "relatedPage": "/"
   },
@@ -123,7 +131,7 @@
     "id": "session-216-data-integrity-monitor",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Data Integrity Monitor \u2014 automated health checks for all 12 research datasets",
+    "title": "Data Integrity Monitor — automated health checks for all 12 research datasets",
     "description": "New DataIntegrityMonitor component runs automated validation checks on all 12 datasets: record count verification, required field completeness, source URL coverage and format validation, CCP state media exclusion, duplicate detection, and freshness tracking. Features: 3-status summary cards (Pass/Warning/Fail), health score bar, status filters, search, expandable dataset cards showing individual check results and schema fields, copy-to-clipboard. Archive housekeeping: trimmed task list completed items. 33 comprehensive tests.",
     "relatedPage": "/data-sources"
   },
@@ -131,7 +139,7 @@
     "id": "session-215-cross-dataset-insight-engine",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Cross-Dataset Insight Engine \u2014 automated relationship discovery across 10 datasets",
+    "title": "Cross-Dataset Insight Engine — automated relationship discovery across 10 datasets",
     "description": "New CrossDatasetInsightEngine component cross-references all 10 primary datasets to surface hidden connections. Discovers: geographic convergence (regions referenced across 3+ datasets), actor networks (officials linked to prisoners/cases/sanctions), legal impact chains (cases with cross-border sanctions responses), economic clusters (forced labor industries and UFLPA enforcement), temporal correlations (events triggering sanctions in same year). Features: 5 insight categories with strength indicators, category filter buttons, search, distribution bar, expandable cards with connected records, copy-to-clipboard. Integrated into Data Sources page. 13th dataApi method (getAllDatasets). Archive housekeeping: moved 8 old session thoughts (150-157) to archive. 36 comprehensive tests.",
     "relatedPage": "/data-sources"
   },
@@ -139,15 +147,15 @@
     "id": "session-214-legal-case-tracker",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Legal Case Tracker \u2014 25 global court cases tracking CCP human rights violations",
-    "description": "New LegalCaseTracker component tracks 25 verified court cases and legal proceedings related to CCP human rights violations across 14 jurisdictions. Includes: NSL prosecutions (Jimmy Lai, HK47, Stand News, Apple Daily), genocide tribunal (Uyghur Tribunal), parliamentary recognition votes (Canada, Netherlands, UK, France, Belgium, Lithuania), enforcement actions (UFLPA, Operation Fox Hunt, NYC police station), universal jurisdiction (Argentina), EU Magnitsky challenge, and supply chain judicial review. Features: status summary (Convicted/Pending/Ongoing/Concluded), distribution bar, jurisdiction breakdown, search, expandable case details with dates/charges/outcome/significance/international response/source links, copy-to-clipboard with CC BY 4.0. 12th dataset in dataApi. Integrated into Intelligence Feeds \u2192 CCP Operations tab. Terminal palette compliant. 38 comprehensive tests.",
+    "title": "Legal Case Tracker — 25 global court cases tracking CCP human rights violations",
+    "description": "New LegalCaseTracker component tracks 25 verified court cases and legal proceedings related to CCP human rights violations across 14 jurisdictions. Includes: NSL prosecutions (Jimmy Lai, HK47, Stand News, Apple Daily), genocide tribunal (Uyghur Tribunal), parliamentary recognition votes (Canada, Netherlands, UK, France, Belgium, Lithuania), enforcement actions (UFLPA, Operation Fox Hunt, NYC police station), universal jurisdiction (Argentina), EU Magnitsky challenge, and supply chain judicial review. Features: status summary (Convicted/Pending/Ongoing/Concluded), distribution bar, jurisdiction breakdown, search, expandable case details with dates/charges/outcome/significance/international response/source links, copy-to-clipboard with CC BY 4.0. 12th dataset in dataApi. Integrated into Intelligence Feeds → CCP Operations tab. Terminal palette compliant. 38 comprehensive tests.",
     "relatedPage": "/intelligence"
   },
   {
     "id": "session-213-prisoner-dashboard",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Prisoner Status Dashboard \u2014 at-a-glance monitoring of all political prisoners",
+    "title": "Prisoner Status Dashboard — at-a-glance monitoring of all political prisoners",
     "description": "New PrisonerStatusDashboard component provides comprehensive monitoring of all 63 documented political prisoners. Shows: summary stats (total/detained/health alerts/disappeared), status distribution bar, health classification overview (Critical/Concerning/Stable/Unknown using keyword analysis), interactive filters (status, health, sort), expandable prisoner rows with sentence/health/news/response details, regional distribution chart, source methodology. Copy-to-clipboard with CC BY 4.0 attribution. Integrated into Political Prisoners page. Terminal palette compliant. 33 comprehensive tests.",
     "relatedPage": "/prisoners"
   },
@@ -155,7 +163,7 @@
     "id": "session-212-source-diversity",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Source Diversity Analyzer \u2014 assess source quality and diversity across all datasets",
+    "title": "Source Diversity Analyzer — assess source quality and diversity across all datasets",
     "description": "New SourceDiversityAnalyzer component provides research-grade source quality analysis across 8 datasets. Shows: global source statistics (total references, unique domains, Tier 1/2 percentages), tier distribution bar chart, concentration risk alerts (sources over 25%), top 10 global sources with tier badges, per-dataset breakdown with quality ratings (Excellent/Good/Fair/Needs Review), interactive dataset selector with diversity scores, and CCP source exclusion policy. Copy-to-clipboard with CC BY 4.0 attribution. Integrated into Data Sources page. Terminal palette compliant. 28 comprehensive tests.",
     "relatedPage": "/data-sources"
   },
@@ -163,8 +171,8 @@
     "id": "session-211-timeline-gap-analyzer",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Timeline Gap Analyzer \u2014 identify periods needing more research coverage",
-    "description": "New TimelineGapAnalyzer component helps researchers identify temporal gaps in documented CCP human rights violations. Analyzes 34 timeline events (1989-2026) to show: temporal gaps (years with no events), decade-by-decade event density with expandable category breakdowns, coverage by category (HK/Tibet/Uyghur/Mainland/etc), major gaps requiring research (2+ consecutive years), actionable research priorities list. Copy-to-clipboard analysis with CC BY 4.0 attribution. Integrated into Education Center \u2192 Research tab. Terminal palette compliant. 29 comprehensive tests.",
+    "title": "Timeline Gap Analyzer — identify periods needing more research coverage",
+    "description": "New TimelineGapAnalyzer component helps researchers identify temporal gaps in documented CCP human rights violations. Analyzes 34 timeline events (1989-2026) to show: temporal gaps (years with no events), decade-by-decade event density with expandable category breakdowns, coverage by category (HK/Tibet/Uyghur/Mainland/etc), major gaps requiring research (2+ consecutive years), actionable research priorities list. Copy-to-clipboard analysis with CC BY 4.0 attribution. Integrated into Education Center → Research tab. Terminal palette compliant. 29 comprehensive tests.",
     "relatedPage": "/education"
   },
   {
@@ -172,14 +180,14 @@
     "date": "2026-03-06",
     "category": "verification",
     "title": "Session 211: Comprehensive Agent Alignment Complete",
-    "description": "New agent completed comprehensive alignment by reading all _agents/ documentation (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, task list, AGENT_HANDOFF.json v14.0, QUESTIONS_FOR_HUMANS.md). Verified project state: build clean (5.10s), all 2821 tests passing, 0 vulnerabilities. Ready for perpetual autonomous work. Created SESSION_211_THOUGHTS.md documenting alignment process and continuation plan. Today is March 6, 2026 \u2014 Joshua Wong foreign collusion hearing date.",
+    "description": "New agent completed comprehensive alignment by reading all _agents/ documentation (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, task list, AGENT_HANDOFF.json v14.0, QUESTIONS_FOR_HUMANS.md). Verified project state: build clean (5.10s), all 2821 tests passing, 0 vulnerabilities. Ready for perpetual autonomous work. Created SESSION_211_THOUGHTS.md documenting alignment process and continuation plan. Today is March 6, 2026 — Joshua Wong foreign collusion hearing date.",
     "relatedPage": "/"
   },
   {
     "id": "session-209-police-stations",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Overseas Police Station Tracker \u2014 30 CCP stations across 27 countries with status tracking",
+    "title": "Overseas Police Station Tracker — 30 CCP stations across 27 countries with status tracking",
     "description": "New OverseasPoliceStationTracker component documents CCP overseas police service stations used for transnational repression. 30 stations across 27 countries with status tracking (Closed/Under Investigation/Operating/Unknown). Status filter buttons, search, expandable station details with government response, arrest details, linked provinces. New dataApi methods: getPoliceStations, getPoliceStationsByCountry, getPoliceStationsByStatus, searchPoliceStations. 11th dataset exposed via dataApi.",
     "relatedPage": "/intelligence"
   },
@@ -187,7 +195,7 @@
     "id": "session-208-hr-org-directory",
     "date": "2026-03-06",
     "category": "data",
-    "title": "Human Rights Organization Directory \u2014 49 verified organizations searchable by focus area and type",
+    "title": "Human Rights Organization Directory — 49 verified organizations searchable by focus area and type",
     "description": "New HumanRightsOrgDirectory component provides an interactive directory of 49 verified human rights organizations. Filter by focus area (Uyghur/Tibet/HK/General China/Legal/Media/Research/Taiwan) and type (Advocacy/Research/Legal/etc.). Expandable cards with key work, latest news, credibility indicators, website and donation links. New dataApi methods: getHumanRightsOrgs, getHumanRightsOrgsByFocus, getHumanRightsOrgsByType, searchHumanRightsOrgs. 10th dataset exposed via dataApi.",
     "relatedPage": "/education"
   },
@@ -195,7 +203,7 @@
     "id": "session-207-sanction-impact",
     "date": "2026-03-05",
     "category": "data",
-    "title": "Sanction Impact Analyzer \u2014 cross-dataset analysis of 34 officials across 5 countries",
+    "title": "Sanction Impact Analyzer — cross-dataset analysis of 34 officials across 5 countries",
     "description": "New SanctionImpactAnalyzer component cross-references sanctioned officials with sanctions tracker data to show sanction coverage per official. Coverage classification (Full/Strong/Partial/Gap), country breakdown bars, search, expandable official details with per-country sanction status, advocacy opportunity alerts for coverage gaps, copy-to-clipboard.",
     "relatedPage": "/intelligence"
   },
@@ -203,7 +211,7 @@
     "id": "session-206-international-responses",
     "date": "2026-03-05",
     "category": "data",
-    "title": "International Response Tracker \u2014 how 30 countries respond to CCP violations",
+    "title": "International Response Tracker — how 30 countries respond to CCP violations",
     "description": "New InternationalResponseTracker component visualises international responses across 30 countries with five dimensions: genocide recognition, sanctions, legislative actions, diplomatic actions, and pending proposals. Stance classification (Strong/Moderate/Limited/Weak), search, filter by stance, expandable country cards, copy-to-clipboard. Integrated dataApi with getInternationalResponses methods.",
     "relatedPage": "/take-action"
   },
@@ -211,7 +219,7 @@
     "id": "session-205-case-timeline",
     "date": "2026-03-05",
     "category": "data",
-    "title": "Case Timeline Viewer \u2014 cross-reference prisoner cases with events",
+    "title": "Case Timeline Viewer — cross-reference prisoner cases with events",
     "description": "New CaseTimelineViewer component links 63 political prisoners to 34 timeline events using keyword matching. Select any prisoner to see their case progression: arrests, trials, sentencings, and related events in chronological order. Searchable dropdown, category badges, copy-to-clipboard. 37 new tests.",
     "relatedPage": "/prisoners"
   },
@@ -235,7 +243,7 @@
     "id": "session-202-influence-network",
     "date": "2026-03-05",
     "category": "data",
-    "title": "CCP Influence Network \u2014 cross-dataset relationship visualization",
+    "title": "CCP Influence Network — cross-dataset relationship visualization",
     "description": "New InfluenceNetwork component shows connections between sanctioned officials, political prisoners, sanctions, detention facilities, forced labor companies, and timeline events across 4 regions (Xinjiang, Hong Kong, Tibet, Central). Includes most-sanctioned officials ranking, international sanctions by country breakdown, and regional deep-dive panels. 23 new tests.",
     "relatedPage": "/intelligence"
   },
@@ -243,7 +251,7 @@
     "id": "session-201-data-changelog",
     "date": "2026-03-05",
     "category": "data",
-    "title": "Data Changelog \u2014 research data provenance tracker",
+    "title": "Data Changelog — research data provenance tracker",
     "description": "New DataChangelog component shows verification status for all 8 datasets with freshness indicators, expandable details (verification dates, file paths, notes), recent data change timeline, and source policy. Integrated into Data Sources page. 22 new tests. Supports researcher citation needs.",
     "relatedPage": "/data-sources"
   },
@@ -259,7 +267,7 @@
     "id": "session-199-content-analytics",
     "date": "2026-03-05",
     "category": "data",
-    "title": "Content Analytics dashboard \u2014 research database metrics",
+    "title": "Content Analytics dashboard — research database metrics",
     "description": "New ContentAnalytics component aggregates insights from all 8 research datasets. Shows dataset summary cards, prisoner status breakdown, sanctions by country, timeline coverage by decade, geographic analysis, and recent activity. Privacy-respecting: no user tracking. 30 new tests. 2466 tests across 156 files.",
     "relatedPage": "/education"
   },
@@ -291,7 +299,7 @@
     "id": "2026-03-04-aria-live-regions",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "ARIA live region audit \u2014 loading states announced to screen readers",
+    "title": "ARIA live region audit — loading states announced to screen readers",
     "description": "Added role=\"status\" and aria-label to all 7 SectionLoader definitions, App.jsx LoadingScreen, GlobalSearch, NewsAggregator, AdminDashboard, ProtectedRoute loading states. Added aria-hidden to all decorative spinner animations and cursor block characters. New aria-live-regions.test.js (7 tests) enforces ARIA coverage.",
     "relatedPage": "/data-sources"
   },
@@ -299,7 +307,7 @@
     "id": "2026-03-04-performance-content-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Performance budget + content completeness \u2014 17 new enforcement tests",
+    "title": "Performance budget + content completeness — 17 new enforcement tests",
     "description": "New performance-budget.test.js (9 tests) enforces growth limits: component count under 100, page count under 20, JSON files under 30, no single file over 100KB or 600 lines, lazy-loading enforcement. New content-completeness.test.js (8 tests) validates data quality: no placeholders, no empty critical fields, prisoner/alert/sanctions completeness, ISO date format, no duplicate IDs.",
     "relatedPage": "/data-sources"
   },
@@ -307,7 +315,7 @@
     "id": "2026-03-04-security-import-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Security audit + import hygiene \u2014 16 new enforcement tests",
+    "title": "Security audit + import hygiene — 16 new enforcement tests",
     "description": "New security-audit.test.js (9 tests) scans for XSS risks: dangerouslySetInnerHTML, eval, innerHTML, document.write, hardcoded secrets, inline handlers, script injection in JSON data, sensitive storage. New import-hygiene.test.js (7 tests) enforces tree-shakeable imports, no barrel files, no duplicate imports, no test utils in production code.",
     "relatedPage": "/data-sources"
   },
@@ -315,7 +323,7 @@
     "id": "2026-03-04-meta-test-coverage-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Meta-test coverage audit \u2014 17 new tests enforcing test discipline",
+    "title": "Meta-test coverage audit — 17 new tests enforcing test discipline",
     "description": "New meta-test-coverage.test.js validates every component and page has a dedicated test file, enforces test naming conventions, detects orphan tests, and ensures all pages with lazy-loaded components use React.lazy + Suspense with loading fallbacks. Prevents untested components from shipping.",
     "relatedPage": "/data-sources"
   },
@@ -323,7 +331,7 @@
     "id": "2026-03-04-defensive-coding-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Defensive coding audit \u2014 null guards on 9 data-consuming components",
+    "title": "Defensive coding audit — null guards on 9 data-consuming components",
     "description": "Added optional chaining and fallback guards to LiveStatistics, RecentUpdates, PoliticalPrisoners, CCPOfficials, SanctionsTracker, AcademicExperts, ForcedLaborTracker, DetentionFacilities, SanctionedOfficials. New defensive-coding.test.js (8 tests) enforces guards on all JSON data imports. Prevents crashes from malformed or empty data.",
     "relatedPage": "/data-sources"
   },
@@ -331,7 +339,7 @@
     "id": "2026-03-04-route-integrity-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Route integrity tests \u2014 16 new tests validating all internal links",
+    "title": "Route integrity tests — 16 new tests validating all internal links",
     "description": "New route-integrity.test.js validates that all Link to='' targets in components/pages match routes defined in App.jsx. Checks recent_updates.json relatedPage entries, redirect targets, essential routes, profile slug format. Catches broken internal links at test time.",
     "relatedPage": "/data-sources"
   },
@@ -340,22 +348,22 @@
     "date": "2026-03-04",
     "category": "verification",
     "title": "Sitemap freshness + EventCountdown input validation + 10 new tests",
-    "description": "Updated sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (lastmod not older than 30 days). Added calculateTimeLeft input validation \u2014 malformed dates, non-strings, partial dates now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests in dateUtils.test.js.",
+    "description": "Updated sitemap.xml lastmod dates to 2026-03-04. Added sitemap freshness test (lastmod not older than 30 days). Added calculateTimeLeft input validation — malformed dates, non-strings, partial dates now return safe fallback instead of NaN. 9 new calculateTimeLeft unit tests in dateUtils.test.js.",
     "relatedPage": "/data-sources"
   },
   {
     "id": "2026-03-04-performance-resilience",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Performance & resilience \u2014 ShellErrorBoundary, React.memo, 10 new tests",
-    "description": "New ShellErrorBoundary component wraps non-critical shell components (GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner) \u2014 silently catches errors without crashing main content. Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing three-tier error boundary architecture.",
+    "title": "Performance & resilience — ShellErrorBoundary, React.memo, 10 new tests",
+    "description": "New ShellErrorBoundary component wraps non-critical shell components (GlobalSearch, KeyboardShortcutsHelp, QuickStartGuide, PWAInstallBanner) — silently catches errors without crashing main content. Footer memoized with React.memo. New performance-resilience.test.js (10 tests) enforcing three-tier error boundary architecture.",
     "relatedPage": "/data-sources"
   },
   {
     "id": "2026-03-04-keyboard-navigation",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Keyboard navigation audit \u2014 8 tests, 5 Escape key fixes, aria-modal fix",
+    "title": "Keyboard navigation audit — 8 tests, 5 Escape key fixes, aria-modal fix",
     "description": "New keyboard-navigation.test.js with 8 tests: modal Escape key enforcement, event listener cleanup, aria-modal validation, clickable div keyboard support, focus-visible styles, skip-to-content, selectedX+overlay pattern. Fixed 4 components missing Escape key on modals (CCPOfficials, CaseStudies, DetentionFacilities, PoliticalPrisoners) and added aria-modal to KeyboardShortcutsHelp dialog.",
     "relatedPage": "/data-sources"
   },
@@ -363,7 +371,7 @@
     "id": "2026-03-04-accessibility-audit",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Accessibility audit \u2014 10 automated checks, 3 button fixes",
+    "title": "Accessibility audit — 10 automated checks, 3 button fixes",
     "description": "New accessibility-audit.test.js with 10 tests: img alt attributes, autoFocus prohibition, icon sizing consistency, tabIndex ordering, target=_blank safety, form input labels, icon-only button labels, landmark structure, skip-to-content. Fixed 3 icon-only buttons missing aria-labels (InteractiveTimeline prev/next/play, EducationalResources download).",
     "relatedPage": "/data-sources"
   },
@@ -371,7 +379,7 @@
     "id": "2026-03-04-data-consistency",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Cross-JSON data consistency validation \u2014 12 new integrity tests",
+    "title": "Cross-JSON data consistency validation — 12 new integrity tests",
     "description": "New cross-data-consistency.test.js validates relationships between 19 JSON data files: prisoner-alert cross-references, sanctions-officials overlap, route path validity, category validation, date ordering, correct party naming enforcement, date format consistency, and non-empty content checks.",
     "relatedPage": "/data-sources"
   },
@@ -379,7 +387,7 @@
     "id": "2026-03-04-directory-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Full test coverage \u2014 all pages now have dedicated tests",
+    "title": "Full test coverage — all pages now have dedicated tests",
     "description": "New ResistanceDirectory.test.jsx with 22 tests: header, stats, search filtering, category pills, dropdown filter, organization card expansion/collapse, aria-expanded, no-results state, footer, IPACMembers, GlobalDisclaimer, no-hashtags compliance. Every page in the app now has dedicated test coverage.",
     "relatedPage": "/directory"
   },
@@ -387,7 +395,7 @@
     "id": "2026-03-04-profile-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Profile page test coverage \u2014 all 15 profiles tested",
+    "title": "Profile page test coverage — all 15 profiles tested",
     "description": "New profile-pages.test.jsx with 144 tests: renders, names, Chinese names, status badges, back links, tab navigation, Sources section with CCP source exclusion, ARIA accessibility, no-hashtags compliance, and data integrity for all 15 political prisoner profiles.",
     "relatedPage": "/profiles"
   },
@@ -395,7 +403,7 @@
     "id": "2026-03-04-policy-tests",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "No-hashtags policy + design system \u2014 10 automated checks",
+    "title": "No-hashtags policy + design system — 10 automated checks",
     "description": "Automated no-hashtags enforcement test (5 tests). 10th design system check for text-slate-600+ violations. Fixed 3 text contrast violations. DataSources page tests (15 tests). URL validation across 19 data files.",
     "relatedPage": "/data-sources"
   },
@@ -403,7 +411,7 @@
     "id": "2026-03-04-design-enforcement",
     "date": "2026-03-04",
     "category": "verification",
-    "title": "Design system enforcement \u2014 9 automated checks",
+    "title": "Design system enforcement — 9 automated checks",
     "description": "Fixed 10 text contrast violations across 8 files. Added automated text-slate-500 enforcement test. All readable text now verified text-slate-400 or brighter.",
     "relatedPage": "/intelligence"
   },
@@ -428,7 +436,7 @@
     "date": "2026-03-03",
     "category": "data",
     "title": "Political prisoner count updated to 63",
-    "description": "Kwok Yin-sang case added \u2014 first family prosecution under Article 23. Father of US-based activist Anna Kwok, sentenced 8 months.",
+    "description": "Kwok Yin-sang case added — first family prosecution under Article 23. Father of US-based activist Anna Kwok, sentenced 8 months.",
     "relatedPage": "/prisoners"
   },
   {
@@ -444,7 +452,7 @@
     "date": "2026-02-26",
     "category": "case_update",
     "title": "Jimmy Lai fraud conviction overturned on appeal",
-    "description": "Hong Kong Court of Appeal overturns separate fraud conviction \u2014 however, 20-year NSL sentence remains in effect.",
+    "description": "Hong Kong Court of Appeal overturns separate fraud conviction — however, 20-year NSL sentence remains in effect.",
     "relatedPage": "/profiles/jimmy-lai"
   },
   {

@@ -65,7 +65,7 @@ src/data/
 ├── sanctioned_officials_research.json    # 34 CCP officials under international sanctions
 ├── forced_labor_companies_research.json  # 30 companies linked to forced labor
 ├── detention_facilities_research.json    # 11 facilities with coordinates, capacity
-├── timeline_events.json                  # 36 events from 1989–2026
+├── timeline_events.json                  # 38 events from 1989–2026
 ├── security_center_data.json             # Security tools and recommendations
 ├── data_sources.json                     # RSS sources and source categories
 ├── academic_experts_research.json        # Expert researchers
