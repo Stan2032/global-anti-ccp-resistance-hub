@@ -304,10 +304,6 @@ const statusStyles: Record<string, { badge: string; dot: string }> = {
 const ProfileCard = ({ profile }: { profile: typeof PROFILES[number] }) => {
   const status = statusStyles[profile.statusColor] || statusStyles.red;
 
-  const wrapperProps = profile.built
-    ? { to: profile.path, className: 'group block' }
-    : { className: 'block opacity-50 cursor-default' };
-
   const content = (
       <article
         className={`bg-[#0a0e14] border-l-2 ${profile.themeLeftBorder} border ${profile.themeBorder} p-6 transition-all duration-200 ${
