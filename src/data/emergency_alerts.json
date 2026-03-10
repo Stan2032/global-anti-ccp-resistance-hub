@@ -22,7 +22,8 @@
     "summary": "Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL — confirmed he will not appeal",
     "details": "On December 15, 2025, Jimmy Lai was found guilty on all charges including \"conspiracy to collude with foreign forces\" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL.\n\nAs of March 2026, Lai has confirmed he will NOT appeal the conviction (NBC News). The UN has specifically called for his release. Lai, age 78, faces the remainder of his life behind bars.\n\nACTION NEEDED:\n• Contact your representatives to demand his release\n• Share his story on social media to raise awareness\n• Support the Committee for Freedom in Hong Kong\n• Sign petitions calling for sanctions on HK officials",
     "date": "2025-12-15",
-    "lastVerified": "2026-03-08",
+    "expires": "2027-02-09",
+    "lastVerified": "2026-03-10",
     "links": [
       { "name": "Free Jimmy Lai Campaign", "url": "https://www.freejimmylai.com" },
       { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" }
@@ -43,21 +44,6 @@
       { "name": "UHRP Sanctions Tracker", "url": "https://uhrp.org/sanctions-tracker/" }
     ],
     "active": true
-  },
-  {
-    "id": "taiwan-military",
-    "type": "info",
-    "title": "Taiwan Reports Increased PLA Activity Near Strait",
-    "summary": "Taiwan defense ministry reports 47 PLA aircraft detected in past 24 hours",
-    "details": "Taiwan's Ministry of National Defense has reported increased People's Liberation Army activity near the Taiwan Strait, with 47 aircraft and 12 naval vessels detected in the past 24 hours.\n\nCONTEXT:\n• This follows recent diplomatic tensions\n• Taiwan has raised its alert level\n• International observers are monitoring the situation\n\nSTAY INFORMED:\n• Follow Taiwan's Ministry of National Defense updates\n• Monitor reputable news sources\n• Support Taiwan solidarity initiatives",
-    "date": "2024-12-18",
-    "expires": "2025-06-18",
-    "lastVerified": "2026-03-04",
-    "links": [
-      { "name": "Taiwan MND", "url": "https://www.mnd.gov.tw" },
-      { "name": "Taiwan News", "url": "https://www.taiwannews.com.tw" }
-    ],
-    "active": false
   },
   {
     "id": "hk-47-sentencing",

@@ -21,21 +21,23 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [language]);
 
+  // Helper to traverse a nested object by dot-separated keys
+  const resolve = (obj: Record<string, unknown>, keys: string[]): unknown => {
+    let current: unknown = obj;
+    for (const k of keys) {
+      current = (current as Record<string, unknown>)?.[k];
+    }
+    return current;
+  };
+
   // Translation function — checks inline translations first, then locale JSON files
   const t = (key: string): string => {
     const keys = key.split('.');
     // 1. Try inline translations for current language
-    let value: any = translations[language];
-    for (const k of keys) {
-      value = value?.[k];
-    }
+    let value: unknown = resolve(translations[language] as unknown as Record<string, unknown>, keys);
     // 2. If not found inline, try locale JSON file
     if (!value && translations[language]?.localeData) {
-      let localeValue: any = translations[language].localeData;
-      for (const k of keys) {
-        localeValue = localeValue?.[k];
-      }
-      value = localeValue;
+      value = resolve(translations[language].localeData, keys);
     }
     // 3. Skip volunteer-needed markers — fall back to English
     if (value === '__VOLUNTEER_TRANSLATION_NEEDED__') {
@@ -43,20 +45,12 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
     // 4. Fall back to English inline, then English locale file
     if (!value) {
-      let enValue: any = translations.en;
-      for (const k of keys) {
-        enValue = enValue?.[k];
-      }
-      value = enValue;
+      value = resolve(translations.en as unknown as Record<string, unknown>, keys);
     }
     if (!value && enTranslations) {
-      let enLocale: any = enTranslations;
-      for (const k of keys) {
-        enLocale = enLocale?.[k];
-      }
-      value = enLocale;
+      value = resolve(enTranslations as Record<string, unknown>, keys);
     }
-    return value || key;
+    return (value as string) || key;
   };
 
   return (
