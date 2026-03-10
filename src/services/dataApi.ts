@@ -55,6 +55,7 @@ export interface SanctionedOfficial {
 }
 
 export interface TimelineEvent {
+  id: string;
   date: string;
   title: string;
   category?: string;
@@ -71,6 +72,7 @@ export interface ForcedLabourCompany {
   connection_type?: string;
   evidence?: string;
   uflpa_actions?: string;
+  company_response?: string;
   status?: string;
   source_url: string;
   [key: string]: unknown;
@@ -136,6 +138,7 @@ export interface HumanRightsOrg {
   donation_url?: string;
   key_work?: string;
   credibility?: string;
+  latest_news?: string;
   source_url: string;
   [key: string]: unknown;
 }

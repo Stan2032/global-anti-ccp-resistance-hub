@@ -1,0 +1,470 @@
+/**
+ * IncidentReportForm — Secure form for reporting CCP-related incidents
+ * including transnational repression, surveillance, and intimidation.
+ * Uses client-side encryption via Supabase.
+ *
+ * @module IncidentReportForm
+ */
+import { useState } from 'react';
+import { AlertTriangle, Lock, Info } from 'lucide-react';
+import { isSupabaseConfigured } from '../services/supabaseClient';
+import { submitIncidentReport } from '../services/supabaseService';
+
+const IncidentReportForm = () => {
+  const backendConnected = isSupabaseConfigured();
+  const [formData, setFormData] = useState({
+    incidentType: '',
+    location: '',
+    date: '',
+    description: '',
+    perpetrators: '',
+    witnesses: '',
+    evidence: '',
+    contactEmail: '',
+    anonymous: true,
+    consent: false,
+  });
+  
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [step, setStep] = useState(1);
+
+  const incidentTypes = [
+    { value: 'police_station', label: 'CCP Overseas Police Station Activity', description: 'Coercion, intimidation, or "persuasion" by unofficial Chinese police' },
+    { value: 'surveillance', label: 'Surveillance / Monitoring', description: 'Being followed, photographed, or having devices compromised' },
+    { value: 'harassment', label: 'Harassment / Intimidation', description: 'Threats, pressure, or intimidation from CCP-linked individuals' },
+    { value: 'family_threats', label: 'Threats to Family in China', description: 'Family members in China being threatened or detained' },
+    { value: 'cyber_attack', label: 'Cyber Attack / Hacking', description: 'Phishing, malware, or account compromises' },
+    { value: 'academic', label: 'Academic Interference', description: 'Pressure at universities, CSSA involvement, research theft' },
+    { value: 'media', label: 'Media / Censorship', description: 'Pressure to remove content, deplatforming, disinformation' },
+    { value: 'economic', label: 'Economic Coercion', description: 'Business pressure, visa denial, financial threats' },
+    { value: 'other', label: 'Other', description: 'Other forms of transnational repression' },
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = 'checked' in e.target ? (e.target as HTMLInputElement).checked : false;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (backendConnected) {
+      setSubmitting(true);
+      setSubmitError(null);
+      const { error } = await submitIncidentReport({
+        title: `${formData.incidentType} — ${formData.location || 'Unknown location'}`,
+        description: formData.description,
+        incidentType: formData.incidentType,
+        location: formData.location,
+        dateOfIncident: formData.date || undefined,
+        severity: 'medium',
+        contactEmail: formData.anonymous ? undefined : (formData.contactEmail || undefined),
+      });
+      setSubmitting(false);
+      if (error) {
+        setSubmitError(error);
+        return;
+      }
+    }
+    // Static-only fallback or success
+    setSubmitted(true);
+  };
+
+  const nextStep = () => setStep(prev => Math.min(prev + 1, 3));
+  const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
+
+  if (submitted) {
+    return (
+      <div className="bg-[#111820] border border-[#1c2a35] p-8 text-center">
+        <div className="w-16 h-16 bg-green-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold text-white mb-2">Thank You for Your Report</h2>
+        <p className="text-slate-400 mb-6">
+          {backendConnected
+            ? 'Your report has been securely submitted and will be reviewed. You can also contact the organizations below for additional support:'
+            : <>This form is not yet connected to a backend. Your data has <strong>not</strong> been submitted or stored.
+            Please report directly to the organizations below:</>}
+        </p>
+        <div className="bg-[#0a0e14]/50 p-4 mb-6">
+          <h3 className="font-semibold text-white mb-2">Report Directly To:</h3>
+          <ul className="text-sm text-slate-400 space-y-2 text-left">
+            <li className="flex items-start gap-2">
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Safeguard Defenders</a> — CCP transnational repression specialists
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">FBI Tips</a> — If you're in the United States
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#22d3ee]">→</span>
+              <a href="https://www.hrw.org/contact-us" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">Human Rights Watch</a> — International human rights documentation
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <button
+            onClick={() => {
+              setSubmitted(false);
+              setStep(1);
+              setFormData({
+                incidentType: '',
+                location: '',
+                date: '',
+                description: '',
+                perpetrators: '',
+                witnesses: '',
+                evidence: '',
+                contactEmail: '',
+                anonymous: true,
+                consent: false,
+              });
+            }}
+            className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
+          >
+            Submit Another Report
+          </button>
+          <a
+            href="https://safeguarddefenders.com/en/contact"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white transition-colors"
+          >
+            Contact Safeguard Defenders
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+      {/* Header */}
+      <div className="bg-[#0a0e14] border-l-2 border-l-red-500 p-6 border-b border-[#1c2a35]">
+        <h2 className="text-xl font-bold text-white flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5" /> Report CCP Harassment or Transnational Repression
+        </h2>
+        <p className="text-slate-400 mt-1">
+          Your report helps document patterns of CCP interference worldwide
+        </p>
+      </div>
+
+      {/* Security Notice */}
+      {!backendConnected && (
+      <div className="bg-amber-900/20 border-b border-amber-700/50 p-4">
+        <div className="flex items-start gap-3">
+          <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+          <div>
+            <h3 className="font-semibold text-amber-300 text-sm">Form Not Yet Connected (Coming Soon)</h3>
+            <p className="text-amber-200/70 text-xs mt-1">
+              This form is not yet connected to a backend service. Submitted data is not stored or transmitted.
+              For immediate reporting, please contact <a href="https://safeguarddefenders.com/en/contact" target="_blank" rel="noopener noreferrer" className="underline text-amber-300 hover:text-amber-200">Safeguard Defenders</a> or the <a href="https://www.fbi.gov/tips" target="_blank" rel="noopener noreferrer" className="underline text-amber-300 hover:text-amber-200">FBI Tips line</a> directly.
+            </p>
+          </div>
+        </div>
+      </div>
+      )}
+
+      {/* Progress Steps */}
+      <div className="p-4 border-b border-[#1c2a35]">
+        <div className="flex items-center justify-between max-w-md mx-auto">
+          {[1, 2, 3].map((s) => (
+            <div key={s} className="flex items-center">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                step >= s ? 'bg-red-600 text-white' : 'bg-[#111820] text-slate-400'
+              }`}>
+                {s}
+              </div>
+              {s < 3 && (
+                <div className={`w-16 sm:w-24 h-1 mx-2 ${
+                  step > s ? 'bg-red-600' : 'bg-[#111820]'
+                }`} />
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-between max-w-md mx-auto mt-2 text-xs text-slate-400">
+          <span>Incident Type</span>
+          <span>Details</span>
+          <span>Submit</span>
+        </div>
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className={`p-6 ${!backendConnected ? 'opacity-50 pointer-events-none' : ''}`}>
+        {/* Step 1: Incident Type */}
+        {step === 1 && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white mb-4">What type of incident are you reporting?</h3>
+            <div className="grid gap-3">
+              {incidentTypes.map((type) => (
+                <label
+                  key={type.value}
+                  className={`flex items-start gap-3 p-4 border cursor-pointer transition-all ${
+                    formData.incidentType === type.value
+                      ? 'bg-red-900/30 border-red-600'
+                      : 'bg-[#0a0e14]/50 border-[#1c2a35] hover:border-[#2a9a52]'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="incidentType"
+                    value={type.value}
+                    checked={formData.incidentType === type.value}
+                    onChange={handleChange}
+                    className="mt-1"
+                  />
+                  <div>
+                    <div className="font-medium text-white">{type.label}</div>
+                    <div className="text-sm text-slate-400">{type.description}</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Details */}
+        {step === 2 && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white mb-4">Incident Details</h3>
+            
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">
+                  Location (City, Country)
+                </label>
+                <input
+                  aria-label="Location"
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  placeholder="e.g., London, UK"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">
+                  Date of Incident
+                </label>
+                <input
+                  aria-label="Date of Incident"
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Description of Incident *
+              </label>
+              <textarea
+                aria-label="Description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows={5}
+                placeholder="Please describe what happened in as much detail as you feel comfortable sharing..."
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Perpetrators (if known)
+              </label>
+              <input
+                aria-label="Perpetrators"
+                type="text"
+                name="perpetrators"
+                value={formData.perpetrators}
+                onChange={handleChange}
+                placeholder="e.g., Unknown individuals, Chinese embassy staff, CSSA members"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">
+                Evidence Available
+              </label>
+              <input
+                aria-label="Evidence"
+                type="text"
+                name="evidence"
+                value={formData.evidence}
+                onChange={handleChange}
+                placeholder="e.g., Screenshots, photos, recordings, documents"
+                className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Do not upload files here. If you have evidence, mention it and we'll provide secure upload instructions.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Contact & Submit */}
+        {step === 3 && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white mb-4">Contact & Submission</h3>
+            
+            <div className="bg-[#0a0e14]/50 p-4 mb-4">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="anonymous"
+                  checked={formData.anonymous}
+                  onChange={handleChange}
+                  className="mt-1"
+                />
+                <div>
+                  <div className="font-medium text-white">Submit Anonymously</div>
+                  <div className="text-sm text-slate-400">
+                    Your report will be recorded without any identifying information
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            {!formData.anonymous && (
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">
+                  Contact Email (optional)
+                </label>
+                <input
+                  aria-label="Contact Email"
+                  type="email"
+                  name="contactEmail"
+                  value={formData.contactEmail}
+                  onChange={handleChange}
+                  placeholder="your-secure-email@protonmail.com"
+                  className="w-full px-4 py-2 bg-[#0a0e14] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4afa82]"
+                />
+                <p className="text-xs text-slate-400 mt-1">
+                  We recommend using a secure email provider like ProtonMail
+                </p>
+              </div>
+            )}
+
+            <div className="bg-yellow-900/20 border border-yellow-700/50 p-4">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={formData.consent}
+                  onChange={handleChange}
+                  required
+                  className="mt-1"
+                />
+                <div>
+                  <div className="font-medium text-yellow-300 text-sm">Consent to Share Data</div>
+                  <div className="text-xs text-yellow-200/70 mt-1">
+                    I understand that this information may be shared with verified human rights organizations 
+                    (such as Safeguard Defenders, Freedom House, and government agencies) to document and 
+                    combat CCP transnational repression. My personal information will be protected.
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            {/* Summary */}
+            <div className="bg-[#0a0e14]/50 p-4">
+              <h4 className="font-semibold text-white mb-3">Report Summary</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Incident Type:</span>
+                  <span className="text-white">{incidentTypes.find(t => t.value === formData.incidentType)?.label || 'Not selected'}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Location:</span>
+                  <span className="text-white">{formData.location || 'Not provided'}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Date:</span>
+                  <span className="text-white">{formData.date || 'Not provided'}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Anonymous:</span>
+                  <span className="text-white">{formData.anonymous ? 'Yes' : 'No'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Error message */}
+        {submitError && (
+          <div className="mt-4 p-3 bg-red-900/30 border border-red-700/50 text-sm text-red-300">
+            Error submitting report: {submitError}
+          </div>
+        )}
+
+        {/* Navigation Buttons */}
+        <div className="flex justify-between mt-6 pt-4 border-t border-[#1c2a35]">
+          {step > 1 ? (
+            <button
+              type="button"
+              onClick={prevStep}
+              className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
+            >
+              Back
+            </button>
+          ) : (
+            <div />
+          )}
+          
+          {step < 3 ? (
+            <button
+              type="button"
+              onClick={nextStep}
+              disabled={step === 1 && !formData.incidentType}
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white transition-colors"
+            >
+              Continue
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!formData.consent || !formData.description || submitting}
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-[#111820] disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2"
+            >
+              <Lock className="w-4 h-4" /> {submitting ? 'Submitting...' : 'Submit Securely'}
+            </button>
+          )}
+        </div>
+      </form>
+
+      {/* Footer */}
+      <div className="bg-[#0a0e14]/50 p-4 border-t border-[#1c2a35]">
+        <div className="flex items-center justify-center gap-4 text-xs text-slate-400">
+          {backendConnected ? (
+            <span className="flex items-center gap-1">
+              <Lock className="w-3 h-3" /> Connected to secure backend
+            </span>
+          ) : (
+            <span className="flex items-center gap-1">
+              <Info className="w-3 h-3" /> Form not yet active — coming soon
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default IncidentReportForm;

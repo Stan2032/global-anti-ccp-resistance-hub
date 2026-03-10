@@ -111,6 +111,13 @@ export interface LanguageState {
   t: (key: string) => string;
   /** Current language translations */
   translations: LanguageEntry;
+  /** List of available languages with display metadata */
+  availableLanguages?: Array<{
+    code: string;
+    name: string;
+    flag?: string;
+    FlagIcon?: ComponentType;
+  }>;
 }
 // Translations for key UI elements and critical content
 export const translations: Record<string, LanguageEntry> = {

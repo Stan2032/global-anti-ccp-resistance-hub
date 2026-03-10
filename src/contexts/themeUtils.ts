@@ -3,15 +3,18 @@
  *
  * @module themeUtils
  */
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 /** Colour class mappings for a theme. */
 export interface ThemeColours {
+  name: string;
+  Icon: React.ComponentType<{ className?: string }>;
   bg: string;
+  bgSecondary: string;
   text: string;
+  textSecondary: string;
   border: string;
   accent: string;
-  [key: string]: string;
 }
 
 /** State exposed by the ThemeProvider. */
@@ -22,8 +25,14 @@ export interface ThemeState {
   resolvedTheme: string;
   /** Set the current theme */
   setTheme: (theme: string) => void;
-  /** Theme colour class mappings (bg, text, border, accent) */
-  colors: ThemeColours;
+  /** Cycle to the next theme */
+  toggleTheme: () => void;
+  /** Theme colour class mappings */
+  themeConfig: ThemeColours;
+  /** Convenience flags */
+  isDark: boolean;
+  isLight: boolean;
+  isHighContrast: boolean;
 }
 
 export const ThemeContext = createContext<ThemeState | null>(null);
