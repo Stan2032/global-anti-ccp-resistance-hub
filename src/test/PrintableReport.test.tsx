@@ -54,7 +54,7 @@ describe('PrintableReport', () => {
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
     expect(screen.getByText('Political prisoners documented')).toBeTruthy();
-    expect(screen.getByText('63+')).toBeTruthy();
+    expect(screen.getByText('64+')).toBeTruthy();
     expect(screen.getByText('Uyghurs in detention camps')).toBeTruthy();
     expect(screen.getByText('1–3 million')).toBeTruthy();
     expect(screen.getByText('Overseas CCP police stations')).toBeTruthy();

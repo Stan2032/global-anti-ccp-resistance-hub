@@ -398,7 +398,7 @@ const ProfilesIndex = () => {
           </span>
           <Link to="/prisoners" className="flex items-center gap-1.5 hover:text-[#4afa82] transition-colors">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            63 total cases in database →
+            64 total cases in database →
           </Link>
         </div>
       </div>

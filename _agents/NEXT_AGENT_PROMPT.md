@@ -22,7 +22,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
 - Contains 360+ source files (100% TypeScript), 110 active React components, 3602 passing Vitest tests across 192 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
-- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 20 JSON data files, 34 recent news items
+- **Data**: 64 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 166+ total entries, 20 JSON data files, 34 recent news items
 - **API**: REST API via Cloudflare Workers (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting
 - **Push**: Web Push service ready (`src/services/pushService.js`) — needs VAPID key setup
 

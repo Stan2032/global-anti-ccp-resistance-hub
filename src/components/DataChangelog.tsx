@@ -56,7 +56,7 @@ const DATASET_VERIFICATION = [
     name: 'Political Prisoners',
     file: 'political_prisoners_research.json',
     lastVerified: '2026-03-02',
-    verificationNote: '63 records verified against BBC, Reuters, HRW, Amnesty. All last_verified fields updated.',
+    verificationNote: '64 records verified against BBC, Reuters, HRW, Amnesty. All last_verified fields updated.',
     recordCount: () => dataApi.getPoliticalPrisoners().length,
   },
   {

@@ -79,7 +79,7 @@ describe('DataChangelog', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
     fireEvent.click(prisonerBtn!);
-    expect(screen.getByText(/63 records verified/)).toBeTruthy();
+    expect(screen.getByText(/64 records verified/)).toBeTruthy();
   });
 
   it('shows days ago when expanded', () => {

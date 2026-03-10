@@ -37,7 +37,7 @@ This platform serves as a centralized resource for:
 - Structured JSON data in `src/data/sanctions_tracker.json`
 
 ### Political Prisoners Database
-- 63 documented political prisoners with source URLs in `src/data/political_prisoners_research.json`
+- 64 documented political prisoners with source URLs in `src/data/political_prisoners_research.json`
 - Status tracking (imprisoned, disappeared, deceased)
 - Action items for advocacy
 
@@ -110,7 +110,7 @@ All structured content lives in `src/data/` as JSON files:
 
 | File | Content | Used by |
 |------|---------|---------|
-| `political_prisoners_research.json` | 63 prisoners with sources | PoliticalPrisoners page |
+| `political_prisoners_research.json` | 64 prisoners with sources | PoliticalPrisoners page |
 | `sanctions_tracker.json` | 47 sanctions entries | SanctionsTracker component |
 | `detention_facilities_research.json` | 11 facilities with coordinates | DetentionFacilities component |
 | `sanctioned_officials_research.json` | 34 CCP officials tracked | CCPOfficials component |

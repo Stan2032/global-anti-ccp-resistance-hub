@@ -10,7 +10,7 @@ import { Printer, Download, FileText, X, ChevronDown, ChevronUp } from 'lucide-r
 import alertsData from '../data/emergency_alerts.json';
 
 const KEY_FACTS = [
-  { label: 'Political prisoners documented', value: '63+', source: 'CECC, HRW, Amnesty' },
+  { label: 'Political prisoners documented', value: '64+', source: 'CECC, HRW, Amnesty' },
   { label: 'Uyghurs in detention camps', value: '1–3 million', source: 'ASPI, OHCHR' },
   { label: 'Overseas CCP police stations', value: '102+', source: 'Safeguard Defenders' },
   { label: 'HK political prisoners (NSL)', value: '260+', source: 'Hong Kong Watch' },

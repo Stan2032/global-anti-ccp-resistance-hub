@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 10, 2026 (Session 264)
+> Last Updated: March 10, 2026 (Session 265)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -46,12 +46,20 @@
   - Charge: "Inciting subversion" for organizing Tiananmen June 4th vigils
   - Sources: [Amnesty International](https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/), [NCHRD](https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/)
   - ⏰ **Trial ongoing** — monitor for verdict
-  - Subtask: Add Chow Hang-Tung to political_prisoners_research.json (if not already present)
-  - Subtask: Add Albert Ho to political_prisoners_research.json (pleaded guilty)
-  - Subtask: Add Lee Cheuk-yan to political_prisoners_research.json
-- [x] **Add HK activist solitary confinement report** — ✅ Session 264
+  - [x] Subtask: Update Chow Hang-Tung entry in political_prisoners_research.json with trial data ✅ Session 265
+  - [x] Subtask: Update Lee Cheuk-yan entry in political_prisoners_research.json with trial data ✅ Session 265
+  - [x] Subtask: Add Albert Ho to political_prisoners_research.json (pleaded guilty) ✅ Session 265 (now 64 prisoners)
+  - Subtask: Consider dedicated profile page for Chow Hang-Tung (awaiting human confirmation Q13)
+- [x] **Add HK activist solitary confinement report** — ✅ Session 264, updated Session 265
   - Source: [Amnesty Canada urgent action](https://amnesty.ca/urgent-actions/hong-kong-activists-subjected-to-prolonged-solitary-confinement/)
   - Over 50 months pre-trial detention; may constitute torture under international law
+  - ✅ Session 265: Added solitary confinement details to Chow Hang-Tung prisoner entry
+- [x] **Update Jimmy Lai health data** — ✅ Session 265
+  - Verified health conditions: hypertension, diabetes, cataracts, blocked vein, teeth/nails deterioration
+  - Source URLs verified: [HRW](https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years), [HKFP](https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/), [CBS](https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/), [EU](https://www.eeas.europa.eu/eeas/hong-kong-spokesperson-statement-sentencing-jimmy-lai_en), [US State Dept](https://www.state.gov/releases/office-of-the-spokesperson/2026/02/sentencing-in-jimmy-lai-case/)
+- [x] **Tibet Uprising Day source verification** — ✅ Session 265
+  - Added verified HRW direct URL: [Don't Forget Tibet on Anniversary of 1959 Lhasa Uprising](https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising)
+  - Not a homepage link — direct article from March 9, 2026
 - [x] **Add Kwok Yin-sang case** — ✅ Session 150
   - First family member prosecuted under Article 23 (Feb 26, 2026)
   - Father of US-based activist Anna Kwok, sentenced 8 months
@@ -546,12 +554,12 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 264, Mar 10, 2026)
+### Current State Summary (as of Session 265, Mar 10, 2026)
 - **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 108+ components, 3602 tests (192 files, all passing). **100% TypeScript** — 360+ .ts/.tsx files, 0 .js/.jsx.
 - **Build:** 310KB (99KB gzip), ~5.9s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
 - **Design:** Terminal/ASCII aesthetic 100% applied. 10+ automated design system compliance checks. Square corners only, terminal green (#4afa82), WCAG AA contrast throughout.
 - **Navigation:** 7 nav items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security). Sidebar w-56. Breadcrumbs, Back to Top, keyboard shortcuts (`/` search, `?` help).
-- **Data:** 63 political prisoners, 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources.
+- **Data:** **64 political prisoners** (Albert Ho added S265), 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search.
 - **Analytical Tools:** 15+ major components built (LegalCaseTracker, SanctionImpactAnalyzer, TransnationalRepressionTracker, DiasporaSecurityAdvisor, MediaNarrativeTracker, GenocideLegalFramework, DiplomaticCoercionTracker, CensorshipCircumventionGuide, EconomicImpactAnalyzer, WhistleblowerGuide, PolicyBriefGenerator, and more).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. Supabase Auth admin login. Service_role key detection. WebRTC leak check.

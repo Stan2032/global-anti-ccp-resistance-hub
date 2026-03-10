@@ -8,12 +8,12 @@
         "location": "Stanley Prison, Hong Kong",
         "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
         "latest_news": "Mar 2026: Jimmy Lai has confirmed he will NOT appeal his 20-year NSL conviction. UN News called for his release (Feb 2026). Separate fraud conviction overturned on appeal Feb 26, 2026.",
-        "health_status": "Deteriorating, according to his son. Legal team filed urgent UN appeal citing health risks. Age 78.",
+        "health_status": "Deteriorating: hypertension, diabetes, cataracts, blocked vein in one eye. Family reports teeth rotting, nails falling out, significant weight loss. Prolonged solitary confinement. Family warns imprisonment could be \"life-threatening.\" Hong Kong prison authorities claim condition is \"stable\" (Jan 2026 medical report). Age 78.",
         "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated. UN News specifically called for his release in Feb 2026.",
-        "source_url": "https://www.bbc.com/news/articles/cp844kjj37vo",
+        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
         "confidence": "HIGH",
-        "last_verified": "2026-03-08",
-        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (BBC, HRW, CPJ, US State Dept). Fraud conviction overturned Feb 26, 2026 (ABC, SCMP, UPI). Confirmed won't appeal NSL sentence (NBC News, Mar 2026). UN calls for release (UN News, Feb 2026)."
+        "last_verified": "2026-03-10",
+        "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (HRW). Fraud conviction overturned Feb 26, 2026. Confirmed won't appeal NSL sentence (NBC News, Mar 2026). Health: hypertension, diabetes, cataracts (HKFP Jan 2026), teeth/nails deterioration (CBS, Independent). EU statement (EEAS), US State Dept statement on sentencing. UN calls for release."
       },
       "error": ""
     },
@@ -149,14 +149,14 @@
         "prisoner_name": "Chow Hang-tung",
         "status": "DETAINED",
         "location": "Tai Lam Centre for Women, Hong Kong",
-        "sentence": "22 months for organizing a vigil; awaiting trial for inciting subversion (max 10 years)",
-        "latest_news": "Nov 2025: High Court rejected her bid to quash the subversion charge against her.",
-        "health_status": "Unknown",
-        "international_response": "Awarded the 2023 Gwangju Prize for Human Rights and the 2023 Franco-German Prize for Human Rights and the Rule of Law.",
-        "source_url": "https://hongkongfp.com/2025/11/03/hong-kong-court-rejects-tiananmen-activist-chow-hang-tungs-bid-to-have-subversion-charge-quashed/",
+        "sentence": "22 months for organizing a vigil (served). On trial for inciting subversion (max 10 years) — trial began January 22, 2026. Pleaded NOT guilty.",
+        "latest_news": "Jan 22, 2026: Subversion trial began at District Court. Chow and Lee Cheuk-yan pleaded not guilty. Albert Ho (co-defendant) pleaded guilty. Chow denied right to call overseas witnesses under new Article 23 rules. Amnesty International called the trial \"a cynical attempt to erase historical memory.\"",
+        "health_status": "Concerns raised by Amnesty Canada about prolonged solitary confinement — detained since September 2021 (over 4 years pre-trial). May constitute torture under international law.",
+        "international_response": "Awarded 2023 Gwangju Prize for Human Rights and 2023 Franco-German Prize for Human Rights. UN Working Group on Arbitrary Detention found her detention arbitrary. Amnesty International, NCHRD condemn trial. Amnesty Canada raised concerns about solitary confinement conditions.",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Sentenced 22 months for organizing Tiananmen vigil. Awaiting separate trial for inciting subversion under NSL. Verified via Hong Kong Watch, HKFP."
+        "last_verified": "2026-03-10",
+        "verification_note": "Subversion trial began Jan 22, 2026 (Amnesty, NCHRD, HK Labour Rights Monitor). Chow pleaded not guilty. Denied right to call overseas witnesses. Over 4 years pre-trial detention. Amnesty Canada raised solitary confinement concerns. Verified via Amnesty International, NCHRD, HK Labour Rights Monitor."
       },
       "error": ""
     },
@@ -866,14 +866,14 @@
         "prisoner_name": "Lee Cheuk-yan",
         "status": "DETAINED",
         "location": "Unknown prison, Hong Kong",
-        "sentence": "20 months total for unauthorized assemblies (Aug 18, Aug 31, Oct 1, 2019 marches and Jun 4, 2020 vigil). Charged with inciting subversion under NSL (Sep 2021); trial pending as of Jan 2026.",
-        "latest_news": "Dec 2025: Trial for national security charges postponed to January 22, 2026.",
-        "health_status": "Unknown",
-        "international_response": "Multiple international human rights organizations, including Amnesty International and the ITUC, have called for his immediate release.",
-        "source_url": "https://www.article19.org/resources/human-rights-day-hong-kong-must-release-chow-hang-tung-and-lee-cheuk-yan-now/",
+        "sentence": "20 months total for unauthorized assemblies (served). On trial for inciting subversion under NSL (max 10 years) — trial began January 22, 2026. Pleaded NOT guilty.",
+        "latest_news": "Jan 22, 2026: NSL subversion trial began at District Court alongside Chow Hang-Tung and Albert Ho. Lee pleaded not guilty. The three are charged with inciting subversion for organizing Tiananmen June 4th candlelight vigils through the now-disbanded Hong Kong Alliance.",
+        "health_status": "In detention since September 2021 (over 4 years pre-trial). Amnesty Canada raised concerns about prolonged solitary confinement of HK political prisoners.",
+        "international_response": "Multiple international human rights organizations (Amnesty International, ITUC, NCHRD, BWI) have called for his immediate release. NCHRD called the trial a \"sham trial\" and demanded charges be dropped.",
+        "source_url": "https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "20 months total for assembly convictions (not 14). NSL subversion trial pending Jan 2026. Verified via Hong Kong Watch, ITUC, HKFP, BWI, HK Labour Rights Monitor."
+        "last_verified": "2026-03-10",
+        "verification_note": "NSL subversion trial began Jan 22, 2026 (Amnesty, NCHRD). Pleaded not guilty. Co-defendants: Chow Hang-Tung, Albert Ho. Verified via Amnesty International, NCHRD, HK Labour Rights Monitor, HKFP."
       },
       "error": ""
     },
@@ -1080,6 +1080,23 @@
         "confidence": "HIGH",
         "last_verified": "2026-03-02",
         "verification_note": "First family member prosecution under Article 23 provisions. Anna Kwok is executive director of Hong Kong Democracy Council based in Washington DC. Charged for handling daughter's financial assets. Sources: NPR affiliate KUNM, multiple international outlets."
+      },
+      "error": ""
+    },
+    {
+      "input": "Albert Ho - Hong Kong politician, Democratic Party chair, HK Alliance leader",
+      "output": {
+        "prisoner_name": "Albert Ho",
+        "status": "DETAINED",
+        "location": "Unknown prison, Hong Kong",
+        "sentence": "18 months for unauthorized assemblies (served). On trial for inciting subversion under NSL (max 10 years) — trial began January 22, 2026. Pleaded GUILTY.",
+        "latest_news": "Jan 22, 2026: NSL subversion trial began. Albert Ho pleaded guilty to inciting subversion. Co-defendants Chow Hang-Tung and Lee Cheuk-yan pleaded not guilty. The three are former leaders of the Hong Kong Alliance in Support of Patriotic Democratic Movements of China, charged for organizing Tiananmen June 4th candlelight vigils.",
+        "health_status": "Reported to be in poor health. In detention since September 2021 (over 4 years). Age 74. Family has expressed concerns about his wellbeing in custody.",
+        "international_response": "Amnesty International, NCHRD, and international legal observers have condemned the prosecution. Amnesty called it 'a cynical attempt to erase historical memory.' NCHRD demanded all charges be dropped. International Bar Association expressed concern about fair trial rights.",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+        "confidence": "HIGH",
+        "last_verified": "2026-03-10",
+        "verification_note": "Former chairman of HK Democratic Party and Hong Kong Alliance. Arrested September 2021 alongside Chow Hang-Tung and Lee Cheuk-yan. Pleaded guilty to inciting subversion Jan 22, 2026. 18 months prior sentence for unauthorized assemblies. Verified via Amnesty International, NCHRD, HKFP, NW Asian Weekly."
       },
       "error": ""
     }

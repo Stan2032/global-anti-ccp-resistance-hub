@@ -60,7 +60,7 @@ All structured content lives in `src/data/` as JSON files. Components import the
 
 ```
 src/data/
-├── political_prisoners_research.json     # 63 prisoners with status, dates, sources
+├── political_prisoners_research.json     # 64 prisoners with status, dates, sources
 ├── sanctions_tracker.json                # 47 sanctions across US/EU/UK/CA/AU
 ├── sanctioned_officials_research.json    # 34 CCP officials under international sanctions
 ├── forced_labor_companies_research.json  # 30 companies linked to forced labor
