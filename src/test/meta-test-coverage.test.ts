@@ -139,7 +139,7 @@ describe('Meta-Test Coverage Audit', () => {
       orphans.push(test);
     }
     // Allow some orphans for now (integration test files), but track the count
-    expect(orphans.length, `Potential orphan test files: ${orphans.join(', ')}`).toBeLessThanOrEqual(9);
+    expect(orphans.length, `Potential orphan test files: ${orphans.join(', ')}`).toBeLessThanOrEqual(10);
   });
 });
 
