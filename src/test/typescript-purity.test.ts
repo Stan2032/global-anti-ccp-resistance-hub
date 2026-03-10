@@ -80,19 +80,22 @@ describe('TypeScript purity', () => {
     expect(tsconfig.compilerOptions.strict).toBe(true);
   });
 
-  it('has at least 130 .tsx component/page files', () => {
+  it('has at least 130 .tsx component/page files (currently 139)', () => {
     const tsxFiles = [
       ...findFiles(resolve(SRC_DIR, 'components'), '.tsx'),
       ...findFiles(resolve(SRC_DIR, 'pages'), '.tsx'),
     ];
+    // Floor set below current count (139) to allow refactoring while preventing mass deletion
     expect(tsxFiles.length).toBeGreaterThanOrEqual(130);
   });
 
-  it('has at least 180 .test.ts/.test.tsx test files', () => {
+  it('has at least 180 .test.ts/.test.tsx test files (currently 189)', () => {
+    // All test files are in src/test/ (flat directory, no subdirectories)
     const testDir = resolve(SRC_DIR, 'test');
     const testFiles = readdirSync(testDir).filter(
       f => f.endsWith('.test.ts') || f.endsWith('.test.tsx')
     );
+    // Floor set below current count (189) to prevent test coverage regression
     expect(testFiles.length).toBeGreaterThanOrEqual(180);
   });
 });
