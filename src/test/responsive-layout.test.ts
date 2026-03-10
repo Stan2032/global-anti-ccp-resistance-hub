@@ -68,7 +68,7 @@ describe('Responsive layout compliance', () => {
   });
 
   it('App root has overflow-x-hidden to prevent stray horizontal scroll', () => {
-    const appPath = jsxFiles.find((f: any) => f.endsWith('/App.tsx') || f.endsWith('/App.jsx'));
+    const appPath = jsxFiles.find((f: any) => f.endsWith('/App.tsx'));
     expect(appPath).toBeTruthy();
     const content = readFileSync(appPath!, 'utf-8');
     expect(content).toContain('overflow-x-hidden');

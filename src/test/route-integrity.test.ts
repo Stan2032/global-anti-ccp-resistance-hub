@@ -20,7 +20,7 @@ import { resolve } from 'path';
 const SRC_DIR = resolve(__dirname, '..');
 const DATA_DIR = resolve(SRC_DIR, 'data');
 
-// Extract all Route path="" definitions from App.jsx
+// Extract all Route path="" definitions from App.tsx
 function extractRoutePaths(appContent: any) {
   const routePattern = /path="([^"]+)"/g;
   const paths = new Set<string>();
