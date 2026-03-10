@@ -1,3 +1,12 @@
+/**
+ * EmergencyAlerts — Active emergency alert display with severity-based styling.
+ *
+ * Renders dismissable, expandable alerts from emergency data with countdown
+ * timers for dated events. Dismiss state persists via localStorage. Supports
+ * clipboard sharing of alert details.
+ *
+ * @module EmergencyAlerts
+ */
 import React, { useState, useEffect } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';

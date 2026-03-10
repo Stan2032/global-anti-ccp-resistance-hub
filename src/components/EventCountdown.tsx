@@ -1,3 +1,12 @@
+/**
+ * EventCountdown — Live countdown timer for upcoming events.
+ *
+ * Displays days, hours, minutes, and seconds in a terminal-style monospace
+ * layout. Automatically updates every second and shows contextual messages
+ * for same-day and past events.
+ *
+ * @module EventCountdown
+ */
 import { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import { calculateTimeLeft, type TimeLeft } from '../utils/dateUtils';

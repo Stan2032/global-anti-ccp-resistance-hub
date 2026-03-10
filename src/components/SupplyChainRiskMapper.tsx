@@ -1,3 +1,12 @@
+/**
+ * SupplyChainRiskMapper — Corporate supply chain risk assessment mapper.
+ *
+ * Cross-references forced labour companies, sanctions, and international
+ * responses to classify corporate supply chain risk. Provides industry
+ * breakdowns, UFLPA compliance tracking, and exportable risk reports.
+ *
+ * @module SupplyChainRiskMapper
+ */
 import { useState, useMemo } from 'react';
 import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
 import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';

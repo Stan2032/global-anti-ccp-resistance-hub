@@ -1,5 +1,12 @@
-
-
+/**
+ * DataExport — Research dataset export tool.
+ *
+ * Allows users to export verified research datasets in JSON, CSV, and Markdown
+ * formats. Includes full metadata, schema info, and record counts for each
+ * available dataset.
+ *
+ * @module DataExport
+ */
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList, type LucideIcon } from 'lucide-react';
 import { extractRecords, recordsToCsv, recordsToMarkdown } from '../utils/exportUtils';

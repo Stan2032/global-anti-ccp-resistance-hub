@@ -1,3 +1,12 @@
+/**
+ * ContentAnalytics — Privacy-respecting research database metrics dashboard.
+ *
+ * Derives all analytics from verified JSON datasets with zero user tracking,
+ * cookies, or third-party services. Displays record counts, prisoner status
+ * breakdowns, geographic coverage, data freshness, and recent activity.
+ *
+ * @module ContentAnalytics
+ */
 import React, { useMemo } from 'react';
 import {
   Database, Users, Shield, Clock, Globe, BarChart3,

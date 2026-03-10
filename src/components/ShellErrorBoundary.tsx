@@ -1,3 +1,12 @@
+/**
+ * ShellErrorBoundary — Lightweight error boundary for non-critical shell components.
+ *
+ * Unlike the full ErrorBoundary, this silently swallows errors and renders
+ * nothing, preventing a broken shell component (search modal, PWA banner, etc.)
+ * from crashing the entire app layout.
+ *
+ * @module ShellErrorBoundary
+ */
 import React from 'react';
 import { logger } from '../utils/logger';
 

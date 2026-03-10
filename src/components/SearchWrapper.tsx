@@ -1,3 +1,11 @@
+/**
+ * SearchWrapper — Wrapper combining GlobalSearch with useGlobalSearch hook.
+ *
+ * Manages global search modal state and exposes an openSearch callback to
+ * child components via a render-prop or direct children pattern.
+ *
+ * @module SearchWrapper
+ */
 import React from 'react';
 import GlobalSearch from './GlobalSearch';
 import useGlobalSearch from '../hooks/useGlobalSearch';

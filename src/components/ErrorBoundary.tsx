@@ -1,3 +1,12 @@
+/**
+ * ErrorBoundary — Top-level React error boundary for crash recovery.
+ *
+ * Catches rendering errors anywhere in the component tree and displays a
+ * user-friendly fallback UI with a "Try Again" button that resets state
+ * without a full page reload.
+ *
+ * @module ErrorBoundary
+ */
 import React from 'react';
 import { logger } from '../utils/logger';
 
