@@ -20,9 +20,9 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 360+ source files (100% TypeScript), 110 active React components, 3584 passing Vitest tests across 189 test files
+- Contains 360+ source files (100% TypeScript), 110 active React components, 3602 passing Vitest tests across 192 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
-- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 20 JSON data files, 22 recent news items
+- **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 20 JSON data files, 34 recent news items
 - **API**: REST API via Cloudflare Workers (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting
 - **Push**: Web Push service ready (`src/services/pushService.js`) — needs VAPID key setup
 
@@ -43,7 +43,7 @@ The following has been accomplished:
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
 14. **Agent documentation**: Organized `_agents/` folder with research/, planning/, archive/, thoughts/ subdirectories
 15. **CCP influence detection**: Centralized system in sourceLinks.js — 21 state media names + 13 domains in never-cite, 15 elevated-risk entries, 4 utility functions, 37 dedicated tests
-16. **Timeline**: 34 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries (includes Joshua Wong HK47 appeal dismissed, Jimmy Lai fraud conviction overturned, and first Article 23 family prosecution)
+16. **Timeline**: 40 events from 1989-2026, all chronological gaps filled with Tier 1-2 sourced entries (includes Joshua Wong HK47 appeal dismissed, Jimmy Lai fraud conviction overturned, and first Article 23 family prosecution)
 17. **Simulated data cleanup**: fetchStatistics and fetchPoliticalPrisoners now derive from real JSON data. Dead feedValidator code removed. Dashboard uses honest labels. ALL 5/5 data migrations complete: PoliticalPrisoners, ForcedLaborTracker, DetentionFacilities, CCPOfficials, Timeline all read entirely from JSON.
 18. **Supabase integration**: @supabase/supabase-js client + service layer with graceful fallback. All 4 forms wired: IncidentReportForm, VolunteerSignup, NewsDigest, ContactForm. 4 tables (incident_reports, volunteer_signups, newsletter_subscribers, contact_messages) + RLS policies documented in SUPABASE_SETUP.md.
 19. **Deployment**: CLOUDFLARE_DEPLOY.md step-by-step guide. Stale pnpm-lock.yaml removed (was breaking Cloudflare Pages builds). CSP updated for *.supabase.co.
@@ -66,7 +66,7 @@ The following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~6s
-npx vitest run    # Should show 3584 tests passing across 189 test files
+npx vitest run    # Should show 3602 tests passing across 192 test files
 ```
 
 ---
@@ -135,7 +135,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (.ts) — useDocumentTitle, etc.
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 189 Vitest test files (.test.ts/.test.tsx), 3584 tests
+│   └── test/                   # 192 Vitest test files (.test.ts/.test.tsx), 3602 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -156,7 +156,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 3584 tests (189 files)
+npx vitest run                           # All 3602 tests (192 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~6s)
 ```
@@ -264,7 +264,7 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 **Handoff prepared by:** Sessions 1-258  
 **Date:** March 10, 2026  
 **Repository state:**
-- 3584 tests passing (189 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
+- 3602 tests passing (192 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
 - **TypeScript migration COMPLETE**: 100% TypeScript codebase — 0 .js/.jsx files, 360 .ts/.tsx files (26 .ts, 144 .tsx, 60 .test.ts, 130 .test.tsx)
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
 - 16 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events

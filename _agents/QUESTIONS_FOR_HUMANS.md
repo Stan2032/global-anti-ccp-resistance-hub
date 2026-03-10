@@ -34,7 +34,21 @@ These are permanent directives that apply to all agents:
 
 **Agent recommendation:** A custom domain would benefit the project beyond just onion routing (better SEO, professional appearance, easier sharing). Domains are ~$10/year. However, this is entirely the owner's decision.
 
-*When you encounter a decision that requires human input, add it here starting with Q13.*
+### Q13: Add Chow Hang-Tung, Lee Cheuk-yan, Albert Ho to Political Prisoners Database? (Session 264)
+
+**Context:** The trial of Chow Hang-Tung, Lee Cheuk-yan, and Albert Ho (Hong Kong Alliance leaders) began January 22, 2026. They are charged with "inciting subversion of state power" for organizing Tiananmen June 4th candlelight vigils. Chow and Lee pleaded not guilty; Albert Ho pleaded guilty. They've been in pre-trial detention since September 2021 (over 4 years). Amnesty International and the UN Working Group on Arbitrary Detention have both condemned the prosecutions.
+
+**Question:** Should these 3 individuals be added to the political prisoners database with full profile entries? The standing instruction says agents may add people without asking if well-researched — however, these are particularly high-profile cases and may warrant dedicated profile pages (like Joshua Wong, Jimmy Lai).
+
+**Options:**
+- **A)** Yes, add all 3 to political_prisoners_research.json + consider profile pages
+- **B)** Add to political_prisoners_research.json only (no profile pages)
+- **C)** Defer — focus on other priorities
+- **D)** Agent should use own judgment (standing instruction applies)
+
+**Agent recommendation:** Option A. Chow Hang-Tung in particular deserves a profile page — she's a human rights lawyer who continued to organize Tiananmen vigils despite escalating NSL threats, and her trial is a landmark case about whether commemorating historical events can constitute "subversion." The sources are Tier 1 (Amnesty, NCHRD, UN Working Group).
+
+*When you encounter a decision that requires human input, add it here starting with Q14.*
 
 ---
 

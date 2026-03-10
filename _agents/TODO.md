@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 10, 2026 (Session 263)
+> Last Updated: March 10, 2026 (Session 264)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -33,12 +33,25 @@
   - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
   - ✅ Mar 2026: Confirmed will NOT appeal NSL sentence (NBC News). UN calls for release (UN News)
   - Subtask: Monitor health status and international pressure
-- [x] **Monitor Joshua Wong case** — ✅ Updated Session 150
+- [x] **Monitor Joshua Wong case** — ✅ Updated Session 264
   - ✅ Jun 6, 2025: New foreign collusion charge filed (max: life imprisonment)
   - ✅ Feb 14, 2026: HK47 appeal dismissed — 4yr 8mo sentence upheld
   - ✅ Mar 6, 2026: Foreign collusion case transferred to High Court (hearing held)
-  - Subtask: Monitor foreign collusion trial proceedings — awaiting High Court hearing outcome
-  - Subtask: Check for post-hearing developments from HKFP, Amnesty, HRW
+  - ✅ Mar 6 hearing outcome: Procedural only — no verdict, no plea. Case transferred from magistrates to High Court.
+  - ⏰ **Next hearing: September 5, 2026** — monitor for outcome
+  - Subtask: Check HKFP, Amnesty, HRW for pre-hearing analysis in August 2026
+  - Subtask: Update emergency alert before Sept 5 hearing with any new developments
+- [x] **Add HK Alliance subversion trial data** — ✅ Session 264 (January 22, 2026)
+  - Added timeline event: Chow Hang-Tung, Lee Cheuk-yan, Albert Ho trial began
+  - Charge: "Inciting subversion" for organizing Tiananmen June 4th vigils
+  - Sources: [Amnesty International](https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/), [NCHRD](https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/)
+  - ⏰ **Trial ongoing** — monitor for verdict
+  - Subtask: Add Chow Hang-Tung to political_prisoners_research.json (if not already present)
+  - Subtask: Add Albert Ho to political_prisoners_research.json (pleaded guilty)
+  - Subtask: Add Lee Cheuk-yan to political_prisoners_research.json
+- [x] **Add HK activist solitary confinement report** — ✅ Session 264
+  - Source: [Amnesty Canada urgent action](https://amnesty.ca/urgent-actions/hong-kong-activists-subjected-to-prolonged-solitary-confinement/)
+  - Over 50 months pre-trial detention; may constitute torture under international law
 - [x] **Add Kwok Yin-sang case** — ✅ Session 150
   - First family member prosecuted under Article 23 (Feb 26, 2026)
   - Father of US-based activist Anna Kwok, sentenced 8 months
@@ -533,20 +546,20 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 263, Mar 10, 2026)
+### Current State Summary (as of Session 264, Mar 10, 2026)
 - **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 108+ components, 3602 tests (192 files, all passing). **100% TypeScript** — 360+ .ts/.tsx files, 0 .js/.jsx.
-- **Build:** 310KB (99KB gzip), ~5.7s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
+- **Build:** 310KB (99KB gzip), ~5.9s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
 - **Design:** Terminal/ASCII aesthetic 100% applied. 10+ automated design system compliance checks. Square corners only, terminal green (#4afa82), WCAG AA contrast throughout.
 - **Navigation:** 7 nav items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security). Sidebar w-56. Breadcrumbs, Back to Top, keyboard shortcuts (`/` search, `?` help).
-- **Data:** 63 political prisoners, 47 sanctions, 34 officials, 30 forced labor companies, 38 timeline events, 31 news items, 65 recent updates. 20 JSON data files. All data verified with Tier 1-2 sources.
+- **Data:** 63 political prisoners, 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources.
 - **Analytical Tools:** 15+ major components built (LegalCaseTracker, SanctionImpactAnalyzer, TransnationalRepressionTracker, DiasporaSecurityAdvisor, MediaNarrativeTracker, GenocideLegalFramework, DiplomaticCoercionTracker, CensorshipCircumventionGuide, EconomicImpactAnalyzer, WhistleblowerGuide, PolicyBriefGenerator, and more).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. Supabase Auth admin login. Service_role key detection. WebRTC leak check.
 - **Profile Pages:** 15/15 built with 5-tab layout each. Region filter tabs.
-- **Emergency Alerts:** 5 active (Jimmy Lai 20yr, Joshua Wong collusion, HK47, Kwok family, Uyghur forced labor). Auto-expiry, event countdown, severity sorting.
+- **Emergency Alerts:** 5 active (Jimmy Lai 20yr, Joshua Wong collusion [updated with hearing outcome], HK47, Kwok family, Uyghur forced labor). Auto-expiry, event countdown, severity sorting.
 - **API:** REST API via Cloudflare Workers (13 endpoints, rate limiting). Client-side dataApi module.
 - **Offline:** Service worker v3 with multi-strategy caching.
-- **Content (Mar 10):** Tibetan Uprising Day data added. China-Canada sanctions added. HRW World Report 2026 added. Joshua Wong hearing (Mar 6) — monitoring for outcome.
+- **Content (Mar 10):** Joshua Wong hearing outcome added (case transferred to High Court, next hearing Sept 5). HK Alliance subversion trial added (started Jan 22, 2026). Solitary confinement report added. Tibetan Uprising Day data. China-Canada sanctions.
 
 ---
 

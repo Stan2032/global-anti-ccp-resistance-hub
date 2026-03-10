@@ -81,7 +81,7 @@
     "category": "hongkong",
     "significance": "critical",
     "description": "Approximately 500,000 Hong Kong residents march against proposed Article 23 national security legislation, forcing the government to shelve the bill.",
-    "details": "The Hong Kong government proposed legislation under Article 23 of the Basic Law that would have criminalized treason, secession, sedition, and subversion. Fearing erosion of civil liberties, an estimated 500,000 people took to the streets on July 1 — the anniversary of the handover. The massive turnout forced the government to withdraw the bill after losing critical Legislative Council support. The march demonstrated the power of peaceful mass protest and established the annual July 1 march tradition as a barometer of public sentiment on democratic freedoms.",
+    "details": "The Hong Kong government proposed legislation under Article 23 of the Basic Law that would have criminalized treason, secession, sedition, and subversion. Fearing erosion of civil liberties, an estimated 500,000 people took to the streets on July 1 \u2014 the anniversary of the handover. The massive turnout forced the government to withdraw the bill after losing critical Legislative Council support. The march demonstrated the power of peaceful mass protest and established the annual July 1 march tradition as a barometer of public sentiment on democratic freedoms.",
     "participants": "~500,000",
     "impact": "Article 23 shelved for 21 years until it was finally passed in March 2024 under very different political conditions",
     "sources": [
@@ -123,7 +123,7 @@
   {
     "id": 9,
     "date": "2009-07-05",
-    "title": "Ürümqi Riots",
+    "title": "\u00dcr\u00fcmqi Riots",
     "category": "uyghur",
     "significance": "critical",
     "description": "Ethnic violence erupts in Xinjiang's capital after Uyghur protests over factory killings.",
@@ -157,7 +157,7 @@
     "category": "mainland",
     "significance": "high",
     "description": "Villagers in Wukan, Guangdong province, revolt against illegal land seizures by local officials in one of the most significant grassroots protests in modern China.",
-    "details": "Protests erupted on September 21 when villagers discovered that local officials had illegally sold collectively owned farmland to developers without compensation. The protests escalated in December 2011 when detained village representative Xue Jinbo died in police custody. Villagers expelled local party officials and police, effectively governing themselves. After a police siege blocking food supplies, provincial authorities intervened and negotiated a settlement. Free elections were held in February 2012 — an extraordinarily rare concession. However, the elected village chief Lin Zuluan was later arrested in 2016, and the promised land reforms were never fully implemented.",
+    "details": "Protests erupted on September 21 when villagers discovered that local officials had illegally sold collectively owned farmland to developers without compensation. The protests escalated in December 2011 when detained village representative Xue Jinbo died in police custody. Villagers expelled local party officials and police, effectively governing themselves. After a police siege blocking food supplies, provincial authorities intervened and negotiated a settlement. Free elections were held in February 2012 \u2014 an extraordinarily rare concession. However, the elected village chief Lin Zuluan was later arrested in 2016, and the promised land reforms were never fully implemented.",
     "impact": "Rare example of successful grassroots resistance; later reversed when elected leaders were arrested",
     "sources": [
       "BBC",
@@ -172,7 +172,7 @@
     "category": "tibet",
     "significance": "critical",
     "description": "The wave of Tibetan self-immolation protests reaches its peak with five people setting themselves on fire in a single day, part of 85+ self-immolations in 2012 alone.",
-    "details": "On November 7, 2012 — just before the CCP's 18th Party Congress — five Tibetans self-immolated in separate incidents: three teenage monks from Ngoshul Monastery (aged 15-16) immolated together near a police station in Ngaba, a 23-year-old mother named Tamding Tso called for the Dalai Lama's return while burning in Rebkong, and another man self-immolated in Driru. November 2012 saw 27 self-immolations, the deadliest single month. Since the first protest self-immolation in February 2009, over 150 Tibetans have set themselves on fire protesting Chinese rule, religious repression, and cultural destruction.",
+    "details": "On November 7, 2012 \u2014 just before the CCP's 18th Party Congress \u2014 five Tibetans self-immolated in separate incidents: three teenage monks from Ngoshul Monastery (aged 15-16) immolated together near a police station in Ngaba, a 23-year-old mother named Tamding Tso called for the Dalai Lama's return while burning in Rebkong, and another man self-immolated in Driru. November 2012 saw 27 self-immolations, the deadliest single month. Since the first protest self-immolation in February 2009, over 150 Tibetans have set themselves on fire protesting Chinese rule, religious repression, and cultural destruction.",
     "casualties": "85+ self-immolations in 2012 (most fatal); 150+ total since 2009",
     "impact": "Drew global attention to Tibet's desperation; CCP responded with intensified surveillance and collective punishment of communities",
     "sources": [
@@ -234,7 +234,7 @@
     "significance": "high",
     "description": "Five Hong Kong booksellers who published books critical of CCP leaders are abducted.",
     "details": "Lui Bo disappeared October 14 in Shenzhen; Gui Minhai, a Swedish citizen, was abducted from Thailand on October 17; Lee Bo disappeared from Hong Kong on December 30 without travel documents. The case demonstrated CCP's willingness to conduct extraterritorial abductions and sparked fears about Hong Kong's autonomy.",
-    "impact": "First major cross-border abduction case, Gui Minhai sentenced to 10 years in Feb 2020 — still imprisoned",
+    "impact": "First major cross-border abduction case, Gui Minhai sentenced to 10 years in Feb 2020 \u2014 still imprisoned",
     "sources": [
       "Hong Kong Free Press",
       "PEN International"
@@ -381,7 +381,7 @@
     "category": "mainland",
     "significance": "high",
     "description": "Nationwide protests erupt against Zero-COVID policy, with protesters holding blank white papers.",
-    "details": "Following a deadly fire in Ürümqi where COVID lockdowns allegedly hindered rescue efforts, protests spread to major cities. Protesters held blank papers to symbolize censorship and some called for Xi Jinping's resignation.",
+    "details": "Following a deadly fire in \u00dcr\u00fcmqi where COVID lockdowns allegedly hindered rescue efforts, protests spread to major cities. Protesters held blank papers to symbolize censorship and some called for Xi Jinping's resignation.",
     "participants": "Thousands across multiple cities",
     "impact": "Largest protests since 1989, led to end of Zero-COVID",
     "sources": [
@@ -413,7 +413,7 @@
     "category": "hongkong",
     "significance": "critical",
     "description": "Hong Kong's Legislative Council unanimously passes the Safeguarding National Security Ordinance (Article 23), 21 years after mass protests shelved the original attempt.",
-    "details": "The bill was fast-tracked through the now-opposition-free legislature in just 11 days, passing unanimously on March 19, 2024 and taking effect March 23. It created new offenses including treason, insurrection, sabotage, sedition, theft of state secrets, espionage, and external interference — many carrying sentences of 10 years to life imprisonment. Unlike the 2003 attempt, there was no meaningful public consultation and no legislative opposition. The law supplements the Beijing-imposed 2020 National Security Law, creating what critics call a comprehensive legal architecture for authoritarian control. The UN, EU, US, UK, and press freedom organizations condemned the legislation.",
+    "details": "The bill was fast-tracked through the now-opposition-free legislature in just 11 days, passing unanimously on March 19, 2024 and taking effect March 23. It created new offenses including treason, insurrection, sabotage, sedition, theft of state secrets, espionage, and external interference \u2014 many carrying sentences of 10 years to life imprisonment. Unlike the 2003 attempt, there was no meaningful public consultation and no legislative opposition. The law supplements the Beijing-imposed 2020 National Security Law, creating what critics call a comprehensive legal architecture for authoritarian control. The UN, EU, US, UK, and press freedom organizations condemned the legislation.",
     "impact": "Completed the legal framework for authoritarian control of Hong Kong; fulfilled what 500,000 protesters blocked in 2003",
     "sources": [
       "Hong Kong Free Press",
@@ -456,11 +456,30 @@
   },
   {
     "id": 31,
+    "date": "2026-01-22",
+    "title": "Hong Kong Alliance Trial Begins \u2014 Tiananmen Vigil Leaders Face Subversion Charges",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Trial begins for Chow Hang-Tung, Lee Cheuk-yan, and Albert Ho \u2014 leaders of the disbanded Hong Kong Alliance \u2014 charged with inciting subversion for organizing annual Tiananmen vigils.",
+    "details": "The trial of three leaders of the Hong Kong Alliance in Support of Patriotic Democratic Movements of China began on January 22, 2026, after over four years of pre-trial detention. Chow Hang-Tung and Lee Cheuk-yan pleaded not guilty; Albert Ho pleaded guilty. They face up to 10 years for organizing Hong Kong's annual June 4th candlelight vigil commemorating the 1989 Tiananmen Square massacre. Amnesty International called the trial 'a cynical attempt to erase historical memory.' The prosecution argues that calling for 'ending one-party rule' constitutes subversion under the NSL. Chow was denied the ability to call overseas witnesses, and the UN has deemed her pre-trial detention 'arbitrary.'",
+    "impact": "Criminalizes peaceful commemoration of Tiananmen; threatens historical memory",
+    "sources": [
+      "Amnesty International",
+      "NCHRD",
+      "Hong Kong Labour Rights Monitor"
+    ],
+    "source_urls": [
+      "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+      "https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/"
+    ]
+  },
+  {
+    "id": 32,
     "date": "2026-02-09",
     "title": "Jimmy Lai Sentenced to 20 Years",
     "category": "hongkong",
     "significance": "critical",
-    "description": "Jimmy Lai sentenced to 20 years in prison — the harshest sentence yet under Hong Kong's National Security Law.",
+    "description": "Jimmy Lai sentenced to 20 years in prison \u2014 the harshest sentence yet under Hong Kong's National Security Law.",
     "details": "The 78-year-old British citizen was sentenced to 20 years for conspiracy to collude with foreign forces and sedition. Not eligible for parole until his late 90s, making it effectively a life sentence. The sentencing drew condemnation from the G7, UK, US, EU, Australia, and press freedom organizations worldwide.",
     "sentence": "20 years imprisonment",
     "impact": "Harshest NSL sentence to date, global calls for release",
@@ -473,7 +492,7 @@
     ]
   },
   {
-    "id": 32,
+    "id": 33,
     "date": "2026-02-14",
     "title": "Joshua Wong HK47 Appeal Dismissed",
     "category": "hongkong",
@@ -490,12 +509,12 @@
     ]
   },
   {
-    "id": 33,
+    "id": 34,
     "date": "2026-02-26",
     "title": "Jimmy Lai Fraud Conviction Overturned",
     "category": "hongkong",
     "significance": "high",
-    "description": "Hong Kong Court of Appeal overturns Jimmy Lai's 2022 fraud conviction — a rare legal victory.",
+    "description": "Hong Kong Court of Appeal overturns Jimmy Lai's 2022 fraud conviction \u2014 a rare legal victory.",
     "details": "The appellate court found that prosecutors failed to prove Lai's guilt in the fraud case related to use of office space by a consultancy firm within Apple Daily premises. Judges ruled the trial court's rationale was 'unsupportable.' While this reduces his total prison time slightly, Lai remains imprisoned serving a 20-year NSL sentence. The Hong Kong Department of Justice is reviewing whether to seek a further appeal.",
     "sentence": "Fraud conviction overturned (5yr 9mo vacated)",
     "impact": "Rare legal win, but 20-year NSL sentence remains",
@@ -508,12 +527,12 @@
     ]
   },
   {
-    "id": 34,
+    "id": 35,
     "date": "2026-02-26",
     "title": "First Family Member Sentenced Under Article 23",
     "category": "hongkong",
     "significance": "high",
-    "description": "Kwok Yin-sang, 69, sentenced to 8 months — the first family member prosecuted for a relative's overseas activism.",
+    "description": "Kwok Yin-sang, 69, sentenced to 8 months \u2014 the first family member prosecuted for a relative's overseas activism.",
     "details": "Kwok Yin-sang, father of Washington-based activist Anna Kwok, was convicted of attempting to deal with financial assets (an education insurance policy) deemed as 'supporting an absconder' under Article 23. Anna Kwok is wanted under the NSL for her advocacy abroad. This case sets a dangerous precedent for targeting family members of overseas activists, a tactic previously more common in mainland China's repression of Uyghur and Tibetan dissidents.",
     "sentence": "8 months imprisonment",
     "impact": "Precedent for targeting family members of overseas activists",
@@ -525,7 +544,7 @@
     ]
   },
   {
-    "id": 35,
+    "id": 36,
     "date": "2026-03-02",
     "title": "UN Joint Statement Condemns Hong Kong Human Rights Crisis",
     "category": "hongkong",
@@ -540,7 +559,26 @@
     ]
   },
   {
-    "id": 36,
+    "id": 37,
+    "date": "2026-03-06",
+    "title": "Joshua Wong Foreign Collusion Case Transferred to High Court",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Joshua Wong's foreign collusion hearing held at High Court. Case formally transferred; next hearing September 5, 2026. Wong faces life imprisonment.",
+    "details": "Joshua Wong appeared in Hong Kong's High Court on March 6, 2026 for his foreign collusion charge under the National Security Law. The hearing was procedural \u2014 no verdict or plea was entered. The case was formally transferred from West Kowloon Magistrates' Courts to the High Court, indicating the prosecution is seeking a severe sentence. Wong remains in custody and did not apply for bail. The next hearing is scheduled for September 5, 2026. This case is separate from Wong's HK47 subversion conviction (4yr 8mo, appeal dismissed Feb 2026). If convicted, he faces a maximum sentence of life imprisonment.",
+    "impact": "High Court transfer signals severe prosecution; next hearing Sept 5, 2026",
+    "sources": [
+      "VOA Chinese",
+      "Amnesty International",
+      "Hong Kong Free Press"
+    ],
+    "source_urls": [
+      "https://www.voachinese.com/a/hong-kong-pro-democracy-activist-joshua-wong-accused-of-collusion-with-foreign-forces-appeared-in-court-again-20250808/8054907.html",
+      "https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/"
+    ]
+  },
+  {
+    "id": 38,
     "date": "2026-03-07",
     "title": "Jimmy Lai Confirms He Will Not Appeal NSL Sentence",
     "category": "hongkong",
@@ -557,7 +595,7 @@
     ]
   },
   {
-    "id": 37,
+    "id": 39,
     "date": "2026-03-08",
     "title": "China Retaliates Against Canadian Human Rights Organizations",
     "category": "international",
@@ -572,7 +610,7 @@
     ]
   },
   {
-    "id": 38,
+    "id": 40,
     "date": "2026-03-10",
     "title": "67th Anniversary of Tibetan National Uprising Day",
     "category": "tibet",

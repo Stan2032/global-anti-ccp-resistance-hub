@@ -39,13 +39,13 @@ describe('InteractiveTimeline', () => {
 
   it('shows total event count in statistics', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getAllByText('38').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('40').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Total Events')).toBeTruthy();
   });
 
   it('shows event counter showing 1 / N events initially', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getByText('1 / 38 events')).toBeTruthy();
+    expect(screen.getByText('1 / 40 events')).toBeTruthy();
   });
 
   it('shows placeholder when no event is selected', () => {
@@ -75,16 +75,16 @@ describe('InteractiveTimeline', () => {
     const hkButtons = screen.getAllByText('Hong Kong');
     fireEvent.click(hkButtons[0]);
     // 16 HK events
-    expect(screen.getByText(/18 events$/)).toBeTruthy();
+    expect(screen.getByText(/20 events$/)).toBeTruthy();
   });
 
   it('returns to all events when All Events is clicked', () => {
     render(<InteractiveTimeline />);
     const hkButtons = screen.getAllByText('Hong Kong');
     fireEvent.click(hkButtons[0]);
-    expect(screen.getByText(/18 events$/)).toBeTruthy();
+    expect(screen.getByText(/20 events$/)).toBeTruthy();
     fireEvent.click(screen.getByText('All Events'));
-    expect(screen.getByText('1 / 38 events')).toBeTruthy();
+    expect(screen.getByText('1 / 40 events')).toBeTruthy();
   });
 
   // --- Navigation ---
@@ -99,7 +99,7 @@ describe('InteractiveTimeline', () => {
     const nextBtn = buttons.find(b => b.querySelector('.lucide-chevron-right'));
     fireEvent.click(nextBtn!);
     // Should now show event details (since clicking next selects an event)
-    expect(screen.getByText('2 / 38 events')).toBeTruthy();
+    expect(screen.getByText('2 / 40 events')).toBeTruthy();
   });
 
   it('wraps around when navigating past the last event', () => {
@@ -108,7 +108,7 @@ describe('InteractiveTimeline', () => {
     const buttons = screen.getAllByRole('button');
     const prevBtn = buttons.find(b => b.querySelector('.lucide-chevron-left'));
     fireEvent.click(prevBtn!);
-    expect(screen.getByText('38 / 38 events')).toBeTruthy();
+    expect(screen.getByText('40 / 40 events')).toBeTruthy();
   });
 
   // --- Event selection ---
@@ -139,7 +139,7 @@ describe('InteractiveTimeline', () => {
       await vi.advanceTimersByTimeAsync(3000);
     });
     // Should have advanced (counter should change)
-    expect(screen.getByText('2 / 38 events')).toBeTruthy();
+    expect(screen.getByText('2 / 40 events')).toBeTruthy();
     // Should show event details
     expect(screen.queryByText('Click on a timeline marker to view event details')).toBeNull();
   });
@@ -154,7 +154,7 @@ describe('InteractiveTimeline', () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(3000);
     });
-    expect(screen.getByText('2 / 38 events')).toBeTruthy();
+    expect(screen.getByText('2 / 40 events')).toBeTruthy();
     
     // Pause
     const pauseBtn = screen.getAllByRole('button').find(b => b.querySelector('.lucide-pause'));
@@ -164,7 +164,7 @@ describe('InteractiveTimeline', () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(6000);
     });
-    expect(screen.getByText('2 / 38 events')).toBeTruthy();
+    expect(screen.getByText('2 / 40 events')).toBeTruthy();
   });
 
   // --- Statistics ---
