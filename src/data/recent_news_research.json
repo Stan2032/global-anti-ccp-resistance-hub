@@ -405,6 +405,54 @@
         "action_needed": "Monitor for similar family member prosecutions. Support HKDC advocacy on this precedent."
       },
       "error": ""
+    },
+    {
+      "input": "UN joint statement condemning Hong Kong human rights crisis March 2026",
+      "output": {
+        "topic": "UN joint statement condemning Hong Kong human rights crisis March 2026",
+        "headline": "Eight UN-accredited NGOs issue joint statement demanding action on Hong Kong human rights crisis",
+        "summary": "Eight UN-accredited human rights organizations issued a joint statement on March 2, 2026 at the UN Human Rights Council condemning the ongoing human rights crisis in Hong Kong. The statement specifically highlighted the 20-year sentence of Jimmy Lai, the prosecution of Anna Kwok's father under Article 23, and the prolonged pretrial detention of activists Chow Hang-Tung and Lee Cheuk-Yan for over 50 months. The organizations called on UN member states to take concrete action.",
+        "date": "2026-03-02",
+        "source": "Fortify Rights",
+        "source_url": "https://www.fortifyrights.org/eas-inv-stm-2026-03-02/",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, Chow Hang-Tung, Lee Cheuk-Yan, Anna Kwok's father",
+        "international_response": "Eight international human rights organizations including Fortify Rights, International Service for Human Rights, and others jointly called on UN member states to address the deteriorating situation. The statement was delivered during the 55th session of the UN Human Rights Council.",
+        "action_needed": "Support the call for UN member states to raise Hong Kong at the Human Rights Council, demand the release of political prisoners, and call for repeal of the National Security Law and Article 23."
+      },
+      "error": ""
+    },
+    {
+      "input": "Human Rights Watch World Report 2026 China chapter",
+      "output": {
+        "topic": "Human Rights Watch World Report 2026 China chapter",
+        "headline": "HRW World Report 2026: China continues systematic repression across all fronts",
+        "summary": "Human Rights Watch released its World Report 2026, documenting China's continued systematic repression of dissent, religious freedom, and ethnic minorities. The report details ongoing mass surveillance in Xinjiang, tightening controls in Tibet, the dismantling of civil society in Hong Kong under the NSL and Article 23, and expanding transnational repression targeting diaspora communities worldwide.",
+        "date": "2026-01-16",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/world-report/2026/country-chapters/china",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, Ilham Tohti, Zhang Zhan, Gao Zhisheng",
+        "international_response": "The report calls on governments to impose targeted sanctions on Chinese officials responsible for abuses, support Uyghur Tribunal findings, and ensure that corporate supply chains are free of forced labor.",
+        "action_needed": "Share the report findings, contact elected officials to press for sanctions and accountability measures, and support organizations documenting abuses."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chow Hang-Tung detention conditions Hong Kong March 2026",
+      "output": {
+        "topic": "Chow Hang-Tung detention conditions Hong Kong March 2026",
+        "headline": "Hong Kong must end unjust detention and solitary confinement of Chow Hang-Tung, says rights group",
+        "summary": "The Hong Kong Centre for Human Rights called for an end to the prolonged pretrial detention and solitary confinement of activist Chow Hang-Tung, who has been held for over 50 months awaiting trial. Chow, former leader of the group that organized the annual Tiananmen Square vigil, has been subjected to solitary confinement as punishment for public expression, raising concerns about treatment that may breach international torture conventions.",
+        "date": "2026-03-05",
+        "source": "Hong Kong Centre for Human Rights",
+        "source_url": "https://hkchr.org/en/archives/4201",
+        "significance": "HIGH",
+        "related_prisoners": "Chow Hang-Tung, Lee Cheuk-Yan",
+        "international_response": "UN experts have raised concerns about the conditions of Chow's detention, noting that prolonged solitary confinement may constitute cruel, inhuman, or degrading treatment under international law.",
+        "action_needed": "Advocate for Chow Hang-Tung's release, call attention to detention conditions, and support organizations monitoring prisoner welfare in Hong Kong."
+      },
+      "error": ""
     }
   ]
 }

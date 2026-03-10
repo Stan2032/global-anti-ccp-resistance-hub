@@ -21,9 +21,9 @@ describe('Critical date consistency across data files', () => {
       expect(laiSentenced.sentence).toBe('20 years imprisonment');
     });
 
-    it('timeline_events.json event 14 references 20-year sentence, not life', () => {
+    it('timeline_events.json "Jimmy Lai Arrested" references 20-year sentence, not life', () => {
       const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const laiArrested = data.find((e: any) => e.id === 14);
+      const laiArrested = data.find((e: any) => e.title === 'Jimmy Lai Arrested');
       expect(laiArrested).toBeDefined();
       expect(laiArrested.sentence).not.toMatch(/faces life/i);
       expect(laiArrested.sentence).toMatch(/20 years/i);
