@@ -1,3 +1,11 @@
+/**
+ * PWAInstallBanner — Progressive Web App install prompt.
+ *
+ * Detects whether the app can be installed and shows a banner with
+ * platform-specific instructions for Chrome/Edge and iOS Safari.
+ *
+ * @module PWAInstallBanner
+ */
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
 

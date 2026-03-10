@@ -1,3 +1,11 @@
+/**
+ * AdvocacyLetterGenerator — Data-driven letter template generator for advocacy campaigns.
+ *
+ * Builds personalised letters addressed to elected officials using real political
+ * prisoner case data. All processing is client-side; no user data is transmitted.
+ *
+ * @module AdvocacyLetterGenerator
+ */
 import { useState, useMemo } from 'react';
 import { FileText, Users, Copy, Check, ChevronDown, ChevronUp, Globe, AlertTriangle, Search } from 'lucide-react';
 import { dataApi, type PoliticalPrisoner } from '../services/dataApi';

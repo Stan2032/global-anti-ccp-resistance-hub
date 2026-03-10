@@ -1,3 +1,11 @@
+/**
+ * ShareButtons — Social media sharing buttons with copy-to-clipboard.
+ *
+ * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp, Signal,
+ * and Email. Offers both full and compact layouts.
+ *
+ * @module ShareButtons
+ */
 import { useState } from 'react';
 import { logger } from '../utils/logger';
 

@@ -1,3 +1,11 @@
+/**
+ * ScrollToTop — Resets scroll position on every route change.
+ *
+ * Scrolls the window to the top and moves focus to the main content
+ * area so screen-reader users are aware of the navigation.
+ *
+ * @module ScrollToTop
+ */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 

@@ -1,3 +1,11 @@
+/**
+ * Footer — Site-wide footer with navigation links and emergency contacts.
+ *
+ * Renders platform links, external organisation references, emergency
+ * hotlines, and a legal notice. Displayed on every page via App.jsx.
+ *
+ * @module Footer
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Siren, Phone, Mail, Lock } from 'lucide-react';

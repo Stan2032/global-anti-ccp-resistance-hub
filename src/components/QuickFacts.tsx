@@ -1,3 +1,11 @@
+/**
+ * QuickFacts — Shareable statistics cards with verified data points.
+ *
+ * Displays key human-rights statistics in a card grid. Each card
+ * includes a source link, copy-to-clipboard action, and category colour.
+ *
+ * @module QuickFacts
+ */
 import React, { useState } from 'react';
 import { BarChart3, Megaphone } from 'lucide-react';
 import { logger } from '../utils/logger';

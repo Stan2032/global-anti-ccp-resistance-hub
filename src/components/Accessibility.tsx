@@ -1,3 +1,11 @@
+/**
+ * Accessibility — Utilities for keyboard navigation and screen reader support.
+ *
+ * Exports SkipLinks for jumping to main content areas, VisuallyHidden for
+ * screen-reader-only text, and a focus-management hook for route changes.
+ *
+ * @module Accessibility
+ */
 import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/languageUtils';
 
