@@ -20,13 +20,13 @@ const locales = {
 }
 
 // Get all keys from a nested object as dot-notation paths
-function getAllKeys(obj: any, prefix = ''): any {
-  return Object.entries(obj).flatMap(([key, value]): any => {
+function getAllKeys(obj: Record<string, any>, prefix = ''): string[] {
+  return Object.entries(obj).flatMap(([key, value]): string[] => {
     const path = prefix ? `${prefix}.${key}` : key
     if (typeof value === 'object' && value !== null) {
       return getAllKeys(value, path)
     }
-    return path
+    return [path]
   })
 }
 

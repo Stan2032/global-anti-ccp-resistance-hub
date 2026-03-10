@@ -21,7 +21,7 @@ const COMPONENTS_DIR = resolve(SRC_DIR, 'components');
 const PAGES_DIR = resolve(SRC_DIR, 'pages');
 
 // Collect all JSX source files from components + pages
-function getSourceFiles(...dirs: any[]): string[] {
+function getSourceFiles(...dirs: string[]): string[] {
   const files = [];
   for (const dir of dirs) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {

@@ -19,7 +19,7 @@ const SRC_DIR = resolve(__dirname, '..');
 const DATA_DIR = resolve(SRC_DIR, 'data');
 
 // Recursively find files
-function findFiles(dir: string, extensions: any): string[] {
+function findFiles(dir: string, extensions: string[]): string[] {
   const files = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);

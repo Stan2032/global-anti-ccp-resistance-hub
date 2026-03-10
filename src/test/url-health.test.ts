@@ -20,7 +20,7 @@ const DATA_DIR = resolve(SRC_DIR, 'data');
 const CCP_DOMAINS = CCP_NEVER_CITE.domains;
 
 // Recursively find all source files
-function findFiles(dir: string, extensions: any): string[] {
+function findFiles(dir: string, extensions: string[]): string[] {
   const files = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);

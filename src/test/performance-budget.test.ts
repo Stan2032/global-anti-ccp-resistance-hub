@@ -20,7 +20,7 @@ const PAGES_DIR = resolve(SRC_DIR, 'pages');
 const DATA_DIR = resolve(SRC_DIR, 'data');
 const TEST_DIR = resolve(SRC_DIR, 'test');
 
-function countFiles(dir: string, ...exts: any[]) {
+function countFiles(dir: string, ...exts: string[]) {
   if (!statSync(dir).isDirectory()) return 0;
   return readdirSync(dir).filter(f => exts.some(ext => f.endsWith(ext))).length;
 }
