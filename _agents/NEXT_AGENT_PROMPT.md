@@ -20,7 +20,7 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 330+ source files, 110 active React components, 3561 passing Vitest tests across 187 test files
+- Contains 360+ source files (100% TypeScript), 110 active React components, 3584 passing Vitest tests across 189 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
 - **Data**: 63 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 20 JSON data files, 22 recent news items
 - **API**: REST API via Cloudflare Workers (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting
@@ -65,8 +65,8 @@ The following has been accomplished:
 ```bash
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
-npm run build     # Should succeed in ~5s
-npx vitest run    # Should show 3561 tests passing across 187 test files
+npm run build     # Should succeed in ~6s
+npx vitest run    # Should show 3584 tests passing across 189 test files
 ```
 
 ---
@@ -88,9 +88,9 @@ These are directives from the human owner. Follow them:
 
 5. **Design aesthetic**: Modern ASCII/terminal — readable, accessible, professional. See `_agents/STYLE_GUIDE.md` for the complete design system.
 
-6. **Flags**: Use proper SVG flags for Uyghur (East Turkestan/Kök Bayraq) and Tibetan (Snow Lion) — never generic Lucide icons. Flags are in `src/components/FlagIcons.jsx`.
+6. **Flags**: Use proper SVG flags for Uyghur (East Turkestan/Kök Bayraq) and Tibetan (Snow Lion) — never generic Lucide icons. Flags are in `src/components/FlagIcons.tsx`.
 
-7. **Terminology**: Always use "CCP" (Chinese Communist Party), NEVER "CPC" (Communist Party of China). The CCP promotes "CPC" to dilute search results that surface critical journalism and human rights documentation. An automated test in `url-health.test.js` scans all JSX and JSON files to enforce this.
+7. **Terminology**: Always use "CCP" (Chinese Communist Party), NEVER "CPC" (Communist Party of China). The CCP promotes "CPC" to dilute search results that surface critical journalism and human rights documentation. An automated test in `url-health.test.ts` scans all TSX and JSON files to enforce this.
 
 ---
 
@@ -101,41 +101,41 @@ These are directives from the human owner. Follow them:
 ├── _agents/                    # Agent documentation (DO NOT serve to users)
 │   ├── TODO.md                 # Active task list (pending items only)
 │   ├── TODO_COMPLETED.md       # Archive of completed tasks + session history
-│   ├── AGENT_HANDOFF.json      # Machine-readable state (v12.5)
+│   ├── AGENT_HANDOFF.json      # Machine-readable state (v18.0)
 │   ├── NEXT_AGENT_PROMPT.md    # This file
 │   ├── STYLE_GUIDE.md          # Design system reference
 │   ├── research/               # Research files and verification logs
 │   ├── planning/               # Planning TODOs
 │   ├── archive/                # Historical handoff documents (58 files)
-│   └── thoughts/               # Session decision logs (Sessions 83-97, 98-106, 150, 151, 152)
-├── src/
-│   ├── App.jsx                 # Main router — all routes, sidebar, header
+│   └── thoughts/               # Session decision logs (Sessions 83-97, 98-106, 150-211)
+├── src/                        # 100% TypeScript (0 .js/.jsx files)
+│   ├── App.tsx                 # Main router — all routes, sidebar, header
 │   ├── index.css               # Global CSS, terminal theme, print styles
 │   ├── pages/                  # 14 main pages + profiles/
-│   │   ├── profiles/           # 15 profile pages + ProfilesIndex.jsx
-│   │   ├── Dashboard.jsx       # Home page
-│   │   ├── IntelligenceFeeds.jsx  # 3-tab: Live Feeds, Regional Status, CCP Operations
-│   │   ├── SecurityCenter.jsx  # 5-tab: includes ChinaExitBan
-│   │   ├── EducationalResources.jsx  # 7-tab: includes ConfuciusInstitutes
+│   │   ├── profiles/           # 16 profile pages + ProfilesIndex.tsx
+│   │   ├── Dashboard.tsx       # Home page
+│   │   ├── IntelligenceFeeds.tsx  # 3-tab: Live Feeds, Regional Status, CCP Operations
+│   │   ├── SecurityCenter.tsx  # 5-tab: includes ChinaExitBan
+│   │   ├── EducationalResources.tsx  # 7-tab: includes ConfuciusInstitutes
 │   │   └── ...                 # TakeAction, CommunitySupport, ResistanceResources, etc.
-│   ├── components/             # 100+ React components
-│   │   ├── FlagIcons.jsx       # SVG flags (EastTurkestanFlag, TibetanFlag)
-│   │   ├── LanguageSelector.jsx # 8-language picker
-│   │   ├── SanctionsTracker.jsx # Uses src/data/sanctions_tracker.json
+│   ├── components/             # 100+ React components (.tsx)
+│   │   ├── FlagIcons.tsx       # SVG flags (EastTurkestanFlag, TibetanFlag)
+│   │   ├── LanguageSelector.tsx # 8-language picker
+│   │   ├── SanctionsTracker.tsx # Uses src/data/sanctions_tracker.json
 │   │   └── ...
 │   ├── data/                   # JSON data files
 │   │   ├── sanctions_tracker.json     # 47 sanctions entries
 │   │   ├── political_prisoners_research.json
 │   │   ├── sanctioned_officials_research.json
 │   │   └── ...
-│   ├── services/
-│   │   ├── liveDataService.js  # 9 RSS feeds, ALWAYS_RELEVANT_SOURCES
-│   │   ├── supabaseClient.js   # Supabase client (null when unconfigured)
-│   │   └── supabaseService.js  # Form submission helpers (4 types)
-│   ├── hooks/                  # Custom hooks (useDocumentTitle, etc.)
+│   ├── services/               # Service modules (.ts)
+│   │   ├── liveDataService.ts  # 9 RSS feeds, ALWAYS_RELEVANT_SOURCES
+│   │   ├── supabaseClient.ts   # Supabase client (null when unconfigured)
+│   │   └── supabaseService.ts  # Form submission helpers (4 types)
+│   ├── hooks/                  # Custom hooks (.ts) — useDocumentTitle, etc.
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 187 Vitest test files, 3561 tests
+│   └── test/                   # 189 Vitest test files (.test.ts/.test.tsx), 3584 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -156,9 +156,9 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 3561 tests (187 files)
+npx vitest run                           # All 3584 tests (189 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
-npm run build                            # Production build (~5s)
+npm run build                            # Production build (~6s)
 ```
 
 ---
@@ -261,14 +261,11 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 
 ---
 
-**Handoff prepared by:** Sessions 1-243  
-**Date:** March 8, 2026  
+**Handoff prepared by:** Sessions 1-258  
+**Date:** March 10, 2026  
 **Repository state:**
-- 3577 tests passing (188 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
-- TypeScript Phase 1 COMPLETE: 20 .ts files with 50+ exported interfaces
-- TypeScript Phase 2 IN PROGRESS: 16 .tsx files converted (main, 3 contexts, 12 components)
-  - 14 test files updated to scan both .jsx and .tsx for incremental migration
-  - ~260 .jsx files remaining (99 components, 12 pages, 16 profiles, + test files)
+- 3584 tests passing (189 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
+- **TypeScript migration COMPLETE**: 100% TypeScript codebase — 0 .js/.jsx files, 360 .ts/.tsx files (26 .ts, 144 .tsx, 60 .test.ts, 130 .test.tsx)
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
 - 16 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
 - 0 orphan components, 10 design system compliance checks, CCP influence detection centralized
