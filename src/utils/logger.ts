@@ -2,7 +2,7 @@
  * Centralized logging utility for the Global Anti-CCP Resistance Hub.
  *
  * Provides structured, level-gated logging that can be controlled per-environment:
- * - In production (`import.meta.env.PROD`): only errors are logged.
+ * - In production (`import.meta.env.PROD`): errors and warnings are logged.
  * - In development (`import.meta.env.DEV`): all levels are logged.
  * - Debug logging can be enabled in production via `localStorage.setItem('debug', 'true')`.
  *
