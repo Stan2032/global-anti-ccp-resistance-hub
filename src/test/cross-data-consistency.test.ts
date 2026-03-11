@@ -171,9 +171,10 @@ describe('Cross-JSON Data Consistency', () => {
 
     for (const update of recentUpdates) {
       if (update.relatedPage) {
+        const page = update.relatedPage;
         // Allow exact matches or sub-routes like /profiles/joshua-wong
         const isValid = validRoutePatterns.some(route =>
-          update.relatedPage === route || update.relatedPage.startsWith(route + '/')
+          page === route || page.startsWith(route + '/')
         );
         expect(
           isValid,
