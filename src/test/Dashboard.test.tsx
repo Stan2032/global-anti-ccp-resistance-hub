@@ -91,7 +91,7 @@ describe('Dashboard', () => {
       stats: {
         verifiedOrganizations: 49,
         detentionFacilities: 380,
-        politicalPrisoners: 64,
+        politicalPrisoners: 65,
       },
       loading: false,
       error: null,
@@ -99,7 +99,7 @@ describe('Dashboard', () => {
     renderDashboard();
     expect(screen.getByText('49')).toBeTruthy();
     expect(screen.getByText('380+')).toBeTruthy();
-    expect(screen.getByText('64')).toBeTruthy();
+    expect(screen.getByText('65')).toBeTruthy();
   });
 
   it('shows stat labels', () => {

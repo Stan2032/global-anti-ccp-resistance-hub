@@ -1099,6 +1099,23 @@
         "verification_note": "Former chairman of HK Democratic Party and Hong Kong Alliance. Arrested September 2021 alongside Chow Hang-Tung and Lee Cheuk-yan. Pleaded guilty to inciting subversion Jan 22, 2026. 18 months prior sentence for unauthorized assemblies. Verified via Amnesty International, NCHRD, HKFP, NW Asian Weekly."
       },
       "error": ""
+    },
+    {
+      "input": "Chow Hang-Tung - Hong Kong human rights lawyer, HK Alliance vice-chair, Tiananmen vigil organizer",
+      "output": {
+        "prisoner_name": "Chow Hang-Tung",
+        "status": "DETAINED",
+        "location": "Unknown prison, Hong Kong",
+        "sentence": "On trial for inciting subversion under NSL (max 10 years) — trial began January 22, 2026. Pleaded NOT GUILTY. Representing herself.",
+        "latest_news": "Mar 10, 2026: Defence team made 'no case to answer' submission in subversion trial. Chow, a human rights lawyer, is representing herself. She has been in pre-trial detention since September 2021 — over 4 years. Amnesty International designated her a prisoner of conscience. UN Working Group on Arbitrary Detention ruled her detention arbitrary and called for immediate release.",
+        "health_status": "Subjected to prolonged periods of solitary confinement during detention. Amnesty Canada reported she has been held in solitary for extended periods. Physical and mental health concerns raised by international observers.",
+        "international_response": "Amnesty International: Prisoner of conscience, called trial 'a cynical attempt to erase historical memory.' UN Working Group on Arbitrary Detention: Ruled detention arbitrary, called for immediate release. Lawyers for Lawyers (international): Joint statement demanding fair trial rights. NCHRD: Demanded all charges be dropped. Council of Global Unions: Condemned prosecution.",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+        "confidence": "HIGH",
+        "last_verified": "2026-03-11",
+        "verification_note": "Vice-chairperson of Hong Kong Alliance. Human rights lawyer. Arrested September 2021 for organizing Tiananmen June 4th candlelight vigils. Pleaded not guilty Jan 22, 2026. Representing herself. Over 4 years pre-trial detention. Verified via Amnesty International, NCHRD, HKFP, Lawyers for Lawyers joint statement (March 2026), UN Working Group on Arbitrary Detention."
+      },
+      "error": ""
     }
   ]
 }

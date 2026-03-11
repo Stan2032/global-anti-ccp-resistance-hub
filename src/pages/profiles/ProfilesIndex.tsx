@@ -284,6 +284,24 @@ const PROFILES = [
     themeAccent: 'text-emerald-400',
     built: true,
   },
+  {
+    name: 'Chow Hang-Tung',
+    chineseName: '鄒幸彤',
+    path: '/profiles/chow-hang-tung',
+    status: 'DETAINED',
+    statusColor: 'red',
+    sentence: 'On trial (max 10 years)',
+    birthDate: '1985',
+    role: 'Human Rights Lawyer & Tiananmen Vigil Organizer',
+    summary: 'Vice-chair of Hong Kong Alliance. On trial for "inciting subversion" for organizing Tiananmen vigils. Over 4 years pre-trial detention. UN ruled detention arbitrary. Amnesty prisoner of conscience.',
+    location: 'Prison, Hong Kong',
+    region: 'hong-kong',
+    themeGradient: '',
+    themeBorder: 'border-[#1c2a35]',
+    themeLeftBorder: 'border-l-red-500',
+    themeAccent: 'text-red-400',
+    built: true,
+  },
 ];
 
 const REGION_FILTERS = [
@@ -398,7 +416,7 @@ const ProfilesIndex = () => {
           </span>
           <Link to="/prisoners" className="flex items-center gap-1.5 hover:text-[#4afa82] transition-colors">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            64 total cases in database →
+            65 total cases in database →
           </Link>
         </div>
       </div>

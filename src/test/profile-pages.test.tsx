@@ -18,10 +18,11 @@ import RenZhiqiangProfile from '../pages/profiles/RenZhiqiangProfile';
 import TashiWangchukProfile from '../pages/profiles/TashiWangchukProfile';
 import XuZhiyongProfile from '../pages/profiles/XuZhiyongProfile';
 import ZhangZhanProfile from '../pages/profiles/ZhangZhanProfile';
+import ChowHangTungProfile from '../pages/profiles/ChowHangTungProfile';
 
 const renderWithRouter = (ui: any) => render(<MemoryRouter>{ui}</MemoryRouter>);
 
-// All 15 profiles with expected data
+// All 16 profiles with expected data
 // statusText: what to search for in rendered output (some profiles render status differently)
 // backLink: the "Back to..." text varies by profile
 const PROFILES = [
@@ -40,9 +41,10 @@ const PROFILES = [
   { Component: TashiWangchukProfile, name: 'Tashi Wangchuk', chinese: '扎西文色', statusText: 'RELEASED', backLink: 'Back to Profiles' },
   { Component: XuZhiyongProfile, name: 'Xu Zhiyong', chinese: '许志永', statusText: 'IMPRISONED', backLink: 'Back to Profiles' },
   { Component: ZhangZhanProfile, name: 'Zhang Zhan', chinese: '张展', statusText: 'IMPRISONED', backLink: 'Back to Profiles' },
+  { Component: ChowHangTungProfile, name: 'Chow Hang-Tung', chinese: '鄒幸彤', statusText: 'DETAINED', backLink: 'Back to Profiles' },
 ];
 
-describe('Profile Pages — All 15', () => {
+describe('Profile Pages — All 16', () => {
   // ─── RENDER & HEADER ────────────────────────────────────────
   describe.each(PROFILES)('$name', ({ Component, name, chinese, statusText, backLink }) => {
     it('renders without crashing', () => {
@@ -185,8 +187,8 @@ describe('Profile Pages — Tab Navigation', () => {
 });
 
 describe('Profile Pages — Data Integrity', () => {
-  it('all 15 profiles are tested', () => {
-    expect(PROFILES.length).toBe(15);
+  it('all 16 profiles are tested', () => {
+    expect(PROFILES.length).toBe(16);
   });
 
   it('no two profiles share the same name', () => {
@@ -200,7 +202,7 @@ describe('Profile Pages — Data Integrity', () => {
   });
 
   it('all profile statuses are recognized values', () => {
-    const validStatuses = ['IMPRISONED', 'EXILED', 'DISAPPEARED', 'AT RISK', 'RELEASED', 'DECEASED', 'ENFORCED DISAPPEARANCE'];
+    const validStatuses = ['IMPRISONED', 'EXILED', 'DISAPPEARED', 'AT RISK', 'RELEASED', 'DECEASED', 'ENFORCED DISAPPEARANCE', 'DETAINED'];
     PROFILES.forEach(({ name, statusText }) => {
       expect(
         validStatuses.some(v => statusText.includes(v)),
