@@ -133,7 +133,7 @@ describe('Sitemap Data Integrity', () => {
         new RegExp(`<loc>${escapedBase}/</loc>[\\s\\S]*?<priority>([^<]+)</priority>`)
       );
       expect(homepageMatch).not.toBeNull();
-      expect(parseFloat(homepageMatch[1])).toBe(1.0);
+      expect(parseFloat(homepageMatch![1])).toBe(1.0);
     });
   });
 
@@ -176,7 +176,7 @@ describe('Sitemap Data Integrity', () => {
     it('has reasonable crawl-delay (1-10 seconds)', () => {
       const match = robotsContent.match(/Crawl-delay:\s*(\d+)/);
       expect(match).not.toBeNull();
-      const delay = parseInt(match[1], 10);
+      const delay = parseInt(match![1], 10);
       expect(delay).toBeGreaterThanOrEqual(1);
       expect(delay).toBeLessThanOrEqual(10);
     });

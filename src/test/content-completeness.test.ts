@@ -23,7 +23,7 @@ function getAllJsonFiles() {
   return readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 }
 
-function flattenValues(obj: Record<string, unknown>): unknown[] {
+function flattenValues(obj: unknown): unknown[] {
   const values = [];
   if (typeof obj === 'string') return [obj];
   if (Array.isArray(obj)) {

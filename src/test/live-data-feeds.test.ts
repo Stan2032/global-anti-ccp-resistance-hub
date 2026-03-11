@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/live_data_feeds.json');
 
 describe('Live Data Feeds JSON integrity', () => {
-  let data: Record<string, Array<{ id: string; name: string; url: string }>>;
+  let data: Record<string, Array<{ id: string; name: string; url: string; credibility?: string; sources?: string[]; description?: string; category?: string; region?: string; updateFrequency?: string; biasRisk?: string; methodology?: string; note?: string }>>;
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -98,7 +98,7 @@ describe('Live Data Feeds JSON integrity', () => {
     for (const feed of allFeeds) {
       expect(feed).toHaveProperty('sources');
       expect(Array.isArray(feed.sources)).toBe(true);
-      expect(feed.sources.length).toBeGreaterThanOrEqual(1);
+      expect(feed.sources!.length).toBeGreaterThanOrEqual(1);
     }
   });
 

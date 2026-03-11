@@ -41,6 +41,9 @@ describe('AdminDashboard', () => {
     vi.clearAllMocks();
     vi.mocked(useAuth).mockReturnValue({
       user: { email: 'admin@test.com' },
+      isAdmin: true,
+      loading: false,
+      login: vi.fn(),
       logout: vi.fn(),
     });
   });
@@ -64,6 +67,9 @@ describe('AdminDashboard', () => {
     const mockLogout = vi.fn();
     vi.mocked(useAuth).mockReturnValue({
       user: { email: 'admin@test.com' },
+      isAdmin: true,
+      loading: false,
+      login: vi.fn(),
       logout: mockLogout,
     });
     render(<AdminDashboard />);

@@ -136,7 +136,7 @@ describe('WCAG AA Contrast Ratios', () => {
     return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
   }
 
-  function contrastRatio(c1: number, c2: number) {
+  function contrastRatio(c1: string, c2: string) {
     let l1 = relativeLuminance(c1);
     let l2 = relativeLuminance(c2);
     if (l1 < l2) [l1, l2] = [l2, l1];

@@ -3,8 +3,17 @@
  * Used by the DataExport component.
  */
 
-// Extracts a records array from JSON data.
-// Handles flat arrays, `{ results: [{ output }] }` wrappers, and `{ sanctions: [] }` wrappers.
+/**
+ * Extracts a flat records array from various JSON shapes.
+ *
+ * Handles:
+ * - Flat arrays (returned as-is)
+ * - `{ results: [{ output }] }` wrappers (unwraps each `.output`)
+ * - `{ sanctions: [] }` wrappers (returns the `.sanctions` array)
+ *
+ * @param data - Raw JSON data (unknown shape).
+ * @returns A flat array of record objects.
+ */
 export function extractRecords(data: unknown): Record<string, unknown>[] {
   if (Array.isArray(data)) return data as Record<string, unknown>[];
   const obj = data as Record<string, unknown> | null | undefined;
@@ -13,7 +22,14 @@ export function extractRecords(data: unknown): Record<string, unknown>[] {
   return [];
 }
 
-// Converts an array of objects to a CSV string.
+/**
+ * Converts an array of record objects to a CSV string.
+ *
+ * @param records - Array of objects to convert.
+ * @param fields - Optional list of column headers. Defaults to keys of the first record.
+ * @returns CSV-formatted string with a header row and one data row per record.
+ *          Values containing commas, quotes, or newlines are properly escaped.
+ */
 export function recordsToCsv(records: Record<string, unknown>[], fields?: string[]): string {
   if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);
@@ -28,8 +44,14 @@ export function recordsToCsv(records: Record<string, unknown>[], fields?: string
 
 const MAX_CELL_LENGTH = 100;
 
-// Converts an array of objects to a Markdown table string.
-// Cell values are truncated to MAX_CELL_LENGTH characters.
+/**
+ * Converts an array of record objects to a Markdown table string.
+ *
+ * @param records - Array of objects to convert.
+ * @param fields - Optional list of column headers. Defaults to keys of the first record.
+ * @returns A Markdown-formatted table. Cell values are truncated to
+ *          {@link MAX_CELL_LENGTH} characters and pipes/newlines are escaped.
+ */
 export function recordsToMarkdown(records: Record<string, unknown>[], fields?: string[]): string {
   if (!records?.length) return '';
   const headers = fields || Object.keys(records[0]);

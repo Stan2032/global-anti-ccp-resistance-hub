@@ -20,35 +20,35 @@ Object.assign(navigator, {
 describe('TimelineGapAnalyzer', () => {
   const mockEvents = [
     {
-      id: 1,
+      id: '1',
       date: '1989-06-04',
       title: 'Tiananmen Square Massacre',
       category: 'mainland',
       significance: 'critical',
     },
     {
-      id: 2,
+      id: '2',
       date: '1995-05-17',
       title: 'Panchen Lama Abducted',
       category: 'tibet',
       significance: 'critical',
     },
     {
-      id: 3,
+      id: '3',
       date: '1999-07-20',
       title: 'Falun Gong Persecution',
       category: 'falungong',
       significance: 'critical',
     },
     {
-      id: 4,
+      id: '4',
       date: '2008-03-14',
       title: 'Tibetan Uprising',
       category: 'tibet',
       significance: 'high',
     },
     {
-      id: 5,
+      id: '5',
       date: '2020-06-30',
       title: 'NSL Implementation',
       category: 'hongkong',

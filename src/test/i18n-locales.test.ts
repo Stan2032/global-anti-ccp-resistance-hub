@@ -24,7 +24,7 @@ function getAllKeys(obj: Record<string, unknown>, prefix = ''): string[] {
   return Object.entries(obj).flatMap(([key, value]): string[] => {
     const path = prefix ? `${prefix}.${key}` : key
     if (typeof value === 'object' && value !== null) {
-      return getAllKeys(value, path)
+      return getAllKeys(value as Record<string, unknown>, path)
     }
     return [path]
   })
@@ -68,7 +68,7 @@ describe('i18n locale files', () => {
         const localeKeys = getAllKeys(locale)
         localeKeys.forEach((key: string) => {
           const keys = key.split('.')
-          let value = locale
+          let value: unknown = locale
           for (const k of keys) value = (value as Record<string, unknown>)[k]
           expect(value, `${code}.${key} should not be empty`).not.toBe('')
         })

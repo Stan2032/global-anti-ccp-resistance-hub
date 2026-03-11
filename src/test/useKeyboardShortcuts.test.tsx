@@ -19,8 +19,8 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 );
 
 describe('useKeyboardShortcuts', () => {
-  let mockOpenSearch: ReturnType<typeof vi.fn>;
-  let mockToggleHelp: ReturnType<typeof vi.fn>;
+  let mockOpenSearch: () => void;
+  let mockToggleHelp: () => void;
 
   beforeEach(() => {
     mockNavigate.mockClear();
