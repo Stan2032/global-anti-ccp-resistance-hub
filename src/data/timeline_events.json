@@ -554,15 +554,15 @@
     "sentence": "Convicted Dec 15, 2025; sentenced to 20 years on Feb 9, 2026",
     "impact": "International condemnation, calls for sanctions",
     "sources": [
-      "BBC",
+      "CBC News",
       "CNN",
       "Reuters",
       "UK Foreign Office"
     ],
     "source_urls": {
-      "BBC": "https://www.cbc.ca/news/world/jimmy-lai-hong-kong-china-verdict-9.7015714",
       "Human Rights Watch": "https://www.hrw.org/news/2025/12/15/hong-kong-jimmy-lai-convicted-on-bogus-national-security-charges",
-      "Reuters": "https://www.reuters.com/graphics/HONGKONG-SECURITY/JIMMYLAI/zjpqdaeoxvx/"
+      "Reuters": "https://www.reuters.com/graphics/HONGKONG-SECURITY/JIMMYLAI/zjpqdaeoxvx/",
+      "CBC News": "https://www.cbc.ca/news/world/jimmy-lai-hong-kong-china-verdict-9.7015714"
     }
   },
   {
@@ -598,15 +598,15 @@
       "Human Rights Watch",
       "US State Department",
       "Committee to Protect Journalists",
-      "BBC",
+      "Hong Kong Free Press",
       "CNBC"
     ],
     "source_urls": {
       "Human Rights Watch": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
-      "BBC": "https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/",
       "EU EEAS": "https://www.eeas.europa.eu/eeas/hong-kong-spokesperson-statement-sentencing-jimmy-lai_en",
       "US State Department": "https://www.state.gov/releases/office-of-the-spokesperson/2026/02/sentencing-in-jimmy-lai-case/",
-      "CBS News": "https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/"
+      "CBS News": "https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/",
+      "Hong Kong Free Press": "https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/"
     }
   },
   {
