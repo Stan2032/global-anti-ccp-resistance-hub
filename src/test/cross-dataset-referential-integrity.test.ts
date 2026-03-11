@@ -222,7 +222,7 @@ describe('Cross-Dataset Referential Integrity', () => {
         // Extract prisoner name from alert
         const titleLower = alert.title.toLowerCase();
         const matchesSomePrisoner = prisonerNames.some(
-          (name) => titleLower.includes(name) || alert.id.includes(name.split(' ').pop() || '')
+          (name) => titleLower.includes(name) || alert.id.includes(name.split(' ').pop() ?? '')
         );
         expect(
           matchesSomePrisoner,
