@@ -31,7 +31,10 @@
     "sources": [
       "International Campaign for Tibet",
       "UN Committee on the Rights of the Child"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2020/05/17/china-panchen-lama-detained-25-years"
+    }
   },
   {
     "id": 3,
@@ -46,7 +49,10 @@
       "BBC News",
       "UK Government Archives",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-40425929"
+    }
   },
   {
     "id": 4,
@@ -61,7 +67,10 @@
     "sources": [
       "Falun Dafa Information Center",
       "China Tribunal"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/documents/asa17/011/2000/en/"
+    }
   },
   {
     "id": 5,
@@ -76,7 +85,10 @@
       "Washington Post (Philip Pan investigation)",
       "International Education Development (UN statement)",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/documents/asa17/011/2000/en/"
+    }
   },
   {
     "id": 6,
@@ -92,7 +104,10 @@
       "BBC",
       "Reuters",
       "Hong Kong Free Press"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-23452906"
+    }
   },
   {
     "id": 7,
@@ -107,7 +122,10 @@
     "sources": [
       "International Campaign for Tibet",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2008/03/15/china-events-tibet-march-10-14-2008"
+    }
   },
   {
     "id": 8,
@@ -141,7 +159,10 @@
     "sources": [
       "Radio Free Asia",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2009/07/10/china-xinjiang-unrest-investigate-use-deadly-force"
+    }
   },
   {
     "id": 10,
@@ -175,7 +196,10 @@
       "BBC",
       "The Guardian",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-16258905"
+    }
   },
   {
     "id": 12,
@@ -191,7 +215,11 @@
       "Free Tibet",
       "International Campaign for Tibet",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2012/11/09/china-tibetan-self-immolations-rise",
+      "International Campaign for Tibet": "https://savetibet.org/tibetan-self-immolations/"
+    }
   },
   {
     "id": 13,
@@ -243,7 +271,11 @@
     "sources": [
       "Chinese Human Rights Defenders",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2025/07/06/china-10-years-since-709-crackdown-lawyers-still-under-fire",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2025/07/chinese-government-impunity-for-crackdown-on-lawyers-fuels-decade-of-repression/"
+    }
   },
   {
     "id": 16,
@@ -257,7 +289,10 @@
     "sources": [
       "Hong Kong Free Press",
       "PEN International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2016/06/16/china-account-hong-kong-bookseller-detention"
+    }
   },
   {
     "id": 17,
@@ -310,7 +345,10 @@
       "BBC",
       "Reuters",
       "The Guardian"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-43361276"
+    }
   },
   {
     "id": 20,
@@ -461,7 +499,10 @@
       "Safeguard Defenders",
       "FBI",
       "European Parliament"
-    ]
+    ],
+    "source_urls": {
+      "Safeguard Defenders": "https://safeguarddefenders.com/en/publications/patrol-and-persuade"
+    }
   },
   {
     "id": 28,
@@ -583,7 +624,10 @@
       "Reuters",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/11/19/hong-kong-47-sentenced-crushing-blow-human-rights"
+    }
   },
   {
     "id": 34,
@@ -601,7 +645,10 @@
       "DW News",
       "CBS News",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years"
+    }
   },
   {
     "id": 35,
@@ -618,7 +665,10 @@
       "US News & World Report",
       "CIVICUS Monitor",
       "Hong Kong Free Press"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/03/19/hong-kong-passes-draconian-new-security-law"
+    }
   },
   {
     "id": 36,
@@ -633,7 +683,10 @@
       "Fortify Rights",
       "International Service for Human Rights",
       "Hong Kong Centre for Human Rights"
-    ]
+    ],
+    "source_urls": {
+      "UN News": "https://news.un.org/en/story/2026/03/1160162"
+    }
   },
   {
     "id": 37,
@@ -669,7 +722,11 @@
       "UN News",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "NBC News": "https://www.nbcnews.com/world/asia/hong-kong-jimmy-lai-will-not-appeal-national-security-conviction-rcna262058",
+      "UN News": "https://news.un.org/en/story/2026/02/1159387"
+    }
   },
   {
     "id": 39,
@@ -684,7 +741,11 @@
       "ICIJ",
       "Human Rights Watch",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "ICIJ": "https://www.icij.org/investigations/china-targets/",
+      "Human Rights Watch": "https://www.hrw.org/news/2026/01/09/canada-confront-chinas-heightened-repression"
+    }
   },
   {
     "id": 40,

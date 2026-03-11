@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 10, 2026 (Session 265)
+> Last Updated: March 11, 2026 (Session 266)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -60,6 +60,15 @@
 - [x] **Tibet Uprising Day source verification** — ✅ Session 265
   - Added verified HRW direct URL: [Don't Forget Tibet on Anniversary of 1959 Lhasa Uprising](https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising)
   - Not a homepage link — direct article from March 9, 2026
+- [x] **Timeline source URL systematic verification** — ✅ Session 266
+  - Upgraded ALL 40 timeline events from homepage-only source links to direct article URLs
+  - Added `source_urls` field to timeline_events.json (69 verified URLs total)
+  - Updated `resolveSource()` utility with optional urlOverride parameter (backward-compatible)
+  - Updated InteractiveTimeline component to pass direct URLs when available
+  - Every URL verified via web search — direct articles from HRW, Amnesty, BBC, Reuters, HKFP, etc.
+  - Subtask: Apply same pattern to political_prisoners_research.json source URLs
+  - Subtask: Apply same pattern to sanctions_tracker.json source URLs
+  - Subtask: Periodic URL health check (consider automated test)
 - [x] **Add Kwok Yin-sang case** — ✅ Session 150
   - First family member prosecuted under Article 23 (Feb 26, 2026)
   - Father of US-based activist Anna Kwok, sentenced 8 months
