@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "24.0",
-    "date": "2026-03-11T13:20:00Z",
+    "version": "25.0",
+    "date": "2026-03-11T17:15:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 266,
+    "sessions_completed": 267,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v23.0, Session 265)",
+    "supersedes": "AGENT_HANDOFF.json (v24.0, Session 266)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,17 +19,17 @@
   ],
   "repository_metrics": {
     "total_files": "360+",
-    "frontend_tests": 3602,
+    "frontend_tests": 3611,
     "test_files": 192,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
-    "profile_pages_built": 16,
+    "profile_pages_built": 17,
     "languages_supported": 8,
-    "data_entries_sourced": 166,
+    "data_entries_sourced": 167,
     "sanctions_entries": 47,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 265,
+    "sessions_completed": 267,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -722,6 +722,27 @@
       "events_with_urls": "40/40 (was 0/40)",
       "tests": "3602 passing, 192 files",
       "build": "310KB (99KB gzip), 5.62s",
+      "tsc_errors": 0,
+      "eslint_errors": 0
+    }
+  },
+  "session_267_changes": {
+    "summary": "Add Chow Hang-Tung profile page + political prisoners update (65 total)",
+    "changes": [
+      "Created ChowHangTungProfile.tsx — 16 timeline events, 2 charges, 4 CCP narrative rebuttals, 6 international responses, 10 Tier 1-2 sources",
+      "Added Chow Hang-Tung to political_prisoners_research.json (human rights lawyer, Tiananmen vigil organizer, 4+ years pre-trial detention, UN WGAD ruled arbitrary)",
+      "Registered profile in App.tsx (lazy import + route), ProfilesIndex.tsx (card), profile-pages.test.tsx (all tests)",
+      "Updated all prisoner count references (64→65) across 14 files (components, services, tests)",
+      "Added 'DETAINED' as valid profile status in tests (distinct from IMPRISONED — covers pre-trial detention)",
+      "Fixed design system compliance: text-slate-500 → text-slate-400 for readable text in profile",
+      "Updated AGENT_HANDOFF.json to v25.0",
+      "Resolved Q13 from QUESTIONS_FOR_HUMANS.md: Added Chow per standing instruction (Lee Cheuk-yan already in database, Albert Ho added Session 265)"
+    ],
+    "metrics": {
+      "profile_pages": "17 (was 16)",
+      "political_prisoners": "65 (was 64)",
+      "tests": "3611 passing, 192 files",
+      "build": "310KB (99KB gzip), 5.81s",
       "tsc_errors": 0,
       "eslint_errors": 0
     }

@@ -279,7 +279,7 @@ const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
         aria-expanded={isExpanded}
       >
         <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-xs text-slate-400 shrink-0 w-12">{event.year}</span>
+          <span className="font-mono text-xs text-slate-400 shrink-0 min-w-12">{event.year}</span>
           <span className={`text-xs px-1.5 py-0.5 font-mono ${cat.text} ${cat.bg} border border-[#1c2a35] shrink-0`}>
             {cat.label}
           </span>
@@ -448,9 +448,9 @@ const ChowHangTungProfile: React.FC = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-slate-400 mt-3 mb-3">
-                    <div><span className="text-slate-400">Filed:</span> {c.filed}</div>
-                    <div><span className="text-slate-400">Verdict:</span> <span className={c.verdict.startsWith('ON TRIAL') ? 'text-yellow-400' : 'text-red-400'}>{c.verdict}</span></div>
-                    <div className="col-span-2"><span className="text-slate-400">Sentence:</span> {c.sentence}</div>
+                    <div><span className="text-slate-400 font-semibold">Filed:</span> <span className="text-slate-200">{c.filed}</span></div>
+                    <div><span className="text-slate-400 font-semibold">Verdict:</span> <span className={c.verdict.startsWith('ON TRIAL') ? 'text-yellow-400' : 'text-red-400'}>{c.verdict}</span></div>
+                    <div className="col-span-2"><span className="text-slate-400 font-semibold">Sentence:</span> <span className="text-slate-200">{c.sentence}</span></div>
                   </div>
                   <p className="text-sm text-slate-300 leading-relaxed">{c.detail}</p>
                 </div>

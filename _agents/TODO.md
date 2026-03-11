@@ -1,11 +1,11 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 11, 2026 (Session 266)
+> Last Updated: March 11, 2026 (Session 267)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
 > **Agent docs:** `_agents/` folder (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, AGENT_HANDOFF.json)
-> **Human decisions:** All Q1-Q11 answered. See `_agents/QUESTIONS_FOR_HUMANS.md` + archives.
+> **Human decisions:** All Q1-Q11 answered. Q12 open (custom domain). Q13 resolved by agent (Session 267). See `_agents/QUESTIONS_FOR_HUMANS.md` + archives.
 
 ---
 
@@ -49,6 +49,7 @@
   - [x] Subtask: Update Chow Hang-Tung entry in political_prisoners_research.json with trial data ✅ Session 265
   - [x] Subtask: Update Lee Cheuk-yan entry in political_prisoners_research.json with trial data ✅ Session 265
   - [x] Subtask: Add Albert Ho to political_prisoners_research.json (pleaded guilty) ✅ Session 265 (now 64 prisoners)
+  - [x] Subtask: Add Chow Hang-Tung to political_prisoners_research.json + dedicated profile page ✅ Session 267 (now 65 prisoners, 17 profile pages)
   - Subtask: Consider dedicated profile page for Chow Hang-Tung (awaiting human confirmation Q13)
 - [x] **Add HK activist solitary confinement report** — ✅ Session 264, updated Session 265
   - Source: [Amnesty Canada urgent action](https://amnesty.ca/urgent-actions/hong-kong-activists-subjected-to-prolonged-solitary-confinement/)
@@ -568,7 +569,7 @@
 - **Build:** 310KB (99KB gzip), ~5.9s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
 - **Design:** Terminal/ASCII aesthetic 100% applied. 10+ automated design system compliance checks. Square corners only, terminal green (#4afa82), WCAG AA contrast throughout.
 - **Navigation:** 7 nav items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security). Sidebar w-56. Breadcrumbs, Back to Top, keyboard shortcuts (`/` search, `?` help).
-- **Data:** **64 political prisoners** (Albert Ho added S265), 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search.
+- **Data:** **65 political prisoners** (Chow Hang-Tung added S267, Albert Ho added S265), 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search.
 - **Analytical Tools:** 15+ major components built (LegalCaseTracker, SanctionImpactAnalyzer, TransnationalRepressionTracker, DiasporaSecurityAdvisor, MediaNarrativeTracker, GenocideLegalFramework, DiplomaticCoercionTracker, CensorshipCircumventionGuide, EconomicImpactAnalyzer, WhistleblowerGuide, PolicyBriefGenerator, and more).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. Supabase Auth admin login. Service_role key detection. WebRTC leak check.

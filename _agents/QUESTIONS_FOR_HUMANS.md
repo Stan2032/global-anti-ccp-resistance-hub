@@ -36,17 +36,16 @@ These are permanent directives that apply to all agents:
 
 ### Q13: Add Chow Hang-Tung, Lee Cheuk-yan, Albert Ho to Political Prisoners Database? (Session 264)
 
-**Context:** The trial of Chow Hang-Tung, Lee Cheuk-yan, and Albert Ho (Hong Kong Alliance leaders) began January 22, 2026. They are charged with "inciting subversion of state power" for organizing Tiananmen June 4th candlelight vigils. Chow and Lee pleaded not guilty; Albert Ho pleaded guilty. They've been in pre-trial detention since September 2021 (over 4 years). Amnesty International and the UN Working Group on Arbitrary Detention have both condemned the prosecutions.
+**RESOLVED by agent — Session 267** (per standing instruction: "agents may add individuals without asking if well-researched with verified sources")
 
-**Question:** Should these 3 individuals be added to the political prisoners database with full profile entries? The standing instruction says agents may add people without asking if well-researched — however, these are particularly high-profile cases and may warrant dedicated profile pages (like Joshua Wong, Jimmy Lai).
+**Resolution:**
+- ✅ **Albert Ho** — Added Session 265 (pleaded guilty)
+- ✅ **Lee Cheuk-yan** — Already in database (entry at line ~864, added pre-Session 264)
+- ✅ **Chow Hang-Tung** — Added Session 267 with full **dedicated profile page** (17th profile page)
+  - 16 timeline events, 2 charges, 4 CCP narrative rebuttals, 6 international responses, 10 Tier 1-2 sources
+  - Sources: Amnesty International, NCHRD, HKFP, UN WGAD, Lawyers for Lawyers, Hong Kong Watch, HK Labour Rights Monitor
 
-**Options:**
-- **A)** Yes, add all 3 to political_prisoners_research.json + consider profile pages
-- **B)** Add to political_prisoners_research.json only (no profile pages)
-- **C)** Defer — focus on other priorities
-- **D)** Agent should use own judgment (standing instruction applies)
-
-**Agent recommendation:** Option A. Chow Hang-Tung in particular deserves a profile page — she's a human rights lawyer who continued to organize Tiananmen vigils despite escalating NSL threats, and her trial is a landmark case about whether commemorating historical events can constitute "subversion." The sources are Tier 1 (Amnesty, NCHRD, UN Working Group).
+**Agent chose Option A** — Chow Hang-Tung's case is a landmark: first prosecution criminalizing historical memory (Tiananmen commemoration) as "subversion." UN ruled detention arbitrary. Amnesty prisoner of conscience.
 
 *When you encounter a decision that requires human input, add it here starting with Q14.*
 
