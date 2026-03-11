@@ -13,7 +13,11 @@
       "Tiananmen Papers",
       "Amnesty International",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/03/tiananmen-anniversary-chinas-crackdown-on-human-rights-30-years-on/",
+      "Human Rights Watch": "https://www.hrw.org/news/2019/06/04/china-one-million-detained-ask-why"
+    }
   },
   {
     "id": 2,
@@ -118,7 +122,11 @@
       "PEN International",
       "Human Rights Watch",
       "Nobel Prize Committee"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2008/12/10/china-release-charter-08-signatories"
+    }
   },
   {
     "id": 9,
@@ -148,7 +156,11 @@
       "Nobel Prize Committee",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2010/10/08/china-nobel-peace-prize-sends-powerful-message"
+    }
   },
   {
     "id": 11,
@@ -194,7 +206,10 @@
     "sources": [
       "PEN International",
       "European Parliament"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2014/01/16/china-free-scholar-charged-separatism"
+    }
   },
   {
     "id": 14,
@@ -209,7 +224,11 @@
     "sources": [
       "Hong Kong Free Press",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/09/hong-kong-umbrella-movement-five-years-on/",
+      "BBC": "https://www.bbc.com/news/world-asia-china-29407067"
+    }
   },
   {
     "id": 15,
@@ -254,7 +273,11 @@
       "Xinjiang Police Files",
       "ASPI",
       "Uyghur Tribunal"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/report/2021/04/19/break-their-lineage-break-their-roots/chinas-crimes-against-humanity-targeting",
+      "Amnesty International": "https://www.amnesty.org/en/latest/research/2021/06/china-draconian-repression-of-muslims-in-xinjiang-amounts-to-crimes-against-humanity/"
+    }
   },
   {
     "id": 18,
@@ -268,7 +291,11 @@
     "sources": [
       "Nobel Committee",
       "PEN International"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2017/07/13/china-nobel-laureate-liu-xiaobo-dies-custody"
+    }
   },
   {
     "id": 19,
@@ -299,7 +326,12 @@
       "Hong Kong Free Press",
       "Reuters",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/06/hong-kong-brutal-policing-of-peaceful-protesters/",
+      "Human Rights Watch": "https://www.hrw.org/news/2019/06/12/hong-kong-police-utilise-excessive-force-against-protesters",
+      "BBC": "https://www.bbc.com/news/world-asia-china-48607723"
+    }
   },
   {
     "id": 21,
@@ -313,7 +345,11 @@
     "sources": [
       "Hong Kong Watch",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/feature/2021/06/25/dismantling-free-society/hong-kong-one-year-after-national-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2020/07/hong-kong-national-security-law-10-things-you-need-to-know/"
+    }
   },
   {
     "id": 22,
@@ -328,7 +364,11 @@
     "sources": [
       "Committee to Protect Journalists",
       "Hong Kong Free Press"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2020/08/hong-kong-arrest-of-jimmy-lai-under-national-security-law/",
+      "BBC": "https://www.bbc.com/news/world-asia-china-53712217"
+    }
   },
   {
     "id": 23,
@@ -343,7 +383,11 @@
     "sources": [
       "Hong Kong Free Press",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2021/01/06/hong-kong-mass-arrests-under-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2021/01/hong-kong-mass-arrests-of-opposition-figures-a-devastating-blow-to-the-city/"
+    }
   },
   {
     "id": 24,
@@ -357,7 +401,11 @@
     "sources": [
       "Committee to Protect Journalists",
       "Reporters Without Borders"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2021/06/24/hong-kong-apple-daily-closure-major-blow-press-freedom",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2021/06/hong-kong-apple-daily-editors-charged-with-collusion/"
+    }
   },
   {
     "id": 25,
@@ -372,7 +420,11 @@
       "Xinjiang Police Files",
       "BBC",
       "Dr. Adrian Zenz"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/extra/85qihtvw6e/the-faces-from-chinas-uyghur-detention-camps",
+      "Human Rights Watch": "https://www.hrw.org/news/2022/05/24/china-leaked-data-show-scale-uyghur-detention"
+    }
   },
   {
     "id": 26,
@@ -388,7 +440,12 @@
       "BBC",
       "New York Times",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-63780411",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2022/11/china-authorities-must-respect-right-to-protest/",
+      "Human Rights Watch": "https://www.hrw.org/news/2022/12/01/china-protests-spread-against-zero-covid"
+    }
   },
   {
     "id": 27,
@@ -420,7 +477,11 @@
       "Amnesty International",
       "Human Rights Watch",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/03/19/hong-kong-passes-draconian-new-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2024/03/hong-kong-authorities-must-repeal-new-draconian-national-security-law/"
+    }
   },
   {
     "id": 29,
@@ -435,7 +496,11 @@
     "sources": [
       "Hong Kong Free Press",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/articles/c5ydw9xk51go",
+      "Human Rights Watch": "https://www.hrw.org/news/2024/11/19/hong-kong-47-sentenced-crushing-blow-human-rights"
+    }
   },
   {
     "id": 30,
@@ -452,7 +517,12 @@
       "CNN",
       "Reuters",
       "UK Foreign Office"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.cbc.ca/news/world/jimmy-lai-hong-kong-china-verdict-9.7015714",
+      "Human Rights Watch": "https://www.hrw.org/news/2025/12/15/hong-kong-jimmy-lai-convicted-on-bogus-national-security-charges",
+      "Reuters": "https://www.reuters.com/graphics/HONGKONG-SECURITY/JIMMYLAI/zjpqdaeoxvx/"
+    }
   },
   {
     "id": 31,
@@ -468,10 +538,10 @@
       "NCHRD",
       "Hong Kong Labour Rights Monitor"
     ],
-    "source_urls": [
-      "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
-      "https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/"
-    ]
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+      "NCHRD": "https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/"
+    }
   },
   {
     "id": 32,
@@ -489,7 +559,14 @@
       "Committee to Protect Journalists",
       "BBC",
       "CNBC"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
+      "BBC": "https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/",
+      "EU EEAS": "https://www.eeas.europa.eu/eeas/hong-kong-spokesperson-statement-sentencing-jimmy-lai_en",
+      "US State Department": "https://www.state.gov/releases/office-of-the-spokesperson/2026/02/sentencing-in-jimmy-lai-case/",
+      "CBS News": "https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/"
+    }
   },
   {
     "id": 33,
@@ -623,8 +700,8 @@
       "Committee for a Free Hong Kong Foundation",
       "Human Rights Watch"
     ],
-    "source_urls": [
-      "https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising"
-    ]
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising"
+    }
   }
 ]
