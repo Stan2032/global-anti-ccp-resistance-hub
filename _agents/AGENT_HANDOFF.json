@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "25.0",
-    "date": "2026-03-11T17:15:00Z",
+    "version": "25.1",
+    "date": "2026-03-11T19:15:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
     "sessions_completed": 267,
     "state": "ACTIVE",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v24.0, Session 266)",
+    "supersedes": "AGENT_HANDOFF.json (v25.0, Session 267)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -18,18 +18,18 @@
     "_agents/STYLE_GUIDE.md"
   ],
   "repository_metrics": {
-    "total_files": "360+",
-    "frontend_tests": 3611,
+    "total_files": "365+",
+    "frontend_tests": 3612,
     "test_files": 192,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 17,
     "languages_supported": 8,
-    "data_entries_sourced": 167,
-    "sanctions_entries": 47,
+    "data_entries_sourced": 166,
+    "sanctions_entries": 46,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 267,
+    "sessions_completed": 268,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,

@@ -20,9 +20,9 @@ This is not a neutral project. It exists because real people — journalists, la
 - Provides tools for activists, researchers, and journalists
 - Features 15 detailed profile pages (Jimmy Lai, Ilham Tohti, Panchen Lama, Liu Xiaobo, Joshua Wong, Gui Minhai, Agnes Chow, Nathan Law, Benny Tai, Cardinal Zen, Gao Zhisheng, Zhang Zhan, Tashi Wangchuk, Ren Zhiqiang, Xu Zhiyong) with sourced timelines
 - Has a **terminal/ASCII aesthetic** — monospace headings, box-drawing borders (`──`, `╔═╗`), terminal green (`#4afa82`) accents, square corners, dark backgrounds (`#0a0e14`, `#111820`)
-- Contains 360+ source files (100% TypeScript), 110 active React components, 3602 passing Vitest tests across 192 test files
+- Contains 360+ source files (100% TypeScript), 110 active React components, 3612 passing Vitest tests across 192 test files
 - **Statistics**: 12 centralized statistics (incl HK NSL arrests 386/176 convicted, UFLPA entity list 144 companies)
-- **Data**: 64 political prisoners, 47 sanctioned entities, 34 officials, 30 forced labor companies, 166+ total entries, 20 JSON data files, 34 recent news items
+- **Data**: 65 political prisoners, 46 sanctioned entities, 34 officials, 30 forced labor companies, 165+ total entries, 20 JSON data files, 34 recent news items
 - **API**: REST API via Cloudflare Workers (`api/worker.js`) with 13 dataset endpoints, CORS, rate limiting
 - **Push**: Web Push service ready (`src/services/pushService.js`) — needs VAPID key setup
 
@@ -37,7 +37,7 @@ The following has been accomplished:
 7. **Performance**: 81 sub-components lazy-loaded, all page bundles under 50KB
 8. **Test infrastructure**: 3561 Vitest tests across 187 test files (data integrity, accessibility, i18n, profiles, sanctions, source links, CCP influence detection, timeline, sitemap, security headers, manifest/PWA, political prisoners, live data service, research data, security center, CCP tactics, Supabase service, VolunteerSignup, NewsDigest, ContactForm, data sources, detention facilities, design system compliance, URL health, sanctioned officials, mobile navigation, emergency alerts, route integrity, defensive coding, meta-test coverage, security audit, import hygiene, performance budget, content completeness, ARIA live regions, keyboard navigation, and more)
 9. **i18n**: 8 locale files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo) with 194 keys each, all translated
-10. **Sanctions tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
+10. **Sanctions tracker**: 46 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs linking to official government registries (includes Canada Dec 2024 + US Mar 2025 rounds)
 11. **RSS feeds**: 9 feeds from trusted sources (HKFP, RFA×3, Taiwan News, SCMP, BBC, HRW, Amnesty, CPJ, Guardian)
 12. **Print styles**: @media print stylesheet for A4 layout
 13. **Proper flags**: SVG flag components for East Turkestan and Tibet (replaced generic Lucide icons)
@@ -66,7 +66,7 @@ The following has been accomplished:
 cd /home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub
 npm install
 npm run build     # Should succeed in ~6s
-npx vitest run    # Should show 3602 tests passing across 192 test files
+npx vitest run    # Should show 3612 tests passing across 192 test files
 ```
 
 ---
@@ -124,7 +124,7 @@ These are directives from the human owner. Follow them:
 │   │   ├── SanctionsTracker.tsx # Uses src/data/sanctions_tracker.json
 │   │   └── ...
 │   ├── data/                   # JSON data files
-│   │   ├── sanctions_tracker.json     # 47 sanctions entries
+│   │   ├── sanctions_tracker.json     # 46 sanctions entries
 │   │   ├── political_prisoners_research.json
 │   │   ├── sanctioned_officials_research.json
 │   │   └── ...
@@ -135,7 +135,7 @@ These are directives from the human owner. Follow them:
 │   ├── hooks/                  # Custom hooks (.ts) — useDocumentTitle, etc.
 │   ├── contexts/               # ThemeContext, LanguageContext (8 languages)
 │   ├── locales/                # i18n: en, zh-CN, zh-TW, vi, ko, ja, ug, bo
-│   └── test/                   # 192 Vitest test files (.test.ts/.test.tsx), 3602 tests
+│   └── test/                   # 192 Vitest test files (.test.ts/.test.tsx), 3612 tests
 ├── backend/                    # Node.js/Express backend (NOT deployed yet)
 ├── tailwind.config.js          # Terminal color palette, animations
 ├── vite.config.js              # Build config with lazy loading
@@ -156,7 +156,7 @@ These are directives from the human owner. Follow them:
 
 ### Test Commands
 ```bash
-npx vitest run                           # All 3602 tests (192 files)
+npx vitest run                           # All 3612 tests (192 files)
 npx vitest run src/test/ProfilesIndex    # Specific test file
 npm run build                            # Production build (~6s)
 ```
@@ -197,7 +197,7 @@ Current 8 locales cover navigation-level UI strings (194 keys). Sensitive human 
 - ✅ **Terminal Design System**: 100% complete, zero remaining old-style classes
 - ✅ **Flag Icons**: Proper SVG flags for East Turkestan and Tibet
 - ✅ **RSS Feeds**: 9 feeds from trusted sources with ALWAYS_RELEVANT_SOURCES
-- ✅ **Sanctions Tracker**: 47 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs
+- ✅ **Sanctions Tracker**: 46 entries across US/UK/EU/Canada/Australia in structured JSON with source URLs
 - ✅ **Security**: react-router 7.13.0 (3 CVEs fixed), clipboard error handling (9 components)
 - ✅ **Accessibility**: WCAG AA verified, ARIA dialog roles on modals, Escape key support
 - ✅ **Print Styles**: @media print A4 layout for profile pages
@@ -264,10 +264,10 @@ The CCP disappears people for speaking. This site exists so their voices aren't 
 **Handoff prepared by:** Sessions 1-258  
 **Date:** March 10, 2026  
 **Repository state:**
-- 3602 tests passing (192 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
+- 3612 tests passing (192 files), build clean (309KB / 99KB gzip), 0 ESLint errors, 0 TSC errors
 - **TypeScript migration COMPLETE**: 100% TypeScript codebase — 0 .js/.jsx files, 360 .ts/.tsx files (26 .ts, 144 .tsx, 60 .test.ts, 130 .test.tsx)
 - Terminal design 100% applied, mobile WCAG 2.5.5 compliant, typography cleanup complete
-- 16 profiles, 8 languages, 47 sanctions, 34 sanctioned officials, 34 timeline events
+- 16 profiles, 8 languages, 46 sanctions, 34 sanctioned officials, 34 timeline events
 - 0 orphan components, 10 design system compliance checks, CCP influence detection centralized
 - "CPC" terminology banned (automated test), email/newsletter DEFERRED by owner
 - Supabase integrated (4 forms wired), Cloudflare deploy-ready

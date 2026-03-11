@@ -1,6 +1,6 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 11, 2026 (Session 267)
+> Last Updated: March 11, 2026 (Session 268)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -21,12 +21,12 @@
 - **Test strategy (Q10)**: Mix — alternate between test coverage and feature work each session.
 
 ### Content Updates
-- [x] **Update Sanctions List**: ✅ Verified March 2, 2026. US Mar 2025 round (6 HK officials for transnational repression) already included. EU 2025 sanctions are entity-level (Chinese companies supporting Russia), not individual officials — different category. All 47 entries verified current.
-  - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds)
+- [x] **Update Sanctions List**: ✅ Verified March 11, 2026. Session 268: Removed incorrect Chen Quanguo EU entry (NOT in Council Implementing Regulation 2021/478 per POLITICO, CNBC, ICIJ; sanctioned by US/UK/CA/AU only). Upgraded 6 homepage-only `sanctionsmap.eu/` URLs to direct EUR-Lex regulation links. Clarified XPCC entity to "XPCC PSB". All 46 entries verified current.
+  - 46 entries currently (was 47 — corrected Chen Quanguo EU error)
   - Subtask: Check US Treasury SDN list for new China/HK-related designations ✅
   - Subtask: Check UK FCDO sanctions list for updates ✅
   - Subtask: Check EU Council sanctions for new entries ✅ (entity-level only in 2025)
-  - Subtask: Verify source_url links still resolve
+  - Subtask: Verify source_url links still resolve ✅ (all homepage URLs upgraded to direct links)
 - [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 235
   - ✅ Dec 15, 2025: Found guilty on all 3 NSL charges
   - ✅ Feb 9, 2026: Sentenced to 20 years (harshest NSL sentence)
@@ -564,12 +564,12 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 265, Mar 10, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 108+ components, 3602 tests (192 files, all passing). **100% TypeScript** — 360+ .ts/.tsx files, 0 .js/.jsx.
+### Current State Summary (as of Session 268, Mar 11, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 17 profiles, 108+ components, 3612 tests (192 files, all passing). **100% TypeScript** — 365+ .ts/.tsx files, 0 .js/.jsx.
 - **Build:** 310KB (99KB gzip), ~5.9s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
 - **Design:** Terminal/ASCII aesthetic 100% applied. 10+ automated design system compliance checks. Square corners only, terminal green (#4afa82), WCAG AA contrast throughout.
 - **Navigation:** 7 nav items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security). Sidebar w-56. Breadcrumbs, Back to Top, keyboard shortcuts (`/` search, `?` help).
-- **Data:** **65 political prisoners** (Chow Hang-Tung added S267, Albert Ho added S265), 47 sanctions, 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search.
+- **Data:** **65 political prisoners** (Chow Hang-Tung added S267, Albert Ho added S265), **46 sanctions** (corrected: Chen Quanguo removed from EU — not in Regulation 2021/478), 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search. EU sanctions upgraded to direct EUR-Lex links.
 - **Analytical Tools:** 15+ major components built (LegalCaseTracker, SanctionImpactAnalyzer, TransnationalRepressionTracker, DiasporaSecurityAdvisor, MediaNarrativeTracker, GenocideLegalFramework, DiplomaticCoercionTracker, CensorshipCircumventionGuide, EconomicImpactAnalyzer, WhistleblowerGuide, PolicyBriefGenerator, and more).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 - **Security:** 9 headers. Supabase Auth admin login. Service_role key detection. WebRTC leak check.
