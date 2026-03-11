@@ -15,6 +15,7 @@ vi.mock('../services/liveDataService', () => ({
 
 import { useLiveFeeds, usePoliticalPrisoners, useStatistics } from '../hooks/useLiveData';
 import { fetchFeedsProgressively, fetchPoliticalPrisoners, fetchStatistics } from '../services/liveDataService';
+import type { FeedItem, NormalisedPrisoner, PlatformStatistics } from '../services/liveDataService';
 
 describe('useLiveData hooks', () => {
   beforeEach(() => {
@@ -39,7 +40,7 @@ describe('useLiveData hooks', () => {
       const mockFeeds = [
         { title: 'Hong Kong activist arrested', source: 'HKFP' },
         { title: 'Sanctions update', source: 'RFA' },
-      ];
+      ] as FeedItem[];
       vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         onItems(mockFeeds);
         if (onSourceDone) onSourceDone('hkfp');
@@ -58,8 +59,8 @@ describe('useLiveData hooks', () => {
     });
 
     it('accumulates feeds progressively from multiple sources', async () => {
-      const hkfpItems = [{ title: 'HK article', source: 'hkfp' }];
-      const rfaItems = [{ title: 'RFA article', source: 'rfa' }];
+      const hkfpItems = [{ title: 'HK article', source: 'hkfp' }] as FeedItem[];
+      const rfaItems = [{ title: 'RFA article', source: 'rfa' }] as FeedItem[];
       vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         onItems(hkfpItems);
         if (onSourceDone) onSourceDone('hkfp');
@@ -78,7 +79,7 @@ describe('useLiveData hooks', () => {
 
     it('tracks loadedSources as each source completes', async () => {
       vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
-        onItems([{ title: 'Article', source: 'hkfp' }]);
+        onItems([{ title: 'Article', source: 'hkfp' }] as FeedItem[]);
         if (onSourceDone) onSourceDone('hkfp');
         if (onSourceDone) onSourceDone('rfa');
       });
@@ -137,7 +138,7 @@ describe('useLiveData hooks', () => {
 
     it('provides a refresh function', async () => {
       vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, _onSourceDone) => {
-        onItems([{ title: 'First fetch' }]);
+        onItems([{ title: 'First fetch' }] as FeedItem[]);
       });
       const { result } = renderHook(() => useLiveFeeds(0));
       await act(async () => {
@@ -146,7 +147,7 @@ describe('useLiveData hooks', () => {
       expect(result.current.feeds).toEqual([{ title: 'First fetch' }]);
 
       vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, _onSourceDone) => {
-        onItems([{ title: 'Refreshed data' }]);
+        onItems([{ title: 'Refreshed data' }] as FeedItem[]);
       });
       await act(async () => {
         await result.current.refresh();
@@ -219,7 +220,7 @@ describe('useLiveData hooks', () => {
       const mockPrisoners = [
         { name: 'Jimmy Lai', status: 'imprisoned' },
         { name: 'Zhang Zhan', status: 'imprisoned' },
-      ];
+      ] as NormalisedPrisoner[];
       vi.mocked(fetchPoliticalPrisoners).mockResolvedValue(mockPrisoners);
 
       const { result } = renderHook(() => usePoliticalPrisoners());
@@ -260,7 +261,7 @@ describe('useLiveData hooks', () => {
         totalPrisoners: 62,
         sanctionsEntries: 46,
         countriesTracked: 30,
-      };
+      } as unknown as PlatformStatistics;
       vi.mocked(fetchStatistics).mockResolvedValue(mockStats);
 
       const { result } = renderHook(() => useStatistics());
