@@ -3,7 +3,29 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const DATA_DIR = resolve(__dirname, '../data');
-const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+
+interface ResponseOutput {
+  country: string;
+  overall_stance: string;
+  genocide_recognition: string;
+  sanctions_imposed: string;
+  legislative_actions: string;
+  diplomatic_actions: string;
+  source_url: string;
+  [key: string]: unknown;
+}
+
+interface ResponseEntry {
+  input: string;
+  output: ResponseOutput;
+  error: string;
+}
+
+interface ResponsesData {
+  results: ResponseEntry[];
+}
+
+const data: ResponsesData = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
 
 describe('International responses data integrity', () => {
   it('has a results array', () => {
@@ -24,7 +46,7 @@ describe('International responses data integrity', () => {
   });
 
   it('country names are unique', () => {
-    const countries = data.results.map((r: any) => r.output.country);
+    const countries = data.results.map((r) => r.output.country);
     expect(new Set(countries).size).toBe(countries.length);
   });
 
@@ -50,7 +72,7 @@ describe('International responses data integrity', () => {
   });
 
   it('includes major world powers', () => {
-    const countries = new Set(data.results.map((r: any) => r.output.country));
+    const countries = new Set(data.results.map((r) => r.output.country));
     expect(countries.has('United States')).toBe(true);
     expect(countries.has('United Kingdom')).toBe(true);
     expect(countries.has('Canada')).toBe(true);

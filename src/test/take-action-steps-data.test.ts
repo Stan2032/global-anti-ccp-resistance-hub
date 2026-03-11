@@ -4,8 +4,24 @@ import { resolve } from 'path';
 
 const DATA_PATH = resolve(__dirname, '../data/take_action_steps.json');
 
+interface ActionLink {
+  name: string;
+  url: string;
+  internal?: boolean;
+  action?: string;
+}
+
+interface ActionStep {
+  number: number;
+  title: string;
+  icon: string;
+  color: string;
+  description: string;
+  links: ActionLink[];
+}
+
 describe('Take Action Steps data integrity', () => {
-  let data: any;
+  let data: ActionStep[];
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -34,7 +50,7 @@ describe('Take Action Steps data integrity', () => {
   });
 
   it('actions are numbered sequentially starting from 1', () => {
-    data.forEach((action: any, index: number) => {
+    data.forEach((action, index) => {
       expect(action.number).toBe(index + 1);
     });
   });

@@ -4,7 +4,38 @@ import { resolve } from 'path';
 
 const DATA_DIR = resolve(__dirname, '../data');
 const filePath = resolve(DATA_DIR, 'sanctioned_officials_research.json');
-const data = JSON.parse(readFileSync(filePath, 'utf-8'));
+
+/** Shape of an official's output in sanctioned_officials_research.json */
+interface OfficialOutput {
+  name: string;
+  chinese_name?: string;
+  birth_year?: number;
+  position: string;
+  responsibility_area: string;
+  current_status: string;
+  key_abuses: string;
+  us_sanctions: string;
+  uk_sanctions: string;
+  eu_sanctions: string;
+  canada_sanctions: string;
+  australia_sanctions: string;
+  source_url: string;
+  key_actions?: Array<{ year: number; action: string }>;
+  detailed_responsibilities?: string[];
+  [key: string]: unknown;
+}
+
+interface OfficialEntry {
+  input: string;
+  output: OfficialOutput;
+  error: string;
+}
+
+interface OfficialsData {
+  results: OfficialEntry[];
+}
+
+const data: OfficialsData = JSON.parse(readFileSync(filePath, 'utf-8'));
 
 describe('sanctioned_officials_research.json specifics', () => {
   it('contains at least 20 official records', () => {
@@ -26,12 +57,11 @@ describe('sanctioned_officials_research.json specifics', () => {
       'eu_sanctions',
       'canada_sanctions',
       'australia_sanctions',
-    ];
+    ] as const;
 
     for (const result of data.results) {
       for (const field of sanctionFields) {
         expect(result.output).toHaveProperty(field);
-        // Value must be "Yes - <date>" or "No"
         const val = result.output[field];
         expect(typeof val).toBe('string');
         expect(val === 'No' || val.startsWith('Yes')).toBe(true);
@@ -56,7 +86,7 @@ describe('sanctioned_officials_research.json specifics', () => {
 
   it('at least one official is sanctioned by the US', () => {
     const usSanctioned = data.results.filter(
-      (r: any) => r.output.us_sanctions && r.output.us_sanctions.startsWith('Yes')
+      (r) => r.output.us_sanctions && r.output.us_sanctions.startsWith('Yes')
     );
     expect(usSanctioned.length).toBeGreaterThan(0);
   });
@@ -70,30 +100,30 @@ describe('sanctioned_officials_research.json specifics', () => {
   });
 
   it('includes Xi Jinping as paramount leader', () => {
-    const xi = data.results.find((r: any) => r.output.name === 'Xi Jinping');
+    const xi = data.results.find((r) => r.output.name === 'Xi Jinping');
     expect(xi).toBeDefined();
-    expect(xi.output.responsibility_area).toBe('General');
-    expect(xi.output.current_status).toBe('In power');
+    expect(xi!.output.responsibility_area).toBe('General');
+    expect(xi!.output.current_status).toBe('In power');
   });
 
   it('key officials have biographical data (chinese_name, birth_year, key_actions)', () => {
     const keyNames = ['Xi Jinping', 'Chen Quanguo', 'Carrie Lam', 'John Lee', 'Wang Junzheng', 'Zhu Hailun', 'Zhao Kezhi', 'Wang Yi'];
     for (const name of keyNames) {
-      const result = data.results.find((r: any) => r.output.name === name);
+      const result = data.results.find((r) => r.output.name === name);
       expect(result, `${name} should be in the data`).toBeDefined();
-      expect(result.output.chinese_name, `${name} should have chinese_name`).toBeTruthy();
-      expect(result.output.birth_year, `${name} should have birth_year`).toBeGreaterThan(1900);
-      expect(result.output.key_actions, `${name} should have key_actions`).toBeInstanceOf(Array);
-      expect(result.output.key_actions.length, `${name} should have at least 3 key_actions`).toBeGreaterThanOrEqual(3);
-      expect(result.output.detailed_responsibilities, `${name} should have detailed_responsibilities`).toBeInstanceOf(Array);
+      expect(result!.output.chinese_name, `${name} should have chinese_name`).toBeTruthy();
+      expect(result!.output.birth_year, `${name} should have birth_year`).toBeGreaterThan(1900);
+      expect(result!.output.key_actions, `${name} should have key_actions`).toBeInstanceOf(Array);
+      expect(result!.output.key_actions!.length, `${name} should have at least 3 key_actions`).toBeGreaterThanOrEqual(3);
+      expect(result!.output.detailed_responsibilities, `${name} should have detailed_responsibilities`).toBeInstanceOf(Array);
     }
   });
 
   it('key_actions entries have year and action fields', () => {
-    const withActions = data.results.filter((r: any) => r.output.key_actions && r.output.key_actions.length > 0);
+    const withActions = data.results.filter((r) => r.output.key_actions && r.output.key_actions.length > 0);
     expect(withActions.length).toBeGreaterThanOrEqual(8);
     for (const result of withActions) {
-      for (const action of result.output.key_actions) {
+      for (const action of result.output.key_actions!) {
         expect(action).toHaveProperty('year');
         expect(action).toHaveProperty('action');
         expect(action.year).toBeGreaterThanOrEqual(2000);

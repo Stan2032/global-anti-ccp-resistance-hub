@@ -5,9 +5,36 @@ import { isCCPDomain } from '../utils/sourceLinks';
 
 const DATA_PATH = resolve(__dirname, '../data/political_prisoners_research.json');
 
+/** Prisoner output fields from political_prisoners_research.json */
+interface PrisonerOutput {
+  prisoner_name: string;
+  status: string;
+  location: string;
+  sentence: string;
+  latest_news: string;
+  health_status: string;
+  international_response?: string;
+  source_url: string;
+  confidence: string;
+  last_verified?: string;
+  verification_note?: string;
+}
+
+/** A single entry in the results array. */
+interface PrisonerEntry {
+  input: string;
+  output: PrisonerOutput;
+  error: string;
+}
+
+/** Top-level shape of political_prisoners_research.json. */
+interface PrisonerData {
+  results: PrisonerEntry[];
+}
+
 describe('Political Prisoners Research Data Integrity', () => {
-  let data;
-  let results: any;
+  let data: PrisonerData;
+  let results: PrisonerEntry[];
 
   beforeAll(() => {
     data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
@@ -32,13 +59,13 @@ describe('Political Prisoners Research Data Integrity', () => {
     });
 
     it('no entries have errors', () => {
-      const errorEntries = results.filter((r: any) => r.error && r.error.length > 0);
+      const errorEntries = results.filter((r) => r.error && r.error.length > 0);
       expect(errorEntries.length, `${errorEntries.length} entries have errors`).toBe(0);
     });
   });
 
   describe('Required output fields', () => {
-    const requiredFields = [
+    const requiredFields: (keyof PrisonerOutput)[] = [
       'prisoner_name', 'status', 'location', 'sentence',
       'latest_news', 'health_status', 'source_url', 'confidence'
     ];
@@ -65,8 +92,8 @@ describe('Political Prisoners Research Data Integrity', () => {
     });
 
     it('all prisoner names are unique', () => {
-      const names = results.map((r: any) => r.output.prisoner_name);
-      const dupes = names.filter((n: any, i: number) => names.indexOf(n) !== i);
+      const names = results.map((r) => r.output.prisoner_name);
+      const dupes = names.filter((n, i) => names.indexOf(n) !== i);
       expect(dupes, `Duplicate prisoner names: ${dupes.join(', ')}`).toEqual([]);
     });
   });
@@ -84,7 +111,7 @@ describe('Political Prisoners Research Data Integrity', () => {
     });
 
     it('has multiple entries with DETAINED status', () => {
-      const detained = results.filter((r: any) => r.output.status === 'DETAINED');
+      const detained = results.filter((r) => r.output.status === 'DETAINED');
       expect(detained.length).toBeGreaterThanOrEqual(10);
     });
   });
@@ -122,6 +149,61 @@ describe('Political Prisoners Research Data Integrity', () => {
         ).toBe(false);
       }
     });
+
+    it('source URLs point to specific articles, not just homepages', () => {
+      for (const entry of results) {
+        const url = entry.output.source_url;
+        const parsed = new URL(url);
+        const pathOnly = parsed.pathname.replace(/\/$/, '');
+        const isHomepage = !pathOnly && !parsed.search;
+        expect(
+          isHomepage,
+          `"${entry.output.prisoner_name}" source_url is homepage-only: ${url}`
+        ).toBe(false);
+      }
+    });
+
+    it('source URLs reference reputable human rights organizations or news outlets', () => {
+      const trustedDomains = [
+        // Major international HR organizations
+        'hrw.org', 'amnesty.org', 'amnesty.ca', 'ohchr.org', 'pen-international.org', 'pen.org',
+        'frontlinedefenders.org', 'chinaaid.org', 'duihua.org', 'ibanet.org',
+        // Tibet/Uyghur-specific
+        'freetibet.org', 'savetibet.org', 'tibetnetwork.org', 'tibetwatch.org', 'southmongolia.org',
+        // HK-specific
+        'hongkongfp.com', 'hongkongwatch.org', 'hklabourrights.org',
+        // CCP research organizations
+        'safeguarddefenders.com', 'citizenlab.ca', 'nchrd.org',
+        // Major news agencies & outlets
+        'bbc.com', 'bbc.co.uk', 'reuters.com', 'apnews.com', 'theguardian.com',
+        'nytimes.com', 'washingtonpost.com', 'aljazeera.com', 'dw.com', 'france24.com',
+        'npr.org', 'voanews.com', 'rfa.org', 'cnn.com', 'nbcnews.com', 'cbsnews.com',
+        'pbs.org', 'ft.com', 'economist.com', 'scmp.com',
+        // Specialty media
+        'news.artnet.com', 'pillarcatholic.com', 'thechinaproject.com', 'kunm.org',
+        'thestandard.com.hk', 'aninews.in',
+        // Government sources
+        'state.gov', 'congress.gov', 'whitehouse.gov', 'cecc.gov',
+        'humanrightscommission.house.gov',
+        'gov.uk', 'eeas.europa.eu', 'europarl.europa.eu',
+        'abc.net.au', 'smh.com.au',
+        // Journalism organizations
+        'cpj.org', 'rsf.org', 'icij.org',
+        // Reference
+        'en.wikipedia.org',
+        // Policy/media
+        'politico.eu', 'cnbc.com',
+      ];
+      for (const entry of results) {
+        const url = entry.output.source_url;
+        const hostname = new URL(url).hostname.replace(/^www\./, '');
+        const isTrusted = trustedDomains.some(d => hostname === d || hostname.endsWith('.' + d));
+        expect(
+          isTrusted,
+          `"${entry.output.prisoner_name}" source_url uses untrusted domain: ${hostname} (${url})`
+        ).toBe(true);
+      }
+    });
   });
 
   describe('Key prisoners are present', () => {
@@ -135,16 +217,16 @@ describe('Political Prisoners Research Data Integrity', () => {
 
     for (const prisoner of keyPrisoners) {
       it(`includes ${prisoner.name}`, () => {
-        const found = results.find((r: any) => r.output.prisoner_name === prisoner.name);
+        const found = results.find((r) => r.output.prisoner_name === prisoner.name);
         expect(found, `${prisoner.name} not found in database`).toBeDefined();
-        expect(found.output.status).toBe(prisoner.status);
+        expect(found!.output.status).toBe(prisoner.status);
       });
     }
   });
 
   describe('Data freshness', () => {
     it('at least some entries have last_verified dates', () => {
-      const withDates = results.filter((r: any) => r.output.last_verified);
+      const withDates = results.filter((r) => r.output.last_verified);
       expect(withDates.length).toBeGreaterThan(0);
     });
 
