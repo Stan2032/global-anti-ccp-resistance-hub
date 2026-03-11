@@ -110,7 +110,7 @@ describe('formatAlertForSharing', () => {
   });
 
   it('returns empty string for undefined input', () => {
-    expect(formatAlertForSharing(undefined as any)).toBe('');
+    expect(formatAlertForSharing(undefined as unknown as null)).toBe('');
   });
 
   it('includes only the first link URL', () => {
@@ -153,11 +153,11 @@ describe('daysSince', () => {
   });
 
   it('returns Infinity for null', () => {
-    expect(daysSince(null as any)).toBe(Infinity);
+    expect(daysSince(null as unknown as string)).toBe(Infinity);
   });
 
   it('returns Infinity for undefined', () => {
-    expect(daysSince(undefined as any)).toBe(Infinity);
+    expect(daysSince(undefined as unknown as string)).toBe(Infinity);
   });
 });
 
@@ -258,7 +258,7 @@ describe('calculateTimeLeft', () => {
   });
 
   it('returns fallback for numeric value', () => {
-    const result = calculateTimeLeft(12345 as any);
+    const result = calculateTimeLeft(12345 as unknown as string);
     expect(result.isPast).toBe(true);
     expect(result.days).toBe(0);
   });
