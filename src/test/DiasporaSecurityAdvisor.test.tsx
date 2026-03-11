@@ -172,7 +172,7 @@ describe('DiasporaSecurityAdvisor', () => {
     await vi.waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
     });
-    const clipboardText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipboardText).toContain('DIASPORA SECURITY ADVISORY');
     expect(clipboardText).toContain('CC BY 4.0');
   });

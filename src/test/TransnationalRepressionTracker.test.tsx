@@ -206,7 +206,7 @@ describe('TransnationalRepressionTracker', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const text = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(text).toContain('TRANSNATIONAL REPRESSION TRACKER');
     expect(text).toContain('Countries affected');
     expect(text).toContain('CC BY 4.0');

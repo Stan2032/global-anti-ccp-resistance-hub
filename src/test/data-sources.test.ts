@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/data_sources.json');
 
 describe('Data Sources integrity', () => {
-  let data: any;
+  let data: { major_sources: Array<{ category: string; sources: Array<{ name: string; url: string }> }>; rss_sources: Array<{ name: string; url: string }> };
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -93,7 +93,7 @@ describe('Data Sources integrity', () => {
     });
 
     it('covers expected categories', () => {
-      const categories = data.major_sources.map((c: any) => c.category);
+      const categories = data.major_sources.map((c: { category: string }) => c.category);
       expect(categories).toContain('Political Prisoners');
       expect(categories).toContain('Detention Facilities');
       expect(categories).toContain('Sanctioned Officials');

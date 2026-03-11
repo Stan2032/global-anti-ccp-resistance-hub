@@ -9,7 +9,7 @@ import {
 } from '../components/Accessibility';
 import { LanguageProvider } from '../contexts/LanguageContext';
 
-const renderWithLanguage = (ui: any) => render(<LanguageProvider>{ui}</LanguageProvider>);
+const renderWithLanguage = (ui: React.ReactNode) => render(<LanguageProvider>{ui}</LanguageProvider>);
 
 describe('SkipLinks', () => {
   it('should render skip to main content link', () => {
@@ -128,15 +128,15 @@ describe('AccessibleAlert', () => {
 
 describe('WCAG AA Contrast Ratios', () => {
   // WCAG 2.1 relative luminance formula
-  function relativeLuminance(hex: any) {
+  function relativeLuminance(hex: string) {
     const r = parseInt(hex.slice(1, 3), 16) / 255;
     const g = parseInt(hex.slice(3, 5), 16) / 255;
     const b = parseInt(hex.slice(5, 7), 16) / 255;
-    const linearize = (c: any) => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const linearize = (c: number) => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
   }
 
-  function contrastRatio(c1: any, c2: any) {
+  function contrastRatio(c1: number, c2: number) {
     let l1 = relativeLuminance(c1);
     let l2 = relativeLuminance(c2);
     if (l1 < l2) [l1, l2] = [l2, l1];

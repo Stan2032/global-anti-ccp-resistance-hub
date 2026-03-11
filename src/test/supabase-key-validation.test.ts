@@ -10,7 +10,7 @@ import { isServiceRoleKey } from '../services/supabaseClient';
  */
 
 // Helper: create a fake JWT with the given payload
-function fakeJwt(payload: any) {
+function fakeJwt(payload: Record<string, unknown>) {
   const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
   const body = btoa(JSON.stringify(payload));
   const sig = btoa('fake-signature');

@@ -25,12 +25,12 @@ describe('Human rights organizations data integrity', () => {
   });
 
   it('organization names are unique', () => {
-    const names = data.results.map((r: any) => r.output.organization);
+    const names = data.results.map((r: { output: { organization: string } }) => r.output.organization);
     expect(new Set(names).size).toBe(names.length);
   });
 
   it('at least 95% of entries have source_url', () => {
-    const withUrl = data.results.filter((r: any) => r.output && r.output.source_url);
+    const withUrl = data.results.filter((r: { output?: { source_url?: string } }) => r.output && r.output.source_url);
     expect(withUrl.length / data.results.length).toBeGreaterThanOrEqual(0.95);
   });
 

@@ -6,7 +6,7 @@ import QuickStartGuide, { HelpMenu } from '../components/QuickStartGuide';
 
 // Mock localStorage
 const mockLocalStorage = (() => {
-  let store: Record<string, any> = {};
+  let store: Record<string, string> = {};
   return {
     getItem: vi.fn((key) => store[key] || null),
     setItem: vi.fn((key, value) => { store[key] = value; }),

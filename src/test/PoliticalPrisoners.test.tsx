@@ -7,7 +7,7 @@ import React from 'react';
 vi.mock('../components/UrgentCaseTimer', () => ({ default: () => <div>UrgentCaseTimer</div> }));
 vi.mock('../components/CaseStudies', () => ({ default: () => <div>CaseStudies</div> }));
 vi.mock('../components/MemorialWall', () => ({ default: () => <div>MemorialWall</div> }));
-vi.mock('../components/ui/SourceAttribution', () => ({ default: ({ source }: any) => <div>Source: {source?.name}</div> }));
+vi.mock('../components/ui/SourceAttribution', () => ({ default: ({ source }: { source?: { name?: string } }) => <div>Source: {source?.name}</div> }));
 
 import PoliticalPrisoners from '../pages/PoliticalPrisoners';
 

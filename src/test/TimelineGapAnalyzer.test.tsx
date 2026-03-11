@@ -58,7 +58,7 @@ describe('TimelineGapAnalyzer', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (dataApi.getTimelineEvents as any).mockReturnValue(mockEvents);
+    vi.mocked(dataApi.getTimelineEvents).mockReturnValue(mockEvents);
   });
 
   // --- Basic Rendering ---
@@ -228,7 +228,7 @@ describe('TimelineGapAnalyzer', () => {
     fireEvent.click(copyButton);
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
-    const copiedText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const copiedText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(copiedText).toContain('Timeline Coverage Analysis');
     expect(copiedText).toContain('Total Events: 5');
     expect(copiedText).toContain('Year Range: 1989-2020');
@@ -248,7 +248,7 @@ describe('TimelineGapAnalyzer', () => {
   // --- Empty State ---
 
   it('handles empty timeline data gracefully', () => {
-    (dataApi.getTimelineEvents as any).mockReturnValue([]);
+    vi.mocked(dataApi.getTimelineEvents).mockReturnValue([]);
     render(<TimelineGapAnalyzer />);
     expect(screen.getByText('No timeline data available.')).toBeInTheDocument();
   });

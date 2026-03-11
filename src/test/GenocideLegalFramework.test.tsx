@@ -228,7 +228,7 @@ describe('GenocideLegalFramework', () => {
     await vi.waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalled();
     });
-    const clipText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const clipText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipText).toContain('CCP VIOLATIONS OF INTERNATIONAL LAW');
     expect(clipText).toContain('CC BY 4.0');
   });

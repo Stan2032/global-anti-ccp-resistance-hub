@@ -265,7 +265,7 @@ describe('WhistleblowerGuide', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
+    const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('WHISTLEBLOWER SECURITY GUIDE');
     expect(clipboardText).toContain('CC BY 4.0');
   });
@@ -273,7 +273,7 @@ describe('WhistleblowerGuide', () => {
   it('copy report contains critical warning', () => {
     render(<WhistleblowerGuide />);
     fireEvent.click(screen.getByLabelText('Copy intelligence report to clipboard'));
-    const clipboardText = (navigator.clipboard.writeText as any).mock.calls.at(-1)[0];
+    const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls.at(-1)[0];
     expect(clipboardText).toContain('CRITICAL SECURITY WARNING');
     expect(clipboardText).toContain('VERIFIED SUBMISSION CHANNELS');
   });

@@ -6,7 +6,7 @@ import { dataApi } from '../services/dataApi';
 
 // ── Mock localStorage ───────────────────────────────────
 const localStorageMock = (() => {
-  let store: Record<string, any> = {};
+  let store: Record<string, string> = {};
   return {
     getItem: vi.fn((key) => store[key] || null),
     setItem: vi.fn((key, value) => { store[key] = value; }),
@@ -264,7 +264,7 @@ describe('NotificationCenter', () => {
     render(<NotificationCenter />);
     fireEvent.click(screen.getByLabelText('Copy notification feed to clipboard'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const clipText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const clipText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipText).toContain('Notification Center');
     expect(clipText).toContain('CC BY 4.0');
   });

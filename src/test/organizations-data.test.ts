@@ -29,7 +29,7 @@ describe('organizations-data.json', () => {
   });
 
   it('has no duplicate organization ids', () => {
-    const ids = data.organizations.map((o: any) => o.id);
+    const ids = data.organizations.map((o: { id: string }) => o.id);
     const uniqueIds = new Set(ids);
     expect(uniqueIds.size).toBe(ids.length);
   });

@@ -5,7 +5,7 @@ import InteractiveTimeline from '../components/InteractiveTimeline';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }: any) => <span data-testid="source">{source?.name || 'source'}</span>,
+  default: ({ source }: { source?: { name?: string } }) => <span data-testid="source">{source?.name || 'source'}</span>,
 }));
 
 describe('InteractiveTimeline', () => {

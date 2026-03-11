@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SourceAttribution, { SourcesList, InlineSource } from '../components/ui/SourceAttribution';
 
+type Source = { name: string; url: string | null; date?: string; type?: string; verified?: boolean };
+
 describe('SourceAttribution', () => {
   const mockSource = {
     name: 'Amnesty International',
@@ -12,12 +14,12 @@ describe('SourceAttribution', () => {
   };
 
   it('should render nothing when source is null', () => {
-    const { container } = render(<SourceAttribution source={null as any} />);
+    const { container } = render(<SourceAttribution source={null as unknown as Source} />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render nothing when source has no URL', () => {
-    const { container } = render(<SourceAttribution source={{ name: 'Test' } as any} />);
+    const { container } = render(<SourceAttribution source={{ name: 'Test' } as unknown as Source} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -70,7 +72,7 @@ describe('SourcesList', () => {
   });
 
   it('should render nothing when sources is null', () => {
-    const { container } = render(<SourcesList sources={null as any} />);
+    const { container } = render(<SourcesList sources={null as unknown as Source[]} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -89,7 +91,7 @@ describe('SourcesList', () => {
 
 describe('InlineSource', () => {
   it('should render nothing when source is null', () => {
-    const { container } = render(<InlineSource source={null as any} number={1} />);
+    const { container } = render(<InlineSource source={null as unknown as Source} number={1} />);
     expect(container.firstChild).toBeNull();
   });
 

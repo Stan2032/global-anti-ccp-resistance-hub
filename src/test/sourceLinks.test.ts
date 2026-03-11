@@ -190,15 +190,15 @@ describe('sourceLinks', () => {
     });
 
     it('should return empty array for null input', () => {
-      expect(resolveSources(null as any)).toEqual([]);
+      expect(resolveSources(null as unknown as string[])).toEqual([]);
     });
 
     it('should return empty array for undefined input', () => {
-      expect(resolveSources(undefined as any)).toEqual([]);
+      expect(resolveSources(undefined as unknown as string[])).toEqual([]);
     });
 
     it('should return empty array for non-array input', () => {
-      expect(resolveSources('not an array' as any)).toEqual([]);
+      expect(resolveSources('not an array' as unknown as string[])).toEqual([]);
     });
   });
 });

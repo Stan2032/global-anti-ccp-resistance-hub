@@ -8,9 +8,9 @@ const ROBOTS_PATH = resolve(PUBLIC_DIR, 'robots.txt');
 const BASE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 describe('Sitemap Data Integrity', () => {
-  let sitemapContent: any;
-  let urls: any;
-  let robotsContent: any;
+  let sitemapContent: string;
+  let urls: string[];
+  let robotsContent: string;
 
   beforeAll(() => {
     sitemapContent = readFileSync(SITEMAP_PATH, 'utf-8');

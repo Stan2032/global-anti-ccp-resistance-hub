@@ -21,7 +21,7 @@ const SRC_DIR = resolve(__dirname, '..');
 const DATA_DIR = resolve(SRC_DIR, 'data');
 
 // Extract all Route path="" definitions from App.tsx
-function extractRoutePaths(appContent: any) {
+function extractRoutePaths(appContent: string) {
   const routePattern = /path="([^"]+)"/g;
   const paths = new Set<string>();
   let match;

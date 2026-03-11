@@ -52,7 +52,7 @@ describe('Research data integrity', () => {
 
     it('at least 90% of entries have a source_url', () => {
       const withSource = data.results.filter(
-        (r: any) => r.output && r.output.source_url
+        (r: { output?: { source_url?: string } }) => r.output && r.output.source_url
       );
       const ratio = withSource.length / data.results.length;
       expect(ratio).toBeGreaterThanOrEqual(0.9);

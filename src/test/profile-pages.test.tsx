@@ -20,7 +20,7 @@ import XuZhiyongProfile from '../pages/profiles/XuZhiyongProfile';
 import ZhangZhanProfile from '../pages/profiles/ZhangZhanProfile';
 import ChowHangTungProfile from '../pages/profiles/ChowHangTungProfile';
 
-const renderWithRouter = (ui: any) => render(<MemoryRouter>{ui}</MemoryRouter>);
+const renderWithRouter = (ui: React.ReactNode) => render(<MemoryRouter>{ui}</MemoryRouter>);
 
 // All 16 profiles with expected data
 // statusText: what to search for in rendered output (some profiles render status differently)

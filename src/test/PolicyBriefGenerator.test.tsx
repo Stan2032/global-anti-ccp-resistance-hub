@@ -275,7 +275,7 @@ describe('PolicyBriefGenerator', () => {
     render(<PolicyBriefGenerator />);
     fireEvent.click(screen.getByText('Copy brief'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const text = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(text).toContain('POLICY BRIEF');
     expect(text).toContain('EXECUTIVE SUMMARY');
     expect(text).toContain('KEY FINDINGS');

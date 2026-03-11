@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/emergency_alerts.json');
 
 describe('Emergency Alerts data integrity', () => {
-  let data: any;
+  let data: Array<{ id: string; type: string; title: string; summary: string; date: string; active: boolean; links?: { name: string; url: string }[] }>;
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -53,7 +53,7 @@ describe('Emergency Alerts data integrity', () => {
   });
 
   it('alert IDs are unique', () => {
-    const ids = data.map((a: any) => a.id);
+    const ids = data.map((a: { id: string }) => a.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
@@ -82,7 +82,7 @@ describe('Emergency Alerts data integrity', () => {
   });
 
   it('has at least one critical alert', () => {
-    const criticals = data.filter((a: any) => a.type === 'critical');
+    const criticals = data.filter((a: { type: string }) => a.type === 'critical');
     expect(criticals.length).toBeGreaterThanOrEqual(1);
   });
 

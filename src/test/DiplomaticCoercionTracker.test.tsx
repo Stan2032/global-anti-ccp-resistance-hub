@@ -228,7 +228,7 @@ describe('DiplomaticCoercionTracker', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const lastCall = (navigator.clipboard.writeText as any).mock.calls;
+    const lastCall = vi.mocked(navigator.clipboard.writeText).mock.calls;
     const text = lastCall[lastCall.length - 1][0];
     expect(text).toContain('DIPLOMATIC COERCION TRACKER');
     expect(text).toContain('Countries targeted');

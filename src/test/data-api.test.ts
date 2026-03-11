@@ -411,7 +411,7 @@ describe('Data API', () => {
 
     it('no dataset uses CPC terminology', () => {
       // Check all string values across datasets
-      const checkForCPC = (obj: any) => {
+      const checkForCPC = (obj: Record<string, unknown>) => {
         Object.values(obj).forEach((val) => {
           if (typeof val === 'string') {
             // Allow "CPC" in compound words like "CECC" or URL paths, but not standalone "CPC"

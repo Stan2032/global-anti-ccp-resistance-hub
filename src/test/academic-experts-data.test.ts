@@ -25,7 +25,7 @@ describe('Academic experts data integrity', () => {
   });
 
   it('expert names are unique', () => {
-    const names = data.results.map((r: any) => r.output.name);
+    const names = data.results.map((r: { output: { name: string } }) => r.output.name);
     expect(new Set(names).size).toBe(names.length);
   });
 
@@ -51,9 +51,9 @@ describe('Academic experts data integrity', () => {
   });
 
   it('includes well-known China scholars', () => {
-    const names = data.results.map((r: any) => r.output.name.toLowerCase());
-    const hasZenz = names.some((n: any) => n.includes('zenz'));
-    const hasByler = names.some((n: any) => n.includes('byler'));
+    const names = data.results.map((r: { output: { name: string } }) => r.output.name.toLowerCase());
+    const hasZenz = names.some((n: string) => n.includes('zenz'));
+    const hasByler = names.some((n: string) => n.includes('byler'));
     expect(hasZenz || hasByler).toBe(true);
   });
 });

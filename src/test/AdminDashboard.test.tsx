@@ -18,7 +18,7 @@ vi.mock('../services/supabaseClient', () => {
     limit: vi.fn().mockResolvedValue({ data: [], error: null }),
   }));
   // Also handle count queries (head: true)
-  (mockFrom as any).mockImplementation(() => ({
+  vi.mocked(mockFrom).mockImplementation(() => ({
     select: vi.fn(() => ({
       // for count queries: returns { count: 0 }
       count: 0,
@@ -39,7 +39,7 @@ import AdminDashboard from '../pages/AdminDashboard';
 describe('AdminDashboard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (useAuth as any).mockReturnValue({
+    vi.mocked(useAuth).mockReturnValue({
       user: { email: 'admin@test.com' },
       logout: vi.fn(),
     });
@@ -62,7 +62,7 @@ describe('AdminDashboard', () => {
 
   it('calls logout when logout button is clicked', () => {
     const mockLogout = vi.fn();
-    (useAuth as any).mockReturnValue({
+    vi.mocked(useAuth).mockReturnValue({
       user: { email: 'admin@test.com' },
       logout: mockLogout,
     });

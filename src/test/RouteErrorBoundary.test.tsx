@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import RouteErrorBoundary from '../components/RouteErrorBoundary';
 
 // Component that throws during render
-function ThrowingComponent({ error }: any): React.ReactElement {
+function ThrowingComponent({ error }: { error: Error }): React.ReactElement {
   throw error;
 }
 

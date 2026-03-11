@@ -5,13 +5,13 @@ import CompanyTracker from '../components/CompanyTracker';
 
 // Mock SourceAttribution and SourcesList (CompanyTracker imports both)
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }: any) => <div data-testid="source-attribution">{source?.name}</div>,
-  SourcesList: ({ sources }: any) => <div data-testid="sources-list">{sources?.length} sources</div>,
+  default: ({ source }: { source?: { name?: string } }) => <div data-testid="source-attribution">{source?.name}</div>,
+  SourcesList: ({ sources }: { sources?: { length: number } }) => <div data-testid="sources-list">{sources?.length} sources</div>,
 }));
 
 // Mock GlobalDisclaimer
 vi.mock('../components/ui/GlobalDisclaimer', () => ({
-  default: ({ type }: any) => <div data-testid="disclaimer">{type}</div>,
+  default: ({ type }: { type?: string }) => <div data-testid="disclaimer">{type}</div>,
 }));
 
 describe('CompanyTracker', () => {

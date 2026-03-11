@@ -51,7 +51,7 @@ describe('SecurityQuiz', () => {
 
   // --- Scoring & Results ---
 
-  const answerAllQuestions = (selectBest: any) => {
+  const answerAllQuestions = (selectBest: boolean) => {
     render(<SecurityQuiz />);
     const bestAnswers = [
       'Always, with a reputable provider',          // Q1: 3 pts

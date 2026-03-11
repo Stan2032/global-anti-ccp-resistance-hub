@@ -25,7 +25,7 @@ describe('Police stations data integrity', () => {
   });
 
   it('covers at least 20 different countries', () => {
-    const countries = new Set(data.results.map((r: any) => r.output.country));
+    const countries = new Set(data.results.map((r: { output: { country: string } }) => r.output.country));
     expect(countries.size).toBeGreaterThanOrEqual(20);
   });
 
@@ -56,7 +56,7 @@ describe('Police stations data integrity', () => {
   });
 
   it('includes expected key countries', () => {
-    const countries = new Set(data.results.map((r: any) => r.output.country));
+    const countries = new Set(data.results.map((r: { output: { country: string } }) => r.output.country));
     expect(countries.has('United Kingdom')).toBe(true);
     expect(countries.has('Netherlands')).toBe(true);
     expect(countries.has('Canada')).toBe(true);

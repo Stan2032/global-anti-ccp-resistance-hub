@@ -10,7 +10,7 @@ beforeEach(() => {
     observe() {}
     unobserve() {}
     disconnect() {}
-  } as any;
+  } as unknown as typeof IntersectionObserver;
 });
 
 describe('LiveStatistics', () => {

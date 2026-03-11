@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/live_data_feeds.json');
 
 describe('Live Data Feeds JSON integrity', () => {
-  let data: any;
+  let data: Record<string, Array<{ id: string; name: string; url: string }>>;
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);

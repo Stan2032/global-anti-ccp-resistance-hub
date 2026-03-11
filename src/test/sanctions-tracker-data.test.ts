@@ -25,7 +25,7 @@ describe('Sanctions Tracker Data', () => {
     
     sanctionsData.sanctions.forEach(sanction => {
       requiredFields.forEach(field => {
-        expect((sanction as Record<string, any>)[field], `Sanction ${sanction.id} missing ${field}`).toBeDefined();
+        expect((sanction as Record<string, unknown>)[field], `Sanction ${sanction.id} missing ${field}`).toBeDefined();
       });
     });
   });
