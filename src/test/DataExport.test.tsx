@@ -33,7 +33,7 @@ describe('DataExport', () => {
   it('shows record counts for datasets', () => {
     render(<DataExport />);
     expect(screen.getByText('65 records')).toBeTruthy(); // prisoners
-    expect(screen.getByText('47 records')).toBeTruthy(); // sanctions
+    expect(screen.getByText('46 records')).toBeTruthy(); // sanctions
     expect(screen.getByText('40 records')).toBeTruthy(); // timeline
   });
 
@@ -121,11 +121,11 @@ describe('DataExport', () => {
 
   it('calculates total records across selected datasets', () => {
     render(<DataExport />);
-    // Select prisoners (65) and sanctions (47)
+    // Select prisoners (65) and sanctions (46)
     fireEvent.click(screen.getByText('Political Prisoners Database'));
     fireEvent.click(screen.getByText('Sanctioned Officials & Entities'));
     expect(screen.getByText(/2 datasets selected/)).toBeTruthy();
-    expect(screen.getByText(/112 total records/)).toBeTruthy();
+    expect(screen.getByText(/111 total records/)).toBeTruthy();
   });
 
   // --- Usage Guidelines ---

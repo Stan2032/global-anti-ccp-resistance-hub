@@ -452,7 +452,7 @@
     "date": "2026-03-02",
     "category": "verification",
     "title": "Sanctions database verified current",
-    "description": "All 47 sanctioned entities verified against US Treasury SDN, UK FCDO, and EU Council lists. US Mar 2025 round (6 HK officials for transnational repression) confirmed included.",
+    "description": "Sanctions database verified against US Treasury SDN, UK FCDO, and EU Council lists. Corrected: removed Chen Quanguo from EU sanctions (not listed in Council Implementing Regulation 2021/478 — sanctioned by US/UK/CA/AU but not EU). EU sanctions target 4 officials + XPCC PSB entity. All 46 entries verified current. US Mar 2025 round (6 HK officials for transnational repression) confirmed included.",
     "relatedPage": "/intelligence"
   },
   {

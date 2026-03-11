@@ -258,7 +258,7 @@ describe('useLiveData hooks', () => {
     it('returns statistics on success', async () => {
       const mockStats = {
         totalPrisoners: 62,
-        sanctionsEntries: 47,
+        sanctionsEntries: 46,
         countriesTracked: 30,
       };
       (fetchStatistics as any).mockResolvedValue(mockStats);

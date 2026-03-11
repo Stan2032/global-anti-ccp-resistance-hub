@@ -64,7 +64,7 @@ const DATASET_VERIFICATION = [
     name: 'Sanctions Tracker',
     file: 'sanctions_tracker.json',
     lastVerified: '2026-03-02',
-    verificationNote: '47 entries verified against US Treasury OFAC, UK OFSI, EU Council, Canada SEMA.',
+    verificationNote: '46 entries verified against US Treasury OFAC, UK OFSI, EU Council (Regulation 2021/478), Canada SEMA. Corrected: Chen Quanguo removed from EU list (not in EU regulation).',
     recordCount: () => dataApi.getSanctions().length,
   },
   {

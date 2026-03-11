@@ -315,7 +315,7 @@ export default {
 
       // /api/v1/:dataset — Dataset endpoint
       return handleDataset(segments[0], url);
-    } catch (err) {
+    } catch (_err) {
       return jsonResponse({ error: 'Internal server error' }, 500);
     }
   },

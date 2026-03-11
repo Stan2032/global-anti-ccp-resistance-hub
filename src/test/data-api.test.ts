@@ -95,7 +95,7 @@ describe('Data API', () => {
   describe('Sanctions', () => {
     it('returns all sanctions entries', () => {
       const sanctions = dataApi.getSanctions();
-      expect(sanctions.length).toBeGreaterThanOrEqual(47);
+      expect(sanctions.length).toBeGreaterThanOrEqual(46);
       sanctions.forEach((s) => {
         expect(s.id).toBeTruthy();
         expect(s.country).toBeTruthy();

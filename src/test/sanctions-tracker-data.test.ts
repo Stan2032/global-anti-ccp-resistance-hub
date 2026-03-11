@@ -97,7 +97,7 @@ describe('Sanctions Tracker Data', () => {
     const validDomains = [
       'treasury.gov', 'cbp.gov', 'bis.gov', 'state.gov', // US
       'gov.uk',                                     // UK
-      'sanctionsmap.eu',                            // EU
+      'sanctionsmap.eu', 'eur-lex.europa.eu',       // EU
       'international.gc.ca', 'canada.ca',           // Canada
       'dfat.gov.au'                                 // Australia
     ];

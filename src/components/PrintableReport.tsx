@@ -17,7 +17,7 @@ const KEY_FACTS = [
   { label: 'Forced labor companies flagged', value: '144+', source: 'US UFLPA Entity List' },
   { label: 'Detention facilities (Xinjiang)', value: '380+', source: 'ASPI Xinjiang Data Project' },
   { label: 'Journalists imprisoned', value: '44', source: 'CPJ, RSF' },
-  { label: 'Sanctioned officials/entities', value: '47', source: 'US, UK, EU, CA, AU sanctions' },
+  { label: 'Sanctioned officials/entities', value: '46', source: 'US, UK, EU, CA, AU sanctions' },
 ];
 
 const ACTION_ITEMS = [
