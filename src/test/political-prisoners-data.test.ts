@@ -32,6 +32,41 @@ interface PrisonerData {
   results: PrisonerEntry[];
 }
 
+/**
+ * Allowlist of reputable source domains for prisoner data.
+ * Organized by category for maintainability.
+ */
+const TRUSTED_SOURCE_DOMAINS = [
+  // Major international HR organizations
+  'hrw.org', 'amnesty.org', 'amnesty.ca', 'ohchr.org', 'pen-international.org', 'pen.org',
+  'frontlinedefenders.org', 'chinaaid.org', 'duihua.org', 'ibanet.org',
+  // Tibet/Uyghur-specific
+  'freetibet.org', 'savetibet.org', 'tibetnetwork.org', 'tibetwatch.org', 'southmongolia.org',
+  // HK-specific
+  'hongkongfp.com', 'hongkongwatch.org', 'hklabourrights.org',
+  // CCP research organizations
+  'safeguarddefenders.com', 'citizenlab.ca', 'nchrd.org',
+  // Major news agencies & outlets
+  'bbc.com', 'bbc.co.uk', 'reuters.com', 'apnews.com', 'theguardian.com',
+  'nytimes.com', 'washingtonpost.com', 'aljazeera.com', 'dw.com', 'france24.com',
+  'npr.org', 'voanews.com', 'rfa.org', 'cnn.com', 'nbcnews.com', 'cbsnews.com',
+  'pbs.org', 'ft.com', 'economist.com', 'scmp.com',
+  // Specialty media
+  'news.artnet.com', 'pillarcatholic.com', 'thechinaproject.com', 'kunm.org',
+  'thestandard.com.hk', 'aninews.in',
+  // Government sources
+  'state.gov', 'congress.gov', 'whitehouse.gov', 'cecc.gov',
+  'humanrightscommission.house.gov',
+  'gov.uk', 'eeas.europa.eu', 'europarl.europa.eu',
+  'abc.net.au', 'smh.com.au',
+  // Journalism organizations
+  'cpj.org', 'rsf.org', 'icij.org',
+  // Reference
+  'en.wikipedia.org',
+  // Policy/media
+  'politico.eu', 'cnbc.com',
+];
+
 describe('Political Prisoners Research Data Integrity', () => {
   let data: PrisonerData;
   let results: PrisonerEntry[];
@@ -154,50 +189,20 @@ describe('Political Prisoners Research Data Integrity', () => {
       for (const entry of results) {
         const url = entry.output.source_url;
         const parsed = new URL(url);
-        const pathOnly = parsed.pathname.replace(/\/$/, '');
-        const isHomepage = !pathOnly && !parsed.search;
+        const hasPath = parsed.pathname.replace(/\/$/, '').length > 0;
+        const hasQuery = parsed.search.length > 0;
         expect(
-          isHomepage,
+          hasPath || hasQuery,
           `"${entry.output.prisoner_name}" source_url is homepage-only: ${url}`
-        ).toBe(false);
+        ).toBe(true);
       }
     });
 
     it('source URLs reference reputable human rights organizations or news outlets', () => {
-      const trustedDomains = [
-        // Major international HR organizations
-        'hrw.org', 'amnesty.org', 'amnesty.ca', 'ohchr.org', 'pen-international.org', 'pen.org',
-        'frontlinedefenders.org', 'chinaaid.org', 'duihua.org', 'ibanet.org',
-        // Tibet/Uyghur-specific
-        'freetibet.org', 'savetibet.org', 'tibetnetwork.org', 'tibetwatch.org', 'southmongolia.org',
-        // HK-specific
-        'hongkongfp.com', 'hongkongwatch.org', 'hklabourrights.org',
-        // CCP research organizations
-        'safeguarddefenders.com', 'citizenlab.ca', 'nchrd.org',
-        // Major news agencies & outlets
-        'bbc.com', 'bbc.co.uk', 'reuters.com', 'apnews.com', 'theguardian.com',
-        'nytimes.com', 'washingtonpost.com', 'aljazeera.com', 'dw.com', 'france24.com',
-        'npr.org', 'voanews.com', 'rfa.org', 'cnn.com', 'nbcnews.com', 'cbsnews.com',
-        'pbs.org', 'ft.com', 'economist.com', 'scmp.com',
-        // Specialty media
-        'news.artnet.com', 'pillarcatholic.com', 'thechinaproject.com', 'kunm.org',
-        'thestandard.com.hk', 'aninews.in',
-        // Government sources
-        'state.gov', 'congress.gov', 'whitehouse.gov', 'cecc.gov',
-        'humanrightscommission.house.gov',
-        'gov.uk', 'eeas.europa.eu', 'europarl.europa.eu',
-        'abc.net.au', 'smh.com.au',
-        // Journalism organizations
-        'cpj.org', 'rsf.org', 'icij.org',
-        // Reference
-        'en.wikipedia.org',
-        // Policy/media
-        'politico.eu', 'cnbc.com',
-      ];
       for (const entry of results) {
         const url = entry.output.source_url;
         const hostname = new URL(url).hostname.replace(/^www\./, '');
-        const isTrusted = trustedDomains.some(d => hostname === d || hostname.endsWith('.' + d));
+        const isTrusted = TRUSTED_SOURCE_DOMAINS.some(d => hostname === d || hostname.endsWith('.' + d));
         expect(
           isTrusted,
           `"${entry.output.prisoner_name}" source_url uses untrusted domain: ${hostname} (${url})`

@@ -27,7 +27,11 @@ vi.mock('../services/liveDataService', () => ({
 }));
 
 // Mock useStatistics hook
-let mockStatsReturn: any = {
+let mockStatsReturn: {
+  stats: { verifiedOrganizations: number; detentionFacilities: number; politicalPrisoners: number } | null;
+  loading: boolean;
+  error: string | null;
+} = {
   stats: null,
   loading: true,
   error: null,
