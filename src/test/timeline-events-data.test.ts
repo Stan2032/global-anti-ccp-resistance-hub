@@ -3,13 +3,26 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { isCCPStateMedia } from '../utils/sourceLinks';
 
+interface TimelineEvent {
+  id: number;
+  date: string;
+  title: string;
+  category: string;
+  significance: string;
+  description: string;
+  details: string;
+  sources: string[];
+  sentence?: string;
+  source_urls?: string[];
+}
+
 const DATA_DIR = resolve(__dirname, '../data');
 
 describe('Timeline Events Data Integrity', () => {
-  let events: any;
+  let events: TimelineEvent[];
 
   beforeAll(() => {
-    events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
+    events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
   });
 
   describe('Structure validation', () => {
@@ -45,7 +58,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('all IDs are unique', () => {
-      const ids = events.map((e: any) => e.id);
+      const ids = events.map((e: TimelineEvent) => e.id);
       expect(new Set(ids).size).toBe(ids.length);
     });
   });
@@ -89,7 +102,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('has events from at least 4 different categories', () => {
-      const categories = new Set(events.map((e: any) => e.category));
+      const categories = new Set(events.map((e: TimelineEvent) => e.category));
       expect(categories.size).toBeGreaterThanOrEqual(4);
     });
   });
@@ -107,7 +120,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('at least half of events are critical significance', () => {
-      const critical = events.filter((e: any) => e.significance === 'critical');
+      const critical = events.filter((e: TimelineEvent) => e.significance === 'critical');
       expect(critical.length).toBeGreaterThanOrEqual(Math.floor(events.length / 2));
     });
   });
@@ -127,7 +140,7 @@ describe('Timeline Events Data Integrity', () => {
 
   describe('Key historical events are present', () => {
     it('includes Tiananmen Square Massacre (1989)', () => {
-      const event = events.find((e: any) => e.title === 'Tiananmen Square Massacre');
+      const event = events.find((e: TimelineEvent) => e.title === 'Tiananmen Square Massacre');
       expect(event).toBeDefined();
       expect(event.date).toBe('1989-06-04');
       expect(event.category).toBe('mainland');
@@ -135,68 +148,68 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes National Security Law (2020)', () => {
-      const event = events.find((e: any) => e.title === 'National Security Law Imposed');
+      const event = events.find((e: TimelineEvent) => e.title === 'National Security Law Imposed');
       expect(event).toBeDefined();
       expect(event.date).toBe('2020-06-30');
       expect(event.category).toBe('hongkong');
     });
 
     it('includes Xinjiang Internment Camps (2017)', () => {
-      const event = events.find((e: any) => e.title === 'Xinjiang Internment Camps Begin');
+      const event = events.find((e: TimelineEvent) => e.title === 'Xinjiang Internment Camps Begin');
       expect(event).toBeDefined();
       expect(event.date).toBe('2017-04-01');
       expect(event.category).toBe('uyghur');
     });
 
     it('includes Panchen Lama abduction (1995)', () => {
-      const event = events.find((e: any) => e.title === 'Panchen Lama Abducted');
+      const event = events.find((e: TimelineEvent) => e.title === 'Panchen Lama Abducted');
       expect(event).toBeDefined();
       expect(event.date).toBe('1995-05-17');
       expect(event.category).toBe('tibet');
     });
 
     it('includes Falun Gong persecution (1999)', () => {
-      const event = events.find((e: any) => e.title === 'Falun Gong Persecution Begins');
+      const event = events.find((e: TimelineEvent) => e.title === 'Falun Gong Persecution Begins');
       expect(event).toBeDefined();
       expect(event.date).toBe('1999-07-20');
       expect(event.category).toBe('falungong');
     });
 
     it('includes Jimmy Lai sentencing (2026)', () => {
-      const event = events.find((e: any) => e.title === 'Jimmy Lai Sentenced to 20 Years');
+      const event = events.find((e: TimelineEvent) => e.title === 'Jimmy Lai Sentenced to 20 Years');
       expect(event).toBeDefined();
       expect(event.date).toBe('2026-02-09');
       expect(event.sentence).toBe('20 years imprisonment');
     });
 
     it('includes Hong Kong 47 sentencing (2024)', () => {
-      const event = events.find((e: any) => e.title === 'Hong Kong 47 Sentenced');
+      const event = events.find((e: TimelineEvent) => e.title === 'Hong Kong 47 Sentenced');
       expect(event).toBeDefined();
       expect(event.date).toBe('2024-11-19');
     });
 
     it('includes Umbrella Movement (2014)', () => {
-      const event = events.find((e: any) => e.title === 'Umbrella Movement Begins');
+      const event = events.find((e: TimelineEvent) => e.title === 'Umbrella Movement Begins');
       expect(event).toBeDefined();
       expect(event.date).toBe('2014-09-28');
       expect(event.category).toBe('hongkong');
     });
 
     it('includes 2019 Hong Kong protests', () => {
-      const event = events.find((e: any) => e.title === '2019 Hong Kong Protests Begin');
+      const event = events.find((e: TimelineEvent) => e.title === '2019 Hong Kong Protests Begin');
       expect(event).toBeDefined();
       expect(event.date).toBe('2019-06-09');
     });
 
     it('includes White Paper Protests (2022)', () => {
-      const event = events.find((e: any) => e.title === 'White Paper Protests');
+      const event = events.find((e: TimelineEvent) => e.title === 'White Paper Protests');
       expect(event).toBeDefined();
       expect(event.date).toBe('2022-11-26');
       expect(event.category).toBe('mainland');
     });
 
     it('includes Hong Kong Handover (1997)', () => {
-      const event = events.find((e: any) => e.title === 'Hong Kong Handover');
+      const event = events.find((e: TimelineEvent) => e.title === 'Hong Kong Handover');
       expect(event).toBeDefined();
       expect(event.date).toBe('1997-07-01');
       expect(event.category).toBe('hongkong');
@@ -204,7 +217,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Charter 08 (2008)', () => {
-      const event = events.find((e: any) => e.title === 'Charter 08 Published');
+      const event = events.find((e: TimelineEvent) => e.title === 'Charter 08 Published');
       expect(event).toBeDefined();
       expect(event.date).toBe('2008-12-10');
       expect(event.category).toBe('mainland');
@@ -212,7 +225,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Liu Xiaobo Nobel Peace Prize (2010)', () => {
-      const event = events.find((e: any) => e.title === 'Liu Xiaobo Awarded Nobel Peace Prize');
+      const event = events.find((e: TimelineEvent) => e.title === 'Liu Xiaobo Awarded Nobel Peace Prize');
       expect(event).toBeDefined();
       expect(event.date).toBe('2010-10-08');
       expect(event.category).toBe('mainland');
@@ -220,7 +233,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Presidential Term Limits Abolished (2018)', () => {
-      const event = events.find((e: any) => e.title === 'Presidential Term Limits Abolished');
+      const event = events.find((e: TimelineEvent) => e.title === 'Presidential Term Limits Abolished');
       expect(event).toBeDefined();
       expect(event.date).toBe('2018-03-11');
       expect(event.category).toBe('mainland');
@@ -228,14 +241,14 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Tiananmen Self-Immolation Incident (2001)', () => {
-      const event = events.find((e: any) => e.title === 'Tiananmen Self-Immolation Incident');
+      const event = events.find((e: TimelineEvent) => e.title === 'Tiananmen Self-Immolation Incident');
       expect(event).toBeDefined();
       expect(event.date).toBe('2001-01-23');
       expect(event.category).toBe('falungong');
     });
 
     it('includes 500,000 March Against Article 23 (2003)', () => {
-      const event = events.find((e: any) => e.title === '500,000 March Against Article 23');
+      const event = events.find((e: TimelineEvent) => e.title === '500,000 March Against Article 23');
       expect(event).toBeDefined();
       expect(event.date).toBe('2003-07-01');
       expect(event.category).toBe('hongkong');
@@ -243,14 +256,14 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Wukan Protests (2011)', () => {
-      const event = events.find((e: any) => e.title === 'Wukan Protests');
+      const event = events.find((e: TimelineEvent) => e.title === 'Wukan Protests');
       expect(event).toBeDefined();
       expect(event.date).toBe('2011-09-21');
       expect(event.category).toBe('mainland');
     });
 
     it('includes Tibetan Self-Immolation Wave (2012)', () => {
-      const event = events.find((e: any) => e.title === 'Tibetan Self-Immolation Wave Peaks');
+      const event = events.find((e: TimelineEvent) => e.title === 'Tibetan Self-Immolation Wave Peaks');
       expect(event).toBeDefined();
       expect(event.date).toBe('2012-11-07');
       expect(event.category).toBe('tibet');
@@ -258,7 +271,7 @@ describe('Timeline Events Data Integrity', () => {
     });
 
     it('includes Hong Kong Article 23 Passed (2024)', () => {
-      const event = events.find((e: any) => e.title === 'Hong Kong Article 23 Passed');
+      const event = events.find((e: TimelineEvent) => e.title === 'Hong Kong Article 23 Passed');
       expect(event).toBeDefined();
       expect(event.date).toBe('2024-03-19');
       expect(event.category).toBe('hongkong');

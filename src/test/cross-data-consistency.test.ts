@@ -2,6 +2,77 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 
+interface PrisonerEntry {
+  input: string;
+  output: { prisoner_name: string; [key: string]: unknown };
+  error: string;
+}
+
+interface PrisonerData {
+  results: PrisonerEntry[];
+}
+
+interface AlertEntry {
+  id: string;
+  active: boolean;
+  type: string;
+  date: string;
+  eventDate?: string;
+  lastVerified?: string;
+  [key: string]: unknown;
+}
+
+interface SanctionEntry {
+  id: string;
+  target: string;
+  date?: string;
+  [key: string]: unknown;
+}
+
+interface SanctionsData {
+  sanctions: SanctionEntry[];
+}
+
+interface OfficialEntry {
+  input: string;
+  output: { name: string; [key: string]: unknown };
+  error: string;
+}
+
+interface OfficialsData {
+  results: OfficialEntry[];
+}
+
+interface UpdateEntry {
+  id: string;
+  date: string;
+  category: string;
+  relatedPage?: string;
+  [key: string]: unknown;
+}
+
+interface FacilityEntry {
+  output?: { region?: string; [key: string]: unknown };
+  region?: string;
+  [key: string]: unknown;
+}
+
+interface ForcedLaborEntry {
+  output?: { company_name?: string; name?: string; [key: string]: unknown };
+  company_name?: string;
+  name?: string;
+  [key: string]: unknown;
+}
+
+interface ForcedLaborData {
+  results: ForcedLaborEntry[];
+}
+
+interface DetentionData {
+  results?: FacilityEntry[];
+  [key: string]: unknown;
+}
+
 const DATA_DIR = resolve(__dirname, '../data');
 
 // Load all JSON data files
@@ -11,16 +82,16 @@ const loadJSON = (filename: string) => {
 };
 
 describe('Cross-JSON Data Consistency', () => {
-  let prisoners: any, alerts: any, sanctions: any, officials: any, recentUpdates: any, forcedLabor: any, detentionFacilities: any;
+  let prisoners: PrisonerData, alerts: AlertEntry[], sanctions: SanctionsData, officials: OfficialsData, recentUpdates: UpdateEntry[], forcedLabor: ForcedLaborData, detentionFacilities: DetentionData;
 
   beforeAll(() => {
-    prisoners = loadJSON('political_prisoners_research.json');
-    alerts = loadJSON('emergency_alerts.json');
-    sanctions = loadJSON('sanctions_tracker.json');
-    officials = loadJSON('sanctioned_officials_research.json');
-    recentUpdates = loadJSON('recent_updates.json');
-    forcedLabor = loadJSON('forced_labor_companies_research.json');
-    detentionFacilities = loadJSON('detention_facilities_research.json');
+    prisoners = loadJSON('political_prisoners_research.json') as PrisonerData;
+    alerts = loadJSON('emergency_alerts.json') as AlertEntry[];
+    sanctions = loadJSON('sanctions_tracker.json') as SanctionsData;
+    officials = loadJSON('sanctioned_officials_research.json') as OfficialsData;
+    recentUpdates = loadJSON('recent_updates.json') as UpdateEntry[];
+    forcedLabor = loadJSON('forced_labor_companies_research.json') as ForcedLaborData;
+    detentionFacilities = loadJSON('detention_facilities_research.json') as DetentionData;
   });
 
   // --- All JSON files are loadable ---
@@ -39,7 +110,7 @@ describe('Cross-JSON Data Consistency', () => {
   // --- Key prisoners referenced in alerts exist in prisoner database ---
 
   it('prisoners referenced in alert IDs exist in political_prisoners_research.json', () => {
-    const prisonerNames = prisoners.results.map((r: any) => r.output.prisoner_name.toLowerCase());
+    const prisonerNames = prisoners.results.map((r: PrisonerEntry) => r.output.prisoner_name.toLowerCase());
 
     // Alerts that reference specific prisoners by name in their IDs
     const prisonerAlertMap = {
@@ -48,7 +119,7 @@ describe('Cross-JSON Data Consistency', () => {
     };
 
     for (const [alertId, prisonerName] of Object.entries(prisonerAlertMap)) {
-      const alert = alerts.find((a: any) => a.id === alertId);
+      const alert = alerts.find((a: AlertEntry) => a.id === alertId);
       expect(alert, `Alert "${alertId}" should exist`).toBeDefined();
       expect(
         prisonerNames.includes(prisonerName),
@@ -62,7 +133,7 @@ describe('Cross-JSON Data Consistency', () => {
   it('active critical alerts have lastVerified within 60 days', () => {
     const now = new Date();
 
-    for (const alert of alerts.filter((a: any) => a.active && a.type === 'critical')) {
+    for (const alert of alerts.filter((a: AlertEntry) => a.active && a.type === 'critical')) {
       if (alert.lastVerified) {
         const verifiedDate = new Date(alert.lastVerified);
         const daysSince = (now.getTime() - verifiedDate.getTime()) / (24 * 60 * 60 * 1000);
@@ -77,11 +148,11 @@ describe('Cross-JSON Data Consistency', () => {
   // --- Sanctions tracker has matching officials ---
 
   it('sanctioned officials have entries that appear in sanctions tracker targets', () => {
-    const sanctionTargets = sanctions.sanctions.map((s: any) => s.target.toLowerCase());
+    const sanctionTargets = sanctions.sanctions.map((s: SanctionEntry) => s.target.toLowerCase());
     // At least some sanctioned officials should appear in the sanctions tracker
-    const officialNames = officials.results.map((r: any) => r.output.name.toLowerCase());
+    const officialNames = officials.results.map((r: OfficialEntry) => r.output.name.toLowerCase());
     const overlap = officialNames.filter((name: string) =>
-      sanctionTargets.some((target: any) => target.includes(name) || name.includes(target))
+      sanctionTargets.some((target: string) => target.includes(name) || name.includes(target))
     );
     expect(
       overlap.length,
