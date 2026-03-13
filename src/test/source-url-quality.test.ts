@@ -101,7 +101,7 @@ describe('Political Prisoners source URL quality', () => {
       const url = entry.output.source_url;
       try {
         const hostname = new URL(url).hostname;
-        const isTrusted = TRUSTED_HR_DOMAINS.some(d => hostname.includes(d));
+        const isTrusted = TRUSTED_HR_DOMAINS.some(d => hostname === d || hostname.endsWith('.' + d));
         if (!isTrusted) {
           violations.push(`${entry.output.prisoner_name}: untrusted domain ${hostname} — ${url}`);
         }
@@ -169,7 +169,7 @@ describe('Sanctions Tracker source URL quality', () => {
     for (const s of data.sanctions) {
       try {
         const hostname = new URL(s.source_url).hostname;
-        const isGov = TRUSTED_GOV_DOMAINS.some(d => hostname.includes(d));
+        const isGov = TRUSTED_GOV_DOMAINS.some(d => hostname === d || hostname.endsWith('.' + d));
         if (!isGov) {
           violations.push(`${s.id} (${s.target}): non-government domain ${hostname}`);
         }
@@ -194,7 +194,7 @@ describe('Sanctions Tracker source URL quality', () => {
       if (!allowedDomains) continue; // Skip countries without domain rules
       try {
         const hostname = new URL(s.source_url).hostname;
-        const matchesCountry = allowedDomains.some(d => hostname.includes(d));
+        const matchesCountry = allowedDomains.some(d => hostname === d || hostname.endsWith('.' + d));
         if (!matchesCountry) {
           violations.push(`${s.id}: ${s.country} sanction uses wrong domain ${hostname}`);
         }

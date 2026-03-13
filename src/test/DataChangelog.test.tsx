@@ -170,10 +170,10 @@ describe('DataChangelog', () => {
     const cyanVal = container.querySelector('[class*="text-\\[\\#22d3ee\\]"].text-2xl');
     const yellowVal = container.querySelector('.text-yellow-400.text-2xl');
     const redVal = container.querySelector('.text-red-400.text-2xl');
-    const fresh = greenVal ? parseInt(greenVal.textContent ?? '0') : 0;
-    const current = cyanVal ? parseInt(cyanVal.textContent ?? '0') : 0;
-    const aging = yellowVal ? parseInt(yellowVal.textContent ?? '0') : 0;
-    const stale = redVal ? parseInt(redVal.textContent ?? '0') : 0;
+    const fresh = greenVal ? parseInt(greenVal.textContent ?? '0', 10) : 0;
+    const current = cyanVal ? parseInt(cyanVal.textContent ?? '0', 10) : 0;
+    const aging = yellowVal ? parseInt(yellowVal.textContent ?? '0', 10) : 0;
+    const stale = redVal ? parseInt(redVal.textContent ?? '0', 10) : 0;
     expect(fresh + current + aging + stale).toBe(8);
   });
 
