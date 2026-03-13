@@ -191,11 +191,13 @@ const DisinfoTracker = () => {
       </div>
 
       {/* Category Filters */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Disinformation categories">
         {categories.map(cat => (
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
+            role="tab"
+            aria-selected={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-red-600 text-white'

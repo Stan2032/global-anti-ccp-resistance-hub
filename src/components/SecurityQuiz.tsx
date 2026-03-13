@@ -253,7 +253,7 @@ const SecurityQuiz = () => {
           <span className="text-sm text-slate-400">Question {currentQuestion + 1} of {questions.length}</span>
           <span className="text-sm text-slate-400">{question.category}</span>
         </div>
-        <div className="w-full bg-[#111820] rounded-full h-2">
+        <div className="w-full bg-[#111820] rounded-full h-2" role="progressbar" aria-valuenow={currentQuestion + 1} aria-valuemin={1} aria-valuemax={questions.length} aria-label={`Question ${currentQuestion + 1} of ${questions.length}`}>
           <div 
             className="bg-red-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -265,11 +265,12 @@ const SecurityQuiz = () => {
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h2 className="text-xl font-bold text-white mb-6">{question.question}</h2>
         
-        <div className="space-y-3">
+        <div className="space-y-3" role="group" aria-label={`Answers for: ${question.question}`}>
           {question.options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleAnswer(option.points)}
+              aria-label={`Answer: ${option.text}`}
               className="w-full text-left bg-[#111820] hover:bg-[#1c2a35] border border-[#1c2a35] hover:border-red-500/50 p-4 transition-all"
             >
               <span className="text-white">{option.text}</span>
