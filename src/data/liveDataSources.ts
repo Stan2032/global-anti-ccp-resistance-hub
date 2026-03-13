@@ -1,6 +1,11 @@
-// Live Data Sources Configuration
-// Real-time intelligence feeds and monitoring systems
-// Feed configuration data lives in live_data_feeds.json
+/**
+ * Live data source configuration and feed management.
+ *
+ * Imports feed config from `live_data_feeds.json` and provides typed
+ * interfaces for feed items, regional feeds, and real-time data aggregation.
+ *
+ * @module liveDataSources
+ */
 
 import liveDataFeeds from './live_data_feeds.json';
 import { logger } from '../utils/logger';

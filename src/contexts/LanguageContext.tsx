@@ -2,6 +2,13 @@ import { useState, useEffect, ReactNode } from 'react';
 import { translations, LanguageContext } from './languageUtils';
 import enTranslations from '../locales/en.json';
 
+/**
+ * LanguageProvider — wraps the app tree with i18n translation context.
+ *
+ * Persists language preference to localStorage.
+ * Sets document direction (LTR/RTL) based on selected language.
+ * Provides a `t(key)` function for dot-path translations with English fallback.
+ */
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState(() => {
     // Check localStorage for saved preference

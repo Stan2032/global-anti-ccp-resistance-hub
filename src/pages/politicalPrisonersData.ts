@@ -1,3 +1,7 @@
+/**
+ * Political prisoners profile page path mapping.
+ * Maps prisoner names to their dedicated profile page routes.
+ */
 export const PROFILE_PATHS: Record<string, string> = {
   'Jimmy Lai': '/profiles/jimmy-lai',
   'Ilham Tohti': '/profiles/ilham-tohti',
