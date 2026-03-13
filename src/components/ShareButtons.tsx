@@ -159,6 +159,8 @@ const ShareButtons = ({
         {!compact && shareLinks.length > 5 && (
           <button
             onClick={() => setShowMore(!showMore)}
+            aria-expanded={showMore}
+            aria-label={showMore ? 'Show fewer sharing options' : 'Show more sharing options'}
             className="bg-[#111820] hover:bg-[#1c2a35] text-white p-2 transition-colors"
             title={showMore ? 'Show less' : 'More options'}
           >

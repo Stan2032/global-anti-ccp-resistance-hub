@@ -35,6 +35,9 @@ const LanguageSelector: React.FC = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-label="Language selector"
         className="flex items-center gap-1.5 px-2 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
       >
         <Globe className="w-4 h-4 text-slate-400" />

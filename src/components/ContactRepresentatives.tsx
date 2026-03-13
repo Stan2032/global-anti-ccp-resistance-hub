@@ -301,11 +301,13 @@ Sincerely,
       {/* Country Selection */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-3">Select Your Country</h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Country selection">
           {countries.map((country) => (
             <button
               key={country.code}
               onClick={() => setSelectedCountry(country.code)}
+              role="tab"
+              aria-selected={selectedCountry === country.code}
               className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedCountry === country.code
                   ? 'bg-[#22d3ee] text-[#0a0e14]'
@@ -343,11 +345,13 @@ Sincerely,
       {/* Topic Selection */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-3">Select a Topic</h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Advocacy topics">
           {topics.map((topic) => (
             <button
               key={topic.id}
               onClick={() => setSelectedTopic(topic.id)}
+              role="tab"
+              aria-selected={selectedTopic === topic.id}
               className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedTopic === topic.id
                   ? 'bg-red-600 text-white'
