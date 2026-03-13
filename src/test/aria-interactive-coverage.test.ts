@@ -52,9 +52,9 @@ describe('ARIA Interactive Coverage', () => {
       const lines = content.split('\n');
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        // Look for toggle patterns: onClick that toggles expand/open/show states
+        // Heuristic: detect onClick that toggles expand/open/show states via common naming
         if (/onClick.*\(.*!.*(?:expanded|isOpen|showMore|openQuestion|expandedStory)/.test(line)) {
-          // Check surrounding 5 lines for aria-expanded
+          // Check nearby lines (3 before, 5 after) for aria-expanded attribute
           const context = lines.slice(Math.max(0, i - 3), i + 5).join('\n');
           if (!context.includes('aria-expanded')) {
             const name = file.split('/').pop() ?? file;
