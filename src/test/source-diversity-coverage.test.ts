@@ -90,10 +90,16 @@ describe('Source Diversity', () => {
     });
 
     it('includes both individual and entity sanctions', () => {
-      const individuals = sanctions.filter(s => s.target && !s.target.includes('PSB') && !s.target.includes('Bureau'));
-      const entities = sanctions.filter(s => s.target && (s.target.includes('PSB') || s.target.includes('Bureau') || s.target.includes('Corps')));
-      expect(individuals.length).toBeGreaterThan(0);
-      expect(entities.length).toBeGreaterThan(0);
+      // Pattern heuristic: entity targets typically contain organizational words
+      const entityKeywords = ['PSB', 'Bureau', 'Corps', 'Department', 'Committee', 'Office'];
+      const entities = sanctions.filter(s =>
+        s.target && entityKeywords.some(kw => s.target.includes(kw))
+      );
+      const individuals = sanctions.filter(s =>
+        s.target && !entityKeywords.some(kw => s.target.includes(kw))
+      );
+      expect(individuals.length, 'Should have individual sanctions targets').toBeGreaterThan(0);
+      expect(entities.length, 'Should have entity sanctions targets').toBeGreaterThan(0);
     });
   });
 
@@ -138,12 +144,14 @@ describe('Source Diversity', () => {
     });
 
     it('includes both criminal and legislative/tribunal cases', () => {
-      const criminal = cases.filter(c => c.output.case_name.includes('v.') || c.output.case_name.includes('HKSAR'));
+      // Pattern heuristic: criminal cases typically use "v." or "HKSAR"; legislative cases use "Motion", "Resolution", etc.
+      const criminalKeywords = ['v.', 'HKSAR'];
+      const legislativeKeywords = ['Motion', 'Tribunal', 'Resolution', 'UFLPA', 'Parliament', 'Assembly'];
+      const criminal = cases.filter(c =>
+        criminalKeywords.some(kw => c.output.case_name.includes(kw))
+      );
       const legislative = cases.filter(c =>
-        c.output.case_name.includes('Motion') ||
-        c.output.case_name.includes('Tribunal') ||
-        c.output.case_name.includes('Resolution') ||
-        c.output.case_name.includes('UFLPA')
+        legislativeKeywords.some(kw => c.output.case_name.includes(kw))
       );
       expect(criminal.length, 'Should have criminal cases').toBeGreaterThan(0);
       expect(legislative.length, 'Should have legislative/tribunal cases').toBeGreaterThan(0);
