@@ -220,7 +220,6 @@ const ChinaTechThreats = () => {
             onClick={() => setActiveTab(tab.id)}
             role="tab"
             aria-selected={activeTab === tab.id}
-            aria-controls={`panel-${tab.id}`}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeTab === tab.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

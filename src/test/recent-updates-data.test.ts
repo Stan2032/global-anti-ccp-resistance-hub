@@ -17,11 +17,6 @@ interface RecentUpdate {
 }
 
 const VALID_CATEGORIES = ['data', 'feature', 'security', 'infrastructure', 'design', 'bugfix', 'alert', 'new_entry', 'verification', 'case_update', 'new_case', 'report'];
-const VALID_PAGES = [
-  '/prisoners', '/intelligence', '/sanctions', '/timeline', '/security',
-  '/take-action', '/dashboard', '/data-sources', '/', '/resources',
-  '/profiles', '/community', '/accessibility'
-];
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 const updates: RecentUpdate[] = updatesData;
