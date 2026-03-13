@@ -145,6 +145,7 @@ const QuickFacts = () => {
             key={fact.id}
             className={`bg-[#0a0e14] border-l-2 ${colorClasses[fact.color]} p-5 border transition-transform hover:scale-[1.02] cursor-pointer`}
             onClick={() => copyToClipboard(fact)}
+            aria-label={`Copy fact: ${fact.stat} — ${fact.description}`}
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">

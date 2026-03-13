@@ -286,11 +286,14 @@ const LanguageGuide = () => {
       </div>
 
       {/* Language Selector */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Select language">
         {languages.map(lang => (
           <button
             key={lang.id}
             onClick={() => setActiveLanguage(lang.id)}
+            role="tab"
+            aria-selected={activeLanguage === lang.id}
+            aria-controls={`lang-tabpanel-${lang.id}`}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeLanguage === lang.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

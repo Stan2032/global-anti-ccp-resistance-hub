@@ -57,12 +57,14 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
           <div className="flex gap-3">
             <button
               onClick={this.handleReset}
+              aria-label="Try again — reset the application"
               className="px-6 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 font-medium transition-colors"
             >
               Try Again
             </button>
             <button
               onClick={() => window.location.reload()}
+              aria-label="Reload page"
               className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] font-medium transition-colors"
             >
               Reload Page

@@ -192,7 +192,7 @@ const WorldThreatMap = () => {
       {/* Map Container */}
       <div className="relative aspect-[2/1] bg-[#0a0e14] overflow-hidden">
         {/* Simplified World Map SVG */}
-        <svg viewBox="0 0 100 50" className="w-full h-full">
+        <svg viewBox="0 0 100 50" className="w-full h-full" role="img" aria-label="World threat map — click regions to view details">
           {/* Background grid */}
           <defs>
             <pattern id="grid" width="5" height="5" patternUnits="userSpaceOnUse">
@@ -337,6 +337,7 @@ const WorldThreatMap = () => {
                 </span>
                 <button 
                   onClick={() => setSelectedRegion(null)}
+                  aria-label="Close region details"
                   className="text-slate-400 hover:text-white"
                 >
                   ✕
@@ -377,11 +378,12 @@ const WorldThreatMap = () => {
         ) : (
           <div className="text-center py-4">
             <p className="text-slate-400 mb-4">Click on a region to see detailed threat information</p>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Select region">
               {(Object.keys(threatData) as RegionName[]).map((region) => (
                 <button
                   key={region}
                   onClick={() => setSelectedRegion(region)}
+                  aria-label={`View threats in ${region} (${threatData[region].totalStations} stations)`}
                   className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors flex items-center gap-1"
                 >
                   {region}
