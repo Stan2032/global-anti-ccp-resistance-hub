@@ -55,7 +55,7 @@ const DATASET_VERIFICATION = [
     id: 'political_prisoners',
     name: 'Political Prisoners',
     file: 'political_prisoners_research.json',
-    lastVerified: '2026-03-02',
+    lastVerified: '2026-03-11',
     verificationNote: '65 records verified against BBC, Reuters, HRW, Amnesty. All last_verified fields updated.',
     recordCount: () => dataApi.getPoliticalPrisoners().length,
   },
@@ -63,7 +63,7 @@ const DATASET_VERIFICATION = [
     id: 'sanctions',
     name: 'Sanctions Tracker',
     file: 'sanctions_tracker.json',
-    lastVerified: '2026-03-02',
+    lastVerified: '2026-03-11',
     verificationNote: '46 entries verified against US Treasury OFAC, UK OFSI, EU Council (Regulation 2021/478), Canada SEMA. Corrected: Chen Quanguo removed from EU list (not in EU regulation).',
     recordCount: () => dataApi.getSanctions().length,
   },
@@ -71,7 +71,7 @@ const DATASET_VERIFICATION = [
     id: 'sanctioned_officials',
     name: 'Sanctioned Officials',
     file: 'sanctioned_officials_research.json',
-    lastVerified: '2026-02-25',
+    lastVerified: '2026-03-11',
     verificationNote: 'All officials cross-checked with government sanctions databases.',
     recordCount: () => dataApi.getSanctionedOfficials().length,
   },
@@ -79,7 +79,7 @@ const DATASET_VERIFICATION = [
     id: 'timeline_events',
     name: 'Timeline Events',
     file: 'timeline_events.json',
-    lastVerified: '2026-03-05',
+    lastVerified: '2026-03-11',
     verificationNote: '34 events spanning 1989-2026. All dates verified with Tier 1-2 sources.',
     recordCount: () => dataApi.getTimelineEvents().length,
   },
@@ -87,7 +87,7 @@ const DATASET_VERIFICATION = [
     id: 'forced_labor',
     name: 'Forced Labor Companies',
     file: 'forced_labor_companies_research.json',
-    lastVerified: '2026-02-26',
+    lastVerified: '2026-03-11',
     verificationNote: 'Companies verified against UFLPA Entity List and ASPI data.',
     recordCount: () => dataApi.getForcedLaborCompanies().length,
   },
@@ -95,7 +95,7 @@ const DATASET_VERIFICATION = [
     id: 'detention_facilities',
     name: 'Detention Facilities',
     file: 'detention_facilities_research.json',
-    lastVerified: '2026-02-26',
+    lastVerified: '2026-03-11',
     verificationNote: 'Facilities verified via satellite imagery (ASPI) and survivor testimony.',
     recordCount: () => dataApi.getDetentionFacilities().length,
   },
@@ -103,7 +103,7 @@ const DATASET_VERIFICATION = [
     id: 'emergency_alerts',
     name: 'Emergency Alerts',
     file: 'emergency_alerts.json',
-    lastVerified: '2026-03-05',
+    lastVerified: '2026-03-11',
     verificationNote: 'Active alerts reviewed and expires/eventDate fields validated.',
     recordCount: () => dataApi.getActiveAlerts().length,
   },
@@ -111,7 +111,7 @@ const DATASET_VERIFICATION = [
     id: 'live_statistics',
     name: 'Live Statistics',
     file: 'live_statistics.json',
-    lastVerified: '2026-03-02',
+    lastVerified: '2026-03-11',
     verificationNote: 'Statistics cross-referenced with primary research sources.',
     recordCount: () => dataApi.getStatistics().length,
   },
@@ -196,7 +196,7 @@ const DataChangelog = () => {
       </div>
 
       {/* Health Overview */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <div className="bg-green-400/10 border border-green-400/30 p-3 text-center">
           <div className="text-2xl font-bold text-green-400">{summary.fresh}</div>
           <div className="text-xs text-slate-400">Fresh</div>
@@ -208,6 +208,10 @@ const DataChangelog = () => {
         <div className="bg-yellow-400/10 border border-yellow-400/30 p-3 text-center">
           <div className="text-2xl font-bold text-yellow-400">{summary.aging}</div>
           <div className="text-xs text-slate-400">Aging</div>
+        </div>
+        <div className="bg-red-400/10 border border-red-400/30 p-3 text-center">
+          <div className="text-2xl font-bold text-red-400">{summary.stale}</div>
+          <div className="text-xs text-slate-400">Stale</div>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-3 text-center">
           <div className="text-2xl font-bold text-white">{summary.totalRecords}</div>
