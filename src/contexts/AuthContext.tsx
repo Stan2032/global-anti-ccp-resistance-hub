@@ -18,6 +18,12 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+/**
+ * AuthProvider — wraps the app tree with authentication context.
+ *
+ * Manages user state, admin role checking, login/logout.
+ * Integrates with Supabase auth; gracefully no-ops when Supabase is not configured.
+ */
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<unknown>(null);
   const [isAdmin, setIsAdmin] = useState(false);
