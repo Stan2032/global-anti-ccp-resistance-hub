@@ -323,7 +323,7 @@ export async function fetchFeedsProgressively(
 /**
  * Fetch political prisoners data from verified JSON research file.
  * Source: CECC Political Prisoner Database, HRW, Amnesty International, CPJ
- * Data file: src/data/political_prisoners_research.json (65 verified entries)
+ * Data file: src/data/political_prisoners_research.json
  */
 export async function fetchPoliticalPrisoners(): Promise<NormalisedPrisoner[]> {
   const { default: prisonersData } = await import('../data/political_prisoners_research.json') as {
@@ -352,25 +352,37 @@ export async function fetchPoliticalPrisoners(): Promise<NormalisedPrisoner[]> {
  * not from a live database. They represent documented/verified entries.
  *
  * Sources:
- * - Political prisoners: CECC database, HRW, Amnesty (65 documented in our database)
+ * - Political prisoners: CECC database, HRW, Amnesty
  * - Detention facilities: ASPI Xinjiang Data Project estimates 380+ facilities;
  *   broader estimates by researchers suggest 1,000+ across all regions
  *   (Source: ASPI, https://xjdp.aspi.org.au/)
- * - Verified organisations: human_rights_orgs_research.json (49 documented)
+ * - Verified organisations: human_rights_orgs_research.json
  * - Active campaigns: Illustrative target — no live tracking
  */
 export async function fetchStatistics(): Promise<PlatformStatistics> {
+  // Dynamically count from actual data files to prevent hardcoded staleness
+  const { default: prisonersData } = await import('../data/political_prisoners_research.json') as {
+    default: { results: PrisonerResearchRecord[] };
+  };
+  const { default: orgsData } = await import('../data/human_rights_orgs_research.json') as {
+    default: { results: Array<Record<string, unknown>> };
+  };
+  const prisonerCount = prisonersData.results.filter(
+    (r: PrisonerResearchRecord) => !r.error && r.output
+  ).length;
+  const orgCount = orgsData.results.length;
+
   return {
-    verifiedOrganizations: 49,
+    verifiedOrganizations: orgCount,
     detentionFacilities: 380,
     activeCampaigns: null,
-    politicalPrisoners: 65,
-    lastUpdated: '2026-03-10',
+    politicalPrisoners: prisonerCount,
+    lastUpdated: '2026-03-11',
     dataNote: 'Counts reflect entries documented in this platform\'s verified database, not global totals.',
     sources: {
-      organizations: 'human_rights_orgs_research.json — 49 verified human rights organizations',
+      organizations: `human_rights_orgs_research.json — ${orgCount} verified human rights organizations`,
       facilities: 'ASPI Xinjiang Data Project (xjdp.aspi.org.au) — 380+ identified facilities',
-      prisoners: 'political_prisoners_research.json — 65 verified individual cases (CECC, HRW, Amnesty)',
+      prisoners: `political_prisoners_research.json — ${prisonerCount} verified individual cases (CECC, HRW, Amnesty)`,
     },
   };
 }
