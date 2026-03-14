@@ -1,4 +1,12 @@
-
+/**
+ * PolicyBriefGenerator — Evidence-based policy brief generator.
+ *
+ * Cross-references political prisoners, sanctions, forced labour companies,
+ * and detention facility datasets to produce structured policy briefs with
+ * executive summaries, key findings, and actionable recommendations.
+ *
+ * @module PolicyBriefGenerator
+ */
 import { useState, useMemo } from 'react';
 import {
   dataApi,

@@ -7,14 +7,15 @@ vi.mock('../services/liveDataService', () => ({
   fetchFeedsProgressively: vi.fn(),
   fetchPoliticalPrisoners: vi.fn(),
   fetchStatistics: vi.fn(),
-  FEED_SOURCES: [
-    { id: 'hkfp', name: 'Hong Kong Free Press', url: 'https://hongkongfp.com/feed/' },
-    { id: 'rfa', name: 'Radio Free Asia', url: 'https://www.rfa.org/english/news/rss2.xml' },
-  ],
+  FEED_SOURCES: {
+    hkfp: { name: 'Hong Kong Free Press', fullName: 'Hong Kong Free Press', url: 'https://hongkongfp.com/feed/', description: '', reliability: 'high' as const },
+    rfa: { name: 'Radio Free Asia', fullName: 'Radio Free Asia', url: 'https://www.rfa.org/english/news/rss2.xml', description: '', reliability: 'high' as const },
+  },
 }));
 
 import { useLiveFeeds, usePoliticalPrisoners, useStatistics } from '../hooks/useLiveData';
 import { fetchFeedsProgressively, fetchPoliticalPrisoners, fetchStatistics } from '../services/liveDataService';
+import type { FeedItem, NormalisedPrisoner, PlatformStatistics } from '../services/liveDataService';
 
 describe('useLiveData hooks', () => {
   beforeEach(() => {
@@ -28,7 +29,7 @@ describe('useLiveData hooks', () => {
 
   describe('useLiveFeeds', () => {
     it('starts in loading state', () => {
-      (fetchFeedsProgressively as any).mockReturnValue(new Promise(() => {})); // never resolves
+      vi.mocked(fetchFeedsProgressively).mockReturnValue(new Promise(() => {})); // never resolves
       const { result } = renderHook(() => useLiveFeeds());
       expect(result.current.loading).toBe(true);
       expect(result.current.feeds).toEqual([]);
@@ -39,8 +40,8 @@ describe('useLiveData hooks', () => {
       const mockFeeds = [
         { title: 'Hong Kong activist arrested', source: 'HKFP' },
         { title: 'Sanctions update', source: 'RFA' },
-      ];
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, onSourceDone: any) => {
+      ] as FeedItem[];
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         onItems(mockFeeds);
         if (onSourceDone) onSourceDone('hkfp');
       });
@@ -58,9 +59,9 @@ describe('useLiveData hooks', () => {
     });
 
     it('accumulates feeds progressively from multiple sources', async () => {
-      const hkfpItems = [{ title: 'HK article', source: 'hkfp' }];
-      const rfaItems = [{ title: 'RFA article', source: 'rfa' }];
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, onSourceDone: any) => {
+      const hkfpItems = [{ title: 'HK article', source: 'hkfp' }] as FeedItem[];
+      const rfaItems = [{ title: 'RFA article', source: 'rfa' }] as FeedItem[];
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         onItems(hkfpItems);
         if (onSourceDone) onSourceDone('hkfp');
         onItems(rfaItems);
@@ -77,8 +78,8 @@ describe('useLiveData hooks', () => {
     });
 
     it('tracks loadedSources as each source completes', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, onSourceDone: any) => {
-        onItems([{ title: 'Article', source: 'hkfp' }]);
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
+        onItems([{ title: 'Article', source: 'hkfp' }] as FeedItem[]);
         if (onSourceDone) onSourceDone('hkfp');
         if (onSourceDone) onSourceDone('rfa');
       });
@@ -94,7 +95,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('resets loadedSources on refresh', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, onSourceDone: any) => {
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         if (onSourceDone) onSourceDone('hkfp');
       });
 
@@ -104,7 +105,7 @@ describe('useLiveData hooks', () => {
       });
       expect(result.current.loadedSources.has('hkfp')).toBe(true);
 
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, onSourceDone: any) => {
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, onSourceDone) => {
         if (onSourceDone) onSourceDone('rfa');
       });
       await act(async () => {
@@ -116,7 +117,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('handles fetch errors', async () => {
-      (fetchFeedsProgressively as any).mockRejectedValue(new Error('Network failure'));
+      vi.mocked(fetchFeedsProgressively).mockRejectedValue(new Error('Network failure'));
 
       const { result } = renderHook(() => useLiveFeeds(0));
       await act(async () => {
@@ -129,15 +130,15 @@ describe('useLiveData hooks', () => {
     });
 
     it('exposes FEED_SOURCES', () => {
-      (fetchFeedsProgressively as any).mockReturnValue(new Promise(() => {}));
+      vi.mocked(fetchFeedsProgressively).mockReturnValue(new Promise(() => {}));
       const { result } = renderHook(() => useLiveFeeds(0));
-      expect(result.current.sources).toHaveLength(2);
-      expect((result.current.sources[0] as any).id).toBe('hkfp');
+      expect(Object.keys(result.current.sources)).toHaveLength(2);
+      expect(result.current.sources['hkfp']).toBeDefined();
     });
 
     it('provides a refresh function', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, _onSourceDone: any) => {
-        onItems([{ title: 'First fetch' }]);
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, _onSourceDone) => {
+        onItems([{ title: 'First fetch' }] as FeedItem[]);
       });
       const { result } = renderHook(() => useLiveFeeds(0));
       await act(async () => {
@@ -145,8 +146,8 @@ describe('useLiveData hooks', () => {
       });
       expect(result.current.feeds).toEqual([{ title: 'First fetch' }]);
 
-      (fetchFeedsProgressively as any).mockImplementation(async (onItems: any, _onSourceDone: any) => {
-        onItems([{ title: 'Refreshed data' }]);
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async (onItems, _onSourceDone) => {
+        onItems([{ title: 'Refreshed data' }] as FeedItem[]);
       });
       await act(async () => {
         await result.current.refresh();
@@ -157,7 +158,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('sets up auto-refresh interval', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async () => {});
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async () => {});
       renderHook(() => useLiveFeeds(60000)); // 60s interval
 
       // Initial fetch
@@ -174,7 +175,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('cleans up interval on unmount', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async () => {});
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async () => {});
       const { unmount } = renderHook(() => useLiveFeeds(60000));
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
@@ -191,7 +192,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('skips interval when refreshInterval is 0', async () => {
-      (fetchFeedsProgressively as any).mockImplementation(async () => {});
+      vi.mocked(fetchFeedsProgressively).mockImplementation(async () => {});
       renderHook(() => useLiveFeeds(0));
       await act(async () => {
         await vi.advanceTimersByTimeAsync(0);
@@ -208,7 +209,7 @@ describe('useLiveData hooks', () => {
 
   describe('usePoliticalPrisoners', () => {
     it('starts in loading state', () => {
-      (fetchPoliticalPrisoners as any).mockReturnValue(new Promise(() => {}));
+      vi.mocked(fetchPoliticalPrisoners).mockReturnValue(new Promise(() => {}));
       const { result } = renderHook(() => usePoliticalPrisoners());
       expect(result.current.loading).toBe(true);
       expect(result.current.prisoners).toEqual([]);
@@ -219,8 +220,8 @@ describe('useLiveData hooks', () => {
       const mockPrisoners = [
         { name: 'Jimmy Lai', status: 'imprisoned' },
         { name: 'Zhang Zhan', status: 'imprisoned' },
-      ];
-      (fetchPoliticalPrisoners as any).mockResolvedValue(mockPrisoners);
+      ] as NormalisedPrisoner[];
+      vi.mocked(fetchPoliticalPrisoners).mockResolvedValue(mockPrisoners);
 
       const { result } = renderHook(() => usePoliticalPrisoners());
       await act(async () => {
@@ -233,7 +234,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('handles fetch errors', async () => {
-      (fetchPoliticalPrisoners as any).mockRejectedValue(new Error('Failed to load'));
+      vi.mocked(fetchPoliticalPrisoners).mockRejectedValue(new Error('Failed to load'));
 
       const { result } = renderHook(() => usePoliticalPrisoners());
       await act(async () => {
@@ -248,7 +249,7 @@ describe('useLiveData hooks', () => {
 
   describe('useStatistics', () => {
     it('starts in loading state with null stats', () => {
-      (fetchStatistics as any).mockReturnValue(new Promise(() => {}));
+      vi.mocked(fetchStatistics).mockReturnValue(new Promise(() => {}));
       const { result } = renderHook(() => useStatistics());
       expect(result.current.loading).toBe(true);
       expect(result.current.stats).toBeNull();
@@ -258,10 +259,10 @@ describe('useLiveData hooks', () => {
     it('returns statistics on success', async () => {
       const mockStats = {
         totalPrisoners: 62,
-        sanctionsEntries: 47,
+        sanctionsEntries: 46,
         countriesTracked: 30,
-      };
-      (fetchStatistics as any).mockResolvedValue(mockStats);
+      } as unknown as PlatformStatistics;
+      vi.mocked(fetchStatistics).mockResolvedValue(mockStats);
 
       const { result } = renderHook(() => useStatistics());
       await act(async () => {
@@ -274,7 +275,7 @@ describe('useLiveData hooks', () => {
     });
 
     it('handles fetch errors', async () => {
-      (fetchStatistics as any).mockRejectedValue(new Error('Service unavailable'));
+      vi.mocked(fetchStatistics).mockRejectedValue(new Error('Service unavailable'));
 
       const { result } = renderHook(() => useStatistics());
       await act(async () => {

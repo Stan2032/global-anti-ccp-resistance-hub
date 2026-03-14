@@ -4,8 +4,55 @@ import { resolve } from 'path';
 
 const DATA_PATH = resolve(__dirname, '../data/security_center_data.json');
 
+interface SecurityTool {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  download: string;
+  features: string[];
+}
+
+interface ConnectionTestTool {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+}
+
+interface AssessmentQuestion {
+  id: string;
+  question: string;
+  category: string;
+  weight: number;
+}
+
+interface EmergencyContact {
+  id: string;
+  name: string;
+  type: string;
+  contact: string;
+  description: string;
+}
+
+interface SecurityGuide {
+  id: string;
+  title: string;
+  topics: string[];
+  difficulty: string;
+}
+
+interface SecurityCenterData {
+  securityTools: SecurityTool[];
+  connectionTestTools: ConnectionTestTool[];
+  assessmentQuestions: AssessmentQuestion[];
+  emergencyContacts: EmergencyContact[];
+  securityGuides: SecurityGuide[];
+  [key: string]: unknown[];
+}
+
 describe('Security Center Data Integrity', () => {
-  let data: any;
+  let data: SecurityCenterData;
 
   beforeAll(() => {
     data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
@@ -66,11 +113,11 @@ describe('Security Center Data Integrity', () => {
     });
 
     it('includes essential privacy tools (Tor, VPN, Signal)', () => {
-      const names = data.securityTools.map((t: any) => t.name.toLowerCase());
+      const names = data.securityTools.map((t: SecurityTool) => t.name.toLowerCase());
       const essentialTools = ['tor', 'vpn', 'signal'];
       for (const tool of essentialTools) {
         expect(
-          names.some((n: any) => n.includes(tool)),
+          names.some((n: string) => n.includes(tool)),
           `Missing essential tool containing "${tool}"`
         ).toBe(true);
       }
@@ -116,7 +163,7 @@ describe('Security Center Data Integrity', () => {
     });
 
     it('all question IDs are unique', () => {
-      const ids = data.assessmentQuestions.map((q: any) => q.id);
+      const ids = data.assessmentQuestions.map((q: AssessmentQuestion) => q.id);
       const dupes = ids.filter((id: string, i: number) => ids.indexOf(id) !== i);
       expect(dupes, `Duplicate question IDs: ${dupes.join(', ')}`).toEqual([]);
     });

@@ -2,42 +2,138 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
+/** Timeline event from timeline_events.json */
+interface TimelineEvent {
+  id: number;
+  date: string;
+  title: string;
+  category: string;
+  significance: string;
+  description: string;
+  details: string;
+  sources: string[];
+  sentence?: string;
+  source_urls?: string[];
+}
+
+/** Prisoner output from political_prisoners_research.json */
+interface PrisonerOutput {
+  prisoner_name: string;
+  status: string;
+  sentence: string;
+  latest_news: string;
+  source_url: string;
+  health_status: string;
+  location: string;
+  confidence: string;
+  verification_note?: string;
+  last_verified?: string;
+  international_response?: string;
+}
+
+interface PrisonerEntry {
+  input: string;
+  output: PrisonerOutput;
+  error: string;
+}
+
+interface PrisonerData {
+  results: PrisonerEntry[];
+}
+
+/** Official output from sanctioned_officials_research.json */
+interface OfficialOutput {
+  name: string;
+  us_sanctions: string;
+  uk_sanctions: string;
+  eu_sanctions: string;
+  canada_sanctions: string;
+  australia_sanctions: string;
+  current_status: string;
+  source_url: string;
+  [key: string]: string;
+}
+
+interface OfficialEntry {
+  input: string;
+  output: OfficialOutput;
+  error: string;
+}
+
+interface OfficialsData {
+  results: OfficialEntry[];
+}
+
+/** Response output from international_responses_research.json */
+interface ResponseOutput {
+  country: string;
+  genocide_recognition: string;
+  source_url: string;
+  [key: string]: string;
+}
+
+interface ResponseEntry {
+  input: string;
+  output: ResponseOutput;
+  error: string;
+}
+
+interface ResponsesData {
+  results: ResponseEntry[];
+}
+
+/** HR org output from human_rights_orgs_research.json */
+interface HROrgOutput {
+  latest_news?: string;
+  [key: string]: unknown;
+}
+
+interface HROrgEntry {
+  input: string;
+  output: HROrgOutput;
+  error: string;
+}
+
+interface HROrgData {
+  results: HROrgEntry[];
+}
+
 const DATA_DIR = resolve(__dirname, '../data');
 
 describe('Critical date consistency across data files', () => {
   describe('Jimmy Lai dates and facts', () => {
     it('timeline_events.json has correct conviction date (Dec 15, 2025)', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const laiGuilty = data.find((e: any) => e.title === 'Jimmy Lai Found Guilty');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const laiGuilty = data.find((e: TimelineEvent) => e.title === 'Jimmy Lai Found Guilty')!;
       expect(laiGuilty).toBeDefined();
       expect(laiGuilty.date).toBe('2025-12-15');
     });
 
     it('timeline_events.json has correct sentencing date (Feb 9, 2026)', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const laiSentenced = data.find((e: any) => e.title === 'Jimmy Lai Sentenced to 20 Years');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const laiSentenced = data.find((e: TimelineEvent) => e.title === 'Jimmy Lai Sentenced to 20 Years')!;
       expect(laiSentenced).toBeDefined();
       expect(laiSentenced.date).toBe('2026-02-09');
       expect(laiSentenced.sentence).toBe('20 years imprisonment');
     });
 
-    it('timeline_events.json event 14 references 20-year sentence, not life', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const laiArrested = data.find((e: any) => e.id === 14);
+    it('timeline_events.json "Jimmy Lai Arrested" references 20-year sentence, not life', () => {
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const laiArrested = data.find((e: TimelineEvent) => e.title === 'Jimmy Lai Arrested')!;
       expect(laiArrested).toBeDefined();
       expect(laiArrested.sentence).not.toMatch(/faces life/i);
       expect(laiArrested.sentence).toMatch(/20 years/i);
     });
 
     it('political_prisoners_research.json has 20-year sentence for Jimmy Lai', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
-      const lai = data.results.find((r: any) => r.output.prisoner_name === 'Jimmy Lai');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
+      const lai = data.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Jimmy Lai')!;
       expect(lai).toBeDefined();
       expect(lai.output.sentence).toMatch(/20 years/i);
     });
 
     it('no data file references "December 19" for Jimmy Lai verdict', () => {
-      const hrOrgs = JSON.parse(readFileSync(resolve(DATA_DIR, 'human_rights_orgs_research.json'), 'utf-8'));
+      const hrOrgs = JSON.parse(readFileSync(resolve(DATA_DIR, 'human_rights_orgs_research.json'), 'utf-8')) as HROrgData;
       for (const result of hrOrgs.results) {
         const news = result.output?.latest_news || '';
         if (news.toLowerCase().includes('lai')) {
@@ -49,8 +145,8 @@ describe('Critical date consistency across data files', () => {
 
   describe('Hong Kong 47 dates', () => {
     it('timeline has correct sentencing date (Nov 19, 2024)', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const hk47 = data.find((e: any) => e.title === 'Hong Kong 47 Sentenced');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const hk47 = data.find((e: TimelineEvent) => e.title === 'Hong Kong 47 Sentenced')!;
       expect(hk47).toBeDefined();
       expect(hk47.date).toBe('2024-11-19');
     });
@@ -58,8 +154,8 @@ describe('Critical date consistency across data files', () => {
 
   describe('Safeguard Defenders report date', () => {
     it('timeline has corrected date (Dec 4, 2022, not Sep 14, 2023)', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const sd = data.find((e: any) => e.title && e.title.includes('Safeguard Defenders'));
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const sd = data.find((e: TimelineEvent) => e.title && e.title.includes('Safeguard Defenders'))!;
       expect(sd).toBeDefined();
       expect(sd.date).toBe('2022-12-04');
       expect(sd.date).not.toBe('2023-09-14');
@@ -68,7 +164,7 @@ describe('Critical date consistency across data files', () => {
 
   describe('Timeline event date ordering', () => {
     it('all events are in chronological order', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
       for (let i = 1; i < data.length; i++) {
         const prevDate = new Date(data[i - 1].date);
         const currDate = new Date(data[i].date);
@@ -81,7 +177,7 @@ describe('Critical date consistency across data files', () => {
 
   describe('Sanctioned officials data integrity', () => {
     it('all verified US sanctions dates are correct', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8')) as OfficialsData;
 
       // Verified dates from US Treasury press releases
       const verified = {
@@ -91,14 +187,14 @@ describe('Critical date consistency across data files', () => {
       };
 
       for (const [name, check] of Object.entries(verified)) {
-        const official = data.results.find((r: any) => r.output.name === name);
+        const official = data.results.find((r: OfficialEntry) => r.output.name === name)!;
         expect(official, `${name} should exist in sanctioned officials`).toBeDefined();
         expect(official.output[check.field]).toContain(check.expected);
       }
     });
 
     it('each sanctioned official has valid source_url', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8')) as OfficialsData;
       for (const result of data.results) {
         expect(result.output.source_url).toMatch(/^https?:\/\//);
       }
@@ -107,35 +203,35 @@ describe('Critical date consistency across data files', () => {
 
   describe('International responses data integrity', () => {
     it('US genocide recognition date is January 19, 2021', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
-      const us = data.results.find((r: any) => r.output.country === 'United States');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8')) as ResponsesData;
+      const us = data.results.find((r: ResponseEntry) => r.output.country === 'United States')!;
       expect(us).toBeDefined();
       expect(us.output.genocide_recognition).toContain('January 19, 2021');
     });
 
     it('Netherlands genocide recognition date is February 25, 2021', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
-      const nl = data.results.find((r: any) => r.output.country === 'Netherlands');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8')) as ResponsesData;
+      const nl = data.results.find((r: ResponseEntry) => r.output.country === 'Netherlands')!;
       expect(nl).toBeDefined();
       expect(nl.output.genocide_recognition).toContain('February 25, 2021');
     });
 
     it('Lithuania genocide recognition date is May 20, 2021', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
-      const lt = data.results.find((r: any) => r.output.country === 'Lithuania');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8')) as ResponsesData;
+      const lt = data.results.find((r: ResponseEntry) => r.output.country === 'Lithuania')!;
       expect(lt).toBeDefined();
       expect(lt.output.genocide_recognition).toContain('May 20, 2021');
     });
 
     it('France genocide recognition date is January 20, 2022', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
-      const fr = data.results.find((r: any) => r.output.country === 'France');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8')) as ResponsesData;
+      const fr = data.results.find((r: ResponseEntry) => r.output.country === 'France')!;
       expect(fr).toBeDefined();
       expect(fr.output.genocide_recognition).toContain('January 20, 2022');
     });
 
     it('each country has a source_url', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8'));
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'international_responses_research.json'), 'utf-8')) as ResponsesData;
       for (const result of data.results) {
         expect(result.output.source_url).toMatch(/^https?:\/\//);
       }
@@ -144,66 +240,66 @@ describe('Critical date consistency across data files', () => {
 
   describe('Zhang Zhan second sentence is recorded', () => {
     it('political_prisoners_research.json reflects second sentence', () => {
-      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
-      const zz = data.results.find((r: any) => r.output.prisoner_name === 'Zhang Zhan');
+      const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
+      const zz = data.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Zhang Zhan')!;
       expect(zz).toBeDefined();
       expect(zz.output.sentence).toMatch(/second|2025|4 years.*4 years/i);
     });
   });
 
   describe('Session 29: Verified prisoner data accuracy', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
     beforeAll(() => {
-      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
     });
 
     it('Ilham Tohti sentencing date is September 23, 2014', () => {
-      const tohti = prisoners.results.find((r: any) => r.output.prisoner_name === 'Ilham Tohti');
+      const tohti = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Ilham Tohti')!;
       expect(tohti).toBeDefined();
       expect(tohti.output.sentence).toMatch(/September 23, 2014/);
     });
 
     it('Gao Zhisheng last seen August 13, 2017', () => {
-      const gao = prisoners.results.find((r: any) => r.output.prisoner_name === 'Gao Zhisheng');
+      const gao = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Gao Zhisheng')!;
       expect(gao).toBeDefined();
       expect(gao.output.latest_news).toMatch(/August 13, 2017/);
     });
 
     it('Gedhun Choekyi Nyima recognized May 14, abducted May 17, 1995', () => {
-      const gcn = prisoners.results.find((r: any) => r.output.prisoner_name === 'Gedhun Choekyi Nyima');
+      const gcn = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Gedhun Choekyi Nyima')!;
       expect(gcn).toBeDefined();
       expect(gcn.output.latest_news).toMatch(/May 14, 1995/);
       expect(gcn.output.latest_news).toMatch(/May 17, 1995/);
     });
 
     it('Ren Zhiqiang sentence is 18 years', () => {
-      const ren = prisoners.results.find((r: any) => r.output.prisoner_name === 'Ren Zhiqiang');
+      const ren = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Ren Zhiqiang')!;
       expect(ren).toBeDefined();
       expect(ren.output.sentence).toMatch(/18 years/);
     });
 
     it('Rahile Dawut life sentence confirmed via secret 2018 trial', () => {
-      const rd = prisoners.results.find((r: any) => r.output.prisoner_name === 'Rahile Dawut');
+      const rd = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Rahile Dawut')!;
       expect(rd).toBeDefined();
       expect(rd.output.sentence).toMatch(/life/i);
       expect(rd.output.latest_news).toMatch(/2018/);
     });
 
     it('Gui Minhai 10-year sentence at Ningbo court, Feb 2020', () => {
-      const gm = prisoners.results.find((r: any) => r.output.prisoner_name === 'Gui Minhai');
+      const gm = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Gui Minhai')!;
       expect(gm).toBeDefined();
       expect(gm.output.sentence).toMatch(/10 years/);
       expect(gm.output.sentence).toMatch(/Ningbo/i);
     });
 
     it('Sophia Huang Xueqin 5-year sentence verified', () => {
-      const hxq = prisoners.results.find((r: any) => r.output.prisoner_name === 'Sophia Huang Xueqin');
+      const hxq = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Sophia Huang Xueqin')!;
       expect(hxq).toBeDefined();
       expect(hxq.output.sentence).toMatch(/5 years/);
     });
 
     it('Ekpar Asat 15-year sentence verified', () => {
-      const ea = prisoners.results.find((r: any) => r.output.prisoner_name === 'Ekpar Asat');
+      const ea = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Ekpar Asat')!;
       expect(ea).toBeDefined();
       expect(ea.output.sentence).toMatch(/15 years/);
     });
@@ -220,27 +316,27 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('at least 24 prisoners have been verified', () => {
-      const verified = prisoners.results.filter((r: any) => r.output.last_verified);
+      const verified = prisoners.results.filter((r: PrisonerEntry) => r.output.last_verified);
       expect(verified.length).toBeGreaterThanOrEqual(24);
     });
 
     it('timeline Ilham Tohti entry includes sentencing date', () => {
-      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const tohti = events.find((e: any) => e.title === 'Ilham Tohti Arrested');
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const tohti = events.find((e: TimelineEvent) => e.title === 'Ilham Tohti Arrested')!;
       expect(tohti).toBeDefined();
       expect(tohti.sentence).toMatch(/September 23, 2014/);
     });
 
     it('Falun Gong timeline references April 25, 1999 Zhongnanhai protest', () => {
-      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const fg = events.find((e: any) => e.title === 'Falun Gong Persecution Begins');
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const fg = events.find((e: TimelineEvent) => e.title === 'Falun Gong Persecution Begins')!;
       expect(fg).toBeDefined();
       expect(fg.details).toMatch(/April 25, 1999/);
     });
 
     it('Causeway Bay entry includes individual disappearance dates', () => {
-      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
-      const cb = events.find((e: any) => e.title === 'Causeway Bay Booksellers Abducted');
+      const events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8')) as TimelineEvent[];
+      const cb = events.find((e: TimelineEvent) => e.title === 'Causeway Bay Booksellers Abducted')!;
       expect(cb).toBeDefined();
       expect(cb.details).toMatch(/October 14/);
       expect(cb.details).toMatch(/October 17/);
@@ -249,13 +345,13 @@ describe('Critical date consistency across data files', () => {
   });
 
   describe('Session 30: Extended prisoner verification', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
     beforeAll(() => {
-      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
     });
 
     it('Liu Xiaobo sentenced December 25, 2009 and died July 13, 2017', () => {
-      const lxb = prisoners.results.find((r: any) => r.output.prisoner_name === 'Liu Xiaobo');
+      const lxb = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Liu Xiaobo')!;
       expect(lxb).toBeDefined();
       expect(lxb.output.sentence).toMatch(/December 25, 2009/);
       expect(lxb.output.sentence).toMatch(/July 13, 2017/);
@@ -263,14 +359,14 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Huang Qi sentenced July 29, 2019, 12 years', () => {
-      const hq = prisoners.results.find((r: any) => r.output.prisoner_name === 'Huang Qi');
+      const hq = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Huang Qi')!;
       expect(hq).toBeDefined();
       expect(hq.output.sentence).toMatch(/July 29, 2019/);
       expect(hq.output.sentence).toMatch(/12 years/);
     });
 
     it('Wang Quanzhang sentenced Jan 28, 2019, released Apr 5, 2020', () => {
-      const wq = prisoners.results.find((r: any) => r.output.prisoner_name === 'Wang Quanzhang');
+      const wq = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Wang Quanzhang')!;
       expect(wq).toBeDefined();
       expect(wq.output.sentence).toMatch(/January 28, 2019/);
       expect(wq.output.sentence).toMatch(/April 5, 2020/);
@@ -278,35 +374,35 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Lee Cheuk-yan total sentence is 20 months (not 14)', () => {
-      const lcy = prisoners.results.find((r: any) => r.output.prisoner_name === 'Lee Cheuk-yan');
+      const lcy = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Lee Cheuk-yan')!;
       expect(lcy).toBeDefined();
       expect(lcy.output.sentence).toMatch(/20 months/);
       expect(lcy.output.sentence).not.toMatch(/14 months/);
     });
 
     it('Cardinal Joseph Zen arrested May 11, 2022, fined November 2022', () => {
-      const cjz = prisoners.results.find((r: any) => r.output.prisoner_name === 'Cardinal Joseph Zen');
+      const cjz = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Cardinal Joseph Zen')!;
       expect(cjz).toBeDefined();
       expect(cjz.output.sentence).toMatch(/May 11, 2022/);
       expect(cjz.output.sentence).toMatch(/November 2022/);
     });
 
     it('Andy Li guilty plea August 19, 2021, sentencing deferred', () => {
-      const al = prisoners.results.find((r: any) => r.output.prisoner_name === 'Andy Li');
+      const al = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Andy Li')!;
       expect(al).toBeDefined();
       expect(al.output.sentence).toMatch(/August 19, 2021/);
       expect(al.output.sentence).toMatch(/deferred/i);
     });
 
     it('Tony Chung sentenced November 2021, youngest NSL sentence', () => {
-      const tc = prisoners.results.find((r: any) => r.output.prisoner_name === 'Tony Chung');
+      const tc = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Tony Chung')!;
       expect(tc).toBeDefined();
       expect(tc.output.sentence).toMatch(/3 years and 7 months/);
       expect(tc.output.sentence).toMatch(/November 2021/);
     });
 
     it('Martin Lee suspended sentence April 2021', () => {
-      const ml = prisoners.results.find((r: any) => r.output.prisoner_name === 'Martin Lee');
+      const ml = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Martin Lee')!;
       expect(ml).toBeDefined();
       expect(ml.output.sentence).toMatch(/suspended/i);
       expect(ml.output.sentence).toMatch(/April 2021/);
@@ -314,13 +410,13 @@ describe('Critical date consistency across data files', () => {
   });
 
   describe('Session 31: Remaining prisoner verification', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
     beforeAll(() => {
-      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
     });
 
     it('Tashi Wangchuk status corrected to RELEASED (not AT RISK)', () => {
-      const tw = prisoners.results.find((r: any) => r.output.prisoner_name === 'Tashi Wangchuk');
+      const tw = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Tashi Wangchuk')!;
       expect(tw).toBeDefined();
       expect(tw.output.status).toBe('RELEASED');
       expect(tw.output.sentence).toMatch(/May 22, 2018/);
@@ -328,7 +424,7 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Yu Wensheng has two sentences documented', () => {
-      const yw = prisoners.results.find((r: any) => r.output.prisoner_name === 'Yu Wensheng');
+      const yw = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Yu Wensheng')!;
       expect(yw).toBeDefined();
       expect(yw.output.sentence).toMatch(/First sentence/);
       expect(yw.output.sentence).toMatch(/Second sentence/);
@@ -337,14 +433,14 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Ding Jiaxi sentenced April 10, 2023, 12 years', () => {
-      const dj = prisoners.results.find((r: any) => r.output.prisoner_name === 'Ding Jiaxi');
+      const dj = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Ding Jiaxi')!;
       expect(dj).toBeDefined();
       expect(dj.output.sentence).toMatch(/April 10, 2023/);
       expect(dj.output.sentence).toMatch(/12 years/);
     });
 
     it('Li Qiaochu sentenced Feb 5, 2024, released Aug 3, 2024', () => {
-      const lq = prisoners.results.find((r: any) => r.output.prisoner_name === 'Li Qiaochu');
+      const lq = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Li Qiaochu')!;
       expect(lq).toBeDefined();
       expect(lq.output.sentence).toMatch(/February 5, 2024/);
       expect(lq.output.sentence).toMatch(/August 3, 2024/);
@@ -352,61 +448,61 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Liu Feiyue sentenced Jan 29, 2019, released Nov 2021', () => {
-      const lf = prisoners.results.find((r: any) => r.output.prisoner_name === 'Liu Feiyue');
+      const lf = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Liu Feiyue')!;
       expect(lf).toBeDefined();
       expect(lf.output.sentence).toMatch(/January 29, 2019/);
       expect(lf.output.status).toBe('RELEASED');
     });
 
     it('Jiang Tianyong sentenced Nov 21, 2017, released Feb 28, 2019', () => {
-      const jt = prisoners.results.find((r: any) => r.output.prisoner_name === 'Jiang Tianyong');
+      const jt = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Jiang Tianyong')!;
       expect(jt).toBeDefined();
       expect(jt.output.sentence).toMatch(/November 21, 2017/);
       expect(jt.output.sentence).toMatch(/February 28, 2019/);
     });
 
     it('all 60 prisoners have last_verified dates', () => {
-      const verified = prisoners.results.filter((r: any) => r.output.last_verified);
+      const verified = prisoners.results.filter((r: PrisonerEntry) => r.output.last_verified);
       expect(verified.length).toBe(prisoners.results.length);
     });
   });
 
   describe('Session 32: Final prisoner verification batch', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
     beforeAll(() => {
-      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
     });
 
     it('Abduweli Ayup sentence corrected to 18 months (was 15)', () => {
-      const aa = prisoners.results.find((r: any) => r.output.prisoner_name === 'Abduweli Ayup');
+      const aa = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Abduweli Ayup')!;
       expect(aa).toBeDefined();
       expect(aa.output.sentence).toMatch(/18 months/);
       expect(aa.output.status).toBe('EXILE');
     });
 
     it('Guan Heng status updated to RELEASED (asylum granted Jan 28, 2026)', () => {
-      const gh = prisoners.results.find((r: any) => r.output.prisoner_name === 'Guan Heng');
+      const gh = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Guan Heng')!;
       expect(gh).toBeDefined();
       expect(gh.output.status).toBe('RELEASED');
       expect(gh.output.sentence).toMatch(/January 28, 2026/);
     });
 
     it('Wu Gan sentenced Dec 26, 2017, released May 2023', () => {
-      const wg = prisoners.results.find((r: any) => r.output.prisoner_name === 'Wu Gan');
+      const wg = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Wu Gan')!;
       expect(wg).toBeDefined();
       expect(wg.output.sentence).toMatch(/December 26, 2017/);
       expect(wg.output.sentence).toMatch(/May 2023/);
     });
 
     it('Hada arrested Dec 1995, sentenced Nov 1996, disappeared Feb 2025', () => {
-      const h = prisoners.results.find((r: any) => r.output.prisoner_name === 'Hada');
+      const h = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Hada')!;
       expect(h).toBeDefined();
       expect(h.output.status).toBe('DISAPPEARED');
       expect(h.output.sentence).toMatch(/November 1996/);
     });
 
     it('Rinchen Tsultrim sentenced Nov 27, 2020, released Feb 1, 2024', () => {
-      const rt = prisoners.results.find((r: any) => r.output.prisoner_name === 'Rinchen Tsultrim');
+      const rt = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Rinchen Tsultrim')!;
       expect(rt).toBeDefined();
       expect(rt.output.sentence).toMatch(/November 27, 2020/);
       expect(rt.output.sentence).toMatch(/February 1, 2024/);
@@ -414,7 +510,7 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Go Sherab Gyatso sentenced Nov 2021, 10 years, Lhasa court', () => {
-      const gs = prisoners.results.find((r: any) => r.output.prisoner_name === 'Go Sherab Gyatso');
+      const gs = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Go Sherab Gyatso')!;
       expect(gs).toBeDefined();
       expect(gs.output.sentence).toMatch(/10 years/);
       expect(gs.output.sentence).toMatch(/November 2021/);
@@ -422,14 +518,14 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Perhat Tursun 16 years, seized Jan 2018', () => {
-      const pt = prisoners.results.find((r: any) => r.output.prisoner_name === 'Perhat Tursun');
+      const pt = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Perhat Tursun')!;
       expect(pt).toBeDefined();
       expect(pt.output.sentence).toMatch(/16 years/);
       expect(pt.output.sentence).toMatch(/January 2018/);
     });
 
     it('Lobsang Lhundup sentenced 4 years, released Aug 2023', () => {
-      const ll = prisoners.results.find((r: any) => r.output.prisoner_name === 'Lobsang Lhundup');
+      const ll = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Lobsang Lhundup')!;
       expect(ll).toBeDefined();
       expect(ll.output.sentence).toMatch(/4 years/);
       expect(ll.output.sentence).toMatch(/August 2023/);
@@ -437,13 +533,13 @@ describe('Critical date consistency across data files', () => {
   });
 
   describe('Session 33: Final 8 prisoner verification', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
     beforeAll(() => {
-      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
+      prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8')) as PrisonerData;
     });
 
     it('Li Yuhan sentenced Oct 25, 2023 to 6.5 years, Heping District Court', () => {
-      const ly = prisoners.results.find((r: any) => r.output.prisoner_name === 'Li Yuhan');
+      const ly = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Li Yuhan')!;
       expect(ly).toBeDefined();
       expect(ly.output.sentence).toMatch(/October 25, 2023/);
       expect(ly.output.sentence).toMatch(/6\.5 years/);
@@ -451,7 +547,7 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Yalqun Rozi detained Oct 2016, sentenced Jan 2018, 15 years', () => {
-      const yr = prisoners.results.find((r: any) => r.output.prisoner_name === 'Yalqun Rozi');
+      const yr = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Yalqun Rozi')!;
       expect(yr).toBeDefined();
       expect(yr.output.sentence).toMatch(/October 2016/);
       expect(yr.output.sentence).toMatch(/January 2018/);
@@ -459,21 +555,21 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('Tenzin Nyima first detained Nov 2019, died Jan 2021', () => {
-      const tn = prisoners.results.find((r: any) => r.output.prisoner_name === 'Tenzin Nyima');
+      const tn = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Tenzin Nyima')!;
       expect(tn).toBeDefined();
       expect(tn.output.sentence).toMatch(/November 2019/);
       expect(tn.output.status).toBe('DECEASED');
     });
 
     it('Erfan Hezim played for Jiangsu Suning (CSL, not League One)', () => {
-      const eh = prisoners.results.find((r: any) => r.output.prisoner_name === 'Erfan Hezim (Ye Erfan)');
+      const eh = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Erfan Hezim (Ye Erfan)')!;
       expect(eh).toBeDefined();
       expect(eh.output.latest_news).toMatch(/Jiangsu Suning/);
       expect(eh.output.latest_news).toMatch(/Chinese Super League/);
     });
 
     it('Xin Ruoyu disappeared Aug 23, 2024 for Christian worship app', () => {
-      const xr = prisoners.results.find((r: any) => r.output.prisoner_name === 'Xin Ruoyu');
+      const xr = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Xin Ruoyu')!;
       expect(xr).toBeDefined();
       expect(xr.output.status).toBe('DISAPPEARED');
       expect(xr.output.sentence).toMatch(/August 23, 2024/);
@@ -482,46 +578,46 @@ describe('Critical date consistency across data files', () => {
     });
 
     it('all prisoners with last_verified also have verification_note', () => {
-      const withVerified = prisoners.results.filter((r: any) => r.output.last_verified);
-      const withNote = withVerified.filter((r: any) => r.output.verification_note);
+      const withVerified = prisoners.results.filter((r: PrisonerEntry) => r.output.last_verified);
+      const withNote = withVerified.filter((r: PrisonerEntry) => r.output.verification_note);
       expect(withNote.length).toBeGreaterThanOrEqual(55);
     });
   });
 
   describe('Session 34: Sanctioned officials verification', () => {
-    let officials: any;
+    let officials: OfficialsData;
     beforeAll(() => {
-      officials = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+      officials = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8')) as OfficialsData;
     });
 
     it('Liu Jianchao detained August 2025, not July', () => {
-      const lj = officials.results.find((r: any) => r.output.name === 'Liu Jianchao');
+      const lj = officials.results.find((r: OfficialEntry) => r.output.name === 'Liu Jianchao')!;
       expect(lj).toBeDefined();
       expect(lj.output.current_status).toMatch(/August 2025/);
       expect(lj.output.current_status).not.toMatch(/July 2025/);
     });
 
     it('Pema Thinley sanctions date is December 7, 2020', () => {
-      const pt = officials.results.find((r: any) => r.output.name === 'Pema Thinley');
+      const pt = officials.results.find((r: OfficialEntry) => r.output.name === 'Pema Thinley')!;
       expect(pt).toBeDefined();
       expect(pt.output.us_sanctions).toMatch(/December 7, 2020/);
     });
 
     it('Chen Mingguo input correctly identifies Xinjiang PSB, not Taiwan Affairs', () => {
-      const cm = officials.results.find((r: any) => r.output.name === 'Chen Mingguo');
+      const cm = officials.results.find((r: OfficialEntry) => r.output.name === 'Chen Mingguo')!;
       expect(cm).toBeDefined();
       expect(cm.input).toMatch(/Xinjiang/);
       expect(cm.input).not.toMatch(/Taiwan/);
     });
 
     it('Zheng Yanxiong removed from HK posts May 2025', () => {
-      const zy = officials.results.find((r: any) => r.output.name === 'Zheng Yanxiong');
+      const zy = officials.results.find((r: OfficialEntry) => r.output.name === 'Zheng Yanxiong')!;
       expect(zy).toBeDefined();
       expect(zy.output.current_status).toMatch(/May 2025/);
     });
 
     it('Wu Yingjie sanctions December 2022 and Canada December 2024', () => {
-      const wy = officials.results.find((r: any) => r.output.name === 'Wu Yingjie');
+      const wy = officials.results.find((r: OfficialEntry) => r.output.name === 'Wu Yingjie')!;
       expect(wy).toBeDefined();
       expect(wy.output.us_sanctions).toMatch(/December.*2022/);
       expect(wy.output.canada_sanctions).toMatch(/December.*2024/);

@@ -128,11 +128,13 @@ const ConfuciusInstitutes = () => {
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Confucius Institute regions">
           {regions.map((region) => (
             <button
               key={region.id}
               onClick={() => setSelectedRegion(region.id)}
+              role="tab"
+              aria-selected={selectedRegion === region.id}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedRegion === region.id
                   ? 'bg-red-600 text-white'

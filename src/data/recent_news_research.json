@@ -1,6 +1,102 @@
 {
   "results": [
     {
+      "input": "Hong Kong activists prolonged solitary confinement Chow Hang-Tung 2026",
+      "output": {
+        "topic": "Hong Kong activists subjected to prolonged solitary confinement",
+        "headline": "Amnesty: Hong Kong Activists Including Chow Hang-Tung Subjected to Prolonged Solitary Confinement",
+        "summary": "Amnesty Canada reported that Hong Kong political prisoners including Chow Hang-Tung have been subjected to prolonged solitary confinement during pre-trial detention \u2014 over 50 months for some detainees. The conditions may constitute torture or cruel, inhuman treatment under international standards. This follows the start of the HK Alliance subversion trial in January 2026.",
+        "date": "2026-02-15",
+        "source": "Amnesty Canada",
+        "source_url": "https://amnesty.ca/urgent-actions/hong-kong-activists-subjected-to-prolonged-solitary-confinement/",
+        "significance": "HIGH",
+        "related_prisoners": "Chow Hang-Tung, Lee Cheuk-yan",
+        "international_response": "UN Working Group on Arbitrary Detention found Chow's detention arbitrary. International human rights community calls for immediate release and investigation into detention conditions.",
+        "action_needed": "Write to Hong Kong authorities demanding end to solitary confinement; support Amnesty International urgent actions."
+      },
+      "error": ""
+    },
+    {
+      "input": "Joshua Wong foreign collusion hearing March 6 2026 High Court transfer outcome",
+      "output": {
+        "topic": "Joshua Wong collusion case transferred to High Court \u2014 next hearing September 5",
+        "headline": "Joshua Wong Foreign Collusion Case Transferred to High Court, Next Hearing September 5, 2026",
+        "summary": "Joshua Wong's foreign collusion hearing on March 6, 2026 resulted in the case being formally transferred to the High Court for trial. No verdict or plea was entered. Wong remains in custody without bail. The next hearing is scheduled for September 5, 2026. The charge \u2014 conspiring with Nathan Law and others to encourage foreign sanctions \u2014 carries a maximum sentence of life imprisonment, separate from his existing 4yr 8mo HK47 subversion sentence.",
+        "date": "2026-03-06",
+        "source": "VOA Chinese / Amnesty International",
+        "source_url": "https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/",
+        "significance": "CRITICAL",
+        "related_prisoners": "Joshua Wong, Nathan Law (in exile)",
+        "international_response": "Amnesty International called the charges 'designed to prolong his stay behind bars' and prevent his January 2027 release. The transfer to High Court signals the prosecution expects a lengthy trial with severe sentencing.",
+        "action_needed": "Monitor next hearing date (September 5, 2026); contact representatives; support Hong Kong Watch and Amnesty International campaigns."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chow Hang-Tung Hong Kong Alliance Tiananmen vigil subversion trial January 2026",
+      "output": {
+        "topic": "Hong Kong Alliance leaders face subversion trial for Tiananmen vigils",
+        "headline": "Hong Kong Trial of Tiananmen Vigil Leaders: Amnesty Calls It Cynical Attempt to Erase Historical Memory",
+        "summary": "The trial of Chow Hang-Tung, Lee Cheuk-yan, and Albert Ho began on January 22, 2026 after over four years of pre-trial detention. They face up to 10 years in prison for organizing annual June 4th candlelight vigils commemorating the 1989 Tiananmen Square massacre. The prosecution argues that calling for ending one-party rule constitutes subversion under the National Security Law. Chow was denied the ability to call overseas witnesses, and the UN Working Group on Arbitrary Detention has deemed her pre-trial detention arbitrary.",
+        "date": "2026-01-22",
+        "source": "Amnesty International",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+        "significance": "HIGH",
+        "related_prisoners": "Chow Hang-Tung, Lee Cheuk-yan, Albert Ho",
+        "international_response": "Amnesty International, NCHRD, and multiple international human rights organizations condemned the trial. UN Working Group on Arbitrary Detention found Chow's detention arbitrary. Amnesty Canada highlighted prolonged solitary confinement concerns.",
+        "action_needed": "Support organizations documenting the trial; contact representatives about the criminalization of Tiananmen commemoration in Hong Kong."
+      },
+      "error": ""
+    },
+    {
+      "input": "China sanctions Canadian organizations Uyghur Tibet issues March 2026",
+      "output": {
+        "topic": "China retaliates against Canadian human rights organizations",
+        "headline": "China Takes Punitive Action Against Canadian Organizations Over Uyghur and Tibet Advocacy",
+        "summary": "The Chinese government announced sanctions and punitive measures against Canadian organizations and individuals for their work documenting human rights abuses against Uyghurs and Tibetans. The measures include asset freezes, entry bans, and restrictions on business activities. This escalation of transnational repression marks China as the world's leading perpetrator of cross-border intimidation of human rights defenders.",
+        "date": "2026-03-08",
+        "source": "ICIJ",
+        "source_url": "https://www.icij.org/investigations/china-targets/new-un-report-highlights-chinas-alleged-targeting-of-human-rights-activists/",
+        "significance": "HIGH",
+        "related_prisoners": "N/A",
+        "international_response": "Canadian government and international human rights organizations condemned the action as a blatant attempt to silence critics. Human Rights Watch called it further evidence that China uses sanctions and intimidation to deter legitimate human rights work worldwide.",
+        "action_needed": "Support targeted organizations, advocate for stronger international protections for human rights defenders, and push governments to publicly condemn China's transnational repression."
+      },
+      "error": ""
+    },
+    {
+      "input": "Tibetan National Uprising Day March 10 2026 global protests",
+      "output": {
+        "topic": "Tibetan National Uprising Day 2026 \u2014 global solidarity protests",
+        "headline": "Tibetans and Supporters Worldwide Mark 67th Anniversary of Tibetan National Uprising",
+        "summary": "March 10, 2026 marks the 67th anniversary of the 1959 Tibetan National Uprising against Chinese occupation. Protests were held in dozens of countries, with over 400 German municipalities raising the Tibetan Snow Lion flag in solidarity. Human rights organizations highlighted China's intensifying 'sinicization' campaigns, including the forced separation of over one million Tibetan children into colonial-style boarding schools, the imprisonment of monks for teaching Tibetan language, and the banning of celebrations for the Dalai Lama's 90th birthday.",
+        "date": "2026-03-10",
+        "source": "Tibet Post International",
+        "source_url": "https://www.thetibetpost.com/news/exile/tibetans-and-tibet-supporters-across-the-world-hold-protests-against-china-s-illegal-occupation-of-tibet",
+        "significance": "HIGH",
+        "related_prisoners": "All Tibetan political prisoners",
+        "international_response": "Over 400 German municipalities raised the Tibetan flag. Human Rights Watch, International Campaign for Tibet, and Free Tibet demanded renewed international support for Tibetan rights. The Dalai Lama's 90th birthday (July 6, 2025) was banned from celebration inside Tibet.",
+        "action_needed": "Participate in local Tibetan solidarity events, contact representatives about Tibet policy, support International Campaign for Tibet and Free Tibet organizations."
+      },
+      "error": ""
+    },
+    {
+      "input": "HRW World Report 2026 China repression deepens extends abroad",
+      "output": {
+        "topic": "HRW World Report 2026 \u2014 China chapter documents deepening repression",
+        "headline": "Human Rights Watch: China Repression Deepens, Extends Abroad",
+        "summary": "Human Rights Watch's World Report 2026, released February 4, 2026, documents how Chinese government repression continues to deepen domestically and extend abroad through transnational repression. The report covers arbitrary detention in Xinjiang, cultural erasure in Tibet, the crackdown on civil liberties in Hong Kong, and the targeting of Chinese human rights defenders and critics overseas. The report highlights that the CCP has imposed strict ideological conformity and is silencing dissent worldwide through surveillance, intimidation, and reprisals against critics and their families.",
+        "date": "2026-02-04",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/news/2026/02/04/china-repression-deepens-extends-abroad",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, Joshua Wong, Ilham Tohti, and others",
+        "international_response": "HRW called on all governments to push back against China's transnational repression and to support accountability mechanisms. The report was cited by multiple UN bodies and served as evidence base for policy recommendations.",
+        "action_needed": "Read and share the HRW World Report 2026 China chapter. Use it as evidence base when contacting representatives about China policy."
+      },
+      "error": ""
+    },
+    {
       "input": "Jimmy Lai trial verdict and sentencing December 2025",
       "output": {
         "topic": "Jimmy Lai trial verdict and sentencing December 2025",
@@ -403,6 +499,54 @@
         "related_prisoners": "Kwok Yin-sang, Anna Kwok (in exile)",
         "international_response": "Human rights organizations expressed alarm at the precedent of targeting family members as a form of transnational repression.",
         "action_needed": "Monitor for similar family member prosecutions. Support HKDC advocacy on this precedent."
+      },
+      "error": ""
+    },
+    {
+      "input": "UN joint statement condemning Hong Kong human rights crisis March 2026",
+      "output": {
+        "topic": "UN joint statement condemning Hong Kong human rights crisis March 2026",
+        "headline": "Eight UN-accredited NGOs issue joint statement demanding action on Hong Kong human rights crisis",
+        "summary": "Eight UN-accredited human rights organizations issued a joint statement on March 2, 2026 at the UN Human Rights Council condemning the ongoing human rights crisis in Hong Kong. The statement specifically highlighted the 20-year sentence of Jimmy Lai, the prosecution of Anna Kwok's father under Article 23, and the prolonged pretrial detention of activists Chow Hang-Tung and Lee Cheuk-Yan for over 50 months. The organizations called on UN member states to take concrete action.",
+        "date": "2026-03-02",
+        "source": "Fortify Rights",
+        "source_url": "https://www.fortifyrights.org/eas-inv-stm-2026-03-02/",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, Chow Hang-Tung, Lee Cheuk-Yan, Anna Kwok's father",
+        "international_response": "Eight international human rights organizations including Fortify Rights, International Service for Human Rights, and others jointly called on UN member states to address the deteriorating situation. The statement was delivered during the 55th session of the UN Human Rights Council.",
+        "action_needed": "Support the call for UN member states to raise Hong Kong at the Human Rights Council, demand the release of political prisoners, and call for repeal of the National Security Law and Article 23."
+      },
+      "error": ""
+    },
+    {
+      "input": "Human Rights Watch World Report 2026 China chapter",
+      "output": {
+        "topic": "Human Rights Watch World Report 2026 China chapter",
+        "headline": "HRW World Report 2026: China continues systematic repression across all fronts",
+        "summary": "Human Rights Watch released its World Report 2026, documenting China's continued systematic repression of dissent, religious freedom, and ethnic minorities. The report details ongoing mass surveillance in Xinjiang, tightening controls in Tibet, the dismantling of civil society in Hong Kong under the NSL and Article 23, and expanding transnational repression targeting diaspora communities worldwide.",
+        "date": "2026-01-16",
+        "source": "Human Rights Watch",
+        "source_url": "https://www.hrw.org/world-report/2026/country-chapters/china",
+        "significance": "HIGH",
+        "related_prisoners": "Jimmy Lai, Ilham Tohti, Zhang Zhan, Gao Zhisheng",
+        "international_response": "The report calls on governments to impose targeted sanctions on Chinese officials responsible for abuses, support Uyghur Tribunal findings, and ensure that corporate supply chains are free of forced labor.",
+        "action_needed": "Share the report findings, contact elected officials to press for sanctions and accountability measures, and support organizations documenting abuses."
+      },
+      "error": ""
+    },
+    {
+      "input": "Chow Hang-Tung detention conditions Hong Kong March 2026",
+      "output": {
+        "topic": "Chow Hang-Tung detention conditions Hong Kong March 2026",
+        "headline": "Hong Kong must end unjust detention and solitary confinement of Chow Hang-Tung, says rights group",
+        "summary": "The Hong Kong Centre for Human Rights called for an end to the prolonged pretrial detention and solitary confinement of activist Chow Hang-Tung, who has been held for over 50 months awaiting trial. Chow, former leader of the group that organized the annual Tiananmen Square vigil, has been subjected to solitary confinement as punishment for public expression, raising concerns about treatment that may breach international torture conventions.",
+        "date": "2026-03-05",
+        "source": "Hong Kong Centre for Human Rights",
+        "source_url": "https://hkchr.org/en/archives/4201",
+        "significance": "HIGH",
+        "related_prisoners": "Chow Hang-Tung, Lee Cheuk-Yan",
+        "international_response": "UN experts have raised concerns about the conditions of Chow's detention, noting that prolonged solitary confinement may constitute cruel, inhuman, or degrading treatment under international law.",
+        "action_needed": "Advocate for Chow Hang-Tung's release, call attention to detention conditions, and support organizations monitoring prisoner welfare in Hong Kong."
       },
       "error": ""
     }

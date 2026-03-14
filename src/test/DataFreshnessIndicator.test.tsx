@@ -18,7 +18,7 @@ describe('DataFreshnessIndicator', () => {
   });
 
   it('renders nothing when lastVerified is null', () => {
-    const { container } = render(<DataFreshnessIndicator lastVerified={undefined as any} />);
+    const { container } = render(<DataFreshnessIndicator lastVerified={undefined as unknown as string} />);
     expect(container.innerHTML).toBe('');
   });
 

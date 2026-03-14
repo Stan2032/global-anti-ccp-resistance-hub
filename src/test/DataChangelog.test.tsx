@@ -79,7 +79,7 @@ describe('DataChangelog', () => {
     render(<DataChangelog />);
     const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
     fireEvent.click(prisonerBtn!);
-    expect(screen.getByText(/63 records verified/)).toBeTruthy();
+    expect(screen.getByText(/64 records verified/)).toBeTruthy();
   });
 
   it('shows days ago when expanded', () => {
@@ -165,14 +165,16 @@ describe('DataChangelog', () => {
 
   it('health overview status counts sum to 8 datasets', () => {
     const { container } = render(<DataChangelog />);
-    // Extract the 3 status count values from their colored text classes
+    // Extract all 4 status count values from their colored text classes
     const greenVal = container.querySelector('.text-green-400.text-2xl');
     const cyanVal = container.querySelector('[class*="text-\\[\\#22d3ee\\]"].text-2xl');
     const yellowVal = container.querySelector('.text-yellow-400.text-2xl');
-    const fresh = greenVal ? parseInt(greenVal.textContent) : 0;
-    const current = cyanVal ? parseInt(cyanVal.textContent) : 0;
-    const aging = yellowVal ? parseInt(yellowVal.textContent) : 0;
-    expect(fresh + current + aging).toBe(8);
+    const redVal = container.querySelector('.text-red-400.text-2xl');
+    const fresh = greenVal ? parseInt(greenVal.textContent ?? '0', 10) : 0;
+    const current = cyanVal ? parseInt(cyanVal.textContent ?? '0', 10) : 0;
+    const aging = yellowVal ? parseInt(yellowVal.textContent ?? '0', 10) : 0;
+    const stale = redVal ? parseInt(redVal.textContent ?? '0', 10) : 0;
+    expect(fresh + current + aging + stale).toBe(8);
   });
 
   // ── Data Integrity ─────────────────────────────────────

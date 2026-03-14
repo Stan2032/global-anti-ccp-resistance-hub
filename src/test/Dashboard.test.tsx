@@ -27,7 +27,11 @@ vi.mock('../services/liveDataService', () => ({
 }));
 
 // Mock useStatistics hook
-let mockStatsReturn: any = {
+let mockStatsReturn: {
+  stats: { verifiedOrganizations: number; detentionFacilities: number; politicalPrisoners: number } | null;
+  loading: boolean;
+  error: string | null;
+} = {
   stats: null,
   loading: true,
   error: null,
@@ -91,7 +95,7 @@ describe('Dashboard', () => {
       stats: {
         verifiedOrganizations: 49,
         detentionFacilities: 380,
-        politicalPrisoners: 63,
+        politicalPrisoners: 65,
       },
       loading: false,
       error: null,
@@ -99,7 +103,7 @@ describe('Dashboard', () => {
     renderDashboard();
     expect(screen.getByText('49')).toBeTruthy();
     expect(screen.getByText('380+')).toBeTruthy();
-    expect(screen.getByText('63')).toBeTruthy();
+    expect(screen.getByText('65')).toBeTruthy();
   });
 
   it('shows stat labels', () => {

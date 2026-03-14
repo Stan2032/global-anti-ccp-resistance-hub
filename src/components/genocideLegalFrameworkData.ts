@@ -1,3 +1,9 @@
+/**
+ * Genocide legal framework data — categories, documented violations,
+ * and genocide recognition records for international law analysis.
+ *
+ * @module genocideLegalFrameworkData
+ */
 export interface LegalCategory {
   id: string;
   label: string;

@@ -1,10 +1,11 @@
 import { describe, it, expect, afterEach, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { type ReactNode } from 'react';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
-function wrapper({ initialEntries }: any) {
-  return ({ children }: any) => (
+function wrapper({ initialEntries }: { initialEntries: string[] }) {
+  return ({ children }: { children: ReactNode }) => (
     <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
   );
 }

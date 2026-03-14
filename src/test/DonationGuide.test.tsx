@@ -19,12 +19,12 @@ describe('DonationGuide', () => {
 
   it('renders category filter buttons', () => {
     render(<DonationGuide />);
-    expect(screen.getByRole('button', { name: /All Organizations/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Advocacy/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Legal Aid/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Research/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Independent Media/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Direct Support/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /All Organizations/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Advocacy/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Legal Aid/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Research/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Independent Media/ })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Direct Support/ })).toBeTruthy();
   });
 
   it('renders cause filter buttons', () => {
@@ -59,14 +59,14 @@ describe('DonationGuide', () => {
 
   it('filters by category when button clicked', () => {
     render(<DonationGuide />);
-    fireEvent.click(screen.getByRole('button', { name: /Legal Aid/ }));
+    fireEvent.click(screen.getByRole('tab', { name: /Legal Aid/ }));
     expect(screen.getAllByText(/Front Line Defenders|Lawyers for Lawyers/).length).toBeGreaterThanOrEqual(1);
   });
 
   it('returns to all organizations when All clicked', () => {
     render(<DonationGuide />);
-    fireEvent.click(screen.getByRole('button', { name: /Legal Aid/ }));
-    fireEvent.click(screen.getByRole('button', { name: /All Organizations/ }));
+    fireEvent.click(screen.getByRole('tab', { name: /Legal Aid/ }));
+    fireEvent.click(screen.getByRole('tab', { name: /All Organizations/ }));
     expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
   });
 

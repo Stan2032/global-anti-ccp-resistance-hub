@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from 'react';
 import { Newspaper, Building2, Landmark, Mountain, Globe, Radio, FileText, type LucideIcon } from 'lucide-react';
 import { dataProcessor, type FeedItemWithRegion } from '../data/liveDataSources';
+import { logger } from '../utils/logger';
 
 /** Represents a single news or threat item from RSS feed aggregation */
 
@@ -35,7 +36,7 @@ const NewsAggregator = () => {
         const allNews = [...(feedData.news || []), ...(feedData.threats || [])];
         setNews(allNews);
       } catch (error) {
-        console.error('Failed to load news:', error);
+        logger.error('news', 'Failed to load news:', error);
         setNews([]);
       } finally {
         setLoading(false);

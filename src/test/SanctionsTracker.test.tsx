@@ -4,7 +4,7 @@ import React from 'react';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }: any) => <span data-testid="source-attribution">{source?.name || 'source'}</span>,
+  default: ({ source }: { source?: { name?: string } }) => <span data-testid="source-attribution">{source?.name || 'source'}</span>,
 }));
 
 import SanctionsTracker from '../components/SanctionsTracker';
@@ -142,7 +142,7 @@ describe('SanctionsTracker', () => {
     
     // Find a sanction with a law that has a link
     const sanctionWithLaw = sanctionsData.sanctions.find(
-      s => (sanctionsData.law_links as Record<string, any>)[s.law]
+      s => (sanctionsData.law_links as Record<string, string>)[s.law]
     );
     
     if (sanctionWithLaw) {

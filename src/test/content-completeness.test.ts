@@ -23,7 +23,7 @@ function getAllJsonFiles() {
   return readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 }
 
-function flattenValues(obj: any): any {
+function flattenValues(obj: unknown): unknown[] {
   const values = [];
   if (typeof obj === 'string') return [obj];
   if (Array.isArray(obj)) {
@@ -52,7 +52,7 @@ describe('Content Completeness Audit', () => {
     const violations = [];
     for (const file of getAllJsonFiles()) {
       const data = loadJson(file);
-      const allStrings = flattenValues(data).filter((v: any) => typeof v === 'string');
+      const allStrings = flattenValues(data).filter((v: unknown) => typeof v === 'string');
       for (const str of allStrings) {
         for (const pattern of placeholderPatterns) {
           if (pattern.test(str)) {

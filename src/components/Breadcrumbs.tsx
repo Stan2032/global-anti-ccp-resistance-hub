@@ -1,3 +1,11 @@
+/**
+ * Breadcrumbs — Breadcrumb navigation showing the current location hierarchy.
+ *
+ * Auto-generates crumbs from the current URL path and provides links back
+ * through the site structure. Hidden on the root route.
+ *
+ * @module Breadcrumbs
+ */
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 

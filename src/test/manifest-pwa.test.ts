@@ -4,8 +4,32 @@ import { resolve } from 'path';
 
 const PUBLIC_DIR = resolve(__dirname, '../../public');
 
+interface ManifestIcon {
+  src: string;
+  sizes: string;
+  type: string;
+}
+
+interface ManifestShortcut {
+  name: string;
+  url: string;
+  icons?: ManifestIcon[];
+}
+
+interface PWAManifest {
+  name: string;
+  short_name: string;
+  description: string;
+  start_url: string;
+  display: string;
+  background_color: string;
+  theme_color: string;
+  icons: ManifestIcon[];
+  shortcuts: ManifestShortcut[];
+}
+
 describe('PWA Manifest Data Integrity', () => {
-  let manifest: any;
+  let manifest: PWAManifest;
 
   beforeAll(() => {
     const manifestPath = resolve(PUBLIC_DIR, 'manifest.json');
@@ -52,15 +76,15 @@ describe('PWA Manifest Data Integrity', () => {
     });
 
     it('has 192x192 icon', () => {
-      const icon192 = manifest.icons.find((i: any) => i.sizes === '192x192');
+      const icon192 = manifest.icons.find((i: ManifestIcon) => i.sizes === '192x192');
       expect(icon192, 'Missing 192x192 icon entry').toBeDefined();
-      expect(icon192.type).toBe('image/png');
+      expect(icon192!.type).toBe('image/png');
     });
 
     it('has 512x512 icon', () => {
-      const icon512 = manifest.icons.find((i: any) => i.sizes === '512x512');
+      const icon512 = manifest.icons.find((i: ManifestIcon) => i.sizes === '512x512');
       expect(icon512, 'Missing 512x512 icon entry').toBeDefined();
-      expect(icon512.type).toBe('image/png');
+      expect(icon512!.type).toBe('image/png');
     });
 
     it('all referenced icon files exist on disk', () => {
@@ -126,7 +150,7 @@ describe('PWA Manifest Data Integrity', () => {
   });
 
   describe('service worker paths', () => {
-    let swContent: any;
+    let swContent: string;
 
     beforeAll(() => {
       swContent = readFileSync(resolve(PUBLIC_DIR, 'sw.js'), 'utf-8');
@@ -140,7 +164,7 @@ describe('PWA Manifest Data Integrity', () => {
       // Extract PRECACHE_ASSETS array content
       const match = swContent.match(/PRECACHE_ASSETS\s*=\s*\[([\s\S]*?)\]/);
       expect(match, 'PRECACHE_ASSETS array not found in sw.js').toBeTruthy();
-      const assetsBlock = match[1];
+      const assetsBlock = match![1];
       // Each path should start with /
       const paths = assetsBlock.match(/'[^']+'/g) || [];
       for (const p of paths) {
@@ -153,7 +177,7 @@ describe('PWA Manifest Data Integrity', () => {
     it('OFFLINE_URL is root-relative', () => {
       const match = swContent.match(/OFFLINE_URL\s*=\s*'([^']+)'/);
       expect(match, 'OFFLINE_URL not found in sw.js').toBeTruthy();
-      expect(match[1]).toBe('/offline.html');
+      expect(match![1]).toBe('/offline.html');
     });
   });
 
@@ -168,7 +192,7 @@ describe('PWA Manifest Data Integrity', () => {
   });
 
   describe('offline page design system compliance', () => {
-    let offlineContent: any;
+    let offlineContent: string;
 
     beforeAll(() => {
       offlineContent = readFileSync(resolve(PUBLIC_DIR, 'offline.html'), 'utf-8');

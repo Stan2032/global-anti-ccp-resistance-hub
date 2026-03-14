@@ -13,7 +13,11 @@
       "Tiananmen Papers",
       "Amnesty International",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/03/tiananmen-anniversary-chinas-crackdown-on-human-rights-30-years-on/",
+      "Human Rights Watch": "https://www.hrw.org/news/2019/06/04/china-one-million-detained-ask-why"
+    }
   },
   {
     "id": 2,
@@ -27,10 +31,13 @@
     "sources": [
       "International Campaign for Tibet",
       "UN Committee on the Rights of the Child"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2020/05/17/china-panchen-lama-detained-25-years"
+    }
   },
   {
-    "id": 23,
+    "id": 3,
     "date": "1997-07-01",
     "title": "Hong Kong Handover",
     "category": "hongkong",
@@ -42,10 +49,13 @@
       "BBC News",
       "UK Government Archives",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-40425929"
+    }
   },
   {
-    "id": 3,
+    "id": 4,
     "date": "1999-07-20",
     "title": "Falun Gong Persecution Begins",
     "category": "falungong",
@@ -57,10 +67,13 @@
     "sources": [
       "Falun Dafa Information Center",
       "China Tribunal"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/documents/asa17/011/2000/en/"
+    }
   },
   {
-    "id": 27,
+    "id": 5,
     "date": "2001-01-23",
     "title": "Tiananmen Self-Immolation Incident",
     "category": "falungong",
@@ -72,10 +85,13 @@
       "Washington Post (Philip Pan investigation)",
       "International Education Development (UN statement)",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/documents/asa17/011/2000/en/"
+    }
   },
   {
-    "id": 28,
+    "id": 6,
     "date": "2003-07-01",
     "title": "500,000 March Against Article 23",
     "category": "hongkong",
@@ -88,10 +104,13 @@
       "BBC",
       "Reuters",
       "Hong Kong Free Press"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-23452906"
+    }
   },
   {
-    "id": 4,
+    "id": 7,
     "date": "2008-03-14",
     "title": "Tibetan Uprising",
     "category": "tibet",
@@ -103,10 +122,13 @@
     "sources": [
       "International Campaign for Tibet",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2008/03/15/china-events-tibet-march-10-14-2008"
+    }
   },
   {
-    "id": 24,
+    "id": 8,
     "date": "2008-12-10",
     "title": "Charter 08 Published",
     "category": "mainland",
@@ -118,10 +140,14 @@
       "PEN International",
       "Human Rights Watch",
       "Nobel Prize Committee"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2008/12/10/china-release-charter-08-signatories"
+    }
   },
   {
-    "id": 5,
+    "id": 9,
     "date": "2009-07-05",
     "title": "Ürümqi Riots",
     "category": "uyghur",
@@ -133,10 +159,13 @@
     "sources": [
       "Radio Free Asia",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2009/07/10/china-xinjiang-unrest-investigate-use-deadly-force"
+    }
   },
   {
-    "id": 25,
+    "id": 10,
     "date": "2010-10-08",
     "title": "Liu Xiaobo Awarded Nobel Peace Prize",
     "category": "mainland",
@@ -148,10 +177,14 @@
       "Nobel Prize Committee",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2010/10/08/china-nobel-peace-prize-sends-powerful-message"
+    }
   },
   {
-    "id": 29,
+    "id": 11,
     "date": "2011-09-21",
     "title": "Wukan Protests",
     "category": "mainland",
@@ -163,10 +196,13 @@
       "BBC",
       "The Guardian",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-16258905"
+    }
   },
   {
-    "id": 30,
+    "id": 12,
     "date": "2012-11-07",
     "title": "Tibetan Self-Immolation Wave Peaks",
     "category": "tibet",
@@ -179,10 +215,14 @@
       "Free Tibet",
       "International Campaign for Tibet",
       "Human Rights Watch"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2012/11/09/china-tibetan-self-immolations-rise",
+      "International Campaign for Tibet": "https://savetibet.org/tibetan-self-immolations/"
+    }
   },
   {
-    "id": 6,
+    "id": 13,
     "date": "2014-01-15",
     "title": "Ilham Tohti Arrested",
     "category": "uyghur",
@@ -194,10 +234,13 @@
     "sources": [
       "PEN International",
       "European Parliament"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2014/01/16/china-free-scholar-charged-separatism"
+    }
   },
   {
-    "id": 7,
+    "id": 14,
     "date": "2014-09-28",
     "title": "Umbrella Movement Begins",
     "category": "hongkong",
@@ -209,10 +252,14 @@
     "sources": [
       "Hong Kong Free Press",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/09/hong-kong-umbrella-movement-five-years-on/",
+      "BBC": "https://www.bbc.com/news/world-asia-china-29407067"
+    }
   },
   {
-    "id": 8,
+    "id": 15,
     "date": "2015-07-09",
     "title": "709 Crackdown",
     "category": "mainland",
@@ -224,10 +271,14 @@
     "sources": [
       "Chinese Human Rights Defenders",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2025/07/06/china-10-years-since-709-crackdown-lawyers-still-under-fire",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2025/07/chinese-government-impunity-for-crackdown-on-lawyers-fuels-decade-of-repression/"
+    }
   },
   {
-    "id": 9,
+    "id": 16,
     "date": "2015-10-15",
     "title": "Causeway Bay Booksellers Abducted",
     "category": "hongkong",
@@ -238,10 +289,13 @@
     "sources": [
       "Hong Kong Free Press",
       "PEN International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2016/06/16/china-account-hong-kong-bookseller-detention"
+    }
   },
   {
-    "id": 10,
+    "id": 17,
     "date": "2017-04-01",
     "title": "Xinjiang Internment Camps Begin",
     "category": "uyghur",
@@ -254,10 +308,14 @@
       "Xinjiang Police Files",
       "ASPI",
       "Uyghur Tribunal"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/report/2021/04/19/break-their-lineage-break-their-roots/chinas-crimes-against-humanity-targeting",
+      "Amnesty International": "https://www.amnesty.org/en/latest/research/2021/06/china-draconian-repression-of-muslims-in-xinjiang-amounts-to-crimes-against-humanity/"
+    }
   },
   {
-    "id": 11,
+    "id": 18,
     "date": "2017-07-13",
     "title": "Liu Xiaobo Dies in Custody",
     "category": "mainland",
@@ -268,10 +326,14 @@
     "sources": [
       "Nobel Committee",
       "PEN International"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2017/07/liu-xiaobo-obituary/",
+      "Human Rights Watch": "https://www.hrw.org/news/2017/07/13/china-nobel-laureate-liu-xiaobo-dies-custody"
+    }
   },
   {
-    "id": 26,
+    "id": 19,
     "date": "2018-03-11",
     "title": "Presidential Term Limits Abolished",
     "category": "mainland",
@@ -283,10 +345,13 @@
       "BBC",
       "Reuters",
       "The Guardian"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-43361276"
+    }
   },
   {
-    "id": 12,
+    "id": 20,
     "date": "2019-06-09",
     "title": "2019 Hong Kong Protests Begin",
     "category": "hongkong",
@@ -299,10 +364,15 @@
       "Hong Kong Free Press",
       "Reuters",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2019/06/hong-kong-brutal-policing-of-peaceful-protesters/",
+      "Human Rights Watch": "https://www.hrw.org/news/2019/06/12/hong-kong-police-utilise-excessive-force-against-protesters",
+      "BBC": "https://www.bbc.com/news/world-asia-china-48607723"
+    }
   },
   {
-    "id": 13,
+    "id": 21,
     "date": "2020-06-30",
     "title": "National Security Law Imposed",
     "category": "hongkong",
@@ -313,10 +383,14 @@
     "sources": [
       "Hong Kong Watch",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/feature/2021/06/25/dismantling-free-society/hong-kong-one-year-after-national-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2020/07/hong-kong-national-security-law-10-things-you-need-to-know/"
+    }
   },
   {
-    "id": 14,
+    "id": 22,
     "date": "2020-08-10",
     "title": "Jimmy Lai Arrested",
     "category": "hongkong",
@@ -328,10 +402,14 @@
     "sources": [
       "Committee to Protect Journalists",
       "Hong Kong Free Press"
-    ]
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2020/08/hong-kong-arrest-of-jimmy-lai-under-national-security-law/",
+      "BBC": "https://www.bbc.com/news/world-asia-china-53712217"
+    }
   },
   {
-    "id": 15,
+    "id": 23,
     "date": "2021-01-06",
     "title": "Hong Kong 47 Mass Arrests",
     "category": "hongkong",
@@ -343,10 +421,14 @@
     "sources": [
       "Hong Kong Free Press",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2021/01/06/hong-kong-mass-arrests-under-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2021/01/hong-kong-mass-arrests-of-opposition-figures-a-devastating-blow-to-the-city/"
+    }
   },
   {
-    "id": 16,
+    "id": 24,
     "date": "2021-06-24",
     "title": "Apple Daily Forced to Close",
     "category": "hongkong",
@@ -357,10 +439,14 @@
     "sources": [
       "Committee to Protect Journalists",
       "Reporters Without Borders"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2021/06/24/hong-kong-apple-daily-closure-major-blow-press-freedom",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2021/06/hong-kong-apple-daily-editors-charged-with-collusion/"
+    }
   },
   {
-    "id": 17,
+    "id": 25,
     "date": "2022-05-24",
     "title": "Xinjiang Police Files Leaked",
     "category": "uyghur",
@@ -372,10 +458,14 @@
       "Xinjiang Police Files",
       "BBC",
       "Dr. Adrian Zenz"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/extra/85qihtvw6e/the-faces-from-chinas-uyghur-detention-camps",
+      "Human Rights Watch": "https://www.hrw.org/news/2022/05/24/china-leaked-data-show-scale-uyghur-detention"
+    }
   },
   {
-    "id": 18,
+    "id": 26,
     "date": "2022-11-26",
     "title": "White Paper Protests",
     "category": "mainland",
@@ -388,10 +478,15 @@
       "BBC",
       "New York Times",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/world-asia-china-63780411",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2022/11/china-authorities-must-respect-right-to-protest/",
+      "Human Rights Watch": "https://www.hrw.org/news/2022/12/01/china-protests-spread-against-zero-covid"
+    }
   },
   {
-    "id": 19,
+    "id": 27,
     "date": "2022-12-04",
     "title": "Safeguard Defenders Report on Overseas Police Stations",
     "category": "global",
@@ -404,10 +499,13 @@
       "Safeguard Defenders",
       "FBI",
       "European Parliament"
-    ]
+    ],
+    "source_urls": {
+      "Safeguard Defenders": "https://safeguarddefenders.com/en/publications/patrol-and-persuade"
+    }
   },
   {
-    "id": 31,
+    "id": 28,
     "date": "2024-03-19",
     "title": "Hong Kong Article 23 Passed",
     "category": "hongkong",
@@ -420,10 +518,14 @@
       "Amnesty International",
       "Human Rights Watch",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/03/19/hong-kong-passes-draconian-new-security-law",
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2024/03/hong-kong-authorities-must-repeal-new-draconian-national-security-law/"
+    }
   },
   {
-    "id": 20,
+    "id": 29,
     "date": "2024-11-19",
     "title": "Hong Kong 47 Sentenced",
     "category": "hongkong",
@@ -435,10 +537,14 @@
     "sources": [
       "Hong Kong Free Press",
       "Amnesty International"
-    ]
+    ],
+    "source_urls": {
+      "BBC": "https://www.bbc.com/news/articles/c5ydw9xk51go",
+      "Human Rights Watch": "https://www.hrw.org/news/2024/11/19/hong-kong-47-sentenced-crushing-blow-human-rights"
+    }
   },
   {
-    "id": 21,
+    "id": 30,
     "date": "2025-12-15",
     "title": "Jimmy Lai Found Guilty",
     "category": "hongkong",
@@ -448,14 +554,38 @@
     "sentence": "Convicted Dec 15, 2025; sentenced to 20 years on Feb 9, 2026",
     "impact": "International condemnation, calls for sanctions",
     "sources": [
-      "BBC",
+      "CBC News",
       "CNN",
       "Reuters",
       "UK Foreign Office"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2025/12/15/hong-kong-jimmy-lai-convicted-on-bogus-national-security-charges",
+      "Reuters": "https://www.reuters.com/graphics/HONGKONG-SECURITY/JIMMYLAI/zjpqdaeoxvx/",
+      "CBC News": "https://www.cbc.ca/news/world/jimmy-lai-hong-kong-china-verdict-9.7015714"
+    }
   },
   {
-    "id": 22,
+    "id": 31,
+    "date": "2026-01-22",
+    "title": "Hong Kong Alliance Trial Begins — Tiananmen Vigil Leaders Face Subversion Charges",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Trial begins for Chow Hang-Tung, Lee Cheuk-yan, and Albert Ho — leaders of the disbanded Hong Kong Alliance — charged with inciting subversion for organizing annual Tiananmen vigils.",
+    "details": "The trial of three leaders of the Hong Kong Alliance in Support of Patriotic Democratic Movements of China began on January 22, 2026, after over four years of pre-trial detention. Chow Hang-Tung and Lee Cheuk-yan pleaded not guilty; Albert Ho pleaded guilty. They face up to 10 years for organizing Hong Kong's annual June 4th candlelight vigil commemorating the 1989 Tiananmen Square massacre. Amnesty International called the trial 'a cynical attempt to erase historical memory.' The prosecution argues that calling for 'ending one-party rule' constitutes subversion under the NSL. Chow was denied the ability to call overseas witnesses, and the UN has deemed her pre-trial detention 'arbitrary.'",
+    "impact": "Criminalizes peaceful commemoration of Tiananmen; threatens historical memory",
+    "sources": [
+      "Amnesty International",
+      "NCHRD",
+      "Hong Kong Labour Rights Monitor"
+    ],
+    "source_urls": {
+      "Amnesty International": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+      "NCHRD": "https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/"
+    }
+  },
+  {
+    "id": 32,
     "date": "2026-02-09",
     "title": "Jimmy Lai Sentenced to 20 Years",
     "category": "hongkong",
@@ -468,12 +598,19 @@
       "Human Rights Watch",
       "US State Department",
       "Committee to Protect Journalists",
-      "BBC",
+      "Hong Kong Free Press",
       "CNBC"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
+      "EU EEAS": "https://www.eeas.europa.eu/eeas/hong-kong-spokesperson-statement-sentencing-jimmy-lai_en",
+      "US State Department": "https://www.state.gov/releases/office-of-the-spokesperson/2026/02/sentencing-in-jimmy-lai-case/",
+      "CBS News": "https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/",
+      "Hong Kong Free Press": "https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/"
+    }
   },
   {
-    "id": 32,
+    "id": 33,
     "date": "2026-02-14",
     "title": "Joshua Wong HK47 Appeal Dismissed",
     "category": "hongkong",
@@ -487,10 +624,13 @@
       "Reuters",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/11/19/hong-kong-47-sentenced-crushing-blow-human-rights"
+    }
   },
   {
-    "id": 33,
+    "id": 34,
     "date": "2026-02-26",
     "title": "Jimmy Lai Fraud Conviction Overturned",
     "category": "hongkong",
@@ -505,10 +645,13 @@
       "DW News",
       "CBS News",
       "Reuters"
-    ]
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years"
+    }
   },
   {
-    "id": 34,
+    "id": 35,
     "date": "2026-02-26",
     "title": "First Family Member Sentenced Under Article 23",
     "category": "hongkong",
@@ -522,10 +665,50 @@
       "US News & World Report",
       "CIVICUS Monitor",
       "Hong Kong Free Press"
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2024/03/19/hong-kong-passes-draconian-new-security-law"
+    }
+  },
+  {
+    "id": 36,
+    "date": "2026-03-02",
+    "title": "UN Joint Statement Condemns Hong Kong Human Rights Crisis",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Eight UN-accredited NGOs issue joint statement at UN Human Rights Council demanding international action on Hong Kong.",
+    "details": "At the 55th session of the UN Human Rights Council, eight international human rights organizations issued a joint statement condemning the ongoing human rights crisis in Hong Kong. The statement highlighted the 20-year sentence of Jimmy Lai, the prosecution of activist family members under Article 23, and the prolonged detention of Chow Hang-Tung and Lee Cheuk-Yan for over 50 months without trial. The organizations called on member states to publicly raise Hong Kong at the Council and demand the release of political prisoners.",
+    "impact": "Coordinated international NGO pressure on UN member states to address Hong Kong repression",
+    "sources": [
+      "Fortify Rights",
+      "International Service for Human Rights",
+      "Hong Kong Centre for Human Rights"
+    ],
+    "source_urls": {
+      "UN News": "https://news.un.org/en/story/2026/03/1160162"
+    }
+  },
+  {
+    "id": 37,
+    "date": "2026-03-06",
+    "title": "Joshua Wong Foreign Collusion Case Transferred to High Court",
+    "category": "hongkong",
+    "significance": "high",
+    "description": "Joshua Wong's foreign collusion hearing held at High Court. Case formally transferred; next hearing September 5, 2026. Wong faces life imprisonment.",
+    "details": "Joshua Wong appeared in Hong Kong's High Court on March 6, 2026 for his foreign collusion charge under the National Security Law. The hearing was procedural — no verdict or plea was entered. The case was formally transferred from West Kowloon Magistrates' Courts to the High Court, indicating the prosecution is seeking a severe sentence. Wong remains in custody and did not apply for bail. The next hearing is scheduled for September 5, 2026. This case is separate from Wong's HK47 subversion conviction (4yr 8mo, appeal dismissed Feb 2026). If convicted, he faces a maximum sentence of life imprisonment.",
+    "impact": "High Court transfer signals severe prosecution; next hearing Sept 5, 2026",
+    "sources": [
+      "VOA Chinese",
+      "Amnesty International",
+      "Hong Kong Free Press"
+    ],
+    "source_urls": [
+      "https://www.voachinese.com/a/hong-kong-pro-democracy-activist-joshua-wong-accused-of-collusion-with-foreign-forces-appeared-in-court-again-20250808/8054907.html",
+      "https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/"
     ]
   },
   {
-    "id": 35,
+    "id": 38,
     "date": "2026-03-07",
     "title": "Jimmy Lai Confirms He Will Not Appeal NSL Sentence",
     "category": "hongkong",
@@ -539,6 +722,47 @@
       "UN News",
       "Amnesty International",
       "BBC"
-    ]
+    ],
+    "source_urls": {
+      "NBC News": "https://www.nbcnews.com/world/asia/hong-kong-jimmy-lai-will-not-appeal-national-security-conviction-rcna262058",
+      "UN News": "https://news.un.org/en/story/2026/02/1159387"
+    }
+  },
+  {
+    "id": 39,
+    "date": "2026-03-08",
+    "title": "China Retaliates Against Canadian Human Rights Organizations",
+    "category": "international",
+    "significance": "high",
+    "description": "China sanctions Canadian organizations and individuals working on Uyghur and Tibet issues, marking escalation of transnational repression.",
+    "details": "The Chinese government announced punitive measures against Canadian organizations and individuals for their work documenting human rights abuses against Uyghurs and Tibetans. This includes asset freezes, entry bans, and restrictions on business activities. The move represents a significant escalation of China's efforts to silence international critics and is widely seen as retaliation for Canadian advocacy on Uyghur forced labor and Tibetan cultural rights.",
+    "impact": "Escalation of CCP transnational repression targeting human rights defenders",
+    "sources": [
+      "ICIJ",
+      "Human Rights Watch",
+      "Amnesty International"
+    ],
+    "source_urls": {
+      "ICIJ": "https://www.icij.org/investigations/china-targets/",
+      "Human Rights Watch": "https://www.hrw.org/news/2026/01/09/canada-confront-chinas-heightened-repression"
+    }
+  },
+  {
+    "id": 40,
+    "date": "2026-03-10",
+    "title": "67th Anniversary of Tibetan National Uprising Day",
+    "category": "tibet",
+    "significance": "high",
+    "description": "Worldwide protests mark 67 years since the 1959 Tibetan National Uprising against Chinese occupation. Over 400 German municipalities raise the Tibetan flag.",
+    "details": "March 10 marks the anniversary of the 1959 Tibetan uprising against Chinese rule in Lhasa, which led to the Dalai Lama's exile. In 2026, the day saw global solidarity protests, with Tibetans and supporters in dozens of countries demanding an end to China's occupation of Tibet. In Germany alone, over 400 municipalities raised the Tibetan Snow Lion flag in solidarity. Meanwhile, China has intensified 'sinicization' campaigns targeting Tibetan language, culture, schools, and religion, with over a million Tibetan children reportedly separated from parents in colonial-style boarding schools.",
+    "impact": "Global solidarity demonstrations; renewed international focus on Tibet's cultural erasure",
+    "sources": [
+      "Tibet Post International",
+      "Committee for a Free Hong Kong Foundation",
+      "Human Rights Watch"
+    ],
+    "source_urls": {
+      "Human Rights Watch": "https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising"
+    }
   }
 ]

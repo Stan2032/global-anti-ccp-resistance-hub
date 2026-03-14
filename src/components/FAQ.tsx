@@ -170,11 +170,13 @@ const FAQ = () => {
       </div>
 
       {/* Category Filters */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="FAQ categories">
         {categories.map(cat => (
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
+            role="tab"
+            aria-selected={activeCategory === cat.id}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'
@@ -195,6 +197,8 @@ const FAQ = () => {
           >
             <button
               onClick={() => setOpenQuestion(openQuestion === faq.id ? null : faq.id)}
+              aria-expanded={openQuestion === faq.id}
+              aria-label={`${openQuestion === faq.id ? 'Collapse' : 'Expand'} question: ${faq.question}`}
               className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#111820]/30 transition-colors"
             >
               <span className="font-medium text-white pr-4">{faq.question}</span>

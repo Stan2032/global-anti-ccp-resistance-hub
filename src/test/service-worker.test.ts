@@ -7,7 +7,7 @@ const SW_PATH = resolve(PUBLIC_DIR, 'sw.js');
 const OFFLINE_PATH = resolve(PUBLIC_DIR, 'offline.html');
 
 describe('Service Worker (sw.js)', () => {
-  let swContent: any;
+  let swContent: string;
 
   beforeAll(() => {
     swContent = readFileSync(SW_PATH, 'utf-8');
@@ -123,7 +123,7 @@ describe('Service Worker (sw.js)', () => {
 });
 
 describe('Offline Page (offline.html)', () => {
-  let offlineContent: any;
+  let offlineContent: string;
 
   beforeAll(() => {
     offlineContent = readFileSync(OFFLINE_PATH, 'utf-8');

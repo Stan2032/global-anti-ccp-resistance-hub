@@ -232,7 +232,7 @@ describe('CensorshipCircumventionGuide', () => {
     const btn = screen.getByLabelText('Copy intelligence report to clipboard');
     fireEvent.click(btn);
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = (navigator.clipboard.writeText as any).mock.calls[(navigator.clipboard.writeText as any).mock.calls.length - 1][0];
+    const text = vi.mocked(navigator.clipboard.writeText).mock.calls[vi.mocked(navigator.clipboard.writeText).mock.calls.length - 1][0];
     expect(text).toContain('CENSORSHIP CIRCUMVENTION GUIDE');
     expect(text).toContain('Censorship methods documented');
     expect(text).toContain('CC BY 4.0');

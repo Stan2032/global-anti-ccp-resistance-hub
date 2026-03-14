@@ -1,3 +1,11 @@
+/**
+ * BackToTop — Floating scroll-to-top button.
+ *
+ * Appears after the user scrolls down 400 px and smoothly scrolls the
+ * window back to the top when clicked.
+ *
+ * @module BackToTop
+ */
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 

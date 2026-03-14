@@ -70,9 +70,65 @@ describe('URL health across all data files', () => {
     }
     expect(violations, `HTTP-only URLs found:\n${violations.join('\n')}`).toEqual([]);
   });
+  it('source_url fields point to specific pages, not just homepages', () => {
+    // "The map is not the territory" — a homepage URL is not a source citation.
+    // Every source_url should point to a specific article, document, or record.
+    const violations: string[] = [];
+    const keyFiles = [
+      'sanctions_tracker.json',
+      'political_prisoners_research.json',
+      'timeline_events.json',
+    ];
+
+    for (const fileName of keyFiles) {
+      const content = readFileSync(resolve(DATA_DIR, fileName), 'utf-8');
+      const data = JSON.parse(content);
+
+      // Extract source_url values from any structure
+      const urls: Array<{ name: string; url: string }> = [];
+
+      if (data.sanctions) {
+        for (const s of data.sanctions) {
+          if (s.source_url) urls.push({ name: `${fileName}:${s.target}`, url: s.source_url });
+        }
+      }
+      if (data.results) {
+        for (const r of data.results) {
+          const output = r.output || r;
+          if (output.source_url) urls.push({ name: `${fileName}:${output.prisoner_name || output.name || 'entry'}`, url: output.source_url });
+        }
+      }
+      if (Array.isArray(data)) {
+        for (const item of data) {
+          if (item.source_urls && typeof item.source_urls === 'object') {
+            for (const url of Object.values(item.source_urls) as string[]) {
+              urls.push({ name: `${fileName}:${item.title || 'event'}`, url });
+            }
+          }
+        }
+      }
+
+      for (const { name, url } of urls) {
+        try {
+          const parsed = new URL(url);
+          // Check if path is empty or just "/"
+          if (!parsed.pathname || parsed.pathname === '/') {
+            // Allow if there are query parameters (e.g., eur-lex URLs use query strings)
+            if (!parsed.search) {
+              violations.push(`${name}: homepage-only URL: ${url}`);
+            }
+          }
+        } catch {
+          violations.push(`${name}: invalid URL: ${url}`);
+        }
+      }
+    }
+
+    expect(violations, `Homepage-only source URLs found:\n${violations.join('\n')}`).toEqual([]);
+  });
 });
 
-describe('No CCP state media links in JSX source files', () => {
+describe('No CCP state media links in TSX source files', () => {
   const jsxFiles = findFiles(SRC_DIR, ['.tsx']);
 
   it('finds JSX files to scan', () => {

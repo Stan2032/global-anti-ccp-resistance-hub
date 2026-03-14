@@ -690,12 +690,12 @@ export function assessSourceRisk(sourceName: string): SourceRiskAssessment {
 /**
  * Convert a plain-text source name into a SourceAttribution-compatible object.
  */
-export function resolveSource(sourceName: string): SourceAttribution {
+export function resolveSource(sourceName: string, urlOverride?: string): SourceAttribution {
   const entry = SOURCE_REGISTRY[sourceName];
   if (entry) {
     return {
       name: sourceName,
-      url: entry.url,
+      url: urlOverride || entry.url,
       type: entry.type,
       verified: entry.verified,
       biasRisk: entry.biasRisk || 'none',
@@ -706,7 +706,7 @@ export function resolveSource(sourceName: string): SourceAttribution {
   // Return a basic object for unrecognised sources
   return {
     name: sourceName,
-    url: null,
+    url: urlOverride || null,
     type: 'Other',
     verified: false,
     biasRisk: 'none',
@@ -719,7 +719,7 @@ export function resolveSource(sourceName: string): SourceAttribution {
  */
 export function resolveSources(sourceNames: string[]): SourceAttribution[] {
   if (!sourceNames || !Array.isArray(sourceNames)) return [];
-  return sourceNames.map(resolveSource);
+  return sourceNames.map(name => resolveSource(name));
 }
 
 export default SOURCE_REGISTRY;

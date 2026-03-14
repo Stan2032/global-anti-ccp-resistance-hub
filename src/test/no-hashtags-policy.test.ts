@@ -39,7 +39,7 @@ function findFiles(dir: string, extensions: string[]): string[] {
 const HASHTAG_PATTERN = /#(?:Free|Stand|Save|Stop|Support|Resist|Boycott|End|Protect|Justice|Remember|Solidarity|Fight)[A-Z]\w+/g;
 
 describe('No-Hashtags Policy', () => {
-  const jsxFiles = findFiles(SRC_DIR, ['.tsx', '.ts']).filter((f: any) => !f.includes('/test/'));
+  const jsxFiles = findFiles(SRC_DIR, ['.tsx', '.ts']).filter((f: string) => !f.includes('/test/'));
   const jsonFiles = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 
   it('finds source files to scan', () => {

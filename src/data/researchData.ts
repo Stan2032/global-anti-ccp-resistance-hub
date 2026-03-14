@@ -1,10 +1,17 @@
-// Research Data - Generated from Wide Research parallel processing
-// Last updated: December 2024
+/**
+ * Research data module — transforms raw JSON research data into typed arrays.
+ *
+ * Processes political prisoners, news, and police stations data from parallel
+ * research JSON files into typed exports with camelCase fields.
+ *
+ * @module researchData
+ */
 
 import politicalPrisonersData from './political_prisoners_research.json';
 import recentNewsData from './recent_news_research.json';
 import policeStationsData from './police_stations_research.json';
 
+/** Typed political prisoner record with camelCase field names. */
 export interface PoliticalPrisoner {
   name: string;
   status: string;
@@ -17,6 +24,7 @@ export interface PoliticalPrisoner {
   confidence: string;
 }
 
+/** Typed news item record with camelCase field names. */
 export interface NewsItem {
   topic: string;
   headline: string;
@@ -30,6 +38,7 @@ export interface NewsItem {
   actionNeeded: string;
 }
 
+/** Typed overseas police station record with camelCase field names. */
 export interface PoliceStation {
   country: string;
   city: string;
@@ -44,6 +53,7 @@ export interface PoliceStation {
   sourceUrl: string;
 }
 
+/** Aggregate statistics computed from all research datasets. */
 export interface ResearchStats {
   totalPrisoners: number;
   prisonersByStatus: {
@@ -66,7 +76,7 @@ export interface ResearchStats {
   lastUpdated: string;
 }
 
-// Process political prisoners data
+/** Processed political prisoner records (mapped from JSON output fields). */
 export const politicalPrisoners: PoliticalPrisoner[] = politicalPrisonersData.results.map(item => ({
   name: item.output.prisoner_name,
   status: item.output.status,
@@ -79,7 +89,7 @@ export const politicalPrisoners: PoliticalPrisoner[] = politicalPrisonersData.re
   confidence: item.output.confidence
 }));
 
-// Process recent news data
+/** Processed recent news items (mapped from JSON output fields). */
 export const recentNews: NewsItem[] = recentNewsData.results.map(item => ({
   topic: item.output.topic,
   headline: item.output.headline,
@@ -93,7 +103,7 @@ export const recentNews: NewsItem[] = recentNewsData.results.map(item => ({
   actionNeeded: item.output.action_needed
 }));
 
-// Process police stations data
+/** Processed overseas police station records (mapped from JSON output fields). */
 export const policeStations: PoliceStation[] = policeStationsData.results.map(item => ({
   country: item.output.country,
   city: item.output.city,
@@ -108,7 +118,7 @@ export const policeStations: PoliceStation[] = policeStationsData.results.map(it
   sourceUrl: item.output.source_url
 }));
 
-// Statistics
+/** Live aggregate statistics computed from all research datasets. */
 export const researchStats: ResearchStats = {
   totalPrisoners: politicalPrisoners.length,
   prisonersByStatus: {

@@ -97,7 +97,7 @@ describe('QuickFacts', () => {
     fireEvent.click(card!);
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
-    const clipboardText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipboardText).toContain('Political Prisoners');
     expect(clipboardText).toContain('1,000+');
     expect(clipboardText).toContain('Dui Hua Foundation');
@@ -124,7 +124,7 @@ describe('QuickFacts', () => {
     const card = statElement.closest('div[class*="cursor-pointer"]');
     fireEvent.click(card!);
 
-    const clipboardText = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipboardText).toContain('CCP police stations');
     expect(clipboardText).not.toContain('#');
   });

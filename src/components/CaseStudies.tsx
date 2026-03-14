@@ -291,6 +291,8 @@ export default function CaseStudies() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('timeline')}
+            aria-expanded={!!expandedSections.timeline}
+            aria-label="Toggle timeline section"
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
@@ -319,6 +321,8 @@ export default function CaseStudies() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('legal')}
+            aria-expanded={!!expandedSections.legal}
+            aria-label="Toggle charges and verdict section"
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
@@ -372,6 +376,8 @@ export default function CaseStudies() {
         <div className="p-6 border-b border-[#1c2a35]">
           <button
             onClick={() => toggleSection('international')}
+            aria-expanded={!!expandedSections.international}
+            aria-label="Toggle international response section"
             className="w-full flex items-center justify-between text-left"
           >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">

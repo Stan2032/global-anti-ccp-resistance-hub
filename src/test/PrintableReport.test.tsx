@@ -54,7 +54,7 @@ describe('PrintableReport', () => {
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
     expect(screen.getByText('Political prisoners documented')).toBeTruthy();
-    expect(screen.getByText('63+')).toBeTruthy();
+    expect(screen.getByText('65+')).toBeTruthy();
     expect(screen.getByText('Uyghurs in detention camps')).toBeTruthy();
     expect(screen.getByText('1–3 million')).toBeTruthy();
     expect(screen.getByText('Overseas CCP police stations')).toBeTruthy();
@@ -157,7 +157,7 @@ describe('PrintableReport', () => {
       document: { write: mockWrite, close: mockClose },
       print: mockPrint,
     }));
-    (vi.spyOn(window, 'open') as any).mockImplementation(mockOpen);
+    vi.mocked(vi.spyOn(window, 'open')).mockImplementation(mockOpen);
 
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
@@ -168,7 +168,7 @@ describe('PrintableReport', () => {
     expect(mockClose).toHaveBeenCalled();
     expect(mockPrint).toHaveBeenCalled();
 
-    (window.open as any).mockRestore();
+    vi.mocked(window.open).mockRestore();
   });
 
   it('handles blocked popup gracefully', () => {
@@ -181,7 +181,7 @@ describe('PrintableReport', () => {
       fireEvent.click(screen.getByLabelText('Print report'));
     }).not.toThrow();
 
-    (window.open as any).mockRestore();
+    vi.mocked(window.open).mockRestore();
   });
 
   // --- Generated date ---

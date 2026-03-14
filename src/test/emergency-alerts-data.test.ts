@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/emergency_alerts.json');
 
 describe('Emergency Alerts data integrity', () => {
-  let data: any;
+  let data: Array<{ id: string; type: string; title: string; summary: string; date: string; active: boolean; links?: { name: string; url: string }[]; eventDate?: string; expires?: string; lastVerified?: string; details?: string; hashtags?: unknown }>;
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -53,13 +53,13 @@ describe('Emergency Alerts data integrity', () => {
   });
 
   it('alert IDs are unique', () => {
-    const ids = data.map((a: any) => a.id);
+    const ids = data.map((a: { id: string }) => a.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
   it('each link has name and url', () => {
     for (const alert of data) {
-      for (const link of alert.links) {
+      for (const link of (alert.links || [])) {
         expect(link).toHaveProperty('name');
         expect(link).toHaveProperty('url');
         expect(typeof link.name).toBe('string');
@@ -72,7 +72,7 @@ describe('Emergency Alerts data integrity', () => {
   it('no CCP state media URLs in alert links', () => {
     const ccpDomains = ['xinhua', 'cgtn', 'globaltimes', 'chinadaily', 'cctv.com', 'people.com.cn'];
     for (const alert of data) {
-      for (const link of alert.links) {
+      for (const link of (alert.links || [])) {
         const urlLower = link.url.toLowerCase();
         for (const domain of ccpDomains) {
           expect(urlLower).not.toContain(domain);
@@ -82,7 +82,7 @@ describe('Emergency Alerts data integrity', () => {
   });
 
   it('has at least one critical alert', () => {
-    const criticals = data.filter((a: any) => a.type === 'critical');
+    const criticals = data.filter((a: { type: string }) => a.type === 'critical');
     expect(criticals.length).toBeGreaterThanOrEqual(1);
   });
 

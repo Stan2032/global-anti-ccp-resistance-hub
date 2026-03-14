@@ -270,6 +270,8 @@ export const HelpMenu = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-label="Quick start guide"
         className="p-2 text-slate-400 hover:text-white transition-colors"
         title="Help"
       >

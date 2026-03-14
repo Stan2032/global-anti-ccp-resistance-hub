@@ -1,3 +1,12 @@
+/**
+ * InfluenceNetwork — CCP influence network visualization.
+ *
+ * Cross-references sanctioned officials, political prisoners, detention
+ * facilities, and forced labour companies to map CCP power structures.
+ * Pure CSS/React implementation with no external graph libraries.
+ *
+ * @module InfluenceNetwork
+ */
 import React, { useState, useMemo } from 'react';
 import {
   Network, Users, Shield, MapPin, AlertTriangle,

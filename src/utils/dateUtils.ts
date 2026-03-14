@@ -23,8 +23,14 @@ export interface FreshnessInfo {
   level: 'fresh' | 'recent' | 'stale';
 }
 
-// Calculates age from a birth date string, optionally at a given death date.
-// Handles formats: "December 8, 1947", "1964" (year only), "April 25, 1989".
+/**
+ * Calculates age from a birth date string, optionally at a given death date.
+ *
+ * @param birthDate - Birth date in natural language (e.g. "December 8, 1947")
+ *                    or year-only (e.g. "1964").
+ * @param deathDate - Optional death date. If omitted, age is calculated as of today.
+ * @returns Age in years. For year-only inputs, uses simple year subtraction.
+ */
 export function calculateAge(birthDate: string, deathDate?: string): number {
   const endDate = deathDate ? new Date(deathDate) : new Date();
   const birth = new Date(birthDate);
@@ -44,7 +50,14 @@ export function calculateAge(birthDate: string, deathDate?: string): number {
   return age;
 }
 
-// Calculates time remaining until eventDate (YYYY-MM-DD).
+/**
+ * Calculates time remaining until `eventDate`.
+ *
+ * @param eventDate - Target date as "YYYY-MM-DD", or null/undefined.
+ * @returns A {@link TimeLeft} object with days/hours/minutes/seconds remaining,
+ *          plus `isPast` and `isToday` flags. Returns zero-values with
+ *          `isPast: true` for invalid or past dates.
+ */
 export function calculateTimeLeft(eventDate: string | null | undefined): TimeLeft {
   const fallback: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
   if (!eventDate || typeof eventDate !== 'string') return fallback;
@@ -79,7 +92,13 @@ export function calculateTimeLeft(eventDate: string | null | undefined): TimeLef
   return { days, hours, minutes, seconds, isPast: false, isToday: false };
 }
 
-// Formats an emergency alert for sharing on social media.
+/**
+ * Formats an emergency alert for sharing on social media.
+ *
+ * @param alert - The alert to format, or null.
+ * @returns A string with emoji-prefixed title, summary, and first link URL.
+ *          Returns empty string for null input.
+ */
 export function formatAlertForSharing(alert: AlertForSharing | null): string {
   if (!alert) return '';
   const lines: string[] = [];
@@ -91,7 +110,13 @@ export function formatAlertForSharing(alert: AlertForSharing | null): string {
   return lines.join('');
 }
 
-// Calculates days since a date string (YYYY-MM-DD). Returns 0 for today, negative for future dates.
+/**
+ * Calculates the number of days since a given date string.
+ *
+ * @param dateStr - Date in "YYYY-MM-DD" format.
+ * @returns Number of days elapsed. Returns 0 for today, negative for future
+ *          dates, and `Infinity` for empty/falsy input.
+ */
 export function daysSince(dateStr: string): number {
   if (!dateStr) return Infinity;
   const now = new Date();
@@ -101,7 +126,13 @@ export function daysSince(dateStr: string): number {
   return Math.floor(diffMs / 86400000);
 }
 
-// Formats days since into a human-readable "freshness" label and categorisation level.
+/**
+ * Categorises a date into freshness tiers for display.
+ *
+ * @param dateStr - Verification date in "YYYY-MM-DD" format.
+ * @returns A {@link FreshnessInfo} with a human-readable `label` and a `level`
+ *          of `'fresh'` (≤7 days), `'recent'` (≤30 days), or `'stale'` (>30 days).
+ */
 export function getFreshnessInfo(dateStr: string): FreshnessInfo {
   const days = daysSince(dateStr);
   if (days <= 0) return { label: 'Verified today', level: 'fresh' };

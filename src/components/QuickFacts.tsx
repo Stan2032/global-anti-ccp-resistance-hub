@@ -1,5 +1,14 @@
+/**
+ * QuickFacts — Shareable statistics cards with verified data points.
+ *
+ * Displays key human-rights statistics in a card grid. Each card
+ * includes a source link, copy-to-clipboard action, and category colour.
+ *
+ * @module QuickFacts
+ */
 import React, { useState } from 'react';
 import { BarChart3, Megaphone } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 /**
  * QuickFacts — Shareable statistics cards with verified data points.
@@ -103,7 +112,7 @@ const QuickFacts = () => {
       setCopiedId(fact.id);
       setTimeout(() => setCopiedId(null), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 
@@ -136,6 +145,7 @@ const QuickFacts = () => {
             key={fact.id}
             className={`bg-[#0a0e14] border-l-2 ${colorClasses[fact.color]} p-5 border transition-transform hover:scale-[1.02] cursor-pointer`}
             onClick={() => copyToClipboard(fact)}
+            aria-label={`Copy fact: ${fact.stat} — ${fact.description}`}
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">

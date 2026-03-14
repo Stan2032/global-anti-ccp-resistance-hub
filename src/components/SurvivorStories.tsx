@@ -184,11 +184,13 @@ She has dedicated her life to advocating for her father's release, speaking at t
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Survivor story categories">
         {categories.map(cat => (
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
+            role="tab"
+            aria-selected={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'
@@ -258,6 +260,8 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
                 <button
                   onClick={() => setExpandedStory(isExpanded ? null : story.id)}
+                  aria-expanded={isExpanded}
+                  aria-label={`${isExpanded ? 'Collapse' : 'Read'} story from ${story.name}`}
                   className="mt-3 text-sm text-[#22d3ee] hover:text-white"
                 >
                   {isExpanded ? 'Show less ↑' : 'Read full story →'}

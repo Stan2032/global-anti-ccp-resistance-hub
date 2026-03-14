@@ -20,7 +20,66 @@ const DATA_DIR = resolve(__dirname, '../data');
 
 const MAX_STALENESS_DAYS = 180;
 
-function daysSince(dateStr: any) {
+interface SanctionsMetadata {
+  last_verified: string;
+  sources: string[];
+  [key: string]: unknown;
+}
+
+interface SanctionEntry {
+  id: number;
+  country: string;
+  type: string;
+  target: string;
+  source_url: string;
+  [key: string]: unknown;
+}
+
+interface SanctionsData {
+  metadata: SanctionsMetadata;
+  sanctions: SanctionEntry[];
+  [key: string]: unknown;
+}
+
+interface PrisonerOutput {
+  prisoner_name: string;
+  status: string;
+  last_verified?: string;
+  [key: string]: unknown;
+}
+
+interface PrisonerEntry {
+  input: string;
+  output: PrisonerOutput;
+  error: string;
+}
+
+interface PrisonerData {
+  results: PrisonerEntry[];
+}
+
+interface TimelineEvent {
+  date: string;
+  title: string;
+  [key: string]: unknown;
+}
+
+interface OfficialEntry {
+  output: { name: string; [key: string]: unknown };
+  [key: string]: unknown;
+}
+
+interface FacilityEntry {
+  output: { facility_name: string; latitude?: number | string; longitude?: number | string; [key: string]: unknown };
+  [key: string]: unknown;
+}
+
+interface CompanyEntry {
+  output: { company: string; industry: string; [key: string]: unknown };
+  [key: string]: unknown;
+}
+
+function daysSince(dateStr: string): number {
   const date = new Date(dateStr);
   const now = new Date();
   return Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
@@ -47,7 +106,7 @@ describe('Data Freshness Validation', () => {
   });
 
   describe('Sanctions tracker freshness', () => {
-    let sanctionsData: any;
+    let sanctionsData: SanctionsData;
 
     it('loads sanctions data', () => {
       sanctionsData = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctions_tracker.json'), 'utf-8'));
@@ -69,7 +128,7 @@ describe('Data Freshness Validation', () => {
   });
 
   describe('Political prisoners freshness', () => {
-    let prisoners: any;
+    let prisoners: PrisonerData;
 
     it('loads political prisoners data', () => {
       prisoners = JSON.parse(readFileSync(resolve(DATA_DIR, 'political_prisoners_research.json'), 'utf-8'));
@@ -87,7 +146,7 @@ describe('Data Freshness Validation', () => {
 
     it('at least 90% of prisoners verified within 180 days', () => {
       const total = prisoners.results.length;
-      const fresh = prisoners.results.filter((r: any) => {
+      const fresh = prisoners.results.filter((r) => {
         if (!r.output.last_verified) return false;
         return daysSince(r.output.last_verified) <= MAX_STALENESS_DAYS;
       }).length;
@@ -100,7 +159,7 @@ describe('Data Freshness Validation', () => {
   });
 
   describe('Timeline events completeness', () => {
-    let events: any;
+    let events: TimelineEvent[];
 
     it('loads timeline data', () => {
       events = JSON.parse(readFileSync(resolve(DATA_DIR, 'timeline_events.json'), 'utf-8'));
@@ -112,49 +171,49 @@ describe('Data Freshness Validation', () => {
     });
 
     it('covers events from 1989 to present', () => {
-      const years = events.map((e: any) => new Date(e.date).getFullYear());
+      const years = events.map((e) => new Date(e.date).getFullYear());
       expect(Math.min(...years)).toBeLessThanOrEqual(1989);
       expect(Math.max(...years)).toBeGreaterThanOrEqual(2024);
     });
 
     it('includes events from the current decade (2020s)', () => {
-      const recent = events.filter((e: any) => new Date(e.date).getFullYear() >= 2020);
+      const recent = events.filter((e) => new Date(e.date).getFullYear() >= 2020);
       expect(recent.length, 'Should have substantial 2020s coverage').toBeGreaterThanOrEqual(5);
     });
   });
 
   describe('Cross-file data references', () => {
     it('all sanctioned individuals in sanctions_tracker appear in sanctioned_officials_research', () => {
-      const sanctions = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctions_tracker.json'), 'utf-8'));
-      const officials = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
+      const sanctions: SanctionsData = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctions_tracker.json'), 'utf-8'));
+      const officials: { results: OfficialEntry[] } = JSON.parse(readFileSync(resolve(DATA_DIR, 'sanctioned_officials_research.json'), 'utf-8'));
 
       const officialNames = new Set(
-        officials.results.map((r: any) => r.output.name.toLowerCase())
+        officials.results.map((r) => r.output.name.toLowerCase())
       );
 
-      const individualSanctions = sanctions.sanctions.filter((s: any) => s.type === 'individual');
+      const individualSanctions = sanctions.sanctions.filter((s) => s.type === 'individual');
       const missing = individualSanctions.filter(
-        (s: any) => !officialNames.has(s.target.toLowerCase())
+        (s) => !officialNames.has(s.target.toLowerCase())
       );
 
       expect(
         missing.length,
-        `Sanctioned individuals not in officials research: ${missing.map((s: any) => s.target).join(', ')}`
+        `Sanctioned individuals not in officials research: ${missing.map((s) => s.target).join(', ')}`
       ).toBe(0);
     });
 
     it('detention facilities have valid coordinates', () => {
-      const facilities = JSON.parse(readFileSync(resolve(DATA_DIR, 'detention_facilities_research.json'), 'utf-8'));
+      const facilities: { results: FacilityEntry[] } = JSON.parse(readFileSync(resolve(DATA_DIR, 'detention_facilities_research.json'), 'utf-8'));
 
       for (const r of facilities.results) {
         const { latitude, longitude, facility_name } = r.output;
         if (latitude !== undefined && longitude !== undefined) {
           expect(
-            typeof latitude === 'number' || !isNaN(parseFloat(latitude)),
+            typeof latitude === 'number' || !isNaN(parseFloat(String(latitude))),
             `${facility_name} has invalid latitude: ${latitude}`
           ).toBe(true);
           expect(
-            typeof longitude === 'number' || !isNaN(parseFloat(longitude)),
+            typeof longitude === 'number' || !isNaN(parseFloat(String(longitude))),
             `${facility_name} has invalid longitude: ${longitude}`
           ).toBe(true);
         }
@@ -162,7 +221,7 @@ describe('Data Freshness Validation', () => {
     });
 
     it('forced labor companies have valid industry classifications', () => {
-      const companies = JSON.parse(readFileSync(resolve(DATA_DIR, 'forced_labor_companies_research.json'), 'utf-8'));
+      const companies: { results: CompanyEntry[] } = JSON.parse(readFileSync(resolve(DATA_DIR, 'forced_labor_companies_research.json'), 'utf-8'));
 
       for (const r of companies.results) {
         expect(r.output.company, 'Company entry missing name').toBeTruthy();

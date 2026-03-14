@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 // Mock authService
@@ -18,13 +19,13 @@ vi.mock('../services/supabaseClient', () => ({
 }));
 
 import { AuthProvider } from '../contexts/AuthContext';
-import { useAuth } from '../contexts/authUtils';
+import { useAuth, type AuthState } from '../contexts/authUtils';
 import AdminLogin from '../pages/AdminLogin';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { isSupabaseConfigured, isServiceRoleKeyError } from '../services/supabaseClient';
 import { signIn, getSession, checkIsAdmin } from '../services/authService';
 
-const renderWithProviders = (ui: any, { route = '/' } = {}) => {
+const renderWithProviders = (ui: React.ReactNode, { route = '/' } = {}) => {
   return render(
     <MemoryRouter initialEntries={[route]}>
       <AuthProvider>
@@ -37,10 +38,10 @@ const renderWithProviders = (ui: any, { route = '/' } = {}) => {
 describe('AdminLogin', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (isSupabaseConfigured as any).mockReturnValue(true);
-    (isServiceRoleKeyError as any).mockReturnValue(false);
-    (getSession as any).mockResolvedValue(null);
-    (checkIsAdmin as any).mockResolvedValue(false);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
+    vi.mocked(isServiceRoleKeyError).mockReturnValue(false);
+    vi.mocked(getSession).mockResolvedValue(null);
+    vi.mocked(checkIsAdmin).mockResolvedValue(false);
   });
 
   it('renders login form', async () => {
@@ -66,7 +67,7 @@ describe('AdminLogin', () => {
   });
 
   it('shows not configured message when Supabase is unavailable', async () => {
-    (isSupabaseConfigured as any).mockReturnValue(false);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false);
     renderWithProviders(<AdminLogin />);
     await waitFor(() => {
       expect(screen.getByText('Supabase Not Configured')).toBeTruthy();
@@ -74,8 +75,8 @@ describe('AdminLogin', () => {
   });
 
   it('shows wrong API key error when service_role key is detected', async () => {
-    (isServiceRoleKeyError as any).mockReturnValue(true);
-    (isSupabaseConfigured as any).mockReturnValue(false);
+    vi.mocked(isServiceRoleKeyError).mockReturnValue(true);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false);
     renderWithProviders(<AdminLogin />);
     await waitFor(() => {
       expect(screen.getByText('Wrong API Key')).toBeTruthy();
@@ -84,7 +85,7 @@ describe('AdminLogin', () => {
   });
 
   it('shows error on failed login', async () => {
-    (signIn as any).mockResolvedValue({ user: null, error: 'Invalid credentials' });
+    vi.mocked(signIn).mockResolvedValue({ user: null, error: 'Invalid credentials' });
     renderWithProviders(<AdminLogin />);
     
     await waitFor(() => {
@@ -111,11 +112,11 @@ describe('AdminLogin', () => {
 describe('ProtectedRoute', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (isSupabaseConfigured as any).mockReturnValue(true);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
   });
 
   it('shows loading state initially', () => {
-    (getSession as any).mockReturnValue(new Promise(() => {})); // Never resolves
+    vi.mocked(getSession).mockReturnValue(new Promise(() => {})); // Never resolves
     renderWithProviders(
       <ProtectedRoute><div>Dashboard</div></ProtectedRoute>
     );
@@ -123,7 +124,7 @@ describe('ProtectedRoute', () => {
   });
 
   it('redirects to login when not authenticated', async () => {
-    (getSession as any).mockResolvedValue(null);
+    vi.mocked(getSession).mockResolvedValue(null);
     renderWithProviders(
       <ProtectedRoute><div>Dashboard</div></ProtectedRoute>,
       { route: '/admin' }
@@ -136,8 +137,8 @@ describe('ProtectedRoute', () => {
 
 describe('AuthContext', () => {
   it('provides auth values', async () => {
-    (getSession as any).mockResolvedValue(null);
-    let authValues: any;
+    vi.mocked(getSession).mockResolvedValue(null);
+    let authValues: AuthState;
     const TestComponent = () => {
       authValues = useAuth();
       return <div>test</div>;

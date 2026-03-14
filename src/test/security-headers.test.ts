@@ -6,8 +6,8 @@ const HEADERS_PATH = resolve(__dirname, '../../public/_headers');
 const INDEX_PATH = resolve(__dirname, '../../index.html');
 
 describe('Security Headers', () => {
-  let headersContent: any;
-  let indexContent: any;
+  let headersContent: string;
+  let indexContent: string;
 
   beforeAll(() => {
     headersContent = readFileSync(HEADERS_PATH, 'utf-8');

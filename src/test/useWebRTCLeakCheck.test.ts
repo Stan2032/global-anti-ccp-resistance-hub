@@ -6,7 +6,7 @@ import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck';
 const PRIVATE_IP_REGEX = /^(10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.|fd[0-9a-f]{2}:|fe80:)/i;
 
 describe('useWebRTCLeakCheck', () => {
-  let originalRTCPeerConnection: any;
+  let originalRTCPeerConnection: typeof globalThis.RTCPeerConnection | undefined;
 
   beforeEach(() => {
     originalRTCPeerConnection = globalThis.RTCPeerConnection;
@@ -16,7 +16,7 @@ describe('useWebRTCLeakCheck', () => {
     if (originalRTCPeerConnection) {
       globalThis.RTCPeerConnection = originalRTCPeerConnection;
     } else {
-      delete (globalThis as any).RTCPeerConnection;
+      delete (globalThis as unknown as Record<string, unknown>).RTCPeerConnection;
     }
   });
 
@@ -29,7 +29,7 @@ describe('useWebRTCLeakCheck', () => {
   });
 
   it('should set unsupported when RTCPeerConnection is not available', async () => {
-    delete (globalThis as any).RTCPeerConnection;
+    delete (globalThis as unknown as Record<string, unknown>).RTCPeerConnection;
 
     const { result } = renderHook(() => useWebRTCLeakCheck());
     const { act } = await import('@testing-library/react');

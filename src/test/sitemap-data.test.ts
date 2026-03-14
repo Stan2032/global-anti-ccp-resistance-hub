@@ -8,9 +8,9 @@ const ROBOTS_PATH = resolve(PUBLIC_DIR, 'robots.txt');
 const BASE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 describe('Sitemap Data Integrity', () => {
-  let sitemapContent: any;
-  let urls: any;
-  let robotsContent: any;
+  let sitemapContent: string;
+  let urls: string[];
+  let robotsContent: string;
 
   beforeAll(() => {
     sitemapContent = readFileSync(SITEMAP_PATH, 'utf-8');
@@ -133,7 +133,7 @@ describe('Sitemap Data Integrity', () => {
         new RegExp(`<loc>${escapedBase}/</loc>[\\s\\S]*?<priority>([^<]+)</priority>`)
       );
       expect(homepageMatch).not.toBeNull();
-      expect(parseFloat(homepageMatch[1])).toBe(1.0);
+      expect(parseFloat(homepageMatch![1])).toBe(1.0);
     });
   });
 
@@ -176,7 +176,7 @@ describe('Sitemap Data Integrity', () => {
     it('has reasonable crawl-delay (1-10 seconds)', () => {
       const match = robotsContent.match(/Crawl-delay:\s*(\d+)/);
       expect(match).not.toBeNull();
-      const delay = parseInt(match[1], 10);
+      const delay = parseInt(match![1], 10);
       expect(delay).toBeGreaterThanOrEqual(1);
       expect(delay).toBeLessThanOrEqual(10);
     });

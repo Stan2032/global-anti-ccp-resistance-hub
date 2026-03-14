@@ -160,8 +160,8 @@ describe('CCP Influence Detection System', () => {
     });
 
     it('returns false for null/undefined', () => {
-      expect(isCCPStateMedia(null as any)).toBe(false);
-      expect(isCCPStateMedia(undefined as any)).toBe(false);
+      expect(isCCPStateMedia(null as unknown as string)).toBe(false);
+      expect(isCCPStateMedia(undefined as unknown as string)).toBe(false);
       expect(isCCPStateMedia('')).toBe(false);
     });
   });
@@ -180,7 +180,7 @@ describe('CCP Influence Detection System', () => {
     });
 
     it('handles null/empty input', () => {
-      expect(isCCPDomain(null as any)).toBe(false);
+      expect(isCCPDomain(null as unknown as string)).toBe(false);
       expect(isCCPDomain('')).toBe(false);
     });
   });
@@ -214,7 +214,7 @@ describe('CCP Influence Detection System', () => {
     });
 
     it('returns null for null/empty input', () => {
-      expect(getCCPInfluenceRisk(null as any)).toBeNull();
+      expect(getCCPInfluenceRisk(null as unknown as string)).toBeNull();
       expect(getCCPInfluenceRisk('')).toBeNull();
     });
   });
@@ -244,7 +244,7 @@ describe('CCP Influence Detection System', () => {
     });
 
     it('returns unknown for null input', () => {
-      const result = assessSourceRisk(null as any);
+      const result = assessSourceRisk(null as unknown as string);
       expect(result.level).toBe('unknown');
     });
   });

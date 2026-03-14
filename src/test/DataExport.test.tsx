@@ -32,9 +32,9 @@ describe('DataExport', () => {
 
   it('shows record counts for datasets', () => {
     render(<DataExport />);
-    expect(screen.getByText('63 records')).toBeTruthy(); // prisoners
-    expect(screen.getByText('47 records')).toBeTruthy(); // sanctions
-    expect(screen.getByText('35 records')).toBeTruthy(); // timeline
+    expect(screen.getByText('64 records')).toBeTruthy(); // prisoners
+    expect(screen.getByText('46 records')).toBeTruthy(); // sanctions
+    expect(screen.getByText('40 records')).toBeTruthy(); // timeline
   });
 
   it('renders Select All and Clear buttons', () => {
@@ -48,7 +48,7 @@ describe('DataExport', () => {
     fireEvent.click(screen.getByText('Political Prisoners Database'));
     // Summary should show 1 dataset selected
     expect(screen.getByText(/1 dataset selected/)).toBeTruthy();
-    expect(screen.getByText(/63 total records/)).toBeTruthy();
+    expect(screen.getByText(/64 total records/)).toBeTruthy();
   });
 
   it('deselects a dataset when clicked again', () => {
@@ -121,7 +121,7 @@ describe('DataExport', () => {
 
   it('calculates total records across selected datasets', () => {
     render(<DataExport />);
-    // Select prisoners (63) and sanctions (47)
+    // Select prisoners (64) and sanctions (46)
     fireEvent.click(screen.getByText('Political Prisoners Database'));
     fireEvent.click(screen.getByText('Sanctioned Officials & Entities'));
     expect(screen.getByText(/2 datasets selected/)).toBeTruthy();

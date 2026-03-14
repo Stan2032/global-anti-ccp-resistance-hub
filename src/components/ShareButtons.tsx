@@ -1,4 +1,13 @@
+/**
+ * ShareButtons — Social media sharing buttons with copy-to-clipboard.
+ *
+ * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp, Signal,
+ * and Email. Offers both full and compact layouts.
+ *
+ * @module ShareButtons
+ */
 import { useState } from 'react';
+import { logger } from '../utils/logger';
 
 /**
  * ShareButtons — Social sharing buttons with copy-to-clipboard.
@@ -104,7 +113,7 @@ const ShareButtons = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 
@@ -150,6 +159,8 @@ const ShareButtons = ({
         {!compact && shareLinks.length > 5 && (
           <button
             onClick={() => setShowMore(!showMore)}
+            aria-expanded={showMore}
+            aria-label={showMore ? 'Show fewer sharing options' : 'Show more sharing options'}
             className="bg-[#111820] hover:bg-[#1c2a35] text-white p-2 transition-colors"
             title={showMore ? 'Show less' : 'More options'}
           >

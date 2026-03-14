@@ -1,3 +1,12 @@
+/**
+ * LanguageSelector — Language and locale switcher dropdown.
+ *
+ * Supports eight languages including RTL (Uyghur) with custom flag icons.
+ * Integrates with the LanguageContext to persist the user's language choice
+ * across the application.
+ *
+ * @module LanguageSelector
+ */
 import { useState, type ComponentType } from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/languageUtils';
@@ -26,6 +35,9 @@ const LanguageSelector: React.FC = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-label="Language selector"
         className="flex items-center gap-1.5 px-2 py-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
       >
         <Globe className="w-4 h-4 text-slate-400" />

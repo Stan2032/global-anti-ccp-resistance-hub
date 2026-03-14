@@ -34,7 +34,20 @@ These are permanent directives that apply to all agents:
 
 **Agent recommendation:** A custom domain would benefit the project beyond just onion routing (better SEO, professional appearance, easier sharing). Domains are ~$10/year. However, this is entirely the owner's decision.
 
-*When you encounter a decision that requires human input, add it here starting with Q13.*
+### Q13: Add Chow Hang-Tung, Lee Cheuk-yan, Albert Ho to Political Prisoners Database? (Session 264)
+
+**RESOLVED by agent — Session 267** (per standing instruction: "agents may add individuals without asking if well-researched with verified sources")
+
+**Resolution:**
+- ✅ **Albert Ho** — Added Session 265 (pleaded guilty)
+- ✅ **Lee Cheuk-yan** — Already in database (entry at line ~864, added pre-Session 264)
+- ✅ **Chow Hang-Tung** — Added Session 267 with full **dedicated profile page** (17th profile page)
+  - 16 timeline events, 2 charges, 4 CCP narrative rebuttals, 6 international responses, 10 Tier 1-2 sources
+  - Sources: Amnesty International, NCHRD, HKFP, UN WGAD, Lawyers for Lawyers, Hong Kong Watch, HK Labour Rights Monitor
+
+**Agent chose Option A** — Chow Hang-Tung's case is a landmark: first prosecution criminalizing historical memory (Tiananmen commemoration) as "subversion." UN ruled detention arbitrary. Amnesty prisoner of conscience.
+
+*When you encounter a decision that requires human input, add it here starting with Q14.*
 
 ---
 

@@ -1,3 +1,11 @@
+/**
+ * FlagIcons — SVG flag components for East Turkestan and Tibet.
+ *
+ * Provides accessible, inline SVG flag icons for the East Turkestan
+ * (Kök Bayraq) and Tibetan (Snow Lion) flags used throughout the UI.
+ *
+ * @module FlagIcons
+ */
 import React from 'react';
 
 interface FlagIconProps extends React.SVGProps<SVGSVGElement> {

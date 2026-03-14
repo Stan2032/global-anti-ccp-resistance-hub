@@ -293,6 +293,14 @@ function matchesSearch(obj: Record<string, unknown>, query: string): boolean {
 
 // ── Public API ──────────────────────────────────────────
 
+/**
+ * Unified data access API for all verified human rights datasets.
+ *
+ * Provides typed accessors for political prisoners, sanctions, officials,
+ * timeline events, forced labour companies, detention facilities, alerts,
+ * and cross-dataset search. All data sourced from Tier 1–2 outlets
+ * (BBC, Reuters, HRW, Amnesty, government records).
+ */
 export const dataApi = {
   // ── Metadata ────────────────────────────────────────
   getDatasetSummary(): DatasetSummary {

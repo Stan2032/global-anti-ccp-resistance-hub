@@ -79,6 +79,7 @@ const AgnesChowProfile = lazy(() => import('./pages/profiles/AgnesChowProfile'))
 const TashiWangchukProfile = lazy(() => import('./pages/profiles/TashiWangchukProfile'));
 const RenZhiqiangProfile = lazy(() => import('./pages/profiles/RenZhiqiangProfile'));
 const XuZhiyongProfile = lazy(() => import('./pages/profiles/XuZhiyongProfile'));
+const ChowHangTungProfile = lazy(() => import('./pages/profiles/ChowHangTungProfile'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
@@ -380,6 +381,7 @@ function AppLayout() {
               <Route path="/profiles/tashi-wangchuk" element={<TashiWangchukProfile />} />
               <Route path="/profiles/ren-zhiqiang" element={<RenZhiqiangProfile />} />
               <Route path="/profiles/xu-zhiyong" element={<XuZhiyongProfile />} />
+              <Route path="/profiles/chow-hang-tung" element={<ChowHangTungProfile />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
               <Route path="*" element={

@@ -1,3 +1,12 @@
+/**
+ * LiveStatistics — Animated live statistics counters dashboard.
+ *
+ * Displays key human-rights metrics with smooth count-up animations triggered
+ * by IntersectionObserver. Includes searchable categories, trend indicators,
+ * and source attribution loaded from verified JSON data.
+ *
+ * @module LiveStatistics
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,

@@ -392,7 +392,7 @@ const SafetyChecklist: React.FC = () => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Safety checklist categories">
         {categories.map(cat => {
           const catItems = checklistItems[cat.id] || [];
           const catCompleted = catItems.filter(item => checkedItems.includes(item.id)).length;
@@ -401,6 +401,8 @@ const SafetyChecklist: React.FC = () => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
+              role="tab"
+              aria-selected={activeCategory === cat.id}
               className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
                   ? 'bg-green-600 text-white'

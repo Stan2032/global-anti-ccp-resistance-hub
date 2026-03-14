@@ -145,11 +145,13 @@ const IPACMembers = () => {
       </div>
 
       {/* Country Filter */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter IPAC members by country">
         {allCountries.map((country) => (
           <button
             key={country.code}
             onClick={() => setSelectedCountry(country.code)}
+            role="tab"
+            aria-selected={selectedCountry === country.code}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedCountry === country.code
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

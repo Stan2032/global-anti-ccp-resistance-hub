@@ -300,7 +300,7 @@ describe('SupplyChainRiskMapper', () => {
     render(<SupplyChainRiskMapper />);
     fireEvent.click(screen.getByText('Copy report'));
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
-    const text = (navigator.clipboard.writeText as any).mock.calls[0][0];
+    const text = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(text).toContain('Supply Chain Risk Assessment');
     expect(text).toContain('CC BY 4.0');
   });

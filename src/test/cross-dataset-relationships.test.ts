@@ -164,7 +164,7 @@ describe('Cross-Dataset Relationship Validation', () => {
 
     it('empty search returns empty object', () => {
       expect(dataApi.globalSearch('')).toEqual({});
-      expect(dataApi.globalSearch(null as any)).toEqual({});
+      expect(dataApi.globalSearch(null as unknown as string)).toEqual({});
     });
   });
 

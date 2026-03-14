@@ -1,3 +1,12 @@
+/**
+ * SourceVerification — Source verification and fact-checking tool.
+ *
+ * Curates a searchable directory of trusted research organizations and
+ * media sources with reliability ratings, focus areas, and key reports.
+ * Helps users evaluate the credibility of information on CCP human rights abuses.
+ *
+ * @module SourceVerification
+ */
 import React, { useState } from 'react';
 import {
   Search, FileText, RefreshCw, Calendar, AlertTriangle, ScanEye, Lightbulb,

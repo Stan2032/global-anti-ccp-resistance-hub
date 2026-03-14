@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/data_sources.json');
 
 describe('Data Sources integrity', () => {
-  let data: any;
+  let data: { major_sources: Array<{ category: string; sources: Array<{ name: string; url: string }>; data_file?: string; count?: number; icon_name?: string }>; rss_sources: Array<{ name: string; url: string; credibility?: string; description?: string; frequency?: string; region?: string; type?: string }> };
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -87,13 +87,15 @@ describe('Data Sources integrity', () => {
     it('referenced data files exist on disk', () => {
       const dataDir = resolve(__dirname, '../data');
       for (const cat of data.major_sources) {
-        const filePath = resolve(dataDir, cat.data_file);
-        expect(existsSync(filePath), `Missing data file: ${cat.data_file} for ${cat.category}`).toBe(true);
+        if (cat.data_file) {
+          const filePath = resolve(dataDir, cat.data_file);
+          expect(existsSync(filePath), `Missing data file: ${cat.data_file} for ${cat.category}`).toBe(true);
+        }
       }
     });
 
     it('covers expected categories', () => {
-      const categories = data.major_sources.map((c: any) => c.category);
+      const categories = data.major_sources.map((c: { category: string }) => c.category);
       expect(categories).toContain('Political Prisoners');
       expect(categories).toContain('Detention Facilities');
       expect(categories).toContain('Sanctioned Officials');

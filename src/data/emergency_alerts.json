@@ -2,16 +2,22 @@
   {
     "id": "joshua-wong-hearing",
     "type": "critical",
-    "title": "Joshua Wong Foreign Collusion Hearing — Case Proceeding at High Court",
-    "summary": "High Court hearing held March 6, 2026 for foreign collusion charge carrying life imprisonment — next hearing date pending",
-    "details": "Joshua Wong's foreign collusion hearing took place on March 6, 2026 at Hong Kong's High Court. This is a SEPARATE case from his HK47 subversion conviction (4 years 8 months, appeal dismissed Feb 2026).\n\nTHE CHARGE:\n• Conspiring with Nathan Law (now in UK exile) and others to encourage foreign countries to impose sanctions on Hong Kong/China\n• Period: July–November 2020\n• Maximum sentence: LIFE IMPRISONMENT\n• Case was transferred to the High Court — indicating prosecution is seeking a severe sentence\n\nWHY THIS MATTERS:\n• If convicted, Wong could face life in prison on top of his existing 4yr 8mo sentence\n• Amnesty International calls the charges 'designed to prolong his stay behind bars' and prevent his scheduled January 2027 release\n• The case represents an escalation in the use of the National Security Law against political opposition\n\nACTION:\n• Share Joshua Wong's case on social media\n• Contact your representatives to raise his case\n• Monitor hearing outcomes via Hong Kong Watch and Amnesty International",
+    "title": "Joshua Wong Foreign Collusion Case \u2014 Transferred to High Court, Next Hearing Sept 5",
+    "summary": "March 6 hearing concluded: case transferred to High Court. Next hearing September 5, 2026. Life imprisonment possible.",
+    "details": "Joshua Wong's foreign collusion case was heard on March 6, 2026 at Hong Kong's High Court. The hearing was procedural \u2014 no verdict or plea was entered. The case was formally transferred from West Kowloon Magistrates' Courts to the High Court, indicating the prosecution is seeking a severe sentence.\n\nHEARING OUTCOME (March 6, 2026):\n\u2022 Case transferred to High Court for trial\n\u2022 Wong did not apply for bail, remains in custody\n\u2022 No plea entered at this stage\n\u2022 Next hearing scheduled: September 5, 2026\n\nTHE CHARGE:\n\u2022 Conspiring with Nathan Law (now in UK exile) and others to encourage foreign countries to impose sanctions on Hong Kong/China\n\u2022 Period: July\u2013November 2020\n\u2022 Maximum sentence: LIFE IMPRISONMENT\n\nWHY THIS MATTERS:\n\u2022 Wong is already serving 4yr 8mo for HK47 subversion (appeal dismissed Feb 2026)\n\u2022 If convicted on collusion charge, he faces potential life sentence ON TOP of existing sentence\n\u2022 Amnesty International: charges 'designed to prolong his stay behind bars' and prevent his scheduled January 2027 release\n\u2022 Transfer to High Court signals prosecution expects trial to be lengthy and complex\n\nSOURCES:\n\u2022 VOA Chinese: https://www.voachinese.com/a/hong-kong-pro-democracy-activist-joshua-wong-accused-of-collusion-with-foreign-forces-appeared-in-court-again-20250808/8054907.html\n\u2022 Amnesty International: https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/\n\nACTION:\n\u2022 Share Joshua Wong's case on social media\n\u2022 Contact your representatives to raise his case\n\u2022 Monitor hearing outcomes via Hong Kong Watch and Amnesty International",
     "date": "2026-03-03",
     "eventDate": "2026-03-06",
-    "expires": "2026-06-06",
-    "lastVerified": "2026-03-07",
+    "expires": "2026-12-05",
+    "lastVerified": "2026-03-10",
     "links": [
-      { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" },
-      { "name": "Amnesty International — HK", "url": "https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/hong-kong/" }
+      {
+        "name": "Hong Kong Watch",
+        "url": "https://www.hongkongwatch.org"
+      },
+      {
+        "name": "Amnesty International \u2014 HK",
+        "url": "https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/hong-kong/"
+      }
     ],
     "active": true
   },
@@ -19,13 +25,20 @@
     "id": "jimmy-lai-verdict",
     "type": "critical",
     "title": "URGENT: Jimmy Lai Sentenced to 20 Years in Prison",
-    "summary": "Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL — confirmed he will not appeal",
-    "details": "On December 15, 2025, Jimmy Lai was found guilty on all charges including \"conspiracy to collude with foreign forces\" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison — the harshest sentence yet under the NSL.\n\nAs of March 2026, Lai has confirmed he will NOT appeal the conviction (NBC News). The UN has specifically called for his release. Lai, age 78, faces the remainder of his life behind bars.\n\nACTION NEEDED:\n• Contact your representatives to demand his release\n• Share his story on social media to raise awareness\n• Support the Committee for Freedom in Hong Kong\n• Sign petitions calling for sanctions on HK officials",
+    "summary": "Hong Kong media tycoon Jimmy Lai sentenced to 20 years under NSL \u2014 confirmed he will not appeal",
+    "details": "On December 15, 2025, Jimmy Lai was found guilty on all charges including \"conspiracy to collude with foreign forces\" under Hong Kong's National Security Law. On February 9, 2026, he was sentenced to 20 years in prison \u2014 the harshest sentence yet under the NSL.\n\nAs of March 2026, Lai has confirmed he will NOT appeal the conviction (NBC News). The UN has specifically called for his release. Lai, age 78, faces the remainder of his life behind bars.\n\nACTION NEEDED:\n\u2022 Contact your representatives to demand his release\n\u2022 Share his story on social media to raise awareness\n\u2022 Support the Committee for Freedom in Hong Kong\n\u2022 Sign petitions calling for sanctions on HK officials",
     "date": "2025-12-15",
-    "lastVerified": "2026-03-08",
+    "expires": "2027-02-09",
+    "lastVerified": "2026-03-10",
     "links": [
-      { "name": "Free Jimmy Lai Campaign", "url": "https://www.freejimmylai.com" },
-      { "name": "Hong Kong Watch", "url": "https://www.hongkongwatch.org" }
+      {
+        "name": "Free Jimmy Lai Campaign",
+        "url": "https://www.freejimmylai.com"
+      },
+      {
+        "name": "Hong Kong Watch",
+        "url": "https://www.hongkongwatch.org"
+      }
     ],
     "active": true
   },
@@ -34,43 +47,40 @@
     "type": "warning",
     "title": "100+ Global Brands Linked to Uyghur Forced Labor",
     "summary": "Major investigation identifies over 100 brands in forced labor supply chains; UFLPA entity list now at 144 companies",
-    "details": "A joint investigation by The New York Times, The Bureau of Investigative Journalism, and Der Spiegel (May 2025) found over 100 global brands tied to Uyghur forced labor via a Chinese state-imposed labor transfer system. Separately, the US UFLPA Entity List has grown to 144 banned companies (37 added January 2025).\n\nKEY FINDINGS:\n• Fashion, technology, automotive, food sectors — Apple, Volkswagen, BMW, Tesla, KFC\n• Critical minerals (titanium, lithium, beryllium) supply chains deeply linked\n• Estimated 13.75 million labor transfers planned in Xinjiang's current five-year plan\n• EU forced labor regulation coming into effect 2027\n\nWHAT YOU CAN DO:\n• Check the UFLPA Entity List before making purchases\n• Contact companies to demand supply chain transparency\n• Support the Coalition to End Forced Labour in the Uyghur Region",
+    "details": "A joint investigation by The New York Times, The Bureau of Investigative Journalism, and Der Spiegel (May 2025) found over 100 global brands tied to Uyghur forced labor via a Chinese state-imposed labor transfer system. Separately, the US UFLPA Entity List has grown to 144 banned companies (37 added January 2025).\n\nKEY FINDINGS:\n\u2022 Fashion, technology, automotive, food sectors \u2014 Apple, Volkswagen, BMW, Tesla, KFC\n\u2022 Critical minerals (titanium, lithium, beryllium) supply chains deeply linked\n\u2022 Estimated 13.75 million labor transfers planned in Xinjiang's current five-year plan\n\u2022 EU forced labor regulation coming into effect 2027\n\nWHAT YOU CAN DO:\n\u2022 Check the UFLPA Entity List before making purchases\n\u2022 Contact companies to demand supply chain transparency\n\u2022 Support the Coalition to End Forced Labour in the Uyghur Region",
     "date": "2025-05-15",
     "expires": "2026-11-15",
     "lastVerified": "2026-03-04",
     "links": [
-      { "name": "Coalition to End Forced Labour", "url": "https://enduyghurforcedlabour.org" },
-      { "name": "UHRP Sanctions Tracker", "url": "https://uhrp.org/sanctions-tracker/" }
+      {
+        "name": "Coalition to End Forced Labour",
+        "url": "https://enduyghurforcedlabour.org"
+      },
+      {
+        "name": "UHRP Sanctions Tracker",
+        "url": "https://uhrp.org/sanctions-tracker/"
+      }
     ],
     "active": true
   },
   {
-    "id": "taiwan-military",
-    "type": "info",
-    "title": "Taiwan Reports Increased PLA Activity Near Strait",
-    "summary": "Taiwan defense ministry reports 47 PLA aircraft detected in past 24 hours",
-    "details": "Taiwan's Ministry of National Defense has reported increased People's Liberation Army activity near the Taiwan Strait, with 47 aircraft and 12 naval vessels detected in the past 24 hours.\n\nCONTEXT:\n• This follows recent diplomatic tensions\n• Taiwan has raised its alert level\n• International observers are monitoring the situation\n\nSTAY INFORMED:\n• Follow Taiwan's Ministry of National Defense updates\n• Monitor reputable news sources\n• Support Taiwan solidarity initiatives",
-    "date": "2024-12-18",
-    "expires": "2025-06-18",
-    "lastVerified": "2026-03-04",
-    "links": [
-      { "name": "Taiwan MND", "url": "https://www.mnd.gov.tw" },
-      { "name": "Taiwan News", "url": "https://www.taiwannews.com.tw" }
-    ],
-    "active": false
-  },
-  {
     "id": "hk-47-sentencing",
     "type": "critical",
-    "title": "Hong Kong 47: Appeals Dismissed — Sentences Upheld",
+    "title": "Hong Kong 47: Appeals Dismissed \u2014 Sentences Upheld",
     "summary": "Court of Appeal upholds convictions; Amnesty International condemns ruling",
-    "details": "The Hong Kong 47 case — the largest prosecution under the National Security Law — saw all 45 activists sentenced to 4-10 years in prison. On February 23, 2026, the Court of Appeal dismissed appeals from 12 defendants, upholding all convictions and sentences.\n\nNOTABLE SENTENCES:\n• Benny Tai: 10 years\n• Joshua Wong: 4 years 8 months (appeal dismissed Feb 2026)\n• Claudia Mo: 4 years 2 months\n• Gwyneth Ho: 7 years\n\nAmnesty International called the rejected appeals 'a missed opportunity to start restoring justice.' The ruling confirms Hong Kong's judiciary provides no meaningful check on politically motivated NSL prosecutions.",
+    "details": "The Hong Kong 47 case \u2014 the largest prosecution under the National Security Law \u2014 saw all 45 activists sentenced to 4-10 years in prison. On February 23, 2026, the Court of Appeal dismissed appeals from 12 defendants, upholding all convictions and sentences.\n\nNOTABLE SENTENCES:\n\u2022 Benny Tai: 10 years\n\u2022 Joshua Wong: 4 years 8 months (appeal dismissed Feb 2026)\n\u2022 Claudia Mo: 4 years 2 months\n\u2022 Gwyneth Ho: 7 years\n\nAmnesty International called the rejected appeals 'a missed opportunity to start restoring justice.' The ruling confirms Hong Kong's judiciary provides no meaningful check on politically motivated NSL prosecutions.",
     "date": "2024-11-19",
     "expires": "2026-08-23",
     "lastVerified": "2026-03-04",
     "links": [
-      { "name": "Hong Kong Watch HK47", "url": "https://www.hongkongwatch.org/hk47" },
-      { "name": "Amnesty Response", "url": "https://www.amnesty.org/en/latest/news/2026/02/hong-kong-rejected-appeals-in-hk-47-case-a-missed-opportunity-to-start-restoring-justice/" }
+      {
+        "name": "Hong Kong Watch HK47",
+        "url": "https://www.hongkongwatch.org/hk47"
+      },
+      {
+        "name": "Amnesty Response",
+        "url": "https://www.amnesty.org/en/latest/news/2026/02/hong-kong-rejected-appeals-in-hk-47-case-a-missed-opportunity-to-start-restoring-justice/"
+      }
     ],
     "active": true
   },
@@ -78,14 +88,20 @@
     "id": "kwok-family-prosecution",
     "type": "warning",
     "title": "ESCALATION: Family Member Prosecuted Under Article 23",
-    "summary": "Father of US-based activist sentenced for handling daughter's finances — first family prosecution",
-    "details": "On February 26, 2026, Kwok Yin-sang was sentenced to 8 months in prison in Hong Kong for handling the financial assets of his daughter Anna Kwok, a US-based pro-democracy activist and executive director of the Hong Kong Democracy Council.\n\nThis marks the FIRST known case of a family member being prosecuted under Article 23 national security provisions for providing financial support to a designated 'absconder.'\n\nWHY THIS MATTERS:\n• Sets dangerous precedent — family members are now targets\n• Extends transnational repression to relatives who remain in Hong Kong\n• Designed to isolate overseas activists by threatening their families\n• Could deter Hong Kongers from supporting exiled relatives\n\nACTION:\n• Share this case to raise awareness of Article 23's expanding reach\n• Support organizations documenting transnational repression\n• Contact representatives about sanctions targeting officials involved",
+    "summary": "Father of US-based activist sentenced for handling daughter's finances \u2014 first family prosecution",
+    "details": "On February 26, 2026, Kwok Yin-sang was sentenced to 8 months in prison in Hong Kong for handling the financial assets of his daughter Anna Kwok, a US-based pro-democracy activist and executive director of the Hong Kong Democracy Council.\n\nThis marks the FIRST known case of a family member being prosecuted under Article 23 national security provisions for providing financial support to a designated 'absconder.'\n\nWHY THIS MATTERS:\n\u2022 Sets dangerous precedent \u2014 family members are now targets\n\u2022 Extends transnational repression to relatives who remain in Hong Kong\n\u2022 Designed to isolate overseas activists by threatening their families\n\u2022 Could deter Hong Kongers from supporting exiled relatives\n\nACTION:\n\u2022 Share this case to raise awareness of Article 23's expanding reach\n\u2022 Support organizations documenting transnational repression\n\u2022 Contact representatives about sanctions targeting officials involved",
     "date": "2026-02-26",
     "expires": "2026-08-26",
     "lastVerified": "2026-03-04",
     "links": [
-      { "name": "NPR Report", "url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law" },
-      { "name": "Hong Kong Democracy Council", "url": "https://www.hkdc.us" }
+      {
+        "name": "NPR Report",
+        "url": "https://www.kunm.org/npr-news/2026-02-26/father-of-u-s-based-activist-sentenced-in-hong-kong-under-national-security-law"
+      },
+      {
+        "name": "Hong Kong Democracy Council",
+        "url": "https://www.hkdc.us"
+      }
     ],
     "active": true
   }

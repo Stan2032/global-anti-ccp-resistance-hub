@@ -1,10 +1,14 @@
-// Live Data Sources Configuration
-// Real-time intelligence feeds and monitoring systems
-// Feed configuration data lives in live_data_feeds.json
+/**
+ * Live data source configuration and feed management.
+ *
+ * Imports feed config from `live_data_feeds.json` and provides typed
+ * interfaces for feed items, regional feeds, and real-time data aggregation.
+ *
+ * @module liveDataSources
+ */
 
 import liveDataFeeds from './live_data_feeds.json';
-
-const DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
+import { logger } from '../utils/logger';
 
 export { liveDataFeeds };
 
@@ -65,14 +69,14 @@ const parseRSSFeed = async (feedUrl: string): Promise<FeedItem[]> => {
     const response = await fetch(apiUrl);
     
     if (!response.ok) {
-      console.warn(`Failed to fetch feed: ${feedUrl}`);
+      logger.warn('feed', `Failed to fetch feed: ${feedUrl}`);
       return [];
     }
     
     const data = await response.json();
     
     if (data.status !== 'ok' || !data.items) {
-      console.warn(`Invalid feed data: ${feedUrl}`);
+      logger.warn('feed', `Invalid feed data: ${feedUrl}`);
       return [];
     }
     
@@ -90,7 +94,7 @@ const parseRSSFeed = async (feedUrl: string): Promise<FeedItem[]> => {
     
     return feedItems;
   } catch (error) {
-    console.error(`Error fetching RSS feed ${feedUrl}:`, error);
+    logger.error('feed', `Error fetching RSS feed ${feedUrl}:`, error);
     return [];
   }
 };
@@ -108,7 +112,7 @@ const getCachedFeeds = (): FeedData | null => {
     const age = Date.now() - timestamp;
     
     if (age < RSS_CACHE_DURATION) {
-      if (DEBUG) console.log(`Using cached RSS data (${Math.round(age / 1000)}s old)`);
+      logger.debug('cache', `Using cached RSS data (${Math.round(age / 1000)}s old)`);
       return data;
     }
     
@@ -116,7 +120,7 @@ const getCachedFeeds = (): FeedData | null => {
     localStorage.removeItem(RSS_CACHE_KEY);
     return null;
   } catch (error) {
-    console.error('Error reading RSS cache:', error);
+    logger.error('cache', 'Error reading RSS cache:', error);
     return null;
   }
 };
@@ -128,7 +132,7 @@ const setCachedFeeds = (data: FeedData): void => {
       timestamp: Date.now()
     }));
   } catch (error) {
-    console.error('Error caching RSS data:', error);
+    logger.error('cache', 'Error caching RSS data:', error);
   }
 };
 
@@ -143,7 +147,7 @@ export const dataProcessor = {
         return cached;
       }
       
-      if (DEBUG) console.log('Fetching fresh RSS data...');
+      logger.debug('feed', 'Fetching fresh RSS data...');
       
       // Fetch ALL feeds in parallel (not sequential)
       const allFeedPromises: Promise<FeedItemWithRegion[]>[] = [
@@ -155,7 +159,7 @@ export const dataProcessor = {
               source: feed.name
             })))
             .catch((err: unknown) => {
-              console.warn(`Failed to fetch ${feed.name}:`, err);
+              logger.warn('feed', `Failed to fetch ${feed.name}:`, err);
               return [] as FeedItemWithRegion[];
             })
         ),
@@ -168,7 +172,7 @@ export const dataProcessor = {
               severity: 'high'
             })))
             .catch((err: unknown) => {
-              console.warn(`Failed to fetch ${feed.name}:`, err);
+              logger.warn('feed', `Failed to fetch ${feed.name}:`, err);
               return [] as FeedItemWithRegion[];
             })
         )
@@ -177,7 +181,7 @@ export const dataProcessor = {
       // Wait for all feeds with 10 second timeout (reduced from 15)
       const timeout = new Promise<FeedItemWithRegion[][]>((resolve) => 
         setTimeout(() => {
-          console.warn('RSS fetch timeout after 10s');
+          logger.warn('feed', 'RSS fetch timeout after 10s');
           resolve([]);
         }, 10000)
       );
@@ -192,7 +196,7 @@ export const dataProcessor = {
       const newsData = allItems.filter(item => item.severity !== 'high');
       const threatData = allItems.filter(item => item.severity === 'high');
       
-      if (DEBUG) console.log(`Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
+      logger.debug('feed', `Loaded ${allItems.length} total items (${newsData.length} news, ${threatData.length} threats)`);
       
       const feedData: FeedData = {
         news: newsData,
@@ -212,7 +216,7 @@ export const dataProcessor = {
       
       return feedData;
     } catch (error) {
-      console.error('Error aggregating feeds:', error);
+      logger.error('feed', 'Error aggregating feeds:', error);
       // NO FALLBACK TO FAKE DATA - Return empty with error status
       return {
         news: [],

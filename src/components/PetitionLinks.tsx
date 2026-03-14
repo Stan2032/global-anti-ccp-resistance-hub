@@ -159,6 +159,8 @@ const PetitionLinks = () => {
                 </a>
                 <button
                   onClick={() => setExpandedPetition(expandedPetition === petition.id ? null : petition.id)}
+                  aria-expanded={expandedPetition === petition.id}
+                  aria-label={`${expandedPetition === petition.id ? 'Collapse' : 'Expand'} details for ${petition.title}`}
                   className="bg-[#111820] hover:bg-[#1c2a35] text-white py-2 px-3 text-sm transition-colors"
                 >
                   {expandedPetition === petition.id ? '−' : '+'}

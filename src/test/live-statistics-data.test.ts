@@ -5,7 +5,7 @@ import { resolve } from 'path';
 const DATA_PATH = resolve(__dirname, '../data/live_statistics.json');
 
 describe('Live Statistics data integrity', () => {
-  let data: any;
+  let data: Array<{ id: string; label: string; value: number; source: string; sourceUrl: string; lastVerified: string; decimals?: number; icon?: string; description?: string; trend?: string; color?: string; suffix?: string }>;
 
   beforeAll(() => {
     expect(existsSync(DATA_PATH)).toBe(true);
@@ -49,7 +49,7 @@ describe('Live Statistics data integrity', () => {
   });
 
   it('statistic IDs are unique', () => {
-    const ids = data.map((s: any) => s.id);
+    const ids = data.map((s: { id: string }) => s.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
@@ -114,7 +114,7 @@ describe('Live Statistics data integrity', () => {
   });
 
   it('includes key statistics: political prisoners, Uyghurs, police stations, organ harvesting', () => {
-    const ids = data.map((s: any) => s.id);
+    const ids = data.map((s: { id: string }) => s.id);
     expect(ids).toContain('prisoners');
     expect(ids).toContain('uyghurs');
     expect(ids).toContain('police-stations');

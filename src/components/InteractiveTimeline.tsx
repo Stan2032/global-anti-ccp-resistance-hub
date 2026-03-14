@@ -300,7 +300,8 @@ export default function InteractiveTimeline() {
               <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedEvent.sources.map((source: string, i: number) => {
-                  const resolved = resolveSource(source);
+                  const directUrl = ('source_urls' in selectedEvent) ? (selectedEvent as TimelineEvent & { source_urls?: Record<string, string> }).source_urls?.[source] : undefined;
+                  const resolved = resolveSource(source, directUrl);
                   return resolved.url ? (
                     <SourceAttribution key={i} source={resolved} compact />
                   ) : (

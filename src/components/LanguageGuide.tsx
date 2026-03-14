@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import { Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
+import { logger } from '../utils/logger';
 
 const LanguageGuide = () => {
   const [activeLanguage, setActiveLanguage] = useState('cantonese');
@@ -250,7 +251,7 @@ const LanguageGuide = () => {
       setCopiedPhrase(id);
       setTimeout(() => setCopiedPhrase(null), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.warn('clipboard', 'Failed to copy:', err);
     }
   };
 
@@ -285,11 +286,14 @@ const LanguageGuide = () => {
       </div>
 
       {/* Language Selector */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Select language">
         {languages.map(lang => (
           <button
             key={lang.id}
             onClick={() => setActiveLanguage(lang.id)}
+            role="tab"
+            aria-selected={activeLanguage === lang.id}
+            aria-controls={`lang-tabpanel-${lang.id}`}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeLanguage === lang.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

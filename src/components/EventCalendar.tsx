@@ -6,6 +6,7 @@
  */
 import { useState } from 'react';
 import { Flame, Heart, Handshake, Megaphone, CalendarDays, Smartphone } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 const EventCalendar = () => {
   const [selectedMonth, setSelectedMonth] = useState('all');
@@ -269,11 +270,13 @@ const EventCalendar = () => {
       </div>
 
       {/* Month Filter */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Event calendar month filter">
         {months.map((month) => (
           <button
             key={month.id}
             onClick={() => setSelectedMonth(month.id)}
+            role="tab"
+            aria-selected={selectedMonth === month.id}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
               selectedMonth === month.id
                 ? 'bg-red-600 text-white'
@@ -349,7 +352,7 @@ const EventCalendar = () => {
               try {
                 await navigator.clipboard.writeText(text);
               } catch (err) {
-                console.error('Failed to copy:', err);
+                logger.warn('clipboard', 'Failed to copy:', err);
               }
             }}
             className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"

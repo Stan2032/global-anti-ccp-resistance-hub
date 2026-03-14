@@ -1,11 +1,11 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 8, 2026 (Session 239)
+> Last Updated: March 14, 2026 (Session 280)
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
 > **Agent docs:** `_agents/` folder (NEXT_AGENT_PROMPT.md, AGENTS.md, STYLE_GUIDE.md, AGENT_HANDOFF.json)
-> **Human decisions:** All Q1-Q11 answered. See `_agents/QUESTIONS_FOR_HUMANS.md` + archives.
+> **Human decisions:** All Q1-Q11 answered. Q12 open (custom domain). Q13 resolved by agent (Session 267). See `_agents/QUESTIONS_FOR_HUMANS.md` + archives.
 
 ---
 
@@ -21,26 +21,71 @@
 - **Test strategy (Q10)**: Mix — alternate between test coverage and feature work each session.
 
 ### Content Updates
-- [x] **Update Sanctions List**: ✅ Verified March 2, 2026. US Mar 2025 round (6 HK officials for transnational repression) already included. EU 2025 sanctions are entity-level (Chinese companies supporting Russia), not individual officials — different category. All 47 entries verified current.
-  - 47 entries currently (includes Canada Dec 2024 + US Mar 2025 rounds)
+- [x] **Update Sanctions List**: ✅ Verified March 11, 2026. Session 268: Removed incorrect Chen Quanguo EU entry (NOT in Council Implementing Regulation 2021/478 per POLITICO, CNBC, ICIJ; sanctioned by US/UK/CA/AU only). Upgraded 6 homepage-only `sanctionsmap.eu/` URLs to direct EUR-Lex regulation links. Clarified XPCC entity to "XPCC PSB". All 46 entries verified current.
+  - 46 entries currently (was 47 — corrected Chen Quanguo EU error)
   - Subtask: Check US Treasury SDN list for new China/HK-related designations ✅
   - Subtask: Check UK FCDO sanctions list for updates ✅
   - Subtask: Check EU Council sanctions for new entries ✅ (entity-level only in 2025)
-  - Subtask: Verify source_url links still resolve
+  - Subtask: Verify source_url links still resolve ✅ (all homepage URLs upgraded to direct links)
 - [x] **Monitor Jimmy Lai appeal proceedings** — ✅ Updated Session 235
   - ✅ Dec 15, 2025: Found guilty on all 3 NSL charges
   - ✅ Feb 9, 2026: Sentenced to 20 years (harshest NSL sentence)
   - ✅ Feb 26, 2026: Fraud conviction overturned on appeal (separate case)
   - ✅ Mar 2026: Confirmed will NOT appeal NSL sentence (NBC News). UN calls for release (UN News)
   - Subtask: Monitor health status and international pressure
-- [x] **Monitor Joshua Wong case** — ✅ Updated Session 150
+- [x] **Monitor Joshua Wong case** — ✅ Updated Session 264
   - ✅ Jun 6, 2025: New foreign collusion charge filed (max: life imprisonment)
   - ✅ Feb 14, 2026: HK47 appeal dismissed — 4yr 8mo sentence upheld
-  - Subtask: Monitor foreign collusion trial proceedings
+  - ✅ Mar 6, 2026: Foreign collusion case transferred to High Court (hearing held)
+  - ✅ Mar 6 hearing outcome: Procedural only — no verdict, no plea. Case transferred from magistrates to High Court.
+  - ⏰ **Next hearing: September 5, 2026** — monitor for outcome
+  - Subtask: Check HKFP, Amnesty, HRW for pre-hearing analysis in August 2026
+  - Subtask: Update emergency alert before Sept 5 hearing with any new developments
+- [x] **Add HK Alliance subversion trial data** — ✅ Session 264 (January 22, 2026)
+  - Added timeline event: Chow Hang-Tung, Lee Cheuk-yan, Albert Ho trial began
+  - Charge: "Inciting subversion" for organizing Tiananmen June 4th vigils
+  - Sources: [Amnesty International](https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/), [NCHRD](https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/)
+  - ⏰ **Trial ongoing** — monitor for verdict
+  - [x] Subtask: Update Chow Hang-Tung entry in political_prisoners_research.json with trial data ✅ Session 265
+  - [x] Subtask: Update Lee Cheuk-yan entry in political_prisoners_research.json with trial data ✅ Session 265
+  - [x] Subtask: Add Albert Ho to political_prisoners_research.json (pleaded guilty) ✅ Session 265 (now 64 prisoners)
+  - [x] Subtask: Add Chow Hang-Tung to political_prisoners_research.json + dedicated profile page ✅ Session 267 (now 65 prisoners, 17 profile pages)
+  - Subtask: Consider dedicated profile page for Chow Hang-Tung (awaiting human confirmation Q13)
+- [x] **Add HK activist solitary confinement report** — ✅ Session 264, updated Session 265
+  - Source: [Amnesty Canada urgent action](https://amnesty.ca/urgent-actions/hong-kong-activists-subjected-to-prolonged-solitary-confinement/)
+  - Over 50 months pre-trial detention; may constitute torture under international law
+  - ✅ Session 265: Added solitary confinement details to Chow Hang-Tung prisoner entry
+- [x] **Update Jimmy Lai health data** — ✅ Session 265
+  - Verified health conditions: hypertension, diabetes, cataracts, blocked vein, teeth/nails deterioration
+  - Source URLs verified: [HRW](https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years), [HKFP](https://hongkongfp.com/2026/01/12/media-tycoon-jimmy-lai-in-advanced-years-with-multiple-health-problems-lawyer-says-in-mitigation/), [CBS](https://www.cbsnews.com/news/hong-kong-jimmy-lai-sentenced-20-years-prison-family-says-will-die-a-martyr/), [EU](https://www.eeas.europa.eu/eeas/hong-kong-spokesperson-statement-sentencing-jimmy-lai_en), [US State Dept](https://www.state.gov/releases/office-of-the-spokesperson/2026/02/sentencing-in-jimmy-lai-case/)
+- [x] **Tibet Uprising Day source verification** — ✅ Session 265
+  - Added verified HRW direct URL: [Don't Forget Tibet on Anniversary of 1959 Lhasa Uprising](https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising)
+  - Not a homepage link — direct article from March 9, 2026
+- [x] **Timeline source URL systematic verification** — ✅ Session 266
+  - Upgraded ALL 40 timeline events from homepage-only source links to direct article URLs
+  - Added `source_urls` field to timeline_events.json (69 verified URLs total)
+  - Updated `resolveSource()` utility with optional urlOverride parameter (backward-compatible)
+  - Updated InteractiveTimeline component to pass direct URLs when available
+  - Every URL verified via web search — direct articles from HRW, Amnesty, BBC, Reuters, HKFP, etc.
+  - Subtask: Apply same pattern to political_prisoners_research.json source URLs
+  - Subtask: Apply same pattern to sanctions_tracker.json source URLs
+  - Subtask: Periodic URL health check (consider automated test)
 - [x] **Add Kwok Yin-sang case** — ✅ Session 150
   - First family member prosecuted under Article 23 (Feb 26, 2026)
   - Father of US-based activist Anna Kwok, sentenced 8 months
   - Added to political_prisoners_research.json + emergency_alerts.json
+- [x] **Tibetan Uprising Day data** — ✅ Session 263 (March 10, 2026)
+  - Added timeline event #38: 67th anniversary of Tibetan National Uprising (2026-03-10)
+  - Added news item: global solidarity protests, 400+ German municipalities raised Tibetan flag
+  - Sources: Tibet Post International, Committee for Free HK Foundation, HRW
+- [x] **China-Canada sanctions data** — ✅ Session 263 (March 10, 2026)
+  - Added timeline event #37: China retaliates against Canadian human rights organizations (2026-03-08)
+  - Added news item: asset freezes, entry bans on Canadian orgs/individuals for Uyghur/Tibet work
+  - Sources: ICIJ, HRW, Amnesty International
+  - New `international` category added to timeline and test validator
+- [x] **HRW World Report 2026** — ✅ Session 263 (March 10, 2026)
+  - Added news item: "China Repression Deepens, Extends Abroad" (2026-02-04)
+  - Direct source URL: https://www.hrw.org/news/2026/02/04/china-repression-deepens-extends-abroad
 - [x] **Simulated Data Phase 2**: ✅ ALL COMPLETE (5/5 fully migrated to JSON)
   - ✅ PoliticalPrisoners page → political_prisoners_research.json (DONE)
   - ✅ ForcedLaborTracker → forced_labor_companies_research.json (DONE)
@@ -392,12 +437,12 @@
 
 ### Code Quality
 - [x] ~~Refactor large components into smaller modules~~ ✅ (81+ lazy-loaded sub-components across pages)
-- [ ] Add TypeScript for type safety
+- [x] ~~Add TypeScript for type safety~~ ✅ (100% TypeScript — 0 .js/.jsx files, 360 .ts/.tsx files, 0 `any` in production code, test files being incrementally typed)
 - [x] ~~Implement comprehensive testing (unit, integration, e2e)~~ ✅ (895 tests across 51 files, all 17 JSON data files, all 4 forms, all 3 hooks, key components tested)
 - [ ] Document all components with JSDoc
 - [x] ~~Create component library/design system~~ ✅ (STYLE_GUIDE.md + 8 automated checks)
 - [x] ~~Standardize error handling~~ ✅ (ErrorBoundary + RouteErrorBoundary)
-- [ ] Implement logging system
+- [x] ~~Implement logging system~~ ✅ (Centralized `src/utils/logger.ts` — 4 levels, context prefixes, environment-gated. All 27 console.* calls migrated from 14 files. 8 tests.)
 
 ### Infrastructure
 - [ ] Set up staging environment
@@ -519,28 +564,20 @@
 5. **AGENT_HANDOFF.json** — Machine-readable state snapshot
 6. **thoughts/** — Session-by-session decision logs
 
-### Current State Summary (as of Session 179, Mar 4, 2026)
-- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 15 profiles, 80 components, 2051 tests (137 files, all passing)
-- **Design:** Terminal/ASCII aesthetic 100% applied. Typography cleanup complete. Design system compliance (9 automated checks) + URL health tests. ALL non-terminal accent colors standardized. Contrast overhaul: ALL decorative text-[#1c2a35] replaced with visible text-slate-600/700 (Session 168). ALL text-gray-* standardized to text-slate-* (Session 168). ALL readable labels upgraded from text-slate-500 to text-slate-400 across 72+ files (Session 169, 178). ALL top-level containers use space-y-8 (Session 169). Session 178: Automated text-slate-500 enforcement test added — catches future violations.
-- **Navigation:** Simplified from 11→7 items (Session 136). Sidebar w-56. Breadcrumb navigation on all sub-pages (Session 161). Back to Top floating button (Session 161). Keyboard shortcuts for power users: `/` search, `?` help, `g+d/i/p/r/t/e/s` navigation (Session 164). Dashboard section jump navigation bar (Session 171). Pages /directory, /community, /resources, /data-sources still routable but not in nav. Mobile nav tested (13 tests, Session 149).
-- **Intelligence Feeds (Session 171):** Per-source progressive loading with real progress bar (X/9 sources). onSourceDone callback in fetchFeedsProgressively(). loadedSources tracking in useLiveFeeds hook. Dashboard intelligence overview now imports actual FEED_SOURCES (9 sources, was hardcoded 4).
-- **Emergency Alerts (Session 172-175):** EventCountdown component integrated — alerts with eventDate field show live countdown (days/hours/minutes/seconds). Joshua Wong hearing countdown active. calculateTimeLeft() utility in dateUtils.js. Shows "Event today" with pulsing red on event day. Session 173: Share/Copy button on each alert — copies formatted text to clipboard. formatAlertForSharing() utility generates clean social media text. Session 174: All hashtags removed per human request (considered performative activism). Share functionality preserved without hashtags. Session 175: Alerts now sorted by severity (critical → warning → info). Taiwan PLA alert deactivated (expired). UrgentCaseTimer enhanced with role="timer" ARIA attributes and "Detained since" formatted dates.
-- **Data Freshness (Session 173):** New DataFreshnessIndicator component shows color-coded "Verified X days ago" badges (green ≤7d, yellow 8-30d, red >30d). daysSince() and getFreshnessInfo() utilities in dateUtils.js. Integrated into PoliticalPrisoners page header.
-- **Page Simplification:** ALL pages simplified + data extracted + components redistributed. CommunitySupport fully merged: EventCalendar+SurvivorStories→Education, VolunteerSignup+DiasporaSupport→TakeAction, ReportSighting+ContactForm→Security (Session 149). EmergencyAlerts→JSON with auto-expiry (Session 149-150).
-- **Usability (Sessions 160-175):** Emergency alerts collapse (top 2 shown, rest behind "show more"). QuickStartGuide is non-blocking toast (was full-screen modal). Duplicate hardcoded Jimmy Lai alert removed. Breadcrumbs auto-generated from URL. Back to Top button after 400px scroll. Keyboard shortcuts with `?` help modal (Session 164). PrintableReport component for offline activist distribution (Session 165). RecentUpdates changelog widget on Dashboard (Session 166). Region filter tabs on Profiles page (Session 167). Session 168: Dashboard section label headers, colored stat card borders, tab bar improvements, resource/modal/contact borders, all decorative text visibility fixed. Session 169: Deep pass — 46 components/pages upgraded to space-y-8, 72 files upgraded readable labels text-slate-500→text-slate-400, breadcrumbs text improved. Session 172: EventCountdown live timer on emergency alerts. Session 173: Alert share buttons + data freshness indicators. Session 174: Hashtags removed from all social sharing (20 files). Session 175: Alert severity sorting, Taiwan alert deactivated, UrgentCaseTimer ARIA + detained-since dates.
-- **ESLint:** 0 errors, 0 warnings. LanguageSelector→languageUtils.js+LanguageContext.jsx. ThemeContext→themeUtils.js+ThemeContext.jsx. useGlobalSearch extracted to hooks/ (S147). Session 172: Fixed 3 errors from Session 171.
-- **framer-motion:** COMPLETELY REMOVED (Session 144). Dependency uninstalled. vendor-motion bundle eliminated (was 116KB/38KB gzip). Zero framer-motion in any source file.
-- **Mobile:** WCAG 2.5.5 touch targets (44px), mobile font bumps, iOS zoom prevention, responsive grids. Hamburger menu tested (13 tests).
-- **Accessibility:** All role="button" divs → semantic buttons. 208+ ARIA attributes across 53+ files. Heading hierarchy, SkipLinks i18n (8 languages). WCAG AA contrast. EventCountdown uses role="timer" + aria-labels (Session 172).
-- **Backend:** Supabase client + service layer integrated. All 4 forms wired. Email service DEFERRED. Backend socket.io fully removed. Supabase Auth: login/logout/admin check (Session 157). Service_role key detection guard (Session 158).
-- **Bundle:** Main bundle 308KB (99KB gzip). Vendor splitting (react, router). No more framer-motion vendor chunk.
-- **Profile Pages:** 15/15 built (0 coming soon). Region filter tabs: Hong Kong, Mainland China, Uyghur & Tibet, Cross-Border (Session 167).
-- **Data:** 63 political prisoners (incl Kwok Yin-sang), 47 sanctioned entities, 34 officials, 30 forced labor companies, 155+ total entries. All data→JSON migrations complete. 23 total JSON data files (incl live_statistics.json). EmergencyAlerts: 6 alerts with auto-expiry + eventDate countdown + share support — no hashtags (incl Joshua Wong Mar 6 hearing alert, Session 164/172/174). Joshua Wong profile updated through Feb 2026 appeal dismissal. 25 recent news items. 12 centralized statistics (incl HK NSL arrests, UFLPA entity list). Political prisoners count updated to 63 across all components (Session 165).
-- **Content:** Sanctions verified current as of Mar 2026. Joshua Wong HK47 appeal dismissed Feb 2026, new foreign collusion charge ongoing (next hearing Mar 6, 2026). Joshua Wong hearing CRITICAL alert with live countdown added (Session 164/172). Kwok Yin-sang case added (first family prosecution under Art 23). Gao Zhisheng profile enriched with wife's Capitol Hill appeal Aug 2025. UN forced labor report Jan 2026 added to news.
+### Current State Summary (as of Session 268, Mar 11, 2026)
+- **Frontend:** React 19 + Vite 7 + Tailwind, 10 pages + 17 profiles, 108+ components, 3612 tests (192 files, all passing). **100% TypeScript** — 365+ .ts/.tsx files, 0 .js/.jsx.
+- **Build:** 310KB (99KB gzip), ~5.9s build time. 0 TSC errors, 0 ESLint errors, 0 npm vulnerabilities, 0 CodeQL alerts.
+- **Design:** Terminal/ASCII aesthetic 100% applied. 10+ automated design system compliance checks. Square corners only, terminal green (#4afa82), WCAG AA contrast throughout.
+- **Navigation:** 7 nav items (Dashboard, Intelligence, Political Prisoners, Profiles, Take Action, Education, Security). Sidebar w-56. Breadcrumbs, Back to Top, keyboard shortcuts (`/` search, `?` help).
+- **Data:** **65 political prisoners** (Chow Hang-Tung added S267, Albert Ho added S265), **46 sanctions** (corrected: Chen Quanguo removed from EU — not in Regulation 2021/478), 34 officials, 30 forced labor companies, **40 timeline events**, **34 news items**, **66 recent updates**. 20 JSON data files. All data verified with Tier 1-2 sources. Direct source URLs verified via web search. EU sanctions upgraded to direct EUR-Lex links.
+- **Analytical Tools:** 15+ major components built (LegalCaseTracker, SanctionImpactAnalyzer, TransnationalRepressionTracker, DiasporaSecurityAdvisor, MediaNarrativeTracker, GenocideLegalFramework, DiplomaticCoercionTracker, CensorshipCircumventionGuide, EconomicImpactAnalyzer, WhistleblowerGuide, PolicyBriefGenerator, and more).
 - **Languages:** 8 locales (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
-- **Security:** 9 headers. 0 npm vulns. 0 CodeQL alerts. Service_role key detection in supabaseClient.js.
-- **Lint:** 0 errors, 0 warnings. 0 npm vulnerabilities.
-- **Test Coverage:** ALL 80 components tested. All 23 JSON data files, all 4 Supabase forms, all 5 hooks tested. 0 untested components remain. 2051 tests across 137 files. exportUtils.js: 25 tests (extractRecords, recordsToCsv, recordsToMarkdown + real data integration). Design system: 9 automated compliance checks (Session 178). URL validation: 6 tests across all 19 JSON data files (Session 179).
+- **Security:** 9 headers. Supabase Auth admin login. Service_role key detection. WebRTC leak check.
+- **Profile Pages:** 15/15 built with 5-tab layout each. Region filter tabs.
+- **Emergency Alerts:** 5 active (Jimmy Lai 20yr, Joshua Wong collusion [updated with hearing outcome], HK47, Kwok family, Uyghur forced labor). Auto-expiry, event countdown, severity sorting.
+- **API:** REST API via Cloudflare Workers (13 endpoints, rate limiting). Client-side dataApi module.
+- **Offline:** Service worker v3 with multi-strategy caching.
+- **Content (Mar 10):** Joshua Wong hearing outcome added (case transferred to High Court, next hearing Sept 5). HK Alliance subversion trial added (started Jan 22, 2026). Solitary confinement report added. Tibetan Uprising Day data. China-Canada sanctions.
 
 ---
 

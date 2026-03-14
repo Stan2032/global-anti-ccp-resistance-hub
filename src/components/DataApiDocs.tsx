@@ -1,3 +1,12 @@
+/**
+ * DataApiDocs — Interactive API documentation viewer.
+ *
+ * Lists every method exposed by the dataApi module with descriptions,
+ * parameter signatures, return types, and live record counts so
+ * researchers can discover and use the data programmatically.
+ *
+ * @module DataApiDocs
+ */
 import React, { useState, useMemo } from 'react';
 import { Code, Database, Search, Filter, Globe, ChevronDown, ChevronUp, Copy, CheckCircle, BookOpen } from 'lucide-react';
 import { dataApi } from '../services/dataApi';

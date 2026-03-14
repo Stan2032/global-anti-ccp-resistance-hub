@@ -26,31 +26,31 @@ describe('ContactForm', () => {
   });
 
   it('shows "Coming Soon" notice when backend is not connected', () => {
-    (isSupabaseConfigured as any).mockReturnValue(false);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false);
     render(<ContactForm />);
     expect(screen.getByText('Form Not Yet Connected (Coming Soon)')).toBeTruthy();
   });
 
   it('hides "Coming Soon" notice when backend is connected', () => {
-    (isSupabaseConfigured as any).mockReturnValue(true);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
     render(<ContactForm />);
     expect(screen.queryByText('Form Not Yet Connected (Coming Soon)')).toBeNull();
   });
 
   it('shows "not yet active" footer when backend is not connected', () => {
-    (isSupabaseConfigured as any).mockReturnValue(false);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false);
     render(<ContactForm />);
     expect(screen.getByText(/Form not yet active/)).toBeTruthy();
   });
 
   it('shows "Connected to secure backend" footer when backend is connected', () => {
-    (isSupabaseConfigured as any).mockReturnValue(true);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
     render(<ContactForm />);
     expect(screen.getByText(/Connected to secure backend/)).toBeTruthy();
   });
 
   it('submits without calling Supabase when not configured', async () => {
-    (isSupabaseConfigured as any).mockReturnValue(false);
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false);
     render(<ContactForm />);
 
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John' } });
@@ -65,8 +65,8 @@ describe('ContactForm', () => {
   });
 
   it('calls submitContactMessage when backend is connected', async () => {
-    (isSupabaseConfigured as any).mockReturnValue(true);
-    (submitContactMessage as any).mockResolvedValue({ data: [{}], error: null });
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
+    vi.mocked(submitContactMessage).mockResolvedValue({ data: [{}], error: null });
     render(<ContactForm />);
 
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John' } });
@@ -87,8 +87,8 @@ describe('ContactForm', () => {
   });
 
   it('shows error message when Supabase submission fails', async () => {
-    (isSupabaseConfigured as any).mockReturnValue(true);
-    (submitContactMessage as any).mockResolvedValue({ data: null, error: 'Database error' });
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
+    vi.mocked(submitContactMessage).mockResolvedValue({ data: null, error: 'Database error' });
     render(<ContactForm />);
 
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John' } });
@@ -104,8 +104,8 @@ describe('ContactForm', () => {
   });
 
   it('shows backend-aware success message when connected', async () => {
-    (isSupabaseConfigured as any).mockReturnValue(true);
-    (submitContactMessage as any).mockResolvedValue({ data: [{}], error: null });
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true);
+    vi.mocked(submitContactMessage).mockResolvedValue({ data: [{}], error: null });
     render(<ContactForm />);
 
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'John' } });

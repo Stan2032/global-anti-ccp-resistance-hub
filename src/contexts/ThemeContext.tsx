@@ -47,6 +47,13 @@ const themeColors: Record<string, ThemeColorConfig> = {
   }
 };
 
+/**
+ * ThemeProvider — wraps the app tree with theme context.
+ *
+ * Manages dark/light/high-contrast/system themes.
+ * Persists selection to localStorage and syncs with system preferences.
+ * Injects the active theme class onto `document.documentElement`.
+ */
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(() => {
     // Check localStorage first
@@ -139,7 +146,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Theme Toggle Button Component
+/**
+ * ThemeToggle — compact button that cycles through dark → light → high-contrast.
+ *
+ * Displays the current theme's icon and provides an accessible label.
+ */
 export const ThemeToggle = ({ className = '' }: { className?: string }) => {
   const { toggleTheme, themeConfig } = useTheme();
 
@@ -157,7 +168,12 @@ export const ThemeToggle = ({ className = '' }: { className?: string }) => {
   );
 };
 
-// Theme Selector Dropdown Component
+/**
+ * ThemeSelector — dropdown menu for explicit theme selection.
+ *
+ * Shows all 4 options (Dark, Light, High Contrast, System Default)
+ * with icons and a checkmark on the active theme.
+ */
 export const ThemeSelector = ({ className = '' }: { className?: string }) => {
   const { theme, setTheme, themeConfig } = useTheme();
   const [isOpen, setIsOpen] = useState(false);

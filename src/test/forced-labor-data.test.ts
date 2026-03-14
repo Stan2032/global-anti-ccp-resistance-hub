@@ -26,7 +26,7 @@ describe('Forced labor companies data integrity', () => {
   });
 
   it('company names are unique', () => {
-    const names = data.results.map((r: any) => r.output.company);
+    const names = data.results.map((r: { output: { company: string } }) => r.output.company);
     expect(new Set(names).size).toBe(names.length);
   });
 

@@ -1,3 +1,9 @@
+/**
+ * Transnational repression data — threat levels, operation types,
+ * and country-level CCP overseas operation records.
+ *
+ * @module transnationalRepressionData
+ */
 import { MapPin, Eye, Scale, AlertTriangle, type LucideIcon } from 'lucide-react';
 
 export interface ThreatLevel {

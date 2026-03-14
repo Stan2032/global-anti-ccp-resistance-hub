@@ -4,8 +4,8 @@ import React from 'react';
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
-  default: ({ source }: any) => <span data-testid="source">{source?.name || 'source'}</span>,
-  SourcesList: ({ sources, title }: any) => (
+  default: ({ source }: { source?: { name?: string } }) => <span data-testid="source">{source?.name || 'source'}</span>,
+  SourcesList: ({ sources, title }: { sources?: { name: string }[]; title?: string }) => (
     <div data-testid="sources-list">
       <span>{title}</span>
       <span>{sources?.length || 0} sources</span>

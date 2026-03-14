@@ -1,4 +1,14 @@
+/**
+ * ErrorBoundary — Top-level React error boundary for crash recovery.
+ *
+ * Catches rendering errors anywhere in the component tree and displays a
+ * user-friendly fallback UI with a "Try Again" button that resets state
+ * without a full page reload.
+ *
+ * @module ErrorBoundary
+ */
 import React from 'react';
+import { logger } from '../utils/logger';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -29,7 +39,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    console.error('Error caught by boundary:', error, errorInfo);
+    logger.error('boundary', 'Error caught by boundary:', error, errorInfo);
   }
 
   handleReset = (): void => {
@@ -47,12 +57,14 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
           <div className="flex gap-3">
             <button
               onClick={this.handleReset}
+              aria-label="Try again — reset the application"
               className="px-6 py-3 bg-[#22d3ee] hover:bg-[#22d3ee]/80 font-medium transition-colors"
             >
               Try Again
             </button>
             <button
               onClick={() => window.location.reload()}
+              aria-label="Reload page"
               className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] font-medium transition-colors"
             >
               Reload Page

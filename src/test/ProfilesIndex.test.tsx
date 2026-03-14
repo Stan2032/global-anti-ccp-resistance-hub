@@ -53,7 +53,7 @@ describe('ProfilesIndex', () => {
   it('should render links for built profiles', () => {
     renderWithRouter(<ProfilesIndex />);
     const links = screen.getAllByText('Full profile available');
-    expect(links.length).toBe(15);
+    expect(links.length).toBe(16);
   });
 
   it('should not show coming soon section when all profiles are built', () => {
@@ -70,13 +70,13 @@ describe('ProfilesIndex', () => {
 
   it('should show profile count summary', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByText('15 detailed profiles')).toBeTruthy();
+    expect(screen.getByText('16 detailed profiles')).toBeTruthy();
   });
 
   it('should link back to political prisoners database', () => {
     renderWithRouter(<ProfilesIndex />);
     expect(screen.getByText('Political Prisoners Database')).toBeTruthy();
-    expect(screen.getByText(/63 total cases in database/)).toBeTruthy();
+    expect(screen.getByText(/65 total cases in database/)).toBeTruthy();
   });
 
   // === Region Filter Tests (Session 167) ===
@@ -98,8 +98,8 @@ describe('ProfilesIndex', () => {
 
   it('should show counts on each filter tab', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByRole('tab', { name: /All Profiles \(15\)/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Hong Kong \(6\)/i })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /All Profiles \(16\)/i })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: /Hong Kong \(7\)/i })).toBeTruthy();
     expect(screen.getByRole('tab', { name: /Mainland China \(5\)/i })).toBeTruthy();
     expect(screen.getByRole('tab', { name: /Uyghur & Tibet \(3\)/i })).toBeTruthy();
     expect(screen.getByRole('tab', { name: /Cross-Border \(1\)/i })).toBeTruthy();

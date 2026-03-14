@@ -7,8 +7,8 @@ vi.mock('../services/dataApi', () => ({
   dataApi: {
     getDatasetSummary: () => ({
       datasets: {
-        political_prisoners: { count: 63, description: 'Prisoners', fields: ['prisoner_name', 'status'] },
-        sanctions: { count: 47, description: 'Sanctions', fields: ['country', 'target'] },
+        political_prisoners: { count: 64, description: 'Prisoners', fields: ['prisoner_name', 'status'] },
+        sanctions: { count: 46, description: 'Sanctions', fields: ['country', 'target'] },
         sanctioned_officials: { count: 35, description: 'Officials', fields: ['name', 'position'] },
         timeline_events: { count: 34, description: 'Events', fields: ['date', 'title'] },
         forced_labor_companies: { count: 28, description: 'Companies', fields: ['company_name'] },
@@ -89,7 +89,7 @@ describe('ContentAnalytics', () => {
 
   it('shows total record count in description', () => {
     render(<ContentAnalytics />);
-    // Sum: 63+47+35+34+28+11+6+8 = 232
+    // Sum: 64+46+35+34+28+11+6+8 = 232
     expect(screen.getByText(/232 verified records/)).toBeTruthy();
   });
 

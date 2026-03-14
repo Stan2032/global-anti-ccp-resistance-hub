@@ -2,8 +2,44 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
+interface FacilityOutput {
+  region: string;
+  facility_count: number;
+  source_url?: string;
+}
+
+interface ResearchResult {
+  output: FacilityOutput;
+}
+
+interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
+interface Facility {
+  id: string;
+  name: string;
+  type: string;
+  region: string;
+  city: string;
+  status: string;
+  description: string;
+  estimated_capacity: string;
+  first_documented: string;
+  evidence: string[];
+  sources: string[];
+  coordinates?: Coordinates;
+  satellite_image_url?: string;
+}
+
+interface DetentionFacilitiesData {
+  results: ResearchResult[];
+  facilities: Facility[];
+}
+
 const DATA_DIR = resolve(__dirname, '../data');
-const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'detention_facilities_research.json'), 'utf-8'));
+const data: DetentionFacilitiesData = JSON.parse(readFileSync(resolve(DATA_DIR, 'detention_facilities_research.json'), 'utf-8'));
 
 describe('Detention facilities data integrity', () => {
   describe('regional research entries', () => {
@@ -20,7 +56,7 @@ describe('Detention facilities data integrity', () => {
     });
 
     it('at least 80% of entries have source_url', () => {
-      const withUrl = data.results.filter((r: any) => r.output && r.output.source_url);
+      const withUrl = data.results.filter((r: ResearchResult) => r.output && r.output.source_url);
       expect(withUrl.length / data.results.length).toBeGreaterThanOrEqual(0.8);
     });
 
@@ -72,17 +108,17 @@ describe('Detention facilities data integrity', () => {
     });
 
     it('facility IDs are unique', () => {
-      const ids = data.facilities.map((f: any) => f.id);
+      const ids = data.facilities.map((f: Facility) => f.id);
       expect(new Set(ids).size).toBe(ids.length);
     });
 
     it('covers at least 3 distinct regions', () => {
-      const regions = new Set(data.facilities.map((f: any) => f.region));
+      const regions = new Set(data.facilities.map((f: Facility) => f.region));
       expect(regions.size).toBeGreaterThanOrEqual(3);
     });
 
     it('includes expected key regions', () => {
-      const regions = new Set(data.facilities.map((f: any) => f.region));
+      const regions = new Set(data.facilities.map((f: Facility) => f.region));
       expect(regions.has('Xinjiang')).toBe(true);
       expect(regions.has('Tibet')).toBe(true);
       expect(regions.has('Hong Kong')).toBe(true);

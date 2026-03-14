@@ -157,40 +157,28 @@
       "source_url": "https://www.gov.uk/government/publications/the-uk-sanctions-list"
     },
     {
-      "id": 12,
-      "country": "eu",
-      "type": "individual",
-      "target": "Chen Quanguo",
-      "role": "Former Xinjiang Party Secretary",
-      "reason": "Arbitrary detention of Uyghurs",
-      "date": "2021-03-22",
-      "law": "EU Global Human Rights Sanctions",
-      "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
-    },
-    {
       "id": 13,
       "country": "eu",
       "type": "individual",
       "target": "Wang Junzheng",
-      "role": "Xinjiang Party Secretary",
-      "reason": "Mass surveillance and detention",
+      "role": "Secretary of the XPCC Political and Legal Affairs Commission",
+      "reason": "Arbitrary detention and degrading treatment of Uyghurs and Muslim minorities",
       "date": "2021-03-22",
       "law": "EU Global Human Rights Sanctions",
       "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32021R0478"
     },
     {
       "id": 14,
       "country": "eu",
       "type": "entity",
-      "target": "Xinjiang Production and Construction Corps (XPCC)",
-      "role": "Paramilitary organization",
-      "reason": "Forced labor programs",
+      "target": "Xinjiang Production and Construction Corps Public Security Bureau (XPCC PSB)",
+      "role": "Public security apparatus of the paramilitary XPCC",
+      "reason": "Forced labor programs, mass internment, and surveillance of Uyghurs",
       "date": "2021-03-22",
       "law": "EU Global Human Rights Sanctions",
       "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32021R0478"
     },
     {
       "id": 15,
@@ -390,11 +378,11 @@
       "type": "individual",
       "target": "Zhu Hailun",
       "role": "Former Deputy Secretary, Xinjiang Political and Legal Affairs Commission",
-      "reason": "Architect of mass surveillance and detention system",
+      "reason": "Architect of mass surveillance and detention system for Uyghurs and Muslim minorities",
       "date": "2021-03-22",
       "law": "EU Global Human Rights Sanctions",
       "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32021R0478"
     },
     {
       "id": 32,
@@ -402,11 +390,11 @@
       "type": "individual",
       "target": "Wang Mingshan",
       "role": "Former Director, Xinjiang Public Security Bureau",
-      "reason": "Mass surveillance and arbitrary detention",
+      "reason": "Mass surveillance and arbitrary detention of Uyghurs and Muslim minorities",
       "date": "2021-03-22",
       "law": "EU Global Human Rights Sanctions",
       "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32021R0478"
     },
     {
       "id": 33,
@@ -414,11 +402,11 @@
       "type": "individual",
       "target": "Chen Mingguo",
       "role": "Former Director, Xinjiang Public Security Bureau",
-      "reason": "Arbitrary detention and degrading treatment of Uyghurs",
+      "reason": "Arbitrary detention and degrading treatment of Uyghurs and Muslim minorities",
       "date": "2021-03-22",
       "law": "EU Global Human Rights Sanctions",
       "status": "active",
-      "source_url": "https://www.sanctionsmap.eu/"
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32021R0478"
     },
     {
       "id": 34,

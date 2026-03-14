@@ -80,9 +80,12 @@ const HongKongStatus = () => {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Hong Kong status tabs">
         {tabs.map((tab) => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+            role="tab"
+            aria-selected={activeTab === tab.id}
+            aria-controls={`hk-tabpanel-${tab.id}`}
             className={`px-4 py-2 text-sm font-medium ${activeTab === tab.id ? 'bg-yellow-600 text-white' : 'bg-[#111820] text-slate-300'}`}>
             {tab.name}
           </button>
