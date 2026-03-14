@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "28.0",
-    "date": "2026-03-13T23:55:00Z",
+    "version": "29.0",
+    "date": "2026-03-14T01:53:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 276,
-    "state": "ACTIVE",
+    "sessions_completed": 278,
+    "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v25.2, Session 269)",
+    "supersedes": "AGENT_HANDOFF.json (v28.0, Session 276)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -29,7 +29,7 @@
     "sanctions_entries": 46,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 276,
+    "sessions_completed": 278,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -55,7 +55,7 @@
     "rss_feeds": 9,
     "clipboard_error_handling": "all_9_components_fixed",
     "print_styles": "media_print_A4_layout",
-    "security_fixes": "react_router_7.13.0_3_CVEs_fixed_HSTS_COOP_CORP_headers",
+    "security_fixes": "react_router_7.13.0_3_CVEs_fixed_HSTS_COOP_CORP_headers_flatted_3.4.1_undici_7.24.1",
     "supabase_integration": "supabaseClient.js_supabaseService.js_4_form_types_all_wired_client_side_PII_encryption",
     "deployment_guides": "SUPABASE_SETUP.md_CLOUDFLARE_DEPLOY.md_BACKEND_GUIDE.md_CONTENT_GUIDE.md",
     "cloudflare_fix": "stale_pnpm_lock_yaml_removed",
