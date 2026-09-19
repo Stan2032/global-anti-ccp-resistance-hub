@@ -1,5 +1,27 @@
 [
   {
+    "id": "zhang-zhan-health",
+    "type": "critical",
+    "title": "Zhang Zhan \u2014 Amnesty Warns Condition Is Life Threatening",
+    "summary": "Jailed COVID-19 journalist on hunger strike since January 2025. Amnesty calls for immediate release; whereabouts within Shanghai detention unclear since August 2026.",
+    "details": "Zhang Zhan, the citizen journalist jailed for reporting from Wuhan in early 2020, is serving a second four-year sentence and Amnesty International describes her condition as life threatening.\n\nHER CONDITION (Amnesty International, May 15, 2026 \u2014 ASA 17/1006/2026):\n\u2022 Serious gastric illness, significant weight loss, extremely weak\n\u2022 Reportedly on hunger strike against her arbitrary detention since January 2025\n\u2022 RSF reports she was force-fed and developed stomach complications\n\u2022 Earlier hunger strikes: August 2021 (11-day hospitalisation) and September 2023\n\nWHERE SHE IS:\n\u2022 Moved to Zone 5 of Shanghai's Pudong Detention Centre in August 2026, with no update on her health provided (RSF, August 28, 2026)\n\nTHE CASE:\n\u2022 First sentence: 4 years from December 2020 for reporting on the Wuhan outbreak. Released May 13, 2024.\n\u2022 Re-arrested August 28, 2024, less than four months later.\n\u2022 Second sentence: 4 years, imposed September 19, 2025 for 'picking quarrels and provoking trouble' after a closed-door trial.\n\u2022 Authorities have persistently refused her a lawyer of her choice, which Amnesty says has hampered efforts to document her situation and appeal her conviction.\n\nWHAT IS BEING ASKED:\n\u2022 Amnesty International: 'She must be released immediately.' Pending release, she must have access to adequate healthcare provided in compliance with medical ethics.\n\u2022 RSF: immediate release, and that authorities ensure her safety and access to adequate medical care.\n\nSOURCES:\n\u2022 Amnesty International: https://www.amnesty.org/en/documents/asa17/1006/2026/en/\n\u2022 Reporters Without Borders: https://rsf.org/en/two-years-after-her-second-arrest-rsf-outlines-years-long-repression-chinese-journalism-icon-zhang",
+    "date": "2026-08-28",
+    "eventDate": "2026-08-28",
+    "expires": "2027-03-28",
+    "lastVerified": "2026-09-19",
+    "links": [
+      {
+        "name": "Amnesty International \u2014 urgent action",
+        "url": "https://www.amnesty.org/en/documents/asa17/1006/2026/en/"
+      },
+      {
+        "name": "Reporters Without Borders",
+        "url": "https://rsf.org/en/two-years-after-her-second-arrest-rsf-outlines-years-long-repression-chinese-journalism-icon-zhang"
+      }
+    ],
+    "active": true
+  },
+  {
     "id": "joshua-wong-hearing",
     "type": "critical",
     "title": "Joshua Wong Pleads Guilty to Foreign Collusion \u2014 Awaiting Sentencing",

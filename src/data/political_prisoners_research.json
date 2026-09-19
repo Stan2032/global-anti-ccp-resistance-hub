@@ -58,16 +58,17 @@
         "status": "DETAINED",
         "location": "Shanghai, China",
         "sentence": "4 years (first, Dec 2020) + 4 years (second, Sep 2025) for picking quarrels and provoking trouble",
-        "latest_news": "Sep 2025: Sentenced to a second four-year prison term by Shanghai Pudong New Area People's Court. Re-arrested Aug 2024 shortly after release from first sentence.",
-        "health_status": "Critically deteriorating. History of prolonged hunger strikes causing severe malnutrition. Forced-feeding tube observed during family visit Oct 2024.",
+        "latest_news": "Aug 2026: moved to Zone 5 of Shanghai's Pudong Detention Centre, with no update on her health provided (RSF, August 28, 2026 \u2014 two years to the day after her second arrest). Amnesty International issued an urgent action on May 15, 2026 (ASA 17/1006/2026) describing her condition as life threatening and calling for her immediate release. Authorities have persistently refused her a lawyer of her choice, which Amnesty says has hampered efforts to document her situation and appeal her conviction.",
+        "health_status": "Life threatening, per Amnesty International (May 2026): serious gastric illness, significant weight loss, extremely weak. Reportedly on hunger strike against her arbitrary detention since January 2025, when RSF reports she was force-fed and developed stomach complications. Earlier hunger strikes in August 2021 (11-day hospitalisation) and September 2023. In 2021 she weighed barely 40 kg at 1.77 m and could not move unassisted. Forced-feeding tube observed during a family visit in October 2024. Amnesty says that pending release she must have access to adequate healthcare provided in compliance with medical ethics.",
         "international_response": "OHCHR called second sentencing 'deeply disturbing'. Amnesty International, CPJ, RSF, EU, US all condemned. She is regarded as a prisoner of conscience.",
-        "source_url": "https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing",
+        "source_url": "https://www.amnesty.org/en/documents/asa17/1006/2026/en/",
         "additional_sources": [
+          "https://rsf.org/en/two-years-after-her-second-arrest-rsf-outlines-years-long-repression-chinese-journalism-icon-zhang",
           "https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/",
           "https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/"
         ],
         "confidence": "HIGH",
-        "last_verified": "2026-02-19"
+        "last_verified": "2026-09-19"
       },
       "error": ""
     },
