@@ -153,9 +153,20 @@ A Node.js/Express backend exists in `backend/` but is **not required** — the s
 
 ### Deployment
 - **Live site**: [https://global-anti-ccp-resistance-hub.stane203.workers.dev/](https://global-anti-ccp-resistance-hub.stane203.workers.dev/)
-- **Recommended**: Cloudflare Workers — see [CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md) for step-by-step guide
-- **Also supported**: GitHub Pages (via `.github/workflows/deploy.yml`), Vercel, Netlify
-- Base path configurable via `VITE_BASE_PATH` environment variable
+- **Deploys itself.** Cloudflare **Workers Builds** is connected over its Git
+  integration: pushes to `master` go to production, other branches get a
+  preview URL. There is no deploy command and no deploy workflow. See
+  [CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md).
+- **Not Cloudflare Pages.** Cloudflare recommends Workers Static Assets for
+  new projects and only publishes a Pages → Workers migration path. Moving
+  this to Pages would break the REST API, the RSS feed proxy and
+  `html_handling`.
+- **A GitHub Pages mirror still exists** at `stan2032.github.io` and serves
+  1 of 6 security headers, including no `Referrer-Policy`. GitHub Pages
+  cannot serve custom headers, so it can only be switched off — steps in
+  CLOUDFLARE_DEPLOY.md.
+- Base path configurable via `VITE_BASE_PATH` for self-hosting under a
+  subdirectory; unset (`/`) for the Cloudflare deployment.
 
 ## Quick Start
 
@@ -278,7 +289,7 @@ This platform is designed with security and honesty in mind for users who may be
 - Compatible with Tor browser
 - **Honest security approach**: The platform does not claim to detect VPNs, Tor, or connection status. Instead, it provides links to reputable third-party self-test tools.
 - Client-side WebRTC leak detection (no data sent to servers)
-- Content Security Policy headers configured for Cloudflare Pages
+- Content Security Policy and five other security headers served from `public/_headers` (6 of 6 verified live on the Cloudflare Worker)
 - Does not store user data
 
 **Warning**: If you are in China or communicating with people in China, please use secure communication tools. Visit the **Security Center** on the site for verified tools and guides. The CCP monitors internet traffic and may target activists.

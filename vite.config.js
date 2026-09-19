@@ -4,9 +4,11 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Base path: configurable via VITE_BASE_PATH env var
-  // Cloudflare / local dev: / (default)
-  // GitHub Pages: /global-anti-ccp-resistance-hub/ (set VITE_BASE_PATH in deploy.yml)
+  // Base path: configurable via VITE_BASE_PATH env var.
+  // Cloudflare (production) and local dev both use the default, '/'.
+  // Override it only to self-host under a subdirectory. The GitHub Pages
+  // workflow that used to set it has been deleted — Cloudflare Workers
+  // Builds deploys this repo, and it serves from the domain root.
   base: process.env.VITE_BASE_PATH || '/',
   build: {
     rollupOptions: {
