@@ -10,6 +10,7 @@
 
 | # | Finding | Severity | Status |
 |---|---------|----------|--------|
+| **0** | **Site served 217 chars without JS — and told at-risk readers to enable JS in Tor**, contradicting its own security guidance | **Critical (mission)** | ⚠️ Message fixed; pre-render is the real fix (§12) |
 | 1 | 18 npm vulnerabilities (1 critical, 12 high), incl. `react-router-dom`, which ships to users | **Critical** | ✅ Fixed — 0 remaining |
 | 2 | "Last updated" on the statistics dashboard rendered *today's date* regardless of data age | **High (integrity)** | ✅ Fixed |
 | 3 | A live, unhardened duplicate of the site at `stan2032.github.io` with 1 of 9 security headers | **High** | ⚠️ Needs owner decision |
@@ -19,6 +20,7 @@
 | 7 | Supabase is integrated in code but **no Supabase project exists** — all 4 forms are inert | Medium | ⚠️ Needs owner action |
 | 8 | Chow Hang-Tung's profile was missing from `sitemap.xml` — unindexed by search engines | Medium | ✅ Fixed |
 | 9 | 15 stale Dependabot PRs open since April–July | Low | ✅ 9 superseded; 6 are `backend/` |
+| 10 | 14,081 lines of content in 38 components, outside every freshness guard, the API and exports | Medium | 📋 Documented as deferred debt (§13) |
 
 ---
 
@@ -386,4 +388,160 @@ Edits were made with exact string replacement rather than a JSON round-trip.
 A structured rewrite silently re-encoded `\uXXXX` escapes across unrelated
 records — cosmetically harmless, but it would have shown dozens of
 human-rights entries as modified when they had not been re-verified.
+
+---
+
+## 12. The one that matters: the site is unreadable to the readers it is for
+
+Added 2026-09-19 after a second pass looking for structural rather than
+maintenance problems.
+
+### The contradiction
+
+The site's own guidance tells readers in China to *"use Tor Browser
+exclusively"* and to *"consider using Tails OS for maximum security"*
+(`FAQ.tsx`), and `DiasporaSecurityAdvisor` says *"use Tor Browser for all
+CCP-related research and posting"*.
+
+Tor Browser's **Safer** and **Safest** levels disable JavaScript. That is the
+point of them: JavaScript is the primary deanonymisation and fingerprinting
+vector.
+
+With JavaScript disabled, the site served **217 characters** — and those
+characters said:
+
+> "For security, we recommend using Tor Browser **with JavaScript enabled**."
+
+So a reader who took the site's advice, arrived on Safest, and then read the
+fallback message was being told to give up their strongest protection in order
+to read us. Everything else — 64 prisoner records, 16 profiles, 69 timeline
+events — was invisible.
+
+The `<noscript>` block has been rewritten: it now tells readers on Safer or
+Safest to **stay there**, and points to the read-only JSON API, which needs no
+JavaScript and is already live (`/api/v1/prisoners` returns 64 records as
+`application/json`, verified).
+
+**That is a stopgap, not a fix.** The fix is to pre-render.
+
+### Spike: can this SPA be pre-rendered?
+
+Measured, not estimated. `scripts/prerender-spike.mjs` renders each route in
+headless Chromium, snapshots `#root`, and splices it into the real shell —
+**zero source changes**.
+
+| Route | Text without JS | gzip | Hydration (JS on) |
+|---|---|---|---|
+| *(current SPA)* | **667 chars** | — | — |
+| `/` | **11,561 chars** | 19.7 KB | ✅ 0 errors |
+| `/prisoners` | **17,588 chars** | 22.9 KB | ✅ 0 errors |
+| `/profiles/jimmy-lai` | **2,939 chars** | 10.1 KB | ✅ 0 errors |
+
+The prisoner database renders as real HTML — Jimmy Lai, Ilham Tohti and Chow
+Hang-Tung all present in the static markup. A no-JS reader on a hostile network
+downloads ~23 KB of HTML instead of ~107 KB of JavaScript, and gets content
+immediately.
+
+Build cost: ~4s per route, so **≈111s for all 27 sitemap routes**.
+
+### What the spike surfaced
+
+1. **Transient client state gets baked in.** The first run captured the 7-step
+   onboarding tour into the static HTML — a no-JS reader would have seen a
+   popup they could not dismiss. Fixed by seeding `localStorage` via
+   `addInitScript` before the app mounts. Any client-only overlay needs the
+   same treatment.
+2. **Live-feed pages pre-render to an empty state.** `/intelligence` produced
+   only 2,513 chars because its RSS feeds are fetched client-side. That is
+   correct behaviour, but those pages keep needing JavaScript for their value
+   and should probably be excluded from pre-rendering.
+3. **Hydration is clean.** React 19 re-attached to the pre-rendered markup with
+   zero console errors on both content routes. The errors on `/` were RSS
+   fetches blocked by the sandbox network, not hydration.
+
+### If a proper SSG is preferred over post-build snapshotting
+
+Only **~5 files** touch a browser global on the render or init path and would
+need a guard:
+
+```
+contexts/ThemeContext.tsx        localStorage + window.matchMedia in useState initialisers
+contexts/LanguageContext.tsx     localStorage in useState initialiser
+components/EmergencyAlerts.tsx   localStorage in useState initialiser
+components/QuickStartGuide.tsx   localStorage in useState initialiser
+components/PWAInstallBanner.tsx  window / matchMedia in useState initialiser
+```
+
+An earlier count of 62 files was wrong: nearly all of those touch `navigator`
+or `document` inside click handlers (clipboard copy, file download), which
+never run during server rendering.
+
+This is a much smaller obstacle than the size of the codebase suggests, and it
+makes a real SSG (`vite-react-ssg`, or React Router 7's own `prerender`
+option) a genuine alternative to snapshotting rather than a rewrite.
+
+### Why this reframes the upgrade plan
+
+Pre-rendering, in one change, addresses four things listed separately as
+long-term goals in `_agents/TODO.md`: **Offline Mode**, **Mirror Sites**,
+**Tor Hidden Service** and **IPFS Integration**. Static HTML is trivially
+mirrorable to an onion service, to IPFS, to a USB stick, or to paper. A
+JavaScript bundle is not.
+
+It also means **Tailwind 4 should ride along with this work**, not be done as
+its own project — §6's largest deferred item becomes part of a change that has
+a mission justification rather than a maintenance one.
+
+---
+
+## 13. Known debt, deliberately deferred
+
+Recorded here rather than acted on, per the owner's decision on 2026-09-19.
+
+### Two-tier content provenance
+
+The integrity apparatus — freshness guards, `last_verified`, source-URL health
+checks, CCP-media never-cite enforcement, `DataExport`, the public API, the
+data changelog — all operates on `src/data/*.json` (551 KB, ~340 records).
+
+**38 components hold 14,081 lines of content that sits entirely outside it.**
+WorldThreatMap (59 records), SafetyChecklist (47), ConfuciusInstitutes (40),
+LegalResourcesHub (33), IPACMembers (31), MemorialWall (victims' names).
+
+Of six sampled, **none carries a verification date** and only one
+(`MemorialWall`) has any source field. None is covered by a freshness guard,
+exposed through the API, or included in exports. Nothing tells a reader which
+tier they are looking at.
+
+The thoroughness of the JSON machinery is what hides this: guards going green
+says nothing about half the content.
+
+### Data-shape residue
+
+Ten datasets (340 records) are still in raw research-pipeline shape,
+`{input, output, error}`, where `input` is the original research query
+(*"Jimmy Lai - Hong Kong media owner, Apple Daily founder, arrested 2020"*) and
+`error` is always an empty string. That residue is **~5-6% of every data file**
+and ships to users in the bundle. Normalising it would also let schema
+validation replace a share of the 737 hand-written data assertions.
+
+### Field naming split
+
+The same concept is spelled two ways: `last_verified` in seven datasets,
+`lastVerified` in `emergency_alerts.json` and `live_statistics.json`. Worth
+settling whenever the schema work happens.
+
+### A correction to an earlier assumption
+
+An initial hypothesis that the test suite had become a bureaucratic conformance
+harness was **wrong** and is recorded here so nobody re-derives it. Measured
+composition of the 3,521 counted assertions:
+
+| Bucket | Tests | Share |
+|---|---|---|
+| Component & page behaviour | 2,553 | 72.5% |
+| Data & dataset assertions | 737 | 20.9% |
+| Conformance / meta / lint-as-test | 231 | 6.6% |
+
+The suite is mostly genuine behaviour coverage. It is not the problem.
 
