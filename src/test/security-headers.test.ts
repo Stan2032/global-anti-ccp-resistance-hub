@@ -136,6 +136,48 @@ describe('Security Headers', () => {
       expect(hints, `Third-party connection hints:\n${hints.join('\n')}`).toEqual([]);
     });
 
+    /*
+     * These two guard the same class of bug: shipping something the CSP
+     * silently refuses.
+     *
+     * index.html carried an inline service-worker registration and an inline
+     * GitHub Pages redirect shim. `script-src 'self'` refused to execute
+     * both, so sw.js shipped with every deploy for months and never once
+     * registered — the site's entire offline capability did not exist, and
+     * nothing failed loudly enough for anyone to notice. index.css imported
+     * Inter and JetBrains Mono from fonts.googleapis.com; `style-src 'self'`
+     * refused those too, so no reader ever saw either typeface, while their
+     * browser still announced itself to Google on every page view.
+     *
+     * A CSP is only worth having if the app obeys it. These tests fail when
+     * the app stops obeying it, instead of the browser quietly doing so.
+     */
+    it('has no executable inline script (CSP is script-src self)', () => {
+      const scripts = [...indexContent.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
+      const offenders = scripts
+        .filter(([, attrs, body]) => {
+          if (/\bsrc=/i.test(attrs)) return false; // external, allowed by 'self'
+          if (/type=["']application\/ld\+json["']/i.test(attrs)) return false; // data, not executed
+          return body.trim().length > 0;
+        })
+        .map(([, attrs]) => `<script${attrs}>`);
+      expect(
+        offenders,
+        `Inline scripts the CSP will refuse to execute:\n${offenders.join('\n')}\n` +
+          'Move the code into src/ so it is bundled and same-origin.'
+      ).toEqual([]);
+    });
+
+    it('stylesheets do not import from a third party (CSP is style-src/font-src self)', () => {
+      const css = readFileSync(resolve(__dirname, '../index.css'), 'utf-8');
+      const imports = [...css.matchAll(/@import\s+url\(\s*['"]?(https?:\/\/[^'")]+)/gi)].map(m => m[1]);
+      expect(
+        imports,
+        `Third-party CSS imports the CSP will refuse:\n${imports.join('\n')}\n` +
+          'Self-host the asset instead; do not widen the CSP for a webfont.'
+      ).toEqual([]);
+    });
+
     it('does not contain inline script injection patterns', () => {
       expect(indexContent).not.toContain('javascript:');
       expect(indexContent).not.toContain('onclick=');
