@@ -158,6 +158,29 @@ describe('Sitemap Data Integrity', () => {
     });
   });
 
+  describe('pre-rendered route serving', () => {
+    // Pre-rendering writes each route to dist/<route>/index.html. How
+    // Cloudflare serves those has to agree with the URLs advertised here:
+    // under the default "auto-trailing-slash" a folder index is only served
+    // at /prisoners/, so every sitemap URL would eat a 307. These two
+    // settings are in different files and nothing else ties them together.
+    it('wrangler serves folder indexes at the sitemap\'s canonical URLs', () => {
+      const wrangler = readFileSync(resolve(__dirname, '../../wrangler.jsonc'), 'utf-8');
+      const match = wrangler.match(/"html_handling"\s*:\s*"([^"]+)"/);
+      expect(match, 'wrangler.jsonc must set html_handling explicitly').not.toBeNull();
+      expect(
+        match![1],
+        'Sitemap URLs have no trailing slash, so pre-rendered folder indexes ' +
+        'must be served without one too — otherwise every content URL 307s.'
+      ).toBe('drop-trailing-slash');
+    });
+
+    it('no sitemap URL has a trailing slash (except the homepage)', () => {
+      const offenders = urls.filter(u => u !== `${BASE_URL}/` && u.endsWith('/'));
+      expect(offenders, `Trailing-slash URLs: ${offenders.join(', ')}`).toEqual([]);
+    });
+  });
+
   describe('no stale GitHub Pages URLs', () => {
     it('sitemap does not reference github.io', () => {
       expect(sitemapContent).not.toContain('github.io');

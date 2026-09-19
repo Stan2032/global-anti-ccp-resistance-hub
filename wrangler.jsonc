@@ -6,6 +6,14 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application",
+    // Pre-rendered routes live at e.g. dist/prisoners/index.html. The default
+    // "auto-trailing-slash" would serve those only at /prisoners/ and issue a
+    // 307 from /prisoners — but every URL in sitemap.xml and every canonical
+    // tag omits the trailing slash, so all 26 content URLs would cost an
+    // extra round trip. That matters most for readers on Tor and slow links,
+    // who are exactly who pre-rendering is for. Serve them at the canonical
+    // URL instead.
+    "html_handling": "drop-trailing-slash",
     "binding": "ASSETS"
   }
 }
