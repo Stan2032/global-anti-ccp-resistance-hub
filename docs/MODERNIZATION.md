@@ -122,9 +122,12 @@ it, outbound clicks leak the referring URL, which can reveal that a reader was
 on an anti-CCP human-rights site. The project's own values say "Users of this
 site may be in danger. Never compromise their safety."
 
-`deploy.yml` has been replaced with a Cloudflare Workers deploy. **However,
-deleting the workflow does not take the mirror down** — GitHub Pages keeps
-serving the last deployment until Pages is disabled in repository settings.
+`deploy.yml` has been **deleted**, not replaced — see §14: Cloudflare Workers
+Builds already deploys this repo through its own Git integration, so a GitHub
+Actions deploy would have been a second, competing deployer.
+
+**Deleting the workflow does not take the mirror down.** GitHub Pages keeps
+serving its last deployment until Pages is disabled in repository settings.
 
 **Decision needed.** `_agents/TODO.md` lists "Mirror Sites: multiple domain
 mirrors for accessibility" as a deliberate censorship-resistance goal, so the
@@ -332,7 +335,8 @@ Ranked by impact:
 **CI** — none of this existed before
 - `ci.yml` — lint, typecheck, test, build, plus `npm audit --audit-level=high`
 - `content-freshness.yml` — weekly content-staleness alarm
-- `deploy.yml` — GitHub Pages → Cloudflare Workers
+- `deploy.yml` — **deleted**; Cloudflare Workers Builds already deploys via its
+  own Git integration (§14). The old workflow published to GitHub Pages.
 - `.nvmrc` pinning Node 22
 - `npm run verify` / `npm run typecheck` / `npm run test:content` scripts
 
@@ -544,4 +548,42 @@ composition of the 3,521 counted assertions:
 | Conformance / meta / lint-as-test | 231 | 6.6% |
 
 The suite is mostly genuine behaviour coverage. It is not the problem.
+
+---
+
+## 14. Deployment is already automated — by Cloudflare, not GitHub Actions
+
+Found from the PR event stream rather than the repository, which is why it was
+missed in the first pass.
+
+Pushing to this branch produced three `cloudflare-workers-and-pages[bot]`
+comments reporting **successful production-service builds** for commits
+`a72ad38`, `b4b32cf` and `1eeb661`, each with a commit preview URL and a
+branch preview URL. Meanwhile GitHub Actions shows **no `deploy.yml` runs at
+all** — only `ci.yml`.
+
+So **Cloudflare Workers Builds owns deployment**, via the Git integration,
+building from `wrangler.jsonc`. Nothing in the repository says so: there is no
+workflow, and neither `CLOUDFLARE_DEPLOY.md` nor the agent handoff mentions
+it, which is why the first pass assumed the stale GitHub Pages workflow was
+the deploy path.
+
+The Cloudflare Workers deploy workflow written earlier in this audit has
+therefore been **deleted**. Had anyone later added `CLOUDFLARE_API_TOKEN` as
+an Actions secret, every push to `master` would have deployed twice — once by
+Cloudflare Builds and once by Actions, racing each other.
+
+**What this means going forward**
+
+- Deploys happen automatically on push. No secrets to configure; item 6 in §9
+  is withdrawn.
+- Branch pushes get preview URLs, so changes can be reviewed on a real
+  Cloudflare deployment before merge — the branch preview for this work is
+  `claude-project-audit-modern-ebde-global-anti-ccp-resistance-hub.stane203.workers.dev`.
+- `ci.yml` and `content-freshness.yml` stay in GitHub Actions. Testing and
+  deployment live in different systems, which is fine, but worth knowing: **a
+  red CI run does not block the Cloudflare deploy.** If gating deploys on tests
+  matters, that has to be configured on the Cloudflare side.
+- This should be written into `CLOUDFLARE_DEPLOY.md`, which currently describes
+  manual `npx wrangler deploy` as the deployment method.
 

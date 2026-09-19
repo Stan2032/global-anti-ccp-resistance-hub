@@ -1,6 +1,34 @@
-# Cloudflare Pages Deployment Guide
+# Cloudflare Deployment Guide
 
-Deploy the **Global Anti-CCP Resistance Hub** to Cloudflare Pages for free (unlimited bandwidth, global CDN, automatic HTTPS).
+> ## ⚠️ Read first — deployment is already automated (verified 2026-09-19)
+>
+> **You do not need to run a deploy command.** Cloudflare **Workers Builds**
+> is connected to this repository through its Git integration and deploys
+> automatically on every push. Pushes to `master` go to production; pushes to
+> other branches get a preview URL, reported as a comment on the pull request.
+>
+> This was confirmed by observing three successful production builds triggered
+> by pushes, with no GitHub Actions deploy workflow involved.
+>
+> Two corrections to the guide below, which is kept for reference on account
+> and custom-domain setup:
+>
+> - **The project runs on Cloudflare *Workers*, not Pages.** `wrangler.jsonc`
+>   defines a Worker (`main: api/worker.js`) that serves the REST API and
+>   serves `./dist` through an assets binding. The Pages setup steps below do
+>   not describe the live deployment.
+> - **`npm run deploy` (manual `wrangler deploy`) is a fallback**, not the
+>   normal path. Using it pushes your local build straight to production,
+>   bypassing CI.
+>
+> Note that CI and deployment are in **different systems**: GitHub Actions runs
+> the tests, Cloudflare runs the deploy. **A red CI run does not block a
+> deploy.** If you want deploys gated on tests, configure that on the
+> Cloudflare side.
+>
+> See `docs/MODERNIZATION.md` section 14.
+
+Deploy the **Global Anti-CCP Resistance Hub** to Cloudflare for free (unlimited bandwidth, global CDN, automatic HTTPS).
 
 > **Prerequisite:** Complete [SUPABASE_SETUP.md](SUPABASE_SETUP.md) first.
 > You need your Supabase URL and anon key before setting up Cloudflare.
