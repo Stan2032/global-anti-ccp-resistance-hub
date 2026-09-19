@@ -51,8 +51,43 @@ jobs:
           node-version-file: '.nvmrc'
           cache: npm
 
-      # Fails the job on any high or critical advisory. The site ships
-      # react-router to users, so a shipped-dependency advisory is a user-facing
-      # risk, not just a developer one.
+      # A real tree, so audit uses the bulk advisory endpoint rather than the
+      # retiring legacy one, which returns a misleading "Invalid package tree"
+      # 400 for lockfiles it cannot handle.
+      - name: Install dependencies
+        run: npm ci
+
+      # Fails on any high or critical advisory. The site ships react-router to
+      # users, so a shipped-dependency advisory is a user-facing risk, not just
+      # a developer one.
+      #
+      # An unreachable audit service is NOT treated as a failure. The registry
+      # goes down for maintenance, and a gate that turns red when npmjs.org has
+      # a bad day teaches people to ignore it. Only actual advisory data fails
+      # the build; a service error warns and passes, so the signal stays
+      # trustworthy.
       - name: npm audit (high and above)
-        run: npm audit --audit-level=high
+        run: |
+          set +e
+          npm audit --audit-level=high --json > audit.json 2> audit.err
+          status=$?
+          set -e
+
+          if [ "$status" -eq 0 ]; then
+            echo "No advisories at high severity or above."
+            exit 0
+          fi
+
+          if jq -e '.metadata.vulnerabilities' audit.json > /dev/null 2>&1; then
+            echo "Advisories found:"
+            jq -r '.metadata.vulnerabilities | to_entries[] | "  \(.key): \(.value)"' audit.json
+            echo
+            npm audit --audit-level=high || true
+            exit 1
+          fi
+
+          echo "::warning title=Dependency audit skipped::npm audit could not reach the advisory service, so dependencies were NOT checked on this run."
+          echo "--- npm output ---"
+          cat audit.err || true
+          head -c 2000 audit.json || true
+          exit 0
