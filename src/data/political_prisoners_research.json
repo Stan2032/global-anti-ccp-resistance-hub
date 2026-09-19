@@ -7,12 +7,12 @@
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
         "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
-        "latest_news": "Mar 2026: Jimmy Lai has confirmed he will NOT appeal his 20-year NSL conviction. UN News called for his release (Feb 2026). Separate fraud conviction overturned on appeal Feb 26, 2026.",
+        "latest_news": "Jun 22, 2026: passed 2,000 days in detention \u2014 five and a half years. Reporters Without Borders marked the milestone by calling on democratic leaders to press for his release on medical grounds, warning that \"each passing day heightens the risk that Jimmy Lai could die in prison.\" RSF reports he is allowed 50 minutes of daily exercise in a metal cage. Earlier: sentenced to 20 years on February 9, 2026; confirmed in March 2026 that he will not appeal; separate fraud conviction overturned February 26, 2026.",
         "health_status": "Deteriorating: hypertension, diabetes, cataracts, blocked vein in one eye. Family reports teeth rotting, nails falling out, significant weight loss. Prolonged solitary confinement. Family warns imprisonment could be \"life-threatening.\" Hong Kong prison authorities claim condition is \"stable\" (Jan 2026 medical report). Age 78.",
         "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated. UN News specifically called for his release in Feb 2026.",
-        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
+        "source_url": "https://rsf.org/en/2000-days-behind-bars-time-running-out-jimmy-lai",
         "confidence": "HIGH",
-        "last_verified": "2026-03-10",
+        "last_verified": "2026-09-19",
         "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (HRW). Fraud conviction overturned Feb 26, 2026. Confirmed won't appeal NSL sentence (NBC News, Mar 2026). Health: hypertension, diabetes, cataracts (HKFP Jan 2026), teeth/nails deterioration (CBS, Independent). EU statement (EEAS), US State Dept statement on sentencing. UN calls for release."
       },
       "error": ""
@@ -766,11 +766,11 @@
         "location": "Lai Chi Kok Reception Centre, Hong Kong",
         "sentence": "7 years 9 months for conspiracy to commit subversion",
         "latest_news": "May 2025: Lost an appeal over a prison letter conviction, but his sentence was reduced to a fine.",
-        "health_status": "Unknown",
+        "health_status": "Amnesty International named him, alongside Jimmy Lai and Chow Hang-tung, among Hong Kong detainees subjected to solitary confinement \"lasting weeks, months or even in extreme cases years\" (ASA 17/0708/2026, February 2026). Amnesty found such confinement is sometimes imposed as punishment or applied arbitrarily, and that prolonged or unjustified solitary confinement \"may amount to torture or other ill-treatment.\" No independent medical assessment is public.",
         "international_response": "The Human Rights Foundation (HRF) submitted a petition to the UN Working Group on Arbitrary Detention (UNWGAD) for Owen Chow. The UN and other NGOs have criticized the National Security Law under which he was convicted.",
-        "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/owen-chow-ka-shing",
+        "source_url": "https://www.amnesty.org/en/documents/asa17/0708/2026/en/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
+        "last_verified": "2026-09-19",
         "verification_note": "Sentenced Nov 19, 2024 to 7 years 9 months as part of Hong Kong 47 case. Second-longest sentence after Benny Tai. Verified via HRF, Hong Kong Watch, SCMP, Asia Freedom Institute."
       },
       "error": ""
