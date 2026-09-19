@@ -40,14 +40,14 @@
         "prisoner_name": "Gao Zhisheng",
         "status": "DISAPPEARED",
         "location": "Shaanxi province, China",
-        "sentence": "No official sentence",
-        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts. Last seen August 13, 2017.",
-        "health_status": "Unknown, reports of past torture",
+        "sentence": "No official sentence for the current disappearance. Previously: convicted 2006 of inciting subversion of state power, 3 years suspended with 5 years' probation; probation revoked in 2011 and the sentence served at Shaya Prison in the Uyghur region, where he was tortured.",
+        "latest_news": "Nine years disappeared as of August 13, 2026, with no change. He was seized on August 13, 2017 while attempting to escape house arrest in Shaanxi, by police believed to be from Beijing and Shaanxi \u2014 he was not simply 'last seen'. Chinese authorities have never confirmed holding him and have answered no international inquiry since. His wife Geng He, in August 2026: \"For nine years, the Chinese authorities have never provided our family with any truthful information about Gao Zhisheng's whereabouts.\" On April 4, 2026 a 13-foot sculpture, 'Gazing at the Starry Sky: Gao Zhisheng', was unveiled at Liberty Sculpture Park in Yermo, California, with Geng He involved in its design.",
+        "health_status": "Unknown \u2014 no information for nine years. He was tortured during his earlier imprisonment at Shaya Prison. Whether he is alive is not publicly established.",
         "international_response": "US, EU, and multiple NGOs have called for his release. Awarded the Shahbaz Bhatti Freedom Award.",
-        "source_url": "https://humanrightscommission.house.gov/DFP/Countries/China/Gao-Zhisheng",
+        "source_url": "https://www.nchrd.org/2025/08/china-release-lawyer-gao-zhisheng-forcibly-disappeared-since-2017/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Last seen date (Aug 13, 2017) verified via NCHRD, USCIRF, ChinaAid, Lawyers for Lawyers, Tom Lantos Commission."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19 against CHRD (circumstances of the August 13, 2017 seizure, the 2006 conviction and Shaya Prison, and that location and status remain unknown) and ChinaAid, 2026-08-11 (Geng He at the nine-year mark, and the April 4, 2026 sculpture). Status DISAPPEARED unchanged and still correct. Nothing found establishes whether he is alive, and nothing here should be read as implying it."
       },
       "error": ""
     },
