@@ -11,6 +11,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, ChevronUp, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import { readStoredValue } from '../utils/ssr';
 
 // ── Types ───────────────────────────────────────────────
 
@@ -162,7 +163,7 @@ export default function NotificationCenter() {
   // Notification preferences (stored in localStorage)
   const [prefs, setPrefs] = useState<NotificationPrefs>(() => {
     try {
-      const saved = localStorage.getItem('notification-prefs');
+      const saved = readStoredValue('notification-prefs');
       return saved ? JSON.parse(saved) : { critical: true, sanctions: true, data: true, action: true };
     } catch {
       return { critical: true, sanctions: true, data: true, action: true };

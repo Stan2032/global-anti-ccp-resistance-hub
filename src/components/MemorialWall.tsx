@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
+import { readStoredValue } from '../utils/ssr';
 
 interface Victim {
   id: number;
@@ -250,8 +251,14 @@ export default function MemorialWall() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVictim, setSelectedVictim] = useState<Victim | null>(null);
   const [candlesLit, setCandlesLit] = useState<number[]>(() => {
-    const saved = localStorage.getItem('memorial-candles');
-    return saved ? JSON.parse(saved) as number[] : [];
+    // Candles are a per-reader gesture held in localStorage; pre-rendered
+    // HTML shows none and the reader's own are restored on hydration.
+    const saved = readStoredValue('memorial-candles');
+    try {
+      return saved ? JSON.parse(saved) as number[] : [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {

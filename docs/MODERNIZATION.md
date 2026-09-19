@@ -587,3 +587,88 @@ Cloudflare Builds and once by Actions, racing each other.
 - This should be written into `CLOUDFLARE_DEPLOY.md`, which currently describes
   manual `npx wrangler deploy` as the deployment method.
 
+---
+
+## 15. Pre-rendering: implemented (WIP)
+
+Built 2026-09-19 after the §12 spike. **Static generation, not browser
+snapshotting** — Cloudflare Workers Builds preinstalls Node but no Chromium,
+so the snapshot approach measured in §12 could never have run at deploy time.
+
+### What it does
+
+`vite build` now runs `scripts/prerender.mjs`, which builds a small SSR bundle
+and renders every route from `public/sitemap.xml` to real HTML using
+`prerender()` from `react-dom/static`. No browser. **27 routes in 0.9s** —
+against ~111s for the Chromium approach.
+
+`/prisoners`, measured in a browser with JavaScript disabled:
+
+| | visible text |
+|---|---|
+| before | 2,186 chars (the noscript notice, and nothing else) |
+| after | **11,336 chars** — the prisoner database, readable |
+
+Jimmy Lai, Ilham Tohti and Gao Zhisheng all render without JavaScript.
+
+### The part that was not obvious
+
+`prerender()` alone was not enough. With a `<Suspense>` boundary around the
+routes, React put the **entire page** inside `<div hidden id="S:0">` with a
+`$RC()` script to swap it in, and emitted the `$ loading` fallback in its
+place. The content was in the HTML but invisible without JavaScript — so the
+first working version still showed readers an empty page.
+
+React can only defer a subtree if there is a boundary to defer *to*.
+`RouteBoundary` in `src/App.tsx` therefore renders its children bare when
+`import.meta.env.SSR`, leaving React nowhere to defer and forcing it to wait
+for the lazy route and inline the markup. The browser keeps the real boundary.
+
+A build-time guard fails the build if `$ loading` ever reappears in a
+pre-rendered route, because that regression is invisible to anyone testing
+with JavaScript on.
+
+### Known limitations
+
+1. **41 inner sections still defer.** Components with their own nested
+   `<Suspense>` still land in `<div hidden>` and need JavaScript. Page-level
+   content is inlined; some sub-sections are not. `/prisoners` inlines its
+   database; `/take-action` and `/education` inline less.
+2. **Hydration reports React error #418.** The server tree has no route-level
+   Suspense boundary and the client's does, so React discards the markup and
+   re-renders on the client. Everything works and nothing is lost relative to
+   before — JavaScript users were already fully client-rendering — but the
+   hydration saving is not yet realised.
+   The fix is to keep the boundary on both sides and stop the pages
+   suspending: resolve route components eagerly in the SSR build only (an
+   `import.meta.glob` page registry aliased per environment), so the boundary
+   exists in both trees but never defers. Not done yet.
+
+### Supporting changes
+
+- `src/utils/ssr.ts` — `readStoredValue`, `matchesMediaQuery`, `isBrowser`,
+  and `useBrowserValue` (a `useSyncExternalStore` wrapper for values that
+  legitimately differ between server and client).
+- Eight components read a browser global on the render path and were guarded.
+  The §12 estimate of "~5 files" was **wrong**: the scan missed
+  `useState<T>(...)` calls because the regex did not allow a generic type
+  parameter. `MemorialWall`, `NotificationCenter` and `SafetyChecklist` were
+  found only when the build crashed on them.
+- `QuickStartGuide` renders nothing during pre-render, via `useBrowserValue`,
+  so the onboarding tour is not baked into static HTML where a reader without
+  JavaScript could not dismiss it. It still appears normally for everyone else.
+- `main.tsx` now calls `hydrateRoot` when markup is present, `createRoot`
+  otherwise.
+- The `<noscript>` block was rewritten again: it previously said the site
+  needed JavaScript to show content, which pre-rendering has made untrue.
+
+### Platform question: should this move to Cloudflare Pages?
+
+**No.** Cloudflare's own guidance is Workers with static assets for new
+projects; Pages gets bug fixes while Workers gets the roadmap, and the
+official migration guide runs Pages → Workers, not the reverse. This project
+is already on the recommended platform, and `api/worker.js` would have to be
+rewritten as Pages Functions to move. The only reason to think otherwise was
+`CLOUDFLARE_DEPLOY.md` describing Pages, which was simply wrong and is now
+corrected.
+

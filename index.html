@@ -225,17 +225,14 @@
          This is a stopgap. The real fix is to pre-render content so the site
          works without JavaScript at all — see docs/MODERNIZATION.md. -->
     <noscript>
-      <div style="padding: 20px; max-width: 42rem; margin: 0 auto; background: #0a0e14; color: #e2e8f0; font-family: system-ui, sans-serif; line-height: 1.6;">
-        <h1 style="color: #4afa82;">Global Anti-CCP Resistance Hub</h1>
-        <p>This site currently needs JavaScript to display its content. We are working to change that.</p>
-        <p><strong>If you are using Tor Browser on its Safer or Safest setting, keep it that way.</strong> Do not lower your security level to read this site. Your safety matters more than our content.</p>
-        <p>You can reach the same underlying data without JavaScript through our read-only API, which returns plain JSON:</p>
-        <ul>
-          <li><a href="/api/v1/" style="color: #4afa82;">/api/v1/</a> — index of available datasets</li>
-          <li><a href="/api/v1/prisoners" style="color: #4afa82;">/api/v1/prisoners</a> — documented political prisoners</li>
-          <li><a href="/api/v1/sanctions" style="color: #4afa82;">/api/v1/sanctions</a> — sanctions tracker</li>
-        </ul>
-        <p>All records cite Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government registries), which you can read directly at their origin.</p>
+      <div style="padding: 12px 20px; background: #111820; color: #e2e8f0; border-bottom: 1px solid #1c2a35; font-family: system-ui, sans-serif; font-size: 14px; line-height: 1.6;">
+        <strong style="color: #4afa82;">Reading without JavaScript.</strong>
+        The pages below are pre-rendered, so the records, profiles and timeline are all here.
+        Search, filters and tabbed sections need JavaScript and will not respond —
+        for those, the read-only API returns plain JSON:
+        <a href="/api/v1/" style="color: #4afa82;">/api/v1/</a>.
+        <strong>If you are on Tor Browser's Safer or Safest setting, stay there.</strong>
+        Do not lower your security level to read this site.
       </div>
     </noscript>
     <div id="root"></div>

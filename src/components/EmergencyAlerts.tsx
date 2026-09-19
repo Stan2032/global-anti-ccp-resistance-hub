@@ -12,6 +12,7 @@ import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-re
 import alertsData from '../data/emergency_alerts.json';
 import EventCountdown from './EventCountdown';
 import { formatAlertForSharing, type AlertForSharing } from '../utils/dateUtils';
+import { readStoredValue } from '../utils/ssr';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -24,8 +25,14 @@ const INITIAL_DISPLAY_COUNT = 2;
  */
 const EmergencyAlerts = () => {
   const [dismissedAlerts, setDismissedAlerts] = useState(() => {
-    const saved = localStorage.getItem('dismissedAlerts');
-    return saved ? JSON.parse(saved) : [];
+    // No localStorage during the static pre-render build: show every active
+    // alert in the HTML, then hide the reader's dismissals on hydration.
+    const saved = readStoredValue('dismissedAlerts');
+    try {
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
   const [expandedAlert, setExpandedAlert] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);

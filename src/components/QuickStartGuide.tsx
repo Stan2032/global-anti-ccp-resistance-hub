@@ -8,19 +8,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
+import { isBrowser, readStoredValue, useBrowserValue } from '../utils/ssr';
 
 const QuickStartGuide = () => {
+  // The tour must never appear in pre-rendered HTML: a reader with
+  // JavaScript disabled would get an overlay they cannot dismiss. This
+  // renders nothing during the build and mounts on hydration, routed through
+  // useBrowserValue so React treats the change as intended rather than as a
+  // hydration mismatch.
+  const hydrated = useBrowserValue(() => true, false);
+
   const [isOpen, setIsOpen] = useState(() => {
-    const hasSeenGuide = localStorage.getItem('quickStartDismissed');
-    return hasSeenGuide !== 'true';
+    if (!isBrowser) return false;
+    return readStoredValue('quickStartDismissed') !== 'true';
   });
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState(() => {
-    const savedSteps = localStorage.getItem('quickStartCompleted');
-    return savedSteps ? JSON.parse(savedSteps) : [];
+    const savedSteps = readStoredValue('quickStartCompleted');
+    try {
+      return savedSteps ? JSON.parse(savedSteps) : [];
+    } catch {
+      return [];
+    }
   });
   const [dismissed, setDismissed] = useState(() => {
-    return localStorage.getItem('quickStartDismissed') === 'true';
+    if (!isBrowser) return true;
+    return readStoredValue('quickStartDismissed') === 'true';
   });
 
   const steps = [
@@ -112,6 +125,9 @@ const QuickStartGuide = () => {
       setCurrentStep(currentStep - 1);
     }
   };
+
+  // Nothing in the pre-rendered HTML — this is a client-only overlay.
+  if (!hydrated) return null;
 
   // Floating button to reopen guide
   if (dismissed && !isOpen) {

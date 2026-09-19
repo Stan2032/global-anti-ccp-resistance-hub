@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
 import { ThemeContext, THEMES, useTheme, type ThemeState } from './themeUtils';
+import { readStoredValue, matchesMediaQuery } from '../utils/ssr';
 
 interface ThemeColorConfig {
   name: string;
@@ -56,8 +57,9 @@ const themeColors: Record<string, ThemeColorConfig> = {
  */
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage first
-    const saved = localStorage.getItem('resistance-hub-theme');
+    // Check localStorage first. Absent during the static pre-render build,
+    // and throws in private browsing — readStoredValue covers both.
+    const saved = readStoredValue('resistance-hub-theme');
     if (saved && (Object.values(THEMES) as string[]).includes(saved)) {
       return saved;
     }
@@ -66,10 +68,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const [resolvedTheme, setResolvedTheme] = useState(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('resistance-hub-theme') || THEMES.DARK;
+    const savedTheme = readStoredValue('resistance-hub-theme') || THEMES.DARK;
     if (savedTheme === THEMES.SYSTEM) {
-      return mediaQuery.matches ? (THEMES.DARK as string) : (THEMES.LIGHT as string);
+      // Pre-rendered HTML defaults to dark, matching the site's design; the
+      // effect below corrects it on hydration if the reader prefers light.
+      return matchesMediaQuery('(prefers-color-scheme: dark)', true)
+        ? (THEMES.DARK as string)
+        : (THEMES.LIGHT as string);
     }
     return savedTheme;
   });

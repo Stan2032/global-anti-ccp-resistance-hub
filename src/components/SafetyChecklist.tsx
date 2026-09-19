@@ -7,6 +7,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
+import { readStoredValue } from '../utils/ssr';
 
 type Priority = 'critical' | 'high' | 'medium';
 
@@ -26,8 +27,13 @@ interface Category {
 
 const SafetyChecklist: React.FC = () => {
   const [checkedItems, setCheckedItems] = useState<string[]>(() => {
-    const saved = localStorage.getItem('safetyChecklist');
-    return saved ? (JSON.parse(saved) as string[]) : [];
+    // Checklist progress is per-reader; pre-rendered HTML starts unchecked.
+    const saved = readStoredValue('safetyChecklist');
+    try {
+      return saved ? (JSON.parse(saved) as string[]) : [];
+    } catch {
+      return [];
+    }
   });
   const [activeCategory, setActiveCategory] = useState<string>('digital');
 

@@ -270,6 +270,24 @@ const DesktopSidebar = () => {
 };
 
 // Main App Layout
+/**
+ * Suspense boundary around the routes — except during the static pre-render.
+ *
+ * React can only defer a subtree if there is a boundary to defer it to. With
+ * one present, `prerender` emits the `$ loading` fallback into the shell and
+ * puts the real page inside `<div hidden>` for a client script to swap in —
+ * which never happens for a reader with JavaScript disabled, so they get an
+ * empty page. With no boundary, React has nowhere to defer to and must wait
+ * for the lazy route to resolve, inlining the real markup.
+ *
+ * In the browser the boundary is needed as normal, so lazy chunks have
+ * something to fall back to while they load.
+ */
+function RouteBoundary({ children }: { children: React.ReactNode }) {
+  if (import.meta.env.SSR) return <>{children}</>;
+  return <Suspense fallback={<LoadingScreen />}>{children}</Suspense>;
+}
+
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -348,7 +366,7 @@ function AppLayout() {
         <div className="p-4 sm:p-6 lg:p-8">
           <Breadcrumbs />
           <RouteErrorBoundary>
-          <Suspense fallback={<LoadingScreen />}>
+          <RouteBoundary>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/intelligence" element={<IntelligenceFeeds />} />
@@ -424,7 +442,7 @@ function AppLayout() {
                 </div>
               } />
             </Routes>
-          </Suspense>
+          </RouteBoundary>
           </RouteErrorBoundary>
         </div>
         
@@ -464,22 +482,38 @@ function AppLayout() {
   );
 }
 
-function App() {
-  // Use basename for GitHub Pages deployment
-  const basename = import.meta.env.BASE_URL || '/';
-  
+/**
+ * The provider tree, with no router attached.
+ *
+ * Split out so the browser entry and the static pre-render entry can each
+ * supply their own router — BrowserRouter in the browser, StaticRouter during
+ * the build — around the same application. See scripts/prerender.mjs.
+ */
+export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <LanguageProvider>
           <AuthProvider>
-            <Router basename={basename}>
-              <AppLayout />
-            </Router>
+            {children}
           </AuthProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
+  );
+}
+
+export { AppLayout }
+
+function App() {
+  const basename = import.meta.env.BASE_URL || '/';
+
+  return (
+    <AppProviders>
+      <Router basename={basename}>
+        <AppLayout />
+      </Router>
+    </AppProviders>
   );
 }
 
