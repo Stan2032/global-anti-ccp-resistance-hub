@@ -372,16 +372,16 @@
       "input": "Yu Wensheng - Human rights lawyer, 4 years for subversion",
       "output": {
         "prisoner_name": "Yu Wensheng",
-        "status": "DETAINED",
-        "location": "Suzhou Detention Centre, Jiangsu Province",
-        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after re-arrest in April 2023 while meeting EU diplomats.",
-        "latest_news": "Oct 2024: Re-sentenced to 3 years alongside wife Xu Yan (1 year 9 months). Appeal upheld Jan 2025. Won Martin Ennals Award 2021, Franco-German HR Prize 2018.",
-        "health_status": "Deteriorating due to poor conditions and alleged torture.",
-        "international_response": "EU, US, Amnesty International, and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards.",
-        "source_url": "https://www.amnesty.org/en/latest/news/2025/01/china-jailed-human-rights-lawyers-failed-appeal-highlights-fear-of-dissent/",
+        "status": "RELEASED",
+        "location": "Beijing, China \u2014 released from Zhenjiang Prison, Jiangsu Province",
+        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after arrest on April 13, 2023 on the way to meet EU diplomats. Both served in full.",
+        "latest_news": "RELEASED April 13, 2026 from Zhenjiang Prison, Jiangsu, having served the three-year sentence in full, and reunited with his family in Beijing. His wife Xu Yan was released January 13, 2025 after 1 year 9 months. Front Line Defenders and Amnesty International both warn the family still faces surveillance, harassment and restrictions on movement and expression \u2014 release is not the end of the case. Won the Martin Ennals Award 2021 and the Franco-German Human Rights Prize 2018.",
+        "health_status": "Recovering after release. Three years of detention, with alleged torture and poor conditions, left lasting physical and psychological effects.",
+        "international_response": "EU, US, Amnesty International and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards. Since his release the same organisations have pressed China to lift the restrictions still placed on him and his family.",
+        "source_url": "https://www.frontlinedefenders.org/en/case/human-rights-lawyer-yu-wensheng-released-after-completing-sentence",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "CRITICAL: Our data had old sentence (3 years). Actually had TWO sentences: 4 years (2018-2022) and 3 years (Oct 29, 2024). Verified via Front Line Defenders, VOA, Independent, EU EEAS, Amnesty, ISHR, Straits Times."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19: status corrected DETAINED -> RELEASED. Release on April 13, 2026 from Zhenjiang Prison confirmed independently by Front Line Defenders and by Amnesty International (ASA 17/1264/2026), which also gives Xu Yan's release as January 13, 2025; corroborated by ISHR, Lawyers for Lawyers and ChinaAid. The record had shown him as detained for five months after his release."
       },
       "error": ""
     },
@@ -442,14 +442,14 @@
         "prisoner_name": "Sophia Huang Xueqin",
         "status": "DETAINED",
         "location": "Guangzhou, China",
-        "sentence": "5 years for inciting subversion of state power",
-        "latest_news": "June 2024: Sentenced to five years in prison.",
+        "sentence": "5 years for inciting subversion of state power, convicted June 2024. Detained since September 19, 2021. Carries a supplementary sentence of 4 years' deprivation of political rights, running past the prison term to 2030.",
+        "latest_news": "Her five-year term ended September 18, 2026. Release was due that day but is NOT independently confirmed as of September 19, 2026 \u2014 CPJ, Amnesty International, RSF and 57 other organisations publicly urged China to release her immediately and without conditions. Even on release she remains deprived of her political rights for four years, which bars her from practising journalism and is used to restrict speech, publication and organising long after a prison term ends.",
         "health_status": "Deteriorating, subjected to ill-treatment in detention.",
         "international_response": "The United States, Amnesty International, and other human rights organizations have condemned the sentence and called for her immediate release.",
-        "source_url": "https://www.aljazeera.com/news/2024/6/14/chinese-metoo-activist-jailed-for-five-years-for-subversion",
+        "source_url": "https://cpj.org/2026/09/cpj-partners-urge-china-to-ensure-metoo-journalist-sophia-huangs-freedom-as-jail-term-nears-end/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Sentenced June 2024 to 5 years verified via RSF, NBC News, DW, Al Jazeera."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19. Detention date, five-year term and September 18, 2026 release date via CPJ (2026-09-15); four years' deprivation of political rights via the 60-NGO statement led by RSF and Amnesty International (CHRD) and via HKFP (2026-09-18) citing Amnesty. Release NOT confirmed by any source \u2014 all describe it as due or expected, so status is left at DETAINED rather than guessed."
       },
       "error": ""
     },
@@ -748,14 +748,14 @@
         "prisoner_name": "Andy Li",
         "status": "DETAINED",
         "location": "Siu Lam Psychiatric Center, Hong Kong",
-        "sentence": "Guilty plea August 19, 2021 for conspiracy to collude with foreign forces; sentencing deferred pending role as prosecution witness in Jimmy Lai trial. Allegations of torture during mainland detention.",
-        "latest_news": "Mar 2024: Testified against Jimmy Lai, sparking international concern over torture allegations",
+        "sentence": "7 years 3 months for conspiracy to collude with foreign forces, sentenced February 9, 2026 \u2014 the same day Jimmy Lai received 20 years. Pleaded guilty August 19, 2021; sentencing was deferred for four and a half years while he served as a prosecution witness against Lai. Allegations of torture during mainland detention.",
+        "latest_news": "Sentenced February 9, 2026 to 7 years 3 months, having been held since August 2020 \u2014 first by mainland authorities after the Hong Kong 12 were intercepted at sea, then in Hong Kong. Human Rights Watch reports the court reduced his sentence and that of Wayland Chan (6 years 3 months) because they testified against Lai. He gave that testimony in March 2024 amid international concern that it had been obtained through torture; the UN Special Rapporteur on torture wrote to the Chinese authorities about it.",
         "health_status": "Held in solitary confinement at a psychiatric facility; allegations of torture",
         "international_response": "UN Special Rapporteur on torture raised concerns about coerced testimony",
-        "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/andy-li-yu-hin",
+        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Part of Hong Kong 12. Guilty plea Aug 19, 2021. Sentencing deferred. Torture allegations. Verified via HKFP, Straits Times, CFHK Foundation, Hong Kong Watch, Doughty Street."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19: the record still said sentencing was deferred, seven months after it happened. The 7 years 3 months and the February 9, 2026 date are confirmed independently by Human Rights Watch and by HKFP, both read in full \u2014 necessary because the identical figure is also Chow Hang-Tung's sentence in the unrelated Hong Kong Alliance case and keyword searches conflate the two. No release date is recorded: neither source states how his five and a half years already served are credited, so calculating one would be a guess."
       },
       "error": ""
     },

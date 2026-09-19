@@ -50,7 +50,7 @@ const TRUSTED_HR_DOMAINS = [
   'ohchr.org', 'house.gov', 'duihua.org', 'pillarcatholic.com',
   'savetibet.org', 'thestandard.com.hk', 'chinaaid.org',
   'article19.org', 'hongkongwatch.org', 'southmongolia.org',
-  'rsf.org', 'nchrd.org', 'cecc.gov',
+  'rsf.org', 'nchrd.org', 'cecc.gov', 'cpj.org',
   // Legal and professional organizations
   'ibanet.org',
   // Regional news and research

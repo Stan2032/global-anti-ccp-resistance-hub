@@ -356,7 +356,7 @@ vulnerabilities.
 
 ---
 
-## 11. Content re-verified during this audit: Joshua Wong
+## 11. Content re-verified during this audit
 
 The single most time-sensitive item was checked and updated, as a worked example
 of the process the remaining records need.
@@ -392,6 +392,68 @@ Edits were made with exact string replacement rather than a JSON round-trip.
 A structured rewrite silently re-encoded `\uXXXX` escapes across unrelated
 records — cosmetically harmless, but it would have shown dozens of
 human-rights entries as modified when they had not been re-verified.
+
+### Second pass: the records where being stale is most likely to be wrong
+
+Rather than work down the list alphabetically, the remaining records were
+triaged by how time-sensitive they are — anyone with an active trial, an
+approaching sentence, or a term about to expire. **Three of the first three
+checked were materially wrong.**
+
+**Yu Wensheng — released five months ago; the site still said DETAINED.**
+He walked out of Zhenjiang Prison in Jiangsu on **13 April 2026** having
+served his three-year sentence in full. His wife Xu Yan was released on
+13 January 2025. The site was asking people to campaign for the release of a
+man who was already out — which wastes the advocacy it exists to direct and
+costs credibility if a reader notices. Both
+[Front Line Defenders](https://www.frontlinedefenders.org/en/case/human-rights-lawyer-yu-wensheng-released-after-completing-sentence)
+and [Amnesty International](https://www.amnesty.org/en/documents/asa17/1264/2026/en/)
+(ASA 17/1264/2026) confirm the date independently. Both also stress that
+release is not the end of it: the family still faces surveillance,
+harassment and restrictions on movement and expression, and the record now
+says so.
+
+**Andy Li — sentenced seven months ago; the record still said "sentencing
+deferred".** He received **7 years 3 months on 9 February 2026**, the same
+day Jimmy Lai received 20 years, his sentence reduced because he testified
+against Lai. Confirmed by
+[Human Rights Watch](https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years)
+and [HKFP](https://hongkongfp.com/2026/02/09/breaking-jimmy-lai-jailed-for-20-years-in-hong-kong-after-nat-security-conviction/).
+
+> **A trap worth recording.** "7 years 3 months" is *also* Chow Hang-Tung's
+> sentence in the entirely separate Hong Kong Alliance case, and a keyword
+> search returns both cases interleaved. Both sources above were read in full
+> to confirm the figure belonged to Andy Li. A search-result summary would
+> have produced the right number attached to the wrong reasoning.
+
+**Sophia Huang Xueqin — status deliberately left unchanged.** Her five-year
+term ended on **18 September 2026**, the day before this check. Every source
+— [CPJ](https://cpj.org/2026/09/cpj-partners-urge-china-to-ensure-metoo-journalist-sophia-huangs-freedom-as-jail-term-nears-end/),
+Amnesty, RSF, CHRD, HKFP — describes the release as *due* or *expected*, and
+not one confirms it happened; 60 organisations had publicly urged China to
+release her immediately and without conditions. Marking her RELEASED would
+have fabricated precisely the fact they were worried would not occur, so the
+status stays DETAINED, with the expiry and the doubt stated in the record.
+She also carries a supplementary **four years' deprivation of political
+rights**, to 2030, which bars her from practising journalism.
+
+**A systematic check, with a clean result.** Every `DETAINED` record was
+scanned for a sentence whose term should already have expired. It surfaced
+only two names, both already handled: Huang Xueqin above, and Zhang Zhan,
+who is correctly detained on a *second* four-year sentence from September
+2025. So there is no third Yu Wensheng hiding in the data.
+
+**Two tests changed, and why that is not the forbidden thing.**
+`data-consistency.test.ts` asserted `Yu Wensheng … status === 'DETAINED'`.
+That assertion was true when written and became false on 13 April 2026 — the
+test encoded a fact about the world, not about the code, and the fact moved.
+It now asserts `RELEASED` and pins the release date. Separately, `cpj.org`
+was missing from the Tier 1–2 source allowlist in `source-url-quality.test.ts`
+and was added; the Committee to Protect Journalists plainly belongs there.
+
+**Neither is the forbidden move.** No `last_verified` date was edited to
+silence a failure. The freshness suite still fails, and should: **10 of 64
+records are now current, up from 7.**
 
 ---
 

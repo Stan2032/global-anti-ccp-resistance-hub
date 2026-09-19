@@ -170,14 +170,30 @@ when it is most visible.
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 
-63 of 64 prisoner records, 25 legal cases, sanctions metadata and 8
-statistics are ~195 days past verification. `npm run test:content` lists
-exactly what is overdue.
+**54 of 64** prisoner records, 25 legal cases, sanctions metadata and 8
+statistics are past verification. `npm run test:content` lists exactly what
+is overdue.
 
-Joshua Wong was re-verified in Session 281 as a worked example — see
-`docs/MODERNIZATION.md` §11 for the method: two independent Tier 1–2 sources
+Triage by time-sensitivity, not alphabetically. Of the first three records
+picked that way, **three were materially wrong**: Yu Wensheng had been free
+for five months while the site said DETAINED, Andy Li had been sentenced
+seven months earlier while the record said sentencing was deferred, and
+Sophia Huang Xueqin's term had just expired. A scan of every DETAINED record
+for an already-expired sentence found no others, so the remaining errors will
+be of a different shape — sentences served but not recorded, appeals, deaths
+in custody, health changes.
+
+Ten records have been re-verified so far — see `docs/MODERNIZATION.md` §11
+for the method and the worked examples: two independent Tier 1–2 sources
 minimum, a third where available, exact string replacement, and any
 discrepancy left unresolved rather than guessed.
+
+Two cautions from that pass. A status must never be advanced on an
+*expected* event: Huang Xueqin's release was reported as due by five
+organisations and confirmed by none, so her status was left alone. And
+identical sentence lengths recur across unrelated cases — "7 years 3 months"
+belongs to both Andy Li and Chow Hang-Tung in different trials — so read the
+source, never a search summary.
 
 **A content-freshness failure is never fixed by editing a `last_verified`
 date.** That fabricates provenance, which this project forbids.
