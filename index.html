@@ -213,11 +213,29 @@
     <link rel="dns-prefetch" href="https://api.rss2json.com" />
   </head>
   <body>
+    <!-- This message must never tell a reader to weaken their browser's
+         security posture. It previously advised using Tor Browser "with
+         JavaScript enabled", while the site's own Security Center tells
+         readers in China to use Tor exclusively and consider Tails. Tor's
+         Safest level disables JavaScript because JavaScript is the main
+         deanonymisation and fingerprinting vector, so that advice asked the
+         most at-risk readers to give up their strongest protection in order
+         to read us.
+
+         This is a stopgap. The real fix is to pre-render content so the site
+         works without JavaScript at all — see docs/MODERNIZATION.md. -->
     <noscript>
-      <div style="padding: 20px; text-align: center; background: #1e293b; color: white;">
-        <h1>Global Anti-CCP Resistance Hub</h1>
-        <p>This application requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
-        <p>For security, we recommend using <a href="https://www.torproject.org/" style="color: #60a5fa;">Tor Browser</a> with JavaScript enabled.</p>
+      <div style="padding: 20px; max-width: 42rem; margin: 0 auto; background: #0a0e14; color: #e2e8f0; font-family: system-ui, sans-serif; line-height: 1.6;">
+        <h1 style="color: #4afa82;">Global Anti-CCP Resistance Hub</h1>
+        <p>This site currently needs JavaScript to display its content. We are working to change that.</p>
+        <p><strong>If you are using Tor Browser on its Safer or Safest setting, keep it that way.</strong> Do not lower your security level to read this site. Your safety matters more than our content.</p>
+        <p>You can reach the same underlying data without JavaScript through our read-only API, which returns plain JSON:</p>
+        <ul>
+          <li><a href="/api/v1/" style="color: #4afa82;">/api/v1/</a> — index of available datasets</li>
+          <li><a href="/api/v1/prisoners" style="color: #4afa82;">/api/v1/prisoners</a> — documented political prisoners</li>
+          <li><a href="/api/v1/sanctions" style="color: #4afa82;">/api/v1/sanctions</a> — sanctions tracker</li>
+        </ul>
+        <p>All records cite Tier 1-2 sources (BBC, Reuters, HRW, Amnesty, government registries), which you can read directly at their origin.</p>
       </div>
     </noscript>
     <div id="root"></div>
