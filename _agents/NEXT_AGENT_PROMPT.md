@@ -1,5 +1,33 @@
 # Next Agent Prompt — Global Anti-CCP Resistance Hub
 
+> ## ⚠️ READ FIRST — Session 281 (2026-09-19) changed things
+>
+> A six-month modernization sweep ran on 2026-09-19. **`docs/MODERNIZATION.md`
+> is the authoritative current state** — much of the detail further down this
+> file predates it.
+>
+> Corrections to claims below:
+> - **"0 npm audit vulnerabilities"** was true in March, then decayed to 18
+>   (1 critical, 12 high). It is 0 again as of Session 281.
+> - **"3714 tests across 201 files"** is now **3691 across 199** for
+>   `npm test`, plus 23 content-freshness tests run separately.
+> - **"17 profile pages"** — there are **16**.
+> - The quick-start path below (`/home/runner/work/...`) is environment-specific.
+>   Ignore it and use the repository root.
+>
+> **Two test commands now, and they mean different things:**
+> - `npm test` — code correctness. Gates PRs. Currently **green**.
+> - `npm run test:content` — is the data still verified? Currently **failing on
+>   purpose**: content is ~195 days stale.
+>
+> **Never fix a `test:content` failure by editing a `last_verified` date.** That
+> fabricates provenance, which this project forbids. Re-check the entry against
+> a Tier 1-2 source instead.
+>
+> Open items needing the human owner are listed in `docs/MODERNIZATION.md` §9 —
+> most urgently, the Joshua Wong foreign-collusion hearing of **2026-09-05** has
+> passed and its outcome is not yet recorded.
+
 **Copy-paste this entire prompt when starting a new agent session.**
 
 ---

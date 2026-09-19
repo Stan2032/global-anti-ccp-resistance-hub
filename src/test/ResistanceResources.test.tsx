@@ -101,10 +101,13 @@ describe('ResistanceResources', () => {
 
   // --- Lazy Component Sections ---
 
-  it('renders loading states for lazy components', () => {
+  it('resolves its lazy component sections', async () => {
     renderPage();
-    const loaders = screen.getAllByText('$ loading');
-    expect(loaders.length).toBeGreaterThanOrEqual(2);
+    // Assert the lazy sections actually render, not the transient Suspense
+    // fallback — React does not guarantee the fallback is observable when a
+    // chunk resolves immediately.
+    expect(await screen.findByText('DataExport')).toBeTruthy();
+    expect(await screen.findByText('ForcedLaborTracker')).toBeTruthy();
   });
 
   // --- No framer-motion ---

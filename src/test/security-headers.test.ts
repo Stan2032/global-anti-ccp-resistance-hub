@@ -105,12 +105,14 @@ describe('Security Headers', () => {
   });
 
   describe('index.html security', () => {
-    it('has X-Content-Type-Options meta tag', () => {
-      expect(indexContent).toContain('X-Content-Type-Options');
-    });
-
-    it('has X-Frame-Options meta tag', () => {
-      expect(indexContent).toContain('X-Frame-Options');
+    // X-Frame-Options and X-Content-Type-Options are only honoured as real
+    // HTTP headers. Asserting on <meta> equivalents enshrined a no-op — and
+    // the X-Frame-Options meta said SAMEORIGIN while the served header says
+    // DENY. Both are covered by the _headers assertions above; here we just
+    // make sure the misleading meta tags do not come back.
+    it('does not re-add header-only directives as meta tags', () => {
+      expect(indexContent).not.toMatch(/http-equiv=["']X-Frame-Options["']/i);
+      expect(indexContent).not.toMatch(/http-equiv=["']X-Content-Type-Options["']/i);
     });
 
     it('has referrer policy meta tag', () => {

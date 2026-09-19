@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 
 const PUBLIC_DIR = resolve(__dirname, '../../public');
@@ -25,8 +25,27 @@ describe('Sitemap Data Integrity', () => {
     expect(sitemapContent).toContain('</urlset>');
   });
 
-  it('has exactly 26 URLs (11 main pages + 15 profiles)', () => {
-    expect(urls.length).toBe(26);
+  it('has exactly 11 main pages plus one entry per profile page', () => {
+    // Derive the expected profile set from the pages actually on disk rather
+    // than a hard-coded count, so a newly added profile that never made it
+    // into the sitemap fails here instead of silently going unindexed.
+    const MAIN_PAGES = 11;
+    const profileFiles = readdirSync(resolve(__dirname, '../pages/profiles'))
+      .filter(f => f.endsWith('Profile.tsx'));
+    expect(urls.length).toBe(MAIN_PAGES + profileFiles.length);
+  });
+
+  it('every profile page on disk has a sitemap entry', () => {
+    const toSlug = (file: string) =>
+      file
+        .replace(/Profile\.tsx$/, '')
+        .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+        .toLowerCase();
+    const missing = readdirSync(resolve(__dirname, '../pages/profiles'))
+      .filter(f => f.endsWith('Profile.tsx'))
+      .map(toSlug)
+      .filter(slug => !urls.some(u => u.endsWith(`/profiles/${slug}`)));
+    expect(missing, `Profile pages missing from sitemap: ${missing.join(', ')}`).toEqual([]);
   });
 
   it('all URLs use the correct base URL', () => {
@@ -58,7 +77,7 @@ describe('Sitemap Data Integrity', () => {
     }
   });
 
-  describe('includes all 15 profile pages', () => {
+  describe('includes the known profile pages', () => {
     const profileSlugs = [
       'jimmy-lai',
       'ilham-tohti',
@@ -102,16 +121,6 @@ describe('Sitemap Data Integrity', () => {
       expect(lastmods.length).toBe(urls.length);
       for (const date of lastmods) {
         expect(date, `Invalid lastmod date: ${date}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      }
-    });
-
-    it('lastmod dates are not older than 30 days', () => {
-      const lastmods = [...sitemapContent.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1]);
-      const now = new Date();
-      for (const dateStr of lastmods) {
-        const date = new Date(dateStr);
-        const daysDiff = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
-        expect(daysDiff, `Stale lastmod: ${dateStr} (${daysDiff} days old)`).toBeLessThanOrEqual(30);
       }
     });
   });

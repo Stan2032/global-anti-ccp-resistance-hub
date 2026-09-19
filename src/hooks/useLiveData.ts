@@ -93,6 +93,10 @@ export function useLiveFeeds(refreshInterval: number = 300000): LiveFeedsResult 
   }, []);
 
   useEffect(() => {
+    // Async data fetch on mount, not derived state. `refresh` sets loading/error
+    // flags synchronously before its first await, which trips react-hooks'
+    // set-state-in-effect rule; the rule does not model async fetch wrappers.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     refresh();
 
     if (refreshInterval > 0) {

@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "31.0",
-    "date": "2026-03-14T10:29:00Z",
+    "version": "32.0",
+    "date": "2026-09-19T11:20:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
-    "repository_path": "/home/runner/work/global-anti-ccp-resistance-hub/global-anti-ccp-resistance-hub",
-    "sessions_completed": 280,
+    "repository_path": "(varies by environment — do not hardcode)",
+    "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v30.0, Session 279)",
+    "supersedes": "AGENT_HANDOFF.json (v31.0, Session 280)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,17 +19,17 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3714,
-    "test_files": 201,
+    "frontend_tests": 3691,
+    "test_files": 199,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
-    "profile_pages_built": 17,
+    "profile_pages_built": 16,
     "languages_supported": 8,
     "data_entries_sourced": 166,
     "sanctions_entries": 46,
     "sanctioned_officials": 34,
     "lazy_loaded_components": 81,
-    "sessions_completed": 280,
+    "sessions_completed": 281,
     "eslint_status": "0_errors_0_warnings",
     "npm_vulnerabilities": 0,
     "codeql_alerts": 0,
@@ -78,7 +78,12 @@
       "type_check_command": "npx tsc --noEmit --project tsconfig.json",
       "tsc_errors": 0,
       "notes": "100% TypeScript codebase achieved. All .js/.jsx files converted to .ts/.tsx. Zero type errors."
-    }
+    },
+    "content_freshness_tests": 23,
+    "content_freshness_status": "FAILING_BY_DESIGN_content_overdue_for_reverification",
+    "npm_vulnerabilities_note": "0 after the Session 281 upgrade; was 18 (1 critical, 12 high) on arrival",
+    "backend_npm_vulnerabilities": 26,
+    "backend_note": "backend/ is undeployed dead code with its own unaudited lockfile — see docs/MODERNIZATION.md"
   },
   "session_131_changes": {
     "summary": "Test coverage for TaiwanDefenseStatus (4-tab defense analysis with military balance, allied support, scenarios), ChinaTechThreats (4-tab surveillance/infrastructure/data/response tracker), and CompanyTracker (filterable company database with JSON data, search, categories, expand/collapse). All three are complex data-heavy components.",
@@ -746,5 +751,41 @@
       "tsc_errors": 0,
       "eslint_errors": 0
     }
+  },
+  "session_281_changes": {
+    "date": "2026-09-19",
+    "summary": "Six-month modernization sweep. Full audit in docs/MODERNIZATION.md.",
+    "security": [
+      "npm vulnerabilities 18 (1 critical, 12 high) -> 0",
+      "react-router-dom 7.10.0 -> 7.18.4 (HIGH severity, ships to users)",
+      "vitest -> 4.1.11 (CRITICAL), vite -> 7.3.6 (HIGH), postcss -> 8.5.28 (HIGH)",
+      "lockfile regenerated under npm 12 — npm 10.9.7 arborist bug blocked audit fix",
+      "@types/node declared explicitly; it was only ever present via accidental hoisting",
+      "removed two no-op <meta http-equiv> security tags from index.html"
+    ],
+    "integrity_fix": "LiveStatistics rendered new Date() as \"Last updated\", telling every visitor the figures were verified today when they were 195 days old. It now derives the date from the data lastVerified and shows a stale-data caution. Regression test added.",
+    "ci": [
+      "ci.yml added — lint, typecheck, test, build, npm audit. None of this ran before.",
+      "content-freshness.yml added — weekly content staleness alarm",
+      "deploy.yml replaced — GitHub Pages -> Cloudflare Workers",
+      ".nvmrc pins Node 22"
+    ],
+    "test_split": "npm test = code correctness, gates PRs, currently green. npm run test:content = content freshness, weekly, currently failing by design. Guards were NOT weakened and no thresholds were moved.",
+    "fixes": [
+      "Chow Hang-Tung profile was missing from sitemap.xml — added; the test now derives expected profiles from disk",
+      "3 lazy-loading tests fixed for the React 19.3 Suspense timing change",
+      "EmergencyAlerts tests moved onto a fixture so they stop decaying as alerts expire",
+      "eslint caughtErrorsIgnorePattern added (ESLint 9+ defaults caughtErrors to \"all\")",
+      "theme-color #0f172a -> #0a0e14 to match the manifest"
+    ],
+    "owner_decisions_needed": [
+      "Re-verify ~195-day-old content (64 prisoners, 25 legal cases, sanctions, statistics). NEVER just bump last_verified dates.",
+      "Joshua Wong foreign-collusion hearing was 2026-09-05 — outcome not recorded; the alert still describes it as upcoming",
+      "github.io mirror is LIVE with 1 of 9 security headers — retire it or re-host where headers can be served",
+      "No Supabase project exists — all 4 forms are inert despite the code being complete",
+      "backend/ is dead code carrying 26 unaudited vulnerabilities — delete or archive",
+      "15 stale Dependabot PRs: 9 superseded by this sweep, 6 target backend/ only"
+    ],
+    "deferred_major_upgrades": "Tailwind 4, ESLint 10 (9.x is end-of-support), Vitest 5, Vite 8, TypeScript 7, lucide-react 1, jsdom 30. Suggested order and risk notes in docs/MODERNIZATION.md section 6."
   }
 }

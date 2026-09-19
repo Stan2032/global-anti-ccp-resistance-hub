@@ -131,11 +131,13 @@ describe('EducationalResources', () => {
     expect(screen.getByText('Digital Security Handbook')).toBeTruthy();
   });
 
-  it('shows history content merged into Learn tab', () => {
+  it('shows history content merged into Learn tab', async () => {
     renderEducation();
-    // History subsection headers should be visible in Learn tab
-    const loadingIndicators = screen.getAllByText('$ loading');
-    expect(loadingIndicators.length).toBeGreaterThanOrEqual(1);
+    // HistoricalDocuments is lazy-loaded into the Learn tab; assert it
+    // actually renders rather than the transient Suspense fallback, which
+    // React does not guarantee is observable when the chunk resolves
+    // immediately.
+    expect(await screen.findByText('HistoricalDocuments')).toBeTruthy();
   });
 
   // --- Media Tab ---

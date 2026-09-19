@@ -101,7 +101,7 @@ src/
 ├── contexts/           # ThemeContext, LanguageContext, SocketContext (stub)
 ├── locales/            # 8 locale JSON files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 ├── utils/              # dateUtils, sourceLinks, logger, encryption
-└── test/               # 192 Vitest test files, 3,602 tests
+└── test/               # 199 Vitest test files, 3,691 tests (+ 2 content-freshness files)
 ```
 
 ### Data Flow
@@ -180,9 +180,22 @@ npm run preview         # Preview production build locally
 
 ### Testing
 ```bash
-npm test                # Run all 3,602 tests across 192 files
+npm test                # Code correctness — 3,691 tests across 199 files. Must be green.
 npm run test:watch      # Watch mode for development
+npm run typecheck       # tsc --noEmit
+npm run verify          # lint + typecheck + test + build (what CI runs)
+
+npm run test:content    # Content freshness — is the data still verified?
 ```
+
+`npm test` and `npm run test:content` answer different questions. The first asks
+whether the code is correct; it gates every PR. The second asks whether the
+human-rights data has been re-checked against its sources recently enough to
+trust, and runs weekly in CI.
+
+A `test:content` failure is **never** fixed by editing a `last_verified` date —
+that fabricates provenance. It is fixed by re-verifying the entry against a
+Tier 1-2 source. See `docs/MODERNIZATION.md`.
 
 ### Deploy
 ```bash

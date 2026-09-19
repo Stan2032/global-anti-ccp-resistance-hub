@@ -28,5 +28,16 @@ export default defineConfig({
     globals: true,
     setupFiles: './src/test/setup.ts',
     include: ['src/**/*.test.{js,jsx,ts,tsx}'],
+    // Content-freshness specs assert that human-rights data has been
+    // re-verified against its sources recently. They fail with the passage of
+    // time rather than from a code change, so they run separately via
+    // `npm run test:content` (see vitest.content.config.js) and are excluded
+    // here to keep this suite a true code-correctness gate.
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      'src/test/data-freshness.test.ts',
+      'src/test/data-staleness-guard.test.ts',
+    ],
   }
 })

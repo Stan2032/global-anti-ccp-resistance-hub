@@ -37,8 +37,8 @@
     <link rel="canonical" href="https://global-anti-ccp-resistance-hub.stane203.workers.dev/" />
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="msapplication-TileColor" content="#0f172a" />
+    <meta name="theme-color" content="#0a0e14" />
+    <meta name="msapplication-TileColor" content="#0a0e14" />
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -48,9 +48,12 @@
     <meta name="apple-mobile-web-app-title" content="Resistance Hub" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
     
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <!-- Security Headers.
+         X-Frame-Options and X-Content-Type-Options are header-only directives:
+         browsers ignore them in <meta>, so they are set in public/_headers and
+         served by Cloudflare. The stale SAMEORIGIN meta tag that used to sit
+         here also contradicted the real header, which is DENY.
+         referrer is honoured as a meta tag, so it stays. -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     
     <!-- Structured Data -->

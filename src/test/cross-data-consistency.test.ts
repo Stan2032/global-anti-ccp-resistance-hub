@@ -128,23 +128,6 @@ describe('Cross-JSON Data Consistency', () => {
     }
   });
 
-  // --- Active alerts reference valid data ---
-
-  it('active critical alerts have lastVerified within 60 days', () => {
-    const now = new Date();
-
-    for (const alert of alerts.filter((a: AlertEntry) => a.active && a.type === 'critical')) {
-      if (alert.lastVerified) {
-        const verifiedDate = new Date(alert.lastVerified);
-        const daysSince = (now.getTime() - verifiedDate.getTime()) / (24 * 60 * 60 * 1000);
-        expect(
-          daysSince,
-          `Alert "${alert.id}" lastVerified is ${Math.round(daysSince)} days old (max 60)`
-        ).toBeLessThanOrEqual(60);
-      }
-    }
-  });
-
   // --- Sanctions tracker has matching officials ---
 
   it('sanctioned officials have entries that appear in sanctions tracker targets', () => {

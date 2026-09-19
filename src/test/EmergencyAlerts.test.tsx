@@ -1,6 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
+
+// Pin the component to a fixture rather than the live alert feed. The real
+// emergency_alerts.json is intentionally transient — the component filters out
+// entries past their `expires` date — so asserting against it made these
+// behavioural tests fail purely with the passage of time. The fixture mirrors
+// the real records with a far-future expiry. Content freshness of the live
+// feed is covered separately by the content-freshness suite.
+vi.mock('../data/emergency_alerts.json', async () => ({
+  default: (await import('./fixtures/emergency_alerts.fixture.json')).default,
+}));
+
 import EmergencyAlerts from '../components/EmergencyAlerts';
 
 // Mock localStorage
