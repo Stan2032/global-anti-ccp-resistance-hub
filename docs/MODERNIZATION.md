@@ -672,3 +672,61 @@ rewritten as Pages Functions to move. The only reason to think otherwise was
 `CLOUDFLARE_DEPLOY.md` describing Pages, which was simply wrong and is now
 corrected.
 
+---
+
+## 16. Attempted and reverted: SSR-only eager page registry
+
+Tried 2026-09-19, measured, reverted. Recorded so nobody spends the time again.
+
+§15 said the fix for the React #418 hydration mismatch was to keep the
+Suspense boundary on both sides and stop the pages suspending, by resolving
+route components eagerly in the SSR build only. That was built: a
+`src/registry.ts` (lazy, browser) and `src/registry.server.ts` (eager,
+pre-render), selected by an `@app-registry` alias pointing at one or the
+other per build, with `RouteBoundary` restored to always rendering
+`<Suspense>`.
+
+**It fixed the mismatch and broke the thing that matters.**
+
+| | before | after the registry |
+|---|---|---|
+| React #418 | present | **gone** |
+| `<div hidden>` blocks | 41 | **67** |
+| routes emitting `$ loading` | 0 | **all 27** |
+| `/prisoners` text without JS | 11,336 chars | **1,906** — shell only |
+
+### Why
+
+Making the *pages* eager is not enough. Around 80 sub-components inside the
+pages are still `React.lazy` with their own Suspense boundaries. Once a
+route-level boundary exists again, the first inner component that suspends
+defers **the entire route subtree** to that boundary — pages included. The
+eager page registry removed one source of suspension while leaving eighty.
+
+With no route boundary, React has nowhere to defer to and must wait, which is
+exactly why the shipped version inlines the content.
+
+### What would actually work
+
+Every lazy component reachable during a render must be eager in the SSR
+build — the ~80 sub-component `lazy()` calls inside page files as well as the
+route components. Then nothing suspends, the boundary can return to both
+trees, hydration matches, and all 41 currently-deferred sections inline too.
+
+That is a mechanical sweep of roughly twenty page files, moving their
+`lazy()` declarations into the shared registry. It is the right end state.
+It was not attempted here because a half-done version is worse than none, as
+the table above shows.
+
+### The trade-off as it stands
+
+Shipped: readers without JavaScript get the content; readers with JavaScript
+get a hydration mismatch and a client re-render. Since they were fully
+client-rendering before this work anyway, nobody is worse off than the
+starting point and the at-risk readers are much better off. That is the right
+side of the trade to be on while the sweep is outstanding.
+
+**Measure before believing.** Both the #418 fix and this revert were decided
+by numbers from a real browser with JavaScript disabled, not by reasoning
+about React's behaviour. The reasoning was wrong twice.
+

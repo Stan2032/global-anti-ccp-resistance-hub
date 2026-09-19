@@ -1,32 +1,47 @@
 # Next Agent Prompt — Global Anti-CCP Resistance Hub
 
-> ## ⚠️ READ FIRST — Session 281 (2026-09-19) changed things
+> ## ⚠️ READ FIRST — Session 281 (2026-09-19)
 >
 > A six-month modernization sweep ran on 2026-09-19. **`docs/MODERNIZATION.md`
 > is the authoritative current state** — much of the detail further down this
-> file predates it.
+> file predates it. Start with these four:
 >
-> Corrections to claims below:
-> - **"0 npm audit vulnerabilities"** was true in March, then decayed to 18
->   (1 critical, 12 high). It is 0 again as of Session 281.
-> - **"3714 tests across 201 files"** is now **3691 across 199** for
->   `npm test`, plus 23 content-freshness tests run separately.
-> - **"17 profile pages"** — there are **16**.
-> - The quick-start path below (`/home/runner/work/...`) is environment-specific.
->   Ignore it and use the repository root.
+> | File | What it holds |
+> |---|---|
+> | `docs/MODERNIZATION.md` | The audit. 16 sections, including dead ends. |
+> | `_agents/PARKED_WORK.md` | P1-P7: scoped work not yet done. **Pick from here.** |
+> | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q18, all open and awaiting the owner. |
+> | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
-> **Two test commands now, and they mean different things:**
-> - `npm test` — code correctness. Gates PRs. Currently **green**.
-> - `npm run test:content` — is the data still verified? Currently **failing on
->   purpose**: content is ~195 days stale.
+> **Corrections to claims below this banner:**
+> - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
+>   12 high), and is 0 again as of Session 281.
+> - "3714 tests across 201 files" is now **3,693 across 199** for `npm test`,
+>   plus 23 content-freshness tests run separately.
+> - "17 profile pages" — there are **16**.
+> - The quick-start path (`/home/runner/work/...`) is environment-specific.
 >
-> **Never fix a `test:content` failure by editing a `last_verified` date.** That
-> fabricates provenance, which this project forbids. Re-check the entry against
-> a Tier 1-2 source instead.
+> **Two test commands, different questions:**
+> - `npm test` — code correctness. Gates PRs. **Green.**
+> - `npm run test:content` — is the data still verified? **Failing on purpose**:
+>   content is ~195 days stale.
 >
-> Open items needing the human owner are listed in `docs/MODERNIZATION.md` §9 —
-> most urgently, the Joshua Wong foreign-collusion hearing of **2026-09-05** has
-> passed and its outcome is not yet recorded.
+> **Never fix a `test:content` failure by editing a `last_verified` date.**
+> That fabricates provenance. Re-check against a Tier 1-2 source instead.
+>
+> **The site is pre-rendered now.** Every route ships as static HTML readable
+> without JavaScript — the configuration this site tells readers in China to
+> use. If you touch routing, lazy loading or Suspense, **verify in a real
+> browser with JavaScript disabled.** Reasoning about React's behaviour got it
+> wrong twice in Session 281; measurement caught both.
+>
+> **Deployment is automatic** via Cloudflare Workers Builds (Git integration).
+> There is no deploy workflow and none is wanted. CI and deploy are separate
+> systems, so red CI does not block a deploy.
+>
+> **Suggested next:** P1 in `PARKED_WORK.md` (finish pre-rendering — do it
+> whole, a half version is worse than none), then P7 (content re-verification)
+> or P4 (ESLint 10, since 9.x is end of support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 
