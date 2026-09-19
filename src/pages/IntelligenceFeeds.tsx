@@ -9,6 +9,7 @@
  */
 import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { useLiveFeeds } from '../hooks/useLiveData';
+import { DisclosureSection } from '../components/DisclosureSection';
 
 const HongKongStatus = lazy(() => import('../components/HongKongStatus'));
 const TibetStatus = lazy(() => import('../components/TibetStatus'));
@@ -41,7 +42,6 @@ const IntelligenceFeeds = () => {
   const { feeds, loading, error, lastUpdated, refresh, sources, loadedSources } = useLiveFeeds(300000);
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('feeds');
   const [showAllFeeds, setShowAllFeeds] = useState(false);
   const [sortBy, setSortBy] = useState('relevancy');
   const FEED_DISPLAY_COUNT = 5;
@@ -136,28 +136,8 @@ const IntelligenceFeeds = () => {
         </div>
       </div>
 
-      {/* Tab Bar */}
-      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
-        {[
-          { id: 'feeds', label: 'Live Feeds' },
-          { id: 'regional', label: 'Regional Status' },
-          { id: 'operations', label: 'CCP Operations' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
-              activeTab === tab.id
-                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
-                : 'text-slate-400 hover:text-slate-300'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
 
-      {activeTab === 'feeds' && (<>
+      <DisclosureSection title="Live Feeds" description="Live headlines from nine verified sources. Needs JavaScript." defaultOpen>
       {/* Refresh Button */}
       <div className="flex justify-end">
         <button
@@ -397,9 +377,9 @@ const IntelligenceFeeds = () => {
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
         </p>
       </div>
-      </>)}
+      </DisclosureSection>
 
-      {activeTab === 'regional' && (
+      <DisclosureSection title="Regional Status" description="Hong Kong, Xinjiang, Tibet and Taiwan, at a glance.">
         <div className="space-y-8">
           <div>
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── hong_kong_status ──</h2>
@@ -418,9 +398,9 @@ const IntelligenceFeeds = () => {
             <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
-      {activeTab === 'operations' && (
+      <DisclosureSection title="CCP Operations" description="Documented CCP influence and repression operations.">
         <div className="space-y-8">
           <div>
             <Suspense fallback={<SectionLoader />}><InfluenceNetwork /></Suspense>
@@ -486,7 +466,7 @@ const IntelligenceFeeds = () => {
             <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
     </div>
   );
 };
