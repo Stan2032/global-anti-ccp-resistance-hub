@@ -764,5 +764,25 @@
     "source_urls": {
       "Human Rights Watch": "https://www.hrw.org/news/2026/03/09/dont-forget-tibet-on-anniversary-of-1959-lhasa-uprising"
     }
+  },
+  {
+    "id": 41,
+    "date": "2026-09-11",
+    "title": "Tiananmen Vigil Organisers Jailed for Subversion",
+    "category": "hongkong",
+    "significance": "critical",
+    "description": "Hong Kong's High Court jails three former Hong Kong Alliance leaders for inciting subversion over the annual June 4th vigils. Chow Hang-tung receives 7 years 3 months, Lee Cheuk-yan 7 years, Albert Ho 5 years 2 months.",
+    "details": "The three former leaders of the Hong Kong Alliance in Support of Patriotic Democratic Movements of China were convicted on 21 August 2026 of inciting subversion of state power under the National Security Law, and sentenced at the High Court on 11 September 2026.\n\nSENTENCES:\n• Chow Hang-tung — 7 years 3 months. A human rights lawyer, she pleaded not guilty and represented herself.\n• Lee Cheuk-yan — 7 years. Veteran trade unionist, pleaded not guilty.\n• Albert Ho Chun-yan — 5 years 2 months, having pleaded guilty.\n• The Hong Kong Alliance itself — fined HK$1.5 million.\n\nChow and Lee had been held in pre-trial detention since September 2021, repeatedly denied bail, before any conviction.\n\nWHAT THEY WERE CONVICTED OF: organising the annual candlelit vigil commemorating the 1989 Tiananmen crackdown, held in Victoria Park every year from 1990 until it was banned in 2020.\n\nAmnesty International designates Chow and Lee prisoners of conscience. Deputy Regional Director Sarah Brooks called the sentencing \"a triple tragedy: for the activists being unjustly punished; the survivors and victims of the Tiananmen crackdown itself; and the generations of Hongkongers denied the space to discuss one of the most consequential events in modern Chinese history.\" Amnesty says their right to appeal must be protected.",
+    "impact": "Establishes that commemorating a historical event is prosecutable as subversion in Hong Kong. The vigils ran publicly for thirty years; organising them now carries multi-year prison terms. Criminalises collective memory itself rather than any call to action.",
+    "sources": [
+      "Amnesty International",
+      "Hong Kong Free Press",
+      "France 24"
+    ],
+    "source_urls": [
+      "https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/",
+      "https://hongkongfp.com/2026/09/11/hong-kong-tiananmen-vigil-activists-sentenced-up-to-7-years-3-months-for-inciting-subversion/",
+      "https://www.france24.com/en/asia-pacific/20260911-hong-kong-court-sentences-tiananmen-vigil-activists-to-between-5-and-7-years-in-jail"
+    ]
   }
 ]
