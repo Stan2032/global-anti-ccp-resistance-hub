@@ -805,7 +805,7 @@
       "noscript rewritten twice: it told at-risk readers to enable JS in Tor, then later claimed content needed JS after it no longer did"
     ],
     "new_files": {
-      "_agents/PARKED_WORK.md": "P1-P6, scoped work not yet done, with context to start cold",
+      "_agents/PARKED_WORK.md": "P1-P7, scoped work not yet done, with context to start cold",
       "docs/MODERNIZATION.md": "full audit, 16 sections, including two recorded dead ends",
       "scripts/prerender.mjs": "the build step; fails the build if the route fallback reappears",
       "src/utils/ssr.ts": "readStoredValue, matchesMediaQuery, isBrowser, useBrowserValue",
@@ -827,9 +827,9 @@
     ],
     "open_human_decisions": "Q14-Q18 in _agents/QUESTIONS_FOR_HUMANS.md — github.io mirror, Supabase project, backend/, Dependabot backlog, content re-verification policy",
     "next_priorities": [
-      "P6 — content re-verification, most time-sensitive cases first (the largest open item)",
+      "P7 — content re-verification, most time-sensitive cases first (the largest open item)",
       "P3 — ESLint 10; npm warns 9.x is end of support",
-      "P1 — normalise the data schema, with validation, to replace hand-written data assertions"
+      "P4 — /intelligence is still empty without JavaScript; its feed is fetched at runtime"
     ],
     "section_17_the_real_cause": {
       "symptom": "41 sections written into <div hidden> and invisible without JavaScript; React #418 on every route.",

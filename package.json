@@ -8,6 +8,7 @@
     "build": "vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
+    "serve:dist": "node scripts/serve-dist.mjs",
     "deploy": "npm run build && npx wrangler deploy",
     "test": "vitest run",
     "test:watch": "vitest",

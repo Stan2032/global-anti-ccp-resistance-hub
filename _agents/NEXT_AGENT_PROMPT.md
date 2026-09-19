@@ -9,7 +9,7 @@
 > | File | What it holds |
 > |---|---|
 > | `docs/MODERNIZATION.md` | The audit. 17 sections, including dead ends. §17 corrects §15 and §16. |
-> | `_agents/PARKED_WORK.md` | P1-P6: scoped work not yet done. **Pick from here.** |
+> | `_agents/PARKED_WORK.md` | P1-P7: scoped work not yet done. **Pick from here.** |
 > | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q18, all open and awaiting the owner. |
 > | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
@@ -46,7 +46,7 @@
 > There is no deploy workflow and none is wanted. CI and deploy are separate
 > systems, so red CI does not block a deploy.
 >
-> **Suggested next:** P6 in `PARKED_WORK.md` (content re-verification — the
+> **Suggested next:** P7 in `PARKED_WORK.md` (content re-verification — the
 > largest open item, and the one the site's credibility rests on), then P3
 > (ESLint 10, since 9.x is end of support).
 

@@ -89,11 +89,44 @@ within existing majors. Suggested order:
 | **@vitejs/plugin-react** | 5.2 → 6.x | Pairs with Vite 8. |
 
 Tailwind 4 is the one worth pairing with a visible improvement rather than
-shipping as bare maintenance — the dashboard work in P5, say.
+shipping as bare maintenance — the dashboard work in P6, say.
 
 ---
 
-## P4 — Bundle budget
+## P4 — `/intelligence` is empty without JavaScript
+
+**Size:** small · **Value:** medium · **Risk:** low, but touches hydration
+
+Every other route now renders its content as static HTML. `/intelligence`
+does not: its articles come from `dataProcessor.aggregateFeeds()` in a
+`useEffect`, so a reader with JavaScript disabled gets 1,540 characters of
+page chrome, the words **"Loading…"**, *"0 of 9 sources loaded"* and
+*"Showing 0 of 0 articles"* — a page that looks like it is working and never
+will be.
+
+The global `<noscript>` banner now says so in words, which stops the page
+lying, but the page is still empty for exactly the readers the pre-rendering
+work was for.
+
+Options, roughly in order of effort:
+
+1. Pre-render a **snapshot** of the feed at build time — the aggregation runs
+   in Node, so `scripts/prerender.mjs` could fetch once and inline the result
+   with an honest "as of <build time>" label. Reuses the freshness pattern
+   already in `LiveStatistics`.
+2. Serve the last snapshot from the Workers API and have the page fall back
+   to it.
+3. Leave it and rely on the banner.
+
+**Careful with `<noscript>` inside React.** The obvious fix — a `<noscript>`
+block in the component — risks a hydration mismatch, because a browser with
+JavaScript on parses `<noscript>` contents as plain text while React expects
+elements. That would undo the clean hydration §17 just established. Verify
+with the browser check, not by reasoning.
+
+---
+
+## P5 — Bundle budget
 
 **Size:** small to start · **Value:** medium · **Risk:** low
 
@@ -110,7 +143,7 @@ so deferring more of it costs readers less than it used to.
 
 ---
 
-## P5 — Dashboard length
+## P6 — Dashboard length
 
 **Size:** medium · **Value:** medium (UX) · **Risk:** low, but it is a design call
 
@@ -133,7 +166,7 @@ when it is most visible.
 
 ---
 
-## P6 — Content re-verification at scale
+## P7 — Content re-verification at scale
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 

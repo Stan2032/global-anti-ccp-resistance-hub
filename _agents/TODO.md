@@ -9,7 +9,7 @@
 > predates it.
 >
 > **New files, and where things now live:**
-> - `_agents/PARKED_WORK.md` — scoped work deliberately not done yet (P1-P6),
+> - `_agents/PARKED_WORK.md` — scoped work deliberately not done yet (P1-P7),
 >   each with enough context to start cold. **Check this before picking a task.**
 > - `_agents/QUESTIONS_FOR_HUMANS.md` — Q14-Q18 added, all open.
 > - `docs/MODERNIZATION.md` — the full audit, including recorded dead ends
@@ -37,7 +37,7 @@
 > Reasoning about React's behaviour got this wrong three times; measurement
 > caught all three. See `docs/MODERNIZATION.md` §17.
 >
-> **Immediate priorities:** P6 in `PARKED_WORK.md` (content re-verification —
+> **Immediate priorities:** P7 in `PARKED_WORK.md` (content re-verification —
 > the largest open item), then P3 (ESLint 10 — 9.x is end of support).
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
