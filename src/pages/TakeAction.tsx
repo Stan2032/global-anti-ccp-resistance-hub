@@ -20,6 +20,8 @@ const SectionLoader = () => (
   </div>
 );
 
+import { DisclosureSection } from '../components/DisclosureSection';
+
 const PetitionLinks = lazy(() => import('../components/PetitionLinks'));
 const ForcedLabourList = lazy(() => import('../components/ForcedLabourList'));
 const ContactRepresentatives = lazy(() => import('../components/ContactRepresentatives'));
@@ -274,79 +276,150 @@ const TakeAction = () => {
         </div>
       </div>
 
-      {/* Petitions Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
-      </div>
+      {/*
+        Fifteen tools, folded up.
 
-      {/* Contact Representatives Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
-      </div>
+        These used to be stacked one after another down the page. That made
+        /take-action 57,416px tall on a desktop and 124,781px on a phone —
+        148 screens of scrolling on the page whose entire job is to get
+        somebody to do something. A reader looking for their representative
+        had no way to know the tool existed without scrolling past twelve
+        others.
 
-      {/* Advocacy Letter Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
-      </div>
+        They are <details> rather than tabs so they still work with
+        JavaScript disabled, which is how this site asks at-risk readers to
+        browse. The markup is all pre-rendered; it is folded, not withheld.
+        See src/components/DisclosureSection.tsx.
+      */}
+      <div className="space-y-3">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Tools and resources</h2>
+          <p className="text-slate-400 mt-1">
+            Open any of these. The first two are the quickest ways to have an effect today.
+          </p>
+        </div>
 
-      {/* Policy Brief Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
-      </div>
+        <DisclosureSection
+          id="petitions"
+          title="Sign a petition"
+          description="Active petitions for prisoners of conscience and policy change."
+          defaultOpen
+        >
+          <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
+        </DisclosureSection>
 
-      {/* Boycott List Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
-      </div>
+        <DisclosureSection
+          id="representatives"
+          title="Contact your representative"
+          description="Find who represents you and what to ask them for."
+          defaultOpen
+        >
+          <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
+        </DisclosureSection>
 
-      {/* Company Accountability Tracker */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="letter"
+          title="Write an advocacy letter"
+          description="Generates a letter for a named prisoner, ready to send."
+        >
+          <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
+        </DisclosureSection>
 
-      {/* Success Stories Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
-      </div>
+        <DisclosureSection
+          id="policy-brief"
+          title="Build a policy brief"
+          description="A sourced briefing document for officials and journalists."
+        >
+          <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
+        </DisclosureSection>
 
-      {/* Quick Facts Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
-      </div>
+        <DisclosureSection
+          id="printable"
+          title="Printable report"
+          description="A version you can print or hand out offline."
+        >
+          <Suspense fallback={<SectionLoader />}><PrintableReport /></Suspense>
+        </DisclosureSection>
 
-      {/* Activist Toolkit */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
-      </div>
+        <DisclosureSection
+          id="boycott"
+          title="Boycott list: forced labour"
+          description="Brands linked to Uyghur forced labour in their supply chains."
+        >
+          <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
+        </DisclosureSection>
 
-      {/* Sanctions Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="companies"
+          title="Company accountability tracker"
+          description="What companies have been asked, and how they answered."
+        >
+          <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
+        </DisclosureSection>
 
-      {/* International Response Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="donate"
+          title="Where to donate"
+          description="Organisations doing the work, and what your money funds."
+        >
+          <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
+        </DisclosureSection>
 
-      {/* Donation Guide */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
-      </div>
+        <DisclosureSection
+          id="volunteer"
+          title="Volunteer your time"
+          description="Roles that need people, including remote and skills-based."
+        >
+          <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
+        </DisclosureSection>
 
-      {/* Volunteer Signup */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
-      </div>
+        <DisclosureSection
+          id="diaspora"
+          title="Diaspora support"
+          description="Help for people facing transnational repression abroad."
+        >
+          <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
+        </DisclosureSection>
 
-      {/* Diaspora Support Resources */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
-      </div>
+        <DisclosureSection
+          id="toolkit"
+          title="Activist toolkit"
+          description="Practical guidance for organising safely."
+        >
+          <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
+        </DisclosureSection>
 
-      {/* Printable Report Generator */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><PrintableReport /></Suspense>
+        <DisclosureSection
+          id="sanctions"
+          title="Sanctions tracker"
+          description="Which officials have been sanctioned, by whom, and when."
+        >
+          <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="international-response"
+          title="International response tracker"
+          description="What governments and bodies have actually done."
+        >
+          <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="success-stories"
+          title="What has worked"
+          description="Cases where pressure changed an outcome."
+        >
+          <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="quick-facts"
+          title="Quick facts"
+          description="Short, sourced figures to quote."
+        >
+          <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
+        </DisclosureSection>
       </div>
 
       {/* Share Section */}

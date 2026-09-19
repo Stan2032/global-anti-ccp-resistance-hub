@@ -1,0 +1,98 @@
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { readFileSync } from 'fs';
+import path from 'path';
+import React from 'react';
+import { DisclosureSection } from '../components/DisclosureSection';
+
+describe('DisclosureSection', () => {
+  // --- Rendering ---
+
+  it('renders the title and description', () => {
+    render(
+      <DisclosureSection title="Sign a petition" description="Active petitions.">
+        <p>body</p>
+      </DisclosureSection>
+    );
+    expect(screen.getByText('Sign a petition')).toBeTruthy();
+    expect(screen.getByText('Active petitions.')).toBeTruthy();
+  });
+
+  it('renders children even while collapsed', () => {
+    // The point of <details> over a JS accordion: the content is in the
+    // document from the start, so it is pre-rendered, indexed, and reachable
+    // by find-in-page and assistive technology.
+    const { container } = render(
+      <DisclosureSection title="Boycott list">
+        <p>Forced labour brands</p>
+      </DisclosureSection>
+    );
+    expect(container.querySelector('details')?.hasAttribute('open')).toBe(false);
+    expect(screen.getByText('Forced labour brands')).toBeTruthy();
+  });
+
+  it('is closed by default and opens with defaultOpen', () => {
+    const { container: closed } = render(
+      <DisclosureSection title="A"><p>a</p></DisclosureSection>
+    );
+    expect(closed.querySelector('details')?.hasAttribute('open')).toBe(false);
+
+    const { container: open } = render(
+      <DisclosureSection title="B" defaultOpen><p>b</p></DisclosureSection>
+    );
+    expect(open.querySelector('details')?.hasAttribute('open')).toBe(true);
+  });
+
+  it('applies the id so a section can be linked to', () => {
+    const { container } = render(
+      <DisclosureSection id="petitions" title="A"><p>a</p></DisclosureSection>
+    );
+    expect(container.querySelector('details')?.id).toBe('petitions');
+  });
+
+  it('omits the description element when none is given', () => {
+    render(<DisclosureSection title="Only a title"><p>a</p></DisclosureSection>);
+    expect(screen.getByText('Only a title')).toBeTruthy();
+  });
+
+  // --- The guarantee this component exists for ---
+
+  it('uses native <details>/<summary>, not React state', () => {
+    // If someone reimplements this with useState, it stops working for
+    // readers with JavaScript disabled — which is how this site tells
+    // at-risk readers in China to browse (Tor Browser, Safer or Safest).
+    // The control would still look interactive and would do nothing.
+    const { container } = render(
+      <DisclosureSection title="A"><p>a</p></DisclosureSection>
+    );
+    const details = container.querySelector('details');
+    expect(details, 'must render a native <details>').toBeTruthy();
+    expect(details!.querySelector('summary'), 'must render a native <summary>').toBeTruthy();
+
+    const source = readFileSync(
+      path.resolve(__dirname, '../components/DisclosureSection.tsx'),
+      'utf-8'
+    );
+    expect(source, 'disclosure must not depend on React state').not.toMatch(/useState|onClick/);
+  });
+});
+
+describe('TakeAction uses collapsible sections', () => {
+  const source = readFileSync(
+    path.resolve(__dirname, '../pages/TakeAction.tsx'),
+    'utf-8'
+  );
+
+  it('folds its tools into DisclosureSection rather than stacking them', () => {
+    // Stacked, these fifteen tools made the page 57,416px tall on desktop and
+    // 124,781px on a phone — 148 screens, on the page whose whole job is to
+    // get somebody to act.
+    const sections = source.match(/<DisclosureSection/g) ?? [];
+    expect(sections.length).toBeGreaterThanOrEqual(15);
+  });
+
+  it('leaves the two most actionable sections open', () => {
+    const open = source.match(/defaultOpen/g) ?? [];
+    expect(open.length).toBe(2);
+  });
+});
