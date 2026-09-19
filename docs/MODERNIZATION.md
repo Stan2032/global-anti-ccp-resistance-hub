@@ -298,15 +298,16 @@ Neither was changed — both are design decisions rather than defects.
 
 Ranked by impact:
 
-1. **Re-verify content** (or delegate it). ~195 days stale: 64 prisoner records,
-   25 legal cases, sanctions metadata, 8 statistics. `npm run test:content`
-   lists exactly what is overdue. **Do not bump the dates without checking the
-   sources.**
-   - Specifically time-sensitive: the Joshua Wong foreign-collusion hearing was
-     scheduled for **5 September 2026** — two weeks before this audit. The alert
-     still describes it as upcoming. That outcome needs to be found and recorded.
+1. **Re-verify content** (or delegate it). ~195 days stale: **63 of 64** prisoner
+   records, 25 legal cases, sanctions metadata, 8 statistics.
+   `npm run test:content` lists exactly what is overdue. **Do not bump the dates
+   without checking the sources.**
+   - **Joshua Wong was done during this audit** — see §11. It is the worked
+     example of what the rest of this task looks like.
    - Two emergency alerts expired (23 and 26 August) and are now filtered out of
      the UI. Worth deciding whether those events should move to the timeline.
+   - The `jimmy-lai-verdict` alert is now the oldest active critical alert at
+     193 days.
 2. **Decide on the github.io mirror** — retire, or re-host somewhere it can be
    hardened (§4).
 3. **Create the Supabase project** to make the four forms live (§7).
@@ -346,3 +347,43 @@ Ranked by impact:
 **Verification:** lint clean, `tsc --noEmit` clean, **3691/3691 tests passing
 across 199 files**, production build succeeds, `npm audit` reports 0
 vulnerabilities.
+
+---
+
+## 11. Content re-verified during this audit: Joshua Wong
+
+The single most time-sensitive item was checked and updated, as a worked example
+of the process the remaining records need.
+
+**What the site said:** "Joshua Wong Foreign Collusion Case — Transferred to High
+Court, **Next Hearing Sept 5**" — presented as an upcoming event.
+
+**What actually happened:** Wong **pleaded guilty on 2 September 2026** at the
+High Court to conspiracy to collude with foreign forces — his second National
+Security Law conviction. Judge William Tam adjourned sentencing, saying he would
+decide "as soon as possible". **No sentencing date has been set.** He is already
+serving four years and eight months from the Hong Kong 47 case, was originally
+due for release in January 2027 before this prosecution, and will not receive
+remission on the earlier sentence. Foreign collusion carries a maximum of life.
+
+Verified against two independent Tier 1–2 sources, per the project's
+two-source rule, and corroborated by a third:
+
+- [Hong Kong Free Press](https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/)
+- [Hong Kong Watch](https://www.hongkongwatch.org/all-posts/2026/9/2/joshua-wong-joshua-wong-pleads-guilty-in-second-hong-kong-national-security-law-trial)
+- [Al Jazeera](https://www.aljazeera.com/news/2026/9/2/hong-kong-activist-joshua-wong-pleads-guilty-in-national-security-case)
+
+Updated: the `joshua-wong-hearing` alert (title, summary, details, dates, source
+links) and his `political_prisoners_research.json` record (sentence,
+latest_news, source_url), both with `last_verified: 2026-09-19`.
+
+**One discrepancy left unresolved.** The site's previous alert said the case was
+transferred to the High Court on 6 March 2026; Hong Kong Watch says the transfer
+was in May 2026. Rather than pick one, the transfer date was dropped from the
+updated copy. It needs a third source before being restated.
+
+Edits were made with exact string replacement rather than a JSON round-trip.
+A structured rewrite silently re-encoded `\uXXXX` escapes across unrelated
+records — cosmetically harmless, but it would have shown dozens of
+human-rights entries as modified when they had not been re-verified.
+
