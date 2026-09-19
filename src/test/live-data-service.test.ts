@@ -6,6 +6,8 @@
  * - fetchPoliticalPrisoners() returns data from JSON (not hardcoded)
  * - No fabricated change metrics, no Math.random(), no fake live data
  */
+import { readFileSync } from 'fs';
+import path from 'path';
 import { describe, it, expect } from 'vitest';
 import { fetchStatistics, fetchPoliticalPrisoners, FEED_SOURCES } from '../services/liveDataService';
 import prisonersData from '../data/political_prisoners_research.json';
@@ -126,17 +128,88 @@ describe('FEED_SOURCES', () => {
   });
 });
 
-describe('fetchAllFeeds (multi-proxy)', () => {
-  it('should use RSS2JSON as primary strategy with CORS proxy fallback', async () => {
-    const fs = await import('fs');
-    const path = await import('path');
-    const source = fs.readFileSync(
-      path.resolve(__dirname, '../services/liveDataService.ts'),
-      'utf-8'
+/**
+ * Feeds are fetched by our own Cloudflare Worker, not by the reader.
+ *
+ * The browser used to call api.rss2json.com and api.allorigins.win directly.
+ * Both learned the reader's IP and which anti-CCP feeds they were pulling —
+ * on a site that tells readers in China to use Tor because being identified
+ * is dangerous — and a public proxy chose what text got rendered into the
+ * page. These tests exist so that cannot come back without someone deciding
+ * to delete them.
+ */
+describe('RSS feeds go through our own Worker', () => {
+  const read = (rel: string) =>
+    readFileSync(path.resolve(__dirname, rel), 'utf-8');
+
+  /** FEED_SOURCES in api/worker.js: the only URLs the Worker will fetch. */
+  const workerFeedSources = (): Record<string, string> => {
+    const block = read('../../api/worker.js').match(/const FEED_SOURCES = \{([\s\S]*?)\n\};/);
+    expect(block, 'FEED_SOURCES not found in api/worker.js').toBeTruthy();
+    return Object.fromEntries(
+      [...block![1].matchAll(/^\s*([A-Za-z_][\w]*):\s*'([^']+)'/gm)].map(m => [m[1], m[2]])
     );
-    expect(source).toContain('api.rss2json.com');
-    expect(source).toContain('api.allorigins.win');
-    expect(source).toContain('fetchViaRSS2JSON');
-    expect(source).toContain('fetchViaCORSProxy');
+  };
+
+  it('no client code contacts a third-party feed proxy', () => {
+    for (const rel of ['../services/liveDataService.ts', '../data/liveDataSources.ts']) {
+      // Strip comments: both files explain the old behaviour by name.
+      const code = read(rel)
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/^\s*\/\/.*$/gm, '');
+      expect(code, `${rel} still calls a third-party proxy`).not.toContain('api.rss2json.com');
+      expect(code, `${rel} still calls a third-party proxy`).not.toContain('api.allorigins.win');
+    }
+  });
+
+  it('both feed consumers call the same-origin endpoint', () => {
+    expect(read('../services/liveDataService.ts')).toContain('/api/v1/feed?source=');
+    expect(read('../data/liveDataSources.ts')).toContain('/api/v1/feed?source=');
+  });
+
+  it('the Worker resolves URLs from its allowlist, never from the caller', () => {
+    const worker = read('../../api/worker.js');
+    // The key is looked up in FEED_SOURCES; a caller-supplied URL would be an
+    // open proxy and an SSRF hole.
+    expect(worker).toContain("hasOwnProperty.call(FEED_SOURCES, source)");
+    expect(worker).not.toMatch(/fetch\(\s*(?:url|request)\.searchParams\.get/);
+  });
+
+  it('every feed key the pages request is allowlisted in the Worker', () => {
+    const allowlist = workerFeedSources();
+    expect(Object.keys(allowlist).length).toBeGreaterThan(0);
+
+    const serviceKeys = [
+      ...read('../services/liveDataService.ts')
+        .match(/const RSS_FEEDS: readonly string\[\] = \[([\s\S]*?)\];/)![1]
+        .matchAll(/'([^']+)'/g),
+    ].map(m => m[1]);
+
+    const missing = serviceKeys.filter(k => !(k in allowlist));
+    expect(missing, `Keys requested but not allowlisted: ${missing.join(', ')}`).toEqual([]);
+  });
+
+  it('live_data_feeds.json ids and urls match the Worker allowlist', () => {
+    const allowlist = workerFeedSources();
+    const feeds = JSON.parse(read('../data/live_data_feeds.json')) as Record<
+      string,
+      Array<{ id: string; url: string | null }>
+    >;
+
+    const problems: string[] = [];
+    for (const group of Object.values(feeds)) {
+      if (!Array.isArray(group)) continue;
+      for (const feed of group) {
+        if (!feed?.url) continue; // entries without a URL are not fetched
+        if (!(feed.id in allowlist)) {
+          problems.push(`${feed.id}: not in the Worker allowlist`);
+        } else if (allowlist[feed.id] !== feed.url) {
+          problems.push(`${feed.id}: ${feed.url} != worker's ${allowlist[feed.id]}`);
+        }
+      }
+    }
+    // The two lists disagreed about the URLs for the same outlets before the
+    // Worker became the single source of truth. This keeps them in step.
+    expect(problems, `Feed list drift:\n${problems.join('\n')}`).toEqual([]);
   });
 });

@@ -205,12 +205,13 @@
         }
       }(window.location))
     </script>
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://api.allorigins.win" crossorigin />
-    <link rel="dns-prefetch" href="https://api.allorigins.win" />
-    <link rel="preconnect" href="https://api.rss2json.com" crossorigin />
-    <link rel="dns-prefetch" href="https://api.rss2json.com" />
+
+    <!-- No preconnect hints to third parties, deliberately. RSS feeds are
+         fetched by this site's own Worker (/api/v1/feed), so the browser
+         talks to nobody else. The hints that used to live here fired a DNS
+         lookup for two CORS proxies on EVERY page view, whether or not a
+         feed was ever read - leaking the reader's interest before they had
+         done anything. -->
   </head>
   <body>
     <!-- This message must never tell a reader to weaken their browser's

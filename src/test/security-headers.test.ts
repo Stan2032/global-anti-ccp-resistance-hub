@@ -49,12 +49,19 @@ describe('Security Headers', () => {
       expect(headersContent).toContain("frame-ancestors 'none'");
     });
 
-    it('CSP allows CORS proxy for RSS feeds (api.allorigins.win)', () => {
-      expect(headersContent).toContain('https://api.allorigins.win');
+    // RSS feeds are fetched by our own Worker (/api/v1/feed), so connect-src
+    // does not need to name any third party. It used to name two public CORS
+    // proxies, which meant every reader's browser contacted them directly and
+    // told them which anti-CCP feeds it wanted. Re-widening this would bring
+    // that back silently, so it is asserted rather than left to review.
+    it('CSP does not permit third-party CORS proxies', () => {
+      expect(headersContent).not.toContain('api.allorigins.win');
+      expect(headersContent).not.toContain('api.rss2json.com');
     });
 
-    it('CSP allows RSS2JSON proxy (api.rss2json.com)', () => {
-      expect(headersContent).toContain('https://api.rss2json.com');
+    it('CSP connect-src allows only this origin and Supabase', () => {
+      const connectSrc = headersContent.match(/connect-src ([^;]+);/)?.[1].trim();
+      expect(connectSrc).toBe("'self' https://*.supabase.co");
     });
 
     it('CSP allows Supabase connections (*.supabase.co)', () => {
@@ -119,13 +126,14 @@ describe('Security Headers', () => {
       expect(indexContent).toContain('strict-origin-when-cross-origin');
     });
 
-    it('has preconnect hint for allorigins CORS proxy', () => {
-      expect(indexContent).toContain('preconnect');
-      expect(indexContent).toContain('https://api.allorigins.win');
-    });
-
-    it('has preconnect hint for rss2json proxy', () => {
-      expect(indexContent).toContain('https://api.rss2json.com');
+    it('has no preconnect or dns-prefetch to a third party', () => {
+      // A preconnect fires on page load whether or not the resource is ever
+      // used, so a hint to a CORS proxy leaked every reader's interest before
+      // they clicked anything. Feeds come from our own origin now.
+      const hints = [...indexContent.matchAll(/<link[^>]+rel=["'](?:preconnect|dns-prefetch)["'][^>]*>/gi)]
+        .map(m => m[0])
+        .filter(tag => /href=["']https?:\/\//i.test(tag));
+      expect(hints, `Third-party connection hints:\n${hints.join('\n')}`).toEqual([]);
     });
 
     it('does not contain inline script injection patterns', () => {
