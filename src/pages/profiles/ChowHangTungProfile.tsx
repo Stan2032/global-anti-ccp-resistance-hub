@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
@@ -305,7 +306,6 @@ const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
 // ─── MAIN COMPONENT ─────────────────────────────────────────────────
 
 const ChowHangTungProfile: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('timeline');
   const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
 
   const toggleEvent = (index: number) => {
@@ -316,14 +316,6 @@ const ChowHangTungProfile: React.FC = () => {
       return next;
     });
   };
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges', icon: Scale },
-    { id: 'narrative', label: 'CCP Narrative', icon: Shield },
-    { id: 'response', label: 'International', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -384,34 +376,11 @@ const ChowHangTungProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="border-b border-[#1c2a35] bg-[#0a0e14]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex gap-1 overflow-x-auto" role="tablist" aria-label="Profile sections">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                role="tab"
-                aria-selected={activeTab === tab.id}
-                className={`flex items-center gap-1.5 px-4 py-3 text-sm font-mono whitespace-nowrap transition-colors border-b-2 ${
-                  activeTab === tab.id
-                    ? 'border-[#4afa82] text-[#4afa82]'
-                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab} className="max-w-5xl mx-auto px-4 py-8">
+      <div className="space-y-3">
         {/* Timeline Tab */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#4afa82]" /> Timeline
@@ -428,10 +397,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Charges Tab */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" /> Charges & Legal Status
@@ -457,10 +426,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Tab */}
-        {activeTab === 'narrative' && (
+        <DisclosureSection title="CCP Narrative">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Shield className="w-5 h-5 text-yellow-400" /> CCP Narrative vs. Reality
@@ -490,10 +459,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* International Response Tab */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Globe className="w-5 h-5 text-cyan-400" /> International Response
@@ -514,10 +483,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Sources Tab */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-[#4afa82]" /> Sources & Verification
@@ -539,7 +508,7 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

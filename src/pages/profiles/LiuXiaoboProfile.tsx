@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
@@ -291,16 +292,8 @@ const categoryLabels: Record<string, string> = {
 };
 
 // ─── TABS ──────────────────────────────────────────────────────────
-const TABS = [
-  { id: 'timeline', label: 'Timeline', icon: Clock },
-  { id: 'charges', label: 'Charter 08 & Charges', icon: Scale },
-  { id: 'narratives', label: 'CCP Narratives', icon: Shield },
-  { id: 'legacy', label: 'Legacy & Impact', icon: Award },
-  { id: 'sources', label: 'Sources', icon: FileText },
-];
 
 export default function LiuXiaoboProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
   const [expandedEvents, setExpandedEvents] = useState<Record<number, boolean>>({});
 
   const toggleEvent = (index: number) => {
@@ -357,36 +350,12 @@ export default function LiuXiaoboProfile() {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="bg-[#111820]/95 border-b border-[#1c2a35] sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex overflow-x-auto gap-1">
-            {TABS.map(tab => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-                    activeTab === tab.id
-                      ? 'border-yellow-400 text-yellow-400'
-                      : 'border-transparent text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
       {/* Tab Content */}
       <div className="max-w-5xl mx-auto px-4 py-8">
 
         {/* ─── TIMELINE TAB ─────────────────────────────────────── */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Clock className="w-6 h-6 text-yellow-400" />
@@ -439,10 +408,10 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── CHARGES TAB ──────────────────────────────────────── */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charter 08 & Charges">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Scale className="w-6 h-6 text-yellow-400" />
@@ -539,10 +508,10 @@ export default function LiuXiaoboProfile() {
               </ul>
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── CCP NARRATIVES TAB ───────────────────────────────── */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Shield className="w-6 h-6 text-yellow-400" />
@@ -583,10 +552,10 @@ export default function LiuXiaoboProfile() {
               <strong className="text-slate-300">Source methodology:</strong> All rebuttals sourced from independent international media and human rights organizations. Deliberately excluded: Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media. One People&apos;s Daily English editorial (en.people.cn) was identified as CCP propaganda during research and excluded.
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── LEGACY TAB ───────────────────────────────────────── */}
-        {activeTab === 'legacy' && (
+        <DisclosureSection title="Legacy & Impact">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Award className="w-6 h-6 text-yellow-400" />
@@ -667,10 +636,10 @@ export default function LiuXiaoboProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── SOURCES TAB ──────────────────────────────────────── */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <FileText className="w-6 h-6 text-yellow-400" />
@@ -713,7 +682,7 @@ export default function LiuXiaoboProfile() {
               <p className="mt-2"><strong className="text-slate-300">Excluded:</strong> Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media</p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
 
       <GlobalDisclaimer />

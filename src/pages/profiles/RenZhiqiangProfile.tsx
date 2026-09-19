@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
@@ -224,7 +225,6 @@ const TimelineEvent = ({ event, isExpanded, onToggle }: { event: { category: str
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function RenZhiqiangProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
   const [expandedEvents, setExpandedEvents] = useState(new Set());
 
   const toggleEvent = (idx: number) => {
@@ -237,14 +237,6 @@ export default function RenZhiqiangProfile() {
 
   const expandAll = () => setExpandedEvents(new Set(TIMELINE.map((_, i) => i)));
   const collapseAll = () => setExpandedEvents(new Set());
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Legal Status', icon: Scale },
-    { id: 'narratives', label: 'CCP Narratives', icon: AlertTriangle },
-    { id: 'response', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -319,28 +311,11 @@ export default function RenZhiqiangProfile() {
         </p>
       </div>
 
-      {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
-        {tabs.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`panel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-            }`}
-          >
-            <Icon className="w-4 h-4" /> {label}
-          </button>
-        ))}
-      </div>
 
       {/* ─── TAB PANELS ─────────────────────────────────────── */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab}>
+      <div className="space-y-3">
         {/* TIMELINE */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-red-400" /> Timeline — {TIMELINE.length} Events</h2>
@@ -361,10 +336,10 @@ export default function RenZhiqiangProfile() {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CHARGES & LEGAL STATUS */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges & Legal Status">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-red-400" /> Charges &amp; Legal Status</h2>
 
@@ -392,10 +367,10 @@ export default function RenZhiqiangProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP NARRATIVE ANALYSIS */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-red-400" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
@@ -423,10 +398,10 @@ export default function RenZhiqiangProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* INTERNATIONAL RESPONSE */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International Response">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-red-400" /> International Response</h2>
 
@@ -445,10 +420,10 @@ export default function RenZhiqiangProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* SOURCES */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-red-400" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
@@ -478,7 +453,7 @@ export default function RenZhiqiangProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
@@ -268,16 +269,7 @@ const categoryLabels = {
 };
 
 export default function PanchenLamaProfile() {
-  const [activeSection, setActiveSection] = useState('timeline');
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
-
-  const sections = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'significance', label: 'Why It Matters', icon: Eye },
-    { id: 'narratives', label: 'CCP Narratives', icon: Shield },
-    { id: 'response', label: 'International', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: FileText },
-  ];
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -334,35 +326,12 @@ export default function PanchenLamaProfile() {
         </div>
       </div>
 
-      {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveSection(id)}
-                role="tab"
-                aria-selected={activeSection === id}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
-                  activeSection === id
-                    ? 'bg-[#22d3ee] text-[#0a0e14]'
-                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-4 py-6">
 
         {/* Timeline Section */}
-        {activeSection === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#22d3ee]" />
@@ -422,10 +391,10 @@ export default function PanchenLamaProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Why It Matters Section (replaces Charges — no formal charges exist) */}
-        {activeSection === 'significance' && (
+        <DisclosureSection title="Why It Matters">
           <section aria-label="Why this case matters">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Eye className="w-5 h-5 text-[#22d3ee]" />
@@ -517,10 +486,10 @@ export default function PanchenLamaProfile() {
               </ul>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Analysis */}
-        {activeSection === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <section aria-label="CCP narrative analysis">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-amber-400" />
@@ -572,10 +541,10 @@ export default function PanchenLamaProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* International Response */}
-        {activeSection === 'response' && (
+        <DisclosureSection title="International">
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Globe className="w-5 h-5 text-[#22d3ee]" />
@@ -627,10 +596,10 @@ export default function PanchenLamaProfile() {
               </div>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Sources */}
-        {activeSection === 'sources' && (
+        <DisclosureSection title="Sources">
           <section aria-label="Sources">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <FileText className="w-5 h-5 text-slate-400" />
@@ -662,7 +631,7 @@ export default function PanchenLamaProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

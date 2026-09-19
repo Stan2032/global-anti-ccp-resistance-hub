@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
 import {
   User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
   ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
@@ -284,15 +285,6 @@ const categoryLabels = {
 export default function IlhamTohtiProfile() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
   const [showAllNarratives, setShowAllNarratives] = useState(false);
-  const [activeSection, setActiveSection] = useState('timeline');
-
-  const sections = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Verdict', icon: Scale },
-    { id: 'narratives', label: 'CCP Narrative Analysis', icon: Shield },
-    { id: 'international', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: FileText },
-  ];
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -338,35 +330,12 @@ export default function IlhamTohtiProfile() {
         </div>
       </div>
 
-      {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveSection(id)}
-                role="tab"
-                aria-selected={activeSection === id}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
-                  activeSection === id
-                    ? 'bg-[#22d3ee] text-[#0a0e14]'
-                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-4 py-6">
 
         {/* Timeline Section */}
-        {activeSection === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#22d3ee]" />
@@ -426,10 +395,10 @@ export default function IlhamTohtiProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Charges & Verdict Section */}
-        {activeSection === 'charges' && (
+        <DisclosureSection title="Charges & Verdict">
           <section aria-label="Charges and verdict">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" />
@@ -498,10 +467,10 @@ export default function IlhamTohtiProfile() {
               </p>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Analysis Section */}
-        {activeSection === 'narratives' && (
+        <DisclosureSection title="CCP Narrative Analysis">
           <section aria-label="CCP narrative analysis">
             <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
               <Shield className="w-5 h-5 text-amber-400" />
@@ -547,10 +516,10 @@ export default function IlhamTohtiProfile() {
               </button>
             )}
           </section>
-        )}
+        </DisclosureSection>
 
         {/* International Response Section */}
-        {activeSection === 'international' && (
+        <DisclosureSection title="International Response">
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Globe className="w-5 h-5 text-[#22d3ee]" />
@@ -630,10 +599,10 @@ export default function IlhamTohtiProfile() {
               </div>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Sources Section */}
-        {activeSection === 'sources' && (
+        <DisclosureSection title="Sources">
           <section aria-label="Sources">
             <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-emerald-400" />
@@ -662,7 +631,7 @@ export default function IlhamTohtiProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );
