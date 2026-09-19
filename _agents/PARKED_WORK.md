@@ -13,38 +13,7 @@
 
 ---
 
-## P1 — Make every lazy component eager during pre-render
-
-**Size:** medium (~20 files, mechanical) · **Value:** high · **Risk:** low if done whole
-
-Finishes the pre-rendering work. Right now page-level content is pre-rendered
-but **41 inner sections across all routes still defer** to `<div hidden>` and
-need JavaScript, and hydration reports **React #418**.
-
-Both have the same single cause and the same single fix: around 80
-sub-components inside pages are `React.lazy` with their own Suspense
-boundaries. While any of them can suspend during the pre-render, the route
-boundary has to be absent (or React defers the whole page), and its absence
-is what makes hydration mismatch.
-
-**Do it in one go:** move every `lazy()` declaration — the ~30 route
-components in `App.tsx` and the ~80 sub-component ones inside page files —
-into a shared registry with two variants (lazy for the browser, eager for the
-pre-render) selected by a build alias. Then restore `RouteBoundary` to always
-render `<Suspense>`.
-
-**Do not do half of it.** Session 281 tried exactly that — eager pages only —
-and it made things strictly worse: `/prisoners` dropped from 11,336 readable
-characters to 1,906, and `$ loading` came back on all 27 routes. Full
-numbers and the mechanism are in `docs/MODERNIZATION.md` §16.
-
-**Verify with:** a real browser with JavaScript disabled, not by reasoning.
-`scripts/prerender.mjs` prints deferred-block counts; the build fails if the
-route-level fallback reappears.
-
----
-
-## P2 — Normalise the data schema
+## P1 — Normalise the data schema
 
 **Size:** medium · **Value:** medium-high · **Risk:** low
 
@@ -67,11 +36,11 @@ shape and the readers, the API in `api/worker.js`, `dataApi.ts`, `DataExport`
 and the tests all move together. Do it dataset by dataset, not in one commit.
 
 **Never** let a reformatting pass rewrite records you have not re-verified —
-see P3's note on JSON round-tripping.
+see P2's note on JSON round-tripping.
 
 ---
 
-## P3 — Bring component-embedded content under provenance
+## P2 — Bring component-embedded content under provenance
 
 **Size:** large · **Value:** high (integrity) · **Risk:** low, but tedious
 
@@ -102,7 +71,7 @@ they have not been re-verified. Session 281 nearly shipped that.
 
 ---
 
-## P4 — Major dependency upgrades
+## P3 — Major dependency upgrades
 
 **Size:** one branch each · **Value:** medium · **Risk:** varies
 
@@ -119,12 +88,12 @@ within existing majors. Suggested order:
 | **jsdom** | 28 → 30 | Two majors of test-env behaviour. |
 | **@vitejs/plugin-react** | 5.2 → 6.x | Pairs with Vite 8. |
 
-Tailwind 4 should ride along with P1 rather than being its own project — that
-gives it a mission justification instead of a maintenance one.
+Tailwind 4 is the one worth pairing with a visible improvement rather than
+shipping as bare maintenance — the dashboard work in P5, say.
 
 ---
 
-## P5 — Bundle budget
+## P4 — Bundle budget
 
 **Size:** small to start · **Value:** medium · **Risk:** low
 
@@ -141,7 +110,7 @@ so deferring more of it costs readers less than it used to.
 
 ---
 
-## P6 — Dashboard length
+## P5 — Dashboard length
 
 **Size:** medium · **Value:** medium (UX) · **Risk:** low, but it is a design call
 
@@ -164,7 +133,7 @@ when it is most visible.
 
 ---
 
-## P7 — Content re-verification at scale
+## P6 — Content re-verification at scale
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 
@@ -190,6 +159,7 @@ long tail.
 
 | Item | Outcome |
 |---|---|
-| Snapshot pre-rendering via headless Chromium | Rejected — Cloudflare Workers Builds has no browser. Spike kept at `scripts/prerender-spike.mjs`, findings in §12. Delete the script once P1 lands. |
+| Snapshot pre-rendering via headless Chromium | Rejected — Cloudflare Workers Builds has no browser. Findings in §12; `scripts/prerender-spike.mjs` deleted once the no-JS work finished. |
 | Move deployment to Cloudflare Pages | Rejected — Workers with static assets is Cloudflare's recommendation; the official migration runs Pages → Workers. See §15. |
-| Eager page registry alone as the #418 fix | Reverted — made no-JS output strictly worse. Superseded by P1. See §16. |
+| Eager page registry alone as the #418 fix | Reverted — made no-JS output strictly worse. The diagnosis behind it was wrong; see §17. |
+| **P1 — make every lazy component eager during pre-render** | **Done differently, and P1's premise was false.** The 41 deferred sections and React #418 had nothing to do with `React.lazy`. React outlines any Suspense boundary whose markup exceeds `progressiveChunkSize` (12,800 bytes by default), suspension or not. One option in `src/entry-server.tsx` fixed both. The full 120-site eager sweep P1 asked for was built and tested first: it changed the output by zero bytes. See §17. |

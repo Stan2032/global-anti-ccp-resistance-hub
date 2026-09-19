@@ -271,20 +271,22 @@ const DesktopSidebar = () => {
 
 // Main App Layout
 /**
- * Suspense boundary around the routes — except during the static pre-render.
+ * Suspense boundary around the routes.
  *
- * React can only defer a subtree if there is a boundary to defer it to. With
- * one present, `prerender` emits the `$ loading` fallback into the shell and
- * puts the real page inside `<div hidden>` for a client script to swap in —
- * which never happens for a reader with JavaScript disabled, so they get an
- * empty page. With no boundary, React has nowhere to defer to and must wait
- * for the lazy route to resolve, inlining the real markup.
+ * This renders on both the server and the client, which is what lets React
+ * hydrate the pre-rendered markup instead of throwing it away and starting
+ * over (hydration error #418 — the tree has to match on both sides).
  *
- * In the browser the boundary is needed as normal, so lazy chunks have
- * something to fall back to while they load.
+ * It is safe to render this during the static pre-render only because
+ * `src/entry-server.tsx` raises `progressiveChunkSize`. Without that, React
+ * outlines any boundary whose markup exceeds 12,800 bytes — writing the
+ * `$ loading` fallback in its place and parking the real page in a trailing
+ * `<div hidden>` for a script to swap in. A routed page is far over that, so
+ * every one of the 27 routes was served as a loading screen to anyone with
+ * JavaScript disabled. Nothing suspends; size alone was the trigger.
+ * `scripts/prerender.mjs` fails the build if it comes back.
  */
 function RouteBoundary({ children }: { children: React.ReactNode }) {
-  if (import.meta.env.SSR) return <>{children}</>;
   return <Suspense fallback={<LoadingScreen />}>{children}</Suspense>;
 }
 

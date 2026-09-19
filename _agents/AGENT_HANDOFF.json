@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "33.0",
-    "date": "2026-09-19T16:00:00Z",
+    "version": "34.0",
+    "date": "2026-09-19T18:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v32.0, Session 281 first pass)",
+    "supersedes": "AGENT_HANDOFF.json (v33.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -85,10 +85,11 @@
     "backend_npm_vulnerabilities": 26,
     "backend_note": "backend/ is undeployed dead code with its own unaudited lockfile — see docs/MODERNIZATION.md",
     "prerendered_routes": 27,
-    "prerender_build_time": "~0.9s, no browser required",
-    "nojs_readable_prisoners_page": "11,336 chars (was 2,186)",
-    "deferred_sections_needing_js": 41,
-    "hydration_status": "React #418 present — see PARKED_WORK.md P1"
+    "prerender_build_time": "~0.5s, no browser required",
+    "nojs_readable_prisoners_page": "16,101 chars (was 11,390; 2,186 before pre-rendering)",
+    "deferred_sections_needing_js": 0,
+    "hydration_status": "clean — React #418 resolved, see docs/MODERNIZATION.md section 17",
+    "nojs_readable_take_action": "69,908 chars (was 3,355)"
   },
   "session_131_changes": {
     "summary": "Test coverage for TaiwanDefenseStatus (4-tab defense analysis with military balance, allied support, scenarios), ChinaTechThreats (4-tab surveillance/infrastructure/data/response tracker), and CompanyTracker (filterable company database with JSON data, search, categories, expand/collapse). All three are complex data-heavy components.",
@@ -804,10 +805,9 @@
       "noscript rewritten twice: it told at-risk readers to enable JS in Tor, then later claimed content needed JS after it no longer did"
     ],
     "new_files": {
-      "_agents/PARKED_WORK.md": "P1-P7, scoped work not yet done, with context to start cold",
+      "_agents/PARKED_WORK.md": "P1-P6, scoped work not yet done, with context to start cold",
       "docs/MODERNIZATION.md": "full audit, 16 sections, including two recorded dead ends",
       "scripts/prerender.mjs": "the build step; fails the build if the route fallback reappears",
-      "scripts/prerender-spike.mjs": "the rejected Chromium approach; delete once P1 lands",
       "src/utils/ssr.ts": "readStoredValue, matchesMediaQuery, isBrowser, useBrowserValue",
       "src/entry-server.tsx": "pre-render entry",
       "vitest.content.config.js": "content-freshness suite, run separately from npm test"
@@ -815,19 +815,33 @@
     "dead_ends_do_not_repeat": [
       "Headless-browser snapshot pre-rendering: ~111s and cannot run on Cloudflare Workers Builds (no browser). Section 12.",
       "Moving deployment to Cloudflare Pages: Workers with static assets is the recommendation; official migration runs Pages -> Workers. Section 15.",
-      "SSR-only EAGER PAGE REGISTRY ALONE as the React #418 fix: fixed hydration but made no-JS output strictly worse (/prisoners 11,336 -> 1,906 chars, $ loading on all 27 routes). ~80 sub-component lazies must be eager too, or not at all. Section 16."
+      "MAKING React.lazy COMPONENTS EAGER DURING THE PRE-RENDER. Tried twice. Pages only (section 16) made the output strictly worse; all 120 call sites via a build-time transform (section 17) changed the output by zero bytes. prerender() from react-dom/static already waits for suspended content — lazy was never the cause. Section 17."
     ],
     "hard_won_rules": [
-      "Verify no-JS behaviour in a real browser with JavaScript disabled. Reasoning about React Suspense was wrong twice; measurement caught both.",
+      "Verify no-JS behaviour in a real browser with JavaScript disabled. Reasoning about React Suspense was wrong three times; measurement caught all three.",
+      "vite preview SPA-falls-back to dist/index.html for every unrecognised path, so all routes measure identically and hydration errors appear on routes that do not have them. Serve dist/ the way Workers does (folder index per route) before believing a measurement.",
+      "When an explanation predicts a fix, build the fix and check the prediction before writing the explanation down. Section 16 justified a day of mechanical work with an untested theory; testing it took one build.",
       "Never edit a last_verified date to make a test pass — that fabricates provenance.",
       "Edit data files with exact string replacement, never a JSON round-trip: round-tripping re-encodes \\uXXXX escapes across the whole file and marks unverified human-rights records as modified.",
       "A scan is only as good as its regex — the SSR blocker count was wrong (5 vs 8) because the pattern did not allow useState<T>(...)."
     ],
     "open_human_decisions": "Q14-Q18 in _agents/QUESTIONS_FOR_HUMANS.md — github.io mirror, Supabase project, backend/, Dependabot backlog, content re-verification policy",
     "next_priorities": [
-      "P1 — make every lazy component eager during pre-render (finishes the work; do it whole, not half)",
-      "P7 — content re-verification, most time-sensitive cases first",
-      "P4 — ESLint 10; npm warns 9.x is end of support"
-    ]
+      "P6 — content re-verification, most time-sensitive cases first (the largest open item)",
+      "P3 — ESLint 10; npm warns 9.x is end of support",
+      "P1 — normalise the data schema, with validation, to replace hand-written data assertions"
+    ],
+    "section_17_the_real_cause": {
+      "symptom": "41 sections written into <div hidden> and invisible without JavaScript; React #418 on every route.",
+      "cause": "React's streaming renderer outlines any Suspense boundary whose markup exceeds progressiveChunkSize (default 12,800 bytes), whether or not anything suspended. Nothing in this app suspends during the pre-render.",
+      "fix": "prerender(tree, { progressiveChunkSize: Number.MAX_SAFE_INTEGER }) in src/entry-server.tsx. One option.",
+      "consequences": [
+        "0 deferred sections, down from 41",
+        "RouteBoundary renders a real <Suspense> on both sides again, so hydration matches and #418 is gone",
+        "the three warm-up render passes in entry-server.tsx are deleted; 27 routes in 0.5s, down from 0.9s",
+        "scripts/prerender.mjs now FAILS the build on any <div hidden>, not just on a route-level $ loading"
+      ],
+      "how_it_was_found": "Rendered the seven suspect components one at a time and tabulated rendered bytes against whether they deferred. The line fell between 8,616 and 14,252 bytes. Twenty minutes, after two wrong theories."
+    }
   }
 }

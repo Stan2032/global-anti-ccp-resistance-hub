@@ -9,7 +9,7 @@
  *
  * Uses `prerender` from react-dom/static rather than `renderToString`.
  * `renderToString` does not wait for Suspense boundaries, so every one of the
- * ~80 lazily-loaded components would have been emitted as its `$ loading`
+ * ~120 lazily-loaded components would have been emitted as its `$ loading`
  * fallback. `prerender` resolves them and returns the finished markup.
  *
  * Driven by scripts/prerender.mjs.
@@ -29,14 +29,6 @@ import { AppProviders, AppLayout } from './App';
  * @returns The markup for `#root`, with all Suspense boundaries resolved.
  */
 export async function render(url: string): Promise<string> {
-  // Two passes. The app's ~80 route and section components are React.lazy,
-  // so on a cold pass every boundary suspends and prerender emits the
-  // `$ loading` fallback into the shell instead of the content. The first
-  // pass exists only to kick those dynamic imports off and let them settle;
-  // by the second pass React.lazy resolves synchronously and the real markup
-  // lands in the HTML. The discarded pass is why this is still sub-second.
-  await warmLazyComponents(url);
-
   const { prelude } = await prerender(
     <AppProviders>
       <StaticRouter location={url}>
@@ -44,6 +36,29 @@ export async function render(url: string): Promise<string> {
       </StaticRouter>
     </AppProviders>,
     {
+      // The single setting that makes this site readable without JavaScript.
+      //
+      // React's streaming renderer decides per Suspense boundary whether to
+      // write the content inline or to "outline" it: emit the fallback in
+      // place and park the real markup in a trailing `<div hidden>` for a
+      // `$RC()` script to swap in. It outlines whenever a boundary's markup
+      // exceeds `progressiveChunkSize` — 12,800 bytes by default — and it
+      // does that even when the boundary finished rendering and nothing
+      // suspended. The threshold is a *streaming* optimisation: it lets a
+      // browser paint the shell sooner on a slow connection.
+      //
+      // For a build-time render there is no shell to paint sooner; the file
+      // is written whole either way. All the threshold buys us here is
+      // sections that vanish for anyone with JavaScript off — and they were
+      // the largest sections, because size is the trigger. Raising it past
+      // any plausible page inlines everything.
+      //
+      // This is also what lets RouteBoundary render a real <Suspense> during
+      // the pre-render, which is what fixes hydration error #418: the whole
+      // routed page is far over 12,800 bytes, so with the default it was
+      // outlined on every single route.
+      progressiveChunkSize: Number.MAX_SAFE_INTEGER,
+
       // A route that throws during the build must fail the build loudly
       // rather than silently publish a blank page.
       onError(error) {
@@ -62,40 +77,4 @@ export async function render(url: string): Promise<string> {
   }
   html += decoder.decode();
   return html;
-}
-
-/**
- * Render once and throw the result away, so every React.lazy boundary on the
- * route has started (and finished) its dynamic import before the real pass.
- *
- * Errors are swallowed deliberately: this pass exists only for its side
- * effect on the module cache. Anything genuinely broken will surface in the
- * real render, where onError rethrows and fails the build.
- */
-async function warmLazyComponents(url: string): Promise<void> {
-  for (let pass = 0; pass < 3; pass++) {
-    try {
-      const { prelude } = await prerender(
-        <AppProviders>
-          <StaticRouter location={url}>
-            <AppLayout />
-          </StaticRouter>
-        </AppProviders>,
-        { onError() {} },
-      );
-      // Drain so the render actually completes rather than being abandoned.
-      const reader = prelude.getReader();
-      let text = '';
-      const decoder = new TextDecoder();
-      for (;;) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        text += decoder.decode(value, { stream: true });
-      }
-      // Once no boundary falls back, everything the route needs is loaded.
-      if (!text.includes('$ loading')) return;
-    } catch {
-      return;
-    }
-  }
 }

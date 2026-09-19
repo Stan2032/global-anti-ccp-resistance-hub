@@ -132,12 +132,18 @@ async function main() {
   log('');
   log(`${results.length} routes in ${(total / 1000).toFixed(1)}s`);
 
-  // Regression guard. If the route-level Suspense boundary is ever restored
-  // during SSR, React defers the whole page into `<div hidden>` and emits the
-  // `$ loading` fallback in its place. The build still succeeds and the page
-  // still works for anyone with JavaScript — but readers without it silently
-  // get an empty page again. That is the exact failure this whole step
-  // exists to prevent, so fail the build loudly instead.
+  // Two regression guards, both for the same failure: markup that is present
+  // in the file but invisible to a reader with JavaScript disabled. Both are
+  // build-breaking, because the failure is silent otherwise — the page looks
+  // perfect to anyone testing with JavaScript on, which is everyone.
+  //
+  // React's streaming renderer "outlines" a Suspense boundary by writing its
+  // fallback in place and parking the real markup in a trailing `<div hidden>`
+  // for a `$RC()` script to swap in. No script runs, no swap. It outlines when
+  // a boundary suspends, and — the part that cost this project two wrong
+  // diagnoses — also whenever a boundary's markup simply exceeds
+  // `progressiveChunkSize`, whether or not anything suspended. See the comment
+  // in src/entry-server.tsx.
   const deferred = results.filter(r => r.hasRouteFallback);
   if (deferred.length) {
     console.error(
@@ -145,16 +151,27 @@ async function main() {
       `            rendering their content:\n` +
       deferred.map(r => `              ${r.route}`).join('\n') +
       `\n\n            Readers without JavaScript would see an empty page.\n` +
-      `            Check RouteBoundary in src/App.tsx — it must render its\n` +
-      `            children without a Suspense boundary when import.meta.env.SSR.`
+      `            The whole routed page is far larger than the default\n` +
+      `            progressiveChunkSize, so check that src/entry-server.tsx\n` +
+      `            still raises it.`
     );
     process.exit(1);
   }
 
-  const hidden = results.reduce((a, r) => a + r.hiddenBlocks, 0);
-  if (hidden) {
-    log(`note: ${hidden} section(s) across all routes still defer to <div hidden>;`);
-    log('      those are inner Suspense boundaries and need JavaScript to appear.');
+  const withHidden = results.filter(r => r.hiddenBlocks > 0);
+  if (withHidden.length) {
+    const total = withHidden.reduce((a, r) => a + r.hiddenBlocks, 0);
+    console.error(
+      `\n[prerender] ${total} section(s) across ${withHidden.length} route(s) were written\n` +
+      `            into <div hidden> and need JavaScript to become visible:\n` +
+      withHidden.map(r => `              ${r.route} (${r.hiddenBlocks})`).join('\n') +
+      `\n\n            The markup is in the file but a reader with JavaScript off\n` +
+      `            never sees it. Either raise progressiveChunkSize in\n` +
+      `            src/entry-server.tsx, or find what is suspending during the\n` +
+      `            pre-render — a boundary that truly awaits something still\n` +
+      `            gets outlined however large the chunk size.`
+    );
+    process.exit(1);
   }
 }
 

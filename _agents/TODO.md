@@ -9,12 +9,12 @@
 > predates it.
 >
 > **New files, and where things now live:**
-> - `_agents/PARKED_WORK.md` — scoped work deliberately not done yet (P1-P7),
+> - `_agents/PARKED_WORK.md` — scoped work deliberately not done yet (P1-P6),
 >   each with enough context to start cold. **Check this before picking a task.**
 > - `_agents/QUESTIONS_FOR_HUMANS.md` — Q14-Q18 added, all open.
-> - `docs/MODERNIZATION.md` — the full audit, including two recorded
->   dead ends (§12 snapshot pre-rendering, §16 eager page registry) so nobody
->   repeats them.
+> - `docs/MODERNIZATION.md` — the full audit, including recorded dead ends
+>   (§12 snapshot pre-rendering, §16 eager page registry) so nobody repeats
+>   them, and §17, which corrects the diagnosis both of §15 and §16 rested on.
 >
 > **Two test commands now, and they mean different things:**
 > - `npm test` — code correctness. Gates PRs. **Currently green (3,693).**
@@ -25,14 +25,20 @@
 > That fabricates provenance, which this project forbids. Re-check the entry
 > against a Tier 1-2 source instead.
 >
-> **The site is now pre-rendered.** Every route ships as static HTML and is
+> **The site is fully pre-rendered.** Every route ships as static HTML and is
 > readable with JavaScript disabled — which is what the Security Center tells
-> readers in China to use. `/prisoners` went from 2,186 to 11,336 readable
-> characters. If you change how routes load, verify in a real browser with
-> JavaScript off; reasoning about React's behaviour got it wrong twice.
+> readers in China to use. Nothing is deferred into `<div hidden>` any more and
+> hydration is clean. `/take-action` went from 3,355 to 69,908 readable
+> characters, `/prisoners` from 2,186 (pre-pre-rendering) to 16,101.
 >
-> **Immediate priorities:** P1 in `PARKED_WORK.md` (finish pre-rendering),
-> then P7 (content re-verification) or P4 (ESLint 10 — 9.x is end of support).
+> If you change routing, lazy loading or Suspense, **verify in a real browser
+> with JavaScript off, served the way Workers serves it** — `vite preview`
+> SPA-falls-back to `dist/index.html` and makes every route measure the same.
+> Reasoning about React's behaviour got this wrong three times; measurement
+> caught all three. See `docs/MODERNIZATION.md` §17.
+>
+> **Immediate priorities:** P6 in `PARKED_WORK.md` (content re-verification —
+> the largest open item), then P3 (ESLint 10 — 9.x is end of support).
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.

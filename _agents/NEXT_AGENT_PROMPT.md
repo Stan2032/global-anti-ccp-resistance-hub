@@ -8,8 +8,8 @@
 >
 > | File | What it holds |
 > |---|---|
-> | `docs/MODERNIZATION.md` | The audit. 16 sections, including dead ends. |
-> | `_agents/PARKED_WORK.md` | P1-P7: scoped work not yet done. **Pick from here.** |
+> | `docs/MODERNIZATION.md` | The audit. 17 sections, including dead ends. §17 corrects §15 and §16. |
+> | `_agents/PARKED_WORK.md` | P1-P6: scoped work not yet done. **Pick from here.** |
 > | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q18, all open and awaiting the owner. |
 > | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
@@ -29,19 +29,26 @@
 > **Never fix a `test:content` failure by editing a `last_verified` date.**
 > That fabricates provenance. Re-check against a Tier 1-2 source instead.
 >
-> **The site is pre-rendered now.** Every route ships as static HTML readable
-> without JavaScript — the configuration this site tells readers in China to
-> use. If you touch routing, lazy loading or Suspense, **verify in a real
-> browser with JavaScript disabled.** Reasoning about React's behaviour got it
-> wrong twice in Session 281; measurement caught both.
+> **The site is pre-rendered now**, with nothing deferred and hydration clean.
+> Every route ships as static HTML readable without JavaScript — the
+> configuration this site tells readers in China to use.
+>
+> If you touch routing, lazy loading or Suspense, **verify in a real browser
+> with JavaScript disabled**, and serve `dist/` the way Workers does (folder
+> index per route): `vite preview` SPA-falls-back to `dist/index.html`, so
+> every route measures identically and the result looks fine when it is not.
+> Reasoning about React's behaviour got this wrong three times in Session 281;
+> measurement caught all three. `docs/MODERNIZATION.md` §17 has the mechanism —
+> React outlines any Suspense boundary over `progressiveChunkSize` bytes into
+> `<div hidden>`, suspension or not.
 >
 > **Deployment is automatic** via Cloudflare Workers Builds (Git integration).
 > There is no deploy workflow and none is wanted. CI and deploy are separate
 > systems, so red CI does not block a deploy.
 >
-> **Suggested next:** P1 in `PARKED_WORK.md` (finish pre-rendering — do it
-> whole, a half version is worse than none), then P7 (content re-verification)
-> or P4 (ESLint 10, since 9.x is end of support).
+> **Suggested next:** P6 in `PARKED_WORK.md` (content re-verification — the
+> largest open item, and the one the site's credibility rests on), then P3
+> (ESLint 10, since 9.x is end of support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

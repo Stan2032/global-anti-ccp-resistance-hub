@@ -591,6 +591,12 @@ Cloudflare Builds and once by Actions, racing each other.
 
 ## 15. Pre-rendering: implemented (WIP)
 
+> **Superseded in part by §17.** This section's explanation of *why* React
+> hid the content — "React can only defer a subtree if there is a boundary
+> to defer to" — is wrong. The real cause was a size threshold, and the
+> workaround described here (removing the boundary during SSR) is no longer
+> in the code. The measurements are accurate; the diagnosis is not.
+
 Built 2026-09-19 after the §12 spike. **Static generation, not browser
 snapshotting** — Cloudflare Workers Builds preinstalls Node but no Chromium,
 so the snapshot approach measured in §12 could never have run at deploy time.
@@ -676,6 +682,10 @@ corrected.
 
 ## 16. Attempted and reverted: SSR-only eager page registry
 
+> **Superseded by §17.** The measurements below are real and repeatable.
+> The cause they were attributed to is not, and "What would actually work"
+> below is wrong — it was tried in full and changed nothing. Read §17.
+
 Tried 2026-09-19, measured, reverted. Recorded so nobody spends the time again.
 
 §15 said the fix for the React #418 hydration mismatch was to keep the
@@ -730,3 +740,126 @@ side of the trade to be on while the sweep is outstanding.
 by numbers from a real browser with JavaScript disabled, not by reasoning
 about React's behaviour. The reasoning was wrong twice.
 
+---
+
+## 17. The actual cause: `progressiveChunkSize`
+
+Resolved 2026-09-19. **§15 and §16 both had the mechanism wrong.** This is
+what was really happening, and the fix is one line.
+
+### The symptom
+
+Two things were outstanding after §15:
+
+- 41 sections across 7 routes were written into `<div hidden>` and needed
+  JavaScript to appear.
+- Hydration reported React #418 on every route, because `RouteBoundary` had
+  to omit its `<Suspense>` during the pre-render while rendering it in the
+  browser, so the two trees did not match.
+
+Both were blamed on `React.lazy`: the theory was that a lazy component
+suspends, React defers it, so the cure was to make every lazy component eager
+during the pre-render. §16 called that "the right end state".
+
+### It was tested in full, and it changed nothing
+
+A Vite plugin was written that rewrote **all 120** `lazy(() => import(...))`
+call sites in the server bundle to static imports — every route component and
+every sub-component, the whole sweep §16 asked for, not half of it.
+
+The pre-rendered output was **byte-for-byte identical**. Still 41 hidden
+blocks, still the same character counts on every route.
+
+So `React.lazy` was never the cause. It could not have been: `prerender()`
+from `react-dom/static` *waits* for suspended content — that is the entire
+difference between it and `renderToString`. A three-case probe confirmed it
+inlines a synchronous child, a microtask-suspended child and a
+`setTimeout`-suspended child alike.
+
+### What it actually is
+
+Isolating the seven suspect components one at a time made the pattern
+obvious:
+
+| component | rendered bytes | deferred? |
+|---|---|---|
+| `NotificationCenter` | 26,142 | yes |
+| `NewsDigest` | 15,221 | yes |
+| `LiveStatistics` | 14,252 | yes |
+| `RecentUpdates` | 8,616 | no |
+| `EmergencyAlerts` | 6,624 | no |
+| `UrgentCaseTimer` | 760 | no |
+| `NewsAggregator` | 399 | no |
+
+The line is between 8,616 and 14,252 bytes. React's streaming renderer
+outlines a Suspense boundary — writes the fallback in place and parks the
+real markup in a trailing `<div hidden>` for a `$RC()` script — when the
+boundary's markup exceeds **`progressiveChunkSize`, which defaults to 12,800
+bytes.** It does that whether or not anything suspended. Nothing in this app
+was suspending at all.
+
+The threshold is a *streaming* optimisation: on a slow connection it lets the
+browser paint the shell before a large section has finished. At build time
+there is no shell to paint sooner — the file is written whole either way.
+All it bought us was that the **largest** sections disappeared for readers
+without JavaScript, because size was the trigger.
+
+### The fix
+
+```js
+prerender(tree, { progressiveChunkSize: Number.MAX_SAFE_INTEGER, onError })
+```
+
+One option in `src/entry-server.tsx`. With it:
+
+- **0 deferred sections**, down from 41.
+- `RouteBoundary` renders a real `<Suspense>` on both sides again, so the
+  trees match and **React #418 is gone**. The routed page is far over 12,800
+  bytes, which is why restoring the boundary had deferred all 27 routes in
+  §16 — nothing to do with suspension either.
+- The three warm-up render passes in `entry-server.tsx` are deleted. They
+  existed to pre-resolve lazy imports, which was never the problem.
+  **27 routes in 0.5s**, down from 0.9s.
+
+### Measured in a real browser with JavaScript disabled
+
+| route | before | after |
+|---|---|---|
+| `/take-action` | 3,355 | **69,908** |
+| `/data-sources` | 4,919 | **28,147** |
+| `/education` | 2,991 | **24,603** |
+| `/` | 2,519 | **11,005** |
+| `/prisoners` | 11,390 | **16,101** |
+| `/resources` | 3,932 | **9,451** |
+| `/security` | 1,968 | **3,996** |
+
+Chow Hang-Tung's record was **absent** from `/prisoners` without JavaScript
+before this and is present now. Hydration errors went from one on every route
+to none.
+
+### A measurement trap worth writing down
+
+`vite preview` SPA-falls-back to `dist/index.html` for any path it does not
+recognise, so **every route returns the Dashboard** and all of them measure
+identically. The first run of this verification reported 11,005 visible
+characters for all nine routes and a hydration error on routes that did not
+have one. Cloudflare Workers Static Assets resolves `/prisoners` to
+`dist/prisoners/index.html`; `vite preview` does not. Verify against
+something that resolves folder indexes the way production does.
+
+### What this cost, and the lesson
+
+Three diagnoses, two of them wrong, both stated confidently in this document
+with correct measurements attached. The measurements were never the problem —
+every number in §15 and §16 is reproducible. The problem was explaining them
+by reasoning about React's behaviour instead of testing the explanation.
+
+The thing that broke it open was cheap and should have come first: render one
+component at a time and look at where the boundary falls. Twenty minutes,
+and it produced a table no amount of reasoning about Suspense would have
+produced.
+
+**When an explanation predicts a fix, build the fix and check the prediction
+before writing the explanation down.** The §16 sweep was a day of mechanical
+work justified entirely by an untested theory. Testing the theory took one
+build.
