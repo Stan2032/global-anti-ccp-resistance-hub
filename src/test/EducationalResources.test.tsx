@@ -56,12 +56,12 @@ describe('EducationalResources', () => {
 
   // --- Tabs ---
 
-  it('renders 4 tabs', () => {
+  it('renders the four groups as headings', () => {
     renderEducation();
-    expect(screen.getByText('Learn')).toBeTruthy();
-    expect(screen.getByText('Media')).toBeTruthy();
-    expect(screen.getByText('Research')).toBeTruthy();
-    expect(screen.getByText('Tools')).toBeTruthy();
+    expect(screen.getByText('── history_and_context ──')).toBeTruthy();
+    expect(screen.getByText('── media ──')).toBeTruthy();
+    expect(screen.getByText('── research ──')).toBeTruthy();
+    expect(screen.getByText('── tools ──')).toBeTruthy();
   });
 
   it('does not render removed tabs (FAQ, History, Progress)', () => {
@@ -140,53 +140,72 @@ describe('EducationalResources', () => {
     expect(await screen.findByText('HistoricalDocuments')).toBeTruthy();
   });
 
-  // --- Media Tab ---
+  // --- Every section, without interaction ---
 
-  it('switches to Media tab', () => {
+  /*
+   * These four groups were JavaScript tabs, and only the active one was ever
+   * rendered. The pre-rendered HTML therefore held the Learn panel and
+   * nothing else: sixteen of the page's twenty-two sections never reached a
+   * reader with JavaScript disabled, and the tab buttons did nothing when
+   * clicked. This site tells readers in China to use Tor Browser on Safer or
+   * Safest, which disables JavaScript.
+   *
+   * So the guarantee under test is no longer "clicking a tab reveals X" but
+   * the stronger "X is already there". Nothing below clicks anything.
+   */
+
+  it('has every section present without any interaction', () => {
     renderEducation();
-    fireEvent.click(screen.getByText('Media'));
-    // Should show section headers for media content
-    expect(screen.getByText('── books ──')).toBeTruthy();
-    expect(screen.getByText('── documentaries ──')).toBeTruthy();
-    expect(screen.getByText('── propaganda_outlets ──')).toBeTruthy();
+    for (const title of [
+      // history_and_context
+      'Interactive timeline', 'Survivor stories', 'Glossary',
+      'Historical documents', 'Key dates', 'Survivor testimonies',
+      // media
+      'Books', 'Documentaries', 'Propaganda outlets', 'Media bias guide',
+      'Video testimonials',
+      // research
+      'Content analytics', 'Timeline gap analysis', 'Research papers',
+      'Source verification', 'Academic experts', 'Human rights organisations',
+      // tools
+      'Language phrases', 'Disinformation tracker', 'AI disinformation detector',
+      'Confucius Institutes', 'FAQ',
+    ]) {
+      // queryAllByText, not getByText: a few titles also match the mocked
+      // component's own output (the FAQ mock renders the text "FAQ").
+      expect(
+        screen.queryAllByText(title).length,
+        `${title} is missing from the page`
+      ).toBeGreaterThan(0);
+    }
   });
 
-  it('does not show removed podcasts section in Media tab', () => {
+  it('uses native <details> so the sections open without JavaScript', () => {
+    const { container } = renderEducation();
+    const details = container.querySelectorAll('details');
+    expect(details.length).toBe(22);
+    // Collapsed, but in the document — folded, not withheld.
+    expect([...details].filter(d => d.hasAttribute('open')).length).toBe(0);
+    expect(container.querySelectorAll('details > summary').length).toBe(22);
+  });
+
+  // --- Sections deliberately removed earlier stay removed ---
+
+  it('does not show the removed podcasts section', () => {
     renderEducation();
-    fireEvent.click(screen.getByText('Media'));
     expect(screen.queryByText('── podcasts ──')).toBeNull();
+    expect(screen.queryByText('Podcasts')).toBeNull();
   });
 
-  // --- Research Tab ---
-
-  it('switches to Research tab', () => {
+  it('does not show the removed citation generator', () => {
     renderEducation();
-    fireEvent.click(screen.getByText('Research'));
-    expect(screen.getByText('── source_verification ──')).toBeTruthy();
-  });
-
-  it('does not show removed citation generator in Research tab', () => {
-    renderEducation();
-    fireEvent.click(screen.getByText('Research'));
     expect(screen.queryByText('── citation_generator ──')).toBeNull();
+    expect(screen.queryByText('Citation generator')).toBeNull();
   });
 
-  // --- Tools Tab ---
-
-  it('switches to Tools tab with FAQ merged in', () => {
+  it('does not show the removed knowledge quiz', () => {
     renderEducation();
-    fireEvent.click(screen.getByText('Tools'));
-    expect(screen.getByText('── language_phrases ──')).toBeTruthy();
-    expect(screen.getByText('── disinfo_tracker ──')).toBeTruthy();
-    expect(screen.getByText('── ai_detector ──')).toBeTruthy();
-    expect(screen.getByText('── confucius_institutes ──')).toBeTruthy();
-    expect(screen.getByText('── faq ──')).toBeTruthy();
-  });
-
-  it('does not show removed knowledge quiz in Tools tab', () => {
-    renderEducation();
-    fireEvent.click(screen.getByText('Tools'));
     expect(screen.queryByText('── knowledge_quiz ──')).toBeNull();
+    expect(screen.queryByText('Knowledge quiz')).toBeNull();
   });
 
   // --- Module card accessibility ---
