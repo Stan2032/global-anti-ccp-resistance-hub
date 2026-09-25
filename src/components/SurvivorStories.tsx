@@ -9,7 +9,6 @@ import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquar
 
 const SurvivorStories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [expandedStory, setExpandedStory] = useState<number | null>(null);
 
   const categories = [
     { id: 'all', name: 'All Stories', Icon: BookOpen },
@@ -207,7 +206,6 @@ She has dedicated her life to advocating for her father's release, speaking at t
       <div className="grid md:grid-cols-2 gap-4">
         {filteredStories.map(story => {
           const categoryInfo = getCategoryInfo(story.category);
-          const isExpanded = expandedStory === story.id;
           
           return (
             <div 
@@ -241,8 +239,16 @@ She has dedicated her life to advocating for her father's release, speaking at t
                   <p className="text-sm italic text-slate-400">{story.quote}</p>
                 </blockquote>
 
-                {/* Expanded Content */}
-                {isExpanded && (
+                {/* Full story: native, so it opens without JavaScript */}
+                <details className="mt-3">
+                  <summary className="inline-block text-sm text-[#22d3ee] hover:text-white cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="summary-open:hidden">
+                      Read full story<span className="sr-only"> from {story.name}</span> →
+                    </span>
+                    <span className="hidden summary-open:inline">
+                      Show less<span className="sr-only"> of {story.name}'s story</span> ↑
+                    </span>
+                  </summary>
                   <div className="mt-4 pt-4 border-t border-[#1c2a35]">
                     <p className="text-sm text-slate-300 whitespace-pre-line mb-4">
                       {story.fullStory}
@@ -256,16 +262,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                       ))}
                     </div>
                   </div>
-                )}
-
-                <button
-                  onClick={() => setExpandedStory(isExpanded ? null : story.id)}
-                  aria-expanded={isExpanded}
-                  aria-label={`${isExpanded ? 'Collapse' : 'Read'} story from ${story.name}`}
-                  className="mt-3 text-sm text-[#22d3ee] hover:text-white"
-                >
-                  {isExpanded ? 'Show less ↑' : 'Read full story →'}
-                </button>
+                </details>
               </div>
             </div>
           );

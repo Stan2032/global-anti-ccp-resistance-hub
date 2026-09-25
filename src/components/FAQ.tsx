@@ -8,7 +8,6 @@ import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 
 const FAQ = () => {
-  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
@@ -191,35 +190,26 @@ const FAQ = () => {
       {/* FAQ List */}
       <div className="space-y-3">
         {filteredFaqs.map(faq => (
-          <div
+          <details
             key={faq.id}
             className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
           >
-            <button
-              onClick={() => setOpenQuestion(openQuestion === faq.id ? null : faq.id)}
-              aria-expanded={openQuestion === faq.id}
-              aria-label={`${openQuestion === faq.id ? 'Collapse' : 'Expand'} question: ${faq.question}`}
-              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#111820]/30 transition-colors"
-            >
+            <summary className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#111820]/30 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
               <span className="font-medium text-white pr-4">{faq.question}</span>
               <svg
-                className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform ${
-                  openQuestion === faq.id ? 'rotate-180' : ''
-                }`}
+                className="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform summary-open:rotate-180"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
-            
-            {openQuestion === faq.id && (
-              <div className="px-5 pb-4 border-t border-[#1c2a35]">
-                <p className="text-slate-300 pt-4 leading-relaxed">{faq.answer}</p>
-              </div>
-            )}
-          </div>
+            </summary>
+            <div className="px-5 pb-4 border-t border-[#1c2a35]">
+              <p className="text-slate-300 pt-4 leading-relaxed">{faq.answer}</p>
+            </div>
+          </details>
         ))}
       </div>
 

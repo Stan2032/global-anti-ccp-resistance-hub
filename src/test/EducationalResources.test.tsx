@@ -181,11 +181,13 @@ describe('EducationalResources', () => {
 
   it('uses native <details> so the sections open without JavaScript', () => {
     const { container } = renderEducation();
-    const details = container.querySelectorAll('details');
-    expect(details.length).toBe(22);
+    // The 22 sections; cards inside them (FAQ answers, directory entries)
+    // are <details> too, and are not counted here.
+    const sections = [...container.querySelectorAll('details')].filter(d => !d.parentElement!.closest('details'));
+    expect(sections.length).toBe(22);
     // Collapsed, but in the document — folded, not withheld.
-    expect([...details].filter(d => d.hasAttribute('open')).length).toBe(0);
-    expect(container.querySelectorAll('details > summary').length).toBe(22);
+    expect(sections.filter(d => d.hasAttribute('open')).length).toBe(0);
+    sections.forEach(d => expect(d.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
   // --- Sections deliberately removed earlier stay removed ---

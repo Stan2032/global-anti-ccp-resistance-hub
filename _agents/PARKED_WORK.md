@@ -311,12 +311,23 @@ Two rules came out of this batch, and tests enforce both:
   the old component (`git show <before>:src/components/X.tsx`) and expect
   failures.
 
-**Left:** 276 expanders outside the header and nav, plus InfluenceNetwork.
-By route: `/education` 92, `/data-sources` 77, `/take-action` 42,
-`/resources` 30, `/directory` 24, `/` 11. `cards_to_details.py` (session
-scratchpad) now handles the multi-line chevron, `handleToggle` and
-`aria-controls` variants. It drops a body `id` that only served
-`aria-controls` and removes the expand state once nothing reads it.
+**Done: `/education` and `/resources`, most of `/take-action`.** The
+human-rights organisation directory, the FAQ, the survivor stories, the
+video testimonies, the decade bars, the forced-labour company list and the
+international response tracker. Pre-rendered text: `/education` 87,289 →
+129,248, `/resources` 10,000 → 30,725, `/take-action` 78,929 → 106,369.
+The video testimonies' content-warning gate is a nested `<details>`: the
+warning still stands in front of the details and opening them is still a
+deliberate step, now without JavaScript.
+
+**Left:** 127 expanders outside the header and nav, plus InfluenceNetwork.
+By route: `/data-sources` 79, `/directory` 24, `/take-action` 13 (campaign
+cards and the political-prisoner legislation cards), `/` 11.
+`cards_to_details.py` (session scratchpad) handles the multi-line chevron,
+`handleToggle` and `aria-controls` variants. It drops a body `id` that only
+served `aria-controls`, turns headings in a header into spans, and removes
+the expand state once nothing reads it. `scripts/prerender.mjs` fails the
+build on a `<summary>` holding block content or a nested heading.
 
 ---
 
