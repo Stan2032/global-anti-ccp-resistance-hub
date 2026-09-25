@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "34.0",
-    "date": "2026-09-19T18:30:00Z",
+    "version": "35.0",
+    "date": "2026-09-25T09:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v33.0)",
+    "supersedes": "AGENT_HANDOFF.json (v34.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -843,5 +843,27 @@
       ],
       "how_it_was_found": "Rendered the seven suspect components one at a time and tabulated rendered bytes against whether they deferred. The line fell between 8,616 and 14,252 bytes. Twenty minutes, after two wrong theories."
     }
+  },
+  "session_281_site_quality_sweep": {
+    "date": "2026-09-25",
+    "summary": "The owner asked for the site itself (how it operates, how clean and useful it is) ahead of content re-verification; P7 is paused. See docs/MODERNIZATION.md section 18.",
+    "shipped": [
+      "RSS feeds fetched by the Worker (/api/v1/feed?source=KEY, allowlist only), not through third-party proxies from the reader's browser (a8a5158)",
+      "CSP violations 4 -> 0; the service worker registers for the first time; no third-party hosts per page view (28ea7fd)",
+      "Native <details> (DisclosureSection) replaced JS-only tabs on /take-action, /education, all 16 profiles, /security, /intelligence and 15 embedded components",
+      "21 search and filter controls named for what they do (241ca08); the safety checklist's tick boxes are named checkboxes (3b7270d)",
+      "Returning readers' saved state no longer breaks hydration: useStoredString / useStoredJson in src/utils/ssr.ts (49959a1)",
+      "Blocked site data no longer turns every page into the error screen; nothing is written to storage until the reader acts; the headline cache lives in memory (65a7c4e)"
+    ],
+    "build_guards_added": [
+      "scripts/prerender.mjs fails when two form controls on one page share an accessible name",
+      "scripts/prerender.mjs fails when a page has a button with no accessible name"
+    ],
+    "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
+    "next": [
+      "Convert the last three content-hiding tab components: SafetyChecklist, ContactRepresentatives, LanguageGuide",
+      "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
+      "P7 content re-verification stays paused until the owner resumes it"
+    ]
   }
 }

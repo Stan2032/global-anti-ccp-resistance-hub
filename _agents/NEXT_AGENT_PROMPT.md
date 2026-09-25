@@ -1,6 +1,6 @@
 # Next Agent Prompt — Global Anti-CCP Resistance Hub
 
-> ## ⚠️ READ FIRST — Session 281 (2026-09-19)
+> ## ⚠️ READ FIRST — Session 281 (2026-09-19, site-quality sweep 2026-09-25)
 >
 > A six-month modernization sweep ran on 2026-09-19. **`docs/MODERNIZATION.md`
 > is the authoritative current state** — much of the detail further down this
@@ -8,16 +8,16 @@
 >
 > | File | What it holds |
 > |---|---|
-> | `docs/MODERNIZATION.md` | The audit. 17 sections, including dead ends. §17 corrects §15 and §16. |
-> | `_agents/PARKED_WORK.md` | P1-P7: scoped work not yet done. **Pick from here.** |
+> | `docs/MODERNIZATION.md` | The audit. 18 sections, including dead ends. §17 corrects §15 and §16; §18 is the site-quality sweep. |
+> | `_agents/PARKED_WORK.md` | P1-P8 and small items: scoped work not yet done. **Pick from here.** |
 > | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q18, all open and awaiting the owner. |
 > | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,693 across 199** for `npm test`,
->   plus 23 content-freshness tests run separately.
+> - "3714 tests across 201 files" is now **3,691 across 201** for `npm test`,
+>   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.
 >
@@ -46,9 +46,19 @@
 > There is no deploy workflow and none is wanted. CI and deploy are separate
 > systems, so red CI does not block a deploy.
 >
-> **Suggested next:** P7 in `PARKED_WORK.md` (content re-verification — the
-> largest open item, and the one the site's credibility rests on), then P3
-> (ESLint 10, since 9.x is end of support).
+> **Test the site the way its readers use it.** Every significant bug in the
+> site-quality sweep was invisible to a fresh browser profile with JavaScript
+> on. Browser checks must also cover JavaScript off, a returning visitor with
+> saved storage, and blocked site data. Nothing may be written to browser
+> storage until the reader acts: use `useStoredString` / `useStoredJson` /
+> `writeStoredValue` in `src/utils/ssr.ts`, never `localStorage` directly.
+>
+> **Suggested next:** the owner asked for the site itself to come first, so
+> P7 (content re-verification) is **paused** until they resume it. Finish the
+> sweep: convert the last three content-hiding tab components
+> (SafetyChecklist, ContactRepresentatives, LanguageGuide), then P8 and the
+> small items in `PARKED_WORK.md`, then P3 (ESLint 10, since 9.x is end of
+> support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

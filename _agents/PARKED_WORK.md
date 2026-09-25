@@ -93,20 +93,19 @@ shipping as bare maintenance — the dashboard work in P6, say.
 
 ---
 
-## P4 — `/intelligence` is empty without JavaScript
+## P4 — The live feed on `/intelligence` is empty without JavaScript
 
 **Size:** small · **Value:** medium · **Risk:** low, but touches hydration
 
-Every other route now renders its content as static HTML. `/intelligence`
-does not: its articles come from `dataProcessor.aggregateFeeds()` in a
-`useEffect`, so a reader with JavaScript disabled gets 1,540 characters of
-page chrome, the words **"Loading…"**, *"0 of 9 sources loaded"* and
-*"Showing 0 of 0 articles"* — a page that looks like it is working and never
-will be.
+Since `f049dc8` the rest of `/intelligence` is static HTML: Regional Status
+and CCP Operations reach a reader with JavaScript off (70,542 characters).
+The **Live Feeds** section still cannot. Its articles come from
+`dataProcessor.aggregateFeeds()` in a `useEffect`, so without JavaScript it
+shows "Loading…" and *"0 of 9 sources loaded"* and never changes.
 
-The global `<noscript>` banner now says so in words, which stops the page
-lying, but the page is still empty for exactly the readers the pre-rendering
-work was for.
+The section's own description now says "Needs JavaScript", and so does the
+global `<noscript>` banner, so the page no longer pretends. But the live
+feed is still empty for exactly the readers the pre-rendering work was for.
 
 Options, roughly in order of effort:
 
@@ -164,6 +163,10 @@ Also minor: the 7-step onboarding tour overlaps the statistics cards at
 1440 px wide, obscuring the fourth tile. It lands on first visit, which is
 when it is most visible.
 
+And the same critical alert appears **three times** on the Dashboard: once in
+`EmergencyAlerts` and twice in `NotificationCenter`, which lists the same
+alerts independently. Dismissing it in one place leaves the other two.
+
 ---
 
 ## P7 — Content re-verification at scale
@@ -201,6 +204,39 @@ date.** That fabricates provenance, which this project forbids.
 Sensible batching: the most time-sensitive cases first (anyone with an active
 trial or an approaching sentence or release date), then sanctions, then the
 long tail.
+
+---
+
+## P8 — Filter bars announced as tabs
+
+**Size:** small · **Value:** low (screen reader semantics) · **Risk:** low
+
+Thirteen components use `role="tab"` / `aria-selected` for what is really a
+filter over a single list: DiasporaSupport, FAQ, ActivistToolkit,
+MediaManipulation, SurvivorStories, EventCalendar, DisinfoTracker,
+IPACMembers, ConfuciusInstitutes, SanctionsTracker, DocumentaryList,
+SuccessStories, DonationGuide. Each defaults to "all", so **nothing is hidden
+from a reader without JavaScript** — unlike the panel tabs removed in the
+site-quality sweep (§18). But a tablist promises panels, and a screen reader
+announces "tab 1 of 6" for what is a filter. The honest pattern is a group
+of toggle buttons with `aria-pressed`, like the view toggles
+`DiplomaticCoercionTracker` used to have.
+
+The ARIA coverage tests pin the tab pattern on IPACMembers, DiasporaSupport
+and LanguageGuide, so they would need updating with the components.
+
+---
+
+## Small items
+
+- **EmergencyAlerts removes its own restore control.** It returns `null` when
+  no undismissed alerts remain, taking the "show --dismissed (N)" button with
+  it. A reader who dismisses every alert cannot bring them back without
+  clearing site data.
+- **`main.tsx` storage cleanup is temporary.** `LEFT_BY_EARLIER_VERSIONS`
+  tidies keys that versions before September 2026 wrote on every visit.
+  Delete it once returning readers have had time to visit again (mid-2027 is
+  generous).
 
 ---
 

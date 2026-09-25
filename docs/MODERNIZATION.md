@@ -925,3 +925,101 @@ produced.
 before writing the explanation down.** The §16 sweep was a day of mechanical
 work justified entirely by an untested theory. Testing the theory took one
 build.
+
+---
+
+## 18. Site-quality sweep: test the site the way its readers use it
+
+In September 2026 the owner asked for the site itself to come first — how it
+operates, how clean and useful it is — ahead of content re-verification
+(P7, paused). This section records what that sweep found and changed.
+
+One thread runs through all of it. Every earlier check ran the way
+developers run checks: JavaScript on, a fresh browser profile, storage
+allowed, eyes on the screen. This site's readers are often none of those.
+Almost every significant bug below was invisible under that default setup
+and obvious the moment the test was set up like a reader: JavaScript off (Tor
+Browser on Safer or Safest), returning with saved state, a hardened browser
+that blocks site data, a screen reader.
+
+### Third parties and the CSP
+
+| | before | after |
+|---|---|---|
+| RSS feeds | fetched by the **reader's browser** through `api.rss2json.com` and `api.allorigins.win`, which saw the reader's IP and interests and chose the text rendered | fetched by the Worker (`/api/v1/feed?source=KEY`, allowlist only, fresh request, 10-minute edge cache) — `a8a5158` |
+| CSP violations | 4 | 0 — `28ea7fd` |
+| Service worker | shipped in every deploy, **never once registered** (inline script refused by the CSP) | registers and activates |
+| Third-party hosts per page view | fonts.googleapis.com and two feed proxies | none |
+
+### Content that needed JavaScript
+
+React-state tabs render only the active panel, so every other panel was
+missing from the pre-rendered HTML. The fix throughout is `DisclosureSection`,
+a native `<details>` that opens without any script.
+
+| where | before | after |
+|---|---|---|
+| `/take-action` | 147.8 mobile screens, fifteen tools stacked | 14.6 — `e04cfb6` |
+| `/education` | 6 of 22 sections reachable without JS; 58.8 mobile screens | 22 of 22; 9.5 — `50b4ea9` |
+| 16 profile pages | 1 of 5 sections without JS, **Sources absent** | 5 of 5 — `8ccb0e8` |
+| `/security` | 4,367 pre-rendered characters | 28,030 — `f049dc8` |
+| `/intelligence` | 2,404 (only the live feed, which cannot work without JS) | 70,542 — `f049dc8` |
+| 15 embedded components (region panels, trackers, guides) | default view only | every view — `8f41daf` |
+
+### Controls a screen reader can name
+
+- Twenty-one search boxes and filters had generic or wrong names:
+  `/education` had seven boxes all named "Search", and a facility-type filter
+  was announced as "Region filter". Each is now named for what it does —
+  `241ca08`.
+- The safety checklist's ten tick boxes had no name at all. Each is now a
+  checkbox named after its item, with its state — `3b7270d`.
+- `scripts/prerender.mjs` fails the build when a page has two form controls
+  sharing a name, or a button with no name.
+
+### Returning readers and hardened browsers
+
+- **Hydration broke for returning readers.** Anyone who had dismissed an
+  alert, ticked a checklist item, lit a candle, or chosen any theme but dark
+  made React discard the page on every visit and render it again (#418). The
+  theme case covered every page. In Chromium, 5 of 8 returning-visitor cases
+  failed, and 0 after. `useStoredString` and `useStoredJson` in
+  `src/utils/ssr.ts` render the default while hydrating and apply the saved
+  value straight afterwards — `49959a1`.
+- **Blocked site data broke every page.** With storage blocked, every page
+  became a 71-character error screen, because `LanguageProvider` read
+  `localStorage` unguarded at the root. It now renders in full with no errors
+  — `65a7c4e`.
+- **Reading left traces.** A first-time reader browsing five pages had three
+  keys written without acting on anything; one of them, `rss_feed_cache`,
+  held the fetched headlines. On an inspected device that is a list of
+  articles about repression. Before `49959a1` the theme and checklist keys
+  were written too. Now nothing is stored until the reader changes
+  something, saving the default deletes the key, the feed cache lives in
+  memory, and `main.tsx` tidies what earlier versions left — `65a7c4e`.
+
+### Bugs this sweep introduced, and caught
+
+- The script that converted the 15 components turned every
+  `{view === 'x' && (…)}` block into a section, including four that held only
+  the filter dropdown for that view. The result was stray collapsibles
+  containing a lone `<select>`. It can't tell a panel from a panel-specific
+  control. After a transform like that, scan for sections whose body is only
+  form controls, and for duplicate section titles.
+- `ResearchDashboard` fed one status filter to two dropdowns with different
+  status lists. Tabs hid that, although only just: the filter was never reset
+  on a tab switch. With both lists on screen it would have emptied one.
+
+### Lessons
+
+1. **Test as the reader is.** Add a returning-visitor profile, a blocked-storage
+   profile and a JavaScript-off profile to any browser check, not only the
+   fresh default. Each found real bugs no other check could.
+2. **Mutation-test every new guard and regression test.** Put the bug back
+   and watch it fail. All the new tests here fail against the old code, and
+   both build guards fail the build when their bug is reintroduced.
+3. **A storage key is a disclosure.** On this site, what a page writes to
+   the reader's browser is part of its security surface, not an
+   implementation detail.
+
+Remaining items are in `_agents/PARKED_WORK.md`.
