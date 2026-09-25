@@ -57,7 +57,7 @@ export function ProfileTimeline({ events }: { events: readonly TimelineEntry[] }
       <ol ref={list} className="space-y-2">
         {events.map((event, i) => (
           <li key={i}>
-            <details className={`group border ${event.tone ?? 'border-[#1c2a35] bg-[#111820]'}`}>
+            <details className={`border ${event.tone ?? 'border-[#1c2a35] bg-[#111820]'}`}>
               <summary
                 className="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none
                            hover:bg-white/5 focus-visible:outline focus-visible:outline-2
@@ -73,7 +73,7 @@ export function ProfileTimeline({ events }: { events: readonly TimelineEntry[] }
                   <span className="text-sm font-medium text-white">{event.title}</span>
                 </span>
                 <ChevronDown
-                  className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180"
+                  className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform summary-open:rotate-180"
                   aria-hidden="true"
                 />
               </summary>

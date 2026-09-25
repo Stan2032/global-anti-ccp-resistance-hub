@@ -269,7 +269,7 @@ const DiasporaSecurityAdvisor = () => {
         {filtered.map(cp => {
           const style = getRiskStyle(cp.risk);
           return (
-            <details key={cp.country} className={`group border ${style.border} ${style.bg}`}>
+            <details key={cp.country} className={`border ${style.border} ${style.bg}`}>
               <summary className="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center gap-3 min-w-0">
                   <MapPin className={`w-4 h-4 flex-shrink-0 ${style.color}`} aria-hidden="true" />
@@ -284,7 +284,7 @@ const DiasporaSecurityAdvisor = () => {
                 </span>
                 <span className="flex items-center gap-2 flex-shrink-0">
                   <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${style.color} ${style.bg}`}>{style.label.toUpperCase()}</span>
-                  <ChevronDown className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
                 </span>
               </summary>
               <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">

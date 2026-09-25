@@ -447,14 +447,14 @@ export default function JimmyLaiProfile() {
             </div>
 
             {CCP_NARRATIVES.length > 2 && (
-              <details className="group mt-3">
+              <details className="mt-3">
                 <summary
                   className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white cursor-pointer
                              list-none [&::-webkit-details-marker]:hidden"
                 >
-                  <span className="group-open:hidden">Show {CCP_NARRATIVES.length - 2} more narratives</span>
-                  <span className="hidden group-open:inline">Show fewer</span>
-                  <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <span className="summary-open:hidden">Show {CCP_NARRATIVES.length - 2} more narratives</span>
+                  <span className="hidden summary-open:inline">Show fewer</span>
+                  <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <div className="space-y-4 mt-3">
                   {CCP_NARRATIVES.slice(2).map((item, i) => (

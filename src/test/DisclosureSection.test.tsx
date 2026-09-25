@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { readFileSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import React from 'react';
 import { DisclosureSection } from '../components/DisclosureSection';
@@ -74,6 +74,34 @@ describe('DisclosureSection', () => {
       'utf-8'
     );
     expect(source, 'disclosure must not depend on React state').not.toMatch(/useState|onClick/);
+  });
+});
+
+describe('open-state styling follows the element’s own <details>', () => {
+  // Tailwind's group-open: matches ANY open .group ancestor. Disclosures
+  // nest here (cards inside sections inside sections), so a closed card in
+  // an open section showed an open chevron, and a closed case study said
+  // "Close the case ↑" with its summary hidden. summary-open: (defined in
+  // tailwind.config.js) looks only at the <details> the summary belongs to.
+  const root = path.resolve(__dirname, '..');
+
+  it('uses summary-open:, never group-open:', () => {
+    const offenders = (readdirSync(root, { recursive: true }) as string[])
+      .filter((f) => f.endsWith('.tsx') && !f.startsWith(`test${path.sep}`))
+      .filter((f) => readFileSync(path.join(root, f), 'utf-8').includes('group-open:'));
+    expect(offenders).toEqual([]);
+  });
+
+  it('defines summary-open: against the summary’s own parent <details>', () => {
+    const config = readFileSync(path.resolve(root, '../tailwind.config.js'), 'utf-8');
+    expect(config).toContain(`addVariant('summary-open', 'details[open] > summary &')`);
+  });
+
+  it('turns the section chevron with summary-open:', () => {
+    const { container } = render(<DisclosureSection title="A"><p>a</p></DisclosureSection>);
+    const chevron = container.querySelector('summary svg');
+    expect(chevron?.getAttribute('class')).toContain('summary-open:rotate-90');
+    expect(container.querySelector('details')?.className).not.toMatch(/(^|\s)group(\s|$)/);
   });
 });
 

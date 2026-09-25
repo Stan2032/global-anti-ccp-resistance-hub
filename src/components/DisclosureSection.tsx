@@ -49,7 +49,7 @@ export function DisclosureSection({
     <details
       id={id}
       open={defaultOpen}
-      className="group bg-[#111820]/50 border border-[#1c2a35] [&[open]]:bg-[#111820]"
+      className="bg-[#111820]/50 border border-[#1c2a35] [&[open]]:bg-[#111820]"
     >
       <summary
         className="flex items-start gap-3 p-4 cursor-pointer list-none
@@ -58,7 +58,7 @@ export function DisclosureSection({
       >
         <ChevronRight
           className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#4afa82] transition-transform
-                     group-open:rotate-90"
+                     summary-open:rotate-90"
           aria-hidden="true"
         />
         <span className="min-w-0">

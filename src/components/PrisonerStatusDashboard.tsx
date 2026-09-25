@@ -417,7 +417,7 @@ export default function PrisonerStatusDashboard() {
           {filtered.map((p, idx) => {
             const healthConf = getHealthConfig(p.healthClass);
             return (
-              <details key={p.prisoner_name || idx} className={`group border ${p.statusConf.border} bg-[#0a0e14] transition-colors`}>
+              <details key={p.prisoner_name || idx} className={`border ${p.statusConf.border} bg-[#0a0e14] transition-colors`}>
                 <summary className="w-full text-left p-3 flex items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center space-x-3 flex-1 min-w-0">
                     <span className="text-sm" aria-hidden="true">{healthConf.icon}</span>
@@ -434,7 +434,7 @@ export default function PrisonerStatusDashboard() {
                       )}
                     </span>
                   </span>
-                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <div className="px-3 pb-3 space-y-2 border-t border-[#1c2a35]">
                   {p.sentence && (

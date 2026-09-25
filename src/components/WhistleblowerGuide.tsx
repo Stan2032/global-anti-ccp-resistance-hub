@@ -329,7 +329,7 @@ const WhistleblowerGuide = () => {
                 const catInfo = getCategoryInfo(protocol.category);
                 const CatIcon = catInfo.icon;
                 return (
-                  <details key={protocol.id} className="group border border-[#1c2a35] bg-[#111820]/30">
+                  <details key={protocol.id} className="border border-[#1c2a35] bg-[#111820]/30">
                     <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                       <span className="flex items-center gap-3 min-w-0">
                         <CatIcon className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
@@ -343,7 +343,7 @@ const WhistleblowerGuide = () => {
                           <span className="text-xs text-slate-400">{catInfo.label}</span>
                         </span>
                       </span>
-                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
                     </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{protocol.detail}</p>
@@ -368,7 +368,7 @@ const WhistleblowerGuide = () => {
               filteredChannels.map(channel => {
                 const trustStyle = getTrustStyle(channel.trust);
                 return (
-                  <details key={channel.id} className="group border border-[#1c2a35] bg-[#111820]/30">
+                  <details key={channel.id} className="border border-[#1c2a35] bg-[#111820]/30">
                     <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                       <span className="flex items-center gap-3 min-w-0">
                         <Lock className="w-4 h-4 text-[#4afa82] flex-shrink-0" aria-hidden="true" />
@@ -380,7 +380,7 @@ const WhistleblowerGuide = () => {
                           <span className="text-xs text-slate-400">{channel.type}</span>
                         </span>
                       </span>
-                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
                     </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{channel.detail}</p>
@@ -412,7 +412,7 @@ const WhistleblowerGuide = () => {
                 const strengthMap: Record<string, typeof RISK_LEVELS[number]> = { high: RISK_LEVELS[1], moderate: RISK_LEVELS[2], low: RISK_LEVELS[3] };
                 const strengthStyle = strengthMap[law.strength] || RISK_LEVELS[2];
                 return (
-                  <details key={law.id} className="group border border-[#1c2a35] bg-[#111820]/30">
+                  <details key={law.id} className="border border-[#1c2a35] bg-[#111820]/30">
                     <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                       <span className="flex items-center gap-3 min-w-0">
                         <FileText className="w-4 h-4 text-[#a78bfa] flex-shrink-0" aria-hidden="true" />
@@ -426,7 +426,7 @@ const WhistleblowerGuide = () => {
                           <span className="text-xs text-slate-400">{law.jurisdiction} · {law.year}</span>
                         </span>
                       </span>
-                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
                     </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{law.detail}</p>

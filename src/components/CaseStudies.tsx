@@ -394,7 +394,7 @@ export default function CaseStudies() {
           JavaScript click, so a reader without it got the cards and no case. */}
       <div className="space-y-3">
         {caseStudies.map(caseData => (
-          <details key={caseData.id} className="group bg-[#0a0e14]/50 border border-[#1c2a35] open:border-[#2a9a52]">
+          <details key={caseData.id} className="bg-[#0a0e14]/50 border border-[#1c2a35] open:border-[#2a9a52]">
             <summary className="block p-4 cursor-pointer list-none hover:bg-[#0a0e14]/70 transition-colors [&::-webkit-details-marker]:hidden">
               <span className="flex items-center gap-3 mb-3">
                 <span className="w-12 h-12 bg-[#111820] flex items-center justify-center flex-shrink-0">
@@ -407,12 +407,12 @@ export default function CaseStudies() {
                   <h3 className="text-white font-semibold mt-1">{caseData.name}</h3>
                 </span>
               </span>
-              <span className="block text-sm text-slate-400 line-clamp-2 group-open:hidden">{caseData.summary}</span>
+              <span className="block text-sm text-slate-400 line-clamp-2 summary-open:hidden">{caseData.summary}</span>
               <span className="mt-3 flex items-center justify-between">
                 <span className="text-xs text-slate-400">{caseData.category}</span>
                 <span className="text-[#22d3ee] text-sm">
-                  <span className="group-open:hidden">Read the case →</span>
-                  <span className="hidden group-open:inline">Close the case ↑</span>
+                  <span className="summary-open:hidden">Read the case →</span>
+                  <span className="hidden summary-open:inline">Close the case ↑</span>
                 </span>
               </span>
             </summary>
