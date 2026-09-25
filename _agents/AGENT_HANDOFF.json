@@ -1,6 +1,6 @@
 {
   "handoff": {
-    "version": "35.0",
+    "version": "36.0",
     "date": "2026-09-25T09:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
@@ -829,7 +829,7 @@
     "next_priorities": [
       "P7 — content re-verification, most time-sensitive cases first (the largest open item)",
       "P3 — ESLint 10; npm warns 9.x is end of support",
-      "P4 — /intelligence is still empty without JavaScript; its feed is fetched at runtime"
+      "P4 — the Live Feeds section of /intelligence is empty without JavaScript; its feed is fetched at runtime (the rest of the page is static HTML)"
     ],
     "section_17_the_real_cause": {
       "symptom": "41 sections written into <div hidden> and invisible without JavaScript; React #418 on every route.",
@@ -853,15 +853,25 @@
       "Native <details> (DisclosureSection) replaced JS-only tabs on /take-action, /education, all 16 profiles, /security, /intelligence and 15 embedded components",
       "21 search and filter controls named for what they do (241ca08); the safety checklist's tick boxes are named checkboxes (3b7270d)",
       "Returning readers' saved state no longer breaks hydration: useStoredString / useStoredJson in src/utils/ssr.ts (49959a1)",
-      "Blocked site data no longer turns every page into the error screen; nothing is written to storage until the reader acts; the headline cache lives in memory (65a7c4e)"
+      "Blocked site data no longer turns every page into the error screen; nothing is written to storage until the reader acts; the headline cache lives in memory (65a7c4e)",
+      "P9 card expanders -> native <details> on all 16 profiles (638cf15), /security (50bbd04), /prisoners (7d1a4e7) and /intelligence (170cbb6, 68e2378); /intelligence readable without JS 179,612 -> 344,934 characters",
+      "Open-state styling follows each disclosure's own <details>: summary-open: (details[open] > summary &) replaced group-open:, which made every card inside an open section look open (e030323)",
+      "Skip links read 'Skip to main content', not the raw key 'skipToMain'; every t() key in src/ must resolve (33e7dec)",
+      "cardsIn() fails on a section with no cards, so a check over each card cannot pass on none (bf9198d)"
     ],
     "build_guards_added": [
       "scripts/prerender.mjs fails when two form controls on one page share an accessible name",
       "scripts/prerender.mjs fails when a page has a button with no accessible name"
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
+    "rules_added": [
+      "Style an open state with summary-open:, never group-open: or a group class on a <details>. DisclosureSection.test.tsx fails on any group-open: in src/.",
+      "Screenshot any state you change the look of, at phone width too. jsdom computes no CSS; the group-open bug passed every test and every text measurement.",
+      "Run each rewritten test file against the component as it was before (git show <commit>:path) and expect failures. Several expander tests had passed on an empty list."
+    ],
     "next": [
-      "PARKED_WORK.md P9: 941 React-state card expanders hide their details without JavaScript; convert to native <details>",
+      "PARKED_WORK.md P9: 276 card expanders left (/education, /data-sources, /take-action, /resources, /directory, /) plus InfluenceNetwork's region picker",
+      "PARKED_WORK.md P10: text cut off at phone width (118 clipped text elements on four routes)",
       "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
       "P7 content re-verification stays paused until the owner resumes it"
     ]

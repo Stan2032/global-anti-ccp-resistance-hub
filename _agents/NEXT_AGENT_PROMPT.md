@@ -9,14 +9,14 @@
 > | File | What it holds |
 > |---|---|
 > | `docs/MODERNIZATION.md` | The audit. 18 sections, including dead ends. §17 corrects §15 and §16; §18 is the site-quality sweep. |
-> | `_agents/PARKED_WORK.md` | P1-P8 and small items: scoped work not yet done. **Pick from here.** |
+> | `_agents/PARKED_WORK.md` | P1-P10 and small items: scoped work not yet done. **Pick from here.** |
 > | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q18, all open and awaiting the owner. |
 > | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,691 across 201** for `npm test`,
+> - "3714 tests across 201 files" is now **3,697 across 202** for `npm test`,
 >   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.

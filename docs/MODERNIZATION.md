@@ -977,6 +977,11 @@ a native `<details>` that opens without any script.
   checkbox named after its item, with its state — `3b7270d`.
 - `scripts/prerender.mjs` fails the build when a page has two form controls
   sharing a name, or a button with no name.
+- The skip links, the first thing a keyboard or screen-reader user meets on
+  every page, read "skipToMain" and "skipToNav": they looked up keys that
+  live under `accessibility.*`, and `t()` returns the key when a lookup
+  misses. The tests accepted either text. A test now resolves every `t()`
+  key in `src/` — `33e7dec`.
 
 ### Returning readers and hardened browsers
 
@@ -1010,6 +1015,19 @@ a native `<details>` that opens without any script.
 - `ResearchDashboard` fed one status filter to two dropdowns with different
   status lists. Tabs hid that, although only just: the filter was never reset
   on a tab switch. With both lists on screen it would have emptied one.
+- **Every disclosure inside an open section looked open.** Tailwind's
+  `group-open:` matches any open `.group` ancestor, and the conversions nest
+  cards inside sections inside sections. Closed cards showed the "open"
+  chevron, closed case studies offered "Close the case ↑" with their summary
+  hidden, and `DisclosureSection`'s `group` lit up every `group-hover:` card
+  in a section at once. 137 elements on twelve routes showed the wrong
+  state. `summary-open:` (`details[open] > summary &`) replaced it, and a
+  test keeps `group-open:` out — `e030323`. No test or text measurement
+  could see this. A screenshot of one closed card did.
+- **Card checks passed on no cards.** `cardsIn(section).forEach(expect…)`
+  passed on the old components, which render no cards before a click: six
+  such checks proved nothing. `cardsIn()` now fails on an empty section —
+  `bf9198d`.
 
 ### Lessons
 
@@ -1022,17 +1040,30 @@ a native `<details>` that opens without any script.
 3. **A storage key is a disclosure.** On this site, what a page writes to
    the reader's browser is part of its security surface, not an
    implementation detail.
+4. **Look at it.** jsdom computes no CSS, and character counts cannot tell
+   an open chevron from a closed one. After any change to how something
+   looks in a given state, screenshot that state, at phone width too.
 
-### Still open: expanders
+### Expanders
 
 Tabs were the visible half of the problem. Card expanders (a React-state
 button with `aria-expanded`) hide their details the same way, one level
-down. There are 941 on the pre-rendered pages. Opening each one on its own
-in Chromium, they hide **+55%** of the text on a profile page, **+94%** on
+down. There were 941 on the pre-rendered pages. Opening each one on its own
+in Chromium, they hid **+55%** of the text on a profile page, **+94%** on
 `/security` and **+92%** on `/intelligence`. A first, bulk measurement said
 +2–5%, because single-open components close each card as the next opens.
-That is P9 in `_agents/PARKED_WORK.md`. The profile pages are done: all 16
-share `ProfileTimeline`, a native `<details>` per event, and none holds React
-state. 675 expanders remain elsewhere.
+Each card becomes a native `<details>` (P9 in `_agents/PARKED_WORK.md`).
+Readable without JavaScript, every section open:
+
+| where | before | after |
+|---|---|---|
+| Jimmy Lai's profile (all 16 now share `ProfileTimeline`) | 6,719 | 11,803 — `638cf15` |
+| `/security` | ~38,400 | 74,930 — `50bbd04` |
+| `/prisoners` (prisoner rows, case files) | 16,645 | 66,659 — `7d1a4e7` |
+| `/intelligence` (ten trackers) | 179,612 | 344,934 — `170cbb6`, `68e2378` |
+
+Left: 276 expanders on `/education`, `/data-sources`, `/take-action`,
+`/resources`, `/directory` and `/`, plus InfluenceNetwork's region picker,
+which has to change along with its expanders.
 
 Remaining items are in `_agents/PARKED_WORK.md`.
