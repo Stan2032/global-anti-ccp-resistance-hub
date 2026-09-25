@@ -14,14 +14,16 @@ const renderWithLanguage = (ui: React.ReactNode) => render(<LanguageProvider>{ui
 describe('SkipLinks', () => {
   it('should render skip to main content link', () => {
     renderWithLanguage(<SkipLinks />);
-    const link = screen.getByRole('link', { name: /skip.*main|skipToMain/i });
+    // Exact text: t() returns the key itself when a lookup misses, and this
+    // link read "skipToMain" to every keyboard and screen-reader user.
+    const link = screen.getByRole('link', { name: 'Skip to main content' });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#main-content');
   });
 
   it('should render skip to navigation link', () => {
     renderWithLanguage(<SkipLinks />);
-    const link = screen.getByRole('link', { name: /skip.*nav|skipToNav/i });
+    const link = screen.getByRole('link', { name: 'Skip to navigation' });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#navigation');
   });

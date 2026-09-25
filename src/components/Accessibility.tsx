@@ -22,10 +22,10 @@ export const SkipLinks = () => {
   return (
     <div className="sr-only focus-within:not-sr-only">
       <a href="#main-content" className={`${SKIP_LINK_CLASSES} left-0`}>
-        {t('skipToMain')}
+        {t('accessibility.skipToMain')}
       </a>
       <a href="#navigation" className={`${SKIP_LINK_CLASSES} left-52`}>
-        {t('skipToNav')}
+        {t('accessibility.skipToNav')}
       </a>
     </div>
   );
