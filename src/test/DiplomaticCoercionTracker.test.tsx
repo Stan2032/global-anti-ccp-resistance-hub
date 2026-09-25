@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import DiplomaticCoercionTracker from '../components/DiplomaticCoercionTracker';
-import { disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -106,54 +106,33 @@ describe('DiplomaticCoercionTracker', () => {
   });
 
   // ── Country Cards ──────────────────────────────────────
-  it('renders country cards in overview', () => {
+  it('renders country cards as native disclosures', () => {
     render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
+    const cards = cardsIn('Country Overview');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('clicking a country card expands it', () => {
+  it('a country card opens and closes natively', () => {
     render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+    const [card] = cardsIn('Country Overview');
+    expect(card.open).toBe(false);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('clicking expanded country card collapses it', () => {
+  it('every country card carries its incidents without a click', () => {
     render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
+    cardsIn('Country Overview').forEach(card => expect(card.textContent).toMatch(/Coercion Incidents/));
   });
 
-  it('expanded card shows coercion incident details', () => {
+  it('every country card cites a source for its incidents', () => {
     render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    // Should show Trigger and Coercion Incidents sections
-    expect(screen.getAllByText(/Trigger/).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/Coercion Incidents/).length).toBeGreaterThanOrEqual(1);
+    cardsIn('Country Overview').forEach(card => expect(card.textContent).toMatch(/Source:/));
   });
 
-  it('expanded card shows source attribution', () => {
-    render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    // Should show "Source:" for incident citations
-    expect(screen.getAllByText(/Source:/).length).toBeGreaterThanOrEqual(1);
-  });
 
   // ── Coercion Tactics View ──────────────────────────────
   it('tactics view shows coercion type headers', () => {
@@ -225,10 +204,7 @@ describe('DiplomaticCoercionTracker', () => {
 
   it('has at least 15 countries tracked', () => {
     render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThanOrEqual(15);
+    expect(cardsIn('Country Overview').length).toBeGreaterThanOrEqual(15);
   });
 
   it('has at least 40 total coercion incidents', () => {
@@ -254,11 +230,7 @@ describe('DiplomaticCoercionTracker', () => {
   // ── No CCP Sources ─────────────────────────────────────
   it('does not reference CCP state media', () => {
     render(<DiplomaticCoercionTracker />);
-    // Expand all to check sources
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) fireEvent.click(expandBtns[0]);
+    // Every card's sources are in the page, not only the first one opened.
     const container = screen.getByRole('region', { name: 'Diplomatic Coercion Tracker' });
     const text = container.textContent.toLowerCase();
     expect(text).not.toContain('xinhua');
@@ -290,13 +262,8 @@ describe('DiplomaticCoercionTracker', () => {
     expect(screen.getByLabelText('Search diplomatic coercion data')).toBeTruthy();
   });
 
-  it('country cards have aria-expanded attribute', () => {
-    render(<DiplomaticCoercionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<DiplomaticCoercionTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 });

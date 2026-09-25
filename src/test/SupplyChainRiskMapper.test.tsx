@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import SupplyChainRiskMapper from '../components/SupplyChainRiskMapper';
-import { expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -39,8 +39,9 @@ describe('SupplyChainRiskMapper', () => {
 
   it('displays risk descriptions', () => {
     render(<SupplyChainRiskMapper />);
-    expect(screen.getByText(/Direct evidence of forced labor \+ active enforcement/)).toBeTruthy();
-    expect(screen.getByText(/Supply chain links to forced labor with documented evidence/)).toBeTruthy();
+    // Also repeated in each company card's risk assessment, so getAll.
+    expect(screen.getAllByText(/Direct evidence of forced labor \+ active enforcement/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Supply chain links to forced labor with documented evidence/).length).toBeGreaterThan(0);
   });
 
   // ── Stat bar ───────────────────────────────────────────
@@ -99,9 +100,10 @@ describe('SupplyChainRiskMapper', () => {
 
   it('filters by search query', () => {
     render(<SupplyChainRiskMapper />);
-    const input = screen.getByPlaceholderText('Search companies, industries...');
-    fireEvent.change(input, { target: { value: 'Nike' } });
-    expect(screen.getByText(/Nike/)).toBeTruthy();
+    fireEvent.change(screen.getByPlaceholderText('Search companies, industries...'), { target: { value: 'Nike' } });
+    const cards = cardsIn('Company Risk');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.querySelector('summary')!.textContent).toMatch(/Nike/));
   });
 
   it('shows empty state when no results', () => {
@@ -113,97 +115,63 @@ describe('SupplyChainRiskMapper', () => {
 
   it('search is case-insensitive', () => {
     render(<SupplyChainRiskMapper />);
-    const input = screen.getByPlaceholderText('Search companies, industries...');
-    fireEvent.change(input, { target: { value: 'nike' } });
-    expect(screen.getByText(/Nike/)).toBeTruthy();
+    fireEvent.change(screen.getByPlaceholderText('Search companies, industries...'), { target: { value: 'nike' } });
+    const cards = cardsIn('Company Risk');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.querySelector('summary')!.textContent).toMatch(/Nike/));
   });
 
   // ── Expand/collapse ────────────────────────────────────
 
-  it('cards start collapsed', () => {
-    render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-    }
+  it('company cards are native disclosures, closed to start', () => {
+    const { container } = render(<SupplyChainRiskMapper />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = cardsIn('Company Risk');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => {
+      expect(card.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(card.open).toBe(false);
+    });
   });
 
-  it('clicking a card expands it', () => {
+  it('a company card opens and closes natively', () => {
     render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    }
+    const [card] = cardsIn('Company Risk');
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('clicking an expanded card collapses it', () => {
+
+  it('opening one card leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native cards open independently.
     render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-    }
+    const [first, second] = cardsIn('Company Risk');
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
-  it('only one card can be expanded at a time', () => {
+  it('a company card carries its evidence without a click', () => {
     render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 1) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandBtns[1]);
-      expect(expandBtns[1].getAttribute('aria-expanded')).toBe('true');
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-    }
+    expect(within(cardsIn('Company Risk')[0]).getByText('Evidence')).toBeTruthy();
   });
 
-  it('expanded card shows evidence section', () => {
+  it('every company card carries its risk assessment without a click', () => {
     render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(screen.getByText('Evidence')).toBeTruthy();
-    }
+    cardsIn('Company Risk').forEach(card => expect(card.textContent).toMatch(/Risk Assessment:/));
   });
 
-  it('expanded card shows risk assessment', () => {
+  it('source links open safely in a new tab', () => {
     render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(screen.getByText(/Risk Assessment:/)).toBeTruthy();
-    }
-  });
-
-  it('expanded card shows source link', () => {
-    render(<SupplyChainRiskMapper />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      const link = screen.queryByText('View source evidence');
-      if (link) {
-        const anchor = link.closest('a');
-        expect(anchor!.getAttribute('target')).toBe('_blank');
-        expect(anchor!.getAttribute('rel')).toContain('noopener');
-      }
-    }
+    const links = screen.getAllByText('View source evidence').map(l => l.closest('a')!);
+    expect(links.length).toBeGreaterThan(0);
+    links.forEach(a => {
+      expect(a.getAttribute('target')).toBe('_blank');
+      expect(a.getAttribute('rel')).toContain('noopener');
+    });
   });
 
   // ── Industry Breakdown View ────────────────────────────

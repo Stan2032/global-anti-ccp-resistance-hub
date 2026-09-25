@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TransnationalRepressionTracker from '../components/TransnationalRepressionTracker';
-import { expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -106,42 +106,28 @@ describe('TransnationalRepressionTracker', () => {
   });
 
   // ── Country Cards ──────────────────────────────────────
-  it('renders country cards in overview', () => {
+  it('renders country cards as native disclosures', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
+    const cards = cardsIn('Threat Overview');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('clicking a country card expands it', () => {
+  it('a country card opens and closes natively', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+    const [card] = cardsIn('Threat Overview');
+    expect(card.open).toBe(false);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('clicking expanded country card collapses it', () => {
-    render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-  });
 
-  it('expanded card shows police station details', () => {
+  it('shows police station details without a click, wherever a country has them', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    // Should show Police Stations section header
-    expect(screen.getAllByText(/Police Stations/).length).toBeGreaterThanOrEqual(1);
+    const withStations = cardsIn('Threat Overview').filter(card => /Police Stations \(\d+\)/.test(card.textContent ?? ''));
+    expect(withStations.length).toBeGreaterThan(0);
   });
 
   // ── Operations Map View ────────────────────────────────
@@ -236,13 +222,8 @@ describe('TransnationalRepressionTracker', () => {
     expect(screen.getByLabelText('Search transnational repression data')).toBeTruthy();
   });
 
-  it('country cards have aria-expanded attribute', () => {
-    render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<TransnationalRepressionTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 });

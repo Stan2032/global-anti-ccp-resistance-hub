@@ -7,7 +7,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, InternationalResponse, Sanction, PoliceStation } from '../services/dataApi';
-import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
+import { Globe, Shield, AlertTriangle, Search, ChevronDown, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 // DiplomaticCoercionTracker — Maps CCP diplomatic & economic coercion against
 // nations criticizing its human rights record. Cross-references sanctions,
@@ -182,7 +182,6 @@ const DiplomaticCoercionTracker = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [severityFilter, setSeverityFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const responses = useMemo(() => dataApi.getInternationalResponses(), []);
@@ -371,22 +370,17 @@ const DiplomaticCoercionTracker = () => {
               filtered.map(profile => {
                 const sevStyle = getSeverityStyle(profile.severity);
                 const respStyle = getResponseStyle(profile.response);
-                const isExpanded = expandedCountry === profile.country;
                 return (
-                  <div key={profile.country} className={`border ${sevStyle.border} ${sevStyle.bg}`}>
-                    <button
-                      onClick={() => setExpandedCountry(isExpanded ? null : profile.country)}
-                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                      aria-expanded={isExpanded}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
+                  <details key={profile.country} className={`border ${sevStyle.border} ${sevStyle.bg}`}>
+                    <summary className="w-full flex items-center justify-between p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
                         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sevStyle.dot}`} aria-hidden="true" />
-                        <div className="min-w-0">
+                        <span className="block min-w-0">
                           <span className="text-white font-mono text-sm font-bold block">{profile.country}</span>
                           <span className="text-slate-400 text-xs block truncate">{profile.trigger}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 flex-shrink-0">
+                        </span>
+                      </span>
+                      <span className="flex items-center gap-3 flex-shrink-0">
                         <span className={`hidden sm:inline text-xs font-mono px-2 py-0.5 border ${sevStyle.border} ${sevStyle.color}`}>
                           {profile.severity.toUpperCase()}
                         </span>
@@ -394,56 +388,54 @@ const DiplomaticCoercionTracker = () => {
                           {respStyle.label}
                         </span>
                         <span className="text-xs font-mono text-slate-400">{profile.totalIncidents} incidents</span>
-                        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                        <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
+                      {/* Trigger */}
+                      <div>
+                        <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Trigger</span>
+                        <p className="text-slate-300 text-sm mt-1">{profile.trigger}</p>
                       </div>
-                    </button>
-                    {isExpanded && (
-                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
-                        {/* Trigger */}
-                        <div>
-                          <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Trigger</span>
-                          <p className="text-slate-300 text-sm mt-1">{profile.trigger}</p>
-                        </div>
-                        {/* Incidents */}
-                        <div>
-                          <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Coercion Incidents</span>
-                          <div className="space-y-2 mt-2">
-                            {profile.incidents.map((inc, idx) => {
-                              const typeInfo = getTypeInfo(inc.type);
-                              const TypeIcon = typeInfo.icon;
-                              return (
-                                <div key={idx} className="flex items-start gap-2 bg-[#111820]/50 p-2">
-                                  <TypeIcon className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                                  <div className="min-w-0">
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                      <span className="text-xs font-mono text-[#a78bfa]">{typeInfo.label}</span>
-                                      <span className="text-xs text-slate-400">({inc.year})</span>
-                                    </div>
-                                    <p className="text-slate-300 text-xs mt-0.5">{inc.detail}</p>
-                                    <span className="text-xs text-slate-400 italic">Source: {inc.source}</span>
+                      {/* Incidents */}
+                      <div>
+                        <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Coercion Incidents</span>
+                        <div className="space-y-2 mt-2">
+                          {profile.incidents.map((inc, idx) => {
+                            const typeInfo = getTypeInfo(inc.type);
+                            const TypeIcon = typeInfo.icon;
+                            return (
+                              <div key={idx} className="flex items-start gap-2 bg-[#111820]/50 p-2">
+                                <TypeIcon className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                                <div className="min-w-0">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-xs font-mono text-[#a78bfa]">{typeInfo.label}</span>
+                                    <span className="text-xs text-slate-400">({inc.year})</span>
                                   </div>
+                                  <p className="text-slate-300 text-xs mt-0.5">{inc.detail}</p>
+                                  <span className="text-xs text-slate-400 italic">Source: {inc.source}</span>
                                 </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                        {/* Cross-references */}
-                        <div className="flex flex-wrap gap-3 text-xs font-mono">
-                          {profile.matchedResponse && (
-                            <span className="text-[#22d3ee]">
-                              International response: {profile.matchedResponse.overall_stance || 'Documented'}
-                            </span>
-                          )}
-                          {profile.sanctionCount > 0 && (
-                            <span className="text-[#a78bfa]">{profile.sanctionCount} related sanctions</span>
-                          )}
-                          {profile.stationCount > 0 && (
-                            <span className="text-red-400">{profile.stationCount} CCP police stations</span>
-                          )}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
-                    )}
-                  </div>
+                      {/* Cross-references */}
+                      <div className="flex flex-wrap gap-3 text-xs font-mono">
+                        {profile.matchedResponse && (
+                          <span className="text-[#22d3ee]">
+                            International response: {profile.matchedResponse.overall_stance || 'Documented'}
+                          </span>
+                        )}
+                        {profile.sanctionCount > 0 && (
+                          <span className="text-[#a78bfa]">{profile.sanctionCount} related sanctions</span>
+                        )}
+                        {profile.stationCount > 0 && (
+                          <span className="text-red-400">{profile.stationCount} CCP police stations</span>
+                        )}
+                      </div>
+                    </div>
+                  </details>
                 );
               })
             )}

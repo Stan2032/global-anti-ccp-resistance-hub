@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import CensorshipCircumventionGuide from '../components/CensorshipCircumventionGuide';
-import { disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -119,34 +119,25 @@ describe('CensorshipCircumventionGuide', () => {
     expect(screen.getByText('Deep Packet Inspection')).toBeTruthy();
   });
 
-  it('clicking a method expands it', () => {
+  it('method cards are native disclosures', () => {
     render(<CensorshipCircumventionGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+    const cards = cardsIn('Censorship Methods');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('clicking expanded method collapses it', () => {
+  it('a method card opens and closes natively', () => {
     render(<CensorshipCircumventionGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
+    const [card] = cardsIn('Censorship Methods');
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('expanded method shows source attribution', () => {
+  it('every method card cites its sources without a click', () => {
     render(<CensorshipCircumventionGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(screen.getAllByText(/Sources:/).length).toBeGreaterThanOrEqual(1);
+    cardsIn('Censorship Methods').forEach(card => expect(card.textContent).toMatch(/Sources:/));
   });
 
   // ── Circumvention Tools View ───────────────────────────
@@ -165,16 +156,14 @@ describe('CensorshipCircumventionGuide', () => {
     expect(section.getAllByText('Use with Caution').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expanding a tool shows pros and cons', () => {
+  it('every tool card carries its pros and cons without a click', () => {
     render(<CensorshipCircumventionGuide />);
-    const section = inSection('Circumvention Tools');
-    const expandBtns = section.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
-    fireEvent.click(expandBtns[0]);
-    expect(section.getByText('Pros')).toBeTruthy();
-    expect(section.getByText('Cons')).toBeTruthy();
+    const tools = cardsIn('Circumvention Tools');
+    expect(tools.length).toBeGreaterThan(0);
+    tools.forEach(card => {
+      expect(within(card).getByText('Pros')).toBeTruthy();
+      expect(within(card).getByText('Cons')).toBeTruthy();
+    });
   });
 
   // ── Safety Guide View ──────────────────────────────────
@@ -243,10 +232,6 @@ describe('CensorshipCircumventionGuide', () => {
   // ── No CCP Sources ─────────────────────────────────────
   it('does not reference CCP state media', () => {
     render(<CensorshipCircumventionGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) fireEvent.click(expandBtns[0]);
     const container = screen.getByRole('region', { name: 'Censorship Circumvention Guide' });
     const text = container.textContent.toLowerCase();
     expect(text).not.toContain('xinhua');
@@ -277,13 +262,8 @@ describe('CensorshipCircumventionGuide', () => {
     expect(screen.getByLabelText('Search censorship circumvention data')).toBeTruthy();
   });
 
-  it('method cards have aria-expanded attribute', () => {
-    render(<CensorshipCircumventionGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<CensorshipCircumventionGuide />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 });

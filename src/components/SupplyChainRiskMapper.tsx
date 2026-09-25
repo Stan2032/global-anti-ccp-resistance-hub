@@ -9,7 +9,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
-import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
+import { Factory, Search, ChevronDown, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 
 type RiskLevel = 'Critical' | 'High' | 'Moderate' | 'Low';
@@ -120,7 +120,6 @@ export default function SupplyChainRiskMapper() {
   const [searchQuery, setSearchQuery] = useState('');
   const [industryFilter, setIndustryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   // ── Fetch & enrich data ─────────────────────────────
@@ -326,36 +325,29 @@ export default function SupplyChainRiskMapper() {
               )}
 
               {filtered.map((c) => {
-                const isExpanded = expandedId === c.id;
                 const style = RISK_STYLES[c.riskLevel];
 
                 return (
-                  <div key={c.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
-                    {/* Card header */}
-                    <button
-                      onClick={() => setExpandedId(isExpanded ? null : c.id)}
-                      className="w-full text-left p-4 flex items-start gap-3"
-                      aria-expanded={isExpanded}
-                      aria-label={`${c.company || c.id} — ${c.riskLevel} risk`}
-                    >
+                  <details key={c.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
+                    <summary className="w-full text-left p-4 flex items-start gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                       {/* Industry icon */}
                       <span className="text-lg flex-shrink-0 mt-0.5" aria-hidden="true">
                         {getIndustryIcon(c.industry)}
                       </span>
 
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
+                      <span className="block flex-1 min-w-0">
+                        <span className="flex items-center gap-2 flex-wrap">
                           <h3 className="text-white font-mono font-semibold text-sm">{c.company || c.id}</h3>
                           <span className={`px-1.5 py-0.5 text-[10px] font-mono ${style.badge}`}>
                             {c.riskLevel.toUpperCase()}
                           </span>
-                        </div>
+                        </span>
 
-                        <p className="text-slate-400 text-xs mt-1 line-clamp-2">
+                        <span className="block text-slate-400 text-xs mt-1 line-clamp-2">
                           {c.connection_type || 'No connection type documented'}
-                        </p>
+                        </span>
 
-                        <div className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
+                        <span className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
                           <span className="flex items-center gap-1">
                             <Layers className="w-3 h-3" aria-hidden="true" />
                             {c.industry || 'N/A'}
@@ -372,71 +364,67 @@ export default function SupplyChainRiskMapper() {
                               UFLPA Action
                             </span>
                           )}
-                        </div>
-                      </div>
+                        </span>
+                      </span>
 
-                      <div className="text-slate-400 flex-shrink-0">
-                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </div>
-                    </button>
-
-                    {/* Expanded details */}
-                    {isExpanded && (
-                      <div className="border-t border-[#1c2a35] p-4 space-y-4">
-                        {/* Evidence */}
-                        {c.evidence && (
-                          <div>
-                            <h4 className="text-xs font-mono text-slate-300 mb-1 flex items-center gap-1">
-                              <AlertTriangle className="w-3 h-3 text-[#fbbf24]" aria-hidden="true" />
-                              Evidence
-                            </h4>
-                            <p className="text-sm text-slate-400 leading-relaxed">{c.evidence}</p>
-                          </div>
-                        )}
-
-                        {/* Company response */}
-                        {c.company_response && (
-                          <div>
-                            <h4 className="text-xs font-mono text-slate-300 mb-1">Company Response</h4>
-                            <p className="text-sm text-slate-400 leading-relaxed">{c.company_response}</p>
-                          </div>
-                        )}
-
-                        {/* UFLPA actions */}
-                        {c.uflpa_actions && (
-                          <div className="bg-[#fbbf24]/5 border border-[#fbbf24]/20 p-3">
-                            <h4 className="text-xs font-mono text-[#fbbf24] mb-1 flex items-center gap-1">
-                              <Scale className="w-3 h-3" aria-hidden="true" />
-                              UFLPA Enforcement Status
-                            </h4>
-                            <p className="text-sm text-slate-300">{c.uflpa_actions}</p>
-                          </div>
-                        )}
-
-                        {/* Risk assessment */}
-                        <div className={`p-3 border ${style.badge}`}>
-                          <h4 className="text-xs font-mono mb-1 flex items-center gap-1">
-                            <Shield className="w-3 h-3" aria-hidden="true" />
-                            Risk Assessment: {style.label}
+                      <span className="block text-slate-400 flex-shrink-0">
+                        <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="border-t border-[#1c2a35] p-4 space-y-4">
+                      {/* Evidence */}
+                      {c.evidence && (
+                        <div>
+                          <h4 className="text-xs font-mono text-slate-300 mb-1 flex items-center gap-1">
+                            <AlertTriangle className="w-3 h-3 text-[#fbbf24]" aria-hidden="true" />
+                            Evidence
                           </h4>
-                          <p className="text-xs text-slate-300">{style.description}</p>
+                          <p className="text-sm text-slate-400 leading-relaxed">{c.evidence}</p>
                         </div>
+                      )}
 
-                        {/* Source */}
-                        {c.source_url && (
-                          <a
-                            href={c.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono border border-[#22d3ee]/30 text-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                            View source evidence
-                          </a>
-                        )}
+                      {/* Company response */}
+                      {c.company_response && (
+                        <div>
+                          <h4 className="text-xs font-mono text-slate-300 mb-1">Company Response</h4>
+                          <p className="text-sm text-slate-400 leading-relaxed">{c.company_response}</p>
+                        </div>
+                      )}
+
+                      {/* UFLPA actions */}
+                      {c.uflpa_actions && (
+                        <div className="bg-[#fbbf24]/5 border border-[#fbbf24]/20 p-3">
+                          <h4 className="text-xs font-mono text-[#fbbf24] mb-1 flex items-center gap-1">
+                            <Scale className="w-3 h-3" aria-hidden="true" />
+                            UFLPA Enforcement Status
+                          </h4>
+                          <p className="text-sm text-slate-300">{c.uflpa_actions}</p>
+                        </div>
+                      )}
+
+                      {/* Risk assessment */}
+                      <div className={`p-3 border ${style.badge}`}>
+                        <h4 className="text-xs font-mono mb-1 flex items-center gap-1">
+                          <Shield className="w-3 h-3" aria-hidden="true" />
+                          Risk Assessment: {style.label}
+                        </h4>
+                        <p className="text-xs text-slate-300">{style.description}</p>
                       </div>
-                    )}
-                  </div>
+
+                      {/* Source */}
+                      {c.source_url && (
+                        <a
+                          href={c.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono border border-[#22d3ee]/30 text-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                          View source evidence
+                        </a>
+                      )}
+                    </div>
+                  </details>
                 );
               })}
             </div>

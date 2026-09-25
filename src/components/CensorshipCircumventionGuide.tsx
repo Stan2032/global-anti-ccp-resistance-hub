@@ -8,7 +8,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
-import { Shield, Search, ChevronDown, ChevronUp, Copy, Check, Wifi, WifiOff, Lock, Eye, EyeOff, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';
+import { Shield, Search, ChevronDown, Copy, Check, Wifi, WifiOff, Lock, Eye, EyeOff, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 // CensorshipCircumventionGuide — Tracks CCP internet censorship methods
 // and provides verified circumvention tools with safety ratings.
@@ -141,7 +141,6 @@ const CensorshipCircumventionGuide = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
-  const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners(), []);
@@ -348,42 +347,35 @@ const CensorshipCircumventionGuide = () => {
                   <div className="divide-y divide-[#1c2a35]">
                     {methods.map(m => {
                       const riskStyle = getRiskStyle(m.risk);
-                      const isExpanded = expandedItem === m.id;
                       return (
-                        <div key={m.id}>
-                          <button
-                            onClick={() => setExpandedItem(isExpanded ? null : m.id)}
-                            className="w-full flex items-center justify-between p-3 text-left"
-                            aria-expanded={isExpanded}
-                          >
-                            <div className="flex items-center gap-3 min-w-0">
+                        <details key={m.id}>
+                          <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                            <span className="flex items-center gap-3 min-w-0">
                               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
-                              <div className="min-w-0">
+                              <span className="block min-w-0">
                                 <span className="text-white text-sm font-mono">{m.name}</span>
                                 <span className={`ml-2 text-xs px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color} font-mono`}>
                                   {m.risk.toUpperCase()}
                                 </span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
+                              </span>
+                            </span>
+                            <span className="flex items-center gap-2 flex-shrink-0">
                               <span className="text-xs text-slate-400 font-mono hidden sm:inline">Since {m.year}</span>
-                              {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                              <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                            </span>
+                          </summary>
+                          <div className="border-t border-[#1c2a35] p-3 space-y-2">
+                            <p className="text-slate-300 text-xs">{m.detail}</p>
+                            <div className="flex items-center gap-2 text-xs">
+                              <span className="text-slate-400">Sources:</span>
+                              <span className="text-[#22d3ee] font-mono">{m.source}</span>
                             </div>
-                          </button>
-                          {isExpanded && (
-                            <div className="border-t border-[#1c2a35] p-3 space-y-2">
-                              <p className="text-slate-300 text-xs">{m.detail}</p>
-                              <div className="flex items-center gap-2 text-xs">
-                                <span className="text-slate-400">Sources:</span>
-                                <span className="text-[#22d3ee] font-mono">{m.source}</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-xs">
-                                <span className="text-slate-400">Active since:</span>
-                                <span className="text-slate-300 font-mono">{m.year}</span>
-                              </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <span className="text-slate-400">Active since:</span>
+                              <span className="text-slate-300 font-mono">{m.year}</span>
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        </details>
                       );
                     })}
                   </div>
@@ -404,58 +396,51 @@ const CensorshipCircumventionGuide = () => {
             ) : (
               filteredTools.map(tool => {
                 const safetyStyle = getSafetyStyle(tool.safety);
-                const isExpanded = expandedItem === tool.id;
                 return (
-                  <div key={tool.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                    <button
-                      onClick={() => setExpandedItem(isExpanded ? null : tool.id)}
-                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                      aria-expanded={isExpanded}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
+                  <details key={tool.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <summary className="w-full flex items-center justify-between p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
                         <Shield className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
-                        <div className="min-w-0">
+                        <span className="block min-w-0">
                           <span className="text-white text-sm font-mono font-bold">{tool.name}</span>
                           <span className={`ml-2 text-xs font-mono ${safetyStyle.color}`}>{safetyStyle.label}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
+                        </span>
+                      </span>
+                      <span className="flex items-center gap-2 flex-shrink-0">
                         <span className="text-xs text-slate-400 font-mono hidden sm:inline">{tool.category}</span>
-                        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
-                      </div>
-                    </button>
-                    {isExpanded && (
-                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
-                        <p className="text-slate-300 text-sm">{tool.description}</p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <h5 className="text-xs font-mono text-[#4afa82] mb-1">Pros</h5>
-                            <ul className="space-y-0.5">
-                              {tool.pros.map((pro, i) => (
-                                <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                                  <span className="text-[#4afa82] mt-0.5">✓</span> {pro}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <h5 className="text-xs font-mono text-red-400 mb-1">Cons</h5>
-                            <ul className="space-y-0.5">
-                              {tool.cons.map((con, i) => (
-                                <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                                  <span className="text-red-400 mt-0.5">✗</span> {con}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                        <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
+                      <p className="text-slate-300 text-sm">{tool.description}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <h5 className="text-xs font-mono text-[#4afa82] mb-1">Pros</h5>
+                          <ul className="space-y-0.5">
+                            {tool.pros.map((pro, i) => (
+                              <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
+                                <span className="text-[#4afa82] mt-0.5">✓</span> {pro}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          <span className="text-slate-400">Sources:</span>
-                          <span className="text-[#22d3ee] font-mono">{tool.source}</span>
+                        <div>
+                          <h5 className="text-xs font-mono text-red-400 mb-1">Cons</h5>
+                          <ul className="space-y-0.5">
+                            {tool.cons.map((con, i) => (
+                              <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
+                                <span className="text-red-400 mt-0.5">✗</span> {con}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
-                    )}
-                  </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-slate-400">Sources:</span>
+                        <span className="text-[#22d3ee] font-mono">{tool.source}</span>
+                      </div>
+                    </div>
+                  </details>
                 );
               })
             )}

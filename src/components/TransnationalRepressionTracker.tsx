@@ -7,7 +7,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
-import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
+import { Globe, Shield, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
 import { THREAT_LEVELS, OPERATION_TYPES, RESPONSE_STATUSES } from './transnationalRepressionData';
 import { DisclosureSection } from './DisclosureSection';
 // TransnationalRepressionTracker — Cross-references police stations, legal cases,
@@ -108,7 +108,6 @@ const TransnationalRepressionTracker = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [threatFilter, setThreatFilter] = useState('all');
   const [responseFilter, setResponseFilter] = useState('all');
-  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const stations = useMemo(() => dataApi.getPoliceStations(), []);
   const cases = useMemo(() => dataApi.getLegalCases(), []);
@@ -279,19 +278,14 @@ const TransnationalRepressionTracker = () => {
               filtered.map(cp => {
                 const threatStyle = getThreatStyle(cp.threatLevel);
                 const responseStyle = getResponseStyle(cp.responseStatus);
-                const isExpanded = expandedCountry === cp.country;
                 return (
-                  <div key={cp.country} className={`border ${threatStyle.border} ${threatStyle.bg}`}>
-                    <button
-                      onClick={() => setExpandedCountry(isExpanded ? null : cp.country)}
-                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                      aria-expanded={isExpanded}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
+                  <details key={cp.country} className={`border ${threatStyle.border} ${threatStyle.bg}`}>
+                    <summary className="w-full flex items-center justify-between p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
                         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${threatStyle.dot}`} aria-hidden="true" />
-                        <div className="min-w-0">
+                        <span className="block min-w-0">
                           <span className="text-white font-mono font-bold text-sm">{cp.country}</span>
-                          <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                          <span className="flex flex-wrap items-center gap-2 mt-0.5">
                             <span className={`text-xs font-mono ${threatStyle.color}`}>
                               {threatStyle.label} Threat
                             </span>
@@ -303,153 +297,151 @@ const TransnationalRepressionTracker = () => {
                             <span className="text-xs text-slate-400 font-mono">
                               {cp.operationCount} {cp.operationCount === 1 ? 'operation' : 'operations'}
                             </span>
+                          </span>
+                        </span>
+                      </span>
+                      <span className="text-slate-500 w-4 h-4 flex-shrink-0 ml-2">
+                        <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
+                      {/* Police Stations */}
+                      {cp.stations.length > 0 && (
+                        <div>
+                          <h4 className="text-xs font-mono text-[#22d3ee] uppercase mb-2 flex items-center gap-1.5">
+                            <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                            Police Stations ({cp.stations.length})
+                          </h4>
+                          <div className="space-y-2">
+                            {cp.stations.map((s: PoliceStation, i: number) => (
+                              <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
+                                <div className="flex items-center justify-between gap-2">
+                                  <span className="text-sm text-white font-mono truncate">{s.city}</span>
+                                  <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
+                                    s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                                    s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
+                                    'text-yellow-400 bg-yellow-400/10'
+                                  }`}>
+                                    {s.status}
+                                  </span>
+                                </div>
+                                {s.linked_to && s.linked_to !== 'Unknown' && (
+                                  <p className="text-xs text-slate-400 mt-1">Linked to: {s.linked_to}</p>
+                                )}
+                                {(String(s.arrests_made ?? '')).toLowerCase() === 'yes' && (
+                                  <p className="text-xs text-red-400 mt-1">⚠ Arrests made: {String(s.arrest_details ?? '')}</p>
+                                )}
+                                {s.government_response && (
+                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
+                                )}
+                                {s.source_url && (
+                                  <a
+                                    href={s.source_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
+                                  >
+                                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                    Source
+                                  </a>
+                                )}
+                              </div>
+                            ))}
                           </div>
                         </div>
-                      </div>
-                      <span className="text-slate-500 w-4 h-4 flex-shrink-0 ml-2">
-                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </span>
-                    </button>
-                    {isExpanded && (
-                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
-                        {/* Police Stations */}
-                        {cp.stations.length > 0 && (
-                          <div>
-                            <h4 className="text-xs font-mono text-[#22d3ee] uppercase mb-2 flex items-center gap-1.5">
-                              <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-                              Police Stations ({cp.stations.length})
-                            </h4>
-                            <div className="space-y-2">
-                              {cp.stations.map((s: PoliceStation, i: number) => (
-                                <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                  <div className="flex items-center justify-between gap-2">
-                                    <span className="text-sm text-white font-mono truncate">{s.city}</span>
-                                    <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                      s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                      s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
-                                      'text-yellow-400 bg-yellow-400/10'
-                                    }`}>
-                                      {s.status}
-                                    </span>
-                                  </div>
-                                  {s.linked_to && s.linked_to !== 'Unknown' && (
-                                    <p className="text-xs text-slate-400 mt-1">Linked to: {s.linked_to}</p>
-                                  )}
-                                  {(String(s.arrests_made ?? '')).toLowerCase() === 'yes' && (
-                                    <p className="text-xs text-red-400 mt-1">⚠ Arrests made: {String(s.arrest_details ?? '')}</p>
-                                  )}
-                                  {s.government_response && (
-                                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
-                                  )}
-                                  {s.source_url && (
-                                    <a
-                                      href={s.source_url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
-                                    >
-                                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                      Source
-                                    </a>
-                                  )}
+                      )}
+                      {/* Legal Cases */}
+                      {cp.cases.length > 0 && (
+                        <div>
+                          <h4 className="text-xs font-mono text-[#a78bfa] uppercase mb-2 flex items-center gap-1.5">
+                            <Scale className="w-3.5 h-3.5" aria-hidden="true" />
+                            Legal Cases ({cp.cases.length})
+                          </h4>
+                          <div className="space-y-2">
+                            {cp.cases.map((c: LegalCase, i: number) => (
+                              <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
+                                <div className="flex items-start justify-between gap-2">
+                                  <span className="text-sm text-white font-mono">{c.case_name}</span>
+                                  <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
+                                    c.status === 'CONVICTED' ? 'text-red-400 bg-red-400/10' :
+                                    c.status === 'CONCLUDED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                                    'text-yellow-400 bg-yellow-400/10'
+                                  }`}>
+                                    {c.status}
+                                  </span>
                                 </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {/* Legal Cases */}
-                        {cp.cases.length > 0 && (
-                          <div>
-                            <h4 className="text-xs font-mono text-[#a78bfa] uppercase mb-2 flex items-center gap-1.5">
-                              <Scale className="w-3.5 h-3.5" aria-hidden="true" />
-                              Legal Cases ({cp.cases.length})
-                            </h4>
-                            <div className="space-y-2">
-                              {cp.cases.map((c: LegalCase, i: number) => (
-                                <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                  <div className="flex items-start justify-between gap-2">
-                                    <span className="text-sm text-white font-mono">{c.case_name}</span>
-                                    <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                      c.status === 'CONVICTED' ? 'text-red-400 bg-red-400/10' :
-                                      c.status === 'CONCLUDED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                      'text-yellow-400 bg-yellow-400/10'
-                                    }`}>
-                                      {c.status}
-                                    </span>
-                                  </div>
-                                  <p className="text-xs text-slate-400 mt-1">{c.charges}</p>
-                                  {c.significance && (
-                                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.significance}</p>
-                                  )}
-                                  {c.source_url && (
-                                    <a
-                                      href={c.source_url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
-                                    >
-                                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                      Source
-                                    </a>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {/* International Response */}
-                        {cp.response && (
-                          <div>
-                            <h4 className="text-xs font-mono text-yellow-400 uppercase mb-2 flex items-center gap-1.5">
-                              <Shield className="w-3.5 h-3.5" aria-hidden="true" />
-                              International Response
-                            </h4>
-                            <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs text-slate-400 font-mono">Overall Stance:</span>
-                                <span className={`text-xs font-mono font-bold ${
-                                  (cp.response.overall_stance || '').toUpperCase() === 'STRONG' ? 'text-[#4afa82]' :
-                                  (cp.response.overall_stance || '').toUpperCase() === 'MODERATE' ? 'text-yellow-400' :
-                                  'text-red-400'
-                                }`}>
-                                  {cp.response.overall_stance}
-                                </span>
+                                <p className="text-xs text-slate-400 mt-1">{c.charges}</p>
+                                {c.significance && (
+                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.significance}</p>
+                                )}
+                                {c.source_url && (
+                                  <a
+                                    href={c.source_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
+                                  >
+                                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                    Source
+                                  </a>
+                                )}
                               </div>
-                              {Boolean(cp.response.genocide_recognized) && (
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs text-slate-400 font-mono">Genocide Recognized:</span>
-                                  <span className="text-xs text-white font-mono">{String(cp.response.genocide_recognized)}</span>
-                                </div>
-                              )}
-                              {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
-                                <div>
-                                  <span className="text-xs text-slate-400 font-mono">Sanctions:</span>
-                                  <p className="text-xs text-slate-300 mt-0.5">{cp.response.sanctions_imposed}</p>
-                                </div>
-                              )}
-                              {cp.response.legislative_actions && cp.response.legislative_actions !== 'None' && (
-                                <div>
-                                  <span className="text-xs text-slate-400 font-mono">Legislative Actions:</span>
-                                  <p className="text-xs text-slate-300 mt-0.5">{cp.response.legislative_actions}</p>
-                                </div>
-                              )}
-                              {cp.response.source_url && (
-                                <a
-                                  href={cp.response.source_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline"
-                                >
-                                  <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                  Source
-                                </a>
-                              )}
-                            </div>
+                            ))}
                           </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                        </div>
+                      )}
+                      {/* International Response */}
+                      {cp.response && (
+                        <div>
+                          <h4 className="text-xs font-mono text-yellow-400 uppercase mb-2 flex items-center gap-1.5">
+                            <Shield className="w-3.5 h-3.5" aria-hidden="true" />
+                            International Response
+                          </h4>
+                          <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-400 font-mono">Overall Stance:</span>
+                              <span className={`text-xs font-mono font-bold ${
+                                (cp.response.overall_stance || '').toUpperCase() === 'STRONG' ? 'text-[#4afa82]' :
+                                (cp.response.overall_stance || '').toUpperCase() === 'MODERATE' ? 'text-yellow-400' :
+                                'text-red-400'
+                              }`}>
+                                {cp.response.overall_stance}
+                              </span>
+                            </div>
+                            {Boolean(cp.response.genocide_recognized) && (
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-slate-400 font-mono">Genocide Recognized:</span>
+                                <span className="text-xs text-white font-mono">{String(cp.response.genocide_recognized)}</span>
+                              </div>
+                            )}
+                            {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
+                              <div>
+                                <span className="text-xs text-slate-400 font-mono">Sanctions:</span>
+                                <p className="text-xs text-slate-300 mt-0.5">{cp.response.sanctions_imposed}</p>
+                              </div>
+                            )}
+                            {cp.response.legislative_actions && cp.response.legislative_actions !== 'None' && (
+                              <div>
+                                <span className="text-xs text-slate-400 font-mono">Legislative Actions:</span>
+                                <p className="text-xs text-slate-300 mt-0.5">{cp.response.legislative_actions}</p>
+                              </div>
+                            )}
+                            {cp.response.source_url && (
+                              <a
+                                href={cp.response.source_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline"
+                              >
+                                <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                Source
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </details>
                 );
               })
             )}
