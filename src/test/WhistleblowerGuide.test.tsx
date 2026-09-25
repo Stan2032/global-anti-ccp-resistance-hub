@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import WhistleblowerGuide from '../components/WhistleblowerGuide';
-import { expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -153,34 +153,26 @@ describe('WhistleblowerGuide', () => {
     expect(labels.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expanding a protocol shows detail', () => {
+  it('each protocol is a native disclosure card', () => {
     render(<WhistleblowerGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+    const cards = cardsIn('Security Protocols');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('collapsing an expanded protocol works', () => {
+  it('a protocol card opens and closes natively', () => {
     render(<WhistleblowerGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
+    const [card] = cardsIn('Security Protocols');
+    expect(card.open).toBe(false);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('expanded protocol shows source attribution', () => {
+  it('every protocol card carries its source without a click', () => {
     render(<WhistleblowerGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(screen.getAllByText(/Source:/).length).toBeGreaterThanOrEqual(1);
+    cardsIn('Security Protocols').forEach(card => expect(card.textContent).toMatch(/Source:/));
   });
 
   // ── Submission Channels View ───────────────────────────
@@ -197,15 +189,11 @@ describe('WhistleblowerGuide', () => {
     expect(section.getAllByText(/VERIFIED/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expanding a channel shows URL', () => {
+  it('every channel card carries its access details without a click', () => {
     render(<WhistleblowerGuide />);
-    const section = inSection('Submission Channels');
-    const expandBtns = section.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
-    fireEvent.click(expandBtns[0]);
-    expect(section.getAllByText(/Access:/).length).toBeGreaterThanOrEqual(1);
+    const cards = cardsIn('Submission Channels');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.textContent).toMatch(/Access:/));
   });
 
   // ── Legal Protections View ─────────────────────────────
@@ -222,15 +210,11 @@ describe('WhistleblowerGuide', () => {
     expect(section.getAllByText(/European Union/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expanding a legal framework shows detail', () => {
+  it('every legal framework card carries its source without a click', () => {
     render(<WhistleblowerGuide />);
-    const section = inSection('Legal Protections');
-    const expandBtns = section.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
-    fireEvent.click(expandBtns[0]);
-    expect(section.getAllByText(/Source:/).length).toBeGreaterThanOrEqual(1);
+    const cards = cardsIn('Legal Protections');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.textContent).toMatch(/Source:/));
   });
 
   // ── Copy Report ────────────────────────────────────────
@@ -288,10 +272,7 @@ describe('WhistleblowerGuide', () => {
   // ── No CCP Sources ─────────────────────────────────────
   it('does not reference CCP state media as sources', () => {
     render(<WhistleblowerGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) fireEvent.click(expandBtns[0]);
+    // Every card's source is in the page now, not only the first one opened.
     const region = screen.getByRole('region', { name: 'Whistleblower Security Guide' });
     const text = region.textContent.toLowerCase();
     expect(text).not.toContain('xinhua');
@@ -325,13 +306,8 @@ describe('WhistleblowerGuide', () => {
     expect(screen.getByLabelText('Search whistleblower security data')).toBeTruthy();
   });
 
-  it('protocol cards have aria-expanded attribute', () => {
-    render(<WhistleblowerGuide />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<WhistleblowerGuide />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 });

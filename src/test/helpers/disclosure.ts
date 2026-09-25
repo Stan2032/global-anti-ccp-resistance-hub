@@ -34,3 +34,8 @@ export function expectDisclosureSections(titles: readonly string[]): void {
   expect(screen.queryAllByRole('tab')).toHaveLength(0);
   expect(screen.queryAllByRole('tablist')).toHaveLength(0);
 }
+
+/** The collapsible cards inside a section: every <details> nested in it. */
+export function cardsIn(title: string): HTMLDetailsElement[] {
+  return [...disclosureFor(title).querySelectorAll('details')];
+}

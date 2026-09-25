@@ -268,11 +268,19 @@ any more, and `profile-pages.test.tsx` fails if an `aria-expanded` control
 returns. Jimmy Lai's page went from 6,719 to 11,803 characters readable
 without JavaScript.
 
-**Left:** 675 expanders outside the header and nav. By route: `/intelligence`
-262, `/education` 92, `/data-sources` 77, `/security` 73, `/prisoners` 64,
-`/take-action` 42, `/resources` 30, `/directory` 24, `/` 11. Suggested
-order, by what readers come for: `/security`, `/prisoners`, then the
-`/intelligence` trackers.
+**Done: `/security`.** WhistleblowerGuide's three card lists and
+DiasporaSecurityAdvisor's country cards are native `<details>`. The page
+went from about 38,400 to 74,930 characters readable without JavaScript.
+The tracker-card pattern (a toggle button, then `{isExpanded && (…)}`)
+recurs across a dozen components. `cards_to_details.py` in the session
+scratchpad converted WhistleblowerGuide mechanically. The rule it follows:
+<div>s inside a <summary> become <span>s, since a summary may hold only
+phrasing content, with `block` added where the div had no display class.
+
+**Left:** 602 expanders outside the header and nav. By route: `/intelligence`
+262, `/education` 92, `/data-sources` 77, `/prisoners` 64, `/take-action`
+42, `/resources` 30, `/directory` 24, `/` 11. Suggested order: `/prisoners`,
+then the `/intelligence` trackers.
 
 ---
 

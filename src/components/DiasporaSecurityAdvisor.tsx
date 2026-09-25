@@ -8,7 +8,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, PoliceStation, InternationalResponse, LegalCase } from '../services/dataApi';
-import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
+import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
 // DiasporaSecurityAdvisor — personalized security guidance for diaspora communities
 // by country, cross-referencing police stations, international responses, and legal cases.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.
@@ -151,7 +151,6 @@ const DiasporaSecurityAdvisor = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedActivity, setSelectedActivity] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const stations = dataApi.getPoliceStations();
   const responses = dataApi.getInternationalResponses();
@@ -269,114 +268,111 @@ const DiasporaSecurityAdvisor = () => {
         <p className="text-xs text-slate-400 font-mono">{filtered.length} of {countryProfiles.length} countries shown</p>
         {filtered.map(cp => {
           const style = getRiskStyle(cp.risk);
-          const isExpanded = expandedCountry === cp.country;
           return (
-            <div key={cp.country} className={`border ${style.border} ${style.bg}`}>
-              <button onClick={() => setExpandedCountry(isExpanded ? null : cp.country)} className="w-full text-left p-4 flex items-center justify-between gap-3" aria-expanded={isExpanded} aria-label={`${cp.country} — ${style.label} risk`}>
-                <div className="flex items-center gap-3 min-w-0">
+            <details key={cp.country} className={`group border ${style.border} ${style.bg}`}>
+              <summary className="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-3 min-w-0">
                   <MapPin className={`w-4 h-4 flex-shrink-0 ${style.color}`} aria-hidden="true" />
-                  <div className="min-w-0">
+                  <span className="block min-w-0">
                     <span className="text-white font-mono text-sm font-bold">{cp.country}</span>
                     <span className="text-slate-400 text-xs ml-2">
                       {cp.stations.length > 0 ? `${cp.stations.length} station${cp.stations.length > 1 ? 's' : ''}` : ''}
                       {cp.stations.length > 0 && cp.cases.length > 0 ? ' • ' : ''}
                       {cp.cases.length > 0 ? `${cp.cases.length} case${cp.cases.length > 1 ? 's' : ''}` : ''}
                     </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                  </span>
+                </span>
+                <span className="flex items-center gap-2 flex-shrink-0">
                   <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${style.color} ${style.bg}`}>{style.label.toUpperCase()}</span>
-                  <span className="text-slate-500">{isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}</span>
+                  <ChevronDown className="w-4 h-4 text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true" />
+                </span>
+              </summary>
+              <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
+                {/* Advisory Lines */}
+                <div className="mt-3 space-y-2">
+                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Security Advisory</h4>
+                  {cp.advisory.map((line, i) => (
+                    <p key={i} className="text-sm text-slate-300 font-mono leading-relaxed">{line}</p>
+                  ))}
                 </div>
-              </button>
-              {isExpanded && (
-                <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
-                  {/* Advisory Lines */}
-                  <div className="mt-3 space-y-2">
-                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Security Advisory</h4>
-                    {cp.advisory.map((line, i) => (
-                      <p key={i} className="text-sm text-slate-300 font-mono leading-relaxed">{line}</p>
-                    ))}
+                {/* Activity-Specific Tips */}
+                {selectedActivity !== 'all' && SAFETY_TIPS[selectedActivity as SafetyTipCategory] && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                      {ACTIVITY_TYPES.find(a => a.id === selectedActivity)?.label} Safety Tips
+                    </h4>
+                    <ul className="space-y-1.5">
+                      {SAFETY_TIPS[selectedActivity as SafetyTipCategory].map((tip: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <Lock className="w-3.5 h-3.5 text-[#22d3ee] mt-0.5 flex-shrink-0" aria-hidden="true" />
+                          <span>{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  {/* Activity-Specific Tips */}
-                  {selectedActivity !== 'all' && SAFETY_TIPS[selectedActivity as SafetyTipCategory] && (
+                )}
+                {/* Police Stations */}
+                {cp.stations.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                      Police Stations ({cp.stations.length})
+                    </h4>
                     <div className="space-y-2">
-                      <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
-                        {ACTIVITY_TYPES.find(a => a.id === selectedActivity)?.label} Safety Tips
-                      </h4>
-                      <ul className="space-y-1.5">
-                        {SAFETY_TIPS[selectedActivity as SafetyTipCategory].map((tip: string, i: number) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                            <Lock className="w-3.5 h-3.5 text-[#22d3ee] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                            <span>{tip}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {/* Police Stations */}
-                  {cp.stations.length > 0 && (
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
-                        Police Stations ({cp.stations.length})
-                      </h4>
-                      <div className="space-y-2">
-                        {cp.stations.map((s, i) => (
-                          <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="text-sm text-white font-mono truncate">{s.city}</span>
-                              <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
-                                'text-yellow-400 bg-yellow-400/10'
-                              }`}>{s.status}</span>
-                            </div>
-                            {s.government_response && (
-                              <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
-                            )}
-                            {s.source_url && (
-                              <a href={s.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1">
-                                <ExternalLink className="w-3 h-3" aria-hidden="true" /> Source
-                              </a>
-                            )}
+                      {cp.stations.map((s, i) => (
+                        <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-sm text-white font-mono truncate">{s.city}</span>
+                            <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
+                              s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                              s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
+                              'text-yellow-400 bg-yellow-400/10'
+                            }`}>{s.status}</span>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {/* Government Response */}
-                  {cp.response && (
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Government Response</h4>
-                      <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-sm text-white font-mono">Overall Stance</span>
-                          <span className="text-xs text-slate-300 font-mono">{(cp.response.overall_stance || '').split(' - ')[0]}</span>
+                          {s.government_response && (
+                            <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
+                          )}
+                          {s.source_url && (
+                            <a href={s.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1">
+                              <ExternalLink className="w-3 h-3" aria-hidden="true" /> Source
+                            </a>
+                          )}
                         </div>
-                        {cp.response.genocide_recognition && (
-                          <p className="text-xs text-slate-400"><span className="text-slate-300">Genocide recognition:</span> {cp.response.genocide_recognition.substring(0, 80)}{cp.response.genocide_recognition.length > 80 ? '...' : ''}</p>
-                        )}
-                        {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
-                          <p className="text-xs text-slate-400"><span className="text-slate-300">Sanctions:</span> {cp.response.sanctions_imposed.substring(0, 100)}{cp.response.sanctions_imposed.length > 100 ? '...' : ''}</p>
-                        )}
-                        {cp.response.source_url && (
-                          <a href={cp.response.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline">
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" /> Source
-                          </a>
-                        )}
-                      </div>
+                      ))}
                     </div>
-                  )}
-                  {/* Emergency Contacts */}
-                  <div className="bg-red-900/20 border border-red-400/30 p-3 space-y-1">
-                    <h4 className="text-xs font-mono text-red-400 uppercase tracking-wider">Emergency Resources</h4>
-                    <p className="text-xs text-slate-300">Front Line Defenders: <a href="tel:+35312100489" className="text-[#22d3ee] hover:underline">+353 1 210 0489</a></p>
-                    <p className="text-xs text-slate-300">Access Now Digital Security: <a href="mailto:help@accessnow.org" className="text-[#22d3ee] hover:underline">help@accessnow.org</a></p>
-                    <p className="text-xs text-slate-300">Safeguard Defenders: <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">safeguarddefenders.com</a></p>
                   </div>
+                )}
+                {/* Government Response */}
+                {cp.response && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Government Response</h4>
+                    <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm text-white font-mono">Overall Stance</span>
+                        <span className="text-xs text-slate-300 font-mono">{(cp.response.overall_stance || '').split(' - ')[0]}</span>
+                      </div>
+                      {cp.response.genocide_recognition && (
+                        <p className="text-xs text-slate-400"><span className="text-slate-300">Genocide recognition:</span> {cp.response.genocide_recognition.substring(0, 80)}{cp.response.genocide_recognition.length > 80 ? '...' : ''}</p>
+                      )}
+                      {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
+                        <p className="text-xs text-slate-400"><span className="text-slate-300">Sanctions:</span> {cp.response.sanctions_imposed.substring(0, 100)}{cp.response.sanctions_imposed.length > 100 ? '...' : ''}</p>
+                      )}
+                      {cp.response.source_url && (
+                        <a href={cp.response.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline">
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" /> Source
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+                {/* Emergency Contacts */}
+                <div className="bg-red-900/20 border border-red-400/30 p-3 space-y-1">
+                  <h4 className="text-xs font-mono text-red-400 uppercase tracking-wider">Emergency Resources</h4>
+                  <p className="text-xs text-slate-300">Front Line Defenders: <a href="tel:+35312100489" className="text-[#22d3ee] hover:underline">+353 1 210 0489</a></p>
+                  <p className="text-xs text-slate-300">Access Now Digital Security: <a href="mailto:help@accessnow.org" className="text-[#22d3ee] hover:underline">help@accessnow.org</a></p>
+                  <p className="text-xs text-slate-300">Safeguard Defenders: <a href="https://safeguarddefenders.com" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">safeguarddefenders.com</a></p>
                 </div>
-              )}
-            </div>
+              </div>
+            </details>
           );
         })}
       </div>
