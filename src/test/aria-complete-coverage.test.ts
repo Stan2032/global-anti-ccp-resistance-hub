@@ -29,10 +29,6 @@ describe('ARIA Complete Coverage — Final Batch', () => {
   const componentFiles = getComponentFiles();
 
   const tabComponents = [
-    'HongKongStatus.tsx',
-    'TaiwanDefenseStatus.tsx',
-    'TibetStatus.tsx',
-    'XinjiangStatus.tsx',
     'IPACMembers.tsx',
     'DiasporaSupport.tsx',
     'LanguageGuide.tsx',
@@ -48,6 +44,35 @@ describe('ARIA Complete Coverage — Final Batch', () => {
       expect(content).toContain('aria-selected');
     });
   }
+
+  // These used to be tabbed. They now use native <details> sections, which
+  // the browser exposes as disclosure widgets without any extra ARIA, and
+  // which work before (or without) JavaScript.
+  const disclosureComponents = [
+    'HongKongStatus.tsx',
+    'TaiwanDefenseStatus.tsx',
+    'TibetStatus.tsx',
+    'XinjiangStatus.tsx',
+  ];
+
+  for (const name of disclosureComponents) {
+    it(`${name} uses native disclosure sections, not a tab widget`, () => {
+      const file = componentFiles.find(f => f.endsWith(`/${name}`));
+      expect(file, `${name} not found`).toBeTruthy();
+      const content = readFileSync(file!, 'utf-8');
+      expect(content).toContain('<DisclosureSection');
+      expect(content).not.toContain('role="tab');
+    });
+  }
+
+  it('every role="tab" component implements the whole tab pattern', () => {
+    for (const file of componentFiles) {
+      const content = readFileSync(file, 'utf-8');
+      if (!content.includes('role="tab"')) continue;
+      expect(content, file).toContain('role="tablist"');
+      expect(content, file).toContain('aria-selected');
+    }
+  });
 
   it('ErrorBoundary has aria-label on action buttons', () => {
     const file = componentFiles.find(f => f.endsWith('/ErrorBoundary.tsx'));

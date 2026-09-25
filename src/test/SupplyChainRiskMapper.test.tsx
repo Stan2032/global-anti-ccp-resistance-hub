@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import SupplyChainRiskMapper from '../components/SupplyChainRiskMapper';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -61,33 +62,9 @@ describe('SupplyChainRiskMapper', () => {
 
   // ── View toggle ────────────────────────────────────────
 
-  it('renders all 3 view toggle buttons', () => {
+  it('renders every view as a native disclosure section', () => {
     render(<SupplyChainRiskMapper />);
-    expect(screen.getByText('Company Risk')).toBeTruthy();
-    expect(screen.getByText('Industry Breakdown')).toBeTruthy();
-    expect(screen.getByText('Legal Landscape')).toBeTruthy();
-  });
-
-  it('Company Risk view is active by default', () => {
-    render(<SupplyChainRiskMapper />);
-    const btn = screen.getByText('Company Risk').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Industry Breakdown switches view', () => {
-    render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Industry Breakdown'));
-    const btn = screen.getByText('Industry Breakdown').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByText(/Risk distribution across/)).toBeTruthy();
-  });
-
-  it('clicking Legal Landscape switches view', () => {
-    render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
-    const btn = screen.getByText('Legal Landscape').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByText(/key legislative frameworks/)).toBeTruthy();
+    expectDisclosureSections(['Company Risk', 'Industry Breakdown', 'Legal Landscape']);
   });
 
   // ── Company Risk View ──────────────────────────────────
@@ -233,7 +210,7 @@ describe('SupplyChainRiskMapper', () => {
 
   it('Industry view shows sector cards', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Industry Breakdown'));
+    const section = inSection('Industry Breakdown');
     // Should display industry sectors
     const allText = document.body.textContent;
     expect(allText).toContain('companies');
@@ -241,7 +218,7 @@ describe('SupplyChainRiskMapper', () => {
 
   it('Industry view shows stacked risk bars', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Industry Breakdown'));
+    const section = inSection('Industry Breakdown');
     // Risk level labels should be visible
     const allText = document.body.textContent;
     expect(allText.includes('High') || allText.includes('Moderate') || allText.includes('Critical')).toBe(true);
@@ -251,42 +228,42 @@ describe('SupplyChainRiskMapper', () => {
 
   it('Legal view shows all 5 legislative frameworks', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
-    expect(screen.getByText(/Uyghur Forced Labor Prevention Act/)).toBeTruthy();
-    expect(screen.getByText(/EU Corporate Sustainability Due Diligence/)).toBeTruthy();
-    expect(screen.getByText(/UK Modern Slavery Act/)).toBeTruthy();
-    expect(screen.getByText(/Canada Fighting Against Forced Labour Act/)).toBeTruthy();
-    expect(screen.getByText(/Australia Modern Slavery Act/)).toBeTruthy();
+    const section = inSection('Legal Landscape');
+    expect(section.getByText(/Uyghur Forced Labor Prevention Act/)).toBeTruthy();
+    expect(section.getByText(/EU Corporate Sustainability Due Diligence/)).toBeTruthy();
+    expect(section.getByText(/UK Modern Slavery Act/)).toBeTruthy();
+    expect(section.getByText(/Canada Fighting Against Forced Labour Act/)).toBeTruthy();
+    expect(section.getByText(/Australia Modern Slavery Act/)).toBeTruthy();
   });
 
   it('Legal view shows scope and enforcement for each law', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
+    const section = inSection('Legal Landscape');
     // UFLPA details
-    expect(screen.getByText(/Presumes all goods from Xinjiang/)).toBeTruthy();
-    expect(screen.getByText(/CBP Withhold Release Orders/)).toBeTruthy();
+    expect(section.getByText(/Presumes all goods from Xinjiang/)).toBeTruthy();
+    expect(section.getByText(/CBP Withhold Release Orders/)).toBeTruthy();
   });
 
   it('Legal view shows compliance advisory', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
-    expect(screen.getByText('Compliance Advisory')).toBeTruthy();
-    expect(screen.getByText(/rebuttable presumption/)).toBeTruthy();
+    const section = inSection('Legal Landscape');
+    expect(section.getByText('Compliance Advisory')).toBeTruthy();
+    expect(section.getByText(/rebuttable presumption/)).toBeTruthy();
   });
 
   it('Legal view shows ACTIVE status badges', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
-    const badges = screen.getAllByText('ACTIVE');
+    const section = inSection('Legal Landscape');
+    const badges = section.getAllByText('ACTIVE');
     expect(badges.length).toBe(5);
   });
 
   it('Legal view shows enacted years', () => {
     render(<SupplyChainRiskMapper />);
-    fireEvent.click(screen.getByText('Legal Landscape'));
-    expect(screen.getByText(/Enacted: 2021/)).toBeTruthy();
-    expect(screen.getByText(/Enacted: 2024/)).toBeTruthy();
-    expect(screen.getByText(/Enacted: 2015/)).toBeTruthy();
+    const section = inSection('Legal Landscape');
+    expect(section.getByText(/Enacted: 2021/)).toBeTruthy();
+    expect(section.getByText(/Enacted: 2024/)).toBeTruthy();
+    expect(section.getByText(/Enacted: 2015/)).toBeTruthy();
   });
 
   // ── Copy to clipboard ─────────────────────────────────

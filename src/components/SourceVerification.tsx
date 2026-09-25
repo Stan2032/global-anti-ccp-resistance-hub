@@ -11,9 +11,9 @@ import React, { useState } from 'react';
 import {
   Search, FileText, RefreshCw, Calendar, AlertTriangle, ScanEye, Lightbulb,
 } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 const SourceVerification = () => {
-  const [activeTab, setActiveTab] = useState('sources');
   const [searchQuery, setSearchQuery] = useState('');
 
   const trustedSources = [
@@ -267,177 +267,157 @@ const SourceVerification = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2">
-        {[
-          { id: 'sources', name: 'Trusted Sources', icon: '✓' },
-          { id: 'avoid', name: 'Sources to Avoid', icon: '✗' },
-          { id: 'tips', name: 'Verification Tips', Icon: Lightbulb },
-        ].map(tab => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? 'bg-green-600 text-white'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
-            }`}
-          >
-            <span>{tab.Icon ? <tab.Icon className="w-4 h-4" /> : tab.icon}</span>
-            <span>{tab.name}</span>
-          </button>
-        ))}
-      </div>
 
       {/* Trusted Sources Tab */}
-      {activeTab === 'sources' && (
-        <div className="space-y-4">
-          {/* Search */}
-          <div className="relative">
-            <input
-              aria-label="Search"
-              type="text"
-              placeholder="Search sources by name or topic..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 pl-10 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
-            />
-            <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
-          </div>
-
-          {/* Sources by Category */}
-          {filteredSources.map((category, idx) => (
-            <div key={idx} className="space-y-3">
-              <h3 className="text-lg font-semibold text-white">{category.category}</h3>
-              <div className="grid gap-3">
-                {category.sources.map((source, sidx) => (
-                  <div key={sidx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <a 
-                          href={source.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-white font-medium hover:text-green-400 transition-colors"
-                        >
-                          {source.name} →
-                        </a>
-                        <span className={`ml-2 text-xs px-2 py-0.5 rounded ${
-                          source.reliability === 'high' 
-                            ? 'bg-green-900/50 text-green-400' 
-                            : 'bg-yellow-900/50 text-yellow-400'
-                        }`}>
-                          {source.reliability === 'high' ? 'Highly Reliable' : 'Reliable'}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-slate-400 mb-3">{source.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {source.focus.map((topic, tidx) => (
-                        <span key={tidx} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded">
-                          {topic}
-                        </span>
-                      ))}
-                    </div>
-                    {source.keyReports && (
-                      <div className="text-xs text-slate-400">
-                        Key reports: {source.keyReports.join(', ')}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+      <DisclosureSection title="Trusted Sources">
+          <div className="space-y-4">
+            {/* Search */}
+            <div className="relative">
+              <input
+                aria-label="Search"
+                type="text"
+                placeholder="Search sources by name or topic..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 pl-10 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
+              />
+              <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
             </div>
-          ))}
-        </div>
-      )}
+
+            {/* Sources by Category */}
+            {filteredSources.map((category, idx) => (
+              <div key={idx} className="space-y-3">
+                <h3 className="text-lg font-semibold text-white">{category.category}</h3>
+                <div className="grid gap-3">
+                  {category.sources.map((source, sidx) => (
+                    <div key={sidx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <a 
+                            href={source.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-white font-medium hover:text-green-400 transition-colors"
+                          >
+                            {source.name} →
+                          </a>
+                          <span className={`ml-2 text-xs px-2 py-0.5 rounded ${
+                            source.reliability === 'high' 
+                              ? 'bg-green-900/50 text-green-400' 
+                              : 'bg-yellow-900/50 text-yellow-400'
+                          }`}>
+                            {source.reliability === 'high' ? 'Highly Reliable' : 'Reliable'}
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-slate-400 mb-3">{source.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {source.focus.map((topic, tidx) => (
+                          <span key={tidx} className="text-xs px-2 py-1 bg-[#111820] text-slate-300 rounded">
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                      {source.keyReports && (
+                        <div className="text-xs text-slate-400">
+                          Key reports: {source.keyReports.join(', ')}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+      </DisclosureSection>
 
       {/* Sources to Avoid Tab */}
-      {activeTab === 'avoid' && (
-        <div className="space-y-4">
-          <div className="bg-red-900/20 border border-red-700/50 p-4 mb-4">
-            <h3 className="font-medium text-red-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Warning</h3>
-            <p className="text-sm text-slate-300">
-              These sources are known to spread CCP propaganda or disinformation. 
-              Information from these sources should be treated with extreme skepticism.
-            </p>
-          </div>
+      <DisclosureSection title="Sources to Avoid">
+          <div className="space-y-4">
+            <div className="bg-red-900/20 border border-red-700/50 p-4 mb-4">
+              <h3 className="font-medium text-red-300 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Warning</h3>
+              <p className="text-sm text-slate-300">
+                These sources are known to spread CCP propaganda or disinformation. 
+                Information from these sources should be treated with extreme skepticism.
+              </p>
+            </div>
 
-          <div className="space-y-3">
-            {unreliableSources.map((source, idx) => (
-              <div key={idx} className="bg-[#111820]/50 border border-red-700/30 p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium text-white">{source.name}</h4>
-                  <span className="text-xs px-2 py-1 bg-red-900/50 text-red-400 rounded">
-                    {source.type}
-                  </span>
+            <div className="space-y-3">
+              {unreliableSources.map((source, idx) => (
+                <div key={idx} className="bg-[#111820]/50 border border-red-700/30 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-medium text-white">{source.name}</h4>
+                    <span className="text-xs px-2 py-1 bg-red-900/50 text-red-400 rounded">
+                      {source.type}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-400 mb-2">{source.reason}</p>
+                  <div className="text-xs text-slate-400">
+                    Examples: {source.examples.join(' • ')}
+                  </div>
                 </div>
-                <p className="text-sm text-slate-400 mb-2">{source.reason}</p>
-                <div className="text-xs text-slate-400">
-                  Examples: {source.examples.join(' • ')}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Verification Tips Tab */}
-      {activeTab === 'tips' && (
-        <div className="space-y-4">
-          <div className="grid md:grid-cols-2 gap-4">
-            {verificationTips.map((tip, idx) => (
-              <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-                <div className="flex items-center space-x-3 mb-2">
-                  <span className="text-2xl">{tip.Icon && <tip.Icon className="w-6 h-6" />}</span>
-                  <h4 className="font-medium text-white">{tip.title}</h4>
+      <DisclosureSection title="Verification Tips">
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              {verificationTips.map((tip, idx) => (
+                <div key={idx} className="bg-[#111820]/50 border border-[#1c2a35] p-4">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <span className="text-2xl">{tip.Icon && <tip.Icon className="w-6 h-6" />}</span>
+                    <h4 className="font-medium text-white">{tip.title}</h4>
+                  </div>
+                  <p className="text-sm text-slate-400">{tip.description}</p>
                 </div>
-                <p className="text-sm text-slate-400">{tip.description}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
-            <h3 className="font-semibold text-white mb-3">Common CCP Disinformation Tactics</h3>
-            <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <span className="text-red-400">1.</span>
-                <div>
-                  <h4 className="font-medium text-white">Denial</h4>
-                  <p className="text-sm text-slate-400">Flatly denying documented abuses despite overwhelming evidence</p>
+            <div className="bg-[#111820]/50 border border-[#1c2a35] p-5">
+              <h3 className="font-semibold text-white mb-3">Common CCP Disinformation Tactics</h3>
+              <div className="space-y-3">
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-400">1.</span>
+                  <div>
+                    <h4 className="font-medium text-white">Denial</h4>
+                    <p className="text-sm text-slate-400">Flatly denying documented abuses despite overwhelming evidence</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <span className="text-red-400">2.</span>
-                <div>
-                  <h4 className="font-medium text-white">Discrediting</h4>
-                  <p className="text-sm text-slate-400">Attacking researchers, journalists, and witnesses personally</p>
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-400">2.</span>
+                  <div>
+                    <h4 className="font-medium text-white">Discrediting</h4>
+                    <p className="text-sm text-slate-400">Attacking researchers, journalists, and witnesses personally</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <span className="text-red-400">3.</span>
-                <div>
-                  <h4 className="font-medium text-white">Whataboutism</h4>
-                  <p className="text-sm text-slate-400">Deflecting by pointing to other countries' issues</p>
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-400">3.</span>
+                  <div>
+                    <h4 className="font-medium text-white">Whataboutism</h4>
+                    <p className="text-sm text-slate-400">Deflecting by pointing to other countries' issues</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <span className="text-red-400">4.</span>
-                <div>
-                  <h4 className="font-medium text-white">Flooding</h4>
-                  <p className="text-sm text-slate-400">Creating overwhelming amounts of counter-narratives to confuse</p>
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-400">4.</span>
+                  <div>
+                    <h4 className="font-medium text-white">Flooding</h4>
+                    <p className="text-sm text-slate-400">Creating overwhelming amounts of counter-narratives to confuse</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <span className="text-red-400">5.</span>
-                <div>
-                  <h4 className="font-medium text-white">Co-opting</h4>
-                  <p className="text-sm text-slate-400">Using Western voices and influencers to spread CCP narratives</p>
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-400">5.</span>
+                  <div>
+                    <h4 className="font-medium text-white">Co-opting</h4>
+                    <p className="text-sm text-slate-400">Using Western voices and influencers to spread CCP narratives</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 text-center">

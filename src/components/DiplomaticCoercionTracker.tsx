@@ -8,6 +8,7 @@
 import { useState, useMemo } from 'react';
 import { dataApi, InternationalResponse, Sanction, PoliceStation } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 // DiplomaticCoercionTracker — Maps CCP diplomatic & economic coercion against
 // nations criticizing its human rights record. Cross-references sanctions,
 // international responses, police stations, and legal cases.
@@ -178,7 +179,6 @@ function buildCoercionProfiles(coercionData: CoercionCountryEntry[], responses: 
 }
 
 const DiplomaticCoercionTracker = () => {
-  const [activeView, setActiveView] = useState('overview');
   const [searchQuery, setSearchQuery] = useState('');
   const [severityFilter, setSeverityFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
@@ -254,12 +254,6 @@ const DiplomaticCoercionTracker = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const views = [
-    { id: 'overview', label: 'Country Overview' },
-    { id: 'tactics', label: 'Coercion Tactics' },
-    { id: 'outcomes', label: 'Response Outcomes' },
-  ];
-
   const getSeverityStyle = (level: string) => SEVERITY_LEVELS.find(s => s.id === level) || SEVERITY_LEVELS[3];
   const getResponseStyle = (status: string) => RESPONSE_LEVELS.find(r => r.id === status) || RESPONSE_LEVELS[3];
   const getTypeInfo = (typeId: string) => COERCION_TYPES.find(ct => ct.id === typeId) || COERCION_TYPES[0];
@@ -330,22 +324,6 @@ const DiplomaticCoercionTracker = () => {
       </div>
 
       {/* View Toggle */}
-      <div className="flex space-x-1" role="group" aria-label="View options">
-        {views.map(v => (
-          <button
-            key={v.id}
-            onClick={() => setActiveView(v.id)}
-            aria-pressed={activeView === v.id}
-            className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
-              activeView === v.id
-                ? 'border-[#22d3ee] text-[#22d3ee] bg-[#22d3ee]/10'
-                : 'border-[#1c2a35] text-slate-400 hover:text-white hover:border-slate-400'
-            }`}
-          >
-            {v.label}
-          </button>
-        ))}
-      </div>
 
       {/* Search & Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -385,181 +363,181 @@ const DiplomaticCoercionTracker = () => {
       </div>
 
       {/* OVERVIEW VIEW */}
-      {activeView === 'overview' && (
-        <div className="space-y-3">
-          {filtered.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono py-4 text-center">No countries match your filters</p>
-          ) : (
-            filtered.map(profile => {
-              const sevStyle = getSeverityStyle(profile.severity);
-              const respStyle = getResponseStyle(profile.response);
-              const isExpanded = expandedCountry === profile.country;
-              return (
-                <div key={profile.country} className={`border ${sevStyle.border} ${sevStyle.bg}`}>
-                  <button
-                    onClick={() => setExpandedCountry(isExpanded ? null : profile.country)}
-                    className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                    aria-expanded={isExpanded}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sevStyle.dot}`} aria-hidden="true" />
-                      <div className="min-w-0">
-                        <span className="text-white font-mono text-sm font-bold block">{profile.country}</span>
-                        <span className="text-slate-400 text-xs block truncate">{profile.trigger}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className={`hidden sm:inline text-xs font-mono px-2 py-0.5 border ${sevStyle.border} ${sevStyle.color}`}>
-                        {profile.severity.toUpperCase()}
-                      </span>
-                      <span className={`hidden sm:inline text-xs font-mono ${respStyle.color}`}>
-                        {respStyle.label}
-                      </span>
-                      <span className="text-xs font-mono text-slate-400">{profile.totalIncidents} incidents</span>
-                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
-                    </div>
-                  </button>
-                  {isExpanded && (
-                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
-                      {/* Trigger */}
-                      <div>
-                        <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Trigger</span>
-                        <p className="text-slate-300 text-sm mt-1">{profile.trigger}</p>
-                      </div>
-                      {/* Incidents */}
-                      <div>
-                        <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Coercion Incidents</span>
-                        <div className="space-y-2 mt-2">
-                          {profile.incidents.map((inc, idx) => {
-                            const typeInfo = getTypeInfo(inc.type);
-                            const TypeIcon = typeInfo.icon;
-                            return (
-                              <div key={idx} className="flex items-start gap-2 bg-[#111820]/50 p-2">
-                                <TypeIcon className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                                <div className="min-w-0">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-xs font-mono text-[#a78bfa]">{typeInfo.label}</span>
-                                    <span className="text-xs text-slate-400">({inc.year})</span>
-                                  </div>
-                                  <p className="text-slate-300 text-xs mt-0.5">{inc.detail}</p>
-                                  <span className="text-xs text-slate-400 italic">Source: {inc.source}</span>
-                                </div>
-                              </div>
-                            );
-                          })}
+      <DisclosureSection title="Country Overview">
+          <div className="space-y-3">
+            {filtered.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono py-4 text-center">No countries match your filters</p>
+            ) : (
+              filtered.map(profile => {
+                const sevStyle = getSeverityStyle(profile.severity);
+                const respStyle = getResponseStyle(profile.response);
+                const isExpanded = expandedCountry === profile.country;
+                return (
+                  <div key={profile.country} className={`border ${sevStyle.border} ${sevStyle.bg}`}>
+                    <button
+                      onClick={() => setExpandedCountry(isExpanded ? null : profile.country)}
+                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sevStyle.dot}`} aria-hidden="true" />
+                        <div className="min-w-0">
+                          <span className="text-white font-mono text-sm font-bold block">{profile.country}</span>
+                          <span className="text-slate-400 text-xs block truncate">{profile.trigger}</span>
                         </div>
                       </div>
-                      {/* Cross-references */}
-                      <div className="flex flex-wrap gap-3 text-xs font-mono">
-                        {profile.matchedResponse && (
-                          <span className="text-[#22d3ee]">
-                            International response: {profile.matchedResponse.overall_stance || 'Documented'}
-                          </span>
-                        )}
-                        {profile.sanctionCount > 0 && (
-                          <span className="text-[#a78bfa]">{profile.sanctionCount} related sanctions</span>
-                        )}
-                        {profile.stationCount > 0 && (
-                          <span className="text-red-400">{profile.stationCount} CCP police stations</span>
-                        )}
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        <span className={`hidden sm:inline text-xs font-mono px-2 py-0.5 border ${sevStyle.border} ${sevStyle.color}`}>
+                          {profile.severity.toUpperCase()}
+                        </span>
+                        <span className={`hidden sm:inline text-xs font-mono ${respStyle.color}`}>
+                          {respStyle.label}
+                        </span>
+                        <span className="text-xs font-mono text-slate-400">{profile.totalIncidents} incidents</span>
+                        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
                       </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
+                        {/* Trigger */}
+                        <div>
+                          <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Trigger</span>
+                          <p className="text-slate-300 text-sm mt-1">{profile.trigger}</p>
+                        </div>
+                        {/* Incidents */}
+                        <div>
+                          <span className="text-xs font-mono text-[#22d3ee] uppercase tracking-wide">Coercion Incidents</span>
+                          <div className="space-y-2 mt-2">
+                            {profile.incidents.map((inc, idx) => {
+                              const typeInfo = getTypeInfo(inc.type);
+                              const TypeIcon = typeInfo.icon;
+                              return (
+                                <div key={idx} className="flex items-start gap-2 bg-[#111820]/50 p-2">
+                                  <TypeIcon className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                                  <div className="min-w-0">
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                      <span className="text-xs font-mono text-[#a78bfa]">{typeInfo.label}</span>
+                                      <span className="text-xs text-slate-400">({inc.year})</span>
+                                    </div>
+                                    <p className="text-slate-300 text-xs mt-0.5">{inc.detail}</p>
+                                    <span className="text-xs text-slate-400 italic">Source: {inc.source}</span>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        {/* Cross-references */}
+                        <div className="flex flex-wrap gap-3 text-xs font-mono">
+                          {profile.matchedResponse && (
+                            <span className="text-[#22d3ee]">
+                              International response: {profile.matchedResponse.overall_stance || 'Documented'}
+                            </span>
+                          )}
+                          {profile.sanctionCount > 0 && (
+                            <span className="text-[#a78bfa]">{profile.sanctionCount} related sanctions</span>
+                          )}
+                          {profile.stationCount > 0 && (
+                            <span className="text-red-400">{profile.stationCount} CCP police stations</span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* TACTICS VIEW */}
-      {activeView === 'tactics' && (
-        <div className="space-y-6">
-          {COERCION_TYPES.map(ct => {
-            const affected = filtered.filter(p => p.incidents.some(i => i.type === ct.id));
-            const TypeIcon = ct.icon;
-            return (
-              <div key={ct.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
-                  <div className="flex items-center gap-2">
-                    <TypeIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                    <h4 className="text-sm font-bold text-white font-mono">{ct.label}</h4>
-                    <span className="text-xs text-slate-400 font-mono">({affected.length} countries)</span>
+      <DisclosureSection title="Coercion Tactics">
+          <div className="space-y-6">
+            {COERCION_TYPES.map(ct => {
+              const affected = filtered.filter(p => p.incidents.some(i => i.type === ct.id));
+              const TypeIcon = ct.icon;
+              return (
+                <div key={ct.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                  <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
+                    <div className="flex items-center gap-2">
+                      <TypeIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
+                      <h4 className="text-sm font-bold text-white font-mono">{ct.label}</h4>
+                      <span className="text-xs text-slate-400 font-mono">({affected.length} countries)</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">{ct.description}</p>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">{ct.description}</p>
-                </div>
-                <div className="divide-y divide-[#1c2a35]">
-                  {affected.length === 0 ? (
-                    <p className="text-slate-400 text-xs font-mono p-3 text-center">No incidents match current filters</p>
-                  ) : (
-                    affected.map(p => {
-                      const relevantIncidents = p.incidents.filter(i => i.type === ct.id);
-                      return (
-                        <div key={p.country} className="p-3 flex items-start gap-3">
-                          <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${getSeverityStyle(p.severity).dot}`} aria-hidden="true" />
-                          <div className="min-w-0">
-                            <span className="text-white text-sm font-mono font-bold">{p.country}</span>
-                            {relevantIncidents.map((ri, idx) => (
-                              <p key={idx} className="text-slate-400 text-xs mt-0.5">
-                                <span className="text-slate-300">{ri.year}:</span> {ri.detail}
-                              </p>
-                            ))}
+                  <div className="divide-y divide-[#1c2a35]">
+                    {affected.length === 0 ? (
+                      <p className="text-slate-400 text-xs font-mono p-3 text-center">No incidents match current filters</p>
+                    ) : (
+                      affected.map(p => {
+                        const relevantIncidents = p.incidents.filter(i => i.type === ct.id);
+                        return (
+                          <div key={p.country} className="p-3 flex items-start gap-3">
+                            <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${getSeverityStyle(p.severity).dot}`} aria-hidden="true" />
+                            <div className="min-w-0">
+                              <span className="text-white text-sm font-mono font-bold">{p.country}</span>
+                              {relevantIncidents.map((ri, idx) => (
+                                <p key={idx} className="text-slate-400 text-xs mt-0.5">
+                                  <span className="text-slate-300">{ri.year}:</span> {ri.detail}
+                                </p>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })
-                  )}
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+      </DisclosureSection>
 
       {/* OUTCOMES VIEW */}
-      {activeView === 'outcomes' && (
-        <div className="space-y-6">
-          {RESPONSE_LEVELS.map(rl => {
-            const countries = filtered.filter(p => p.response === rl.id);
-            return (
-              <div key={rl.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
-                  <div className="flex items-center gap-2">
-                    <span className={`w-2.5 h-2.5 rounded-full ${rl.id === 'firm' ? 'bg-[#4afa82]' : rl.id === 'mixed' ? 'bg-yellow-400' : rl.id === 'conceded' ? 'bg-red-400' : 'bg-slate-400'}`} aria-hidden="true" />
-                    <h4 className={`text-sm font-bold font-mono ${rl.color}`}>{rl.label}</h4>
-                    <span className="text-xs text-slate-400 font-mono">({countries.length} countries)</span>
+      <DisclosureSection title="Response Outcomes">
+          <div className="space-y-6">
+            {RESPONSE_LEVELS.map(rl => {
+              const countries = filtered.filter(p => p.response === rl.id);
+              return (
+                <div key={rl.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                  <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2.5 h-2.5 rounded-full ${rl.id === 'firm' ? 'bg-[#4afa82]' : rl.id === 'mixed' ? 'bg-yellow-400' : rl.id === 'conceded' ? 'bg-red-400' : 'bg-slate-400'}`} aria-hidden="true" />
+                      <h4 className={`text-sm font-bold font-mono ${rl.color}`}>{rl.label}</h4>
+                      <span className="text-xs text-slate-400 font-mono">({countries.length} countries)</span>
+                    </div>
+                  </div>
+                  <div className="divide-y divide-[#1c2a35]">
+                    {countries.length === 0 ? (
+                      <p className="text-slate-400 text-xs font-mono p-3 text-center">No countries in this category</p>
+                    ) : (
+                      countries.map(p => {
+                        const sevStyle = getSeverityStyle(p.severity);
+                        return (
+                          <div key={p.country} className="p-3">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-white text-sm font-mono font-bold">{p.country}</span>
+                              <span className={`text-xs px-1.5 py-0.5 border ${sevStyle.border} ${sevStyle.color} font-mono`}>
+                                {p.severity.toUpperCase()}
+                              </span>
+                            </div>
+                            <p className="text-slate-400 text-xs">
+                              <span className="text-slate-300">Trigger:</span> {p.trigger}
+                            </p>
+                            <p className="text-slate-400 text-xs mt-0.5">
+                              {p.totalIncidents} coercion {p.totalIncidents === 1 ? 'incident' : 'incidents'}: {p.incidents.map(i => getTypeInfo(i.type).label).filter((v, i, a) => a.indexOf(v) === i).join(', ')}
+                            </p>
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
-                <div className="divide-y divide-[#1c2a35]">
-                  {countries.length === 0 ? (
-                    <p className="text-slate-400 text-xs font-mono p-3 text-center">No countries in this category</p>
-                  ) : (
-                    countries.map(p => {
-                      const sevStyle = getSeverityStyle(p.severity);
-                      return (
-                        <div key={p.country} className="p-3">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-white text-sm font-mono font-bold">{p.country}</span>
-                            <span className={`text-xs px-1.5 py-0.5 border ${sevStyle.border} ${sevStyle.color} font-mono`}>
-                              {p.severity.toUpperCase()}
-                            </span>
-                          </div>
-                          <p className="text-slate-400 text-xs">
-                            <span className="text-slate-300">Trigger:</span> {p.trigger}
-                          </p>
-                          <p className="text-slate-400 text-xs mt-0.5">
-                            {p.totalIncidents} coercion {p.totalIncidents === 1 ? 'incident' : 'incidents'}: {p.incidents.map(i => getTypeInfo(i.type).label).filter((v, i, a) => a.indexOf(v) === i).join(', ')}
-                          </p>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="border-t border-[#1c2a35] pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-slate-400">

@@ -4,19 +4,11 @@
  * hardware, and infrastructure risks.
  *
  * @module ChinaTechThreats
- */
-import { useState } from 'react';
+ */ 
 import { Monitor, AlertTriangle, BookOpen } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 const ChinaTechThreats = () => {
-  const [activeTab, setActiveTab] = useState('surveillance');
-
-  const tabs = [
-    { id: 'surveillance', name: 'Surveillance Tech' },
-    { id: 'infrastructure', name: 'Critical Infrastructure' },
-    { id: 'data', name: 'Data Collection' },
-    { id: 'response', name: 'Global Response' }
-  ];
 
   const surveillanceCompanies = [
     {
@@ -213,167 +205,150 @@ const ChinaTechThreats = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Technology threat categories">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? 'bg-[#22d3ee] text-[#0a0e14]'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-            }`}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
 
       {/* Surveillance Tech Tab */}
-      {activeTab === 'surveillance' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Sanctioned Surveillance Companies</h3>
-            <div className="space-y-3">
-              {surveillanceCompanies.map((company, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <span className="text-white font-semibold text-lg">{company.name}</span>
-                      <span className="text-slate-400 text-sm ml-2">({company.type})</span>
+      <DisclosureSection title="Surveillance Tech">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Sanctioned Surveillance Companies</h3>
+              <div className="space-y-3">
+                {surveillanceCompanies.map((company, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <span className="text-white font-semibold text-lg">{company.name}</span>
+                        <span className="text-slate-400 text-sm ml-2">({company.type})</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          company.threat === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
+                          company.threat === 'HIGH' ? 'bg-orange-900/50 text-orange-300' :
+                          'bg-yellow-900/50 text-yellow-300'
+                        }`}>{company.threat}</span>
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          company.status === 'SANCTIONED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
+                          'bg-[#111820]/50 text-[#22d3ee]'
+                        }`}>{company.status}</span>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <span className={`text-xs px-2 py-1 rounded ${
-                        company.threat === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
-                        company.threat === 'HIGH' ? 'bg-orange-900/50 text-orange-300' :
-                        'bg-yellow-900/50 text-yellow-300'
-                      }`}>{company.threat}</span>
-                      <span className={`text-xs px-2 py-1 rounded ${
-                        company.status === 'SANCTIONED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
-                        'bg-[#111820]/50 text-[#22d3ee]'
-                      }`}>{company.status}</span>
+                    <p className="text-slate-300 text-sm">{company.details}</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-slate-400 text-xs">Presence: {company.countries}</span>
+                      <div className="flex gap-1">
+                        {company.sanctions.map((flag, j) => (
+                          <span key={j} className="text-sm">{flag}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <p className="text-slate-300 text-sm">{company.details}</p>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-slate-400 text-xs">Presence: {company.countries}</span>
-                    <div className="flex gap-1">
-                      {company.sanctions.map((flag, j) => (
-                        <span key={j} className="text-sm">{flag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Critical Infrastructure Tab */}
-      {activeTab === 'infrastructure' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Critical Infrastructure Risks</h3>
-            <div className="space-y-4">
-              {criticalInfrastructure.map((item, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-white font-semibold">{item.sector}</span>
-                    <span className={`text-xs px-2 py-1 rounded ${
-                      item.risk === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
-                      'bg-orange-900/50 text-orange-300'
-                    }`}>{item.risk} RISK</span>
+      <DisclosureSection title="Critical Infrastructure">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Critical Infrastructure Risks</h3>
+              <div className="space-y-4">
+                {criticalInfrastructure.map((item, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-white font-semibold">{item.sector}</span>
+                      <span className={`text-xs px-2 py-1 rounded ${
+                        item.risk === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
+                        'bg-orange-900/50 text-orange-300'
+                      }`}>{item.risk} RISK</span>
+                    </div>
+                    <p className="text-slate-400 text-sm mb-1">Companies: {item.companies}</p>
+                    <p className="text-slate-300 text-sm mb-1">Concern: {item.concern}</p>
+                    <p className="text-slate-400 text-xs">Affected: {item.affected}</p>
                   </div>
-                  <p className="text-slate-400 text-sm mb-1">Companies: {item.companies}</p>
-                  <p className="text-slate-300 text-sm mb-1">Concern: {item.concern}</p>
-                  <p className="text-slate-400 text-xs">Affected: {item.affected}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Data Collection Tab */}
-      {activeTab === 'data' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Data Collection Risks</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
-                    <th className="pb-2">App/Service</th>
-                    <th className="pb-2">Company</th>
-                    <th className="pb-2">Users</th>
-                    <th className="pb-2">Risk</th>
-                    <th className="pb-2">Concerns</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {dataCollection.map((item, i) => (
-                    <tr key={i} className="border-b border-[#1c2a35]">
-                      <td className="py-3 text-white font-semibold">{item.app}</td>
-                      <td className="py-3 text-slate-300">{item.company}</td>
-                      <td className="py-3 text-slate-300">{item.users}</td>
-                      <td className="py-3">
-                        <span className={`text-xs px-2 py-1 rounded ${
-                          item.risk === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
-                          item.risk === 'HIGH' ? 'bg-orange-900/50 text-orange-300' :
-                          'bg-yellow-900/50 text-yellow-300'
-                        }`}>{item.risk}</span>
-                      </td>
-                      <td className="py-3 text-slate-400 text-xs">{item.concerns}</td>
+      <DisclosureSection title="Data Collection">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Data Collection Risks</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
+                      <th className="pb-2">App/Service</th>
+                      <th className="pb-2">Company</th>
+                      <th className="pb-2">Users</th>
+                      <th className="pb-2">Risk</th>
+                      <th className="pb-2">Concerns</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {dataCollection.map((item, i) => (
+                      <tr key={i} className="border-b border-[#1c2a35]">
+                        <td className="py-3 text-white font-semibold">{item.app}</td>
+                        <td className="py-3 text-slate-300">{item.company}</td>
+                        <td className="py-3 text-slate-300">{item.users}</td>
+                        <td className="py-3">
+                          <span className={`text-xs px-2 py-1 rounded ${
+                            item.risk === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
+                            item.risk === 'HIGH' ? 'bg-orange-900/50 text-orange-300' :
+                            'bg-yellow-900/50 text-yellow-300'
+                          }`}>{item.risk}</span>
+                        </td>
+                        <td className="py-3 text-slate-400 text-xs">{item.concerns}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+            <div className="bg-red-900/30 border border-red-700 p-4">
+              <h4 className="text-red-300 font-semibold mb-2"><AlertTriangle className="w-4 h-4 inline mr-1" /> BGI Genomics Warning</h4>
+              <p className="text-slate-300 text-sm">
+                BGI has collected genetic data from millions through COVID tests and prenatal screening. 
+                This data could be used for bioweapon development, ethnic targeting, or surveillance.
+              </p>
             </div>
           </div>
-          
-          <div className="bg-red-900/30 border border-red-700 p-4">
-            <h4 className="text-red-300 font-semibold mb-2"><AlertTriangle className="w-4 h-4 inline mr-1" /> BGI Genomics Warning</h4>
-            <p className="text-slate-300 text-sm">
-              BGI has collected genetic data from millions through COVID tests and prenatal screening. 
-              This data could be used for bioweapon development, ethnic targeting, or surveillance.
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Global Response Tab */}
-      {activeTab === 'response' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Global Response to China Tech</h3>
-            <div className="space-y-3">
-              {globalResponse.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 bg-[#111820] p-3">
-                  <span className="text-xl">{item.country.split(' ')[0]}</span>
-                  <div>
-                    <span className="text-white font-semibold">{item.country.split(' ').slice(1).join(' ')}</span>
-                    <p className="text-slate-400 text-sm">{item.actions}</p>
+      <DisclosureSection title="Global Response">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Global Response to China Tech</h3>
+              <div className="space-y-3">
+                {globalResponse.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 bg-[#111820] p-3">
+                    <span className="text-xl">{item.country.split(' ')[0]}</span>
+                    <div>
+                      <span className="text-white font-semibold">{item.country.split(' ').slice(1).join(' ')}</span>
+                      <p className="text-slate-400 text-sm">{item.actions}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-green-900/30 border border-green-700 p-4">
+              <h4 className="text-green-300 font-semibold mb-2">✅ What You Can Do</h4>
+              <ul className="text-slate-300 text-sm space-y-1">
+                <li>• Avoid Chinese-made surveillance cameras (Hikvision, Dahua)</li>
+                <li>• Use non-Chinese alternatives for smart home devices</li>
+                <li>• Be cautious with TikTok, WeChat, and other Chinese apps</li>
+                <li>• Support legislation restricting Chinese tech in critical infrastructure</li>
+                <li>• Check if your local government uses Chinese surveillance tech</li>
+              </ul>
             </div>
           </div>
-          
-          <div className="bg-green-900/30 border border-green-700 p-4">
-            <h4 className="text-green-300 font-semibold mb-2">✅ What You Can Do</h4>
-            <ul className="text-slate-300 text-sm space-y-1">
-              <li>• Avoid Chinese-made surveillance cameras (Hikvision, Dahua)</li>
-              <li>• Use non-Chinese alternatives for smart home devices</li>
-              <li>• Be cautious with TikTok, WeChat, and other Chinese apps</li>
-              <li>• Support legislation restricting Chinese tech in critical infrastructure</li>
-              <li>• Check if your local government uses Chinese surveillance tech</li>
-            </ul>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Resources */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">

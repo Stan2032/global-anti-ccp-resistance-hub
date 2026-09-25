@@ -3,19 +3,11 @@
  * preservation, religious freedom, and political developments.
  *
  * @module TibetStatus
- */
-import { useState } from 'react';
+ */ 
 import { Mountain, AlertTriangle, BookOpen } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 const TibetStatus = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', name: 'Overview' },
-    { id: 'repression', name: 'Repression' },
-    { id: 'selfimmolation', name: 'Self-Immolations' },
-    { id: 'cultural', name: 'Cultural Erasure' }
-  ];
 
   const keyStats = [
     { label: 'Years occupied', value: '75', color: 'red' },
@@ -109,149 +101,131 @@ const TibetStatus = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Tibet status tabs">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`tibet-tabpanel-${tab.id}`}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? 'bg-orange-600 text-white'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-            }`}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
 
       {/* Overview Tab */}
-      {activeTab === 'overview' && (
-        <div className="space-y-6">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Timeline of Occupation</h3>
-            <div className="space-y-3">
-              {timeline.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="text-orange-400 font-mono text-sm w-16">{item.year}</span>
-                  <span className="text-slate-300">{item.event}</span>
-                </div>
-              ))}
+      <DisclosureSection title="Overview">
+          <div className="space-y-6">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Timeline of Occupation</h3>
+              <div className="space-y-3">
+                {timeline.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-orange-400 font-mono text-sm w-16">{item.year}</span>
+                    <span className="text-slate-300">{item.event}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Repression Tab */}
-      {activeTab === 'repression' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Notable Political Prisoners</h3>
-            <div className="space-y-3">
-              {politicalPrisoners.map((prisoner, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className="text-white font-semibold">{prisoner.name}</span>
-                      <p className="text-slate-400 text-sm">{prisoner.details}</p>
+      <DisclosureSection title="Repression">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Notable Political Prisoners</h3>
+              <div className="space-y-3">
+                {politicalPrisoners.map((prisoner, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <span className="text-white font-semibold">{prisoner.name}</span>
+                        <p className="text-slate-400 text-sm">{prisoner.details}</p>
+                      </div>
+                      <span className={`text-xs px-2 py-1 rounded ${
+                        prisoner.status === 'DISAPPEARED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
+                        prisoner.status === 'IMPRISONED' ? 'bg-red-900/50 text-red-300' :
+                        'bg-green-900/50 text-green-300'
+                      }`}>{prisoner.status}</span>
                     </div>
-                    <span className={`text-xs px-2 py-1 rounded ${
-                      prisoner.status === 'DISAPPEARED' ? 'bg-[#111820]/50 text-[#22d3ee]' :
-                      prisoner.status === 'IMPRISONED' ? 'bg-red-900/50 text-red-300' :
-                      'bg-green-900/50 text-green-300'
-                    }`}>{prisoner.status}</span>
+                    <p className="text-slate-400 text-xs mt-1">Since: {prisoner.since}</p>
                   </div>
-                  <p className="text-slate-400 text-xs mt-1">Since: {prisoner.since}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-[#111820] border border-[#1c2a35] p-4">
+              <h4 className="text-[#22d3ee] font-semibold mb-2">The Missing Panchen Lama</h4>
+              <p className="text-slate-300 text-sm">
+                Gedhun Choekyi Nyima was recognized as the 11th Panchen Lama by the Dalai Lama in 1995. 
+                Three days later, at age 6, he was abducted by Chinese authorities. He has not been seen 
+                publicly since and would now be 35 years old. He is the world's longest-held political prisoner.
+              </p>
             </div>
           </div>
-          
-          <div className="bg-[#111820] border border-[#1c2a35] p-4">
-            <h4 className="text-[#22d3ee] font-semibold mb-2">The Missing Panchen Lama</h4>
-            <p className="text-slate-300 text-sm">
-              Gedhun Choekyi Nyima was recognized as the 11th Panchen Lama by the Dalai Lama in 1995. 
-              Three days later, at age 6, he was abducted by Chinese authorities. He has not been seen 
-              publicly since and would now be 35 years old. He is the world's longest-held political prisoner.
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Self-Immolation Tab */}
-      {activeTab === 'selfimmolation' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Self-Immolation Protests</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-400">{selfImmolations.total}</div>
-                <div className="text-xs text-slate-400">Total cases</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400">{selfImmolations.deaths}</div>
-                <div className="text-xs text-slate-400">Deaths</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{selfImmolations.inside}</div>
-                <div className="text-xs text-slate-400">Inside Tibet</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#22d3ee]">{selfImmolations.outside}</div>
-                <div className="text-xs text-slate-400">In exile</div>
-              </div>
-            </div>
-            
-            <h4 className="text-lg font-semibold text-white mb-3">By Year</h4>
-            <div className="flex flex-wrap gap-2">
-              {selfImmolations.byYear.map((item, i) => (
-                <div key={i} className="bg-[#111820] rounded px-3 py-1 text-sm">
-                  <span className="text-slate-400">{item.year}:</span>
-                  <span className="text-orange-400 ml-1 font-semibold">{item.count}</span>
+      <DisclosureSection title="Self-Immolations">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Self-Immolation Protests</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-400">{selfImmolations.total}</div>
+                  <div className="text-xs text-slate-400">Total cases</div>
                 </div>
-              ))}
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-red-400">{selfImmolations.deaths}</div>
+                  <div className="text-xs text-slate-400">Deaths</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400">{selfImmolations.inside}</div>
+                  <div className="text-xs text-slate-400">Inside Tibet</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#22d3ee]">{selfImmolations.outside}</div>
+                  <div className="text-xs text-slate-400">In exile</div>
+                </div>
+              </div>
+            
+              <h4 className="text-lg font-semibold text-white mb-3">By Year</h4>
+              <div className="flex flex-wrap gap-2">
+                {selfImmolations.byYear.map((item, i) => (
+                  <div key={i} className="bg-[#111820] rounded px-3 py-1 text-sm">
+                    <span className="text-slate-400">{item.year}:</span>
+                    <span className="text-orange-400 ml-1 font-semibold">{item.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-yellow-900/30 border border-yellow-700 p-4">
+              <p className="text-yellow-300 text-sm">
+                <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-300 flex-shrink-0 mt-0.5" /><span>These acts of protest reflect the desperation of Tibetans under occupation. Most called for Tibetan freedom and the return of the Dalai Lama.</span></span>
+              </p>
             </div>
           </div>
-          
-          <div className="bg-yellow-900/30 border border-yellow-700 p-4">
-            <p className="text-yellow-300 text-sm">
-              <span className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 text-yellow-300 flex-shrink-0 mt-0.5" /><span>These acts of protest reflect the desperation of Tibetans under occupation. Most called for Tibetan freedom and the return of the Dalai Lama.</span></span>
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Cultural Erasure Tab */}
-      {activeTab === 'cultural' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Cultural Erasure</h3>
-            <div className="space-y-4">
-              {culturalErasure.map((item, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-white font-semibold">{item.type}</span>
-                    <span className="text-red-400 font-bold">{item.stat}</span>
+      <DisclosureSection title="Cultural Erasure">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Cultural Erasure</h3>
+              <div className="space-y-4">
+                {culturalErasure.map((item, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-white font-semibold">{item.type}</span>
+                      <span className="text-red-400 font-bold">{item.stat}</span>
+                    </div>
+                    <p className="text-slate-400 text-sm">{item.description}</p>
                   </div>
-                  <p className="text-slate-400 text-sm">{item.description}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-red-900/30 border border-red-700 p-4">
+              <h4 className="text-red-300 font-semibold mb-2">Colonial Boarding Schools</h4>
+              <p className="text-slate-300 text-sm">
+                Over 1 million Tibetan children are in state-run boarding schools where they are 
+                separated from families, forbidden to speak Tibetan, and indoctrinated with CCP ideology.
+                This mirrors the residential school systems used against Indigenous peoples.
+              </p>
             </div>
           </div>
-          
-          <div className="bg-red-900/30 border border-red-700 p-4">
-            <h4 className="text-red-300 font-semibold mb-2">Colonial Boarding Schools</h4>
-            <p className="text-slate-300 text-sm">
-              Over 1 million Tibetan children are in state-run boarding schools where they are 
-              separated from families, forbidden to speak Tibetan, and indoctrinated with CCP ideology.
-              This mirrors the residential school systems used against Indigenous peoples.
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Resources */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">

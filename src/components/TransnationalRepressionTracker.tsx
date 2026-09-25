@@ -9,6 +9,7 @@ import { useState, useMemo } from 'react';
 import { dataApi, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
 import { THREAT_LEVELS, OPERATION_TYPES, RESPONSE_STATUSES } from './transnationalRepressionData';
+import { DisclosureSection } from './DisclosureSection';
 // TransnationalRepressionTracker — Cross-references police stations, legal cases,
 // and international responses to map CCP transnational repression globally.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.
@@ -104,7 +105,6 @@ function buildCountryProfiles(stations: PoliceStation[], cases: LegalCase[], res
   return profiles;
 }
 const TransnationalRepressionTracker = () => {
-  const [activeView, setActiveView] = useState('overview');
   const [searchQuery, setSearchQuery] = useState('');
   const [threatFilter, setThreatFilter] = useState('all');
   const [responseFilter, setResponseFilter] = useState('all');
@@ -171,12 +171,6 @@ const TransnationalRepressionTracker = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const views = [
-    { id: 'overview', label: 'Threat Overview' },
-    { id: 'operations', label: 'Operations Map' },
-    { id: 'responses', label: 'Government Responses' },
-  ];
-
   const getThreatStyle = (level: string) => THREAT_LEVELS.find(t => t.id === level) || THREAT_LEVELS[3];
   const getResponseStyle = (status: string) => RESPONSE_STATUSES.find(r => r.id === status) || RESPONSE_STATUSES[3];
 
@@ -241,22 +235,6 @@ const TransnationalRepressionTracker = () => {
           </div>
         ))}
       </div>
-      <div className="flex space-x-1" role="group" aria-label="View options">
-        {views.map(v => (
-          <button
-            key={v.id}
-            onClick={() => setActiveView(v.id)}
-            aria-pressed={activeView === v.id}
-            className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
-              activeView === v.id
-                ? 'border-[#22d3ee] text-[#22d3ee] bg-[#22d3ee]/10'
-                : 'border-[#1c2a35] text-slate-400 hover:text-white hover:border-slate-400'
-            }`}
-          >
-            {v.label}
-          </button>
-        ))}
-      </div>
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" aria-hidden="true" />
@@ -293,306 +271,306 @@ const TransnationalRepressionTracker = () => {
         </select>
       </div>
       {/* OVERVIEW VIEW */}
-      {activeView === 'overview' && (
-        <div className="space-y-3">
-          {filtered.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono py-4 text-center">No countries match your filters</p>
-          ) : (
-            filtered.map(cp => {
-              const threatStyle = getThreatStyle(cp.threatLevel);
-              const responseStyle = getResponseStyle(cp.responseStatus);
-              const isExpanded = expandedCountry === cp.country;
-              return (
-                <div key={cp.country} className={`border ${threatStyle.border} ${threatStyle.bg}`}>
-                  <button
-                    onClick={() => setExpandedCountry(isExpanded ? null : cp.country)}
-                    className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                    aria-expanded={isExpanded}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${threatStyle.dot}`} aria-hidden="true" />
-                      <div className="min-w-0">
-                        <span className="text-white font-mono font-bold text-sm">{cp.country}</span>
-                        <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                          <span className={`text-xs font-mono ${threatStyle.color}`}>
-                            {threatStyle.label} Threat
-                          </span>
-                          <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
-                          <span className={`text-xs font-mono ${responseStyle.color}`}>
-                            {responseStyle.label}
-                          </span>
-                          <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
-                          <span className="text-xs text-slate-400 font-mono">
-                            {cp.operationCount} {cp.operationCount === 1 ? 'operation' : 'operations'}
-                          </span>
+      <DisclosureSection title="Threat Overview">
+          <div className="space-y-3">
+            {filtered.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono py-4 text-center">No countries match your filters</p>
+            ) : (
+              filtered.map(cp => {
+                const threatStyle = getThreatStyle(cp.threatLevel);
+                const responseStyle = getResponseStyle(cp.responseStatus);
+                const isExpanded = expandedCountry === cp.country;
+                return (
+                  <div key={cp.country} className={`border ${threatStyle.border} ${threatStyle.bg}`}>
+                    <button
+                      onClick={() => setExpandedCountry(isExpanded ? null : cp.country)}
+                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${threatStyle.dot}`} aria-hidden="true" />
+                        <div className="min-w-0">
+                          <span className="text-white font-mono font-bold text-sm">{cp.country}</span>
+                          <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                            <span className={`text-xs font-mono ${threatStyle.color}`}>
+                              {threatStyle.label} Threat
+                            </span>
+                            <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
+                            <span className={`text-xs font-mono ${responseStyle.color}`}>
+                              {responseStyle.label}
+                            </span>
+                            <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
+                            <span className="text-xs text-slate-400 font-mono">
+                              {cp.operationCount} {cp.operationCount === 1 ? 'operation' : 'operations'}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <span className="text-slate-500 w-4 h-4 flex-shrink-0 ml-2">
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </span>
-                  </button>
-                  {isExpanded && (
-                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
-                      {/* Police Stations */}
-                      {cp.stations.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-mono text-[#22d3ee] uppercase mb-2 flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-                            Police Stations ({cp.stations.length})
-                          </h4>
-                          <div className="space-y-2">
-                            {cp.stations.map((s: PoliceStation, i: number) => (
-                              <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                <div className="flex items-center justify-between gap-2">
-                                  <span className="text-sm text-white font-mono truncate">{s.city}</span>
-                                  <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                    s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                    s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
-                                    'text-yellow-400 bg-yellow-400/10'
-                                  }`}>
-                                    {s.status}
-                                  </span>
+                      <span className="text-slate-500 w-4 h-4 flex-shrink-0 ml-2">
+                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </span>
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
+                        {/* Police Stations */}
+                        {cp.stations.length > 0 && (
+                          <div>
+                            <h4 className="text-xs font-mono text-[#22d3ee] uppercase mb-2 flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                              Police Stations ({cp.stations.length})
+                            </h4>
+                            <div className="space-y-2">
+                              {cp.stations.map((s: PoliceStation, i: number) => (
+                                <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
+                                  <div className="flex items-center justify-between gap-2">
+                                    <span className="text-sm text-white font-mono truncate">{s.city}</span>
+                                    <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
+                                      s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                                      s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
+                                      'text-yellow-400 bg-yellow-400/10'
+                                    }`}>
+                                      {s.status}
+                                    </span>
+                                  </div>
+                                  {s.linked_to && s.linked_to !== 'Unknown' && (
+                                    <p className="text-xs text-slate-400 mt-1">Linked to: {s.linked_to}</p>
+                                  )}
+                                  {(String(s.arrests_made ?? '')).toLowerCase() === 'yes' && (
+                                    <p className="text-xs text-red-400 mt-1">⚠ Arrests made: {String(s.arrest_details ?? '')}</p>
+                                  )}
+                                  {s.government_response && (
+                                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
+                                  )}
+                                  {s.source_url && (
+                                    <a
+                                      href={s.source_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
+                                    >
+                                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                      Source
+                                    </a>
+                                  )}
                                 </div>
-                                {s.linked_to && s.linked_to !== 'Unknown' && (
-                                  <p className="text-xs text-slate-400 mt-1">Linked to: {s.linked_to}</p>
-                                )}
-                                {(String(s.arrests_made ?? '')).toLowerCase() === 'yes' && (
-                                  <p className="text-xs text-red-400 mt-1">⚠ Arrests made: {String(s.arrest_details ?? '')}</p>
-                                )}
-                                {s.government_response && (
-                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
-                                )}
-                                {s.source_url && (
-                                  <a
-                                    href={s.source_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
-                                  >
-                                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                    Source
-                                  </a>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {/* Legal Cases */}
-                      {cp.cases.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-mono text-[#a78bfa] uppercase mb-2 flex items-center gap-1.5">
-                            <Scale className="w-3.5 h-3.5" aria-hidden="true" />
-                            Legal Cases ({cp.cases.length})
-                          </h4>
-                          <div className="space-y-2">
-                            {cp.cases.map((c: LegalCase, i: number) => (
-                              <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                <div className="flex items-start justify-between gap-2">
-                                  <span className="text-sm text-white font-mono">{c.case_name}</span>
-                                  <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                    c.status === 'CONVICTED' ? 'text-red-400 bg-red-400/10' :
-                                    c.status === 'CONCLUDED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                    'text-yellow-400 bg-yellow-400/10'
-                                  }`}>
-                                    {c.status}
-                                  </span>
-                                </div>
-                                <p className="text-xs text-slate-400 mt-1">{c.charges}</p>
-                                {c.significance && (
-                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.significance}</p>
-                                )}
-                                {c.source_url && (
-                                  <a
-                                    href={c.source_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
-                                  >
-                                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                    Source
-                                  </a>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {/* International Response */}
-                      {cp.response && (
-                        <div>
-                          <h4 className="text-xs font-mono text-yellow-400 uppercase mb-2 flex items-center gap-1.5">
-                            <Shield className="w-3.5 h-3.5" aria-hidden="true" />
-                            International Response
-                          </h4>
-                          <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs text-slate-400 font-mono">Overall Stance:</span>
-                              <span className={`text-xs font-mono font-bold ${
-                                (cp.response.overall_stance || '').toUpperCase() === 'STRONG' ? 'text-[#4afa82]' :
-                                (cp.response.overall_stance || '').toUpperCase() === 'MODERATE' ? 'text-yellow-400' :
-                                'text-red-400'
-                              }`}>
-                                {cp.response.overall_stance}
-                              </span>
+                              ))}
                             </div>
-                            {Boolean(cp.response.genocide_recognized) && (
+                          </div>
+                        )}
+                        {/* Legal Cases */}
+                        {cp.cases.length > 0 && (
+                          <div>
+                            <h4 className="text-xs font-mono text-[#a78bfa] uppercase mb-2 flex items-center gap-1.5">
+                              <Scale className="w-3.5 h-3.5" aria-hidden="true" />
+                              Legal Cases ({cp.cases.length})
+                            </h4>
+                            <div className="space-y-2">
+                              {cp.cases.map((c: LegalCase, i: number) => (
+                                <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
+                                  <div className="flex items-start justify-between gap-2">
+                                    <span className="text-sm text-white font-mono">{c.case_name}</span>
+                                    <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
+                                      c.status === 'CONVICTED' ? 'text-red-400 bg-red-400/10' :
+                                      c.status === 'CONCLUDED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                                      'text-yellow-400 bg-yellow-400/10'
+                                    }`}>
+                                      {c.status}
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-slate-400 mt-1">{c.charges}</p>
+                                  {c.significance && (
+                                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.significance}</p>
+                                  )}
+                                  {c.source_url && (
+                                    <a
+                                      href={c.source_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1.5"
+                                    >
+                                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                      Source
+                                    </a>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {/* International Response */}
+                        {cp.response && (
+                          <div>
+                            <h4 className="text-xs font-mono text-yellow-400 uppercase mb-2 flex items-center gap-1.5">
+                              <Shield className="w-3.5 h-3.5" aria-hidden="true" />
+                              International Response
+                            </h4>
+                            <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
                               <div className="flex items-center gap-2">
-                                <span className="text-xs text-slate-400 font-mono">Genocide Recognized:</span>
-                                <span className="text-xs text-white font-mono">{String(cp.response.genocide_recognized)}</span>
+                                <span className="text-xs text-slate-400 font-mono">Overall Stance:</span>
+                                <span className={`text-xs font-mono font-bold ${
+                                  (cp.response.overall_stance || '').toUpperCase() === 'STRONG' ? 'text-[#4afa82]' :
+                                  (cp.response.overall_stance || '').toUpperCase() === 'MODERATE' ? 'text-yellow-400' :
+                                  'text-red-400'
+                                }`}>
+                                  {cp.response.overall_stance}
+                                </span>
                               </div>
-                            )}
-                            {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
-                              <div>
-                                <span className="text-xs text-slate-400 font-mono">Sanctions:</span>
-                                <p className="text-xs text-slate-300 mt-0.5">{cp.response.sanctions_imposed}</p>
-                              </div>
-                            )}
-                            {cp.response.legislative_actions && cp.response.legislative_actions !== 'None' && (
-                              <div>
-                                <span className="text-xs text-slate-400 font-mono">Legislative Actions:</span>
-                                <p className="text-xs text-slate-300 mt-0.5">{cp.response.legislative_actions}</p>
-                              </div>
-                            )}
-                            {cp.response.source_url && (
-                              <a
-                                href={cp.response.source_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline"
-                              >
-                                <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                Source
-                              </a>
-                            )}
+                              {Boolean(cp.response.genocide_recognized) && (
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs text-slate-400 font-mono">Genocide Recognized:</span>
+                                  <span className="text-xs text-white font-mono">{String(cp.response.genocide_recognized)}</span>
+                                </div>
+                              )}
+                              {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
+                                <div>
+                                  <span className="text-xs text-slate-400 font-mono">Sanctions:</span>
+                                  <p className="text-xs text-slate-300 mt-0.5">{cp.response.sanctions_imposed}</p>
+                                </div>
+                              )}
+                              {cp.response.legislative_actions && cp.response.legislative_actions !== 'None' && (
+                                <div>
+                                  <span className="text-xs text-slate-400 font-mono">Legislative Actions:</span>
+                                  <p className="text-xs text-slate-300 mt-0.5">{cp.response.legislative_actions}</p>
+                                </div>
+                              )}
+                              {cp.response.source_url && (
+                                <a
+                                  href={cp.response.source_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline"
+                                >
+                                  <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                  Source
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
+      {/* OPERATIONS MAP VIEW */}
+      <DisclosureSection title="Operations Map">
+          <div className="space-y-4">
+            {OPERATION_TYPES.map(opType => {
+              const countriesWithOp = filtered.filter(cp =>
+                cp.operations.some((o: Operation) => o.type === opType.id)
+              );
+              if (countriesWithOp.length === 0) return null;
+              const OpIcon = opType.icon;
+              return (
+                <div key={opType.id} className="border border-[#1c2a35] bg-[#0d1117]">
+                  <div className="flex items-center gap-2 p-3 border-b border-[#1c2a35]">
+                    <OpIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
+                    <h4 className="text-sm font-mono text-white font-bold">{opType.label}</h4>
+                    <span className="text-xs text-slate-400 font-mono ml-auto">
+                      {countriesWithOp.length} {countriesWithOp.length === 1 ? 'country' : 'countries'}
+                    </span>
+                  </div>
+                  <div className="divide-y divide-[#1c2a35]">
+                    {countriesWithOp.map(cp => {
+                      const ops = cp.operations.filter((o: Operation) => o.type === opType.id);
+                      const threatStyle = getThreatStyle(cp.threatLevel);
+                      return (
+                        <div key={cp.country} className="p-3 flex items-start gap-3">
+                          <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${threatStyle.dot}`} aria-hidden="true" />
+                          <div className="min-w-0 flex-1">
+                            <span className="text-sm text-white font-mono">{cp.country}</span>
+                            <div className="mt-1 space-y-0.5">
+                              {ops.map((o: Operation, i: number) => (
+                                <div key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                                  <span className="font-mono">{o.detail}</span>
+                                  {o.source && (
+                                    <a
+                                      href={o.source}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-[#22d3ee] hover:underline flex-shrink-0"
+                                    >
+                                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                                    </a>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  )}
+                      );
+                    })}
+                  </div>
                 </div>
               );
-            })
-          )}
-        </div>
-      )}
-      {/* OPERATIONS MAP VIEW */}
-      {activeView === 'operations' && (
-        <div className="space-y-4">
-          {OPERATION_TYPES.map(opType => {
-            const countriesWithOp = filtered.filter(cp =>
-              cp.operations.some((o: Operation) => o.type === opType.id)
-            );
-            if (countriesWithOp.length === 0) return null;
-            const OpIcon = opType.icon;
-            return (
-              <div key={opType.id} className="border border-[#1c2a35] bg-[#0d1117]">
-                <div className="flex items-center gap-2 p-3 border-b border-[#1c2a35]">
-                  <OpIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                  <h4 className="text-sm font-mono text-white font-bold">{opType.label}</h4>
-                  <span className="text-xs text-slate-400 font-mono ml-auto">
-                    {countriesWithOp.length} {countriesWithOp.length === 1 ? 'country' : 'countries'}
-                  </span>
-                </div>
-                <div className="divide-y divide-[#1c2a35]">
-                  {countriesWithOp.map(cp => {
-                    const ops = cp.operations.filter((o: Operation) => o.type === opType.id);
-                    const threatStyle = getThreatStyle(cp.threatLevel);
-                    return (
-                      <div key={cp.country} className="p-3 flex items-start gap-3">
-                        <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${threatStyle.dot}`} aria-hidden="true" />
-                        <div className="min-w-0 flex-1">
+            })}
+          </div>
+      </DisclosureSection>
+      {/* GOVERNMENT RESPONSES VIEW */}
+      <DisclosureSection title="Government Responses">
+          <div className="space-y-4">
+            {RESPONSE_STATUSES.map(rs => {
+              const countriesWithStatus = filtered.filter(cp => cp.responseStatus === rs.id);
+              if (countriesWithStatus.length === 0) return null;
+              return (
+                <div key={rs.id} className="border border-[#1c2a35] bg-[#0d1117]">
+                  <div className="flex items-center gap-2 p-3 border-b border-[#1c2a35]">
+                    <span className={`w-2 h-2 rounded-full ${
+                      rs.id === 'enforcement' ? 'bg-[#4afa82]' :
+                      rs.id === 'investigation' ? 'bg-yellow-400' :
+                      rs.id === 'acknowledged' ? 'bg-orange-400' :
+                      'bg-red-400'
+                    }`} aria-hidden="true" />
+                    <h4 className={`text-sm font-mono font-bold ${rs.color}`}>{rs.label}</h4>
+                    <span className="text-xs text-slate-400 font-mono ml-auto">
+                      {countriesWithStatus.length} {countriesWithStatus.length === 1 ? 'country' : 'countries'}
+                    </span>
+                  </div>
+                  <div className="divide-y divide-[#1c2a35]">
+                    {countriesWithStatus.map(cp => (
+                      <div key={cp.country} className="p-3">
+                        <div className="flex items-center justify-between">
                           <span className="text-sm text-white font-mono">{cp.country}</span>
-                          <div className="mt-1 space-y-0.5">
-                            {ops.map((o: Operation, i: number) => (
-                              <div key={i} className="flex items-center gap-2 text-xs text-slate-400">
-                                <span className="font-mono">{o.detail}</span>
-                                {o.source && (
-                                  <a
-                                    href={o.source}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[#22d3ee] hover:underline flex-shrink-0"
-                                  >
-                                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                  </a>
-                                )}
-                              </div>
-                            ))}
+                          <div className="flex items-center gap-2">
+                            {cp.stations.length > 0 && (
+                              <span className="text-xs text-slate-400 font-mono">
+                                {cp.stations.length} {cp.stations.length === 1 ? 'station' : 'stations'}
+                              </span>
+                            )}
+                            {cp.cases.length > 0 && (
+                              <>
+                                <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
+                                <span className="text-xs text-slate-400 font-mono">
+                                  {cp.cases.length} {cp.cases.length === 1 ? 'case' : 'cases'}
+                                </span>
+                              </>
+                            )}
                           </div>
                         </div>
+                        {cp.response && (
+                          <div className="mt-1 text-xs text-slate-400">
+                            {cp.response.diplomatic_actions && cp.response.diplomatic_actions !== 'None' && (
+                              <p className="line-clamp-1">Diplomatic: {cp.response.diplomatic_actions}</p>
+                            )}
+                            {cp.stations.some((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes') && (
+                              <p className="text-[#4afa82]">✓ Arrests made in connection with CCP operations</p>
+                            )}
+                            {cp.stations.some((s: PoliceStation) => s.status === 'CLOSED') && (
+                              <p className="text-[#4afa82]">✓ Police stations closed</p>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-      {/* GOVERNMENT RESPONSES VIEW */}
-      {activeView === 'responses' && (
-        <div className="space-y-4">
-          {RESPONSE_STATUSES.map(rs => {
-            const countriesWithStatus = filtered.filter(cp => cp.responseStatus === rs.id);
-            if (countriesWithStatus.length === 0) return null;
-            return (
-              <div key={rs.id} className="border border-[#1c2a35] bg-[#0d1117]">
-                <div className="flex items-center gap-2 p-3 border-b border-[#1c2a35]">
-                  <span className={`w-2 h-2 rounded-full ${
-                    rs.id === 'enforcement' ? 'bg-[#4afa82]' :
-                    rs.id === 'investigation' ? 'bg-yellow-400' :
-                    rs.id === 'acknowledged' ? 'bg-orange-400' :
-                    'bg-red-400'
-                  }`} aria-hidden="true" />
-                  <h4 className={`text-sm font-mono font-bold ${rs.color}`}>{rs.label}</h4>
-                  <span className="text-xs text-slate-400 font-mono ml-auto">
-                    {countriesWithStatus.length} {countriesWithStatus.length === 1 ? 'country' : 'countries'}
-                  </span>
-                </div>
-                <div className="divide-y divide-[#1c2a35]">
-                  {countriesWithStatus.map(cp => (
-                    <div key={cp.country} className="p-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-white font-mono">{cp.country}</span>
-                        <div className="flex items-center gap-2">
-                          {cp.stations.length > 0 && (
-                            <span className="text-xs text-slate-400 font-mono">
-                              {cp.stations.length} {cp.stations.length === 1 ? 'station' : 'stations'}
-                            </span>
-                          )}
-                          {cp.cases.length > 0 && (
-                            <>
-                              <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
-                              <span className="text-xs text-slate-400 font-mono">
-                                {cp.cases.length} {cp.cases.length === 1 ? 'case' : 'cases'}
-                              </span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                      {cp.response && (
-                        <div className="mt-1 text-xs text-slate-400">
-                          {cp.response.diplomatic_actions && cp.response.diplomatic_actions !== 'None' && (
-                            <p className="line-clamp-1">Diplomatic: {cp.response.diplomatic_actions}</p>
-                          )}
-                          {cp.stations.some((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes') && (
-                            <p className="text-[#4afa82]">✓ Arrests made in connection with CCP operations</p>
-                          )}
-                          {cp.stations.some((s: PoliceStation) => s.status === 'CLOSED') && (
-                            <p className="text-[#4afa82]">✓ Police stations closed</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+      </DisclosureSection>
       <div className="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-[#1c2a35]">
         <p className="text-xs text-slate-400 font-mono">
           Cross-referencing {stations.length} police stations, {cases.length} legal cases, {responses.length} country responses

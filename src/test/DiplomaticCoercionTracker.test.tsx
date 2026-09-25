@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import DiplomaticCoercionTracker from '../components/DiplomaticCoercionTracker';
+import { disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -68,32 +69,10 @@ describe('DiplomaticCoercionTracker', () => {
     expect(countryLabels.length).toBeGreaterThanOrEqual(4);
   });
 
-  // ── View Toggle ────────────────────────────────────────
-  it('renders all view toggle buttons', () => {
+  // ── Sections ──────────────────────────────────────────
+  it('renders every view as a native disclosure section', () => {
     render(<DiplomaticCoercionTracker />);
-    expect(screen.getByText('Country Overview')).toBeTruthy();
-    expect(screen.getByText('Coercion Tactics')).toBeTruthy();
-    expect(screen.getByText('Response Outcomes')).toBeTruthy();
-  });
-
-  it('Country Overview is active by default', () => {
-    render(<DiplomaticCoercionTracker />);
-    const btn = screen.getByText('Country Overview').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Coercion Tactics switches view', () => {
-    render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Coercion Tactics'));
-    const btn = screen.getByText('Coercion Tactics').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Response Outcomes switches view', () => {
-    render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Response Outcomes'));
-    const btn = screen.getByText('Response Outcomes').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
+    expectDisclosureSections(['Country Overview', 'Coercion Tactics', 'Response Outcomes']);
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -179,42 +158,42 @@ describe('DiplomaticCoercionTracker', () => {
   // ── Coercion Tactics View ──────────────────────────────
   it('tactics view shows coercion type headers', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Coercion Tactics'));
-    expect(screen.getAllByText('Trade Restrictions').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Hostage Diplomacy').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Diplomatic Threats').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Economic Leverage').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Political Interference').length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Coercion Tactics');
+    expect(section.getAllByText('Trade Restrictions').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Hostage Diplomacy').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Diplomatic Threats').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Economic Leverage').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Political Interference').length).toBeGreaterThanOrEqual(1);
   });
 
   it('tactics view shows country counts per tactic', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Coercion Tactics'));
-    const countLabels = screen.getAllByText(/\d+ countr/);
+    const section = inSection('Coercion Tactics');
+    const countLabels = section.getAllByText(/\d+ countr/);
     expect(countLabels.length).toBeGreaterThan(0);
   });
 
   it('tactics view shows year for incidents', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Coercion Tactics'));
+    const section = inSection('Coercion Tactics');
     // Should show year labels (e.g., 2020, 2021, etc.)
-    expect(screen.getAllByText(/20\d\d:/).length).toBeGreaterThan(0);
+    expect(section.getAllByText(/20\d\d:/).length).toBeGreaterThan(0);
   });
 
   // ── Response Outcomes View ─────────────────────────────
   it('outcomes view shows response categories', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Response Outcomes'));
-    expect(screen.getAllByText('Firm Stance').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Mixed Response').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Conceded').length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Response Outcomes');
+    expect(section.getAllByText('Firm Stance').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Mixed Response').length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText('Conceded').length).toBeGreaterThanOrEqual(1);
   });
 
   it('outcomes view shows country details under response categories', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Response Outcomes'));
+    const section = inSection('Response Outcomes');
     // Should show "Trigger:" for at least one country
-    expect(screen.getAllByText(/Trigger:/).length).toBeGreaterThan(0);
+    expect(section.getAllByText(/Trigger:/).length).toBeGreaterThan(0);
   });
 
   // ── Clipboard ──────────────────────────────────────────
@@ -263,17 +242,13 @@ describe('DiplomaticCoercionTracker', () => {
 
   it('tracks hostage diplomacy specifically', () => {
     render(<DiplomaticCoercionTracker />);
-    const container = screen.getByRole('region', { name: 'Diplomatic Coercion Tracker' });
     // References to documented hostage diplomacy (Two Michaels, Gui Minhai)
-    fireEvent.click(screen.getByText('Coercion Tactics'));
-    expect(container.textContent).toContain('Hostage Diplomacy');
+    expect(disclosureFor('Coercion Tactics').textContent).toContain('Hostage Diplomacy');
   });
 
   it('includes documented trade restriction cases', () => {
     render(<DiplomaticCoercionTracker />);
-    fireEvent.click(screen.getByText('Coercion Tactics'));
-    const container = screen.getByRole('region', { name: 'Diplomatic Coercion Tracker' });
-    expect(container.textContent).toContain('Trade Restrictions');
+    expect(disclosureFor('Coercion Tactics').textContent).toContain('Trade Restrictions');
   });
 
   // ── No CCP Sources ─────────────────────────────────────
@@ -313,19 +288,6 @@ describe('DiplomaticCoercionTracker', () => {
   it('search input has aria-label', () => {
     render(<DiplomaticCoercionTracker />);
     expect(screen.getByLabelText('Search diplomatic coercion data')).toBeTruthy();
-  });
-
-  it('view toggle group has aria-label', () => {
-    render(<DiplomaticCoercionTracker />);
-    expect(screen.getByRole('group', { name: 'View options' })).toBeTruthy();
-  });
-
-  it('view buttons have aria-pressed attribute', () => {
-    render(<DiplomaticCoercionTracker />);
-    const viewBtns = screen.getByRole('group', { name: 'View options' }).querySelectorAll('button');
-    viewBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-pressed')).toBeTruthy();
-    });
   });
 
   it('country cards have aria-expanded attribute', () => {

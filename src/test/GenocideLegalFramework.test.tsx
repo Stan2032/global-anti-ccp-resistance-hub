@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GenocideLegalFramework from '../components/GenocideLegalFramework';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
@@ -51,24 +52,23 @@ describe('GenocideLegalFramework', () => {
     expect(screen.getByText('10')).toBeTruthy(); // 10 recognitions
   });
 
-  // === VIEW TOGGLE ===
-  it('renders view toggle buttons', () => {
+  // === SECTIONS ===
+  it('renders both views as native disclosure sections', () => {
     render(<GenocideLegalFramework />);
-    expect(screen.getByLabelText('View Legal Violations')).toBeTruthy();
-    expect(screen.getByLabelText('View Genocide Recognitions')).toBeTruthy();
+    expectDisclosureSections(['Legal Violations', 'Genocide Recognitions']);
   });
 
-  it('defaults to violations view', () => {
+  it('keeps the violations search inside the Legal Violations section', () => {
     render(<GenocideLegalFramework />);
-    expect(screen.getByLabelText('Search legal violations')).toBeTruthy();
+    expect(inSection('Legal Violations').getByLabelText('Search legal violations')).toBeTruthy();
   });
 
-  it('switches to recognitions view', () => {
+  it('shows the Genocide Recognitions section without interaction', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    expect(screen.getByText(/formal genocide recognitions/)).toBeTruthy();
-    expect(screen.getByText('United States')).toBeTruthy();
-    expect(screen.getByText('Canada')).toBeTruthy();
+    const section = inSection('Genocide Recognitions');
+    expect(section.getByText(/formal genocide recognitions/)).toBeTruthy();
+    expect(section.getByText('United States')).toBeTruthy();
+    expect(section.getByText('Canada')).toBeTruthy();
   });
 
   // === FILTERS ===
@@ -245,37 +245,37 @@ describe('GenocideLegalFramework', () => {
   // === GENOCIDE RECOGNITIONS VIEW ===
   it('shows all recognition countries', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    expect(screen.getByText('United States')).toBeTruthy();
-    expect(screen.getByText('Canada')).toBeTruthy();
-    expect(screen.getByText('Netherlands')).toBeTruthy();
-    expect(screen.getByText('France')).toBeTruthy();
+    const section = inSection('Genocide Recognitions');
+    expect(section.getByText('United States')).toBeTruthy();
+    expect(section.getByText('Canada')).toBeTruthy();
+    expect(section.getByText('Netherlands')).toBeTruthy();
+    expect(section.getByText('France')).toBeTruthy();
   });
 
   it('shows Uyghur Tribunal in recognitions', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    expect(screen.getByText('Uyghur Tribunal')).toBeTruthy();
+    const section = inSection('Genocide Recognitions');
+    expect(section.getByText('Uyghur Tribunal')).toBeTruthy();
   });
 
   it('shows China Tribunal in recognitions', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    expect(screen.getByText('China Tribunal')).toBeTruthy();
+    const section = inSection('Genocide Recognitions');
+    expect(section.getByText('China Tribunal')).toBeTruthy();
   });
 
   it('shows recognition years', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    const years = screen.getAllByText('2021');
+    const section = inSection('Genocide Recognitions');
+    const years = section.getAllByText('2021');
     expect(years.length).toBeGreaterThan(0);
   });
 
   it('shows recognition types', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    expect(screen.getByText('Genocide declaration')).toBeTruthy();
-    expect(screen.getAllByText('Parliamentary motion').length).toBeGreaterThan(0);
+    const section = inSection('Genocide Recognitions');
+    expect(section.getByText('Genocide declaration')).toBeTruthy();
+    expect(section.getAllByText('Parliamentary motion').length).toBeGreaterThan(0);
   });
 
   // === FOOTER ===
@@ -325,8 +325,8 @@ describe('GenocideLegalFramework', () => {
 
   it('has at least 8 genocide recognition entries', () => {
     render(<GenocideLegalFramework />);
-    fireEvent.click(screen.getByLabelText('View Genocide Recognitions'));
-    const countText = screen.getByText(/\d+ formal genocide recognitions/);
+    const section = inSection('Genocide Recognitions');
+    const countText = section.getByText(/\d+ formal genocide recognitions/);
     const match = countText.textContent.match(/(\d+)/);
     expect(parseInt(match![1])).toBeGreaterThanOrEqual(8);
   });

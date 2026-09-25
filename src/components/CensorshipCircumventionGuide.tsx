@@ -9,6 +9,7 @@
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
 import { Shield, Search, ChevronDown, ChevronUp, Copy, Check, Wifi, WifiOff, Lock, Eye, EyeOff, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 // CensorshipCircumventionGuide — Tracks CCP internet censorship methods
 // and provides verified circumvention tools with safety ratings.
 // Cross-references political prisoners, international responses, and legal cases.
@@ -137,7 +138,6 @@ function _classifyMethodRisk(methods: typeof CENSORSHIP_METHODS) {
 }
 
 const CensorshipCircumventionGuide = () => {
-  const [activeView, setActiveView] = useState('methods');
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
@@ -218,12 +218,6 @@ const CensorshipCircumventionGuide = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const views = [
-    { id: 'methods', label: 'Censorship Methods' },
-    { id: 'tools', label: 'Circumvention Tools' },
-    { id: 'safety', label: 'Safety Guide' },
-  ];
-
   const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
   const _getCategoryInfo = (catId: string) => CENSORSHIP_CATEGORIES.find(c => c.id === catId) || CENSORSHIP_CATEGORIES[0];
   const getSafetyStyle = (safety: string) => TOOL_SAFETY.find(s => s.id === safety) || TOOL_SAFETY[0];
@@ -294,22 +288,6 @@ const CensorshipCircumventionGuide = () => {
       </div>
 
       {/* View Toggle */}
-      <div className="flex space-x-1" role="group" aria-label="View options">
-        {views.map(v => (
-          <button
-            key={v.id}
-            onClick={() => setActiveView(v.id)}
-            aria-pressed={activeView === v.id}
-            className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
-              activeView === v.id
-                ? 'border-[#22d3ee] text-[#22d3ee] bg-[#22d3ee]/10'
-                : 'border-[#1c2a35] text-slate-400 hover:text-white hover:border-slate-400'
-            }`}
-          >
-            {v.label}
-          </button>
-        ))}
-      </div>
 
       {/* Search & Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -324,228 +302,226 @@ const CensorshipCircumventionGuide = () => {
             aria-label="Search censorship circumvention data"
           />
         </div>
-        {activeView === 'methods' && (
-          <>
-            <select
-              value={categoryFilter}
-              onChange={e => setCategoryFilter(e.target.value)}
-              className="bg-[#0d1117] border border-[#1c2a35] px-3 py-2 text-sm font-mono text-slate-300 focus:border-[#22d3ee] focus:outline-none"
-              aria-label="Filter by censorship category"
-            >
-              <option value="all">All Categories</option>
-              {CENSORSHIP_CATEGORIES.map(c => (
-                <option key={c.id} value={c.id}>{c.label}</option>
-              ))}
-            </select>
-            <select
-              value={riskFilter}
-              onChange={e => setRiskFilter(e.target.value)}
-              className="bg-[#0d1117] border border-[#1c2a35] px-3 py-2 text-sm font-mono text-slate-300 focus:border-[#22d3ee] focus:outline-none"
-              aria-label="Filter by risk level"
-            >
-              <option value="all">All Risk Levels</option>
-              {RISK_LEVELS.map(rl => (
-                <option key={rl.id} value={rl.id}>{rl.label}</option>
-              ))}
-            </select>
-          </>
-        )}
       </div>
 
       {/* METHODS VIEW */}
-      {activeView === 'methods' && (
-        <div className="space-y-6">
-          {CENSORSHIP_CATEGORIES.map(cat => {
-            const methods = filteredMethods.filter(m => m.category === cat.id);
-            if (methods.length === 0) return null;
-            const CatIcon = cat.icon;
-            return (
-              <div key={cat.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
-                  <div className="flex items-center gap-2">
-                    <CatIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                    <h4 className="text-sm font-bold text-white font-mono">{cat.label}</h4>
-                    <span className="text-xs text-slate-400 font-mono">({methods.length} methods)</span>
-                  </div>
-                  <p className="text-xs text-slate-400 mt-1">{cat.description}</p>
-                </div>
-                <div className="divide-y divide-[#1c2a35]">
-                  {methods.map(m => {
-                    const riskStyle = getRiskStyle(m.risk);
-                    const isExpanded = expandedItem === m.id;
-                    return (
-                      <div key={m.id}>
-                        <button
-                          onClick={() => setExpandedItem(isExpanded ? null : m.id)}
-                          className="w-full flex items-center justify-between p-3 text-left"
-                          aria-expanded={isExpanded}
-                        >
-                          <div className="flex items-center gap-3 min-w-0">
-                            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
-                            <div className="min-w-0">
-                              <span className="text-white text-sm font-mono">{m.name}</span>
-                              <span className={`ml-2 text-xs px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color} font-mono`}>
-                                {m.risk.toUpperCase()}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 flex-shrink-0">
-                            <span className="text-xs text-slate-400 font-mono hidden sm:inline">Since {m.year}</span>
-                            {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
-                          </div>
-                        </button>
-                        {isExpanded && (
-                          <div className="border-t border-[#1c2a35] p-3 space-y-2">
-                            <p className="text-slate-300 text-xs">{m.detail}</p>
-                            <div className="flex items-center gap-2 text-xs">
-                              <span className="text-slate-400">Sources:</span>
-                              <span className="text-[#22d3ee] font-mono">{m.source}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs">
-                              <span className="text-slate-400">Active since:</span>
-                              <span className="text-slate-300 font-mono">{m.year}</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-          {filteredMethods.length === 0 && (
-            <p className="text-slate-400 text-sm font-mono py-4 text-center">No methods match your filters</p>
-          )}
-        </div>
-      )}
-
-      {/* TOOLS VIEW */}
-      {activeView === 'tools' && (
-        <div className="space-y-3">
-          {filteredTools.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono py-4 text-center">No tools match your search</p>
-          ) : (
-            filteredTools.map(tool => {
-              const safetyStyle = getSafetyStyle(tool.safety);
-              const isExpanded = expandedItem === tool.id;
+      <DisclosureSection title="Censorship Methods">
+          <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <select
+                value={categoryFilter}
+                onChange={e => setCategoryFilter(e.target.value)}
+                className="bg-[#0d1117] border border-[#1c2a35] px-3 py-2 text-sm font-mono text-slate-300 focus:border-[#22d3ee] focus:outline-none"
+                aria-label="Filter censorship methods by category"
+              >
+                <option value="all">All Categories</option>
+                {CENSORSHIP_CATEGORIES.map(c => (
+                  <option key={c.id} value={c.id}>{c.label}</option>
+                ))}
+              </select>
+              <select
+                value={riskFilter}
+                onChange={e => setRiskFilter(e.target.value)}
+                className="bg-[#0d1117] border border-[#1c2a35] px-3 py-2 text-sm font-mono text-slate-300 focus:border-[#22d3ee] focus:outline-none"
+                aria-label="Filter censorship methods by risk level"
+              >
+                <option value="all">All Risk Levels</option>
+                {RISK_LEVELS.map(rl => (
+                  <option key={rl.id} value={rl.id}>{rl.label}</option>
+                ))}
+              </select>
+          </div>
+          <div className="space-y-6">
+            {CENSORSHIP_CATEGORIES.map(cat => {
+              const methods = filteredMethods.filter(m => m.category === cat.id);
+              if (methods.length === 0) return null;
+              const CatIcon = cat.icon;
               return (
-                <div key={tool.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                  <button
-                    onClick={() => setExpandedItem(isExpanded ? null : tool.id)}
-                    className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                    aria-expanded={isExpanded}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Shield className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
-                      <div className="min-w-0">
-                        <span className="text-white text-sm font-mono font-bold">{tool.name}</span>
-                        <span className={`ml-2 text-xs font-mono ${safetyStyle.color}`}>{safetyStyle.label}</span>
-                      </div>
+                <div key={cat.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                  <div className="p-3 sm:p-4 border-b border-[#1c2a35]">
+                    <div className="flex items-center gap-2">
+                      <CatIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
+                      <h4 className="text-sm font-bold text-white font-mono">{cat.label}</h4>
+                      <span className="text-xs text-slate-400 font-mono">({methods.length} methods)</span>
                     </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <span className="text-xs text-slate-400 font-mono hidden sm:inline">{tool.category}</span>
-                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
-                    </div>
-                  </button>
-                  {isExpanded && (
-                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
-                      <p className="text-slate-300 text-sm">{tool.description}</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <h5 className="text-xs font-mono text-[#4afa82] mb-1">Pros</h5>
-                          <ul className="space-y-0.5">
-                            {tool.pros.map((pro, i) => (
-                              <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                                <span className="text-[#4afa82] mt-0.5">✓</span> {pro}
-                              </li>
-                            ))}
-                          </ul>
+                    <p className="text-xs text-slate-400 mt-1">{cat.description}</p>
+                  </div>
+                  <div className="divide-y divide-[#1c2a35]">
+                    {methods.map(m => {
+                      const riskStyle = getRiskStyle(m.risk);
+                      const isExpanded = expandedItem === m.id;
+                      return (
+                        <div key={m.id}>
+                          <button
+                            onClick={() => setExpandedItem(isExpanded ? null : m.id)}
+                            className="w-full flex items-center justify-between p-3 text-left"
+                            aria-expanded={isExpanded}
+                          >
+                            <div className="flex items-center gap-3 min-w-0">
+                              <span className={`w-2 h-2 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
+                              <div className="min-w-0">
+                                <span className="text-white text-sm font-mono">{m.name}</span>
+                                <span className={`ml-2 text-xs px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color} font-mono`}>
+                                  {m.risk.toUpperCase()}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <span className="text-xs text-slate-400 font-mono hidden sm:inline">Since {m.year}</span>
+                              {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                            </div>
+                          </button>
+                          {isExpanded && (
+                            <div className="border-t border-[#1c2a35] p-3 space-y-2">
+                              <p className="text-slate-300 text-xs">{m.detail}</p>
+                              <div className="flex items-center gap-2 text-xs">
+                                <span className="text-slate-400">Sources:</span>
+                                <span className="text-[#22d3ee] font-mono">{m.source}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-xs">
+                                <span className="text-slate-400">Active since:</span>
+                                <span className="text-slate-300 font-mono">{m.year}</span>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        <div>
-                          <h5 className="text-xs font-mono text-red-400 mb-1">Cons</h5>
-                          <ul className="space-y-0.5">
-                            {tool.cons.map((con, i) => (
-                              <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                                <span className="text-red-400 mt-0.5">✗</span> {con}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <span className="text-slate-400">Sources:</span>
-                        <span className="text-[#22d3ee] font-mono">{tool.source}</span>
-                      </div>
-                    </div>
-                  )}
+                      );
+                    })}
+                  </div>
                 </div>
               );
-            })
-          )}
-        </div>
-      )}
+            })}
+            {filteredMethods.length === 0 && (
+              <p className="text-slate-400 text-sm font-mono py-4 text-center">No methods match your filters</p>
+            )}
+          </div>
+      </DisclosureSection>
+
+      {/* TOOLS VIEW */}
+      <DisclosureSection title="Circumvention Tools">
+          <div className="space-y-3">
+            {filteredTools.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono py-4 text-center">No tools match your search</p>
+            ) : (
+              filteredTools.map(tool => {
+                const safetyStyle = getSafetyStyle(tool.safety);
+                const isExpanded = expandedItem === tool.id;
+                return (
+                  <div key={tool.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <button
+                      onClick={() => setExpandedItem(isExpanded ? null : tool.id)}
+                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Shield className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
+                        <div className="min-w-0">
+                          <span className="text-white text-sm font-mono font-bold">{tool.name}</span>
+                          <span className={`ml-2 text-xs font-mono ${safetyStyle.color}`}>{safetyStyle.label}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-xs text-slate-400 font-mono hidden sm:inline">{tool.category}</span>
+                        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                      </div>
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
+                        <p className="text-slate-300 text-sm">{tool.description}</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <h5 className="text-xs font-mono text-[#4afa82] mb-1">Pros</h5>
+                            <ul className="space-y-0.5">
+                              {tool.pros.map((pro, i) => (
+                                <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
+                                  <span className="text-[#4afa82] mt-0.5">✓</span> {pro}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="text-xs font-mono text-red-400 mb-1">Cons</h5>
+                            <ul className="space-y-0.5">
+                              {tool.cons.map((con, i) => (
+                                <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
+                                  <span className="text-red-400 mt-0.5">✗</span> {con}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs">
+                          <span className="text-slate-400">Sources:</span>
+                          <span className="text-[#22d3ee] font-mono">{tool.source}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* SAFETY VIEW */}
-      {activeView === 'safety' && (
-        <div className="space-y-6">
-          {/* General safety advice */}
-          <div className="border border-red-400/30 bg-red-400/5 p-4">
-            <h4 className="text-sm font-bold text-red-400 font-mono mb-2 flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4" aria-hidden="true" />
-              CRITICAL SAFETY WARNING
-            </h4>
-            <p className="text-slate-300 text-xs">
-              Using circumvention tools in China carries real criminal risk. At least {stats.prisonersForSpeech} documented political prisoners were detained for online speech or organizing. Always assess your personal risk level before using any tool.
-            </p>
+      <DisclosureSection title="Safety Guide">
+          <div className="space-y-6">
+            {/* General safety advice */}
+            <div className="border border-red-400/30 bg-red-400/5 p-4">
+              <h4 className="text-sm font-bold text-red-400 font-mono mb-2 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4" aria-hidden="true" />
+                CRITICAL SAFETY WARNING
+              </h4>
+              <p className="text-slate-300 text-xs">
+                Using circumvention tools in China carries real criminal risk. At least {stats.prisonersForSpeech} documented political prisoners were detained for online speech or organizing. Always assess your personal risk level before using any tool.
+              </p>
+            </div>
+            {/* Safety guidelines */}
+            {[
+              { title: 'Before You Start', icon: Eye, items: [
+                'Assess your threat model — are you a journalist, activist, or casual user?',
+                'Use a separate device for sensitive communications if possible',
+                'Never discuss circumvention tools on monitored platforms (WeChat, Weibo)',
+                'Understand that real-name registration links all accounts to your identity',
+              ]},
+              { title: 'Tool Selection', icon: Shield, items: [
+                'Prioritize tools rated "Recommended" — they have been independently audited',
+                'Use Tor with bridges (obfs4/snowflake) for maximum anonymity',
+                'Signal for messaging, but remember it requires a phone number',
+                'Layer tools: VPN + Tor provides defense in depth',
+              ]},
+              { title: 'Operational Security', icon: Lock, items: [
+                'Use Tails OS for sensitive work — it leaves no trace',
+                'Never access real accounts through circumvention tools',
+                'Assume all domestic platforms are monitored in real-time',
+                'Change tools and servers regularly — the GFW adapts quickly',
+              ]},
+              { title: 'If Detained', icon: AlertTriangle, items: [
+                'You have the right to remain silent under Chinese law (Article 33, CPL)',
+                'Request to contact a lawyer immediately (Article 34, CPL)',
+                'Do not provide passwords or unlock devices voluntarily',
+                'Contact your embassy if you are a foreign national',
+              ]},
+            ].map(section => {
+              const SectionIcon = section.icon;
+              return (
+                <div key={section.title} className="border border-[#1c2a35] bg-[#111820]/30 p-4">
+                  <h4 className="text-sm font-bold text-white font-mono mb-3 flex items-center gap-2">
+                    <SectionIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
+                    {section.title}
+                  </h4>
+                  <ul className="space-y-2">
+                    {section.items.map((item, i) => (
+                      <li key={i} className="text-xs text-slate-400 flex items-start gap-2">
+                        <span className="text-[#22d3ee] mt-0.5 flex-shrink-0">›</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
-          {/* Safety guidelines */}
-          {[
-            { title: 'Before You Start', icon: Eye, items: [
-              'Assess your threat model — are you a journalist, activist, or casual user?',
-              'Use a separate device for sensitive communications if possible',
-              'Never discuss circumvention tools on monitored platforms (WeChat, Weibo)',
-              'Understand that real-name registration links all accounts to your identity',
-            ]},
-            { title: 'Tool Selection', icon: Shield, items: [
-              'Prioritize tools rated "Recommended" — they have been independently audited',
-              'Use Tor with bridges (obfs4/snowflake) for maximum anonymity',
-              'Signal for messaging, but remember it requires a phone number',
-              'Layer tools: VPN + Tor provides defense in depth',
-            ]},
-            { title: 'Operational Security', icon: Lock, items: [
-              'Use Tails OS for sensitive work — it leaves no trace',
-              'Never access real accounts through circumvention tools',
-              'Assume all domestic platforms are monitored in real-time',
-              'Change tools and servers regularly — the GFW adapts quickly',
-            ]},
-            { title: 'If Detained', icon: AlertTriangle, items: [
-              'You have the right to remain silent under Chinese law (Article 33, CPL)',
-              'Request to contact a lawyer immediately (Article 34, CPL)',
-              'Do not provide passwords or unlock devices voluntarily',
-              'Contact your embassy if you are a foreign national',
-            ]},
-          ].map(section => {
-            const SectionIcon = section.icon;
-            return (
-              <div key={section.title} className="border border-[#1c2a35] bg-[#111820]/30 p-4">
-                <h4 className="text-sm font-bold text-white font-mono mb-3 flex items-center gap-2">
-                  <SectionIcon className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                  {section.title}
-                </h4>
-                <ul className="space-y-2">
-                  {section.items.map((item, i) => (
-                    <li key={i} className="text-xs text-slate-400 flex items-start gap-2">
-                      <span className="text-[#22d3ee] mt-0.5 flex-shrink-0">›</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="border-t border-[#1c2a35] pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-slate-400">

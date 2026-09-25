@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TransnationalRepressionTracker from '../components/TransnationalRepressionTracker';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -68,32 +69,10 @@ describe('TransnationalRepressionTracker', () => {
     expect(countryLabels.length).toBeGreaterThanOrEqual(4);
   });
 
-  // ── View Toggle ────────────────────────────────────────
-  it('renders all view toggle buttons', () => {
+  // ── Sections ──────────────────────────────────────────
+  it('renders every view as a native disclosure section', () => {
     render(<TransnationalRepressionTracker />);
-    expect(screen.getByText('Threat Overview')).toBeTruthy();
-    expect(screen.getByText('Operations Map')).toBeTruthy();
-    expect(screen.getByText('Government Responses')).toBeTruthy();
-  });
-
-  it('Threat Overview is active by default', () => {
-    render(<TransnationalRepressionTracker />);
-    const btn = screen.getByText('Threat Overview').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Operations Map switches view', () => {
-    render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
-    const btn = screen.getByText('Operations Map').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Government Responses switches view', () => {
-    render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
-    const btn = screen.getByText('Government Responses').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
+    expectDisclosureSections(['Threat Overview', 'Operations Map', 'Government Responses']);
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -168,30 +147,30 @@ describe('TransnationalRepressionTracker', () => {
   // ── Operations Map View ────────────────────────────────
   it('operations view shows operation type headers', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
-    expect(screen.getByText('Overseas Police Stations')).toBeTruthy();
+    const section = inSection('Operations Map');
+    expect(section.getByText('Overseas Police Stations')).toBeTruthy();
   });
 
   it('operations view groups countries by operation type', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
+    const section = inSection('Operations Map');
     // Should show country counts for operation types
-    const countLabels = screen.getAllByText(/\d+ countr/);
+    const countLabels = section.getAllByText(/\d+ countr/);
     expect(countLabels.length).toBeGreaterThan(0);
   });
 
   // ── Government Responses View ──────────────────────────
   it('responses view shows response categories', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
-    expect(screen.getAllByText('Enforcement Action').length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Government Responses');
+    expect(section.getAllByText('Enforcement Action').length).toBeGreaterThanOrEqual(1);
   });
 
   it('responses view shows country response details', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
+    const section = inSection('Government Responses');
     // Should show station/case counts for countries
-    const stationLabels = screen.getAllByText(/\d+ station/);
+    const stationLabels = section.getAllByText(/\d+ station/);
     expect(stationLabels.length).toBeGreaterThan(0);
   });
 
@@ -255,19 +234,6 @@ describe('TransnationalRepressionTracker', () => {
   it('search input has aria-label', () => {
     render(<TransnationalRepressionTracker />);
     expect(screen.getByLabelText('Search transnational repression data')).toBeTruthy();
-  });
-
-  it('view toggle group has aria-label', () => {
-    render(<TransnationalRepressionTracker />);
-    expect(screen.getByRole('group', { name: 'View options' })).toBeTruthy();
-  });
-
-  it('view buttons have aria-pressed attribute', () => {
-    render(<TransnationalRepressionTracker />);
-    const viewBtns = screen.getByRole('group', { name: 'View options' }).querySelectorAll('button');
-    viewBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-pressed')).toBeTruthy();
-    });
   });
 
   it('country cards have aria-expanded attribute', () => {

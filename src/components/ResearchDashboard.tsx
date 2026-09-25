@@ -14,6 +14,7 @@ import {
 
 // Import research data
 import { politicalPrisoners, recentNews, policeStations, researchStats } from '../data/researchData';
+import { DisclosureSection } from './DisclosureSection';
 
 const StatusBadge = ({ status }: { status: string }) => {
   const colors: Record<string, string> = {
@@ -40,29 +41,22 @@ const StatusBadge = ({ status }: { status: string }) => {
 };
 
 const ResearchDashboard = () => {
-  const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: TrendingUp },
-    { id: 'prisoners', label: 'Political Prisoners', icon: Users },
-    { id: 'news', label: 'Recent News', icon: Newspaper },
-    { id: 'stations', label: 'Police Stations', icon: MapPin }
-  ];
+  const [prisonerStatus, setPrisonerStatus] = useState('all');
+  const [stationStatus, setStationStatus] = useState('all');
 
   // Filter functions
   const filteredPrisoners = politicalPrisoners.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          p.location?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || p.status === statusFilter;
+    const matchesStatus = prisonerStatus === 'all' || p.status === prisonerStatus;
     return matchesSearch && matchesStatus;
   });
 
   const filteredStations = policeStations.filter(s => {
     const matchesSearch = s.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          s.city?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || s.status === statusFilter;
+    const matchesStatus = stationStatus === 'all' || s.status === stationStatus;
     return matchesSearch && matchesStatus;
   });
 
@@ -119,44 +113,83 @@ const ResearchDashboard = () => {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex border-b border-[#1c2a35]/50 overflow-x-auto">
-        {tabs.map(tab => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === tab.id
-                ? 'text-[#22d3ee] border-b-2 border-[#1c2a35] bg-[#22d3ee]/10'
-                : 'text-slate-400 hover:text-white hover:bg-[#111820]/30'
-            }`}
-          >
-            <tab.icon className="w-4 h-4" />
-            {tab.label}
-          </button>
-        ))}
+      {/* Search and Filter */}
+      <div className="p-4 border-b border-[#1c2a35]/50 flex flex-wrap gap-3">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input
+            aria-label="Search prisoners and police stations"
+            type="text"
+            placeholder="Search prisoners and police stations..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
+          />
+        </div>
       </div>
 
-      {/* Search and Filter */}
-      {activeTab !== 'overview' && (
-        <div className="p-4 border-b border-[#1c2a35]/50 flex flex-wrap gap-3">
-          <div className="relative flex-1 min-w-[200px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              aria-label="Search"
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
-            />
-          </div>
-          {activeTab === 'prisoners' && (
+      {/* Content */}
+      <div className="p-4 max-h-[600px] overflow-y-auto">
+        {/* Overview */}
+        <DisclosureSection title="Overview">
+            <div className="space-y-6">
+              {/* Prisoner Status Breakdown */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Political Prisoners by Status</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {Object.entries(researchStats.prisonersByStatus).map(([status, count]) => (
+                    <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
+                      <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
+                      <span className="text-xl font-bold text-white">{count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Police Station Status */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Police Stations by Status</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {Object.entries(researchStats.stationsByStatus).map(([status, count]) => (
+                    <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
+                      <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
+                      <span className="text-xl font-bold text-white">{count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* High Priority News */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">High Priority News</h3>
+                <div className="space-y-2">
+                  {recentNews.filter(n => n.significance === 'HIGH').slice(0, 5).map((news, idx) => (
+                    <div key={idx} className="bg-[#111820]/30 p-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h4 className="text-white font-medium">{news.headline}</h4>
+                          <p className="text-slate-400 text-sm mt-1">{news.summary}</p>
+                        </div>
+                        <StatusBadge status="HIGH" />
+                      </div>
+                      <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+                        <span>{news.date}</span>
+                        <span>{news.source}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+        </DisclosureSection>
+
+        {/* Political Prisoners */}
+        <DisclosureSection title="Political Prisoners">
             <select
-              aria-label="Status filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
+              aria-label="Filter prisoners by status"
+              value={prisonerStatus}
+              onChange={(e) => setPrisonerStatus(e.target.value)}
+              className="mb-3 px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
             >
               <option value="all">All Status</option>
               <option value="DETAINED">Detained</option>
@@ -166,13 +199,104 @@ const ResearchDashboard = () => {
               <option value="AT RISK">At Risk</option>
               <option value="DECEASED">Deceased</option>
             </select>
-          )}
-          {activeTab === 'stations' && (
+            <div className="space-y-3">
+              {filteredPrisoners.map((prisoner, idx) => (
+                <div key={idx} className="bg-[#111820]/30 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="text-white font-semibold">{prisoner.name}</h4>
+                        <StatusBadge status={prisoner.status} />
+                      </div>
+                      <p className="text-slate-400 text-sm">{prisoner.location}</p>
+                      <p className="text-slate-300 text-sm mt-2">{prisoner.sentence}</p>
+                      {prisoner.latestNews && (
+                        <p className="text-[#22d3ee] text-sm mt-2">
+                          <Clock className="w-3 h-3 inline mr-1" />
+                          {prisoner.latestNews}
+                        </p>
+                      )}
+                      {prisoner.healthStatus && prisoner.healthStatus !== 'Unknown' && (
+                        <p className="text-yellow-400 text-sm mt-1">
+                          <AlertTriangle className="w-3 h-3 inline mr-1" />
+                          Health: {prisoner.healthStatus}
+                        </p>
+                      )}
+                    </div>
+                    {prisoner.sourceUrl && (
+                      <a
+                        href={prisoner.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 text-slate-300" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {filteredPrisoners.length === 0 && (
+                <div className="text-center py-8 text-slate-400">
+                  No prisoners found matching your criteria
+                </div>
+              )}
+            </div>
+        </DisclosureSection>
+
+        {/* Recent News */}
+        <DisclosureSection title="Recent News">
+            <div className="space-y-3">
+              {recentNews.map((news, idx) => (
+                <div key={idx} className="bg-[#111820]/30 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[#22d3ee] text-sm font-medium">{news.topic}</span>
+                        <StatusBadge status={news.significance} />
+                      </div>
+                      <h4 className="text-white font-semibold">{news.headline}</h4>
+                      <p className="text-slate-300 text-sm mt-2">{news.summary}</p>
+                      {news.internationalResponse && news.internationalResponse !== 'N/A' && (
+                        <p className="text-green-400 text-sm mt-2">
+                          <Globe className="w-3 h-3 inline mr-1" />
+                          {news.internationalResponse}
+                        </p>
+                      )}
+                      {news.actionNeeded && news.actionNeeded !== 'N/A' && (
+                        <p className="text-yellow-400 text-sm mt-1">
+                          <AlertTriangle className="w-3 h-3 inline mr-1" />
+                          Action: {news.actionNeeded}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+                        <span>{news.date}</span>
+                        <span>{news.source}</span>
+                      </div>
+                    </div>
+                    {news.sourceUrl && (
+                      <a
+                        href={news.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 text-slate-300" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+        </DisclosureSection>
+
+        {/* Police Stations */}
+        <DisclosureSection title="Police Stations">
             <select
-              aria-label="Status filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
+              aria-label="Filter police stations by status"
+              value={stationStatus}
+              onChange={(e) => setStationStatus(e.target.value)}
+              className="mb-3 px-4 py-2 bg-[#111820] border border-[#1c2a35] text-white focus:outline-none focus:border-[#4afa82]"
             >
               <option value="all">All Status</option>
               <option value="CLOSED">Closed</option>
@@ -180,212 +304,58 @@ const ResearchDashboard = () => {
               <option value="OPERATING">Operating</option>
               <option value="UNKNOWN">Unknown</option>
             </select>
-          )}
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="p-4 max-h-[600px] overflow-y-auto">
-        {/* Overview Tab */}
-        {activeTab === 'overview' && (
-          <div className="space-y-6">
-            {/* Prisoner Status Breakdown */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">Political Prisoners by Status</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {Object.entries(researchStats.prisonersByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
-                    <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
-                    <span className="text-xl font-bold text-white">{count}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Police Station Status */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">Police Stations by Status</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {Object.entries(researchStats.stationsByStatus).map(([status, count]) => (
-                  <div key={status} className="bg-[#111820]/30 p-3 flex items-center justify-between">
-                    <span className="text-slate-300 capitalize">{status.replace(/([A-Z])/g, ' $1').trim()}</span>
-                    <span className="text-xl font-bold text-white">{count}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* High Priority News */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">High Priority News</h3>
-              <div className="space-y-2">
-                {recentNews.filter(n => n.significance === 'HIGH').slice(0, 5).map((news, idx) => (
-                  <div key={idx} className="bg-[#111820]/30 p-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <h4 className="text-white font-medium">{news.headline}</h4>
-                        <p className="text-slate-400 text-sm mt-1">{news.summary}</p>
+            <div className="space-y-3">
+              {filteredStations.map((station, idx) => (
+                <div key={idx} className="bg-[#111820]/30 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="text-white font-semibold">{station.country} - {station.city}</h4>
+                        <StatusBadge status={station.status} />
                       </div>
-                      <StatusBadge status="HIGH" />
-                    </div>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                      <span>{news.date}</span>
-                      <span>{news.source}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Political Prisoners Tab */}
-        {activeTab === 'prisoners' && (
-          <div className="space-y-3">
-            {filteredPrisoners.map((prisoner, idx) => (
-              <div key={idx} className="bg-[#111820]/30 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-white font-semibold">{prisoner.name}</h4>
-                      <StatusBadge status={prisoner.status} />
-                    </div>
-                    <p className="text-slate-400 text-sm">{prisoner.location}</p>
-                    <p className="text-slate-300 text-sm mt-2">{prisoner.sentence}</p>
-                    {prisoner.latestNews && (
-                      <p className="text-[#22d3ee] text-sm mt-2">
-                        <Clock className="w-3 h-3 inline mr-1" />
-                        {prisoner.latestNews}
-                      </p>
-                    )}
-                    {prisoner.healthStatus && prisoner.healthStatus !== 'Unknown' && (
-                      <p className="text-yellow-400 text-sm mt-1">
-                        <AlertTriangle className="w-3 h-3 inline mr-1" />
-                        Health: {prisoner.healthStatus}
-                      </p>
-                    )}
-                  </div>
-                  {prisoner.sourceUrl && (
-                    <a
-                      href={prisoner.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 text-slate-300" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-            {filteredPrisoners.length === 0 && (
-              <div className="text-center py-8 text-slate-400">
-                No prisoners found matching your criteria
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Recent News Tab */}
-        {activeTab === 'news' && (
-          <div className="space-y-3">
-            {recentNews.map((news, idx) => (
-              <div key={idx} className="bg-[#111820]/30 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[#22d3ee] text-sm font-medium">{news.topic}</span>
-                      <StatusBadge status={news.significance} />
-                    </div>
-                    <h4 className="text-white font-semibold">{news.headline}</h4>
-                    <p className="text-slate-300 text-sm mt-2">{news.summary}</p>
-                    {news.internationalResponse && news.internationalResponse !== 'N/A' && (
-                      <p className="text-green-400 text-sm mt-2">
-                        <Globe className="w-3 h-3 inline mr-1" />
-                        {news.internationalResponse}
-                      </p>
-                    )}
-                    {news.actionNeeded && news.actionNeeded !== 'N/A' && (
-                      <p className="text-yellow-400 text-sm mt-1">
-                        <AlertTriangle className="w-3 h-3 inline mr-1" />
-                        Action: {news.actionNeeded}
-                      </p>
-                    )}
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                      <span>{news.date}</span>
-                      <span>{news.source}</span>
-                    </div>
-                  </div>
-                  {news.sourceUrl && (
-                    <a
-                      href={news.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 text-slate-300" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Police Stations Tab */}
-        {activeTab === 'stations' && (
-          <div className="space-y-3">
-            {filteredStations.map((station, idx) => (
-              <div key={idx} className="bg-[#111820]/30 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-white font-semibold">{station.country} - {station.city}</h4>
-                      <StatusBadge status={station.status} />
-                    </div>
-                    {station.address && station.address !== 'Unknown' && (
-                      <p className="text-slate-400 text-sm">{station.address}</p>
-                    )}
-                    <p className="text-slate-300 text-sm mt-2">{station.governmentResponse}</p>
-                    {station.arrestsMade === 'Yes' && (
-                      <p className="text-green-400 text-sm mt-1">
-                        <CheckCircle className="w-3 h-3 inline mr-1" />
-                        Arrests made: {station.arrestDetails}
-                      </p>
-                    )}
-                    {station.latestNews && (
-                      <p className="text-[#22d3ee] text-sm mt-1">
-                        <Clock className="w-3 h-3 inline mr-1" />
-                        {station.latestNews}
-                      </p>
-                    )}
-                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-                      <span>Linked to: {station.linkedTo}</span>
-                      {station.closureDate && station.closureDate !== 'N/A' && (
-                        <span>Closed: {station.closureDate}</span>
+                      {station.address && station.address !== 'Unknown' && (
+                        <p className="text-slate-400 text-sm">{station.address}</p>
                       )}
+                      <p className="text-slate-300 text-sm mt-2">{station.governmentResponse}</p>
+                      {station.arrestsMade === 'Yes' && (
+                        <p className="text-green-400 text-sm mt-1">
+                          <CheckCircle className="w-3 h-3 inline mr-1" />
+                          Arrests made: {station.arrestDetails}
+                        </p>
+                      )}
+                      {station.latestNews && (
+                        <p className="text-[#22d3ee] text-sm mt-1">
+                          <Clock className="w-3 h-3 inline mr-1" />
+                          {station.latestNews}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+                        <span>Linked to: {station.linkedTo}</span>
+                        {station.closureDate && station.closureDate !== 'N/A' && (
+                          <span>Closed: {station.closureDate}</span>
+                        )}
+                      </div>
                     </div>
+                    {station.sourceUrl && (
+                      <a
+                        href={station.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 text-slate-300" />
+                      </a>
+                    )}
                   </div>
-                  {station.sourceUrl && (
-                    <a
-                      href={station.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 text-slate-300" />
-                    </a>
-                  )}
                 </div>
-              </div>
-            ))}
-            {filteredStations.length === 0 && (
-              <div className="text-center py-8 text-slate-400">
-                No stations found matching your criteria
-              </div>
-            )}
-          </div>
-        )}
+              ))}
+              {filteredStations.length === 0 && (
+                <div className="text-center py-8 text-slate-400">
+                  No stations found matching your criteria
+                </div>
+              )}
+            </div>
+        </DisclosureSection>
       </div>
     </div>
   );

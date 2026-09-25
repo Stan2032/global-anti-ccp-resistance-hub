@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TaiwanDefenseStatus from '../components/TaiwanDefenseStatus';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('TaiwanDefenseStatus', () => {
   // --- Header ---
@@ -18,99 +19,98 @@ describe('TaiwanDefenseStatus', () => {
     expect(screen.getByText(/Unprecedented naval buildup/)).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<TaiwanDefenseStatus />);
-    expect(screen.getByText('Overview')).toBeTruthy();
-    expect(screen.getByText('Military Balance')).toBeTruthy();
-    expect(screen.getByText('Allied Support')).toBeTruthy();
-    expect(screen.getByText('Scenarios')).toBeTruthy();
+    expectDisclosureSections(['Overview', 'Military Balance', 'Allied Support', 'Scenarios']);
   });
 
-  // --- Overview Tab (Default) ---
+  // --- Overview ---
 
-  it('shows Recent Developments on the default Overview tab', () => {
+  it('shows Recent Developments in the Overview section', () => {
     render(<TaiwanDefenseStatus />);
-    expect(screen.getByText('Recent Developments')).toBeTruthy();
-    expect(screen.getByText(/US approves \$11\.1B arms package/)).toBeTruthy();
-    expect(screen.getByText(/Record 153 PLA aircraft/)).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('Recent Developments')).toBeTruthy();
+    expect(section.getByText(/US approves \$11\.1B arms package/)).toBeTruthy();
+    expect(section.getByText(/Record 153 PLA aircraft/)).toBeTruthy();
   });
 
-  it('shows key statistics on Overview tab', () => {
+  it('shows key statistics in the Overview section', () => {
     render(<TaiwanDefenseStatus />);
-    expect(screen.getByText('100nm')).toBeTruthy();
-    expect(screen.getByText('Taiwan Strait Width')).toBeTruthy();
-    expect(screen.getByText('$11.1B')).toBeTruthy();
-    expect(screen.getByText('Latest US Arms Package')).toBeTruthy();
-    expect(screen.getByText('23.5M')).toBeTruthy();
-    expect(screen.getByText('Taiwan Population')).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('100nm')).toBeTruthy();
+    expect(section.getByText('Taiwan Strait Width')).toBeTruthy();
+    expect(section.getAllByText('$11.1B').length).toBeGreaterThan(0);
+    expect(section.getByText('Latest US Arms Package')).toBeTruthy();
+    expect(section.getByText('23.5M')).toBeTruthy();
+    expect(section.getByText('Taiwan Population')).toBeTruthy();
   });
 
-  // --- Military Balance Tab ---
+  // --- Military Balance ---
 
-  it('switches to Military Balance tab', () => {
+  it('shows the Military Balance section without interaction', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Military Balance'));
-    expect(screen.getByText('PLA (China)')).toBeTruthy();
-    expect(screen.getByText('Taiwan (ROC)')).toBeTruthy();
-    expect(screen.getByText('2,000,000+')).toBeTruthy();
-    expect(screen.getByText('170,000 active')).toBeTruthy();
+    const section = inSection('Military Balance');
+    expect(section.getByText('PLA (China)')).toBeTruthy();
+    expect(section.getByText('Taiwan (ROC)')).toBeTruthy();
+    expect(section.getByText('2,000,000+')).toBeTruthy();
+    expect(section.getByText('170,000 active')).toBeTruthy();
   });
 
-  it('shows military advantages on Military Balance tab', () => {
+  it('shows military advantages in the Military Balance section', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Military Balance'));
-    expect(screen.getByText('Overwhelming numerical superiority')).toBeTruthy();
-    expect(screen.getByText('Defensive geography (Taiwan Strait)')).toBeTruthy();
+    const section = inSection('Military Balance');
+    expect(section.getByText('Overwhelming numerical superiority')).toBeTruthy();
+    expect(section.getByText('Defensive geography (Taiwan Strait)')).toBeTruthy();
   });
 
-  // --- Allied Support Tab ---
+  // --- Allied Support ---
 
-  it('switches to Allied Support tab', () => {
+  it('shows the Allied Support section without interaction', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Allied Support'));
-    expect(screen.getByText('🇺🇸 US Arms Packages to Taiwan')).toBeTruthy();
-    expect(screen.getByText('🇺🇸 United States')).toBeTruthy();
-    expect(screen.getByText('🇯🇵 Japan')).toBeTruthy();
-    expect(screen.getByText('🇦🇺 Australia')).toBeTruthy();
+    const section = inSection('Allied Support');
+    expect(section.getByText('🇺🇸 US Arms Packages to Taiwan')).toBeTruthy();
+    expect(section.getByText('🇺🇸 United States')).toBeTruthy();
+    expect(section.getByText('🇯🇵 Japan')).toBeTruthy();
+    expect(section.getByText('🇦🇺 Australia')).toBeTruthy();
   });
 
   it('shows US arms packages table', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Allied Support'));
-    expect(screen.getByText('$11.1B')).toBeTruthy();
-    expect(screen.getByText('$567M')).toBeTruthy();
-    expect(screen.getByText('Taiwan Relations Act')).toBeTruthy();
+    const section = inSection('Allied Support');
+    expect(section.getAllByText('$11.1B').length).toBeGreaterThan(0);
+    expect(section.getByText('$567M')).toBeTruthy();
+    expect(section.getByText('Taiwan Relations Act')).toBeTruthy();
   });
 
-  // --- Scenarios Tab ---
+  // --- Scenarios ---
 
-  it('switches to Scenarios tab', () => {
+  it('shows the Scenarios section without interaction', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Scenarios'));
-    expect(screen.getByText('Gray Zone Escalation')).toBeTruthy();
-    expect(screen.getByText('ONGOING')).toBeTruthy();
-    expect(screen.getByText('Quarantine/Blockade')).toBeTruthy();
-    expect(screen.getByText('MEDIUM-HIGH')).toBeTruthy();
-    expect(screen.getByText('Full Invasion')).toBeTruthy();
-    expect(screen.getByText('LOW-MEDIUM')).toBeTruthy();
+    const section = inSection('Scenarios');
+    expect(section.getByText('Gray Zone Escalation')).toBeTruthy();
+    expect(section.getByText('ONGOING')).toBeTruthy();
+    expect(section.getByText('Quarantine/Blockade')).toBeTruthy();
+    expect(section.getByText('MEDIUM-HIGH')).toBeTruthy();
+    expect(section.getByText('Full Invasion')).toBeTruthy();
+    expect(section.getByText('LOW-MEDIUM')).toBeTruthy();
   });
 
-  it('shows warning indicators on Scenarios tab', () => {
+  it('shows warning indicators in the Scenarios section', () => {
     render(<TaiwanDefenseStatus />);
-    fireEvent.click(screen.getByText('Scenarios'));
-    expect(screen.getByText(/Daily ADIZ incursions/)).toBeTruthy();
-    expect(screen.getByText(/Amphibious capability buildup/)).toBeTruthy();
+    const section = inSection('Scenarios');
+    expect(section.getByText(/Daily ADIZ incursions/)).toBeTruthy();
+    expect(section.getByText(/Amphibious capability buildup/)).toBeTruthy();
   });
 
-  // --- Tab Isolation ---
+  // --- Sections stay mounted ---
 
-  it('hides Overview content when switching tabs', () => {
+  it('opening one section hides nothing in the others', () => {
     render(<TaiwanDefenseStatus />);
-    expect(screen.getByText('Recent Developments')).toBeTruthy();
     fireEvent.click(screen.getByText('Military Balance'));
-    expect(screen.queryByText('Recent Developments')).toBeFalsy();
+    expect(inSection('Overview').getByText('Recent Developments')).toBeTruthy();
+    expect(inSection('Military Balance').getByText('Overwhelming numerical superiority')).toBeTruthy();
   });
 
   // --- Resources ---

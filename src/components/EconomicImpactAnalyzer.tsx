@@ -15,6 +15,7 @@ interface EnrichedCompany extends ForcedLabourCompany {
   risk: string;
 }
 import { TrendingUp, Search, ChevronDown, ChevronUp, Copy, Check, Factory, Scale, Globe, AlertTriangle, DollarSign, Building, FileText, Shield } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 // EconomicImpactAnalyzer — Analyzes economic impact of CCP forced labor
 // across global supply chains. Cross-references forced labor companies,
 // sanctions, international responses, and legal cases.
@@ -107,7 +108,6 @@ function classifyCompanyRisk(company: ForcedLabourCompany): string {
 }
 
 const EconomicImpactAnalyzer = () => {
-  const [activeView, setActiveView] = useState('sectors');
   const [searchQuery, setSearchQuery] = useState('');
   const [sectorFilter, setSectorFilter] = useState('all');
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -199,12 +199,6 @@ const EconomicImpactAnalyzer = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const views = [
-    { id: 'sectors', label: 'Sector Analysis' },
-    { id: 'companies', label: 'Company Risk' },
-    { id: 'legislative', label: 'Legislative Landscape' },
-  ];
-
   const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
   const getSectorInfo = (sectorId: string) => INDUSTRY_SECTORS.find(s => s.id === sectorId) || INDUSTRY_SECTORS[0];
 
@@ -274,22 +268,6 @@ const EconomicImpactAnalyzer = () => {
       </div>
 
       {/* View Toggle */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="View options">
-        {views.map(v => (
-          <button
-            key={v.id}
-            onClick={() => setActiveView(v.id)}
-            aria-pressed={activeView === v.id ? 'true' : 'false'}
-            className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
-              activeView === v.id
-                ? 'border-[#22d3ee] text-[#22d3ee] bg-[#22d3ee]/10'
-                : 'border-[#1c2a35] text-slate-400 hover:border-slate-400 hover:text-white'
-            }`}
-          >
-            {v.label}
-          </button>
-        ))}
-      </div>
 
       {/* Search & Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -304,223 +282,221 @@ const EconomicImpactAnalyzer = () => {
             aria-label="Search economic impact data"
           />
         </div>
-        {activeView === 'sectors' && (
-          <select
-            value={sectorFilter}
-            onChange={e => setSectorFilter(e.target.value)}
-            className="bg-[#111820] border border-[#1c2a35] px-3 py-2 text-sm text-white font-mono focus:border-[#22d3ee] focus:outline-none"
-            aria-label="Filter by industry sector"
-          >
-            <option value="all">All Sectors</option>
-            {INDUSTRY_SECTORS.map(s => (
-              <option key={s.id} value={s.id}>{s.label}</option>
-            ))}
-          </select>
-        )}
+        <select
+          value={sectorFilter}
+          onChange={e => setSectorFilter(e.target.value)}
+          className="bg-[#111820] border border-[#1c2a35] px-3 py-2 text-sm text-white font-mono focus:border-[#22d3ee] focus:outline-none"
+          aria-label="Filter by industry sector"
+        >
+          <option value="all">All Sectors</option>
+          {INDUSTRY_SECTORS.map(s => (
+            <option key={s.id} value={s.id}>{s.label}</option>
+          ))}
+        </select>
       </div>
 
       {/* SECTOR ANALYSIS VIEW */}
-      {activeView === 'sectors' && (
-        <div className="space-y-4">
-          {INDUSTRY_IMPACTS.filter(i => sectorFilter === 'all' || i.sector === sectorFilter).map(impact => {
-            const sector = getSectorInfo(impact.sector);
-            const sectorCompanies = filteredCompanies.filter(c => c.sector === impact.sector);
-            const isExpanded = expandedItem === impact.sector;
-            const SectorIcon = sector.icon;
-            return (
-              <div key={impact.sector} className="border border-[#1c2a35] bg-[#111820]/30">
-                <button
-                  onClick={() => setExpandedItem(isExpanded ? null : impact.sector)}
-                  className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
-                  aria-expanded={isExpanded ? 'true' : 'false'}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <SectorIcon className="w-5 h-5 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-white text-sm font-mono font-bold">{sector.label}</span>
-                        <span className="text-xs font-mono text-slate-400">{impact.tradeValue}</span>
-                      </div>
-                      <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
-                        <span>{sectorCompanies.length} companies</span>
-                        <span className="text-slate-500" aria-hidden="true">•</span>
-                        <span>{impact.wrosIssued} WROs</span>
-                        <span className="text-slate-500" aria-hidden="true">•</span>
-                        <span>{impact.xinjangShare}</span>
-                      </div>
-                    </div>
-                  </div>
-                  {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
-                </button>
-                {isExpanded && (
-                  <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
-                    <p className="text-slate-300 text-xs">{impact.detail}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {impact.keyProducts.map(p => (
-                        <span key={p} className="text-xs font-mono px-2 py-0.5 bg-[#22d3ee]/10 border border-[#22d3ee]/30 text-[#22d3ee]">{p}</span>
-                      ))}
-                    </div>
-                    {sectorCompanies.length > 0 && (
-                      <div>
-                        <h5 className="text-xs font-mono text-slate-400 mb-2">Companies in this sector:</h5>
-                        <div className="space-y-2">
-                          {sectorCompanies.map(c => {
-                            const riskStyle = getRiskStyle(c.risk);
-                            return (
-                              <div key={c.id || c.company} className="bg-[#0a0e14] border border-[#1c2a35] p-2.5">
-                                <div className="flex items-center gap-2">
-                                  <span className={`w-2 h-2 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
-                                  <span className="text-white text-xs font-mono">{c.company}</span>
-                                  <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
-                                    {c.risk.toUpperCase()}
-                                  </span>
-                                </div>
-                                <p className="text-xs text-slate-400 mt-1 ml-4">{c.connection_type}</p>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 text-xs text-slate-400">
-                      <span>Source:</span>
-                      <span className="text-[#22d3ee] font-mono">{impact.source}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          {INDUSTRY_IMPACTS.filter(i => sectorFilter === 'all' || i.sector === sectorFilter).length === 0 && (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No sectors match your filters</p>
-          )}
-        </div>
-      )}
-
-      {/* COMPANY RISK VIEW */}
-      {activeView === 'companies' && (
-        <div className="space-y-3">
-          {filteredCompanies.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No companies match your search</p>
-          ) : (
-            filteredCompanies.sort((a, b) => {
-              const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
-              return (order[a.risk] || 3) - (order[b.risk] || 3);
-            }).map(company => {
-              const riskStyle = getRiskStyle(company.risk);
-              const isExpanded = expandedItem === (company.id || company.company);
+      <DisclosureSection title="Sector Analysis">
+          <div className="space-y-4">
+            {INDUSTRY_IMPACTS.filter(i => sectorFilter === 'all' || i.sector === sectorFilter).map(impact => {
+              const sector = getSectorInfo(impact.sector);
+              const sectorCompanies = filteredCompanies.filter(c => c.sector === impact.sector);
+              const isExpanded = expandedItem === impact.sector;
+              const SectorIcon = sector.icon;
               return (
-                <div key={company.id || company.company} className="border border-[#1c2a35] bg-[#111820]/30">
+                <div key={impact.sector} className="border border-[#1c2a35] bg-[#111820]/30">
                   <button
-                    onClick={() => setExpandedItem(isExpanded ? null : (company.id || company.company))}
-                    className="w-full flex items-center justify-between p-3 text-left"
-                    aria-expanded={isExpanded ? 'true' : 'false'}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white text-sm font-mono font-bold">{company.company}</span>
-                          <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
-                            {company.risk.toUpperCase()}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-xs text-slate-400">{company.industry}</span>
-                          <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
-                          <span className="text-xs text-slate-400">{company.connection_type}</span>
-                        </div>
-                      </div>
-                    </div>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
-                  </button>
-                  {isExpanded && (
-                    <div className="border-t border-[#1c2a35] p-3 space-y-3">
-                      <div>
-                        <h5 className="text-xs font-mono text-[#22d3ee] mb-1">Evidence</h5>
-                        <p className="text-xs text-slate-300">{company.evidence}</p>
-                      </div>
-                      {company.company_response && (
-                        <div>
-                          <h5 className="text-xs font-mono text-[#a78bfa] mb-1">Company Response</h5>
-                          <p className="text-xs text-slate-300">{company.company_response}</p>
-                        </div>
-                      )}
-                      {company.uflpa_actions && (
-                        <div>
-                          <h5 className="text-xs font-mono text-yellow-400 mb-1">UFLPA Actions</h5>
-                          <p className="text-xs text-slate-300">{company.uflpa_actions}</p>
-                        </div>
-                      )}
-                      <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <span>Status:</span>
-                        <span className={`font-mono ${company.status === 'Improving' ? 'text-[#4afa82]' : 'text-red-400'}`}>{company.status}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
-
-      {/* LEGISLATIVE LANDSCAPE VIEW */}
-      {activeView === 'legislative' && (
-        <div className="space-y-4">
-          {filteredFrameworks.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No legislation matches your search</p>
-          ) : (
-            filteredFrameworks.sort((a, b) => {
-              const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
-              return (order[a.impact] || 3) - (order[b.impact] || 3);
-            }).map(law => {
-              const impactStyle = getRiskStyle(law.impact);
-              const isExpanded = expandedItem === law.id;
-              return (
-                <div key={law.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                  <button
-                    onClick={() => setExpandedItem(isExpanded ? null : law.id)}
+                    onClick={() => setExpandedItem(isExpanded ? null : impact.sector)}
                     className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
                     aria-expanded={isExpanded ? 'true' : 'false'}
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <Scale className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
+                      <SectorIcon className="w-5 h-5 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white text-sm font-mono font-bold">{law.name}</span>
-                          <span className={`text-xs font-mono px-1.5 py-0.5 border ${impactStyle.border} ${impactStyle.color}`}>
-                            {law.impact.toUpperCase()}
-                          </span>
+                          <span className="text-white text-sm font-mono font-bold">{sector.label}</span>
+                          <span className="text-xs font-mono text-slate-400">{impact.tradeValue}</span>
                         </div>
-                        <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-xs text-slate-400">{law.jurisdiction}</span>
-                          <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
-                          <span className="text-xs text-slate-400">{law.year}</span>
+                        <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
+                          <span>{sectorCompanies.length} companies</span>
+                          <span className="text-slate-500" aria-hidden="true">•</span>
+                          <span>{impact.wrosIssued} WROs</span>
+                          <span className="text-slate-500" aria-hidden="true">•</span>
+                          <span>{impact.xinjangShare}</span>
                         </div>
                       </div>
                     </div>
                     {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
                   </button>
                   {isExpanded && (
-                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
-                      <p className="text-xs text-slate-300">{law.detail}</p>
-                      <div>
-                        <h5 className="text-xs font-mono text-yellow-400 mb-1">Enforcement</h5>
-                        <p className="text-xs text-slate-300">{law.enforcement}</p>
+                    <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-4">
+                      <p className="text-slate-300 text-xs">{impact.detail}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {impact.keyProducts.map(p => (
+                          <span key={p} className="text-xs font-mono px-2 py-0.5 bg-[#22d3ee]/10 border border-[#22d3ee]/30 text-[#22d3ee]">{p}</span>
+                        ))}
                       </div>
+                      {sectorCompanies.length > 0 && (
+                        <div>
+                          <h5 className="text-xs font-mono text-slate-400 mb-2">Companies in this sector:</h5>
+                          <div className="space-y-2">
+                            {sectorCompanies.map(c => {
+                              const riskStyle = getRiskStyle(c.risk);
+                              return (
+                                <div key={c.id || c.company} className="bg-[#0a0e14] border border-[#1c2a35] p-2.5">
+                                  <div className="flex items-center gap-2">
+                                    <span className={`w-2 h-2 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
+                                    <span className="text-white text-xs font-mono">{c.company}</span>
+                                    <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
+                                      {c.risk.toUpperCase()}
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-slate-400 mt-1 ml-4">{c.connection_type}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                       <div className="flex items-center gap-2 text-xs text-slate-400">
                         <span>Source:</span>
-                        <span className="text-[#22d3ee] font-mono">{law.source}</span>
+                        <span className="text-[#22d3ee] font-mono">{impact.source}</span>
                       </div>
                     </div>
                   )}
                 </div>
               );
-            })
-          )}
-        </div>
-      )}
+            })}
+            {INDUSTRY_IMPACTS.filter(i => sectorFilter === 'all' || i.sector === sectorFilter).length === 0 && (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No sectors match your filters</p>
+            )}
+          </div>
+      </DisclosureSection>
+
+      {/* COMPANY RISK VIEW */}
+      <DisclosureSection title="Company Risk">
+          <div className="space-y-3">
+            {filteredCompanies.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No companies match your search</p>
+            ) : (
+              filteredCompanies.sort((a, b) => {
+                const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
+                return (order[a.risk] || 3) - (order[b.risk] || 3);
+              }).map(company => {
+                const riskStyle = getRiskStyle(company.risk);
+                const isExpanded = expandedItem === (company.id || company.company);
+                return (
+                  <div key={company.id || company.company} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <button
+                      onClick={() => setExpandedItem(isExpanded ? null : (company.id || company.company))}
+                      className="w-full flex items-center justify-between p-3 text-left"
+                      aria-expanded={isExpanded ? 'true' : 'false'}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${riskStyle.dot}`} aria-hidden="true" />
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-white text-sm font-mono font-bold">{company.company}</span>
+                            <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
+                              {company.risk.toUpperCase()}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs text-slate-400">{company.industry}</span>
+                            <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
+                            <span className="text-xs text-slate-400">{company.connection_type}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#1c2a35] p-3 space-y-3">
+                        <div>
+                          <h5 className="text-xs font-mono text-[#22d3ee] mb-1">Evidence</h5>
+                          <p className="text-xs text-slate-300">{company.evidence}</p>
+                        </div>
+                        {company.company_response && (
+                          <div>
+                            <h5 className="text-xs font-mono text-[#a78bfa] mb-1">Company Response</h5>
+                            <p className="text-xs text-slate-300">{company.company_response}</p>
+                          </div>
+                        )}
+                        {company.uflpa_actions && (
+                          <div>
+                            <h5 className="text-xs font-mono text-yellow-400 mb-1">UFLPA Actions</h5>
+                            <p className="text-xs text-slate-300">{company.uflpa_actions}</p>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-2 text-xs text-slate-400">
+                          <span>Status:</span>
+                          <span className={`font-mono ${company.status === 'Improving' ? 'text-[#4afa82]' : 'text-red-400'}`}>{company.status}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
+
+      {/* LEGISLATIVE LANDSCAPE VIEW */}
+      <DisclosureSection title="Legislative Landscape">
+          <div className="space-y-4">
+            {filteredFrameworks.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No legislation matches your search</p>
+            ) : (
+              filteredFrameworks.sort((a, b) => {
+                const order: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
+                return (order[a.impact] || 3) - (order[b.impact] || 3);
+              }).map(law => {
+                const impactStyle = getRiskStyle(law.impact);
+                const isExpanded = expandedItem === law.id;
+                return (
+                  <div key={law.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <button
+                      onClick={() => setExpandedItem(isExpanded ? null : law.id)}
+                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left"
+                      aria-expanded={isExpanded ? 'true' : 'false'}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Scale className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-white text-sm font-mono font-bold">{law.name}</span>
+                            <span className={`text-xs font-mono px-1.5 py-0.5 border ${impactStyle.border} ${impactStyle.color}`}>
+                              {law.impact.toUpperCase()}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs text-slate-400">{law.jurisdiction}</span>
+                            <span className="text-slate-500 text-xs" aria-hidden="true">•</span>
+                            <span className="text-xs text-slate-400">{law.year}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#1c2a35] p-3 sm:p-4 space-y-3">
+                        <p className="text-xs text-slate-300">{law.detail}</p>
+                        <div>
+                          <h5 className="text-xs font-mono text-yellow-400 mb-1">Enforcement</h5>
+                          <p className="text-xs text-slate-300">{law.enforcement}</p>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-slate-400">
+                          <span>Source:</span>
+                          <span className="text-[#22d3ee] font-mono">{law.source}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="border-t border-[#1c2a35] pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-slate-400">

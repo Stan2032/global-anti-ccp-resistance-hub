@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import EconomicImpactAnalyzer from '../components/EconomicImpactAnalyzer';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -68,30 +69,10 @@ describe('EconomicImpactAnalyzer', () => {
     expect(companyLabels.length).toBeGreaterThanOrEqual(3);
   });
 
-  // ── View Toggle ────────────────────────────────────────
-  it('renders all 3 view buttons', () => {
+  // ── Sections ──────────────────────────────────────────
+  it('renders every view as a native disclosure section', () => {
     render(<EconomicImpactAnalyzer />);
-    expect(screen.getByText('Sector Analysis')).toBeTruthy();
-    expect(screen.getByText('Company Risk')).toBeTruthy();
-    expect(screen.getByText('Legislative Landscape')).toBeTruthy();
-  });
-
-  it('Sector Analysis is default active view', () => {
-    render(<EconomicImpactAnalyzer />);
-    const btn = screen.getByText('Sector Analysis');
-    expect(btn.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('switching to Company Risk view works', () => {
-    render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Company Risk'));
-    expect(screen.getByText('Company Risk').getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('switching to Legislative Landscape view works', () => {
-    render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    expect(screen.getByText('Legislative Landscape').getAttribute('aria-pressed')).toBe('true');
+    expectDisclosureSections(['Sector Analysis', 'Company Risk', 'Legislative Landscape']);
   });
 
   // ── Search ─────────────────────────────────────────────
@@ -104,17 +85,15 @@ describe('EconomicImpactAnalyzer', () => {
     render(<EconomicImpactAnalyzer />);
     const input = screen.getByPlaceholderText('Search companies, sectors, legislation...');
     fireEvent.change(input, { target: { value: 'xyznonexistent123' } });
-    // Companies view should show no results when search doesn't match
-    fireEvent.click(screen.getByText('Company Risk'));
-    expect(screen.getByText('No companies match your search')).toBeTruthy();
+    // The Company Risk section should show no results when search doesn't match
+    expect(inSection('Company Risk').getByText('No companies match your search')).toBeTruthy();
   });
 
   it('search filters legislative results', () => {
     render(<EconomicImpactAnalyzer />);
     const input = screen.getByPlaceholderText('Search companies, sectors, legislation...');
     fireEvent.change(input, { target: { value: 'xyznonexistent123' } });
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    expect(screen.getByText('No legislation matches your search')).toBeTruthy();
+    expect(inSection('Legislative Landscape').getByText('No legislation matches your search')).toBeTruthy();
   });
 
   // ── Sector Filter ──────────────────────────────────────
@@ -185,9 +164,9 @@ describe('EconomicImpactAnalyzer', () => {
   // ── Company Risk View ──────────────────────────────────
   it('company risk view shows company names', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Company Risk'));
+    const section = inSection('Company Risk');
     // Should show at least some company cards
-    const expandBtns = screen.getAllByRole('button').filter(
+    const expandBtns = section.getAllByRole('button').filter(
       b => b.getAttribute('aria-expanded') !== null
     );
     expect(expandBtns.length).toBeGreaterThan(0);
@@ -195,50 +174,50 @@ describe('EconomicImpactAnalyzer', () => {
 
   it('expanding company shows evidence section', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Company Risk'));
-    const expandBtns = screen.getAllByRole('button').filter(
+    const section = inSection('Company Risk');
+    const expandBtns = section.getAllByRole('button').filter(
       b => b.getAttribute('aria-expanded') !== null
     );
     fireEvent.click(expandBtns[0]);
-    expect(screen.getByText('Evidence')).toBeTruthy();
+    expect(section.getByText('Evidence')).toBeTruthy();
   });
 
   it('company risk labels are displayed', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Company Risk'));
-    const riskLabels = screen.getAllByText(/CRITICAL|HIGH|MODERATE|LOW/);
+    const section = inSection('Company Risk');
+    const riskLabels = section.getAllByText(/CRITICAL|HIGH|MODERATE|LOW/);
     expect(riskLabels.length).toBeGreaterThanOrEqual(1);
   });
 
   // ── Legislative Landscape View ─────────────────────────
   it('legislative view shows framework names', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    expect(screen.getAllByText(/Uyghur Forced Labor Prevention Act/).length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Legislative Landscape');
+    expect(section.getAllByText(/Uyghur Forced Labor Prevention Act/).length).toBeGreaterThanOrEqual(1);
   });
 
   it('legislative view shows jurisdictions', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    expect(screen.getAllByText(/United States/).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/European Union/).length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Legislative Landscape');
+    expect(section.getAllByText(/United States/).length).toBeGreaterThanOrEqual(1);
+    expect(section.getAllByText(/European Union/).length).toBeGreaterThanOrEqual(1);
   });
 
   it('expanding legislative framework shows enforcement', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    const expandBtns = screen.getAllByRole('button').filter(
+    const section = inSection('Legislative Landscape');
+    const expandBtns = section.getAllByRole('button').filter(
       b => b.getAttribute('aria-expanded') !== null
     );
     expect(expandBtns.length).toBeGreaterThan(0);
     fireEvent.click(expandBtns[0]);
-    expect(screen.getByText('Enforcement')).toBeTruthy();
+    expect(section.getByText('Enforcement')).toBeTruthy();
   });
 
   it('legislative framework shows impact level', () => {
     render(<EconomicImpactAnalyzer />);
-    fireEvent.click(screen.getByText('Legislative Landscape'));
-    const impactLabels = screen.getAllByText(/CRITICAL|HIGH|MODERATE|LOW/);
+    const section = inSection('Legislative Landscape');
+    const impactLabels = section.getAllByText(/CRITICAL|HIGH|MODERATE|LOW/);
     expect(impactLabels.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -335,19 +314,6 @@ describe('EconomicImpactAnalyzer', () => {
   it('search input has aria-label', () => {
     render(<EconomicImpactAnalyzer />);
     expect(screen.getByLabelText('Search economic impact data')).toBeTruthy();
-  });
-
-  it('view toggle group has aria-label', () => {
-    render(<EconomicImpactAnalyzer />);
-    expect(screen.getByRole('group', { name: 'View options' })).toBeTruthy();
-  });
-
-  it('view buttons have aria-pressed attribute', () => {
-    render(<EconomicImpactAnalyzer />);
-    const viewBtns = screen.getByRole('group', { name: 'View options' }).querySelectorAll('button');
-    viewBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-pressed')).toBeTruthy();
-    });
   });
 
   it('expandable cards have aria-expanded attribute', () => {
