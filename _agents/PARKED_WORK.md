@@ -354,6 +354,17 @@ compare the before and after lists.
 
 ## Small items
 
+- **The home page's `recent_updates` feed is six months stale and partly
+  internal.** Its newest entry is 10 March 2026, and it lists code changes
+  readers cannot use ("Centralized Logging Utility — structured,
+  environment-aware logging", "Timeline year overlap fix"). September's
+  verified corrections (Yu Wensheng released, Andy Li sentenced, Joshua Wong's
+  plea) are not in it. What the public changelog is for is the owner's call;
+  the recommendation is reader-facing changes only.
+- **Five panel headings are snake_case** (`recent_updates`,
+  `intelligence_overview`, `compare_regions`, `influence_network`,
+  `essential_tools`). It is the terminal look, but screen readers may read
+  the underscores aloud. A design decision, not a bug.
 - **EmergencyAlerts removes its own restore control.** It returns `null` when
   no undismissed alerts remain, taking the "show --dismissed (N)" button with
   it. A reader who dismisses every alert cannot bring them back without

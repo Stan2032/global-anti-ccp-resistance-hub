@@ -5,6 +5,8 @@
  * @module SurvivorStories
  */
 import React, { useState } from 'react';
+import ShareButtons from './ShareButtons';
+import { SITE_URL } from '../utils/site';
 import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquare, User } from 'lucide-react';
 
 const SurvivorStories = () => {
@@ -279,13 +281,12 @@ She has dedicated her life to advocating for her father's release, speaking at t
         <p className="text-sm text-slate-400 mb-4">
           Help amplify these voices. Share survivor stories to raise awareness about CCP human rights abuses.
         </p>
-        <div className="flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors">
-            Share on Twitter
-          </button>
-          <button className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
-            Copy Link
-          </button>
+        <div className="flex justify-center">
+          <ShareButtons
+            title="Survivor testimonies — Global Anti-CCP Resistance Hub"
+            text="Survivors of CCP detention and repression, in their own words."
+            url={`${SITE_URL}/education#survivor-testimonies`}
+          />
         </div>
       </div>
 

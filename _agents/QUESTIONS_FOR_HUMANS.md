@@ -132,7 +132,15 @@ Both quotes are removed, not paraphrased. Her story keeps its narrative and sour
 
 **Agent recommendation:** Restore from the BBC report, copying the text exactly, and add a `quote` only for words that appear there. The card renders nothing in place of a missing quote.
 
-*When you encounter a decision that requires human input, add it here starting with Q20.*
+### Q20: The Activist Toolkit lists 20 downloads that do not exist (Session 281)
+
+**Context:** `/take-action`'s Activist Toolkit showed 20 resources (banners, letter templates, fact sheets, guides), each with a format, a file size, dimensions and a green Download button. Every `downloadUrl` is `'#'`: none of the files was ever produced, and the buttons did nothing. They now say "Not available yet" and show no size, and "Request a Resource" links to GitHub issues instead of doing nothing. A resource with a real `downloadUrl` gets a real download link automatically.
+
+**Question:** Produce the files, trim the list to what will actually be made, or remove the grid?
+
+**Agent recommendation:** Trim to the few worth making, starting with the letter templates, which `ContactRepresentatives` already holds as text and could be offered as `.txt` straight away. Don't list a resource until its file exists.
+
+*When you encounter a decision that requires human input, add it here starting with Q21.*
 
 ---
 

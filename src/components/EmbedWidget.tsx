@@ -15,8 +15,8 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Code, Copy, CheckCircle, Eye, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { dataApi, PoliticalPrisoner, Statistic, EmergencyAlert } from '../services/dataApi';
+import { SITE_URL } from '../utils/site';
 
-const SITE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 const WIDGET_TYPES = [
   {

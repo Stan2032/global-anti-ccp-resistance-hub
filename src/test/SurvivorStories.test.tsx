@@ -105,10 +105,14 @@ describe('SurvivorStories', () => {
     expect(screen.getByText(/Exile is not a choice/)).toBeTruthy();
   });
 
-  it('renders Share Their Stories section', () => {
+  it('shares the testimonies section with working links', () => {
+    // These were two buttons with no handler: "Share on Twitter" and
+    // "Copy Link" did nothing for anyone.
     render(<SurvivorStories />);
     expect(screen.getByText('Share Their Stories')).toBeTruthy();
-    expect(screen.getByText('Share on Twitter')).toBeTruthy();
+    const share = screen.getByTitle('Share on Twitter/X').closest('a')!;
+    expect(decodeURIComponent(share.getAttribute('href')!))
+      .toContain('https://global-anti-ccp-resistance-hub.stane203.workers.dev/education#survivor-testimonies');
   });
 
   it('renders More Testimonies resources section', () => {

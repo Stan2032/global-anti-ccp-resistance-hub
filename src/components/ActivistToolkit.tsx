@@ -296,6 +296,10 @@ const ActivistToolkit = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredResources.map(resource => {
           const categoryInfo = getCategoryInfo(resource.category);
+          // Every entry's downloadUrl is still '#': none of these files has
+          // been produced (Q20). Say so, rather than offer a download button
+          // that does nothing.
+          const available = resource.downloadUrl !== '#';
           
           return (
             <div 
@@ -314,15 +318,23 @@ const ActivistToolkit = () => {
               
               <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
                 <span className="flex items-center gap-1">{categoryInfo && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}</span>
-                <span>{resource.size}</span>
+                {available && <span>{resource.size}</span>}
               </div>
-              
-              <button
-                className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center space-x-2"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download</span>
-              </button>
+
+              {available ? (
+                <a
+                  href={resource.downloadUrl}
+                  download
+                  className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Download className="w-4 h-4" aria-hidden="true" />
+                  <span>Download</span>
+                </a>
+              ) : (
+                <p className="w-full py-2 border border-[#1c2a35] text-slate-400 text-sm text-center">
+                  Not available yet
+                </p>
+              )}
             </div>
           );
         })}
@@ -334,9 +346,14 @@ const ActivistToolkit = () => {
         <p className="text-sm text-slate-400 mb-4">
           Can't find what you're looking for? Let us know what resources would help your advocacy.
         </p>
-        <button className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
-          Request a Resource
-        </button>
+        <a
+          href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors"
+        >
+          Request a Resource on GitHub
+        </a>
       </div>
 
       {/* Usage Guidelines */}

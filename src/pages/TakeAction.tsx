@@ -9,6 +9,7 @@ import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
+import { SITE_URL } from '../utils/site';
 import actionsData from '../data/take_action_steps.json';
 
 const ICON_MAP: Record<string, typeof AlertTriangle> = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
@@ -430,9 +431,10 @@ const TakeAction = () => {
         <p className="text-slate-400 mb-4">
           Share this page with your network. Every share helps raise awareness about CCP human rights abuses.
         </p>
-        <ShareButtons 
+        <ShareButtons
           title="Take Action Against CCP Authoritarianism"
           text="Join the global movement against CCP human rights abuses. Here's how you can help:"
+          url={`${SITE_URL}/take-action`}
         />
       </div>
     </div>
