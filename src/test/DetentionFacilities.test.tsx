@@ -66,12 +66,12 @@ describe('DetentionFacilities', () => {
 
   it('renders search input', () => {
     render(<DetentionFacilities />);
-    expect(screen.getByPlaceholderText('Search facilities...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search detention facilities...')).toBeTruthy();
   });
 
   it('filters facilities by search query', () => {
     render(<DetentionFacilities />);
-    const searchInput = screen.getByPlaceholderText('Search facilities...');
+    const searchInput = screen.getByPlaceholderText('Search detention facilities...');
     fireEvent.change(searchInput, { target: { value: 'Dabancheng' } });
     expect(screen.getByText('Dabancheng Internment Camp')).toBeTruthy();
     // Other facilities should be filtered out
@@ -80,16 +80,14 @@ describe('DetentionFacilities', () => {
 
   it('shows empty state when no facilities match search', () => {
     render(<DetentionFacilities />);
-    const searchInput = screen.getByPlaceholderText('Search facilities...');
+    const searchInput = screen.getByPlaceholderText('Search detention facilities...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No facilities match your search')).toBeTruthy();
   });
 
   it('filters by region dropdown', () => {
     render(<DetentionFacilities />);
-    const regionSelects = screen.getAllByLabelText('Region filter');
-    // First dropdown is region filter
-    fireEvent.change(regionSelects[0], { target: { value: 'Tibet' } });
+    fireEvent.change(screen.getByLabelText('Filter facilities by region'), { target: { value: 'Tibet' } });
     expect(screen.getByText('Drapchi Prison')).toBeTruthy();
     // Xinjiang facilities should be hidden
     expect(screen.queryByText('Dabancheng Internment Camp')).toBeFalsy();
@@ -97,9 +95,7 @@ describe('DetentionFacilities', () => {
 
   it('filters by type dropdown', () => {
     render(<DetentionFacilities />);
-    const regionSelects = screen.getAllByLabelText('Region filter');
-    // Second dropdown is type filter (both have same aria-label)
-    fireEvent.change(regionSelects[1], { target: { value: 'Internment Camp' } });
+    fireEvent.change(screen.getByLabelText('Filter facilities by type'), { target: { value: 'Internment Camp' } });
     expect(screen.getByText('Dabancheng Internment Camp')).toBeTruthy();
     // Non-camp facilities should be hidden
     expect(screen.queryByText('Drapchi Prison')).toBeFalsy();

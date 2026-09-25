@@ -104,6 +104,8 @@ async function main() {
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, page);
 
+    const controlNames = [...page.matchAll(/<(?:input|select|textarea)\b[^>]*?\saria-label="([^"]+)"/g)]
+      .map(m => m[1]);
     const text = page
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/<style[\s\S]*?<\/style>/g, '')
@@ -117,6 +119,7 @@ async function main() {
       chars: text.length,
       hasRouteFallback: page.includes('loading system'),
       hiddenBlocks: (page.match(/<div hidden/g) || []).length,
+      duplicateControlNames: [...new Set(controlNames.filter((n, i) => controlNames.indexOf(n) !== i))],
     });
   }
 
@@ -170,6 +173,23 @@ async function main() {
       `            src/entry-server.tsx, or find what is suspending during the\n` +
       `            pre-render — a boundary that truly awaits something still\n` +
       `            gets outlined however large the chunk size.`
+    );
+    process.exit(1);
+  }
+
+  // A third guard, for readers using a screen reader or voice control. Every
+  // form control on a page needs a name that says what it does. When two
+  // share one, a reader tabbing through the controls hears "Search" twice and
+  // cannot tell which list each one searches, and a voice command cannot
+  // target either. Pages used to carry up to seven identical "Search" boxes
+  // and a type filter announced as "Region filter".
+  const withDuplicates = results.filter(r => r.duplicateControlNames.length);
+  if (withDuplicates.length) {
+    console.error(
+      `\n[prerender] form controls share an accessible name on ${withDuplicates.length} route(s):\n` +
+      withDuplicates.map(r => `              ${r.route}: ${r.duplicateControlNames.map(n => `"${n}"`).join(', ')}`).join('\n') +
+      `\n\n            Name each control for what it searches or filters, e.g.\n` +
+      `            aria-label="Search detention facilities", not "Search".`
     );
     process.exit(1);
   }

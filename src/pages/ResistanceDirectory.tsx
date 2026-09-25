@@ -106,7 +106,7 @@ const ResistanceDirectory = () => {
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search organizations"
             type="text"
             placeholder="Search organizations..."
             value={searchQuery}

@@ -24,9 +24,9 @@ describe('AcademicExperts', () => {
 
   it('renders search input', () => {
     render(<AcademicExperts />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search experts by name, affiliation, or work');
     expect(searchInput).toBeTruthy();
-    expect(searchInput.getAttribute('placeholder')).toBe('Search by name, affiliation, or work...');
+    expect(searchInput.getAttribute('placeholder')).toBe('Search experts by name, affiliation, or work...');
   });
 
   it('renders expertise filter select', () => {
@@ -48,14 +48,14 @@ describe('AcademicExperts', () => {
 
   it('filters experts by search term', () => {
     render(<AcademicExperts />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search experts by name, affiliation, or work');
     fireEvent.change(searchInput, { target: { value: 'Zenz' } });
     expect(screen.getByText('Dr. Adrian Zenz')).toBeTruthy();
   });
 
   it('shows no results message for unmatched search', () => {
     render(<AcademicExperts />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search experts by name, affiliation, or work');
     fireEvent.change(searchInput, { target: { value: 'xyznonexistent' } });
     expect(screen.getByText('No experts found matching your criteria')).toBeTruthy();
   });

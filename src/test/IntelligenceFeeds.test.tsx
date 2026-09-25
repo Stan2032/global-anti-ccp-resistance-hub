@@ -95,7 +95,7 @@ describe('IntelligenceFeeds', () => {
   it('defaults to Live Feeds tab', () => {
     render(<IntelligenceFeeds />);
     expect(screen.getByText('All Sources')).toBeTruthy();
-    expect(screen.getByLabelText('Search')).toBeTruthy();
+    expect(screen.getByLabelText('Search articles')).toBeTruthy();
   });
 
 
@@ -291,7 +291,7 @@ const loadingBanner = () =>
       lastUpdated: new Date(),
     };
     render(<IntelligenceFeeds />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search articles');
     fireEvent.change(searchInput, { target: { value: 'Hong Kong' } });
     expect(screen.getByText('Hong Kong protest')).toBeTruthy();
     expect(screen.queryByText('EU sanctions round')).toBeNull();

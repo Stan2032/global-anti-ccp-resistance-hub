@@ -16,7 +16,7 @@ describe('LegalResourcesHub', () => {
 
   it('renders search input', () => {
     render(<LegalResourcesHub />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search legal resources by country, topic, or keyword');
     expect(searchInput).toBeTruthy();
   });
 

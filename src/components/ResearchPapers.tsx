@@ -280,7 +280,7 @@ const ResearchPapers = () => {
       {/* Search */}
       <div className="relative">
         <input
-          aria-label="Search"
+          aria-label="Search papers by title, author, or topic"
           type="text"
           placeholder="Search papers by title, author, or topic..."
           value={searchQuery}

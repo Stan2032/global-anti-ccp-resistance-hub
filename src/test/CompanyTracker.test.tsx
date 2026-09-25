@@ -38,12 +38,12 @@ describe('CompanyTracker', () => {
 
   it('renders search input', () => {
     render(<CompanyTracker />);
-    expect(screen.getByPlaceholderText('Search companies...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search tracked companies by name...')).toBeTruthy();
   });
 
   it('filters companies by search term', () => {
     render(<CompanyTracker />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search tracked companies by name...');
     fireEvent.change(searchInput, { target: { value: 'Hikvision' } });
     expect(screen.getByText('Hikvision')).toBeTruthy();
     // Non-matching companies should be hidden
@@ -52,7 +52,7 @@ describe('CompanyTracker', () => {
 
   it('shows no results for non-matching search', () => {
     render(<CompanyTracker />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search tracked companies by name...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     // The grid should be empty — check that specific companies are gone
     expect(screen.queryByText('Hikvision')).toBeFalsy();

@@ -53,7 +53,7 @@ describe('SourceVerification', () => {
 
   it('search filters sources by name', () => {
     render(<SourceVerification />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search sources by name or topic');
     fireEvent.change(searchInput, { target: { value: 'ASPI' } });
     expect(screen.getByText(/Australian Strategic Policy Institute/)).toBeTruthy();
     expect(screen.queryByText('Government & Legal')).toBeFalsy();
@@ -61,7 +61,7 @@ describe('SourceVerification', () => {
 
   it('search filters sources by topic', () => {
     render(<SourceVerification />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search sources by name or topic');
     fireEvent.change(searchInput, { target: { value: 'Xinjiang' } });
     expect(screen.getByText(/Australian Strategic Policy Institute/)).toBeTruthy();
   });

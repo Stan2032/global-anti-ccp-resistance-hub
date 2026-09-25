@@ -343,9 +343,9 @@ export default function MemorialWall() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search the memorial by name"
             type="text"
-            placeholder="Search by name..."
+            placeholder="Search the memorial by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"

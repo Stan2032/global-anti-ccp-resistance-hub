@@ -78,7 +78,7 @@ describe('EducationalResources', () => {
 
   it('shows Learn tab by default with search', () => {
     renderEducation();
-    expect(screen.getByLabelText('Search')).toBeTruthy();
+    expect(screen.getByLabelText('Search courses')).toBeTruthy();
     expect(screen.getByPlaceholderText('Search courses...')).toBeTruthy();
   });
 

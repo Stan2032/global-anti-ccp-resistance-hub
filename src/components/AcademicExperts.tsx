@@ -97,9 +97,9 @@ const AcademicExperts = () => {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search experts by name, affiliation, or work"
             type="text"
-            placeholder="Search by name, affiliation, or work..."
+            placeholder="Search experts by name, affiliation, or work..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"

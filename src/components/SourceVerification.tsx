@@ -274,7 +274,7 @@ const SourceVerification = () => {
             {/* Search */}
             <div className="relative">
               <input
-                aria-label="Search"
+                aria-label="Search sources by name or topic"
                 type="text"
                 placeholder="Search sources by name or topic..."
                 value={searchQuery}

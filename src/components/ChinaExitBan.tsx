@@ -243,9 +243,9 @@ const ChinaExitBan = () => {
       {/* Search and Filter */}
       <div className="flex flex-col md:flex-row gap-4">
         <input
-          aria-label="Search"
+          aria-label="Search exit ban cases"
           type="text"
-          placeholder="Search cases..."
+          placeholder="Search exit ban cases..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-1 bg-[#111820] border border-[#1c2a35] px-4 py-2 text-white"
