@@ -1,8 +1,17 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import LegalCaseTracker from '../components/LegalCaseTracker';
 import { dataApi } from '../services/dataApi';
+
+// Fails on none, so a check run over each card cannot pass on an empty list.
+const cases = (container: HTMLElement) => {
+  const cards = [...container.querySelectorAll('details')];
+  expect(cards.length, 'cards render as <details>').toBeGreaterThan(0);
+  return cards;
+};
+const laiCase = (container: HTMLElement) =>
+  cases(container).find(c => c.querySelector('summary')!.textContent!.includes('HKSAR v. Jimmy Lai'))!;
 
 describe('LegalCaseTracker', () => {
   // ── Rendering ──────────────────────────────────────────
@@ -86,15 +95,11 @@ describe('LegalCaseTracker', () => {
   });
 
   it('filters cases by search query', () => {
-    render(<LegalCaseTracker />);
-    const input = screen.getByLabelText('Search legal cases');
-    fireEvent.change(input, { target: { value: 'Jimmy Lai' } });
-    // Should still find Jimmy Lai case
-    const buttons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(buttons.length).toBeGreaterThanOrEqual(1);
-    expect(buttons[0].textContent).toContain('Jimmy Lai');
+    const { container } = render(<LegalCaseTracker />);
+    fireEvent.change(screen.getByLabelText('Search legal cases'), { target: { value: 'Jimmy Lai' } });
+    const cards = cases(container);
+    expect(cards.length).toBeGreaterThanOrEqual(1);
+    expect(cards[0].querySelector('summary')!.textContent).toContain('Jimmy Lai');
   });
 
   it('shows empty state when search has no results', () => {
@@ -106,110 +111,67 @@ describe('LegalCaseTracker', () => {
 
   // ── Case List ──────────────────────────────────────────
 
-  it('renders case rows with names and status badges', () => {
-    render(<LegalCaseTracker />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandButtons.length).toBeGreaterThanOrEqual(10);
+  it('renders every case as a native disclosure, closed to start', () => {
+    const { container } = render(<LegalCaseTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = cases(container);
+    expect(cards.length).toBeGreaterThanOrEqual(10);
+    cards.forEach(c => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
+    });
   });
 
   it('shows case jurisdiction under case name', () => {
-    render(<LegalCaseTracker />);
+    const { container } = render(<LegalCaseTracker />);
     // Jimmy Lai case should show Hong Kong jurisdiction
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    expect(laiButton).toBeTruthy();
-    expect(laiButton!.textContent).toContain('Hong Kong');
+    expect(laiCase(container).querySelector('summary')!.textContent).toContain('Hong Kong');
   });
 
-  // ── Expand/Collapse ────────────────────────────────────
+  // ── Native disclosure ──────────────────────────────────
 
-  it('clicking a case expands its details', () => {
-    render(<LegalCaseTracker />);
-    const caseButton = screen.getAllByRole('button').find(
-      (b) => b.getAttribute('aria-expanded') === 'false'
-    );
-    fireEvent.click(caseButton!);
-    expect(caseButton!.getAttribute('aria-expanded')).toBe('true');
+  it('a case opens and closes natively', () => {
+    const { container } = render(<LegalCaseTracker />);
+    const card = laiCase(container);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('expanded case shows defendant information', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('Defendant')).toBeTruthy();
+  it('every case carries its defendant and charges without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    cases(container).forEach(c => {
+      expect(within(c).getByText('Defendant')).toBeTruthy();
+      expect(within(c).getByText('Charges')).toBeTruthy();
+    });
   });
 
-  it('expanded case shows charges', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('Charges')).toBeTruthy();
+  it('the Jimmy Lai case shows its key dates without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    expect(within(laiCase(container)).getByText('Key Dates')).toBeTruthy();
   });
 
-  it('expanded case shows key dates', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('Key Dates')).toBeTruthy();
+  it('the Jimmy Lai case shows its outcome without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    expect(within(laiCase(container)).getByText('Outcome')).toBeTruthy();
   });
 
-  it('expanded case shows outcome', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('Outcome')).toBeTruthy();
+  it('the Jimmy Lai case shows its significance without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    expect(within(laiCase(container)).getByText('Significance')).toBeTruthy();
   });
 
-  it('expanded case shows significance', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('Significance')).toBeTruthy();
+  it('the Jimmy Lai case shows the international response without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    expect(within(laiCase(container)).getByText('International Response')).toBeTruthy();
   });
 
-  it('expanded case shows international response', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    expect(screen.getByText('International Response')).toBeTruthy();
-  });
-
-  it('expanded case shows source link', () => {
-    render(<LegalCaseTracker />);
-    const laiButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('HKSAR v. Jimmy Lai')
-    );
-    fireEvent.click(laiButton!);
-    const sourceLink = screen.getByText('View source');
-    expect(sourceLink).toBeTruthy();
-    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
-    expect(sourceLink!.closest('a')!.getAttribute('rel')).toContain('noopener');
-  });
-
-  it('clicking expanded case collapses it', () => {
-    render(<LegalCaseTracker />);
-    const caseButton = screen.getAllByRole('button').find(
-      (b) => b.getAttribute('aria-expanded') === 'false'
-    );
-    fireEvent.click(caseButton!);
-    expect(caseButton!.getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(caseButton!);
-    expect(caseButton!.getAttribute('aria-expanded')).toBe('false');
+  it('the Jimmy Lai case links its source safely, without a click', () => {
+    const { container } = render(<LegalCaseTracker />);
+    const link = within(laiCase(container)).getByText('View source').closest('a')!;
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toContain('noopener');
   });
 
   // ── Copy ───────────────────────────────────────────────

@@ -17,7 +17,7 @@ import {
   type LegalCase,
   type Sanction,
 } from '../services/dataApi';
-import { Scale, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
+import { Scale, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 
 interface LegalViolation {
@@ -351,7 +351,6 @@ function getEvidenceCounts(violation: LegalViolation, allData: AllData): Record<
 const GenocideLegalFramework = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedViolation, setExpandedViolation] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const prisoners = dataApi.getPoliticalPrisoners();
   const facilities = dataApi.getDetentionFacilities();
@@ -484,83 +483,80 @@ const GenocideLegalFramework = () => {
               <p className="text-xs text-slate-400 font-mono">{filtered.length} of {stats.total} violations shown</p>
               {filtered.map(v => {
                 const cat = getCategoryStyle(v.category);
-                const isExpanded = expandedViolation === v.id;
                 const totalEvidence = Object.values(v.evidenceCounts).reduce((s, val) => s + val, 0);
                 return (
-                  <div key={v.id} className="border border-[#1c2a35] bg-[#111820]/50">
-                    <button onClick={() => setExpandedViolation(isExpanded ? null : v.id)} className="w-full text-left p-4 flex items-start justify-between gap-3" aria-expanded={isExpanded} aria-label={`${v.article}: ${v.title} — ${cat.label}`}>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 mb-1.5">
+                  <details key={v.id} className="border border-[#1c2a35] bg-[#111820]/50">
+                    <summary className="w-full text-left p-4 flex items-start justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="block min-w-0 flex-1">
+                        <span className="flex items-center gap-2 mb-1.5">
                           <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
                           <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${v.severity === 'critical' ? 'text-red-400 bg-red-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{v.severity}</span>
-                        </div>
-                        <p className="text-sm text-[#22d3ee] font-mono">{v.article}</p>
-                        <p className="text-sm text-white font-mono leading-relaxed mt-0.5">{v.title}</p>
-                        <p className="text-xs text-slate-400 mt-1">{totalEvidence} evidence points • {v.recognitions} recognitions</p>
+                        </span>
+                        <span className="block text-sm text-[#22d3ee] font-mono">{v.article}</span>
+                        <span className="block text-sm text-white font-mono leading-relaxed mt-0.5">{v.title}</span>
+                        <span className="block text-xs text-slate-400 mt-1">{totalEvidence} evidence points • {v.recognitions} recognitions</span>
+                      </span>
+                      <span className="text-slate-500 flex-shrink-0 mt-1"><ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" /></span>
+                    </summary>
+                    <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
+                      {/* Legal Text */}
+                      <div className="mt-3 space-y-2">
+                        <h4 className="text-xs font-mono text-[#a78bfa] uppercase tracking-wider flex items-center gap-1.5">
+                          <FileText className="w-3.5 h-3.5" aria-hidden="true" /> Legal Text
+                        </h4>
+                        <p className="text-sm text-slate-300 leading-relaxed italic border-l-2 border-[#a78bfa]/30 pl-3">{v.legalText}</p>
                       </div>
-                      <span className="text-slate-500 flex-shrink-0 mt-1">{isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}</span>
-                    </button>
-                    {isExpanded && (
-                      <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
-                        {/* Legal Text */}
-                        <div className="mt-3 space-y-2">
-                          <h4 className="text-xs font-mono text-[#a78bfa] uppercase tracking-wider flex items-center gap-1.5">
-                            <FileText className="w-3.5 h-3.5" aria-hidden="true" /> Legal Text
-                          </h4>
-                          <p className="text-sm text-slate-300 leading-relaxed italic border-l-2 border-[#a78bfa]/30 pl-3">{v.legalText}</p>
-                        </div>
 
-                        {/* Documented Actions */}
-                        <div className="space-y-2">
-                          <h4 className="text-xs font-mono text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-                            <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" /> Documented CCP Actions
-                          </h4>
-                          <p className="text-sm text-slate-300 leading-relaxed">{v.documentedActions}</p>
-                        </div>
+                      {/* Documented Actions */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-mono text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" /> Documented CCP Actions
+                        </h4>
+                        <p className="text-sm text-slate-300 leading-relaxed">{v.documentedActions}</p>
+                      </div>
 
-                        {/* Key Findings */}
-                        <div className="space-y-2">
-                          <h4 className="text-xs font-mono text-[#4afa82] uppercase tracking-wider flex items-center gap-1.5">
-                            <Shield className="w-3.5 h-3.5" aria-hidden="true" /> Key Findings
-                          </h4>
-                          <ul className="space-y-1">
-                            {v.keyFindings.map((finding, i) => (
-                              <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
-                                <span className="text-[#4afa82] mt-1 flex-shrink-0">•</span>
-                                {finding}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      {/* Key Findings */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-mono text-[#4afa82] uppercase tracking-wider flex items-center gap-1.5">
+                          <Shield className="w-3.5 h-3.5" aria-hidden="true" /> Key Findings
+                        </h4>
+                        <ul className="space-y-1">
+                          {v.keyFindings.map((finding, i) => (
+                            <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
+                              <span className="text-[#4afa82] mt-1 flex-shrink-0">•</span>
+                              {finding}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                        {/* Evidence Counts */}
+                      {/* Evidence Counts */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Cross-Referenced Evidence</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {Object.entries(v.evidenceCounts).map(([type, count]) => (
+                            <span key={type} className="text-xs font-mono px-2 py-1 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
+                              {type}: <span className="text-[#22d3ee]">{count}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Sources */}
+                      {v.sources.length > 0 && (
                         <div className="space-y-2">
-                          <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Cross-Referenced Evidence</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {Object.entries(v.evidenceCounts).map(([type, count]) => (
-                              <span key={type} className="text-xs font-mono px-2 py-1 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
-                                {type}: <span className="text-[#22d3ee]">{count}</span>
-                              </span>
+                          <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Legal and Evidentiary Sources</h4>
+                          <div className="space-y-1">
+                            {v.sources.map((src, i) => (
+                              <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-[#22d3ee] hover:underline">
+                                <ExternalLink className="w-3 h-3" aria-hidden="true" /> {src.name}
+                              </a>
                             ))}
                           </div>
                         </div>
-
-                        {/* Sources */}
-                        {v.sources.length > 0 && (
-                          <div className="space-y-2">
-                            <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Legal and Evidentiary Sources</h4>
-                            <div className="space-y-1">
-                              {v.sources.map((src, i) => (
-                                <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-[#22d3ee] hover:underline">
-                                  <ExternalLink className="w-3 h-3" aria-hidden="true" /> {src.name}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  </details>
                 );
               })}
             </div>

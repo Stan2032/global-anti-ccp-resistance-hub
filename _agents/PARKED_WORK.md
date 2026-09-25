@@ -287,9 +287,57 @@ characters readable without JavaScript. CaseTimelineViewer's
 content expander, and stays: showing every prisoner's full timeline at
 once would be the wrong fix, and the list above it now carries each case.
 
-**Left:** 538 expanders outside the header and nav. By route: `/intelligence`
-262, `/education` 92, `/data-sources` 77, `/take-action` 42, `/resources`
-30, `/directory` 24, `/` 11. Next: the `/intelligence` trackers.
+**Done: `/intelligence`.** Ten trackers' cards are native `<details>`. The
+page went from 179,612 to 344,934 characters readable without JavaScript,
+and no click-to-reveal expander is left on it. InfluenceNetwork is the
+exception: its four expanders sit inside a region panel that exists only
+after a reader picks a region (React state again), so converting the
+expanders alone gives a no-JS reader nothing. The region picker has to
+become a list of regions, each one a `<details>`.
+
+Two rules came out of this batch, and tests enforce both:
+
+- **Open-state styling uses `summary-open:`, never `group-open:`.**
+  `group-open:` matches any open `.group` ancestor, so every card inside an
+  open section showed an "open" chevron, and closed case studies said
+  "Close the case ↑". `summary-open:` (tailwind.config.js) is
+  `details[open] > summary &`. Don't put `group` on a `<details>`: it also
+  made every `group-hover:` card in a section light up at once.
+  `DisclosureSection.test.tsx` fails on any `group-open:` in `src/`.
+- **Card checks must not pass on an empty list.** `cardsIn()` fails when a
+  section holds no cards, because `cardsIn(t).forEach(expect…)` passed on
+  the old components, which render no cards before a click. Local helpers
+  in the tracker tests do the same. Run each rewritten test file against
+  the old component (`git show <before>:src/components/X.tsx`) and expect
+  failures.
+
+**Left:** 276 expanders outside the header and nav, plus InfluenceNetwork.
+By route: `/education` 92, `/data-sources` 77, `/take-action` 42,
+`/resources` 30, `/directory` 24, `/` 11. `cards_to_details.py` (session
+scratchpad) now handles the multi-line chevron, `handleToggle` and
+`aria-controls` variants. It drops a body `id` that only served
+`aria-controls` and removes the expand state once nothing reads it.
+
+---
+
+## P10 — Text cut off at phone width
+
+**Size:** medium · **Value:** high (most readers are on phones) · **Risk:** low
+
+At 390px, text runs past its own container on several routes, where an
+ancestor with `overflow: hidden` clips it or it spills over a card's
+border. The page itself never scrolls sideways, so a document-level
+overflow check reports nothing. Counted in Chromium with every `<details>`
+open (September 2026): `/education` 77, of which 73 are clipped by
+`overflow: hidden` and lost; `/security` 50 (30 lost); `/intelligence` 23
+(8 lost); `/data-sources` 7 (7 lost). The rest sit in `overflow-x: auto`
+wrappers and can still be scrolled. Examples: the /intelligence stat
+"10,000+"; a station status shown
+as the raw enum "PENDING_INVESTIGATION" (also a wording bug); `/data-sources`
+file paths; the economic sector card's stats row, which has no `flex-wrap`.
+Measure with an element-level check (each text element against its nearest
+clipping ancestor), fix by pattern (wrap, `break-words`, `min-w-0`), and
+compare the before and after lists.
 
 ---
 

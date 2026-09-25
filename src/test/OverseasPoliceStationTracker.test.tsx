@@ -3,6 +3,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import OverseasPoliceStationTracker from '../components/OverseasPoliceStationTracker';
 import { dataApi } from '../services/dataApi';
 
+// Fails on none, so a check run over each card cannot pass on an empty list.
+const stations = (container: HTMLElement) => {
+  const cards = [...container.querySelectorAll('details')];
+  expect(cards.length, 'cards render as <details>').toBeGreaterThan(0);
+  return cards;
+};
+
 describe('OverseasPoliceStationTracker', () => {
   // --- Rendering ---
 
@@ -120,17 +127,13 @@ describe('OverseasPoliceStationTracker', () => {
   });
 
   it('clicking status filter shows only that status', () => {
-    render(<OverseasPoliceStationTracker />);
+    const { container } = render(<OverseasPoliceStationTracker />);
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
     fireEvent.click(closedBtn!);
     expect(closedBtn!.getAttribute('aria-pressed')).toBe('true');
-    const closed = dataApi.getPoliceStationsByStatus('CLOSED');
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBe(closed.length);
+    expect(stations(container).length).toBe(dataApi.getPoliceStationsByStatus('CLOSED').length);
   });
 
   it('clicking same status filter again clears it', () => {
@@ -154,16 +157,13 @@ describe('OverseasPoliceStationTracker', () => {
   });
 
   it('Clear button resets filter', () => {
-    render(<OverseasPoliceStationTracker />);
+    const { container } = render(<OverseasPoliceStationTracker />);
     const closedBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Closed')
     );
     fireEvent.click(closedBtn!);
     fireEvent.click(screen.getByText('Clear'));
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBe(dataApi.getPoliceStations().length);
+    expect(stations(container).length).toBe(dataApi.getPoliceStations().length);
   });
 
   // --- Search ---
@@ -179,24 +179,18 @@ describe('OverseasPoliceStationTracker', () => {
   });
 
   it('search filters results by country', () => {
-    render(<OverseasPoliceStationTracker />);
-    const input = screen.getByPlaceholderText('Search by country, city, response...');
-    fireEvent.change(input, { target: { value: 'Canada' } });
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBeGreaterThan(0);
-    expect(expandable.length).toBeLessThan(dataApi.getPoliceStations().length);
+    const { container } = render(<OverseasPoliceStationTracker />);
+    fireEvent.change(screen.getByPlaceholderText('Search by country, city, response...'), { target: { value: 'Canada' } });
+    const shown = stations(container);
+    expect(shown.length).toBeGreaterThan(0);
+    expect(shown.length).toBeLessThan(dataApi.getPoliceStations().length);
+    shown.forEach(s => expect(s.textContent).toMatch(/Canada/));
   });
 
   it('search is case-insensitive', () => {
-    render(<OverseasPoliceStationTracker />);
-    const input = screen.getByPlaceholderText('Search by country, city, response...');
-    fireEvent.change(input, { target: { value: 'canada' } });
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBeGreaterThan(0);
+    const { container } = render(<OverseasPoliceStationTracker />);
+    fireEvent.change(screen.getByPlaceholderText('Search by country, city, response...'), { target: { value: 'canada' } });
+    expect(stations(container).length).toBeGreaterThan(0);
   });
 
   it('no-results state shows message', () => {
@@ -206,93 +200,67 @@ describe('OverseasPoliceStationTracker', () => {
     expect(screen.getByText('No stations match your search')).toBeTruthy();
   });
 
-  // --- Expand/Collapse ---
+  // --- Native disclosure ---
 
-  it('all stations collapsed by default', () => {
-    render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
+  it('every station is a native disclosure, closed to start', () => {
+    const { container } = render(<OverseasPoliceStationTracker />);
+    const all = stations(container);
+    expect(all.length).toBe(dataApi.getPoliceStations().length);
+    all.forEach(s => {
+      expect(s.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(s.open).toBe(false);
     });
   });
 
-  it('clicking a station expands its details', () => {
-    render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
+  it('a station opens and closes natively', () => {
+    const { container } = render(<OverseasPoliceStationTracker />);
+    const [first] = stations(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('expanded station shows government response', () => {
+  it('every government response is in the page without a click', () => {
     render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Government Response')).toBeTruthy();
+    const withResponse = dataApi.getPoliceStations().filter(s => s.government_response).length;
+    expect(withResponse).toBeGreaterThan(0);
+    expect(screen.getAllByText('Government Response')).toHaveLength(withResponse);
   });
 
-  it('expanded station shows latest news', () => {
+  it('all the latest news is in the page without a click', () => {
     render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Latest News')).toBeTruthy();
+    const withNews = dataApi.getPoliceStations().filter(s => s.latest_news).length;
+    expect(withNews).toBeGreaterThan(0);
+    expect(screen.getAllByText('Latest News')).toHaveLength(withNews);
   });
 
-  it('expanded station shows source link', () => {
+  it('every source link is in the page without a click', () => {
     render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Source')).toBeTruthy();
+    const withSource = dataApi.getPoliceStations().filter(s => s.source_url).length;
+    expect(withSource).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Source' })).toHaveLength(withSource);
   });
 
-  it('clicking expanded station collapses it', () => {
-    render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-  });
-
-  it('expanding different station collapses previous one', () => {
-    render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandable.length >= 2) {
-      fireEvent.click(expandable[0]);
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandable[1]);
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-      expect(expandable[1].getAttribute('aria-expanded')).toBe('true');
-    }
+  it('opening one station leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<OverseasPoliceStationTracker />);
+    const [first, second] = stations(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // --- External Links ---
 
   it('external links open in new tab with noopener', () => {
     render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    const links = screen.getAllByRole('link');
-    links.forEach((link) => {
-      if (link.getAttribute('target') === '_blank') {
-        expect(link.getAttribute('rel')).toContain('noopener');
-        expect(link.getAttribute('rel')).toContain('noreferrer');
-      }
+    const external = screen.getAllByRole('link').filter(l => l.getAttribute('target') === '_blank');
+    expect(external.length).toBeGreaterThan(0);
+    external.forEach((link) => {
+      expect(link.getAttribute('rel')).toContain('noopener');
+      expect(link.getAttribute('rel')).toContain('noreferrer');
     });
   });
 
@@ -376,14 +344,9 @@ describe('OverseasPoliceStationTracker', () => {
 
   // --- Accessibility ---
 
-  it('station rows have aria-expanded and aria-controls', () => {
-    render(<OverseasPoliceStationTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-controls')).toBeTruthy();
-    });
+  it('uses native disclosures, not JavaScript-only expanders', () => {
+    const { container } = render(<OverseasPoliceStationTracker />);
+    expect(container.querySelectorAll('[aria-expanded], [aria-controls]')).toHaveLength(0);
   });
 
   it('search input is accessible', () => {

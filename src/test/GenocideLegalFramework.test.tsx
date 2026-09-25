@@ -1,11 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import GenocideLegalFramework from '../components/GenocideLegalFramework';
-import { expectDisclosureSections, inSection } from './helpers/disclosure';
+import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
 });
+
+const violationCard = (article: string) =>
+  cardsIn('Legal Violations').find(c => c.querySelector('summary')!.textContent!.includes(article))!;
 
 describe('GenocideLegalFramework', () => {
   beforeEach(() => {
@@ -44,7 +47,8 @@ describe('GenocideLegalFramework', () => {
 
   it('shows correct number of legal instruments', () => {
     render(<GenocideLegalFramework />);
-    expect(screen.getByText('5')).toBeTruthy(); // 5 non-'all' categories
+    const stat = screen.getByText('Legal Instruments').parentElement!;
+    expect(within(stat).getByText('5')).toBeTruthy(); // 5 non-'all' categories
   });
 
   it('shows genocide recognition count', () => {
@@ -152,67 +156,48 @@ describe('GenocideLegalFramework', () => {
     expect(recognitionTexts.length).toBeGreaterThan(0);
   });
 
-  // === EXPAND/COLLAPSE ===
-  it('expands violation card on click', () => {
-    render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const violationCard = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (violationCard) {
-      fireEvent.click(violationCard);
-      expect(screen.getByText('Legal Text')).toBeTruthy();
-    }
+  // === NATIVE DISCLOSURE ===
+  it('violation cards are native disclosures, closed to start', () => {
+    const { container } = render(<GenocideLegalFramework />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = cardsIn('Legal Violations');
+    expect(cards.length).toBeGreaterThanOrEqual(10);
+    cards.forEach(c => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
+    });
   });
 
-  it('shows documented CCP actions when expanded', () => {
+  it('every violation card carries its legal text and documented CCP actions without a click', () => {
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Documented CCP Actions')).toBeTruthy();
-    }
+    cardsIn('Legal Violations').forEach(c => {
+      expect(within(c).getByText('Legal Text')).toBeTruthy();
+      expect(within(c).getByText('Documented CCP Actions')).toBeTruthy();
+    });
   });
 
-  it('shows key findings when expanded', () => {
+  it('every violation card carries its key findings without a click', () => {
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Key Findings')).toBeTruthy();
-    }
+    cardsIn('Legal Violations').forEach(c => expect(within(c).getByText('Key Findings')).toBeTruthy());
   });
 
-  it('shows cross-referenced evidence when expanded', () => {
+  it('every violation card carries its cross-referenced evidence without a click', () => {
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Cross-Referenced Evidence')).toBeTruthy();
-    }
+    cardsIn('Legal Violations').forEach(c => expect(within(c).getByText('Cross-Referenced Evidence')).toBeTruthy());
   });
 
-  it('shows legal and evidentiary sources when expanded', () => {
+  it('the Article II(a) card carries its legal and evidentiary sources without a click', () => {
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Legal and Evidentiary Sources')).toBeTruthy();
-    }
+    expect(within(violationCard('Article II(a)')).getByText('Legal and Evidentiary Sources')).toBeTruthy();
   });
 
-  it('collapses expanded card on second click', () => {
+  it('a violation card opens and closes natively', () => {
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Legal Text')).toBeTruthy();
-      fireEvent.click(first);
-      expect(screen.queryByText('Legal Text')).toBeFalsy();
-    }
+    const card = violationCard('Article II(a)');
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
   // === COPY REPORT ===
@@ -313,14 +298,12 @@ describe('GenocideLegalFramework', () => {
   });
 
   it('cross-references at least 3 evidence types', () => {
+    // Across the framework, not per card: Article II(a) draws on two.
     render(<GenocideLegalFramework />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Article II(a)'));
-    if (first) {
-      fireEvent.click(first);
-      const evidenceText = screen.getByText('Cross-Referenced Evidence').parentElement;
-      expect(evidenceText).toBeTruthy();
-    }
+    const types = new Set(cardsIn('Legal Violations').flatMap(c =>
+      [...within(c).getByText('Cross-Referenced Evidence').nextElementSibling!.children]
+        .map(chip => chip.textContent!.split(':')[0])));
+    expect(types.size).toBeGreaterThanOrEqual(3);
   });
 
   it('has at least 8 genocide recognition entries', () => {
