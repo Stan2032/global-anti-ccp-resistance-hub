@@ -8,7 +8,7 @@
  * @module DataApiDocs
  */
 import React, { useState, useMemo } from 'react';
-import { Code, Database, Search, Filter, Globe, ChevronDown, ChevronUp, Copy, CheckCircle, BookOpen } from 'lucide-react';
+import { Code, Database, Search, Filter, Globe, ChevronDown, Copy, CheckCircle, BookOpen } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
 /**
@@ -218,7 +218,6 @@ const METHOD_GROUPS = [
 ];
 
 const DataApiDocs = () => {
-  const [expandedGroup, setExpandedGroup] = useState<string | null>('metadata');
   const [copiedMethod, setCopiedMethod] = useState<string | null>(null);
 
   const summary = useMemo(() => {
@@ -235,9 +234,6 @@ const DataApiDocs = () => {
     });
   };
 
-  const toggleGroup = (id: string) => {
-    setExpandedGroup(prev => prev === id ? null : id);
-  };
 
   return (
     <div className="space-y-6">
@@ -295,89 +291,78 @@ const DataApiDocs = () => {
       {/* Method Groups */}
       <div className="space-y-2">
         {METHOD_GROUPS.map((group) => {
-          const isExpanded = expandedGroup === group.id;
           const GroupIcon = group.icon;
           return (
-            <div key={group.id} className="border border-[#1c2a35] bg-[#111820]">
-              <button
-                onClick={() => toggleGroup(group.id)}
-                className="w-full flex items-center justify-between p-4 text-left hover:bg-[#1c2a35]/30 transition-colors"
-                aria-expanded={isExpanded}
-              >
-                <div className="flex items-center gap-3">
+            <details key={group.id} open={group.id === 'metadata'} className="border border-[#1c2a35] bg-[#111820]">
+              <summary className="w-full flex items-center justify-between p-4 text-left hover:bg-[#1c2a35]/30 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-3">
                   <GroupIcon className="w-4 h-4 text-[#22d3ee]" />
                   <span className="font-mono font-bold text-white">{group.title}</span>
                   <span className="text-xs text-slate-400 font-mono">{group.methods.length} methods</span>
-                </div>
-                {isExpanded
-                  ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400" />
-                }
-              </button>
-
-              {isExpanded && (
-                <div className="border-t border-[#1c2a35] p-4 space-y-4">
-                  {group.methods.map((method) => (
-                    <div key={method.name} className="bg-[#0a0e14] border border-[#1c2a35] p-4">
-                      {/* Method signature */}
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <code className="text-[#4afa82] font-mono text-sm font-bold">{method.name}</code>
-                          <span className="text-slate-400 font-mono text-sm">
-                            ({method.params.map((p) => p.name).join(', ')})
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => handleCopy(method.example)}
-                          className="flex-shrink-0 p-1.5 hover:bg-[#1c2a35] transition-colors"
-                          aria-label={`Copy ${method.name} example`}
-                          title="Copy example"
-                        >
-                          {copiedMethod === method.example
-                            ? <CheckCircle className="w-3.5 h-3.5 text-green-400" />
-                            : <Copy className="w-3.5 h-3.5 text-slate-400" />
-                          }
-                        </button>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+              </summary>
+              <div className="border-t border-[#1c2a35] p-4 space-y-4">
+                {group.methods.map((method) => (
+                  <div key={method.name} className="bg-[#0a0e14] border border-[#1c2a35] p-4">
+                    {/* Method signature */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <code className="text-[#4afa82] font-mono text-sm font-bold">{method.name}</code>
+                        <span className="text-slate-400 font-mono text-sm">
+                          ({method.params.map((p) => p.name).join(', ')})
+                        </span>
                       </div>
-
-                      {/* Description */}
-                      <p className="text-slate-400 text-sm mt-1">{method.description}</p>
-
-                      {/* Parameters */}
-                      {method.params.length > 0 && (
-                        <div className="mt-2">
-                          <span className="text-xs text-slate-400 font-mono uppercase">params:</span>
-                          <div className="mt-1 space-y-1">
-                            {method.params.map((p) => (
-                              <div key={p.name} className="flex items-center gap-2 text-xs font-mono">
-                                <span className="text-[#22d3ee]">{p.name}</span>
-                                <span className="text-slate-400">:</span>
-                                <span className="text-yellow-400">{p.type}</span>
-                                <span className="text-slate-400"> — {p.description}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Returns */}
-                      <div className="mt-2">
-                        <span className="text-xs text-slate-400 font-mono uppercase">returns:</span>
-                        <code className="ml-2 text-xs text-yellow-400 font-mono">{method.returns}</code>
-                      </div>
-
-                      {/* Live example */}
-                      <div className="mt-2 flex items-center gap-2 text-xs">
-                        <span className="text-[#4afa82] font-mono">$</span>
-                        <code className="text-slate-300 font-mono">{method.example}</code>
-                        <span className="text-slate-400">→</span>
-                        <span className="text-[#22d3ee] font-mono">{method.live()}</span>
-                      </div>
+                      <button
+                        onClick={() => handleCopy(method.example)}
+                        className="flex-shrink-0 p-1.5 hover:bg-[#1c2a35] transition-colors"
+                        aria-label={`Copy ${method.name} example`}
+                        title="Copy example"
+                      >
+                        {copiedMethod === method.example
+                          ? <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                          : <Copy className="w-3.5 h-3.5 text-slate-400" />
+                        }
+                      </button>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
+
+                    {/* Description */}
+                    <p className="text-slate-400 text-sm mt-1">{method.description}</p>
+
+                    {/* Parameters */}
+                    {method.params.length > 0 && (
+                      <div className="mt-2">
+                        <span className="text-xs text-slate-400 font-mono uppercase">params:</span>
+                        <div className="mt-1 space-y-1">
+                          {method.params.map((p) => (
+                            <div key={p.name} className="flex items-center gap-2 text-xs font-mono">
+                              <span className="text-[#22d3ee]">{p.name}</span>
+                              <span className="text-slate-400">:</span>
+                              <span className="text-yellow-400">{p.type}</span>
+                              <span className="text-slate-400"> — {p.description}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Returns */}
+                    <div className="mt-2">
+                      <span className="text-xs text-slate-400 font-mono uppercase">returns:</span>
+                      <code className="ml-2 text-xs text-yellow-400 font-mono">{method.returns}</code>
+                    </div>
+
+                    {/* Live example */}
+                    <div className="mt-2 flex items-center gap-2 text-xs">
+                      <span className="text-[#4afa82] font-mono">$</span>
+                      <code className="text-slate-300 font-mono">{method.example}</code>
+                      <span className="text-slate-400">→</span>
+                      <span className="text-[#22d3ee] font-mono">{method.live()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
           );
         })}
       </div>

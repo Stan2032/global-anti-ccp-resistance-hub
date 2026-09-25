@@ -31,7 +31,6 @@ const combinedYears = new Date().getFullYear() - Math.min(...organizations.map(o
 const ResistanceDirectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedOrg, setSelectedOrg] = useState<Organisation | null>(null);
 
   // Filter organisations
   const filteredOrgs = useMemo(() => {
@@ -160,75 +159,71 @@ const ResistanceDirectory = () => {
       {/* Organizations Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {filteredOrgs.map(org => (
-          <button
-            type="button"
+          // Native, so the details and the website link reach readers
+          // without JavaScript. The card used to be one <button> with the
+          // link inside it, which is invalid HTML.
+          <details
             key={org.id}
-            onClick={() => setSelectedOrg(selectedOrg?.id === org.id ? null : org)}
-            aria-expanded={selectedOrg?.id === org.id}
-            className={`bg-[#111820] border p-4 cursor-pointer transition-all text-left w-full hover:border-[#1c2a35] ${
-              selectedOrg?.id === org.id ? 'border-[#1c2a35] ring-1 ring-[#4afa82]' : 'border-[#1c2a35]'
-            }`}
+            className="bg-[#111820] border border-[#1c2a35] transition-all open:ring-1 open:ring-[#4afa82]"
           >
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-white">{org.name}</h3>
-                  {org.verified && (
-                    <span title="Verified Organization"><CheckCircle className="w-4 h-4 text-green-400" aria-label="Verified Organization" /></span>
+            <summary className="block p-4 cursor-pointer list-none hover:bg-[#1c2a35]/30 [&::-webkit-details-marker]:hidden">
+              <span className="flex items-start justify-between mb-3">
+                <span className="block flex-1">
+                  <span className="flex items-center gap-2 mb-1">
+                    <span className="block font-semibold text-white">{org.name}</span>
+                    {org.verified && (
+                      <span title="Verified Organization"><CheckCircle className="w-4 h-4 text-green-400" aria-label="Verified Organization" /></span>
+                    )}
+                  </span>
+                  {org.acronym && (
+                    <span className="text-sm text-slate-400">({org.acronym})</span>
                   )}
+                </span>
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getCategoryColor(org.category)}`}>
+                  {org.category}
+                </span>
+              </span>
+
+              <span className="block text-sm text-slate-400 mb-3 line-clamp-2 summary-open:line-clamp-none">{org.description}</span>
+
+              <span className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3" aria-hidden="true" />
+                  {org.headquarters}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" aria-hidden="true" />
+                  Est. {org.established}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Globe className="w-3 h-3" aria-hidden="true" />
+                  {org.region}
+                </span>
+              </span>
+            </summary>
+
+            <div className="mx-4 pt-4 pb-4 border-t border-[#1c2a35]">
+              <div className="mb-3">
+                <h4 className="text-xs font-semibold text-slate-400 uppercase mb-2">Focus Areas</h4>
+                <div className="flex flex-wrap gap-1">
+                  {org.focus.map(f => (
+                    <span key={f} className="px-2 py-0.5 bg-[#1c2a35] text-slate-300 text-xs rounded">
+                      {f}
+                    </span>
+                  ))}
                 </div>
-                {org.acronym && (
-                  <span className="text-sm text-slate-400">({org.acronym})</span>
-                )}
               </div>
-              <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getCategoryColor(org.category)}`}>
-                {org.category}
-              </span>
+              <a
+                href={org.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                Visit Website<span className="sr-only">: {org.name}</span>
+              </a>
             </div>
-
-            <p className="text-sm text-slate-400 mb-3 line-clamp-2">{org.description}</p>
-
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
-              <span className="flex items-center gap-1">
-                <MapPin className="w-3 h-3" />
-                {org.headquarters}
-              </span>
-              <span className="flex items-center gap-1">
-                <Calendar className="w-3 h-3" />
-                Est. {org.established}
-              </span>
-              <span className="flex items-center gap-1">
-                <Globe className="w-3 h-3" />
-                {org.region}
-              </span>
-            </div>
-
-            {/* Expanded Details */}
-            {selectedOrg?.id === org.id && (
-              <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-                <div className="mb-3">
-                  <h4 className="text-xs font-semibold text-slate-400 uppercase mb-2">Focus Areas</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {org.focus.map(f => (
-                      <span key={f} className="px-2 py-0.5 bg-[#1c2a35] text-slate-300 text-xs rounded">
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <a
-                  href={org.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Visit Website
-                </a>
-              </div>
-            )}
-          </button>
+          </details>
         ))}
       </div>
 

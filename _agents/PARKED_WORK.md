@@ -328,11 +328,18 @@ stories on `/education` opened in a modal that only JavaScript could
 render, with no focus handling and a close button named "✕"; each story is
 a `<details>` in its card now.
 
-**Left:** 103 expanders outside the header and nav, plus InfluenceNetwork.
-By route: `/data-sources` 79, `/directory` 24. What stays by design: the
-header menus, the language picker, the onboarding guide, the letter
-generator's prisoner picker and the case-timeline combobox. They are
-controls, not hidden content.
+**Done: `/directory` and `/data-sources`.** Each directory card was one
+`<button>` with the website link inside it (invalid HTML, and the links
+were not in the page without JavaScript); the insight, integrity,
+comparison, API-docs and changelog cards, and the embed preview, are
+`<details>` now. Pre-rendered text: `/directory` 9,814 → 12,150,
+`/data-sources` 29,007 → 65,973.
+
+**Left:** InfluenceNetwork only (its region picker, then four expanders
+inside the region panel). What stays by design: the header menus, the
+language picker, the onboarding guide, the letter generator's prisoner
+picker and the case-timeline combobox. They are controls, not hidden
+content.
 `cards_to_details.py` (session scratchpad) handles the multi-line chevron,
 `handleToggle` and `aria-controls` variants. It drops a body `id` that only
 served `aria-controls`, turns headings in a header into spans, and removes
