@@ -54,11 +54,12 @@
 > `writeStoredValue` in `src/utils/ssr.ts`, never `localStorage` directly.
 >
 > **Suggested next:** the owner asked for the site itself to come first, so
-> P7 (content re-verification) is **paused** until they resume it. Finish the
-> sweep: convert the last three content-hiding tab components
-> (SafetyChecklist, ContactRepresentatives, LanguageGuide), then P8 and the
-> small items in `PARKED_WORK.md`, then P3 (ESLint 10, since 9.x is end of
-> support).
+> P7 (content re-verification) is **paused** until they resume it. No tab
+> on the site hides content from a reader without JavaScript any more, but
+> **card expanders still do, at scale** (P9: 941 of them; on `/security` and
+> `/intelligence` they hide about as much text again as the page shows).
+> Next: P9, then P8 and the small items in `PARKED_WORK.md`, then P3
+> (ESLint 10, since 9.x is end of support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

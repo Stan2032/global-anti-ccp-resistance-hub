@@ -965,6 +965,7 @@ a native `<details>` that opens without any script.
 | `/security` | 4,367 pre-rendered characters | 28,030 — `f049dc8` |
 | `/intelligence` | 2,404 (only the live feed, which cannot work without JS) | 70,542 — `f049dc8` |
 | 15 embedded components (region panels, trackers, guides) | default view only | every view — `8f41daf` |
+| Safety checklist, contact-your-representatives, phrase guide | 1 of 6 safety categories; US links and 1 of 7 letters only; 1 of 5 languages | all of each |
 
 ### Controls a screen reader can name
 
@@ -1021,5 +1022,15 @@ a native `<details>` that opens without any script.
 3. **A storage key is a disclosure.** On this site, what a page writes to
    the reader's browser is part of its security surface, not an
    implementation detail.
+
+### Still open: expanders
+
+Tabs were the visible half of the problem. Card expanders (a React-state
+button with `aria-expanded`) hide their details the same way, one level
+down. There are 941 on the pre-rendered pages. Opening each one on its own
+in Chromium, they hide **+55%** of the text on a profile page, **+94%** on
+`/security` and **+92%** on `/intelligence`. A first, bulk measurement said
++2–5%, because single-open components close each card as the next opens.
+That is P9 in `_agents/PARKED_WORK.md`.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

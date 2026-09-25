@@ -222,8 +222,46 @@ announces "tab 1 of 6" for what is a filter. The honest pattern is a group
 of toggle buttons with `aria-pressed`, like the view toggles
 `DiplomaticCoercionTracker` used to have.
 
-The ARIA coverage tests pin the tab pattern on IPACMembers, DiasporaSupport
-and LanguageGuide, so they would need updating with the components.
+The ARIA coverage tests pin the tab pattern on IPACMembers and
+DiasporaSupport, so they would need updating with the components. (The three
+components whose tabs did hide content, SafetyChecklist,
+ContactRepresentatives and LanguageGuide, are already native sections.)
+
+---
+
+## P9 — Card expanders hide their details without JavaScript
+
+**Size:** large but mechanical · **Value:** high · **Risk:** low
+
+The tabs are gone, but the same failure survives one level down. Cards all
+over the site (tracker entries, timeline events, tools, guides, FAQ
+answers) expand through a React-state button with `aria-expanded`, and the
+detail is only rendered once clicked. Without JavaScript the button does
+nothing and the detail is not in the HTML. The pre-rendered pages hold
+**941** such buttons.
+
+How much they hide, measured in Chromium by opening each expander on its
+own, recording the text it adds, and closing it again:
+
+| route | page text | hidden behind expanders |
+|---|---|---|
+| `/profiles/jimmy-lai` | 6,719 | 3,695 (**+55%**) |
+| `/security` | 38,379 | 36,190 (**+94%**) |
+| `/intelligence` | 179,228 | 165,447 (**+92%**) |
+
+**Measurement trap.** Clicking every expander at once and measuring once
+reported only +2–5%. Many components allow one open card at a time
+(`expandedItem === id`), so a bulk click leaves just the last one open. Open
+them one at a time.
+
+The fix is the one used for the tabs: a native `<details>`/`<summary>` per
+card, with the card's header as the summary. It is keyboard operable and
+announced correctly without any ARIA, and a find-in-page match opens it.
+Single-open behaviour goes away, which is fine: it existed to save space,
+and a closed `<details>` takes no more room than a closed card.
+
+Suggested order, by what readers come for: the 16 profile timelines, then
+`/security`, then `/prisoners`, then the `/intelligence` trackers.
 
 ---
 

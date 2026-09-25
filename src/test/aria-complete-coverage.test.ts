@@ -31,7 +31,6 @@ describe('ARIA Complete Coverage — Final Batch', () => {
   const tabComponents = [
     'IPACMembers.tsx',
     'DiasporaSupport.tsx',
-    'LanguageGuide.tsx',
   ];
 
   for (const name of tabComponents) {
@@ -53,6 +52,9 @@ describe('ARIA Complete Coverage — Final Batch', () => {
     'TaiwanDefenseStatus.tsx',
     'TibetStatus.tsx',
     'XinjiangStatus.tsx',
+    'LanguageGuide.tsx',
+    'SafetyChecklist.tsx',
+    'ContactRepresentatives.tsx',
   ];
 
   for (const name of disclosureComponents) {

@@ -861,7 +861,7 @@
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
     "next": [
-      "Convert the last three content-hiding tab components: SafetyChecklist, ContactRepresentatives, LanguageGuide",
+      "PARKED_WORK.md P9: 941 React-state card expanders hide their details without JavaScript; convert to native <details>",
       "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
       "P7 content re-verification stays paused until the owner resumes it"
     ]

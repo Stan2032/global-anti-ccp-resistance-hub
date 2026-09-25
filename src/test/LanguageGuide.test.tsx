@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import LanguageGuide from '../components/LanguageGuide';
+import { disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('LanguageGuide', () => {
   it('renders the title', () => {
@@ -14,54 +15,60 @@ describe('LanguageGuide', () => {
     expect(screen.getByText('Learn key phrases to show support in native languages')).toBeTruthy();
   });
 
-  it('renders all 5 language tabs', () => {
+  it('renders every language as a native disclosure section', () => {
     render(<LanguageGuide />);
-    expect(screen.getAllByText('Cantonese').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Uyghur').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Tibetan').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Mandarin').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Taiwanese').length).toBeGreaterThanOrEqual(1);
+    expectDisclosureSections(['Cantonese', 'Uyghur', 'Tibetan', 'Mandarin', 'Taiwanese']);
   });
 
-  it('shows Cantonese phrases by default', () => {
+  it('opens Cantonese first', () => {
     render(<LanguageGuide />);
-    expect(screen.getByText('Liberate Hong Kong, Revolution of Our Times')).toBeTruthy();
-    expect(screen.getByText('Five Demands, Not One Less')).toBeTruthy();
-    expect(screen.getByText('Add Oil / Keep Fighting')).toBeTruthy();
+    expect(disclosureFor('Cantonese').open).toBe(true);
+    expect(disclosureFor('Uyghur').open).toBe(false);
+    const cantonese = inSection('Cantonese');
+    expect(cantonese.getByText('Liberate Hong Kong, Revolution of Our Times')).toBeTruthy();
+    expect(cantonese.getByText('Five Demands, Not One Less')).toBeTruthy();
+    expect(cantonese.getByText('Add Oil / Keep Fighting')).toBeTruthy();
   });
 
-  it('shows Cantonese region info by default', () => {
+  it("names each language's region in its heading", () => {
     render(<LanguageGuide />);
-    expect(screen.getByText('Region: Hong Kong')).toBeTruthy();
+    const summary = (lang: string) => disclosureFor(lang).querySelector('summary')!.textContent;
+    expect(summary('Cantonese')).toContain('Hong Kong');
+    expect(summary('Uyghur')).toContain('East Turkestan');
+    expect(summary('Tibetan')).toContain('Tibet');
   });
 
-  it('switches to Uyghur phrases when Uyghur tab is clicked', () => {
+  it('shows the Uyghur phrases without interaction', () => {
     render(<LanguageGuide />);
-    fireEvent.click(screen.getByText('Uyghur'));
-    expect(screen.getByText('Free East Turkestan')).toBeTruthy();
-    expect(screen.getByText('We will not be silent')).toBeTruthy();
-    expect(screen.getByText('Region: East Turkestan')).toBeTruthy();
+    const uyghur = inSection('Uyghur');
+    expect(uyghur.getByText('Free East Turkestan')).toBeTruthy();
+    expect(uyghur.getByText('We will not be silent')).toBeTruthy();
+    expect(uyghur.getByRole('img', { name: 'East Turkestan flag' })).toBeTruthy();
   });
 
-  it('switches to Tibetan phrases when Tibetan tab is clicked', () => {
+  it('shows the Tibetan phrases without interaction', () => {
     render(<LanguageGuide />);
-    fireEvent.click(screen.getByText('Tibetan'));
-    expect(screen.getByText('Free Tibet')).toBeTruthy();
-    expect(screen.getByText('Region: Tibet')).toBeTruthy();
+    expect(inSection('Tibetan').getByText('Free Tibet')).toBeTruthy();
   });
 
-  it('switches to Mandarin phrases when Mandarin tab is clicked', () => {
+  it('shows the Mandarin phrases without interaction', () => {
     render(<LanguageGuide />);
-    fireEvent.click(screen.getByText('Mandarin'));
-    expect(screen.getByText('Never forget June 4th')).toBeTruthy();
-    expect(screen.getByText('Blank Paper Revolution')).toBeTruthy();
+    const mandarin = inSection('Mandarin');
+    expect(mandarin.getByText('Never forget June 4th')).toBeTruthy();
+    expect(mandarin.getByText('Blank Paper Revolution')).toBeTruthy();
   });
 
-  it('switches to Taiwanese phrases when Taiwanese tab is clicked', () => {
+  it('shows the Taiwanese phrases without interaction', () => {
     render(<LanguageGuide />);
-    fireEvent.click(screen.getByText('Taiwanese'));
-    expect(screen.getByText('Taiwan is Taiwan')).toBeTruthy();
-    expect(screen.getByText('I am Taiwanese')).toBeTruthy();
+    const taiwanese = inSection('Taiwanese');
+    expect(taiwanese.getByText('Taiwan is Taiwan')).toBeTruthy();
+    expect(taiwanese.getByText('I am Taiwanese')).toBeTruthy();
+  });
+
+  it('names each copy button after its language and phrase', () => {
+    render(<LanguageGuide />);
+    expect(screen.getByRole('button', { name: 'Copy the Cantonese for "Five Demands, Not One Less"' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Copy the Uyghur for "Free East Turkestan"' })).toBeTruthy();
   });
 
   it('renders phrase cards with native text and romanization', () => {
