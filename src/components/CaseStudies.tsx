@@ -404,7 +404,7 @@ export default function CaseStudies() {
                   <span className={`px-1.5 py-0.5 rounded text-xs font-medium text-white ${getStatusColor(caseData.status)}`}>
                     {caseData.status}
                   </span>
-                  <h3 className="text-white font-semibold mt-1">{caseData.name}</h3>
+                  <span className="block text-white font-semibold mt-1">{caseData.name}</span>
                 </span>
               </span>
               <span className="block text-sm text-slate-400 line-clamp-2 summary-open:hidden">{caseData.summary}</span>

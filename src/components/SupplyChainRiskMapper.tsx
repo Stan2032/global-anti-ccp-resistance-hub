@@ -337,7 +337,7 @@ export default function SupplyChainRiskMapper() {
 
                       <span className="block flex-1 min-w-0">
                         <span className="flex items-center gap-2 flex-wrap">
-                          <h3 className="text-white font-mono font-semibold text-sm">{c.company || c.id}</h3>
+                          <span className="block text-white font-mono font-semibold text-sm">{c.company || c.id}</span>
                           <span className={`px-1.5 py-0.5 text-[10px] font-mono ${style.badge}`}>
                             {c.riskLevel.toUpperCase()}
                           </span>

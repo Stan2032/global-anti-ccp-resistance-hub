@@ -6,7 +6,8 @@ import CaseStudies from '../components/CaseStudies';
 // Each case is a native <details>: the card is the summary, the full case
 // file is the body, present without a click.
 const caseFor = (name: string) => {
-  const card = [...document.querySelectorAll('details')].find(d => d.querySelector('summary h3')?.textContent === name);
+  const card = [...document.querySelectorAll('details')]
+    .find(d => [...d.querySelectorAll('summary span')].some(s => s.textContent === name));
   expect(card, `a case for ${name}`).toBeTruthy();
   return card!;
 };

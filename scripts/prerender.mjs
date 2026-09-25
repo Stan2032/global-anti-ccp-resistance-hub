@@ -32,6 +32,28 @@ const BASE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 const log = (...a) => console.log('[prerender]', ...a);
 
 /** Read the public route list from the sitemap. */
+/**
+ * A <summary> may hold only phrasing content, plus a heading as its direct
+ * child. Converting a card to <details> turns its header into a summary, so
+ * its <div>s must become <span>s and a heading nested in them must become a
+ * span too. Browsers render the invalid version without complaint, which is
+ * why this is checked here.
+ */
+const NOT_PHRASING = /^(div|p|ul|ol|li|dl|table|section|article|header|footer|nav|form|blockquote|pre|hr)$/;
+const VOID = /^(area|br|col|embed|hr|img|input|source|track|wbr)$/;
+function summaryIsPhrasing(inner) {
+  let depth = 0;
+  // Tags with quoted attributes, which may themselves contain ">".
+  for (const [, closing, name, selfClosing] of inner.matchAll(/<(\/?)([a-zA-Z][\w-]*)(?:\s+[^\s=>]+(?:="[^"]*")?)*\s*(\/?)>/g)) {
+    const tag = name.toLowerCase();
+    if (closing) { depth--; continue; }
+    if (NOT_PHRASING.test(tag)) return false;
+    if (/^h[1-6]$/.test(tag) && depth > 0) return false;
+    if (!selfClosing && !VOID.test(tag)) depth++;
+  }
+  return true;
+}
+
 function routesFromSitemap() {
   const xml = readFileSync(join(ROOT, 'public/sitemap.xml'), 'utf8');
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
@@ -112,6 +134,8 @@ async function main() {
         !inner.replace(/<svg\b[\s\S]*?<\/svg>/g, '').replace(/<!--[\s\S]*?-->/g, '')
           .replace(/<[^>]+>/g, '').trim())
       .length;
+    const badSummaries = [...page.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/g)]
+      .filter(([, inner]) => !summaryIsPhrasing(inner)).length;
     const text = page
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/<style[\s\S]*?<\/style>/g, '')
@@ -127,6 +151,7 @@ async function main() {
       hiddenBlocks: (page.match(/<div hidden/g) || []).length,
       duplicateControlNames: [...new Set(controlNames.filter((n, i) => controlNames.indexOf(n) !== i))],
       unnamedButtons,
+      badSummaries,
     });
   }
 
@@ -197,6 +222,17 @@ async function main() {
       `\n[prerender] buttons with no accessible name on ${withUnnamed.length} route(s):\n` +
       withUnnamed.map(r => `              ${r.route} (${r.unnamedButtons})`).join('\n') +
       `\n\n            Give each visible text, or an aria-label saying what it does.`
+    );
+    process.exit(1);
+  }
+
+  const withBadSummaries = results.filter(r => r.badSummaries > 0);
+  if (withBadSummaries.length) {
+    console.error(
+      `\n[prerender] <summary> elements holding block content on ${withBadSummaries.length} route(s):\n` +
+      withBadSummaries.map(r => `              ${r.route} (${r.badSummaries})`).join('\n') +
+      `\n\n            A summary may hold only phrasing content, plus a heading as its\n` +
+      `            direct child. Use <span className="block …"> for layout.`
     );
     process.exit(1);
   }
