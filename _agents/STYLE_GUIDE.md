@@ -100,6 +100,42 @@
 </div>
 ```
 
+### Disclosures — native `<details>`
+
+Anything that shows and hides content is a `<details>` with a `<summary>`;
+for a titled page section, use `DisclosureSection`. Never a React-state
+button with `{open && (…)}`: without JavaScript, which is how this site tells
+readers in China to browse, the button does nothing and the content is not in
+the page. A native disclosure opens with no script, and find-in-page opens
+the one holding a match.
+
+```jsx
+<details className="bg-[#111820] border border-[#1c2a35]">
+  <summary className="flex items-center gap-3 p-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+    <span className="flex-1 min-w-0 font-mono text-white">Title</span>
+    <ChevronDown className="w-4 h-4 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+  </summary>
+  <div className="p-4 border-t border-[#1c2a35]">Body.</div>
+</details>
+```
+
+- **A summary holds only phrasing content**, plus a heading as its direct
+  child. Where you would reach for a `<div>`, use `<span className="block">`.
+  The build fails otherwise (`scripts/prerender.mjs`).
+- **Style the open state with `summary-open:`**, never `group-open:`, and
+  don't put `group` on a `<details>`. `group-open:` matches any open
+  ancestor, so every card inside an open section looked open. A test fails
+  on `group-open:` anywhere in `src/`.
+- **Don't cap a list inside a disclosure.** It is closed until opened, so a
+  cap saves no room, and a title that says "(29)" must show 29.
+- **A control that only works with JavaScript** (copy a link, "Expand all")
+  renders only once JavaScript runs:
+  `const scripted = useBrowserValue(() => true, false)` from
+  `src/utils/ssr.ts`, then `{scripted && …}`.
+- **At 390px wide:** a row of badges gets `flex-wrap`, an icon beside text
+  gets `flex-shrink-0`, and no `truncate` or `line-clamp` on text the reader
+  cannot read in full some other way.
+
 ### Disclaimers
 
 Use the `<GlobalDisclaimer>` component:
@@ -161,4 +197,4 @@ Terminal-specific animations:
 
 ---
 
-*Last updated: February 20, 2026 (Session 55)*
+*Last updated: September 25, 2026 (Session 281)*

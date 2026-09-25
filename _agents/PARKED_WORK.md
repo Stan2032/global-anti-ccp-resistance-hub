@@ -229,125 +229,6 @@ ContactRepresentatives and LanguageGuide, are already native sections.)
 
 ---
 
-## P9 — Card expanders hide their details without JavaScript
-
-**Size:** large but mechanical · **Value:** high · **Risk:** low
-
-The tabs are gone, but the same failure survives one level down. Cards all
-over the site (tracker entries, timeline events, tools, guides, FAQ
-answers) expand through a React-state button with `aria-expanded`, and the
-detail is only rendered once clicked. Without JavaScript the button does
-nothing and the detail is not in the HTML. The pre-rendered pages hold
-**941** such buttons.
-
-How much they hide, measured in Chromium by opening each expander on its
-own, recording the text it adds, and closing it again:
-
-| route | page text | hidden behind expanders |
-|---|---|---|
-| `/profiles/jimmy-lai` | 6,719 | 3,695 (**+55%**) |
-| `/security` | 38,379 | 36,190 (**+94%**) |
-| `/intelligence` | 179,228 | 165,447 (**+92%**) |
-
-**Measurement trap.** Clicking every expander at once and measuring once
-reported only +2–5%. Many components allow one open card at a time
-(`expandedItem === id`), so a bulk click leaves just the last one open. Open
-them one at a time.
-
-The fix is the one used for the tabs: a native `<details>`/`<summary>` per
-card, with the card's header as the summary. It is keyboard operable and
-announced correctly without any ARIA, and a find-in-page match opens it.
-Single-open behaviour goes away, which is fine: it existed to save space,
-and a closed `<details>` takes no more room than a closed card.
-
-**Done: all 16 profile pages.** They now share `ProfileTimeline`, which
-replaced three hand-rolled variants: each event is a native `<details>`, and
-"Expand all" renders only once JavaScript runs. The "Show N more narratives"
-toggle on two profiles is a `<details>` too. No profile holds React state
-any more, and `profile-pages.test.tsx` fails if an `aria-expanded` control
-returns. Jimmy Lai's page went from 6,719 to 11,803 characters readable
-without JavaScript.
-
-**Done: `/security`.** WhistleblowerGuide's three card lists and
-DiasporaSecurityAdvisor's country cards are native `<details>`. The page
-went from about 38,400 to 74,930 characters readable without JavaScript.
-The tracker-card pattern (a toggle button, then `{isExpanded && (…)}`)
-recurs across a dozen components. `cards_to_details.py` in the session
-scratchpad converted WhistleblowerGuide mechanically. The rule it follows:
-<div>s inside a <summary> become <span>s, since a summary may hold only
-phrasing content, with `block` added where the div had no display class.
-
-**Done: `/prisoners`.** Each row in the prisoner list (sentence, health,
-latest update, international response, source) is a native `<details>`.
-The case-study deep dives, which opened only through a JavaScript click
-that swapped the grid for a detail view, are now one `<details>` per case
-with the full case file inside. The page went from 16,645 to 66,659
-characters readable without JavaScript. CaseTimelineViewer's
-`aria-expanded` sits on a combobox (a searchable prisoner picker), not a
-content expander, and stays: showing every prisoner's full timeline at
-once would be the wrong fix, and the list above it now carries each case.
-
-**Done: `/intelligence`.** Ten trackers' cards are native `<details>`. The
-page went from 179,612 to 344,934 characters readable without JavaScript,
-and no click-to-reveal expander is left on it. InfluenceNetwork is the
-exception: its four expanders sit inside a region panel that exists only
-after a reader picks a region (React state again), so converting the
-expanders alone gives a no-JS reader nothing. The region picker has to
-become a list of regions, each one a `<details>`.
-
-Two rules came out of this batch, and tests enforce both:
-
-- **Open-state styling uses `summary-open:`, never `group-open:`.**
-  `group-open:` matches any open `.group` ancestor, so every card inside an
-  open section showed an "open" chevron, and closed case studies said
-  "Close the case ↑". `summary-open:` (tailwind.config.js) is
-  `details[open] > summary &`. Don't put `group` on a `<details>`: it also
-  made every `group-hover:` card in a section light up at once.
-  `DisclosureSection.test.tsx` fails on any `group-open:` in `src/`.
-- **Card checks must not pass on an empty list.** `cardsIn()` fails when a
-  section holds no cards, because `cardsIn(t).forEach(expect…)` passed on
-  the old components, which render no cards before a click. Local helpers
-  in the tracker tests do the same. Run each rewritten test file against
-  the old component (`git show <before>:src/components/X.tsx`) and expect
-  failures.
-
-**Done: `/education` and `/resources`, most of `/take-action`.** The
-human-rights organisation directory, the FAQ, the survivor stories, the
-video testimonies, the decade bars, the forced-labour company list and the
-international response tracker. Pre-rendered text: `/education` 87,289 →
-129,248, `/resources` 10,000 → 30,725, `/take-action` 78,929 → 106,369.
-The video testimonies' content-warning gate is a nested `<details>`: the
-warning still stands in front of the details and opening them is still a
-deliberate step, now without JavaScript.
-
-**Done: `/take-action` and `/`.** The five actions (only three showed
-until "$ show --all" was clicked), the petition details, the policy
-brief's sections, the home page's update feed (5 of 66 updates) and its
-notification feed (10 shown, the rest behind "Show all"). The survivor
-stories on `/education` opened in a modal that only JavaScript could
-render, with no focus handling and a close button named "✕"; each story is
-a `<details>` in its card now.
-
-**Done: `/directory` and `/data-sources`.** Each directory card was one
-`<button>` with the website link inside it (invalid HTML, and the links
-were not in the page without JavaScript); the insight, integrity,
-comparison, API-docs and changelog cards, and the embed preview, are
-`<details>` now. Pre-rendered text: `/directory` 9,814 → 12,150,
-`/data-sources` 29,007 → 65,973.
-
-**Left:** InfluenceNetwork only (its region picker, then four expanders
-inside the region panel). What stays by design: the header menus, the
-language picker, the onboarding guide, the letter generator's prisoner
-picker and the case-timeline combobox. They are controls, not hidden
-content.
-`cards_to_details.py` (session scratchpad) handles the multi-line chevron,
-`handleToggle` and `aria-controls` variants. It drops a body `id` that only
-served `aria-controls`, turns headings in a header into spans, and removes
-the expand state once nothing reads it. `scripts/prerender.mjs` fails the
-build on a `<summary>` holding block content or a nested heading.
-
----
-
 ## P10 — Text cut off at phone width
 
 **Size:** medium · **Value:** high (most readers are on phones) · **Risk:** low
@@ -365,7 +246,9 @@ as the raw enum "PENDING_INVESTIGATION" (also a wording bug); `/data-sources`
 file paths; the economic sector card's stats row, which has no `flex-wrap`.
 Icons in a flex row next to long text shrink unless they have
 `flex-shrink-0`: the /take-action action icons were squeezed to 13px wide
-(fixed); scan for others.
+(fixed); scan for others. Fixed in passing: the Influence Network's badge
+rows, its Most-Sanctioned list (badges over names, positions cut to
+"Vice ...") and its section icons (`89b2b5c`).
 Measure with an element-level check (each text element against its nearest
 clipping ancestor), fix by pattern (wrap, `break-words`, `min-w-0`), and
 compare the before and after lists.
@@ -404,3 +287,4 @@ compare the before and after lists.
 | Move deployment to Cloudflare Pages | Rejected — Workers with static assets is Cloudflare's recommendation; the official migration runs Pages → Workers. See §15. |
 | Eager page registry alone as the #418 fix | Reverted — made no-JS output strictly worse. The diagnosis behind it was wrong; see §17. |
 | **P1 — make every lazy component eager during pre-render** | **Done differently, and P1's premise was false.** The 41 deferred sections and React #418 had nothing to do with `React.lazy`. React outlines any Suspense boundary whose markup exceeds `progressiveChunkSize` (12,800 bytes by default), suspension or not. One option in `src/entry-server.tsx` fixed both. The full 120-site eager sweep P1 asked for was built and tested first: it changed the output by zero bytes. See §17. |
+| **P9 — Card expanders hide their details without JavaScript** | **Done.** Every card expander is a native `<details>` now, on every route: the 16 profiles, `/security`, `/prisoners`, `/intelligence`, `/education`, `/take-action`, `/`, `/resources`, `/directory` and `/data-sources`. Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain, and all are controls, not hidden content: the language picker (twice on each of the 27 routes), the letter generator's prisoner picker and the case-timeline combobox. Numbers, and the faults the conversions turned up, are in `docs/MODERNIZATION.md` §18; the rules for new disclosures are in `STYLE_GUIDE.md` §4. |

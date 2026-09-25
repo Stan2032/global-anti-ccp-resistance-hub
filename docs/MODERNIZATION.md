@@ -1028,6 +1028,13 @@ a native `<details>` that opens without any script.
   passed on the old components, which render no cards before a click: six
   such checks proved nothing. `cardsIn()` now fails on an empty section —
   `bf9198d`.
+- **Headings inside summaries.** A `<summary>` may hold phrasing content,
+  plus a heading only as its direct child. The conversions left 33 headings
+  nested inside summary layout spans (30 company names, 3 case names).
+  Browsers render that without complaint, so nothing showed.
+  `scripts/prerender.mjs` now fails the build on a summary that holds block
+  content or a nested heading. Run before the fix, it found exactly those 33,
+  plus 10 in a conversion then in progress — `ba05696`.
 
 ### Lessons
 
@@ -1052,7 +1059,7 @@ down. There were 941 on the pre-rendered pages. Opening each one on its own
 in Chromium, they hid **+55%** of the text on a profile page, **+94%** on
 `/security` and **+92%** on `/intelligence`. A first, bulk measurement said
 +2–5%, because single-open components close each card as the next opens.
-Each card becomes a native `<details>` (P9 in `_agents/PARKED_WORK.md`).
+Each card became a native `<details>` (P9, now closed in `_agents/PARKED_WORK.md`).
 Readable without JavaScript, every section open:
 
 | where | before | after |
@@ -1060,10 +1067,49 @@ Readable without JavaScript, every section open:
 | Jimmy Lai's profile (all 16 now share `ProfileTimeline`) | 6,719 | 11,803 — `638cf15` |
 | `/security` | ~38,400 | 74,930 — `50bbd04` |
 | `/prisoners` (prisoner rows, case files) | 16,645 | 66,659 — `7d1a4e7` |
-| `/intelligence` (ten trackers) | 179,612 | 344,934 — `170cbb6`, `68e2378` |
+| `/intelligence` (ten trackers, then the Influence Network) | 179,612 | 379,667 — `170cbb6`, `68e2378`, `89b2b5c` |
+| `/education` | 87,289 | 136,284 — `051592c`, `e9b4c47` |
+| `/take-action` | 78,929 | 109,629 — `051592c`, `e9b4c47` |
+| `/` (the update and notification feeds) | 11,565 | 45,781 — `e9b4c47` |
+| `/resources` | 10,000 | 30,725 — `051592c` |
+| `/directory` | 9,814 | 12,150 — `bf86398` |
+| `/data-sources` | 29,007 | 65,973 — `bf86398` |
 
-Left: 276 expanders on `/education`, `/data-sources`, `/take-action`,
-`/resources`, `/directory` and `/`, plus InfluenceNetwork's region picker,
-which has to change along with its expanders.
+None are left. Of the 941 `aria-expanded` elements in the pre-rendered
+pages, 56 remain, and all are controls, not hidden content: the language
+picker (twice on each of the 27 routes), the letter generator's prisoner
+picker and the case-timeline combobox.
+
+### What the conversions turned up
+
+Rewriting each component exposed faults that had nothing to do with
+JavaScript, and that no test had caught:
+
+- **Lists cut short.** The Influence Network's region sections listed 8 of
+  29 sanctions and 8 of 21 events without saying so, and 10 of 36 prisoners
+  with a "+ 26 more" that led nowhere: 76 entries no reader could see, with
+  JavaScript or without. Inside a closed `<details>` a cap saves no room, so
+  the caps are gone and each title's count matches its list — `89b2b5c`.
+- **Controls that did nothing.** A scan for buttons with no handler found
+  seven that did nothing for anyone. Among them: every headline in the live
+  feed carried a share and a bookmark icon with no handler and no name, and
+  the Activist Toolkit's 20 "Download" buttons pointed at `#`, because no
+  file was ever made (Q20). The share links on `/take-action` shared an
+  empty URL to every reader without JavaScript: the URL came from
+  `window.location`, which pre-rendering does not have — `6d686d2`.
+- **Invalid markup that looked fine.** Each directory card was a `<button>`
+  wrapping the organisation's website link, so the link was missing from the
+  page without JavaScript — `bf86398`. VictimStories opened each story in a
+  modal only JavaScript could render, with no focus handling and a close
+  button named "✕" — `e9b4c47`.
+- **A survivor's words replaced by a filter.** Both quotes attributed to
+  Tursunay Ziawudun had her words about sexual violence replaced with
+  "China", in an entry marked verified. They were removed rather than
+  rewritten from a secondary summary; Q19 asks for them word for word from
+  the BBC report — `461a6af`.
+- **Phone width.** In the Influence Network, sanction badges ran past the
+  card edge at 390px and overlapped officials' names, and positions were cut
+  to "Vice ...". Rows wrap now, and nothing there is truncated — `89b2b5c`.
+  The rest of this is P10.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

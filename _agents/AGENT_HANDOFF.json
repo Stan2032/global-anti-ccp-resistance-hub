@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "36.0",
-    "date": "2026-09-25T09:30:00Z",
+    "version": "37.0",
+    "date": "2026-09-25T22:10:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v34.0)",
+    "supersedes": "AGENT_HANDOFF.json (v36.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3693,
-    "test_files": 199,
+    "frontend_tests": 3690,
+    "test_files": 202,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 16,
@@ -857,21 +857,26 @@
       "P9 card expanders -> native <details> on all 16 profiles (638cf15), /security (50bbd04), /prisoners (7d1a4e7) and /intelligence (170cbb6, 68e2378); /intelligence readable without JS 179,612 -> 344,934 characters",
       "Open-state styling follows each disclosure's own <details>: summary-open: (details[open] > summary &) replaced group-open:, which made every card inside an open section look open (e030323)",
       "Skip links read 'Skip to main content', not the raw key 'skipToMain'; every t() key in src/ must resolve (33e7dec)",
-      "cardsIn() fails on a section with no cards, so a check over each card cannot pass on none (bf9198d)"
+      "cardsIn() fails on a section with no cards, so a check over each card cannot pass on none (bf9198d)",
+      "P9 finished: every card expander is a native <details> on /education, /resources, /take-action (051592c, e9b4c47), / (e9b4c47), /directory, /data-sources (bf86398) and the Influence Network on /intelligence (89b2b5c; /intelligence now 379,667 characters without JS). 56 aria-expanded elements remain in the pre-rendered pages, all controls (language picker, letter generator's prisoner picker, case-timeline combobox)",
+      "Influence Network sections list every entry their titles count: 76 entries had been cut off by caps, 42 of them silently (89b2b5c)",
+      "Dead controls fixed or removed: share links carried an empty URL without JS (now SITE_URL in src/utils/site.ts), 7 buttons with no handler, 20 toolkit downloads that never existed (6d686d2)",
+      "Tursunay Ziawudun's garbled quotes removed rather than rewritten from a secondary source (461a6af); Q19 asks for them verbatim"
     ],
     "build_guards_added": [
       "scripts/prerender.mjs fails when two form controls on one page share an accessible name",
-      "scripts/prerender.mjs fails when a page has a button with no accessible name"
+      "scripts/prerender.mjs fails when a page has a button with no accessible name",
+      "scripts/prerender.mjs fails when a <summary> holds block content or a heading that is not its direct child (ba05696)"
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
     "rules_added": [
       "Style an open state with summary-open:, never group-open: or a group class on a <details>. DisclosureSection.test.tsx fails on any group-open: in src/.",
       "Screenshot any state you change the look of, at phone width too. jsdom computes no CSS; the group-open bug passed every test and every text measurement.",
-      "Run each rewritten test file against the component as it was before (git show <commit>:path) and expect failures. Several expander tests had passed on an empty list."
+      "Run each rewritten test file against the component as it was before (git show <commit>:path) and expect failures. Several expander tests had passed on an empty list.",
+      "New disclosures follow STYLE_GUIDE.md section 4: native <details>, phrasing-only summaries, summary-open:, no capped lists, JS-only controls behind useBrowserValue"
     ],
     "next": [
-      "PARKED_WORK.md P9: 276 card expanders left (/education, /data-sources, /take-action, /resources, /directory, /) plus InfluenceNetwork's region picker",
-      "PARKED_WORK.md P10: text cut off at phone width (118 clipped text elements on four routes)",
+      "PARKED_WORK.md P10: text cut off at phone width (118 clipped text elements on four routes when counted; the Influence Network's have been fixed since)",
       "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
       "P7 content re-verification stays paused until the owner resumes it"
     ]
