@@ -35,7 +35,16 @@ export function expectDisclosureSections(titles: readonly string[]): void {
   expect(screen.queryAllByRole('tablist')).toHaveLength(0);
 }
 
-/** The collapsible cards inside a section: every <details> nested in it. */
+/**
+ * The collapsible cards inside a section: every <details> nested in it.
+ *
+ * Fails when there are none. A check run over each card, like
+ * `cardsIn(t).forEach(card => expect(...))`, would otherwise pass on a
+ * section that renders no cards at all: exactly what the old click-to-expand
+ * components did before a click.
+ */
 export function cardsIn(title: string): HTMLDetailsElement[] {
-  return [...disclosureFor(title).querySelectorAll('details')];
+  const cards = [...disclosureFor(title).querySelectorAll('details')];
+  expect(cards.length, `"${title}" renders its cards as <details>`).toBeGreaterThan(0);
+  return cards;
 }
