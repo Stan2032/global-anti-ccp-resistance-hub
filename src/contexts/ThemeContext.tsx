@@ -72,7 +72,16 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // saved choice. Nothing is stored until the reader picks a theme.
   const [savedTheme, setTheme] = useStoredString('resistance-hub-theme', THEMES.DARK);
   const theme = THEME_IDS.includes(savedTheme) ? savedTheme : THEMES.DARK;
-  const prefersDark = useSyncExternalStore(subscribeToColourScheme, systemPrefersDark, serverPrefersDark);
+  // Only the "system" theme follows the reader's colour scheme, so only it
+  // reads one. Reading it for every theme put the client at odds with the
+  // pre-rendered HTML (which assumes dark) for every reader whose system is
+  // light: the re-render after hydration reached each page before its code
+  // had loaded, and React replaced the page with its loading screen.
+  const prefersDark = useSyncExternalStore(
+    subscribeToColourScheme,
+    theme === THEMES.SYSTEM ? systemPrefersDark : serverPrefersDark,
+    serverPrefersDark,
+  );
   const resolvedTheme: string = theme === THEMES.SYSTEM
     ? (prefersDark ? THEMES.DARK : THEMES.LIGHT)
     : theme;

@@ -19,6 +19,7 @@ import NotificationCenter from '../components/NotificationCenter';
 import { ThemeProvider, ThemeToggle } from '../contexts/ThemeContext';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { useLanguage } from '../contexts/languageUtils';
+import { useTheme } from '../contexts/themeUtils';
 import alertsData from '../data/emergency_alerts.json';
 
 function ShowLanguage() {
@@ -114,6 +115,50 @@ describe('returning visitors hydrate without a mismatch', () => {
     expect(html).toContain('>en<');
     expect(container.textContent).toBe('ug');
     expect(document.documentElement.dir).toBe('rtl');
+  });
+});
+
+describe('a first-time reader: nothing above the page changes after hydration', () => {
+  // Pages load their code lazily. An update from above that reaches a page
+  // still waiting for its code makes React throw the pre-rendered page away
+  // and show the loading screen until the code arrives. The theme did that
+  // for every reader whose system is light: it read their colour scheme,
+  // which HTML built as dark cannot know, although the default theme never
+  // uses it. On a slow connection the loading screen stayed for seconds.
+  it.each([
+    ['light', false],
+    ['dark', true],
+  ])('the providers render the page once, on a system that prefers %s', async (_scheme, prefersDark) => {
+    const original = window.matchMedia;
+    window.matchMedia = ((query: string) => ({
+      matches: query === '(prefers-color-scheme: dark)' ? prefersDark : false,
+      media: query,
+      addEventListener() {},
+      removeEventListener() {},
+    })) as unknown as typeof window.matchMedia;
+    try {
+      let renders = 0;
+      function Page() {
+        useTheme();
+        useLanguage();
+        renders++;
+        return <p>page</p>;
+      }
+      const tree = <LanguageProvider><ThemeProvider><Page /></ThemeProvider></LanguageProvider>;
+      localStorage.clear();
+      const html = renderToString(tree);
+      container = document.createElement('div');
+      container.innerHTML = html;
+      document.body.appendChild(container);
+      renders = 0;
+      await act(async () => {
+        root = hydrateRoot(container!, tree);
+      });
+      expect(renders).toBe(1);
+      expect(document.documentElement.className).toContain('theme-dark');
+    } finally {
+      window.matchMedia = original;
+    }
   });
 });
 

@@ -13,18 +13,22 @@ import { useLanguage } from '../contexts/languageUtils';
  * SkipLinks — Provides keyboard users with quick navigation to main content areas.
  * Uses i18n translations (8 languages) and terminal design system colors.
  *
- * @returns {React.ReactElement} Skip-link navigation (sr-only until focused)
+ * @returns {React.ReactElement} Skip-link navigation (each link out of view until focused)
  */
-const SKIP_LINK_CLASSES = 'fixed top-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
+// Each link waits just above the top edge and slides into view while it has
+// focus, so only one shows at a time. Shown together, they overlapped, and
+// at phone width the second ran off the screen.
+const SKIP_LINK_CLASSES = 'fixed top-0 left-0 z-[100] -translate-y-full focus:translate-y-0 bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
 
 export const SkipLinks = () => {
   const { t } = useLanguage();
   return (
-    <div className="sr-only focus-within:not-sr-only">
-      <a href="#main-content" className={`${SKIP_LINK_CLASSES} left-0`}>
+    <div>
+      <a href="#main-content" className={SKIP_LINK_CLASSES}>
         {t('accessibility.skipToMain')}
       </a>
-      <a href="#navigation" className={`${SKIP_LINK_CLASSES} left-52`}>
+      {/* Its target, the sidebar, only exists from the lg breakpoint up. */}
+      <a href="#navigation" className={`${SKIP_LINK_CLASSES} hidden lg:block`}>
         {t('accessibility.skipToNav')}
       </a>
     </div>

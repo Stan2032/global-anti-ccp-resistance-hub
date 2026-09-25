@@ -340,7 +340,7 @@ function AppLayout() {
       </div>
       
       {/* Main Content */}
-      <main id="main-content" className="lg:pl-56" role="main" aria-label="Main content">
+      <main id="main-content" tabIndex={-1} className="lg:pl-56" role="main" aria-label="Main content">
         {/* Desktop Header — terminal command bar */}
         <header className="hidden lg:flex items-center justify-between h-14 px-8 bg-[#111820]/90 border-b border-[#1c2a35] sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">

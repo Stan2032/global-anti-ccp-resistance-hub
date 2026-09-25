@@ -177,4 +177,11 @@ describe('Accessibility compliance', () => {
     // Should have a skip link or anchor that targets #main-content
     expect(appContent).toContain('main-content');
   });
+
+  it('the skip link\u2019s target can take focus: <main> has tabIndex -1', () => {
+    const appContent = readFileSync(resolve(SRC_DIR, 'App.tsx'), 'utf-8');
+    // Without it, following "Skip to main content" moves no focus, and until
+    // September 2026 only a script that ran after page load supplied it.
+    expect(appContent).toMatch(/<main id="main-content" tabIndex=\{-1\}/);
+  });
 });
