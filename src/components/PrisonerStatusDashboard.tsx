@@ -7,7 +7,7 @@
  * @module PrisonerStatusDashboard
  */
 import React, { useMemo, useState } from 'react';
-import { Copy, Check, AlertTriangle, Heart, Clock, Users, Eye, ChevronDown, ChevronUp, Shield } from 'lucide-react';
+import { Copy, Check, AlertTriangle, Heart, Clock, Users, Eye, ChevronDown, Shield } from 'lucide-react';
 import { dataApi, type PoliticalPrisoner } from '../services/dataApi';
 
 /** Style configuration for a single prisoner status category. */
@@ -84,7 +84,6 @@ export default function PrisonerStatusDashboard() {
   const [copied, setCopied] = useState(false);
   const [statusFilter, setStatusFilter] = useState('all');
   const [healthFilter, setHealthFilter] = useState('all');
-  const [expanded, setExpanded] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState('urgency');
 
   const analysis = useMemo(() => {
@@ -417,81 +416,71 @@ export default function PrisonerStatusDashboard() {
         <div className="space-y-2">
           {filtered.map((p, idx) => {
             const healthConf = getHealthConfig(p.healthClass);
-            const isExpanded = expanded === idx;
             return (
-              <div key={p.prisoner_name || idx} className={`border ${p.statusConf.border} bg-[#0a0e14] transition-colors`}>
-                <button
-                  onClick={() => setExpanded(isExpanded ? null : idx)}
-                  className="w-full text-left p-3 flex items-center justify-between"
-                  aria-expanded={isExpanded}
-                >
-                  <div className="flex items-center space-x-3 flex-1 min-w-0">
+              <details key={p.prisoner_name || idx} className={`group border ${p.statusConf.border} bg-[#0a0e14] transition-colors`}>
+                <summary className="w-full text-left p-3 flex items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-center space-x-3 flex-1 min-w-0">
                     <span className="text-sm" aria-hidden="true">{healthConf.icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center space-x-2 flex-wrap">
+                    <span className="block flex-1 min-w-0">
+                      <span className="flex items-center space-x-2 flex-wrap">
                         <span className="text-white font-mono text-sm font-bold truncate">{p.prisoner_name || 'Unknown'}</span>
                         <span className={`text-xs font-mono px-1.5 py-0.5 ${p.statusConf.bg} ${p.statusConf.color}`}>
                           {p.statusConf.label}
                         </span>
                         <span className="text-xs text-slate-400">{p.region}</span>
-                      </div>
+                      </span>
                       {p.location && (
-                        <div className="text-xs text-slate-400 truncate">{p.location}</div>
+                        <span className="block text-xs text-slate-400 truncate">{p.location}</span>
                       )}
+                    </span>
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-3 pb-3 space-y-2 border-t border-[#1c2a35]">
+                  {p.sentence && (
+                    <div className="pt-2">
+                      <span className="text-slate-400 text-xs">Sentence:</span>
+                      <p className="text-slate-300 text-sm">{p.sentence}</p>
                     </div>
-                  </div>
-                  {isExpanded
-                    ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-                </button>
-
-                {isExpanded && (
-                  <div className="px-3 pb-3 space-y-2 border-t border-[#1c2a35]">
-                    {p.sentence && (
-                      <div className="pt-2">
-                        <span className="text-slate-400 text-xs">Sentence:</span>
-                        <p className="text-slate-300 text-sm">{p.sentence}</p>
-                      </div>
-                    )}
-                    {p.health_status && (
-                      <div>
-                        <span className="text-slate-400 text-xs">Health Status:</span>
-                        <p className={`text-sm ${healthConf.color}`}>{p.health_status}</p>
-                      </div>
-                    )}
-                    {p.latest_news && (
-                      <div>
-                        <span className="text-slate-400 text-xs">Latest Update:</span>
-                        <p className="text-slate-300 text-sm">{p.latest_news}</p>
-                      </div>
-                    )}
-                    {p.international_response && (
-                      <div>
-                        <span className="text-slate-400 text-xs">International Response:</span>
-                        <p className="text-slate-300 text-sm">{p.international_response}</p>
-                      </div>
-                    )}
-                    {p.source_url && (
-                      <div className="pt-1">
-                        <a
-                          href={p.source_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#22d3ee] text-xs hover:underline font-mono"
-                        >
-                          $ view_source →
-                        </a>
-                      </div>
-                    )}
-                    {!!p.confidence && (
-                      <div className="flex items-center space-x-1 pt-1">
-                        <Shield className="w-3 h-3 text-slate-400" aria-hidden="true" />
-                        <span className="text-xs text-slate-400">Confidence: {String(p.confidence)}</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+                  )}
+                  {p.health_status && (
+                    <div>
+                      <span className="text-slate-400 text-xs">Health Status:</span>
+                      <p className={`text-sm ${healthConf.color}`}>{p.health_status}</p>
+                    </div>
+                  )}
+                  {p.latest_news && (
+                    <div>
+                      <span className="text-slate-400 text-xs">Latest Update:</span>
+                      <p className="text-slate-300 text-sm">{p.latest_news}</p>
+                    </div>
+                  )}
+                  {p.international_response && (
+                    <div>
+                      <span className="text-slate-400 text-xs">International Response:</span>
+                      <p className="text-slate-300 text-sm">{p.international_response}</p>
+                    </div>
+                  )}
+                  {p.source_url && (
+                    <div className="pt-1">
+                      <a
+                        href={p.source_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#22d3ee] text-xs hover:underline font-mono"
+                      >
+                        $ view_source →
+                      </a>
+                    </div>
+                  )}
+                  {!!p.confidence && (
+                    <div className="flex items-center space-x-1 pt-1">
+                      <Shield className="w-3 h-3 text-slate-400" aria-hidden="true" />
+                      <span className="text-xs text-slate-400">Confidence: {String(p.confidence)}</span>
+                    </div>
+                  )}
+                </div>
+              </details>
             );
           })}
         </div>

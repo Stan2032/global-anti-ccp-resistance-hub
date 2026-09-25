@@ -277,10 +277,19 @@ scratchpad converted WhistleblowerGuide mechanically. The rule it follows:
 <div>s inside a <summary> become <span>s, since a summary may hold only
 phrasing content, with `block` added where the div had no display class.
 
-**Left:** 602 expanders outside the header and nav. By route: `/intelligence`
-262, `/education` 92, `/data-sources` 77, `/prisoners` 64, `/take-action`
-42, `/resources` 30, `/directory` 24, `/` 11. Suggested order: `/prisoners`,
-then the `/intelligence` trackers.
+**Done: `/prisoners`.** Each row in the prisoner list (sentence, health,
+latest update, international response, source) is a native `<details>`.
+The case-study deep dives, which opened only through a JavaScript click
+that swapped the grid for a detail view, are now one `<details>` per case
+with the full case file inside. The page went from 16,645 to 66,659
+characters readable without JavaScript. CaseTimelineViewer's
+`aria-expanded` sits on a combobox (a searchable prisoner picker), not a
+content expander, and stays: showing every prisoner's full timeline at
+once would be the wrong fix, and the list above it now carries each case.
+
+**Left:** 538 expanders outside the header and nav. By route: `/intelligence`
+262, `/education` 92, `/data-sources` 77, `/take-action` 42, `/resources`
+30, `/directory` 24, `/` 11. Next: the `/intelligence` trackers.
 
 ---
 
