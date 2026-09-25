@@ -8,10 +8,10 @@
  *
  * @module NotificationCenter
  */
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, ChevronUp, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
-import { readStoredValue } from '../utils/ssr';
+import { useStoredJson } from '../utils/ssr';
 
 // ── Types ───────────────────────────────────────────────
 
@@ -29,6 +29,8 @@ interface NotificationItem {
 }
 
 type NotificationPrefs = Record<CategoryKey, boolean>;
+
+const DEFAULT_PREFS: NotificationPrefs = { critical: true, sanctions: true, data: true, action: true };
 
 // ── Notification categories ─────────────────────────────
 
@@ -160,23 +162,11 @@ export default function NotificationCenter() {
   const [expandedId, setExpandedId] = useState('');
   const [copied, setCopied] = useState(false);
 
-  // Notification preferences (stored in localStorage)
-  const [prefs, setPrefs] = useState<NotificationPrefs>(() => {
-    try {
-      const saved = readStoredValue('notification-prefs');
-      return saved ? JSON.parse(saved) : { critical: true, sanctions: true, data: true, action: true };
-    } catch {
-      return { critical: true, sanctions: true, data: true, action: true };
-    }
-  });
+  // Notification preferences, saved only once the reader changes one.
+  const [prefs, setPrefs] = useStoredJson<NotificationPrefs>('notification-prefs', DEFAULT_PREFS);
 
   const [permissionStatus, setPermissionStatus] = useState(getNotificationPermission);
   const swSupported = isServiceWorkerSupported();
-
-  // Persist prefs
-  useEffect(() => {
-    try { localStorage.setItem('notification-prefs', JSON.stringify(prefs)); } catch { /* noop */ }
-  }, [prefs]);
 
   const notifications = useMemo(() => buildNotificationFeed(), []);
 
@@ -208,7 +198,7 @@ export default function NotificationCenter() {
 
   const togglePref = useCallback((cat: CategoryKey) => {
     setPrefs((prev: NotificationPrefs) => ({ ...prev, [cat]: !prev[cat] }));
-  }, []);
+  }, [setPrefs]);
 
   const requestPermission = useCallback(async () => {
     if (!('Notification' in window)) return;

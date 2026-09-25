@@ -35,6 +35,22 @@ export function readStoredValue(key: string, fallback: string | null = null): st
 }
 
 /**
+ * Write a localStorage key, or remove it when `value` is null. Never throws:
+ * where storage is blocked or full, the write is skipped. Blocking site data
+ * makes every storage access throw, and one unguarded access on the render
+ * path is enough to replace the whole page with the error screen.
+ */
+export function writeStoredValue(key: string, value: string | null): void {
+  if (!isBrowser) return;
+  try {
+    if (value === null) localStorage.removeItem(key);
+    else localStorage.setItem(key, value);
+  } catch {
+    // Storage blocked or full: nothing more to do.
+  }
+}
+
+/**
  * Evaluate a media query, returning `fallback` when it cannot be evaluated.
  *
  * During pre-rendering there is no viewport to match against, so callers get

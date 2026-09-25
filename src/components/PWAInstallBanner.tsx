@@ -8,7 +8,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
-import { isBrowser, readStoredValue, matchesMediaQuery } from '../utils/ssr';
+import { isBrowser, readStoredValue, matchesMediaQuery, writeStoredValue } from '../utils/ssr';
 
 /** Browser event fired when the app is eligible for PWA installation */
 interface BeforeInstallPromptEvent extends Event {
@@ -106,7 +106,7 @@ export default function PWAInstallBanner() {
   const handleDismiss = () => {
     setShowBanner(false);
     setDismissed(true);
-    localStorage.setItem('pwa-banner-dismissed', Date.now().toString());
+    writeStoredValue('pwa-banner-dismissed', Date.now().toString());
   };
 
   // Don't show if already installed, dismissed, or no prompt available (except iOS)

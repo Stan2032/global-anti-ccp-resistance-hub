@@ -15,8 +15,15 @@ import { hydrateRoot, type Root } from 'react-dom/client';
 import SafetyChecklist from '../components/SafetyChecklist';
 import EmergencyAlerts from '../components/EmergencyAlerts';
 import MemorialWall from '../components/MemorialWall';
+import NotificationCenter from '../components/NotificationCenter';
 import { ThemeProvider, ThemeToggle } from '../contexts/ThemeContext';
+import { LanguageProvider } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/languageUtils';
 import alertsData from '../data/emergency_alerts.json';
+
+function ShowLanguage() {
+  return <span data-testid="language">{useLanguage().language}</span>;
+}
 
 let root: Root | null = null;
 let container: HTMLElement | null = null;
@@ -28,6 +35,7 @@ afterEach(() => {
   container = null;
   localStorage.clear();
   document.documentElement.className = '';
+  document.documentElement.dir = '';
   vi.restoreAllMocks();
 });
 
@@ -96,6 +104,17 @@ describe('returning visitors hydrate without a mismatch', () => {
     const expected = theme === 'system' ? /theme-(dark|light)/ : new RegExp(`theme-${theme}`);
     expect(document.documentElement.className).toMatch(expected);
   });
+
+  it('the language, saved as Uyghur (right to left)', async () => {
+    const tree = <LanguageProvider><ShowLanguage /></LanguageProvider>;
+    const { html, recoverable, hydrationWarnings, container } =
+      await hydrateAsReturningVisitor(tree, { language: 'ug' });
+    expect(recoverable).toEqual([]);
+    expect(hydrationWarnings).toEqual([]);
+    expect(html).toContain('>en<');
+    expect(container.textContent).toBe('ug');
+    expect(document.documentElement.dir).toBe('rtl');
+  });
 });
 
 describe('nothing is stored for a reader who only reads', () => {
@@ -108,15 +127,57 @@ describe('nothing is stored for a reader who only reads', () => {
     await act(async () => {
       root = createRoot(container!);
       root.render(
-        <ThemeProvider>
-          <ThemeToggle />
-          <SafetyChecklist />
-          <EmergencyAlerts />
-          <MemorialWall />
-        </ThemeProvider>,
+        <LanguageProvider>
+          <ThemeProvider>
+            <ThemeToggle />
+            <SafetyChecklist />
+            <EmergencyAlerts />
+            <MemorialWall />
+            <NotificationCenter />
+          </ThemeProvider>
+        </LanguageProvider>,
       );
     });
     expect(setItem).not.toHaveBeenCalled();
     expect(localStorage.length).toBe(0);
+  });
+});
+
+describe('blocked storage', () => {
+  // "Block all site data" makes every access to localStorage throw. One
+  // unguarded access at the root used to replace every page with the error
+  // screen.
+  it('the app shell and these components still render, and still work', async () => {
+    const own = Object.getOwnPropertyDescriptor(window, 'localStorage');
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get() { throw new DOMException('The operation is insecure.', 'SecurityError'); },
+    });
+    try {
+      // Fresh module instances, so the in-memory fallback cannot leak into
+      // other tests.
+      vi.resetModules();
+      const { LanguageProvider: Language } = await import('../contexts/LanguageContext');
+      const { ThemeProvider: Theme, ThemeToggle: Toggle } = await import('../contexts/ThemeContext');
+      const { default: Checklist } = await import('../components/SafetyChecklist');
+      const { createRoot } = await import('react-dom/client');
+
+      container = document.createElement('div');
+      document.body.appendChild(container);
+      await act(async () => {
+        root = createRoot(container!);
+        root.render(<Language><Theme><Toggle /><Checklist /></Theme></Language>);
+      });
+      expect(container.textContent).toContain('Digital Security');
+
+      // Ticking an item works for the rest of the visit, held in memory.
+      const box = container.querySelector<HTMLElement>('[role="checkbox"][aria-label="Use a VPN"]');
+      expect(box, 'the "Use a VPN" checkbox').toBeTruthy();
+      await act(async () => { box!.click(); });
+      expect(box!.getAttribute('aria-checked')).toBe('true');
+    } finally {
+      if (own) Object.defineProperty(window, 'localStorage', own);
+      else delete (window as unknown as Record<string, unknown>).localStorage;
+    }
   });
 });

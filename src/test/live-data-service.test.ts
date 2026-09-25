@@ -162,6 +162,15 @@ describe('RSS feeds go through our own Worker', () => {
     }
   });
 
+  it('fetched headlines are never cached in browser storage', () => {
+    // They would outlast the visit on the reader's device. The cache is in
+    // memory; the Worker's edge cache makes refetches cheap.
+    const code = read('../data/liveDataSources.ts')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '');
+    expect(code).not.toMatch(/localStorage|sessionStorage/);
+  });
+
   it('both feed consumers call the same-origin endpoint', () => {
     expect(read('../services/liveDataService.ts')).toContain('/api/v1/feed?source=');
     expect(read('../data/liveDataSources.ts')).toContain('/api/v1/feed?source=');

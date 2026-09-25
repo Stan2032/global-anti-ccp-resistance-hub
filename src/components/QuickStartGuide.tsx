@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
-import { isBrowser, readStoredValue, useBrowserValue } from '../utils/ssr';
+import { isBrowser, readStoredValue, useBrowserValue, writeStoredValue } from '../utils/ssr';
 
 const QuickStartGuide = () => {
   // The tour must never appear in pre-rendered HTML: a reader with
@@ -92,14 +92,14 @@ const QuickStartGuide = () => {
     if (!completedSteps.includes(stepId)) {
       const newCompleted = [...completedSteps, stepId];
       setCompletedSteps(newCompleted);
-      localStorage.setItem('quickStartCompleted', JSON.stringify(newCompleted));
+      writeStoredValue('quickStartCompleted', JSON.stringify(newCompleted));
     }
   };
 
   const dismissGuide = () => {
     setDismissed(true);
     setIsOpen(false);
-    localStorage.setItem('quickStartDismissed', 'true');
+    writeStoredValue('quickStartDismissed', 'true');
   };
 
   const _resetGuide = () => {
@@ -107,8 +107,8 @@ const QuickStartGuide = () => {
     setIsOpen(true);
     setCurrentStep(0);
     setCompletedSteps([]);
-    localStorage.removeItem('quickStartDismissed');
-    localStorage.removeItem('quickStartCompleted');
+    writeStoredValue('quickStartDismissed', null);
+    writeStoredValue('quickStartCompleted', null);
   };
 
   const nextStep = () => {
@@ -252,7 +252,7 @@ export const HelpMenu = () => {
       description: 'New here? Take a quick tour',
       Icon: Rocket,
       action: () => {
-        localStorage.removeItem('quickStartDismissed');
+        writeStoredValue('quickStartDismissed', null);
         window.location.reload();
       },
     },

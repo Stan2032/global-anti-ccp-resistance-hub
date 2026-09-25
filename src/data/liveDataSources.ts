@@ -124,41 +124,27 @@ const fetchFeedBySource = async (sourceKey: string): Promise<FeedItem[]> => {
   }
 };
 
-// Cache for RSS feed data (5 minute cache)
-const RSS_CACHE_KEY = 'rss_feed_cache';
+// Feed results are cached in memory for five minutes: long enough to cover
+// moving between pages, and gone when the tab closes. They are deliberately
+// not written to localStorage. Headlines about repression left in storage
+// outlast the visit on the reader's device, which matters more to this site's
+// readers than a refetch does; the Worker's edge cache makes refetches cheap.
 const RSS_CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+let feedCache: { data: FeedData; timestamp: number } | null = null;
 
 const getCachedFeeds = (): FeedData | null => {
-  try {
-    const cached = localStorage.getItem(RSS_CACHE_KEY);
-    if (!cached) return null;
-    
-    const { data, timestamp } = JSON.parse(cached) as { data: FeedData; timestamp: number };
-    const age = Date.now() - timestamp;
-    
-    if (age < RSS_CACHE_DURATION) {
-      logger.debug('cache', `Using cached RSS data (${Math.round(age / 1000)}s old)`);
-      return data;
-    }
-    
-    // Cache expired
-    localStorage.removeItem(RSS_CACHE_KEY);
-    return null;
-  } catch (error) {
-    logger.error('cache', 'Error reading RSS cache:', error);
-    return null;
+  if (!feedCache) return null;
+  const age = Date.now() - feedCache.timestamp;
+  if (age < RSS_CACHE_DURATION) {
+    logger.debug('cache', `Using cached RSS data (${Math.round(age / 1000)}s old)`);
+    return feedCache.data;
   }
+  feedCache = null;
+  return null;
 };
 
 const setCachedFeeds = (data: FeedData): void => {
-  try {
-    localStorage.setItem(RSS_CACHE_KEY, JSON.stringify({
-      data,
-      timestamp: Date.now()
-    }));
-  } catch (error) {
-    logger.error('cache', 'Error caching RSS data:', error);
-  }
+  feedCache = { data, timestamp: Date.now() };
 };
 
 // Data aggregation and processing functions

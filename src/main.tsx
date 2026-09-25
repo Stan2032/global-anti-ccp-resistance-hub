@@ -4,6 +4,7 @@ import './index.css'
 import './styles/print.css'
 import App from './App'
 import { logger } from './utils/logger'
+import { readStoredValue, writeStoredValue } from './utils/ssr'
 
 const root = document.getElementById('root')!
 
@@ -41,4 +42,27 @@ if ('serviceWorker' in navigator) {
       logger.warn('sw', 'Service worker registration failed:', error)
     })
   })
+}
+
+/*
+ * Tidy what earlier versions left in the reader's browser storage.
+ *
+ * They wrote these keys on every visit, whether or not the reader had chosen
+ * anything, and cached fetched headlines. A key holding only the default
+ * records no choice, only that this site was visited, so it goes. The
+ * headline cache should never have been stored at all. A real choice — a
+ * light theme, a ticked checklist item — is left alone.
+ *
+ * Safe to delete once returning readers have had time to visit again.
+ */
+const LEFT_BY_EARLIER_VERSIONS: Record<string, string | null> = {
+  rss_feed_cache: null, // whatever it holds
+  'resistance-hub-theme': 'dark',
+  language: 'en',
+  safetyChecklist: '[]',
+  dismissedAlerts: '[]',
+  'notification-prefs': '{"critical":true,"sanctions":true,"data":true,"action":true}',
+}
+for (const [key, onlyIfEquals] of Object.entries(LEFT_BY_EARLIER_VERSIONS)) {
+  if (onlyIfEquals === null || readStoredValue(key) === onlyIfEquals) writeStoredValue(key, null)
 }

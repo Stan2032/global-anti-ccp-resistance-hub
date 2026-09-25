@@ -1,25 +1,23 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { translations, LanguageContext } from './languageUtils';
 import enTranslations from '../locales/en.json';
+import { useStoredString } from '../utils/ssr';
 
 /**
  * LanguageProvider — wraps the app tree with i18n translation context.
  *
- * Persists language preference to localStorage.
+ * Remembers an explicit language choice in localStorage.
  * Sets document direction (LTR/RTL) based on selected language.
  * Provides a `t(key)` function for dot-path translations with English fallback.
  */
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState(() => {
-    // Check localStorage for saved preference
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || 'en';
-    }
-    return 'en';
-  });
+  // Hydrates in English, like the pre-rendered HTML, then applies the
+  // reader's saved choice. Nothing is stored until the reader picks one, and
+  // blocked storage cannot take the app down from here.
+  const [savedLanguage, setLanguage] = useStoredString('language', 'en');
+  const language = translations[savedLanguage] ? savedLanguage : 'en';
 
   useEffect(() => {
-    localStorage.setItem('language', language);
     // Set RTL if needed
     if (translations[language]?.rtl) {
       document.documentElement.dir = 'rtl';
