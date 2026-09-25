@@ -4,15 +4,25 @@
  *
  * @module JimmyLaiProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart
+  User,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  ChevronDown,
+  Globe,
+  FileText,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Heart,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -271,8 +281,6 @@ const categoryLabels = {
 };
 
 export default function JimmyLaiProfile() {
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
-  const [showAllNarratives, setShowAllNarratives] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -337,47 +345,11 @@ export default function JimmyLaiProfile() {
             </div>
 
             <div className="space-y-3">
-              {TIMELINE.map((event, i) => (
-                <button
-                  type="button"
-                  key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r text-left w-full ${categoryColors[event.category]} hover:bg-[#111820]/50`}
-                  onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                  aria-expanded={expandedEvent === i}
-                  aria-label={`${event.year}: ${event.title}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-400 font-mono min-w-[60px]">{event.year}</span>
-                        <h3 className="font-medium text-sm">{event.title}</h3>
-                      </div>
-                      {expandedEvent === i && (
-                        <div className="mt-2 text-sm text-slate-300 leading-relaxed">
-                          <p>{event.detail}</p>
-                          {event.source && (
-                            <a
-                              href={event.source}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Source
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    {expandedEvent === i ? (
-                      <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    )}
-                  </div>
-                </button>
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => ({
+                year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+                label: categoryLabels[event.category as keyof typeof categoryLabels],
+                tone: categoryColors[event.category],
+              }))} />
             </div>
           </section>
         </DisclosureSection>
@@ -453,7 +425,7 @@ export default function JimmyLaiProfile() {
             </p>
 
             <div className="space-y-4">
-              {(showAllNarratives ? CCP_NARRATIVES : CCP_NARRATIVES.slice(0, 2)).map((item, i) => (
+              {CCP_NARRATIVES.slice(0, 2).map((item, i) => (
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
                   <div className="bg-red-900/20 px-4 py-2 border-b border-[#1c2a35]">
                     <span className="text-xs text-red-400 font-bold uppercase">CCP Claim</span>
@@ -475,16 +447,37 @@ export default function JimmyLaiProfile() {
             </div>
 
             {CCP_NARRATIVES.length > 2 && (
-              <button
-                onClick={() => setShowAllNarratives(!showAllNarratives)}
-                className="mt-3 text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
-              >
-                {showAllNarratives ? (
-                  <>Show less <ChevronUp className="w-4 h-4" /></>
-                ) : (
-                  <>Show {CCP_NARRATIVES.length - 2} more narratives <ChevronDown className="w-4 h-4" /></>
-                )}
-              </button>
+              <details className="group mt-3">
+                <summary
+                  className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white cursor-pointer
+                             list-none [&::-webkit-details-marker]:hidden"
+                >
+                  <span className="group-open:hidden">Show {CCP_NARRATIVES.length - 2} more narratives</span>
+                  <span className="hidden group-open:inline">Show fewer</span>
+                  <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="space-y-4 mt-3">
+                  {CCP_NARRATIVES.slice(2).map((item, i) => (
+                    <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+                      <div className="bg-red-900/20 px-4 py-2 border-b border-[#1c2a35]">
+                        <span className="text-xs text-red-400 font-bold uppercase">CCP Claim</span>
+                        <p className="text-sm text-red-300 mt-1">{item.claim}</p>
+                      </div>
+                      <div className="px-4 py-3">
+                        <span className="text-xs text-emerald-400 font-bold uppercase">Reality</span>
+                        <p className="text-sm text-slate-300 mt-1">{item.reality}</p>
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {item.sources.map((src) => (
+                            <span key={src} className="text-xs px-2 py-0.5 bg-[#111820] text-slate-400 rounded">
+                              {src}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </details>
             )}
           </section>
         </DisclosureSection>

@@ -260,8 +260,19 @@ announced correctly without any ARIA, and a find-in-page match opens it.
 Single-open behaviour goes away, which is fine: it existed to save space,
 and a closed `<details>` takes no more room than a closed card.
 
-Suggested order, by what readers come for: the 16 profile timelines, then
-`/security`, then `/prisoners`, then the `/intelligence` trackers.
+**Done: all 16 profile pages.** They now share `ProfileTimeline`, which
+replaced three hand-rolled variants: each event is a native `<details>`, and
+"Expand all" renders only once JavaScript runs. The "Show N more narratives"
+toggle on two profiles is a `<details>` too. No profile holds React state
+any more, and `profile-pages.test.tsx` fails if an `aria-expanded` control
+returns. Jimmy Lai's page went from 6,719 to 11,803 characters readable
+without JavaScript.
+
+**Left:** 675 expanders outside the header and nav. By route: `/intelligence`
+262, `/education` 92, `/data-sources` 77, `/security` 73, `/prisoners` 64,
+`/take-action` 42, `/resources` 30, `/directory` 24, `/` 11. Suggested
+order, by what readers come for: `/security`, `/prisoners`, then the
+`/intelligence` trackers.
 
 ---
 

@@ -5,14 +5,26 @@
  *
  * @module PanchenLamaProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Eye
+  User,
+  MapPin,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Newspaper,
+  Flag,
+  Heart,
+  Eye,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -269,7 +281,6 @@ const categoryLabels = {
 };
 
 export default function PanchenLamaProfile() {
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -348,47 +359,11 @@ export default function PanchenLamaProfile() {
             </div>
 
             <div className="space-y-3">
-              {TIMELINE.map((event, i) => (
-                <button
-                  type="button"
-                  key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r text-left w-full ${categoryColors[event.category]} hover:bg-[#111820]/50`}
-                  onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                  aria-expanded={expandedEvent === i}
-                  aria-label={`${event.year}: ${event.title}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-400 font-mono min-w-[60px]">{event.year}</span>
-                        <h3 className="font-medium text-sm">{event.title}</h3>
-                      </div>
-                      {expandedEvent === i && (
-                        <div className="mt-2 text-sm text-slate-300 leading-relaxed">
-                          <p>{event.detail}</p>
-                          {event.source && (
-                            <a
-                              href={event.source}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Source
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    {expandedEvent === i ? (
-                      <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    )}
-                  </div>
-                </button>
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => ({
+                year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+                label: categoryLabels[event.category as keyof typeof categoryLabels],
+                tone: categoryColors[event.category],
+              }))} />
             </div>
           </section>
         </DisclosureSection>

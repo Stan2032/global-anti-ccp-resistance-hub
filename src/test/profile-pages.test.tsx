@@ -146,6 +146,29 @@ describe('Profile Pages — Accessibility', () => {
     });
   });
 
+  it('no profile hides content behind a JavaScript-only expander', () => {
+    // The same failure one level down: a button with aria-expanded renders its
+    // panel only after a click, so timeline details, their sources and extra
+    // narratives never reached a reader with JavaScript off. Everything on a
+    // profile opens natively now.
+    PROFILES.forEach(({ Component, name }) => {
+      const { container, unmount } = renderWithRouter(<Component />);
+      expect(container.querySelectorAll('[aria-expanded]').length, `${name}: still has a JS-only expander`).toBe(0);
+      unmount();
+    });
+  });
+
+  it('every timeline event carries its detail and source without a click', () => {
+    PROFILES.forEach(({ Component, name }) => {
+      const { container, unmount } = renderWithRouter(<Component />);
+      const events = container.querySelectorAll('ol > li > details');
+      expect(events.length, `${name}: no timeline events`).toBeGreaterThanOrEqual(8);
+      const sourced = [...events].filter(d => d.querySelector('a[href^="http"]'));
+      expect(sourced.length, `${name}: timeline events carry no sources`).toBeGreaterThan(0);
+      unmount();
+    });
+  });
+
   it('all profiles include a GlobalDisclaimer', () => {
     PROFILES.forEach(({ Component, name }) => {
       const { unmount } = renderWithRouter(<Component />);

@@ -1031,6 +1031,8 @@ down. There are 941 on the pre-rendered pages. Opening each one on its own
 in Chromium, they hide **+55%** of the text on a profile page, **+94%** on
 `/security` and **+92%** on `/intelligence`. A first, bulk measurement said
 +2–5%, because single-open components close each card as the next opens.
-That is P9 in `_agents/PARKED_WORK.md`.
+That is P9 in `_agents/PARKED_WORK.md`. The profile pages are done: all 16
+share `ProfileTimeline`, a native `<details>` per event, and none holds React
+state. 675 expanders remain elsewhere.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

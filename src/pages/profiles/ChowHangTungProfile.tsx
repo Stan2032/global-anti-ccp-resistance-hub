@@ -6,14 +6,27 @@
  *
  * @module ChowHangTungProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart
+  User,
+  Calendar,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Newspaper,
+  Flag,
+  Heart,
 } from 'lucide-react';
 
 
@@ -23,12 +36,6 @@ interface TimelineEventType {
   detail: string;
   category: string;
   sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -270,52 +277,10 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-xs text-slate-400 shrink-0 min-w-12">{event.year}</span>
-          <span className={`text-xs px-1.5 py-0.5 font-mono ${cat.text} ${cat.bg} border border-[#1c2a35] shrink-0`}>
-            {cat.label}
-          </span>
-          <span className="text-sm text-slate-200 truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-4 border-t border-[#1c2a35]">
-          <p className="text-sm text-slate-300 mt-3 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:text-[#2a9a52] mt-2 font-mono">
-              <ExternalLink className="w-3 h-3" /> Source <span className="sr-only">(opens in new tab)</span>
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ─────────────────────────────────────────────────
 
 const ChowHangTungProfile: React.FC = () => {
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (index: number) => {
-    setExpandedEvents(prev => {
-      const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
-  };
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -387,14 +352,10 @@ const ChowHangTungProfile: React.FC = () => {
             </h2>
             <p className="text-sm text-slate-400 mb-6">Key events in Chow Hang-Tung&apos;s life, activism, and persecution.</p>
             <div className="space-y-2">
-              {TIMELINE.map((event, i) => (
-                <TimelineEvent
-                  key={i}
-                  event={event}
-                  isExpanded={expandedEvents.has(i)}
-                  onToggle={() => toggleEvent(i)}
-                />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
         </DisclosureSection>

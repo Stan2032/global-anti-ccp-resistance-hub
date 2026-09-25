@@ -4,15 +4,29 @@
  *
  * @module LiuXiaoboProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Award, Star
+  User,
+  Calendar,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Flag,
+  Heart,
+  Award,
+  Star,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -294,12 +308,6 @@ const categoryLabels: Record<string, string> = {
 // ─── TABS ──────────────────────────────────────────────────────────
 
 export default function LiuXiaoboProfile() {
-  const [expandedEvents, setExpandedEvents] = useState<Record<number, boolean>>({});
-
-  const toggleEvent = (index: number) => {
-    setExpandedEvents(prev => ({ ...prev, [index]: !prev[index] }));
-  };
-
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
       {/* Back Navigation */}
@@ -375,38 +383,10 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
 
-            <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#1c2a35]" />
-              {TIMELINE.map((event, i) => (
-                <div key={i} className="relative pl-10 pb-6" aria-label={`${event.year}: ${event.title}`}>
-                  <div className={`absolute left-2.5 w-3.5 h-3.5 rounded-full border-2 border-[#0a0e14] ${categoryColors[event.category] || 'bg-gray-500'}`} />
-                  <button
-                    onClick={() => toggleEvent(i)}
-                    className="w-full text-left group"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-xs text-slate-400 font-mono">{event.year}</span>
-                        <h3 className="text-white font-semibold group-hover:text-yellow-300 transition-colors">
-                          {event.title}
-                        </h3>
-                      </div>
-                      {expandedEvents[i] ? <ChevronUp className="w-4 h-4 text-slate-500 mt-1" /> : <ChevronDown className="w-4 h-4 text-slate-500 mt-1" />}
-                    </div>
-                  </button>
-                  {expandedEvents[i] && (
-                    <div className="mt-2 p-3 bg-[#111820] border border-[#1c2a35] text-sm text-slate-300">
-                      {event.detail}
-                      {event.source && (
-                        <a href={event.source} target="_blank" rel="noopener noreferrer" className="block mt-2 text-yellow-400 hover:text-yellow-300 text-xs flex items-center gap-1">
-                          <ExternalLink className="w-3 h-3" /> Source
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <ProfileTimeline events={TIMELINE.map(event => ({
+              year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+              label: categoryLabels[event.category],
+            }))} />
           </div>
         </DisclosureSection>
 
