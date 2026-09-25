@@ -5,9 +5,9 @@
  *
  * @module SafetyChecklist
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
-import { readStoredValue } from '../utils/ssr';
+import { useStoredJson } from '../utils/ssr';
 
 type Priority = 'critical' | 'high' | 'medium';
 
@@ -26,20 +26,10 @@ interface Category {
 }
 
 const SafetyChecklist: React.FC = () => {
-  const [checkedItems, setCheckedItems] = useState<string[]>(() => {
-    // Checklist progress is per-reader; pre-rendered HTML starts unchecked.
-    const saved = readStoredValue('safetyChecklist');
-    try {
-      return saved ? (JSON.parse(saved) as string[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  // Progress is per-reader: pre-rendered HTML starts unchecked, and the
+  // reader's own ticks are applied once the page has hydrated.
+  const [checkedItems, setCheckedItems] = useStoredJson<string[]>('safetyChecklist', []);
   const [activeCategory, setActiveCategory] = useState<string>('digital');
-
-  useEffect(() => {
-    localStorage.setItem('safetyChecklist', JSON.stringify(checkedItems));
-  }, [checkedItems]);
 
   const categories: Category[] = [
     { id: 'digital', name: 'Digital Security', Icon: Monitor },

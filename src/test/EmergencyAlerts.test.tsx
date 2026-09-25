@@ -14,23 +14,22 @@ vi.mock('../data/emergency_alerts.json', async () => ({
 
 import EmergencyAlerts from '../components/EmergencyAlerts';
 
-// Mock localStorage
-const mockLocalStorage = (() => {
-  let store: Record<string, string> = {};
-  return {
-    getItem: vi.fn((key: string) => store[key] || null),
-    setItem: vi.fn((key: string, value: string) => { store[key] = value; }),
-    removeItem: vi.fn((key: string) => { delete store[key]; }),
-    clear: vi.fn(() => { store = {}; }),
-    _reset: () => { store = {}; },
-  };
-})();
+// Mock localStorage: behaves like real storage, with every call recorded.
+// Dismissals are read back from storage, so reads must see earlier writes.
+let store: Record<string, string> = {};
+const mockLocalStorage = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
 
 beforeEach(() => {
-  mockLocalStorage._reset();
-  mockLocalStorage.getItem.mockReset();
-  mockLocalStorage.setItem.mockReset();
-  mockLocalStorage.getItem.mockImplementation(() => null);
+  store = {};
+  mockLocalStorage.getItem.mockReset().mockImplementation((key: string) => store[key] ?? null);
+  mockLocalStorage.setItem.mockReset().mockImplementation((key: string, value: string) => { store[key] = value; });
+  mockLocalStorage.removeItem.mockReset().mockImplementation((key: string) => { delete store[key]; });
+  mockLocalStorage.clear.mockReset().mockImplementation(() => { store = {}; });
   Object.defineProperty(window, 'localStorage', { value: mockLocalStorage, writable: true });
 });
 

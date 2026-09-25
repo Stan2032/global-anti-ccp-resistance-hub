@@ -121,7 +121,7 @@ describe('Meta-Test Coverage Audit', () => {
     const pageSet = new Set(pages.map(p => p.toLowerCase()));
     // Data/utility tests are allowed without matching components
     const dataTestPattern = /^(data-|cross-data|url-|no-hashtags|design-system|defensive|route-|accessibility|keyboard|performance|sitemap|manifest|security-|service-|meta-test|lazy-loading|supabase|theme)/;
-    const utilTestPattern = /^(dateUtils|exportUtils|sourceLinks|encryption|statistics|i18n|ccp-|useDocument|useGlobal|useKeyboard|useLive|useWeb)/;
+    const utilTestPattern = /^(dateUtils|exportUtils|sourceLinks|encryption|statistics|i18n|ccp-|ssr-|useDocument|useGlobal|useKeyboard|useLive|useWeb)/;
     // JSON data file tests (test the data in JSON files directly)
     const jsonDataTestPattern = /-data$/;
 

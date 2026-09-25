@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, useSyncExternalStore, ReactNode } from 'react';
 import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
 import { ThemeContext, THEMES, useTheme, type ThemeState } from './themeUtils';
-import { readStoredValue, matchesMediaQuery } from '../utils/ssr';
+import { matchesMediaQuery, useStoredString } from '../utils/ssr';
 
 interface ThemeColorConfig {
   name: string;
@@ -48,61 +48,34 @@ const themeColors: Record<string, ThemeColorConfig> = {
   }
 };
 
+const THEME_IDS: readonly string[] = Object.values(THEMES);
+
+/** Follow the system colour scheme; pre-rendered HTML assumes dark. */
+function subscribeToColourScheme(notify: () => void): () => void {
+  if (typeof window.matchMedia !== 'function') return () => {};
+  const query = window.matchMedia('(prefers-color-scheme: dark)');
+  query.addEventListener('change', notify);
+  return () => query.removeEventListener('change', notify);
+}
+const systemPrefersDark = () => matchesMediaQuery('(prefers-color-scheme: dark)', true);
+const serverPrefersDark = () => true;
+
 /**
  * ThemeProvider — wraps the app tree with theme context.
  *
- * Manages dark/light/high-contrast/system themes.
- * Persists selection to localStorage and syncs with system preferences.
- * Injects the active theme class onto `document.documentElement`.
+ * Manages dark/light/high-contrast/system themes. Remembers an explicit
+ * choice in localStorage, follows the system preference for "system", and
+ * sets the active theme class on `document.documentElement`.
  */
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState(() => {
-    // Check localStorage first. Absent during the static pre-render build,
-    // and throws in private browsing — readStoredValue covers both.
-    const saved = readStoredValue('resistance-hub-theme');
-    if (saved && (Object.values(THEMES) as string[]).includes(saved)) {
-      return saved;
-    }
-    // Default to dark (the original design)
-    return THEMES.DARK as string;
-  });
-
-  const [resolvedTheme, setResolvedTheme] = useState(() => {
-    const savedTheme = readStoredValue('resistance-hub-theme') || THEMES.DARK;
-    if (savedTheme === THEMES.SYSTEM) {
-      // Pre-rendered HTML defaults to dark, matching the site's design; the
-      // effect below corrects it on hydration if the reader prefers light.
-      return matchesMediaQuery('(prefers-color-scheme: dark)', true)
-        ? (THEMES.DARK as string)
-        : (THEMES.LIGHT as string);
-    }
-    return savedTheme;
-  });
-
-  // Handle system theme preference changes and keep resolvedTheme in sync
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    const syncResolved = () => {
-      if (theme === THEMES.SYSTEM) {
-        setResolvedTheme(mediaQuery.matches ? THEMES.DARK : THEMES.LIGHT);
-      } else {
-        setResolvedTheme(theme);
-      }
-    };
-
-    // Use microtask to avoid synchronous setState in effect body
-    queueMicrotask(syncResolved);
-
-    const handleChange = () => syncResolved();
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme]);
-
-  // Persist theme to localStorage
-  useEffect(() => {
-    localStorage.setItem('resistance-hub-theme', theme);
-  }, [theme]);
+  // Hydrates as dark, like the pre-rendered HTML, then applies the reader's
+  // saved choice. Nothing is stored until the reader picks a theme.
+  const [savedTheme, setTheme] = useStoredString('resistance-hub-theme', THEMES.DARK);
+  const theme = THEME_IDS.includes(savedTheme) ? savedTheme : THEMES.DARK;
+  const prefersDark = useSyncExternalStore(subscribeToColourScheme, systemPrefersDark, serverPrefersDark);
+  const resolvedTheme: string = theme === THEMES.SYSTEM
+    ? (prefersDark ? THEMES.DARK : THEMES.LIGHT)
+    : theme;
 
   // Apply theme class to document
   useEffect(() => {

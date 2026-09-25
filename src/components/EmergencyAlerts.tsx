@@ -7,12 +7,12 @@
  *
  * @module EmergencyAlerts
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
 import EventCountdown from './EventCountdown';
 import { formatAlertForSharing, type AlertForSharing } from '../utils/dateUtils';
-import { readStoredValue } from '../utils/ssr';
+import { useStoredJson } from '../utils/ssr';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -24,23 +24,12 @@ const INITIAL_DISPLAY_COUNT = 2;
  * @returns {React.ReactElement|null} Alert list or null when no active alerts
  */
 const EmergencyAlerts = () => {
-  const [dismissedAlerts, setDismissedAlerts] = useState(() => {
-    // No localStorage during the static pre-render build: show every active
-    // alert in the HTML, then hide the reader's dismissals on hydration.
-    const saved = readStoredValue('dismissedAlerts');
-    try {
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  // The HTML shows every active alert; the reader's own dismissals are
+  // applied once the page has hydrated.
+  const [dismissedAlerts, setDismissedAlerts] = useStoredJson<string[]>('dismissedAlerts', []);
   const [expandedAlert, setExpandedAlert] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  useEffect(() => {
-    localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
-  }, [dismissedAlerts]);
 
   const alerts = alertsData;
 

@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
 
 /**
  * Helpers for code that runs both in the browser and during the static
@@ -74,4 +74,90 @@ export function useBrowserValue<T extends string | number | boolean | null>(
 /** No-op subscribe: these values do not change without a user action. */
 function subscribeNever(): () => void {
   return () => {};
+}
+
+/**
+ * A value saved for the reader's next visit, without a hydration mismatch.
+ *
+ * Pre-rendered HTML is the same for every reader, so it cannot contain what a
+ * returning reader saved last time: dismissed alerts, checklist progress,
+ * their theme. Reading that in a `useState` initialiser makes the first client
+ * render disagree with the HTML, and React discards the page and renders it
+ * again from scratch (error #418) — on every visit, for every reader who had
+ * saved anything. Here React renders `fallback` while hydrating, exactly as
+ * the HTML was built, and applies the saved value straight afterwards.
+ *
+ * Nothing is written until the reader changes something, and saving the
+ * fallback removes the key. A reader who only reads leaves no trace of this
+ * site in browser storage — on an inspected device, a key naming the site is
+ * itself a risk.
+ *
+ * Where storage is blocked, the value is kept in memory for the rest of the
+ * visit, so the control still works; it just is not remembered.
+ */
+export function useStoredString(key: string, fallback: string): [string, (next: string) => void] {
+  const subscribe = useCallback((notify: () => void) => {
+    const set = storeSubscribers.get(key) ?? new Set<() => void>();
+    storeSubscribers.set(key, set);
+    set.add(notify);
+    return () => { set.delete(notify); };
+  }, [key]);
+
+  const value = useSyncExternalStore(
+    subscribe,
+    () => readSaved(key) ?? fallback,
+    () => fallback,
+  );
+
+  const save = useCallback((next: string) => {
+    try {
+      if (next === fallback) localStorage.removeItem(key);
+      else localStorage.setItem(key, next);
+      unsavedValues.delete(key);
+    } catch {
+      unsavedValues.set(key, next);
+    }
+    storeSubscribers.get(key)?.forEach(notify => notify());
+  }, [key, fallback]);
+
+  return [value, save];
+}
+
+/**
+ * `useStoredString` for a JSON value. The setter also takes an updater
+ * function, like `useState`'s, applied to the latest saved value.
+ *
+ * `fallback` is read once, on first render, so an inline `[]` is fine.
+ */
+export function useStoredJson<T>(
+  key: string,
+  fallback: T,
+): [T, (update: T | ((current: T) => T)) => void] {
+  const [fallbackText] = useState(() => JSON.stringify(fallback));
+  const [text, saveText] = useStoredString(key, fallbackText);
+  const value = useMemo(() => parseOr<T>(text, fallbackText), [text, fallbackText]);
+
+  const save = useCallback((update: T | ((current: T) => T)) => {
+    const current = parseOr<T>(readSaved(key) ?? fallbackText, fallbackText);
+    const next = typeof update === 'function' ? (update as (c: T) => T)(current) : update;
+    saveText(JSON.stringify(next));
+  }, [key, fallbackText, saveText]);
+
+  return [value, save];
+}
+
+/** Values the browser refused to store, kept for the rest of this visit. */
+const unsavedValues = new Map<string, string>();
+const storeSubscribers = new Map<string, Set<() => void>>();
+
+function readSaved(key: string): string | null {
+  return unsavedValues.has(key) ? unsavedValues.get(key)! : readStoredValue(key);
+}
+
+function parseOr<T>(text: string, fallbackText: string): T {
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    return JSON.parse(fallbackText) as T;
+  }
 }
