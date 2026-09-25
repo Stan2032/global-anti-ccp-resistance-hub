@@ -320,9 +320,19 @@ The video testimonies' content-warning gate is a nested `<details>`: the
 warning still stands in front of the details and opening them is still a
 deliberate step, now without JavaScript.
 
-**Left:** 127 expanders outside the header and nav, plus InfluenceNetwork.
-By route: `/data-sources` 79, `/directory` 24, `/take-action` 13 (campaign
-cards and the political-prisoner legislation cards), `/` 11.
+**Done: `/take-action` and `/`.** The five actions (only three showed
+until "$ show --all" was clicked), the petition details, the policy
+brief's sections, the home page's update feed (5 of 66 updates) and its
+notification feed (10 shown, the rest behind "Show all"). The survivor
+stories on `/education` opened in a modal that only JavaScript could
+render, with no focus handling and a close button named "✕"; each story is
+a `<details>` in its card now.
+
+**Left:** 103 expanders outside the header and nav, plus InfluenceNetwork.
+By route: `/data-sources` 79, `/directory` 24. What stays by design: the
+header menus, the language picker, the onboarding guide, the letter
+generator's prisoner picker and the case-timeline combobox. They are
+controls, not hidden content.
 `cards_to_details.py` (session scratchpad) handles the multi-line chevron,
 `handleToggle` and `aria-controls` variants. It drops a body `id` that only
 served `aria-controls`, turns headings in a header into spans, and removes
@@ -346,6 +356,9 @@ wrappers and can still be scrolled. Examples: the /intelligence stat
 "10,000+"; a station status shown
 as the raw enum "PENDING_INVESTIGATION" (also a wording bug); `/data-sources`
 file paths; the economic sector card's stats row, which has no `flex-wrap`.
+Icons in a flex row next to long text shrink unless they have
+`flex-shrink-0`: the /take-action action icons were squeezed to 13px wide
+(fixed); scan for others.
 Measure with an element-level check (each text element against its nearest
 clipping ancestor), fix by pattern (wrap, `break-words`, `min-w-0`), and
 compare the before and after lists.

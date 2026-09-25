@@ -19,7 +19,7 @@ import {
   type PoliceStation,
   type SanctionedOfficial,
 } from '../services/dataApi';
-import { FileText, Users, Copy, Check, ChevronDown, ChevronUp, Globe, Shield, Scale, Search, AlertTriangle, ExternalLink, Landmark, BarChart3 } from 'lucide-react';
+import { FileText, Users, Copy, Check, ChevronDown, Globe, Shield, Scale, Search, AlertTriangle, ExternalLink, Landmark, BarChart3 } from 'lucide-react';
 
 // ── Local type definitions ────────────────────────────
 
@@ -48,7 +48,6 @@ interface BriefDatasets {
   officials: SanctionedOfficial[];
 }
 
-type SectionKey = 'findings' | 'recommendations' | 'citations';
 
 /**
  * PolicyBriefGenerator — Evidence-based policy brief generation
@@ -285,7 +284,6 @@ export default function PolicyBriefGenerator() {
   const [selectedAudience, setSelectedAudience] = useState('legislator');
   const [selectedTopic, setSelectedTopic] = useState('political-detention');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedSections, setExpandedSections] = useState({ findings: true, recommendations: true, citations: false });
   const [copied, setCopied] = useState(false);
 
   // ── Load all datasets ───────────────────────────────
@@ -323,9 +321,6 @@ export default function PolicyBriefGenerator() {
   }, [searchQuery]);
 
   // ── Toggle section ──────────────────────────────────
-  const toggleSection = (section: SectionKey) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
 
   // ── Copy brief to clipboard ─────────────────────────
   const handleCopy = () => {
@@ -503,95 +498,68 @@ export default function PolicyBriefGenerator() {
         )}
 
         {/* Key findings (collapsible) */}
-        <div>
-          <button
-            onClick={() => toggleSection('findings')}
-            className="w-full p-4 flex items-center justify-between text-left"
-            aria-expanded={expandedSections.findings}
-          >
+        <details open>
+          <summary className="w-full p-4 flex items-center justify-between text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
             <h4 className="text-xs font-mono text-[#4afa82] flex items-center gap-1">
               <BarChart3 className="w-3 h-3" aria-hidden="true" />
               Key Findings ({brief.key_findings.length})
             </h4>
-            {expandedSections.findings
-              ? <ChevronUp className="w-4 h-4 text-slate-400" />
-              : <ChevronDown className="w-4 h-4 text-slate-400" />
-            }
-          </button>
-          {expandedSections.findings && (
-            <div className="px-4 pb-4 space-y-2">
-              {brief.key_findings.map((finding, i) => (
-                <div key={i} className="flex gap-2 text-sm">
-                  <span className="text-[#4afa82] font-mono text-xs mt-0.5 flex-shrink-0">{i + 1}.</span>
-                  <p className="text-slate-300">{finding}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+            <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+          </summary>
+          <div className="px-4 pb-4 space-y-2">
+            {brief.key_findings.map((finding, i) => (
+              <div key={i} className="flex gap-2 text-sm">
+                <span className="text-[#4afa82] font-mono text-xs mt-0.5 flex-shrink-0">{i + 1}.</span>
+                <p className="text-slate-300">{finding}</p>
+              </div>
+            ))}
+          </div>
+        </details>
 
         {/* Recommendations (collapsible) */}
-        <div>
-          <button
-            onClick={() => toggleSection('recommendations')}
-            className="w-full p-4 flex items-center justify-between text-left"
-            aria-expanded={expandedSections.recommendations}
-          >
+        <details open>
+          <summary className="w-full p-4 flex items-center justify-between text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
             <h4 className="text-xs font-mono text-[#a78bfa] flex items-center gap-1">
               <Scale className="w-3 h-3" aria-hidden="true" />
               Recommendations ({brief.recommendations.length})
             </h4>
-            {expandedSections.recommendations
-              ? <ChevronUp className="w-4 h-4 text-slate-400" />
-              : <ChevronDown className="w-4 h-4 text-slate-400" />
-            }
-          </button>
-          {expandedSections.recommendations && (
-            <div className="px-4 pb-4 space-y-2">
-              {brief.recommendations.map((rec, i) => (
-                <div key={i} className="flex gap-2 text-sm">
-                  <span className="text-[#a78bfa] font-mono text-xs mt-0.5 flex-shrink-0">{i + 1}.</span>
-                  <p className="text-slate-300">{rec}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+            <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+          </summary>
+          <div className="px-4 pb-4 space-y-2">
+            {brief.recommendations.map((rec, i) => (
+              <div key={i} className="flex gap-2 text-sm">
+                <span className="text-[#a78bfa] font-mono text-xs mt-0.5 flex-shrink-0">{i + 1}.</span>
+                <p className="text-slate-300">{rec}</p>
+              </div>
+            ))}
+          </div>
+        </details>
 
         {/* Evidence citations (collapsible) */}
         {brief.evidence_citations.length > 0 && (
-          <div>
-            <button
-              onClick={() => toggleSection('citations')}
-              className="w-full p-4 flex items-center justify-between text-left"
-              aria-expanded={expandedSections.citations}
-            >
+          <details>
+            <summary className="w-full p-4 flex items-center justify-between text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
               <h4 className="text-xs font-mono text-[#fbbf24] flex items-center gap-1">
                 <ExternalLink className="w-3 h-3" aria-hidden="true" />
                 Evidence Citations ({brief.evidence_citations.length})
               </h4>
-              {expandedSections.citations
-                ? <ChevronUp className="w-4 h-4 text-slate-400" />
-                : <ChevronDown className="w-4 h-4 text-slate-400" />
-              }
-            </button>
-            {expandedSections.citations && (
-              <div className="px-4 pb-4 space-y-1">
-                {brief.evidence_citations.map((cite, i) => (
-                  <a
-                    key={i}
-                    href={cite.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-mono text-[#22d3ee] hover:text-[#22d3ee]/80 transition-colors py-1"
-                  >
-                    <ExternalLink className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                    {cite.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
+              <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="px-4 pb-4 space-y-1">
+              {brief.evidence_citations.map((cite, i) => (
+                <a
+                  key={i}
+                  href={cite.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-mono text-[#22d3ee] hover:text-[#22d3ee]/80 transition-colors py-1"
+                >
+                  <ExternalLink className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                  {cite.label}
+                </a>
+              ))}
+            </div>
+          </details>
         )}
       </div>
 

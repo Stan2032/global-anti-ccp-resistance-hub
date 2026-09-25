@@ -1,8 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 
 import VictimStories from '../components/VictimStories';
+
+// A story's full text is a native <details>; its toggle names the person.
+const storyOf = (name: string) => {
+  const details = [...document.querySelectorAll('details')]
+    .find(d => d.querySelector('summary')!.textContent!.includes(`of ${name}`));
+  expect(details, `a <details> holding ${name}'s story`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('VictimStories', () => {
   it('renders the header with title', () => {
@@ -87,20 +95,27 @@ describe('VictimStories', () => {
     expect(badges.length).toBe(8);
   });
 
-  it('opens story modal when clicking a story card', () => {
-    render(<VictimStories />);
-    fireEvent.click(screen.getByText('Mihrigul Tursun'));
-    expect(screen.getByRole('dialog')).toBeTruthy();
-    expect(screen.getByText('Sources')).toBeTruthy();
-    expect(screen.getByText('CECC Testimony')).toBeTruthy();
+  it('every full story is in the page with its sources, folded until opened', () => {
+    // The stories used to open in a modal that only JavaScript could render.
+    const { container } = render(<VictimStories />);
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    const stories = [...container.querySelectorAll('details')];
+    expect(stories.length).toBe(screen.getAllByText('VERIFIED').length);
+    stories.forEach(d => {
+      expect(d.open).toBe(false);
+      expect(within(d).getByText('Sources')).toBeTruthy();
+    });
+    const mihrigul = storyOf('Mihrigul Tursun');
+    expect(within(mihrigul).getByText('CECC Testimony')).toBeTruthy();
   });
 
-  it('closes modal when close button is clicked', () => {
+  it('Read full story opens a story and Show less folds it, natively', () => {
     render(<VictimStories />);
-    fireEvent.click(screen.getByText('Mihrigul Tursun'));
-    expect(screen.getByRole('dialog')).toBeTruthy();
-    fireEvent.click(screen.getByText('✕'));
-    expect(screen.queryByRole('dialog')).toBeFalsy();
+    const mihrigul = storyOf('Mihrigul Tursun');
+    fireEvent.click(within(mihrigul).getByText('Read full story →'));
+    expect(mihrigul.open).toBe(true);
+    fireEvent.click(within(mihrigul).getByText('Show less ↑'));
+    expect(mihrigul.open).toBe(false);
   });
 
   it('displays story locations', () => {
@@ -109,10 +124,21 @@ describe('VictimStories', () => {
     expect(screen.getByText('Hong Kong → United Kingdom')).toBeTruthy();
   });
 
-  it('renders share buttons in modal', () => {
+  it('offers sharing inside each story', () => {
     render(<VictimStories />);
-    fireEvent.click(screen.getByText('Mihrigul Tursun'));
-    expect(screen.getByText('Copy to Share')).toBeTruthy();
-    expect(screen.getByText('Share on Twitter')).toBeTruthy();
+    const mihrigul = within(storyOf('Mihrigul Tursun'));
+    expect(mihrigul.getByText('Copy to Share')).toBeTruthy();
+    const tweet = mihrigul.getByText('Share on Twitter').closest('a')!;
+    expect(tweet.getAttribute('href')).toContain('Mihrigul%20Tursun');
+  });
+
+  it('tells screen readers which category filter is selected', () => {
+    render(<VictimStories />);
+    const pressed = screen.getAllByRole('button').filter(b => b.getAttribute('aria-pressed') === 'true');
+    expect(pressed).toHaveLength(1);
+    const other = screen.getAllByRole('button').find(b => b.getAttribute('aria-pressed') === 'false')!;
+    fireEvent.click(other);
+    expect(other.getAttribute('aria-pressed')).toBe('true');
+    expect(pressed[0].getAttribute('aria-pressed')).toBe('false');
   });
 });

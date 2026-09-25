@@ -5,7 +5,7 @@
  *
  * @module TakeAction
  */
-import { useState, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
@@ -40,12 +40,8 @@ const InternationalResponseTracker = lazy(() => import('../components/Internatio
 const PolicyBriefGenerator = lazy(() => import('../components/PolicyBriefGenerator'));
 
 const TakeAction = () => {
-  const [expandedAction, setExpandedAction] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
-  const INITIAL_DISPLAY_COUNT = 3;
 
   const actions = actionsData.map(a => ({ ...a, Icon: ICON_MAP[a.icon] || AlertTriangle }));
-  const displayedActions = showAll ? actions : actions.slice(0, INITIAL_DISPLAY_COUNT);
 
   const impactStats = [
     { label: 'Political Prisoners Documented', value: '10,000+' },
@@ -106,20 +102,13 @@ const TakeAction = () => {
         <h2 className="text-2xl font-bold text-white">Five Things You Can Do</h2>
         
         <div className="grid gap-6">
-          {displayedActions.map((action) => (
-            <div 
+          {actions.map((action) => (
+            <details
               key={action.number}
-              className={`bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all ${
-                expandedAction === action.number ? 'ring-2 ring-[#4afa82]' : ''
-              }`}
+              className="bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all open:ring-2 open:ring-[#4afa82]"
             >
-              <button
-                onClick={() => setExpandedAction(expandedAction === action.number ? null : action.number)}
-                className="w-full p-6 text-left flex items-start gap-4 hover:bg-[#1c2a35]/50 transition-colors"
-                aria-expanded={expandedAction === action.number}
-                aria-controls={`action-panel-${action.number}`}
-              >
-                <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
+              <summary className="w-full p-6 text-left flex items-start gap-4 hover:bg-[#1c2a35]/50 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
                   action.color === 'blue' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                   action.color === 'red' ? 'bg-red-900/50 text-red-400' :
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
@@ -129,117 +118,102 @@ const TakeAction = () => {
                   'bg-[#1c2a35] text-slate-400'
                 }`}>
                   {action.number}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <action.Icon className="w-6 h-6" />
-                    <h3 className="text-lg font-bold text-white">{action.title}</h3>
-                  </div>
-                  <p className="text-slate-400 text-sm">{action.description}</p>
-                </div>
-                <svg 
-                  className={`w-6 h-6 text-slate-400 transition-transform ${expandedAction === action.number ? 'rotate-180' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
+                </span>
+                <span className="block flex-1 min-w-0">
+                  <span className="flex items-center gap-2 mb-2">
+                    <action.Icon className="w-6 h-6 flex-shrink-0" aria-hidden="true" />
+                    <span className="block text-lg font-bold text-white">{action.title}</span>
+                  </span>
+                  <span className="block text-slate-400 text-sm">{action.description}</span>
+                </span>
+                <svg
+                  className="w-6 h-6 text-slate-400 transition-transform summary-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
-              
-              {expandedAction === action.number && (
-                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-[#1c2a35] pt-4" role="region" aria-label={action.title}>
-                  {action.stats && (
-                    <div className="mb-4 p-3 bg-[#0a0e14]/50">
-                      <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
-                    </div>
-                  )}
-                  
-                  {action.template && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</p>
-                      <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
-                        "{action.template}"
-                      </div>
-                    </div>
-                  )}
-                  
-                  {action.companies && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {action.companies.map((company) => (
-                          <span key={company} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-sm border border-red-700">
-                            {company}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  {action.tools && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {action.tools.map((tool) => (
-                          <span key={tool} className="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm border border-green-700">
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {action.links.map((link: { name: string; url: string; internal?: boolean; action?: string }, index: number) => (
-                      link.internal ? (
-                        <Link
-                          key={index}
-                          to={link.url}
-                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
-                        >
-                          <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      ) : (
-                        <a
-                          key={index}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
-                        >
-                          <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
-                      )
-                    ))}
+              </summary>
+
+              <div className="px-6 pb-6 border-t border-[#1c2a35] pt-4">
+                {action.stats && (
+                  <div className="mb-4 p-3 bg-[#0a0e14]/50">
+                    <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
                   </div>
+                )}
+                
+                {action.template && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</p>
+                    <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
+                      "{action.template}"
+                    </div>
+                  </div>
+                )}
+                
+                {action.companies && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {action.companies.map((company) => (
+                        <span key={company} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-sm border border-red-700">
+                          {company}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {action.tools && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {action.tools.map((tool) => (
+                        <span key={tool} className="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm border border-green-700">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {action.links.map((link: { name: string; url: string; internal?: boolean; action?: string }, index: number) => (
+                    link.internal ? (
+                      <Link
+                        key={index}
+                        to={link.url}
+                        className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <span className="text-white text-sm">{link.name}</span>
+                        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    ) : (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <span className="text-white text-sm">{link.name}</span>
+                        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            </details>
           ))}
         </div>
 
-        {/* Show More / Show Less */}
-        {actions.length > INITIAL_DISPLAY_COUNT && (
-          <div className="text-center">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
-            >
-              {showAll
-                ? '$ show --less'
-                : `$ show --all ${actions.length} actions`}
-            </button>
-          </div>
-        )}
       </div>
       <div className="bg-red-900/20 border border-red-700 p-6">
         <h2 className="text-xl font-bold text-red-300 mb-4">Emergency Contacts</h2>
