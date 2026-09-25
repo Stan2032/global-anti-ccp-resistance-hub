@@ -106,6 +106,12 @@ async function main() {
 
     const controlNames = [...page.matchAll(/<(?:input|select|textarea)\b[^>]*?\saria-label="([^"]+)"/g)]
       .map(m => m[1]);
+    const unnamedButtons = [...page.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g)]
+      .filter(([, attrs, inner]) =>
+        !/\s(?:aria-label|aria-labelledby|title)="[^"]+"/.test(attrs) &&
+        !inner.replace(/<svg\b[\s\S]*?<\/svg>/g, '').replace(/<!--[\s\S]*?-->/g, '')
+          .replace(/<[^>]+>/g, '').trim())
+      .length;
     const text = page
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/<style[\s\S]*?<\/style>/g, '')
@@ -120,6 +126,7 @@ async function main() {
       hasRouteFallback: page.includes('loading system'),
       hiddenBlocks: (page.match(/<div hidden/g) || []).length,
       duplicateControlNames: [...new Set(controlNames.filter((n, i) => controlNames.indexOf(n) !== i))],
+      unnamedButtons,
     });
   }
 
@@ -177,12 +184,23 @@ async function main() {
     process.exit(1);
   }
 
-  // A third guard, for readers using a screen reader or voice control. Every
-  // form control on a page needs a name that says what it does. When two
-  // share one, a reader tabbing through the controls hears "Search" twice and
-  // cannot tell which list each one searches, and a voice command cannot
-  // target either. Pages used to carry up to seven identical "Search" boxes
-  // and a type filter announced as "Region filter".
+  // Two guards for readers using a screen reader or voice control. Every
+  // control on a page needs a name that says what it does. A button with no
+  // name is announced as just "button": the safety checklist's ten tick boxes
+  // were. And when two controls share a name, a reader tabbing through hears
+  // "Search" twice and cannot tell which list each one searches, and a voice
+  // command cannot target either. Pages used to carry up to seven identical
+  // "Search" boxes and a type filter announced as "Region filter".
+  const withUnnamed = results.filter(r => r.unnamedButtons > 0);
+  if (withUnnamed.length) {
+    console.error(
+      `\n[prerender] buttons with no accessible name on ${withUnnamed.length} route(s):\n` +
+      withUnnamed.map(r => `              ${r.route} (${r.unnamedButtons})`).join('\n') +
+      `\n\n            Give each visible text, or an aria-label saying what it does.`
+    );
+    process.exit(1);
+  }
+
   const withDuplicates = results.filter(r => r.duplicateControlNames.length);
   if (withDuplicates.length) {
     console.error(

@@ -441,6 +441,9 @@ const SafetyChecklist: React.FC = () => {
             <div className="flex items-start space-x-3">
               <button
                 onClick={() => toggleItem(item.id)}
+                role="checkbox"
+                aria-checked={checkedItems.includes(item.id)}
+                aria-label={item.title}
                 className={`w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
                   checkedItems.includes(item.id)
                     ? 'bg-green-600 border-green-600 text-white'

@@ -37,23 +37,28 @@ describe('SafetyChecklist', () => {
 
   // --- Toggle/check functionality ---
 
+  it('each item is a named checkbox, unchecked to start', () => {
+    render(<SafetyChecklist />);
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    expect(vpn.getAttribute('aria-checked')).toBe('false');
+  });
+
   it('toggles a checklist item when clicked', () => {
     render(<SafetyChecklist />);
-    const vpnText = screen.getByText('Use a VPN');
-    // Find the toggle button closest to this item
-    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('✓');
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    fireEvent.click(vpn);
+    expect(vpn.getAttribute('aria-checked')).toBe('true');
+    expect(vpn.textContent).toBe('✓');
   });
 
   it('untoggling a checked item removes the checkmark', () => {
     render(<SafetyChecklist />);
-    const vpnText = screen.getByText('Use a VPN');
-    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('✓');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('');
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    fireEvent.click(vpn);
+    expect(vpn.textContent).toBe('✓');
+    fireEvent.click(vpn);
+    expect(vpn.getAttribute('aria-checked')).toBe('false');
+    expect(vpn.textContent).toBe('');
   });
 
   // --- Category tabs ---
