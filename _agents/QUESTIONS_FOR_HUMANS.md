@@ -122,7 +122,17 @@ Joshua Wong was re-verified in Session 281 as a worked example: two independent 
 
 **Agent recommendation:** (A), with (B) for anything where sources disagree. The existing standing instruction already permits adding well-sourced individuals without asking, so extending it to re-verification is consistent. The one hard rule either way: **never bump a `last_verified` date without actually re-checking the source** — that fabricates provenance.
 
-*When you encounter a decision that requires human input, add it here starting with Q19.*
+### Q19: Tursunay Ziawudun's quotes were garbled; they have been removed (Session 281)
+
+**Context:** In `SurvivorStories`, both quotes attributed to Tursunay Ziawudun had her words about sexual violence replaced with "China", e.g. *"They had an electric stick, I didn't know what it was, and China. They used it to China. And China."* The entry is marked `verified: true` and cites the BBC. The text was already like this when the file entered this repository (`f24d099`, March 2026). It looks like a word filter, not a typo. No other quote on the site shows the pattern.
+
+Both quotes are removed, not paraphrased. Her story keeps its narrative and sources, and her card shows no quote. The primary sources could not be read from the agent environment (bbc.co.uk, the Internet Archive and Hansard were all blocked), and a search engine's summary is not the source.
+
+**Question:** Restore the quotes word for word from the BBC report of 2 February 2021 (*"'Their goal is to destroy everyone': Uighur camp detainees allege systematic rape"*) or from Hansard, 4 February 2021 (*Treatment of Uyghur Women: Xinjiang Detention Camps*)? Or leave her card without a quote?
+
+**Agent recommendation:** Restore from the BBC report, copying the text exactly, and add a `quote` only for words that appear there. The card renders nothing in place of a missing quote.
+
+*When you encounter a decision that requires human input, add it here starting with Q20.*
 
 ---
 

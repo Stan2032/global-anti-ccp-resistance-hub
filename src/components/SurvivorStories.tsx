@@ -28,13 +28,15 @@ const SurvivorStories = () => {
       year: '2018-2019',
       ImageIcon: User,
       summary: 'Survived 9 months in Xinjiang detention camps',
+      // Her quotes are omitted, not paraphrased. The two this entry carried had
+      // had their words about sexual violence replaced with "China" before the
+      // file entered this repository. Restore them word for word from the BBC
+      // report (2 Feb 2021) or Hansard (4 Feb 2021): Q19 in
+      // _agents/QUESTIONS_FOR_HUMANS.md.
       fullStory: `Tursunay Ziawudun was detained in Xinjiang's internment camps for nine months in 2018. She testified before the UK Parliament and US Congress about systematic rape and torture in the camps. Her testimony was crucial in documenting the sexual violence faced by Uyghur women.
-
-"They had an electric stick, I didn't know what it was, and China. They used it to China. And China."
 
 She now lives in the United States and continues to advocate for Uyghur rights, despite threats to her family still in China.`,
       sources: ['BBC', 'US Congressional Testimony', 'Uyghur Tribunal'],
-      quote: '"I was taken to a room and China. I still have nightmares every night."',
       verified: true,
     },
     {
@@ -234,10 +236,12 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
                 <p className="text-sm text-slate-300 mb-3">{story.summary}</p>
 
-                {/* Quote */}
-                <blockquote className="border-l-2 border-[#1c2a35] pl-3 mb-3">
-                  <p className="text-sm italic text-slate-400">{story.quote}</p>
-                </blockquote>
+                {/* Quote, only where the words are the person's own */}
+                {story.quote && (
+                  <blockquote className="border-l-2 border-[#1c2a35] pl-3 mb-3">
+                    <p className="text-sm italic text-slate-400">{story.quote}</p>
+                  </blockquote>
+                )}
 
                 {/* Full story: native, so it opens without JavaScript */}
                 <details className="mt-3">

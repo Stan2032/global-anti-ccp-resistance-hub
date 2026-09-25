@@ -90,6 +90,15 @@ describe('SurvivorStories', () => {
     toggles.forEach(t => expect(t).toMatch(/Read full story from \S.* →/));
   });
 
+  it('shows a quote box only where there is a quote', () => {
+    // Tursunay Ziawudun's quotes were garbled and are removed until they can
+    // be restored from source (Q19); her card must not show an empty box.
+    const { container } = render(<SurvivorStories />);
+    const quotes = [...container.querySelectorAll('blockquote')];
+    expect(quotes.length).toBeGreaterThan(0);
+    quotes.forEach(q => expect(q.textContent!.trim()).not.toBe(''));
+  });
+
   it('renders quotes for stories', () => {
     render(<SurvivorStories />);
     expect(screen.getByText(/They wanted to erase everything/)).toBeTruthy();
