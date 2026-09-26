@@ -458,16 +458,16 @@ export default function CCPOfficials() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search CCP officials"
             type="text"
-            placeholder="Search officials..."
+            placeholder="Search CCP officials..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"
           />
         </div>
         <select
-          aria-label="Region filter"
+          aria-label="Filter officials by region"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
           className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
@@ -520,11 +520,11 @@ export default function CCPOfficials() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-white font-semibold truncate">{official.name}</h3>
+                <h3 className="text-white font-semibold break-words">{official.name}</h3>
                 <p className="text-xs text-slate-400">{official.chineseName}</p>
               </div>
             </div>
-            <p className="text-sm text-slate-400 line-clamp-2 mb-2">{official.position}</p>
+            <p className="text-sm text-slate-400 mb-2">{official.position}</p>
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.region}</span>

@@ -128,13 +128,13 @@ const ConfuciusInstitutes = () => {
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4">
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Confucius Institute regions">
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter institutes by region">
           {regions.map((region) => (
             <button
               key={region.id}
+              type="button"
               onClick={() => setSelectedRegion(region.id)}
-              role="tab"
-              aria-selected={selectedRegion === region.id}
+              aria-pressed={selectedRegion === region.id}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
                 selectedRegion === region.id
                   ? 'bg-red-600 text-white'
@@ -157,24 +157,25 @@ const ConfuciusInstitutes = () => {
         </label>
       </div>
 
-      {/* Institute List */}
-      <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+      {/* Institute List: scrolls sideways on a phone, where the table is
+          wider than the screen. overflow-hidden cut the last columns off. */}
+      <div className="bg-[#111820] border border-[#1c2a35] overflow-x-auto">
         <table className="w-full">
           <thead className="bg-[#0a0e14]">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">University</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">Country</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">Status</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-slate-300">Details</th>
+              <th className="px-3 sm:px-4 py-3 text-left text-sm font-semibold text-slate-300">University</th>
+              <th className="px-3 sm:px-4 py-3 text-left text-sm font-semibold text-slate-300">Country</th>
+              <th className="px-3 sm:px-4 py-3 text-left text-sm font-semibold text-slate-300">Status</th>
+              <th className="px-3 sm:px-4 py-3 text-left text-sm font-semibold text-slate-300">Details</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-700">
             {filteredInstitutes.map((inst, i) => (
               <tr key={i} className="hover:bg-[#111820]/50">
-                <td className="px-4 py-3 text-white">{inst.university}</td>
-                <td className="px-4 py-3 text-slate-300">{inst.country}</td>
-                <td className="px-4 py-3">
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${
+                <td className="px-3 sm:px-4 py-3 text-white">{inst.university}</td>
+                <td className="px-3 sm:px-4 py-3 text-slate-300">{inst.country}</td>
+                <td className="px-3 sm:px-4 py-3">
+                  <span className={`px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${
                     inst.status === 'closed' 
                       ? 'bg-green-600 text-white' 
                       : 'bg-red-600 text-white'
@@ -182,7 +183,7 @@ const ConfuciusInstitutes = () => {
                     {inst.status === 'closed' ? `CLOSED ${inst.closedYear}` : 'ACTIVE'}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-sm text-slate-400">
+                <td className="px-3 sm:px-4 py-3 text-sm text-slate-400">
                   {inst.status === 'closed' ? inst.reason : inst.concerns}
                 </td>
               </tr>

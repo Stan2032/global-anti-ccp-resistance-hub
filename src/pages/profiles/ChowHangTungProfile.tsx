@@ -6,13 +6,27 @@
  *
  * @module ChowHangTungProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart
+  User,
+  Calendar,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Newspaper,
+  Flag,
+  Heart,
 } from 'lucide-react';
 
 
@@ -22,12 +36,6 @@ interface TimelineEventType {
   detail: string;
   category: string;
   sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -269,61 +277,10 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-xs text-slate-400 shrink-0 min-w-12">{event.year}</span>
-          <span className={`text-xs px-1.5 py-0.5 font-mono ${cat.text} ${cat.bg} border border-[#1c2a35] shrink-0`}>
-            {cat.label}
-          </span>
-          <span className="text-sm text-slate-200 truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-4 border-t border-[#1c2a35]">
-          <p className="text-sm text-slate-300 mt-3 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:text-[#2a9a52] mt-2 font-mono">
-              <ExternalLink className="w-3 h-3" /> Source <span className="sr-only">(opens in new tab)</span>
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ─────────────────────────────────────────────────
 
 const ChowHangTungProfile: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (index: number) => {
-    setExpandedEvents(prev => {
-      const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
-  };
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges', icon: Scale },
-    { id: 'narrative', label: 'CCP Narrative', icon: Shield },
-    { id: 'response', label: 'International', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -384,54 +341,27 @@ const ChowHangTungProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="border-b border-[#1c2a35] bg-[#0a0e14]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex gap-1 overflow-x-auto" role="tablist" aria-label="Profile sections">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                role="tab"
-                aria-selected={activeTab === tab.id}
-                className={`flex items-center gap-1.5 px-4 py-3 text-sm font-mono whitespace-nowrap transition-colors border-b-2 ${
-                  activeTab === tab.id
-                    ? 'border-[#4afa82] text-[#4afa82]'
-                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab} className="max-w-5xl mx-auto px-4 py-8">
+      <div className="space-y-3">
         {/* Timeline Tab */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#4afa82]" /> Timeline
             </h2>
             <p className="text-sm text-slate-400 mb-6">Key events in Chow Hang-Tung&apos;s life, activism, and persecution.</p>
             <div className="space-y-2">
-              {TIMELINE.map((event, i) => (
-                <TimelineEvent
-                  key={i}
-                  event={event}
-                  isExpanded={expandedEvents.has(i)}
-                  onToggle={() => toggleEvent(i)}
-                />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Charges Tab */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" /> Charges & Legal Status
@@ -457,10 +387,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Tab */}
-        {activeTab === 'narrative' && (
+        <DisclosureSection title="CCP Narrative">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Shield className="w-5 h-5 text-yellow-400" /> CCP Narrative vs. Reality
@@ -490,10 +420,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* International Response Tab */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Globe className="w-5 h-5 text-cyan-400" /> International Response
@@ -514,10 +444,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Sources Tab */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-[#4afa82]" /> Sources & Verification
@@ -532,14 +462,14 @@ const ChowHangTungProfile: React.FC = () => {
                     <span className={`text-xs font-mono px-1.5 py-0.5 border ${s.tier === 1 ? 'text-[#4afa82] border-[#4afa82]/30' : 'text-[#22d3ee] border-[#22d3ee]/30'}`}>
                       T{s.tier}
                     </span>
-                    <span className="text-sm text-slate-300 truncate">{s.name}</span>
+                    <span className="text-sm text-slate-300 break-words">{s.name}</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] shrink-0" />
                 </a>
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

@@ -2,6 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import DataExport from '../components/DataExport';
+import prisoners from '../data/political_prisoners_research.json';
+import sanctions from '../data/sanctions_tracker.json';
+import timelineEvents from '../data/timeline_events.json';
+
+// Derived from the datasets so adding a record does not fail the suite.
+const PRISONER_COUNT = (prisoners as { results: unknown[] }).results.length;
+const SANCTION_COUNT = (sanctions as { sanctions: unknown[] }).sanctions.length;
+const TIMELINE_COUNT = (timelineEvents as unknown[]).length;
 
 describe('DataExport', () => {
   // --- Rendering ---
@@ -32,9 +40,9 @@ describe('DataExport', () => {
 
   it('shows record counts for datasets', () => {
     render(<DataExport />);
-    expect(screen.getByText('64 records')).toBeTruthy(); // prisoners
-    expect(screen.getByText('46 records')).toBeTruthy(); // sanctions
-    expect(screen.getByText('40 records')).toBeTruthy(); // timeline
+    expect(screen.getByText(`${PRISONER_COUNT} records`)).toBeTruthy();
+    expect(screen.getByText(`${SANCTION_COUNT} records`)).toBeTruthy();
+    expect(screen.getByText(`${TIMELINE_COUNT} records`)).toBeTruthy();
   });
 
   it('renders Select All and Clear buttons', () => {

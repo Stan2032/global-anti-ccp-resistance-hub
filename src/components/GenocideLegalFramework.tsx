@@ -17,7 +17,8 @@ import {
   type LegalCase,
   type Sanction,
 } from '../services/dataApi';
-import { Scale, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
+import { Scale, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 interface LegalViolation {
   id: string;
@@ -350,8 +351,6 @@ function getEvidenceCounts(violation: LegalViolation, allData: AllData): Record<
 const GenocideLegalFramework = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedViolation, setExpandedViolation] = useState<string | null>(null);
-  const [activeView, setActiveView] = useState('violations');
   const [copied, setCopied] = useState(false);
   const prisoners = dataApi.getPoliticalPrisoners();
   const facilities = dataApi.getDetentionFacilities();
@@ -451,66 +450,54 @@ const GenocideLegalFramework = () => {
       </div>
 
       {/* View Toggle */}
-      <div className="flex gap-2">
-        {[
-          { id: 'violations', label: 'Legal Violations' },
-          { id: 'recognitions', label: 'Genocide Recognitions' },
-        ].map(view => (
-          <button key={view.id} onClick={() => setActiveView(view.id)} className={`px-4 py-2 text-xs font-mono border transition-colors ${activeView === view.id ? 'text-[#4afa82] border-[#4afa82] bg-[#4afa82]/10' : 'text-slate-400 border-[#1c2a35] hover:border-slate-400'}`} aria-label={`View ${view.label}`} aria-pressed={activeView === view.id}>
-            {view.label}
-          </button>
-        ))}
-      </div>
 
-      {activeView === 'violations' && (
-        <>
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" aria-hidden="true" />
-              <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search legal violations..." className="w-full bg-[#111820] border border-[#1c2a35] text-slate-300 text-sm pl-9 pr-3 py-2 font-mono placeholder:text-slate-400 focus:border-[#22d3ee] focus:outline-none" aria-label="Search legal violations" />
+      <DisclosureSection title="Legal Violations">
+          <>
+            {/* Filters */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" aria-hidden="true" />
+                <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search legal violations..." className="w-full bg-[#111820] border border-[#1c2a35] text-slate-300 text-sm pl-9 pr-3 py-2 font-mono placeholder:text-slate-400 focus:border-[#22d3ee] focus:outline-none" aria-label="Search legal violations" />
+              </div>
+              <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-sm px-3 py-2 font-mono focus:border-[#22d3ee] focus:outline-none" aria-label="Filter by legal instrument">
+                {LEGAL_CATEGORIES.map(c => (
+                  <option key={c.id} value={c.id}>{c.label}</option>
+                ))}
+              </select>
             </div>
-            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-sm px-3 py-2 font-mono focus:border-[#22d3ee] focus:outline-none" aria-label="Filter by legal instrument">
-              {LEGAL_CATEGORIES.map(c => (
-                <option key={c.id} value={c.id}>{c.label}</option>
-              ))}
-            </select>
-          </div>
 
-          {/* Category buttons */}
-          <div className="flex flex-wrap gap-2">
-            {LEGAL_CATEGORIES.filter(c => c.id !== 'all').map(cat => {
-              const count = LEGAL_VIOLATIONS.filter(v => v.category === cat.id).length;
-              return (
-                <button key={cat.id} onClick={() => setSelectedCategory(selectedCategory === cat.id ? 'all' : cat.id)} className={`px-3 py-1.5 text-xs font-mono border transition-colors ${selectedCategory === cat.id ? `${cat.color} border-current bg-current/10` : 'text-slate-400 border-[#1c2a35] hover:border-slate-400'}`} aria-label={`Filter ${cat.label}`}>
-                  {cat.label} ({count})
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Violation Cards */}
-          <div className="space-y-3">
-            <p className="text-xs text-slate-400 font-mono">{filtered.length} of {stats.total} violations shown</p>
-            {filtered.map(v => {
-              const cat = getCategoryStyle(v.category);
-              const isExpanded = expandedViolation === v.id;
-              const totalEvidence = Object.values(v.evidenceCounts).reduce((s, val) => s + val, 0);
-              return (
-                <div key={v.id} className="border border-[#1c2a35] bg-[#111820]/50">
-                  <button onClick={() => setExpandedViolation(isExpanded ? null : v.id)} className="w-full text-left p-4 flex items-start justify-between gap-3" aria-expanded={isExpanded} aria-label={`${v.article}: ${v.title} — ${cat.label}`}>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
-                        <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${v.severity === 'critical' ? 'text-red-400 bg-red-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{v.severity}</span>
-                      </div>
-                      <p className="text-sm text-[#22d3ee] font-mono">{v.article}</p>
-                      <p className="text-sm text-white font-mono leading-relaxed mt-0.5">{v.title}</p>
-                      <p className="text-xs text-slate-400 mt-1">{totalEvidence} evidence points • {v.recognitions} recognitions</p>
-                    </div>
-                    <span className="text-slate-500 flex-shrink-0 mt-1">{isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}</span>
+            {/* Category buttons */}
+            <div className="flex flex-wrap gap-2">
+              {LEGAL_CATEGORIES.filter(c => c.id !== 'all').map(cat => {
+                const count = LEGAL_VIOLATIONS.filter(v => v.category === cat.id).length;
+                return (
+                  <button key={cat.id} onClick={() => setSelectedCategory(selectedCategory === cat.id ? 'all' : cat.id)} className={`px-3 py-1.5 text-xs font-mono border transition-colors ${selectedCategory === cat.id ? `${cat.color} border-current bg-current/10` : 'text-slate-400 border-[#1c2a35] hover:border-slate-400'}`} aria-label={`Filter ${cat.label}`}>
+                    {cat.label} ({count})
                   </button>
-                  {isExpanded && (
+                );
+              })}
+            </div>
+
+            {/* Violation Cards */}
+            <div className="space-y-3">
+              <p className="text-xs text-slate-400 font-mono">{filtered.length} of {stats.total} violations shown</p>
+              {filtered.map(v => {
+                const cat = getCategoryStyle(v.category);
+                const totalEvidence = Object.values(v.evidenceCounts).reduce((s, val) => s + val, 0);
+                return (
+                  <details key={v.id} className="border border-[#1c2a35] bg-[#111820]/50">
+                    <summary className="w-full text-left p-4 flex items-start justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="block min-w-0 flex-1">
+                        <span className="flex flex-wrap items-center gap-2 mb-1.5">
+                          <span className={`text-xs font-mono px-2 py-0.5 ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
+                          <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${v.severity === 'critical' ? 'text-red-400 bg-red-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{v.severity}</span>
+                        </span>
+                        <span className="block text-sm text-[#22d3ee] font-mono">{v.article}</span>
+                        <span className="block text-sm text-white font-mono leading-relaxed mt-0.5">{v.title}</span>
+                        <span className="block text-xs text-slate-400 mt-1">{totalEvidence} evidence points • {v.recognitions} recognitions</span>
+                      </span>
+                      <span className="text-slate-500 flex-shrink-0 mt-1"><ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" /></span>
+                    </summary>
                     <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
                       {/* Legal Text */}
                       <div className="mt-3 space-y-2">
@@ -569,37 +556,36 @@ const GenocideLegalFramework = () => {
                         </div>
                       )}
                     </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
+                  </details>
+                );
+              })}
+            </div>
+          </>
+      </DisclosureSection>
 
-      {activeView === 'recognitions' && (
-        <div className="space-y-4">
-          <p className="text-xs text-slate-400 font-mono">{RECOGNITION_COUNTRIES.length} formal genocide recognitions and tribunal findings</p>
-          <div className="space-y-2">
-            {RECOGNITION_COUNTRIES.map((rec, i) => (
-              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3 flex items-start gap-3">
-                <div className="flex-shrink-0">
-                  <Flag className="w-4 h-4 text-[#a78bfa]" aria-hidden="true" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm text-white font-mono">{rec.country}</span>
-                    <span className="text-xs font-mono text-[#22d3ee]">{rec.year}</span>
-                    <span className="text-xs font-mono px-2 py-0.5 text-[#a78bfa] bg-[#a78bfa]/10">{rec.type}</span>
+      <DisclosureSection title="Genocide Recognitions">
+          <div className="space-y-4">
+            <p className="text-xs text-slate-400 font-mono">{RECOGNITION_COUNTRIES.length} formal genocide recognitions and tribunal findings</p>
+            <div className="space-y-2">
+              {RECOGNITION_COUNTRIES.map((rec, i) => (
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-3 flex items-start gap-3">
+                  <div className="flex-shrink-0">
+                    <Flag className="w-4 h-4 text-[#a78bfa]" aria-hidden="true" />
                   </div>
-                  <p className="text-xs text-slate-400">{rec.body}</p>
-                  <p className="text-sm text-slate-300 mt-1">{rec.details}</p>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
+                      <span className="text-sm text-white font-mono">{rec.country}</span>
+                      <span className="text-xs font-mono text-[#22d3ee]">{rec.year}</span>
+                      <span className="text-xs font-mono px-2 py-0.5 text-[#a78bfa] bg-[#a78bfa]/10">{rec.type}</span>
+                    </div>
+                    <p className="text-xs text-slate-400">{rec.body}</p>
+                    <p className="text-sm text-slate-300 mt-1">{rec.details}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="text-xs text-slate-400 border-t border-[#1c2a35] pt-4 space-y-1">

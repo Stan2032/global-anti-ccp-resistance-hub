@@ -3,18 +3,10 @@
  * National Security Law enforcement, press freedom, and civil liberties.
  *
  * @module HongKongStatus
- */
-import { useState } from 'react';
+ */ 
 
+import { DisclosureSection } from './DisclosureSection';
 const HongKongStatus = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', name: 'Overview' },
-    { id: 'laws', name: 'Repressive Laws' },
-    { id: 'arrests', name: 'Arrests & Trials' },
-    { id: 'exodus', name: 'Exodus' }
-  ];
 
   const keyStats = [
     { label: 'Arrested since 2019', value: '10,000+', color: 'red' },
@@ -80,78 +72,67 @@ const HongKongStatus = () => {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Hong Kong status tabs">
-        {tabs.map((tab) => (
-          <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`hk-tabpanel-${tab.id}`}
-            className={`px-4 py-2 text-sm font-medium ${activeTab === tab.id ? 'bg-yellow-600 text-white' : 'bg-[#111820] text-slate-300'}`}>
-            {tab.name}
-          </button>
-        ))}
-      </div>
 
-      {activeTab === 'overview' && (
-        <div className="bg-[#111820] border border-[#1c2a35] p-6">
-          <h3 className="text-xl font-bold text-white mb-4">Closed Organizations</h3>
-          <div className="grid md:grid-cols-2 gap-3">
-            {closedOrgs.map((org, i) => (
-              <div key={i} className="bg-[#111820] p-3">
-                <span className="text-white font-medium">{org.name}</span>
-                <span className="text-slate-400 text-sm ml-2">({org.type}, {org.date})</span>
+      <DisclosureSection title="Overview">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
+            <h3 className="text-xl font-bold text-white mb-4">Closed Organizations</h3>
+            <div className="grid md:grid-cols-2 gap-3">
+              {closedOrgs.map((org, i) => (
+                <div key={i} className="bg-[#111820] p-3">
+                  <span className="text-white font-medium">{org.name}</span>
+                  <span className="text-slate-400 text-sm ml-2">({org.type}, {org.date})</span>
+                </div>
+              ))}
+            </div>
+          </div>
+      </DisclosureSection>
+
+      <DisclosureSection title="Repressive Laws">
+          <div className="space-y-4">
+            {repressiveLaws.map((law, i) => (
+              <div key={i} className="bg-[#111820] border border-red-700 p-6">
+                <div className="flex justify-between mb-3">
+                  <h4 className="text-lg font-bold text-white">{law.name}</h4>
+                  <span className="bg-red-600 text-white text-xs px-3 py-1 rounded-full">{law.status}</span>
+                </div>
+                <p className="text-slate-300 mb-3">{law.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {law.impact.map((item, j) => (
+                    <span key={j} className="bg-red-900/30 text-red-300 text-xs px-2 py-1 rounded">{item}</span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
-      {activeTab === 'laws' && (
-        <div className="space-y-4">
-          {repressiveLaws.map((law, i) => (
-            <div key={i} className="bg-[#111820] border border-red-700 p-6">
-              <div className="flex justify-between mb-3">
-                <h4 className="text-lg font-bold text-white">{law.name}</h4>
-                <span className="bg-red-600 text-white text-xs px-3 py-1 rounded-full">{law.status}</span>
+      <DisclosureSection title="Arrests & Trials">
+          <div className="space-y-4">
+            {majorCases.map((c, i) => (
+              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
+                <div className="flex justify-between">
+                  <h4 className="font-bold text-white">{c.name}</h4>
+                  <span className="bg-red-900/50 text-red-300 text-xs px-2 py-1 rounded">{c.status}</span>
+                </div>
+                <p className="text-slate-400 text-sm">{c.charges} - {c.details}</p>
               </div>
-              <p className="text-slate-300 mb-3">{law.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {law.impact.map((item, j) => (
-                  <span key={j} className="bg-red-900/30 text-red-300 text-xs px-2 py-1 rounded">{item}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {activeTab === 'arrests' && (
-        <div className="space-y-4">
-          {majorCases.map((c, i) => (
-            <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
-              <div className="flex justify-between">
-                <h4 className="font-bold text-white">{c.name}</h4>
-                <span className="bg-red-900/50 text-red-300 text-xs px-2 py-1 rounded">{c.status}</span>
-              </div>
-              <p className="text-slate-400 text-sm">{c.charges} - {c.details}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {activeTab === 'exodus' && (
-        <div className="bg-[#111820] border border-[#1c2a35] p-6">
-          <div className="text-center mb-4">
-            <div className="text-4xl font-bold text-[#22d3ee]">500,000+</div>
-            <div className="text-slate-400">Estimated emigrants since 2020</div>
+            ))}
           </div>
-          <div className="space-y-2">
-            <div className="flex justify-between"><span>🇬🇧 UK</span><span className="text-[#22d3ee]">180,000+ (BNO)</span></div>
-            <div className="flex justify-between"><span>🇨🇦 Canada</span><span className="text-[#22d3ee]">50,000+</span></div>
-            <div className="flex justify-between"><span>🇦🇺 Australia</span><span className="text-[#22d3ee]">20,000+</span></div>
+      </DisclosureSection>
+
+      <DisclosureSection title="Exodus">
+          <div className="bg-[#111820] border border-[#1c2a35] p-6">
+            <div className="text-center mb-4">
+              <div className="text-4xl font-bold text-[#22d3ee]">500,000+</div>
+              <div className="text-slate-400">Estimated emigrants since 2020</div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between"><span>🇬🇧 UK</span><span className="text-[#22d3ee]">180,000+ (BNO)</span></div>
+              <div className="flex justify-between"><span>🇨🇦 Canada</span><span className="text-[#22d3ee]">50,000+</span></div>
+              <div className="flex justify-between"><span>🇦🇺 Australia</span><span className="text-[#22d3ee]">20,000+</span></div>
+            </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       <div className="bg-[#111820] border border-[#1c2a35] p-6">
         <h3 className="text-lg font-bold text-white mb-4">Resources</h3>

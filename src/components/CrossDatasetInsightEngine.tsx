@@ -6,7 +6,7 @@
  * @module CrossDatasetInsightEngine
  */
 import React, { useState, useMemo } from 'react';
-import { Network, Search, Copy, Check, ChevronDown, ChevronUp, Zap, Globe, Users, Scale, Factory, Building, Shield, AlertTriangle, TrendingUp, Link2 } from 'lucide-react';
+import { Network, Search, Copy, Check, ChevronDown, Zap, Globe, Users, Scale, Factory, Building, Shield, AlertTriangle, TrendingUp, Link2 } from 'lucide-react';
 import {
   dataApi,
   type PoliticalPrisoner,
@@ -347,7 +347,6 @@ const DATASET_LABELS: Record<DatasetKey, string> = {
 export default function CrossDatasetInsightEngine() {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
-  const [expandedInsight, setExpandedInsight] = useState('');
   const [copied, setCopied] = useState(false);
 
   // Load all datasets once via useMemo
@@ -511,76 +510,76 @@ export default function CrossDatasetInsightEngine() {
         {filteredInsights.map((insight) => {
           const cfg = CATEGORY_CONFIG[insight.category];
           const Icon = cfg.icon;
-          const expanded = expandedInsight === insight.id;
-          return (
-            <div
-              key={insight.id}
-              className={`border ${expanded ? cfg.border : 'border-[#1c2a35]'} bg-[#111820] transition-colors`}
-            >
-              <button
-                onClick={() => setExpandedInsight(expanded ? '' : insight.id)}
-                className="w-full flex items-start gap-3 p-3 sm:p-4 text-left"
-                aria-expanded={expanded}
-                aria-label={`${insight.title} — ${insight.summary}`}
-              >
-                <Icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>
-                      {cfg.label}
-                    </span>
-                    {/* Strength indicator */}
-                    <span className="flex gap-0.5" aria-label={`Strength: ${Math.round(insight.strength * 100)}%`}>
-                      {[1, 2, 3, 4, 5].map((n) => (
-                        <span
-                          key={n}
-                          className={`w-1.5 h-1.5 rounded-full ${
-                            n <= Math.ceil(insight.strength * 5) ? cfg.color.replace('text-', 'bg-') : 'bg-slate-700'
-                          }`}
-                          aria-hidden="true"
-                        />
-                      ))}
-                    </span>
-                  </div>
-                  <h3 className="text-sm font-mono text-slate-200 mt-1.5">{insight.title}</h3>
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{insight.summary}</p>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {insight.datasets.map((d) => (
-                      <span key={d} className="text-xs font-mono px-1.5 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
-                        {DATASET_LABELS[d as DatasetKey] || d}
-                      </span>
+          // Only insights with connected records have anything to open.
+          const hasItems = !!insight.items && insight.items.length > 0;
+          const header = (
+            <>
+              <Icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
+              <span className="block flex-1 min-w-0">
+                <span className="flex items-center gap-2 flex-wrap">
+                  <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>
+                    {cfg.label}
+                  </span>
+                  {/* Strength indicator */}
+                  <span className="flex gap-0.5" aria-label={`Strength: ${Math.round(insight.strength * 100)}%`}>
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <span
+                        key={n}
+                        className={`w-1.5 h-1.5 rounded-full ${
+                          n <= Math.ceil(insight.strength * 5) ? cfg.color.replace('text-', 'bg-') : 'bg-slate-700'
+                        }`}
+                        aria-hidden="true"
+                      />
                     ))}
-                  </div>
-                </div>
-                <div className="flex-shrink-0 text-slate-400">
-                  {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </div>
-              </button>
-
-              {expanded && insight.items && insight.items.length > 0 && (
-                <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
-                  <p className="text-xs font-mono text-slate-300 mb-2">
-                    <Link2 className="w-3 h-3 inline mr-1" aria-hidden="true" />
-                    Connected records ({insight.items.length})
-                  </p>
-                  {insight.items.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-xs font-mono bg-[#0a0e14] border border-[#1c2a35] px-3 py-2"
-                    >
-                      <span className="text-[#22d3ee] flex-shrink-0">{DATASET_LABELS[item.dataset as DatasetKey] || item.dataset}</span>
-                      <span className="text-slate-400" aria-hidden="true">→</span>
-                      <span className="text-slate-200 truncate">{item.label}</span>
-                    </div>
+                  </span>
+                </span>
+                <span className="block text-sm font-mono text-slate-200 mt-1.5">{insight.title}</span>
+                <span className={`block text-xs text-slate-400 mt-1 ${hasItems ? 'line-clamp-2 summary-open:line-clamp-none' : ''}`}>{insight.summary}</span>
+                <span className="flex flex-wrap gap-1.5 mt-2">
+                  {insight.datasets.map((d) => (
+                    <span key={d} className="text-xs font-mono px-1.5 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
+                      {DATASET_LABELS[d as DatasetKey] || d}
+                    </span>
                   ))}
-                  {insight.count > insight.items.length && (
-                    <p className="text-xs text-slate-400 font-mono mt-1">
-                      + {insight.count - insight.items.length} more connected record(s)
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
+                </span>
+              </span>
+            </>
+          );
+          if (!hasItems) {
+            return (
+              <div key={insight.id} className="border border-[#1c2a35] bg-[#111820] flex items-start gap-3 p-3 sm:p-4">
+                {header}
+              </div>
+            );
+          }
+          return (
+            <details key={insight.id} className="border border-[#1c2a35] bg-[#111820] transition-colors">
+              <summary className="w-full flex items-start gap-3 p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                {header}
+                <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+              </summary>
+              <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
+                <p className="text-xs font-mono text-slate-300 mb-2">
+                  <Link2 className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                  Connected records ({insight.items.length})
+                </p>
+                {insight.items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2 text-xs font-mono bg-[#0a0e14] border border-[#1c2a35] px-3 py-2"
+                  >
+                    <span className="text-[#22d3ee] flex-shrink-0">{DATASET_LABELS[item.dataset as DatasetKey] || item.dataset}</span>
+                    <span className="text-slate-400" aria-hidden="true">→</span>
+                    <span className="text-slate-200 min-w-0 break-words">{item.label}</span>
+                  </div>
+                ))}
+                {insight.count > insight.items.length && (
+                  <p className="text-xs text-slate-400 font-mono mt-1">
+                    + {insight.count - insight.items.length} more connected record(s)
+                  </p>
+                )}
+              </div>
+            </details>
           );
         })}
       </div>

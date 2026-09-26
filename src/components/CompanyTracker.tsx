@@ -322,11 +322,11 @@ const CompanyTracker = () => {
       <div className="space-y-3">
         <div>
           <input
-            aria-label="Search"
+            aria-label="Search tracked companies by name"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search companies..."
+            placeholder="Search tracked companies by name..."
             className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>

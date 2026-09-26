@@ -20,6 +20,8 @@
  *   GET /api/v1/orgs              → Human rights organizations
  *   GET /api/v1/stats             → Live statistics
  *   GET /api/v1/search?q=X        → Global search across all datasets
+ *   GET /api/v1/feeds             → List of proxied RSS sources
+ *   GET /api/v1/feed?source=KEY   → One RSS feed, fetched server-side
  */
 
 // ── Data imports ────────────────────────────────────────
@@ -156,9 +158,127 @@ function handleIndex() {
     endpoints: [
       ...endpoints,
       { endpoint: `/api/${API_VERSION}/search?q=QUERY`, name: 'Global Search', description: 'Search across all datasets' },
+      { endpoint: `/api/${API_VERSION}/feeds`, name: 'Feed Sources', description: 'RSS sources this API will proxy' },
+      { endpoint: `/api/${API_VERSION}/feed?source=KEY`, name: 'RSS Feed', description: 'One RSS feed, fetched server-side so readers never contact the outlet directly' },
     ],
     rateLimit: `${RATE_LIMIT} requests/minute (unauthenticated)`,
     lastUpdated: new Date().toISOString().split('T')[0],
+  });
+}
+
+/**
+ * Every RSS feed the site reads, and the only URLs this Worker will fetch.
+ *
+ * ## Why the Worker fetches these instead of the browser
+ *
+ * Until now the reader's own browser fetched each feed through
+ * `api.rss2json.com` or `api.allorigins.win`, two free third-party proxies —
+ * the CSP had been widened to permit them. That told both services the
+ * reader's IP address and exactly which anti-CCP feeds they were pulling,
+ * on a site whose Security Center tells readers in China to use Tor
+ * precisely because being identified is dangerous. It also meant a public
+ * proxy, if it went down or was interfered with, chose what text got
+ * rendered into the page.
+ *
+ * Fetching here removes both problems. The Worker builds a fresh request,
+ * so the upstream outlet and any intermediary see Cloudflare's edge and
+ * never the reader. `connect-src` is back to 'self'.
+ *
+ * ## Why this is a key allowlist and not a URL parameter
+ *
+ * An endpoint that fetches a URL supplied by the caller is an open proxy
+ * and an SSRF hole — it would fetch internal addresses on request. The
+ * caller sends a key; the URL is only ever read from this object.
+ *
+ * This is also the single source of truth for feed URLs. There were two
+ * overlapping lists before, in src/services/liveDataService.ts and
+ * src/data/live_data_feeds.json, which disagreed about the URLs for the
+ * same outlets. A test pins the JSON list to this one.
+ */
+const FEED_SOURCES = {
+  icij: 'https://www.icij.org/feed/',
+  rfa: 'https://www.rfa.org/english/news/rss2.xml',
+  rfa_china: 'https://www.rfa.org/english/news/china/rss.xml',
+  rfa_uyghur: 'https://www.rfa.org/english/news/uyghur/rss.xml',
+  rfa_tibet: 'https://www.rfa.org/english/news/tibet/rss.xml',
+  hkfp: 'https://hongkongfp.com/feed/',
+  hongkongfp: 'https://hongkongfp.com/feed/',
+  aspi: 'https://www.aspistrategist.org.au/feed/',
+  aspi_china: 'https://www.aspi.org.au/rss.xml',
+  hrw: 'https://www.hrw.org/rss/news',
+  hrw_china: 'https://www.hrw.org/news/china/rss',
+  amnesty: 'https://www.amnesty.org/en/feed/',
+  amnesty_china: 'https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/china/rss/',
+  cpj: 'https://cpj.org/feed/',
+  guardian: 'https://www.theguardian.com/world/china/rss',
+  bbc: 'https://feeds.bbci.co.uk/news/world/asia/china/rss.xml',
+  scmp_china: 'https://www.scmp.com/rss/91/china',
+  taiwan_news: 'https://www.taiwannews.com.tw/en/rss',
+};
+
+const FEED_CACHE_TTL = 600; // 10 minutes — feeds do not change faster than this
+const FEED_TIMEOUT_MS = 8000;
+
+/** GET /api/v1/feeds — the sources available to proxy. */
+function handleFeedIndex() {
+  return jsonResponse({
+    description: 'RSS sources fetched server-side so readers never contact them directly.',
+    usage: `/api/${API_VERSION}/feed?source=KEY`,
+    cacheSeconds: FEED_CACHE_TTL,
+    sources: Object.keys(FEED_SOURCES).sort(),
+  });
+}
+
+/** GET /api/v1/feed?source=KEY — one feed, as the outlet published it. */
+async function handleFeed(url) {
+  const source = url.searchParams.get('source') || '';
+  // hasOwnProperty, not `in`: `source=toString` must not resolve to a function.
+  const upstream = Object.prototype.hasOwnProperty.call(FEED_SOURCES, source)
+    ? FEED_SOURCES[source]
+    : null;
+
+  if (!upstream) {
+    return jsonResponse({
+      error: 'Unknown feed source.',
+      hint: `See /api/${API_VERSION}/feeds for the available keys.`,
+    }, 404);
+  }
+
+  let upstreamResponse;
+  try {
+    // A new request, deliberately: nothing from the reader is forwarded.
+    upstreamResponse = await fetch(upstream, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8',
+        'User-Agent': 'global-anti-ccp-resistance-hub (+/api/v1/)',
+      },
+      signal: AbortSignal.timeout(FEED_TIMEOUT_MS),
+      cf: { cacheTtl: FEED_CACHE_TTL, cacheEverything: true },
+    });
+  } catch (_err) {
+    return jsonResponse({ error: 'Feed source unreachable.', source }, 502);
+  }
+
+  if (!upstreamResponse.ok) {
+    return jsonResponse({
+      error: 'Feed source returned an error.',
+      source,
+      upstreamStatus: upstreamResponse.status,
+    }, 502);
+  }
+
+  const body = await upstreamResponse.text();
+
+  return new Response(body, {
+    status: 200,
+    headers: {
+      // Always XML, whatever the outlet labelled it, and never sniffed as HTML.
+      'Content-Type': 'application/xml; charset=utf-8',
+      'X-Content-Type-Options': 'nosniff',
+      'Cache-Control': `public, max-age=${FEED_CACHE_TTL}`,
+      'Access-Control-Allow-Origin': '*',
+    },
   });
 }
 
@@ -311,6 +431,17 @@ export default {
       // /api/v1/search — Global search
       if (segments[0] === 'search') {
         return handleSearch(url);
+      }
+
+      // /api/v1/feeds — Proxied RSS source list
+      if (segments[0] === 'feeds') {
+        return handleFeedIndex();
+      }
+
+      // /api/v1/feed — One proxied RSS feed. Awaited so the catch below
+      // covers it; the other handlers are synchronous.
+      if (segments[0] === 'feed') {
+        return await handleFeed(url);
       }
 
       // /api/v1/:dataset — Dataset endpoint

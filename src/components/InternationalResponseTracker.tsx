@@ -116,7 +116,6 @@ function buildClipboardText(responses: EnrichedResponse[], stanceFilter: string)
 export default function InternationalResponseTracker() {
   const [searchQuery, setSearchQuery] = useState('');
   const [stanceFilter, setStanceFilter] = useState('');
-  const [expandedCountry, setExpandedCountry] = useState('');
   const [copied, setCopied] = useState(false);
 
   const responses = useMemo(() => {
@@ -156,10 +155,6 @@ export default function InternationalResponseTracker() {
     });
     return counts;
   }, [enrichedResponses]);
-
-  const handleToggle = (country: string) => {
-    setExpandedCountry((prev) => (prev === country ? '' : country));
-  };
 
   const handleCopy = async () => {
     const text = buildClipboardText(filteredResponses, stanceFilter);
@@ -292,17 +287,10 @@ export default function InternationalResponseTracker() {
         ) : (
           filteredResponses.map((response) => {
             const style = STANCE_STYLES[response.stanceCategory];
-            const isExpanded = expandedCountry === response.country;
 
             return (
-              <div key={response.country || response.id}>
-                {/* Country Row */}
-                <button
-                  onClick={() => handleToggle(response.country)}
-                  className="w-full text-left p-4 sm:px-6 flex items-center gap-3 hover:bg-[#0d1117] transition-colors"
-                  aria-expanded={isExpanded}
-                  aria-controls={`details-${response.country}`}
-                >
+              <details key={response.country || response.id}>
+                <summary className="w-full text-left p-4 sm:px-6 flex items-center gap-3 hover:bg-[#0d1117] transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <span
                     className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`}
                     aria-hidden="true"
@@ -316,72 +304,61 @@ export default function InternationalResponseTracker() {
                     {response.stanceCategory}
                   </span>
                   {/* Strength bar */}
-                  <div className="hidden sm:block w-20 h-1.5 bg-[#1c2a35] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${style.bar} ${style.width}`}
+                  <span className="hidden sm:block w-20 h-1.5 bg-[#1c2a35] rounded-full overflow-hidden">
+                    <span
+                      className={`block h-full rounded-full ${style.bar} ${style.width}`}
                     />
-                  </div>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                  )}
-                </button>
-
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div
-                    id={`details-${response.country}`}
-                    className="px-4 sm:px-6 pb-4 bg-[#0d1117]"
-                  >
-                    <div className="space-y-3">
-                      {DIMENSIONS.map(({ key, label, Icon }) => {
-                        const value = response[key];
-                        if (!value) return null;
-                        return (
-                          <div key={key} className="flex gap-3">
-                            <Icon
-                              className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500"
-                              aria-hidden="true"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs text-slate-400 mb-0.5">
-                                {label}
-                              </div>
-                              <div className="text-sm text-slate-300 leading-relaxed">
-                                {value}
-                              </div>
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-4 sm:px-6 pb-4 bg-[#0d1117]">
+                  <div className="space-y-3">
+                    {DIMENSIONS.map(({ key, label, Icon }) => {
+                      const value = response[key];
+                      if (!value) return null;
+                      return (
+                        <div key={key} className="flex gap-3">
+                          <Icon
+                            className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500"
+                            aria-hidden="true"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="text-xs text-slate-400 mb-0.5">
+                              {label}
+                            </div>
+                            <div className="text-sm text-slate-300 leading-relaxed">
+                              {value}
                             </div>
                           </div>
-                        );
-                      })}
-                      {/* Overall Stance */}
-                      {response.overall_stance && (
-                        <div className="mt-2 pt-2 border-t border-[#1c2a35]">
-                          <div className="text-xs text-slate-400 mb-1">Overall Assessment</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {response.overall_stance}
-                          </div>
                         </div>
-                      )}
-                      {/* Source */}
-                      {response.source_url && (
-                        <div className="mt-2 pt-2 border-t border-[#1c2a35]">
-                          <a
-                            href={response.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                            Source
-                          </a>
+                      );
+                    })}
+                    {/* Overall Stance */}
+                    {response.overall_stance && (
+                      <div className="mt-2 pt-2 border-t border-[#1c2a35]">
+                        <div className="text-xs text-slate-400 mb-1">Overall Assessment</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {response.overall_stance}
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
+                    {/* Source */}
+                    {response.source_url && (
+                      <div className="mt-2 pt-2 border-t border-[#1c2a35]">
+                        <a
+                          href={response.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                          Source
+                        </a>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              </details>
             );
           })
         )}

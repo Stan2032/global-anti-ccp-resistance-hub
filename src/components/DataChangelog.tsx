@@ -6,7 +6,7 @@
  *
  * @module DataChangelog
  */
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import {
   History,
   CheckCircle,
@@ -140,49 +140,57 @@ const STATUS_COLORS: Record<FreshnessStatus, { bg: string; border: string; text:
   stale: { bg: 'bg-red-400/10', border: 'border-red-400/30', text: 'text-red-400', icon: AlertTriangle },
 };
 
-const DataChangelog = () => {
-  const [expandedDataset, setExpandedDataset] = useState<string | null>(null);
-  const [showAllUpdates, setShowAllUpdates] = useState(false);
-
-  // Compute dataset health metrics
-  const datasets = useMemo(() =>
-    DATASET_VERIFICATION.map((d) => ({
-      ...d,
-      records: d.recordCount(),
-      freshness: getFreshness(d.lastVerified),
-    })),
-    []
+/** One entry in the recent data changes list. */
+function ChangeItem({ update }: { update: ChangelogUpdate }) {
+  return (
+    <div className="bg-[#111820] border border-[#1c2a35] p-3 flex items-start gap-3">
+      <div className="flex-shrink-0 mt-0.5">
+        {update.category === 'verification' ? (
+          <CheckCircle className="w-4 h-4 text-green-400" />
+        ) : update.category === 'case_update' ? (
+          <AlertTriangle className="w-4 h-4 text-yellow-400" />
+        ) : (
+          <Database className="w-4 h-4 text-[#22d3ee]" />
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-white text-sm font-medium">{update.title}</span>
+          <span className="text-xs text-slate-400 bg-[#0a0e14] px-1.5 py-0.5 rounded">{update.category}</span>
+        </div>
+        <p className="text-slate-400 text-xs mt-1">{update.description}</p>
+        <div className="text-xs text-slate-400 mt-1">{update.date}</div>
+      </div>
+    </div>
   );
+}
 
-  // Get recent data-related updates
-  const recentChanges = useMemo(() => {
-    const all = dataApi.getRecentUpdates() as ChangelogUpdate[];
-    const dataUpdates = all.filter(
-      (u: ChangelogUpdate) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
-    );
-    return showAllUpdates ? dataUpdates : dataUpdates.slice(0, 5);
-  }, [showAllUpdates]);
+const DataChangelog = () => {
 
-  const totalDataUpdates = useMemo(() => {
-    const all = dataApi.getRecentUpdates() as ChangelogUpdate[];
-    return all.filter(
-      (u: ChangelogUpdate) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
-    ).length;
-  }, []);
+  // Nothing here changes after the first render, so nothing needs memoising.
+  const datasets = DATASET_VERIFICATION.map((d) => ({
+    ...d,
+    records: d.recordCount(),
+    freshness: getFreshness(d.lastVerified),
+  }));
+
+  // Recent data-related updates: the newest five, then the rest folded away.
+  const recentChanges = (dataApi.getRecentUpdates() as ChangelogUpdate[]).filter(
+    (u) => u.category === 'data' || u.category === 'verification' || u.category === 'case_update'
+  );
+  const firstFive = recentChanges.slice(0, 5);
+  const earlierChanges = recentChanges.slice(5);
+  const totalDataUpdates = recentChanges.length;
 
   // Summary stats
-  const summary = useMemo(() => {
-    const fresh = datasets.filter((d) => d.freshness.status === 'fresh').length;
-    const current = datasets.filter((d) => d.freshness.status === 'current').length;
-    const aging = datasets.filter((d) => d.freshness.status === 'aging').length;
-    const stale = datasets.filter((d) => d.freshness.status === 'stale').length;
-    const totalRecords = datasets.reduce((sum, d) => sum + d.records, 0);
-    return { fresh, current, aging, stale, totalRecords };
-  }, [datasets]);
-
-  const toggleDataset = (id: string) => {
-    setExpandedDataset((prev) => (prev === id ? null : id));
+  const summary = {
+    fresh: datasets.filter((d) => d.freshness.status === 'fresh').length,
+    current: datasets.filter((d) => d.freshness.status === 'current').length,
+    aging: datasets.filter((d) => d.freshness.status === 'aging').length,
+    stale: datasets.filter((d) => d.freshness.status === 'stale').length,
+    totalRecords: datasets.reduce((sum, d) => sum + d.records, 0),
   };
+
 
   return (
     <div className="space-y-6">
@@ -228,50 +236,39 @@ const DataChangelog = () => {
         {datasets.map((dataset) => {
           const style = STATUS_COLORS[dataset.freshness.status];
           const StatusIcon = style.icon;
-          const isExpanded = expandedDataset === dataset.id;
           return (
-            <div key={dataset.id} className={`${style.bg} border ${style.border} transition-colors`}>
-              <button
-                onClick={() => toggleDataset(dataset.id)}
-                className="w-full flex items-center justify-between p-3 text-left"
-                aria-expanded={isExpanded}
-              >
-                <div className="flex items-center gap-3 min-w-0">
+            <details key={dataset.id} className={`${style.bg} border ${style.border} transition-colors`}>
+              <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-3 min-w-0">
                   <StatusIcon className={`w-4 h-4 ${style.text} flex-shrink-0`} />
-                  <div className="min-w-0">
+                  <span className="block min-w-0">
                     <span className="text-white font-medium">{dataset.name}</span>
                     <span className="text-slate-400 text-sm ml-2">({dataset.records} records)</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                  </span>
+                </span>
+                <span className="flex items-center gap-2 flex-shrink-0">
                   <span className={`text-xs ${style.text}`}>{dataset.freshness.label}</span>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-400" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-400" />
-                  )}
+                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </span>
+              </summary>
+              <div className="px-3 pb-3 border-t border-[#1c2a35] pt-3 space-y-2">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  <Calendar className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  <span className="text-slate-400">Last verified:</span>
+                  <span className="text-white">{dataset.lastVerified}</span>
+                  <span className="text-slate-400">({dataset.freshness.daysAgo} days ago)</span>
                 </div>
-              </button>
-              {isExpanded && (
-                <div className="px-3 pb-3 border-t border-[#1c2a35] pt-3 space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="w-4 h-4 text-slate-400" />
-                    <span className="text-slate-400">Last verified:</span>
-                    <span className="text-white">{dataset.lastVerified}</span>
-                    <span className="text-slate-400">({dataset.freshness.daysAgo} days ago)</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Database className="w-4 h-4 text-slate-400" />
-                    <span className="text-slate-400">File:</span>
-                    <code className="text-[#22d3ee] text-xs bg-[#0a0e14] px-1.5 py-0.5 rounded">{dataset.file}</code>
-                  </div>
-                  <div className="flex items-start gap-2 text-sm">
-                    <RefreshCw className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-300">{dataset.verificationNote}</span>
-                  </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Database className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  <span className="text-slate-400">File:</span>
+                  <code className="min-w-0 text-[#22d3ee] text-xs bg-[#0a0e14] px-1.5 py-0.5 rounded break-all">{dataset.file}</code>
                 </div>
-              )}
-            </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <RefreshCw className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-300">{dataset.verificationNote}</span>
+                </div>
+              </div>
+            </details>
           );
         })}
       </div>
@@ -283,48 +280,19 @@ const DataChangelog = () => {
           Recent Data Changes
         </h3>
         <div className="space-y-2">
-          {recentChanges.map((update) => (
-            <div
-              key={update.id}
-              className="bg-[#111820] border border-[#1c2a35] p-3 flex items-start gap-3"
-            >
-              <div className="flex-shrink-0 mt-0.5">
-                {update.category === 'verification' ? (
-                  <CheckCircle className="w-4 h-4 text-green-400" />
-                ) : update.category === 'case_update' ? (
-                  <AlertTriangle className="w-4 h-4 text-yellow-400" />
-                ) : (
-                  <Database className="w-4 h-4 text-[#22d3ee]" />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-white text-sm font-medium">{update.title}</span>
-                  <span className="text-xs text-slate-400 bg-[#0a0e14] px-1.5 py-0.5 rounded">{update.category}</span>
-                </div>
-                <p className="text-slate-400 text-xs mt-1">{update.description}</p>
-                <div className="text-xs text-slate-400 mt-1">{update.date}</div>
-              </div>
-            </div>
-          ))}
+          {firstFive.map((update) => <ChangeItem key={update.id} update={update} />)}
         </div>
-        {totalDataUpdates > 5 && (
-          <button
-            onClick={() => setShowAllUpdates((prev) => !prev)}
-            className="text-sm text-[#22d3ee] hover:text-white transition-colors flex items-center gap-1"
-          >
-            {showAllUpdates ? (
-              <>
-                <ChevronUp className="w-4 h-4" />
-                Show fewer
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4" />
-                Show all {totalDataUpdates} data changes
-              </>
-            )}
-          </button>
+        {earlierChanges.length > 0 && (
+          <details>
+            <summary className="text-sm text-[#22d3ee] hover:text-white transition-colors flex items-center gap-1 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+              <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+              <span className="summary-open:hidden">Show all {totalDataUpdates} data changes</span>
+              <span className="hidden summary-open:inline">Show fewer</span>
+            </summary>
+            <div className="space-y-2 mt-2">
+              {earlierChanges.map((update) => <ChangeItem key={update.id} update={update} />)}
+            </div>
+          </details>
         )}
       </div>
 

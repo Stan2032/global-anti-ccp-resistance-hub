@@ -101,5 +101,11 @@ export default {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    // summary-open: styles an element inside a <summary> while that
+    // summary's own <details> is open: the chevron turns, "Read more"
+    // becomes "Show less". Use it instead of group-open:, which matches any
+    // open .group ancestor, so every card inside an open section looked
+    // open. src/test/DisclosureSection.test.tsx keeps group-open: out.
+    ({ addVariant }) => addVariant('summary-open', 'details[open] > summary &'),
   ],
 }

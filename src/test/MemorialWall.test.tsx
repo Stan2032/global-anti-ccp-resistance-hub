@@ -1,6 +1,19 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import MemorialWall from '../components/MemorialWall';
+
+/** Every victim card's "Cause and source" disclosure. */
+const disclosures = () => {
+  const all = [...document.querySelectorAll('details')] as HTMLDetailsElement[];
+  expect(all.length, 'victim cards have a "Cause and source" disclosure').toBeGreaterThan(0);
+  return all;
+};
+const disclosureFor = (name: string) => {
+  const found = disclosures().find(d => d.querySelector(':scope > summary')!.textContent!.includes(`for ${name}`));
+  expect(found, `${name}'s disclosure`).toBeTruthy();
+  return found!;
+};
 
 describe('MemorialWall', () => {
   beforeEach(() => {
@@ -92,20 +105,40 @@ describe('MemorialWall', () => {
     expect(screen.getByText(/candles? lit in remembrance/)).toBeTruthy();
   });
 
-  // --- Read More Modal ---
+  // --- Cause and source: in the page for everyone ---
+  // This was a modal only JavaScript could open, and each card's story was
+  // cut to three lines.
 
-  it('opens modal when Read More is clicked', () => {
+  it('gives every victim a closed "Cause and source" disclosure, filled before any click', () => {
     render(<MemorialWall />);
-    const readMoreButtons = screen.getAllByText(/Read More/);
-    fireEvent.click(readMoreButtons[0]);
-    expect(screen.getByText('Close')).toBeTruthy();
+    for (const d of disclosures()) {
+      expect(d.open).toBe(false);
+      const terms = [...d.querySelectorAll('dt')].map(dt => dt.textContent);
+      expect(terms).toEqual(['Date of death', 'Cause', 'Source']);
+      for (const dd of d.querySelectorAll('dd')) expect(dd.textContent!.trim()).not.toBe('');
+    }
   });
 
-  it('closes modal when Close is clicked', () => {
+  it("puts Wang Weilin's cause of death in the page without a click", () => {
     render(<MemorialWall />);
-    const readMoreButtons = screen.getAllByText(/Read More/);
-    fireEvent.click(readMoreButtons[0]);
-    fireEvent.click(screen.getByText('Close'));
-    expect(screen.queryByText('Close')).toBeNull();
+    expect(within(disclosureFor('Wang Weilin')).getByText('Tiananmen Square')).toBeTruthy();
+  });
+
+  it('opens and closes natively', () => {
+    render(<MemorialWall />);
+    const d = disclosureFor('Wang Weilin');
+    fireEvent.click(d.querySelector(':scope > summary')!);
+    expect(d.open).toBe(true);
+    fireEvent.click(d.querySelector(':scope > summary')!);
+    expect(d.open).toBe(false);
+  });
+
+  it('shows every story in full, cut to no number of lines', () => {
+    const { container } = render(<MemorialWall />);
+    expect(container.querySelectorAll('[class*="line-clamp"]')).toHaveLength(0);
+  });
+
+  it('leaves the candle button out of the pre-rendered page, where it could do nothing', () => {
+    expect(renderToString(<MemorialWall />)).not.toContain('Light a Candle');
   });
 });

@@ -352,9 +352,9 @@ const ForcedLabourList = () => {
       {/* Search and Filter */}
       <div className="mb-6 space-y-4">
         <input
-          aria-label="Search"
+          aria-label="Search implicated companies"
           type="text"
-          placeholder="Search companies..."
+          placeholder="Search implicated companies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full px-4 py-2 bg-[#111820] border border-[#1c2a35] focus:outline-none focus:border-[#4afa82]"

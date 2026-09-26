@@ -1,7 +1,39 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import InfluenceNetwork from '../components/InfluenceNetwork';
+import { dataApi } from '../services/dataApi';
+
+const REGIONS = [
+  { label: 'Xinjiang', description: 'Uyghur genocide, mass detention, forced labor' },
+  { label: 'Hong Kong', description: 'National Security Law, press freedom crackdown' },
+  { label: 'Tibet', description: 'Cultural destruction, religious persecution' },
+  { label: 'Central/National', description: 'Systemic repression apparatus' },
+];
+
+/** A region's <details>, found by the heading in its summary. */
+function region(label: string): HTMLDetailsElement {
+  const summary = screen.getByRole('heading', { level: 3, name: label }).parentElement!;
+  expect(summary.tagName, `${label} heading sits directly in a <summary>`).toBe('SUMMARY');
+  expect(summary.parentElement!.tagName).toBe('DETAILS');
+  return summary.parentElement as HTMLDetailsElement;
+}
+
+/** A region's sections (officials, prisoners, timeline, sanctions). */
+function sectionsOf(regionEl: HTMLDetailsElement): HTMLDetailsElement[] {
+  return [...regionEl.querySelectorAll('details')];
+}
+
+/** The entry cards in a section's body. */
+function entriesOf(section: HTMLDetailsElement): Element[] {
+  const body = section.querySelector(':scope > summary + div')!;
+  return [...body.children].filter((el) => el.tagName === 'DIV');
+}
+
+/** The static block headed by this title. */
+function sectionBelow(title: string): HTMLElement {
+  return screen.getByRole('heading', { level: 3, name: title }).parentElement!.parentElement!;
+}
 
 describe('InfluenceNetwork', () => {
   // --- Rendering ---
@@ -36,14 +68,13 @@ describe('InfluenceNetwork', () => {
     }
   });
 
-  // --- Region Selector ---
+  // --- Regions: native disclosures ---
 
-  it('renders 4 region buttons', () => {
+  it('renders the 4 regions as closed native disclosures, each named by a heading', () => {
     render(<InfluenceNetwork />);
-    expect(screen.getByText('Xinjiang')).toBeTruthy();
-    expect(screen.getByText('Hong Kong')).toBeTruthy();
-    expect(screen.getByText('Tibet')).toBeTruthy();
-    expect(screen.getByText('Central/National')).toBeTruthy();
+    for (const { label } of REGIONS) {
+      expect(region(label).open, `${label} starts closed`).toBe(false);
+    }
   });
 
   it('shows officials and prisoners count per region', () => {
@@ -52,98 +83,62 @@ describe('InfluenceNetwork', () => {
     expect(regionButtons.length).toBe(4);
   });
 
-  it('region buttons have aria-pressed attribute', () => {
+  it('puts every region’s description and sections in the page before any click', () => {
     render(<InfluenceNetwork />);
-    const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    expect(xinjiangBtn!.getAttribute('aria-pressed')).toBe('false');
-  });
-
-  // --- Region Selection ---
-
-  it('selecting a region shows the detail panel', () => {
-    render(<InfluenceNetwork />);
-    fireEvent.click(screen.getByText('Xinjiang'));
-    expect(screen.getByText('Uyghur genocide, mass detention, forced labor')).toBeTruthy();
-  });
-
-  it('selecting Xinjiang shows regional description', () => {
-    render(<InfluenceNetwork />);
-    fireEvent.click(screen.getByText('Xinjiang'));
-    expect(screen.getByText(/Uyghur genocide/)).toBeTruthy();
-  });
-
-  it('selecting Hong Kong shows regional description', () => {
-    render(<InfluenceNetwork />);
-    fireEvent.click(screen.getByText('Hong Kong'));
-    expect(screen.getByText(/National Security Law/)).toBeTruthy();
-  });
-
-  it('deselecting a region hides the detail panel', () => {
-    render(<InfluenceNetwork />);
-    const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn!);
-    expect(screen.getByText(/Uyghur genocide/)).toBeTruthy();
-    fireEvent.click(xinjiangBtn!);
-    expect(screen.queryByText(/Uyghur genocide/)).toBeNull();
-  });
-
-  it('sets aria-pressed to true when region is selected', () => {
-    render(<InfluenceNetwork />);
-    const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn!);
-    expect(xinjiangBtn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('switching regions updates the detail panel', () => {
-    render(<InfluenceNetwork />);
-    fireEvent.click(screen.getByText('Xinjiang'));
-    expect(screen.getByText(/Uyghur genocide/)).toBeTruthy();
-    fireEvent.click(screen.getByText('Hong Kong'));
-    expect(screen.queryByText(/Uyghur genocide/)).toBeNull();
-    expect(screen.getByText(/National Security Law/)).toBeTruthy();
-  });
-
-  // --- Expandable Sections ---
-
-  it('shows expandable section headers when region selected', () => {
-    render(<InfluenceNetwork />);
-    fireEvent.click(screen.getByText('Xinjiang'));
-    // Should show at least one section (officials, prisoners, timeline, or sanctions)
-    const expandButtons = screen.getAllByRole('button', { expanded: false });
-    expect(expandButtons.length).toBeGreaterThanOrEqual(1);
-  });
-
-  it('expanding officials section shows official names', () => {
-    render(<InfluenceNetwork />);
-    const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn!);
-    // Find the section that starts with "Sanctioned Officials (" — the expandable header
-    const officialsHeaders = screen.getAllByText(/Sanctioned Officials/);
-    const expandableHeader = officialsHeaders.find(
-      (el) => el.textContent.includes('(') && el.closest('button')
-    );
-    if (expandableHeader) {
-      fireEvent.click(expandableHeader.closest('button')!);
-      // Should show at least one official card
-      const cards = document.querySelectorAll('.bg-\\[\\#0a0e14\\]\\/50');
-      expect(cards.length).toBeGreaterThanOrEqual(1);
+    for (const { label, description } of REGIONS) {
+      const r = region(label);
+      expect(within(r).getByText(description)).toBeTruthy();
+      expect(sectionsOf(r).length, `${label} has sections`).toBeGreaterThan(0);
     }
   });
 
-  it('section toggle buttons have aria-expanded', () => {
+  it('lists every entry its title counts: the sections are not cut short', () => {
     render(<InfluenceNetwork />);
-    const xinjiangBtn = screen.getByText('Xinjiang').closest('button');
-    fireEvent.click(xinjiangBtn!);
-    const officialsHeaders = screen.getAllByText(/Sanctioned Officials/);
-    const expandableHeader = officialsHeaders.find(
-      (el) => el.textContent.includes('(') && el.closest('button')
-    );
-    if (expandableHeader) {
-      const btn = expandableHeader.closest('button');
-      expect(btn!.getAttribute('aria-expanded')).toBe('false');
-      fireEvent.click(btn!);
-      expect(btn!.getAttribute('aria-expanded')).toBe('true');
+    let checked = 0;
+    for (const { label } of REGIONS) {
+      for (const section of sectionsOf(region(label))) {
+        const title = section.querySelector(':scope > summary')!.textContent!;
+        const count = Number(title.match(/\((\d+)\)/)![1]);
+        expect(entriesOf(section), `${label}: ${title}`).toHaveLength(count);
+        checked++;
+      }
     }
+    expect(checked).toBeGreaterThanOrEqual(REGIONS.length);
+  });
+
+  it('lists every Xinjiang official without a click', () => {
+    render(<InfluenceNetwork />);
+    const expected = dataApi
+      .getSanctionedOfficials()
+      .filter((o) => (o.responsibility_area || '').toLowerCase().includes('xinjiang'));
+    expect(expected.length).toBeGreaterThan(0);
+    const officials = sectionsOf(region('Xinjiang')).find((d) =>
+      d.querySelector(':scope > summary')!.textContent!.startsWith('Sanctioned Officials'),
+    );
+    expect(officials).toBeDefined();
+    for (const o of expected) {
+      expect(within(officials!).getAllByText(o.name).length).toBeGreaterThan(0);
+    }
+  });
+
+  it('a region and its sections open and close natively', () => {
+    render(<InfluenceNetwork />);
+    const r = region('Xinjiang');
+    fireEvent.click(r.querySelector(':scope > summary')!);
+    expect(r.open).toBe(true);
+    const [first] = sectionsOf(r);
+    fireEvent.click(first.querySelector(':scope > summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector(':scope > summary')!);
+    expect(first.open).toBe(false);
+    fireEvent.click(r.querySelector(':scope > summary')!);
+    expect(r.open).toBe(false);
+  });
+
+  it('leaves no button, aria-pressed or aria-expanded control behind', () => {
+    const { container } = render(<InfluenceNetwork />);
+    expect(screen.queryAllByRole('button')).toHaveLength(0);
+    expect(container.querySelectorAll('[aria-pressed], [aria-expanded]')).toHaveLength(0);
   });
 
   // --- Most-Sanctioned Officials ---
@@ -155,10 +150,32 @@ describe('InfluenceNetwork', () => {
   });
 
   it('shows sanction country badges for highly-sanctioned officials', () => {
-    const { container } = render(<InfluenceNetwork />);
+    render(<InfluenceNetwork />);
     // Sanction badges use bg-red-900/30 — expect at least some for highly-sanctioned officials
-    const badges = container.querySelectorAll('.bg-red-900\\/30');
+    const badges = sectionBelow('Most-Sanctioned Officials').querySelectorAll('.bg-red-900\\/30');
     expect(badges.length).toBeGreaterThan(0);
+  });
+
+  // --- Phone width ---
+
+  it('lets sanction badges wrap onto a new line instead of running past the card', () => {
+    const { container } = render(<InfluenceNetwork />);
+    const countries = ['US', 'UK', 'EU', 'CANADA', 'AUSTRALIA'];
+    const badgeGroups = new Set(
+      [...container.querySelectorAll('.bg-red-900\\/30')]
+        .filter((badge) => countries.includes(badge.textContent!))
+        .map((badge) => badge.parentElement!),
+    );
+    expect(badgeGroups.size).toBeGreaterThan(0);
+    for (const group of badgeGroups) {
+      expect(group.className).toContain('flex-wrap');
+      expect(group.parentElement!.className).toMatch(/flex-wrap|flex-col/);
+    }
+  });
+
+  it('shows every position and event description in full, none cut off', () => {
+    const { container } = render(<InfluenceNetwork />);
+    expect(container.querySelectorAll('.truncate, [class*="line-clamp"]')).toHaveLength(0);
   });
 
   // --- International Sanctions ---
@@ -170,11 +187,12 @@ describe('InfluenceNetwork', () => {
 
   it('shows all 5 sanction countries', () => {
     render(<InfluenceNetwork />);
-    expect(screen.getByText('us')).toBeTruthy();
-    expect(screen.getByText('uk')).toBeTruthy();
-    expect(screen.getByText('eu')).toBeTruthy();
-    expect(screen.getByText('canada')).toBeTruthy();
-    expect(screen.getByText('australia')).toBeTruthy();
+    const countries = within(sectionBelow('International Sanctions by Country'));
+    expect(countries.getByText('us')).toBeTruthy();
+    expect(countries.getByText('uk')).toBeTruthy();
+    expect(countries.getByText('eu')).toBeTruthy();
+    expect(countries.getByText('canada')).toBeTruthy();
+    expect(countries.getByText('australia')).toBeTruthy();
   });
 
   // --- Source Policy ---

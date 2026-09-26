@@ -7,7 +7,7 @@
  * @module DataIntegrityMonitor
  */
 import React, { useState, useMemo } from 'react';
-import { ShieldCheck, AlertTriangle, CheckCircle, XCircle, ChevronDown, ChevronUp, Copy, Check, Activity, Database, Clock, Link2, Search } from 'lucide-react';
+import { ShieldCheck, AlertTriangle, CheckCircle, XCircle, ChevronDown, Copy, Check, Activity, Database, Clock, Link2, Search } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
 // ── Type definitions ───────────────────────────────────
@@ -262,7 +262,6 @@ function buildClipboardText(datasets: DatasetReport[]): string {
 // ── Component ──────────────────────────────────────────
 
 export default function DataIntegrityMonitor() {
-  const [expandedDataset, setExpandedDataset] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [copied, setCopied] = useState(false);
@@ -412,31 +411,25 @@ export default function DataIntegrityMonitor() {
           const cfg = STATUS_CONFIG[ds.overallStatus];
           const FreshnessIcon = STATUS_CONFIG[ds.freshness]?.icon || Clock;
           const freshnessColor = STATUS_CONFIG[ds.freshness]?.color || 'text-slate-400';
-          const expanded = expandedDataset === ds.key;
 
           return (
-            <div
+            <details
               key={ds.key}
-              className={`border ${expanded ? cfg.border : 'border-[#1c2a35]'} bg-[#111820] transition-colors`}
+              className="border border-[#1c2a35] bg-[#111820] transition-colors"
             >
-              <button
-                onClick={() => setExpandedDataset(expanded ? '' : ds.key)}
-                className="w-full flex items-start gap-3 p-3 sm:p-4 text-left"
-                aria-expanded={expanded}
-                aria-label={`${ds.name}: ${ds.count} records, ${cfg.label} status`}
-              >
+              <summary className="w-full flex items-start gap-3 p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <cfg.icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-mono text-slate-200">{ds.name}</h3>
+                <span className="block flex-1 min-w-0">
+                  <span className="flex items-center gap-2 flex-wrap">
+                    <span className="block text-sm font-mono text-slate-200">{ds.name}</span>
                     <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>{cfg.label}</span>
                     <span className={`text-xs font-mono flex items-center gap-1 ${freshnessColor}`}>
                       <FreshnessIcon className="w-3 h-3" aria-hidden="true" />
                       {ds.freshnessLabel}
                     </span>
-                  </div>
-                  <p className="text-xs text-slate-400 mt-1">{ds.description}</p>
-                  <div className="flex gap-3 mt-1.5 text-xs font-mono text-slate-400">
+                  </span>
+                  <span className="block text-xs text-slate-400 mt-1">{ds.description}</span>
+                  <span className="flex gap-3 mt-1.5 text-xs font-mono text-slate-400">
                     <span className="flex items-center gap-1">
                       <Database className="w-3 h-3" aria-hidden="true" />
                       {ds.count} records
@@ -445,43 +438,39 @@ export default function DataIntegrityMonitor() {
                       <Activity className="w-3 h-3" aria-hidden="true" />
                       {ds.passCount}/{ds.checks.length} checks
                     </span>
-                  </div>
-                </div>
-                <div className="flex-shrink-0 text-slate-400">
-                  {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </div>
-              </button>
+                  </span>
+                </span>
+                <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+              </summary>
 
-              {expanded && (
-                <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
-                  <p className="text-xs font-mono text-slate-300 mb-2">
-                    <Link2 className="w-3 h-3 inline mr-1" aria-hidden="true" />
-                    Validation checks ({ds.checks.length})
-                  </p>
-                  {ds.checks.map((check, idx) => {
-                    const checkCfg = STATUS_CONFIG[check.status];
-                    const CheckIcon = checkCfg.icon;
-                    return (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-2 text-xs font-mono bg-[#0a0e14] border border-[#1c2a35] px-3 py-2"
-                      >
-                        <CheckIcon className={`w-3.5 h-3.5 flex-shrink-0 ${checkCfg.color}`} aria-hidden="true" />
-                        <span className="text-slate-300 flex-shrink-0">{check.name}</span>
-                        <span className="text-slate-400" aria-hidden="true">—</span>
-                        <span className={`${checkCfg.color} truncate`}>{check.detail}</span>
-                      </div>
-                    );
-                  })}
-                  {ds.fields && ds.fields.length > 0 && (
-                    <div className="mt-2 text-xs font-mono text-slate-400">
-                      <span className="text-slate-300">Schema: </span>
-                      {ds.fields.join(', ')}
+              <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
+                <p className="text-xs font-mono text-slate-300 mb-2">
+                  <Link2 className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                  Validation checks ({ds.checks.length})
+                </p>
+                {ds.checks.map((check, idx) => {
+                  const checkCfg = STATUS_CONFIG[check.status];
+                  const CheckIcon = checkCfg.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-2 text-xs font-mono bg-[#0a0e14] border border-[#1c2a35] px-3 py-2"
+                    >
+                      <CheckIcon className={`w-3.5 h-3.5 flex-shrink-0 ${checkCfg.color}`} aria-hidden="true" />
+                      <span className="text-slate-300 flex-shrink-0">{check.name}</span>
+                      <span className="text-slate-400" aria-hidden="true">—</span>
+                      <span className={`${checkCfg.color} min-w-0 break-words`}>{check.detail}</span>
                     </div>
-                  )}
-                </div>
-              )}
-            </div>
+                  );
+                })}
+                {ds.fields && ds.fields.length > 0 && (
+                  <div className="mt-2 text-xs font-mono text-slate-400">
+                    <span className="text-slate-300">Schema: </span>
+                    {ds.fields.join(', ')}
+                  </div>
+                )}
+              </div>
+            </details>
           );
         })}
       </div>

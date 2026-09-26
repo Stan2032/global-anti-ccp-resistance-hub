@@ -1,10 +1,21 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import DiasporaSecurityAdvisor from '../components/DiasporaSecurityAdvisor';
+import { dataApi, STATION_STATUS } from '../services/dataApi';
 
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
 });
+
+// Country cards are native <details>: every card's advisory is in the page
+// without a click, so assertions are scoped to one card.
+const cards = () => [...document.querySelectorAll('details')] as HTMLDetailsElement[];
+const summaryOf = (card: HTMLDetailsElement) => card.querySelector('summary')!.textContent ?? '';
+const cardFor = (country: string) => {
+  const card = cards().find(c => summaryOf(c).includes(country));
+  expect(card, `a card for ${country}`).toBeTruthy();
+  return card!;
+};
 
 describe('DiasporaSecurityAdvisor', () => {
   beforeEach(() => {
@@ -41,9 +52,28 @@ describe('DiasporaSecurityAdvisor', () => {
     expect(screen.getByText('Critical Risk')).toBeTruthy();
   });
 
-  it('displays active stations stat', () => {
+  // The data calls a station that is still running OPERATING. The advisor
+  // checked for 'ACTIVE', which the data never uses: this stat read 0 and no
+  // reader was warned about a station operating in their country.
+  const operatingStations = () =>
+    dataApi.getPoliceStations().filter(s => s.status === STATION_STATUS.OPERATING);
+
+  it('counts the countries with an operating CCP police station', () => {
     render(<DiasporaSecurityAdvisor />);
-    expect(screen.getByText('Active Stations')).toBeTruthy();
+    const countries = new Set(operatingStations().map(s => s.country));
+    expect(countries.size).toBeGreaterThan(0);
+    expect(screen.getByText('Operating Stations').previousElementSibling?.textContent).toBe(String(countries.size));
+  });
+
+  it('warns readers in each country with an operating station, naming the city', () => {
+    render(<DiasporaSecurityAdvisor />);
+    const stations = operatingStations();
+    expect(stations.length).toBeGreaterThan(0);
+    for (const s of stations) {
+      const advisory = cardFor(s.country).textContent ?? '';
+      expect(advisory, `the ${s.country} advisory`).toMatch(`known CCP police station(s) operating in ${s.country}:`);
+      expect(advisory, `the ${s.country} advisory`).toContain(s.city);
+    }
   });
 
   it('displays strong protection stat', () => {
@@ -69,21 +99,16 @@ describe('DiasporaSecurityAdvisor', () => {
 
   it('filters countries by search query', () => {
     render(<DiasporaSecurityAdvisor />);
-    const search = screen.getByLabelText('Search countries');
-    fireEvent.change(search, { target: { value: 'United Kingdom' } });
-    const buttons = screen.getAllByRole('button', { expanded: false });
-    const countryButtons = buttons.filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    expect(countryButtons.length).toBeGreaterThanOrEqual(1);
-    expect(countryButtons.some(b => b.getAttribute('aria-label')?.includes('United Kingdom'))).toBe(true);
+    fireEvent.change(screen.getByLabelText('Search countries'), { target: { value: 'United Kingdom' } });
+    expect(cards().length).toBeGreaterThanOrEqual(1);
+    expect(cards().some(c => summaryOf(c).includes('United Kingdom'))).toBe(true);
   });
 
   it('filters by specific country via dropdown', () => {
     render(<DiasporaSecurityAdvisor />);
-    const select = screen.getByLabelText('Filter by country');
-    fireEvent.change(select, { target: { value: 'Netherlands' } });
-    const countryButtons = screen.getAllByRole('button', { expanded: false }).filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    expect(countryButtons.length).toBe(1);
-    expect(countryButtons[0].getAttribute('aria-label')).toContain('Netherlands');
+    fireEvent.change(screen.getByLabelText('Filter by country'), { target: { value: 'Netherlands' } });
+    expect(cards()).toHaveLength(1);
+    expect(summaryOf(cards()[0])).toContain('Netherlands');
   });
 
   it('shows all activity types in dropdown', () => {
@@ -93,10 +118,10 @@ describe('DiasporaSecurityAdvisor', () => {
   });
 
   // ── Country Cards ──────────────────────────────────
-  it('renders country advisory cards', () => {
+  it('renders country advisory cards as native disclosures', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button', { expanded: false }).filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    expect(cards.length).toBeGreaterThan(0);
+    expect(cards().length).toBeGreaterThan(0);
+    cards().forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
   it('shows risk level badges on cards', () => {
@@ -106,61 +131,52 @@ describe('DiasporaSecurityAdvisor', () => {
     expect(found).toBe(true);
   });
 
-  it('expands country card on click', () => {
+  it('every country card carries its advisory without a click', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button', { expanded: false }).filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText('Security Advisory')).toBeTruthy();
+    cards().forEach(card => expect(within(card).getByText('Security Advisory')).toBeTruthy());
   });
 
-  it('collapses expanded card on second click', () => {
+  it('a country card opens and closes natively', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button', { expanded: false }).filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText('Security Advisory')).toBeTruthy();
-    fireEvent.click(screen.getAllByRole('button', { expanded: true })[0]);
-    expect(screen.queryByText('Security Advisory')).toBeNull();
+    const card = cards()[0];
+    expect(card.open).toBe(false);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('shows emergency resources in expanded card', () => {
+  it('shows emergency resources in each card', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button', { expanded: false }).filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText('Emergency Resources')).toBeTruthy();
-    expect(screen.getByText(/Front Line Defenders/)).toBeTruthy();
+    const card = within(cards()[0]);
+    expect(card.getByText('Emergency Resources')).toBeTruthy();
+    expect(card.getAllByText(/Front Line Defenders/).length).toBeGreaterThan(0);
   });
 
   // ── Activity-Specific Safety Tips ──────────────────
   it('shows safety tips when activity type is selected', () => {
     render(<DiasporaSecurityAdvisor />);
-    const activitySelect = screen.getByLabelText('Filter by activity type');
-    fireEvent.change(activitySelect, { target: { value: 'protest' } });
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText(/Safety Tips/i)).toBeTruthy();
-    expect(screen.getByText(/burner phone/i)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText('Filter by activity type'), { target: { value: 'protest' } });
+    const card = within(cards()[0]);
+    expect(card.getByText(/Safety Tips/i)).toBeTruthy();
+    expect(card.getAllByText(/burner phone/i).length).toBeGreaterThan(0);
   });
 
   it('shows online activism tips', () => {
     render(<DiasporaSecurityAdvisor />);
     fireEvent.change(screen.getByLabelText('Filter by activity type'), { target: { value: 'online' } });
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText(/Tor Browser/i)).toBeTruthy();
+    expect(within(cards()[0]).getAllByText(/Tor Browser/i).length).toBeGreaterThan(0);
   });
 
   it('shows journalism tips', () => {
     render(<DiasporaSecurityAdvisor />);
     fireEvent.change(screen.getByLabelText('Filter by activity type'), { target: { value: 'journalism' } });
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(screen.getByText(/SecureDrop/i)).toBeTruthy();
+    expect(within(cards()[0]).getAllByText(/SecureDrop/i).length).toBeGreaterThan(0);
   });
 
   it('hides safety tips when activity is "all"', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
+    expect(cards().length).toBeGreaterThan(0);
     expect(screen.queryByText(/Safety Tips/i)).toBeNull();
   });
 
@@ -186,50 +202,34 @@ describe('DiasporaSecurityAdvisor', () => {
   });
 
   // ── Data Integration ───────────────────────────────
-  it('displays police station details when expanded', () => {
+  it('displays police station details in the United Kingdom card', () => {
     render(<DiasporaSecurityAdvisor />);
-    const search = screen.getByLabelText('Search countries');
-    fireEvent.change(search, { target: { value: 'United Kingdom' } });
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('United Kingdom'));
-    if (cards.length > 0) {
-      fireEvent.click(cards[0]);
-      expect(screen.getByText(/Police Stations/)).toBeTruthy();
-    }
+    fireEvent.change(screen.getByLabelText('Search countries'), { target: { value: 'United Kingdom' } });
+    expect(within(cardFor('United Kingdom')).getByText(/Police Stations/)).toBeTruthy();
   });
 
-  it('displays government response when available', () => {
+  it('displays government response in the United States card', () => {
     render(<DiasporaSecurityAdvisor />);
-    const search = screen.getByLabelText('Search countries');
-    fireEvent.change(search, { target: { value: 'United States' } });
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('United States'));
-    if (cards.length > 0) {
-      fireEvent.click(cards[0]);
-      expect(screen.getByText('Government Response')).toBeTruthy();
-    }
+    fireEvent.change(screen.getByLabelText('Search countries'), { target: { value: 'United States' } });
+    expect(within(cardFor('United States')).getAllByText('Government Response').length).toBeGreaterThan(0);
   });
 
   // ── Accessibility ──────────────────────────────────
-  it('all cards have aria-expanded attribute', () => {
-    render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button').filter(b => b.hasAttribute('aria-expanded'));
-    expect(cards.length).toBeGreaterThan(0);
-    cards.forEach(card => {
-      expect(card.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<DiasporaSecurityAdvisor />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
-  it('expanded card has aria-expanded true', () => {
+  it('cards start closed, so the list stays scannable', () => {
     render(<DiasporaSecurityAdvisor />);
-    const cards = screen.getAllByRole('button').filter(b => b.getAttribute('aria-label')?.includes('risk'));
-    fireEvent.click(cards[0]);
-    expect(cards[0].getAttribute('aria-expanded')).toBe('true');
+    expect(cards().every(card => !card.open)).toBe(true);
   });
 
   // ── Footer ─────────────────────────────────────────
   it('shows data attribution footer', () => {
     render(<DiasporaSecurityAdvisor />);
-    expect(screen.getByText(/Safeguard Defenders/i)).toBeTruthy();
-    expect(screen.getByText(/CC BY 4.0/)).toBeTruthy();
+    expect(screen.getAllByText(/Safeguard Defenders/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/CC BY 4.0/).length).toBeGreaterThan(0);
   });
 
   it('shows count totals in footer', () => {

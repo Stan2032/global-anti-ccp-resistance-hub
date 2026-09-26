@@ -3,19 +3,11 @@
  * covering detention camps, surveillance, forced labour, and cultural erasure.
  *
  * @module XinjiangStatus
- */
-import { useState } from 'react';
+ */ 
 import { Mountain, BarChart3, BookOpen } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 const XinjiangStatus = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', name: 'Overview' },
-    { id: 'camps', name: 'Detention Camps' },
-    { id: 'forcedlabor', name: 'Forced Labor' },
-    { id: 'cultural', name: 'Cultural Genocide' }
-  ];
 
   const keyStats = [
     { label: 'Detained (est.)', value: '1-3M', color: 'red' },
@@ -95,149 +87,131 @@ const XinjiangStatus = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Xinjiang status tabs">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`xj-tabpanel-${tab.id}`}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? 'bg-[#22d3ee] text-[#0a0e14]'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-            }`}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
 
       {/* Overview Tab */}
-      {activeTab === 'overview' && (
-        <div className="space-y-6">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">International Response</h3>
-            <div className="space-y-3">
-              {internationalResponse.map((item, i) => (
-                <div key={i} className="flex items-center justify-between bg-[#111820] p-3">
-                  <span className="text-white">{item.country}</span>
-                  <div className="text-right">
-                    <span className="text-slate-300 text-sm">{item.action}</span>
-                    <span className="text-slate-400 text-xs ml-2">({item.year})</span>
+      <DisclosureSection title="Overview">
+          <div className="space-y-6">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">International Response</h3>
+              <div className="space-y-3">
+                {internationalResponse.map((item, i) => (
+                  <div key={i} className="flex items-center justify-between bg-[#111820] p-3">
+                    <span className="text-white">{item.country}</span>
+                    <div className="text-right">
+                      <span className="text-slate-300 text-sm">{item.action}</span>
+                      <span className="text-slate-400 text-xs ml-2">({item.year})</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Camps Tab */}
-      {activeTab === 'camps' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Major Detention Facilities</h3>
-            <p className="text-slate-400 text-sm mb-4">
-              380+ facilities identified through satellite imagery by ASPI, BuzzFeed News, and researchers
-            </p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
-                    <th className="pb-2">Facility</th>
-                    <th className="pb-2">Location</th>
-                    <th className="pb-2">Capacity</th>
-                    <th className="pb-2">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {detentionCamps.map((camp, i) => (
-                    <tr key={i} className="border-b border-[#1c2a35]">
-                      <td className="py-2 text-white">{camp.name}</td>
-                      <td className="py-2 text-slate-300">{camp.location}</td>
-                      <td className="py-2 text-slate-300">{camp.capacity}</td>
-                      <td className="py-2">
-                        <span className="bg-red-900/50 text-red-300 text-xs px-2 py-0.5 rounded">{camp.status}</span>
-                      </td>
+      <DisclosureSection title="Detention Camps">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Major Detention Facilities</h3>
+              <p className="text-slate-400 text-sm mb-4">
+                380+ facilities identified through satellite imagery by ASPI, BuzzFeed News, and researchers
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
+                      <th className="pb-2">Facility</th>
+                      <th className="pb-2">Location</th>
+                      <th className="pb-2">Capacity</th>
+                      <th className="pb-2">Status</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {detentionCamps.map((camp, i) => (
+                      <tr key={i} className="border-b border-[#1c2a35]">
+                        <td className="py-2 text-white">{camp.name}</td>
+                        <td className="py-2 text-slate-300">{camp.location}</td>
+                        <td className="py-2 text-slate-300">{camp.capacity}</td>
+                        <td className="py-2">
+                          <span className="bg-red-900/50 text-red-300 text-xs px-2 py-0.5 rounded">{camp.status}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+            <div className="bg-[#111820] border border-[#1c2a35] p-4">
+              <p className="text-[#22d3ee] text-sm">
+                <BarChart3 className="w-4 h-4 inline mr-1" /> View satellite imagery at{' '}
+                <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="underline">
+                  ASPI Xinjiang Data Project
+                </a>
+              </p>
             </div>
           </div>
-          
-          <div className="bg-[#111820] border border-[#1c2a35] p-4">
-            <p className="text-[#22d3ee] text-sm">
-              <BarChart3 className="w-4 h-4 inline mr-1" /> View satellite imagery at{' '}
-              <a href="https://xjdp.aspi.org.au/" target="_blank" rel="noopener noreferrer" className="underline">
-                ASPI Xinjiang Data Project
-              </a>
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Forced Labor Tab */}
-      {activeTab === 'forcedlabor' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Forced Labor by Sector</h3>
-            <div className="space-y-4">
-              {forcedLaborSectors.map((sector, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-white font-semibold">{sector.sector}</span>
-                    <span className="text-[#22d3ee] font-bold">{sector.share}</span>
+      <DisclosureSection title="Forced Labor">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Forced Labor by Sector</h3>
+              <div className="space-y-4">
+                {forcedLaborSectors.map((sector, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-white font-semibold">{sector.sector}</span>
+                      <span className="text-[#22d3ee] font-bold">{sector.share}</span>
+                    </div>
+                    <p className="text-slate-400 text-sm">{sector.description}</p>
+                    <p className="text-slate-400 text-xs mt-1">Estimated workers: {sector.workers}</p>
                   </div>
-                  <p className="text-slate-400 text-sm">{sector.description}</p>
-                  <p className="text-slate-400 text-xs mt-1">Estimated workers: {sector.workers}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-yellow-900/30 border border-yellow-700 p-4">
+              <h4 className="text-yellow-300 font-semibold mb-2">Key Legislation</h4>
+              <p className="text-slate-300 text-sm">
+                🇺🇸 <strong>UFLPA (2021)</strong>: Presumes all goods from Xinjiang made with forced labor, requires proof otherwise for import
+              </p>
             </div>
           </div>
-          
-          <div className="bg-yellow-900/30 border border-yellow-700 p-4">
-            <h4 className="text-yellow-300 font-semibold mb-2">Key Legislation</h4>
-            <p className="text-slate-300 text-sm">
-              🇺🇸 <strong>UFLPA (2021)</strong>: Presumes all goods from Xinjiang made with forced labor, requires proof otherwise for import
-            </p>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Cultural Genocide Tab */}
-      {activeTab === 'cultural' && (
-        <div className="space-y-4">
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Cultural Destruction</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {culturalDestruction.map((item, i) => (
-                <div key={i} className="bg-[#111820] p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-white font-semibold">{item.type}</span>
-                    <span className="text-red-400 font-bold">{item.destroyed || item.status}</span>
+      <DisclosureSection title="Cultural Genocide">
+          <div className="space-y-4">
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Cultural Destruction</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {culturalDestruction.map((item, i) => (
+                  <div key={i} className="bg-[#111820] p-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-white font-semibold">{item.type}</span>
+                      <span className="text-red-400 font-bold">{item.destroyed || item.status}</span>
+                    </div>
+                    <p className="text-slate-400 text-sm">{item.description}</p>
                   </div>
-                  <p className="text-slate-400 text-sm">{item.description}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h4 className="text-lg font-semibold text-white mb-3">Additional Measures</h4>
+              <ul className="space-y-2 text-slate-300 text-sm">
+                <li>• Forced sterilization of Uyghur women</li>
+                <li>• Forced marriages to Han Chinese</li>
+                <li>• Children separated from families</li>
+                <li>• Mandatory "homestays" by CCP officials</li>
+                <li>• Surveillance cameras in homes</li>
+                <li>• Biometric data collection</li>
+              </ul>
             </div>
           </div>
-          
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h4 className="text-lg font-semibold text-white mb-3">Additional Measures</h4>
-            <ul className="space-y-2 text-slate-300 text-sm">
-              <li>• Forced sterilization of Uyghur women</li>
-              <li>• Forced marriages to Han Chinese</li>
-              <li>• Children separated from families</li>
-              <li>• Mandatory "homestays" by CCP officials</li>
-              <li>• Surveillance cameras in homes</li>
-              <li>• Biometric data collection</li>
-            </ul>
-          </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Resources */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">

@@ -1,5 +1,70 @@
 # Next Agent Prompt — Global Anti-CCP Resistance Hub
 
+> ## ⚠️ READ FIRST — Session 281 (2026-09-19, site-quality sweep 2026-09-25)
+>
+> A six-month modernization sweep ran on 2026-09-19. **`docs/MODERNIZATION.md`
+> is the authoritative current state** — much of the detail further down this
+> file predates it. Start with these four:
+>
+> | File | What it holds |
+> |---|---|
+> | `docs/MODERNIZATION.md` | The audit. 18 sections, including dead ends. §17 corrects §15 and §16; §18 is the site-quality sweep. |
+> | `_agents/PARKED_WORK.md` | P1-P10 and small items: scoped work not yet done (P9 is closed). **Pick from here.** |
+> | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q20, all open and awaiting the owner. |
+> | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
+>
+> **Corrections to claims below this banner:**
+> - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
+>   12 high), and is 0 again as of Session 281.
+> - "3714 tests across 201 files" is now **3,713 across 202** for `npm test`,
+>   plus the content-freshness tests run separately.
+> - "17 profile pages" — there are **16**.
+> - The quick-start path (`/home/runner/work/...`) is environment-specific.
+>
+> **Two test commands, different questions:**
+> - `npm test` — code correctness. Gates PRs. **Green.**
+> - `npm run test:content` — is the data still verified? **Failing on purpose**:
+>   content is ~195 days stale.
+>
+> **Never fix a `test:content` failure by editing a `last_verified` date.**
+> That fabricates provenance. Re-check against a Tier 1-2 source instead.
+>
+> **The site is pre-rendered now**, with nothing deferred and hydration clean.
+> Every route ships as static HTML readable without JavaScript — the
+> configuration this site tells readers in China to use.
+>
+> If you touch routing, lazy loading or Suspense, **verify in a real browser
+> with JavaScript disabled**, and serve `dist/` the way Workers does (folder
+> index per route): `vite preview` SPA-falls-back to `dist/index.html`, so
+> every route measures identically and the result looks fine when it is not.
+> Reasoning about React's behaviour got this wrong three times in Session 281;
+> measurement caught all three. `docs/MODERNIZATION.md` §17 has the mechanism —
+> React outlines any Suspense boundary over `progressiveChunkSize` bytes into
+> `<div hidden>`, suspension or not.
+>
+> **Deployment is automatic** via Cloudflare Workers Builds (Git integration).
+> There is no deploy workflow and none is wanted. CI and deploy are separate
+> systems, so red CI does not block a deploy.
+>
+> **Test the site the way its readers use it.** Every significant bug in the
+> site-quality sweep was invisible to a fresh browser profile with JavaScript
+> on. Browser checks must also cover JavaScript off, a returning visitor with
+> saved storage, and blocked site data. Nothing may be written to browser
+> storage until the reader acts: use `useStoredString` / `useStoredJson` /
+> `writeStoredValue` in `src/utils/ssr.ts`, never `localStorage` directly.
+>
+> **Suggested next:** the owner asked for the site itself to come first, so
+> P7 (content re-verification) is **paused** until they resume it. Apart
+> from the live feed (P4), nothing on the site hides content from a reader
+> without JavaScript any more: the tabs and all the card expanders (P9) are
+> native `<details>`, and no text is cut off at phone width (P10). Before
+> adding a disclosure, read `STYLE_GUIDE.md` §4. When code compares a data
+> field against a string, use the data's own constants (`STATION_STATUS` in
+> `dataApi.ts`): a component checked stations for `'ACTIVE'`, which the data
+> never uses, and rated countries with operating CCP police stations LOW.
+> Next: P8 and the small items in `PARKED_WORK.md`, then P3 (ESLint 10,
+> since 9.x is end of support).
+
 **Copy-paste this entire prompt when starting a new agent session.**
 
 ---

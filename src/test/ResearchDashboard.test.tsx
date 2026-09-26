@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import ResearchDashboard from '../components/ResearchDashboard';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock the research data module to control test data
 vi.mock('../data/researchData', () => {
@@ -40,6 +41,8 @@ vi.mock('../data/researchData', () => {
 });
 
 describe('ResearchDashboard', () => {
+  const search = () => screen.getByLabelText('Search prisoners and police stations');
+
   // --- Header & Stats ---
 
   it('renders the header', () => {
@@ -50,125 +53,131 @@ describe('ResearchDashboard', () => {
 
   it('renders overview stats', () => {
     render(<ResearchDashboard />);
-    // "Political Prisoners" and "Police Stations" appear both as stat labels and tab buttons
+    // "Political Prisoners" and "Police Stations" appear both as stat labels and section titles
     expect(screen.getAllByText('Political Prisoners').length).toBe(2);
     expect(screen.getByText('News Topics')).toBeTruthy();
     expect(screen.getAllByText('Police Stations').length).toBe(2);
     expect(screen.getByText('Data Quality')).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<ResearchDashboard />);
-    expect(screen.getByText('Overview')).toBeTruthy();
-    expect(screen.getAllByText('Political Prisoners').length).toBe(2);
-    expect(screen.getByText('Recent News')).toBeTruthy();
-    expect(screen.getAllByText('Police Stations').length).toBe(2);
+    expectDisclosureSections(['Overview', 'Political Prisoners', 'Recent News', 'Police Stations']);
   });
 
-  it('shows Overview tab content by default', () => {
+  it('shows the Overview section', () => {
     render(<ResearchDashboard />);
-    expect(screen.getByText('Political Prisoners by Status')).toBeTruthy();
-    expect(screen.getByText('Police Stations by Status')).toBeTruthy();
-    expect(screen.getByText('High Priority News')).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('Political Prisoners by Status')).toBeTruthy();
+    expect(section.getByText('Police Stations by Status')).toBeTruthy();
+    expect(section.getByText('High Priority News')).toBeTruthy();
   });
 
-  it('does not show search bar on overview tab', () => {
+  it('labels the search box with what it searches', () => {
     render(<ResearchDashboard />);
-    expect(screen.queryByPlaceholderText('Search...')).toBeFalsy();
+    expect(search().getAttribute('placeholder')).toBe('Search prisoners and police stations...');
   });
 
-  // --- Prisoners Tab ---
+  // --- Political Prisoners ---
 
-  it('switches to Political Prisoners tab', () => {
+  it('shows the Political Prisoners section without interaction', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]); // Tab button (not stat label)
-    expect(screen.getByText('Test Prisoner A')).toBeTruthy();
-    expect(screen.getByText('Test Prisoner B')).toBeTruthy();
-    expect(screen.getByText('Test Prisoner C')).toBeTruthy();
+    const section = inSection('Political Prisoners');
+    expect(section.getByText('Test Prisoner A')).toBeTruthy();
+    expect(section.getByText('Test Prisoner B')).toBeTruthy();
+    expect(section.getByText('Test Prisoner C')).toBeTruthy();
   });
 
-  it('shows search and filter on prisoners tab', () => {
+  it('keeps the prisoner status filter inside the prisoners section', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]);
-    expect(screen.getByPlaceholderText('Search...')).toBeTruthy();
-    expect(screen.getByLabelText('Status filter')).toBeTruthy();
+    expect(inSection('Political Prisoners').getByLabelText('Filter prisoners by status')).toBeTruthy();
   });
 
   it('filters prisoners by search term', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]);
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'Beijing' } });
-    expect(screen.getByText('Test Prisoner A')).toBeTruthy();
-    expect(screen.queryByText('Test Prisoner B')).toBeFalsy();
-    expect(screen.queryByText('Test Prisoner C')).toBeFalsy();
+    fireEvent.change(search(), { target: { value: 'Beijing' } });
+    const section = inSection('Political Prisoners');
+    expect(section.getByText('Test Prisoner A')).toBeTruthy();
+    expect(section.queryByText('Test Prisoner B')).toBeFalsy();
+    expect(section.queryByText('Test Prisoner C')).toBeFalsy();
   });
 
   it('filters prisoners by status dropdown', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]);
-    const statusSelect = screen.getByLabelText('Status filter');
-    fireEvent.change(statusSelect, { target: { value: 'RELEASED' } });
-    expect(screen.queryByText('Test Prisoner A')).toBeFalsy();
-    expect(screen.getByText('Test Prisoner B')).toBeTruthy();
+    const section = inSection('Political Prisoners');
+    fireEvent.change(section.getByLabelText('Filter prisoners by status'), { target: { value: 'RELEASED' } });
+    expect(section.queryByText('Test Prisoner A')).toBeFalsy();
+    expect(section.getByText('Test Prisoner B')).toBeTruthy();
+  });
+
+  it('prisoner status filter leaves the police stations alone', () => {
+    render(<ResearchDashboard />);
+    fireEvent.change(screen.getByLabelText('Filter prisoners by status'), { target: { value: 'RELEASED' } });
+    const stations = inSection('Police Stations');
+    expect(stations.getByText(/Netherlands - Rotterdam/)).toBeTruthy();
+    expect(stations.getByText(/Ireland - Dublin/)).toBeTruthy();
+    expect(stations.getByText(/USA - New York/)).toBeTruthy();
   });
 
   it('shows empty state when no prisoners match', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]);
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
-    expect(screen.getByText('No prisoners found matching your criteria')).toBeTruthy();
+    fireEvent.change(search(), { target: { value: 'nonexistent' } });
+    expect(inSection('Political Prisoners').getByText('No prisoners found matching your criteria')).toBeTruthy();
   });
 
   it('shows health status when not Unknown', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Political Prisoners')[1]);
-    expect(screen.getByText(/Poor condition/)).toBeTruthy();
+    expect(inSection('Political Prisoners').getByText(/Poor condition/)).toBeTruthy();
   });
 
-  // --- News Tab ---
+  // --- Recent News ---
 
-  it('switches to Recent News tab', () => {
+  it('shows the Recent News section without interaction', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getByText('Recent News'));
-    expect(screen.getByText('New Satellite Evidence')).toBeTruthy();
-    expect(screen.getByText('Trial Verdict')).toBeTruthy();
-    expect(screen.getByText('Language Rights')).toBeTruthy();
+    const section = inSection('Recent News');
+    expect(section.getAllByText('New Satellite Evidence').length).toBeGreaterThan(0);
+    expect(section.getByText('Trial Verdict')).toBeTruthy();
+    expect(section.getAllByText('Language Rights').length).toBeGreaterThan(0);
   });
 
   it('shows international response when not N/A', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getByText('Recent News'));
-    expect(screen.getByText('UN condemns')).toBeTruthy();
-    expect(screen.queryByText('N/A')).toBeFalsy();
+    const section = inSection('Recent News');
+    expect(section.getByText('UN condemns')).toBeTruthy();
+    expect(section.queryByText('N/A')).toBeFalsy();
   });
 
-  // --- Stations Tab ---
+  // --- Police Stations ---
 
-  it('switches to Police Stations tab', () => {
+  it('shows the Police Stations section without interaction', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Police Stations')[1]);
-    expect(screen.getByText(/Netherlands - Rotterdam/)).toBeTruthy();
-    expect(screen.getByText(/Ireland - Dublin/)).toBeTruthy();
+    const section = inSection('Police Stations');
+    expect(section.getByText(/Netherlands - Rotterdam/)).toBeTruthy();
+    expect(section.getByText(/Ireland - Dublin/)).toBeTruthy();
   });
 
   it('filters stations by search term', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Police Stations')[1]);
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'Dublin' } });
-    expect(screen.getByText(/Ireland - Dublin/)).toBeTruthy();
-    expect(screen.queryByText(/Netherlands - Rotterdam/)).toBeFalsy();
+    fireEvent.change(search(), { target: { value: 'Dublin' } });
+    const section = inSection('Police Stations');
+    expect(section.getByText(/Ireland - Dublin/)).toBeTruthy();
+    expect(section.queryByText(/Netherlands - Rotterdam/)).toBeFalsy();
+  });
+
+  it('filters stations by status dropdown without touching the prisoners', () => {
+    render(<ResearchDashboard />);
+    const section = inSection('Police Stations');
+    fireEvent.change(section.getByLabelText('Filter police stations by status'), { target: { value: 'CLOSED' } });
+    expect(section.getByText(/Netherlands - Rotterdam/)).toBeTruthy();
+    expect(section.queryByText(/Ireland - Dublin/)).toBeFalsy();
+    expect(inSection('Political Prisoners').getByText('Test Prisoner A')).toBeTruthy();
   });
 
   it('shows empty state when no stations match', () => {
     render(<ResearchDashboard />);
-    fireEvent.click(screen.getAllByText('Police Stations')[1]);
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'nowhere' } });
-    expect(screen.getByText('No stations found matching your criteria')).toBeTruthy();
+    fireEvent.change(search(), { target: { value: 'nowhere' } });
+    expect(inSection('Police Stations').getByText('No stations found matching your criteria')).toBeTruthy();
   });
 });

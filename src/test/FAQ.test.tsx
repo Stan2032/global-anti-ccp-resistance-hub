@@ -1,7 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import FAQ from '../components/FAQ';
+
+// Each question is a native <details>: the answer is in the page from the
+// start, folded until the reader opens it, with or without JavaScript.
+const question = (text: string) => {
+  const summary = screen.getByText(text).closest('summary');
+  expect(summary, `"${text}" is a <summary>`).toBeTruthy();
+  return summary!.parentElement as HTMLDetailsElement;
+};
 
 describe('FAQ', () => {
   // --- Structure ---
@@ -86,35 +94,34 @@ describe('FAQ', () => {
 
   // --- Accordion Behavior ---
 
-  it('answers are hidden by default', () => {
-    render(<FAQ />);
-    // Answer text should not be visible (accordion collapsed)
-    expect(screen.queryByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeNull();
+  it('every answer is in the page, folded until opened', () => {
+    const { container } = render(<FAQ />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const card = question('What is the Global Anti-CCP Resistance Hub?');
+    expect(card.open).toBe(false);
+    expect(within(card).getByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeTruthy();
   });
 
-  it('clicking a question reveals its answer', () => {
+  it('clicking a question opens its answer', () => {
     render(<FAQ />);
     fireEvent.click(screen.getByText('What is the Global Anti-CCP Resistance Hub?'));
-    expect(screen.getByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeTruthy();
+    expect(question('What is the Global Anti-CCP Resistance Hub?').open).toBe(true);
   });
 
-  it('clicking same question again hides the answer', () => {
+  it('clicking the question again folds the answer', () => {
     render(<FAQ />);
     fireEvent.click(screen.getByText('What is the Global Anti-CCP Resistance Hub?'));
-    expect(screen.getByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeTruthy();
-    
     fireEvent.click(screen.getByText('What is the Global Anti-CCP Resistance Hub?'));
-    expect(screen.queryByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeNull();
+    expect(question('What is the Global Anti-CCP Resistance Hub?').open).toBe(false);
   });
 
-  it('clicking a different question closes the first', () => {
+  it('opening one question leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
     render(<FAQ />);
     fireEvent.click(screen.getByText('What is the Global Anti-CCP Resistance Hub?'));
-    expect(screen.getByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeTruthy();
-    
     fireEvent.click(screen.getByText('Who created this platform and why?'));
-    expect(screen.queryByText(/comprehensive resource for documenting CCP human rights abuses/)).toBeNull();
-    expect(screen.getByText(/concerned individuals who believe in transparency/)).toBeTruthy();
+    expect(question('What is the Global Anti-CCP Resistance Hub?').open).toBe(true);
+    expect(question('Who created this platform and why?').open).toBe(true);
   });
 
   // --- Content Quality ---
@@ -129,9 +136,9 @@ describe('FAQ', () => {
   it('includes emergency contact information in safety FAQ', () => {
     render(<FAQ />);
     fireEvent.click(screen.getByText('Safety & Security'));
-    fireEvent.click(screen.getByText('Are there emergency contacts for activists in danger?'));
-    expect(screen.getByText(/Front Line Defenders/)).toBeTruthy();
-    expect(screen.getByText(/353 1 210 0489/)).toBeTruthy();
+    const answer = within(question('Are there emergency contacts for activists in danger?'));
+    expect(answer.getByText(/Front Line Defenders/)).toBeTruthy();
+    expect(answer.getByText(/353 1 210 0489/)).toBeTruthy();
   });
 
   // --- Footer Links ---

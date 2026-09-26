@@ -36,12 +36,12 @@ describe('CCPOfficials', () => {
 
   it('renders search input', () => {
     render(<CCPOfficials />);
-    expect(screen.getByPlaceholderText('Search officials...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search CCP officials...')).toBeTruthy();
   });
 
   it('renders region filter', () => {
     render(<CCPOfficials />);
-    expect(screen.getByLabelText('Region filter')).toBeTruthy();
+    expect(screen.getByLabelText('Filter officials by region')).toBeTruthy();
   });
 
   it('renders category filter', () => {
@@ -62,14 +62,14 @@ describe('CCPOfficials', () => {
 
   it('filters officials by search query', () => {
     render(<CCPOfficials />);
-    const searchInput = screen.getByPlaceholderText('Search officials...');
+    const searchInput = screen.getByPlaceholderText('Search CCP officials...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No officials match your search')).toBeTruthy();
   });
 
   it('filters officials by region', () => {
     render(<CCPOfficials />);
-    const regionSelect = screen.getByLabelText('Region filter');
+    const regionSelect = screen.getByLabelText('Filter officials by region');
     fireEvent.change(regionSelect, { target: { value: 'Xinjiang' } });
     // All visible officials should have Xinjiang region
     const viewLinks = screen.queryAllByText('View →');

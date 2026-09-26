@@ -4,9 +4,10 @@
  *
  * @module MemorialWall
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
+import { useBrowserValue, useStoredJson } from '../utils/ssr';
 
 interface Victim {
   id: number;
@@ -248,17 +249,13 @@ const categories = ['All', 'Tiananmen', 'Uyghur', 'Tibet', 'Hong Kong', 'Disside
 export default function MemorialWall() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedVictim, setSelectedVictim] = useState<Victim | null>(null);
-  const [candlesLit, setCandlesLit] = useState<number[]>(() => {
-    const saved = localStorage.getItem('memorial-candles');
-    return saved ? JSON.parse(saved) as number[] : [];
-  });
+  // Candles are a per-reader gesture: pre-rendered HTML shows none, and the
+  // reader's own are applied once the page has hydrated.
+  const [candlesLit, setCandlesLit] = useStoredJson<number[]>('memorial-candles', []);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedVictim(null); };
-    if (selectedVictim) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedVictim]);
+  // Lighting a candle needs JavaScript, so the button appears only once it
+  // runs; without it the button would do nothing.
+  const scripted = useBrowserValue(() => true, false);
 
   const filteredVictims = victims.filter(victim => {
     if (selectedCategory !== 'All' && victim.category !== selectedCategory) return false;
@@ -268,9 +265,7 @@ export default function MemorialWall() {
 
   const lightCandle = (victimId: number) => {
     if (!candlesLit.includes(victimId)) {
-      const newCandles = [...candlesLit, victimId];
-      setCandlesLit(newCandles);
-      localStorage.setItem('memorial-candles', JSON.stringify(newCandles));
+      setCandlesLit([...candlesLit, victimId]);
     }
   };
 
@@ -336,9 +331,9 @@ export default function MemorialWall() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search the memorial by name"
             type="text"
-            placeholder="Search by name..."
+            placeholder="Search the memorial by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"
@@ -400,27 +395,47 @@ export default function MemorialWall() {
                   </span>
                 </div>
                 
-                <p className="text-slate-400 text-sm mt-3 line-clamp-3">{victim.description}</p>
-                
-                <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#1c2a35]">
-                  <button
-                    onClick={() => lightCandle(victim.id)}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-sm transition-colors ${
-                      candlesLit.includes(victim.id)
-                        ? 'bg-orange-600/20 text-orange-400'
-                        : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-                    }`}
-                  >
-                    <Flame className={`w-4 h-4 ${candlesLit.includes(victim.id) ? 'animate-pulse' : ''}`} />
-                    {candlesLit.includes(victim.id) ? 'Candle Lit' : 'Light a Candle'}
-                  </button>
-                  <button
-                    onClick={() => setSelectedVictim(victim)}
-                    className="text-[#22d3ee] hover:text-white text-sm"
-                  >
-                    Read More →
-                  </button>
-                </div>
+                <p className="text-slate-400 text-sm mt-3">{victim.description}</p>
+
+                {/* In the page for everyone. This was a modal that only
+                    JavaScript could open, and the story above it was cut to
+                    three lines. */}
+                <details className="mt-3">
+                  <summary className="flex items-center gap-1 text-[#22d3ee] hover:text-white text-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <ChevronDown className="w-4 h-4 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    Cause and source<span className="sr-only"> for {victim.name}</span>
+                  </summary>
+                  <dl className="mt-2 space-y-2 text-sm">
+                    <div>
+                      <dt className="text-xs text-slate-400">Date of death</dt>
+                      <dd className="text-white">{victim.dateOfDeath || victim.yearOfDeath}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-slate-400">Cause</dt>
+                      <dd className="text-white">{victim.cause}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-slate-400">Source</dt>
+                      <dd className="text-slate-400">{victim.source}</dd>
+                    </div>
+                  </dl>
+                </details>
+
+                {scripted && (
+                  <div className="mt-4 pt-3 border-t border-[#1c2a35]">
+                    <button
+                      onClick={() => lightCandle(victim.id)}
+                      className={`flex items-center gap-2 px-3 py-1.5 text-sm transition-colors ${
+                        candlesLit.includes(victim.id)
+                          ? 'bg-orange-600/20 text-orange-400'
+                          : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
+                      }`}
+                    >
+                      <Flame className={`w-4 h-4 ${candlesLit.includes(victim.id) ? 'animate-pulse' : ''}`} />
+                      {candlesLit.includes(victim.id) ? 'Candle Lit' : 'Light a Candle'}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -479,72 +494,6 @@ export default function MemorialWall() {
           title="Memorial Resources"
         />
       </div>
-
-      {/* Detail Modal */}
-      {selectedVictim && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Memorial details for ${selectedVictim.name}`} onClick={() => setSelectedVictim(null)}>
-          <div className="bg-[#111820] max-w-lg w-full max-h-[90vh] overflow-y-auto border border-[#1c2a35]" onClick={e => e.stopPropagation()}>
-            <div className="p-6">
-              <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCategoryColor(selectedVictim.category)}`}>
-                {selectedVictim.category}
-              </span>
-              
-              <h3 className="text-2xl font-bold text-white mt-3">{selectedVictim.name}</h3>
-              {selectedVictim.chineseName && (
-                <p className="text-slate-400">{selectedVictim.chineseName}</p>
-              )}
-              {selectedVictim.aka && (
-                <p className="text-slate-400 italic">Also known as: "{selectedVictim.aka}"</p>
-              )}
-              
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                <div>
-                  <p className="text-xs text-slate-400">Date of Death</p>
-                  <p className="text-white">{selectedVictim.dateOfDeath || selectedVictim.yearOfDeath}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400">Location</p>
-                  <p className="text-white">{selectedVictim.placeOfDeath}</p>
-                </div>
-                <div className="col-span-2">
-                  <p className="text-xs text-slate-400">Cause</p>
-                  <p className="text-white">{selectedVictim.cause}</p>
-                </div>
-              </div>
-              
-              <div className="mt-4">
-                <p className="text-xs text-slate-400 mb-1">Story</p>
-                <p className="text-slate-300">{selectedVictim.description}</p>
-              </div>
-              
-              <div className="mt-4">
-                <p className="text-xs text-slate-400 mb-1">Source</p>
-                <p className="text-slate-400 text-sm">{selectedVictim.source}</p>
-              </div>
-              
-              <div className="flex gap-3 mt-6">
-                <button
-                  onClick={() => lightCandle(selectedVictim.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 transition-colors ${
-                    candlesLit.includes(selectedVictim.id)
-                      ? 'bg-orange-600 text-white'
-                      : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-                  }`}
-                >
-                  <Flame className={`w-5 h-5 ${candlesLit.includes(selectedVictim.id) ? 'animate-pulse' : ''}`} />
-                  {candlesLit.includes(selectedVictim.id) ? 'Candle Lit' : 'Light a Candle'}
-                </button>
-                <button
-                  onClick={() => setSelectedVictim(null)}
-                  className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

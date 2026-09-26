@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import { 
   Factory, AlertTriangle, Search, ExternalLink, 
-  ChevronDown, ChevronUp, ShoppingBag, Cpu, Car,
+  ChevronDown, ShoppingBag, Cpu, Car,
   Coffee, Building, Ban, AlertCircle, TrendingUp, CheckCircle
 } from 'lucide-react';
 
@@ -51,7 +51,6 @@ const ForcedLaborTracker = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [industryFilter, setIndustryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
 
   const companies = (companiesData?.results || []).map(r => r.output);
 
@@ -114,7 +113,7 @@ const ForcedLaborTracker = () => {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search companies"
             type="text"
             placeholder="Search companies..."
             value={searchTerm}
@@ -150,78 +149,68 @@ const ForcedLaborTracker = () => {
       <div className="p-4 max-h-[600px] overflow-y-auto">
         <div className="space-y-3">
           {filteredCompanies.map((company, idx) => (
-            <div 
-              key={idx} 
+            <details
+              key={idx}
               className="bg-[#111820]/30 overflow-hidden"
             >
-              <button
-                type="button"
-                className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors text-left w-full"
-                onClick={() => setExpandedCompany(expandedCompany === idx ? null : idx)}
-                aria-expanded={expandedCompany === idx}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <h4 className="text-white font-semibold">{company.company}</h4>
+              <summary className="block p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors text-left w-full list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-start justify-between gap-3">
+                  <span className="block flex-1">
+                    <span className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="block text-white font-semibold">{company.company}</span>
                       <StatusBadge status={company.status} />
-                    </div>
-                    <div className="flex items-center gap-4 text-sm text-slate-400">
+                    </span>
+                    <span className="flex items-center gap-4 text-sm text-slate-400">
                       <span className="flex items-center gap-1">
                         <IndustryIcon industry={company.industry} />
                         {company.industry}
                       </span>
                       <span className="text-slate-500">|</span>
                       <span>{company.connection_type}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-slate-500">
-                    {expandedCompany === idx ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                  </div>
-                </div>
-              </button>
+                    </span>
+                  </span>
 
-              {/* Expanded Details */}
-              {expandedCompany === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
-                  {company.evidence && (
-                    <div className="pt-3">
-                      <div className="text-xs text-slate-400 uppercase mb-1">Evidence</div>
-                      <p className="text-sm text-slate-300">{company.evidence}</p>
-                    </div>
-                  )}
-                  
-                  {company.company_response && company.company_response !== 'No public response' && (
-                    <div>
-                      <div className="text-xs text-slate-400 uppercase mb-1">Company Response</div>
-                      <p className="text-sm text-[#22d3ee]">{company.company_response}</p>
-                    </div>
-                  )}
+                  <ChevronDown className="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </span>
+              </summary>
 
-                  {company.uflpa_actions && company.uflpa_actions !== 'None' && (
-                    <div>
-                      <div className="text-xs text-slate-400 uppercase mb-1">UFLPA Actions</div>
-                      <p className="text-sm text-yellow-300">{company.uflpa_actions}</p>
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center gap-4 pt-2">
-                    {company.source_url && (
-                      <a
-                        href={company.source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        View Source
-                      </a>
-                    )}
+              <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
+                {company.evidence && (
+                  <div className="pt-3">
+                    <div className="text-xs text-slate-400 uppercase mb-1">Evidence</div>
+                    <p className="text-sm text-slate-300">{company.evidence}</p>
                   </div>
+                )}
+                
+                {company.company_response && company.company_response !== 'No public response' && (
+                  <div>
+                    <div className="text-xs text-slate-400 uppercase mb-1">Company Response</div>
+                    <p className="text-sm text-[#22d3ee]">{company.company_response}</p>
+                  </div>
+                )}
+
+                {company.uflpa_actions && company.uflpa_actions !== 'None' && (
+                  <div>
+                    <div className="text-xs text-slate-400 uppercase mb-1">UFLPA Actions</div>
+                    <p className="text-sm text-yellow-300">{company.uflpa_actions}</p>
+                  </div>
+                )}
+                
+                <div className="flex items-center gap-4 pt-2">
+                  {company.source_url && (
+                    <a
+                      href={company.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      View Source
+                    </a>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            </details>
           ))}
         </div>
         

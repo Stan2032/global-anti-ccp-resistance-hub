@@ -3,6 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import PrisonerStatusDashboard from '../components/PrisonerStatusDashboard';
 
+// Each prisoner is a native <details> row, its details present without a click.
+const rows = () => [...document.querySelectorAll('details')] as HTMLDetailsElement[];
+
 describe('PrisonerStatusDashboard', () => {
   // ── Rendering ──────────────────────────────────────────
 
@@ -154,45 +157,26 @@ describe('PrisonerStatusDashboard', () => {
     expect(document.body.textContent.includes('Jimmy Lai')).toBe(true);
   });
 
-  it('expands prisoner details on click', () => {
+  it('each prisoner is a native disclosure row', () => {
     render(<PrisonerStatusDashboard />);
-    // Find first expandable button (prisoner row)
-    const expandButtons = screen.getAllByRole('button').filter(b =>
-      b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandButtons.length).toBeGreaterThan(0);
-    
-    fireEvent.click(expandButtons[0]);
-    expect(expandButtons[0].getAttribute('aria-expanded')).toBe('true');
+    expect(rows().length).toBeGreaterThan(0);
+    rows().forEach(row => expect(row.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('shows prisoner details when expanded', () => {
+  it('every prisoner row carries its details without a click', () => {
     render(<PrisonerStatusDashboard />);
-    const expandButtons = screen.getAllByRole('button').filter(b =>
-      b.getAttribute('aria-expanded') !== null
-    );
-    
-    fireEvent.click(expandButtons[0]);
-    // Expanded section should show label text
-    const allText = document.body.textContent;
-    const hasDetail = allText.includes('Sentence:') || 
-                      allText.includes('Health Status:') || 
-                      allText.includes('Latest Update:') ||
-                      allText.includes('International Response:');
-    expect(hasDetail).toBe(true);
+    const labelled = rows().filter(row => /Sentence:|Health Status:|Latest Update:|International Response:/.test(row.textContent ?? ''));
+    expect(labelled.length).toBe(rows().length);
   });
 
-  it('collapses prisoner details on second click', () => {
+  it('a prisoner row opens and closes natively', () => {
     render(<PrisonerStatusDashboard />);
-    const expandButtons = screen.getAllByRole('button').filter(b =>
-      b.getAttribute('aria-expanded') !== null
-    );
-    
-    fireEvent.click(expandButtons[0]);
-    expect(expandButtons[0].getAttribute('aria-expanded')).toBe('true');
-    
-    fireEvent.click(expandButtons[0]);
-    expect(expandButtons[0].getAttribute('aria-expanded')).toBe('false');
+    const row = rows()[0];
+    expect(row.open).toBe(false);
+    fireEvent.click(row.querySelector('summary')!);
+    expect(row.open).toBe(true);
+    fireEvent.click(row.querySelector('summary')!);
+    expect(row.open).toBe(false);
   });
 
   // ── Regional Distribution ─────────────────────────────
@@ -264,12 +248,9 @@ describe('PrisonerStatusDashboard', () => {
     expect(pressedBtns.length).toBeGreaterThanOrEqual(8);
   });
 
-  it('has aria-expanded on prisoner rows', () => {
-    render(<PrisonerStatusDashboard />);
-    const expandable = screen.getAllByRole('button').filter(b =>
-      b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBeGreaterThan(0);
+  it('uses native disclosure rows, not JavaScript-only expanders', () => {
+    const { container } = render(<PrisonerStatusDashboard />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
   it('has no text-slate-500 on readable text', () => {

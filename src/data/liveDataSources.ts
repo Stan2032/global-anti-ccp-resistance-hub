@@ -61,79 +61,90 @@ export interface FeedStats {
 // NO SIMULATED DATA - All data comes from real RSS feeds
 // If RSS feeds fail, we show empty state with clear error message
 
-// RSS Feed Parser using RSS2JSON API (CORS-friendly)
-const parseRSSFeed = async (feedUrl: string): Promise<FeedItem[]> => {
+/**
+ * Fetch one RSS feed through this site's own Worker.
+ *
+ * This used to call api.rss2json.com directly from the reader's browser,
+ * which told a third party the reader's IP and which anti-CCP feed they
+ * were pulling. The Worker fetches it now and returns the outlet's own XML;
+ * see the comment on FEED_SOURCES in api/worker.js.
+ *
+ * Takes a source key, not a URL — the Worker will only fetch URLs it has
+ * written down, so a key is all the browser needs to send.
+ */
+const fetchFeedBySource = async (sourceKey: string): Promise<FeedItem[]> => {
   try {
-    // Use RSS2JSON API - properly supports CORS
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-    const response = await fetch(apiUrl);
-    
+    const response = await fetch(`/api/v1/feed?source=${encodeURIComponent(sourceKey)}`, {
+      headers: { Accept: 'application/xml, text/xml' },
+    });
+
     if (!response.ok) {
-      logger.warn('feed', `Failed to fetch feed: ${feedUrl}`);
+      logger.warn('feed', `Failed to fetch feed: ${sourceKey} (HTTP ${response.status})`);
       return [];
     }
-    
-    const data = await response.json();
-    
-    if (data.status !== 'ok' || !data.items) {
-      logger.warn('feed', `Invalid feed data: ${feedUrl}`);
+
+    // `vite dev` has no Worker, so /api/* returns the SPA's HTML with a 200.
+    const contentType = response.headers.get('content-type') || '';
+    if (!/xml/i.test(contentType)) {
+      logger.warn('feed', `Feed ${sourceKey} returned ${contentType || 'no content-type'}, not XML`);
       return [];
     }
-    
-    // Convert RSS2JSON format to our format
-    const feedItems: FeedItem[] = data.items.slice(0, 5).map((item: Record<string, string>, index: number) => ({
-      id: `rss_${Date.now()}_${index}`,
-      title: item.title || '',
-      description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 200) + '...',
-      timestamp: item.pubDate || new Date().toISOString(),
-      source: data.feed?.title || feedUrl,
-      link: item.link || '',
+
+    const doc = new DOMParser().parseFromString(await response.text(), 'text/xml');
+    // RSS uses <item>, Atom uses <entry>.
+    const entries = doc.querySelectorAll('item').length
+      ? doc.querySelectorAll('item')
+      : doc.querySelectorAll('entry');
+
+    const text = (entry: Element, ...names: string[]): string => {
+      for (const name of names) {
+        const el = entry.querySelector(name);
+        const value = el?.textContent || el?.getAttribute('href');
+        if (value) return value;
+      }
+      return '';
+    };
+
+    return [...entries].slice(0, 5).map((entry, index) => ({
+      id: `rss_${sourceKey}_${Date.now()}_${index}`,
+      title: text(entry, 'title'),
+      description:
+        text(entry, 'description', 'summary', 'content')
+          .replace(/<[^>]*>/g, '')
+          .substring(0, 200) + '...',
+      timestamp: text(entry, 'pubDate', 'published', 'updated') || new Date().toISOString(),
+      source: sourceKey,
+      link: text(entry, 'link'),
       severity: 'medium',
-      verification: 'verified'
+      verification: 'verified',
     }));
-    
-    return feedItems;
   } catch (error) {
-    logger.error('feed', `Error fetching RSS feed ${feedUrl}:`, error);
+    logger.error('feed', `Error fetching RSS feed ${sourceKey}:`, error);
     return [];
   }
 };
 
-// Cache for RSS feed data (5 minute cache)
-const RSS_CACHE_KEY = 'rss_feed_cache';
+// Feed results are cached in memory for five minutes: long enough to cover
+// moving between pages, and gone when the tab closes. They are deliberately
+// not written to localStorage. Headlines about repression left in storage
+// outlast the visit on the reader's device, which matters more to this site's
+// readers than a refetch does; the Worker's edge cache makes refetches cheap.
 const RSS_CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+let feedCache: { data: FeedData; timestamp: number } | null = null;
 
 const getCachedFeeds = (): FeedData | null => {
-  try {
-    const cached = localStorage.getItem(RSS_CACHE_KEY);
-    if (!cached) return null;
-    
-    const { data, timestamp } = JSON.parse(cached) as { data: FeedData; timestamp: number };
-    const age = Date.now() - timestamp;
-    
-    if (age < RSS_CACHE_DURATION) {
-      logger.debug('cache', `Using cached RSS data (${Math.round(age / 1000)}s old)`);
-      return data;
-    }
-    
-    // Cache expired
-    localStorage.removeItem(RSS_CACHE_KEY);
-    return null;
-  } catch (error) {
-    logger.error('cache', 'Error reading RSS cache:', error);
-    return null;
+  if (!feedCache) return null;
+  const age = Date.now() - feedCache.timestamp;
+  if (age < RSS_CACHE_DURATION) {
+    logger.debug('cache', `Using cached RSS data (${Math.round(age / 1000)}s old)`);
+    return feedCache.data;
   }
+  feedCache = null;
+  return null;
 };
 
 const setCachedFeeds = (data: FeedData): void => {
-  try {
-    localStorage.setItem(RSS_CACHE_KEY, JSON.stringify({
-      data,
-      timestamp: Date.now()
-    }));
-  } catch (error) {
-    logger.error('cache', 'Error caching RSS data:', error);
-  }
+  feedCache = { data, timestamp: Date.now() };
 };
 
 // Data aggregation and processing functions
@@ -152,7 +163,7 @@ export const dataProcessor = {
       // Fetch ALL feeds in parallel (not sequential)
       const allFeedPromises: Promise<FeedItemWithRegion[]>[] = [
         ...liveDataFeeds.newsFeeds.map(feed => 
-          parseRSSFeed(feed.url)
+          fetchFeedBySource(feed.id)
             .then(items => items.map(item => ({
               ...item,
               region: feed.region,
@@ -164,7 +175,7 @@ export const dataProcessor = {
             })
         ),
         ...liveDataFeeds.humanRightsFeeds.map(feed => 
-          parseRSSFeed(feed.url)
+          fetchFeedBySource(feed.id)
             .then(items => items.map(item => ({
               ...item,
               region: feed.region,

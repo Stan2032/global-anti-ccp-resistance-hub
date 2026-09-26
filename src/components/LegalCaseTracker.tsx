@@ -6,7 +6,7 @@
  * @module LegalCaseTracker
  */
 import React, { useState, useMemo } from 'react';
-import { Scale, Search, Copy, Check, ChevronDown, ChevronUp, Filter, ExternalLink, Calendar, Globe, Shield, AlertTriangle } from 'lucide-react';
+import { Scale, Search, Copy, Check, ChevronDown, Filter, ExternalLink, Calendar, Globe, Shield, AlertTriangle } from 'lucide-react';
 import { dataApi, type LegalCase } from '../services/dataApi';
 
 // ── Status configuration ──────────────────────────────
@@ -59,7 +59,6 @@ function buildClipboardText(cases: TrackedLegalCase[], statusFilter: string) {
 export default function LegalCaseTracker() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusKey | ''>('');
-  const [expandedCase, setExpandedCase] = useState('');
   const [copied, setCopied] = useState(false);
 
   const cases = useMemo(() => {
@@ -108,10 +107,6 @@ export default function LegalCaseTracker() {
     }
     return list;
   }, [cases, searchQuery, statusFilter]);
-
-  const handleToggle = (caseName: string) => {
-    setExpandedCase((prev) => (prev === caseName ? '' : caseName));
-  };
 
   const handleCopy = async () => {
     const text = buildClipboardText(filteredCases, statusFilter);
@@ -291,30 +286,23 @@ export default function LegalCaseTracker() {
           filteredCases.map((legalCase) => {
             const statusStr = (legalCase.status || 'CONCLUDED').toUpperCase();
             const config = STATUS_CONFIG[statusStr as StatusKey] || STATUS_CONFIG.CONCLUDED;
-            const isExpanded = expandedCase === legalCase.case_name;
             const latestDate = getLatestDate(legalCase);
 
             return (
-              <div key={legalCase.case_name || legalCase.case_number}>
-                {/* Case Row */}
-                <button
-                  onClick={() => handleToggle(legalCase.case_name)}
-                  className="w-full text-left p-4 sm:px-6 flex items-center gap-3 hover:bg-[#0d1117] transition-colors"
-                  aria-expanded={isExpanded}
-                  aria-controls={`details-${legalCase.case_number}`}
-                >
+              <details key={legalCase.case_name || legalCase.case_number}>
+                <summary className="w-full text-left p-4 sm:px-6 flex items-center gap-3 hover:bg-[#0d1117] transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <span
                     className={`w-2 h-2 flex-shrink-0 ${config.dot}`}
                     aria-hidden="true"
                   />
-                  <div className="flex-1 min-w-0">
-                    <span className="text-sm text-white font-medium block truncate">
+                  <span className="block flex-1 min-w-0">
+                    <span className="text-sm text-white font-medium block truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {legalCase.case_name}
                     </span>
-                    <span className="text-xs text-slate-400 block truncate">
+                    <span className="text-xs text-slate-400 block truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {legalCase.jurisdiction} — {legalCase.court}
                     </span>
-                  </div>
+                  </span>
                   <span
                     className={`text-xs px-2 py-0.5 border ${config.border} ${config.bg} ${config.color} flex-shrink-0`}
                   >
@@ -325,124 +313,113 @@ export default function LegalCaseTracker() {
                       Latest: {latestDate}
                     </span>
                   )}
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  )}
-                </button>
-
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div
-                    id={`details-${legalCase.case_number}`}
-                    className="px-4 sm:px-6 pb-4 bg-[#0d1117]"
-                  >
-                    <div className="space-y-3">
-                      {/* Case Info Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                        <div>
-                          <span className="text-slate-400 text-xs block">Defendant</span>
-                          <span className="text-slate-300">{legalCase.defendant || 'N/A'}</span>
-                        </div>
-                        <div>
-                          <span className="text-slate-400 text-xs block">Charges</span>
-                          <span className="text-slate-300">{legalCase.charges || 'N/A'}</span>
-                        </div>
-                        {legalCase.case_number && (
-                          <div>
-                            <span className="text-slate-400 text-xs block">Case Number</span>
-                            <span className="text-slate-300">{legalCase.case_number}</span>
-                          </div>
-                        )}
+                  <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-4 sm:px-6 pb-4 bg-[#0d1117]">
+                  <div className="space-y-3">
+                    {/* Case Info Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <span className="text-slate-400 text-xs block">Defendant</span>
+                        <span className="text-slate-300">{legalCase.defendant || 'N/A'}</span>
                       </div>
-
-                      {/* Key Dates */}
-                      {legalCase.key_dates && Object.keys(legalCase.key_dates).length > 0 && (
+                      <div>
+                        <span className="text-slate-400 text-xs block">Charges</span>
+                        <span className="text-slate-300">{legalCase.charges || 'N/A'}</span>
+                      </div>
+                      {legalCase.case_number && (
                         <div>
-                          <span className="text-slate-400 text-xs block mb-1">
-                            <Calendar className="w-3 h-3 inline mr-1" aria-hidden="true" />
-                            Key Dates
-                          </span>
-                          <div className="flex flex-wrap gap-2">
-                            {Object.entries(legalCase.key_dates).map(([key, value]) => (
-                              <span key={key} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-xs">
-                                <span className="text-slate-400">{formatDateLabel(key)}:</span>
-                                <span className="text-slate-300">{value}</span>
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Outcome */}
-                      {legalCase.outcome && (
-                        <div>
-                          <span className="text-slate-400 text-xs block mb-1">Outcome</span>
-                          <p className="text-sm text-slate-300">{legalCase.outcome}</p>
-                        </div>
-                      )}
-
-                      {/* Significance */}
-                      {legalCase.significance && (
-                        <div className={`p-3 border ${config.border} ${config.bg}`}>
-                          <span className="text-slate-400 text-xs block mb-1">
-                            <AlertTriangle className="w-3 h-3 inline mr-1" aria-hidden="true" />
-                            Significance
-                          </span>
-                          <p className="text-sm text-slate-300">{legalCase.significance}</p>
-                        </div>
-                      )}
-
-                      {/* International Response */}
-                      {legalCase.international_response && (
-                        <div>
-                          <span className="text-slate-400 text-xs block mb-1">
-                            <Globe className="w-3 h-3 inline mr-1" aria-hidden="true" />
-                            International Response
-                          </span>
-                          <p className="text-sm text-slate-300">{legalCase.international_response}</p>
-                        </div>
-                      )}
-
-                      {/* Related Persons */}
-                      {legalCase.related_persons && legalCase.related_persons.length > 0 && (
-                        <div>
-                          <span className="text-slate-400 text-xs block mb-1">Related Persons</span>
-                          <div className="flex flex-wrap gap-1">
-                            {legalCase.related_persons.map((person) => (
-                              <span key={person} className="px-2 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-xs text-slate-300">
-                                {person}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Source */}
-                      {legalCase.source_url && (
-                        <div className="pt-1 flex items-center gap-2">
-                          <Shield className="w-3 h-3 text-slate-400" aria-hidden="true" />
-                          <a
-                            href={legalCase.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-[#22d3ee] hover:underline inline-flex items-center gap-1"
-                          >
-                            View source
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                          </a>
-                          {legalCase.last_verified && (
-                            <span className="text-xs text-slate-400">
-                              Verified: {legalCase.last_verified}
-                            </span>
-                          )}
+                          <span className="text-slate-400 text-xs block">Case Number</span>
+                          <span className="text-slate-300">{legalCase.case_number}</span>
                         </div>
                       )}
                     </div>
+
+                    {/* Key Dates */}
+                    {legalCase.key_dates && Object.keys(legalCase.key_dates).length > 0 && (
+                      <div>
+                        <span className="text-slate-400 text-xs block mb-1">
+                          <Calendar className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                          Key Dates
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {Object.entries(legalCase.key_dates).map(([key, value]) => (
+                            <span key={key} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-xs">
+                              <span className="text-slate-400">{formatDateLabel(key)}:</span>
+                              <span className="text-slate-300">{value}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Outcome */}
+                    {legalCase.outcome && (
+                      <div>
+                        <span className="text-slate-400 text-xs block mb-1">Outcome</span>
+                        <p className="text-sm text-slate-300">{legalCase.outcome}</p>
+                      </div>
+                    )}
+
+                    {/* Significance */}
+                    {legalCase.significance && (
+                      <div className={`p-3 border ${config.border} ${config.bg}`}>
+                        <span className="text-slate-400 text-xs block mb-1">
+                          <AlertTriangle className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                          Significance
+                        </span>
+                        <p className="text-sm text-slate-300">{legalCase.significance}</p>
+                      </div>
+                    )}
+
+                    {/* International Response */}
+                    {legalCase.international_response && (
+                      <div>
+                        <span className="text-slate-400 text-xs block mb-1">
+                          <Globe className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                          International Response
+                        </span>
+                        <p className="text-sm text-slate-300">{legalCase.international_response}</p>
+                      </div>
+                    )}
+
+                    {/* Related Persons */}
+                    {legalCase.related_persons && legalCase.related_persons.length > 0 && (
+                      <div>
+                        <span className="text-slate-400 text-xs block mb-1">Related Persons</span>
+                        <div className="flex flex-wrap gap-1">
+                          {legalCase.related_persons.map((person) => (
+                            <span key={person} className="px-2 py-0.5 bg-[#0a0e14] border border-[#1c2a35] text-xs text-slate-300">
+                              {person}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Source */}
+                    {legalCase.source_url && (
+                      <div className="pt-1 flex items-center gap-2">
+                        <Shield className="w-3 h-3 text-slate-400" aria-hidden="true" />
+                        <a
+                          href={legalCase.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-[#22d3ee] hover:underline inline-flex items-center gap-1"
+                        >
+                          View source
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                        </a>
+                        {legalCase.last_verified && (
+                          <span className="text-xs text-slate-400">
+                            Verified: {legalCase.last_verified}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              </details>
             );
           })
         )}

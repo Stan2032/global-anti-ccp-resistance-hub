@@ -3,19 +3,11 @@
  * military readiness, and international support for Taiwan's sovereignty.
  *
  * @module TaiwanDefenseStatus
- */
-import { useState } from 'react';
+ */ 
 import { BookOpen } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 const TaiwanDefenseStatus = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', name: 'Overview' },
-    { id: 'military', name: 'Military Balance' },
-    { id: 'allies', name: 'Allied Support' },
-    { id: 'scenarios', name: 'Scenarios' }
-  ];
 
   const militaryBalance = {
     pla: {
@@ -174,223 +166,205 @@ const TaiwanDefenseStatus = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Taiwan defense status tabs">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`tw-tabpanel-${tab.id}`}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab.id
-                ? 'bg-[#22d3ee] text-[#0a0e14]'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-            }`}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
 
       {/* Overview Tab */}
-      {activeTab === 'overview' && (
-        <div className="space-y-6">
-          {/* Recent Developments */}
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">Recent Developments</h3>
-            <div className="space-y-3">
-              {recentDevelopments.map((dev, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
-                    dev.type === 'positive' ? 'bg-green-500' : 'bg-red-500'
-                  }`}></span>
-                  <div>
-                    <span className="text-slate-400 text-sm">{dev.date}:</span>
-                    <span className="text-slate-200 ml-2">{dev.event}</span>
+      <DisclosureSection title="Overview">
+          <div className="space-y-6">
+            {/* Recent Developments */}
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">Recent Developments</h3>
+              <div className="space-y-3">
+                {recentDevelopments.map((dev, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
+                      dev.type === 'positive' ? 'bg-green-500' : 'bg-red-500'
+                    }`}></span>
+                    <div>
+                      <span className="text-slate-400 text-sm">{dev.date}:</span>
+                      <span className="text-slate-200 ml-2">{dev.event}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Key Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-              <div className="text-3xl font-bold text-red-400">100nm</div>
-              <div className="text-xs text-slate-400">Taiwan Strait Width</div>
-            </div>
-            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-              <div className="text-3xl font-bold text-orange-400">10+</div>
-              <div className="text-xs text-slate-400">Daily ADIZ Incursions</div>
-            </div>
-            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-              <div className="text-3xl font-bold text-green-400">$11.1B</div>
-              <div className="text-xs text-slate-400">Latest US Arms Package</div>
-            </div>
-            <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-              <div className="text-3xl font-bold text-[#22d3ee]">23.5M</div>
-              <div className="text-xs text-slate-400">Taiwan Population</div>
+            {/* Key Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
+                <div className="text-3xl font-bold text-red-400">100nm</div>
+                <div className="text-xs text-slate-400">Taiwan Strait Width</div>
+              </div>
+              <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
+                <div className="text-3xl font-bold text-orange-400">10+</div>
+                <div className="text-xs text-slate-400">Daily ADIZ Incursions</div>
+              </div>
+              <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
+                <div className="text-3xl font-bold text-green-400">$11.1B</div>
+                <div className="text-xs text-slate-400">Latest US Arms Package</div>
+              </div>
+              <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
+                <div className="text-3xl font-bold text-[#22d3ee]">23.5M</div>
+                <div className="text-xs text-slate-400">Taiwan Population</div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* Military Balance Tab */}
-      {activeTab === 'military' && (
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* PLA */}
-          <div className="bg-red-900/20 border border-red-700 p-6">
-            <h3 className="text-xl font-bold text-red-400 mb-4">{militaryBalance.pla.name}</h3>
-            <div className="space-y-3 mb-4">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Personnel:</span>
-                <span className="text-white font-semibold">{militaryBalance.pla.personnel}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Aircraft:</span>
-                <span className="text-white font-semibold">{militaryBalance.pla.aircraft}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Naval Vessels:</span>
-                <span className="text-white font-semibold">{militaryBalance.pla.naval}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Missiles:</span>
-                <span className="text-white font-semibold">{militaryBalance.pla.missiles}</span>
-              </div>
-            </div>
-            <h4 className="text-sm font-semibold text-red-300 mb-2">Key Advantages:</h4>
-            <ul className="space-y-1">
-              {militaryBalance.pla.advantages.map((adv, i) => (
-                <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
-                  <span className="text-red-400">•</span>
-                  {adv}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Taiwan */}
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-[#22d3ee] mb-4">{militaryBalance.taiwan.name}</h3>
-            <div className="space-y-3 mb-4">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Personnel:</span>
-                <span className="text-white font-semibold">{militaryBalance.taiwan.personnel}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Aircraft:</span>
-                <span className="text-white font-semibold">{militaryBalance.taiwan.aircraft}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Naval Vessels:</span>
-                <span className="text-white font-semibold">{militaryBalance.taiwan.naval}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Missiles:</span>
-                <span className="text-white font-semibold">{militaryBalance.taiwan.missiles}</span>
-              </div>
-            </div>
-            <h4 className="text-sm font-semibold text-[#22d3ee] mb-2">Key Advantages:</h4>
-            <ul className="space-y-1">
-              {militaryBalance.taiwan.advantages.map((adv, i) => (
-                <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
-                  <span className="text-[#22d3ee]">•</span>
-                  {adv}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {/* Allied Support Tab */}
-      {activeTab === 'allies' && (
-        <div className="space-y-6">
-          {/* US Arms Packages */}
-          <div className="bg-[#111820] border border-[#1c2a35] p-6">
-            <h3 className="text-xl font-bold text-white mb-4">🇺🇸 US Arms Packages to Taiwan</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
-                    <th className="pb-2">Date</th>
-                    <th className="pb-2">Value</th>
-                    <th className="pb-2">Contents</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {usArmsPackages.map((pkg, i) => (
-                    <tr key={i} className="border-b border-[#1c2a35]">
-                      <td className="py-2 text-white">{pkg.date}</td>
-                      <td className="py-2 text-green-400 font-semibold">{pkg.value}</td>
-                      <td className="py-2 text-slate-300">{pkg.items}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Allied Countries */}
-          <div className="space-y-4">
-            {alliedSupport.map((ally, i) => (
-              <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
-                <h4 className="text-lg font-bold text-white mb-2">{ally.country}</h4>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="text-slate-400">Commitment:</span>
-                    <p className="text-slate-200">{ally.commitment}</p>
-                  </div>
-                  <div>
-                    <span className="text-slate-400">Recent Actions:</span>
-                    <p className="text-slate-200">{ally.recent}</p>
-                  </div>
-                  <div>
-                    <span className="text-slate-400">Stance:</span>
-                    <p className="text-slate-200">{ally.stance}</p>
-                  </div>
+      <DisclosureSection title="Military Balance">
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* PLA */}
+            <div className="bg-red-900/20 border border-red-700 p-6">
+              <h3 className="text-xl font-bold text-red-400 mb-4">{militaryBalance.pla.name}</h3>
+              <div className="space-y-3 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Personnel:</span>
+                  <span className="text-white font-semibold">{militaryBalance.pla.personnel}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Aircraft:</span>
+                  <span className="text-white font-semibold">{militaryBalance.pla.aircraft}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Naval Vessels:</span>
+                  <span className="text-white font-semibold">{militaryBalance.pla.naval}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Missiles:</span>
+                  <span className="text-white font-semibold">{militaryBalance.pla.missiles}</span>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Scenarios Tab */}
-      {activeTab === 'scenarios' && (
-        <div className="space-y-4">
-          {scenarios.map((scenario, i) => (
-            <div key={i} className={`bg-[#111820] border p-6 ${
-              scenario.color === 'yellow' ? 'border-yellow-700' :
-              scenario.color === 'orange' ? 'border-orange-700' :
-              'border-red-700'
-            }`}>
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="text-lg font-bold text-white">{scenario.name}</h4>
-                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                  scenario.color === 'yellow' ? 'bg-yellow-900/50 text-yellow-300' :
-                  scenario.color === 'orange' ? 'bg-orange-900/50 text-orange-300' :
-                  'bg-red-900/50 text-red-300'
-                }`}>
-                  {scenario.probability}
-                </span>
-              </div>
-              <p className="text-slate-300 mb-4">{scenario.description}</p>
-              <h5 className="text-sm font-semibold text-slate-400 mb-2">Warning Indicators:</h5>
-              <ul className="grid md:grid-cols-2 gap-2">
-                {scenario.indicators.map((ind, j) => (
-                  <li key={j} className="text-slate-300 text-sm flex items-start gap-2">
-                    <span className="text-slate-500">•</span>
-                    {ind}
+              <h4 className="text-sm font-semibold text-red-300 mb-2">Key Advantages:</h4>
+              <ul className="space-y-1">
+                {militaryBalance.pla.advantages.map((adv, i) => (
+                  <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
+                    <span className="text-red-400">•</span>
+                    {adv}
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
-        </div>
-      )}
+
+            {/* Taiwan */}
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-[#22d3ee] mb-4">{militaryBalance.taiwan.name}</h3>
+              <div className="space-y-3 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Personnel:</span>
+                  <span className="text-white font-semibold">{militaryBalance.taiwan.personnel}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Aircraft:</span>
+                  <span className="text-white font-semibold">{militaryBalance.taiwan.aircraft}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Naval Vessels:</span>
+                  <span className="text-white font-semibold">{militaryBalance.taiwan.naval}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Missiles:</span>
+                  <span className="text-white font-semibold">{militaryBalance.taiwan.missiles}</span>
+                </div>
+              </div>
+              <h4 className="text-sm font-semibold text-[#22d3ee] mb-2">Key Advantages:</h4>
+              <ul className="space-y-1">
+                {militaryBalance.taiwan.advantages.map((adv, i) => (
+                  <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
+                    <span className="text-[#22d3ee]">•</span>
+                    {adv}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+      </DisclosureSection>
+
+      {/* Allied Support Tab */}
+      <DisclosureSection title="Allied Support">
+          <div className="space-y-6">
+            {/* US Arms Packages */}
+            <div className="bg-[#111820] border border-[#1c2a35] p-6">
+              <h3 className="text-xl font-bold text-white mb-4">🇺🇸 US Arms Packages to Taiwan</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-slate-400 border-b border-[#1c2a35]">
+                      <th className="pb-2">Date</th>
+                      <th className="pb-2">Value</th>
+                      <th className="pb-2">Contents</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usArmsPackages.map((pkg, i) => (
+                      <tr key={i} className="border-b border-[#1c2a35]">
+                        <td className="py-2 text-white">{pkg.date}</td>
+                        <td className="py-2 text-green-400 font-semibold">{pkg.value}</td>
+                        <td className="py-2 text-slate-300">{pkg.items}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Allied Countries */}
+            <div className="space-y-4">
+              {alliedSupport.map((ally, i) => (
+                <div key={i} className="bg-[#111820] border border-[#1c2a35] p-4">
+                  <h4 className="text-lg font-bold text-white mb-2">{ally.country}</h4>
+                  <div className="grid md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <span className="text-slate-400">Commitment:</span>
+                      <p className="text-slate-200">{ally.commitment}</p>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Recent Actions:</span>
+                      <p className="text-slate-200">{ally.recent}</p>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Stance:</span>
+                      <p className="text-slate-200">{ally.stance}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+      </DisclosureSection>
+
+      {/* Scenarios Tab */}
+      <DisclosureSection title="Scenarios">
+          <div className="space-y-4">
+            {scenarios.map((scenario, i) => (
+              <div key={i} className={`bg-[#111820] border p-6 ${
+                scenario.color === 'yellow' ? 'border-yellow-700' :
+                scenario.color === 'orange' ? 'border-orange-700' :
+                'border-red-700'
+              }`}>
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-lg font-bold text-white">{scenario.name}</h4>
+                  <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                    scenario.color === 'yellow' ? 'bg-yellow-900/50 text-yellow-300' :
+                    scenario.color === 'orange' ? 'bg-orange-900/50 text-orange-300' :
+                    'bg-red-900/50 text-red-300'
+                  }`}>
+                    {scenario.probability}
+                  </span>
+                </div>
+                <p className="text-slate-300 mb-4">{scenario.description}</p>
+                <h5 className="text-sm font-semibold text-slate-400 mb-2">Warning Indicators:</h5>
+                <ul className="grid md:grid-cols-2 gap-2">
+                  {scenario.indicators.map((ind, j) => (
+                    <li key={j} className="text-slate-300 text-sm flex items-start gap-2">
+                      <span className="text-slate-500">•</span>
+                      {ind}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+      </DisclosureSection>
 
       {/* Resources */}
       <div className="bg-[#111820] border border-[#1c2a35] p-6">

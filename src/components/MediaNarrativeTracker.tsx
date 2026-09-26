@@ -10,7 +10,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type PoliticalPrisoner, type DetentionFacility, type ForcedLabourCompany, type InternationalResponse, type PoliceStation, type LegalCase, type Sanction } from '../services/dataApi';
-import { Newspaper, Search, ChevronDown, ChevronUp, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';
+import { Newspaper, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';
 // MediaNarrativeTracker — Tracks CCP state media propaganda narratives,
 // cross-referencing with verified evidence from political prisoners, detention
 // facilities, forced labor, legal cases, and international responses data.
@@ -280,7 +280,6 @@ function getEvidenceCounts(narrative: NarrativeItem, allData: EvidenceData): Rec
 const MediaNarrativeTracker = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedNarrative, setExpandedNarrative] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = dataApi.getPoliticalPrisoners();
@@ -409,77 +408,74 @@ const MediaNarrativeTracker = () => {
         <p className="text-xs text-slate-400 font-mono">{filtered.length} of {stats.total} narratives shown</p>
         {filtered.map(n => {
           const cat = getCategoryStyle(n.category);
-          const isExpanded = expandedNarrative === n.id;
           const totalEvidence = Object.values(n.evidenceCounts).reduce((s, v) => s + v, 0);
           return (
-            <div key={n.id} className="border border-[#1c2a35] bg-[#111820]/50">
-              <button onClick={() => setExpandedNarrative(isExpanded ? null : n.id)} className="w-full text-left p-4 flex items-start justify-between gap-3" aria-expanded={isExpanded} aria-label={`${n.narrative.substring(0, 60)} — ${cat.label}`}>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 mb-1.5">
+            <details key={n.id} className="border border-[#1c2a35] bg-[#111820]/50">
+              <summary className="w-full text-left p-4 flex items-start justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="block min-w-0 flex-1">
+                  <span className="flex items-center gap-2 mb-1.5">
                     <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
                     <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${n.frequency === 'persistent' ? 'text-red-400 bg-red-400/10' : n.frequency === 'recurring' ? 'text-yellow-400 bg-yellow-400/10' : 'text-slate-400 bg-slate-400/10'}`}>{n.frequency}</span>
-                  </div>
-                  <p className="text-sm text-white font-mono leading-relaxed">"{n.narrative}"</p>
-                  <p className="text-xs text-slate-400 mt-1">Source: {n.source} • {totalEvidence} evidence points</p>
+                  </span>
+                  <span className="block text-sm text-white font-mono leading-relaxed">"{n.narrative}"</span>
+                  <span className="block text-xs text-slate-400 mt-1">Source: {n.source} • {totalEvidence} evidence points</span>
+                </span>
+                <span className="text-slate-500 flex-shrink-0 mt-1"><ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" /></span>
+              </summary>
+              <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
+                {/* Debunk */}
+                <div className="mt-3 space-y-2">
+                  <h4 className="text-xs font-mono text-[#4afa82] uppercase tracking-wider flex items-center gap-1.5">
+                    <Shield className="w-3.5 h-3.5" aria-hidden="true" /> Evidence-Based Debunk
+                  </h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">{n.debunkSummary}</p>
                 </div>
-                <span className="text-slate-500 flex-shrink-0 mt-1">{isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}</span>
-              </button>
-              {isExpanded && (
-                <div className="px-4 pb-4 space-y-4 border-t border-[#1c2a35]">
-                  {/* Debunk */}
-                  <div className="mt-3 space-y-2">
-                    <h4 className="text-xs font-mono text-[#4afa82] uppercase tracking-wider flex items-center gap-1.5">
-                      <Shield className="w-3.5 h-3.5" aria-hidden="true" /> Evidence-Based Debunk
-                    </h4>
-                    <p className="text-sm text-slate-300 leading-relaxed">{n.debunkSummary}</p>
-                  </div>
 
-                  {/* Evidence Counts */}
+                {/* Evidence Counts */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Cross-Referenced Evidence</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(n.evidenceCounts).map(([type, count]) => (
+                      <span key={type} className="text-xs font-mono px-2 py-1 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
+                        {type}: <span className="text-[#22d3ee]">{count}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Timeline */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Narrative Timeline</h4>
+                  <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-slate-400">First appeared</p>
+                      <p className="text-sm text-white font-mono">{n.firstAppeared}</p>
+                    </div>
+                    <div className="flex-1 mx-4 h-px bg-[#1c2a35] relative">
+                      <div className="absolute inset-y-0 left-0 bg-red-400/30" style={{ width: '100%' }} />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-slate-400">Last used</p>
+                      <p className="text-sm text-white font-mono">{n.lastUsed}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Counter-sources */}
+                {n.counterSources.length > 0 && (
                   <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Cross-Referenced Evidence</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {Object.entries(n.evidenceCounts).map(([type, count]) => (
-                        <span key={type} className="text-xs font-mono px-2 py-1 bg-[#0a0e14] border border-[#1c2a35] text-slate-300">
-                          {type}: <span className="text-[#22d3ee]">{count}</span>
-                        </span>
+                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Counter-Evidence Sources</h4>
+                    <div className="space-y-1">
+                      {n.counterSources.map((src, i) => (
+                        <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-[#22d3ee] hover:underline">
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" /> {src.name}
+                        </a>
                       ))}
                     </div>
                   </div>
-
-                  {/* Timeline */}
-                  <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Narrative Timeline</h4>
-                    <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 flex items-center justify-between">
-                      <div>
-                        <p className="text-xs text-slate-400">First appeared</p>
-                        <p className="text-sm text-white font-mono">{n.firstAppeared}</p>
-                      </div>
-                      <div className="flex-1 mx-4 h-px bg-[#1c2a35] relative">
-                        <div className="absolute inset-y-0 left-0 bg-red-400/30" style={{ width: '100%' }} />
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-slate-400">Last used</p>
-                        <p className="text-sm text-white font-mono">{n.lastUsed}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Counter-sources */}
-                  {n.counterSources.length > 0 && (
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Counter-Evidence Sources</h4>
-                      <div className="space-y-1">
-                        {n.counterSources.map((src, i) => (
-                          <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-[#22d3ee] hover:underline">
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" /> {src.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            </details>
           );
         })}
       </div>

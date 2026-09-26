@@ -9,6 +9,7 @@
  */
 import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { useLiveFeeds } from '../hooks/useLiveData';
+import { DisclosureSection } from '../components/DisclosureSection';
 
 const HongKongStatus = lazy(() => import('../components/HongKongStatus'));
 const TibetStatus = lazy(() => import('../components/TibetStatus'));
@@ -41,7 +42,6 @@ const IntelligenceFeeds = () => {
   const { feeds, loading, error, lastUpdated, refresh, sources, loadedSources } = useLiveFeeds(300000);
   const [selectedSource, setSelectedSource] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('feeds');
   const [showAllFeeds, setShowAllFeeds] = useState(false);
   const [sortBy, setSortBy] = useState('relevancy');
   const FEED_DISPLAY_COUNT = 5;
@@ -136,28 +136,8 @@ const IntelligenceFeeds = () => {
         </div>
       </div>
 
-      {/* Tab Bar */}
-      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
-        {[
-          { id: 'feeds', label: 'Live Feeds' },
-          { id: 'regional', label: 'Regional Status' },
-          { id: 'operations', label: 'CCP Operations' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
-              activeTab === tab.id
-                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
-                : 'text-slate-400 hover:text-slate-300'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
 
-      {activeTab === 'feeds' && (<>
+      <DisclosureSection title="Live Feeds" description="Live headlines from nine verified sources. Needs JavaScript." defaultOpen>
       {/* Refresh Button */}
       <div className="flex justify-end">
         <button
@@ -189,7 +169,7 @@ const IntelligenceFeeds = () => {
         {/* Search */}
         <div className="flex-1">
           <input
-            aria-label="Search"
+            aria-label="Search articles"
             type="text"
             placeholder="Search articles..."
             value={searchQuery}
@@ -356,18 +336,6 @@ const IntelligenceFeeds = () => {
                 >
                   Read full article →
                 </a>
-                <div className="flex items-center gap-2">
-                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                    </svg>
-                  </button>
-                  <button className="p-2 text-slate-400 hover:text-white hover:bg-[#1c2a35] transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                    </svg>
-                  </button>
-                </div>
               </div>
             </article>
           ))}
@@ -397,9 +365,9 @@ const IntelligenceFeeds = () => {
           Data refreshes automatically every 5 minutes • Relevance scored by CCP-related keywords
         </p>
       </div>
-      </>)}
+      </DisclosureSection>
 
-      {activeTab === 'regional' && (
+      <DisclosureSection title="Regional Status" description="Hong Kong, Xinjiang, Tibet and Taiwan, at a glance.">
         <div className="space-y-8">
           <div>
             <h2 className="text-xl font-bold text-white mb-1 font-mono">── hong_kong_status ──</h2>
@@ -418,9 +386,9 @@ const IntelligenceFeeds = () => {
             <Suspense fallback={<SectionLoader />}><TaiwanDefenseStatus /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
-      {activeTab === 'operations' && (
+      <DisclosureSection title="CCP Operations" description="Documented CCP influence and repression operations.">
         <div className="space-y-8">
           <div>
             <Suspense fallback={<SectionLoader />}><InfluenceNetwork /></Suspense>
@@ -486,7 +454,7 @@ const IntelligenceFeeds = () => {
             <Suspense fallback={<SectionLoader />}><ResearchDashboard /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
     </div>
   );
 };

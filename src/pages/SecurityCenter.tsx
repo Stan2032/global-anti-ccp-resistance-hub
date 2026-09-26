@@ -5,7 +5,7 @@
  *
  * @module SecurityCenter
  */
-import { useState, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import securityData from '../data/security_center_data.json'
 import { 
@@ -24,6 +24,7 @@ import {
   ShieldAlert,
   ShieldQuestion
 } from 'lucide-react'
+import { DisclosureSection } from '../components/DisclosureSection';
 
 interface SecurityTool {
   name: string;
@@ -58,7 +59,6 @@ const DiasporaSecurityAdvisor = lazy(() => import('../components/DiasporaSecurit
 const WhistleblowerGuide = lazy(() => import('../components/WhistleblowerGuide'));
 
 const SecurityCenter = () => {
-  const [activeTab, setActiveTab] = useState('assess')
   const { status: webrtcStatus, leakedIPs, isLeaking, runCheck: runWebRTCCheck } = useWebRTCLeakCheck()
 
   const securityTools = securityData.securityTools
@@ -163,31 +163,9 @@ const SecurityCenter = () => {
         </div>
       </div>
 
-      {/* Tabs — consolidated from 6 to 4 */}
-      <div className="flex space-x-1 bg-[#111820]/50 border-b border-[#1c2a35] overflow-x-auto px-1 pt-1">
-        {[
-          { id: 'assess', label: 'Assess' },
-          { id: 'tools', label: 'Tools' },
-          { id: 'guides', label: 'Guides' },
-          { id: 'threats', label: 'Tech Threats' },
-          { id: 'diaspora', label: 'Diaspora' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 font-mono text-sm transition-colors whitespace-nowrap ${
-              activeTab === tab.id
-                ? 'text-[#4afa82] border-b-2 border-[#4afa82]'
-                : 'text-slate-400 hover:text-slate-300'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
 
       {/* Assess Tab (was: assessment + checklist) */}
-      {activeTab === 'assess' && (
+      <DisclosureSection title="Assess" description="Check your exposure, then work through the checklist." defaultOpen>
         <div className="space-y-8">
           <div>
             <Suspense fallback={<SectionLoader />}><SecurityQuiz /></Suspense>
@@ -197,10 +175,10 @@ const SecurityCenter = () => {
             <Suspense fallback={<SectionLoader />}><SafetyChecklist /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
       {/* Tools Tab (was: tools + report) */}
-      {activeTab === 'tools' && (
+      <DisclosureSection title="Tools" description="Vetted tools for encrypted messaging, browsing and device safety.">
         <div className="space-y-6">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Essential Security Tools</h2>
@@ -375,10 +353,10 @@ const SecurityCenter = () => {
             <Suspense fallback={<SectionLoader />}><ContactForm /></Suspense>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
       {/* Guides Tab (was: guides + emergency + protect) */}
-      {activeTab === 'guides' && (
+      <DisclosureSection title="Guides" description="Step-by-step guides for specific situations.">
         <div className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Security Training Guides</h2>
@@ -454,16 +432,16 @@ const SecurityCenter = () => {
             </div>
           </div>
         </div>
-      )}
+      </DisclosureSection>
 
       {/* Tech Threats Tab */}
-      {activeTab === 'threats' && (
+      <DisclosureSection title="Tech Threats" description="Surveillance technology, and how it is deployed.">
         <Suspense fallback={<SectionLoader />}><ChinaTechThreats /></Suspense>
-      )}
+      </DisclosureSection>
 
-      {activeTab === 'diaspora' && (
+      <DisclosureSection title="Diaspora" description="For people facing pressure from the CCP while abroad.">
         <Suspense fallback={<SectionLoader />}><DiasporaSecurityAdvisor /></Suspense>
-      )}
+      </DisclosureSection>
     </div>
   )
 }

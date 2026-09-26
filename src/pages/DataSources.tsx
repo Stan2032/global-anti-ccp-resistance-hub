@@ -194,8 +194,8 @@ const DataSources = () => {
                   ))}
                 </div>
                 <div className="flex items-center space-x-2 text-slate-400 text-sm">
-                  <FileText className="w-4 h-4" />
-                  <span>Data File: <code className="bg-[#0a0e14] px-2 py-1 rounded">/src/data/{category.dataFile}</code></span>
+                  <FileText className="w-4 h-4 flex-shrink-0" />
+                  <span className="min-w-0">Data File: <code className="bg-[#0a0e14] px-2 py-1 rounded break-all">/src/data/{category.dataFile}</code></span>
                 </div>
               </div>
             ))}

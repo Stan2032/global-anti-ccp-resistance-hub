@@ -160,7 +160,6 @@ function buildClipboardText(officials: EnrichedOfficial[], coverageFilter: strin
 export default function SanctionImpactAnalyzer() {
   const [searchQuery, setSearchQuery] = useState('');
   const [coverageFilter, setCoverageFilter] = useState<CoverageCategory | ''>('');
-  const [expandedOfficial, setExpandedOfficial] = useState('');
   const [copied, setCopied] = useState(false);
 
   // ── Data enrichment ───────────────────────────────
@@ -222,10 +221,6 @@ export default function SanctionImpactAnalyzer() {
   }, [enrichedOfficials]);
 
   // ── Handlers ──────────────────────────────────────
-  const handleToggle = (name: string) => {
-    setExpandedOfficial((prev) => (prev === name ? '' : name));
-  };
-
   const handleCopy = async () => {
     const text = buildClipboardText(filteredOfficials, coverageFilter);
     try {
@@ -395,32 +390,25 @@ export default function SanctionImpactAnalyzer() {
         ) : (
           filteredOfficials.map((official) => {
             const style = COVERAGE_STYLES[official.coverageCategory];
-            const isExpanded = expandedOfficial === official.name;
             const unsanctionedCountries = SANCTIONING_COUNTRIES.filter((c) => !official.sanctions[c]);
 
             return (
-              <div key={official.name || official.id}>
-                {/* Official Row */}
-                <button
-                  onClick={() => handleToggle(official.name)}
-                  aria-expanded={isExpanded}
-                  aria-controls={`official-${(official.name || '').replace(/\s+/g, '-')}`}
-                  className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3"
-                >
+              <details key={official.name || official.id}>
+                <summary className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <span
                     className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`}
                     aria-hidden="true"
                   />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-white font-medium truncate">
+                  <span className="block flex-1 min-w-0">
+                    <span className="block text-sm text-white font-medium truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {official.name}
-                    </div>
-                    <div className="text-xs text-slate-400 truncate">
+                    </span>
+                    <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {official.position || official.responsibility_area || 'CCP Official'}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                   {/* Coverage indicator */}
-                  <div className="hidden sm:flex items-center gap-1" aria-label={`Sanctioned by ${official.sanctionCount} of 5 countries`}>
+                  <span className="hidden sm:flex items-center gap-1" aria-label={`Sanctioned by ${official.sanctionCount} of 5 countries`}>
                     {SANCTIONING_COUNTRIES.map((c) => (
                       <span
                         key={c}
@@ -431,111 +419,100 @@ export default function SanctionImpactAnalyzer() {
                         {c.toUpperCase().slice(0, 2)}
                       </span>
                     ))}
-                  </div>
+                  </span>
                   <span
                     className={`text-xs px-2 py-0.5 rounded border ${style.badge}`}
                   >
                     {official.sanctionCount}/5
                   </span>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                  )}
-                </button>
-
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div
-                    id={`official-${(official.name || '').replace(/\s+/g, '-')}`}
-                    className="px-4 sm:px-6 pb-4 bg-[#0d1117]"
-                  >
-                    <div className="space-y-3">
-                      {/* Position */}
-                      {official.position && (
-                        <div className="flex gap-3">
-                          <Users className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
-                          <div>
-                            <div className="text-xs text-slate-400 mb-0.5">Position</div>
-                            <div className="text-sm text-slate-300">{official.position}</div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Key Abuses */}
-                      {official.key_abuses && (
-                        <div className="flex gap-3">
-                          <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
-                          <div>
-                            <div className="text-xs text-slate-400 mb-0.5">Key Abuses</div>
-                            <div className="text-sm text-slate-300">{official.key_abuses}</div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Sanctions by Country */}
+                  <ChevronDown className="w-4 h-4 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-4 sm:px-6 pb-4 bg-[#0d1117]">
+                  <div className="space-y-3">
+                    {/* Position */}
+                    {official.position && (
                       <div className="flex gap-3">
-                        <Globe className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
-                        <div className="flex-1">
-                          <div className="text-xs text-slate-400 mb-1">Sanction Status by Country</div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                            {SANCTIONING_COUNTRIES.map((c) => (
-                              <div key={c} className="flex items-center gap-2 text-sm">
-                                <span aria-hidden="true">{COUNTRY_FLAGS[c]}</span>
-                                <span className="text-slate-400">{COUNTRY_LABELS[c]}</span>
-                                {official.sanctions[c] ? (
-                                  <span className="text-[#4afa82] text-xs">✓ Sanctioned</span>
-                                ) : (
-                                  <span className="text-red-400 text-xs">✗ Not sanctioned</span>
-                                )}
-                              </div>
-                            ))}
-                          </div>
+                        <Users className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
+                        <div>
+                          <div className="text-xs text-slate-400 mb-0.5">Position</div>
+                          <div className="text-sm text-slate-300">{official.position}</div>
                         </div>
                       </div>
+                    )}
 
-                      {/* Coverage gap warning */}
-                      {unsanctionedCountries.length > 0 && unsanctionedCountries.length < 5 && (
-                        <div className="mt-2 p-2.5 bg-red-900/10 border border-red-400/20 rounded">
-                          <div className="text-xs text-red-400 font-medium mb-1">
-                            Advocacy Opportunity
-                          </div>
-                          <div className="text-xs text-slate-400">
-                            {official.name} is not yet sanctioned by{' '}
-                            {unsanctionedCountries
-                              .map((c) => COUNTRY_LABELS[c])
-                              .join(', ')}
-                            . Contact representatives to close this gap.
-                          </div>
+                    {/* Key Abuses */}
+                    {official.key_abuses && (
+                      <div className="flex gap-3">
+                        <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
+                        <div>
+                          <div className="text-xs text-slate-400 mb-0.5">Key Abuses</div>
+                          <div className="text-sm text-slate-300">{official.key_abuses}</div>
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* Current Status */}
-                      {official.current_status && (
-                        <div className="mt-2 pt-2 border-t border-[#1c2a35]">
-                          <div className="text-xs text-slate-400 mb-0.5">Current Status</div>
-                          <div className="text-sm text-slate-300">{official.current_status}</div>
+                    {/* Sanctions by Country */}
+                    <div className="flex gap-3">
+                      <Globe className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-500" aria-hidden="true" />
+                      <div className="flex-1">
+                        <div className="text-xs text-slate-400 mb-1">Sanction Status by Country</div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                          {SANCTIONING_COUNTRIES.map((c) => (
+                            <div key={c} className="flex items-center gap-2 text-sm">
+                              <span aria-hidden="true">{COUNTRY_FLAGS[c]}</span>
+                              <span className="text-slate-400">{COUNTRY_LABELS[c]}</span>
+                              {official.sanctions[c] ? (
+                                <span className="text-[#4afa82] text-xs">✓ Sanctioned</span>
+                              ) : (
+                                <span className="text-red-400 text-xs">✗ Not sanctioned</span>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      )}
-
-                      {/* Source */}
-                      {official.source_url && (
-                        <div className="mt-2 pt-2 border-t border-[#1c2a35]">
-                          <a
-                            href={official.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                            Source
-                          </a>
-                        </div>
-                      )}
+                      </div>
                     </div>
+
+                    {/* Coverage gap warning */}
+                    {unsanctionedCountries.length > 0 && unsanctionedCountries.length < 5 && (
+                      <div className="mt-2 p-2.5 bg-red-900/10 border border-red-400/20 rounded">
+                        <div className="text-xs text-red-400 font-medium mb-1">
+                          Advocacy Opportunity
+                        </div>
+                        <div className="text-xs text-slate-400">
+                          {official.name} is not yet sanctioned by{' '}
+                          {unsanctionedCountries
+                            .map((c) => COUNTRY_LABELS[c])
+                            .join(', ')}
+                          . Contact representatives to close this gap.
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Current Status */}
+                    {official.current_status && (
+                      <div className="mt-2 pt-2 border-t border-[#1c2a35]">
+                        <div className="text-xs text-slate-400 mb-0.5">Current Status</div>
+                        <div className="text-sm text-slate-300">{official.current_status}</div>
+                      </div>
+                    )}
+
+                    {/* Source */}
+                    {official.source_url && (
+                      <div className="mt-2 pt-2 border-t border-[#1c2a35]">
+                        <a
+                          href={official.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                          Source
+                        </a>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              </details>
             );
           })
         )}

@@ -8,19 +8,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
+import { isBrowser, readStoredValue, useBrowserValue, writeStoredValue } from '../utils/ssr';
 
 const QuickStartGuide = () => {
+  // The tour must never appear in pre-rendered HTML: a reader with
+  // JavaScript disabled would get an overlay they cannot dismiss. This
+  // renders nothing during the build and mounts on hydration, routed through
+  // useBrowserValue so React treats the change as intended rather than as a
+  // hydration mismatch.
+  const hydrated = useBrowserValue(() => true, false);
+
   const [isOpen, setIsOpen] = useState(() => {
-    const hasSeenGuide = localStorage.getItem('quickStartDismissed');
-    return hasSeenGuide !== 'true';
+    if (!isBrowser) return false;
+    return readStoredValue('quickStartDismissed') !== 'true';
   });
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState(() => {
-    const savedSteps = localStorage.getItem('quickStartCompleted');
-    return savedSteps ? JSON.parse(savedSteps) : [];
+    const savedSteps = readStoredValue('quickStartCompleted');
+    try {
+      return savedSteps ? JSON.parse(savedSteps) : [];
+    } catch {
+      return [];
+    }
   });
   const [dismissed, setDismissed] = useState(() => {
-    return localStorage.getItem('quickStartDismissed') === 'true';
+    if (!isBrowser) return true;
+    return readStoredValue('quickStartDismissed') === 'true';
   });
 
   const steps = [
@@ -79,14 +92,14 @@ const QuickStartGuide = () => {
     if (!completedSteps.includes(stepId)) {
       const newCompleted = [...completedSteps, stepId];
       setCompletedSteps(newCompleted);
-      localStorage.setItem('quickStartCompleted', JSON.stringify(newCompleted));
+      writeStoredValue('quickStartCompleted', JSON.stringify(newCompleted));
     }
   };
 
   const dismissGuide = () => {
     setDismissed(true);
     setIsOpen(false);
-    localStorage.setItem('quickStartDismissed', 'true');
+    writeStoredValue('quickStartDismissed', 'true');
   };
 
   const _resetGuide = () => {
@@ -94,8 +107,8 @@ const QuickStartGuide = () => {
     setIsOpen(true);
     setCurrentStep(0);
     setCompletedSteps([]);
-    localStorage.removeItem('quickStartDismissed');
-    localStorage.removeItem('quickStartCompleted');
+    writeStoredValue('quickStartDismissed', null);
+    writeStoredValue('quickStartCompleted', null);
   };
 
   const nextStep = () => {
@@ -112,6 +125,9 @@ const QuickStartGuide = () => {
       setCurrentStep(currentStep - 1);
     }
   };
+
+  // Nothing in the pre-rendered HTML — this is a client-only overlay.
+  if (!hydrated) return null;
 
   // Floating button to reopen guide
   if (dismissed && !isOpen) {
@@ -236,7 +252,7 @@ export const HelpMenu = () => {
       description: 'New here? Take a quick tour',
       Icon: Rocket,
       action: () => {
-        localStorage.removeItem('quickStartDismissed');
+        writeStoredValue('quickStartDismissed', null);
         window.location.reload();
       },
     },

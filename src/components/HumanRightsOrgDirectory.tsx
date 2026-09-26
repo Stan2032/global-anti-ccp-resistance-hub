@@ -110,7 +110,6 @@ export default function HumanRightsOrgDirectory() {
   const [searchQuery, setSearchQuery] = useState('');
   const [focusFilter, setFocusFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
-  const [expandedOrg, setExpandedOrg] = useState('');
   const [copied, setCopied] = useState(false);
 
   // ── Data ────────────────────────────────────────────
@@ -163,10 +162,6 @@ export default function HumanRightsOrgDirectory() {
   }, [orgs, searchQuery, focusFilter, typeFilter]);
 
   // ── Handlers ────────────────────────────────────────
-  const handleToggle = (id: string) => {
-    setExpandedOrg((prev) => (prev === id ? '' : id));
-  };
-
   const handleCopy = async () => {
     const text = buildClipboardText(filteredOrgs, focusFilter, typeFilter);
     try {
@@ -314,32 +309,25 @@ export default function HumanRightsOrgDirectory() {
           </div>
         ) : (
           filteredOrgs.map((org) => {
-            const isExpanded = expandedOrg === org.id;
             const focusConfig = getFocusConfig(org.focus_area);
             const TypeIcon = getTypeIcon(org.org_type);
 
             return (
-              <div key={org.id}>
-                {/* Org Row */}
-                <button
-                  onClick={() => handleToggle(org.id)}
-                  aria-expanded={isExpanded}
-                  aria-controls={`org-${org.id}`}
-                  className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3"
-                >
+              <details key={org.id}>
+                <summary className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <TypeIcon
                     className={`w-4 h-4 flex-shrink-0 ${focusConfig.color}`}
                     aria-hidden="true"
                   />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-white font-medium truncate">
+                  <span className="block flex-1 min-w-0">
+                    <span className="block text-sm text-white font-medium truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {org.organization}
-                    </div>
-                    <div className="text-xs text-slate-400 truncate">
+                    </span>
+                    <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {org.headquarters || 'Location not specified'}
                       {org.founded_year ? ` · Est. ${org.founded_year}` : ''}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                   {/* Badges */}
                   <span className={`hidden sm:inline-block text-xs px-2 py-0.5 rounded border ${focusConfig.bgBadge}`}>
                     {focusConfig.label}
@@ -350,101 +338,90 @@ export default function HumanRightsOrgDirectory() {
                       aria-label="High credibility"
                     />
                   )}
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  )}
-                </button>
-
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div
-                    id={`org-${org.id}`}
-                    className="px-4 sm:px-6 pb-4 bg-[#0d1117]"
-                  >
-                    <div className="space-y-3">
-                      {/* Type & Focus */}
-                      <div className="flex flex-wrap gap-2">
-                        <span className={`text-xs px-2 py-0.5 rounded border ${focusConfig.bgBadge}`}>
-                          {focusConfig.label}
+                  <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-4 sm:px-6 pb-4 bg-[#0d1117]">
+                  <div className="space-y-3">
+                    {/* Type & Focus */}
+                    <div className="flex flex-wrap gap-2">
+                      <span className={`text-xs px-2 py-0.5 rounded border ${focusConfig.bgBadge}`}>
+                        {focusConfig.label}
+                      </span>
+                      {org.org_type && (
+                        <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
+                          {org.org_type}
                         </span>
-                        {org.org_type && (
-                          <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
-                            {org.org_type}
-                          </span>
-                        )}
-                        {org.credibility && (
-                          <span className={`text-xs px-2 py-0.5 rounded border ${
-                            org.credibility === 'High'
-                              ? 'border-[#4afa82]/30 text-[#4afa82] bg-[#4afa82]/10'
-                              : 'border-yellow-400/30 text-yellow-400 bg-yellow-400/10'
-                          }`}>
-                            {org.credibility} credibility
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Key Work */}
-                      {org.key_work && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Key Work</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {org.key_work}
-                          </div>
-                        </div>
                       )}
-
-                      {/* Latest News */}
-                      {org.latest_news && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Latest News</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {org.latest_news}
-                          </div>
-                        </div>
+                      {org.credibility && (
+                        <span className={`text-xs px-2 py-0.5 rounded border ${
+                          org.credibility === 'High'
+                            ? 'border-[#4afa82]/30 text-[#4afa82] bg-[#4afa82]/10'
+                            : 'border-yellow-400/30 text-yellow-400 bg-yellow-400/10'
+                        }`}>
+                          {org.credibility} credibility
+                        </span>
                       )}
+                    </div>
 
-                      {/* Links */}
-                      <div className="flex flex-wrap gap-3 pt-2 border-t border-[#1c2a35]">
-                        {org.website && (
-                          <a
-                            href={org.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <Globe className="w-3 h-3" aria-hidden="true" />
-                            Website
-                          </a>
-                        )}
-                        {org.donation_url && (
-                          <a
-                            href={org.donation_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <Heart className="w-3 h-3" aria-hidden="true" />
-                            Donate
-                          </a>
-                        )}
-                        {org.source_url && (
-                          <a
-                            href={org.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                            Source
-                          </a>
-                        )}
+                    {/* Key Work */}
+                    {org.key_work && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Key Work</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {org.key_work}
+                        </div>
                       </div>
+                    )}
+
+                    {/* Latest News */}
+                    {org.latest_news && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Latest News</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {org.latest_news}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Links */}
+                    <div className="flex flex-wrap gap-3 pt-2 border-t border-[#1c2a35]">
+                      {org.website && (
+                        <a
+                          href={org.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <Globe className="w-3 h-3" aria-hidden="true" />
+                          Website
+                        </a>
+                      )}
+                      {org.donation_url && (
+                        <a
+                          href={org.donation_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <Heart className="w-3 h-3" aria-hidden="true" />
+                          Donate
+                        </a>
+                      )}
+                      {org.source_url && (
+                        <a
+                          href={org.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                          Source
+                        </a>
+                      )}
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              </details>
             );
           })
         )}

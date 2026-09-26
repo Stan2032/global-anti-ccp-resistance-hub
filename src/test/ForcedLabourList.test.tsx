@@ -25,7 +25,7 @@ describe('ForcedLabourList', () => {
 
   it('renders search input', () => {
     render(<ForcedLabourList />);
-    expect(screen.getByPlaceholderText('Search companies...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search implicated companies...')).toBeTruthy();
   });
 
   it('renders company cards', () => {
@@ -52,7 +52,7 @@ describe('ForcedLabourList', () => {
 
   it('filters companies by search query', () => {
     render(<ForcedLabourList />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search implicated companies...');
     fireEvent.change(searchInput, { target: { value: 'Nike' } });
     expect(screen.getByText('Nike')).toBeTruthy();
     expect(screen.queryByText('Apple')).toBeFalsy();
@@ -60,7 +60,7 @@ describe('ForcedLabourList', () => {
 
   it('shows no results for non-matching search', () => {
     render(<ForcedLabourList />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search implicated companies...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No companies found matching your search.')).toBeTruthy();
   });

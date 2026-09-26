@@ -13,19 +13,23 @@ import { useLanguage } from '../contexts/languageUtils';
  * SkipLinks — Provides keyboard users with quick navigation to main content areas.
  * Uses i18n translations (8 languages) and terminal design system colors.
  *
- * @returns {React.ReactElement} Skip-link navigation (sr-only until focused)
+ * @returns {React.ReactElement} Skip-link navigation (each link out of view until focused)
  */
-const SKIP_LINK_CLASSES = 'fixed top-0 z-[100] bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
+// Each link waits just above the top edge and slides into view while it has
+// focus, so only one shows at a time. Shown together, they overlapped, and
+// at phone width the second ran off the screen.
+const SKIP_LINK_CLASSES = 'fixed top-0 left-0 z-[100] -translate-y-full focus:translate-y-0 bg-[#111820] text-[#4afa82] border border-[#4afa82] px-4 py-2 font-mono font-medium focus:outline-none focus:ring-2 focus:ring-[#4afa82]';
 
 export const SkipLinks = () => {
   const { t } = useLanguage();
   return (
-    <div className="sr-only focus-within:not-sr-only">
-      <a href="#main-content" className={`${SKIP_LINK_CLASSES} left-0`}>
-        {t('skipToMain')}
+    <div>
+      <a href="#main-content" className={SKIP_LINK_CLASSES}>
+        {t('accessibility.skipToMain')}
       </a>
-      <a href="#navigation" className={`${SKIP_LINK_CLASSES} left-52`}>
-        {t('skipToNav')}
+      {/* Its target, the sidebar, only exists from the lg breakpoint up. */}
+      <a href="#navigation" className={`${SKIP_LINK_CLASSES} hidden lg:block`}>
+        {t('accessibility.skipToNav')}
       </a>
     </div>
   );
@@ -238,73 +242,6 @@ const useKeyboardNavigation = <T,>(items: T[], onSelect?: (item: T, index: numbe
 };
 
 /**
- * Accessible Tab Panel Component
- */
-interface TabItem {
-  id: string;
-  label: React.ReactNode;
-  icon?: React.ReactNode;
-}
-
-interface AccessibleTabsProps {
-  tabs: TabItem[];
-  activeTab: string;
-  onTabChange: (id: string) => void;
-  children: React.ReactNode;
-}
-
-export const AccessibleTabs = ({ tabs, activeTab, onTabChange, children }: AccessibleTabsProps) => {
-  return (
-    <div>
-      <div role="tablist" aria-label="Content tabs" className="flex space-x-2 mb-4">
-        {tabs.map((tab, index) => (
-          <button
-            key={tab.id}
-            role="tab"
-            id={`tab-${tab.id}`}
-            aria-selected={activeTab === tab.id}
-            aria-controls={`tabpanel-${tab.id}`}
-            tabIndex={activeTab === tab.id ? 0 : -1}
-            onClick={() => onTabChange(tab.id)}
-            onKeyDown={(e) => {
-              if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                const nextIndex = (index + 1) % tabs.length;
-                onTabChange(tabs[nextIndex].id);
-              } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                const prevIndex = (index - 1 + tabs.length) % tabs.length;
-                onTabChange(tabs[prevIndex].id);
-              }
-            }}
-            className={`px-4 py-2 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#4afa82] ${
-              activeTab === tab.id
-                ? 'bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/50'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
-            }`}
-          >
-            {tab.icon && <span className="mr-2" aria-hidden="true">{tab.icon}</span>}
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      {tabs.map((tab) => (
-        <div
-          key={tab.id}
-          role="tabpanel"
-          id={`tabpanel-${tab.id}`}
-          aria-labelledby={`tab-${tab.id}`}
-          hidden={activeTab !== tab.id}
-          tabIndex={0}
-        >
-          {activeTab === tab.id && children}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-/**
  * Progress Indicator with ARIA
  */
 interface AccessibleProgressProps {
@@ -398,7 +335,6 @@ export default {
   LiveRegion,
   AccessibleButton,
   AccessibleCard,
-  AccessibleTabs,
   AccessibleProgress,
   AccessibleAlert,
   useFocusTrap,

@@ -4,14 +4,22 @@
  *
  * @module BennyTaiProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Book
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Newspaper,
+  Flag,
 } from 'lucide-react';
 
 
@@ -21,12 +29,6 @@ interface TimelineEventType {
   detail: string;
   category: string;
   sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -225,60 +227,10 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="text-xs font-mono text-slate-400 whitespace-nowrap">{event.year}</span>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} border border-white/10`}>{cat.label}</span>
-          <span className="text-sm font-medium text-white truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-3 border-t border-white/5">
-          <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-red-400 hover:text-red-300 mt-2">
-              <ExternalLink className="w-3 h-3" /> Source
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function BennyTaiProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (idx: number) => {
-    setExpandedEvents((prev) => {
-      const next = new Set(prev);
-      next.has(idx) ? next.delete(idx) : next.add(idx);
-      return next;
-    });
-  };
-
-  const expandAll = () => setExpandedEvents(new Set(TIMELINE.map((_, i) => i)));
-  const collapseAll = () => setExpandedEvents(new Set());
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Verdict', icon: Scale },
-    { id: 'narratives', label: 'CCP Narratives', icon: AlertTriangle },
-    { id: 'response', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   const daysDetained = Math.floor((new Date().getTime() - new Date('2021-01-06').getTime()) / (1000 * 60 * 60 * 24));
 
@@ -374,36 +326,14 @@ export default function BennyTaiProfile() {
         </div>
       </div>
 
-      {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
-        {tabs.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`panel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-red-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-            }`}
-          >
-            <Icon className="w-4 h-4" /> {label}
-          </button>
-        ))}
-      </div>
 
       {/* ─── TAB PANELS ─────────────────────────────────────── */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab}>
+      <div className="space-y-3">
         {/* TIMELINE */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-red-400" /> Timeline — {TIMELINE.length} Events</h2>
-              <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-red-400 hover:text-red-300">Expand all</button>
-                <span className="text-slate-600">|</span>
-                <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
-              </div>
             </div>
             {/* Category legend */}
             <div className="flex flex-wrap gap-2">
@@ -412,15 +342,16 @@ export default function BennyTaiProfile() {
               ))}
             </div>
             <div className="space-y-2">
-              {TIMELINE.map((event, idx) => (
-                <TimelineEvent key={idx} event={event} isExpanded={expandedEvents.has(idx)} onToggle={() => toggleEvent(idx)} />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CHARGES & VERDICT */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges & Verdict">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-red-400" /> Charges & Verdict</h2>
 
@@ -449,10 +380,10 @@ export default function BennyTaiProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP NARRATIVE ANALYSIS */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-red-400" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
@@ -479,10 +410,10 @@ export default function BennyTaiProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* INTERNATIONAL RESPONSE */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International Response">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-red-400" /> International Response</h2>
 
@@ -501,10 +432,10 @@ export default function BennyTaiProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* SOURCES */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-red-400" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
@@ -534,7 +465,7 @@ export default function BennyTaiProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

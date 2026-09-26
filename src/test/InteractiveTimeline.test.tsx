@@ -2,6 +2,14 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import React from 'react';
 import InteractiveTimeline from '../components/InteractiveTimeline';
+import timelineEvents from '../data/timeline_events.json';
+
+// Derived, not hard-coded. This is a human-rights timeline: events get added,
+// and a test suite that breaks every time one is should not be what stands
+// between a maintainer and recording an event.
+const TOTAL = (timelineEvents as unknown[]).length;
+const HK_COUNT = (timelineEvents as { category: string }[])
+  .filter(e => e.category === 'hongkong').length;
 
 // Mock SourceAttribution to simplify rendering
 vi.mock('../components/ui/SourceAttribution', () => ({
@@ -39,13 +47,13 @@ describe('InteractiveTimeline', () => {
 
   it('shows total event count in statistics', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getAllByText('40').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(String(TOTAL)).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Total Events')).toBeTruthy();
   });
 
   it('shows event counter showing 1 / N events initially', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getByText('1 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`1 / ${TOTAL} events`)).toBeTruthy();
   });
 
   it('shows placeholder when no event is selected', () => {
@@ -74,17 +82,16 @@ describe('InteractiveTimeline', () => {
     // "Hong Kong" appears in both filter and legend — click the first (filter button)
     const hkButtons = screen.getAllByText('Hong Kong');
     fireEvent.click(hkButtons[0]);
-    // 16 HK events
-    expect(screen.getByText(/20 events$/)).toBeTruthy();
+    expect(screen.getByText(new RegExp(`${HK_COUNT} events$`))).toBeTruthy();
   });
 
   it('returns to all events when All Events is clicked', () => {
     render(<InteractiveTimeline />);
     const hkButtons = screen.getAllByText('Hong Kong');
     fireEvent.click(hkButtons[0]);
-    expect(screen.getByText(/20 events$/)).toBeTruthy();
+    expect(screen.getByText(new RegExp(`${HK_COUNT} events$`))).toBeTruthy();
     fireEvent.click(screen.getByText('All Events'));
-    expect(screen.getByText('1 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`1 / ${TOTAL} events`)).toBeTruthy();
   });
 
   // --- Navigation ---
@@ -99,7 +106,7 @@ describe('InteractiveTimeline', () => {
     const nextBtn = buttons.find(b => b.querySelector('.lucide-chevron-right'));
     fireEvent.click(nextBtn!);
     // Should now show event details (since clicking next selects an event)
-    expect(screen.getByText('2 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
   });
 
   it('wraps around when navigating past the last event', () => {
@@ -108,7 +115,7 @@ describe('InteractiveTimeline', () => {
     const buttons = screen.getAllByRole('button');
     const prevBtn = buttons.find(b => b.querySelector('.lucide-chevron-left'));
     fireEvent.click(prevBtn!);
-    expect(screen.getByText('40 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`${TOTAL} / ${TOTAL} events`)).toBeTruthy();
   });
 
   // --- Event selection ---
@@ -139,7 +146,7 @@ describe('InteractiveTimeline', () => {
       await vi.advanceTimersByTimeAsync(3000);
     });
     // Should have advanced (counter should change)
-    expect(screen.getByText('2 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
     // Should show event details
     expect(screen.queryByText('Click on a timeline marker to view event details')).toBeNull();
   });
@@ -154,7 +161,7 @@ describe('InteractiveTimeline', () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(3000);
     });
-    expect(screen.getByText('2 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
     
     // Pause
     const pauseBtn = screen.getAllByRole('button').find(b => b.querySelector('.lucide-pause'));
@@ -164,7 +171,7 @@ describe('InteractiveTimeline', () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(6000);
     });
-    expect(screen.getByText('2 / 40 events')).toBeTruthy();
+    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
   });
 
   // --- Statistics ---

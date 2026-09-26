@@ -7,12 +7,12 @@
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
         "sentence": "Sentenced to 20 years for foreign collusion (Feb 9, 2026); fraud conviction overturned on appeal (Feb 26, 2026).",
-        "latest_news": "Mar 2026: Jimmy Lai has confirmed he will NOT appeal his 20-year NSL conviction. UN News called for his release (Feb 2026). Separate fraud conviction overturned on appeal Feb 26, 2026.",
+        "latest_news": "Jun 22, 2026: passed 2,000 days in detention \u2014 five and a half years. Reporters Without Borders marked the milestone by calling on democratic leaders to press for his release on medical grounds, warning that \"each passing day heightens the risk that Jimmy Lai could die in prison.\" RSF reports he is allowed 50 minutes of daily exercise in a metal cage. Earlier: sentenced to 20 years on February 9, 2026; confirmed in March 2026 that he will not appeal; separate fraud conviction overturned February 26, 2026.",
         "health_status": "Deteriorating: hypertension, diabetes, cataracts, blocked vein in one eye. Family reports teeth rotting, nails falling out, significant weight loss. Prolonged solitary confinement. Family warns imprisonment could be \"life-threatening.\" Hong Kong prison authorities claim condition is \"stable\" (Jan 2026 medical report). Age 78.",
         "international_response": "UK, US, EU, Australia, and human rights groups condemned the NSL verdict and called for his release. UN Working Group on Arbitrary Detention considers detention politically motivated. UN News specifically called for his release in Feb 2026.",
-        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
+        "source_url": "https://rsf.org/en/2000-days-behind-bars-time-running-out-jimmy-lai",
         "confidence": "HIGH",
-        "last_verified": "2026-03-10",
+        "last_verified": "2026-09-19",
         "verification_note": "Conviction Dec 15, 2025; sentencing Feb 9, 2026 to 20 years (HRW). Fraud conviction overturned Feb 26, 2026. Confirmed won't appeal NSL sentence (NBC News, Mar 2026). Health: hypertension, diabetes, cataracts (HKFP Jan 2026), teeth/nails deterioration (CBS, Independent). EU statement (EEAS), US State Dept statement on sentencing. UN calls for release."
       },
       "error": ""
@@ -40,14 +40,14 @@
         "prisoner_name": "Gao Zhisheng",
         "status": "DISAPPEARED",
         "location": "Shaanxi province, China",
-        "sentence": "No official sentence",
-        "latest_news": "Aug 2025: UN Special Rapporteur called on the Chinese government to disclose his whereabouts. Last seen August 13, 2017.",
-        "health_status": "Unknown, reports of past torture",
+        "sentence": "No official sentence for the current disappearance. Previously: convicted 2006 of inciting subversion of state power, 3 years suspended with 5 years' probation; probation revoked in 2011 and the sentence served at Shaya Prison in the Uyghur region, where he was tortured.",
+        "latest_news": "Nine years disappeared as of August 13, 2026, with no change. He was seized on August 13, 2017 while attempting to escape house arrest in Shaanxi, by police believed to be from Beijing and Shaanxi \u2014 he was not simply 'last seen'. Chinese authorities have never confirmed holding him and have answered no international inquiry since. His wife Geng He, in August 2026: \"For nine years, the Chinese authorities have never provided our family with any truthful information about Gao Zhisheng's whereabouts.\" On April 4, 2026 a 13-foot sculpture, 'Gazing at the Starry Sky: Gao Zhisheng', was unveiled at Liberty Sculpture Park in Yermo, California, with Geng He involved in its design.",
+        "health_status": "Unknown \u2014 no information for nine years. He was tortured during his earlier imprisonment at Shaya Prison. Whether he is alive is not publicly established.",
         "international_response": "US, EU, and multiple NGOs have called for his release. Awarded the Shahbaz Bhatti Freedom Award.",
-        "source_url": "https://humanrightscommission.house.gov/DFP/Countries/China/Gao-Zhisheng",
+        "source_url": "https://www.nchrd.org/2025/08/china-release-lawyer-gao-zhisheng-forcibly-disappeared-since-2017/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Last seen date (Aug 13, 2017) verified via NCHRD, USCIRF, ChinaAid, Lawyers for Lawyers, Tom Lantos Commission."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19 against CHRD (circumstances of the August 13, 2017 seizure, the 2006 conviction and Shaya Prison, and that location and status remain unknown) and ChinaAid, 2026-08-11 (Geng He at the nine-year mark, and the April 4, 2026 sculpture). Status DISAPPEARED unchanged and still correct. Nothing found establishes whether he is alive, and nothing here should be read as implying it."
       },
       "error": ""
     },
@@ -58,16 +58,17 @@
         "status": "DETAINED",
         "location": "Shanghai, China",
         "sentence": "4 years (first, Dec 2020) + 4 years (second, Sep 2025) for picking quarrels and provoking trouble",
-        "latest_news": "Sep 2025: Sentenced to a second four-year prison term by Shanghai Pudong New Area People's Court. Re-arrested Aug 2024 shortly after release from first sentence.",
-        "health_status": "Critically deteriorating. History of prolonged hunger strikes causing severe malnutrition. Forced-feeding tube observed during family visit Oct 2024.",
+        "latest_news": "Aug 2026: moved to Zone 5 of Shanghai's Pudong Detention Centre, with no update on her health provided (RSF, August 28, 2026 \u2014 two years to the day after her second arrest). Amnesty International issued an urgent action on May 15, 2026 (ASA 17/1006/2026) describing her condition as life threatening and calling for her immediate release. Authorities have persistently refused her a lawyer of her choice, which Amnesty says has hampered efforts to document her situation and appeal her conviction.",
+        "health_status": "Life threatening, per Amnesty International (May 2026): serious gastric illness, significant weight loss, extremely weak. Reportedly on hunger strike against her arbitrary detention since January 2025, when RSF reports she was force-fed and developed stomach complications. Earlier hunger strikes in August 2021 (11-day hospitalisation) and September 2023. In 2021 she weighed barely 40 kg at 1.77 m and could not move unassisted. Forced-feeding tube observed during a family visit in October 2024. Amnesty says that pending release she must have access to adequate healthcare provided in compliance with medical ethics.",
         "international_response": "OHCHR called second sentencing 'deeply disturbing'. Amnesty International, CPJ, RSF, EU, US all condemned. She is regarded as a prisoner of conscience.",
-        "source_url": "https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing",
+        "source_url": "https://www.amnesty.org/en/documents/asa17/1006/2026/en/",
         "additional_sources": [
+          "https://rsf.org/en/two-years-after-her-second-arrest-rsf-outlines-years-long-repression-chinese-journalism-icon-zhang",
           "https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/",
           "https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/"
         ],
         "confidence": "HIGH",
-        "last_verified": "2026-02-19"
+        "last_verified": "2026-09-19"
       },
       "error": ""
     },
@@ -149,13 +150,13 @@
         "prisoner_name": "Joshua Wong",
         "status": "DETAINED",
         "location": "Stanley Prison, Hong Kong",
-        "sentence": "4 years and 8 months for subversion; faces new foreign collusion charge (max: life imprisonment)",
-        "latest_news": "March 2026: Foreign collusion case transferred to High Court, next hearing March 6, 2026. Feb 2026: HK47 appeal dismissed. Wong has not entered a plea on the new charge.",
+        "sentence": "4 years and 8 months for subversion (Hong Kong 47). Pleaded guilty September 2, 2026 to conspiracy to collude with foreign forces; sentencing pending, maximum life imprisonment.",
+        "latest_news": "Pleaded guilty at the High Court on September 2, 2026 to conspiracy to collude with foreign forces — his second National Security Law conviction. Judge William Tam adjourned sentencing with no date set. Wong was originally due for release in January 2027 before this case was brought, and will not receive remission on his earlier sentence.",
         "health_status": "Unknown",
         "international_response": "The UK, US, and Australia condemned the verdict and sentencing. Amnesty International called new charges 'designed to prolong his stay behind bars.'",
-        "source_url": "https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year",
+        "source_url": "https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/",
         "confidence": "HIGH",
-        "last_verified": "2026-03-02"
+        "last_verified": "2026-09-19"
       },
       "error": ""
     },
@@ -371,16 +372,16 @@
       "input": "Yu Wensheng - Human rights lawyer, 4 years for subversion",
       "output": {
         "prisoner_name": "Yu Wensheng",
-        "status": "DETAINED",
-        "location": "Suzhou Detention Centre, Jiangsu Province",
-        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after re-arrest in April 2023 while meeting EU diplomats.",
-        "latest_news": "Oct 2024: Re-sentenced to 3 years alongside wife Xu Yan (1 year 9 months). Appeal upheld Jan 2025. Won Martin Ennals Award 2021, Franco-German HR Prize 2018.",
-        "health_status": "Deteriorating due to poor conditions and alleged torture.",
-        "international_response": "EU, US, Amnesty International, and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards.",
-        "source_url": "https://www.amnesty.org/en/latest/news/2025/01/china-jailed-human-rights-lawyers-failed-appeal-highlights-fear-of-dissent/",
+        "status": "RELEASED",
+        "location": "Beijing, China \u2014 released from Zhenjiang Prison, Jiangsu Province",
+        "sentence": "First sentence: 4 years for inciting subversion (2018-2022). Second sentence: 3 years for inciting subversion (October 29, 2024, Suzhou Intermediate Court) after arrest on April 13, 2023 on the way to meet EU diplomats. Both served in full.",
+        "latest_news": "RELEASED April 13, 2026 from Zhenjiang Prison, Jiangsu, having served the three-year sentence in full, and reunited with his family in Beijing. His wife Xu Yan was released January 13, 2025 after 1 year 9 months. Front Line Defenders and Amnesty International both warn the family still faces surveillance, harassment and restrictions on movement and expression \u2014 release is not the end of the case. Won the Martin Ennals Award 2021 and the Franco-German Human Rights Prize 2018.",
+        "health_status": "Recovering after release. Three years of detention, with alleged torture and poor conditions, left lasting physical and psychological effects.",
+        "international_response": "EU, US, Amnesty International and Front Line Defenders condemned the sentence and called for his release. Recipient of multiple human rights awards. Since his release the same organisations have pressed China to lift the restrictions still placed on him and his family.",
+        "source_url": "https://www.frontlinedefenders.org/en/case/human-rights-lawyer-yu-wensheng-released-after-completing-sentence",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "CRITICAL: Our data had old sentence (3 years). Actually had TWO sentences: 4 years (2018-2022) and 3 years (Oct 29, 2024). Verified via Front Line Defenders, VOA, Independent, EU EEAS, Amnesty, ISHR, Straits Times."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19: status corrected DETAINED -> RELEASED. Release on April 13, 2026 from Zhenjiang Prison confirmed independently by Front Line Defenders and by Amnesty International (ASA 17/1264/2026), which also gives Xu Yan's release as January 13, 2025; corroborated by ISHR, Lawyers for Lawyers and ChinaAid. The record had shown him as detained for five months after his release."
       },
       "error": ""
     },
@@ -441,14 +442,14 @@
         "prisoner_name": "Sophia Huang Xueqin",
         "status": "DETAINED",
         "location": "Guangzhou, China",
-        "sentence": "5 years for inciting subversion of state power",
-        "latest_news": "June 2024: Sentenced to five years in prison.",
+        "sentence": "5 years for inciting subversion of state power, convicted June 2024. Detained since September 19, 2021. Carries a supplementary sentence of 4 years' deprivation of political rights, running past the prison term to 2030.",
+        "latest_news": "Her five-year term ended September 18, 2026. Release was due that day but is NOT independently confirmed as of September 19, 2026 \u2014 CPJ, Amnesty International, RSF and 57 other organisations publicly urged China to release her immediately and without conditions. Even on release she remains deprived of her political rights for four years, which bars her from practising journalism and is used to restrict speech, publication and organising long after a prison term ends.",
         "health_status": "Deteriorating, subjected to ill-treatment in detention.",
         "international_response": "The United States, Amnesty International, and other human rights organizations have condemned the sentence and called for her immediate release.",
-        "source_url": "https://www.aljazeera.com/news/2024/6/14/chinese-metoo-activist-jailed-for-five-years-for-subversion",
+        "source_url": "https://cpj.org/2026/09/cpj-partners-urge-china-to-ensure-metoo-journalist-sophia-huangs-freedom-as-jail-term-nears-end/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Sentenced June 2024 to 5 years verified via RSF, NBC News, DW, Al Jazeera."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19. Detention date, five-year term and September 18, 2026 release date via CPJ (2026-09-15); four years' deprivation of political rights via the 60-NGO statement led by RSF and Amnesty International (CHRD) and via HKFP (2026-09-18) citing Amnesty. Release NOT confirmed by any source \u2014 all describe it as due or expected, so status is left at DETAINED rather than guessed."
       },
       "error": ""
     },
@@ -747,14 +748,14 @@
         "prisoner_name": "Andy Li",
         "status": "DETAINED",
         "location": "Siu Lam Psychiatric Center, Hong Kong",
-        "sentence": "Guilty plea August 19, 2021 for conspiracy to collude with foreign forces; sentencing deferred pending role as prosecution witness in Jimmy Lai trial. Allegations of torture during mainland detention.",
-        "latest_news": "Mar 2024: Testified against Jimmy Lai, sparking international concern over torture allegations",
+        "sentence": "7 years 3 months for conspiracy to collude with foreign forces, sentenced February 9, 2026 \u2014 the same day Jimmy Lai received 20 years. Pleaded guilty August 19, 2021; sentencing was deferred for four and a half years while he served as a prosecution witness against Lai. Allegations of torture during mainland detention.",
+        "latest_news": "Sentenced February 9, 2026 to 7 years 3 months, having been held since August 2020 \u2014 first by mainland authorities after the Hong Kong 12 were intercepted at sea, then in Hong Kong. Human Rights Watch reports the court reduced his sentence and that of Wayland Chan (6 years 3 months) because they testified against Lai. He gave that testimony in March 2024 amid international concern that it had been obtained through torture; the UN Special Rapporteur on torture wrote to the Chinese authorities about it.",
         "health_status": "Held in solitary confinement at a psychiatric facility; allegations of torture",
         "international_response": "UN Special Rapporteur on torture raised concerns about coerced testimony",
-        "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/andy-li-yu-hin",
+        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Part of Hong Kong 12. Guilty plea Aug 19, 2021. Sentencing deferred. Torture allegations. Verified via HKFP, Straits Times, CFHK Foundation, Hong Kong Watch, Doughty Street."
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19: the record still said sentencing was deferred, seven months after it happened. The 7 years 3 months and the February 9, 2026 date are confirmed independently by Human Rights Watch and by HKFP, both read in full \u2014 necessary because the identical figure is also Chow Hang-Tung's sentence in the unrelated Hong Kong Alliance case and keyword searches conflate the two. No release date is recorded: neither source states how his five and a half years already served are credited, so calculating one would be a guess."
       },
       "error": ""
     },
@@ -766,11 +767,11 @@
         "location": "Lai Chi Kok Reception Centre, Hong Kong",
         "sentence": "7 years 9 months for conspiracy to commit subversion",
         "latest_news": "May 2025: Lost an appeal over a prison letter conviction, but his sentence was reduced to a fine.",
-        "health_status": "Unknown",
+        "health_status": "Amnesty International named him, alongside Jimmy Lai and Chow Hang-tung, among Hong Kong detainees subjected to solitary confinement \"lasting weeks, months or even in extreme cases years\" (ASA 17/0708/2026, February 2026). Amnesty found such confinement is sometimes imposed as punishment or applied arbitrarily, and that prolonged or unjustified solitary confinement \"may amount to torture or other ill-treatment.\" No independent medical assessment is public.",
         "international_response": "The Human Rights Foundation (HRF) submitted a petition to the UN Working Group on Arbitrary Detention (UNWGAD) for Owen Chow. The UN and other NGOs have criticized the National Security Law under which he was convicted.",
-        "source_url": "https://www.hongkongwatch.org/political-prisoner/2024/10/30/owen-chow-ka-shing",
+        "source_url": "https://www.amnesty.org/en/documents/asa17/0708/2026/en/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
+        "last_verified": "2026-09-19",
         "verification_note": "Sentenced Nov 19, 2024 to 7 years 9 months as part of Hong Kong 47 case. Second-longest sentence after Benny Tai. Verified via HRF, Hong Kong Watch, SCMP, Asia Freedom Institute."
       },
       "error": ""
@@ -849,13 +850,13 @@
         "prisoner_name": "Lee Cheuk-yan",
         "status": "DETAINED",
         "location": "Unknown prison, Hong Kong",
-        "sentence": "20 months total for unauthorized assemblies (served). On trial for inciting subversion under NSL (max 10 years) \u2014 trial began January 22, 2026. Pleaded NOT guilty.",
-        "latest_news": "Mar 10, 2026: Defence made 'no case to answer' submission in subversion trial. Lee has been in pre-trial detention since September 2021 \u2014 over 4 years (1,500+ days). Prosecution case relies largely on his public speeches and media interviews, most from before the NSL's enactment in 2020. Court questioned relevance of some prosecution material.",
+        "sentence": "7 years for inciting subversion under the National Security Law, sentenced September 11, 2026. Earlier: 20 months for unauthorized assemblies (served).",
+        "latest_news": "Convicted August 21, 2026 of inciting subversion and sentenced September 11, 2026 to 7 years at the High Court, for organising the annual Tiananmen vigils. Held in pre-trial detention since September 2021 and repeatedly denied bail. Amnesty International designates him a prisoner of conscience and says his right to appeal must be protected.",
         "health_status": "In detention since September 2021 (over 4 years pre-trial). Age 67. Reports of prolonged isolation. Amnesty Canada raised concerns about prolonged solitary confinement of HK political prisoners.",
         "international_response": "Amnesty International: Condemned prosecution. Council of Global Unions / BWI: Published statement demanding release. ITUC: Called for immediate release. NCHRD: Demanded all charges be dropped, called trial a 'sham trial.' Hong Kong Labour Rights Monitor: Documented trial proceedings extensively.",
-        "source_url": "https://hklabourrights.org/newsletter/special-newsletter-hk-trade-union-leader-lee-cheuk-yans-trial-sparks-freedom-of-association-concerns/",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/",
         "confidence": "HIGH",
-        "last_verified": "2026-03-11",
+        "last_verified": "2026-09-19",
         "verification_note": "Former chairperson of Hong Kong Alliance and HK Confederation of Trade Unions. Former Legislative Council member. NSL subversion trial began Jan 22, 2026 (Amnesty, NCHRD). Pleaded not guilty. Co-defendants: Chow Hang-Tung, Albert Ho. March 2026: 'no case to answer' submission. Verified via Amnesty International, NCHRD, HK Labour Rights Monitor, HKFP, Council of Global Unions."
       },
       "error": ""
@@ -1072,13 +1073,13 @@
         "prisoner_name": "Albert Ho",
         "status": "DETAINED",
         "location": "Unknown prison, Hong Kong",
-        "sentence": "18 months for unauthorized assemblies (served). On trial for inciting subversion under NSL (max 10 years) \u2014 trial began January 22, 2026. Pleaded GUILTY.",
-        "latest_news": "Jan 22, 2026: NSL subversion trial began. Albert Ho pleaded guilty to inciting subversion. Co-defendants Chow Hang-Tung and Lee Cheuk-yan pleaded not guilty. The three are former leaders of the Hong Kong Alliance in Support of Patriotic Democratic Movements of China, charged for organizing Tiananmen June 4th candlelight vigils.",
+        "sentence": "5 years 2 months for inciting subversion under the National Security Law, sentenced September 11, 2026 after pleading guilty. Earlier: 18 months for unauthorized assemblies (served).",
+        "latest_news": "Convicted and sentenced September 11, 2026 to 5 years 2 months for inciting subversion, having pleaded guilty. Co-defendants Chow Hang-Tung (7 years 3 months) and Lee Cheuk-yan (7 years) were convicted on August 21, 2026. The Hong Kong Alliance itself was fined HK$1.5 million.",
         "health_status": "Reported to be in poor health. In detention since September 2021 (over 4 years). Age 74. Family has expressed concerns about his wellbeing in custody.",
         "international_response": "Amnesty International, NCHRD, and international legal observers have condemned the prosecution. Amnesty called it 'a cynical attempt to erase historical memory.' NCHRD demanded all charges be dropped. International Bar Association expressed concern about fair trial rights.",
-        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/",
         "confidence": "HIGH",
-        "last_verified": "2026-03-10",
+        "last_verified": "2026-09-19",
         "verification_note": "Former chairman of HK Democratic Party and Hong Kong Alliance. Arrested September 2021 alongside Chow Hang-Tung and Lee Cheuk-yan. Pleaded guilty to inciting subversion Jan 22, 2026. 18 months prior sentence for unauthorized assemblies. Verified via Amnesty International, NCHRD, HKFP, NW Asian Weekly."
       },
       "error": ""
@@ -1089,13 +1090,13 @@
         "prisoner_name": "Chow Hang-Tung",
         "status": "DETAINED",
         "location": "Tai Lam Centre for Women, Hong Kong",
-        "sentence": "On trial for inciting subversion under NSL (max 10 years) \u2014 trial began January 22, 2026. Pleaded NOT GUILTY. Representing herself.",
-        "latest_news": "Mar 10, 2026: Defence team made 'no case to answer' submission in subversion trial. Chow, a human rights lawyer, is representing herself. She has been in pre-trial detention since September 2021 \u2014 over 4 years. Amnesty International designated her a prisoner of conscience. UN Working Group on Arbitrary Detention ruled her detention arbitrary and called for immediate release.",
+        "sentence": "7 years 3 months for inciting subversion under the National Security Law, sentenced September 11, 2026. Pleaded not guilty and represented herself.",
+        "latest_news": "Convicted August 21, 2026 of inciting subversion and sentenced September 11, 2026 to 7 years 3 months at the High Court \u2014 the heaviest of the three \u2014 for organising the annual Tiananmen vigils. A human rights lawyer, she represented herself. Held in pre-trial detention since September 2021 and repeatedly denied bail. Amnesty International designates her a prisoner of conscience. Amnesty's Sarah Brooks called the sentencing \"a triple tragedy: for the activists being unjustly punished; the survivors and victims of the Tiananmen crackdown itself; and the generations of Hongkongers denied the space to discuss one of the most consequential events in modern Chinese history.\"",
         "health_status": "Subjected to prolonged periods of solitary confinement during detention. Amnesty Canada reported she has been held in solitary for extended periods. Physical and mental health concerns raised by international observers.",
         "international_response": "Amnesty International: Prisoner of conscience, called trial 'a cynical attempt to erase historical memory.' UN Working Group on Arbitrary Detention: Ruled detention arbitrary, called for immediate release. Lawyers for Lawyers (international): Joint statement demanding fair trial rights. NCHRD: Demanded all charges be dropped. Council of Global Unions: Condemned prosecution.",
-        "source_url": "https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/",
+        "source_url": "https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/",
         "confidence": "HIGH",
-        "last_verified": "2026-03-11",
+        "last_verified": "2026-09-19",
         "verification_note": "Vice-chairperson of Hong Kong Alliance. Human rights lawyer. Arrested September 2021 for organizing Tiananmen June 4th candlelight vigils. Pleaded not guilty Jan 22, 2026. Representing herself. Over 4 years pre-trial detention. Verified via Amnesty International, NCHRD, HKFP, Lawyers for Lawyers joint statement (March 2026), UN Working Group on Arbitrary Detention."
       },
       "error": ""
