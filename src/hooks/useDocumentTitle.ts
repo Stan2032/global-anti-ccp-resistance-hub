@@ -39,7 +39,7 @@ const ROUTE_META: Record<string, RouteMeta> = {
   },
   '/education': {
     title: 'Education Center',
-    description: 'Educational resources about CCP human rights abuses including documentaries, books, research papers, and interactive courses.',
+    description: 'History, survivor testimony, books, documentaries and research papers on CCP human rights abuses.',
   },
   '/security': {
     title: 'Security Center',

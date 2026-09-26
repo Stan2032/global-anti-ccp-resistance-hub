@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
+import educationalData from '../data/educational_modules.json';
 
 // Mock lazy-loaded components
 vi.mock('../components/DocumentaryList', () => ({ default: () => <div>DocumentaryList</div> }));
@@ -24,7 +26,9 @@ vi.mock('../components/SurvivorStories', () => ({ default: () => <div>SurvivorSt
 
 import EducationalResources from '../pages/EducationalResources';
 
-const renderEducation = () => render(<EducationalResources />);
+const renderEducation = () => render(<MemoryRouter><EducationalResources /></MemoryRouter>);
+/** The closed section listing the courses and downloads nobody wrote. */
+const outlines = () => document.getElementById('course-outlines') as HTMLDetailsElement;
 
 describe('EducationalResources', () => {
   beforeEach(() => {
@@ -36,99 +40,79 @@ describe('EducationalResources', () => {
   it('renders the page header', () => {
     renderEducation();
     expect(screen.getByText('Education Center')).toBeTruthy();
-    expect(screen.getByText(/Comprehensive training modules/)).toBeTruthy();
+    expect(screen.getByText(/History, testimony, research and tools/)).toBeTruthy();
   });
 
-  // --- Statistics ---
-
-  it('renders 3 stat cards', () => {
-    renderEducation();
-    expect(screen.getByText('Total Courses')).toBeTruthy();
-    expect(screen.getByText('Resources')).toBeTruthy();
-    expect(screen.getByText('Topics Covered')).toBeTruthy();
-  });
-
-  it('shows correct stat values', () => {
-    renderEducation();
-    expect(screen.getAllByText('5').length).toBeGreaterThanOrEqual(2); // Total Courses + Resources
-    expect(screen.getByText('20+')).toBeTruthy();
-  });
-
-  // --- Tabs ---
-
-  it('renders the four groups as headings', () => {
+  it('renders the groups as headings', () => {
     renderEducation();
     expect(screen.getByText('── history_and_context ──')).toBeTruthy();
     expect(screen.getByText('── media ──')).toBeTruthy();
     expect(screen.getByText('── research ──')).toBeTruthy();
     expect(screen.getByText('── tools ──')).toBeTruthy();
+    expect(screen.getByText('── not_yet_written ──')).toBeTruthy();
   });
 
   it('does not render removed tabs (FAQ, History, Progress)', () => {
     renderEducation();
-    // These should not be visible as standalone tabs
-    const tabs = screen.getAllByRole('button');
-    const tabLabels = tabs.map(t => t.textContent);
-    expect(tabLabels).not.toContain('FAQ');
-    expect(tabLabels).not.toContain('History');
-    expect(tabLabels).not.toContain('Progress');
+    const labels = screen.queryAllByRole('button').map(b => b.textContent);
+    expect(labels).not.toContain('FAQ');
+    expect(labels).not.toContain('History');
+    expect(labels).not.toContain('Progress');
   });
 
-  // --- Learn Tab (default) ---
+  // --- Courses and downloads that were never written ---
+  // The page opened with "Total Courses 5 — Comprehensive modules",
+  // "Resources 5 — Downloadable materials" and "Topics Covered 20+" (the data
+  // lists 19), then five course cards with durations and lesson counts. Every
+  // course ended "Course content coming soon", and every download was a
+  // disabled icon with an invented file size.
 
-  it('shows Learn tab by default with search', () => {
-    renderEducation();
-    expect(screen.getByLabelText('Search courses')).toBeTruthy();
-    expect(screen.getByPlaceholderText('Search courses...')).toBeTruthy();
+  it('claims no courses, downloads or counts that do not exist', () => {
+    const { container } = renderEducation();
+    for (const claim of ['Total Courses', 'Downloadable materials', 'Comprehensive modules', 'Topics Covered', '20+']) {
+      expect(screen.queryByText(claim), claim).toBeNull();
+    }
+    const text = container.textContent!;
+    expect(text).not.toMatch(/Comprehensive training modules/);
+    expect(text).not.toMatch(/Course content coming soon/);
+    expect(text).not.toMatch(/\b\d+(\.\d+)? hours\b/);
+    expect(text).not.toMatch(/\b\d+ lessons\b/);
+    expect(text).not.toMatch(/\b\d+(\.\d+)? MB\b/);
   });
 
-  it('shows 5 module cards', () => {
+  it('lists every course outline in the page, labelled as never written', () => {
     renderEducation();
-    expect(screen.getByText('Propaganda Detection Fundamentals')).toBeTruthy();
-    expect(screen.getByText('Digital Security for Activists')).toBeTruthy();
-    expect(screen.getByText('Hong Kong Democracy Movement History')).toBeTruthy();
-    expect(screen.getByText('Uyghur Rights Advocacy')).toBeTruthy();
-    expect(screen.getByText('Fact-Checking & Verification')).toBeTruthy();
+    const section = outlines();
+    expect(section.tagName).toBe('DETAILS');
+    expect(section.open).toBe(false);
+    expect(section.querySelector('summary')!.textContent).toMatch(/never written/);
+    const { modules } = educationalData;
+    expect(modules.length).toBeGreaterThan(0);
+    for (const module of modules) {
+      const card = [...section.querySelectorAll('article')]
+        .find(a => a.querySelector('h3')?.textContent === module.title);
+      expect(card, module.title).toBeTruthy();
+      expect(card!.textContent).toContain(module.description);
+      for (const topic of module.topics) expect(card!.textContent).toContain(topic);
+    }
   });
 
-  it('shows 5 category filter buttons', () => {
+  it('lists the downloads as not existing, with nothing to click', () => {
     renderEducation();
-    expect(screen.getByText('All Courses')).toBeTruthy();
-    expect(screen.getByText('Propaganda Analysis')).toBeTruthy();
-    expect(screen.getByText('Digital Security')).toBeTruthy();
-    expect(screen.getByText('History & Context')).toBeTruthy();
-    expect(screen.getByText('Advocacy & Skills')).toBeTruthy();
+    const section = outlines();
+    const { resources } = educationalData;
+    expect(resources.length).toBeGreaterThan(0);
+    for (const resource of resources) expect(section.textContent).toContain(resource.title);
+    expect(section.textContent).toMatch(/none of the downloads exists/);
+    expect(section.querySelectorAll('button, a[download]')).toHaveLength(0);
   });
 
-  it('filters modules by category', () => {
-    renderEducation();
-    fireEvent.click(screen.getByText('Propaganda Analysis'));
-    expect(screen.getByText('Propaganda Detection Fundamentals')).toBeTruthy();
-    expect(screen.queryByText('Digital Security for Activists')).toBeNull();
-  });
-
-  it('filters modules by search query', () => {
-    renderEducation();
-    const searchInput = screen.getByPlaceholderText('Search courses...');
-    fireEvent.change(searchInput, { target: { value: 'Hong Kong' } });
-    expect(screen.getByText('Hong Kong Democracy Movement History')).toBeTruthy();
-    expect(screen.queryByText('Propaganda Detection Fundamentals')).toBeNull();
-  });
-
-  it('shows module details when clicked', () => {
-    renderEducation();
-    const module = screen.getByText('Propaganda Detection Fundamentals').closest('button');
-    fireEvent.click(module!);
-    expect(screen.getAllByText('Topics Covered').length).toBeGreaterThanOrEqual(2); // stat card + details
-    expect(screen.getByText('Narrative Techniques')).toBeTruthy();
-    expect(screen.getByText('Visual Manipulation')).toBeTruthy();
-    expect(screen.getByText(/Course content coming soon/)).toBeTruthy();
-  });
-
-  it('shows downloadable resources', () => {
-    renderEducation();
-    expect(screen.getByText('CCP Propaganda Analysis Report')).toBeTruthy();
-    expect(screen.getByText('Digital Security Handbook')).toBeTruthy();
+  // Each course card was a button that showed its topics in a panel below
+  // the grid, so without JavaScript no topic could be read.
+  it('shows each outline without a click: no module is a button, no search over them', () => {
+    const { container } = renderEducation();
+    expect(container.querySelectorAll('button[aria-pressed]')).toHaveLength(0);
+    expect(screen.queryByLabelText('Search courses')).toBeNull();
   });
 
   it('shows history content merged into Learn tab', async () => {
@@ -169,6 +153,8 @@ describe('EducationalResources', () => {
       // tools
       'Language phrases', 'Disinformation tracker', 'AI disinformation detector',
       'Confucius Institutes', 'FAQ',
+      // not_yet_written
+      'Course outlines',
     ]) {
       // queryAllByText, not getByText: a few titles also match the mocked
       // component's own output (the FAQ mock renders the text "FAQ").
@@ -181,10 +167,10 @@ describe('EducationalResources', () => {
 
   it('uses native <details> so the sections open without JavaScript', () => {
     const { container } = renderEducation();
-    // The 22 sections; cards inside them (FAQ answers, directory entries)
-    // are <details> too, and are not counted here.
+    // The 22 sections and the course outlines; cards inside them (FAQ
+    // answers, directory entries) are <details> too, and are not counted here.
     const sections = [...container.querySelectorAll('details')].filter(d => !d.parentElement!.closest('details'));
-    expect(sections.length).toBe(22);
+    expect(sections.length).toBe(23);
     // Collapsed, but in the document — folded, not withheld.
     expect(sections.filter(d => d.hasAttribute('open')).length).toBe(0);
     sections.forEach(d => expect(d.firstElementChild?.tagName).toBe('SUMMARY'));
@@ -208,20 +194,6 @@ describe('EducationalResources', () => {
     renderEducation();
     expect(screen.queryByText('── knowledge_quiz ──')).toBeNull();
     expect(screen.queryByText('Knowledge quiz')).toBeNull();
-  });
-
-  // --- Module card accessibility ---
-
-  it('has aria-pressed on module cards', () => {
-    renderEducation();
-    const moduleCards = screen.getAllByText('Propaganda Detection Fundamentals');
-    const moduleButton = moduleCards[0].closest('button');
-    expect(moduleButton!.getAttribute('aria-pressed')).toBe('false');
-    fireEvent.click(moduleButton!);
-    // After click, the title appears twice (card + details), re-query
-    const updatedCards = screen.getAllByText('Propaganda Detection Fundamentals');
-    const updatedButton = updatedCards[0].closest('button');
-    expect(updatedButton!.getAttribute('aria-pressed')).toBe('true');
   });
 
   // --- No framer-motion ---

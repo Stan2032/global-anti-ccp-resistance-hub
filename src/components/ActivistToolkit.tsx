@@ -1,7 +1,7 @@
 /**
- * ActivistToolkit — Downloadable resources, templates, and toolkits
- * for activists. Includes social media graphics, protest materials,
- * and advocacy frameworks.
+ * ActivistToolkit — Graphics, letter templates, fact sheets and guides for
+ * activists. None of the files has been produced yet (Q20), so each card
+ * says "Not available yet" until its downloadUrl is real.
  *
  * @module ActivistToolkit
  */
@@ -252,6 +252,8 @@ const ActivistToolkit = () => {
 
   const getCategoryInfo = (categoryId: string) => categories.find(c => c.id === categoryId);
 
+  const ready = resources.filter(r => r.downloadUrl !== '#').length;
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -260,12 +262,16 @@ const ActivistToolkit = () => {
           <Wrench className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Activist Toolkit</h2>
-            <p className="text-slate-400">Downloadable resources for advocacy and awareness</p>
+            <p className="text-slate-400">
+              {ready === 0
+                ? 'Resources for advocacy and awareness, none of them ready to download yet'
+                : `Resources for advocacy and awareness: ${ready} of ${resources.length} ready to download`}
+            </p>
           </div>
         </div>
         <p className="text-sm text-slate-300">
-          Free resources to support your activism. All materials are licensed for non-commercial use 
-          in human rights advocacy.
+          Free resources to support your activism. When they are ready, all materials will be licensed
+          for non-commercial use in human rights advocacy.
         </p>
       </div>
 

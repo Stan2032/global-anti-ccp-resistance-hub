@@ -140,7 +140,15 @@ Both quotes are removed, not paraphrased. Her story keeps its narrative and sour
 
 **Agent recommendation:** Trim to the few worth making, starting with the letter templates, which `ContactRepresentatives` already holds as text and could be offered as `.txt` straight away. Don't list a resource until its file exists.
 
-*When you encounter a decision that requires human input, add it here starting with Q21.*
+### Q21: `/education` listed five courses and five downloads that were never made (Session 281)
+
+**Context:** `/education` opened with "Total Courses 5 — Comprehensive modules", "Resources 5 — Downloadable materials" and "Topics Covered 20+" (the data lists 19). Below them were five course cards with durations and lesson counts ("4 hours, 12 lessons") and five PDFs with file sizes. None of it exists. Every course ended "Course content coming soon", every download was a disabled icon, and the file sizes were invented. `/resources` advertised "8 Courses", and the page's meta description and structured data promised "interactive courses". All of those claims are gone. The five outlines (title, description, topics) and the five download titles now sit in one closed section at the end of `/education`, "Course outlines", labelled as never written. `src/data/educational_modules.json` is unchanged, invented durations, lesson counts and sizes included, until this is answered.
+
+**Question:** Write the courses, point each outline at the parts of the site that already cover its subject, or drop the outlines and the data?
+
+**Agent recommendation:** Drop them unless someone will write them. Most of the ground is already covered: propaganda (Propaganda outlets, Media bias guide, Disinformation tracker), digital security (`/security`), Hong Kong history (the timeline and the profiles) and fact-checking (Source verification). List a course once it exists.
+
+*When you encounter a decision that requires human input, add it here starting with Q22.*
 
 ---
 

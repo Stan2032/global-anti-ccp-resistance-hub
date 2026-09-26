@@ -13,9 +13,15 @@ describe('ActivistToolkit', () => {
     expect(screen.getByText('Activist Toolkit')).toBeTruthy();
   });
 
-  it('renders subtitle', () => {
+  // The header promised "Downloadable resources" over twenty cards that
+  // each say "Not available yet" (Q20). It says what the cards say.
+  it('does not promise downloads the cards cannot give', () => {
     render(<ActivistToolkit />);
-    expect(screen.getByText('Downloadable resources for advocacy and awareness')).toBeTruthy();
+    const unavailable = screen.getAllByText('Not available yet').length;
+    expect(unavailable).toBeGreaterThan(0);
+    expect(screen.queryAllByRole('link', { name: /Download/ })).toHaveLength(0);
+    expect(screen.getByText(/none of them ready to download yet/)).toBeTruthy();
+    expect(screen.queryByText(/^Downloadable resources/)).toBeNull();
   });
 
   it('renders all category filter buttons', () => {

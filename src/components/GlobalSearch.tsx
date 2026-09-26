@@ -56,7 +56,7 @@ const searchableContent: SearchableItem[] = [
   { type: 'page', title: 'Take Action', description: 'Ways to help, campaigns, and advocacy', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition', 'activism', 'campaigns', 'movements'] },
   { type: 'page', title: 'Community', description: 'Connect with other activists', path: '/community', Icon: MessageCircle, keywords: ['forum', 'discussion', 'connect'] },
   { type: 'page', title: 'Resources', description: 'Tools and materials', path: '/resources', Icon: Wrench, keywords: ['tools', 'downloads', 'materials'] },
-  { type: 'page', title: 'Education Center', description: 'Learning resources, CCP tactics, and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training', 'propaganda', 'influence', 'methods', 'tactics'] },
+  { type: 'page', title: 'Education Center', description: 'History, testimony, reading lists and research', path: '/education', Icon: GraduationCap, keywords: ['learn', 'history', 'books', 'documentaries', 'propaganda', 'influence', 'methods', 'tactics'] },
   { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
   { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
 

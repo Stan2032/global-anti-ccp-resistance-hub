@@ -8,6 +8,9 @@ vi.mock('../components/DataExport', () => ({ default: () => <div>DataExport</div
 vi.mock('../components/ForcedLaborTracker', () => ({ default: () => <div>ForcedLaborTracker</div> }));
 
 import ResistanceResources from '../pages/ResistanceResources';
+import ReadingList from '../components/ReadingList';
+import DocumentaryList from '../components/DocumentaryList';
+import organizationsData from '../../organizations-data.json';
 
 const renderPage = () =>
   render(
@@ -59,12 +62,31 @@ describe('ResistanceResources', () => {
     expect(screen.getByText('Join Community →')).toBeTruthy();
   });
 
+  // These counts are typed in by hand. "21 Books" stood over a reading list
+  // of 20, and "8 Courses" over courses that were never written.
+  it('counts only what the linked pages list', () => {
+    const count = (ui: React.ReactElement, label: RegExp) => {
+      const { container, unmount } = render(ui);
+      const match = container.textContent!.match(label);
+      unmount();
+      expect(match, String(label)).toBeTruthy();
+      return Number(match![1]);
+    };
+    const books = count(<ReadingList />, /All Books \((\d+)\)/);
+    const films = count(<DocumentaryList />, /All \((\d+)\)/);
+    renderPage();
+    expect(screen.getByText(`${books} Books`)).toBeTruthy();
+    expect(screen.getByText(`${films} Documentaries`)).toBeTruthy();
+    expect(screen.getByText(`${organizationsData.organizations.length} Organizations`)).toBeTruthy();
+    expect(screen.queryByText(/Courses$/)).toBeNull();
+  });
+
   it('renders highlight tags in resource sections', () => {
     renderPage();
     expect(screen.getByText('Tor Browser')).toBeTruthy();
     expect(screen.getByText('Contact Representatives')).toBeTruthy();
     expect(screen.getByText('24 Organizations')).toBeTruthy();
-    expect(screen.getByText('21 Books')).toBeTruthy();
+    expect(screen.getByText('Research Papers')).toBeTruthy();
     expect(screen.getByText('Live RSS Feeds')).toBeTruthy();
     expect(screen.getByText('Diaspora Support')).toBeTruthy();
   });

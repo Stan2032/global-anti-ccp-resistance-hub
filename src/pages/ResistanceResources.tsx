@@ -50,11 +50,11 @@ const ResistanceResources = () => {
     },
     {
       title: 'Educational Resources',
-      description: 'Books, documentaries, courses, and glossary of key terms',
+      description: 'Books, documentaries, research papers, and a glossary of key terms',
       Icon: BookOpen,
       link: '/education',
       linkText: 'Go to Education Center',
-      highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
+      highlights: ['20 Books', '19 Documentaries', 'Research Papers', 'Glossary'],
       color: 'border-l-2 border-l-[#22d3ee]'
     },
     {

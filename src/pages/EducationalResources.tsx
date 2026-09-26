@@ -1,45 +1,15 @@
 /**
- * EducationalResources — Learning center with courses, research papers,
- * documentaries, reading lists, glossary, and language guides covering
- * CCP human rights issues across all affected regions.
+ * EducationalResources — History, testimony, reading lists, documentaries,
+ * research papers, a glossary and language guides covering CCP human rights
+ * issues across all affected regions, and the outlines of courses that have
+ * not been written yet.
  *
  * @module EducationalResources
  */
-import { useState, lazy, Suspense, type FC } from 'react'
-import { 
-  Clock, 
-  Download,
-  Search,
-  Info
-} from 'lucide-react'
+import { lazy, Suspense } from 'react'
+import { Link } from 'react-router-dom'
 import educationalData from '../data/educational_modules.json'
 import { DisclosureSection } from '../components/DisclosureSection'
-
-interface EducationalModule {
-  id: number
-  title: string
-  category: string
-  description: string
-  duration: string
-  level: string
-  lessons: number
-  topics: string[]
-}
-
-interface EducationalResource {
-  id: number
-  title: string
-  type: string
-  size: string
-}
-
-interface ModuleCardProps {
-  module: EducationalModule
-}
-
-interface ResourceCardProps {
-  resource: EducationalResource
-}
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -71,82 +41,7 @@ const SurvivorStories = lazy(() => import('../components/SurvivorStories'));
 const VideoTestimonials = lazy(() => import('../components/VideoTestimonials'));
 
 const EducationalResources = () => {
-  const [selectedModule, setSelectedModule] = useState<number | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('all')
-
-  const [modules] = useState(educationalData.modules)
-
-  const [resources] = useState(educationalData.resources)
-
-  const [categories] = useState(educationalData.categories)
-
-  const filteredModules = modules.filter(module => {
-    const matchesCategory = selectedCategory === 'all' || module.category === selectedCategory
-    const matchesSearch = module.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         module.description.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
-
-  const ModuleCard: FC<ModuleCardProps> = ({ module }) => (
-    <button
-      type="button"
-      onClick={() => setSelectedModule(module.id)}
-      aria-pressed={selectedModule === module.id}
-      className={`p-6 border cursor-pointer transition-all text-left w-full hover:scale-[1.02] ${
-        selectedModule === module.id
-          ? 'bg-[#4afa82]/10 border-[#4afa82] shadow-lg shadow-[#4afa82]/20'
-          : 'bg-[#111820] border-[#1c2a35] hover:border-[#2a9a52]'
-      }`}
-    >
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h3 className="text-white font-semibold">{module.title}</h3>
-          <p className="text-slate-400 text-sm mt-1">{module.description}</p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <div className="flex items-center space-x-4">
-          <span className="flex items-center">
-            <Clock className="w-3 h-3 mr-1" />
-            {module.duration}
-          </span>
-          <span className={`px-2 py-0.5 text-xs font-mono ${
-            module.level === 'Beginner' ? 'bg-green-900/30 text-green-300' :
-            module.level === 'Intermediate' ? 'bg-yellow-900/30 text-yellow-300' :
-            'bg-red-900/30 text-red-300'
-          }`}>
-            {module.level}
-          </span>
-        </div>
-        <span className="text-slate-400">{module.lessons} lessons</span>
-      </div>
-    </button>
-  )
-
-  const ResourceCard: FC<ResourceCardProps> = ({ resource }) => (
-    <div
-      className="bg-[#111820] border border-[#1c2a35] p-4"
-    >
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <h3 className="text-white font-semibold">{resource.title}</h3>
-          <div className="flex items-center space-x-4 mt-2 text-xs text-slate-400">
-            <span>{resource.type}</span>
-            <span>{resource.size}</span>
-          </div>
-        </div>
-        <div
-          className="p-2 bg-[#111820] opacity-30"
-          title="Download coming soon"
-          aria-label={`Download ${resource.title} — coming soon`}
-        >
-          <Download className="w-5 h-5 text-slate-500" />
-        </div>
-      </div>
-    </div>
-  )
+  const { modules, resources } = educationalData
 
   return (
     <div className="space-y-8">
@@ -154,33 +49,8 @@ const EducationalResources = () => {
       <div>
         <h1 className="text-3xl font-bold gradient-text">Education Center</h1>
         <p className="text-slate-400 mt-2">
-          Comprehensive training modules and resources for resistance activists
+          History, testimony, research and tools on the CCP&rsquo;s human rights record.
         </p>
-      </div>
-
-      {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div
-          className="bg-[#111820] border border-[#1c2a35] p-4"
-        >
-          <p className="text-slate-400 text-sm">Total Courses</p>
-          <p className="text-2xl font-bold text-white mt-1">5</p>
-          <p className="text-xs text-slate-400 mt-1">Comprehensive modules</p>
-        </div>
-        <div
-          className="bg-[#111820] border border-[#1c2a35] p-4"
-        >
-          <p className="text-slate-400 text-sm">Resources</p>
-          <p className="text-2xl font-bold text-white mt-1">5</p>
-          <p className="text-xs text-slate-400 mt-1">Downloadable materials</p>
-        </div>
-        <div
-          className="bg-[#111820] border border-[#1c2a35] p-4"
-        >
-          <p className="text-slate-400 text-sm">Topics Covered</p>
-          <p className="text-2xl font-bold text-white mt-1">20+</p>
-          <p className="text-xs text-slate-400 mt-1">Key subject areas</p>
-        </div>
       </div>
 
       {/*
@@ -198,113 +68,6 @@ const EducationalResources = () => {
         opens and closes them without JavaScript, and the whole page is now
         shorter than the single visible tab used to be.
       */}
-      <div className="space-y-6">
-        {/* Search and Filter */}
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
-            <input
-              aria-label="Search courses"
-              type="text"
-              placeholder="Search courses..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#111820] border border-[#1c2a35] pl-10 pr-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
-            />
-          </div>
-          <div className="flex items-center space-x-2 overflow-x-auto pb-2">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 whitespace-nowrap transition-colors font-mono text-sm ${
-                  selectedCategory === cat.id
-                    ? 'bg-[#4afa82]/10 text-[#4afa82] border border-[#4afa82]'
-                    : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35] border border-[#1c2a35]'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Modules Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredModules.map((module) => (
-            <ModuleCard key={module.id} module={module} />
-          ))}
-        </div>
-
-        {/* Module Details */}
-        {selectedModule && (
-          <div
-            className="bg-[#111820] border border-[#1c2a35] p-6"
-          >
-            {(() => {
-              const module = modules.find(m => m.id === selectedModule)
-              if (!module) return null
-              return (
-                <>
-                  <div className="flex items-start justify-between mb-6">
-                    <div>
-                      <h2 className="text-2xl font-bold text-white">{module.title}</h2>
-                      <p className="text-slate-400 mt-2">{module.description}</p>
-                    </div>
-                    <span className={`px-3 py-1 text-sm font-medium ${
-                      module.level === 'Beginner' ? 'bg-green-900/30 text-green-300' :
-                      module.level === 'Intermediate' ? 'bg-yellow-900/30 text-yellow-300' :
-                      'bg-red-900/30 text-red-300'
-                    }`}>
-                      {module.level}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div>
-                      <p className="text-slate-400 text-sm">Duration</p>
-                      <p className="text-white font-semibold">{module.duration}</p>
-                    </div>
-                    <div>
-                      <p className="text-slate-400 text-sm">Lessons</p>
-                      <p className="text-white font-semibold">{module.lessons}</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-white font-semibold mb-3">Topics Covered</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {module.topics.map((topic, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-[#4afa82]/10 text-[#4afa82] text-sm font-mono">
-                          {topic}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div
-                    className="mt-6 w-full bg-[#111820] text-slate-400 border border-[#1c2a35] px-6 py-3 font-mono font-medium flex items-center justify-center space-x-2"
-                  >
-                    <Info className="w-5 h-5" />
-                    <span>Course content coming soon — use the resources below to start learning</span>
-                  </div>
-                </>
-              )
-            })()}
-          </div>
-        )}
-
-        {/* Downloadable Resources */}
-        <div className="border-t border-[#1c2a35] pt-6">
-          <h2 className="text-xl font-bold text-white mb-4 font-mono">── downloadable_resources ──</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {resources.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource} />
-            ))}
-          </div>
-        </div>
-
-      </div>
 
       <div className="space-y-3">
         <h2 className="text-xl font-bold text-white font-mono">── history_and_context ──</h2>
@@ -389,6 +152,53 @@ const EducationalResources = () => {
         </DisclosureSection>
         <DisclosureSection title="FAQ" description="Common questions, answered with sources.">
           <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
+        </DisclosureSection>
+      </div>
+
+      {/*
+        This page used to open with five "courses" and five "downloadable
+        materials", with durations, lesson counts and file sizes. None of
+        them was ever written: each course ended "Course content coming
+        soon", and each download was a disabled icon. They are listed here
+        for what they are until the owner decides what to do with them.
+      */}
+      <div className="space-y-3">
+        <h2 className="text-xl font-bold text-white font-mono">── not_yet_written ──</h2>
+        <p className="text-sm text-slate-400">Listed for this page, but none of it exists yet.</p>
+        <DisclosureSection
+          id="course-outlines"
+          title="Course outlines"
+          description={`${modules.length} courses and ${resources.length} downloads, outlined but never written.`}
+        >
+          <p className="text-sm text-slate-300 mb-4">
+            None of these courses has been written, and none of the downloads exists. For digital
+            security now, see the <Link to="/security" className="text-[#4afa82] hover:underline">Security
+            Center</Link>; for advocacy, <Link to="/take-action" className="text-[#4afa82] hover:underline">Take
+            Action</Link>.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {modules.map((module) => (
+              <article key={module.id} className="border border-[#1c2a35] p-4">
+                <h3 className="text-white font-semibold">{module.title}</h3>
+                <p className="text-slate-400 text-sm mt-1">{module.description}</p>
+                <ul className="flex flex-wrap gap-2 mt-3" aria-label={`Planned topics: ${module.title}`}>
+                  {module.topics.map((topic) => (
+                    <li key={topic} className="px-2 py-0.5 bg-[#4afa82]/10 text-[#4afa82] text-xs font-mono">
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <h3 className="text-white font-semibold mt-6 mb-2">Downloads listed with them</h3>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-slate-300">
+            {resources.map((resource) => (
+              <li key={resource.id}>
+                {resource.title} <span className="text-slate-400">({resource.type})</span>
+              </li>
+            ))}
+          </ul>
         </DisclosureSection>
       </div>
     </div>
