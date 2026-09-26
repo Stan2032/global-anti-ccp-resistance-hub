@@ -9,7 +9,7 @@
  * seeds storage and hydrates, as the reader's browser does.
  */
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import React, { act, type ReactElement } from 'react';
+import React, { act, lazy, Suspense, type ReactElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot, type Root } from 'react-dom/client';
 import SafetyChecklist from '../components/SafetyChecklist';
@@ -159,6 +159,66 @@ describe('a first-time reader: nothing above the page changes after hydration', 
     } finally {
       window.matchMedia = original;
     }
+  });
+});
+
+describe('a returning reader: saved choices never swap the page for its loading screen', () => {
+  // Each page's code loads lazily, so a page can finish hydrating after the
+  // providers above it. A saved theme or language changes what they
+  // provide. Applied at once, that change reached pages still waiting for
+  // their code, and React threw the pre-rendered page away and showed the
+  // loading screen until the code arrived: on every visit, for as long as
+  // the download took.
+  function ShowPreferences() {
+    const { language } = useLanguage();
+    const { resolvedTheme } = useTheme();
+    return <p>{`page in ${language}, ${resolvedTheme}`}</p>;
+  }
+
+  // As in the app, the page's boundary sits below a layout, not directly
+  // under a provider. (Directly under the provider whose value changes, the
+  // deferred value reaches the boundary as it hydrates, and React reports a
+  // text mismatch. Nothing in the app is shaped like that.)
+  function Layout({ children }: { children: React.ReactNode }) {
+    return <main>{children}</main>;
+  }
+
+  it.each([
+    ['language', { language: 'zh-CN' }, 'page in zh-CN, dark'],
+    ['theme', { 'resistance-hub-theme': 'light' }, 'page in en, light'],
+    ['theme and language', { language: 'zh-CN', 'resistance-hub-theme': 'light' }, 'page in zh-CN, light'],
+  ])('a saved %s', async (_name, saved, applied) => {
+    const tree = (page: ReactElement) => (
+      <ThemeProvider>
+        <LanguageProvider>
+          <Layout>
+            <Suspense fallback={<p>$ loading system</p>}>{page}</Suspense>
+          </Layout>
+        </LanguageProvider>
+      </ThemeProvider>
+    );
+    localStorage.clear();
+    const html = renderToString(tree(<ShowPreferences />));
+    expect(html).toContain('page in en, dark');
+
+    for (const [key, value] of Object.entries(saved)) localStorage.setItem(key, value);
+    container = document.createElement('div');
+    container.innerHTML = html;
+    document.body.appendChild(container);
+
+    // The page's code arrives only when the test lets it.
+    let arrive!: () => void;
+    const code = new Promise<void>(resolve => { arrive = resolve; });
+    const LazyPage = lazy(() => code.then(() => ({ default: ShowPreferences })));
+    const recoverable: unknown[] = [];
+    await act(async () => {
+      root = hydrateRoot(container!, tree(<LazyPage />), { onRecoverableError: e => recoverable.push(e) });
+    });
+    expect(container.textContent, 'the pre-rendered page, while its code loads').toBe('page in en, dark');
+
+    await act(async () => { arrive(); });
+    expect(container.textContent).toBe(applied);
+    expect(recoverable).toEqual([]);
   });
 });
 

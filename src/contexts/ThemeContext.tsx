@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useSyncExternalStore, ReactNode } from 'react';
+import React, { useState, useEffect, useDeferredValue, useMemo, useSyncExternalStore, ReactNode } from 'react';
 import { Moon, Sun, Monitor, Contrast } from 'lucide-react';
 import { ThemeContext, THEMES, useTheme, type ThemeState } from './themeUtils';
 import { matchesMediaQuery, useStoredString } from '../utils/ssr';
@@ -71,7 +71,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Hydrates as dark, like the pre-rendered HTML, then applies the reader's
   // saved choice. Nothing is stored until the reader picks a theme.
   const [savedTheme, setTheme] = useStoredString('resistance-hub-theme', THEMES.DARK);
-  const theme = THEME_IDS.includes(savedTheme) ? savedTheme : THEMES.DARK;
+  // A saved choice arrives in a re-render straight after hydration, which
+  // React runs at once. Deferred, it reaches the pages in a background
+  // render instead, which React holds until each page's code has loaded.
+  // Applied at once, it made React throw away every page still waiting for
+  // its code and show the loading screen until the code arrived.
+  const shownTheme = useDeferredValue(savedTheme);
+  const theme = THEME_IDS.includes(shownTheme) ? shownTheme : THEMES.DARK;
   // Only the "system" theme follows the reader's colour scheme, so only it
   // reads one. Reading it for every theme put the client at odds with the
   // pre-rendered HTML (which assumes dark) for every reader whose system is
@@ -108,23 +114,23 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [resolvedTheme]);
 
-  const toggleTheme = () => {
-    const themes = [THEMES.DARK, THEMES.LIGHT, THEMES.HIGH_CONTRAST] as string[];
-    const currentIndex = themes.indexOf(resolvedTheme);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex]);
-  };
-
-  const value: ThemeState = {
+  // The same object until the theme itself changes: a new one on every
+  // render would reach the pages just as a new theme does.
+  const value = useMemo<ThemeState>(() => ({
     theme,
     resolvedTheme,
     setTheme,
-    toggleTheme,
+    toggleTheme: () => {
+      const themes = [THEMES.DARK, THEMES.LIGHT, THEMES.HIGH_CONTRAST] as string[];
+      const currentIndex = themes.indexOf(resolvedTheme);
+      const nextIndex = (currentIndex + 1) % themes.length;
+      setTheme(themes[nextIndex]);
+    },
     themeConfig: themeColors[resolvedTheme] || themeColors.dark,
     isDark: resolvedTheme === THEMES.DARK,
     isLight: resolvedTheme === THEMES.LIGHT,
     isHighContrast: resolvedTheme === THEMES.HIGH_CONTRAST,
-  };
+  }), [theme, resolvedTheme, setTheme]);
 
   return (
     <ThemeContext.Provider value={value}>
