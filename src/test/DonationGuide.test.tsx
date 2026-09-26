@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import DonationGuide from '../components/DonationGuide';
+
+/** A button in the organisation-category filter. */
+const categoryFilter = (name: RegExp) =>
+  within(screen.getByRole('group', { name: 'Filter organizations by category' })).getByRole('button', { name });
 
 describe('DonationGuide', () => {
   // --- Structure ---
@@ -19,12 +23,12 @@ describe('DonationGuide', () => {
 
   it('renders category filter buttons', () => {
     render(<DonationGuide />);
-    expect(screen.getByRole('tab', { name: /All Organizations/ })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Advocacy/ })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Legal Aid/ })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Research/ })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Independent Media/ })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Direct Support/ })).toBeTruthy();
+    expect(categoryFilter(/All Organizations/)).toBeTruthy();
+    expect(categoryFilter(/Advocacy/)).toBeTruthy();
+    expect(categoryFilter(/Legal Aid/)).toBeTruthy();
+    expect(categoryFilter(/Research/)).toBeTruthy();
+    expect(categoryFilter(/Independent Media/)).toBeTruthy();
+    expect(categoryFilter(/Direct Support/)).toBeTruthy();
   });
 
   it('renders cause filter buttons', () => {
@@ -59,14 +63,14 @@ describe('DonationGuide', () => {
 
   it('filters by category when button clicked', () => {
     render(<DonationGuide />);
-    fireEvent.click(screen.getByRole('tab', { name: /Legal Aid/ }));
+    fireEvent.click(categoryFilter(/Legal Aid/));
     expect(screen.getAllByText(/Front Line Defenders|Lawyers for Lawyers/).length).toBeGreaterThanOrEqual(1);
   });
 
   it('returns to all organizations when All clicked', () => {
     render(<DonationGuide />);
-    fireEvent.click(screen.getByRole('tab', { name: /Legal Aid/ }));
-    fireEvent.click(screen.getByRole('tab', { name: /All Organizations/ }));
+    fireEvent.click(categoryFilter(/Legal Aid/));
+    fireEvent.click(categoryFilter(/All Organizations/));
     expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
   });
 

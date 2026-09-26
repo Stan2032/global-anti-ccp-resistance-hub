@@ -187,13 +187,13 @@ She has dedicated her life to advocating for her father's release, speaking at t
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Survivor story categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter survivor stories by category">
         {categories.map(cat => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            role="tab"
-            aria-selected={activeCategory === cat.id}
+            aria-pressed={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

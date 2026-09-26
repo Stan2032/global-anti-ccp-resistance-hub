@@ -169,13 +169,13 @@ const FAQ = () => {
       </div>
 
       {/* Category Filters */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="FAQ categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter questions by topic">
         {categories.map(cat => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            role="tab"
-            aria-selected={activeCategory === cat.id}
+            aria-pressed={activeCategory === cat.id}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

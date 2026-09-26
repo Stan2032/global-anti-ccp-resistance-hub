@@ -138,10 +138,35 @@ the one holding a match.
 - **A control that only works with JavaScript** (copy a link, "Expand all")
   renders only once JavaScript runs:
   `const scripted = useBrowserValue(() => true, false)` from
-  `src/utils/ssr.ts`, then `{scripted && …}`.
+  `src/utils/ssr.ts`, then `{scripted && …}`. Search boxes and filters are
+  the exception (see Filters below).
 - **At 390px wide:** a row of badges gets `flex-wrap`, an icon beside text
   gets `flex-shrink-0`, and no `truncate` or `line-clamp` on text the reader
   cannot read in full some other way.
+
+### Filters — toggle buttons in a named group
+
+A row of buttons that narrows one list is a filter, not tabs. Tab markup
+promises a panel per tab and arrow keys between them, and a screen reader
+announces "tab, 1 of 6".
+
+```jsx
+<div className="flex flex-wrap gap-2" role="group" aria-label="Filter stories by category">
+  {categories.map(cat => (
+    <button key={cat.id} type="button" onClick={() => setActive(cat.id)} aria-pressed={active === cat.id}>
+      {cat.name}
+    </button>
+  ))}
+</div>
+```
+
+- **The group's `aria-label` says what it filters, and by what.**
+- **Start on "All".** Without JavaScript the buttons do nothing, so the list
+  must be complete before any click. They stay in the page anyway: the
+  `<noscript>` banner names search boxes and filters, and hiding them until
+  JavaScript runs would shift the page when it does.
+- **No `role="tab"`, `tablist` or `tabpanel`** anywhere in `src`: to show and
+  hide, use a `<details>`. A test fails on them.
 
 ### Disclaimers
 

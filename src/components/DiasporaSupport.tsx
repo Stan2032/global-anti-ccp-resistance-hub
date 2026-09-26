@@ -204,13 +204,13 @@ const DiasporaSupport = () => {
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter diaspora support by category">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter diaspora support by category">
         {categories.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            role="tab"
-            aria-selected={selectedCategory === cat.id}
+            aria-pressed={selectedCategory === cat.id}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'

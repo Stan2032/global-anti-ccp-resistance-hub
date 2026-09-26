@@ -81,7 +81,7 @@ within existing majors. Suggested order:
 | Upgrade | From → To | Notes |
 |---|---|---|
 | **ESLint** | 9.39.5 → 10.x | npm already warns 9.x is **end of support**. Flat config is in use, which is the hard part. Do this first. |
-| **Vitest + Vite** | 4.1.11 → 5.x, 7.3.6 → 8.x | Paired. 201 test files. `--reporter=basic` was already removed in v4. |
+| **Vitest + Vite** | 4.1.11 → 5.x, 7.3.6 → 8.x | Paired. 203 test files. `--reporter=basic` was already removed in v4. |
 | **lucide-react** | 0.555 → 1.x | First stable major; icon names may have changed, used very widely. |
 | **TypeScript** | 5.9.3 → 7.x | Native port, large speed win on 375 files. Check `tsgo` against the ESLint TS plugin first. |
 | **Tailwind** | 3.4.19 → 4.x | Largest. v4 moves theme config into CSS, and **10 design-system tests assert on class names**. |
@@ -207,28 +207,6 @@ long tail.
 
 ---
 
-## P8 — Filter bars announced as tabs
-
-**Size:** small · **Value:** low (screen reader semantics) · **Risk:** low
-
-Thirteen components use `role="tab"` / `aria-selected` for what is really a
-filter over a single list: DiasporaSupport, FAQ, ActivistToolkit,
-MediaManipulation, SurvivorStories, EventCalendar, DisinfoTracker,
-IPACMembers, ConfuciusInstitutes, SanctionsTracker, DocumentaryList,
-SuccessStories, DonationGuide. Each defaults to "all", so **nothing is hidden
-from a reader without JavaScript** — unlike the panel tabs removed in the
-site-quality sweep (§18). But a tablist promises panels, and a screen reader
-announces "tab 1 of 6" for what is a filter. The honest pattern is a group
-of toggle buttons with `aria-pressed`, like the view toggles
-`DiplomaticCoercionTracker` used to have.
-
-The ARIA coverage tests pin the tab pattern on IPACMembers and
-DiasporaSupport, so they would need updating with the components. (The three
-components whose tabs did hide content, SafetyChecklist,
-ContactRepresentatives and LanguageGuide, are already native sections.)
-
----
-
 ## Small items
 
 - **`/prisoners` lists the same prisoners twice.** The card grid (every case,
@@ -270,3 +248,4 @@ ContactRepresentatives and LanguageGuide, are already native sections.)
 | **P1 — make every lazy component eager during pre-render** | **Done differently, and P1's premise was false.** The 41 deferred sections and React #418 had nothing to do with `React.lazy`. React outlines any Suspense boundary whose markup exceeds `progressiveChunkSize` (12,800 bytes by default), suspension or not. One option in `src/entry-server.tsx` fixed both. The full 120-site eager sweep P1 asked for was built and tested first: it changed the output by zero bytes. See §17. |
 | **P9 — Card expanders hide their details without JavaScript** | **Done.** Every card expander is a native `<details>` now, on every route: the 16 profiles, `/security`, `/prisoners`, `/intelligence`, `/education`, `/take-action`, `/`, `/resources`, `/directory` and `/data-sources`. Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain, and all are controls, not hidden content: the language picker (twice on each of the 27 routes), the letter generator's prisoner picker and the case-timeline combobox. Five more that used no `aria-expanded` turned up later, in a scan for click handlers on non-controls: the prisoner grid, the memorial wall's modal, the academic experts' cards, the threat map and the quick facts (`d136284`). Numbers, and the faults the conversions turned up, are in `docs/MODERNIZATION.md` §18; the rules for new disclosures are in `STYLE_GUIDE.md` §4. |
 | **P10 — Text cut off at phone width** | **Done.** At 390px, 171 text elements on five routes ran past a box that clipped them; none do now (`fd10bd7`). Tables scroll sideways, rows wrap, long tokens break, and text cut on purpose shows in full. A second pass lifted 28 more cuts: summary previews expand when opened, other cut text wraps (`dce786e`). Tests guard clipped tables and summary clamps; the element-level check itself needs a browser and lives outside the repo. See `docs/MODERNIZATION.md` §18. |
+| **P8 — Filter bars announced as tabs** | **Done.** Sixteen filter rows in 14 components on `/education`, `/take-action`, `/directory` and `/profiles` were tab widgets over a single list, so a screen reader announced "tab, 1 of 6" and promised panels that did not exist. Each is now a named group of toggle buttons: `role="group"`, an `aria-label` that says what it filters and by what, `aria-pressed` and `type="button"`. Four `<label>`s that labelled no control went with them. A test fails on any tab role in `src`, and `accessibility-filter-bars.test.tsx` checks every group. The profiles index had said "65 total cases" for six months after a duplicate record was removed; it says 64, and its test reads the count from the data. The rule is in `STYLE_GUIDE.md` §4 (Filters). |
