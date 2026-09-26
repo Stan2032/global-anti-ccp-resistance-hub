@@ -143,6 +143,19 @@ export interface HumanRightsOrg {
   [key: string]: unknown;
 }
 
+/**
+ * The statuses police_stations_research.json uses, and the only ones:
+ * police-stations-data.test.ts fails on any other. Compare against these,
+ * not a string typed from memory. Two components once checked for
+ * 'ACTIVE', which the data never uses, so no operating station counted.
+ */
+export const STATION_STATUS = {
+  OPERATING: 'OPERATING',
+  UNDER_INVESTIGATION: 'UNDER INVESTIGATION',
+  CLOSED: 'CLOSED',
+  UNKNOWN: 'UNKNOWN',
+} as const;
+
 export interface PoliceStation {
   id: string;
   country: string;

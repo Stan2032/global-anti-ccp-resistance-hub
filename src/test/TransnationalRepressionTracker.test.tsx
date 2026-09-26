@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TransnationalRepressionTracker from '../components/TransnationalRepressionTracker';
+import { dataApi, STATION_STATUS } from '../services/dataApi';
 import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
@@ -34,9 +35,31 @@ describe('TransnationalRepressionTracker', () => {
     expect(screen.getAllByText(/countries affected/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it('displays active stations stat', () => {
+  // The data calls a station that is still running OPERATING. The tracker
+  // checked for 'ACTIVE', which the data never uses, so no operating station
+  // counted towards a country's threat level, and this stat read 0.
+  const operatingStations = () =>
+    dataApi.getPoliceStations().filter(s => s.status === STATION_STATUS.OPERATING);
+
+  it('counts the operating police stations in the data', () => {
     render(<TransnationalRepressionTracker />);
-    expect(screen.getAllByText(/active station/).length).toBeGreaterThanOrEqual(1);
+    const count = operatingStations().length;
+    expect(count).toBeGreaterThan(0);
+    expect(screen.getByText(`${count} operating stations`)).toBeTruthy();
+  });
+
+  it('rates every country with an operating station high or critical, and lists the station', () => {
+    vi.mocked(navigator.clipboard.writeText).mockClear();
+    render(<TransnationalRepressionTracker />);
+    fireEvent.click(screen.getByLabelText('Copy intelligence report to clipboard'));
+    const report = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0] as string;
+    const stations = operatingStations();
+    expect(stations.length).toBeGreaterThan(0);
+    expect(report).toContain(`Operating police stations: ${stations.length}`);
+    for (const s of stations) {
+      expect(report, s.country).toMatch(new RegExp(`^\\[(CRITICAL|HIGH)\\] ${s.country}:`, 'm'));
+      expect(report, s.country).toMatch(new RegExp(`^${s.country}: .*${s.city}`, 'm'));
+    }
   });
 
   it('displays stations closed stat', () => {

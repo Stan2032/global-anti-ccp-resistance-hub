@@ -6,7 +6,7 @@
  * @module TransnationalRepressionTracker
  */
 import { useState, useMemo } from 'react';
-import { dataApi, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
+import { dataApi, STATION_STATUS, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
 import { Globe, Shield, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
 import { THREAT_LEVELS, OPERATION_TYPES, RESPONSE_STATUSES } from './transnationalRepressionData';
 import { DisclosureSection } from './DisclosureSection';
@@ -38,24 +38,24 @@ interface CountryProfile extends CountryData {
 
 function classifyThreatLevel(countryData: CountryData): string {
   const { stations, cases, response } = countryData;
-  const activeStations = stations.filter((s: PoliceStation) => s.status === 'ACTIVE').length;
-  const investigatingStations = stations.filter((s: PoliceStation) => s.status === 'UNDER INVESTIGATION').length;
+  const operatingStations = stations.filter((s: PoliceStation) => s.status === STATION_STATUS.OPERATING).length;
+  const investigatingStations = stations.filter((s: PoliceStation) => s.status === STATION_STATUS.UNDER_INVESTIGATION).length;
   const arrests = stations.filter((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes').length;
   const hasStrongResponse = response && (response.overall_stance || '').toUpperCase() === 'STRONG';
   const hasSanctions = response && response.sanctions_imposed && response.sanctions_imposed !== 'None' && response.sanctions_imposed !== 'N/A';
 
-  if (activeStations > 0 && !hasStrongResponse) return 'critical';
-  if (investigatingStations > 0 || (activeStations > 0 && hasStrongResponse)) return 'high';
+  if (operatingStations > 0 && !hasStrongResponse) return 'critical';
+  if (investigatingStations > 0 || (operatingStations > 0 && hasStrongResponse)) return 'high';
   if (cases.length > 0 || arrests > 0 || hasSanctions) return 'moderate';
   return 'low';
 }
 function classifyResponse(countryData: CountryData): string {
   const { stations, response } = countryData;
-  const closedStations = stations.filter((s: PoliceStation) => s.status === 'CLOSED').length;
+  const closedStations = stations.filter((s: PoliceStation) => s.status === STATION_STATUS.CLOSED).length;
   const arrests = stations.filter((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes').length;
 
   if (arrests > 0 || closedStations > 0) return 'enforcement';
-  if (stations.some((s: PoliceStation) => s.status === 'UNDER INVESTIGATION')) return 'investigation';
+  if (stations.some((s: PoliceStation) => s.status === STATION_STATUS.UNDER_INVESTIGATION)) return 'investigation';
   if (response && response.overall_stance && response.overall_stance !== 'NONE') return 'acknowledged';
   return 'no-action';
 }
@@ -129,11 +129,11 @@ const TransnationalRepressionTracker = () => {
   const stats = useMemo(() => {
     const totalCountries = countryProfiles.length;
     const totalOps = countryProfiles.reduce((sum, cp) => sum + cp.operationCount, 0);
-    const activeStations = stations.filter((s: PoliceStation) => s.status === 'ACTIVE').length;
-    const closedStations = stations.filter((s: PoliceStation) => s.status === 'CLOSED').length;
+    const operatingStations = stations.filter((s: PoliceStation) => s.status === STATION_STATUS.OPERATING).length;
+    const closedStations = stations.filter((s: PoliceStation) => s.status === STATION_STATUS.CLOSED).length;
     const arrestsMade = stations.filter((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes').length;
     const enforcementCountries = countryProfiles.filter(cp => cp.responseStatus === 'enforcement').length;
-    return { totalCountries, totalOps, activeStations, closedStations, arrestsMade, enforcementCountries };
+    return { totalCountries, totalOps, operatingStations, closedStations, arrestsMade, enforcementCountries };
   }, [countryProfiles, stations]);
   const threatDistribution = useMemo(() => {
     return THREAT_LEVELS.map(tl => ({
@@ -148,7 +148,7 @@ const TransnationalRepressionTracker = () => {
       `Generated: ${new Date().toISOString().split('T')[0]}`,
       `Countries affected: ${stats.totalCountries}`,
       `Total operations tracked: ${stats.totalOps}`,
-      `Active police stations: ${stats.activeStations}`,
+      `Operating police stations: ${stats.operatingStations}`,
       `Stations closed: ${stats.closedStations}`,
       `Arrests made: ${stats.arrestsMade}`,
       `Countries with enforcement action: ${stats.enforcementCountries}`,
@@ -158,9 +158,9 @@ const TransnationalRepressionTracker = () => {
         `[${cp.threatLevel.toUpperCase()}] ${cp.country}: ${cp.operationCount} operations — Response: ${cp.responseStatus}`
       ),
       '',
-      '── ACTIVE OPERATIONS ──',
-      ...countryProfiles.filter(cp => cp.stations.some((s: PoliceStation) => s.status === 'ACTIVE'))
-        .map(cp => `${cp.country}: ${cp.stations.filter((s: PoliceStation) => s.status === 'ACTIVE').map((s: PoliceStation) => s.city).join(', ')}`),
+      '── OPERATING POLICE STATIONS ──',
+      ...countryProfiles.filter(cp => cp.stations.some((s: PoliceStation) => s.status === STATION_STATUS.OPERATING))
+        .map(cp => `${cp.country}: ${cp.stations.filter((s: PoliceStation) => s.status === STATION_STATUS.OPERATING).map((s: PoliceStation) => s.city).join(', ')}`),
       '',
       'Source: Global Anti-CCP Resistance Hub — Tier 1-2 verified data',
       'License: CC BY 4.0',
@@ -202,7 +202,7 @@ const TransnationalRepressionTracker = () => {
         <span className="text-slate-500" aria-hidden="true">|</span>
         <span className="flex items-center gap-1">
           <MapPin className="w-3.5 h-3.5 text-red-400" aria-hidden="true" />
-          {stats.activeStations} active stations
+          {stats.operatingStations} operating stations
         </span>
         <span className="text-slate-500" aria-hidden="true">|</span>
         <span className="flex items-center gap-1">
@@ -318,8 +318,8 @@ const TransnationalRepressionTracker = () => {
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                   <span className="text-sm text-white font-mono min-w-0 break-words">{s.city}</span>
                                   <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                                    s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                                    s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
+                                    s.status === STATION_STATUS.CLOSED ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                                    s.status === STATION_STATUS.OPERATING ? 'text-red-400 bg-red-400/10' :
                                     'text-yellow-400 bg-yellow-400/10'
                                   }`}>
                                     {s.status}
@@ -550,7 +550,7 @@ const TransnationalRepressionTracker = () => {
                             {cp.stations.some((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes') && (
                               <p className="text-[#4afa82]">✓ Arrests made in connection with CCP operations</p>
                             )}
-                            {cp.stations.some((s: PoliceStation) => s.status === 'CLOSED') && (
+                            {cp.stations.some((s: PoliceStation) => s.status === STATION_STATUS.CLOSED) && (
                               <p className="text-[#4afa82]">✓ Police stations closed</p>
                             )}
                           </div>

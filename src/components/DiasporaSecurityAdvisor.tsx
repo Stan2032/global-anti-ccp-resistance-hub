@@ -7,7 +7,7 @@
  * @module DiasporaSecurityAdvisor
  */
 import { useState, useMemo } from 'react';
-import { dataApi, PoliceStation, InternationalResponse, LegalCase } from '../services/dataApi';
+import { dataApi, STATION_STATUS, PoliceStation, InternationalResponse, LegalCase } from '../services/dataApi';
 import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
 // DiasporaSecurityAdvisor — personalized security guidance for diaspora communities
 // by country, cross-referencing police stations, international responses, and legal cases.
@@ -98,11 +98,11 @@ const SAFETY_TIPS = {
 };
 function assessCountryRisk(stations: PoliceStation[], response: InternationalResponse | null, cases: LegalCase[]): RiskLevel {
   let score = 0;
-  const activeStations = stations.filter(s => s.status === 'ACTIVE').length;
-  const closedStations = stations.filter(s => s.status === 'CLOSED').length;
-  const investigating = stations.filter(s => s.status === 'UNDER INVESTIGATION').length;
+  const operatingStations = stations.filter(s => s.status === STATION_STATUS.OPERATING).length;
+  const closedStations = stations.filter(s => s.status === STATION_STATUS.CLOSED).length;
+  const investigating = stations.filter(s => s.status === STATION_STATUS.UNDER_INVESTIGATION).length;
   const hasArrest = stations.some(s => String(s.arrests_made ?? '').toLowerCase() === 'yes');
-  if (activeStations > 0) score += 30;
+  if (operatingStations > 0) score += 30;
   if (investigating > 0) score += 10;
   if (closedStations > 0) score -= 10;
   if (hasArrest) score -= 15;
@@ -124,10 +124,10 @@ function assessCountryRisk(stations: PoliceStation[], response: InternationalRes
 }
 function generateAdvisory(country: string, risk: RiskLevel, stations: PoliceStation[], response: InternationalResponse | null, activity: string): string[] {
   const lines: string[] = [];
-  const activeStations = stations.filter(s => s.status === 'ACTIVE');
-  const closedStations = stations.filter(s => s.status === 'CLOSED');
-  if (activeStations.length > 0) {
-    lines.push(`⚠ ${activeStations.length} known CCP police station(s) ACTIVE in ${country}: ${activeStations.map(s => s.city).join(', ')}. Avoid these areas.`);
+  const operatingStations = stations.filter(s => s.status === STATION_STATUS.OPERATING);
+  const closedStations = stations.filter(s => s.status === STATION_STATUS.CLOSED);
+  if (operatingStations.length > 0) {
+    lines.push(`⚠ ${operatingStations.length} known CCP police station(s) operating in ${country}: ${operatingStations.map(s => s.city).join(', ')}. Avoid these areas.`);
   }
   if (closedStations.length > 0) {
     lines.push(`✓ ${closedStations.length} station(s) CLOSED by authorities — government has taken enforcement action.`);
@@ -190,7 +190,7 @@ const DiasporaSecurityAdvisor = () => {
     totalCountries: countryProfiles.length,
     critical: countryProfiles.filter(cp => cp.risk === 'critical').length,
     high: countryProfiles.filter(cp => cp.risk === 'high').length,
-    withActiveStations: countryProfiles.filter(cp => cp.stations.some(s => s.status === 'ACTIVE')).length,
+    withOperatingStations: countryProfiles.filter(cp => cp.stations.some(s => s.status === STATION_STATUS.OPERATING)).length,
     withProtection: countryProfiles.filter(cp => cp.response && (cp.response.overall_stance || '').toLowerCase().includes('strong')).length,
   }), [countryProfiles]);
   const getRiskStyle = (level: string): RiskStyle => RISK_LEVELS.find(r => r.id === level) || RISK_LEVELS[3];
@@ -236,7 +236,7 @@ const DiasporaSecurityAdvisor = () => {
           { label: 'Countries', value: stats.totalCountries, color: 'text-white' },
           { label: 'Critical Risk', value: stats.critical, color: 'text-red-400' },
           { label: 'High Risk', value: stats.high, color: 'text-orange-400' },
-          { label: 'Active Stations', value: stats.withActiveStations, color: 'text-yellow-400' },
+          { label: 'Operating Stations', value: stats.withOperatingStations, color: 'text-yellow-400' },
           { label: 'Strong Protection', value: stats.withProtection, color: 'text-[#4afa82]' },
         ].map(s => (
           <div key={s.label} className="bg-[#111820] border border-[#1c2a35] p-3 text-center">
@@ -323,8 +323,8 @@ const DiasporaSecurityAdvisor = () => {
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <span className="text-sm text-white font-mono min-w-0 break-words">{s.city}</span>
                             <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
-                              s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
-                              s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
+                              s.status === STATION_STATUS.CLOSED ? 'text-[#4afa82] bg-[#4afa82]/10' :
+                              s.status === STATION_STATUS.OPERATING ? 'text-red-400 bg-red-400/10' :
                               'text-yellow-400 bg-yellow-400/10'
                             }`}>{s.status}</span>
                           </div>

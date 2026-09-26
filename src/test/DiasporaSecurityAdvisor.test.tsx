@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import DiasporaSecurityAdvisor from '../components/DiasporaSecurityAdvisor';
+import { dataApi, STATION_STATUS } from '../services/dataApi';
 
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
@@ -51,9 +52,28 @@ describe('DiasporaSecurityAdvisor', () => {
     expect(screen.getByText('Critical Risk')).toBeTruthy();
   });
 
-  it('displays active stations stat', () => {
+  // The data calls a station that is still running OPERATING. The advisor
+  // checked for 'ACTIVE', which the data never uses: this stat read 0 and no
+  // reader was warned about a station operating in their country.
+  const operatingStations = () =>
+    dataApi.getPoliceStations().filter(s => s.status === STATION_STATUS.OPERATING);
+
+  it('counts the countries with an operating CCP police station', () => {
     render(<DiasporaSecurityAdvisor />);
-    expect(screen.getByText('Active Stations')).toBeTruthy();
+    const countries = new Set(operatingStations().map(s => s.country));
+    expect(countries.size).toBeGreaterThan(0);
+    expect(screen.getByText('Operating Stations').previousElementSibling?.textContent).toBe(String(countries.size));
+  });
+
+  it('warns readers in each country with an operating station, naming the city', () => {
+    render(<DiasporaSecurityAdvisor />);
+    const stations = operatingStations();
+    expect(stations.length).toBeGreaterThan(0);
+    for (const s of stations) {
+      const advisory = cardFor(s.country).textContent ?? '';
+      expect(advisory, `the ${s.country} advisory`).toMatch(`known CCP police station(s) operating in ${s.country}:`);
+      expect(advisory, `the ${s.country} advisory`).toContain(s.city);
+    }
   });
 
   it('displays strong protection stat', () => {
