@@ -7,7 +7,7 @@
  */
 import React, { useState } from 'react';
 import { 
-  GraduationCap, Search, ExternalLink, ChevronDown, ChevronUp,
+  GraduationCap, Search, ExternalLink, ChevronDown,
   BookOpen, Mic, Twitter, AlertTriangle, Building, Globe,
   FileText, Shield
 } from 'lucide-react';
@@ -35,7 +35,6 @@ const ExpertiseBadge = ({ expertise }: { expertise: string }) => {
 const AcademicExperts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expertiseFilter, setExpertiseFilter] = useState('all');
-  const [expandedExpert, setExpandedExpert] = useState<number | null>(null);
 
   const experts = (expertsData?.results || []).map(r => r.output);
 
@@ -122,111 +121,85 @@ const AcademicExperts = () => {
       <div className="p-4 max-h-[600px] overflow-y-auto">
         <div className="space-y-3">
           {filteredExperts.map((expert, idx) => (
-            <div 
-              key={idx} 
-              className="bg-[#111820]/30 overflow-hidden"
-            >
-              <div 
-                className="p-4 cursor-pointer hover:bg-[#111820]/50 transition-colors"
-                onClick={() => setExpandedExpert(expandedExpert === idx ? null : idx as number)}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <h4 className="text-white font-semibold">{expert.name}</h4>
-                      <ExpertiseBadge expertise={expert.expertise} />
-                      {expert.ccp_targeting && expert.ccp_targeting !== 'None documented' && (
-                        <span className="px-2 py-0.5 bg-red-500/20 text-red-400 rounded text-xs flex items-center gap-1">
-                          <Shield className="w-3 h-3" />
-                          CCP Target
-                        </span>
-                      )}
+            // A native disclosure: the details are in the page for everyone
+            // and open without JavaScript. This was a <div> with a click
+            // handler, which a keyboard could not reach at all.
+            <details key={idx} className="bg-[#111820]/30">
+              <summary className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-1 p-4 cursor-pointer list-none hover:bg-[#111820]/50 transition-colors [&::-webkit-details-marker]:hidden">
+                <h4 className="text-white font-semibold">{expert.name}</h4>
+                <ChevronDown className="row-span-2 w-5 h-5 text-slate-500 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                <span className="flex flex-wrap items-center gap-2 text-sm text-slate-400">
+                  <ExpertiseBadge expertise={expert.expertise} />
+                  {expert.ccp_targeting && expert.ccp_targeting !== 'None documented' && (
+                    <span className="px-2 py-0.5 bg-red-500/20 text-red-400 rounded text-xs flex items-center gap-1">
+                      <Shield className="w-3 h-3" aria-hidden="true" />
+                      CCP Target
+                    </span>
+                  )}
+                  <span className="flex items-center gap-2">
+                    <Building className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                    {expert.affiliation || 'Independent'}
+                  </span>
+                </span>
+              </summary>
+
+              <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
+                {expert.key_works && (
+                  <div className="pt-3">
+                    <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
+                      <BookOpen className="w-3 h-3" />
+                      Key Works
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-400">
-                      <Building className="w-3 h-3" />
-                      {expert.affiliation || 'Independent'}
-                    </div>
+                    <p className="text-sm text-slate-300">{expert.key_works}</p>
                   </div>
-                  
-                  <div className="flex items-center gap-2">
-                    {expert.twitter && expert.twitter !== 'None' && (
-                      <a
-                        href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#22d3ee] hover:text-white"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Twitter className="w-4 h-4" />
-                      </a>
-                    )}
-                    <div className="text-slate-500">
-                      {expandedExpert === idx ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                )}
+                
+                {expert.media_presence && expert.media_presence !== 'None documented' && (
+                  <div>
+                    <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
+                      <Mic className="w-3 h-3" />
+                      Media Presence
                     </div>
+                    <p className="text-sm text-[#22d3ee]">{expert.media_presence}</p>
                   </div>
+                )}
+
+                {expert.ccp_targeting && expert.ccp_targeting !== 'None documented' && (
+                  <div>
+                    <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3 text-red-400" />
+                      CCP Targeting
+                    </div>
+                    <p className="text-sm text-red-300">{expert.ccp_targeting}</p>
+                  </div>
+                )}
+                
+                <div className="flex items-center gap-4 pt-2">
+                  {expert.twitter && expert.twitter !== 'None' && (
+                    <a
+                      href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
+                    >
+                      <Twitter className="w-3 h-3" />
+                      {expert.twitter}
+                    </a>
+                  )}
+                  {expert.source_url && (
+                    <a
+                      href={expert.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Profile
+                    </a>
+                  )}
                 </div>
               </div>
-
-              {/* Expanded Details */}
-              {expandedExpert === idx && (
-                <div className="px-4 pb-4 space-y-3 border-t border-[#1c2a35]/50">
-                  {expert.key_works && (
-                    <div className="pt-3">
-                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
-                        <BookOpen className="w-3 h-3" />
-                        Key Works
-                      </div>
-                      <p className="text-sm text-slate-300">{expert.key_works}</p>
-                    </div>
-                  )}
-                  
-                  {expert.media_presence && expert.media_presence !== 'None documented' && (
-                    <div>
-                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
-                        <Mic className="w-3 h-3" />
-                        Media Presence
-                      </div>
-                      <p className="text-sm text-[#22d3ee]">{expert.media_presence}</p>
-                    </div>
-                  )}
-
-                  {expert.ccp_targeting && expert.ccp_targeting !== 'None documented' && (
-                    <div>
-                      <div className="text-xs text-slate-400 uppercase mb-1 flex items-center gap-1">
-                        <AlertTriangle className="w-3 h-3 text-red-400" />
-                        CCP Targeting
-                      </div>
-                      <p className="text-sm text-red-300">{expert.ccp_targeting}</p>
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center gap-4 pt-2">
-                    {expert.twitter && expert.twitter !== 'None' && (
-                      <a
-                        href={`https://twitter.com/${expert.twitter.replace('@', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
-                      >
-                        <Twitter className="w-3 h-3" />
-                        {expert.twitter}
-                      </a>
-                    )}
-                    {expert.source_url && (
-                      <a
-                        href={expert.source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        Profile
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+            </details>
           ))}
         </div>
         
