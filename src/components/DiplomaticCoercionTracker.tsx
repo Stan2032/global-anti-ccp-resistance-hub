@@ -377,7 +377,7 @@ const DiplomaticCoercionTracker = () => {
                         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${sevStyle.dot}`} aria-hidden="true" />
                         <span className="block min-w-0">
                           <span className="text-white font-mono text-sm font-bold block">{profile.country}</span>
-                          <span className="text-slate-400 text-xs block truncate">{profile.trigger}</span>
+                          <span className="text-slate-400 text-xs block truncate summary-open:whitespace-normal summary-open:overflow-visible">{profile.trigger}</span>
                         </span>
                       </span>
                       <span className="flex items-center gap-3 flex-shrink-0">

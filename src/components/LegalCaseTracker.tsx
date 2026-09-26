@@ -296,10 +296,10 @@ export default function LegalCaseTracker() {
                     aria-hidden="true"
                   />
                   <span className="block flex-1 min-w-0">
-                    <span className="text-sm text-white font-medium block truncate">
+                    <span className="text-sm text-white font-medium block truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {legalCase.case_name}
                     </span>
-                    <span className="text-xs text-slate-400 block truncate">
+                    <span className="text-xs text-slate-400 block truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {legalCase.jurisdiction} — {legalCase.court}
                     </span>
                   </span>

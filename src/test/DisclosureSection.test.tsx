@@ -97,6 +97,26 @@ describe('open-state styling follows the element’s own <details>', () => {
     expect(config).toContain(`addVariant('summary-open', 'details[open] > summary &')`);
   });
 
+  it('lets a preview cut short in a summary show in full once its <details> is open', () => {
+    // A summary is often a one-line preview (truncate, line-clamp-N). Unless
+    // opening the disclosure lifts the cut, the rest of that text is not
+    // anywhere on the page: several trackers cut names, locations and
+    // triggers that the card body never repeats.
+    const offenders: string[] = [];
+    for (const f of (readdirSync(root, { recursive: true }) as string[])) {
+      if (!f.endsWith('.tsx') || f.startsWith(`test${path.sep}`)) continue;
+      const source = readFileSync(path.join(root, f), 'utf-8');
+      for (const summary of source.match(/<summary[\s\S]*?<\/summary>/g) ?? []) {
+        for (const cls of summary.match(/className=(?:"[^"]*"|\{`[^`]*`\})/g) ?? []) {
+          if (/\btruncate\b|\bline-clamp-\d/.test(cls) && !cls.includes('summary-open:')) {
+            offenders.push(`${f}: ${cls.slice(0, 90)}`);
+          }
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
   it('turns the section chevron with summary-open:', () => {
     const { container } = render(<DisclosureSection title="A"><p>a</p></DisclosureSection>);
     const chevron = container.querySelector('summary svg');

@@ -313,10 +313,10 @@ export default function OverseasPoliceStationTracker() {
                     aria-hidden="true"
                   />
                   <span className="block flex-1 min-w-0">
-                    <span className="block text-sm text-white font-medium truncate">
+                    <span className="block text-sm text-white font-medium truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {station.country}
                     </span>
-                    <span className="block text-xs text-slate-400 truncate">
+                    <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {station.city}
                       {station.linked_to && station.linked_to !== 'Unknown' ? ` · Linked to ${station.linked_to}` : ''}
                     </span>

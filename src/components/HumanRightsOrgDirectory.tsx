@@ -320,10 +320,10 @@ export default function HumanRightsOrgDirectory() {
                     aria-hidden="true"
                   />
                   <span className="block flex-1 min-w-0">
-                    <span className="block text-sm text-white font-medium truncate">
+                    <span className="block text-sm text-white font-medium truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {org.organization}
                     </span>
-                    <span className="block text-xs text-slate-400 truncate">
+                    <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {org.headquarters || 'Location not specified'}
                       {org.founded_year ? ` · Est. ${org.founded_year}` : ''}
                     </span>

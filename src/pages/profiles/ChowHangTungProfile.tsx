@@ -462,7 +462,7 @@ const ChowHangTungProfile: React.FC = () => {
                     <span className={`text-xs font-mono px-1.5 py-0.5 border ${s.tier === 1 ? 'text-[#4afa82] border-[#4afa82]/30' : 'text-[#22d3ee] border-[#22d3ee]/30'}`}>
                       T{s.tier}
                     </span>
-                    <span className="text-sm text-slate-300 truncate">{s.name}</span>
+                    <span className="text-sm text-slate-300 break-words">{s.name}</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] shrink-0" />
                 </a>

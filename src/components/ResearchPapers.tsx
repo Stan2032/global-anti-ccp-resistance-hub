@@ -327,7 +327,7 @@ const ResearchPapers = () => {
                   <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs rounded">{paper.type}</span>
                   <span className="text-xs text-slate-400">{paper.year}</span>
                 </div>
-                <h4 className="font-bold text-white text-sm mb-2 line-clamp-2">{paper.title}</h4>
+                <h4 className="font-bold text-white text-sm mb-2">{paper.title}</h4>
                 <p className="text-xs text-slate-400 mb-2">{paper.authors[0]}</p>
                 <div className="flex items-center text-xs text-slate-400">
                   <span>{paper.pages} pages</span>

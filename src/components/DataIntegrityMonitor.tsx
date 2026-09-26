@@ -459,7 +459,7 @@ export default function DataIntegrityMonitor() {
                       <CheckIcon className={`w-3.5 h-3.5 flex-shrink-0 ${checkCfg.color}`} aria-hidden="true" />
                       <span className="text-slate-300 flex-shrink-0">{check.name}</span>
                       <span className="text-slate-400" aria-hidden="true">—</span>
-                      <span className={`${checkCfg.color} truncate`}>{check.detail}</span>
+                      <span className={`${checkCfg.color} min-w-0 break-words`}>{check.detail}</span>
                     </div>
                   );
                 })}

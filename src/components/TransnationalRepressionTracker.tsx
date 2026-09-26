@@ -545,7 +545,7 @@ const TransnationalRepressionTracker = () => {
                         {cp.response && (
                           <div className="mt-1 text-xs text-slate-400">
                             {cp.response.diplomatic_actions && cp.response.diplomatic_actions !== 'None' && (
-                              <p className="line-clamp-1">Diplomatic: {cp.response.diplomatic_actions}</p>
+                              <p>Diplomatic: {cp.response.diplomatic_actions}</p>
                             )}
                             {cp.stations.some((s: PoliceStation) => (String(s.arrests_made ?? '')).toLowerCase() === 'yes') && (
                               <p className="text-[#4afa82]">✓ Arrests made in connection with CCP operations</p>

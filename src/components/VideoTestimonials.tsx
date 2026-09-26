@@ -421,7 +421,7 @@ export default function VideoTestimonials() {
                     )}
                   </span>
 
-                  <span className="block text-slate-400 text-xs mt-1 line-clamp-2">{t.description}</span>
+                  <span className="block text-slate-400 text-xs mt-1 line-clamp-2 summary-open:line-clamp-none">{t.description}</span>
 
                   <span className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
                     <span className="flex items-center gap-1">

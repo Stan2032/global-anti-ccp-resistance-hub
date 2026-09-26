@@ -414,7 +414,7 @@ export default function DetentionFacilities() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-white font-semibold truncate">{facility.name}</h3>
+                <h3 className="text-white font-semibold break-words">{facility.name}</h3>
                 <p className="text-xs text-slate-400">{facility.chineseName}</p>
               </div>
             </div>

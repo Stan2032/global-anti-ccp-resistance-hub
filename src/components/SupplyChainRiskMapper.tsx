@@ -343,7 +343,7 @@ export default function SupplyChainRiskMapper() {
                           </span>
                         </span>
 
-                        <span className="block text-slate-400 text-xs mt-1 line-clamp-2">
+                        <span className="block text-slate-400 text-xs mt-1 line-clamp-2 summary-open:line-clamp-none">
                           {c.connection_type || 'No connection type documented'}
                         </span>
 

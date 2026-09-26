@@ -570,7 +570,7 @@ export default function CrossDatasetInsightEngine() {
                   >
                     <span className="text-[#22d3ee] flex-shrink-0">{DATASET_LABELS[item.dataset as DatasetKey] || item.dataset}</span>
                     <span className="text-slate-400" aria-hidden="true">→</span>
-                    <span className="text-slate-200 truncate">{item.label}</span>
+                    <span className="text-slate-200 min-w-0 break-words">{item.label}</span>
                   </div>
                 ))}
                 {insight.count > insight.items.length && (

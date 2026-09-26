@@ -520,11 +520,11 @@ export default function CCPOfficials() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-white font-semibold truncate">{official.name}</h3>
+                <h3 className="text-white font-semibold break-words">{official.name}</h3>
                 <p className="text-xs text-slate-400">{official.chineseName}</p>
               </div>
             </div>
-            <p className="text-sm text-slate-400 line-clamp-2 mb-2">{official.position}</p>
+            <p className="text-sm text-slate-400 mb-2">{official.position}</p>
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.region}</span>

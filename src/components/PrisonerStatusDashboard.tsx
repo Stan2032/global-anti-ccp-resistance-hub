@@ -423,14 +423,14 @@ export default function PrisonerStatusDashboard() {
                     <span className="text-sm" aria-hidden="true">{healthConf.icon}</span>
                     <span className="block flex-1 min-w-0">
                       <span className="flex items-center space-x-2 flex-wrap">
-                        <span className="text-white font-mono text-sm font-bold truncate">{p.prisoner_name || 'Unknown'}</span>
+                        <span className="text-white font-mono text-sm font-bold truncate summary-open:whitespace-normal summary-open:overflow-visible">{p.prisoner_name || 'Unknown'}</span>
                         <span className={`text-xs font-mono px-1.5 py-0.5 ${p.statusConf.bg} ${p.statusConf.color}`}>
                           {p.statusConf.label}
                         </span>
                         <span className="text-xs text-slate-400">{p.region}</span>
                       </span>
                       {p.location && (
-                        <span className="block text-xs text-slate-400 truncate">{p.location}</span>
+                        <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">{p.location}</span>
                       )}
                     </span>
                   </span>
