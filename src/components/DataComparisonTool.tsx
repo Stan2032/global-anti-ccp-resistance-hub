@@ -371,95 +371,100 @@ const DataComparisonTool = () => {
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
-        {/* Table Header */}
-        <div className={`grid gap-px bg-[#1c2a35]`} style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}>
-          <div className="bg-[#0a0e14] p-3 font-mono text-xs text-slate-400">
-            <BarChart3 className="w-4 h-4 inline mr-1" aria-hidden="true" />
-            Metric
-          </div>
-          {selected.map((region) => (
-            <div key={region.id} className={`bg-[#0a0e14] p-3 text-center ${region.color} font-mono text-xs font-bold`}>
-              {region.label}
+      {/* Scrolls sideways on a phone, where the regions do not fit beside
+          the labels. overflow-hidden cut the right-hand regions off. */}
+      <div className="bg-[#111820] border border-[#1c2a35] overflow-x-auto">
+        {/* Wide enough for every region column to stay readable. */}
+        <div style={{ minWidth: `${200 + selected.length * 112}px` }}>
+          {/* Table Header */}
+          <div className={`grid gap-px bg-[#1c2a35]`} style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}>
+            <div className="bg-[#0a0e14] p-3 font-mono text-xs text-slate-400">
+              <BarChart3 className="w-4 h-4 inline mr-1" aria-hidden="true" />
+              Metric
             </div>
-          ))}
-        </div>
-
-        {/* Metric Rows */}
-        {metrics.map((metric) => {
-          const MetricIcon = metric.Icon;
-          const values = selected.map((r) => metric.getValue(r.id));
-          const maxValue = Math.max(...values, 1);
-
-          return (
-            <details key={metric.id}>
-              <summary
-                className="w-full grid gap-px bg-[#1c2a35] hover:bg-[#1c2a35]/50 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden"
-                style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
-              >
-                <span className="bg-[#111820] p-3 flex items-center gap-2 text-left">
-                  <MetricIcon className="w-4 h-4 text-slate-400 flex-shrink-0" aria-hidden="true" />
-                  <span className="text-sm text-slate-300">{metric.label}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-auto flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
-                </span>
-                {selected.map((region, i) => (
-                  <span key={region.id} className="block bg-[#111820] p-3 text-center">
-                    <span className="text-lg font-bold text-white">{values[i]}</span>
-                    {/* Bar indicator */}
-                    <span className="block mt-1.5 h-1 bg-[#1c2a35] rounded-full overflow-hidden">
-                      <span
-                        className={`block h-full rounded-full transition-all ${
-                          region.id === 'hongkong' ? 'bg-yellow-400' :
-                          region.id === 'uyghur' ? 'bg-red-400' :
-                          region.id === 'tibet' ? 'bg-[#4afa82]' :
-                          'bg-[#22d3ee]'
-                        }`}
-                        style={{ width: `${Math.round((values[i] / maxValue) * 100)}%` }}
-                      />
-                    </span>
-                  </span>
-                ))}
-              </summary>
-
-              {/* Breakdown, in the page for everyone */}
-              <div
-                className="grid gap-px bg-[#1c2a35]"
-                style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
-              >
-                <div className="bg-[#0a0e14]/80 p-3 text-xs text-slate-400 italic">
-                  Breakdown
-                </div>
-                {selected.map((region) => (
-                  <div key={region.id} className="bg-[#0a0e14]/80 p-3 text-xs text-slate-300">
-                    {metric.getDetail(region.id) || 'No data'}
-                  </div>
-                ))}
+            {selected.map((region) => (
+              <div key={region.id} className={`bg-[#0a0e14] p-3 text-center ${region.color} font-mono text-xs font-bold`}>
+                {region.label}
               </div>
-            </details>
-          );
-        })}
-
-        {/* Totals Row */}
-        <div
-          className="grid gap-px bg-[#1c2a35]"
-          style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
-        >
-          <div className="bg-[#0a0e14] p-3 font-mono text-xs text-[#4afa82] font-bold">
-            TOTAL DATA POINTS
+            ))}
           </div>
-          {selected.map((region) => {
-            const total =
-              data.prisonersByRegion[region.id].length +
-              data.sanctionsByRegion[region.id].length +
-              data.officialsByRegion[region.id].length +
-              data.timelineByRegion[region.id].length +
-              data.facilitiesByRegion[region.id].length;
+
+          {/* Metric Rows */}
+          {metrics.map((metric) => {
+            const MetricIcon = metric.Icon;
+            const values = selected.map((r) => metric.getValue(r.id));
+            const maxValue = Math.max(...values, 1);
+
             return (
-              <div key={region.id} className="bg-[#0a0e14] p-3 text-center">
-                <span className="text-lg font-bold text-[#4afa82]">{total}</span>
-              </div>
+              <details key={metric.id}>
+                <summary
+                  className="w-full grid gap-px bg-[#1c2a35] hover:bg-[#1c2a35]/50 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+                  style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
+                >
+                  <span className="bg-[#111820] p-3 flex items-center gap-2 text-left">
+                    <MetricIcon className="w-4 h-4 text-slate-400 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-sm text-slate-300">{metric.label}</span>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-auto flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                  </span>
+                  {selected.map((region, i) => (
+                    <span key={region.id} className="block bg-[#111820] p-3 text-center">
+                      <span className="text-lg font-bold text-white">{values[i]}</span>
+                      {/* Bar indicator */}
+                      <span className="block mt-1.5 h-1 bg-[#1c2a35] rounded-full overflow-hidden">
+                        <span
+                          className={`block h-full rounded-full transition-all ${
+                            region.id === 'hongkong' ? 'bg-yellow-400' :
+                            region.id === 'uyghur' ? 'bg-red-400' :
+                            region.id === 'tibet' ? 'bg-[#4afa82]' :
+                            'bg-[#22d3ee]'
+                          }`}
+                          style={{ width: `${Math.round((values[i] / maxValue) * 100)}%` }}
+                        />
+                      </span>
+                    </span>
+                  ))}
+                </summary>
+
+                {/* Breakdown, in the page for everyone */}
+                <div
+                  className="grid gap-px bg-[#1c2a35]"
+                  style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
+                >
+                  <div className="bg-[#0a0e14]/80 p-3 text-xs text-slate-400 italic">
+                    Breakdown
+                  </div>
+                  {selected.map((region) => (
+                    <div key={region.id} className="bg-[#0a0e14]/80 p-3 text-xs text-slate-300">
+                      {metric.getDetail(region.id) || 'No data'}
+                    </div>
+                  ))}
+                </div>
+              </details>
             );
           })}
+
+          {/* Totals Row */}
+          <div
+            className="grid gap-px bg-[#1c2a35]"
+            style={{ gridTemplateColumns: `200px repeat(${selected.length}, 1fr)` }}
+          >
+            <div className="bg-[#0a0e14] p-3 font-mono text-xs text-[#4afa82] font-bold">
+              TOTAL DATA POINTS
+            </div>
+            {selected.map((region) => {
+              const total =
+                data.prisonersByRegion[region.id].length +
+                data.sanctionsByRegion[region.id].length +
+                data.officialsByRegion[region.id].length +
+                data.timelineByRegion[region.id].length +
+                data.facilitiesByRegion[region.id].length;
+              return (
+                <div key={region.id} className="bg-[#0a0e14] p-3 text-center">
+                  <span className="text-lg font-bold text-[#4afa82]">{total}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 

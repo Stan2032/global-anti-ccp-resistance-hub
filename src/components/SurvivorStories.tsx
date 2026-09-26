@@ -217,7 +217,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
               className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
             >
               <div className="p-4">
-                <div className="flex items-start justify-between mb-3">
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                   <div className="flex items-center">
                     <span className="text-4xl mr-3"><story.ImageIcon className="w-10 h-10 text-slate-400" /></span>
                     <div>

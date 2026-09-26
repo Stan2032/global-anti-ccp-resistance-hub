@@ -254,7 +254,7 @@ const DataApiDocs = () => {
           <span className="text-[#4afa82]">&apos;../services/dataApi&apos;</span>
           <span className="text-slate-400">;</span>
         </div>
-        <div className="flex items-center gap-4 mt-3 text-xs text-slate-400 font-mono">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 text-xs text-slate-400 font-mono">
           <span>{totalMethods} methods</span>
           <span className="text-slate-600" aria-hidden="true">|</span>
           <span>{Object.keys(summary.datasets).length} datasets</span>
@@ -307,7 +307,7 @@ const DataApiDocs = () => {
                   <div key={method.name} className="bg-[#0a0e14] border border-[#1c2a35] p-4">
                     {/* Method signature */}
                     <div className="flex items-start justify-between gap-2">
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 break-words">
                         <code className="text-[#4afa82] font-mono text-sm font-bold">{method.name}</code>
                         <span className="text-slate-400 font-mono text-sm">
                           ({method.params.map((p) => p.name).join(', ')})
@@ -335,7 +335,7 @@ const DataApiDocs = () => {
                         <span className="text-xs text-slate-400 font-mono uppercase">params:</span>
                         <div className="mt-1 space-y-1">
                           {method.params.map((p) => (
-                            <div key={p.name} className="flex items-center gap-2 text-xs font-mono">
+                            <div key={p.name} className="flex flex-wrap items-baseline gap-x-2 text-xs font-mono">
                               <span className="text-[#22d3ee]">{p.name}</span>
                               <span className="text-slate-400">:</span>
                               <span className="text-yellow-400">{p.type}</span>
@@ -353,9 +353,9 @@ const DataApiDocs = () => {
                     </div>
 
                     {/* Live example */}
-                    <div className="mt-2 flex items-center gap-2 text-xs">
+                    <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs">
                       <span className="text-[#4afa82] font-mono">$</span>
-                      <code className="text-slate-300 font-mono">{method.example}</code>
+                      <code className="text-slate-300 font-mono break-all">{method.example}</code>
                       <span className="text-slate-400">→</span>
                       <span className="text-[#22d3ee] font-mono">{method.live()}</span>
                     </div>

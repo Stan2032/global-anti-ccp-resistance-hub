@@ -315,8 +315,8 @@ const TransnationalRepressionTracker = () => {
                           <div className="space-y-2">
                             {cp.stations.map((s: PoliceStation, i: number) => (
                               <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                <div className="flex items-center justify-between gap-2">
-                                  <span className="text-sm text-white font-mono truncate">{s.city}</span>
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                  <span className="text-sm text-white font-mono min-w-0 break-words">{s.city}</span>
                                   <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
                                     s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
                                     s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
@@ -332,7 +332,7 @@ const TransnationalRepressionTracker = () => {
                                   <p className="text-xs text-red-400 mt-1">⚠ Arrests made: {String(s.arrest_details ?? '')}</p>
                                 )}
                                 {s.government_response && (
-                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
+                                  <p className="text-xs text-slate-400 mt-1">{s.government_response}</p>
                                 )}
                                 {s.source_url && (
                                   <a
@@ -360,19 +360,19 @@ const TransnationalRepressionTracker = () => {
                           <div className="space-y-2">
                             {cp.cases.map((c: LegalCase, i: number) => (
                               <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                                <div className="flex items-start justify-between gap-2">
+                                <div className="flex flex-wrap items-start justify-between gap-2">
                                   <span className="text-sm text-white font-mono">{c.case_name}</span>
                                   <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
                                     c.status === 'CONVICTED' ? 'text-red-400 bg-red-400/10' :
                                     c.status === 'CONCLUDED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
                                     'text-yellow-400 bg-yellow-400/10'
                                   }`}>
-                                    {c.status}
+                                    {c.status?.replace(/_/g, ' ')}
                                   </span>
                                 </div>
                                 <p className="text-xs text-slate-400 mt-1">{c.charges}</p>
                                 {c.significance && (
-                                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.significance}</p>
+                                  <p className="text-xs text-slate-400 mt-1">{c.significance}</p>
                                 )}
                                 {c.source_url && (
                                   <a

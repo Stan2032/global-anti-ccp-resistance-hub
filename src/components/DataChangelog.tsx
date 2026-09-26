@@ -252,16 +252,16 @@ const DataChangelog = () => {
                 </span>
               </summary>
               <div className="px-3 pb-3 border-t border-[#1c2a35] pt-3 space-y-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="w-4 h-4 text-slate-400" />
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  <Calendar className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   <span className="text-slate-400">Last verified:</span>
                   <span className="text-white">{dataset.lastVerified}</span>
                   <span className="text-slate-400">({dataset.freshness.daysAgo} days ago)</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Database className="w-4 h-4 text-slate-400" />
+                  <Database className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   <span className="text-slate-400">File:</span>
-                  <code className="text-[#22d3ee] text-xs bg-[#0a0e14] px-1.5 py-0.5 rounded">{dataset.file}</code>
+                  <code className="min-w-0 text-[#22d3ee] text-xs bg-[#0a0e14] px-1.5 py-0.5 rounded break-all">{dataset.file}</code>
                 </div>
                 <div className="flex items-start gap-2 text-sm">
                   <RefreshCw className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />

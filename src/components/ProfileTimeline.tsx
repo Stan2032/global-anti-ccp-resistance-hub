@@ -63,7 +63,7 @@ export function ProfileTimeline({ events }: { events: readonly TimelineEntry[] }
                            hover:bg-white/5 focus-visible:outline focus-visible:outline-2
                            focus-visible:outline-[#4afa82] [&::-webkit-details-marker]:hidden"
               >
-                <span className="flex items-center gap-3 min-w-0">
+                <span className="flex flex-wrap items-center gap-x-3 gap-y-1 min-w-0">
                   <span className="text-xs font-mono text-slate-400 whitespace-nowrap">{event.year}</span>
                   {event.label && (
                     <span className={`text-xs px-2 py-0.5 rounded-full border border-white/10 ${event.labelTone ?? 'text-slate-200'}`}>

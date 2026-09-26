@@ -214,12 +214,12 @@ const ChinaTechThreats = () => {
               <div className="space-y-3">
                 {surveillanceCompanies.map((company, i) => (
                   <div key={i} className="bg-[#111820] p-4">
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                       <div>
                         <span className="text-white font-semibold text-lg">{company.name}</span>
                         <span className="text-slate-400 text-sm ml-2">({company.type})</span>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2">
                         <span className={`text-xs px-2 py-1 rounded ${
                           company.threat === 'CRITICAL' ? 'bg-red-900/50 text-red-300' :
                           company.threat === 'HIGH' ? 'bg-orange-900/50 text-orange-300' :
@@ -232,7 +232,7 @@ const ChinaTechThreats = () => {
                       </div>
                     </div>
                     <p className="text-slate-300 text-sm">{company.details}</p>
-                    <div className="flex justify-between items-center mt-2">
+                    <div className="flex flex-wrap justify-between items-center gap-2 mt-2">
                       <span className="text-slate-400 text-xs">Presence: {company.countries}</span>
                       <div className="flex gap-1">
                         {company.sanctions.map((flag, j) => (

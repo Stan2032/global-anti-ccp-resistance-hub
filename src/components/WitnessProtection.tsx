@@ -549,8 +549,8 @@ const WitnessProtection = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-400">{org.contact}</span>
+                    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-sm">
+                      <span className="text-slate-400 min-w-0 break-words">{org.contact}</span>
                       <a 
                         href={org.website} 
                         target="_blank" 

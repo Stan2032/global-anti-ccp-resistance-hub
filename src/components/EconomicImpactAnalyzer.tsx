@@ -311,7 +311,7 @@ const EconomicImpactAnalyzer = () => {
                           <span className="text-white text-sm font-mono font-bold">{sector.label}</span>
                           <span className="text-xs font-mono text-slate-400">{impact.tradeValue}</span>
                         </span>
-                        <span className="flex items-center gap-3 mt-1 text-xs text-slate-400">
+                        <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-slate-400">
                           <span>{sectorCompanies.length} companies</span>
                           <span className="text-slate-500" aria-hidden="true">•</span>
                           <span>{impact.wrosIssued} WROs</span>

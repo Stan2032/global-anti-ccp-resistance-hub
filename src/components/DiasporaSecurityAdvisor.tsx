@@ -320,8 +320,8 @@ const DiasporaSecurityAdvisor = () => {
                     <div className="space-y-2">
                       {cp.stations.map((s, i) => (
                         <div key={i} className="bg-[#0a0e14] border border-[#1c2a35] p-3">
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="text-sm text-white font-mono truncate">{s.city}</span>
+                          <div className="flex flex-wrap items-center justify-between gap-2">
+                            <span className="text-sm text-white font-mono min-w-0 break-words">{s.city}</span>
                             <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap flex-shrink-0 ${
                               s.status === 'CLOSED' ? 'text-[#4afa82] bg-[#4afa82]/10' :
                               s.status === 'ACTIVE' ? 'text-red-400 bg-red-400/10' :
@@ -329,7 +329,7 @@ const DiasporaSecurityAdvisor = () => {
                             }`}>{s.status}</span>
                           </div>
                           {s.government_response && (
-                            <p className="text-xs text-slate-400 mt-1 line-clamp-2">{s.government_response}</p>
+                            <p className="text-xs text-slate-400 mt-1">{s.government_response}</p>
                           )}
                           {s.source_url && (
                             <a href={s.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline mt-1">
@@ -346,15 +346,15 @@ const DiasporaSecurityAdvisor = () => {
                   <div className="space-y-2">
                     <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Government Response</h4>
                     <div className="bg-[#0a0e14] border border-[#1c2a35] p-3 space-y-2">
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
                         <span className="text-sm text-white font-mono">Overall Stance</span>
                         <span className="text-xs text-slate-300 font-mono">{(cp.response.overall_stance || '').split(' - ')[0]}</span>
                       </div>
                       {cp.response.genocide_recognition && (
-                        <p className="text-xs text-slate-400"><span className="text-slate-300">Genocide recognition:</span> {cp.response.genocide_recognition.substring(0, 80)}{cp.response.genocide_recognition.length > 80 ? '...' : ''}</p>
+                        <p className="text-xs text-slate-400"><span className="text-slate-300">Genocide recognition:</span> {cp.response.genocide_recognition}</p>
                       )}
                       {cp.response.sanctions_imposed && cp.response.sanctions_imposed !== 'None' && (
-                        <p className="text-xs text-slate-400"><span className="text-slate-300">Sanctions:</span> {cp.response.sanctions_imposed.substring(0, 100)}{cp.response.sanctions_imposed.length > 100 ? '...' : ''}</p>
+                        <p className="text-xs text-slate-400"><span className="text-slate-300">Sanctions:</span> {cp.response.sanctions_imposed}</p>
                       )}
                       {cp.response.source_url && (
                         <a href={cp.response.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#22d3ee] hover:underline">

@@ -250,8 +250,8 @@ const ResearchDashboard = () => {
               {recentNews.map((news, idx) => (
                 <div key={idx} className="bg-[#111820]/30 p-4">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
+                    <div className="flex-1 min-w-0 break-words">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
                         <span className="text-[#22d3ee] text-sm font-medium">{news.topic}</span>
                         <StatusBadge status={news.significance} />
                       </div>
@@ -269,7 +269,7 @@ const ResearchDashboard = () => {
                           Action: {news.actionNeeded}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-slate-400">
                         <span>{news.date}</span>
                         <span>{news.source}</span>
                       </div>
@@ -279,9 +279,10 @@ const ResearchDashboard = () => {
                         href={news.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
+                        className="flex-shrink-0 p-2 bg-[#1c2a35] hover:bg-[#1c2a35] transition-colors"
+                        aria-label={`Source: ${news.source || news.headline}`}
                       >
-                        <ExternalLink className="w-4 h-4 text-slate-300" />
+                        <ExternalLink className="w-4 h-4 text-slate-300" aria-hidden="true" />
                       </a>
                     )}
                   </div>

@@ -488,8 +488,8 @@ const GenocideLegalFramework = () => {
                   <details key={v.id} className="border border-[#1c2a35] bg-[#111820]/50">
                     <summary className="w-full text-left p-4 flex items-start justify-between gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                       <span className="block min-w-0 flex-1">
-                        <span className="flex items-center gap-2 mb-1.5">
-                          <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
+                        <span className="flex flex-wrap items-center gap-2 mb-1.5">
+                          <span className={`text-xs font-mono px-2 py-0.5 ${cat.color} bg-current/10`}>{cat.label?.toUpperCase()}</span>
                           <span className={`text-xs font-mono px-2 py-0.5 whitespace-nowrap ${v.severity === 'critical' ? 'text-red-400 bg-red-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{v.severity}</span>
                         </span>
                         <span className="block text-sm text-[#22d3ee] font-mono">{v.article}</span>
@@ -573,7 +573,7 @@ const GenocideLegalFramework = () => {
                     <Flag className="w-4 h-4 text-[#a78bfa]" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
                       <span className="text-sm text-white font-mono">{rec.country}</span>
                       <span className="text-xs font-mono text-[#22d3ee]">{rec.year}</span>
                       <span className="text-xs font-mono px-2 py-0.5 text-[#a78bfa] bg-[#a78bfa]/10">{rec.type}</span>
