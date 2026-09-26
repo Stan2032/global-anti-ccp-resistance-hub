@@ -1036,20 +1036,49 @@ a native `<details>` that opens without any script.
   content or a nested heading. Run before the fix, it found exactly those 33,
   plus 10 in a conversion then in progress — `ba05696`.
 
-### Lessons
+### Keyboard, #links and hydration
 
-1. **Test as the reader is.** Add a returning-visitor profile, a blocked-storage
-   profile and a JavaScript-off profile to any browser check, not only the
-   fresh default. Each found real bugs no other check could.
-2. **Mutation-test every new guard and regression test.** Put the bug back
-   and watch it fail. All the new tests here fail against the old code, and
-   both build guards fail the build when their bug is reintroduced.
-3. **A storage key is a disclosure.** On this site, what a page writes to
-   the reader's browser is part of its security surface, not an
-   implementation detail.
-4. **Look at it.** jsdom computes no CSS, and character counts cannot tell
-   an open chevron from a closed one. After any change to how something
-   looks in a given state, screenshot that state, at phone width too.
+- **Keyboard users never met the skip links.** `ScrollToTop` moved focus
+  to `<main>` 100ms after every page load, so the first Tab went past "Skip
+  to main content" and the whole header. It also scrolled to the top, so a
+  link to a `#section`, such as the survivor stories' share link, opened
+  3,654px above its target. The page a reader arrives on is now left alone
+  — `2dbf8b3`.
+- **The skip links overlapped.** Once revealed, the second link ran off a
+  390px screen. Each now slides into view only while focused, and "Skip to
+  navigation" appears only where the sidebar exists — `2dbf8b3`.
+- **Pages flashed their loading screen while hydrating.** Pages load their
+  code lazily. Any update from above that reached a page still waiting for
+  its code made React throw the pre-rendered page away and show "$ loading
+  system" until the code arrived. The theme read the colour scheme for every
+  theme, so every light-mode reader triggered it, on 10 of 12 routes. So did
+  every reader with a saved theme or language. Now only the "system" theme
+  reads the colour scheme. Both providers apply a saved choice through
+  `useDeferredValue` with a stable context object, and the change waits
+  until each page has its code — `2dbf8b3`, `327fa8e`. Nothing logged an
+  error. A `#link` landing in the wrong place was the only sign.
+
+### Phone width
+
+At 390px, 171 text elements on five routes ran past a box that clipped them.
+None do now. Tables scroll sideways, rows wrap and long tokens break. Text
+that was cut on purpose now shows in full: truncated cities, clamped
+government responses, and sanctions text cut at 100 characters — `fd10bd7`.
+A second pass lifted 28 more cuts. Previews in summaries now expand when
+opened, and cut text elsewhere wraps — `dce786e`. Tests fail on a table
+placed directly in an `overflow-hidden` box, and on a clamp in a summary
+that does not lift when opened.
+
+### A threat assessment that never saw its data
+
+Two components checked police stations for `'ACTIVE'`, but the data says
+`'OPERATING'`. The four operating stations (Belgrade, Sydney, Johannesburg,
+Dar es Salaam) counted for nothing. The diaspora advisor told a reader in
+Australia their risk was LOW, with no warning about the station in Sydney.
+The tracker rated three of the four countries LOW. Both now compare against
+`STATION_STATUS`, which the data test checks too — `1666180`. A scan of
+every status comparison against the values the data uses found no other
+mismatch.
 
 ### Expanders
 
@@ -1066,19 +1095,34 @@ Readable without JavaScript, every section open:
 |---|---|---|
 | Jimmy Lai's profile (all 16 now share `ProfileTimeline`) | 6,719 | 11,803 — `638cf15` |
 | `/security` | ~38,400 | 74,930 — `50bbd04` |
-| `/prisoners` (prisoner rows, case files) | 16,645 | 66,659 — `7d1a4e7` |
-| `/intelligence` (ten trackers, then the Influence Network) | 179,612 | 379,667 — `170cbb6`, `68e2378`, `89b2b5c` |
-| `/education` | 87,289 | 136,284 — `051592c`, `e9b4c47` |
-| `/take-action` | 78,929 | 109,629 — `051592c`, `e9b4c47` |
+| `/prisoners` (prisoner rows, case files, then the card grid and memorial) | 16,645 | 120,415 — `7d1a4e7`, `d136284` |
+| `/intelligence` (ten trackers, the Influence Network, the threat map) | 179,612 | 383,672 — `170cbb6`, `68e2378`, `89b2b5c`, `d136284` |
+| `/education` | 87,289 | 146,813 — `051592c`, `e9b4c47`, `d136284` |
+| `/take-action` | 78,929 | 108,849 — `051592c`, `e9b4c47`, `d136284` |
 | `/` (the update and notification feeds) | 11,565 | 45,781 — `e9b4c47` |
 | `/resources` | 10,000 | 30,725 — `051592c` |
 | `/directory` | 9,814 | 12,150 — `bf86398` |
 | `/data-sources` | 29,007 | 65,973 — `bf86398` |
 
-None are left. Of the 941 `aria-expanded` elements in the pre-rendered
-pages, 56 remain, and all are controls, not hidden content: the language
-picker (twice on each of the 27 routes), the letter generator's prisoner
-picker and the case-timeline combobox.
+Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain,
+and all are controls, not hidden content: the language picker (twice on each
+of the 27 routes), the letter generator's prisoner picker and the
+case-timeline combobox.
+
+That count missed five more, which used no `aria-expanded` at all. A scan for
+click handlers on elements that are not controls found them — `d136284`:
+
+- the `/prisoners` card grid, which showed 15 of 64 cases, each opening a
+  JavaScript-only modal;
+- the memorial wall's modal;
+- the academic experts' cards, each a `<div>` that no keyboard could reach;
+- the threat map's regions, and its hotspots, which appeared only on mouse
+  hover;
+- the quick facts, copied by clicking a `<div>`.
+
+What still takes a click on a non-control: modal backdrops, the map's region
+shapes (their content is in the list below the map), and the case timeline's
+listbox options.
 
 ### What the conversions turned up
 
@@ -1111,5 +1155,29 @@ JavaScript, and that no test had caught:
   card edge at 390px and overlapped officials' names, and positions were cut
   to "Vice ...". Rows wrap now, and nothing there is truncated — `89b2b5c`.
   The rest of this is P10.
+
+### Lessons
+
+1. **Test as the reader is.** Add a returning-visitor profile, a blocked-storage
+   profile and a JavaScript-off profile to any browser check, not only the
+   fresh default. Each found real bugs no other check could.
+2. **Mutation-test every new guard and regression test.** Put the bug back
+   and watch it fail. All the new tests here fail against the old code, and
+   both build guards fail the build when their bug is reintroduced.
+3. **A storage key is a disclosure.** On this site, what a page writes to
+   the reader's browser is part of its security surface, not an
+   implementation detail.
+4. **Look at it.** jsdom computes no CSS, and character counts cannot tell
+   an open chevron from a closed one. After any change to how something
+   looks in a given state, screenshot that state, at phone width too.
+5. **Scan for the behaviour, not the attribute meant to go with it.**
+   Counting `aria-expanded` found the expanders that announced themselves.
+   Five that did not showed up only in a scan for click handlers on
+   elements that are not controls.
+6. **Check code against the data it reads.** A literal the data never uses
+   (`'ACTIVE'`) silently disables a branch. A test that only checks a label
+   passes while the number beside it is always 0.
+7. **Follow the small symptom.** A `#link` landing in the wrong place led
+   to a hydration fault that logged nothing at all.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

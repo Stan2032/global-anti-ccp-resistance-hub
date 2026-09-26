@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "37.0",
-    "date": "2026-09-25T22:10:00Z",
+    "version": "38.0",
+    "date": "2026-09-26T15:50:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v36.0)",
+    "supersedes": "AGENT_HANDOFF.json (v37.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,7 +19,7 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3690,
+    "frontend_tests": 3713,
     "test_files": 202,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
@@ -861,22 +861,31 @@
       "P9 finished: every card expander is a native <details> on /education, /resources, /take-action (051592c, e9b4c47), / (e9b4c47), /directory, /data-sources (bf86398) and the Influence Network on /intelligence (89b2b5c; /intelligence now 379,667 characters without JS). 56 aria-expanded elements remain in the pre-rendered pages, all controls (language picker, letter generator's prisoner picker, case-timeline combobox)",
       "Influence Network sections list every entry their titles count: 76 entries had been cut off by caps, 42 of them silently (89b2b5c)",
       "Dead controls fixed or removed: share links carried an empty URL without JS (now SITE_URL in src/utils/site.ts), 7 buttons with no handler, 20 toolkit downloads that never existed (6d686d2)",
-      "Tursunay Ziawudun's garbled quotes removed rather than rewritten from a secondary source (461a6af); Q19 asks for them verbatim"
+      "Tursunay Ziawudun's garbled quotes removed rather than rewritten from a secondary source (461a6af); Q19 asks for them verbatim",
+      "Keyboard users start at the skip links; #links land on their target; skip links shown one at a time (2dbf8b3)",
+      "No page is replaced by its loading screen while hydrating: the theme reads the colour scheme only for 'system', and saved theme/language apply through useDeferredValue with a stable context (2dbf8b3, 327fa8e)",
+      "Phone width: 171 cut-off text elements -> 0 (fd10bd7); 28 more truncations lifted, summary previews expand on open (dce786e)",
+      "Operating CCP police stations count in both threat assessments: components checked 'ACTIVE', data says 'OPERATING'; STATION_STATUS in dataApi.ts (1666180)",
+      "Five click-to-reveal sections with no aria-expanded converted: prisoner grid (15 of 64 shown, modal), memorial wall modal, academic experts, threat map, quick facts (d136284)"
     ],
     "build_guards_added": [
       "scripts/prerender.mjs fails when two form controls on one page share an accessible name",
       "scripts/prerender.mjs fails when a page has a button with no accessible name",
-      "scripts/prerender.mjs fails when a <summary> holds block content or a heading that is not its direct child (ba05696)"
+      "scripts/prerender.mjs fails when a <summary> holds block content or a heading that is not its direct child (ba05696)",
+      "design-system.test.ts fails on a <table> placed directly in an overflow-hidden box (fd10bd7)",
+      "DisclosureSection.test.tsx fails on a truncate/line-clamp inside a <summary> that does not lift when opened (dce786e)"
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
     "rules_added": [
       "Style an open state with summary-open:, never group-open: or a group class on a <details>. DisclosureSection.test.tsx fails on any group-open: in src/.",
       "Screenshot any state you change the look of, at phone width too. jsdom computes no CSS; the group-open bug passed every test and every text measurement.",
       "Run each rewritten test file against the component as it was before (git show <commit>:path) and expect failures. Several expander tests had passed on an empty list.",
-      "New disclosures follow STYLE_GUIDE.md section 4: native <details>, phrasing-only summaries, summary-open:, no capped lists, JS-only controls behind useBrowserValue"
+      "New disclosures follow STYLE_GUIDE.md section 4: native <details>, phrasing-only summaries, summary-open:, no capped lists, JS-only controls behind useBrowserValue",
+      "Scan for behaviour, not the attribute meant to go with it: aria-expanded counts missed five click-to-reveal sections that a scan for click handlers on non-controls found",
+      "Compare data fields against the data's own constants (STATION_STATUS), never a string typed from memory"
     ],
     "next": [
-      "PARKED_WORK.md P10: text cut off at phone width (118 clipped text elements on four routes when counted; the Influence Network's have been fixed since)",
+
       "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
       "P7 content re-verification stays paused until the owner resumes it"
     ]

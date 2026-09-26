@@ -229,34 +229,15 @@ ContactRepresentatives and LanguageGuide, are already native sections.)
 
 ---
 
-## P10 — Text cut off at phone width
-
-**Size:** medium · **Value:** high (most readers are on phones) · **Risk:** low
-
-At 390px, text runs past its own container on several routes, where an
-ancestor with `overflow: hidden` clips it or it spills over a card's
-border. The page itself never scrolls sideways, so a document-level
-overflow check reports nothing. Counted in Chromium with every `<details>`
-open (September 2026): `/education` 77, of which 73 are clipped by
-`overflow: hidden` and lost; `/security` 50 (30 lost); `/intelligence` 23
-(8 lost); `/data-sources` 7 (7 lost). The rest sit in `overflow-x: auto`
-wrappers and can still be scrolled. Examples: the /intelligence stat
-"10,000+"; a station status shown
-as the raw enum "PENDING_INVESTIGATION" (also a wording bug); `/data-sources`
-file paths; the economic sector card's stats row, which has no `flex-wrap`.
-Icons in a flex row next to long text shrink unless they have
-`flex-shrink-0`: the /take-action action icons were squeezed to 13px wide
-(fixed); scan for others. Fixed in passing: the Influence Network's badge
-rows, its Most-Sanctioned list (badges over names, positions cut to
-"Vice ...") and its section icons (`89b2b5c`).
-Measure with an element-level check (each text element against its nearest
-clipping ancestor), fix by pattern (wrap, `break-words`, `min-w-0`), and
-compare the before and after lists.
-
----
-
 ## Small items
 
+- **`/prisoners` lists the same prisoners twice.** The card grid (every case,
+  15 open and the rest folded) and the status dashboard below it both list
+  the 64 records. Which to keep, or how to divide them, is an editorial call
+  for the owner.
+- **The threat map's region totals and its country lists disagree.** Europe
+  states 54 stations, but its countries add up to 52; Asia Pacific states 28
+  against 26. Checking which is right is content work (P7, paused).
 - **The home page's `recent_updates` feed is six months stale and partly
   internal.** Its newest entry is 10 March 2026, and it lists code changes
   readers cannot use ("Centralized Logging Utility — structured,
@@ -287,4 +268,5 @@ compare the before and after lists.
 | Move deployment to Cloudflare Pages | Rejected — Workers with static assets is Cloudflare's recommendation; the official migration runs Pages → Workers. See §15. |
 | Eager page registry alone as the #418 fix | Reverted — made no-JS output strictly worse. The diagnosis behind it was wrong; see §17. |
 | **P1 — make every lazy component eager during pre-render** | **Done differently, and P1's premise was false.** The 41 deferred sections and React #418 had nothing to do with `React.lazy`. React outlines any Suspense boundary whose markup exceeds `progressiveChunkSize` (12,800 bytes by default), suspension or not. One option in `src/entry-server.tsx` fixed both. The full 120-site eager sweep P1 asked for was built and tested first: it changed the output by zero bytes. See §17. |
-| **P9 — Card expanders hide their details without JavaScript** | **Done.** Every card expander is a native `<details>` now, on every route: the 16 profiles, `/security`, `/prisoners`, `/intelligence`, `/education`, `/take-action`, `/`, `/resources`, `/directory` and `/data-sources`. Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain, and all are controls, not hidden content: the language picker (twice on each of the 27 routes), the letter generator's prisoner picker and the case-timeline combobox. Numbers, and the faults the conversions turned up, are in `docs/MODERNIZATION.md` §18; the rules for new disclosures are in `STYLE_GUIDE.md` §4. |
+| **P9 — Card expanders hide their details without JavaScript** | **Done.** Every card expander is a native `<details>` now, on every route: the 16 profiles, `/security`, `/prisoners`, `/intelligence`, `/education`, `/take-action`, `/`, `/resources`, `/directory` and `/data-sources`. Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain, and all are controls, not hidden content: the language picker (twice on each of the 27 routes), the letter generator's prisoner picker and the case-timeline combobox. Five more that used no `aria-expanded` turned up later, in a scan for click handlers on non-controls: the prisoner grid, the memorial wall's modal, the academic experts' cards, the threat map and the quick facts (`d136284`). Numbers, and the faults the conversions turned up, are in `docs/MODERNIZATION.md` §18; the rules for new disclosures are in `STYLE_GUIDE.md` §4. |
+| **P10 — Text cut off at phone width** | **Done.** At 390px, 171 text elements on five routes ran past a box that clipped them; none do now (`fd10bd7`). Tables scroll sideways, rows wrap, long tokens break, and text cut on purpose shows in full. A second pass lifted 28 more cuts: summary previews expand when opened, other cut text wraps (`dce786e`). Tests guard clipped tables and summary clamps; the element-level check itself needs a browser and lives outside the repo. See `docs/MODERNIZATION.md` §18. |

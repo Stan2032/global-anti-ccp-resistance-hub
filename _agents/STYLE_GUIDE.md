@@ -128,6 +128,13 @@ the one holding a match.
   on `group-open:` anywhere in `src/`.
 - **Don't cap a list inside a disclosure.** It is closed until opened, so a
   cap saves no room, and a title that says "(29)" must show 29.
+- **A preview cut short in a summary lifts when opened**
+  (`truncate summary-open:whitespace-normal summary-open:overflow-visible`,
+  or `line-clamp-2 summary-open:line-clamp-none`), unless the body repeats
+  the text. A test fails otherwise.
+- **No click handler on an element that is not a control** (a `<div>`, an
+  `<li>`, an SVG shape). A keyboard cannot reach it. If it reveals content,
+  use a `<details>`. If it does something, use a `<button>` or a link.
 - **A control that only works with JavaScript** (copy a link, "Expand all")
   renders only once JavaScript runs:
   `const scripted = useBrowserValue(() => true, false)` from

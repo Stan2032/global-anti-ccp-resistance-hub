@@ -101,7 +101,7 @@ src/
 ├── contexts/           # ThemeContext, LanguageContext, SocketContext (stub)
 ├── locales/            # 8 locale JSON files (en, zh-CN, zh-TW, vi, ko, ja, ug, bo)
 ├── utils/              # dateUtils, sourceLinks, logger, encryption
-└── test/               # 202 Vitest test files, 3,690 tests (+ 2 content-freshness files)
+└── test/               # 202 Vitest test files, 3,713 tests (+ 2 content-freshness files)
 ```
 
 ### Data Flow
@@ -191,7 +191,7 @@ npm run preview         # Preview production build locally
 
 ### Testing
 ```bash
-npm test                # Code correctness — 3,690 tests across 202 files. Must be green.
+npm test                # Code correctness — 3,713 tests across 202 files. Must be green.
 npm run test:watch      # Watch mode for development
 npm run typecheck       # tsc --noEmit
 npm run verify          # lint + typecheck + test + build (what CI runs)

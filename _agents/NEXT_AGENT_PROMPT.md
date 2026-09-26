@@ -16,7 +16,7 @@
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,690 across 202** for `npm test`,
+> - "3714 tests across 201 files" is now **3,713 across 202** for `npm test`,
 >   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.
@@ -57,10 +57,13 @@
 > P7 (content re-verification) is **paused** until they resume it. Apart
 > from the live feed (P4), nothing on the site hides content from a reader
 > without JavaScript any more: the tabs and all the card expanders (P9) are
-> native `<details>`. Before adding a disclosure, read `STYLE_GUIDE.md` §4.
-> Next: P10 (text cut off at phone width, where most readers are), then P8
-> and the small items in `PARKED_WORK.md`, then P3 (ESLint 10, since 9.x is
-> end of support).
+> native `<details>`, and no text is cut off at phone width (P10). Before
+> adding a disclosure, read `STYLE_GUIDE.md` §4. When code compares a data
+> field against a string, use the data's own constants (`STATION_STATUS` in
+> `dataApi.ts`): a component checked stations for `'ACTIVE'`, which the data
+> never uses, and rated countries with operating CCP police stations LOW.
+> Next: P8 and the small items in `PARKED_WORK.md`, then P3 (ESLint 10,
+> since 9.x is end of support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 
