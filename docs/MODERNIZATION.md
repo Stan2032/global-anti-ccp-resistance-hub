@@ -982,6 +982,11 @@ a native `<details>` that opens without any script.
   live under `accessibility.*`, and `t()` returns the key when a lookup
   misses. The tests accepted either text. A test now resolves every `t()`
   key in `src/` — `33e7dec`.
+- Sixteen rows of filter buttons were marked up as tab widgets over a
+  single list, so a screen reader announced "tab, 1 of 6" and promised a
+  panel for each. They are groups named for what they filter ("Filter
+  sanctions by country"), of buttons that say whether they are on (P8). A
+  test fails on any tab role in `src` — `efbeaef`.
 
 ### Returning readers and hardened browsers
 
@@ -1156,6 +1161,55 @@ JavaScript, and that no test had caught:
   to "Vice ...". Rows wrap now, and nothing there is truncated — `89b2b5c`.
   The rest of this is P10.
 
+### Things the site said that were not so
+
+Most of this sweep was about whether readers could reach what the site
+says. This part is about whether what it says is true. None of it needed
+new research: each statement contradicted the site's own data, or
+described something that does not exist.
+
+- **Courses and downloads that were never made.** `/education` opened with
+  "Total Courses 5 — Comprehensive modules", "Resources 5 — Downloadable
+  materials" and "Topics Covered 20+" (the data lists 19). Below them were
+  five course cards with durations and lesson counts, and five PDFs with
+  file sizes. Every course ended "Course content coming soon", every
+  download was a disabled icon, and the sizes were invented. The cards were
+  also buttons that showed each course's topics only with JavaScript. The
+  page now opens with its real sections. The outlines sit in one closed
+  section at the end, labelled as never written, until the owner decides
+  (Q21). `/resources` advertised "8 Courses", and "21 Books" over a reading
+  list of 20. The meta description and the structured data promised
+  "interactive courses", and the site search "courses" — `88ecdcc`.
+- **A network that is not one.** `/community` called itself a "Community
+  Support Network — Mutual aid network connecting activists with volunteers
+  and resources". Its four "support resources", among them an "Emergency
+  Relocation Guide", were cards that led nowhere. Three now go to the
+  sections that cover them: the emergency procedures, the diaspora
+  mental-health listings and the legal resources hub. Nothing on the site
+  covers the fourth, fundraising, so that card is gone. The site search
+  offered "Contact Us — Send a message to the Resistance Hub team", through
+  a contact form that has never been connected (Q15) — `e01fa36`.
+- **Counts typed in by hand.** The profiles index said "65 total cases in
+  database" for six months after a duplicate record was removed; the
+  database holds 64 — `efbeaef`. Its test pinned 65, as others pinned "21
+  Books" and "20+". Those tests now read the count from the data, or from
+  the list it counts.
+- **Profile pages behind their records.** Re-verifying a prisoner record
+  never touched the person's profile page, which retells the record in its
+  own words. After September's re-verification, Chow Hang-Tung's page still
+  said she was on trial: she was sentenced to 7 years 3 months on 11
+  September. Joshua Wong's page said he had not entered a plea; he pleaded
+  guilty on 2 September. Gao Zhisheng's kept the "last seen" wording his
+  record had corrected to a seizure by police. Each page now says what its
+  record says, from the sources recorded there. A new test names the
+  verification each page was last checked against, and fails when a record
+  is re-verified after it — `c5719af`.
+
+Two guards came out of this. The build fails on a link to a section
+(`/security#guides`) whose id is not on the page it names — `e01fa36`. And
+`data-profile-review.test.ts` sends each re-verification back to the page
+that retells it.
+
 ### Lessons
 
 1. **Test as the reader is.** Add a returning-visitor profile, a blocked-storage
@@ -1179,5 +1233,12 @@ JavaScript, and that no test had caught:
    passes while the number beside it is always 0.
 7. **Follow the small symptom.** A `#link` landing in the wrong place led
    to a hydration fault that logged nothing at all.
+8. **A number in the text is data.** "65 cases", "21 Books", "8 Courses",
+   "20+ topics": every hand-typed count checked was wrong, and three had a
+   test pinning the wrong value. Derive it, or test it against what it
+   counts.
+9. **When a fact changes, find every place that repeats it.** The
+   re-verified records were right, and the profile pages that retell them
+   were not. Updating one copy of a fact updates only that copy.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

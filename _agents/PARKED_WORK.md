@@ -231,6 +231,18 @@ long tail.
   no undismissed alerts remain, taking the "show --dismissed (N)" button with
   it. A reader who dismisses every alert cannot bring them back without
   clearing site data.
+- **Eleven profile pages define fields they never show.** Their `PROFILE`
+  objects carry `sentence` and `currentLocation`, but only five pages render
+  them; the rest show their own banners. A fact corrected only in the unused
+  field changes nothing a reader sees (Gao Zhisheng's location line was one).
+  Either render them or delete them.
+- **The API rate limiter keeps readers' IPs in memory longer than it needs
+  to.** `checkRateLimit` in `api/worker.js` drops an IP's old timestamps only
+  when that IP comes back, and prunes the whole map only past 10,000 entries.
+  Nothing is logged or stored, so the footer's "does not collect personal
+  data" holds, but an IP could stay in an isolate's memory until the isolate
+  is recycled. `/intelligence` calls the feed proxy from the reader's
+  browser, so its readers are among them. Pruning on a timer would bound it.
 - **`main.tsx` storage cleanup is temporary.** `LEFT_BY_EARLIER_VERSIONS`
   tidies keys that versions before September 2026 wrote on every visit.
   Delete it once returning readers have had time to visit again (mid-2027 is

@@ -9,14 +9,14 @@
 > | File | What it holds |
 > |---|---|
 > | `docs/MODERNIZATION.md` | The audit. 18 sections, including dead ends. §17 corrects §15 and §16; §18 is the site-quality sweep. |
-> | `_agents/PARKED_WORK.md` | P1-P10 and small items: scoped work not yet done (P9 is closed). **Pick from here.** |
-> | `_agents/QUESTIONS_FOR_HUMANS.md` | Q14-Q20, all open and awaiting the owner. |
+> | `_agents/PARKED_WORK.md` | P1-P10 and small items: scoped work not yet done (P1, P8, P9 and P10 are closed). **Pick from here.** |
+> | `_agents/QUESTIONS_FOR_HUMANS.md` | Q12 and Q14-Q21, open and awaiting the owner. |
 > | `_agents/TODO.md` | Older task list; still useful, partly superseded. |
 >
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,713 across 202** for `npm test`,
+> - "3714 tests across 201 files" is now **3,764 across 204** for `npm test`,
 >   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.
@@ -62,8 +62,14 @@
 > field against a string, use the data's own constants (`STATION_STATUS` in
 > `dataApi.ts`): a component checked stations for `'ACTIVE'`, which the data
 > never uses, and rated countries with operating CCP police stations LOW.
-> Next: P8 and the small items in `PARKED_WORK.md`, then P3 (ESLint 10,
-> since 9.x is end of support).
+> A number or a claim in page text is data: derive it, or test it against
+> what it describes. Hand-typed counts ("65 cases", "21 Books", "8 Courses")
+> were all wrong, and pages advertised courses, downloads and a "network"
+> that do not exist (`docs/MODERNIZATION.md` §18, "Things the site said").
+> When a prisoner record is re-verified, `data-profile-review.test.ts`
+> fails until the person's profile page has been read against it.
+> Next: the small items in `PARKED_WORK.md`, then P3 (ESLint 10, since 9.x
+> is end of support).
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

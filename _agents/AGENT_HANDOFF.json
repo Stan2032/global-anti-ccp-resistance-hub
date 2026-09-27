@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "38.0",
-    "date": "2026-09-26T15:50:00Z",
+    "version": "39.0",
+    "date": "2026-09-27T04:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v37.0)",
+    "supersedes": "AGENT_HANDOFF.json (v38.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3713,
-    "test_files": 202,
+    "frontend_tests": 3764,
+    "test_files": 204,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 16,
@@ -873,7 +873,10 @@
       "scripts/prerender.mjs fails when a page has a button with no accessible name",
       "scripts/prerender.mjs fails when a <summary> holds block content or a heading that is not its direct child (ba05696)",
       "design-system.test.ts fails on a <table> placed directly in an overflow-hidden box (fd10bd7)",
-      "DisclosureSection.test.tsx fails on a truncate/line-clamp inside a <summary> that does not lift when opened (dce786e)"
+      "DisclosureSection.test.tsx fails on a truncate/line-clamp inside a <summary> that does not lift when opened (dce786e)",
+      "scripts/prerender.mjs fails when a link to a section (/page#id) names an id its page does not have (e01fa36)",
+      "aria-complete-coverage.test.ts fails on any role=tab, tablist or tabpanel in src (efbeaef)",
+      "data-profile-review.test.ts fails when a prisoner record is re-verified after its profile page was last checked against it (c5719af)"
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
     "rules_added": [
@@ -882,11 +885,14 @@
       "Run each rewritten test file against the component as it was before (git show <commit>:path) and expect failures. Several expander tests had passed on an empty list.",
       "New disclosures follow STYLE_GUIDE.md section 4: native <details>, phrasing-only summaries, summary-open:, no capped lists, JS-only controls behind useBrowserValue",
       "Scan for behaviour, not the attribute meant to go with it: aria-expanded counts missed five click-to-reveal sections that a scan for click handlers on non-controls found",
-      "Compare data fields against the data's own constants (STATION_STATUS), never a string typed from memory"
+      "Compare data fields against the data's own constants (STATION_STATUS), never a string typed from memory",
+      "A row of buttons over one list is a filter: role=group named 'Filter X by Y', buttons with aria-pressed. Never tabs (STYLE_GUIDE.md section 4, Filters)",
+      "A count or claim in page text is data: derive it or test it against what it counts. Never pin a hand-typed number in a test",
+      "Don't list what doesn't exist: courses, downloads, guides or contact routes that were never made are removed or labelled as not made, and the owner asked (Q20, Q21)"
     ],
     "next": [
 
-      "PARKED_WORK.md P8 (filter bars announced as tabs) and Small items",
+      "PARKED_WORK.md Small items, then P3 (ESLint 10)",
       "P7 content re-verification stays paused until the owner resumes it"
     ]
   }
