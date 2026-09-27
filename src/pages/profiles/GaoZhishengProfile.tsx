@@ -44,7 +44,7 @@ const PROFILE = {
   birthPlace: 'Shaanxi Province, China',
   nationality: 'Chinese',
   status: 'DISAPPEARED',
-  currentLocation: 'Unknown — last seen August 13, 2017, in Shaanxi Province',
+  currentLocation: 'Unknown — seized by police in Shaanxi Province on August 13, 2017',
   sentence: '3 years suspended sentence (2006), revoked and served 2011-2014. Disappeared since August 2017.',
   occupation: 'Human Rights Lawyer — named one of China\'s top 10 lawyers by the Ministry of Justice in 2001',
 };
@@ -140,16 +140,16 @@ const TIMELINE = [
   {
     date: '2017-08-13',
     year: '2017',
-    title: 'Last seen — disappeared from home',
-    detail: 'Last seen by his family. Disappeared from his home in Shaanxi Province. Chinese authorities have refused to disclose his whereabouts or confirm he is alive.',
+    title: 'Seized while escaping house arrest — disappeared',
+    detail: 'Seized while attempting to escape house arrest in Shaanxi Province with the help of several activists, by police believed to be from Beijing and Shaanxi. He was not simply "last seen". Chinese authorities have never confirmed holding him, and have refused to disclose his whereabouts or confirm he is alive.',
     category: 'persecution',
-    sourceUrl: 'https://humanrightscommission.house.gov/DFP/Countries/China/Gao-Zhisheng',
+    sourceUrl: 'https://www.nchrd.org/2025/08/china-release-lawyer-gao-zhisheng-forcibly-disappeared-since-2017/',
   },
   {
     date: '2025-08',
     year: '2025',
     title: '8th anniversary of disappearance — wife appeals on Capitol Hill',
-    detail: 'On the 8th anniversary of his disappearance, Gao\'s wife Geng He testified at a symposium on Capitol Hill, pleading: "Please do not let him disappeared forever." ChinaAid, Lawyers for Lawyers, and NCHRD issued coordinated demands for China to confirm whether he is alive. UN Special Rapporteur also called on the Chinese government to disclose his whereabouts. As of March 2026, his location, health status, and whether he is still alive remain completely unknown.',
+    detail: 'On the 8th anniversary of his disappearance, Gao\'s wife Geng He testified at a symposium on Capitol Hill, pleading: "Please do not let him disappeared forever." ChinaAid, Lawyers for Lawyers, and NCHRD issued coordinated demands for China to confirm whether he is alive. UN Special Rapporteur also called on the Chinese government to disclose his whereabouts. As of August 2026, nine years on, his location, health and whether he is still alive remain unknown.',
     category: 'international',
     sourceUrl: 'https://www.nchrd.org/2025/08/china-release-lawyer-gao-zhisheng-forcibly-disappeared-since-2017/',
   },
@@ -298,7 +298,7 @@ export default function GaoZhishengProfile() {
             </div>
 
             <p className="text-xs text-slate-400 mt-3 italic">
-              Last seen August 13, 2017. Chinese authorities refuse to disclose his whereabouts or confirm he is alive.
+              Seized by police on August 13, 2017. Chinese authorities have never confirmed holding him, and refuse to disclose his whereabouts or confirm he is alive.
             </p>
           </div>
         </div>

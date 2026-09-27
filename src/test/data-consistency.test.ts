@@ -259,7 +259,7 @@ describe('Critical date consistency across data files', () => {
       expect(tohti.output.sentence).toMatch(/September 23, 2014/);
     });
 
-    it('Gao Zhisheng last seen August 13, 2017', () => {
+    it('Gao Zhisheng disappeared on August 13, 2017', () => {
       const gao = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Gao Zhisheng')!;
       expect(gao).toBeDefined();
       expect(gao.output.latest_news).toMatch(/August 13, 2017/);

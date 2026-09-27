@@ -1,8 +1,9 @@
 /**
  * ChowHangTungProfile — Detailed profile of Chow Hang-Tung, human rights
- * lawyer and Tiananmen vigil organizer. Charged with "inciting subversion"
- * for leading candlelight vigils commemorating June 4th. Detained 4+ years
- * without trial. Representing herself. UN ruled detention arbitrary.
+ * lawyer and Tiananmen vigil organizer. Convicted of "inciting subversion"
+ * in August 2026 for leading candlelight vigils commemorating June 4th, and
+ * sentenced to 7 years 3 months after nearly five years in pre-trial
+ * detention. Represented herself. UN ruled detention arbitrary.
  *
  * @module ChowHangTungProfile
  */
@@ -51,7 +52,7 @@ const PROFILE = {
   nationality: 'Hong Kong Chinese',
   status: 'DETAINED',
   currentLocation: 'Prison, Hong Kong',
-  sentence: 'On trial — "inciting subversion of state power" under NSL (max 10 years). Pleaded NOT GUILTY.',
+  sentence: '7 years 3 months for inciting subversion under the National Security Law, sentenced September 11, 2026. Pleaded not guilty and represented herself.',
   occupation: 'Human Rights Lawyer, Vice-Chair of Hong Kong Alliance',
 };
 
@@ -173,9 +174,25 @@ const TIMELINE = [
     date: '2026-03-10',
     year: '2026',
     title: 'Defence seeks early acquittal — "no case to answer"',
-    detail: 'Defence made a "no case to answer" submission, arguing that prosecutors had failed to present sufficient evidence and had misapplied the law. The court is considering the submission. If successful, Chow could be acquitted before needing to mount a full defence.',
+    detail: 'Defence made a "no case to answer" submission, arguing that prosecutors had failed to present sufficient evidence and had misapplied the law. Had it succeeded, Chow would have been acquitted before needing to mount a full defence. It did not: she was convicted in August.',
     category: 'persecution',
     sourceUrl: 'https://hongkongfp.com/2026/03/10/lawyers-for-tiananmen-vigil-activist-seek-acquittal-in-subversion-trial/',
+  },
+  {
+    date: '2026-08-21',
+    year: '2026',
+    title: 'Convicted of inciting subversion',
+    detail: 'Convicted of inciting subversion of state power under the National Security Law, with Lee Cheuk-yan and Albert Ho, for organising the annual Tiananmen vigils. She had been held in pre-trial detention since September 2021, repeatedly denied bail.',
+    category: 'persecution',
+    sourceUrl: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/',
+  },
+  {
+    date: '2026-09-11',
+    year: '2026',
+    title: 'Sentenced to 7 years 3 months',
+    detail: 'Sentenced at the High Court to 7 years 3 months, the heaviest of the three sentences. Lee Cheuk-yan received 7 years and Albert Ho 5 years 2 months, and the Hong Kong Alliance was fined HK$1.5 million. Amnesty International called the sentencing "a triple tragedy: for the activists being unjustly punished; the survivors and victims of the Tiananmen crackdown itself; and the generations of Hongkongers denied the space to discuss one of the most consequential events in modern Chinese history," and said her right to appeal must be protected.',
+    category: 'persecution',
+    sourceUrl: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/',
   },
 ];
 
@@ -184,9 +201,9 @@ const CHARGES = [
     charge: 'Inciting subversion of state power (煽動顛覆國家政權罪)',
     law: 'Hong Kong National Security Law (NSL), Article 22/23',
     filed: 'September 2021',
-    verdict: 'ON TRIAL — Pleaded NOT GUILTY (January 22, 2026)',
-    sentence: 'Maximum 10 years imprisonment',
-    detail: 'Charged for her role in organizing the Hong Kong Alliance\'s annual Tiananmen candlelight vigils. The prosecution alleges that commemorating the victims of the 1989 Tiananmen massacre and calling for accountability constitutes "inciting subversion of state power." This is the first prosecution specifically targeting historical memory and commemoration as subversion.',
+    verdict: 'CONVICTED — August 21, 2026 (pleaded not guilty)',
+    sentence: '7 years 3 months (sentenced September 11, 2026)',
+    detail: 'Charged for her role in organizing the Hong Kong Alliance\'s annual Tiananmen candlelight vigils. The prosecution argued that commemorating the victims of the 1989 Tiananmen massacre and calling for accountability constitutes "inciting subversion of state power." This is the first prosecution specifically targeting historical memory and commemoration as subversion.',
   },
   {
     charge: 'Inciting others to knowingly take part in an unauthorized assembly',
@@ -211,12 +228,12 @@ const CCP_NARRATIVES = [
   },
   {
     claim: '"Her prolonged detention is necessary for national security"',
-    reality: 'Chow has been in pre-trial detention since September 2021 — over 4 years — for organizing peaceful candlelight vigils. She poses no security threat. The UN Working Group on Arbitrary Detention, Amnesty International, and international legal observers all agree her detention violates international law. The prolonged pre-trial detention itself may constitute cruel and inhuman treatment.',
+    reality: 'Chow was held in pre-trial detention from September 2021 until her conviction in August 2026 — nearly five years — for organizing peaceful candlelight vigils. She poses no security threat. The UN Working Group on Arbitrary Detention, Amnesty International, and international legal observers all agree her detention violates international law. The prolonged pre-trial detention itself may constitute cruel and inhuman treatment.',
     sourceUrl: 'https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/',
   },
   {
     claim: '"The trial is fair and follows due process"',
-    reality: 'The trial is conducted under the NSL framework, which allows government-vetted judges, restrictions on jury trials, and secret proceedings. Chow was denied bail for over 4 years. The prosecution relies heavily on speeches and media appearances from before the NSL was enacted. International legal observers have raised serious concerns about the fairness of proceedings.',
+    reality: 'The trial was conducted under the NSL framework, which allows government-vetted judges, restrictions on jury trials, and secret proceedings. Chow was denied bail for nearly five years. The prosecution relied heavily on speeches and media appearances from before the NSL was enacted. International legal observers raised serious concerns about the fairness of proceedings.',
     sourceUrl: 'https://www.lawyersforlawyers.org/wp-content/uploads/2026/03/ChowHangTung_JointStatement_6_3_2026.pdf',
   },
 ];
@@ -255,6 +272,7 @@ const INTERNATIONAL_RESPONSES = [
 ];
 
 const SOURCES = [
+  { name: 'Amnesty International (sentencing, September 2026)', url: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/', tier: 1 },
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/', tier: 1 },
   { name: 'Amnesty (Write for Rights)', url: 'https://amnesty.org.nz/chow/', tier: 1 },
   { name: 'Amnesty (Valentine\'s poem)', url: 'https://www.amnesty.org/en/latest/campaigns/2026/02/in-a-world-that-forces-us-apart-we-still-choose-each-other-valentines-poem-to-hong-kong-activist-chow-hang-tung/', tier: 1 },
@@ -334,7 +352,7 @@ const ChowHangTungProfile: React.FC = () => {
               <Heart className="w-4 h-4 text-[#4afa82] shrink-0 mt-0.5" />
               <p className="text-sm text-slate-300">
                 <span className="text-[#4afa82] font-mono">Why this case matters:</span>{' '}
-                This is the first prosecution that specifically criminalizes the commemoration of a historical event — the Tiananmen massacre — as "subversion." If Chow is convicted, it will establish that remembering the dead is a crime in Hong Kong. The UN has ruled her detention arbitrary. Amnesty International has designated her a prisoner of conscience.
+                This is the first prosecution to treat the commemoration of a historical event — the Tiananmen massacre — as "subversion," and her conviction establishes that remembering the dead can be prosecuted in Hong Kong. The UN has ruled her detention arbitrary. Amnesty International has designated her a prisoner of conscience.
               </p>
             </div>
           </div>

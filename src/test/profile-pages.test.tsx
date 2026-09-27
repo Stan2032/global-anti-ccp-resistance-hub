@@ -228,3 +228,34 @@ describe('Profile Pages — Data Integrity', () => {
     });
   });
 });
+
+// These pages retell facts that were re-verified in September 2026 while the
+// pages kept the old story. data-profile-review.test.ts makes the next
+// re-verification come back to the page; these pin what each says now.
+describe('Profile Pages — agree with the verified prisoner records', () => {
+  const text = (ui: React.ReactElement) => renderWithRouter(ui).container.textContent!;
+
+  it('Chow Hang-Tung: convicted and sentenced, no longer "on trial"', () => {
+    const page = text(<ChowHangTungProfile />);
+    expect(page).toContain('7 years 3 months for inciting subversion under the National Security Law, sentenced September 11, 2026');
+    expect(page).toContain('CONVICTED — August 21, 2026');
+    expect(page).not.toMatch(/On trial|ON TRIAL|If Chow is convicted|The court is considering/);
+  });
+
+  it('Joshua Wong: pleaded guilty to collusion, sentencing pending', () => {
+    const page = text(<JoshuaWongProfile />);
+    expect(page).toContain('On September 2, 2026 he pleaded guilty to conspiracy to collude with foreign forces');
+    expect(page).toContain('Pleaded guilty to foreign collusion');
+    expect(page).not.toMatch(/He has not entered a plea|PENDING|simultaneously facing new/);
+  });
+
+  it('Gao Zhisheng: seized by police, not "last seen"', () => {
+    const page = text(<GaoZhishengProfile />);
+    expect(page).toContain('Seized while attempting to escape house arrest');
+    expect(page).not.toMatch(/last seen August 13, 2017|Last seen — disappeared/i);
+  });
+
+  it('Zhang Zhan: Amnesty says her condition is life threatening', () => {
+    expect(text(<ZhangZhanProfile />)).toContain('describing her condition as life threatening');
+  });
+});

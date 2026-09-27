@@ -45,7 +45,7 @@ const PROFILE = {
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'IMPRISONED',
   currentLocation: 'Stanley Prison, Hong Kong',
-  sentence: '4 years 8 months (subversion) + new NSL collusion charge (faces life)',
+  sentence: '4 years and 8 months for subversion (Hong Kong 47). Pleaded guilty September 2, 2026 to conspiracy to collude with foreign forces; sentencing pending, maximum life imprisonment.',
   occupation: 'Pro-Democracy Activist, Student Leader, Former Secretary-General of Demosistō',
 };
 
@@ -224,9 +224,17 @@ const TIMELINE = [
     date: '2026-03-06',
     year: '2026',
     title: 'Foreign collusion case hearing — High Court',
-    detail: 'Wong\'s foreign collusion case, transferred to the High Court where life imprisonment can be imposed, is scheduled for hearing. The case was adjourned from earlier proceedings. He has not entered a plea. Amnesty International and international observers continue to condemn the charge as designed to prolong his imprisonment indefinitely.',
+    detail: 'Wong\'s foreign collusion case, transferred to the High Court where life imprisonment can be imposed, was scheduled for hearing, having been adjourned from earlier proceedings. He had not yet entered a plea. Amnesty International and international observers condemned the charge as designed to prolong his imprisonment indefinitely.',
     category: 'persecution',
     sourceUrl: 'https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year',
+  },
+  {
+    date: '2026-09-02',
+    year: '2026',
+    title: 'Pleaded guilty to foreign collusion',
+    detail: 'Pleaded guilty at the High Court to conspiracy to collude with foreign forces — his second National Security Law conviction. Judge William Tam adjourned sentencing with no date set; the maximum is life imprisonment. Wong was originally due for release in January 2027, before this case was brought, and will not receive remission on his earlier sentence.',
+    category: 'persecution',
+    sourceUrl: 'https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/',
   },
 ];
 
@@ -243,8 +251,8 @@ const CHARGES = [
     charge: 'Conspiracy to collude with foreign forces',
     law: 'National Security Law, Article 29',
     filed: 'June 6, 2025',
-    verdict: 'PENDING — next hearing March 6, 2026 (High Court)',
-    sentence: 'Faces up to LIFE IMPRISONMENT',
+    verdict: 'GUILTY PLEA — September 2, 2026 (High Court)',
+    sentence: 'Sentencing adjourned, no date set — maximum LIFE IMPRISONMENT',
     detail: 'Accused of conspiring with Nathan Law (now in exile in the UK) and "other persons unknown" to encourage foreign countries or organizations to impose sanctions on Hong Kong or China between July and November 2020. Case transferred to the High Court where life imprisonment can be imposed. Amnesty International called these charges "designed to prolong his stay behind bars" and prevent his scheduled January 2027 release.',
   },
 ];
@@ -312,6 +320,7 @@ const AWARDS = [
 ];
 
 const SOURCES = [
+  { name: 'Hong Kong Free Press — guilty plea (September 2026)', url: 'https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/', tier: 2 },
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/', tier: 1 },
   { name: 'BBC News', url: 'https://www.bbc.com/news/articles/cx2l4eynl4zo', tier: 1 },
   { name: 'Hong Kong Watch', url: 'https://www.hongkongwatch.org/all-posts/2024/11/19/hong-kong-watch-strongly-condemns-sentencing-of-45-of-the-hong-kong-47-democrats', tier: 1 },
@@ -368,7 +377,7 @@ export default function JoshuaWongProfile() {
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">IMPRISONED</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
-                NEW NSL CHARGE — FACES LIFE
+                SECOND NSL CONVICTION — FACES LIFE
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {calculateAge(PROFILE.birthDate)}
@@ -434,9 +443,10 @@ export default function JoshuaWongProfile() {
             <div className="bg-red-900/20 border border-red-700/50 p-4">
               <h3 className="text-sm font-semibold text-red-300 mb-2">⚠️ Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
-                Wong is currently serving a 4 year 8 month sentence for subversion while simultaneously facing new "collusion with foreign forces" charges 
-                that carry a maximum penalty of <strong className="text-red-400">life imprisonment</strong>. Amnesty International has called these new charges 
-                "designed to prolong his stay behind bars" beyond his scheduled January 2027 release date.
+                Wong is serving a 4 year 8 month sentence for subversion. On September 2, 2026 he pleaded guilty to conspiracy to collude with
+                foreign forces, which carries a maximum penalty of <strong className="text-red-400">life imprisonment</strong>; sentencing has been
+                adjourned with no date set. He was due for release in January 2027, and will not receive remission on his earlier sentence.
+                Amnesty International called the charge "designed to prolong his stay behind bars".
               </p>
             </div>
 

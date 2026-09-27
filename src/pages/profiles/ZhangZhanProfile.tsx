@@ -146,6 +146,14 @@ const TIMELINE = [
     detail: 'Remains imprisoned. Health status critically deteriorating. International organizations continue to demand her immediate and unconditional release.',
     category: 'persecution',
   },
+  {
+    date: '2026-05-15',
+    year: '2026',
+    title: 'Amnesty urgent action: her condition is life threatening',
+    detail: 'Amnesty International issued an urgent action describing her condition as life threatening — serious gastric illness, significant weight loss, extremely weak — and calling for her immediate release. Authorities have persistently refused her a lawyer of her choice, which Amnesty says has hampered efforts to document her situation and appeal her conviction.',
+    category: 'persecution',
+    sourceUrl: 'https://www.amnesty.org/en/documents/asa17/1006/2026/en/',
+  },
 ];
 
 const CHARGES = [
@@ -222,6 +230,7 @@ const INTERNATIONAL_RESPONSES = [
 ];
 
 const SOURCES = [
+  { name: 'Amnesty International — urgent action (May 2026)', url: 'https://www.amnesty.org/en/documents/asa17/1006/2026/en/', tier: 1 },
   { name: 'OHCHR', url: 'https://www.ohchr.org/en/press-releases/2025/09/china-second-sentencing-zhang-zhan-deeply-disturbing', tier: 1 },
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2025/09/china-journalist-zhang-zhan-sentenced-to-prison-again-on-baseless-charges/', tier: 1 },
   { name: 'CPJ', url: 'https://cpj.org/2025/09/cpj-urges-china-to-release-journalist-zhang-zhan-as-she-faces-second-trial/', tier: 1 },
