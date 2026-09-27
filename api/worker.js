@@ -42,8 +42,10 @@ import legalCasesData from '../src/data/legal_cases_research.json';
 // ── Constants ───────────────────────────────────────────
 const API_VERSION = 'v1';
 const RATE_LIMIT = 100; // requests per minute per IP
+const RATE_WINDOW_MS = 60_000;
 const CACHE_TTL = 300; // 5 minutes
 const rateLimitMap = new Map();
+let lastRateLimitSweep = 0;
 
 // ── Helpers ─────────────────────────────────────────────
 
@@ -98,26 +100,34 @@ function jsonResponse(data, status = 200) {
   });
 }
 
-/** Rate limiting check (per IP, in-memory — resets on Worker restart) */
+/**
+ * Rate limiting check (per IP, in the isolate's memory).
+ *
+ * A reader's IP is held only while the limit needs it. Once a window, every
+ * IP with no request inside the window is forgotten, so an IP leaves memory
+ * within two windows of its last request. Before, an IP stayed until it
+ * came back or 10,000 others had arrived, which could mean until the
+ * isolate was recycled.
+ */
 function checkRateLimit(ip, apiKey) {
   // API key holders bypass rate limiting
   if (apiKey) return true;
 
   const now = Date.now();
-  const windowStart = now - 60_000;
-  const entry = rateLimitMap.get(ip) || [];
-  const recent = entry.filter((t) => t > windowStart);
-  recent.push(now);
-  rateLimitMap.set(ip, recent);
+  const windowStart = now - RATE_WINDOW_MS;
 
-  // Prune old entries periodically
-  if (rateLimitMap.size > 10_000) {
+  if (now - lastRateLimitSweep >= RATE_WINDOW_MS) {
     for (const [key, times] of rateLimitMap) {
       const filtered = times.filter((t) => t > windowStart);
       if (filtered.length === 0) rateLimitMap.delete(key);
       else rateLimitMap.set(key, filtered);
     }
+    lastRateLimitSweep = now;
   }
+
+  const recent = (rateLimitMap.get(ip) || []).filter((t) => t > windowStart);
+  recent.push(now);
+  rateLimitMap.set(ip, recent);
 
   return recent.length <= RATE_LIMIT;
 }

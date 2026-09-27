@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -8,8 +8,9 @@ import { resolve } from 'path';
  * Tests the REST API worker logic: data extraction, search, route matching,
  * response formatting, and rate limiting.
  *
- * Note: These test the worker's helper functions directly, not HTTP requests,
- * since Cloudflare Workers runtime isn't available in vitest.
+ * Most of these read the worker's source, since the Workers runtime isn't
+ * available in vitest. The rate-limiting tests call its fetch handler, which
+ * needs only the Request and Response globals.
  */
 
 const API_DIR = resolve(__dirname, '../../api');
@@ -160,5 +161,82 @@ describe('API Worker — wrangler configuration', () => {
     const content = readFileSync(resolve(__dirname, '../../wrangler.jsonc'), 'utf-8');
     expect(content).toContain('ASSETS');
     expect(content).toContain('single-page-application');
+  });
+});
+
+describe('API Worker — rate limiting', () => {
+  // The limiter's state lives at module scope, so each test loads a fresh copy.
+  const loadWorker = async () => {
+    vi.resetModules();
+    return (await import('../../api/worker.js')).default;
+  };
+  const get = (
+    worker: Awaited<ReturnType<typeof loadWorker>>,
+    ip: string,
+    env: Record<string, string> = {},
+    headers: Record<string, string> = {},
+  ): Promise<Response> =>
+    worker.fetch(
+      new Request('https://hub.test/api/v1/', { headers: { 'CF-Connecting-IP': ip, ...headers } }),
+      env,
+    );
+
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date('2026-09-27T00:00:00Z'));
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.useRealTimers();
+  });
+
+  it('allows 100 requests a minute from one address, then refuses until the minute passes', async () => {
+    const worker = await loadWorker();
+    for (let i = 0; i < 100; i++) {
+      expect((await get(worker, '203.0.113.1')).status).toBe(200);
+    }
+    expect((await get(worker, '203.0.113.1')).status).toBe(429);
+    expect((await get(worker, '203.0.113.2')).status, 'another address is not limited').toBe(200);
+
+    vi.setSystemTime(Date.now() + 60_000);
+    expect((await get(worker, '203.0.113.1')).status).toBe(200);
+  });
+
+  it('does not limit a caller with the API key', async () => {
+    const worker = await loadWorker();
+    const env = { API_KEY: 'key' };
+    for (let i = 0; i < 101; i++) {
+      expect((await get(worker, '203.0.113.1', env, { 'X-API-Key': 'key' })).status).toBe(200);
+    }
+    expect((await get(worker, '203.0.113.1', env, { 'X-API-Key': 'wrong' })).status).toBe(200);
+  });
+
+  it("forgets a reader's address within two minutes of their last request", async () => {
+    // The limiter's map is private; the spy finds it by the first entry set
+    // for the reader's address.
+    const set = vi.spyOn(Map.prototype, 'set');
+    const worker = await loadWorker();
+    const reader = '198.51.100.7';
+    const other = '203.0.113.9';
+    const t0 = Date.now();
+
+    await get(worker, reader);
+    const index = set.mock.calls.findIndex(([key]) => key === reader);
+    expect(index, 'no map entry was set for the address').toBeGreaterThanOrEqual(0);
+    const limiter = set.mock.contexts[index] as Map<string, number[]>;
+    expect(limiter).toBeInstanceOf(Map);
+
+    vi.setSystemTime(t0 + 1_000);
+    await get(worker, reader);
+
+    // 59 seconds after the reader's last request the limit still needs it.
+    vi.setSystemTime(t0 + 60_000);
+    await get(worker, other);
+    expect(limiter.has(reader)).toBe(true);
+
+    // 119 seconds after, it must be gone, though the reader never came back.
+    vi.setSystemTime(t0 + 120_000);
+    await get(worker, other);
+    expect(limiter.has(reader)).toBe(false);
   });
 });
