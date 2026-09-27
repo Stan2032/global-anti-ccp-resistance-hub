@@ -98,7 +98,9 @@ const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) 
   return (
     <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex items-start space-x-3 flex-1 min-w-0">
+        {/* A floor on this column's width, so on a narrow card the button
+            wraps below the name instead of squeezing it into a sliver. */}
+        <div className="flex items-start space-x-3 flex-1 min-w-[min(12rem,100%)]">
           {/* Source Icon */}
           <div className={`flex-shrink-0 mt-1 ${getCredibilityColor(source.type)}`}>
             {getSourceIcon(source.type)}

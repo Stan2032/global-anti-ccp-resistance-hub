@@ -77,6 +77,35 @@ describe('DisclosureSection', () => {
   });
 });
 
+describe('content is shown and hidden natively, never by React state', () => {
+  // Content revealed by a click that sets state is not in the pre-rendered
+  // page, so a reader without JavaScript never sees it. Three scans missed
+  // some of these: the timeline's event panel, the home page's alerts, the
+  // officials' and facilities' detail views and two lists of company
+  // details, all behind real <button>s with no aria-expanded.
+  const root = path.resolve(__dirname, '..');
+  const sources = () => (readdirSync(root, { recursive: true }) as string[])
+    .filter((f) => f.endsWith('.tsx') && !f.startsWith(`test${path.sep}`))
+    .map((f) => [f, readFileSync(path.join(root, f), 'utf-8')] as const);
+
+  it('has no disclosure-style state gating markup ({isExpanded && …}, {showAll && …})', () => {
+    const gate = /\{[^{}!\n]*\b(isExpanded|expanded[A-Z]\w*|show(?:All|More|Full|Details|Alternatives|Less)\w*)\b[^{}\n]*&&\s*\(?\s*(?:<|$)/gm;
+    const offenders = sources().flatMap(([f, source]) =>
+      [...source.matchAll(gate)].map((m) => `${f}: ${m[0].trim().slice(0, 80)}`));
+    expect(offenders).toEqual([]);
+  });
+
+  it('has no list that a selection swaps for a detail view', () => {
+    const offenders = sources().flatMap(([f, source]) =>
+      [...source.matchAll(/const \[(selected\w*), set\w+\] = useState/g)]
+        .filter(([, state]) =>
+          new RegExp(`if \\(${state}\\) \\{\\s*\\n(?:.*\\n){0,4}?\\s*return \\(`).test(source) ||
+          new RegExp(`\\{\\s*${state}\\s*\\?\\s*\\(`).test(source))
+        .map(([, state]) => `${f}: shows a different view when ${state} is set`));
+    expect(offenders).toEqual([]);
+  });
+});
+
 describe('open-state styling follows the element’s own <details>', () => {
   // Tailwind's group-open: matches ANY open .group ancestor. Disclosures
   // nest here (cards inside sections inside sections), so a closed card in
