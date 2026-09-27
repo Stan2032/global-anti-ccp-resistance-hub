@@ -19,7 +19,7 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3764,
+    "frontend_tests": 3767,
     "test_files": 204,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
@@ -876,7 +876,8 @@
       "DisclosureSection.test.tsx fails on a truncate/line-clamp inside a <summary> that does not lift when opened (dce786e)",
       "scripts/prerender.mjs fails when a link to a section (/page#id) names an id its page does not have (e01fa36)",
       "aria-complete-coverage.test.ts fails on any role=tab, tablist or tabpanel in src (efbeaef)",
-      "data-profile-review.test.ts fails when a prisoner record is re-verified after its profile page was last checked against it (c5719af)"
+      "data-profile-review.test.ts fails when a prisoner record is re-verified after its profile page was last checked against it (c5719af)",
+      "DisclosureSection.test.tsx fails on disclosure-style state gating markup ({isExpanded && ...}) and on a view swapped in by a selection (2b63161)"
     ],
     "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
     "rules_added": [

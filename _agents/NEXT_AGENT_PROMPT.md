@@ -16,7 +16,7 @@
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,764 across 204** for `npm test`,
+> - "3714 tests across 201 files" is now **3,767 across 204** for `npm test`,
 >   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.

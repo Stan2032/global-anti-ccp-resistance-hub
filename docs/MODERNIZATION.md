@@ -1101,10 +1101,10 @@ Readable without JavaScript, every section open:
 | Jimmy Lai's profile (all 16 now share `ProfileTimeline`) | 6,719 | 11,803 — `638cf15` |
 | `/security` | ~38,400 | 74,930 — `50bbd04` |
 | `/prisoners` (prisoner rows, case files, then the card grid and memorial) | 16,645 | 120,415 — `7d1a4e7`, `d136284` |
-| `/intelligence` (ten trackers, the Influence Network, the threat map) | 179,612 | 383,672 — `170cbb6`, `68e2378`, `89b2b5c`, `d136284` |
-| `/education` | 87,289 | 146,813 — `051592c`, `e9b4c47`, `d136284` |
-| `/take-action` | 78,929 | 108,849 — `051592c`, `e9b4c47`, `d136284` |
-| `/` (the update and notification feeds) | 11,565 | 45,781 — `e9b4c47` |
+| `/intelligence` (ten trackers, the Influence Network, the threat map, officials, facilities) | 179,612 | 407,235 — `170cbb6`, `68e2378`, `89b2b5c`, `d136284`, `2b63161` |
+| `/education` (then the timeline's 41 events) | 87,289 | 179,734 — `051592c`, `e9b4c47`, `d136284`, `d7c399c` |
+| `/take-action` (then company responses and alternatives) | 78,929 | 127,306 — `051592c`, `e9b4c47`, `d136284`, `d7c399c` |
+| `/` (the update and notification feeds, then the emergency alerts) | 11,565 | 52,070 — `e9b4c47`, `d7c399c` |
 | `/resources` | 10,000 | 30,725 — `051592c` |
 | `/directory` | 9,814 | 12,150 — `bf86398` |
 | `/data-sources` | 29,007 | 65,973 — `bf86398` |
@@ -1128,6 +1128,27 @@ click handlers on elements that are not controls found them — `d136284`:
 What still takes a click on a non-control: modal backdrops, the map's region
 shapes (their content is in the list below the map), and the case timeline's
 listbox options.
+
+Both counts missed eight more, behind real `<button>`s with no
+`aria-expanded`. A third scan, for state that a click sets and that then
+gates markup, found them:
+
+- `/education`'s timeline showed one event at a time in a panel opened by
+  its dot. None of the 41 events' details, and 9 of their descriptions,
+  was on any pre-rendered page. The events are a list of native
+  `<details>` now, and each dot is a link to its event — `d7c399c`.
+- The home page rendered 2 of its 4 live emergency alerts, and each
+  alert's details only on a click — `d7c399c`.
+- `/take-action`'s company tracker hid all 30 companies' responses, and the
+  forced-labour list 19 lists of ethical alternatives — `d7c399c`.
+- `/intelligence`'s officials and facilities databases replaced their list
+  with a detail view when a card was clicked: 34 officials'
+  responsibilities, actions and sanctions, and 11 facilities' evidence.
+  Each card is a native `<details>` — `2b63161`.
+
+`DisclosureSection.test.tsx` now fails on disclosure-style state gating
+markup (`{isExpanded && …}`, `{showAll && …}`) and on a view swapped in by
+a selection. Run against the old components, they name all eight.
 
 ### What the conversions turned up
 
@@ -1227,7 +1248,11 @@ that retells it.
 5. **Scan for the behaviour, not the attribute meant to go with it.**
    Counting `aria-expanded` found the expanders that announced themselves.
    Five that did not showed up only in a scan for click handlers on
-   elements that are not controls.
+   elements that are not controls, and eight more only in a scan for
+   state that a click sets and that gates markup. Each scan approximated
+   the behaviour ("content appears only after a click") and missed what
+   the approximation did not cover. The guards now check that behaviour's
+   common shapes directly.
 6. **Check code against the data it reads.** A literal the data never uses
    (`'ACTIVE'`) silently disables a branch. A test that only checks a label
    passes while the number beside it is always 0.
