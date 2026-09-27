@@ -68,11 +68,11 @@ const ResistanceResources = () => {
     },
     {
       title: 'Community Support',
-      description: 'Connect with diaspora support networks and find local resources',
+      description: 'Where to find emergency, legal and mental-health help, and ways to help others',
       Icon: Handshake,
       link: '/community',
-      linkText: 'Join Community',
-      highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
+      linkText: 'Find Support',
+      highlights: ['Emergency Help', 'Legal Help', 'Mental Health', 'Volunteering'],
       color: 'border-l-2 border-l-[#22d3ee]'
     }
   ];

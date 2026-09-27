@@ -59,7 +59,7 @@ describe('ResistanceResources', () => {
     expect(screen.getByText('Browse Directory →')).toBeTruthy();
     expect(screen.getByText('Go to Education Center →')).toBeTruthy();
     expect(screen.getByText('View Intelligence Feeds →')).toBeTruthy();
-    expect(screen.getByText('Join Community →')).toBeTruthy();
+    expect(screen.getByText('Find Support →')).toBeTruthy();
   });
 
   // These counts are typed in by hand. "21 Books" stood over a reading list
@@ -88,7 +88,7 @@ describe('ResistanceResources', () => {
     expect(screen.getByText('24 Organizations')).toBeTruthy();
     expect(screen.getByText('Research Papers')).toBeTruthy();
     expect(screen.getByText('Live RSS Feeds')).toBeTruthy();
-    expect(screen.getByText('Diaspora Support')).toBeTruthy();
+    expect(screen.getByText('Emergency Help')).toBeTruthy();
   });
 
   // --- Quick Documentation Tools ---

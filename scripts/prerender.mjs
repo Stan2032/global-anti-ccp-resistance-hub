@@ -136,6 +136,9 @@ async function main() {
       .length;
     const badSummaries = [...page.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/g)]
       .filter(([, inner]) => !summaryIsPhrasing(inner)).length;
+    const ids = new Set([...page.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
+    const fragmentLinks = [...page.matchAll(/<a\b[^>]*?\shref="(\/[^"#]*)?#([^"]+)"/g)]
+      .map(([, path, id]) => ({ path: path ?? null, id }));
     const text = page
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/<style[\s\S]*?<\/style>/g, '')
@@ -152,6 +155,8 @@ async function main() {
       duplicateControlNames: [...new Set(controlNames.filter((n, i) => controlNames.indexOf(n) !== i))],
       unnamedButtons,
       badSummaries,
+      ids,
+      fragmentLinks,
     });
   }
 
@@ -244,6 +249,28 @@ async function main() {
       withDuplicates.map(r => `              ${r.route}: ${r.duplicateControlNames.map(n => `"${n}"`).join(', ')}`).join('\n') +
       `\n\n            Name each control for what it searches or filters, e.g.\n` +
       `            aria-label="Search detention facilities", not "Search".`
+    );
+    process.exit(1);
+  }
+
+  // A link to a section (/security#guides, #main-content) must name an id
+  // its page has. Renaming a section breaks such links silently: the page
+  // still opens, at the top instead of at the section. Only pre-rendered
+  // routes are checked.
+  const idsByRoute = new Map(results.map(r => [r.route, r.ids]));
+  const brokenFragments = results.flatMap(r => r.fragmentLinks
+    .filter(({ path, id }) => {
+      const target = path === null ? r.route : (path.replace(/(.)\/$/, '$1') || '/');
+      const ids = idsByRoute.get(target);
+      return ids !== undefined && !ids.has(decodeURIComponent(id));
+    })
+    .map(({ path, id }) => `${r.route}: ${path ?? ''}#${id}`));
+  if (brokenFragments.length) {
+    console.error(
+      `\n[prerender] links to a section that is not on the page they name:\n` +
+      [...new Set(brokenFragments)].map(b => `              ${b}`).join('\n') +
+      `\n\n            Give the section that id (DisclosureSection takes an id prop),\n` +
+      `            or point the link at the id it has now.`
     );
     process.exit(1);
   }

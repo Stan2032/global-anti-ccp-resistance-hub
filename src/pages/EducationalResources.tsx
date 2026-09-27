@@ -84,7 +84,7 @@ const EducationalResources = () => {
         <DisclosureSection title="Historical documents" description="Primary sources and archived records.">
           <Suspense fallback={<SectionLoader />}><HistoricalDocuments /></Suspense>
         </DisclosureSection>
-        <DisclosureSection title="Key dates" description="Anniversaries and commemorations.">
+        <DisclosureSection id="key-dates" title="Key dates" description="Anniversaries and commemorations.">
           <Suspense fallback={<SectionLoader />}><EventCalendar /></Suspense>
         </DisclosureSection>
         <DisclosureSection id="survivor-testimonies" title="Survivor testimonies" description="Longer testimony, in the speakers&rsquo; own words.">

@@ -31,7 +31,7 @@ const ROUTE_META: Record<string, RouteMeta> = {
   },
   '/community': {
     title: 'Community Support',
-    description: 'Connect with diaspora communities, find support resources, and join solidarity efforts against CCP repression.',
+    description: 'Where to find emergency, legal and mental-health help if the CCP is targeting you, and ways to help others.',
   },
   '/communications': {
     title: 'Secure Communications',

@@ -178,7 +178,7 @@ const SecurityCenter = () => {
       </DisclosureSection>
 
       {/* Tools Tab (was: tools + report) */}
-      <DisclosureSection title="Tools" description="Vetted tools for encrypted messaging, browsing and device safety.">
+      <DisclosureSection id="tools" title="Tools" description="Vetted tools for messaging, browsing and device safety, legal help, and where to report CCP activity.">
         <div className="space-y-6">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Essential Security Tools</h2>
@@ -356,7 +356,7 @@ const SecurityCenter = () => {
       </DisclosureSection>
 
       {/* Guides Tab (was: guides + emergency + protect) */}
-      <DisclosureSection title="Guides" description="Step-by-step guides for specific situations.">
+      <DisclosureSection id="guides" title="Guides" description="Step-by-step guides for specific situations, including emergencies and relocation.">
         <div className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Security Training Guides</h2>

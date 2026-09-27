@@ -68,7 +68,7 @@ The workflow is deleted, but **that does not take the mirror down** — Pages ke
 
 **Context:** The Supabase integration is complete in code and has been since Session 157: `supabaseClient.ts`, `supabaseService.ts`, `AuthContext`, `ProtectedRoute`, `AdminLogin`, `AdminDashboard`, and all four forms (IncidentReport, VolunteerSignup, NewsDigest, ContactForm). Setup guides exist.
 
-But the only Supabase project on the account is "kTasks", which is unrelated. **There is no project for this site.** Every form therefore falls back to its "Coming Soon" state. The fallback is honest and degrades gracefully — but the feature has never once worked in production.
+But the only Supabase project on the account is "kTasks", which is unrelated. **There is no project for this site.** Every form therefore falls back to its "Coming Soon" state. The fallback is honest and degrades gracefully — but the feature has never once worked in production. Until it does, the site search no longer offers "Contact Us — Send a message to the Resistance Hub team" (Session 281): there is no working way to send one.
 
 **Question:** Create the Supabase project?
 
