@@ -11,6 +11,7 @@ import DocumentaryList from '../components/DocumentaryList';
 import DonationGuide from '../components/DonationGuide';
 import EventCalendar from '../components/EventCalendar';
 import FAQ from '../components/FAQ';
+import InteractiveTimeline from '../components/InteractiveTimeline';
 import IPACMembers from '../components/IPACMembers';
 import MediaManipulation from '../components/MediaManipulation';
 import SanctionsTracker from '../components/SanctionsTracker';
@@ -38,6 +39,7 @@ const FILTER_BARS: { component: string; ui: ReactElement; groups: string[] }[] =
   { component: 'EventCalendar', ui: <EventCalendar />, groups: ['Filter events by month'] },
   { component: 'FAQ', ui: <FAQ />, groups: ['Filter questions by topic'] },
   { component: 'IPACMembers', ui: <IPACMembers />, groups: ['Filter IPAC members by country'] },
+  { component: 'InteractiveTimeline', ui: <InteractiveTimeline />, groups: ['Filter timeline events by region'] },
   { component: 'MediaManipulation', ui: <MediaManipulation />, groups: ['Filter outlets by type'] },
   {
     component: 'SanctionsTracker',

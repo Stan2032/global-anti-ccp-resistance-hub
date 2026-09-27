@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import CompanyTracker from '../components/CompanyTracker';
+import forcedLaborData from '../data/forced_labor_companies_research.json';
 
 // Mock SourceAttribution and SourcesList (CompanyTracker imports both)
 vi.mock('../components/ui/SourceAttribution', () => ({
@@ -126,5 +127,26 @@ describe('CompanyTracker', () => {
   it('renders the disclaimer', () => {
     render(<CompanyTracker />);
     expect(screen.getByTestId('disclaimer')).toBeTruthy();
+  });
+
+  // Each company's own response to the allegations appeared only after a
+  // click that needed JavaScript, so the pre-rendered page held none of the
+  // 30. It is now in a closed native <details> on each card.
+  it("puts every company's response in the page, in a closed native disclosure", () => {
+    render(<CompanyTracker />);
+    const withResponse = forcedLaborData.results
+      .map(r => r.output)
+      .filter((o): o is NonNullable<typeof o> => Boolean(o?.company_response));
+    expect(withResponse.length).toBeGreaterThan(0);
+    for (const company of withResponse) {
+      const cards = screen.getAllByRole('heading', { level: 3, name: company.company })
+        .map(h => h.parentElement!.parentElement!);
+      const disclosure = cards.map(c => c.querySelector('details')).find(Boolean) as HTMLDetailsElement;
+      expect(disclosure, company.company).toBeTruthy();
+      expect(disclosure.open).toBe(false);
+      expect(disclosure.textContent).toContain(company.company_response);
+      expect(disclosure.querySelector('summary')!.textContent).toContain(`about ${company.company}`);
+    }
+    expect(screen.queryAllByRole('button', { name: /Show More Details/ })).toHaveLength(0);
   });
 });

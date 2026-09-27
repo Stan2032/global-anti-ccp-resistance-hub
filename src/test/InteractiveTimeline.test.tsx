@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import InteractiveTimeline from '../components/InteractiveTimeline';
 import timelineEvents from '../data/timeline_events.json';
@@ -17,14 +17,6 @@ vi.mock('../components/ui/SourceAttribution', () => ({
 }));
 
 describe('InteractiveTimeline', () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
   // --- Rendering ---
 
   it('renders the timeline header', () => {
@@ -51,15 +43,9 @@ describe('InteractiveTimeline', () => {
     expect(screen.getByText('Total Events')).toBeTruthy();
   });
 
-  it('shows event counter showing 1 / N events initially', () => {
+  it('says how many events it lists', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getByText(`1 / ${TOTAL} events`)).toBeTruthy();
-  });
-
-  it('shows placeholder when no event is selected', () => {
-    render(<InteractiveTimeline />);
-    expect(screen.getByText('Click on a timeline marker to view event details')).toBeTruthy();
-    expect(screen.getByText('Or press Play to auto-advance through events')).toBeTruthy();
+    expect(screen.getByRole('status').textContent).toBe(`${TOTAL} events, oldest first`);
   });
 
   it('renders legend with significance levels and categories', () => {
@@ -69,109 +55,94 @@ describe('InteractiveTimeline', () => {
     expect(screen.getByText('High Significance')).toBeTruthy();
   });
 
-  it('renders zoom controls', () => {
+  it('renders zoom controls once JavaScript runs', () => {
     render(<InteractiveTimeline />);
-    expect(screen.getByTitle('Zoom in')).toBeTruthy();
-    expect(screen.getByTitle('Zoom out')).toBeTruthy();
+    expect(screen.getByLabelText('Zoom in')).toBeTruthy();
+    expect(screen.getByLabelText('Zoom out')).toBeTruthy();
+  });
+
+  // --- Every event, without JavaScript ---
+  // Each event's description and details appeared only in a panel that
+  // opened when a dot was clicked, so the pre-rendered page held none of
+  // them: a reader without JavaScript got the dots and "Click on a timeline
+  // marker". Every event is now a native <details> in the page.
+
+  const EVENTS = timelineEvents as { id: number; date: string; title: string; description: string; details: string; impact: string; category: string }[];
+  const eventDetails = (id: number) => document.getElementById(`timeline-event-${id}`) as HTMLDetailsElement;
+
+  it('puts every event in the page before any click, each a closed native disclosure', () => {
+    render(<InteractiveTimeline />);
+    expect(EVENTS.length).toBeGreaterThan(0);
+    for (const event of EVENTS) {
+      const details = eventDetails(event.id);
+      expect(details?.tagName, event.title).toBe('DETAILS');
+      expect(details.open).toBe(false);
+      expect(details.querySelector(':scope > summary')!.textContent).toContain(event.title);
+      expect(details.textContent).toContain(event.description);
+      expect(details.textContent).toContain(event.details.split('\n')[0]);
+      expect(details.textContent).toContain(event.impact);
+    }
+    expect(screen.queryByText(/Click on a timeline marker/)).toBeNull();
+  });
+
+  it('links every dot to its event, and following one opens it', () => {
+    const { container } = render(<InteractiveTimeline />);
+    const dots = [...container.querySelectorAll<HTMLAnchorElement>('a[href^="#timeline-event-"]')];
+    expect(dots).toHaveLength(TOTAL);
+    for (const dot of dots) {
+      const id = dot.getAttribute('href')!.slice(1);
+      expect(document.getElementById(id)?.tagName, id).toBe('DETAILS');
+      const event = EVENTS.find(e => `timeline-event-${e.id}` === id)!;
+      expect(dot.getAttribute('aria-label')).toBe(`${event.date.slice(0, 4)}: ${event.title}`);
+    }
+    const first = EVENTS[0];
+    fireEvent.click(dots.find(d => d.getAttribute('href') === `#timeline-event-${first.id}`)!);
+    expect(eventDetails(first.id).open).toBe(true);
+  });
+
+  // The date is pre-rendered. Formatted in the reader's own timezone, a
+  // reader west of UTC would see the day before, and React would discard
+  // the page over the mismatch.
+  it('shows the same date in any timezone', () => {
+    const tz = process.env.TZ;
+    process.env.TZ = 'America/Los_Angeles';
+    try {
+      render(<InteractiveTimeline />);
+      const tiananmen = EVENTS.find(e => e.date === '1989-06-04')!;
+      expect(tiananmen).toBeTruthy();
+      expect(eventDetails(tiananmen.id).querySelector('summary')!.textContent).toContain('June 4, 1989');
+    } finally {
+      process.env.TZ = tz;
+    }
+  });
+
+  it("names every event's category with one the filter offers", () => {
+    render(<InteractiveTimeline />);
+    const group = screen.getByRole('group', { name: 'Filter timeline events by region' });
+    const offered = within(group).getAllByRole('button').map(b => b.textContent);
+    for (const event of EVENTS) {
+      const labels = [...eventDetails(event.id).querySelectorAll('summary span span')].map(s => s.textContent);
+      expect(labels.some(l => offered.includes(l)), `${event.title}: ${event.category}`).toBe(true);
+    }
   });
 
   // --- Category filtering ---
 
   it('filters events when a category is selected', () => {
     render(<InteractiveTimeline />);
-    // "Hong Kong" appears in both filter and legend — click the first (filter button)
-    const hkButtons = screen.getAllByText('Hong Kong');
-    fireEvent.click(hkButtons[0]);
-    expect(screen.getByText(new RegExp(`${HK_COUNT} events$`))).toBeTruthy();
+    const group = screen.getByRole('group', { name: 'Filter timeline events by region' });
+    fireEvent.click(within(group).getByRole('button', { name: 'Hong Kong' }));
+    expect(screen.getByRole('status').textContent).toBe(`${HK_COUNT} of ${TOTAL} events, oldest first`);
+    expect(document.querySelectorAll('details[id^="timeline-event-"]')).toHaveLength(HK_COUNT);
   });
 
   it('returns to all events when All Events is clicked', () => {
     render(<InteractiveTimeline />);
-    const hkButtons = screen.getAllByText('Hong Kong');
-    fireEvent.click(hkButtons[0]);
-    expect(screen.getByText(new RegExp(`${HK_COUNT} events$`))).toBeTruthy();
-    fireEvent.click(screen.getByText('All Events'));
-    expect(screen.getByText(`1 / ${TOTAL} events`)).toBeTruthy();
-  });
-
-  // --- Navigation ---
-
-  it('selects next event when forward button is clicked', () => {
-    render(<InteractiveTimeline />);
-    // Get the forward (ChevronRight) button — it's after the Play button
-    const buttons = screen.getAllByRole('button');
-    // Find the forward nav button — buttons[0] is zoom out, buttons[1] is zoom in, 
-    // then category filters (7), then prev, play, next
-    // Let's find by clicking forward and checking counter changes
-    const nextBtn = buttons.find(b => b.querySelector('.lucide-chevron-right'));
-    fireEvent.click(nextBtn!);
-    // Should now show event details (since clicking next selects an event)
-    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
-  });
-
-  it('wraps around when navigating past the last event', () => {
-    render(<InteractiveTimeline />);
-    // Click Previous from index 0 to wrap to last
-    const buttons = screen.getAllByRole('button');
-    const prevBtn = buttons.find(b => b.querySelector('.lucide-chevron-left'));
-    fireEvent.click(prevBtn!);
-    expect(screen.getByText(`${TOTAL} / ${TOTAL} events`)).toBeTruthy();
-  });
-
-  // --- Event selection ---
-
-  it('displays event details when a timeline marker is clicked', () => {
-    render(<InteractiveTimeline />);
-    // Click the first timeline marker (event buttons have title attributes)
-    const markers = screen.getAllByTitle(/./);
-    // Filter to only timeline event markers (not zoom controls)
-    const eventMarkers = markers.filter(m => !['Zoom in', 'Zoom out'].includes(m.getAttribute('title')!));
-    if (eventMarkers.length > 0) {
-      fireEvent.click(eventMarkers[0]);
-      // Should now show event details (no more placeholder)
-      expect(screen.queryByText('Click on a timeline marker to view event details')).toBeNull();
-    }
-  });
-
-  // --- Auto-play ---
-
-  it('auto-plays through events when Play is clicked', async () => {
-    render(<InteractiveTimeline />);
-    const buttons = screen.getAllByRole('button');
-    const playBtn = buttons.find(b => b.querySelector('.lucide-play'));
-    
-    fireEvent.click(playBtn!);
-    // After 3 seconds, should advance to next event
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(3000);
-    });
-    // Should have advanced (counter should change)
-    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
-    // Should show event details
-    expect(screen.queryByText('Click on a timeline marker to view event details')).toBeNull();
-  });
-
-  it('stops auto-play when Pause is clicked', async () => {
-    render(<InteractiveTimeline />);
-    const buttons = screen.getAllByRole('button');
-    const playBtn = buttons.find(b => b.querySelector('.lucide-play'));
-    
-    // Start playing
-    fireEvent.click(playBtn!);
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(3000);
-    });
-    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
-    
-    // Pause
-    const pauseBtn = screen.getAllByRole('button').find(b => b.querySelector('.lucide-pause'));
-    fireEvent.click(pauseBtn!);
-    
-    // Advance time — should NOT move forward
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(6000);
-    });
-    expect(screen.getByText(`2 / ${TOTAL} events`)).toBeTruthy();
+    const group = screen.getByRole('group', { name: 'Filter timeline events by region' });
+    fireEvent.click(within(group).getByRole('button', { name: 'Hong Kong' }));
+    fireEvent.click(within(group).getByRole('button', { name: 'All Events' }));
+    expect(screen.getByRole('status').textContent).toBe(`${TOTAL} events, oldest first`);
+    expect(within(group).getByRole('button', { name: 'All Events' }).getAttribute('aria-pressed')).toBe('true');
   });
 
   // --- Statistics ---
