@@ -1,7 +1,15 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import DataComparisonTool from '../components/DataComparisonTool';
+
+// Each metric row is a native <details>: the row is the summary and its
+// breakdown by region is the body.
+const metricRow = (label: string) => {
+  const details = screen.getByText(label).closest('details');
+  expect(details, `${label} is a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('DataComparisonTool', () => {
   // --- Rendering ---
@@ -132,45 +140,42 @@ describe('DataComparisonTool', () => {
     expect(greenTotals.length).toBeGreaterThanOrEqual(2);
   });
 
-  // --- Expandable Details ---
+  // --- Native disclosure ---
 
-  it('metric rows have aria-expanded attribute', () => {
-    render(<DataComparisonTool />);
-    const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    expect(prisonersRow!.getAttribute('aria-expanded')).toBe('false');
+  it('metric rows are native disclosures, closed to start', () => {
+    const { container } = render(<DataComparisonTool />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const prisoners = metricRow('Political Prisoners');
+    expect(prisoners.firstElementChild?.tagName).toBe('SUMMARY');
+    expect(prisoners.open).toBe(false);
   });
 
-  it('clicking a metric row expands its detail', () => {
-    render(<DataComparisonTool />);
-    const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonersRow!);
-    expect(prisonersRow!.getAttribute('aria-expanded')).toBe('true');
-    expect(screen.getByText('Breakdown')).toBeTruthy();
+  it('every metric row carries its breakdown without a click', () => {
+    const { container } = render(<DataComparisonTool />);
+    const rows = [...container.querySelectorAll('details')];
+    expect(rows.length).toBeGreaterThan(1);
+    rows.forEach(r => expect(within(r).getByText('Breakdown')).toBeTruthy());
   });
 
-  it('clicking an expanded metric row collapses it', () => {
+  it('a metric row opens and closes natively', () => {
     render(<DataComparisonTool />);
-    const prisonersRow = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonersRow!);
-    expect(screen.getByText('Breakdown')).toBeTruthy();
-    fireEvent.click(prisonersRow!);
-    expect(screen.queryByText('Breakdown')).toBeNull();
+    const prisoners = metricRow('Political Prisoners');
+    fireEvent.click(screen.getByText('Political Prisoners'));
+    expect(prisoners.open).toBe(true);
+    fireEvent.click(screen.getByText('Political Prisoners'));
+    expect(prisoners.open).toBe(false);
   });
 
-  it('expanding prisoners shows status breakdown', () => {
+  it('the prisoners row breaks down by status', () => {
     render(<DataComparisonTool />);
-    fireEvent.click(screen.getByText('Political Prisoners')!.closest('button')!);
-    // Should show at least DETAINED in breakdown
-    const breakdownCells = screen.getAllByText(/DETAINED|RELEASED|DISAPPEARED|EXILE|AT RISK/);
-    expect(breakdownCells.length).toBeGreaterThanOrEqual(1);
+    const cells = within(metricRow('Political Prisoners')).getAllByText(/DETAINED|RELEASED|DISAPPEARED|EXILE|AT RISK/);
+    expect(cells.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expanding sanctions shows country breakdown', () => {
+  it('the sanctions row breaks down by country', () => {
     render(<DataComparisonTool />);
-    fireEvent.click(screen.getByText('Sanctions Actions')!.closest('button')!);
-    // Should show country codes in breakdown
-    const breakdownCells = screen.getAllByText(/US:|UK:|EU:|CANADA:|AUSTRALIA:/);
-    expect(breakdownCells.length).toBeGreaterThanOrEqual(1);
+    const cells = within(metricRow('Sanctions Actions')).getAllByText(/US:|UK:|EU:|CANADA:|AUSTRALIA:/);
+    expect(cells.length).toBeGreaterThanOrEqual(1);
   });
 
   // --- Copy Summary ---

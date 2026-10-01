@@ -95,14 +95,27 @@ describe('IntelligenceFeeds', () => {
   it('defaults to Live Feeds tab', () => {
     render(<IntelligenceFeeds />);
     expect(screen.getByText('All Sources')).toBeTruthy();
-    expect(screen.getByLabelText('Search')).toBeTruthy();
+    expect(screen.getByLabelText('Search articles')).toBeTruthy();
   });
+
+
+/**
+ * The feed loading banner, specifically.
+ *
+ * `getByRole('status')` used to be unambiguous because Regional Status and
+ * CCP Operations lived behind a JavaScript-only tab and were never rendered.
+ * They are native <details> now, so they are always in the document — along
+ * with their own role="status" section loaders. Narrow to the banner that
+ * reports source progress.
+ */
+const loadingBanner = () =>
+  screen.getAllByRole('status').find(el => /sources loaded/.test(el.textContent ?? ''))!;
 
   // --- Loading State ---
 
   it('shows loading banner when feeds are loading', () => {
     render(<IntelligenceFeeds />);
-    expect(screen.getByRole('status')).toBeTruthy();
+    expect(loadingBanner()).toBeTruthy();
     expect(screen.getByText(/0 of 3 sources loaded/)).toBeTruthy();
   });
 
@@ -125,7 +138,7 @@ describe('IntelligenceFeeds', () => {
 
   it('shows all source names in the loading banner', () => {
     render(<IntelligenceFeeds />);
-    const status = screen.getByRole('status');
+    const status = loadingBanner();
     expect(status.textContent).toContain('ICIJ');
     expect(status.textContent).toContain('Radio Free Asia');
     expect(status.textContent).toContain('HKFP');
@@ -139,7 +152,7 @@ describe('IntelligenceFeeds', () => {
     };
     render(<IntelligenceFeeds />);
     // The checkmark character ✓ (&#10003;) appears for loaded sources
-    const status = screen.getByRole('status');
+    const status = loadingBanner();
     expect(status.textContent).toContain('✓');
   });
 
@@ -168,7 +181,10 @@ describe('IntelligenceFeeds', () => {
       lastUpdated: new Date(),
     };
     render(<IntelligenceFeeds />);
-    expect(screen.queryByRole('status')).toBeNull();
+    // Not queryByRole('status'): the always-rendered Regional Status and CCP
+    // Operations sections have their own loaders. The assertion is that the
+    // FEED banner is gone, not that nothing on the page has that role.
+    expect(loadingBanner()).toBeUndefined();
   });
 
   // --- No Source Info Cards ---
@@ -275,7 +291,7 @@ describe('IntelligenceFeeds', () => {
       lastUpdated: new Date(),
     };
     render(<IntelligenceFeeds />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search articles');
     fireEvent.change(searchInput, { target: { value: 'Hong Kong' } });
     expect(screen.getByText('Hong Kong protest')).toBeTruthy();
     expect(screen.queryByText('EU sanctions round')).toBeNull();

@@ -64,11 +64,12 @@ describe('SecurityCenter', () => {
 
   // --- Assess Tab (default) ---
 
-  it('defaults to Assess tab with SecurityQuiz', () => {
+  it('defaults to Assess tab with SecurityQuiz', async () => {
     render(<SecurityCenter />);
-    // SecurityQuiz is lazy-loaded; Suspense fallback shows
-    const loadingIndicators = screen.getAllByText('$ loading');
-    expect(loadingIndicators.length).toBeGreaterThanOrEqual(1);
+    // SecurityQuiz is lazy-loaded; assert it actually resolves rather than
+    // asserting the transient Suspense fallback, which React does not
+    // guarantee is observable when the chunk resolves immediately.
+    expect(await screen.findByText('SecurityQuiz')).toBeTruthy();
   });
 
   // --- Tools Tab ---

@@ -100,14 +100,14 @@ const SanctionsTracker = () => {
       {/* Filters */}
       <div className="flex flex-wrap gap-4">
         <div>
-          <label className="block text-xs text-slate-400 mb-1">Country</label>
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Sanctions by country">
+          <p className="text-xs text-slate-400 mb-1">Country</p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter sanctions by country">
             {countries.map(country => (
               <button
                 key={country.id}
+                type="button"
                 onClick={() => setActiveCountry(country.id)}
-                role="tab"
-                aria-selected={activeCountry === country.id}
+                aria-pressed={activeCountry === country.id}
                 className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCountry === country.id
                     ? 'bg-[#22d3ee] text-[#0a0e14]'
@@ -121,14 +121,14 @@ const SanctionsTracker = () => {
           </div>
         </div>
         <div>
-          <label className="block text-xs text-slate-400 mb-1">Type</label>
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Sanctions by type">
+          <p className="text-xs text-slate-400 mb-1">Type</p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter sanctions by type">
             {sanctionTypes.map(type => (
               <button
                 key={type.id}
+                type="button"
                 onClick={() => setActiveType(type.id)}
-                role="tab"
-                aria-selected={activeType === type.id}
+                aria-pressed={activeType === type.id}
                 className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeType === type.id
                     ? 'bg-[#22d3ee] text-[#0a0e14]'

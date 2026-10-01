@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import VideoTestimonials from '../components/VideoTestimonials';
 
@@ -7,6 +7,19 @@ import VideoTestimonials from '../components/VideoTestimonials';
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
 });
+
+// Each testimony is a native <details>; inside it, the content warning is a
+// second <details> that the details sit behind. Neither needs JavaScript.
+const testimonies = (container: HTMLElement) => {
+  const all = [...container.querySelectorAll('details')].filter(d => !d.parentElement!.closest('details'));
+  expect(all.length, 'testimonies render as <details>').toBeGreaterThan(0);
+  return all;
+};
+const warningIn = (card: HTMLElement) => {
+  const gate = card.querySelector('details');
+  expect(gate, 'a content-warning <details> inside the card').toBeTruthy();
+  return gate as HTMLDetailsElement;
+};
 
 describe('VideoTestimonials', () => {
   // ── Rendering ──────────────────────────────────────────
@@ -195,93 +208,74 @@ describe('VideoTestimonials', () => {
 
   // ── Expand/collapse ────────────────────────────────────
 
-  it('cards start collapsed', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
+  it('every testimony is a native disclosure, closed to start', () => {
+    const { container } = render(<VideoTestimonials />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const all = testimonies(container);
+    expect(all).toHaveLength(10);
+    all.forEach((c) => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
     });
   });
 
-  it('clicking a card expands it', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+  it('a testimony opens and closes natively', () => {
+    const { container } = render(<VideoTestimonials />);
+    const [first] = testimonies(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('clicking an expanded card collapses it', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-  });
-
-  it('only one card can be expanded at a time', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[1]);
-    expect(expandBtns[1].getAttribute('aria-expanded')).toBe('true');
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
+  it('opening one testimony leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<VideoTestimonials />);
+    const [first, second] = testimonies(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // ── Content warnings ───────────────────────────────────
 
-  it('shows content warning when card is expanded', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(screen.getByText('Content Warning')).toBeTruthy();
-    expect(screen.getByText('I understand — show details')).toBeTruthy();
+  it('keeps the details of every testimony behind its content warning', () => {
+    const { container } = render(<VideoTestimonials />);
+    testimonies(container).forEach((card) => {
+      const gate = warningIn(card);
+      const warning = within(gate.querySelector('summary')!);
+      expect(warning.getByText('Content Warning')).toBeTruthy();
+      expect(warning.getByText('I understand — show details')).toBeTruthy();
+      expect(gate.open).toBe(false);
+      // The details are inside the warning's disclosure, not beside it.
+      expect(within(gate).getByText('Consent Verified')).toBeTruthy();
+      expect(within(card).getAllByText('Consent Verified')).toHaveLength(1);
+    });
   });
 
-  it('dismissing warning reveals details', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    fireEvent.click(screen.getByText('I understand — show details'));
-    expect(screen.getByText('Consent Verified')).toBeTruthy();
-    expect(screen.queryByText('I understand — show details')).toBeFalsy();
+  it('opening the warning shows the details', () => {
+    const { container } = render(<VideoTestimonials />);
+    const gate = warningIn(testimonies(container)[0]);
+    fireEvent.click(gate.querySelector('summary')!);
+    expect(gate.open).toBe(true);
   });
 
   // ── Source links ───────────────────────────────────────
 
-  it('shows source link after warning dismissed', () => {
-    render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    fireEvent.click(screen.getByText('I understand — show details'));
-    expect(screen.getByText(/Watch on/)).toBeTruthy();
+  it('every testimony links its source behind the warning', () => {
+    const { container } = render(<VideoTestimonials />);
+    testimonies(container).forEach(card => expect(within(warningIn(card)).getByText(/Watch on/)).toBeTruthy());
   });
 
   it('source links open in new tab', () => {
     render(<VideoTestimonials />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    fireEvent.click(screen.getByText('I understand — show details'));
-    const link = screen.getByText(/Watch on/).closest('a');
-    expect(link!.getAttribute('target')).toBe('_blank');
-    expect(link!.getAttribute('rel')).toContain('noopener');
+    const links = screen.getAllByText(/Watch on/).map(el => el.closest('a')!);
+    expect(links).toHaveLength(10);
+    links.forEach((link) => {
+      expect(link.getAttribute('target')).toBe('_blank');
+      expect(link.getAttribute('rel')).toContain('noopener');
+    });
   });
 
   // ── Copy to clipboard ─────────────────────────────────

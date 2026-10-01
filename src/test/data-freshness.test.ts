@@ -229,4 +229,51 @@ describe('Data Freshness Validation', () => {
       }
     });
   });
+
+  // --- Relocated from behaviour suites (Session 281) -------------------------
+  // These are content-freshness signals, not code-correctness checks, so they
+  // live here with the rest of the freshness guards and run via
+  // `npm run test:content` rather than gating every commit.
+
+  describe('Emergency alerts freshness', () => {
+    it('active critical alerts have lastVerified within 60 days', () => {
+      interface AlertEntry {
+        id: string;
+        active: boolean;
+        type: string;
+        lastVerified?: string;
+      }
+      const alerts: AlertEntry[] = JSON.parse(
+        readFileSync(resolve(DATA_DIR, 'emergency_alerts.json'), 'utf-8')
+      );
+      const now = new Date();
+
+      for (const alert of alerts.filter(a => a.active && a.type === 'critical')) {
+        if (alert.lastVerified) {
+          const verifiedDate = new Date(alert.lastVerified);
+          const daysSince = (now.getTime() - verifiedDate.getTime()) / (24 * 60 * 60 * 1000);
+          expect(
+            daysSince,
+            `Alert "${alert.id}" lastVerified is ${Math.round(daysSince)} days old (max 60)`
+          ).toBeLessThanOrEqual(60);
+        }
+      }
+    });
+  });
+
+  describe('Sitemap freshness', () => {
+    it('lastmod dates are not older than 30 days', () => {
+      const sitemapContent = readFileSync(
+        resolve(__dirname, '../../public/sitemap.xml'),
+        'utf-8'
+      );
+      const lastmods = [...sitemapContent.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1]);
+      const now = new Date();
+      for (const dateStr of lastmods) {
+        const date = new Date(dateStr);
+        const daysDiff = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+        expect(daysDiff, `Stale lastmod: ${dateStr} (${daysDiff} days old)`).toBeLessThanOrEqual(30);
+      }
+    });
+  });
 });

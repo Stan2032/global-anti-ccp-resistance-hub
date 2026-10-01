@@ -6,8 +6,8 @@
  *
  * @module DetentionFacilities
  */
-import React, { useState, useEffect } from 'react';
-import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import detentionResearchData from '../data/detention_facilities_research.json';
 
@@ -137,14 +137,6 @@ export default function DetentionFacilities() {
   const [selectedRegion, setSelectedRegion] = useState('All Regions');
   const [selectedType, setSelectedType] = useState('All Types');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFacility, setSelectedFacility] = useState<string | null>(null);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedFacility(null); };
-    if (selectedFacility) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedFacility]);
 
   const filteredFacilities = facilities.filter(facility => {
     if (selectedRegion !== 'All Regions' && facility.region !== selectedRegion) return false;
@@ -153,13 +145,6 @@ export default function DetentionFacilities() {
         !facility.city.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
 
   const getTypeColor = (type: string): string => {
     const colors: Record<string, string> = {
@@ -177,46 +162,9 @@ export default function DetentionFacilities() {
     return sum + num;
   }, 0);
 
-  if (selectedFacility) {
-    const facility = facilities.find(f => f.id === selectedFacility);
-    if (!facility) return null;
-    
-    return (
-      <div className="bg-[#111820]/50 border border-[#1c2a35]">
-        {/* Header */}
-        <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => setSelectedFacility(null)}
-            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
-          >
-            ← Back to all facilities
-          </button>
-          
-          <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-[#111820] flex items-center justify-center">
-              <Building2 className="w-8 h-8 text-red-400" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getTypeColor(facility.type)}`}>
-                  {facility.type}
-                </span>
-                <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                  facility.status === 'Active' ? 'bg-red-900 text-red-300' : 'bg-gray-700 text-slate-300'
-                }`}>
-                  {facility.status}
-                </span>
-              </div>
-              <h2 className="text-2xl font-bold text-white">{facility.name}</h2>
-              <p className="text-slate-400">{facility.chineseName}</p>
-              <p className="text-sm text-slate-400 mt-1 flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
-                {facility.city}, {facility.region}
-              </p>
-            </div>
-          </div>
-        </div>
-
+  /** Everything the drill-down view held, shown inside each facility's <details>. */
+  const renderDetails = (facility: (typeof facilities)[number]) => (
+      <div className="border-t border-[#1c2a35]">
         {/* Quick Facts */}
         <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#0a0e14]/50 p-3">
@@ -241,38 +189,29 @@ export default function DetentionFacilities() {
 
         {/* Description */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <h3 className="text-lg font-semibold text-white mb-3">Description</h3>
+          <h4 className="text-lg font-semibold text-white mb-3">Description</h4>
           <p className="text-slate-300">{facility.description}</p>
         </div>
 
         {/* Evidence */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('evidence')}
-            className="w-full flex items-center justify-between text-left"
-          >
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Eye className="w-5 h-5 text-[#22d3ee]" />
-              Documented Evidence
-            </h3>
-            {expandedSections.evidence ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
-          
-          {expandedSections.evidence !== false && (
-            <ul className="mt-4 space-y-2">
-              {facility.evidence.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-slate-300">
-                  <span className="text-[#22d3ee] mt-1">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
+          <h4 className="text-lg font-semibold text-white flex items-center gap-2">
+            <Eye className="w-5 h-5 text-[#22d3ee]" />
+            Documented Evidence
+          </h4>
+          <ul className="mt-4 space-y-2">
+            {facility.evidence.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-slate-300">
+                <span className="text-[#22d3ee] mt-1">•</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Sources */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <h3 className="text-sm font-semibold text-slate-400 mb-2">Sources</h3>
+          <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
           <div className="flex flex-wrap gap-2">
             {facility.sources.map((source, i) => (
               <span key={i} className="px-2 py-1 bg-[#111820] rounded text-sm text-slate-300">
@@ -306,8 +245,7 @@ export default function DetentionFacilities() {
           </div>
         )}
       </div>
-    );
-  }
+  );
 
   return (
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
@@ -358,16 +296,16 @@ export default function DetentionFacilities() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search detention facilities"
             type="text"
-            placeholder="Search facilities..."
+            placeholder="Search detention facilities..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"
           />
         </div>
         <select
-          aria-label="Region filter"
+          aria-label="Filter facilities by region"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
@@ -377,7 +315,7 @@ export default function DetentionFacilities() {
           ))}
         </select>
         <select
-          aria-label="Region filter"
+          aria-label="Filter facilities by type"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
           className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
@@ -391,41 +329,42 @@ export default function DetentionFacilities() {
       {/* Facilities Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredFacilities.map(facility => (
-          <button
+          <details
             key={facility.id}
-            onClick={() => {
-              setSelectedFacility(facility.id);
-              setExpandedSections({ evidence: true });
-            }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
+            className="bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-[#2a9a52] transition-colors self-start"
           >
-            <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 bg-[#111820] flex items-center justify-center flex-shrink-0">
+            <summary
+              className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 p-4 cursor-pointer list-none
+                         hover:bg-[#0a0e14]/70 focus-visible:outline focus-visible:outline-2
+                         focus-visible:outline-[#4afa82] [&::-webkit-details-marker]:hidden"
+            >
+              <span className="row-span-2 w-10 h-10 bg-[#111820] flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-red-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className={`px-1.5 py-0.5 rounded text-xs font-medium text-white ${getTypeColor(facility.type)}`}>
-                    {facility.type}
-                  </span>
-                  {facility.status === 'Active' && (
-                    <span className="px-1.5 py-0.5 rounded text-xs bg-red-900 text-red-300">
-                      Active
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-white font-semibold truncate">{facility.name}</h3>
-                <p className="text-xs text-slate-400">{facility.chineseName}</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <MapPin className="w-3 h-3" />
-                {facility.city}, {facility.region}
-              </div>
-              <span className="text-xs text-slate-400">Cap: {facility.estimatedCapacity}</span>
-            </div>
-          </button>
+              </span>
+              <h3 className="text-white font-semibold break-words self-end">{facility.name}</h3>
+              <ChevronDown
+                className="row-span-2 w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180"
+                aria-hidden="true"
+              />
+              <span className="text-xs text-slate-400 self-start">{facility.chineseName}</span>
+              <span className="col-span-3 flex flex-wrap items-center gap-2 mt-3">
+                <span className={`px-1.5 py-0.5 rounded text-xs font-medium text-white ${getTypeColor(facility.type)}`}>
+                  {facility.type}
+                </span>
+                {facility.status === 'Active' && (
+                  <span className="px-1.5 py-0.5 rounded text-xs bg-red-900 text-red-300">Active</span>
+                )}
+              </span>
+              <span className="col-span-3 flex flex-wrap items-center justify-between gap-2 mt-2 text-xs text-slate-400">
+                <span className="flex items-center gap-2">
+                  <MapPin className="w-3 h-3" />
+                  {facility.city}, {facility.region}
+                </span>
+                <span>Cap: {facility.estimatedCapacity}</span>
+              </span>
+            </summary>
+            {renderDetails(facility)}
+          </details>
         ))}
       </div>
 

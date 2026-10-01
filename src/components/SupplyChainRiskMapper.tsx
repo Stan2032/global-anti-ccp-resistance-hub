@@ -9,7 +9,8 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
-import { Factory, Search, ChevronDown, ChevronUp, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
+import { Factory, Search, ChevronDown, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 
 type RiskLevel = 'Critical' | 'High' | 'Moderate' | 'Low';
 
@@ -119,8 +120,6 @@ export default function SupplyChainRiskMapper() {
   const [searchQuery, setSearchQuery] = useState('');
   const [industryFilter, setIndustryFilter] = useState('all');
   const [riskFilter, setRiskFilter] = useState('all');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [activeView, setActiveView] = useState('companies');
   const [copied, setCopied] = useState(false);
 
   // ── Fetch & enrich data ─────────────────────────────
@@ -267,145 +266,111 @@ export default function SupplyChainRiskMapper() {
       </div>
 
       {/* ── View toggle ────────────────────────────── */}
-      <div className="flex space-x-1 bg-[#111820]/50 border border-[#1c2a35] p-1">
-        {[
-          { id: 'companies', label: 'Company Risk', icon: Factory },
-          { id: 'industries', label: 'Industry Breakdown', icon: BarChart3 },
-          { id: 'legislation', label: 'Legal Landscape', icon: Scale },
-        ].map((v) => {
-          const Icon = v.icon;
-          return (
-            <button
-              key={v.id}
-              onClick={() => setActiveView(v.id)}
-              className={`flex items-center gap-1.5 flex-1 px-3 py-2 text-xs font-mono transition-colors ${
-                activeView === v.id
-                  ? 'bg-[#22d3ee]/10 text-[#22d3ee] border border-[#22d3ee]/30'
-                  : 'text-slate-400 hover:text-slate-300 border border-transparent'
-              }`}
-              aria-pressed={activeView === v.id}
-            >
-              <Icon className="w-3.5 h-3.5" aria-hidden="true" />
-              {v.label}
-            </button>
-          );
-        })}
-      </div>
 
       {/* ═══════════════════════════════════════════════ */}
       {/* COMPANY RISK VIEW                              */}
       {/* ═══════════════════════════════════════════════ */}
-      {activeView === 'companies' && (
-        <div className="space-y-4">
+      <DisclosureSection title="Company Risk">
+          <div className="space-y-4">
 
-          {/* ── Search + filters ───────────────────── */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true" />
-              <input
-                type="text"
-                placeholder="Search companies, industries..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111820] border border-[#1c2a35] text-slate-200 text-sm font-mono pl-10 pr-4 py-2.5 placeholder:text-slate-400 focus:outline-none focus:border-[#22d3ee]/50"
-                aria-label="Search companies"
-              />
-            </div>
-            <div className="flex gap-2">
-              <select
-                value={industryFilter}
-                onChange={(e) => setIndustryFilter(e.target.value)}
-                className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-xs font-mono px-3 py-2 focus:outline-none focus:border-[#22d3ee]/50"
-                aria-label="Filter by industry"
-              >
-                {industries.map((ind) => (
-                  <option key={ind} value={ind}>{ind === 'all' ? 'All Industries' : ind}</option>
-                ))}
-              </select>
-              <select
-                value={riskFilter}
-                onChange={(e) => setRiskFilter(e.target.value)}
-                className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-xs font-mono px-3 py-2 focus:outline-none focus:border-[#22d3ee]/50"
-                aria-label="Filter by risk level"
-              >
-                <option value="all">All Risk Levels</option>
-                {RISK_LEVELS.map((level) => (
-                  <option key={level} value={level}>{level} ({riskDistribution[level]})</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* ── Results count ──────────────────────── */}
-          <p className="text-xs font-mono text-slate-400">
-            Showing {filtered.length} of {companies.length} companies
-          </p>
-
-          {/* ── Company cards ──────────────────────── */}
-          <div className="space-y-2">
-            {filtered.length === 0 && (
-              <div className="text-center py-12 text-slate-400 text-sm font-mono">
-                No companies match your filters. Try broadening your search.
+            {/* ── Search + filters ───────────────────── */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true" />
+                <input
+                  type="text"
+                  placeholder="Search companies, industries..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-[#111820] border border-[#1c2a35] text-slate-200 text-sm font-mono pl-10 pr-4 py-2.5 placeholder:text-slate-400 focus:outline-none focus:border-[#22d3ee]/50"
+                  aria-label="Search companies"
+                />
               </div>
-            )}
+              <div className="flex gap-2">
+                <select
+                  value={industryFilter}
+                  onChange={(e) => setIndustryFilter(e.target.value)}
+                  className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-xs font-mono px-3 py-2 focus:outline-none focus:border-[#22d3ee]/50"
+                  aria-label="Filter by industry"
+                >
+                  {industries.map((ind) => (
+                    <option key={ind} value={ind}>{ind === 'all' ? 'All Industries' : ind}</option>
+                  ))}
+                </select>
+                <select
+                  value={riskFilter}
+                  onChange={(e) => setRiskFilter(e.target.value)}
+                  className="bg-[#111820] border border-[#1c2a35] text-slate-300 text-xs font-mono px-3 py-2 focus:outline-none focus:border-[#22d3ee]/50"
+                  aria-label="Filter by risk level"
+                >
+                  <option value="all">All Risk Levels</option>
+                  {RISK_LEVELS.map((level) => (
+                    <option key={level} value={level}>{level} ({riskDistribution[level]})</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-            {filtered.map((c) => {
-              const isExpanded = expandedId === c.id;
-              const style = RISK_STYLES[c.riskLevel];
+            {/* ── Results count ──────────────────────── */}
+            <p className="text-xs font-mono text-slate-400">
+              Showing {filtered.length} of {companies.length} companies
+            </p>
 
-              return (
-                <div key={c.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
-                  {/* Card header */}
-                  <button
-                    onClick={() => setExpandedId(isExpanded ? null : c.id)}
-                    className="w-full text-left p-4 flex items-start gap-3"
-                    aria-expanded={isExpanded}
-                    aria-label={`${c.company || c.id} — ${c.riskLevel} risk`}
-                  >
-                    {/* Industry icon */}
-                    <span className="text-lg flex-shrink-0 mt-0.5" aria-hidden="true">
-                      {getIndustryIcon(c.industry)}
-                    </span>
+            {/* ── Company cards ──────────────────────── */}
+            <div className="space-y-2">
+              {filtered.length === 0 && (
+                <div className="text-center py-12 text-slate-400 text-sm font-mono">
+                  No companies match your filters. Try broadening your search.
+                </div>
+              )}
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="text-white font-mono font-semibold text-sm">{c.company || c.id}</h3>
-                        <span className={`px-1.5 py-0.5 text-[10px] font-mono ${style.badge}`}>
-                          {c.riskLevel.toUpperCase()}
+              {filtered.map((c) => {
+                const style = RISK_STYLES[c.riskLevel];
+
+                return (
+                  <details key={c.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
+                    <summary className="w-full text-left p-4 flex items-start gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      {/* Industry icon */}
+                      <span className="text-lg flex-shrink-0 mt-0.5" aria-hidden="true">
+                        {getIndustryIcon(c.industry)}
+                      </span>
+
+                      <span className="block flex-1 min-w-0">
+                        <span className="flex items-center gap-2 flex-wrap">
+                          <span className="block text-white font-mono font-semibold text-sm">{c.company || c.id}</span>
+                          <span className={`px-1.5 py-0.5 text-[10px] font-mono ${style.badge}`}>
+                            {c.riskLevel.toUpperCase()}
+                          </span>
                         </span>
-                      </div>
 
-                      <p className="text-slate-400 text-xs mt-1 line-clamp-2">
-                        {c.connection_type || 'No connection type documented'}
-                      </p>
-
-                      <div className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
-                        <span className="flex items-center gap-1">
-                          <Layers className="w-3 h-3" aria-hidden="true" />
-                          {c.industry || 'N/A'}
+                        <span className="block text-slate-400 text-xs mt-1 line-clamp-2 summary-open:line-clamp-none">
+                          {c.connection_type || 'No connection type documented'}
                         </span>
-                        {c.status && (
+
+                        <span className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
                           <span className="flex items-center gap-1">
-                            <AlertTriangle className="w-3 h-3" aria-hidden="true" />
-                            {c.status}
+                            <Layers className="w-3 h-3" aria-hidden="true" />
+                            {c.industry || 'N/A'}
                           </span>
-                        )}
-                        {c.uflpa_actions && c.uflpa_actions !== 'N/A' && (
-                          <span className="flex items-center gap-1 text-[#fbbf24]">
-                            <Scale className="w-3 h-3" aria-hidden="true" />
-                            UFLPA Action
-                          </span>
-                        )}
-                      </div>
-                    </div>
+                          {c.status && (
+                            <span className="flex items-center gap-1">
+                              <AlertTriangle className="w-3 h-3" aria-hidden="true" />
+                              {c.status}
+                            </span>
+                          )}
+                          {c.uflpa_actions && c.uflpa_actions !== 'N/A' && (
+                            <span className="flex items-center gap-1 text-[#fbbf24]">
+                              <Scale className="w-3 h-3" aria-hidden="true" />
+                              UFLPA Action
+                            </span>
+                          )}
+                        </span>
+                      </span>
 
-                    <div className="text-slate-400 flex-shrink-0">
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </div>
-                  </button>
-
-                  {/* Expanded details */}
-                  {isExpanded && (
+                      <span className="block text-slate-400 flex-shrink-0">
+                        <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                      </span>
+                    </summary>
                     <div className="border-t border-[#1c2a35] p-4 space-y-4">
                       {/* Evidence */}
                       {c.evidence && (
@@ -459,122 +424,121 @@ export default function SupplyChainRiskMapper() {
                         </a>
                       )}
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                  </details>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* ═══════════════════════════════════════════════ */}
       {/* INDUSTRY BREAKDOWN VIEW                        */}
       {/* ═══════════════════════════════════════════════ */}
-      {activeView === 'industries' && (
-        <div className="space-y-4">
-          <p className="text-xs font-mono text-slate-400">
-            Risk distribution across {industryRisk.length} industry sectors
-          </p>
+      <DisclosureSection title="Industry Breakdown">
+          <div className="space-y-4">
+            <p className="text-xs font-mono text-slate-400">
+              Risk distribution across {industryRisk.length} industry sectors
+            </p>
 
-          {industryRisk.map((ind) => {
-            const _maxCount = Math.max(...industryRisk.map((i) => i.total));
-            return (
-              <div key={ind.industry} className="bg-[#111820] border border-[#1c2a35] p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-white font-mono text-sm flex items-center gap-2">
-                    <span aria-hidden="true">{getIndustryIcon(ind.industry)}</span>
-                    {ind.industry}
-                  </h3>
-                  <span className="text-slate-400 text-xs font-mono">{ind.total} companies</span>
-                </div>
+            {industryRisk.map((ind) => {
+              const _maxCount = Math.max(...industryRisk.map((i) => i.total));
+              return (
+                <div key={ind.industry} className="bg-[#111820] border border-[#1c2a35] p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-white font-mono text-sm flex items-center gap-2">
+                      <span aria-hidden="true">{getIndustryIcon(ind.industry)}</span>
+                      {ind.industry}
+                    </h3>
+                    <span className="text-slate-400 text-xs font-mono">{ind.total} companies</span>
+                  </div>
 
-                {/* Stacked risk bar */}
-                <div className="flex h-3 overflow-hidden bg-[#0a0e14] border border-[#1c2a35]">
-                  {RISK_LEVELS.map((level) => {
-                    const pct = ind.total > 0 ? (ind[level] / ind.total) * 100 : 0;
-                    return pct > 0 ? (
-                      <div
-                        key={level}
-                        className={`${RISK_STYLES[level].bar} transition-all`}
-                        style={{ width: `${pct}%` }}
-                        title={`${level}: ${ind[level]}`}
-                        aria-label={`${level}: ${ind[level]} companies`}
-                      />
-                    ) : null;
-                  })}
-                </div>
+                  {/* Stacked risk bar */}
+                  <div className="flex h-3 overflow-hidden bg-[#0a0e14] border border-[#1c2a35]">
+                    {RISK_LEVELS.map((level) => {
+                      const pct = ind.total > 0 ? (ind[level] / ind.total) * 100 : 0;
+                      return pct > 0 ? (
+                        <div
+                          key={level}
+                          className={`${RISK_STYLES[level].bar} transition-all`}
+                          style={{ width: `${pct}%` }}
+                          title={`${level}: ${ind[level]}`}
+                          aria-label={`${level}: ${ind[level]} companies`}
+                        />
+                      ) : null;
+                    })}
+                  </div>
 
-                {/* Breakdown labels */}
-                <div className="flex gap-3 mt-2 text-xs font-mono flex-wrap">
-                  {RISK_LEVELS.map((level) => ind[level] > 0 && (
-                    <span key={level} className="flex items-center gap-1 text-slate-400">
-                      <span className={`w-1.5 h-1.5 ${RISK_STYLES[level].dot}`} aria-hidden="true" />
-                      {level}: {ind[level]}
-                    </span>
-                  ))}
+                  {/* Breakdown labels */}
+                  <div className="flex gap-3 mt-2 text-xs font-mono flex-wrap">
+                    {RISK_LEVELS.map((level) => ind[level] > 0 && (
+                      <span key={level} className="flex items-center gap-1 text-slate-400">
+                        <span className={`w-1.5 h-1.5 ${RISK_STYLES[level].dot}`} aria-hidden="true" />
+                        {level}: {ind[level]}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+      </DisclosureSection>
 
       {/* ═══════════════════════════════════════════════ */}
       {/* LEGISLATION VIEW                               */}
       {/* ═══════════════════════════════════════════════ */}
-      {activeView === 'legislation' && (
-        <div className="space-y-4">
-          <p className="text-xs font-mono text-slate-400">
-            {KEY_LEGISLATION.length} key legislative frameworks targeting forced labor in supply chains
-          </p>
+      <DisclosureSection title="Legal Landscape">
+          <div className="space-y-4">
+            <p className="text-xs font-mono text-slate-400">
+              {KEY_LEGISLATION.length} key legislative frameworks targeting forced labor in supply chains
+            </p>
 
-          {KEY_LEGISLATION.map((law) => (
-            <div key={law.id} className="bg-[#111820] border border-[#1c2a35] p-4 space-y-3">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <h3 className="text-white font-mono text-sm font-semibold">{law.name}</h3>
-                  <div className="flex items-center gap-2 mt-1 text-xs font-mono text-slate-400">
-                    <span className="flex items-center gap-1">
-                      <Globe className="w-3 h-3" aria-hidden="true" />
-                      {law.country}
-                    </span>
-                    <span aria-hidden="true">|</span>
-                    <span>Enacted: {law.year}</span>
+            {KEY_LEGISLATION.map((law) => (
+              <div key={law.id} className="bg-[#111820] border border-[#1c2a35] p-4 space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 className="text-white font-mono text-sm font-semibold">{law.name}</h3>
+                    <div className="flex items-center gap-2 mt-1 text-xs font-mono text-slate-400">
+                      <span className="flex items-center gap-1">
+                        <Globe className="w-3 h-3" aria-hidden="true" />
+                        {law.country}
+                      </span>
+                      <span aria-hidden="true">|</span>
+                      <span>Enacted: {law.year}</span>
+                    </div>
                   </div>
+                  <span className="px-2 py-0.5 text-[10px] font-mono bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 flex-shrink-0">
+                    {law.status.toUpperCase()}
+                  </span>
                 </div>
-                <span className="px-2 py-0.5 text-[10px] font-mono bg-[#4afa82]/20 text-[#4afa82] border border-[#4afa82]/30 flex-shrink-0">
-                  {law.status.toUpperCase()}
-                </span>
-              </div>
 
-              <div>
-                <h4 className="text-xs font-mono text-slate-300 mb-1">Scope</h4>
-                <p className="text-sm text-slate-400">{law.scope}</p>
-              </div>
+                <div>
+                  <h4 className="text-xs font-mono text-slate-300 mb-1">Scope</h4>
+                  <p className="text-sm text-slate-400">{law.scope}</p>
+                </div>
 
-              <div>
-                <h4 className="text-xs font-mono text-slate-300 mb-1">Enforcement</h4>
-                <p className="text-sm text-slate-400">{law.enforcement}</p>
+                <div>
+                  <h4 className="text-xs font-mono text-slate-300 mb-1">Enforcement</h4>
+                  <p className="text-sm text-slate-400">{law.enforcement}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          {/* Compliance advisory */}
-          <div className="bg-[#22d3ee]/5 border border-[#22d3ee]/20 p-4">
-            <div className="flex items-start gap-2">
-              <Shield className="w-4 h-4 text-[#22d3ee] flex-shrink-0 mt-0.5" aria-hidden="true" />
-              <div>
-                <p className="text-[#22d3ee] text-sm font-mono font-semibold">Compliance Advisory</p>
-                <p className="text-slate-300 text-sm mt-1">
-                  Companies with supply chain links to Xinjiang face increasing legal risk across {KEY_LEGISLATION.length} jurisdictions.
-                  The UFLPA creates a rebuttable presumption that all goods from Xinjiang involve forced labor,
-                  shifting the burden of proof to importers.
-                </p>
+            {/* Compliance advisory */}
+            <div className="bg-[#22d3ee]/5 border border-[#22d3ee]/20 p-4">
+              <div className="flex items-start gap-2">
+                <Shield className="w-4 h-4 text-[#22d3ee] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-[#22d3ee] text-sm font-mono font-semibold">Compliance Advisory</p>
+                  <p className="text-slate-300 text-sm mt-1">
+                    Companies with supply chain links to Xinjiang face increasing legal risk across {KEY_LEGISLATION.length} jurisdictions.
+                    The UFLPA creates a rebuttable presumption that all goods from Xinjiang involve forced labor,
+                    shifting the burden of proof to importers.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+      </DisclosureSection>
 
       {/* ── Footer ─────────────────────────────────── */}
       <div className="border-t border-[#1c2a35] pt-4 space-y-2">

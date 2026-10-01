@@ -110,4 +110,13 @@ describe('EmbedWidget', () => {
     const pre = container.querySelector('pre');
     expect(pre!.textContent).toContain('resistance-hub');
   });
+
+  it('shows the preview open to start, in a native disclosure', () => {
+    render(<EmbedWidget />);
+    const preview = screen.getByText('Preview').closest('details')!;
+    expect(preview).toBeTruthy();
+    expect(preview.open).toBe(true);
+    fireEvent.click(screen.getByText('Preview'));
+    expect(preview.open).toBe(false);
+  });
 });

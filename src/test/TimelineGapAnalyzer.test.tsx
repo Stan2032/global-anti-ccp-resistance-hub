@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import TimelineGapAnalyzer from '../components/TimelineGapAnalyzer';
 import dataApi from '../services/dataApi';
 
@@ -16,6 +16,14 @@ Object.assign(navigator, {
     writeText: vi.fn(() => Promise.resolve()),
   },
 });
+
+// Each decade bar is the summary of a native <details>; its breakdown is
+// in the page from the start.
+const decadeCard = (label: string) => {
+  const details = screen.getByText(label).closest('details');
+  expect(details, `${label} is a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('TimelineGapAnalyzer', () => {
   const mockEvents = [
@@ -137,35 +145,23 @@ describe('TimelineGapAnalyzer', () => {
     expect(counts.length).toBeGreaterThan(0);
   });
 
-  it('expands decade details on click', () => {
+  it('every decade carries its category breakdown, folded until opened', () => {
     render(<TimelineGapAnalyzer />);
-    const decade1990s = screen.getByText('1990s');
-
-    // Should not show category breakdown initially
-    expect(screen.queryByText('Category Breakdown:')).not.toBeInTheDocument();
-
-    // Click to expand
-    fireEvent.click(decade1990s);
-
-    // Should now show category breakdown
-    expect(screen.getByText('Category Breakdown:')).toBeInTheDocument();
-    const tibetCounts = screen.getAllByText('tibet');
-    expect(tibetCounts.length).toBeGreaterThan(0);
-    const falungongCounts = screen.getAllByText('falungong');
-    expect(falungongCounts.length).toBeGreaterThan(0);
+    const decade = decadeCard('1990s');
+    expect(decade.open).toBe(false);
+    const breakdown = within(decade);
+    expect(breakdown.getByText('Category Breakdown:')).toBeInTheDocument();
+    expect(breakdown.getAllByText('tibet').length).toBeGreaterThan(0);
+    expect(breakdown.getAllByText('falungong').length).toBeGreaterThan(0);
   });
 
-  it('collapses decade details on second click', () => {
+  it('a decade opens and closes natively', () => {
     render(<TimelineGapAnalyzer />);
-    const decade1990s = screen.getByText('1990s');
-
-    // Expand
-    fireEvent.click(decade1990s);
-    expect(screen.getByText('Category Breakdown:')).toBeInTheDocument();
-
-    // Collapse
-    fireEvent.click(decade1990s);
-    expect(screen.queryByText('Category Breakdown:')).not.toBeInTheDocument();
+    const decade = decadeCard('1990s');
+    fireEvent.click(screen.getByText('1990s'));
+    expect(decade.open).toBe(true);
+    fireEvent.click(screen.getByText('1990s'));
+    expect(decade.open).toBe(false);
   });
 
   // --- Category Coverage ---
@@ -177,11 +173,11 @@ describe('TimelineGapAnalyzer', () => {
 
   it('shows all categories with event counts', () => {
     render(<TimelineGapAnalyzer />);
-    expect(screen.getByText('tibet')).toBeInTheDocument();
-    expect(screen.getByText('2 events')).toBeInTheDocument(); // tibet has 2 events
-    expect(screen.getByText('hongkong')).toBeInTheDocument();
-    const oneEventCounts = screen.getAllByText('1 events');
-    expect(oneEventCounts.length).toBe(3); // hongkong, mainland, falungong each have 1 event
+    const coverage = within(screen.getByText('Coverage by Category').parentElement!);
+    expect(coverage.getByText('tibet')).toBeInTheDocument();
+    expect(coverage.getByText('2 events')).toBeInTheDocument(); // tibet has 2 events
+    expect(coverage.getByText('hongkong')).toBeInTheDocument();
+    expect(coverage.getAllByText('1 events')).toHaveLength(3); // hongkong, mainland, falungong each have 1 event
   });
 
   it('calculates category percentages', () => {
@@ -269,11 +265,10 @@ describe('TimelineGapAnalyzer', () => {
     expect(copyButton).toHaveAttribute('aria-label');
   });
 
-  it('has aria-expanded on decade buttons', () => {
-    render(<TimelineGapAnalyzer />);
-    const decade1990s = screen.getByText('1990s');
-    const button = decade1990s.closest('button');
-    expect(button).toHaveAttribute('aria-expanded');
+  it('each decade is a native disclosure, not a JavaScript-only expander', () => {
+    const { container } = render(<TimelineGapAnalyzer />);
+    expect(decadeCard('1990s').firstElementChild?.tagName).toBe('SUMMARY');
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
   it('provides aria-label for percentage bars', () => {

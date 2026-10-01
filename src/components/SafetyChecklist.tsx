@@ -5,8 +5,10 @@
  *
  * @module SafetyChecklist
  */
-import React, { useState, useEffect } from 'react';
-import { Monitor, Shield, Smartphone, Plane, Scale, Siren } from 'lucide-react';
+import React from 'react';
+import { Shield, Siren } from 'lucide-react';
+import { useStoredJson } from '../utils/ssr';
+import { DisclosureSection } from './DisclosureSection';
 
 type Priority = 'critical' | 'high' | 'medium';
 
@@ -21,27 +23,20 @@ interface ChecklistItem {
 interface Category {
   id: string;
   name: string;
-  Icon: React.ComponentType<{ className?: string }>;
 }
 
 const SafetyChecklist: React.FC = () => {
-  const [checkedItems, setCheckedItems] = useState<string[]>(() => {
-    const saved = localStorage.getItem('safetyChecklist');
-    return saved ? (JSON.parse(saved) as string[]) : [];
-  });
-  const [activeCategory, setActiveCategory] = useState<string>('digital');
-
-  useEffect(() => {
-    localStorage.setItem('safetyChecklist', JSON.stringify(checkedItems));
-  }, [checkedItems]);
+  // Progress is per-reader: pre-rendered HTML starts unchecked, and the
+  // reader's own ticks are applied once the page has hydrated.
+  const [checkedItems, setCheckedItems] = useStoredJson<string[]>('safetyChecklist', []);
 
   const categories: Category[] = [
-    { id: 'digital', name: 'Digital Security', Icon: Monitor },
-    { id: 'physical', name: 'Physical Safety', Icon: Shield },
-    { id: 'communication', name: 'Communication', Icon: Smartphone },
-    { id: 'travel', name: 'Travel Safety', Icon: Plane },
-    { id: 'legal', name: 'Legal Preparation', Icon: Scale },
-    { id: 'emergency', name: 'Emergency Plan', Icon: Siren },
+    { id: 'digital', name: 'Digital Security' },
+    { id: 'physical', name: 'Physical Safety' },
+    { id: 'communication', name: 'Communication' },
+    { id: 'travel', name: 'Travel Safety' },
+    { id: 'legal', name: 'Legal Preparation' },
+    { id: 'emergency', name: 'Emergency Plan' },
   ];
 
   const checklistItems: Record<string, ChecklistItem[]> = {
@@ -340,10 +335,8 @@ const SafetyChecklist: React.FC = () => {
     }
   };
 
-  const currentItems = checklistItems[activeCategory] || [];
   const totalItems = Object.values(checklistItems).flat().length;
   const completedItems = checkedItems.length;
-  const categoryCompleted = currentItems.filter(item => checkedItems.includes(item.id)).length;
 
   const priorityColors: Record<Priority, string> = {
     critical: 'border-red-700/50 bg-red-900/20',
@@ -391,99 +384,77 @@ const SafetyChecklist: React.FC = () => {
         </div>
       </div>
 
-      {/* Category Tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Safety checklist categories">
+      {/* One section per category. Native <details>, so every category is in
+          the page and opens without JavaScript; the tabs they replace showed
+          one category and hid the other five from readers with it off. */}
+      <div className="space-y-3">
         {categories.map(cat => {
           const catItems = checklistItems[cat.id] || [];
           const catCompleted = catItems.filter(item => checkedItems.includes(item.id)).length;
-          
           return (
-            <button
+            <DisclosureSection
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              role="tab"
-              aria-selected={activeCategory === cat.id}
-              className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
-                activeCategory === cat.id
-                  ? 'bg-green-600 text-white'
-                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
-              }`}
+              title={cat.name}
+              description={`${catCompleted} of ${catItems.length} done`}
+              defaultOpen={cat.id === 'digital'}
             >
-              <cat.Icon className="w-4 h-4" />
-              <span>{cat.name}</span>
-              <span className="text-xs opacity-75">({catCompleted}/{catItems.length})</span>
-            </button>
+              <div className="space-y-3">
+                {catItems.map(item => (
+                  <div 
+                    key={item.id}
+                    className={`border p-4 ${priorityColors[item.priority]} ${
+                      checkedItems.includes(item.id) ? 'opacity-60' : ''
+                    }`}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <button
+                        onClick={() => toggleItem(item.id)}
+                        role="checkbox"
+                        aria-checked={checkedItems.includes(item.id)}
+                        aria-label={item.title}
+                        className={`w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                          checkedItems.includes(item.id)
+                            ? 'bg-green-600 border-green-600 text-white'
+                            : 'border-[#1c2a35] hover:border-green-500'
+                        }`}
+                      >
+                        {checkedItems.includes(item.id) && '✓'}
+                      </button>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <h3 className={`font-medium ${
+                            checkedItems.includes(item.id) ? 'text-slate-400 line-through' : 'text-white'
+                          }`}>
+                            {item.title}
+                          </h3>
+                          <span className={`text-xs px-2 py-0.5 rounded ${priorityBadges[item.priority]}`}>
+                            {item.priority}
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-400">{item.description}</p>
+                        {item.resources.length > 0 && (
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.resources.map((url, idx) => (
+                              <a
+                                key={idx}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-[#22d3ee] hover:underline"
+                              >
+                                {new URL(url).hostname}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </DisclosureSection>
           );
         })}
-      </div>
-
-      {/* Category Progress */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-white font-medium">
-            {categories.find(c => c.id === activeCategory)?.name} Progress
-          </span>
-          <span className="text-slate-400">{categoryCompleted}/{currentItems.length}</span>
-        </div>
-        <div className="w-full bg-[#111820] rounded-full h-2">
-          <div 
-            className="bg-[#22d3ee] h-2 rounded-full transition-all"
-            style={{ width: `${(categoryCompleted / currentItems.length) * 100}%` }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Checklist Items */}
-      <div className="space-y-3">
-        {currentItems.map(item => (
-          <div 
-            key={item.id}
-            className={`border p-4 ${priorityColors[item.priority]} ${
-              checkedItems.includes(item.id) ? 'opacity-60' : ''
-            }`}
-          >
-            <div className="flex items-start space-x-3">
-              <button
-                onClick={() => toggleItem(item.id)}
-                className={`w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
-                  checkedItems.includes(item.id)
-                    ? 'bg-green-600 border-green-600 text-white'
-                    : 'border-[#1c2a35] hover:border-green-500'
-                }`}
-              >
-                {checkedItems.includes(item.id) && '✓'}
-              </button>
-              <div className="flex-1">
-                <div className="flex items-center space-x-2 mb-1">
-                  <h3 className={`font-medium ${
-                    checkedItems.includes(item.id) ? 'text-slate-400 line-through' : 'text-white'
-                  }`}>
-                    {item.title}
-                  </h3>
-                  <span className={`text-xs px-2 py-0.5 rounded ${priorityBadges[item.priority]}`}>
-                    {item.priority}
-                  </span>
-                </div>
-                <p className="text-sm text-slate-400">{item.description}</p>
-                {item.resources.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {item.resources.map((url, idx) => (
-                      <a
-                        key={idx}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-[#22d3ee] hover:underline"
-                      >
-                        {new URL(url).hostname}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
 
       {/* Emergency Contacts */}

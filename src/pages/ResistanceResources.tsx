@@ -50,11 +50,11 @@ const ResistanceResources = () => {
     },
     {
       title: 'Educational Resources',
-      description: 'Books, documentaries, courses, and glossary of key terms',
+      description: 'Books, documentaries, research papers, and a glossary of key terms',
       Icon: BookOpen,
       link: '/education',
       linkText: 'Go to Education Center',
-      highlights: ['21 Books', '19 Documentaries', '8 Courses', 'Glossary'],
+      highlights: ['20 Books', '19 Documentaries', 'Research Papers', 'Glossary'],
       color: 'border-l-2 border-l-[#22d3ee]'
     },
     {
@@ -68,11 +68,11 @@ const ResistanceResources = () => {
     },
     {
       title: 'Community Support',
-      description: 'Connect with diaspora support networks and find local resources',
+      description: 'Where to find emergency, legal and mental-health help, and ways to help others',
       Icon: Handshake,
       link: '/community',
-      linkText: 'Join Community',
-      highlights: ['Diaspora Support', 'Calendar', 'Mutual Aid', 'Volunteers'],
+      linkText: 'Find Support',
+      highlights: ['Emergency Help', 'Legal Help', 'Mental Health', 'Volunteering'],
       color: 'border-l-2 border-l-[#22d3ee]'
     }
   ];

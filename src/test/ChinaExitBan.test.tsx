@@ -56,12 +56,12 @@ describe('ChinaExitBan', () => {
 
   it('renders the search input', () => {
     render(<ChinaExitBan />);
-    expect(screen.getByLabelText('Search')).toBeTruthy();
+    expect(screen.getByLabelText('Search exit ban cases')).toBeTruthy();
   });
 
   it('filters cases by search term', () => {
     render(<ChinaExitBan />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search exit ban cases');
     fireEvent.change(searchInput, { target: { value: 'Michael' } });
     expect(screen.getByText('Michael Spavor')).toBeTruthy();
     expect(screen.getByText('Michael Kovrig')).toBeTruthy();

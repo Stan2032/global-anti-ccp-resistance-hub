@@ -9,10 +9,10 @@ import React, { useState } from 'react';
 import { Languages, ClipboardCopy, Lightbulb, BookOpen } from 'lucide-react';
 import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
 import { logger } from '../utils/logger';
+import { DisclosureSection } from './DisclosureSection';
 
 const LanguageGuide = () => {
-  const [activeLanguage, setActiveLanguage] = useState('cantonese');
-  const [copiedPhrase, setCopiedPhrase] = useState<string | number | null>(null);
+  const [copiedPhrase, setCopiedPhrase] = useState<string | null>(null);
 
   const languages = [
     { id: 'cantonese', name: 'Cantonese', flag: '🇭🇰', region: 'Hong Kong' },
@@ -245,7 +245,7 @@ const LanguageGuide = () => {
     ],
   };
 
-  const copyToClipboard = async (text: string, id: string | number) => {
+  const copyToClipboard = async (text: string, id: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedPhrase(id);
@@ -255,8 +255,8 @@ const LanguageGuide = () => {
     }
   };
 
-  const currentLanguage = languages.find(l => l.id === activeLanguage);
-  const currentPhrases = (phrases as Record<string, { english: string; native: string; romanization: string; context: string; category: string }[]>)[activeLanguage] || [];
+  type Phrase = { english: string; native: string; romanization: string; context: string; category: string };
+  const phrasesByLanguage = phrases as Record<string, Phrase[]>;
 
   const categoryColors: Record<string, string> = {
     slogan: 'bg-red-900/30 border-red-700/50',
@@ -285,62 +285,50 @@ const LanguageGuide = () => {
         </p>
       </div>
 
-      {/* Language Selector */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Select language">
+      {/* One section per language, as native <details>: every phrase list is
+          in the page and opens without JavaScript. The tabs they replace
+          showed Cantonese and hid the other four from readers with it off. */}
+      <div className="space-y-3">
         {languages.map(lang => (
-          <button
+          <DisclosureSection
             key={lang.id}
-            onClick={() => setActiveLanguage(lang.id)}
-            role="tab"
-            aria-selected={activeLanguage === lang.id}
-            aria-controls={`lang-tabpanel-${lang.id}`}
-            className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
-              activeLanguage === lang.id
-                ? 'bg-[#22d3ee] text-[#0a0e14]'
-                : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
-            }`}
+            title={lang.name}
+            description={lang.region}
+            defaultOpen={lang.id === 'cantonese'}
           >
-            {lang.Icon ? <lang.Icon className="w-5 h-5" /> : <span className="text-lg">{lang.flag}</span>}
-            <span>{lang.name}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Current Language Info */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4">
-        <div className="flex items-center space-x-3">
-          {currentLanguage?.Icon ? <currentLanguage.Icon className="w-10 h-10" /> : <span className="text-4xl">{currentLanguage?.flag}</span>}
-          <div>
-            <h3 className="font-bold text-white">{currentLanguage?.name}</h3>
-            <p className="text-sm text-slate-400">Region: {currentLanguage?.region}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Phrases Grid */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {currentPhrases.map((phrase: { english: string; native: string; romanization: string; context: string; category: string }, index: number) => (
-          <div 
-            key={index}
-            className={`border p-4 ${categoryColors[phrase.category]}`}
-          >
-            <div className="flex items-start justify-between mb-2">
-              <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400 capitalize">
-                {phrase.category}
-              </span>
-              <button
-                onClick={() => copyToClipboard(phrase.native, index)}
-                className="text-xs text-[#22d3ee] hover:text-white"
-              >
-                {copiedPhrase === index ? '✓ Copied!' : <><ClipboardCopy className="w-3 h-3 inline" /> Copy</>}
-              </button>
+            <div className="mb-4">
+              {lang.Icon ? <lang.Icon className="w-10 h-10" /> : <span className="text-4xl" aria-hidden="true">{lang.flag}</span>}
             </div>
-            
-            <p className="text-lg font-bold text-white mb-1">{phrase.english}</p>
-            <p className="text-2xl text-[#22d3ee] mb-1 font-medium">{phrase.native}</p>
-            <p className="text-sm text-slate-400 italic mb-2">{phrase.romanization}</p>
-            <p className="text-xs text-slate-400">{phrase.context}</p>
-          </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {(phrasesByLanguage[lang.id] || []).map((phrase, index) => {
+                const phraseId = `${lang.id}-${index}`;
+                return (
+                  <div
+                    key={phraseId}
+                    className={`border p-4 ${categoryColors[phrase.category]}`}
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400 capitalize">
+                        {phrase.category}
+                      </span>
+                      <button
+                        onClick={() => copyToClipboard(phrase.native, phraseId)}
+                        aria-label={`Copy the ${lang.name} for "${phrase.english}"`}
+                        className="text-xs text-[#22d3ee] hover:text-white"
+                      >
+                        {copiedPhrase === phraseId ? '✓ Copied!' : <><ClipboardCopy className="w-3 h-3 inline" /> Copy</>}
+                      </button>
+                    </div>
+
+                    <p className="text-lg font-bold text-white mb-1">{phrase.english}</p>
+                    <p className="text-2xl text-[#22d3ee] mb-1 font-medium">{phrase.native}</p>
+                    <p className="text-sm text-slate-400 italic mb-2">{phrase.romanization}</p>
+                    <p className="text-xs text-slate-400">{phrase.context}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </DisclosureSection>
         ))}
       </div>
 

@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import DataChangelog from '../components/DataChangelog';
+
+// Each dataset is a native <details> whose summary carries its name.
+const dataset = (name: string) => {
+  const details = screen.getByText(name).closest('details');
+  expect(details, `${name} is a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('DataChangelog', () => {
   // ── Rendering ──────────────────────────────────────────
@@ -65,56 +72,43 @@ describe('DataChangelog', () => {
     expect(labels.length).toBeGreaterThanOrEqual(1);
   });
 
-  // ── Expand/Collapse ────────────────────────────────────
+  // ── Native disclosure ──────────────────────────────────
 
-  it('expands dataset details when clicked', () => {
-    render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn!);
-    expect(screen.getByText(/Last verified:/)).toBeTruthy();
-    expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
+  it('every dataset carries its verification details without a click', () => {
+    const { container } = render(<DataChangelog />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const prisoners = within(dataset('Political Prisoners'));
+    expect(dataset('Political Prisoners').open).toBe(false);
+    expect(prisoners.getByText(/Last verified:/)).toBeTruthy();
+    expect(prisoners.getByText('political_prisoners_research.json')).toBeTruthy();
   });
 
-  it('shows verification note when expanded', () => {
+  it('shows the verification note without a click', () => {
     render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn!);
-    expect(screen.getByText(/64 records verified/)).toBeTruthy();
+    expect(within(dataset('Political Prisoners')).getByText(/64 records verified/)).toBeTruthy();
   });
 
-  it('shows days ago when expanded', () => {
+  it('shows how many days ago each dataset was verified', () => {
     render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn!);
-    expect(screen.getByText(/days ago/)).toBeTruthy();
+    expect(within(dataset('Political Prisoners')).getByText(/days ago/)).toBeTruthy();
   });
 
-  it('collapses on second click', () => {
+  it('a dataset opens and closes natively', () => {
     render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    fireEvent.click(prisonerBtn!);
-    expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
-    fireEvent.click(prisonerBtn!);
-    expect(screen.queryByText('political_prisoners_research.json')).toBeNull();
+    const prisoners = dataset('Political Prisoners');
+    fireEvent.click(screen.getByText('Political Prisoners'));
+    expect(prisoners.open).toBe(true);
+    fireEvent.click(screen.getByText('Political Prisoners'));
+    expect(prisoners.open).toBe(false);
   });
 
-  it('only one dataset expanded at a time', () => {
+  it('opening one dataset leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
     render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    const sanctionsBtn = screen.getByText('Sanctions Tracker').closest('button');
-    fireEvent.click(prisonerBtn!);
-    expect(screen.getByText('political_prisoners_research.json')).toBeTruthy();
-    fireEvent.click(sanctionsBtn!);
-    expect(screen.queryByText('political_prisoners_research.json')).toBeNull();
-    expect(screen.getByText('sanctions_tracker.json')).toBeTruthy();
-  });
-
-  it('has aria-expanded attribute on toggle buttons', () => {
-    render(<DataChangelog />);
-    const prisonerBtn = screen.getByText('Political Prisoners').closest('button');
-    expect(prisonerBtn!.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(prisonerBtn!);
-    expect(prisonerBtn!.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(screen.getByText('Political Prisoners'));
+    fireEvent.click(screen.getByText('Sanctions Tracker'));
+    expect(dataset('Political Prisoners').open).toBe(true);
+    expect(dataset('Sanctions Tracker').open).toBe(true);
   });
 
   // ── Recent Changes ─────────────────────────────────────
@@ -141,15 +135,15 @@ describe('DataChangelog', () => {
     expect(screen.getByText('Recent Data Changes')).toBeTruthy();
   });
 
-  it('toggles show all updates when button clicked', () => {
+  it('folds data changes past the newest five into one disclosure', () => {
     render(<DataChangelog />);
-    const showMore = screen.queryByText(/Show all \d+ data changes/);
-    if (showMore) {
-      fireEvent.click(showMore);
-      expect(screen.getByText('Show fewer')).toBeTruthy();
-      fireEvent.click(screen.getByText('Show fewer'));
-      expect(screen.queryByText('Show fewer')).toBeNull();
-    }
+    const toggle = screen.getByText(/Show all \d+ data changes/);
+    const total = Number(toggle.textContent!.match(/\d+/)![0]);
+    expect(total).toBeGreaterThan(5);
+    const rest = toggle.closest('details')!;
+    expect(rest.open).toBe(false);
+    fireEvent.click(toggle);
+    expect(rest.open).toBe(true);
   });
 
   // ── Health Overview Values ─────────────────────────────
@@ -181,32 +175,18 @@ describe('DataChangelog', () => {
 
   it('all dataset verification dates are valid ISO dates', () => {
     render(<DataChangelog />);
-    // Expand each dataset and check dates are present
-    const datasets = [
-      'Political Prisoners', 'Sanctions Tracker', 'Sanctioned Officials',
-      'Timeline Events', 'Forced Labor Companies', 'Detention Facilities',
-      'Emergency Alerts', 'Live Statistics'
-    ];
-    datasets.forEach((name) => {
-      const btn = screen.getByText(name).closest('button');
-      fireEvent.click(btn!);
-      // Use getAllByText since multiple dates may be visible
-      const dateTexts = screen.getAllByText(/^\d{4}-\d{2}-\d{2}$/);
-      expect(dateTexts.length).toBeGreaterThanOrEqual(1);
-      // Collapse
-      fireEvent.click(btn!);
-    });
+    for (const name of ['Political Prisoners', 'Sanctions Tracker', 'Sanctioned Officials', 'Timeline Events', 'Forced Labor Companies', 'Detention Facilities', 'Emergency Alerts', 'Live Statistics']) {
+      const dates = within(dataset(name)).getAllByText(/^\d{4}-\d{2}-\d{2}$/);
+      expect(dates.length).toBeGreaterThanOrEqual(1);
+      dates.forEach(d => expect(Number.isNaN(Date.parse(d.textContent!))).toBe(false));
+    }
   });
 
   // ── No Hashtags ────────────────────────────────────────
 
   it('contains no hashtags', () => {
+    // Every dataset's details are in the page, so this reads all of them.
     const { container } = render(<DataChangelog />);
-    // Expand all datasets to check all content
-    const buttons = container.querySelectorAll('button[aria-expanded]');
-    buttons.forEach((btn) => fireEvent.click(btn));
-    const allText = container.textContent;
-    const hashtagMatch = allText.match(/#[a-zA-Z]/);
-    expect(hashtagMatch).toBeNull();
+    expect(container.textContent!.match(/#[a-zA-Z]/)).toBeNull();
   });
 });

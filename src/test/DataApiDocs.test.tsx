@@ -1,7 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import DataApiDocs from '../components/DataApiDocs';
+
+// Each method group is a native <details> whose summary carries its title.
+const group = (title: string) => {
+  const details = screen.getByText(title).closest('details');
+  expect(details, `${title} is a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 // Mock clipboard API
 beforeEach(() => {
@@ -82,47 +89,51 @@ describe('DataApiDocs', () => {
 
   // ── Toggle Groups ──────────────────────────────────
 
-  it('collapses Metadata when clicked', () => {
+  it('opens Metadata by default and folds it natively', () => {
     render(<DataApiDocs />);
-    // getDatasetSummary should be visible initially
-    expect(screen.getByText('getDatasetSummary')).toBeTruthy();
-    // Click Metadata to collapse
+    const metadata = group('Metadata');
+    expect(metadata.open).toBe(true);
     fireEvent.click(screen.getByText('Metadata'));
-    // getDatasetSummary should be hidden
-    expect(screen.queryByText('getDatasetSummary')).toBeNull();
+    expect(metadata.open).toBe(false);
+    // Folded, not removed.
+    expect(within(metadata).getByText('getDatasetSummary')).toBeTruthy();
   });
 
-  it('expands Political Prisoners group when clicked', () => {
+  it('carries the Political Prisoners methods without a click', () => {
     render(<DataApiDocs />);
-    fireEvent.click(screen.getByText('Political Prisoners'));
-    expect(screen.getByText('getPoliticalPrisoners')).toBeTruthy();
-    expect(screen.getByText('getPoliticalPrisonerByName')).toBeTruthy();
-    expect(screen.getByText('searchPoliticalPrisoners')).toBeTruthy();
-    expect(screen.getByText('getPoliticalPrisonersByStatus')).toBeTruthy();
+    expect(group('Political Prisoners').open).toBe(false);
+    const g = within(group('Political Prisoners'));
+    expect(g.getByText('getPoliticalPrisoners')).toBeTruthy();
+    expect(g.getByText('getPoliticalPrisonerByName')).toBeTruthy();
+    expect(g.getByText('searchPoliticalPrisoners')).toBeTruthy();
+    expect(g.getByText('getPoliticalPrisonersByStatus')).toBeTruthy();
   });
 
-  it('expands Sanctions group when clicked', () => {
+  it('carries the Sanctions methods without a click', () => {
     render(<DataApiDocs />);
-    fireEvent.click(screen.getByText('Sanctions'));
-    expect(screen.getByText('getSanctions')).toBeTruthy();
-    expect(screen.getByText('getSanctionsByCountry')).toBeTruthy();
-    expect(screen.getByText('searchSanctions')).toBeTruthy();
+    expect(group('Sanctions').open).toBe(false);
+    const g = within(group('Sanctions'));
+    expect(g.getByText('getSanctions')).toBeTruthy();
+    expect(g.getByText('getSanctionsByCountry')).toBeTruthy();
+    expect(g.getByText('searchSanctions')).toBeTruthy();
   });
 
-  it('expands Timeline Events group when clicked', () => {
+  it('carries the Timeline Events methods without a click', () => {
     render(<DataApiDocs />);
-    fireEvent.click(screen.getByText('Timeline Events'));
-    expect(screen.getByText('getTimelineEvents')).toBeTruthy();
-    expect(screen.getByText('getTimelineEventsByCategory')).toBeTruthy();
-    expect(screen.getByText('getTimelineEventsInRange')).toBeTruthy();
+    expect(group('Timeline Events').open).toBe(false);
+    const g = within(group('Timeline Events'));
+    expect(g.getByText('getTimelineEvents')).toBeTruthy();
+    expect(g.getByText('getTimelineEventsByCategory')).toBeTruthy();
+    expect(g.getByText('getTimelineEventsInRange')).toBeTruthy();
   });
 
-  it('expands Cross-Dataset group when clicked', () => {
+  it('carries the Cross-Dataset methods without a click', () => {
     render(<DataApiDocs />);
-    fireEvent.click(screen.getByText('Cross-Dataset'));
-    expect(screen.getByText('globalSearch')).toBeTruthy();
-    expect(screen.getByText('getHongKongData')).toBeTruthy();
-    expect(screen.getByText('getUyghurData')).toBeTruthy();
+    expect(group('Cross-Dataset').open).toBe(false);
+    const g = within(group('Cross-Dataset'));
+    expect(g.getByText('globalSearch')).toBeTruthy();
+    expect(g.getByText('getHongKongData')).toBeTruthy();
+    expect(g.getByText('getUyghurData')).toBeTruthy();
   });
 
   // ── Live Examples ──────────────────────────────────
@@ -170,10 +181,9 @@ describe('DataApiDocs', () => {
     expect(nameParams.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('shows return type information', () => {
+  it('shows return type information for every method', () => {
     render(<DataApiDocs />);
-    // Metadata is expanded by default, showing returns
-    expect(screen.getByText(/returns:/i)).toBeTruthy();
+    expect(screen.getAllByText(/returns:/i).length).toBe(screen.getAllByTitle('Copy example').length);
   });
 
   // ── Copy Button ────────────────────────────────────
@@ -196,11 +206,10 @@ describe('DataApiDocs', () => {
 
   // ── Accessibility ──────────────────────────────────
 
-  it('has aria-expanded on group toggle buttons', () => {
-    render(<DataApiDocs />);
-    const buttons = screen.getAllByRole('button');
-    const expandableButtons = buttons.filter(b => b.getAttribute('aria-expanded') !== null);
-    expect(expandableButtons.length).toBeGreaterThanOrEqual(6);
+  it('uses native disclosures for its method groups', () => {
+    const { container } = render(<DataApiDocs />);
+    expect(container.querySelectorAll('details').length).toBeGreaterThanOrEqual(6);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
   it('has aria-label on copy buttons', () => {

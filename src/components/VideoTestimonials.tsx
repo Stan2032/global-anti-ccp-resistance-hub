@@ -6,7 +6,7 @@
  * @module VideoTestimonials
  */
 import React, { useState, useMemo } from 'react';
-import { Video, Play, Shield, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Copy, Check, Search, Clock, MapPin, Globe, Eye, EyeOff, FileText } from 'lucide-react';
+import { Video, Play, Shield, AlertTriangle, ExternalLink, ChevronDown, Copy, Check, Search, Clock, MapPin, Globe, Eye, EyeOff, FileText } from 'lucide-react';
 
 // ── Curated video testimonials ──────────────────────────
 // All videos are publicly available from Tier 1-2 sources (BBC, PBS, Al Jazeera,
@@ -198,12 +198,51 @@ const REGIONS = ['All Regions', 'East Turkestan', 'Hong Kong', 'Tibet', 'Mainlan
 
 // ── Component ───────────────────────────────────────────
 
+/** A testimony's details: full description, consent, language and source. */
+function TestimonialDetails({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+  return (
+    <>
+      {/* Full description */}
+      <div>
+        <h4 className="text-xs font-mono text-slate-300 mb-1">Description</h4>
+        <p className="text-sm text-slate-400 leading-relaxed">{t.description}</p>
+      </div>
+
+      {/* Consent verification */}
+      <div className="bg-[#4afa82]/5 border border-[#4afa82]/20 p-3">
+        <div className="flex items-start gap-2">
+          <Shield className="w-4 h-4 text-[#4afa82] flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <div>
+            <p className="text-[#4afa82] text-xs font-mono font-semibold">Consent Verified</p>
+            <p className="text-slate-300 text-xs mt-1">{t.consentNote}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Language */}
+      <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+        <Globe className="w-3.5 h-3.5" aria-hidden="true" />
+        Language: <span className="text-slate-300">{t.language}</span>
+      </div>
+
+      {/* Source link */}
+      <a
+        href={t.sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono border border-[#22d3ee]/30 text-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
+      >
+        <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+        Watch on {t.source}
+      </a>
+    </>
+  );
+}
+
 export default function VideoTestimonials() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeRegion, setActiveRegion] = useState('All Regions');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [warningDismissed, setWarningDismissed] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
 
   // ── Derived data ────────────────────────────────────
@@ -365,34 +404,26 @@ export default function VideoTestimonials() {
         )}
 
         {filtered.map((t) => {
-          const isExpanded = expandedId === t.id;
-          const showWarning = t.contentWarning && !warningDismissed[t.id];
 
           return (
-            <div key={t.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
-              {/* Card header — always visible */}
-              <button
-                onClick={() => setExpandedId(isExpanded ? null : t.id)}
-                className="w-full text-left p-4 flex items-start gap-4"
-                aria-expanded={isExpanded}
-                aria-label={`${t.name} — ${t.source}, ${t.year}`}
-              >
+            <details key={t.id} className="bg-[#111820] border border-[#1c2a35] hover:border-[#22d3ee]/30 transition-colors">
+              <summary className="w-full text-left p-4 flex items-start gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 {/* Play icon */}
-                <div className="w-10 h-10 flex-shrink-0 bg-[#22d3ee]/10 border border-[#22d3ee]/30 flex items-center justify-center">
+                <span className="w-10 h-10 flex-shrink-0 bg-[#22d3ee]/10 border border-[#22d3ee]/30 flex items-center justify-center">
                   <Play className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                </div>
+                </span>
 
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-white font-mono font-semibold text-sm">{t.name}</h3>
+                <span className="block flex-1 min-w-0">
+                  <span className="flex items-center gap-2 flex-wrap">
+                    <span className="block text-white font-mono font-semibold text-sm">{t.name}</span>
                     {t.verified && (
                       <span className="px-1.5 py-0.5 text-[10px] font-mono bg-[#4afa82]/10 text-[#4afa82] border border-[#4afa82]/30">VERIFIED</span>
                     )}
-                  </div>
+                  </span>
 
-                  <p className="text-slate-400 text-xs mt-1 line-clamp-2">{t.description}</p>
+                  <span className="block text-slate-400 text-xs mt-1 line-clamp-2 summary-open:line-clamp-none">{t.description}</span>
 
-                  <div className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
+                  <span className="flex items-center gap-3 mt-2 text-xs text-slate-400 font-mono flex-wrap">
                     <span className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" aria-hidden="true" />
                       {t.region}
@@ -411,80 +442,43 @@ export default function VideoTestimonials() {
                         Transcript
                       </span>
                     )}
-                  </div>
-                </div>
+                  </span>
+                </span>
 
-                <div className="text-slate-400 flex-shrink-0">
-                  {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </div>
-              </button>
-
-              {/* Expanded details */}
-              {isExpanded && (
-                <div className="border-t border-[#1c2a35] p-4 space-y-4">
-                  {/* Content warning gate */}
-                  {showWarning && (
-                    <div className="bg-[#fbbf24]/5 border border-[#fbbf24]/30 p-3">
-                      <div className="flex items-start gap-2">
+                <span className="block text-slate-400 flex-shrink-0">
+                  <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </span>
+              </summary>
+              <div className="border-t border-[#1c2a35] p-4 space-y-4">
+                {t.contentWarning ? (
+                  // The warning still stands in front of the details, and
+                  // opening them is still a deliberate step. It no longer
+                  // needs JavaScript to take that step.
+                  <details>
+                    <summary className="block bg-[#fbbf24]/5 border border-[#fbbf24]/30 p-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-start gap-2">
                         <AlertTriangle className="w-4 h-4 text-[#fbbf24] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <div>
-                          <p className="text-[#fbbf24] text-xs font-mono font-semibold">Content Warning</p>
-                          <p className="text-slate-300 text-xs mt-1">{t.contentWarning}</p>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setWarningDismissed((prev) => ({ ...prev, [t.id]: true }));
-                            }}
-                            className="mt-2 px-3 py-1 text-xs font-mono border border-[#fbbf24]/30 text-[#fbbf24] hover:bg-[#fbbf24]/10 transition-colors"
-                          >
+                        <span className="block">
+                          <span className="block text-[#fbbf24] text-xs font-mono font-semibold">Content Warning</span>
+                          <span className="block text-slate-300 text-xs mt-1">{t.contentWarning}</span>
+                          <span className="inline-block mt-2 px-3 py-1 text-xs font-mono border border-[#fbbf24]/30 text-[#fbbf24] hover:bg-[#fbbf24]/10 transition-colors summary-open:hidden">
                             I understand — show details
-                          </button>
-                        </div>
-                      </div>
+                          </span>
+                          <span className="hidden mt-2 px-3 py-1 text-xs font-mono border border-[#fbbf24]/30 text-[#fbbf24] hover:bg-[#fbbf24]/10 transition-colors summary-open:inline-block">
+                            Hide details
+                          </span>
+                        </span>
+                      </span>
+                    </summary>
+                    <div className="mt-4 space-y-4">
+                      <TestimonialDetails t={t} />
                     </div>
-                  )}
-
-                  {/* Details shown after warning dismissed (or no warning) */}
-                  {(!t.contentWarning || warningDismissed[t.id]) && (
-                    <>
-                      {/* Full description */}
-                      <div>
-                        <h4 className="text-xs font-mono text-slate-300 mb-1">Description</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">{t.description}</p>
-                      </div>
-
-                      {/* Consent verification */}
-                      <div className="bg-[#4afa82]/5 border border-[#4afa82]/20 p-3">
-                        <div className="flex items-start gap-2">
-                          <Shield className="w-4 h-4 text-[#4afa82] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                          <div>
-                            <p className="text-[#4afa82] text-xs font-mono font-semibold">Consent Verified</p>
-                            <p className="text-slate-300 text-xs mt-1">{t.consentNote}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Language */}
-                      <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-                        <Globe className="w-3.5 h-3.5" aria-hidden="true" />
-                        Language: <span className="text-slate-300">{t.language}</span>
-                      </div>
-
-                      {/* Source link */}
-                      <a
-                        href={t.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono border border-[#22d3ee]/30 text-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                        Watch on {t.source}
-                      </a>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
+                  </details>
+                ) : (
+                  <TestimonialDetails t={t} />
+                )}
+              </div>
+            </details>
           );
         })}
       </div>

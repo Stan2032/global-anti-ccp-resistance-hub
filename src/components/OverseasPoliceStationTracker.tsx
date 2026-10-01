@@ -125,7 +125,6 @@ function buildClipboardText(stations: StationRecord[], statusFilter: string) {
 export default function OverseasPoliceStationTracker() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [expandedStation, setExpandedStation] = useState('');
   const [copied, setCopied] = useState(false);
 
   // ── Data ────────────────────────────────────────────
@@ -173,10 +172,6 @@ export default function OverseasPoliceStationTracker() {
   }, [stations, searchQuery, statusFilter]);
 
   // ── Handlers ────────────────────────────────────────
-  const handleToggle = (id: string) => {
-    setExpandedStation((prev) => (prev === id ? '' : id));
-  };
-
   const handleCopy = async () => {
     const text = buildClipboardText(filteredStations, statusFilter);
     try {
@@ -307,32 +302,25 @@ export default function OverseasPoliceStationTracker() {
           </div>
         ) : (
           filteredStations.map((station) => {
-            const isExpanded = expandedStation === station.id;
             const statusCfg = getStatusConfig(station.status ?? 'UNKNOWN');
             const StatusIcon = statusCfg.Icon;
 
             return (
-              <div key={station.id}>
-                {/* Station Row */}
-                <button
-                  onClick={() => handleToggle(station.id)}
-                  aria-expanded={isExpanded}
-                  aria-controls={`station-${station.id}`}
-                  className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3"
-                >
+              <details key={station.id}>
+                <summary className="w-full text-left p-4 sm:px-6 hover:bg-[#0d1117] transition-colors flex items-center gap-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <StatusIcon
                     className={`w-4 h-4 flex-shrink-0 ${statusCfg.color}`}
                     aria-hidden="true"
                   />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-white font-medium truncate">
+                  <span className="block flex-1 min-w-0">
+                    <span className="block text-sm text-white font-medium truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {station.country}
-                    </div>
-                    <div className="text-xs text-slate-400 truncate">
+                    </span>
+                    <span className="block text-xs text-slate-400 truncate summary-open:whitespace-normal summary-open:overflow-visible">
                       {station.city}
                       {station.linked_to && station.linked_to !== 'Unknown' ? ` · Linked to ${station.linked_to}` : ''}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                   {/* Status Badge */}
                   <span className={`hidden sm:inline-block text-xs px-2 py-0.5 rounded border ${statusCfg.bgBadge}`}>
                     {statusCfg.label}
@@ -343,100 +331,89 @@ export default function OverseasPoliceStationTracker() {
                       aria-label="Arrests made"
                     />
                   )}
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" aria-hidden="true" />
-                  )}
-                </button>
-
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div
-                    id={`station-${station.id}`}
-                    className="px-4 sm:px-6 pb-4 bg-[#0d1117]"
-                  >
-                    <div className="space-y-3">
-                      {/* Status + Location */}
-                      <div className="flex flex-wrap gap-2">
-                        <span className={`text-xs px-2 py-0.5 rounded border ${statusCfg.bgBadge}`}>
-                          {statusCfg.label}
+                  <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="px-4 sm:px-6 pb-4 bg-[#0d1117]">
+                  <div className="space-y-3">
+                    {/* Status + Location */}
+                    <div className="flex flex-wrap gap-2">
+                      <span className={`text-xs px-2 py-0.5 rounded border ${statusCfg.bgBadge}`}>
+                        {statusCfg.label}
+                      </span>
+                      {station.closure_date && station.closure_date !== 'N/A' && (
+                        <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
+                          Closed: {station.closure_date}
                         </span>
-                        {station.closure_date && station.closure_date !== 'N/A' && (
-                          <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
-                            Closed: {station.closure_date}
-                          </span>
-                        )}
-                        {station.arrests_made === 'Yes' && (
-                          <span className="text-xs px-2 py-0.5 rounded border border-red-400/30 text-red-400 bg-red-400/10">
-                            Arrests made
-                          </span>
-                        )}
-                        {station.linked_to && station.linked_to !== 'Unknown' && (
-                          <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
-                            Linked to: {station.linked_to}
-                          </span>
-                        )}
+                      )}
+                      {station.arrests_made === 'Yes' && (
+                        <span className="text-xs px-2 py-0.5 rounded border border-red-400/30 text-red-400 bg-red-400/10">
+                          Arrests made
+                        </span>
+                      )}
+                      {station.linked_to && station.linked_to !== 'Unknown' && (
+                        <span className="text-xs px-2 py-0.5 rounded border border-[#1c2a35] text-slate-400">
+                          Linked to: {station.linked_to}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Address */}
+                    {station.address && station.address !== 'Unknown' && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Address</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {station.address}
+                        </div>
                       </div>
+                    )}
 
-                      {/* Address */}
-                      {station.address && station.address !== 'Unknown' && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Address</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {station.address}
-                          </div>
+                    {/* Government Response */}
+                    {station.government_response && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Government Response</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {station.government_response}
                         </div>
-                      )}
-
-                      {/* Government Response */}
-                      {station.government_response && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Government Response</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {station.government_response}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Arrest Details */}
-                      {station.arrest_details && station.arrest_details !== 'N/A' && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Arrest Details</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {station.arrest_details}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Latest News */}
-                      {station.latest_news && (
-                        <div>
-                          <div className="text-xs text-slate-400 mb-0.5">Latest News</div>
-                          <div className="text-sm text-slate-300 leading-relaxed">
-                            {station.latest_news}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Source Link */}
-                      <div className="flex flex-wrap gap-3 pt-2 border-t border-[#1c2a35]">
-                        {station.source_url && (
-                          <a
-                            href={station.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
-                          >
-                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                            Source
-                          </a>
-                        )}
                       </div>
+                    )}
+
+                    {/* Arrest Details */}
+                    {station.arrest_details && station.arrest_details !== 'N/A' && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Arrest Details</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {station.arrest_details}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Latest News */}
+                    {station.latest_news && (
+                      <div>
+                        <div className="text-xs text-slate-400 mb-0.5">Latest News</div>
+                        <div className="text-sm text-slate-300 leading-relaxed">
+                          {station.latest_news}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Source Link */}
+                    <div className="flex flex-wrap gap-3 pt-2 border-t border-[#1c2a35]">
+                      {station.source_url && (
+                        <a
+                          href={station.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:underline"
+                        >
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                          Source
+                        </a>
+                      )}
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              </details>
             );
           })
         )}

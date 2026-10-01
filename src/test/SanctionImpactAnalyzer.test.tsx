@@ -1,7 +1,14 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import SanctionImpactAnalyzer from '../components/SanctionImpactAnalyzer';
 import { dataApi } from '../services/dataApi';
+
+// Fails on none, so a check run over each card cannot pass on an empty list.
+const officials = (container: HTMLElement) => {
+  const cards = [...container.querySelectorAll('details')];
+  expect(cards.length, 'cards render as <details>').toBeGreaterThan(0);
+  return cards;
+};
 
 describe('SanctionImpactAnalyzer', () => {
   // --- Rendering ---
@@ -59,12 +66,12 @@ describe('SanctionImpactAnalyzer', () => {
 
   it('shows all 5 country labels in breakdown', () => {
     render(<SanctionImpactAnalyzer />);
+    const breakdown = within(screen.getByText('Officials sanctioned per country').parentElement!);
     // Country labels are truncated to first word — US & UK both show "United"
-    const unitedLabels = screen.getAllByText('United');
-    expect(unitedLabels.length).toBe(2);
-    expect(screen.getByText('European')).toBeTruthy();
-    expect(screen.getByText('Canada')).toBeTruthy();
-    expect(screen.getByText('Australia')).toBeTruthy();
+    expect(breakdown.getAllByText('United')).toHaveLength(2);
+    expect(breakdown.getByText('European')).toBeTruthy();
+    expect(breakdown.getByText('Canada')).toBeTruthy();
+    expect(breakdown.getByText('Australia')).toBeTruthy();
   });
 
   // --- Coverage Filter Buttons ---
@@ -198,24 +205,20 @@ describe('SanctionImpactAnalyzer', () => {
   });
 
   it('officials are sorted by sanction count descending', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    // First official should have highest count
-    expect(expandable.length).toBeGreaterThan(0);
-    const firstText = expandable[0].textContent;
-    expect(firstText).toContain('5/5');
+    const { container } = render(<SanctionImpactAnalyzer />);
+    const counts = officials(container).map(o => Number(o.querySelector('summary')!.textContent!.match(/(\d)\/5/)![1]));
+    expect(counts.length).toBe(dataApi.getSanctionedOfficials().length);
+    expect(counts[0]).toBe(5);
+    expect(counts).toEqual([...counts].sort((a, b) => b - a));
   });
 
-  it('each official row has aria-expanded attribute', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBeGreaterThan(0);
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
+  it('every official is a native disclosure, closed to start', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    const all = officials(container);
+    expect(all.length).toBeGreaterThan(0);
+    all.forEach(o => {
+      expect(o.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(o.open).toBe(false);
     });
   });
 
@@ -227,87 +230,54 @@ describe('SanctionImpactAnalyzer', () => {
     expect(badges.length).toBeGreaterThanOrEqual(officials.length);
   });
 
-  // --- Expand/Collapse ---
+  // --- Native disclosure ---
 
-  it('clicking an official expands their details', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
+  it('an official opens and closes natively', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    const [first] = officials(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('expanded official shows sanction status by country', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Sanction Status by Country')).toBeTruthy();
+  it('every official shows sanction status by country without a click', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    officials(container).forEach(o => expect(within(o).getByText('Sanction Status by Country')).toBeTruthy());
   });
 
-  it('expanded official shows key abuses if available', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    // Click first official (Chen Quanguo — has key_abuses)
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Key Abuses')).toBeTruthy();
+  it('the most-sanctioned official shows key abuses without a click', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    // First official (Chen Quanguo) has key_abuses
+    expect(within(officials(container)[0]).getByText('Key Abuses')).toBeTruthy();
   });
 
-  it('expanded official shows source link', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    const sourceLink = screen.getByText('Source');
-    expect(sourceLink.closest('a')).toBeTruthy();
-    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
-    expect(sourceLink!.closest('a')!.getAttribute('rel')).toBe('noopener noreferrer');
+  it('an official links their source safely, without a click', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    const link = within(officials(container)[0]).getByText('Source').closest('a')!;
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
-  it('clicking expanded official collapses it', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-  });
-
-  it('expanding a different official collapses the previous one', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandable.length >= 2) {
-      fireEvent.click(expandable[0]);
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandable[1]);
-      expect(expandable[1].getAttribute('aria-expanded')).toBe('true');
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-    }
+  it('opening one official leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<SanctionImpactAnalyzer />);
+    const [first, second] = officials(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // --- Advocacy Opportunity ---
 
   it('shows advocacy opportunity for partially-sanctioned officials', () => {
-    render(<SanctionImpactAnalyzer />);
+    const { container } = render(<SanctionImpactAnalyzer />);
     // Find a partially-sanctioned official (e.g., Carrie Lam — only US)
-    const input = screen.getByPlaceholderText('Search officials...');
-    fireEvent.change(input, { target: { value: 'Carrie Lam' } });
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandable.length > 0) {
-      fireEvent.click(expandable[0]);
-      expect(screen.getByText('Advocacy Opportunity')).toBeTruthy();
-    }
+    fireEvent.change(screen.getByPlaceholderText('Search officials...'), { target: { value: 'Carrie Lam' } });
+    const [carrieLam] = officials(container);
+    expect(carrieLam.querySelector('summary')!.textContent).toContain('Carrie Lam');
+    expect(within(carrieLam).getByText('Advocacy Opportunity')).toBeTruthy();
   });
 
   // --- Copy Functionality ---
@@ -411,14 +381,9 @@ describe('SanctionImpactAnalyzer', () => {
     expect(coverageButtons.length).toBe(4);
   });
 
-  it('official rows have aria-expanded and aria-controls', () => {
-    render(<SanctionImpactAnalyzer />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-controls')).toBeTruthy();
-    });
+  it('uses native disclosures, not JavaScript-only expanders', () => {
+    const { container } = render(<SanctionImpactAnalyzer />);
+    expect(container.querySelectorAll('[aria-expanded], [aria-controls]')).toHaveLength(0);
   });
 
   it('search input is properly labelled', () => {

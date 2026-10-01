@@ -270,6 +270,26 @@ const DesktopSidebar = () => {
 };
 
 // Main App Layout
+/**
+ * Suspense boundary around the routes.
+ *
+ * This renders on both the server and the client, which is what lets React
+ * hydrate the pre-rendered markup instead of throwing it away and starting
+ * over (hydration error #418 — the tree has to match on both sides).
+ *
+ * It is safe to render this during the static pre-render only because
+ * `src/entry-server.tsx` raises `progressiveChunkSize`. Without that, React
+ * outlines any boundary whose markup exceeds 12,800 bytes — writing the
+ * `$ loading` fallback in its place and parking the real page in a trailing
+ * `<div hidden>` for a script to swap in. A routed page is far over that, so
+ * every one of the 27 routes was served as a loading screen to anyone with
+ * JavaScript disabled. Nothing suspends; size alone was the trigger.
+ * `scripts/prerender.mjs` fails the build if it comes back.
+ */
+function RouteBoundary({ children }: { children: React.ReactNode }) {
+  return <Suspense fallback={<LoadingScreen />}>{children}</Suspense>;
+}
+
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -320,7 +340,7 @@ function AppLayout() {
       </div>
       
       {/* Main Content */}
-      <main id="main-content" className="lg:pl-56" role="main" aria-label="Main content">
+      <main id="main-content" tabIndex={-1} className="lg:pl-56" role="main" aria-label="Main content">
         {/* Desktop Header — terminal command bar */}
         <header className="hidden lg:flex items-center justify-between h-14 px-8 bg-[#111820]/90 border-b border-[#1c2a35] sticky top-0 z-30 backdrop-blur-sm">
           <div className="flex items-center space-x-4">
@@ -348,7 +368,7 @@ function AppLayout() {
         <div className="p-4 sm:p-6 lg:p-8">
           <Breadcrumbs />
           <RouteErrorBoundary>
-          <Suspense fallback={<LoadingScreen />}>
+          <RouteBoundary>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/intelligence" element={<IntelligenceFeeds />} />
@@ -424,7 +444,7 @@ function AppLayout() {
                 </div>
               } />
             </Routes>
-          </Suspense>
+          </RouteBoundary>
           </RouteErrorBoundary>
         </div>
         
@@ -464,22 +484,38 @@ function AppLayout() {
   );
 }
 
-function App() {
-  // Use basename for GitHub Pages deployment
-  const basename = import.meta.env.BASE_URL || '/';
-  
+/**
+ * The provider tree, with no router attached.
+ *
+ * Split out so the browser entry and the static pre-render entry can each
+ * supply their own router — BrowserRouter in the browser, StaticRouter during
+ * the build — around the same application. See scripts/prerender.mjs.
+ */
+export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <LanguageProvider>
           <AuthProvider>
-            <Router basename={basename}>
-              <AppLayout />
-            </Router>
+            {children}
           </AuthProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
+  );
+}
+
+export { AppLayout }
+
+function App() {
+  const basename = import.meta.env.BASE_URL || '/';
+
+  return (
+    <AppProviders>
+      <Router basename={basename}>
+        <AppLayout />
+      </Router>
+    </AppProviders>
   );
 }
 

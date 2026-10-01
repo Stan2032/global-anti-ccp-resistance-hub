@@ -76,7 +76,7 @@ describe('HistoricalDocuments', () => {
 
   it('searches documents by title', () => {
     render(<HistoricalDocuments />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search documents by title, description, or tags');
     fireEvent.change(searchInput, { target: { value: 'Xinjiang' } });
     expect(screen.getByText('Xinjiang Police Files')).toBeTruthy();
     expect(screen.queryByText('Charter 08')).toBeFalsy();
@@ -84,14 +84,14 @@ describe('HistoricalDocuments', () => {
 
   it('searches documents by tag', () => {
     render(<HistoricalDocuments />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search documents by title, description, or tags');
     fireEvent.change(searchInput, { target: { value: 'Tiananmen' } });
     expect(screen.getByText('Tiananmen Papers')).toBeTruthy();
   });
 
   it('shows no results message for empty search', () => {
     render(<HistoricalDocuments />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search documents by title, description, or tags');
     fireEvent.change(searchInput, { target: { value: 'xyznonexistent' } });
     expect(screen.getByText('No documents match your search criteria')).toBeTruthy();
   });

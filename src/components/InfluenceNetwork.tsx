@@ -7,10 +7,10 @@
  *
  * @module InfluenceNetwork
  */
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   Network, Users, Shield, MapPin, AlertTriangle,
-  ChevronDown, ChevronUp, ExternalLink, Building2, Scale,
+  ChevronDown, ExternalLink, Building2, Scale,
   Target, Globe, Activity, Eye
 } from 'lucide-react';
 import { dataApi, type SanctionedOfficial, type PoliticalPrisoner, type Sanction, type TimelineEvent } from '../services/dataApi';
@@ -116,8 +116,6 @@ function getSanctionsList(official: SanctionedOfficial): string[] {
 }
 
 const InfluenceNetwork = () => {
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
-  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   // Build network data from all datasets
   const network = useMemo(() => {
@@ -223,11 +221,7 @@ const InfluenceNetwork = () => {
     };
   }, []);
 
-  const toggleSection = (section: string) => {
-    setExpandedSection((prev) => (prev === section ? null : section));
-  };
 
-  const regionData = selectedRegion ? REGION_CONFIG[selectedRegion] : null;
 
   return (
     <div className="space-y-6">
@@ -261,190 +255,138 @@ const InfluenceNetwork = () => {
         ))}
       </div>
 
-      {/* Region Selector */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      {/* Regions: native disclosures. Each holds its officials, prisoners,
+          timeline and sanctions, in the page for everyone. This used to be a
+          row of buttons that rendered one region's panel through React
+          state, so without JavaScript no region could be opened at all. */}
+      <div className="space-y-2">
         {Object.entries(REGION_CONFIG).map(([key, config]) => {
           const officialCount = network.officialsByRegion[key]?.length || 0;
           const prisonerCount = network.prisonersByRegion[key]?.length || 0;
-          const isSelected = selectedRegion === key;
           return (
-            <button
-              key={key}
-              onClick={() => setSelectedRegion(isSelected ? null : key)}
-              className={`p-3 border text-left transition-colors ${
-                isSelected
-                  ? `${config.bg} ${config.border} ring-1 ring-current`
-                  : 'bg-[#111820] border-[#1c2a35] hover:border-slate-400'
-              }`}
-              aria-pressed={isSelected}
-            >
-              <div className={`text-sm font-bold ${config.color}`}>{config.label}</div>
-              <div className="text-xs text-slate-400 mt-1">
-                {officialCount} officials · {prisonerCount} prisoners
+            <details key={key} className="bg-[#111820] border border-[#1c2a35]">
+              <summary className="grid grid-cols-[1fr_auto] items-center gap-x-3 p-3 cursor-pointer list-none hover:bg-[#1c2a35]/30 [&::-webkit-details-marker]:hidden">
+                <h3 className={`text-sm font-bold ${config.color}`}>{config.label}</h3>
+                <ChevronDown className="row-span-2 w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                <span className="text-xs text-slate-400 mt-1">
+                  {officialCount} officials · {prisonerCount} prisoners
+                </span>
+              </summary>
+              <div className={`${config.bg} border-t ${config.border} p-4 space-y-4`}>
+                <p className="text-slate-400 text-sm">{config.description}</p>
+
+                {/* Region Officials */}
+                {network.officialsByRegion[key]?.length > 0 && (
+                  <details>
+                    <summary className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <Shield className="w-4 h-4 flex-shrink-0 text-red-400" aria-hidden="true" />
+                      <span>Sanctioned Officials ({network.officialsByRegion[key].length})</span>
+                      <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 ml-auto transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <div className="mt-2 space-y-2">
+                      {network.officialsByRegion[key].map((o) => (
+                        <div key={o.name} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
+                          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                            <span className="text-white font-medium">{o.name}</span>
+                            <div className="flex flex-wrap gap-1">
+                              {getSanctionsList(o).map((c) => (
+                                <span key={c} className="text-xs bg-red-900/30 text-red-400 px-1.5 py-0.5 rounded">
+                                  {c}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-slate-400 text-xs mt-1">{o.position}</p>
+                          {o.key_abuses && <p className="text-slate-300 text-xs mt-1">{o.key_abuses}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                )}
+
+                {/* Region Prisoners */}
+                {network.prisonersByRegion[key]?.length > 0 && (
+                  <details>
+                    <summary className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <Users className="w-4 h-4 flex-shrink-0 text-yellow-400" aria-hidden="true" />
+                      <span>Political Prisoners ({network.prisonersByRegion[key].length})</span>
+                      <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 ml-auto transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <div className="mt-2 space-y-2">
+                      {network.prisonersByRegion[key].map((p) => (
+                        <div key={p.prisoner_name} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
+                          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                            <span className="text-white font-medium">{p.prisoner_name}</span>
+                            <span className={`text-xs px-1.5 py-0.5 rounded ${
+                              p.status === 'DETAINED' ? 'bg-red-900/30 text-red-400' :
+                              p.status === 'DECEASED' ? 'bg-slate-700/50 text-slate-300' :
+                              p.status === 'DISAPPEARED' ? 'bg-cyan-900/30 text-[#22d3ee]' :
+                              p.status === 'AT RISK' ? 'bg-orange-900/30 text-orange-400' :
+                              'bg-green-900/30 text-green-400'
+                            }`}>
+                              {p.status}
+                            </span>
+                          </div>
+                          {p.location && <p className="text-slate-400 text-xs mt-1">{p.location}</p>}
+                          {p.sentence && <p className="text-slate-300 text-xs mt-1">{p.sentence}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                )}
+
+                {/* Region Timeline */}
+                {network.timelineByRegion[key]?.length > 0 && (
+                  <details>
+                    <summary className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <Activity className="w-4 h-4 flex-shrink-0 text-green-400" aria-hidden="true" />
+                      <span>Timeline Events ({network.timelineByRegion[key].length})</span>
+                      <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 ml-auto transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <div className="mt-2 space-y-2">
+                      {[...network.timelineByRegion[key]]
+                        .sort((a, b) => b.date.localeCompare(a.date))
+                        .map((e) => (
+                          <div key={e.id} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                              <span className="text-white font-medium">{e.title}</span>
+                              <span className="text-xs text-slate-400">{e.date}</span>
+                            </div>
+                            <p className="text-slate-300 text-xs mt-1">{e.description}</p>
+                          </div>
+                        ))}
+                    </div>
+                  </details>
+                )}
+
+                {/* Region Sanctions */}
+                {network.sanctionsByRegion[key]?.length > 0 && (
+                  <details>
+                    <summary className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <Scale className="w-4 h-4 flex-shrink-0 text-[#22d3ee]" aria-hidden="true" />
+                      <span>Sanctions ({network.sanctionsByRegion[key].length})</span>
+                      <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 ml-auto transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <div className="mt-2 space-y-2">
+                      {network.sanctionsByRegion[key].map((s, i) => (
+                        <div key={`${s.target}-${i}`} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
+                          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                            <span className="text-white font-medium">{s.target}</span>
+                            <span className="text-xs bg-[#22d3ee]/10 text-[#22d3ee] px-1.5 py-0.5 rounded uppercase">
+                              {s.country}
+                            </span>
+                          </div>
+                          <p className="text-slate-400 text-xs mt-1">{s.reason}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                )}
               </div>
-            </button>
+            </details>
           );
         })}
       </div>
-
-      {/* Region Detail Panel */}
-      {selectedRegion && regionData && (
-        <div className={`${regionData.bg} border ${regionData.border} p-4 space-y-4`}>
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-lg font-bold ${regionData.color}`}>{regionData.label}</h3>
-              <p className="text-slate-400 text-sm">{regionData.description}</p>
-            </div>
-            <Globe className={`w-6 h-6 ${regionData.color}`} aria-hidden="true" />
-          </div>
-
-          {/* Region Officials */}
-          {network.officialsByRegion[selectedRegion]?.length > 0 && (
-            <div>
-              <button
-                onClick={() => toggleSection('officials')}
-                className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left"
-                aria-expanded={expandedSection === 'officials'}
-              >
-                <Shield className="w-4 h-4 text-red-400" aria-hidden="true" />
-                <span>Sanctioned Officials ({network.officialsByRegion[selectedRegion].length})</span>
-                {expandedSection === 'officials'
-                  ? <ChevronUp className="w-4 h-4 text-slate-400 ml-auto" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400 ml-auto" />}
-              </button>
-              {expandedSection === 'officials' && (
-                <div className="mt-2 space-y-2">
-                  {network.officialsByRegion[selectedRegion].map((o) => (
-                    <div key={o.name} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white font-medium">{o.name}</span>
-                        <div className="flex gap-1">
-                          {getSanctionsList(o).map((c) => (
-                            <span key={c} className="text-xs bg-red-900/30 text-red-400 px-1.5 py-0.5 rounded">
-                              {c}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-slate-400 text-xs mt-1">{o.position}</p>
-                      {o.key_abuses && <p className="text-slate-300 text-xs mt-1">{o.key_abuses}</p>}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Region Prisoners */}
-          {network.prisonersByRegion[selectedRegion]?.length > 0 && (
-            <div>
-              <button
-                onClick={() => toggleSection('prisoners')}
-                className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left"
-                aria-expanded={expandedSection === 'prisoners'}
-              >
-                <Users className="w-4 h-4 text-yellow-400" aria-hidden="true" />
-                <span>Political Prisoners ({network.prisonersByRegion[selectedRegion].length})</span>
-                {expandedSection === 'prisoners'
-                  ? <ChevronUp className="w-4 h-4 text-slate-400 ml-auto" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400 ml-auto" />}
-              </button>
-              {expandedSection === 'prisoners' && (
-                <div className="mt-2 space-y-2">
-                  {network.prisonersByRegion[selectedRegion].slice(0, 10).map((p) => (
-                    <div key={p.prisoner_name} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white font-medium">{p.prisoner_name}</span>
-                        <span className={`text-xs px-1.5 py-0.5 rounded ${
-                          p.status === 'DETAINED' ? 'bg-red-900/30 text-red-400' :
-                          p.status === 'DECEASED' ? 'bg-slate-700/50 text-slate-300' :
-                          p.status === 'DISAPPEARED' ? 'bg-cyan-900/30 text-[#22d3ee]' :
-                          p.status === 'AT RISK' ? 'bg-orange-900/30 text-orange-400' :
-                          'bg-green-900/30 text-green-400'
-                        }`}>
-                          {p.status}
-                        </span>
-                      </div>
-                      {p.location && <p className="text-slate-400 text-xs mt-1">{p.location}</p>}
-                      {p.sentence && <p className="text-slate-300 text-xs mt-1">{p.sentence}</p>}
-                    </div>
-                  ))}
-                  {network.prisonersByRegion[selectedRegion].length > 10 && (
-                    <p className="text-xs text-slate-400 text-center mt-2">
-                      + {network.prisonersByRegion[selectedRegion].length - 10} more
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Region Timeline */}
-          {network.timelineByRegion[selectedRegion]?.length > 0 && (
-            <div>
-              <button
-                onClick={() => toggleSection('timeline')}
-                className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left"
-                aria-expanded={expandedSection === 'timeline'}
-              >
-                <Activity className="w-4 h-4 text-green-400" aria-hidden="true" />
-                <span>Timeline Events ({network.timelineByRegion[selectedRegion].length})</span>
-                {expandedSection === 'timeline'
-                  ? <ChevronUp className="w-4 h-4 text-slate-400 ml-auto" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400 ml-auto" />}
-              </button>
-              {expandedSection === 'timeline' && (
-                <div className="mt-2 space-y-2">
-                  {network.timelineByRegion[selectedRegion]
-                    .sort((a, b) => b.date.localeCompare(a.date))
-                    .slice(0, 8)
-                    .map((e) => (
-                      <div key={e.id} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
-                        <div className="flex items-center justify-between">
-                          <span className="text-white font-medium">{e.title}</span>
-                          <span className="text-xs text-slate-400">{e.date}</span>
-                        </div>
-                        <p className="text-slate-300 text-xs mt-1 line-clamp-2">{e.description}</p>
-                      </div>
-                    ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Region Sanctions */}
-          {network.sanctionsByRegion[selectedRegion]?.length > 0 && (
-            <div>
-              <button
-                onClick={() => toggleSection('sanctions')}
-                className="flex items-center gap-2 text-sm font-semibold text-white w-full text-left"
-                aria-expanded={expandedSection === 'sanctions'}
-              >
-                <Scale className="w-4 h-4 text-[#22d3ee]" aria-hidden="true" />
-                <span>Sanctions ({network.sanctionsByRegion[selectedRegion].length})</span>
-                {expandedSection === 'sanctions'
-                  ? <ChevronUp className="w-4 h-4 text-slate-400 ml-auto" />
-                  : <ChevronDown className="w-4 h-4 text-slate-400 ml-auto" />}
-              </button>
-              {expandedSection === 'sanctions' && (
-                <div className="mt-2 space-y-2">
-                  {network.sanctionsByRegion[selectedRegion].slice(0, 8).map((s, i) => (
-                    <div key={`${s.target}-${i}`} className="bg-[#0a0e14]/50 border border-[#1c2a35] p-3 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white font-medium">{s.target}</span>
-                        <span className="text-xs bg-[#22d3ee]/10 text-[#22d3ee] px-1.5 py-0.5 rounded uppercase">
-                          {s.country}
-                        </span>
-                      </div>
-                      <p className="text-slate-400 text-xs mt-1">{s.reason}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Most-Sanctioned Officials */}
       <div className="bg-[#111820] border border-[#1c2a35] p-4">
@@ -455,12 +397,12 @@ const InfluenceNetwork = () => {
         </div>
         <div className="space-y-2">
           {network.highlySanctioned.map((o) => (
-            <div key={o.name} className="flex items-center justify-between bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
+            <div key={o.name} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between bg-[#0a0e14]/50 border border-[#1c2a35] p-3">
               <div className="min-w-0">
                 <span className="text-white text-sm font-medium">{o.name}</span>
-                <p className="text-slate-400 text-xs truncate">{o.position}</p>
+                <p className="text-slate-400 text-xs">{o.position}</p>
               </div>
-              <div className="flex gap-1 flex-shrink-0 ml-2">
+              <div className="flex flex-wrap gap-1 sm:flex-shrink-0">
                 {o.sanctions.map((c) => (
                   <span key={c} className="text-xs bg-red-900/30 text-red-400 px-1.5 py-0.5 rounded">{c}</span>
                 ))}

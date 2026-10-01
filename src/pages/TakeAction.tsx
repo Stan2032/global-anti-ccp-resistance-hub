@@ -5,10 +5,11 @@
  *
  * @module TakeAction
  */
-import { useState, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield, BarChart3 } from 'lucide-react';
 import ShareButtons from '../components/ShareButtons';
+import { SITE_URL } from '../utils/site';
 import actionsData from '../data/take_action_steps.json';
 
 const ICON_MAP: Record<string, typeof AlertTriangle> = { Heart, Landmark, PenLine, AlertTriangle, Megaphone, Shield };
@@ -19,6 +20,8 @@ const SectionLoader = () => (
     <span className="font-mono text-[#4afa82] text-sm animate-pulse ml-0.5" aria-hidden="true">█</span>
   </div>
 );
+
+import { DisclosureSection } from '../components/DisclosureSection';
 
 const PetitionLinks = lazy(() => import('../components/PetitionLinks'));
 const ForcedLabourList = lazy(() => import('../components/ForcedLabourList'));
@@ -37,12 +40,8 @@ const InternationalResponseTracker = lazy(() => import('../components/Internatio
 const PolicyBriefGenerator = lazy(() => import('../components/PolicyBriefGenerator'));
 
 const TakeAction = () => {
-  const [expandedAction, setExpandedAction] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
-  const INITIAL_DISPLAY_COUNT = 3;
 
   const actions = actionsData.map(a => ({ ...a, Icon: ICON_MAP[a.icon] || AlertTriangle }));
-  const displayedActions = showAll ? actions : actions.slice(0, INITIAL_DISPLAY_COUNT);
 
   const impactStats = [
     { label: 'Political Prisoners Documented', value: '10,000+' },
@@ -103,20 +102,13 @@ const TakeAction = () => {
         <h2 className="text-2xl font-bold text-white">Five Things You Can Do</h2>
         
         <div className="grid gap-6">
-          {displayedActions.map((action) => (
-            <div 
+          {actions.map((action) => (
+            <details
               key={action.number}
-              className={`bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all ${
-                expandedAction === action.number ? 'ring-2 ring-[#4afa82]' : ''
-              }`}
+              className="bg-[#111820] border border-[#1c2a35] overflow-hidden transition-all open:ring-2 open:ring-[#4afa82]"
             >
-              <button
-                onClick={() => setExpandedAction(expandedAction === action.number ? null : action.number)}
-                className="w-full p-6 text-left flex items-start gap-4 hover:bg-[#1c2a35]/50 transition-colors"
-                aria-expanded={expandedAction === action.number}
-                aria-controls={`action-panel-${action.number}`}
-              >
-                <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
+              <summary className="w-full p-6 text-left flex items-start gap-4 hover:bg-[#1c2a35]/50 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className={`flex-shrink-0 w-16 h-16 flex items-center justify-center text-3xl font-bold ${
                   action.color === 'blue' ? 'bg-[#111820]/50 text-[#22d3ee]' :
                   action.color === 'red' ? 'bg-red-900/50 text-red-400' :
                   action.color === 'green' ? 'bg-green-900/50 text-green-400' :
@@ -126,117 +118,102 @@ const TakeAction = () => {
                   'bg-[#1c2a35] text-slate-400'
                 }`}>
                   {action.number}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <action.Icon className="w-6 h-6" />
-                    <h3 className="text-lg font-bold text-white">{action.title}</h3>
-                  </div>
-                  <p className="text-slate-400 text-sm">{action.description}</p>
-                </div>
-                <svg 
-                  className={`w-6 h-6 text-slate-400 transition-transform ${expandedAction === action.number ? 'rotate-180' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
+                </span>
+                <span className="block flex-1 min-w-0">
+                  <span className="flex items-center gap-2 mb-2">
+                    <action.Icon className="w-6 h-6 flex-shrink-0" aria-hidden="true" />
+                    <span className="block text-lg font-bold text-white">{action.title}</span>
+                  </span>
+                  <span className="block text-slate-400 text-sm">{action.description}</span>
+                </span>
+                <svg
+                  className="w-6 h-6 text-slate-400 transition-transform summary-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
-              
-              {expandedAction === action.number && (
-                <div id={`action-panel-${action.number}`} className="px-6 pb-6 border-t border-[#1c2a35] pt-4" role="region" aria-label={action.title}>
-                  {action.stats && (
-                    <div className="mb-4 p-3 bg-[#0a0e14]/50">
-                      <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
-                    </div>
-                  )}
-                  
-                  {action.template && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</p>
-                      <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
-                        "{action.template}"
-                      </div>
-                    </div>
-                  )}
-                  
-                  {action.companies && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {action.companies.map((company) => (
-                          <span key={company} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-sm border border-red-700">
-                            {company}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  {action.tools && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {action.tools.map((tool) => (
-                          <span key={tool} className="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm border border-green-700">
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {action.links.map((link: { name: string; url: string; internal?: boolean; action?: string }, index: number) => (
-                      link.internal ? (
-                        <Link
-                          key={index}
-                          to={link.url}
-                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
-                        >
-                          <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      ) : (
-                        <a
-                          key={index}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
-                        >
-                          <span className="text-white text-sm">{link.name}</span>
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
-                      )
-                    ))}
+              </summary>
+
+              <div className="px-6 pb-6 border-t border-[#1c2a35] pt-4">
+                {action.stats && (
+                  <div className="mb-4 p-3 bg-[#0a0e14]/50">
+                    <span className="text-sm text-slate-300 flex items-center gap-1"><BarChart3 className="w-4 h-4 inline" /> {action.stats}</span>
                   </div>
+                )}
+                
+                {action.template && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Sample Message:</p>
+                    <div className="p-3 bg-[#0a0e14]/50 text-sm text-slate-400 italic">
+                      "{action.template}"
+                    </div>
+                  </div>
+                )}
+                
+                {action.companies && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Companies to Avoid:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {action.companies.map((company) => (
+                        <span key={company} className="px-3 py-1 bg-red-900/30 text-red-300 rounded-full text-sm border border-red-700">
+                          {company}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {action.tools && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-slate-300 mb-2">Recommended Tools:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {action.tools.map((tool) => (
+                        <span key={tool} className="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm border border-green-700">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <p className="text-sm font-semibold text-slate-300 mb-3">Take Action:</p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {action.links.map((link: { name: string; url: string; internal?: boolean; action?: string }, index: number) => (
+                    link.internal ? (
+                      <Link
+                        key={index}
+                        to={link.url}
+                        className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <span className="text-white text-sm">{link.name}</span>
+                        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    ) : (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-3 bg-[#1c2a35]/50 hover:bg-[#1c2a35] transition-colors"
+                      >
+                        <span className="text-white text-sm">{link.name}</span>
+                        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            </details>
           ))}
         </div>
 
-        {/* Show More / Show Less */}
-        {actions.length > INITIAL_DISPLAY_COUNT && (
-          <div className="text-center">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
-            >
-              {showAll
-                ? '$ show --less'
-                : `$ show --all ${actions.length} actions`}
-            </button>
-          </div>
-        )}
       </div>
       <div className="bg-red-900/20 border border-red-700 p-6">
         <h2 className="text-xl font-bold text-red-300 mb-4">Emergency Contacts</h2>
@@ -274,79 +251,150 @@ const TakeAction = () => {
         </div>
       </div>
 
-      {/* Petitions Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
-      </div>
+      {/*
+        Fifteen tools, folded up.
 
-      {/* Contact Representatives Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
-      </div>
+        These used to be stacked one after another down the page. That made
+        /take-action 57,416px tall on a desktop and 124,781px on a phone —
+        148 screens of scrolling on the page whose entire job is to get
+        somebody to do something. A reader looking for their representative
+        had no way to know the tool existed without scrolling past twelve
+        others.
 
-      {/* Advocacy Letter Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
-      </div>
+        They are <details> rather than tabs so they still work with
+        JavaScript disabled, which is how this site asks at-risk readers to
+        browse. The markup is all pre-rendered; it is folded, not withheld.
+        See src/components/DisclosureSection.tsx.
+      */}
+      <div className="space-y-3">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Tools and resources</h2>
+          <p className="text-slate-400 mt-1">
+            Open any of these. The first two are the quickest ways to have an effect today.
+          </p>
+        </div>
 
-      {/* Policy Brief Generator */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
-      </div>
+        <DisclosureSection
+          id="petitions"
+          title="Sign a petition"
+          description="Active petitions for prisoners of conscience and policy change."
+          defaultOpen
+        >
+          <Suspense fallback={<SectionLoader />}><PetitionLinks /></Suspense>
+        </DisclosureSection>
 
-      {/* Boycott List Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
-      </div>
+        <DisclosureSection
+          id="representatives"
+          title="Contact your representative"
+          description="Find who represents you and what to ask them for."
+          defaultOpen
+        >
+          <Suspense fallback={<SectionLoader />}><ContactRepresentatives /></Suspense>
+        </DisclosureSection>
 
-      {/* Company Accountability Tracker */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="letter"
+          title="Write an advocacy letter"
+          description="Generates a letter for a named prisoner, ready to send."
+        >
+          <Suspense fallback={<SectionLoader />}><AdvocacyLetterGenerator /></Suspense>
+        </DisclosureSection>
 
-      {/* Success Stories Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
-      </div>
+        <DisclosureSection
+          id="policy-brief"
+          title="Build a policy brief"
+          description="A sourced briefing document for officials and journalists."
+        >
+          <Suspense fallback={<SectionLoader />}><PolicyBriefGenerator /></Suspense>
+        </DisclosureSection>
 
-      {/* Quick Facts Section */}
-      <div className="bg-[#111820]/50 border border-[#1c2a35] p-4 sm:p-6 mb-8">
-        <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
-      </div>
+        <DisclosureSection
+          id="printable"
+          title="Printable report"
+          description="A version you can print or hand out offline."
+        >
+          <Suspense fallback={<SectionLoader />}><PrintableReport /></Suspense>
+        </DisclosureSection>
 
-      {/* Activist Toolkit */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
-      </div>
+        <DisclosureSection
+          id="boycott"
+          title="Boycott list: forced labour"
+          description="Brands linked to Uyghur forced labour in their supply chains."
+        >
+          <Suspense fallback={<SectionLoader />}><ForcedLabourList /></Suspense>
+        </DisclosureSection>
 
-      {/* Sanctions Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="companies"
+          title="Company accountability tracker"
+          description="What companies have been asked, and how they answered."
+        >
+          <Suspense fallback={<SectionLoader />}><CompanyTracker /></Suspense>
+        </DisclosureSection>
 
-      {/* International Response Tracker */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
-      </div>
+        <DisclosureSection
+          id="donate"
+          title="Where to donate"
+          description="Organisations doing the work, and what your money funds."
+        >
+          <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
+        </DisclosureSection>
 
-      {/* Donation Guide */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><DonationGuide /></Suspense>
-      </div>
+        <DisclosureSection
+          id="volunteer"
+          title="Volunteer your time"
+          description="Roles that need people, including remote and skills-based."
+        >
+          <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
+        </DisclosureSection>
 
-      {/* Volunteer Signup */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><VolunteerSignup /></Suspense>
-      </div>
+        <DisclosureSection
+          id="diaspora"
+          title="Diaspora support"
+          description="Help for people facing transnational repression abroad."
+        >
+          <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
+        </DisclosureSection>
 
-      {/* Diaspora Support Resources */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><DiasporaSupport /></Suspense>
-      </div>
+        <DisclosureSection
+          id="toolkit"
+          title="Activist toolkit"
+          description="Practical guidance for organising safely."
+        >
+          <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
+        </DisclosureSection>
 
-      {/* Printable Report Generator */}
-      <div className="mt-8">
-        <Suspense fallback={<SectionLoader />}><PrintableReport /></Suspense>
+        <DisclosureSection
+          id="sanctions"
+          title="Sanctions tracker"
+          description="Which officials have been sanctioned, by whom, and when."
+        >
+          <Suspense fallback={<SectionLoader />}><SanctionsTracker /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="international-response"
+          title="International response tracker"
+          description="What governments and bodies have actually done."
+        >
+          <Suspense fallback={<SectionLoader />}><InternationalResponseTracker /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="success-stories"
+          title="What has worked"
+          description="Cases where pressure changed an outcome."
+        >
+          <Suspense fallback={<SectionLoader />}><SuccessStories /></Suspense>
+        </DisclosureSection>
+
+        <DisclosureSection
+          id="quick-facts"
+          title="Quick facts"
+          description="Short, sourced figures to quote."
+        >
+          <Suspense fallback={<SectionLoader />}><QuickFacts /></Suspense>
+        </DisclosureSection>
       </div>
 
       {/* Share Section */}
@@ -357,9 +405,10 @@ const TakeAction = () => {
         <p className="text-slate-400 mb-4">
           Share this page with your network. Every share helps raise awareness about CCP human rights abuses.
         </p>
-        <ShareButtons 
+        <ShareButtons
           title="Take Action Against CCP Authoritarianism"
           text="Join the global movement against CCP human rights abuses. Here's how you can help:"
+          url={`${SITE_URL}/take-action`}
         />
       </div>
     </div>

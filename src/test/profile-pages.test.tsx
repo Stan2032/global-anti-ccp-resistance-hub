@@ -75,40 +75,42 @@ describe('Profile Pages — All 16', () => {
       expect(screen.getByText(backLink)).toBeTruthy();
     });
 
-    it('has a clickable Sources section', () => {
+    /*
+     * These sections used to be JavaScript tabs, and only the active one was
+     * ever rendered. Four of the five — the charges and verdict, the CCP
+     * narrative analysis, the international response, and the SOURCES — were
+     * absent from the pre-rendered HTML and unreachable for a reader with
+     * JavaScript disabled. On a site whose credibility rests on its sourcing,
+     * the source list required JavaScript to see.
+     *
+     * So these assert presence, not clicking. Nothing below clicks anything.
+     */
+
+    it('has its sources present without any interaction', () => {
       renderWithRouter(<Component />);
-      const sourcesBtn = screen.getByText('Sources', { selector: 'button' });
-      expect(sourcesBtn).toBeTruthy();
-      fireEvent.click(sourcesBtn);
-      // After clicking, should show CCP source exclusion statement (may match multiple elements)
       const ccpElements = screen.getAllByText((content) =>
         content.includes('CCP state media') || content.includes('CCP state outlets') || content.includes('non-CCP media')
       );
       expect(ccpElements.length).toBeGreaterThanOrEqual(1);
     });
 
-    it('shows Timeline content by default', () => {
+    it('opens on the timeline and has substantial content', () => {
       const { container } = renderWithRouter(<Component />);
-      // All profiles start with Timeline tab — content should be substantial
       expect(container.textContent.length).toBeGreaterThan(200);
-      // Timeline button should be visually selected (has yellow/active styling)
-      const timelineBtn = screen.getByText('Timeline', { selector: 'button' });
-      expect(timelineBtn).toBeTruthy();
+      const open = container.querySelectorAll('details[open]');
+      expect(open.length, 'exactly one section should start open').toBe(1);
+      expect(open[0].querySelector('summary')?.textContent).toMatch(/timeline/i);
     });
 
-    it('has at least 4 navigation tabs/sections', () => {
+    it('has at least 4 sections, all as native <details>', () => {
       const { container } = renderWithRouter(<Component />);
-      // Count buttons that are tab-like (within the nav or tab area)
-      const tabs = container.querySelectorAll('[role="tab"]');
-      if (tabs.length > 0) {
-        expect(tabs.length).toBeGreaterThanOrEqual(4);
-      } else {
-        // Fallback: some profiles use buttons without role="tab"
-        const timelineBtn = screen.getByText('Timeline', { selector: 'button' });
-        const sourcesBtn = screen.getByText('Sources', { selector: 'button' });
-        expect(timelineBtn).toBeTruthy();
-        expect(sourcesBtn).toBeTruthy();
-      }
+      const details = container.querySelectorAll('details');
+      expect(details.length).toBeGreaterThanOrEqual(4);
+      // A <summary> per section: the browser's own control, which works with
+      // JavaScript disabled. A React-state tab bar would not.
+      expect(container.querySelectorAll('details > summary').length).toBe(details.length);
+      // And no tab machinery left behind.
+      expect(container.querySelectorAll('[role="tab"]').length).toBe(0);
     });
 
     it('contains no activist hashtags in rendered content', () => {
@@ -120,30 +122,49 @@ describe('Profile Pages — All 16', () => {
 });
 
 describe('Profile Pages — Accessibility', () => {
-  // Profiles with full ARIA tablist implementation
-  const ARIA_PROFILES = PROFILES.filter(p =>
-    !['Liu Xiaobo'].includes(p.name)
-  );
-
-  it('profiles with ARIA tabs have aria-selected on active tab', () => {
-    ARIA_PROFILES.forEach(({ Component, name }) => {
+  it('every profile exposes its sections as native disclosures', () => {
+    PROFILES.forEach(({ Component, name }) => {
       const { container, unmount } = renderWithRouter(<Component />);
-      const activeTab = container.querySelector('[aria-selected="true"]');
-      expect(activeTab, `${name}: missing aria-selected="true"`).toBeTruthy();
+      const details = container.querySelectorAll('details');
+      expect(details.length, `${name}: no <details> sections`).toBeGreaterThanOrEqual(4);
+      details.forEach(d => {
+        expect(d.firstElementChild?.tagName.toLowerCase(), `${name}: <details> without a leading <summary>`).toBe('summary');
+      });
       unmount();
     });
   });
 
-  it('profiles with tabpanel have aria-labelledby', () => {
-    // Only profiles with role="tabpanel"
-    const TABPANEL_PROFILES = PROFILES.filter(p =>
-      !['Jimmy Lai', 'Liu Xiaobo', 'Ilham Tohti', 'Gedhun Choekyi Nyima'].includes(p.name)
-    );
-    TABPANEL_PROFILES.forEach(({ Component, name }) => {
+  it('no profile hides content behind a JavaScript-only tab', () => {
+    // The whole point. role="tab" here would mean the other panels are not
+    // rendered, which is how four of five sections went missing for readers
+    // with JavaScript disabled.
+    PROFILES.forEach(({ Component, name }) => {
       const { container, unmount } = renderWithRouter(<Component />);
-      const panel = container.querySelector('[role="tabpanel"]');
-      expect(panel, `${name}: missing tabpanel`).toBeTruthy();
-      expect(panel!.getAttribute('aria-labelledby'), `${name}: missing aria-labelledby`).toBeTruthy();
+      expect(container.querySelectorAll('[role="tab"]').length, `${name}: still has ARIA tabs`).toBe(0);
+      expect(container.querySelectorAll('[role="tabpanel"]').length, `${name}: still has a tabpanel`).toBe(0);
+      unmount();
+    });
+  });
+
+  it('no profile hides content behind a JavaScript-only expander', () => {
+    // The same failure one level down: a button with aria-expanded renders its
+    // panel only after a click, so timeline details, their sources and extra
+    // narratives never reached a reader with JavaScript off. Everything on a
+    // profile opens natively now.
+    PROFILES.forEach(({ Component, name }) => {
+      const { container, unmount } = renderWithRouter(<Component />);
+      expect(container.querySelectorAll('[aria-expanded]').length, `${name}: still has a JS-only expander`).toBe(0);
+      unmount();
+    });
+  });
+
+  it('every timeline event carries its detail and source without a click', () => {
+    PROFILES.forEach(({ Component, name }) => {
+      const { container, unmount } = renderWithRouter(<Component />);
+      const events = container.querySelectorAll('ol > li > details');
+      expect(events.length, `${name}: no timeline events`).toBeGreaterThanOrEqual(8);
+      const sourced = [...events].filter(d => d.querySelector('a[href^="http"]'));
+      expect(sourced.length, `${name}: timeline events carry no sources`).toBeGreaterThan(0);
       unmount();
     });
   });
@@ -151,38 +172,34 @@ describe('Profile Pages — Accessibility', () => {
   it('all profiles include a GlobalDisclaimer', () => {
     PROFILES.forEach(({ Component, name }) => {
       const { unmount } = renderWithRouter(<Component />);
-      expect(screen.getByText(/verification notice/i), `${name}: missing GlobalDisclaimer`).toBeTruthy();
+      // getAllBy: with every section rendered rather than just the active
+      // tab, the verification wording can legitimately appear more than once.
+      expect(screen.getAllByText(/verification notice/i).length, `${name}: missing GlobalDisclaimer`).toBeGreaterThanOrEqual(1);
       unmount();
     });
   });
 });
 
-describe('Profile Pages — Tab Navigation', () => {
-  it('clicking Sources tab shows source content (Agnes Chow)', () => {
+describe('Profile Pages — Sections', () => {
+  it('Agnes Chow shows source content without clicking', () => {
     renderWithRouter(<AgnesChowProfile />);
-    const sourcesTab = screen.getByText('Sources', { selector: 'button' });
-    fireEvent.click(sourcesTab);
-    expect(screen.getByText(/zero ccp state media/i)).toBeTruthy();
+    expect(screen.getAllByText(/zero ccp state media/i).length).toBeGreaterThanOrEqual(1);
   });
 
-  it('clicking a tab sets aria-selected correctly (Joshua Wong)', () => {
+  it('Joshua Wong opens on the timeline with the rest collapsed', () => {
     const { container } = renderWithRouter(<JoshuaWongProfile />);
-    const tabs = container.querySelectorAll('[role="tab"]');
-    expect(tabs[0].getAttribute('aria-selected')).toBe('true');
-    fireEvent.click(tabs[1]);
-    expect(tabs[1].getAttribute('aria-selected')).toBe('true');
-    expect(tabs[0].getAttribute('aria-selected')).toBe('false');
+    const details = [...container.querySelectorAll('details')];
+    expect(details.filter(d => d.hasAttribute('open')).length).toBe(1);
+    expect(details.length).toBeGreaterThanOrEqual(4);
   });
 
-  it('clicking different tabs changes visible content (Benny Tai)', () => {
+  it('Benny Tai has every section in the document at once', () => {
     const { container } = renderWithRouter(<BennyTaiProfile />);
-    const panel = container.querySelector('[role="tabpanel"]');
-    const timelineContent = panel!.textContent;
-
-    const chargesTab = screen.getByText(/charges/i, { selector: 'button' });
-    fireEvent.click(chargesTab);
-    const updatedPanel = container.querySelector('[role="tabpanel"]');
-    expect(updatedPanel!.textContent).not.toBe(timelineContent);
+    const summaries = [...container.querySelectorAll('details > summary')].map(s => s.textContent ?? '');
+    expect(summaries.length).toBeGreaterThanOrEqual(4);
+    expect(summaries.some(t => /timeline/i.test(t))).toBe(true);
+    expect(summaries.some(t => /charge/i.test(t))).toBe(true);
+    expect(summaries.some(t => /source/i.test(t))).toBe(true);
   });
 });
 
@@ -209,5 +226,36 @@ describe('Profile Pages — Data Integrity', () => {
         `${name}: statusText "${statusText}" not in valid list`
       ).toBe(true);
     });
+  });
+});
+
+// These pages retell facts that were re-verified in September 2026 while the
+// pages kept the old story. data-profile-review.test.ts makes the next
+// re-verification come back to the page; these pin what each says now.
+describe('Profile Pages — agree with the verified prisoner records', () => {
+  const text = (ui: React.ReactElement) => renderWithRouter(ui).container.textContent!;
+
+  it('Chow Hang-Tung: convicted and sentenced, no longer "on trial"', () => {
+    const page = text(<ChowHangTungProfile />);
+    expect(page).toContain('7 years 3 months for inciting subversion under the National Security Law, sentenced September 11, 2026');
+    expect(page).toContain('CONVICTED — August 21, 2026');
+    expect(page).not.toMatch(/On trial|ON TRIAL|If Chow is convicted|The court is considering/);
+  });
+
+  it('Joshua Wong: pleaded guilty to collusion, sentencing pending', () => {
+    const page = text(<JoshuaWongProfile />);
+    expect(page).toContain('On September 2, 2026 he pleaded guilty to conspiracy to collude with foreign forces');
+    expect(page).toContain('Pleaded guilty to foreign collusion');
+    expect(page).not.toMatch(/He has not entered a plea|PENDING|simultaneously facing new/);
+  });
+
+  it('Gao Zhisheng: seized by police, not "last seen"', () => {
+    const page = text(<GaoZhishengProfile />);
+    expect(page).toContain('Seized while attempting to escape house arrest');
+    expect(page).not.toMatch(/last seen August 13, 2017|Last seen — disappeared/i);
+  });
+
+  it('Zhang Zhan: Amnesty says her condition is life threatening', () => {
+    expect(text(<ZhangZhanProfile />)).toContain('describing her condition as life threatening');
   });
 });

@@ -4,10 +4,10 @@
  *
  * @module CCPOfficials
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
-import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown } from 'lucide-react';
 import sanctionedOfficialsData from '../data/sanctioned_officials_research.json';
 
 interface KeyAction {
@@ -68,12 +68,6 @@ interface CCPOfficial {
   keyActions: KeyAction[];
   sources: OfficialSource[];
   currentStatus: string;
-}
-
-interface ExpandedSections {
-  responsibility?: boolean;
-  actions?: boolean;
-  [key: string]: boolean | undefined;
 }
 
 // Helper function to map JSON sanction data to component format
@@ -226,14 +220,6 @@ export default function CCPOfficials() {
   const [regionFilter, setRegionFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [sanctionedOnly, setSanctionedOnly] = useState(false);
-  const [selectedOfficial, setSelectedOfficial] = useState<string | null>(null);
-  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({});
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => { if (e.key === 'Escape') setSelectedOfficial(null); };
-    if (selectedOfficial) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedOfficial]);
 
   const regions = ['all', ...new Set(officials.map(o => o.region))];
   const categories = ['all', ...new Set(officials.map(o => o.category))];
@@ -250,53 +236,9 @@ export default function CCPOfficials() {
     return true;
   });
 
-  const toggleSection = (section: string): void => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
-
-  if (selectedOfficial) {
-    const official = officials.find(o => o.id === selectedOfficial);
-    if (!official) return null;;
-    
-    return (
-      <div className="bg-[#111820]/50 border border-[#1c2a35]">
-        {/* Header */}
-        <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => setSelectedOfficial(null)}
-            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
-          >
-            ← Back to all officials
-          </button>
-          
-          <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-[#111820] flex items-center justify-center text-4xl">
-              {official.photo || <User className="w-10 h-10 text-slate-400" />}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                {official.sanctioned && (
-                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-600 text-white">
-                    SANCTIONED
-                  </span>
-                )}
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
-                  {official.level}
-                </span>
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
-                  {official.region}
-                </span>
-              </div>
-              <h2 className="text-2xl font-bold text-white">{official.name}</h2>
-              <p className="text-slate-400">{official.chineseName}</p>
-              <p className="text-sm text-slate-400 mt-1">{official.position}</p>
-            </div>
-          </div>
-        </div>
-
+  /** Everything the drill-down view held, shown inside each official's <details>. */
+  const renderDetails = (official: CCPOfficial) => (
+      <div className="border-t border-[#1c2a35]">
         {/* Quick Facts */}
         <div className="p-6 border-b border-[#1c2a35] grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#0a0e14]/50 p-3">
@@ -322,10 +264,10 @@ export default function CCPOfficials() {
         {/* Sanctions */}
         {official.sanctioned && official.sanctionedBy && (
           <div className="p-6 border-b border-[#1c2a35]">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
+            <h4 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
               <Scale className="w-5 h-5 text-red-400" />
               International Sanctions
-            </h3>
+            </h4>
             <div className="flex flex-wrap gap-2">
               {official.sanctionedBy.map((country, i) => (
                 <span key={i} className="px-3 py-1.5 bg-red-900/30 border border-red-700 text-red-300">
@@ -338,69 +280,52 @@ export default function CCPOfficials() {
 
         {/* Responsibility */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('responsibility')}
-            className="w-full flex items-center justify-between text-left"
-          >
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-yellow-400" />
-              Areas of Responsibility
-            </h3>
-            {expandedSections.responsibility ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
-          
-          {expandedSections.responsibility !== false && (
-            <ul className="mt-4 space-y-2">
-              {official.responsibility.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-slate-300">
-                  <span className="text-red-400 mt-1">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
+          <h4 className="text-lg font-semibold text-white flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-yellow-400" />
+            Areas of Responsibility
+          </h4>
+          <ul className="mt-4 space-y-2">
+            {official.responsibility.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-slate-300">
+                <span className="text-red-400 mt-1">•</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Key Actions */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('actions')}
-            className="w-full flex items-center justify-between text-left"
-          >
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-[#22d3ee]" />
-              Key Actions Timeline
-            </h3>
-            {expandedSections.actions ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
-          
-          {expandedSections.actions !== false && (
-            <div className="mt-4 space-y-3">
-              {official.keyActions.map((action, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-16 flex-shrink-0 text-sm text-slate-400 font-medium">{action.year}</div>
-                  <div className="flex-1">
-                    <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
-                    <p className="text-slate-300">{action.action}</p>
-                  </div>
+          <h4 className="text-lg font-semibold text-white flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-[#22d3ee]" />
+            Key Actions Timeline
+          </h4>
+          <div className="mt-4 space-y-3">
+            {official.keyActions.map((action, i) => (
+              <div key={i} className="flex gap-4">
+                <div className="w-16 flex-shrink-0 text-sm text-slate-400 font-medium">{action.year}</div>
+                <div className="flex-1">
+                  <div className="w-2 h-2 bg-[#22d3ee] rounded-full mt-1.5 -ml-5 mr-3 float-left"></div>
+                  <p className="text-slate-300">{action.action}</p>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Sources */}
         <div className="p-6">
-          <SourcesList 
-            sources={official.sources.filter(s => s.url && s.url !== '#')} 
-            title="Official Sources & Documentation"
+          <h4 className="text-white font-semibold text-sm mb-3">Official Sources &amp; Documentation</h4>
+          <SourcesList
+            sources={official.sources.filter(s => s.url && s.url !== '#')}
+            title=""
             compact={false}
           />
           
           {/* Additional references */}
           {official.sources.some(s => !s.url || s.url === '#') && (
             <div className="mt-4">
-              <h3 className="text-sm font-semibold text-slate-400 mb-2">Additional References</h3>
+              <h4 className="text-sm font-semibold text-slate-400 mb-2">Additional References</h4>
               <div className="flex flex-wrap gap-2">
                 {official.sources.filter(s => !s.url || s.url === '#').map((source, i) => (
                   <span key={i} className="px-2 py-1 bg-[#111820] rounded text-sm text-slate-300">
@@ -414,14 +339,13 @@ export default function CCPOfficials() {
           {/* Current Status */}
           {official.currentStatus && (
             <div className="mt-4 p-3 bg-[#0a0e14]/50 border border-[#1c2a35]">
-              <h3 className="text-xs font-semibold text-slate-400 mb-1">Current Status</h3>
+              <h4 className="text-xs font-semibold text-slate-400 mb-1">Current Status</h4>
               <p className="text-sm text-slate-300">{official.currentStatus}</p>
             </div>
           )}
         </div>
       </div>
-    );
-  }
+  );
 
   return (
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
@@ -458,16 +382,16 @@ export default function CCPOfficials() {
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            aria-label="Search"
+            aria-label="Search CCP officials"
             type="text"
-            placeholder="Search officials..."
+            placeholder="Search CCP officials..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-[#111820] border border-[#1c2a35] text-white placeholder:text-slate-400"
           />
         </div>
         <select
-          aria-label="Region filter"
+          aria-label="Filter officials by region"
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
           className="bg-[#111820] text-white text-sm px-3 py-2 border border-[#1c2a35]"
@@ -500,39 +424,35 @@ export default function CCPOfficials() {
       {/* Officials Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredOfficials.map(official => (
-          <button
+          <details
             key={official.id}
-            onClick={() => {
-              setSelectedOfficial(official.id);
-              setExpandedSections({ responsibility: true, actions: true });
-            }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
+            className="bg-[#0a0e14]/50 border border-[#1c2a35] hover:border-[#2a9a52] transition-colors self-start"
           >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-[#111820] flex items-center justify-center text-2xl">
+            <summary
+              className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 p-4 cursor-pointer list-none
+                         hover:bg-[#0a0e14]/70 focus-visible:outline focus-visible:outline-2
+                         focus-visible:outline-[#4afa82] [&::-webkit-details-marker]:hidden"
+            >
+              <span className="row-span-2 w-12 h-12 bg-[#111820] flex items-center justify-center text-2xl">
                 {official.photo || <User className="w-6 h-6 text-slate-400" />}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  {official.sanctioned && (
-                    <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-red-600 text-white">
-                      SANCTIONED
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-white font-semibold truncate">{official.name}</h3>
-                <p className="text-xs text-slate-400">{official.chineseName}</p>
-              </div>
-            </div>
-            <p className="text-sm text-slate-400 line-clamp-2 mb-2">{official.position}</p>
-            <div className="flex items-center justify-between">
-              <div className="flex gap-2">
+              </span>
+              <h3 className="text-white font-semibold break-words self-end">{official.name}</h3>
+              <ChevronDown
+                className="row-span-2 w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180"
+                aria-hidden="true"
+              />
+              <span className="text-xs text-slate-400 self-start">{official.chineseName}</span>
+              <span className="col-span-3 block text-sm text-slate-400 mt-3 mb-2">{official.position}</span>
+              <span className="col-span-3 flex flex-wrap gap-2">
+                {official.sanctioned && (
+                  <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-red-600 text-white">SANCTIONED</span>
+                )}
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.region}</span>
                 <span className="text-xs px-2 py-0.5 bg-[#111820] rounded text-slate-400">{official.category}</span>
-              </div>
-              <span className="text-[#22d3ee] text-sm">View →</span>
-            </div>
-          </button>
+              </span>
+            </summary>
+            {renderDetails(official)}
+          </details>
         ))}
       </div>
 

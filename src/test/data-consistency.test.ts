@@ -259,7 +259,7 @@ describe('Critical date consistency across data files', () => {
       expect(tohti.output.sentence).toMatch(/September 23, 2014/);
     });
 
-    it('Gao Zhisheng last seen August 13, 2017', () => {
+    it('Gao Zhisheng disappeared on August 13, 2017', () => {
       const gao = prisoners.results.find((r: PrisonerEntry) => r.output.prisoner_name === 'Gao Zhisheng')!;
       expect(gao).toBeDefined();
       expect(gao.output.latest_news).toMatch(/August 13, 2017/);
@@ -429,7 +429,13 @@ describe('Critical date consistency across data files', () => {
       expect(yw.output.sentence).toMatch(/First sentence/);
       expect(yw.output.sentence).toMatch(/Second sentence/);
       expect(yw.output.sentence).toMatch(/October 29, 2024/);
-      expect(yw.output.status).toBe('DETAINED');
+      // Released 13 April 2026 from Zhenjiang Prison after serving the second
+      // sentence in full — confirmed by Front Line Defenders and by Amnesty
+      // International (ASA 17/1264/2026). This assertion read DETAINED for five
+      // months after he walked out, which is why it is pinned to the release
+      // date now rather than to a status that keeps going stale.
+      expect(yw.output.status).toBe('RELEASED');
+      expect(yw.output.latest_news).toMatch(/April 13, 2026/);
     });
 
     it('Ding Jiaxi sentenced April 10, 2023, 12 years', () => {

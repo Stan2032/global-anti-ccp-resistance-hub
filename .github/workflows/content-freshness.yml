@@ -1,0 +1,63 @@
+name: Content freshness
+
+# The site documents people who are in prison. Figures, case statuses and
+# alerts go out of date silently, and stale human-rights data is worse than no
+# data. This job is the alarm: it runs the freshness guards on a schedule and
+# reports when content is overdue for re-verification against its sources.
+#
+# A failure here is NOT fixed by editing verification dates. It is fixed by
+# re-checking each entry against Tier 1-2 sources and recording what you found.
+
+on:
+  schedule:
+    # 07:00 UTC every Monday
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  freshness:
+    name: Check data verification dates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run content-freshness guards
+        id: freshness
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          npm run test:content 2>&1 | tee freshness.log
+
+      - name: Summarise result
+        run: |
+          if [ "${{ steps.freshness.outcome }}" = "failure" ]; then
+            {
+              echo "## Content is overdue for re-verification"
+              echo
+              echo "One or more datasets have passed their freshness threshold."
+              echo "Re-verify the entries below against Tier 1-2 sources, then"
+              echo "update both the data and its \`last_verified\` date."
+              echo
+              echo '```'
+              grep -E 'AssertionError|Stale|days' freshness.log | head -40 || true
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "All content within freshness thresholds." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Fail if content is stale
+        if: steps.freshness.outcome == 'failure'
+        run: exit 1

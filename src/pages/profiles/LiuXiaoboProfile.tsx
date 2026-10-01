@@ -4,14 +4,29 @@
  *
  * @module LiuXiaoboProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Award, Star
+  User,
+  Calendar,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Flag,
+  Heart,
+  Award,
+  Star,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -291,22 +306,8 @@ const categoryLabels: Record<string, string> = {
 };
 
 // ─── TABS ──────────────────────────────────────────────────────────
-const TABS = [
-  { id: 'timeline', label: 'Timeline', icon: Clock },
-  { id: 'charges', label: 'Charter 08 & Charges', icon: Scale },
-  { id: 'narratives', label: 'CCP Narratives', icon: Shield },
-  { id: 'legacy', label: 'Legacy & Impact', icon: Award },
-  { id: 'sources', label: 'Sources', icon: FileText },
-];
 
 export default function LiuXiaoboProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Record<number, boolean>>({});
-
-  const toggleEvent = (index: number) => {
-    setExpandedEvents(prev => ({ ...prev, [index]: !prev[index] }));
-  };
-
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
       {/* Back Navigation */}
@@ -357,36 +358,12 @@ export default function LiuXiaoboProfile() {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="bg-[#111820]/95 border-b border-[#1c2a35] sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex overflow-x-auto gap-1">
-            {TABS.map(tab => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-                    activeTab === tab.id
-                      ? 'border-yellow-400 text-yellow-400'
-                      : 'border-transparent text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
       {/* Tab Content */}
       <div className="max-w-5xl mx-auto px-4 py-8">
 
         {/* ─── TIMELINE TAB ─────────────────────────────────────── */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Clock className="w-6 h-6 text-yellow-400" />
@@ -406,43 +383,15 @@ export default function LiuXiaoboProfile() {
               ))}
             </div>
 
-            <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#1c2a35]" />
-              {TIMELINE.map((event, i) => (
-                <div key={i} className="relative pl-10 pb-6" aria-label={`${event.year}: ${event.title}`}>
-                  <div className={`absolute left-2.5 w-3.5 h-3.5 rounded-full border-2 border-[#0a0e14] ${categoryColors[event.category] || 'bg-gray-500'}`} />
-                  <button
-                    onClick={() => toggleEvent(i)}
-                    className="w-full text-left group"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-xs text-slate-400 font-mono">{event.year}</span>
-                        <h3 className="text-white font-semibold group-hover:text-yellow-300 transition-colors">
-                          {event.title}
-                        </h3>
-                      </div>
-                      {expandedEvents[i] ? <ChevronUp className="w-4 h-4 text-slate-500 mt-1" /> : <ChevronDown className="w-4 h-4 text-slate-500 mt-1" />}
-                    </div>
-                  </button>
-                  {expandedEvents[i] && (
-                    <div className="mt-2 p-3 bg-[#111820] border border-[#1c2a35] text-sm text-slate-300">
-                      {event.detail}
-                      {event.source && (
-                        <a href={event.source} target="_blank" rel="noopener noreferrer" className="block mt-2 text-yellow-400 hover:text-yellow-300 text-xs flex items-center gap-1">
-                          <ExternalLink className="w-3 h-3" /> Source
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <ProfileTimeline events={TIMELINE.map(event => ({
+              year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+              label: categoryLabels[event.category],
+            }))} />
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── CHARGES TAB ──────────────────────────────────────── */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charter 08 & Charges">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Scale className="w-6 h-6 text-yellow-400" />
@@ -539,10 +488,10 @@ export default function LiuXiaoboProfile() {
               </ul>
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── CCP NARRATIVES TAB ───────────────────────────────── */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Shield className="w-6 h-6 text-yellow-400" />
@@ -583,10 +532,10 @@ export default function LiuXiaoboProfile() {
               <strong className="text-slate-300">Source methodology:</strong> All rebuttals sourced from independent international media and human rights organizations. Deliberately excluded: Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media. One People&apos;s Daily English editorial (en.people.cn) was identified as CCP propaganda during research and excluded.
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── LEGACY TAB ───────────────────────────────────────── */}
-        {activeTab === 'legacy' && (
+        <DisclosureSection title="Legacy & Impact">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <Award className="w-6 h-6 text-yellow-400" />
@@ -667,10 +616,10 @@ export default function LiuXiaoboProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* ─── SOURCES TAB ──────────────────────────────────────── */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
               <FileText className="w-6 h-6 text-yellow-400" />
@@ -713,7 +662,7 @@ export default function LiuXiaoboProfile() {
               <p className="mt-2"><strong className="text-slate-300">Excluded:</strong> Xinhua, People&apos;s Daily, Global Times, CGTN, China Daily, en.people.cn, and all other CCP-affiliated state media</p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
 
       <GlobalDisclaimer />

@@ -49,12 +49,19 @@ describe('Security Headers', () => {
       expect(headersContent).toContain("frame-ancestors 'none'");
     });
 
-    it('CSP allows CORS proxy for RSS feeds (api.allorigins.win)', () => {
-      expect(headersContent).toContain('https://api.allorigins.win');
+    // RSS feeds are fetched by our own Worker (/api/v1/feed), so connect-src
+    // does not need to name any third party. It used to name two public CORS
+    // proxies, which meant every reader's browser contacted them directly and
+    // told them which anti-CCP feeds it wanted. Re-widening this would bring
+    // that back silently, so it is asserted rather than left to review.
+    it('CSP does not permit third-party CORS proxies', () => {
+      expect(headersContent).not.toContain('api.allorigins.win');
+      expect(headersContent).not.toContain('api.rss2json.com');
     });
 
-    it('CSP allows RSS2JSON proxy (api.rss2json.com)', () => {
-      expect(headersContent).toContain('https://api.rss2json.com');
+    it('CSP connect-src allows only this origin and Supabase', () => {
+      const connectSrc = headersContent.match(/connect-src ([^;]+);/)?.[1].trim();
+      expect(connectSrc).toBe("'self' https://*.supabase.co");
     });
 
     it('CSP allows Supabase connections (*.supabase.co)', () => {
@@ -105,25 +112,70 @@ describe('Security Headers', () => {
   });
 
   describe('index.html security', () => {
-    it('has X-Content-Type-Options meta tag', () => {
-      expect(indexContent).toContain('X-Content-Type-Options');
-    });
-
-    it('has X-Frame-Options meta tag', () => {
-      expect(indexContent).toContain('X-Frame-Options');
+    // X-Frame-Options and X-Content-Type-Options are only honoured as real
+    // HTTP headers. Asserting on <meta> equivalents enshrined a no-op — and
+    // the X-Frame-Options meta said SAMEORIGIN while the served header says
+    // DENY. Both are covered by the _headers assertions above; here we just
+    // make sure the misleading meta tags do not come back.
+    it('does not re-add header-only directives as meta tags', () => {
+      expect(indexContent).not.toMatch(/http-equiv=["']X-Frame-Options["']/i);
+      expect(indexContent).not.toMatch(/http-equiv=["']X-Content-Type-Options["']/i);
     });
 
     it('has referrer policy meta tag', () => {
       expect(indexContent).toContain('strict-origin-when-cross-origin');
     });
 
-    it('has preconnect hint for allorigins CORS proxy', () => {
-      expect(indexContent).toContain('preconnect');
-      expect(indexContent).toContain('https://api.allorigins.win');
+    it('has no preconnect or dns-prefetch to a third party', () => {
+      // A preconnect fires on page load whether or not the resource is ever
+      // used, so a hint to a CORS proxy leaked every reader's interest before
+      // they clicked anything. Feeds come from our own origin now.
+      const hints = [...indexContent.matchAll(/<link[^>]+rel=["'](?:preconnect|dns-prefetch)["'][^>]*>/gi)]
+        .map(m => m[0])
+        .filter(tag => /href=["']https?:\/\//i.test(tag));
+      expect(hints, `Third-party connection hints:\n${hints.join('\n')}`).toEqual([]);
     });
 
-    it('has preconnect hint for rss2json proxy', () => {
-      expect(indexContent).toContain('https://api.rss2json.com');
+    /*
+     * These two guard the same class of bug: shipping something the CSP
+     * silently refuses.
+     *
+     * index.html carried an inline service-worker registration and an inline
+     * GitHub Pages redirect shim. `script-src 'self'` refused to execute
+     * both, so sw.js shipped with every deploy for months and never once
+     * registered — the site's entire offline capability did not exist, and
+     * nothing failed loudly enough for anyone to notice. index.css imported
+     * Inter and JetBrains Mono from fonts.googleapis.com; `style-src 'self'`
+     * refused those too, so no reader ever saw either typeface, while their
+     * browser still announced itself to Google on every page view.
+     *
+     * A CSP is only worth having if the app obeys it. These tests fail when
+     * the app stops obeying it, instead of the browser quietly doing so.
+     */
+    it('has no executable inline script (CSP is script-src self)', () => {
+      const scripts = [...indexContent.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
+      const offenders = scripts
+        .filter(([, attrs, body]) => {
+          if (/\bsrc=/i.test(attrs)) return false; // external, allowed by 'self'
+          if (/type=["']application\/ld\+json["']/i.test(attrs)) return false; // data, not executed
+          return body.trim().length > 0;
+        })
+        .map(([, attrs]) => `<script${attrs}>`);
+      expect(
+        offenders,
+        `Inline scripts the CSP will refuse to execute:\n${offenders.join('\n')}\n` +
+          'Move the code into src/ so it is bundled and same-origin.'
+      ).toEqual([]);
+    });
+
+    it('stylesheets do not import from a third party (CSP is style-src/font-src self)', () => {
+      const css = readFileSync(resolve(__dirname, '../index.css'), 'utf-8');
+      const imports = [...css.matchAll(/@import\s+url\(\s*['"]?(https?:\/\/[^'")]+)/gi)].map(m => m[1]);
+      expect(
+        imports,
+        `Third-party CSS imports the CSP will refuse:\n${imports.join('\n')}\n` +
+          'Self-host the asset instead; do not widen the CSP for a webfont.'
+      ).toEqual([]);
     });
 
     it('does not contain inline script injection patterns', () => {

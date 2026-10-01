@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import statisticsData from '../data/live_statistics.json';
+import { getFreshnessInfo } from '../utils/dateUtils';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
@@ -100,7 +101,14 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '', decim
 };
 
 const LiveStatistics = () => {
-  const [lastUpdated] = useState(new Date());
+  // Report the dataset's real verification date, never the render time. Using
+  // the OLDEST lastVerified across the statistics is the conservative claim:
+  // the whole set is only as current as its stalest entry.
+  const oldestVerified = (statisticsData || [])
+    .map(s => s.lastVerified)
+    .filter(Boolean)
+    .sort()[0];
+  const freshness = oldestVerified ? getFreshnessInfo(oldestVerified) : null;
 
   const statistics = (statisticsData || []).map(stat => ({
     ...stat,
@@ -126,14 +134,24 @@ const LiveStatistics = () => {
             <BarChart3 className="w-8 h-8 mr-3 text-red-400 flex-shrink-0" />
             <div>
               <h2 className="text-2xl font-bold text-white">The Human Cost</h2>
-              <p className="text-slate-400">Real-time statistics on CCP repression</p>
+              <p className="text-slate-400">Periodically verified statistics on CCP repression</p>
             </div>
           </div>
           <div className="sm:text-right text-xs text-slate-400">
             <div>Data compiled from verified sources</div>
-            <div>Last updated: {lastUpdated.toLocaleDateString()}</div>
+            {freshness && (
+              <div className={freshness.level === 'stale' ? 'text-amber-400' : undefined}>
+                {freshness.label} ({oldestVerified})
+              </div>
+            )}
           </div>
         </div>
+        {freshness?.level === 'stale' && (
+          <p className="text-xs text-amber-400 mb-3">
+            Some figures are awaiting re-verification against their sources — check the
+            linked source for each statistic before citing it.
+          </p>
+        )}
         <p className="text-sm text-slate-300">
           These numbers represent real people—families torn apart, lives destroyed, voices silenced. 
           Behind every statistic is a human story of suffering and resilience.

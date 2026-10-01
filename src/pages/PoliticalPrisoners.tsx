@@ -6,8 +6,9 @@
  *
  * @module PoliticalPrisoners
  */
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 import UrgentCaseTimer from '../components/UrgentCaseTimer';
 import CaseStudies from '../components/CaseStudies';
 import MemorialWall from '../components/MemorialWall';
@@ -177,49 +178,43 @@ const UrgencyBadge = ({ urgency }: { urgency: string }) => {
     </span>
   );
 };
-const PrisonerCard = ({ prisoner, onClick }: { prisoner: Prisoner; onClick: (prisoner: Prisoner) => void }) => {
+/**
+ * One prisoner. The case in brief is always shown. Health, the latest
+ * developments, the international response and ways to act are a native
+ * disclosure, in the page for everyone: this was a button that opened a
+ * modal only JavaScript could render, with a source link nested inside it.
+ */
+const PrisonerCard = ({ prisoner }: { prisoner: Prisoner }) => {
+  const tweet = `Free ${prisoner.name}! ${prisoner.background}`;
   return (
-    <button
-      type="button"
-      className="bg-[#111820] overflow-hidden shadow-lg cursor-pointer border border-[#1c2a35] hover:border-red-500 transition-all text-left w-full"
-      onClick={() => onClick(prisoner)}
-      aria-label={`View details for ${prisoner.name}`}
-    >
+    <article className="bg-[#111820] overflow-hidden shadow-lg border border-[#1c2a35] hover:border-red-500 transition-all">
       <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
           <div>
             <h3 className="text-xl font-bold text-white">{prisoner.name}</h3>
-            <p className="text-slate-400 text-sm">{prisoner.chineseName}</p>
+            {prisoner.chineseName && <p className="text-slate-400 text-sm">{prisoner.chineseName}</p>}
           </div>
           <div className="flex items-center">
             <StatusBadge status={prisoner.status} />
             <UrgencyBadge urgency={prisoner.urgency} />
           </div>
         </div>
-        
-        <p className="text-slate-300 text-sm mb-4 line-clamp-2">{prisoner.background}</p>
-        
+
+        <p className="text-slate-300 text-sm mb-4">{prisoner.background}</p>
+
         <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
+          <div className="flex flex-wrap justify-between gap-x-2">
             <span className="text-slate-400">Location:</span>
             <span className="text-slate-300">{prisoner.location}</span>
           </div>
           {prisoner.sentence && (
-            <div className="flex justify-between">
+            <div className="flex flex-wrap justify-between gap-x-2">
               <span className="text-slate-400">Sentence:</span>
               <span className="text-slate-300">{prisoner.sentence}</span>
             </div>
           )}
-          {prisoner.healthConcerns && (
-            <div className="flex items-center text-yellow-500">
-              <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              Health concerns reported
-            </div>
-          )}
         </div>
-        
+
         {prisoner.awards && prisoner.awards.length > 0 && (
           <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <p className="text-xs text-slate-400">Awards:</p>
@@ -232,85 +227,17 @@ const PrisonerCard = ({ prisoner, onClick }: { prisoner: Prisoner; onClick: (pri
             </div>
           </div>
         )}
-        
-        {prisoner.source && prisoner.source.url && (
-          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-            <SourceAttribution source={prisoner.source} compact={true} />
-          </div>
-        )}
-        
-        {prisoner.profilePath && (
-          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-            <Link
-              to={prisoner.profilePath}
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center justify-between text-sm text-[#4afa82] hover:text-[#2a9a52] transition-colors font-mono"
-            >
-              <span>$ view_full_profile</span>
-              <span>→</span>
-            </Link>
-          </div>
-        )}
-      </div>
-    </button>
-  );
-};
 
-const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () => void }) => {
-  if (!prisoner) return null;
-  
-  return (
-    <div
-      className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Details for ${prisoner.name}`}
-    >
-      <div
-        className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="p-6">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h2 className="text-2xl font-bold text-white">{prisoner.name}</h2>
-              {prisoner.chineseName && <p className="text-slate-400">{prisoner.chineseName}</p>}
-            </div>
-            <button onClick={onClose} className="text-slate-400 hover:text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          {/* Key Facts — Status, Location, Sentence in a compact grid */}
-          <div className="flex items-center gap-2 mb-4">
-            <StatusBadge status={prisoner.status} />
-            <UrgencyBadge urgency={prisoner.urgency} />
-          </div>
-          
-          <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
-            <div className="bg-[#0a0e14]/50 p-3">
-              <span className="text-slate-400 block">Location</span>
-              <span className="text-slate-200">{prisoner.location}</span>
-            </div>
-            {prisoner.sentence && (
-              <div className="bg-[#0a0e14]/50 p-3">
-                <span className="text-slate-400 block">Sentence</span>
-                <span className="text-slate-200">{prisoner.sentence}</span>
-              </div>
-            )}
-          </div>
-          
-          <div className="space-y-4">
-            <div>
-              <p className="text-slate-200 text-sm">{prisoner.background}</p>
-            </div>
-            
+        <details className="mt-4 pt-4 border-t border-[#1c2a35]">
+          <summary className="flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+            <ChevronDown className="w-4 h-4 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+            {prisoner.healthConcerns ? 'Health alert, latest and how to help' : 'Latest and how to help'}
+            <span className="sr-only"> for {prisoner.name}</span>
+          </summary>
+          <div className="mt-3 space-y-4 text-sm">
             {(prisoner.healthConcerns || prisoner.healthStatus) && (
-              <div className="bg-red-900/30 border border-red-700 p-3 text-sm">
-                <h3 className="font-semibold text-red-400 mb-1">Health Alert</h3>
+              <div className="bg-red-900/30 border border-red-700 p-3">
+                <h4 className="font-semibold text-red-400 mb-1">Health</h4>
                 <p className="text-slate-200">
                   {prisoner.healthStatus || 'Serious health concerns have been reported.'}
                   {prisoner.hungerStrike && ' Has engaged in hunger strike protests.'}
@@ -318,66 +245,24 @@ const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () 
                 </p>
               </div>
             )}
-            
             {prisoner.latestNews && (
               <div>
-                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">Latest Developments</h3>
-                <p className="text-slate-200 text-sm">{prisoner.latestNews}</p>
-                {prisoner.internationalResponse && (
-                  <p className="text-slate-300 text-sm mt-2"><span className="text-slate-400">Int'l response:</span> {prisoner.internationalResponse}</p>
-                )}
+                <h4 className="font-semibold text-slate-400 uppercase mb-1">Latest developments</h4>
+                <p className="text-slate-200">{prisoner.latestNews}</p>
               </div>
             )}
-            
-            {!prisoner.latestNews && prisoner.internationalResponse && (
+            {prisoner.internationalResponse && (
               <div>
-                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">International Response</h3>
-                <p className="text-slate-200 text-sm">{prisoner.internationalResponse}</p>
+                <h4 className="font-semibold text-slate-400 uppercase mb-1">International response</h4>
+                <p className="text-slate-200">{prisoner.internationalResponse}</p>
               </div>
             )}
-            
-            {prisoner.awards && prisoner.awards.length > 0 && (
-              <div>
-                <h3 className="text-sm font-semibold text-slate-400 uppercase mb-1">Recognition</h3>
-                <div className="flex flex-wrap gap-2">
-                  {prisoner.awards.map((award, i) => (
-                    <span key={i} className="bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded text-sm">
-                      {award}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {prisoner.source && prisoner.source.url && (
-              <div className="pt-2 border-t border-[#1c2a35]">
-                <SourceAttribution source={prisoner.source} compact={true} />
-              </div>
-            )}
-          </div>
-          
-          {prisoner.profilePath && (
-            <div className="mt-4 pt-4 border-t border-[#1c2a35]">
-              <Link
-                to={prisoner.profilePath}
-                className="flex items-center justify-between bg-[#4afa82]/10 hover:bg-[#4afa82]/20 border border-[#4afa82]/30 p-4 transition-colors"
-              >
-                <div>
-                  <p className="text-[#4afa82] font-mono text-sm font-semibold">$ view_full_profile --detailed</p>
-                  <p className="text-slate-400 text-xs mt-1">Timeline, charges, CCP narratives, international response</p>
-                </div>
-                <span className="text-[#4afa82] text-lg">→</span>
-              </Link>
-            </div>
-          )}
-
-          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
             <div className="flex flex-wrap gap-2">
               <a
-                href={`https://twitter.com/intent/tweet?text=Free ${prisoner.name}! ${prisoner.background}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#22d3ee]/20 hover:bg-[#22d3ee]/30 text-[#22d3ee] border border-[#22d3ee]/30 px-4 py-2 font-mono text-sm transition-colors"
+                className="bg-[#22d3ee]/20 hover:bg-[#22d3ee]/30 text-[#22d3ee] border border-[#22d3ee]/30 px-3 py-1.5 font-mono transition-colors"
               >
                 Share on Twitter
               </a>
@@ -385,7 +270,7 @@ const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () 
                 href="https://www.amnesty.org/en/get-involved/write-for-rights/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#fbbf24]/20 hover:bg-[#fbbf24]/30 text-[#fbbf24] border border-[#fbbf24]/30 px-4 py-2 font-mono text-sm transition-colors"
+                className="bg-[#fbbf24]/20 hover:bg-[#fbbf24]/30 text-[#fbbf24] border border-[#fbbf24]/30 px-3 py-1.5 font-mono transition-colors"
               >
                 Write for Rights
               </a>
@@ -393,36 +278,45 @@ const PrisonerModal = ({ prisoner, onClose }: { prisoner: Prisoner; onClose: () 
                 href="https://www.cecc.gov/resources/political-prisoner-database"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1c2a35] hover:bg-[#111820] text-white px-4 py-2 text-sm transition-colors"
+                className="bg-[#1c2a35] hover:bg-[#111820] text-white px-3 py-1.5 transition-colors"
               >
                 CECC Database
               </a>
             </div>
           </div>
-        </div>
+        </details>
+
+        {prisoner.source && prisoner.source.url && (
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
+            <SourceAttribution source={prisoner.source} compact={true} />
+          </div>
+        )}
+
+        {prisoner.profilePath && (
+          <div className="mt-4 pt-4 border-t border-[#1c2a35]">
+            <Link
+              to={prisoner.profilePath}
+              className="flex items-center justify-between text-sm text-[#4afa82] hover:text-[#2a9a52] transition-colors font-mono"
+            >
+              <span>$ view_full_profile<span className="sr-only"> of {prisoner.name}</span></span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 };
 const PoliticalPrisoners = () => {
-  const [selectedPrisoner, setSelectedPrisoner] = useState<Prisoner | null>(null);
   const [filter, setFilter] = useState('ALL');
-  const [showAll, setShowAll] = useState(false);
   const INITIAL_DISPLAY_COUNT = 15;
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedPrisoner(null); };
-    if (selectedPrisoner) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedPrisoner]);
   
   const filteredPrisoners = PRISONERS_DATA.filter(p => {
     if (filter === 'ALL') return true;
     return p.status === filter;
   });
 
-  const displayedPrisoners = showAll ? filteredPrisoners : filteredPrisoners.slice(0, INITIAL_DISPLAY_COUNT);
-  const hasMore = filteredPrisoners.length > INITIAL_DISPLAY_COUNT;
   
   const stats = {
     total: PRISONERS_DATA.length,
@@ -490,7 +384,8 @@ const PoliticalPrisoners = () => {
           {['ALL', 'IMPRISONED', 'DISAPPEARED', 'DECEASED', 'AT RISK', 'EXILE', 'RELEASED'].map(status => (
             <button
               key={status}
-              onClick={() => { setFilter(status); setShowAll(false); }}
+              onClick={() => setFilter(status)}
+              aria-pressed={filter === status}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 filter === status
                   ? 'bg-red-900/30 text-red-300 border border-red-500'
@@ -520,31 +415,28 @@ const PoliticalPrisoners = () => {
           </div>
         </div>
 
-        {/* Prisoner Grid */}
+        {/* Prisoner Grid: the first cases, then the rest folded. All of them
+            are in the page for everyone; "show all" used to be a button that
+            only JavaScript could work. */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedPrisoners.map((prisoner, index) => (
-            <PrisonerCard
-              key={index}
-              prisoner={prisoner}
-              onClick={setSelectedPrisoner}
-            />
+          {filteredPrisoners.slice(0, INITIAL_DISPLAY_COUNT).map((prisoner) => (
+            <PrisonerCard key={prisoner.name} prisoner={prisoner} />
           ))}
         </div>
-
-        {/* Show All / Show Less */}
-        {hasMore && (
-          <div className="text-center mt-6">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors"
-            >
-              {showAll
-                ? '$ show --less'
-                : `$ show --all ${filteredPrisoners.length} cases`}
-            </button>
-          </div>
+        {filteredPrisoners.length > INITIAL_DISPLAY_COUNT && (
+          <details className="mt-6">
+            <summary className="mx-auto w-fit px-6 py-3 bg-[#111820] hover:bg-[#1c2a35] text-[#4afa82] border border-[#4afa82]/30 hover:border-[#4afa82] font-mono text-sm transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+              <span className="summary-open:hidden">$ show --all {filteredPrisoners.length} cases</span>
+              <span className="hidden summary-open:inline">$ show --less</span>
+            </summary>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {filteredPrisoners.slice(INITIAL_DISPLAY_COUNT).map((prisoner) => (
+                <PrisonerCard key={prisoner.name} prisoner={prisoner} />
+              ))}
+            </div>
+          </details>
         )}
-        
+
         {/* Prisoner Status Dashboard */}
         <div className="mt-12">
           <Suspense fallback={<SectionLoader />}><PrisonerStatusDashboard /></Suspense>
@@ -598,14 +490,7 @@ const PoliticalPrisoners = () => {
             </a>
           </div>
         </div>
-        
-        {/* Modal */}
-        {selectedPrisoner && (
-          <PrisonerModal
-            prisoner={selectedPrisoner}
-            onClose={() => setSelectedPrisoner(null)}
-          />
-        )}
+
       </div>
     </div>
   );

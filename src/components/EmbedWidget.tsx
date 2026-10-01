@@ -13,10 +13,10 @@
  */
 
 import React, { useState, useMemo, useCallback } from 'react';
-import { Code, Copy, CheckCircle, Eye, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { Code, Copy, CheckCircle, Eye, ExternalLink, ChevronDown } from 'lucide-react';
 import { dataApi, PoliticalPrisoner, Statistic, EmergencyAlert } from '../services/dataApi';
+import { SITE_URL } from '../utils/site';
 
-const SITE_URL = 'https://global-anti-ccp-resistance-hub.stane203.workers.dev';
 
 const WIDGET_TYPES = [
   {
@@ -101,7 +101,6 @@ export default function EmbedWidget() {
   const [selectedType, setSelectedType] = useState('prisoner-card');
   const [selectedPrisoner, setSelectedPrisoner] = useState('');
   const [copied, setCopied] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners() || [], []);
   const stats = useMemo(() => dataApi.getStatistics() || [], []);
@@ -191,59 +190,53 @@ export default function EmbedWidget() {
         </div>
       )}
 
-      {/* Preview */}
-      <div className="bg-[#111820] border border-[#1c2a35]">
-        <button
-          onClick={() => setShowPreview(prev => !prev)}
-          className="w-full flex items-center justify-between p-4 hover:bg-[#1c2a35]/30 transition-colors"
-          aria-expanded={showPreview}
-        >
-          <div className="flex items-center gap-2">
-            <Eye className="w-4 h-4 text-[#a78bfa]" />
+      {/* Preview: open to start, as before; folding it needs no JavaScript */}
+      <details open className="bg-[#111820] border border-[#1c2a35]">
+        <summary className="w-full flex items-center justify-between p-4 hover:bg-[#1c2a35]/30 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+          <span className="flex items-center gap-2">
+            <Eye className="w-4 h-4 text-[#a78bfa]" aria-hidden="true" />
             <span className="font-mono font-bold text-white text-sm">Preview</span>
-          </div>
-          {showPreview ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
-        </button>
-        {showPreview && (
-          <div className="border-t border-[#1c2a35] p-4 bg-[#f8f9fa]">
-            {selectedType === 'prisoner-card' && selectedPrisonerObj && (
-              <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 400, background: '#0a0e14', border: '1px solid #1c2a35', borderLeft: `3px solid ${(selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444'}`, padding: 16, color: '#e2e8f0' }}>
-                <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Political Prisoner</div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 4 }}>{selectedPrisonerObj.prisoner_name || String(selectedPrisonerObj.name)}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 8 }}>
-                  <span style={{ color: (selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444' }}>● {selectedPrisonerObj.status}</span>
-                  {selectedPrisonerObj.sentence && selectedPrisonerObj.sentence !== 'Unknown' && <span style={{ marginLeft: 12 }}>Sentence: {selectedPrisonerObj.sentence}</span>}
-                </div>
-                <span style={{ fontSize: 12, color: '#22d3ee' }}>Learn more at Resistance Hub →</span>
+          </span>
+          <ChevronDown className="w-4 h-4 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+        </summary>
+        <div className="border-t border-[#1c2a35] p-4 bg-[#f8f9fa]">
+          {selectedType === 'prisoner-card' && selectedPrisonerObj && (
+            <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 400, background: '#0a0e14', border: '1px solid #1c2a35', borderLeft: `3px solid ${(selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444'}`, padding: 16, color: '#e2e8f0' }}>
+              <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Political Prisoner</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 4 }}>{selectedPrisonerObj.prisoner_name || String(selectedPrisonerObj.name)}</div>
+              <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 8 }}>
+                <span style={{ color: (selectedPrisonerObj.status || '').toLowerCase().includes('released') ? '#4afa82' : (selectedPrisonerObj.status || '').toLowerCase().includes('disappeared') ? '#fbbf24' : '#ef4444' }}>● {selectedPrisonerObj.status}</span>
+                {selectedPrisonerObj.sentence && selectedPrisonerObj.sentence !== 'Unknown' && <span style={{ marginLeft: 12 }}>Sentence: {selectedPrisonerObj.sentence}</span>}
               </div>
-            )}
-            {selectedType === 'stats-badge' && (
-              <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 500, background: '#0a0e14', border: '1px solid #1c2a35', padding: 16, color: '#e2e8f0' }}>
-                <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>CCP Human Rights Violations</div>
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min((stats || []).length, 4)}, 1fr)`, gap: 12 }}>
-                  {(stats || []).slice(0, 4).map((s, i) => (
-                    <div key={i} style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: 24, fontWeight: 700, color: '#4afa82' }}>{s.value?.toLocaleString?.() || s.value}</div>
-                      <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <span style={{ display: 'inline-block', marginTop: 12, fontSize: 11, color: '#22d3ee' }}>Data: Global Anti-CCP Resistance Hub — CC BY 4.0</span>
+              <span style={{ fontSize: 12, color: '#22d3ee' }}>Learn more at Resistance Hub →</span>
+            </div>
+          )}
+          {selectedType === 'stats-badge' && (
+            <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 500, background: '#0a0e14', border: '1px solid #1c2a35', padding: 16, color: '#e2e8f0' }}>
+              <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>CCP Human Rights Violations</div>
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min((stats || []).length, 4)}, 1fr)`, gap: 12 }}>
+                {(stats || []).slice(0, 4).map((s, i) => (
+                  <div key={i} style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 24, fontWeight: 700, color: '#4afa82' }}>{s.value?.toLocaleString?.() || s.value}</div>
+                    <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>{s.label}</div>
+                  </div>
+                ))}
               </div>
-            )}
-            {selectedType === 'alert-banner' && alerts[0] && (
-              <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 600, background: alerts[0].type === 'critical' ? '#7f1d1d' : '#78350f', border: `1px solid ${alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24'}`, padding: 16, color: '#e2e8f0' }}>
-                <div style={{ fontSize: 11, color: alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, marginBottom: 6 }}>
-                  {alerts[0].type === 'critical' ? '🔴 CRITICAL ALERT' : '⚠️ ALERT'}
-                </div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 6 }}>{alerts[0].title}</div>
-                <div style={{ fontSize: 13, color: '#d1d5db', marginBottom: 12 }}>{alerts[0].summary}</div>
-                <span style={{ display: 'inline-block', padding: '8px 16px', background: alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24', color: '#0a0e14', fontWeight: 600, fontSize: 13 }}>Take Action →</span>
+              <span style={{ display: 'inline-block', marginTop: 12, fontSize: 11, color: '#22d3ee' }}>Data: Global Anti-CCP Resistance Hub — CC BY 4.0</span>
+            </div>
+          )}
+          {selectedType === 'alert-banner' && alerts[0] && (
+            <div style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', maxWidth: 600, background: alerts[0].type === 'critical' ? '#7f1d1d' : '#78350f', border: `1px solid ${alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24'}`, padding: 16, color: '#e2e8f0' }}>
+              <div style={{ fontSize: 11, color: alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, marginBottom: 6 }}>
+                {alerts[0].type === 'critical' ? '🔴 CRITICAL ALERT' : '⚠️ ALERT'}
               </div>
-            )}
-          </div>
-        )}
-      </div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 6 }}>{alerts[0].title}</div>
+              <div style={{ fontSize: 13, color: '#d1d5db', marginBottom: 12 }}>{alerts[0].summary}</div>
+              <span style={{ display: 'inline-block', padding: '8px 16px', background: alerts[0].type === 'critical' ? '#ef4444' : '#fbbf24', color: '#0a0e14', fontWeight: 600, fontSize: 13 }}>Take Action →</span>
+            </div>
+          )}
+        </div>
+      </details>
 
       {/* Code Output */}
       <div className="bg-[#0a0e14] border border-[#1c2a35]">

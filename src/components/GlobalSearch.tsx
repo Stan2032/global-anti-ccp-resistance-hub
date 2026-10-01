@@ -54,9 +54,9 @@ const searchableContent: SearchableItem[] = [
   { type: 'page', title: 'Resistance Directory', description: 'Organizations fighting for human rights', path: '/directory', Icon: Users, keywords: ['organizations', 'ngos', 'groups'] },
   { type: 'page', title: 'Political Prisoners', description: 'Documented cases of political detention', path: '/prisoners', Icon: Link, keywords: ['detained', 'imprisoned', 'jail'] },
   { type: 'page', title: 'Take Action', description: 'Ways to help, campaigns, and advocacy', path: '/take-action', Icon: Megaphone, keywords: ['help', 'volunteer', 'donate', 'petition', 'activism', 'campaigns', 'movements'] },
-  { type: 'page', title: 'Community', description: 'Connect with other activists', path: '/community', Icon: MessageCircle, keywords: ['forum', 'discussion', 'connect'] },
+  { type: 'page', title: 'Community', description: 'Where to find help, and ways to help others', path: '/community', Icon: MessageCircle, keywords: ['help', 'support', 'emergency', 'legal', 'mental health', 'volunteer'] },
   { type: 'page', title: 'Resources', description: 'Tools and materials', path: '/resources', Icon: Wrench, keywords: ['tools', 'downloads', 'materials'] },
-  { type: 'page', title: 'Education Center', description: 'Learning resources, CCP tactics, and courses', path: '/education', Icon: GraduationCap, keywords: ['learn', 'courses', 'training', 'propaganda', 'influence', 'methods', 'tactics'] },
+  { type: 'page', title: 'Education Center', description: 'History, testimony, reading lists and research', path: '/education', Icon: GraduationCap, keywords: ['learn', 'history', 'books', 'documentaries', 'propaganda', 'influence', 'methods', 'tactics'] },
   { type: 'page', title: 'Security Center', description: 'Digital security and secure communications', path: '/security', Icon: Shield, keywords: ['security', 'privacy', 'protection', 'secure', 'encrypted'] },
   { type: 'page', title: 'Profiles', description: 'Detailed profiles of individuals targeted by the CCP', path: '/profiles', Icon: Users, keywords: ['profiles', 'jimmy lai', 'joshua wong', 'ilham tohti'] },
 
@@ -76,22 +76,22 @@ const searchableContent: SearchableItem[] = [
   { type: 'profile', title: 'Tashi Wangchuk', description: 'Tibetan language rights advocate — 5 years for "inciting separatism"', path: '/profiles/tashi-wangchuk', Icon: Users, keywords: ['tibet', 'language', 'education', 'separatism'] },
   { type: 'profile', title: 'Ren Zhiqiang', description: 'CCP member — 18 years after criticizing Xi\'s COVID response', path: '/profiles/ren-zhiqiang', Icon: Users, keywords: ['covid', 'corruption', 'real estate', 'xi jinping'] },
   { type: 'profile', title: 'Xu Zhiyong', description: 'Legal scholar — 14 years for New Citizens Movement', path: '/profiles/xu-zhiyong', Icon: Users, keywords: ['new citizens movement', 'legal scholar', 'subversion', 'rights'] },
+  { type: 'profile', title: 'Chow Hang-Tung', description: 'Tiananmen vigil organiser — 7 years 3 months under NSL', path: '/profiles/chow-hang-tung', Icon: Users, keywords: ['hong kong', 'hong kong alliance', 'tiananmen', 'vigil', 'nsl'] },
 
   // Topics
   { type: 'topic', title: 'Uyghur Genocide', description: 'Documentation of atrocities in Xinjiang', path: '/education', Icon: BookOpen, keywords: ['xinjiang', 'camps', 'genocide', 'forced labor'] },
   { type: 'topic', title: 'Hong Kong Freedom', description: 'Democracy movement and NSL', path: '/education', Icon: BookOpen, keywords: ['nsl', 'democracy', 'protests', '2019'] },
   { type: 'topic', title: 'Tibet Rights', description: 'Tibetan independence movement', path: '/education', Icon: BookOpen, keywords: ['dalai lama', 'buddhism', 'independence'] },
-  { type: 'topic', title: 'Taiwan Sovereignty', description: 'Cross-strait relations and defense', path: '/threats', icon: '🇹🇼', keywords: ['cross-strait', 'defense', 'independence'] },
-  { type: 'topic', title: 'Transnational Repression', description: 'CCP activities abroad', path: '/tactics', Icon: Globe, keywords: ['police stations', 'fox hunt', 'diaspora'] },
-  { type: 'topic', title: 'Overseas Police Stations', description: '102+ stations in 53 countries', path: '/threats', Icon: ShieldAlert, keywords: ['police', 'stations', 'safeguard defenders'] },
+  { type: 'topic', title: 'Taiwan Sovereignty', description: 'Cross-strait relations and defense', path: '/intelligence', icon: '🇹🇼', keywords: ['cross-strait', 'defense', 'independence'] },
+  { type: 'topic', title: 'Transnational Repression', description: 'CCP activities abroad', path: '/education', Icon: Globe, keywords: ['police stations', 'fox hunt', 'diaspora'] },
+  { type: 'topic', title: 'Overseas Police Stations', description: '102+ stations in 53 countries', path: '/intelligence', Icon: ShieldAlert, keywords: ['police', 'stations', 'safeguard defenders'] },
 
   // Actions
   { type: 'action', title: 'Sign Petitions', description: 'Add your voice to active campaigns', path: '/take-action', Icon: PenLine, keywords: ['petition', 'sign', 'campaign'] },
   { type: 'action', title: 'Contact Representatives', description: 'Write to your elected officials', path: '/take-action', Icon: Landmark, keywords: ['congress', 'parliament', 'letter'] },
-  { type: 'action', title: 'Report CCP Activity', description: 'Document incidents of repression', path: '/community', Icon: Siren, keywords: ['report', 'incident', 'harassment'] },
+  { type: 'action', title: 'Report CCP Activity', description: 'Where to report incidents of repression', path: '/security', Icon: Siren, keywords: ['report', 'incident', 'harassment'] },
   { type: 'action', title: 'Donate', description: 'Support human rights organizations', path: '/take-action', Icon: CircleDollarSign, keywords: ['donate', 'support', 'money'] },
   { type: 'action', title: 'Boycott Guide', description: 'Companies linked to forced labor', path: '/take-action', Icon: Ban, keywords: ['boycott', 'companies', 'forced labor'] },
-  { type: 'action', title: 'Contact Us', description: 'Send a message to the Resistance Hub team', path: '/community', Icon: MessageCircle, keywords: ['contact', 'message', 'email', 'feedback', 'help'] },
 
   // Resources
   { type: 'resource', title: 'Security Quiz', description: 'Assess your digital security', path: '/security', Icon: Lock, keywords: ['quiz', 'assessment', 'security'] },

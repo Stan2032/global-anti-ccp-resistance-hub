@@ -143,7 +143,7 @@ const Dashboard = () => {
           >
             <div className="flex items-center justify-between mb-3 gap-2">
               <stat.icon className="w-5 h-5 text-slate-400 flex-shrink-0" />
-              <span className={`text-xs font-mono px-2 py-0.5 truncate ${
+              <span className={`text-xs font-mono px-2 py-0.5 ${
                 stat.color === 'blue' ? 'bg-cyan-900/30 text-[#22d3ee]' :
                 stat.color === 'red' ? 'bg-red-900/30 text-red-400' :
                 stat.color === 'green' ? 'bg-[#4afa82]/10 text-[#4afa82]' :

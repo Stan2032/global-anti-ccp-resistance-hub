@@ -53,7 +53,6 @@ interface StatusEntry {
 const CompanyTracker = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
 
   const categories: CategoryFilter[] = [
     { id: 'all', name: 'All Companies' },
@@ -322,11 +321,11 @@ const CompanyTracker = () => {
       <div className="space-y-3">
         <div>
           <input
-            aria-label="Search"
+            aria-label="Search tracked companies by name"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search companies..."
+            placeholder="Search tracked companies by name..."
             className="w-full bg-[#0a0e14] border border-[#1c2a35] px-4 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:border-[#4afa82]"
           />
         </div>
@@ -352,7 +351,6 @@ const CompanyTracker = () => {
       <div className="grid md:grid-cols-2 gap-4">
         {filteredCompanies.map(company => {
           const status = statusInfo[company.status];
-          const isExpanded = expandedCompany === company.id;
           
           return (
             <div 
@@ -380,32 +378,39 @@ const CompanyTracker = () => {
                   </div>
                 )}
                 
-                {/* Show company response if available */}
-                {company.companyResponse && isExpanded && (
-                  <div className="bg-yellow-900/20 border border-yellow-700/30 rounded p-2 mt-2">
-                    <p className="text-yellow-300 flex items-center gap-1"><Briefcase className="w-3 h-3" /><strong>Company Response:</strong></p>
-                    <p className="mt-1">{company.companyResponse}</p>
-                  </div>
-                )}
-                
                 <p><strong>Recommended Action:</strong> {company.action}</p>
               </div>
 
               {/* Source Attribution */}
               {company.source && (
                 <div className="mb-3">
-                  <SourceAttribution source={company.source} compact={!isExpanded} />
+                  <SourceAttribution source={company.source} compact />
                 </div>
               )}
 
-              {/* Toggle Details Button */}
-              {(company.companyResponse || company.uflpaActions) && (
-                <button
-                  onClick={() => setExpandedCompany(isExpanded ? null : company.id)}
-                  className="text-xs text-[#22d3ee] hover:text-white underline mb-2"
-                >
-                  {isExpanded ? '▼ Show Less' : '▶ Show More Details'}
-                </button>
+              {/* The company's response and the full source, in the page and
+                  folded: this opens without JavaScript. */}
+              {(company.companyResponse || company.source) && (
+                <details className="mb-2">
+                  <summary
+                    className="text-xs text-[#22d3ee] hover:text-white underline cursor-pointer list-none
+                               focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4afa82]
+                               [&::-webkit-details-marker]:hidden"
+                  >
+                    <span className="summary-open:hidden">▶ Show More Details</span>
+                    <span className="hidden summary-open:inline">▼ Show Less</span>
+                    <span className="sr-only"> about {company.name}</span>
+                  </summary>
+                  <div className="mt-2 space-y-2 text-xs text-slate-400">
+                    {company.companyResponse && (
+                      <div className="bg-yellow-900/20 border border-yellow-700/30 rounded p-2">
+                        <p className="text-yellow-300 flex items-center gap-1"><Briefcase className="w-3 h-3" /><strong>Company Response:</strong></p>
+                        <p className="mt-1">{company.companyResponse}</p>
+                      </div>
+                    )}
+                    {company.source && <SourceAttribution source={company.source} />}
+                  </div>
+                </details>
               )}
               
               <div className="flex items-center justify-between text-xs text-slate-400">

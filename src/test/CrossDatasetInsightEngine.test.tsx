@@ -1,8 +1,19 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import CrossDatasetInsightEngine from '../components/CrossDatasetInsightEngine';
 import { dataApi } from '../services/dataApi';
+
+// Insights with connected records are native <details>; the rest have
+// nothing to open and are plain cards. Every insight has one strength
+// indicator. openable() fails on none, so a check over each cannot pass on
+// an empty list.
+const openable = (container: HTMLElement) => {
+  const all = [...container.querySelectorAll('details')];
+  expect(all.length, 'insights with records render as <details>').toBeGreaterThan(1);
+  return all;
+};
+const insightCount = (container: HTMLElement) => container.querySelectorAll('[aria-label^="Strength:"]').length;
 
 describe('CrossDatasetInsightEngine', () => {
   // ── Rendering ──────────────────────────────────────────
@@ -112,79 +123,45 @@ describe('CrossDatasetInsightEngine', () => {
 
   // ── Insight Cards ──────────────────────────────────────
 
-  it('renders insight cards with expandable sections', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandButtons.length).toBeGreaterThanOrEqual(1);
+  it('insights with connected records are native disclosures, closed to start', () => {
+    const { container } = render(<CrossDatasetInsightEngine />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = openable(container);
+    cards.forEach((c) => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
+    });
   });
 
-  it('all insight cards start collapsed', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandButtons.forEach((b) => expect(b.getAttribute('aria-expanded')).toBe('false'));
+  it('an insight opens and closes natively', () => {
+    const { container } = render(<CrossDatasetInsightEngine />);
+    const [first] = openable(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('clicking an insight card expands it', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandButtons.length > 0) {
-      fireEvent.click(expandButtons[0]);
-      expect(expandButtons[0].getAttribute('aria-expanded')).toBe('true');
-    }
+  it('every insight with records carries them without a click', () => {
+    const { container } = render(<CrossDatasetInsightEngine />);
+    openable(container).forEach((c) => expect(within(c).getByText(/Connected records \(\d+\)/)).toBeTruthy());
   });
 
-  it('clicking an expanded insight card collapses it', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandButtons.length > 0) {
-      fireEvent.click(expandButtons[0]);
-      expect(expandButtons[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandButtons[0]);
-      expect(expandButtons[0].getAttribute('aria-expanded')).toBe('false');
-    }
-  });
-
-  it('expanded card shows connected records', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandButtons.length > 0) {
-      fireEvent.click(expandButtons[0]);
-      expect(screen.getByText(/Connected records/)).toBeTruthy();
-    }
-  });
-
-  it('only one insight can be expanded at a time', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandButtons.length >= 2) {
-      fireEvent.click(expandButtons[0]);
-      expect(expandButtons[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandButtons[1]);
-      expect(expandButtons[1].getAttribute('aria-expanded')).toBe('true');
-      expect(expandButtons[0].getAttribute('aria-expanded')).toBe('false');
-    }
+  it('opening one insight leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<CrossDatasetInsightEngine />);
+    const [first, second] = openable(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // ── Insight Quality ────────────────────────────────────
 
   it('generates at least 3 insights from existing data', () => {
-    render(<CrossDatasetInsightEngine />);
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandButtons.length).toBeGreaterThanOrEqual(3);
+    const { container } = render(<CrossDatasetInsightEngine />);
+    expect(insightCount(container)).toBeGreaterThanOrEqual(3);
   });
 
   it('each insight has a category badge', () => {
@@ -303,14 +280,12 @@ describe('CrossDatasetInsightEngine', () => {
   });
 
   it('clears search properly', () => {
-    render(<CrossDatasetInsightEngine />);
+    const { container } = render(<CrossDatasetInsightEngine />);
+    const before = insightCount(container);
     const input = screen.getByPlaceholderText('Search insights...');
     fireEvent.change(input, { target: { value: 'test' } });
     fireEvent.change(input, { target: { value: '' } });
-    const expandButtons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandButtons.length).toBeGreaterThanOrEqual(1);
+    expect(insightCount(container)).toBe(before);
   });
 
   it('combined category filter and search works', () => {

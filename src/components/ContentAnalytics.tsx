@@ -275,7 +275,7 @@ const ContentAnalytics = () => {
                 const percentage = Math.round((count / maxCount) * 100);
                 return (
                   <div key={country} className="flex items-center gap-3">
-                    <span className="text-sm text-slate-300 w-28 truncate font-mono">
+                    <span className="text-sm text-slate-300 w-28 break-words font-mono">
                       {COUNTRY_LABELS[country] || country}
                     </span>
                     <div className="flex-1 bg-[#0a0e14] h-5 overflow-hidden">
@@ -365,7 +365,7 @@ const ContentAnalytics = () => {
                       {update.category?.replace('_', ' ').toUpperCase()}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-300 mt-0.5 truncate">{update.title}</p>
+                  <p className="text-sm text-slate-300 mt-0.5">{update.title}</p>
                 </div>
               </div>
             );
@@ -402,7 +402,7 @@ const DatasetCard = ({ icon: Icon, label, count, detail, color }: DatasetCardPro
     <div className={`bg-[#111820] border border-[#1c2a35] p-3 border-l-2 ${borderColors[color] || 'border-l-slate-400'}`}>
       <div className="flex items-center gap-2 mb-1">
         <Icon className="w-4 h-4 text-slate-400" />
-        <span className="text-xs text-slate-400 font-mono truncate">{label}</span>
+        <span className="text-xs text-slate-400 font-mono">{label}</span>
       </div>
       <div className="text-xl font-bold font-mono text-white">{count}</div>
       <div className="text-xs text-slate-400">{detail}</div>

@@ -6,15 +6,13 @@
  * @module ContactRepresentatives
  */
 import { useState } from 'react';
-import { Megaphone, Building, Link2, Target } from 'lucide-react';
-import { EastTurkestanFlag, TibetanFlag } from './FlagIcons';
+import { Building } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 import { STATISTICS } from '../data/statistics';
 import { logger } from '../utils/logger';
 
 const ContactRepresentatives = () => {
-  const [selectedCountry, setSelectedCountry] = useState('us');
-  const [selectedTopic, setSelectedTopic] = useState('general');
-  const [copied, setCopied] = useState(false);
+  const [copiedTopic, setCopiedTopic] = useState<string | null>(null);
 
   const countries = [
     { code: 'us', name: 'United States', flag: '🇺🇸' },
@@ -25,13 +23,13 @@ const ContactRepresentatives = () => {
   ];
 
   const topics = [
-    { id: 'general', name: 'General Human Rights', Icon: Megaphone },
-    { id: 'uyghur', name: 'Uyghur Genocide', Icon: EastTurkestanFlag },
-    { id: 'hongkong', name: 'Hong Kong Freedom', Icon: Building },
-    { id: 'tibet', name: 'Tibetan Rights', Icon: TibetanFlag },
-    { id: 'taiwan', name: 'Taiwan Support', flag: '🇹🇼' },
-    { id: 'jimmylai', name: 'Free Jimmy Lai', Icon: Link2 },
-    { id: 'sanctions', name: 'Magnitsky Sanctions', Icon: Target },
+    { id: 'general', name: 'General Human Rights' },
+    { id: 'uyghur', name: 'Uyghur Genocide' },
+    { id: 'hongkong', name: 'Hong Kong Freedom' },
+    { id: 'tibet', name: 'Tibetan Rights' },
+    { id: 'taiwan', name: 'Taiwan Support' },
+    { id: 'jimmylai', name: 'Free Jimmy Lai' },
+    { id: 'sanctions', name: 'Magnitsky Sanctions' },
   ];
 
   const contactLinks = {
@@ -274,14 +272,15 @@ Sincerely,
     }
   };
 
-  const currentTemplate = (letterTemplates as Record<string, { subject: string; body: string }>)[selectedTopic];
-  const currentLinks = (contactLinks as Record<string, { name: string; links: { name: string; url: string }[] }>)[selectedCountry];
+  const templates = letterTemplates as Record<string, { subject: string; body: string }>;
+  const links = contactLinks as Record<string, { name: string; links: { name: string; url: string }[] }>;
 
-  const copyToClipboard = async (text: string) => {
+  const copyTemplate = async (topicId: string) => {
+    const template = templates[topicId];
     try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      await navigator.clipboard.writeText(template.subject + '\n\n' + template.body);
+      setCopiedTopic(topicId);
+      setTimeout(() => setCopiedTopic(null), 2000);
     } catch (err) {
       logger.warn('clipboard', 'Failed to copy:', err);
     }
@@ -298,103 +297,75 @@ Sincerely,
         </p>
       </div>
 
-      {/* Country Selection */}
+      {/* Every country's links at once: five short lists, nothing to click.
+          The country tabs they replace showed one country and hid the other
+          four from readers without JavaScript. */}
       <div>
-        <h3 className="text-lg font-semibold text-white mb-3">Select Your Country</h3>
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Country selection">
+        <h3 className="text-lg font-semibold text-white mb-3">Find Your Representatives</h3>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {countries.map((country) => (
-            <button
-              key={country.code}
-              onClick={() => setSelectedCountry(country.code)}
-              role="tab"
-              aria-selected={selectedCountry === country.code}
-              className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
-                selectedCountry === country.code
-                  ? 'bg-[#22d3ee] text-[#0a0e14]'
-                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
-              }`}
-            >
-              <span>{country.flag}</span>
-              {country.name}
-            </button>
+            <div key={country.code} className="bg-[#111820] border border-[#1c2a35] p-4">
+              <h4 className="text-white font-semibold mb-2 flex items-center gap-2">
+                <span aria-hidden="true">{country.flag}</span>
+                {country.name}
+              </h4>
+              <ul className="space-y-1">
+                {links[country.code].links.map((link) => (
+                  <li key={link.url}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-[#22d3ee] hover:underline"
+                    >
+                      {link.name} →
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Contact Links */}
-      <div className="bg-[#111820] border border-[#1c2a35] p-4">
-        <h3 className="text-lg font-semibold text-white mb-3">
-          Find Your Representatives ({currentLinks.name})
-        </h3>
-        <div className="grid gap-2 md:grid-cols-3">
-          {currentLinks.links.map((link: { name: string; url: string }, index: number) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-3 text-sm font-medium transition-colors flex items-center justify-between"
-            >
-              {link.name}
-              <span>→</span>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Topic Selection */}
+      {/* One letter per topic, as native <details>: every template is in the
+          page and opens without JavaScript. */}
       <div>
-        <h3 className="text-lg font-semibold text-white mb-3">Select a Topic</h3>
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Advocacy topics">
-          {topics.map((topic) => (
-            <button
-              key={topic.id}
-              onClick={() => setSelectedTopic(topic.id)}
-              role="tab"
-              aria-selected={selectedTopic === topic.id}
-              className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-2 ${
-                selectedTopic === topic.id
-                  ? 'bg-red-600 text-white'
-                  : 'bg-[#111820] text-slate-300 hover:bg-[#111820]'
-              }`}
-            >
-              {topic.Icon ? <topic.Icon className="w-4 h-4" /> : <span>{topic.flag}</span>}
-              {topic.name}
-            </button>
-          ))}
+        <h3 className="text-lg font-semibold text-white mb-3">Letter Templates</h3>
+        <div className="space-y-3">
+          {topics.map((topic) => {
+            const template = templates[topic.id];
+            return (
+              <DisclosureSection key={topic.id} title={topic.name} defaultOpen={topic.id === 'general'}>
+                <div className="flex justify-end mb-3">
+                  <button
+                    onClick={() => copyTemplate(topic.id)}
+                    aria-label={`Copy the ${topic.name} letter`}
+                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                      copiedTopic === topic.id ? 'bg-green-600 text-[#0a0e14]' : 'bg-[#22d3ee] hover:bg-[#22d3ee] text-[#0a0e14]'
+                    }`}
+                  >
+                    {copiedTopic === topic.id ? '✓ Copied!' : 'Copy Letter'}
+                  </button>
+                </div>
+                <div className="mb-4">
+                  <p className="text-sm text-slate-400 mb-1">Subject Line:</p>
+                  <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-3 text-white font-medium">
+                    {template.subject}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-slate-400 mb-1">Letter Body:</p>
+                  <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
+                    {template.body}
+                  </div>
+                </div>
+              </DisclosureSection>
+            );
+          })}
         </div>
-      </div>
-
-      {/* Letter Template */}
-      <div className="bg-[#111820] border border-[#1c2a35] p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-lg font-semibold text-white">Letter Template</h3>
-          <button
-            onClick={() => copyToClipboard(currentTemplate.subject + '\n\n' + currentTemplate.body)}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
-              copied ? 'bg-green-600 text-[#0a0e14]' : 'bg-[#22d3ee] hover:bg-[#22d3ee] text-[#0a0e14]'
-            }`}
-          >
-            {copied ? '✓ Copied!' : 'Copy Letter'}
-          </button>
-        </div>
-        
-        <div className="mb-4">
-          <label className="text-sm text-slate-400 mb-1 block">Subject Line:</label>
-          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-3 text-white font-medium">
-            {currentTemplate.subject}
-          </div>
-        </div>
-        
-        <div>
-          <label className="text-sm text-slate-400 mb-1 block">Letter Body:</label>
-          <div className="bg-[#0a0e14] border border-[#1c2a35] rounded p-4 text-slate-300 whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">
-            {currentTemplate.body}
-          </div>
-        </div>
-        
         <p className="text-xs text-slate-400 mt-3">
-          Tip: Personalize this letter with your own experiences and concerns. Personal letters are more impactful than form letters.
+          Tip: Personalize the letter with your own experiences and concerns. Personal letters are more impactful than form letters.
         </p>
       </div>
 

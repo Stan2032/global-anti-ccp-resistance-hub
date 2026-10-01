@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TibetStatus from '../components/TibetStatus';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('TibetStatus', () => {
   // --- Header ---
@@ -32,89 +33,87 @@ describe('TibetStatus', () => {
     expect(screen.getByText('Monasteries destroyed')).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<TibetStatus />);
-    expect(screen.getByText('Overview')).toBeTruthy();
-    expect(screen.getByText('Repression')).toBeTruthy();
-    expect(screen.getByText('Self-Immolations')).toBeTruthy();
-    expect(screen.getByText('Cultural Erasure')).toBeTruthy();
+    expectDisclosureSections(['Overview', 'Repression', 'Self-Immolations', 'Cultural Erasure']);
   });
 
-  it('shows Overview tab content by default (timeline)', () => {
+  it('shows the Overview section (timeline)', () => {
     render(<TibetStatus />);
-    expect(screen.getByText('Timeline of Occupation')).toBeTruthy();
-    expect(screen.getByText('1950')).toBeTruthy();
-    expect(screen.getByText('PLA invasion of Tibet begins')).toBeTruthy();
-    expect(screen.getByText('1959')).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('Timeline of Occupation')).toBeTruthy();
+    expect(section.getByText('1950')).toBeTruthy();
+    expect(section.getByText('PLA invasion of Tibet begins')).toBeTruthy();
+    expect(section.getByText('1959')).toBeTruthy();
   });
 
-  // --- Repression Tab ---
+  // --- Repression ---
 
-  it('switches to Repression tab', () => {
+  it('shows the Repression section without interaction', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Repression'));
-    expect(screen.getByText('Notable Political Prisoners')).toBeTruthy();
-    expect(screen.getByText('Gedhun Choekyi Nyima')).toBeTruthy();
-    expect(screen.getByText('DISAPPEARED')).toBeTruthy();
-    expect(screen.getByText('Rinchen Tsultrim')).toBeTruthy();
+    const section = inSection('Repression');
+    expect(section.getByText('Notable Political Prisoners')).toBeTruthy();
+    expect(section.getByText('Gedhun Choekyi Nyima')).toBeTruthy();
+    expect(section.getByText('DISAPPEARED')).toBeTruthy();
+    expect(section.getByText('Rinchen Tsultrim')).toBeTruthy();
   });
 
   it('shows The Missing Panchen Lama section', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Repression'));
-    expect(screen.getByText('The Missing Panchen Lama')).toBeTruthy();
-    expect(screen.getByText(/recognized as the 11th Panchen Lama/)).toBeTruthy();
+    const section = inSection('Repression');
+    expect(section.getByText('The Missing Panchen Lama')).toBeTruthy();
+    expect(section.getByText(/recognized as the 11th Panchen Lama/)).toBeTruthy();
   });
 
-  // --- Self-Immolation Tab ---
+  // --- Self-Immolation ---
 
-  it('switches to Self-Immolations tab', () => {
+  it('shows the Self-Immolations section without interaction', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Self-Immolations'));
-    expect(screen.getByText('Self-Immolation Protests')).toBeTruthy();
-    expect(screen.getByText('157')).toBeTruthy(); // total
-    expect(screen.getByText('Total cases')).toBeTruthy();
-    expect(screen.getByText('136')).toBeTruthy(); // deaths
-    expect(screen.getByText('Deaths')).toBeTruthy();
+    const section = inSection('Self-Immolations');
+    expect(section.getByText('Self-Immolation Protests')).toBeTruthy();
+    expect(section.getByText('157')).toBeTruthy(); // total
+    expect(section.getByText('Total cases')).toBeTruthy();
+    expect(section.getByText('136')).toBeTruthy(); // deaths
+    expect(section.getByText('Deaths')).toBeTruthy();
   });
 
   it('shows self-immolation by-year data', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Self-Immolations'));
-    expect(screen.getByText('By Year')).toBeTruthy();
+    const section = inSection('Self-Immolations');
+    expect(section.getByText('By Year')).toBeTruthy();
     // Check the peak year
-    expect(screen.getByText('2012:')).toBeTruthy();
-    expect(screen.getByText('85')).toBeTruthy();
+    expect(section.getByText('2012:')).toBeTruthy();
+    expect(section.getByText('85')).toBeTruthy();
   });
 
-  // --- Cultural Erasure Tab ---
+  // --- Cultural Erasure ---
 
-  it('switches to Cultural Erasure tab', () => {
+  it('shows the Cultural Erasure section without interaction', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Cultural Erasure'));
-    expect(screen.getAllByText('Cultural Erasure').length).toBeGreaterThan(0);
-    expect(screen.getByText('Monasteries')).toBeTruthy();
-    expect(screen.getByText('6,000+ destroyed')).toBeTruthy();
-    expect(screen.getByText('Language')).toBeTruthy();
-    expect(screen.getByText('Marginalized')).toBeTruthy();
+    const section = inSection('Cultural Erasure');
+    expect(section.getAllByText('Cultural Erasure').length).toBeGreaterThan(0);
+    expect(section.getByText('Monasteries')).toBeTruthy();
+    expect(section.getByText('6,000+ destroyed')).toBeTruthy();
+    expect(section.getByText('Language')).toBeTruthy();
+    expect(section.getByText('Marginalized')).toBeTruthy();
   });
 
   it('shows boarding school warning', () => {
     render(<TibetStatus />);
-    fireEvent.click(screen.getByText('Cultural Erasure'));
-    expect(screen.getByText('Colonial Boarding Schools')).toBeTruthy();
-    expect(screen.getByText(/1 million Tibetan children/)).toBeTruthy();
+    const section = inSection('Cultural Erasure');
+    expect(section.getByText('Colonial Boarding Schools')).toBeTruthy();
+    expect(section.getByText(/1 million Tibetan children/)).toBeTruthy();
   });
 
-  // --- Tab Isolation ---
+  // --- Sections stay mounted ---
 
-  it('hides overview content when switching tabs', () => {
+  it('opening one section hides nothing in the others', () => {
     render(<TibetStatus />);
-    expect(screen.getByText('Timeline of Occupation')).toBeTruthy();
     fireEvent.click(screen.getByText('Repression'));
-    expect(screen.queryByText('Timeline of Occupation')).toBeFalsy();
+    expect(inSection('Overview').getByText('Timeline of Occupation')).toBeTruthy();
+    expect(inSection('Repression').getByText('Gedhun Choekyi Nyima')).toBeTruthy();
   });
 
   // --- Resources ---

@@ -16,6 +16,16 @@ const localStorageMock = (() => {
 })();
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
+// Each notification is a native <details> holding no other; the "Show all"
+// wrapper holds the ones past the first ten. Fails on none, so a check over
+// each card cannot pass on an empty list.
+const cards = (root: HTMLElement) => {
+  const all = [...root.querySelectorAll('details')].filter(d => !d.querySelector('details'));
+  expect(all.length, 'notifications render as <details>').toBeGreaterThan(0);
+  return all;
+};
+const shownCount = () => Number(screen.getByText(/^\d+ notifications$/).textContent!.match(/\d+/)![0]);
+
 // Mock clipboard
 Object.assign(navigator, { clipboard: { writeText: vi.fn().mockResolvedValue(undefined) } });
 
@@ -44,7 +54,7 @@ describe('NotificationCenter', () => {
 
   it('shows category count', () => {
     render(<NotificationCenter />);
-    expect(screen.getByText(/\d+ categories/)).toBeTruthy();
+    expect(screen.getByText(/active notifications across \d+ categories/)).toBeTruthy();
   });
 
   // ── Category Filter Buttons ────────────────────────────
@@ -106,70 +116,45 @@ describe('NotificationCenter', () => {
   });
 
   it('searching for known term finds results', () => {
-    render(<NotificationCenter />);
-    const input = screen.getByPlaceholderText('Search notifications...');
-    // Emergency alerts always have content related to Hong Kong
-    fireEvent.change(input, { target: { value: 'Jimmy' } });
-    const count = screen.getByText(/Showing \d+ of \d+ notifications/);
-    expect(count).toBeTruthy();
+    const { container } = render(<NotificationCenter />);
+    fireEvent.change(screen.getByPlaceholderText('Search notifications...'), { target: { value: 'Jimmy' } });
+    const shown = shownCount();
+    expect(shown).toBeGreaterThan(0);
+    expect(cards(container)).toHaveLength(shown);
   });
 
   // ── Notification Cards ─────────────────────────────────
 
-  it('renders expandable notification cards', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThanOrEqual(1);
+  it('renders every notification as a native disclosure', () => {
+    const { container } = render(<NotificationCenter />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const all = cards(container);
+    expect(all).toHaveLength(shownCount());
+    all.forEach(c => expect(c.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('notification cards start collapsed', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('notification cards start collapsed, with their content in the page', () => {
+    const { container } = render(<NotificationCenter />);
+    cards(container).forEach(c => expect(c.open).toBe(false));
   });
 
-  it('clicking a notification card expands it', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    }
+  it('a notification opens and closes natively', () => {
+    const { container } = render(<NotificationCenter />);
+    const [first] = cards(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('clicking an expanded card collapses it', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length > 0) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-    }
-  });
-
-  it('only one card can be expanded at a time', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandBtns.length >= 2) {
-      fireEvent.click(expandBtns[0]);
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandBtns[1]);
-      expect(expandBtns[1].getAttribute('aria-expanded')).toBe('true');
-      expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-    }
+  it('opening one notification leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<NotificationCenter />);
+    const [first, second] = cards(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // ── Settings Panel ─────────────────────────────────────
@@ -277,20 +262,14 @@ describe('NotificationCenter', () => {
 
   // ── Show More Pattern ──────────────────────────────────
 
-  it('shows max 10 notifications by default', () => {
-    render(<NotificationCenter />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeLessThanOrEqual(10);
-  });
-
-  it('shows "Show all" button when there are more than 10 notifications', () => {
-    render(<NotificationCenter />);
-    const _showAllBtn = screen.queryByText(/Show all \d+ notifications/);
-    // May or may not have >10 depending on data, check both cases
-    const count = screen.getByText(/Showing \d+ of \d+ notifications/);
-    expect(count).toBeTruthy();
+  it('shows ten notifications and folds the rest into one disclosure', () => {
+    const { container } = render(<NotificationCenter />);
+    const total = shownCount();
+    expect(total).toBeGreaterThan(10);
+    const rest = screen.getByText(`Show all ${total} notifications`).closest('details')!;
+    expect(rest.open).toBe(false);
+    expect(cards(rest)).toHaveLength(total - 10);
+    expect(cards(container)).toHaveLength(total);
   });
 
   // ── Data Quality ───────────────────────────────────────
@@ -353,14 +332,13 @@ describe('NotificationCenter', () => {
   });
 
   it('clearing search restores results', () => {
-    render(<NotificationCenter />);
+    const { container } = render(<NotificationCenter />);
     const input = screen.getByPlaceholderText('Search notifications...');
+    const before = shownCount();
     fireEvent.change(input, { target: { value: 'xyznonexistent' } });
     expect(screen.getByText('No notifications match your search.')).toBeTruthy();
     fireEvent.change(input, { target: { value: '' } });
-    const expandBtns = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThanOrEqual(1);
+    expect(shownCount()).toBe(before);
+    expect(cards(container)).toHaveLength(before);
   });
 });

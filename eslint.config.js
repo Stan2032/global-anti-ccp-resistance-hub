@@ -26,7 +26,7 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)', argsIgnorePattern: '^(_|[A-Z])', destructuredArrayIgnorePattern: '^_' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)', argsIgnorePattern: '^(_|[A-Z])', caughtErrorsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
       'react-refresh/only-export-components': 'warn',
     },
   },
@@ -54,7 +54,7 @@ export default defineConfig([
     rules: {
       'no-unused-vars': 'off',
       'no-undef': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)', argsIgnorePattern: '^(_|[A-Z])', destructuredArrayIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)', argsIgnorePattern: '^(_|[A-Z])', caughtErrorsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
       'react-refresh/only-export-components': 'warn',
     },
   },
@@ -89,7 +89,7 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^(_|[A-Z])' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^(_|[A-Z])', caughtErrorsIgnorePattern: '^_' }],
     },
   },
   {
@@ -102,7 +102,7 @@ export default defineConfig([
       sourceType: 'module',
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
     },
   },
   {
@@ -114,7 +114,7 @@ export default defineConfig([
       sourceType: 'module',
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
     },
   },
 ])

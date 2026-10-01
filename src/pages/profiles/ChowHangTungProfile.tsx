@@ -1,18 +1,33 @@
 /**
  * ChowHangTungProfile — Detailed profile of Chow Hang-Tung, human rights
- * lawyer and Tiananmen vigil organizer. Charged with "inciting subversion"
- * for leading candlelight vigils commemorating June 4th. Detained 4+ years
- * without trial. Representing herself. UN ruled detention arbitrary.
+ * lawyer and Tiananmen vigil organizer. Convicted of "inciting subversion"
+ * in August 2026 for leading candlelight vigils commemorating June 4th, and
+ * sentenced to 7 years 3 months after nearly five years in pre-trial
+ * detention. Represented herself. UN ruled detention arbitrary.
  *
  * @module ChowHangTungProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart
+  User,
+  Calendar,
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Newspaper,
+  Flag,
+  Heart,
 } from 'lucide-react';
 
 
@@ -22,12 +37,6 @@ interface TimelineEventType {
   detail: string;
   category: string;
   sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -43,7 +52,7 @@ const PROFILE = {
   nationality: 'Hong Kong Chinese',
   status: 'DETAINED',
   currentLocation: 'Prison, Hong Kong',
-  sentence: 'On trial — "inciting subversion of state power" under NSL (max 10 years). Pleaded NOT GUILTY.',
+  sentence: '7 years 3 months for inciting subversion under the National Security Law, sentenced September 11, 2026. Pleaded not guilty and represented herself.',
   occupation: 'Human Rights Lawyer, Vice-Chair of Hong Kong Alliance',
 };
 
@@ -165,9 +174,25 @@ const TIMELINE = [
     date: '2026-03-10',
     year: '2026',
     title: 'Defence seeks early acquittal — "no case to answer"',
-    detail: 'Defence made a "no case to answer" submission, arguing that prosecutors had failed to present sufficient evidence and had misapplied the law. The court is considering the submission. If successful, Chow could be acquitted before needing to mount a full defence.',
+    detail: 'Defence made a "no case to answer" submission, arguing that prosecutors had failed to present sufficient evidence and had misapplied the law. Had it succeeded, Chow would have been acquitted before needing to mount a full defence. It did not: she was convicted in August.',
     category: 'persecution',
     sourceUrl: 'https://hongkongfp.com/2026/03/10/lawyers-for-tiananmen-vigil-activist-seek-acquittal-in-subversion-trial/',
+  },
+  {
+    date: '2026-08-21',
+    year: '2026',
+    title: 'Convicted of inciting subversion',
+    detail: 'Convicted of inciting subversion of state power under the National Security Law, with Lee Cheuk-yan and Albert Ho, for organising the annual Tiananmen vigils. She had been held in pre-trial detention since September 2021, repeatedly denied bail.',
+    category: 'persecution',
+    sourceUrl: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/',
+  },
+  {
+    date: '2026-09-11',
+    year: '2026',
+    title: 'Sentenced to 7 years 3 months',
+    detail: 'Sentenced at the High Court to 7 years 3 months, the heaviest of the three sentences. Lee Cheuk-yan received 7 years and Albert Ho 5 years 2 months, and the Hong Kong Alliance was fined HK$1.5 million. Amnesty International called the sentencing "a triple tragedy: for the activists being unjustly punished; the survivors and victims of the Tiananmen crackdown itself; and the generations of Hongkongers denied the space to discuss one of the most consequential events in modern Chinese history," and said her right to appeal must be protected.',
+    category: 'persecution',
+    sourceUrl: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/',
   },
 ];
 
@@ -176,9 +201,9 @@ const CHARGES = [
     charge: 'Inciting subversion of state power (煽動顛覆國家政權罪)',
     law: 'Hong Kong National Security Law (NSL), Article 22/23',
     filed: 'September 2021',
-    verdict: 'ON TRIAL — Pleaded NOT GUILTY (January 22, 2026)',
-    sentence: 'Maximum 10 years imprisonment',
-    detail: 'Charged for her role in organizing the Hong Kong Alliance\'s annual Tiananmen candlelight vigils. The prosecution alleges that commemorating the victims of the 1989 Tiananmen massacre and calling for accountability constitutes "inciting subversion of state power." This is the first prosecution specifically targeting historical memory and commemoration as subversion.',
+    verdict: 'CONVICTED — August 21, 2026 (pleaded not guilty)',
+    sentence: '7 years 3 months (sentenced September 11, 2026)',
+    detail: 'Charged for her role in organizing the Hong Kong Alliance\'s annual Tiananmen candlelight vigils. The prosecution argued that commemorating the victims of the 1989 Tiananmen massacre and calling for accountability constitutes "inciting subversion of state power." This is the first prosecution specifically targeting historical memory and commemoration as subversion.',
   },
   {
     charge: 'Inciting others to knowingly take part in an unauthorized assembly',
@@ -203,12 +228,12 @@ const CCP_NARRATIVES = [
   },
   {
     claim: '"Her prolonged detention is necessary for national security"',
-    reality: 'Chow has been in pre-trial detention since September 2021 — over 4 years — for organizing peaceful candlelight vigils. She poses no security threat. The UN Working Group on Arbitrary Detention, Amnesty International, and international legal observers all agree her detention violates international law. The prolonged pre-trial detention itself may constitute cruel and inhuman treatment.',
+    reality: 'Chow was held in pre-trial detention from September 2021 until her conviction in August 2026 — nearly five years — for organizing peaceful candlelight vigils. She poses no security threat. The UN Working Group on Arbitrary Detention, Amnesty International, and international legal observers all agree her detention violates international law. The prolonged pre-trial detention itself may constitute cruel and inhuman treatment.',
     sourceUrl: 'https://www.nchrd.org/2026/01/hong-kong-drop-charges-against-tiananmen-vigil-organizers-end-sham-trial/',
   },
   {
     claim: '"The trial is fair and follows due process"',
-    reality: 'The trial is conducted under the NSL framework, which allows government-vetted judges, restrictions on jury trials, and secret proceedings. Chow was denied bail for over 4 years. The prosecution relies heavily on speeches and media appearances from before the NSL was enacted. International legal observers have raised serious concerns about the fairness of proceedings.',
+    reality: 'The trial was conducted under the NSL framework, which allows government-vetted judges, restrictions on jury trials, and secret proceedings. Chow was denied bail for nearly five years. The prosecution relied heavily on speeches and media appearances from before the NSL was enacted. International legal observers raised serious concerns about the fairness of proceedings.',
     sourceUrl: 'https://www.lawyersforlawyers.org/wp-content/uploads/2026/03/ChowHangTung_JointStatement_6_3_2026.pdf',
   },
 ];
@@ -247,6 +272,7 @@ const INTERNATIONAL_RESPONSES = [
 ];
 
 const SOURCES = [
+  { name: 'Amnesty International (sentencing, September 2026)', url: 'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/', tier: 1 },
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/', tier: 1 },
   { name: 'Amnesty (Write for Rights)', url: 'https://amnesty.org.nz/chow/', tier: 1 },
   { name: 'Amnesty (Valentine\'s poem)', url: 'https://www.amnesty.org/en/latest/campaigns/2026/02/in-a-world-that-forces-us-apart-we-still-choose-each-other-valentines-poem-to-hong-kong-activist-chow-hang-tung/', tier: 1 },
@@ -269,61 +295,10 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-xs text-slate-400 shrink-0 min-w-12">{event.year}</span>
-          <span className={`text-xs px-1.5 py-0.5 font-mono ${cat.text} ${cat.bg} border border-[#1c2a35] shrink-0`}>
-            {cat.label}
-          </span>
-          <span className="text-sm text-slate-200 truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-4 border-t border-[#1c2a35]">
-          <p className="text-sm text-slate-300 mt-3 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-[#4afa82] hover:text-[#2a9a52] mt-2 font-mono">
-              <ExternalLink className="w-3 h-3" /> Source <span className="sr-only">(opens in new tab)</span>
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ─────────────────────────────────────────────────
 
 const ChowHangTungProfile: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (index: number) => {
-    setExpandedEvents(prev => {
-      const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
-  };
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges', icon: Scale },
-    { id: 'narrative', label: 'CCP Narrative', icon: Shield },
-    { id: 'response', label: 'International', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -377,61 +352,34 @@ const ChowHangTungProfile: React.FC = () => {
               <Heart className="w-4 h-4 text-[#4afa82] shrink-0 mt-0.5" />
               <p className="text-sm text-slate-300">
                 <span className="text-[#4afa82] font-mono">Why this case matters:</span>{' '}
-                This is the first prosecution that specifically criminalizes the commemoration of a historical event — the Tiananmen massacre — as "subversion." If Chow is convicted, it will establish that remembering the dead is a crime in Hong Kong. The UN has ruled her detention arbitrary. Amnesty International has designated her a prisoner of conscience.
+                This is the first prosecution to treat the commemoration of a historical event — the Tiananmen massacre — as "subversion," and her conviction establishes that remembering the dead can be prosecuted in Hong Kong. The UN has ruled her detention arbitrary. Amnesty International has designated her a prisoner of conscience.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="border-b border-[#1c2a35] bg-[#0a0e14]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex gap-1 overflow-x-auto" role="tablist" aria-label="Profile sections">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                role="tab"
-                aria-selected={activeTab === tab.id}
-                className={`flex items-center gap-1.5 px-4 py-3 text-sm font-mono whitespace-nowrap transition-colors border-b-2 ${
-                  activeTab === tab.id
-                    ? 'border-[#4afa82] text-[#4afa82]'
-                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab} className="max-w-5xl mx-auto px-4 py-8">
+      <div className="space-y-3">
         {/* Timeline Tab */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#4afa82]" /> Timeline
             </h2>
             <p className="text-sm text-slate-400 mb-6">Key events in Chow Hang-Tung&apos;s life, activism, and persecution.</p>
             <div className="space-y-2">
-              {TIMELINE.map((event, i) => (
-                <TimelineEvent
-                  key={i}
-                  event={event}
-                  isExpanded={expandedEvents.has(i)}
-                  onToggle={() => toggleEvent(i)}
-                />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Charges Tab */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" /> Charges & Legal Status
@@ -457,10 +405,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Tab */}
-        {activeTab === 'narrative' && (
+        <DisclosureSection title="CCP Narrative">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Shield className="w-5 h-5 text-yellow-400" /> CCP Narrative vs. Reality
@@ -490,10 +438,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* International Response Tab */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <Globe className="w-5 h-5 text-cyan-400" /> International Response
@@ -514,10 +462,10 @@ const ChowHangTungProfile: React.FC = () => {
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* Sources Tab */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div>
             <h2 className="text-lg font-mono font-bold text-white mb-1 flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-[#4afa82]" /> Sources & Verification
@@ -532,14 +480,14 @@ const ChowHangTungProfile: React.FC = () => {
                     <span className={`text-xs font-mono px-1.5 py-0.5 border ${s.tier === 1 ? 'text-[#4afa82] border-[#4afa82]/30' : 'text-[#22d3ee] border-[#22d3ee]/30'}`}>
                       T{s.tier}
                     </span>
-                    <span className="text-sm text-slate-300 truncate">{s.name}</span>
+                    <span className="text-sm text-slate-300 break-words">{s.name}</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-[#4afa82] shrink-0" />
                 </a>
               ))}
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

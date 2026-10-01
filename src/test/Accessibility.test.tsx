@@ -14,14 +14,16 @@ const renderWithLanguage = (ui: React.ReactNode) => render(<LanguageProvider>{ui
 describe('SkipLinks', () => {
   it('should render skip to main content link', () => {
     renderWithLanguage(<SkipLinks />);
-    const link = screen.getByRole('link', { name: /skip.*main|skipToMain/i });
+    // Exact text: t() returns the key itself when a lookup misses, and this
+    // link read "skipToMain" to every keyboard and screen-reader user.
+    const link = screen.getByRole('link', { name: 'Skip to main content' });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#main-content');
   });
 
   it('should render skip to navigation link', () => {
     renderWithLanguage(<SkipLinks />);
-    const link = screen.getByRole('link', { name: /skip.*nav|skipToNav/i });
+    const link = screen.getByRole('link', { name: 'Skip to navigation' });
     expect(link).toBeTruthy();
     expect(link.getAttribute('href')).toBe('#navigation');
   });
@@ -35,6 +37,28 @@ describe('SkipLinks', () => {
       expect(link.className).toContain('#4afa82');
       expect(link.className).toContain('font-mono');
     });
+  });
+
+  it('shows one link at a time: each waits out of view until it has focus', () => {
+    const { container } = renderWithLanguage(<SkipLinks />);
+    const links = [...container.querySelectorAll('a')];
+    expect(links).toHaveLength(2);
+    for (const link of links) {
+      expect(link.className).toContain('-translate-y-full');
+      expect(link.className).toContain('focus:translate-y-0');
+      expect(link.className).toContain('left-0');
+    }
+    // Revealing the whole group on focus-within showed both links at once:
+    // they overlapped, and at phone width the second ran off the screen.
+    expect(container.querySelector('[class*="focus-within"]')).toBeNull();
+  });
+
+  it('offers "Skip to navigation" only where the sidebar it targets exists', () => {
+    renderWithLanguage(<SkipLinks />);
+    const link = screen.getByRole('link', { name: 'Skip to navigation' });
+    // The sidebar (#navigation) is display: none below the lg breakpoint.
+    expect(link.className.split(' ')).toContain('hidden');
+    expect(link.className.split(' ')).toContain('lg:block');
   });
 });
 

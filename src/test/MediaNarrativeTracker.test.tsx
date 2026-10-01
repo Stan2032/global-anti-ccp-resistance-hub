@@ -1,10 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import MediaNarrativeTracker from '../components/MediaNarrativeTracker';
 
 Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
 });
+
+// Fails on none, so a check run over each card cannot pass on an empty list.
+const narratives = (container: HTMLElement) => {
+  const cards = [...container.querySelectorAll('details')];
+  expect(cards.length, 'cards render as <details>').toBeGreaterThan(0);
+  return cards;
+};
+const narrative = (container: HTMLElement, text: string) =>
+  narratives(container).find(c => c.querySelector('summary')!.textContent!.includes(text))!;
 
 describe('MediaNarrativeTracker', () => {
   beforeEach(() => {
@@ -42,7 +51,8 @@ describe('MediaNarrativeTracker', () => {
 
   it('shows correct number of categories', () => {
     render(<MediaNarrativeTracker />);
-    expect(screen.getByText('5')).toBeTruthy(); // 5 non-'all' categories
+    const stat = screen.getByText('Categories').parentElement!;
+    expect(within(stat).getByText('5')).toBeTruthy(); // 5 non-'all' categories
   });
 
   // === FILTERS ===
@@ -120,70 +130,51 @@ describe('MediaNarrativeTracker', () => {
     expect(persistent.length).toBeGreaterThan(0);
   });
 
-  // === EXPAND/COLLAPSE ===
-  it('expands narrative card on click', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const narrativeCard = cards.find(btn => btn.getAttribute('aria-label')?.includes('Denial') || btn.getAttribute('aria-label')?.includes('Vocational'));
-    if (narrativeCard) {
-      fireEvent.click(narrativeCard);
-      expect(screen.getByText('Evidence-Based Debunk')).toBeTruthy();
-    }
+  // === NATIVE DISCLOSURE ===
+  it('narrative cards are native disclosures, closed to start', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = narratives(container);
+    expect(cards.length).toBeGreaterThanOrEqual(10);
+    cards.forEach(c => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
+    });
   });
 
-  it('shows debunk text when expanded', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText(/Extensive evidence documents/)).toBeTruthy();
-    }
+  it('every narrative carries its evidence-based debunk without a click', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    narratives(container).forEach(c => expect(within(c).getByText('Evidence-Based Debunk')).toBeTruthy());
+    expect(within(narrative(container, 'Vocational')).getByText(/Extensive evidence documents/)).toBeTruthy();
   });
 
-  it('shows cross-referenced evidence when expanded', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Cross-Referenced Evidence')).toBeTruthy();
-    }
+  it('every narrative carries its cross-referenced evidence without a click', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    narratives(container).forEach(c => expect(within(c).getByText('Cross-Referenced Evidence')).toBeTruthy());
   });
 
-  it('shows narrative timeline when expanded', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Narrative Timeline')).toBeTruthy();
-      expect(screen.getByText('First appeared')).toBeTruthy();
-      expect(screen.getByText('Last used')).toBeTruthy();
-    }
+  it('a narrative shows its timeline without a click', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    const card = within(narrative(container, 'Vocational'));
+    expect(card.getByText('Narrative Timeline')).toBeTruthy();
+    expect(card.getByText('First appeared')).toBeTruthy();
+    expect(card.getByText('Last used')).toBeTruthy();
   });
 
-  it('shows counter-evidence sources when expanded', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Counter-Evidence Sources')).toBeTruthy();
-      expect(screen.getAllByText(/ASPI/).length).toBeGreaterThan(0);
-    }
+  it('a narrative shows its counter-evidence sources without a click', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    const card = within(narrative(container, 'Vocational'));
+    expect(card.getByText('Counter-Evidence Sources')).toBeTruthy();
+    expect(card.getAllByText(/ASPI/).length).toBeGreaterThan(0);
   });
 
-  it('collapses expanded card on second click', () => {
-    render(<MediaNarrativeTracker />);
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      expect(screen.getByText('Evidence-Based Debunk')).toBeTruthy();
-      fireEvent.click(first);
-      expect(screen.queryByText('Evidence-Based Debunk')).toBeFalsy();
-    }
+  it('a narrative card opens and closes natively', () => {
+    const { container } = render(<MediaNarrativeTracker />);
+    const card = narrative(container, 'Vocational');
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
   // === COPY REPORT ===
@@ -248,15 +239,9 @@ describe('MediaNarrativeTracker', () => {
   });
 
   it('cross-references at least 3 evidence types', () => {
-    render(<MediaNarrativeTracker />);
-    // Expand first card to check evidence types
-    const cards = screen.getAllByRole('button', { expanded: false });
-    const first = cards.find(btn => btn.getAttribute('aria-label')?.includes('Vocational') || btn.getAttribute('aria-label')?.includes('Reframing'));
-    if (first) {
-      fireEvent.click(first);
-      const evidenceText = screen.getByText('Cross-Referenced Evidence').parentElement;
-      expect(evidenceText).toBeTruthy();
-    }
+    const { container } = render(<MediaNarrativeTracker />);
+    const heading = within(narrative(container, 'Vocational')).getByText('Cross-Referenced Evidence');
+    expect(heading.nextElementSibling!.children.length).toBeGreaterThanOrEqual(3);
   });
 
   // === COMBINED SEARCH + CATEGORY FILTER ===

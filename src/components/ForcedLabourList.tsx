@@ -10,7 +10,6 @@ import GlobalDisclaimer from './ui/GlobalDisclaimer';
 const ForcedLabourList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showAlternatives, setShowAlternatives] = useState<Record<string, boolean>>({});
 
   const categories = [
     { key: 'all', label: 'All', count: 0 },
@@ -352,9 +351,9 @@ const ForcedLabourList = () => {
       {/* Search and Filter */}
       <div className="mb-6 space-y-4">
         <input
-          aria-label="Search"
+          aria-label="Search implicated companies"
           type="text"
-          placeholder="Search companies..."
+          placeholder="Search implicated companies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full px-4 py-2 bg-[#111820] border border-[#1c2a35] focus:outline-none focus:border-[#4afa82]"
@@ -414,18 +413,17 @@ const ForcedLabourList = () => {
                 <p className="text-slate-300 text-sm italic">{company.response}</p>
               </div>
 
-              <div>
-                <button
-                  onClick={() => setShowAlternatives({
-                    ...showAlternatives,
-                    [company.name]: !showAlternatives[company.name]
-                  })}
-                  className="text-green-400 hover:text-green-300 font-semibold text-sm"
+              {/* In the page and folded: this opens without JavaScript */}
+              <details>
+                <summary
+                  className="text-green-400 hover:text-green-300 font-semibold text-sm cursor-pointer list-none
+                             focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4afa82]
+                             [&::-webkit-details-marker]:hidden"
                 >
-                  {showAlternatives[company.name] ? '▼ Hide' : '▶'} Ethical Alternatives (Democratic Countries Only)
-                </button>
-                
-                {showAlternatives[company.name] && (
+                  <span className="summary-open:hidden">▶</span>
+                  <span className="hidden summary-open:inline">▼ Hide</span> Ethical Alternatives (Democratic Countries Only)
+                  <span className="sr-only"> to {company.name}</span>
+                </summary>
                   <div className="mt-2 pl-4 border-l-2 border-green-600">
                     <div className="bg-[#111820] border border-[#1c2a35] rounded p-2 mb-2">
                       <p className="text-xs text-[#22d3ee]">
@@ -441,8 +439,7 @@ const ForcedLabourList = () => {
                     </ul>
                     <GlobalDisclaimer type="verify" compact />
                   </div>
-                )}
-              </div>
+              </details>
             </div>
           </div>
         ))}

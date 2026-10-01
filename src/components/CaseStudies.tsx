@@ -6,9 +6,9 @@
  *
  * @module CaseStudies
  */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
-import { User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink, ChevronDown, ChevronUp, Heart, Share2, BookOpen, Clock, Globe, FileText } from 'lucide-react';
+import { User, Scale, ExternalLink, Heart, BookOpen, Clock, Globe, FileText } from 'lucide-react';
 
 const caseStudies = [
   {
@@ -193,78 +193,39 @@ const caseStudies = [
   },
 ];
 
-export default function CaseStudies() {
-  const [selectedCase, setSelectedCase] = useState<string | null>(null);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+type CaseStudy = (typeof caseStudies)[number];
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent): void => { if (e.key === 'Escape') setSelectedCase(null); };
-    if (selectedCase) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedCase]);
+const getStatusColor = (status: string): string => {
+  switch (status) {
+    case 'IMPRISONED': return 'bg-red-600';
+    case 'DISAPPEARED': return 'bg-yellow-600';
+    case 'RELEASED': return 'bg-green-600';
+    default: return 'bg-[#1c2a35]';
+  }
+};
 
-  const toggleSection = (section: string): void => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
+const getUrgencyColor = (urgency: string): string => {
+  switch (urgency) {
+    case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
+    case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
+    default: return 'text-slate-400 bg-[#111820] border-[#1c2a35]';
+  }
+};
 
-  const getStatusColor = (status: string): string => {
-    switch (status) {
-      case 'IMPRISONED': return 'bg-red-600';
-      case 'DISAPPEARED': return 'bg-yellow-600';
-      case 'RELEASED': return 'bg-green-600';
-      default: return 'bg-[#1c2a35]';
-    }
-  };
-
-  const getUrgencyColor = (urgency: string): string => {
-    switch (urgency) {
-      case 'CRITICAL': return 'text-red-400 bg-red-900/30 border-red-700';
-      case 'HIGH': return 'text-orange-400 bg-orange-900/30 border-orange-700';
-      default: return 'text-slate-400 bg-[#111820] border-[#1c2a35]';
-    }
-  };
-
-  if (selectedCase) {
-    const caseData = caseStudies.find(c => c.id === selectedCase);
-    if (!caseData) return null;
-
-    return (
-      <div className="bg-[#111820]/50 border border-[#1c2a35]">
-        {/* Header */}
+/** The full case, rendered inside each case's <details>. */
+function CaseFile({ caseData }: { caseData: CaseStudy }) {
+  return (
+    <div className="border-t border-[#1c2a35]">
+        {/* Who, and what happened */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => setSelectedCase(null)}
-            className="text-[#22d3ee] hover:text-white text-sm mb-4 flex items-center gap-1"
-          >
-            ← Back to all cases
-          </button>
-          
-          <div className="flex items-start gap-4">
-            <div className="w-20 h-20 bg-[#111820] flex items-center justify-center">
-              {caseData.photo ? <span className="text-4xl">{caseData.photo}</span> : <User className="w-10 h-10 text-slate-400" />}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getStatusColor(caseData.status)}`}>
-                  {caseData.status}
-                </span>
-                <span className={`px-2 py-0.5 rounded text-xs font-medium border ${getUrgencyColor(caseData.urgency)}`}>
-                  {caseData.urgency}
-                </span>
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-[#111820] text-slate-300">
-                  {caseData.category}
-                </span>
-              </div>
-              <h2 className="text-2xl font-bold text-white">{caseData.name}</h2>
-              <p className="text-slate-400">{caseData.chineseName}</p>
-              <p className="text-sm text-slate-400 mt-1">{caseData.occupation}</p>
-            </div>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className={`px-2 py-0.5 rounded text-xs font-medium border ${getUrgencyColor(caseData.urgency)}`}>
+              {caseData.urgency}
+            </span>
+            <span className="text-slate-400 text-sm">{caseData.chineseName}</span>
+            <span className="text-slate-400 text-sm">· {caseData.occupation}</span>
           </div>
-          
-          <p className="mt-4 text-slate-300">{caseData.summary}</p>
+          <p className="text-slate-300">{caseData.summary}</p>
         </div>
 
         {/* Quick Facts */}
@@ -289,20 +250,11 @@ export default function CaseStudies() {
 
         {/* Timeline */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('timeline')}
-            aria-expanded={!!expandedSections.timeline}
-            aria-label="Toggle timeline section"
-            className="w-full flex items-center justify-between text-left"
-          >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#22d3ee]" />
               Timeline
             </h3>
-            {expandedSections.timeline ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
           
-          {expandedSections.timeline && (
             <div className="mt-4 space-y-3">
               {caseData.timeline.map((item, i) => (
                 <div key={i} className="flex gap-4">
@@ -314,25 +266,15 @@ export default function CaseStudies() {
                 </div>
               ))}
             </div>
-          )}
         </div>
 
         {/* Charges & Verdict */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('legal')}
-            aria-expanded={!!expandedSections.legal}
-            aria-label="Toggle charges and verdict section"
-            className="w-full flex items-center justify-between text-left"
-          >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" />
               Charges & Verdict
             </h3>
-            {expandedSections.legal ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
           
-          {expandedSections.legal && (
             <div className="mt-4 space-y-4">
               <div>
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">Charges</h4>
@@ -369,25 +311,15 @@ export default function CaseStudies() {
                 </div>
               </div>
             </div>
-          )}
         </div>
 
         {/* International Response */}
         <div className="p-6 border-b border-[#1c2a35]">
-          <button
-            onClick={() => toggleSection('international')}
-            aria-expanded={!!expandedSections.international}
-            aria-label="Toggle international response section"
-            className="w-full flex items-center justify-between text-left"
-          >
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <Globe className="w-5 h-5 text-green-400" />
               International Response
             </h3>
-            {expandedSections.international ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-          </button>
           
-          {expandedSections.international && (
             <div className="mt-4 space-y-2">
               {caseData.internationalResponse.map((response, i) => (
                 <div key={i} className="flex items-start gap-3 bg-[#0a0e14]/50 p-3">
@@ -399,7 +331,6 @@ export default function CaseStudies() {
                 </div>
               ))}
             </div>
-          )}
         </div>
 
         {/* How to Help */}
@@ -443,10 +374,11 @@ export default function CaseStudies() {
             ))}
           </div>
         </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
 
+export default function CaseStudies() {
   return (
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
       <div className="flex items-center gap-3 mb-6">
@@ -457,35 +389,35 @@ export default function CaseStudies() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      {/* One native <details> per case: the card is the summary, the full case
+          file is the body. The deep dives used to open only through a
+          JavaScript click, so a reader without it got the cards and no case. */}
+      <div className="space-y-3">
         {caseStudies.map(caseData => (
-          <button
-            key={caseData.id}
-            onClick={() => {
-              setSelectedCase(caseData.id);
-              setExpandedSections({ timeline: true, legal: true, international: true });
-            }}
-            className="bg-[#0a0e14]/50 p-4 text-left hover:bg-[#0a0e14]/70 transition-colors border border-[#1c2a35] hover:border-[#2a9a52]"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-[#111820] flex items-center justify-center">
-                {caseData.photo ? <span className="text-2xl">{caseData.photo}</span> : <User className="w-6 h-6 text-slate-400" />}
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
+          <details key={caseData.id} className="bg-[#0a0e14]/50 border border-[#1c2a35] open:border-[#2a9a52]">
+            <summary className="block p-4 cursor-pointer list-none hover:bg-[#0a0e14]/70 transition-colors [&::-webkit-details-marker]:hidden">
+              <span className="flex items-center gap-3 mb-3">
+                <span className="w-12 h-12 bg-[#111820] flex items-center justify-center flex-shrink-0">
+                  {caseData.photo ? <span className="text-2xl">{caseData.photo}</span> : <User className="w-6 h-6 text-slate-400" />}
+                </span>
+                <span className="block">
                   <span className={`px-1.5 py-0.5 rounded text-xs font-medium text-white ${getStatusColor(caseData.status)}`}>
                     {caseData.status}
                   </span>
-                </div>
-                <h3 className="text-white font-semibold">{caseData.name}</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-400 line-clamp-2">{caseData.summary}</p>
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-xs text-slate-400">{caseData.category}</span>
-              <span className="text-[#22d3ee] text-sm">Read more →</span>
-            </div>
-          </button>
+                  <span className="block text-white font-semibold mt-1">{caseData.name}</span>
+                </span>
+              </span>
+              <span className="block text-sm text-slate-400 line-clamp-2 summary-open:hidden">{caseData.summary}</span>
+              <span className="mt-3 flex items-center justify-between">
+                <span className="text-xs text-slate-400">{caseData.category}</span>
+                <span className="text-[#22d3ee] text-sm">
+                  <span className="summary-open:hidden">Read the case →</span>
+                  <span className="hidden summary-open:inline">Close the case ↑</span>
+                </span>
+              </span>
+            </summary>
+            <CaseFile caseData={caseData} />
+          </details>
         ))}
       </div>
 

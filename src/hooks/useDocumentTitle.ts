@@ -31,7 +31,7 @@ const ROUTE_META: Record<string, RouteMeta> = {
   },
   '/community': {
     title: 'Community Support',
-    description: 'Connect with diaspora communities, find support resources, and join solidarity efforts against CCP repression.',
+    description: 'Where to find emergency, legal and mental-health help if the CCP is targeting you, and ways to help others.',
   },
   '/communications': {
     title: 'Secure Communications',
@@ -39,7 +39,7 @@ const ROUTE_META: Record<string, RouteMeta> = {
   },
   '/education': {
     title: 'Education Center',
-    description: 'Educational resources about CCP human rights abuses including documentaries, books, research papers, and interactive courses.',
+    description: 'History, survivor testimony, books, documentaries and research papers on CCP human rights abuses.',
   },
   '/security': {
     title: 'Security Center',

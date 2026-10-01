@@ -272,9 +272,9 @@ const SanctionedOfficials = () => {
       {/* Search */}
       <div className="relative">
         <input
-          aria-label="Search"
+          aria-label="Search sanctioned officials by name, position, or Chinese characters"
           type="text"
-          placeholder="Search by name, position, or Chinese characters..."
+          placeholder="Search sanctioned officials by name, position, or Chinese characters..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-[#111820] border border-[#1c2a35] px-4 py-3 text-white placeholder:text-slate-400 focus:outline-none focus:border-red-500"

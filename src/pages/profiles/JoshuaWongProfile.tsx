@@ -4,14 +4,23 @@
  *
  * @module JoshuaWongProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Megaphone
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Flag,
+  Heart,
+  Megaphone,
 } from 'lucide-react';
 
 
@@ -21,12 +30,6 @@ interface TimelineEventType {
   detail: string;
   category: string;
   sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -42,7 +45,7 @@ const PROFILE = {
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'IMPRISONED',
   currentLocation: 'Stanley Prison, Hong Kong',
-  sentence: '4 years 8 months (subversion) + new NSL collusion charge (faces life)',
+  sentence: '4 years and 8 months for subversion (Hong Kong 47). Pleaded guilty September 2, 2026 to conspiracy to collude with foreign forces; sentencing pending, maximum life imprisonment.',
   occupation: 'Pro-Democracy Activist, Student Leader, Former Secretary-General of Demosistō',
 };
 
@@ -221,9 +224,17 @@ const TIMELINE = [
     date: '2026-03-06',
     year: '2026',
     title: 'Foreign collusion case hearing — High Court',
-    detail: 'Wong\'s foreign collusion case, transferred to the High Court where life imprisonment can be imposed, is scheduled for hearing. The case was adjourned from earlier proceedings. He has not entered a plea. Amnesty International and international observers continue to condemn the charge as designed to prolong his imprisonment indefinitely.',
+    detail: 'Wong\'s foreign collusion case, transferred to the High Court where life imprisonment can be imposed, was scheduled for hearing, having been adjourned from earlier proceedings. He had not yet entered a plea. Amnesty International and international observers condemned the charge as designed to prolong his imprisonment indefinitely.',
     category: 'persecution',
     sourceUrl: 'https://www.thestandard.com.hk/hong-kong-news/article/317446/Joshua-Wongs-foreign-collusion-case-adjourned-to-March-next-year',
+  },
+  {
+    date: '2026-09-02',
+    year: '2026',
+    title: 'Pleaded guilty to foreign collusion',
+    detail: 'Pleaded guilty at the High Court to conspiracy to collude with foreign forces — his second National Security Law conviction. Judge William Tam adjourned sentencing with no date set; the maximum is life imprisonment. Wong was originally due for release in January 2027, before this case was brought, and will not receive remission on his earlier sentence.',
+    category: 'persecution',
+    sourceUrl: 'https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/',
   },
 ];
 
@@ -240,8 +251,8 @@ const CHARGES = [
     charge: 'Conspiracy to collude with foreign forces',
     law: 'National Security Law, Article 29',
     filed: 'June 6, 2025',
-    verdict: 'PENDING — next hearing March 6, 2026 (High Court)',
-    sentence: 'Faces up to LIFE IMPRISONMENT',
+    verdict: 'GUILTY PLEA — September 2, 2026 (High Court)',
+    sentence: 'Sentencing adjourned, no date set — maximum LIFE IMPRISONMENT',
     detail: 'Accused of conspiring with Nathan Law (now in exile in the UK) and "other persons unknown" to encourage foreign countries or organizations to impose sanctions on Hong Kong or China between July and November 2020. Case transferred to the High Court where life imprisonment can be imposed. Amnesty International called these charges "designed to prolong his stay behind bars" and prevent his scheduled January 2027 release.',
   },
 ];
@@ -309,6 +320,7 @@ const AWARDS = [
 ];
 
 const SOURCES = [
+  { name: 'Hong Kong Free Press — guilty plea (September 2026)', url: 'https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/', tier: 2 },
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2025/06/hong-kong-new-charges-against-joshua-wong-designed-to-prolong-his-stay-behind-bars/', tier: 1 },
   { name: 'BBC News', url: 'https://www.bbc.com/news/articles/cx2l4eynl4zo', tier: 1 },
   { name: 'Hong Kong Watch', url: 'https://www.hongkongwatch.org/all-posts/2024/11/19/hong-kong-watch-strongly-condemns-sentencing-of-45-of-the-hong-kong-47-democrats', tier: 1 },
@@ -332,60 +344,10 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="text-xs font-mono text-slate-400 whitespace-nowrap">{event.year}</span>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} border border-white/10`}>{cat.label}</span>
-          <span className="text-sm font-medium text-white truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-3 border-t border-white/5">
-          <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-yellow-400 hover:text-yellow-300 mt-2">
-              <ExternalLink className="w-3 h-3" /> Source
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function JoshuaWongProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (idx: number) => {
-    setExpandedEvents((prev) => {
-      const next = new Set(prev);
-      next.has(idx) ? next.delete(idx) : next.add(idx);
-      return next;
-    });
-  };
-
-  const expandAll = () => setExpandedEvents(new Set(TIMELINE.map((_, i) => i)));
-  const collapseAll = () => setExpandedEvents(new Set());
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Verdict', icon: Scale },
-    { id: 'narratives', label: 'CCP Narratives', icon: AlertTriangle },
-    { id: 'response', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
 
   const daysDetained = Math.floor((new Date().getTime() - new Date('2021-02-28').getTime()) / (1000 * 60 * 60 * 24));
 
@@ -415,7 +377,7 @@ export default function JoshuaWongProfile() {
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">IMPRISONED</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
-                NEW NSL CHARGE — FACES LIFE
+                SECOND NSL CONVICTION — FACES LIFE
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
                 Age {calculateAge(PROFILE.birthDate)}
@@ -449,36 +411,14 @@ export default function JoshuaWongProfile() {
         </div>
       </div>
 
-      {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
-        {tabs.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`panel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-yellow-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-            }`}
-          >
-            <Icon className="w-4 h-4" /> {label}
-          </button>
-        ))}
-      </div>
 
       {/* ─── TAB PANELS ─────────────────────────────────────── */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab}>
+      <div className="space-y-3">
         {/* TIMELINE */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-yellow-400" /> Timeline — {TIMELINE.length} Events</h2>
-              <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-yellow-400 hover:text-yellow-300">Expand all</button>
-                <span className="text-slate-600">|</span>
-                <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
-              </div>
             </div>
             {/* Category legend */}
             <div className="flex flex-wrap gap-2">
@@ -487,24 +427,26 @@ export default function JoshuaWongProfile() {
               ))}
             </div>
             <div className="space-y-2">
-              {TIMELINE.map((event, idx) => (
-                <TimelineEvent key={idx} event={event} isExpanded={expandedEvents.has(idx)} onToggle={() => toggleEvent(idx)} />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CHARGES & VERDICT */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges & Verdict">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-yellow-400" /> Charges & Verdict</h2>
 
             <div className="bg-red-900/20 border border-red-700/50 p-4">
               <h3 className="text-sm font-semibold text-red-300 mb-2">⚠️ Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
-                Wong is currently serving a 4 year 8 month sentence for subversion while simultaneously facing new "collusion with foreign forces" charges 
-                that carry a maximum penalty of <strong className="text-red-400">life imprisonment</strong>. Amnesty International has called these new charges 
-                "designed to prolong his stay behind bars" beyond his scheduled January 2027 release date.
+                Wong is serving a 4 year 8 month sentence for subversion. On September 2, 2026 he pleaded guilty to conspiracy to collude with
+                foreign forces, which carries a maximum penalty of <strong className="text-red-400">life imprisonment</strong>; sentencing has been
+                adjourned with no date set. He was due for release in January 2027, and will not receive remission on his earlier sentence.
+                Amnesty International called the charge "designed to prolong his stay behind bars".
               </p>
             </div>
 
@@ -565,10 +507,10 @@ export default function JoshuaWongProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP NARRATIVE ANALYSIS */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-yellow-400" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
@@ -596,10 +538,10 @@ export default function JoshuaWongProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* INTERNATIONAL RESPONSE */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International Response">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-yellow-400" /> International Response</h2>
 
@@ -637,10 +579,10 @@ export default function JoshuaWongProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* SOURCES */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-yellow-400" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
@@ -671,7 +613,7 @@ export default function JoshuaWongProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

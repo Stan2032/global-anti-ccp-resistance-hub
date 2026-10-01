@@ -4,11 +4,9 @@
  *
  * @module PetitionLinks
  */
-import { useState } from 'react';
 import { PenLine, Megaphone } from 'lucide-react';
 
 const PetitionLinks = () => {
-  const [expandedPetition, setExpandedPetition] = useState<number | null>(null);
 
   const petitions = [
     {
@@ -133,8 +131,14 @@ const PetitionLinks = () => {
                 </div>
               </div>
 
-              {expandedPetition === petition.id && (
-                <div className="mb-3 p-3 bg-[#0a0e14]/50">
+              {/* Native, so the details open without JavaScript */}
+              <details className="mb-3">
+                <summary className="text-sm text-[#22d3ee] hover:text-white cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <span className="summary-open:hidden">Details and actions +</span>
+                  <span className="hidden summary-open:inline">Hide details −</span>
+                  <span className="sr-only">: {petition.title}</span>
+                </summary>
+                <div className="mt-2 p-3 bg-[#0a0e14]/50">
                   <p className="text-sm text-slate-300 mb-2">{petition.description}</p>
                   <div className="space-y-1">
                     <p className="text-xs text-slate-400 font-semibold">Actions you can take:</p>
@@ -146,7 +150,7 @@ const PetitionLinks = () => {
                     ))}
                   </div>
                 </div>
-              )}
+              </details>
 
               <div className="flex gap-2">
                 <a
@@ -157,14 +161,6 @@ const PetitionLinks = () => {
                 >
                   Sign Now
                 </a>
-                <button
-                  onClick={() => setExpandedPetition(expandedPetition === petition.id ? null : petition.id)}
-                  aria-expanded={expandedPetition === petition.id}
-                  aria-label={`${expandedPetition === petition.id ? 'Collapse' : 'Expand'} details for ${petition.title}`}
-                  className="bg-[#111820] hover:bg-[#1c2a35] text-white py-2 px-3 text-sm transition-colors"
-                >
-                  {expandedPetition === petition.id ? '−' : '+'}
-                </button>
               </div>
             </div>
           </div>

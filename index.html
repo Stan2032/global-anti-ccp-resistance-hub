@@ -37,8 +37,8 @@
     <link rel="canonical" href="https://global-anti-ccp-resistance-hub.stane203.workers.dev/" />
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="msapplication-TileColor" content="#0f172a" />
+    <meta name="theme-color" content="#0a0e14" />
+    <meta name="msapplication-TileColor" content="#0a0e14" />
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -48,9 +48,12 @@
     <meta name="apple-mobile-web-app-title" content="Resistance Hub" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
     
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <!-- Security Headers.
+         X-Frame-Options and X-Content-Type-Options are header-only directives:
+         browsers ignore them in <meta>, so they are set in public/_headers and
+         served by Cloudflare. The stale SAMEORIGIN meta tag that used to sit
+         here also contradicted the real header, which is DENY.
+         referrer is honoured as a meta tag, so it stays. -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     
     <!-- Structured Data -->
@@ -112,7 +115,7 @@
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "Global Anti-CCP Resistance Hub Education Center",
-      "description": "Free educational resources about CCP human rights abuses, including documentaries, books, research papers, and interactive courses.",
+      "description": "Free educational resources about CCP human rights abuses, including history, survivor testimony, books, documentaries and research papers.",
       "url": "https://global-anti-ccp-resistance-hub.stane203.workers.dev/education",
       "areaServed": "Worldwide",
       "educationalCredentialAwarded": "None - Free public education"
@@ -188,51 +191,48 @@
     </script>
     
     <!-- Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
-      // This script checks to see if a redirect is present in the query string,
-      // converts it back into the correct url and adds it to the browser's history
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://api.allorigins.win" crossorigin />
-    <link rel="dns-prefetch" href="https://api.allorigins.win" />
-    <link rel="preconnect" href="https://api.rss2json.com" crossorigin />
-    <link rel="dns-prefetch" href="https://api.rss2json.com" />
+    <!-- The GitHub Pages SPA redirect shim used to sit here. It was dead twice
+         over: Cloudflare Workers serves every route as a real URL so nothing
+         ever arrives as `?/path`, and the production CSP (`script-src 'self'`)
+         refused to execute it anyway. -->
+
+    <!-- No preconnect hints to third parties, deliberately. RSS feeds are
+         fetched by this site's own Worker (/api/v1/feed), so the browser
+         talks to nobody else. The hints that used to live here fired a DNS
+         lookup for two CORS proxies on EVERY page view, whether or not a
+         feed was ever read - leaking the reader's interest before they had
+         done anything. -->
   </head>
   <body>
+    <!-- This message must never tell a reader to weaken their browser's
+         security posture. It previously advised using Tor Browser "with
+         JavaScript enabled", while the site's own Security Center tells
+         readers in China to use Tor exclusively and consider Tails. Tor's
+         Safest level disables JavaScript because JavaScript is the main
+         deanonymisation and fingerprinting vector, so that advice asked the
+         most at-risk readers to give up their strongest protection in order
+         to read us.
+
+         This is a stopgap. The real fix is to pre-render content so the site
+         works without JavaScript at all — see docs/MODERNIZATION.md. -->
     <noscript>
-      <div style="padding: 20px; text-align: center; background: #1e293b; color: white;">
-        <h1>Global Anti-CCP Resistance Hub</h1>
-        <p>This application requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
-        <p>For security, we recommend using <a href="https://www.torproject.org/" style="color: #60a5fa;">Tor Browser</a> with JavaScript enabled.</p>
+      <div style="padding: 12px 20px; background: #111820; color: #e2e8f0; border-bottom: 1px solid #1c2a35; font-family: system-ui, sans-serif; font-size: 14px; line-height: 1.6;">
+        <strong style="color: #4afa82;">Reading without JavaScript.</strong>
+        The pages below are pre-rendered, so the records, profiles and timeline are all here.
+        Search boxes and filter buttons need JavaScript and will not respond.
+        <strong>Intelligence Feeds</strong> is fetched live and will stay empty — it says
+        &ldquo;Loading&hellip;&rdquo; but nothing is loading. For that and for the raw data,
+        the read-only API returns plain JSON:
+        <a href="/api/v1/" style="color: #4afa82;">/api/v1/</a>.
+        <strong>If you are on Tor Browser's Safer or Safest setting, stay there.</strong>
+        Do not lower your security level to read this site.
       </div>
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('SW registered:', registration.scope);
-            })
-            .catch(error => {
-              console.log('SW registration failed:', error);
-            });
-        });
-      }
-    </script>
+
+    <!-- The service worker is registered from src/main.tsx, not here. As an
+         inline script the CSP refused to execute it, so sw.js never
+         registered in production. -->
   </body>
 </html>

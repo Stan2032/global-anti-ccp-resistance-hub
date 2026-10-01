@@ -1,6 +1,44 @@
 # Global Anti-CCP Resistance Hub — Active To-Do List
 
-> Last Updated: March 14, 2026 (Session 280)
+> Last Updated: September 19, 2026 (Session 281)
+>
+> ## Session 281 changed the shape of this list — read this first
+>
+> A six-month modernization sweep ran on 2026-09-19. **`docs/MODERNIZATION.md`
+> is the authoritative record of current state**; much of the detail below
+> predates it.
+>
+> **New files, and where things now live:**
+> - `_agents/PARKED_WORK.md` — scoped work deliberately not done yet (P1-P7),
+>   each with enough context to start cold. **Check this before picking a task.**
+> - `_agents/QUESTIONS_FOR_HUMANS.md` — Q14-Q18 added, all open.
+> - `docs/MODERNIZATION.md` — the full audit, including recorded dead ends
+>   (§12 snapshot pre-rendering, §16 eager page registry) so nobody repeats
+>   them, and §17, which corrects the diagnosis both of §15 and §16 rested on.
+>
+> **Two test commands now, and they mean different things:**
+> - `npm test` — code correctness. Gates PRs. **Currently green (3,693).**
+> - `npm run test:content` — is the data still verified? **Currently failing
+>   on purpose**: content is ~195 days stale.
+>
+> **Never fix a `test:content` failure by editing a `last_verified` date.**
+> That fabricates provenance, which this project forbids. Re-check the entry
+> against a Tier 1-2 source instead.
+>
+> **The site is fully pre-rendered.** Every route ships as static HTML and is
+> readable with JavaScript disabled — which is what the Security Center tells
+> readers in China to use. Nothing is deferred into `<div hidden>` any more and
+> hydration is clean. `/take-action` went from 3,355 to 69,908 readable
+> characters, `/prisoners` from 2,186 (pre-pre-rendering) to 16,101.
+>
+> If you change routing, lazy loading or Suspense, **verify in a real browser
+> with JavaScript off, served the way Workers serves it** — `vite preview`
+> SPA-falls-back to `dist/index.html` and makes every route measure the same.
+> Reasoning about React's behaviour got this wrong three times; measurement
+> caught all three. See `docs/MODERNIZATION.md` §17.
+>
+> **Immediate priorities:** P7 in `PARKED_WORK.md` (content re-verification —
+> the largest open item), then P3 (ESLint 10 — 9.x is end of support).
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.
@@ -12,6 +50,8 @@
 ## 🔴 SHORT-TERM (1-2 weeks)
 
 ### Human-Answered Tasks (Q6-Q10, Session 153)
+> Note: Q14-Q18 (Session 281) are open and unanswered — see `QUESTIONS_FOR_HUMANS.md`.
+
 - [x] **Implement basic cache (Q6)**: ✅ Two-layer caching implemented: (1) Static asset Cache-Control headers in `_headers` (immutable for hashed assets, no-cache for HTML/SW), (2) Backend feed routes wired to in-memory cacheService (TTL 5-30 min, tag-based invalidation, LRU eviction). BACKEND_GUIDE.md updated with full caching documentation.
 - [x] **Supabase Auth admin login (Q8)**: ✅ IMPLEMENTED Session 157. Frontend auth code: AuthContext + authUtils (auth state management), authService.js (login/logout/admin check), ProtectedRoute (route guard), AdminLogin page (email/password form with "not configured" fallback), AdminDashboard page (tabbed data viewer for all 4 tables). Comprehensive setup guide: `SUPABASE_AUTH_SETUP.md` (7 steps including SQL for admin_users table, RLS policies, and troubleshooting). Human needs to run SQL in Steps 2-4 in Supabase Dashboard.
 - [ ] **Cloudflare Onion Routing (Q9)**: ⚠️ DEFERRED — Requires custom domain (not available for `workers.dev` subdomains). Full step-by-step custom domain + onion routing guide available at `guides/CUSTOM_DOMAIN_SETUP.md` (rewritten Session 236 — detailed dashboard walkthrough). Also see `ONION_ROUTING_SETUP.md`. Will activate when custom domain is acquired.

@@ -9,7 +9,8 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
-import { ShieldAlert, Search, ChevronDown, ChevronUp, Copy, Check, Lock, Eye, FileText, Globe, AlertTriangle, Shield, Key, Users, MessageSquare, Server } from 'lucide-react';
+import { ShieldAlert, Search, ChevronDown, Copy, Check, Lock, Eye, FileText, Globe, AlertTriangle, Shield, Key, Users, MessageSquare, Server } from 'lucide-react';
+import { DisclosureSection } from './DisclosureSection';
 // WhistleblowerGuide — Operational security guidance for potential whistleblowers
 // exposing CCP human rights abuses. Covers secure submission channels, OpSec
 // protocols, risk assessment, and legal protections.
@@ -112,10 +113,8 @@ const LEGAL_PROTECTIONS = [
 ];
 
 const WhistleblowerGuide = () => {
-  const [activeView, setActiveView] = useState('protocols');
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners(), []);
@@ -205,12 +204,6 @@ const WhistleblowerGuide = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const views = [
-    { id: 'protocols', label: 'Security Protocols' },
-    { id: 'channels', label: 'Submission Channels' },
-    { id: 'legal', label: 'Legal Protections' },
-  ];
-
   const getRiskStyle = (risk: string) => RISK_LEVELS.find(r => r.id === risk) || RISK_LEVELS[3];
   const getCategoryInfo = (catId: string) => PROTOCOL_CATEGORIES.find(c => c.id === catId) || PROTOCOL_CATEGORIES[0];
   const getTrustStyle = (trust: string) => CHANNEL_TRUST.find(t => t.id === trust) || CHANNEL_TRUST[0];
@@ -295,22 +288,6 @@ const WhistleblowerGuide = () => {
       </div>
 
       {/* View Toggle */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="View options">
-        {views.map(v => (
-          <button
-            key={v.id}
-            onClick={() => setActiveView(v.id)}
-            aria-pressed={activeView === v.id ? 'true' : 'false'}
-            className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
-              activeView === v.id
-                ? 'border-[#22d3ee] text-[#22d3ee] bg-[#22d3ee]/10'
-                : 'border-[#1c2a35] text-slate-400 hover:border-slate-400 hover:text-white'
-            }`}
-          >
-            {v.label}
-          </button>
-        ))}
-      </div>
 
       {/* Search & Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -325,57 +302,49 @@ const WhistleblowerGuide = () => {
             aria-label="Search whistleblower security data"
           />
         </div>
-        {activeView === 'protocols' && (
-          <select
-            value={categoryFilter}
-            onChange={e => setCategoryFilter(e.target.value)}
-            className="bg-[#111820] border border-[#1c2a35] px-3 py-2 text-sm text-white font-mono focus:border-[#22d3ee] focus:outline-none"
-            aria-label="Filter by protocol category"
-          >
-            <option value="all">All Categories</option>
-            {PROTOCOL_CATEGORIES.map(c => (
-              <option key={c.id} value={c.id}>{c.label}</option>
-            ))}
-          </select>
-        )}
       </div>
 
       {/* PROTOCOLS VIEW */}
-      {activeView === 'protocols' && (
-        <div className="space-y-3">
-          {filteredProtocols.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No protocols match your search</p>
-          ) : (
-            filteredProtocols.sort((a, b) => {
-              const riskOrder: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
-              return (riskOrder[a.risk] ?? 3) - (riskOrder[b.risk] ?? 3);
-            }).map(protocol => {
-              const riskStyle = getRiskStyle(protocol.risk);
-              const catInfo = getCategoryInfo(protocol.category);
-              const CatIcon = catInfo.icon;
-              const isExpanded = expandedItem === protocol.id;
-              return (
-                <div key={protocol.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                  <button
-                    onClick={() => setExpandedItem(isExpanded ? null : protocol.id)}
-                    className="w-full flex items-center justify-between p-3 text-left"
-                    aria-expanded={isExpanded ? 'true' : 'false'}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <CatIcon className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white text-sm font-mono">{protocol.name}</span>
-                          <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
-                            {protocol.risk.toUpperCase()}
+      <DisclosureSection title="Security Protocols">
+            <select
+              value={categoryFilter}
+              onChange={e => setCategoryFilter(e.target.value)}
+              className="mb-3 bg-[#111820] border border-[#1c2a35] px-3 py-2 text-sm text-white font-mono focus:border-[#22d3ee] focus:outline-none"
+              aria-label="Filter by protocol category"
+            >
+              <option value="all">All Categories</option>
+              {PROTOCOL_CATEGORIES.map(c => (
+                <option key={c.id} value={c.id}>{c.label}</option>
+              ))}
+            </select>
+          <div className="space-y-3">
+            {filteredProtocols.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No protocols match your search</p>
+            ) : (
+              filteredProtocols.sort((a, b) => {
+                const riskOrder: Record<string, number> = { critical: 0, high: 1, moderate: 2, low: 3 };
+                return (riskOrder[a.risk] ?? 3) - (riskOrder[b.risk] ?? 3);
+              }).map(protocol => {
+                const riskStyle = getRiskStyle(protocol.risk);
+                const catInfo = getCategoryInfo(protocol.category);
+                const CatIcon = catInfo.icon;
+                return (
+                  <details key={protocol.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
+                        <CatIcon className="w-4 h-4 text-[#22d3ee] flex-shrink-0" aria-hidden="true" />
+                        <span className="block min-w-0">
+                          <span className="flex items-center gap-2 flex-wrap">
+                            <span className="text-white text-sm font-mono">{protocol.name}</span>
+                            <span className={`text-xs font-mono px-1.5 py-0.5 border ${riskStyle.border} ${riskStyle.color}`}>
+                              {protocol.risk.toUpperCase()}
+                            </span>
                           </span>
-                        </div>
-                        <span className="text-xs text-slate-400">{catInfo.label}</span>
-                      </div>
-                    </div>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
-                  </button>
-                  {isExpanded && (
+                          <span className="text-xs text-slate-400">{catInfo.label}</span>
+                        </span>
+                      </span>
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{protocol.detail}</p>
                       <div className="flex items-center gap-2 text-xs">
@@ -383,43 +352,36 @@ const WhistleblowerGuide = () => {
                         <span className="text-[#22d3ee] font-mono">{protocol.source}</span>
                       </div>
                     </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
+                  </details>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* CHANNELS VIEW */}
-      {activeView === 'channels' && (
-        <div className="space-y-3">
-          {filteredChannels.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No channels match your search</p>
-          ) : (
-            filteredChannels.map(channel => {
-              const trustStyle = getTrustStyle(channel.trust);
-              const isExpanded = expandedItem === channel.id;
-              return (
-                <div key={channel.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                  <button
-                    onClick={() => setExpandedItem(isExpanded ? null : channel.id)}
-                    className="w-full flex items-center justify-between p-3 text-left"
-                    aria-expanded={isExpanded ? 'true' : 'false'}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Lock className="w-4 h-4 text-[#4afa82] flex-shrink-0" aria-hidden="true" />
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white text-sm font-mono">{channel.name}</span>
-                          <span className={`text-xs font-mono ${trustStyle.color}`}>[{channel.trust.toUpperCase()}]</span>
-                        </div>
-                        <span className="text-xs text-slate-400">{channel.type}</span>
-                      </div>
-                    </div>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
-                  </button>
-                  {isExpanded && (
+      <DisclosureSection title="Submission Channels">
+          <div className="space-y-3">
+            {filteredChannels.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No channels match your search</p>
+            ) : (
+              filteredChannels.map(channel => {
+                const trustStyle = getTrustStyle(channel.trust);
+                return (
+                  <details key={channel.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
+                        <Lock className="w-4 h-4 text-[#4afa82] flex-shrink-0" aria-hidden="true" />
+                        <span className="block min-w-0">
+                          <span className="flex items-center gap-2 flex-wrap">
+                            <span className="text-white text-sm font-mono">{channel.name}</span>
+                            <span className={`text-xs font-mono ${trustStyle.color}`}>[{channel.trust.toUpperCase()}]</span>
+                          </span>
+                          <span className="text-xs text-slate-400">{channel.type}</span>
+                        </span>
+                      </span>
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{channel.detail}</p>
                       <div className="flex flex-col gap-1 text-xs">
@@ -433,46 +395,39 @@ const WhistleblowerGuide = () => {
                         </div>
                       </div>
                     </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
+                  </details>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* LEGAL PROTECTIONS VIEW */}
-      {activeView === 'legal' && (
-        <div className="space-y-3">
-          {filteredProtections.length === 0 ? (
-            <p className="text-slate-400 text-sm font-mono text-center py-4">No legal frameworks match your search</p>
-          ) : (
-            filteredProtections.map(law => {
-              const strengthMap: Record<string, typeof RISK_LEVELS[number]> = { high: RISK_LEVELS[1], moderate: RISK_LEVELS[2], low: RISK_LEVELS[3] };
-              const strengthStyle = strengthMap[law.strength] || RISK_LEVELS[2];
-              const isExpanded = expandedItem === law.id;
-              return (
-                <div key={law.id} className="border border-[#1c2a35] bg-[#111820]/30">
-                  <button
-                    onClick={() => setExpandedItem(isExpanded ? null : law.id)}
-                    className="w-full flex items-center justify-between p-3 text-left"
-                    aria-expanded={isExpanded ? 'true' : 'false'}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <FileText className="w-4 h-4 text-[#a78bfa] flex-shrink-0" aria-hidden="true" />
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white text-sm font-mono">{law.name}</span>
-                          <span className={`text-xs font-mono px-1.5 py-0.5 border ${strengthStyle.border} ${strengthStyle.color}`}>
-                            {law.strength.toUpperCase()}
+      <DisclosureSection title="Legal Protections">
+          <div className="space-y-3">
+            {filteredProtections.length === 0 ? (
+              <p className="text-slate-400 text-sm font-mono text-center py-4">No legal frameworks match your search</p>
+            ) : (
+              filteredProtections.map(law => {
+                const strengthMap: Record<string, typeof RISK_LEVELS[number]> = { high: RISK_LEVELS[1], moderate: RISK_LEVELS[2], low: RISK_LEVELS[3] };
+                const strengthStyle = strengthMap[law.strength] || RISK_LEVELS[2];
+                return (
+                  <details key={law.id} className="border border-[#1c2a35] bg-[#111820]/30">
+                    <summary className="w-full flex items-center justify-between p-3 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center gap-3 min-w-0">
+                        <FileText className="w-4 h-4 text-[#a78bfa] flex-shrink-0" aria-hidden="true" />
+                        <span className="block min-w-0">
+                          <span className="flex items-center gap-2 flex-wrap">
+                            <span className="text-white text-sm font-mono">{law.name}</span>
+                            <span className={`text-xs font-mono px-1.5 py-0.5 border ${strengthStyle.border} ${strengthStyle.color}`}>
+                              {law.strength.toUpperCase()}
+                            </span>
                           </span>
-                        </div>
-                        <span className="text-xs text-slate-400">{law.jurisdiction} · {law.year}</span>
-                      </div>
-                    </div>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
-                  </button>
-                  {isExpanded && (
+                          <span className="text-xs text-slate-400">{law.jurisdiction} · {law.year}</span>
+                        </span>
+                      </span>
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                    </summary>
                     <div className="border-t border-[#1c2a35] p-3 space-y-3">
                       <p className="text-slate-300 text-xs leading-relaxed">{law.detail}</p>
                       <div className="flex items-center gap-2 text-xs">
@@ -480,13 +435,12 @@ const WhistleblowerGuide = () => {
                         <span className="text-[#22d3ee] font-mono">{law.source}</span>
                       </div>
                     </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
+                  </details>
+                );
+              })
+            )}
+          </div>
+      </DisclosureSection>
 
       {/* Footer */}
       <div className="border-t border-[#1c2a35] pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-slate-400">

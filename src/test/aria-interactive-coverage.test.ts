@@ -32,17 +32,18 @@ describe('ARIA Interactive Coverage', () => {
     expect(componentFiles.length).toBeGreaterThan(50);
   });
 
-  it('filter/tab patterns have role="tablist" or role="listbox" on containers', () => {
+  // aria-selected belongs to options in a listbox. A filter button says
+  // whether it is on with aria-pressed instead.
+  it('options marked aria-selected sit in a role="listbox"', () => {
     const violations: string[] = [];
     for (const file of componentFiles) {
       const content = readFileSync(file, 'utf-8');
-      // Files with aria-selected should also have role="tablist" or role="listbox" somewhere
-      if (content.includes('aria-selected=') && !content.includes('role="tablist"') && !content.includes('role="listbox"')) {
+      if (content.includes('aria-selected=') && !content.includes('role="listbox"')) {
         const name = file.split('/').pop() ?? file;
         violations.push(name);
       }
     }
-    expect(violations, `Missing role="tablist" or role="listbox" in: ${violations.join(', ')}`).toEqual([]);
+    expect(violations, `Missing role="listbox" in: ${violations.join(', ')}`).toEqual([]);
   });
 
   it('expandable buttons have aria-expanded', () => {
@@ -66,16 +67,16 @@ describe('ARIA Interactive Coverage', () => {
     expect(violations, `Toggle buttons missing aria-expanded:\n${violations.join('\n')}`).toEqual([]);
   });
 
-  it('components with aria-selected buttons use role="tab" or role="option"', () => {
+  it('components with aria-selected buttons use role="option"', () => {
     const violations: string[] = [];
     for (const file of componentFiles) {
       const content = readFileSync(file, 'utf-8');
-      if (content.includes('aria-selected=') && !content.includes('role="tab"') && !content.includes('role="option"')) {
+      if (content.includes('aria-selected=') && !content.includes('role="option"')) {
         const name = file.split('/').pop() ?? file;
         violations.push(name);
       }
     }
-    expect(violations, `Missing role="tab" or role="option" in: ${violations.join(', ')}`).toEqual([]);
+    expect(violations, `Missing role="option" in: ${violations.join(', ')}`).toEqual([]);
   });
 
   it('LanguageSelector has aria-haspopup for dropdown', () => {

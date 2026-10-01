@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { STATION_STATUS } from '../services/dataApi';
 
 const DATA_DIR = resolve(__dirname, '../data');
 const data = JSON.parse(readFileSync(resolve(DATA_DIR, 'police_stations_research.json'), 'utf-8'));
@@ -30,7 +31,8 @@ describe('Police stations data integrity', () => {
   });
 
   it('statuses are valid categories', () => {
-    const validStatuses = ['OPERATING', 'CLOSED', 'UNDER INVESTIGATION', 'UNKNOWN'];
+    // The same list the components compare against (STATION_STATUS).
+    const validStatuses: string[] = Object.values(STATION_STATUS);
     for (const result of data.results) {
       expect(validStatuses, `Unknown status: ${result.output.status}`).toContain(result.output.status);
     }

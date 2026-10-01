@@ -60,7 +60,7 @@ describe('SanctionedOfficials', () => {
 
   it('filters officials by search query', () => {
     render(<SanctionedOfficials />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search sanctioned officials by name, position, or Chinese characters');
     fireEvent.change(searchInput, { target: { value: 'Hikvision' } });
     expect(screen.getByText('Hikvision Executives')).toBeTruthy();
     expect(screen.queryByText('Chen Quanguo')).toBeNull();

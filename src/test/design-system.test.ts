@@ -297,4 +297,24 @@ describe('Terminal design system compliance', () => {
       violations.join('\n')
     ).toEqual([]);
   });
+
+  it('no <table> sits directly in an overflow-hidden box, which cuts its columns off on a phone', () => {
+    // At 390px most tables are wider than the screen. In an overflow-x-auto
+    // box the reader can scroll to the rest; in an overflow-hidden one the
+    // columns past the edge are simply gone. The Confucius Institutes table
+    // lost its Status and Details columns this way.
+    const CLIPPED_TABLE = /className="[^"]*\boverflow-hidden\b[^"]*"[^>]*>\s*<table\b/g;
+    const violations = [];
+    let tables = 0;
+    for (const filePath of jsxFiles) {
+      const content = readFileSync(filePath, 'utf-8');
+      tables += (content.match(/<table\b/g) || []).length;
+      for (const m of content.matchAll(CLIPPED_TABLE)) {
+        const line = content.slice(0, m.index).split('\n').length;
+        violations.push(`${filePath.replace(SRC_DIR + '/', '')}:${line}`);
+      }
+    }
+    expect(tables).toBeGreaterThan(0);
+    expect(violations, `Tables clipped by overflow-hidden:\n${violations.join('\n')}`).toEqual([]);
+  });
 });
