@@ -2,11 +2,12 @@
  * Accessibility — Utilities for keyboard navigation and screen reader support.
  *
  * Exports SkipLinks for jumping to main content areas, VisuallyHidden for
- * screen-reader-only text, and a focus-management hook for route changes.
+ * screen-reader-only text, a live region, and accessible progress and alert
+ * components.
  *
  * @module Accessibility
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../contexts/languageUtils';
 
 /**
@@ -55,48 +56,6 @@ export const VisuallyHidden = ({ children, as: Component = 'span' }: VisuallyHid
       {children}
     </Tag>
   );
-};
-
-/**
- * Focus Trap Hook
- * Traps focus within a container (useful for modals)
- */
-const useFocusTrap = (containerRef: React.RefObject<HTMLElement | null>, isActive: boolean) => {
-  useEffect(() => {
-    if (!isActive || !containerRef.current) return;
-
-    const container = containerRef.current;
-    const focusableElements = container.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    const firstElement = focusableElements[0] as HTMLElement | undefined;
-    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement | undefined;
-
-    if (!firstElement || !lastElement) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-
-      if (e.shiftKey) {
-        if (document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement?.focus();
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement?.focus();
-        }
-      }
-    };
-
-    container.addEventListener('keydown', handleKeyDown);
-    firstElement?.focus();
-
-    return () => {
-      container.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [containerRef, isActive]);
 };
 
 /**
@@ -204,44 +163,6 @@ export const AccessibleCard = ({
 };
 
 /**
- * Keyboard Navigation Hook
- * Handles arrow key navigation in lists
- */
-const useKeyboardNavigation = <T,>(items: T[], onSelect?: (item: T, index: number) => void) => {
-  const [focusedIndex, setFocusedIndex] = React.useState(0);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        setFocusedIndex((prev) => (prev + 1) % items.length);
-        break;
-      case 'ArrowUp':
-        e.preventDefault();
-        setFocusedIndex((prev) => (prev - 1 + items.length) % items.length);
-        break;
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        onSelect?.(items[focusedIndex], focusedIndex);
-        break;
-      case 'Home':
-        e.preventDefault();
-        setFocusedIndex(0);
-        break;
-      case 'End':
-        e.preventDefault();
-        setFocusedIndex(items.length - 1);
-        break;
-      default:
-        break;
-    }
-  };
-
-  return { focusedIndex, setFocusedIndex, handleKeyDown };
-};
-
-/**
  * Progress Indicator with ARIA
  */
 interface AccessibleProgressProps {
@@ -327,16 +248,4 @@ export const AccessibleAlert = ({ type = 'info', title, children, onDismiss }: A
       )}
     </div>
   );
-};
-
-export default {
-  SkipLinks,
-  VisuallyHidden,
-  LiveRegion,
-  AccessibleButton,
-  AccessibleCard,
-  AccessibleProgress,
-  AccessibleAlert,
-  useFocusTrap,
-  useKeyboardNavigation,
 };

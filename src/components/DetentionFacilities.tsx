@@ -104,10 +104,9 @@ const processResearchSources = (): ResearchSource[] => {
       seen.add(data.source_url);
       
       // Parse URL to extract domain (trusted data source, not user input)
-      let domain = '';
+      let domain: string;
       try {
-        const url = new URL(data.source_url);
-        domain = url.hostname;
+        domain = new URL(data.source_url).hostname;
       } catch {
         // If URL parsing fails, skip this entry
         return;
