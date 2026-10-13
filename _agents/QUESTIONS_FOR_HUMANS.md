@@ -122,6 +122,8 @@ Joshua Wong was re-verified in Session 281 as a worked example: two independent 
 
 **Agent recommendation:** (A), with (B) for anything where sources disagree. The existing standing instruction already permits adding well-sourced individuals without asking, so extending it to re-verification is consistent. The one hard rule either way: **never bump a `last_verified` date without actually re-checking the source** — that fabricates provenance.
 
+**Status (2026-10-13):** after the site work, the owner said to continue as the agent wished and to be extensive on everything, so re-verification resumed under (A). 14 of 64 prisoner records are current; changes and the cases left alone are logged in `docs/MODERNIZATION.md` §11. Nothing was changed where sources disagreed or only one Tier 1–2 source was found. This question stays open for the owner to confirm (A) or change it.
+
 ### Q19: Tursunay Ziawudun's quotes were garbled; they have been removed (Session 281)
 
 **Context:** In `SurvivorStories`, both quotes attributed to Tursunay Ziawudun had her words about sexual violence replaced with "China", e.g. *"They had an electric stick, I didn't know what it was, and China. They used it to China. And China."* The entry is marked `verified: true` and cites the BBC. The text was already like this when the file entered this repository (`f24d099`, March 2026). It looks like a word filter, not a typo. No other quote on the site shows the pattern.
