@@ -148,7 +148,15 @@ Both quotes are removed, not paraphrased. Her story keeps its narrative and sour
 
 **Agent recommendation:** Drop them unless someone will write them. Most of the ground is already covered: propaganda (Propaganda outlets, Media bias guide, Disinformation tracker), digital security (`/security`), Hong Kong history (the timeline and the profiles) and fact-checking (Source verification). List a course once it exists.
 
-*When you encounter a decision that requires human input, add it here starting with Q22.*
+### Q22: CI's dependency audit is red over Tailwind 3's build tools; the only fix drops older browsers (Session 281)
+
+**Context:** New advisories published in October 2026 put `npm audit` at 8 findings (5 high, 3 moderate), and CI's "Dependency audit" job fails on high. All 8 are build-time dependencies of Tailwind CSS 3: `braces` (via `chokidar`, `micromatch`, `fast-glob`) and `postcss-selector-parser`. None ships to readers (`npm audit --omit=dev` finds 0), and the `braces` fault needs attacker-chosen glob patterns, where ours come from our own Tailwind config. No patched `braces` exists: every published version is affected. The one fixable finding, `source-map-js`, is fixed. The only fix for the rest is Tailwind 4 (P3), which requires Safari 16.4, Chrome 111 or Firefox 128 and newer. Readers in China on older phones or on browsers built on older engines would get the page unstyled.
+
+**Question:** (a) wait for a patched `braces` and leave the job red until then; (b) move to Tailwind 4 and accept the browser floor; (c) make the CI gate audit what ships (`npm audit --omit=dev --audit-level=high`), with the full audit reported but not failing; or something else?
+
+**Agent recommendation:** (a) for now, (c) if no patch appears within a few weeks. A red gate over a fault that cannot reach a reader teaches people to ignore the gate. Tailwind 4 should wait on a decision about which browsers the site supports, made for readers in China rather than for a dependency.
+
+*When you encounter a decision that requires human input, add it here starting with Q23.*
 
 ---
 

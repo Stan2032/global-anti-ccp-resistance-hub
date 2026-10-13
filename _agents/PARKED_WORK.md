@@ -84,7 +84,7 @@ within existing majors. Suggested order:
 | **Vitest + Vite** | 4.1.11 → 5.x, 7.3.6 → 8.x | Paired. 203 test files. `--reporter=basic` was already removed in v4. |
 | **lucide-react** | 0.555 → 1.x | First stable major; icon names may have changed, used very widely. |
 | **TypeScript** | 5.9.3 → 7.x | Native port, large speed win on 375 files. Check `tsgo` against the ESLint TS plugin first. |
-| **Tailwind** | 3.4.19 → 4.x | Largest. v4 moves theme config into CSS, and **10 design-system tests assert on class names**. |
+| **Tailwind** | 3.4.19 → 4.x | Largest. v4 moves theme config into CSS, and **10 design-system tests assert on class names**. v4 also needs Safari 16.4, Chrome 111 or Firefox 128 and newer: decide which browsers readers in China need first. It is the only fix for the `braces` advisory that turns CI's audit red (Q22). |
 | **jsdom** | 28 → 30 | Two majors of test-env behaviour. |
 | **@vitejs/plugin-react** | 5.2 → 6.x | Pairs with Vite 8. |
 
