@@ -297,7 +297,7 @@
         "source_url": "https://savetibet.org/tibetan-language-rights-activist-tashi-wangchuk-detained-again-for-slanderous-videos-on-chinese-tiktok/",
         "confidence": "HIGH",
         "last_verified": "2026-02-20",
-        "verification_note": "CRITICAL: Status was \"AT RISK\" \u2014 changed to \"RELEASED\". Released Jan 28, 2021 (not January 2023). Verified via Wikipedia, ICT (savetibet.org), PEN America, USCIRF, Tibet.net."
+        "verification_note": "CRITICAL: Status was \"AT RISK\" \u2014 changed to \"RELEASED\". Released Jan 28, 2021 (not January 2023). Verified via Wikipedia, ICT (savetibet.org), PEN America, USCIRF, Tibet.net. UNRESOLVED, checked 2026-10-13 and not yet in latest_news: RFA, 2024-11-13 (read in full), reports a 15-day administrative detention from Oct 20 to Nov 4, 2024 over videos on Douyin, then release under strict surveillance; Tibet Watch (via tibet.net) and Tibet Post agree. But Tibet Times (2024-11-13, read in full) reports that he was arrested again at home on Nov 10, 2024 and not heard from since, and Phayul (2024-11-12, page now gone) reported an arrest on 'state security crime' charges. RFA, published after both, reports no re-arrest. Nothing later than November 2024 was found. Whether he is free is unknown, so the status is left unchanged until a Tier 1-2 source settles it."
       },
       "error": ""
     },
@@ -614,13 +614,13 @@
         "status": "DETAINED",
         "location": "Aksu prison camp",
         "sentence": "15 years for inciting ethnic hatred and ethnic discrimination",
-        "latest_news": "Oct 2025: US lawmakers call on President to raise Ekpar Asat's case with Xi Jinping.",
-        "health_status": "Unknown",
+        "latest_news": "Still held in Aksu Prison, ten years after he disappeared in April 2016. Amnesty International (urgent action, March 26, 2026) says his family were able to visit him there in mid-2025 for the first time, and fear for his physical and mental health. Senator Dick Durbin raised his case on the US Senate floor on September 22, 2026.",
+        "health_status": "Family concerned for his physical and mental health after visiting him in mid-2025 (Amnesty International, March 2026). On a three-minute video call in January 2021, the first contact since 2016, he had lost significant weight, looked pale and told his family his health was declining.",
         "international_response": "US State Department #WithoutJustCause campaign, UN WGAD calls for release, EU calls for release.",
-        "source_url": "https://humanrightscommission.house.gov/DFP/Countries/China/Ekpar-Asat",
+        "source_url": "https://www.amnesty.org/en/documents/asa17/0843/2026/en/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Detained April 2016, sentence learned January 2020, 15 years verified via Tom Lantos Commission, USCIRF, Amnesty."
+        "last_verified": "2026-10-13",
+        "verification_note": "Detained April 2016, sentence learned January 2020, 15 years verified via Tom Lantos Commission, USCIRF, Amnesty. Re-verified 2026-10-13 against Amnesty International, urgent action ASA 17/0843/2026 of 2026-03-26 (read in full: held in Aksu Prison, 15 years, the mid-2025 family visit, health, solitary confinement January 2019 to at least 2021), and the Tom Lantos Human Rights Commission page (read in full: 15 years, Aksu, the September 22, 2026 Senate speech, the EU's March 31, 2026 statement). The health concerns are reported by Amnesty only, so they are attributed to it. Status DETAINED unchanged."
       },
       "error": ""
     },

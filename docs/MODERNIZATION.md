@@ -520,7 +520,35 @@ alert expires, so it now reads "78 when he was sentenced".
 These last three are not re-dated: a search that finds nothing has verified
 nothing.
 
-**14 of 64 prisoner records are now current.**
+**Then the long-sentence records**, checked for anything new in 2026: deaths in
+custody, health, release.
+- **Ekpar Asat** had news from October 2025 and health "Unknown". Amnesty's
+  urgent action of 26 March 2026 (ASA 17/0843/2026) reports two things: his
+  family's first visit to Aksu Prison, in mid-2025, and their fears for his
+  physical and mental health. The Tom Lantos Human Rights Commission, read
+  separately, confirms the 15 years and Aksu, and Senator Durbin's speech of
+  22 September 2026. The health concerns appear only in Amnesty's account, so
+  the record attributes them to Amnesty.
+- **Tashi Wangchuk: a conflict that may change his status.** The record says
+  RELEASED and omits a detention in late 2024.
+  - RFA (13 November 2024, read in full) reports a 15-day administrative
+    detention from 20 October to 4 November 2024, over videos on Douyin, then
+    release under surveillance. Tibet Watch and the Tibet Post agree.
+  - Tibet Times (read in full) reports he was arrested again at home on
+    10 November and not heard from since, and Phayul reported a "state
+    security" arrest.
+  - Nothing later than November 2024 was found.
+
+  Whether he is free is the question, and two exile outlets against one
+  Tier 2 source does not settle it. The record and his profile page are
+  unchanged; the conflict is in the record's `verification_note` and at the
+  top of PARKED_WORK P7's waiting list.
+- **No change found** for Ilham Tohti, Huang Qi, Xu Zhiyong, Gulshan Abbas,
+  Rahile Dawut, Gui Minhai, Go Sherab Gyatso, Ding Jiaxi, Qin Yongmin,
+  Xin Ruoyu, Perhat Tursun, Yalqun Rozi or Du Bin. Du Bin was charged in
+  December 2025, and no trial has been reported.
+
+**15 of 64 prisoner records are now current.**
 
 ---
 

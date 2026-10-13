@@ -162,7 +162,7 @@ The length is what remains, and it is the owner's design call.
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 
-**50 of 64** prisoner records, 24 of 25 legal cases, sanctions metadata and
+**49 of 64** prisoner records, 24 of 25 legal cases, sanctions metadata and
 8 statistics are past verification (2026-10-13). `npm run test:content` lists
 exactly what is overdue.
 
@@ -175,7 +175,7 @@ for an already-expired sentence found no others, so the remaining errors will
 be of a different shape — sentences served but not recorded, appeals, deaths
 in custody, health changes.
 
-Fourteen records have been re-verified so far — see `docs/MODERNIZATION.md`
+Fifteen records have been re-verified so far — see `docs/MODERNIZATION.md`
 §11 for the method and the worked examples: two independent Tier 1–2 sources
 minimum, a third where available, exact string replacement, and any
 discrepancy left unresolved rather than guessed. The third pass (Hong Kong
@@ -194,6 +194,16 @@ eight months behind.
 - **Joshua Wong:** sentencing for foreign collusion pending, no date set.
 - **Cardinal Zen:** the trustees' bid at the Court of Final Appeal.
 - **Tam Tak-chi:** a release projected for March 2027 by a non-Tier tracker.
+- **Tashi Wangchuk (status in doubt):** the sources conflict on whether he is
+  free.
+  - RFA (2024-11-13) reports a 15-day detention, 20 October to 4 November
+    2024, then release under surveillance.
+  - Tibet Times reports he was arrested again at home on 10 November 2024 and
+    not heard from since; Phayul reported a "state security" arrest.
+  - Nothing found after November 2024.
+
+  The record still says RELEASED, and so does his profile page. Settle this
+  before anything else in this list.
 
 Other notes from the third pass:
 - **Hada:** no 2026 report from any source.
