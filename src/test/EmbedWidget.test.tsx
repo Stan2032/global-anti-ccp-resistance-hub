@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import EmbedWidget from '../components/EmbedWidget';
+import { dataApi, type EmergencyAlert } from '../services/dataApi';
 
 // Mock clipboard API
 beforeEach(() => {
@@ -90,6 +91,23 @@ describe('EmbedWidget', () => {
     fireEvent.click(screen.getByText('Alert Banner'));
     const pre = container.querySelector('pre');
     expect(pre!.textContent).toContain('ALERT');
+  });
+
+  it('offers an alert banner only for an alert that has not expired', () => {
+    const alerts = [
+      { id: 'old', type: 'critical', title: 'Expired alert', summary: 'Long over', active: true, expires: '2020-01-01' },
+      { id: 'now', type: 'critical', title: 'Current alert', summary: 'Still live', active: true },
+    ] as EmergencyAlert[];
+    const spy = vi.spyOn(dataApi, 'getAlerts').mockReturnValue(alerts);
+    try {
+      const { container } = render(<EmbedWidget />);
+      fireEvent.click(screen.getByText('Alert Banner'));
+      const code = container.querySelector('pre')!.textContent;
+      expect(code).toContain('Current alert');
+      expect(code).not.toContain('Expired alert');
+    } finally {
+      spy.mockRestore();
+    }
   });
 
   it('can switch back to Prisoner Card type', () => {

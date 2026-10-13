@@ -108,7 +108,7 @@
         "url": "https://www.amnesty.org/en/latest/news/2026/02/hong-kong-rejected-appeals-in-hk-47-case-a-missed-opportunity-to-start-restoring-justice/"
       }
     ],
-    "active": true
+    "active": false
   },
   {
     "id": "kwok-family-prosecution",
@@ -129,6 +129,6 @@
         "url": "https://www.hkdc.us"
       }
     ],
-    "active": true
+    "active": false
   }
 ]

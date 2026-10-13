@@ -16,6 +16,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { Code, Copy, CheckCircle, Eye, ExternalLink, ChevronDown } from 'lucide-react';
 import { dataApi, PoliticalPrisoner, Statistic, EmergencyAlert } from '../services/dataApi';
 import { SITE_URL } from '../utils/site';
+import { useClock } from '../utils/ssr';
 
 
 const WIDGET_TYPES = [
@@ -104,10 +105,8 @@ export default function EmbedWidget() {
 
   const prisoners = useMemo(() => dataApi.getPoliticalPrisoners() || [], []);
   const stats = useMemo(() => dataApi.getStatistics() || [], []);
-  const alerts = useMemo(() => {
-    const allAlerts = dataApi.getAlerts() || [];
-    return allAlerts.filter(a => a.active);
-  }, []);
+  const { now } = useClock();
+  const alerts = useMemo(() => dataApi.getActiveAlerts(now), [now]);
 
   const selectedPrisonerObj = useMemo(() => {
     if (!selectedPrisoner) return prisoners[0] || null;

@@ -121,7 +121,7 @@ const ContentAnalytics = () => {
     });
 
     // Active vs inactive alerts
-    const activeAlerts = alerts.filter(a => a.active).length;
+    const activeAlerts = dataApi.getActiveAlerts(now).length;
     const criticalAlerts = alerts.filter(a => a.type === 'critical').length;
 
     // Geographic coverage
