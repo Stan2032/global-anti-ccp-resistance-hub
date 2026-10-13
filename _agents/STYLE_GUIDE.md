@@ -140,6 +140,17 @@ the one holding a match.
   `const scripted = useBrowserValue(() => true, false)` from
   `src/utils/ssr.ts`, then `{scripted && …}`. Search boxes and filters are
   the exception (see Filters below).
+- **Never read the clock while rendering.** The page is built once and read
+  for months. Take "now" from `const { now, live } = useClock()` in
+  `src/utils/ssr.ts`, never `new Date()` or `Date.now()`, and do date maths
+  with the helpers in `src/utils/dateUtils.ts`, which work in UTC. Show
+  today's date, "N days ago" or a countdown only when `live`; until then
+  show the date itself. A count written as a minimum ("2,041+ days") can
+  render as built. `ssr-later-visit.test.tsx` hydrates pages days later.
+- **Show a date as precisely as it is written.** "2024-03" is March 2024,
+  not 1 March. A date-only string passed to `new Date()` is midnight UTC,
+  which is the day before west of UTC: parse `YYYY-MM-DD` as local midnight
+  (`` `${date}T00:00:00` ``) before formatting it.
 - **At 390px wide:** a row of badges gets `flex-wrap`, an icon beside text
   gets `flex-shrink-0`, and no `truncate` or `line-clamp` on text the reader
   cannot read in full some other way.

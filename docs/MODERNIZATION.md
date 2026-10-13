@@ -950,6 +950,7 @@ that blocks site data, a screen reader.
 | CSP violations | 4 | 0 — `28ea7fd` |
 | Service worker | shipped in every deploy, **never once registered** (inline script refused by the CSP) | registers and activates |
 | Third-party hosts per page view | fonts.googleapis.com and two feed proxies | none |
+| Readers' IPs in the API Worker's rate limiter | kept until that IP came back, or until 10,000 others had arrived | forgotten within two minutes of the last request — `ef1c9cb` |
 
 ### Content that needed JavaScript
 
@@ -1062,6 +1063,41 @@ a native `<details>` that opens without any script.
   `useDeferredValue` with a stable context object, and the change waits
   until each page has its code — `2dbf8b3`, `327fa8e`. Nothing logged an
   error. A `#link` landing in the wrong place was the only sign.
+
+### The days after the build
+
+Every check above ran on the day of the build. Readers arrive on any day
+after it, and the page treated those days differently.
+
+The pre-render computed everything that depends on "now" from the build's
+clock: day counters ("2,041+ days detained"), "verified N days ago", ages,
+today's date on the home page, the footer's year. The reader's browser
+computed them again from its own clock, and wherever they disagreed React
+discarded the pre-rendered page and rendered it again (#418). Measured in
+Chromium against the built site, with the browser clock moved forward:
+
+| visit | routes that failed hydration |
+|---|---|
+| 3 days after a build | 11 of 27: `/`, `/data-sources`, `/prisoners`, `/take-action` and seven profiles |
+| after New Year | 27 of 27 (the footer's "© year") |
+| the day of the build, west of UTC | `/take-action`: its source dates, parsed as UTC, showed a day early |
+| after any of these fixes | 0 of 27, at 0, 3, 60 and 400 days, in five timezones |
+
+`useClock` (`src/utils/ssr.ts`) gives every page one moment to render with.
+While pre-rendering and hydrating it is the moment of the build, which the
+pre-render writes on `#root` as `data-rendered-at`. Straight afterwards it
+is the reader's clock. Ages and day counts are worked out in UTC, so the
+build and every reader get the same answer for the same moment. A reader
+without JavaScript keeps the page as built, so whatever the build-time
+value would make false waits for the reader's clock: today's date, "N days
+ago" (until then, the date itself), a ticking countdown (until then, the
+event's date). Counts written as a minimum, "2,041+ days", stay true and
+stay as built — `737f5a0`.
+
+`ssr-later-visit.test.tsx` renders each affected component as the build
+does and hydrates it 3, 60 and 400 days later, and west of UTC. It fails
+against each old component, and the date tests fail against the old date
+maths in five timezones.
 
 ### Phone width
 
@@ -1226,6 +1262,28 @@ described something that does not exist.
   verification each page was last checked against, and fails when a record
   is re-verified after it — `c5719af`.
 
+- **"Last updated: today".** The research dashboard said "Last updated"
+  over the moment its code loaded, so it told every visitor the research
+  had been updated that day. The same fault as the one fixed at the start
+  of this audit, in another component. The claim is gone — `737f5a0`.
+- **Dates more precise than their sources.** A source dated "2024-03" was
+  shown as "Published: Mar 1, 2024", 30 times on `/take-action`, and one
+  dated "2020" as "Jan 1, 2020". Sources now read as precisely as they were
+  written — `737f5a0`.
+- **Numbers typed in once.** The Panchen Lama's page gave his age and years
+  missing as 36 and 30; he turned 37 in April, and May marked 31 years. The
+  directory's "Years Combined" was the current year minus the oldest
+  founding year: the age of one organisation, not a sum. Both are now what
+  they say. The directory shows the oldest founding year, 1921 — `737f5a0`.
+- **Facts kept but never shown.** Twelve profile pages held each person's
+  sentence and present location in their `PROFILE` objects without
+  rendering them, so a correction made there changed nothing on screen.
+  Joshua Wong's page never said he is held in Stanley Prison, nor Gui
+  Minhai's that China will not say where he is. Every page now shows where
+  the person is, their sentence and their nationality, each checked
+  against the verified record first; a test fails on any `PROFILE` field a
+  page does not show — `363f695`.
+
 Two guards came out of this. The build fails on a link to a section
 (`/security#guides`) whose id is not on the page it names — `e01fa36`. And
 `data-profile-review.test.ts` sends each re-verification back to the page
@@ -1265,5 +1323,9 @@ that retells it.
 9. **When a fact changes, find every place that repeats it.** The
    re-verified records were right, and the profile pages that retell them
    were not. Updating one copy of a fact updates only that copy.
+10. **Test on a later day.** A pre-rendered page is read long after it is
+    built. Moving the browser's clock forward a few days, then a year, and
+    into another timezone found a fault on 27 of 27 routes that every
+    check made on the day of the build had passed.
 
 Remaining items are in `_agents/PARKED_WORK.md`.

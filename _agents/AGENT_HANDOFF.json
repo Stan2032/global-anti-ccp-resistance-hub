@@ -1,7 +1,7 @@
 {
   "handoff": {
-    "version": "39.0",
-    "date": "2026-09-27T04:00:00Z",
+    "version": "40.0",
+    "date": "2026-10-13T12:00:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
@@ -19,8 +19,8 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3767,
-    "test_files": 204,
+    "frontend_tests": 3922,
+    "test_files": 206,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
     "profile_pages_built": 16,
@@ -877,9 +877,11 @@
       "scripts/prerender.mjs fails when a link to a section (/page#id) names an id its page does not have (e01fa36)",
       "aria-complete-coverage.test.ts fails on any role=tab, tablist or tabpanel in src (efbeaef)",
       "data-profile-review.test.ts fails when a prisoner record is re-verified after its profile page was last checked against it (c5719af)",
-      "DisclosureSection.test.tsx fails on disclosure-style state gating markup ({isExpanded && ...}) and on a view swapped in by a selection (2b63161)"
+      "DisclosureSection.test.tsx fails on disclosure-style state gating markup ({isExpanded && ...}) and on a view swapped in by a selection (2b63161)",
+      "ssr-later-visit.test.tsx fails when a component computes from the clock during render: it renders as the build does, then hydrates 3, 60 and 400 days later and west of UTC (737f5a0)",
+      "profile-pages.test.tsx fails on a PROFILE field its page does not use, and on a status, location or sentence the page does not show (363f695)"
     ],
-    "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, and blocked storage, not only a fresh profile. The two largest bugs of the sweep were invisible to fresh-profile checks.",
+    "test_as_the_reader_is": "Browser checks must include JavaScript off, a returning visitor with saved storage, blocked storage, and a visit days after the build (move the browser clock forward, and into another timezone), not only a fresh profile on build day. The largest bugs of the sweep were invisible to fresh-profile, build-day checks.",
     "rules_added": [
       "Style an open state with summary-open:, never group-open: or a group class on a <details>. DisclosureSection.test.tsx fails on any group-open: in src/.",
       "Screenshot any state you change the look of, at phone width too. jsdom computes no CSS; the group-open bug passed every test and every text measurement.",
@@ -889,7 +891,8 @@
       "Compare data fields against the data's own constants (STATION_STATUS), never a string typed from memory",
       "A row of buttons over one list is a filter: role=group named 'Filter X by Y', buttons with aria-pressed. Never tabs (STYLE_GUIDE.md section 4, Filters)",
       "A count or claim in page text is data: derive it or test it against what it counts. Never pin a hand-typed number in a test",
-      "Don't list what doesn't exist: courses, downloads, guides or contact routes that were never made are removed or labelled as not made, and the owner asked (Q20, Q21)"
+      "Don't list what doesn't exist: courses, downloads, guides or contact routes that were never made are removed or labelled as not made, and the owner asked (Q20, Q21)",
+      "Never read the clock while rendering: take now from useClock() (src/utils/ssr.ts), do date maths in UTC with dateUtils, and show today's date or 'N days ago' only when live (STYLE_GUIDE.md section 4)"
     ],
     "next": [
 
