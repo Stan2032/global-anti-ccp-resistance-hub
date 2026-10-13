@@ -158,7 +158,22 @@ Both quotes are removed, not paraphrased. Her story keeps its narrative and sour
 
 **Agent recommendation:** (a) for now, (c) if no patch appears within a few weeks. A red gate over a fault that cannot reach a reader teaches people to ignore the gate. Tailwind 4 should wait on a decision about which browsers the site supports, made for readers in China rather than for a dependency.
 
-*When you encounter a decision that requires human input, add it here starting with Q23.*
+### Q23: The headline Uyghur detention figure, "1-3 million", and the present tense (Session 281)
+
+**Context:** `src/data/statistics.ts` gives `uyghurDetention` as "1-3 million … detained in internment camps since 2017", last verified 2026-03-08 (the content suite flags it as overdue). Four components repeat it.
+- `ContactRepresentatives` puts it in the letters readers send to their representatives.
+- `DisinfoTracker` says the camps are "holding 1-3 million Uyghurs" and `GlossaryTerms` that they "are detained", both in the present tense.
+
+What the sources support, read in full:
+- **The widely cited figure is about a million, at the 2018 peak.** It comes from extrapolations by Adrian Zenz ("just over one million") and CHRD (1.1 million held or previously held), and the UN CERD repeated it in August 2018. MERICS (Jessica Batke, January 2019) stresses there is no precise count.
+- **The higher figures are not in those sources.** Zenz later put the upper bound at up to 1.8 million; 3 million is a minority estimate.
+- **The current number is different.** A February 2025 report by Rian Thum for the US Holocaust Memorial Museum's Simon-Skjodt Center (reported by RFA) estimates that Turkic people now in prisons or extrajudicial internment "likely exceeds half a million, though it could be higher". The institutional form changed from camps toward prisons.
+
+**Question:** Keep "1-3 million", or change it? And should the two present-tense sentences describe the peak in the past tense?
+
+**Agent recommendation:** "more than a million, possibly up to 1.8 million, detained since 2017", attributed to the estimates above, and the two sentences put in the past tense with today's figure beside them ("more than half a million are still held in prisons and internment", USHMM 2025). Every citation of the higher bound would invite a credibility attack the site does not need. No figure was changed, and `lastVerified` stays as it is until this is decided.
+
+*When you encounter a decision that requires human input, add it here starting with Q24.*
 
 ---
 
