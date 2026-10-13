@@ -11,12 +11,13 @@ export default defineConfig({
   // Builds deploys this repo, and it serves from the domain root.
   base: process.env.VITE_BASE_PATH || '/',
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          // Split large vendor libraries into cacheable chunks
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-router': ['react-router', 'react-router-dom'],
+        // Split large vendor libraries into cacheable chunks. Vite 8 bundles
+        // with Rolldown, which takes only the function form.
+        manualChunks(id) {
+          if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) return 'vendor-react';
+          if (/[\\/]node_modules[\\/](react-router|react-router-dom)[\\/]/.test(id)) return 'vendor-router';
         },
       },
     },
