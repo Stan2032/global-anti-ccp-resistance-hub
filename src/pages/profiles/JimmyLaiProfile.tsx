@@ -35,7 +35,6 @@ const PROFILE = {
   name: 'Jimmy Lai',
   chineseName: '黎智英',
   birthDate: 'December 8, 1947',
-  birthPlace: 'Guangzhou, Guangdong, China',
   nationality: 'British (Hong Kong permanent resident)',
   status: 'IMPRISONED',
   currentLocation: 'Stanley Prison, Hong Kong',

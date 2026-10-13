@@ -6,6 +6,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
@@ -349,6 +350,9 @@ export default function LiuXiaoboProfile() {
                   <Heart className="w-3.5 h-3.5 text-red-400" />
                   {PROFILE.status}
                 </span>
+              </div>
+              <div className="mt-3">
+                <ProfileFacts sentence={PROFILE.sentence} nationality={PROFILE.nationality} />
               </div>
               <p className="text-slate-400 text-sm mt-2">
                 Died age {calculateAge(PROFILE.birthDate, PROFILE.deathDate)} • {PROFILE.deathPlace} • First Nobel Peace Prize laureate to die in state custody since Carl von Ossietzky (Nazi Germany, 1938)

@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -44,12 +45,10 @@ const PROFILE = {
   name: 'Gui Minhai',
   chineseName: '桂民海',
   birthDate: 'May 5, 1964',
-  birthPlace: 'Ningbo, Zhejiang, China',
   nationality: 'Swedish (naturalized 1996; China claims he "voluntarily" renounced it)',
   status: 'IMPRISONED',
   currentLocation: 'Unknown — Chinese authorities refuse to disclose',
-  sentence: '10 years for "illegally providing intelligence to foreign countries"',
-  sentenceEnd: 'February 2030',
+  sentence: '10 years for "illegally providing intelligence to foreign countries", due to end February 2030',
   occupation: 'Publisher, Writer, Bookseller — Co-owner of Mighty Current Media & Causeway Bay Books',
 };
 
@@ -300,7 +299,7 @@ export default function GuiMinhaiProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">IMPRISONED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 SWEDISH CITIZEN
               </span>
@@ -311,6 +310,12 @@ export default function GuiMinhaiProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

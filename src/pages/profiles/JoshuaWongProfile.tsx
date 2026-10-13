@@ -6,6 +6,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -42,7 +43,6 @@ const PROFILE = {
   name: 'Joshua Wong',
   chineseName: '黃之鋒',
   birthDate: 'October 13, 1996',
-  birthPlace: 'Hong Kong',
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'IMPRISONED',
   currentLocation: 'Stanley Prison, Hong Kong',
@@ -377,7 +377,7 @@ export default function JoshuaWongProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">IMPRISONED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 SECOND NSL CONVICTION — FACES LIFE
               </span>
@@ -385,6 +385,12 @@ export default function JoshuaWongProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

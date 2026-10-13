@@ -7,6 +7,9 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
+import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -30,10 +33,9 @@ const PROFILE = {
   name: 'Xu Zhiyong',
   chineseName: '许志永',
   birthDate: 'March 2, 1973',
-  birthPlace: 'Minyi County, Shandong Province, China',
   nationality: 'Chinese',
   status: 'IMPRISONED',
-  currentLocation: 'Prison, China',
+  currentLocation: 'Lunan Prison, Shandong Province',
   sentence: '14 years for "subversion of state power"',
   occupation: 'Legal Scholar & Civil Rights Advocate',
 };
@@ -217,6 +219,7 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function XuZhiyongProfile() {
+  const { now } = useClock();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -242,14 +245,23 @@ export default function XuZhiyongProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white">IMPRISONED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-600 text-white">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 NEW CITIZENS MOVEMENT FOUNDER
               </span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 PRISONER OF CONSCIENCE
               </span>
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
+              </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

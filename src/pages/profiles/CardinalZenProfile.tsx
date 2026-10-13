@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -42,7 +43,6 @@ const PROFILE = {
   name: 'Cardinal Joseph Zen',
   chineseName: '陳日君',
   birthDate: 'January 13, 1932',
-  birthPlace: 'Shanghai, China',
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'AT RISK',
   currentLocation: 'Hong Kong',
@@ -259,7 +259,7 @@ export default function CardinalZenProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">AT RISK</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 CARDINAL OF THE CATHOLIC CHURCH
               </span>
@@ -270,6 +270,12 @@ export default function CardinalZenProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

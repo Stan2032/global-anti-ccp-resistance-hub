@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -42,7 +43,6 @@ const PROFILE = {
   name: 'Gao Zhisheng',
   chineseName: '高智晟',
   birthDate: 'April 20, 1966',
-  birthPlace: 'Shaanxi Province, China',
   nationality: 'Chinese',
   status: 'DISAPPEARED',
   currentLocation: 'Unknown — seized by police in Shaanxi Province on August 13, 2017',
@@ -267,7 +267,7 @@ export default function GaoZhishengProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22d3ee] text-[#0a0e14] animate-pulse">DISAPPEARED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22d3ee] text-[#0a0e14] animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/60 text-emerald-300 border border-emerald-700">
                 MINISTRY OF JUSTICE TOP 10 LAWYER (2001)
               </span>
@@ -278,6 +278,12 @@ export default function GaoZhishengProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

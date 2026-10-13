@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { readdirSync, readFileSync } from 'fs';
+import { resolve } from 'path';
 
 // Import all 15 profile pages
 import AgnesChowProfile from '../pages/profiles/AgnesChowProfile';
@@ -257,5 +259,47 @@ describe('Profile Pages — agree with the verified prisoner records', () => {
 
   it('Zhang Zhan: Amnesty says her condition is life threatening', () => {
     expect(text(<ZhangZhanProfile />)).toContain('describing her condition as life threatening');
+  });
+});
+
+/**
+ * Every field a page's PROFILE object holds is shown on the page. Twelve
+ * pages defined sentence and currentLocation (and more) without rendering
+ * them, so a fact corrected only there changed nothing a reader saw: Gao
+ * Zhisheng's location was one, and Joshua Wong's page never said where he
+ * is held.
+ */
+describe('Profile Pages — every PROFILE field is shown', () => {
+  const dir = resolve(__dirname, '../pages/profiles');
+  const pages = readdirSync(dir).filter(f => f.endsWith('Profile.tsx'));
+  const components = import.meta.glob<{ default: React.ComponentType }>('../pages/profiles/*Profile.tsx', { eager: true });
+
+  const profileOf = (file: string) => {
+    const source = readFileSync(resolve(dir, file), 'utf8');
+    const object = source.match(/^const PROFILE = \{\n([\s\S]*?)\n\};/m);
+    expect(object, `${file} has no PROFILE object`).toBeTruthy();
+    return { source, body: object![1], rest: source.replace(object![0], '') };
+  };
+
+  it('finds every profile page', () => {
+    expect(pages.length).toBeGreaterThanOrEqual(16);
+    expect(Object.keys(components).length).toBe(pages.length);
+  });
+
+  it.each(pages)('%s uses every field it defines', file => {
+    const { body, rest } = profileOf(file);
+    const keys = [...body.matchAll(/^ {2}(\w+):/gm)].map(m => m[1]);
+    const unused = keys.filter(key => !new RegExp(`PROFILE\\.${key}\\b`).test(rest));
+    expect(unused).toEqual([]);
+  });
+
+  it.each(pages)('%s shows its status, location and sentence as written', file => {
+    const { body } = profileOf(file);
+    const Page = components[`../pages/profiles/${file}`].default;
+    const text = renderWithRouter(<Page />).container.textContent!;
+    for (const key of ['status', 'currentLocation', 'sentence']) {
+      const value = body.match(new RegExp(`^ {2}${key}: '((?:[^'\\\\]|\\\\.)*)'`, 'm'))?.[1]?.replace(/\\'/g, "'");
+      if (value) expect(text, `${file}: ${key}`).toContain(value);
+    }
   });
 });

@@ -37,7 +37,6 @@ const PROFILE = {
   name: 'Ilham Tohti',
   chineseName: '伊力哈木·土赫提',
   birthDate: 'October 25, 1969',
-  birthPlace: 'Artush, Xinjiang, China',
   nationality: 'Chinese (Uyghur)',
   status: 'IMPRISONED',
   currentLocation: 'Urumqi No. 1 Prison, Xinjiang (reported)',

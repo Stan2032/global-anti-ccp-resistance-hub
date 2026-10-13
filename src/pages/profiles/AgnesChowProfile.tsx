@@ -6,6 +6,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -41,7 +42,6 @@ const PROFILE = {
   name: 'Agnes Chow',
   chineseName: '周庭',
   birthDate: 'December 3, 1996',
-  birthPlace: 'Hong Kong',
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'EXILED',
   currentLocation: 'Toronto, Canada (exile since December 2023)',
@@ -268,7 +268,7 @@ export default function AgnesChowProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-yellow-900 animate-pulse">EXILED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-yellow-900 animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/60 text-orange-300 border border-orange-700">
                 NSL WANTED
               </span>
@@ -276,6 +276,12 @@ export default function AgnesChowProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

@@ -7,6 +7,9 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
+import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -31,7 +34,6 @@ const PROFILE = {
   name: 'Tashi Wangchuk',
   chineseName: '扎西文色',
   birthDate: '1985',
-  birthPlace: 'Yushu, Qinghai Province (Kham region of Tibet)',
   nationality: 'Chinese (Tibetan)',
   status: 'RELEASED — UNDER SURVEILLANCE',
   currentLocation: 'Yushu, Qinghai Province, China',
@@ -186,6 +188,7 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function TashiWangchukProfile() {
+  const { now } = useClock();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -211,14 +214,23 @@ export default function TashiWangchukProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-600 text-white">RELEASED — UNDER SURVEILLANCE</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-600 text-white">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-900/60 text-cyan-300 border border-cyan-700">
                 TIBETAN LANGUAGE ADVOCATE
               </span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 PRISONER OF CONSCIENCE
               </span>
+              <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
+              </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
 import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
@@ -41,7 +42,6 @@ const PROFILE = {
   name: 'Nathan Law',
   chineseName: '羅冠聰',
   birthDate: 'July 13, 1993',
-  birthPlace: 'Shenzhen, China (raised in Hong Kong)',
   nationality: 'Chinese (Hong Kong permanent resident) — passport cancelled by Hong Kong authorities',
   status: 'EXILED',
   currentLocation: 'London, UK (exile since July 2020)',
@@ -263,7 +263,7 @@ export default function NathanLawProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-white animate-pulse">EXILED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-white animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-red-900/60 text-red-300 border border-red-700">
                 HK$1M BOUNTY
               </span>
@@ -274,6 +274,12 @@ export default function NathanLawProfile() {
                 Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">

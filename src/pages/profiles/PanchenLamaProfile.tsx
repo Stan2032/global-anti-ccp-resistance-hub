@@ -41,12 +41,8 @@ const PROFILE = {
   title: '11th Panchen Lama',
   birthDate: 'April 25, 1989',
   birthPlace: 'Lhari County, Nagqu Prefecture, Tibet',
-  nationality: 'Tibetan',
-  status: 'DISAPPEARED',
   currentLocation: 'Unknown — not seen since May 17, 1995',
-  sentence: 'None — extrajudicial enforced disappearance',
   disappearedOn: 'May 17, 1995',
-  occupation: '11th Panchen Lama (recognized by the 14th Dalai Lama)',
   parents: 'Konchok Phuntsok (father) and Dechen Chodon (mother)',
   significance: 'Second-highest spiritual leader in Tibetan Buddhism. The Panchen Lama and Dalai Lama historically recognize each other\'s reincarnations — control of the Panchen Lama gives the CCP leverage over the Dalai Lama\'s succession.',
 };
