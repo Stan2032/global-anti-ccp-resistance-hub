@@ -16,7 +16,7 @@
 > **Corrections to claims below this banner:**
 > - "0 npm audit vulnerabilities" was true in March, decayed to 18 (1 critical,
 >   12 high), and is 0 again as of Session 281.
-> - "3714 tests across 201 files" is now **3,922 across 206** for `npm test`,
+> - "3714 tests across 201 files" is now **3,929 across 206** for `npm test`,
 >   plus the content-freshness tests run separately.
 > - "17 profile pages" — there are **16**.
 > - The quick-start path (`/home/runner/work/...`) is environment-specific.
@@ -53,8 +53,9 @@
 > storage until the reader acts: use `useStoredString` / `useStoredJson` /
 > `writeStoredValue` in `src/utils/ssr.ts`, never `localStorage` directly.
 >
-> **Suggested next:** the owner asked for the site itself to come first, so
-> P7 (content re-verification) is **paused** until they resume it. Apart
+> **Suggested next:** P7 (content re-verification) resumed in October 2026,
+> after the site work; start with its "Waiting on a source" list in
+> `PARKED_WORK.md`, then work by time-sensitivity. Apart
 > from the live feed (P4), nothing on the site hides content from a reader
 > without JavaScript any more: the tabs and all the card expanders (P9) are
 > native `<details>`, and no text is cut off at phone width (P10). Before
@@ -68,8 +69,11 @@
 > that do not exist (`docs/MODERNIZATION.md` §18, "Things the site said").
 > When a prisoner record is re-verified, `data-profile-review.test.ts`
 > fails until the person's profile page has been read against it.
-> Next: the small items in `PARKED_WORK.md`, then P3 (ESLint 10, since 9.x
-> is end of support).
+> Five of P3's seven major upgrades are done (ESLint 10, Vite 8, Vitest 5,
+> jsdom 30, lucide-react 1); TypeScript 7 waits on typescript-eslint and
+> Tailwind 4 on Q22 (`docs/MODERNIZATION.md` §19). Never read the clock while
+> rendering: take `now` from `useClock()` in `src/utils/ssr.ts`, because a
+> pre-rendered page is read long after it is built.
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

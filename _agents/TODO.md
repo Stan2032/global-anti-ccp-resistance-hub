@@ -38,7 +38,8 @@
 > caught all three. See `docs/MODERNIZATION.md` §17.
 >
 > **Immediate priorities:** P7 in `PARKED_WORK.md` (content re-verification —
-> the largest open item), then P3 (ESLint 10 — 9.x is end of support).
+> the largest open item; its "Waiting on a source" list first). P3 is down to
+> TypeScript 7 (blocked on typescript-eslint) and Tailwind 4 (Q22).
 >
 > **Location:** `_agents/TODO.md` — Active tasks only.
 > **Completed tasks:** See `_agents/TODO_COMPLETED.md` for full archive.

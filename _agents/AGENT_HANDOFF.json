@@ -1,14 +1,14 @@
 {
   "handoff": {
-    "version": "40.0",
-    "date": "2026-10-13T12:00:00Z",
+    "version": "41.0",
+    "date": "2026-10-13T19:30:00Z",
     "repository": "Stan2032/global-anti-ccp-resistance-hub",
     "repository_path": "(varies by environment — do not hardcode)",
     "sessions_completed": 281,
     "state": "MERGE_READY",
     "trust_level": "HIGH",
     "verification_rate": 0.99,
-    "supersedes": "AGENT_HANDOFF.json (v38.0)",
+    "supersedes": "AGENT_HANDOFF.json (v40.0)",
     "next_agent_prompt": "_agents/NEXT_AGENT_PROMPT.md"
   },
   "critical_reads": [
@@ -19,7 +19,7 @@
   ],
   "repository_metrics": {
     "total_files": "375+",
-    "frontend_tests": 3922,
+    "frontend_tests": 3929,
     "test_files": 206,
     "test_status": "ALL_PASSING",
     "build_time": "~5s",
@@ -895,9 +895,31 @@
       "Never read the clock while rendering: take now from useClock() (src/utils/ssr.ts), do date maths in UTC with dateUtils, and show today's date or 'N days ago' only when live (STYLE_GUIDE.md section 4)"
     ],
     "next": [
-
-      "PARKED_WORK.md Small items, then P3 (ESLint 10)",
-      "P7 content re-verification stays paused until the owner resumes it"
+      "Superseded by october_2026 below"
+    ]
+  },
+  "october_2026": {
+    "date": "2026-10-13",
+    "summary": "The owner said to continue as I wished and to be extensive on everything, so P7 resumed after the site work. Five of P3's seven majors were done, P5 closed, P6's two smaller faults fixed, and a third P7 pass made over the Hong Kong appeals. See docs/MODERNIZATION.md sections 11 (third pass), 18 (The Dashboard) and 19 (Major upgrades).",
+    "shipped": [
+      "API rate limiter sweeps expired IPs once per window instead of holding them (ef1c9cb)",
+      "Pages hydrate on any day after the build: useClock() in src/utils/ssr.ts, the build moment written as data-rendered-at on #root, date maths in UTC (737f5a0)",
+      "Profile pages show where each person is, their sentence and nationality (ProfileFacts), checked against the verified records (363f695)",
+      "ESLint 10 and its companions; workflows on actions v5 (d25b0bc)",
+      "Dashboard: each alert once; the quick-start tour opens by itself only at 1024px and wider; the phone header's 'sec' link is named Security (3421899)",
+      "Vite 8 (Rolldown), plugin-react 6, Vitest 5, jsdom 30, jest-dom 7; manualChunks as a function, which finally splits React out: main chunk 341 KB -> 147 KB (c0cafdc)",
+      "lucide-react 1.56; the TypeScript unused-vars pattern reduced to a leading underscore, which found and removed 79 unused names in 47 files (51c11f9)",
+      "P7 third pass: Cardinal Zen (appeal dismissed 2026-09-03; never charged under the NSL), Gwyneth Ho and Leung Kwok-hung (HK47 appeals dismissed 2026-02-23), the 612 Fund legal case (trial start and secretary's fine corrected), the jimmy-lai-verdict alert re-verified, Joshua Wong's record given a verification_note; sitemap lastmod moved to the date every page changed"
+    ],
+    "blocked": [
+      "TypeScript 7: typescript-eslint supports TypeScript >=4.8.4 <6.1.0",
+      "Tailwind 4: Q22 (the dev-only braces advisory keeps CI's Dependency audit job red until then)"
+    ],
+    "p7_waiting_on_a_source": "See PARKED_WORK.md P7, 'Waiting on a source': Ho and Leung's August 2026 CFA certificates (HKFP only, plus Tier 3 Dim Sum Daily), Huang Xueqin's release, Kwok Yin-sang's release, Joshua Wong's sentencing, Zen's CFA bid, Tam Tak-chi.",
+    "next": [
+      "P7: the 'Waiting on a source' list first, then the remaining 50 prisoner records by time-sensitivity, then the 24 legal cases, sanctions metadata and the uyghurDetention statistic",
+      "P4 stays parked (a build-time feed snapshot means serialising it for hydration and fetching at build time)",
+      "P6 length, the /prisoners double listing, the recent_updates feed and the snake_case headings are owner calls"
     ]
   }
 }

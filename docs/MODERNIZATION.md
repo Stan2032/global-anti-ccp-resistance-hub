@@ -455,6 +455,73 @@ and was added; the Committee to Protect Journalists plainly belongs there.
 silence a failure. The freshness suite still fails, and should: **10 of 64
 records are now current, up from 7.**
 
+### Third pass (2026-10-13): Hong Kong appeals
+
+The Hong Kong records with live court proceedings. Every source below was read
+in full, not taken from a search summary.
+
+**Cardinal Joseph Zen: the appeal had been decided, but the site still said
+"case ongoing".** On **3 September 2026** the Court of Appeal dismissed the
+appeals of Zen and the four other former trustees of the 612 Humanitarian
+Relief Fund and upheld their convictions. They said they would go to the Court
+of Final Appeal. Sources: [HKFP](https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/)
+(Hans Tse) and AP (Kanis Leung). The site also said four times that his "NSL
+charge… remains under review", but he was never charged under the NSL. He was
+arrested on suspicion of foreign collusion in May 2022 and no charge followed,
+which both sources state. Fixed: his record, his profile page (timeline,
+charges, legal status, sources), his card on `/profiles`, and the case in
+`legal_cases_research.json`. That case had two more errors:
+- The trial started on **26 September 2022**, not 19 September. It was put
+  back a week because the magistrate had COVID; Reuters and RFA, 26–27
+  September 2022, both give the 26th.
+- Not everyone was fined HK$4,000. The fund's secretary, Sze Ching-wee, was
+  fined HK$2,500 (Al Jazeera, CNN, 25 November 2022).
+
+The case number, WKCC 986/2022, could not be confirmed by any source.
+
+**Gwyneth Ho and Leung Kwok-hung: the record was eight months behind.** The
+news still read "Filed an appeal" (Nov–Dec 2024). The Court of Appeal
+dismissed all 12 Hong Kong 47 appeals on **23 February 2026**
+([HKFP](https://hongkongfp.com/2026/02/23/breaking-court-rejects-appeals-of-all-12-activists-in-landmark-hong-kong-47-national-security-case/),
+[Al Jazeera](https://www.aljazeera.com/news/2026/2/23/hong-kong-court-rejects-appeal-in-landmark-subversion-case),
+and Amnesty for the dismissal). HKFP adds a detail the old record had wrong:
+Ho appealed only her conviction, not her sentence. **One later development is
+deliberately left out.** On 10 August 2026 the Court of Appeal granted 11 of
+the 12, Ho and Leung among them, certificates to seek leave at the Court of
+Final Appeal. HKFP reports this, but the only other report found is Dim Sum
+Daily, which the project rates Tier 3. It is noted in both records'
+`verification_note` until a second Tier 1–2 source is found. The Judiciary's
+own judgment would settle it, but HKLII could not be reached from the agent
+environment.
+
+**The `jimmy-lai-verdict` alert**, active until February 2027, had last been
+checked in March 2026. Every claim in it was re-checked:
+- the 20 years and "all charges" (HKFP, HRW);
+- not appealing, which covered both the conviction and the sentence (AP and
+  Reuters, 6 March 2026; the old copy named only the conviction);
+- the UN call for release (UN News, 9 February 2026).
+
+"Lai, age 78" would have gone wrong on 8 December, two months before the
+alert expires, so it now reads "78 when he was sentenced".
+
+**Checked, and left alone:**
+- **Joshua Wong** has still not been sentenced (HKFP, re-read in full). His
+  record was the only one re-verified in September without a
+  `verification_note`; it now has one naming the sources.
+- **Sophia Huang Xueqin:** no source yet confirms she was released, so the
+  status stays.
+- **Kwok Yin-sang:** nothing reported since his 8-month sentence of
+  26 February 2026. The term ends by late October 2026 at the latest, but a
+  release is an expected event until someone reports it, so the status stays
+  DETAINED. Check again in November.
+- **Tam Tak-chi:** no 2026 report from any source.
+- **Hada:** no 2026 report from any source.
+
+These last three are not re-dated: a search that finds nothing has verified
+nothing.
+
+**14 of 64 prisoner records are now current.**
+
 ---
 
 ## 12. The one that matters: the site is unreadable to the readers it is for
@@ -932,7 +999,8 @@ build.
 
 In September 2026 the owner asked for the site itself to come first — how it
 operates, how clean and useful it is — ahead of content re-verification
-(P7, paused). This section records what that sweep found and changed.
+(P7, paused until October; see §11). This section records what that sweep
+found and changed.
 
 One thread runs through all of it. Every earlier check ran the way
 developers run checks: JavaScript on, a fresh browser profile, storage
@@ -1218,6 +1286,26 @@ JavaScript, and that no test had caught:
   to "Vice ...". Rows wrap now, and nothing there is truncated — `89b2b5c`.
   The rest of this is P10.
 
+### The Dashboard
+
+The first page every visitor sees (P6) — `3421899`.
+
+- **Each alert three times.** The notification feed at the foot of the page
+  repeated every emergency alert the banner at its top already showed. It
+  checked only `active`, not the expiry date, so two alerts that had expired
+  in August still read as current there. Dismissing an alert in the banner
+  left it in the feed. The feed no longer lists alerts; while any is live,
+  it points to the banner.
+- **A tour over the alerts.** The quick-start guide opened by itself on
+  every first visit. At 390 px it covered a quarter of the screen, over the
+  first alert's sources. It now opens by itself only at 1024 px and wider.
+  On smaller screens its button waits in the corner, and the button has a
+  name.
+- **"sec, link".** On phones, the header's link to `/security` read "sec",
+  which was also its whole accessible name. It is named "Security".
+
+The page's length is the owner's design call and stays in P6.
+
 ### Things the site said that were not so
 
 Most of this sweep was about whether readers could reach what the site
@@ -1329,3 +1417,29 @@ that retells it.
     check made on the day of the build had passed.
 
 Remaining items are in `_agents/PARKED_WORK.md`.
+
+---
+
+## 19. Major upgrades (October 2026)
+
+Five of P3's seven majors, one per commit, each checked with lint,
+typecheck, the full suite, the build and its guards, and in Chromium by
+hydrating all 27 routes some days after the build. Lockfiles were updated
+with npm 12: npm 10 strips the `libc` fields from the native packages.
+
+| Upgrade | Commit | What it turned up |
+|---|---|---|
+| ESLint 9 → 10, @eslint/js 10, react-refresh 0.5, globals 17 | `d25b0bc` | ESLint 9 was end of support. The new recommended set found four things, each fixed rather than switched off: a value always overwritten (`DetentionFacilities`); a default export nothing imported, the only way to reach two hooks nothing called (`Accessibility.tsx`, all removed); and two backend services that threw a new error without the one they caught, which they now pass as its `cause`. The workflows moved to `actions/checkout@v5` and `setup-node@v5`, which run on Node 24. |
+| Vite 7 → 8, plugin-react 6, Vitest 4 → 5, jsdom 28 → 30, jest-dom 7 | `c0cafdc` | Vite 8 bundles with Rolldown, which takes `manualChunks` only as a function. The object form had never worked: under Vite 7 the `vendor-react` chunk was empty and React sat in the main chunk, 341 KB of the 350 KB budget (P5). The main chunk is now 147 KB; first-load JavaScript is about the same gzipped. Vitest 5 changed `Assertion<T>` to `Assertion<R, T>`, so jest-dom's matcher types stopped applying (48 typecheck errors). `src/test/jest-dom-matchers.d.ts` declares them on Vitest 5's `Matchers<R, T>`, and a deliberate misuse still fails to typecheck. |
+| lucide-react 0.555 → 1.56 | `51c11f9` | 1.x dropped brand logos (`Twitter` became `AtSign`). One removed icon, `Chrome`, was imported but never drawn, and lint had not noticed: the TypeScript unused-vars rule ignored every capitalised name, a pattern meant for plain JavaScript, where core ESLint cannot see a component used in JSX. typescript-eslint can, so in `.ts` and `.tsx` the pattern only hid dead code. With it reduced to a leading underscore, lint found **79 unused names in 47 files**: icon imports, three components never rendered, an unused local interface in each of nine profile pages, and a `declare module 'react'` that typed `<style jsx>`, a Next.js idiom. All removed. |
+
+Two remain. **TypeScript 7** is blocked: typescript-eslint supports TypeScript
+below 6.1. **Tailwind 4** waits on Q22. It is the only fix for the dev-only
+`braces` advisory that keeps CI's audit job red, and it needs a decision on
+which browsers readers in China use.
+
+The lesson: **an upgrade is an audit.** Two of the
+three upgrades exposed a configuration that had been silently doing nothing
+for months: a chunk split that split nothing, and a lint rule that ignored
+the names it was meant to check. Neither failed anything until a major
+version refused the old form.

@@ -76,17 +76,18 @@ they have not been re-verified. Session 281 nearly shipped that.
 **Size:** one branch each · **Value:** medium · **Risk:** varies
 
 Deliberately not bundled with the Session 281 security patch, which stayed
-within existing majors. Suggested order:
+within existing majors. Five of the seven are done (October 2026); what each
+one found is in `docs/MODERNIZATION.md` §18.
 
-| Upgrade | From → To | Notes |
+| Upgrade | From → To | Status |
 |---|---|---|
-| **ESLint** | 9.39.5 → 10.x | npm already warns 9.x is **end of support**. Flat config is in use, which is the hard part. Do this first. |
-| **Vitest + Vite** | 4.1.11 → 5.x, 7.3.6 → 8.x | Paired. 203 test files. `--reporter=basic` was already removed in v4. |
-| **lucide-react** | 0.555 → 1.x | First stable major; icon names may have changed, used very widely. |
-| **TypeScript** | 5.9.3 → 7.x | Native port, large speed win on 375 files. Check `tsgo` against the ESLint TS plugin first. |
-| **Tailwind** | 3.4.19 → 4.x | Largest. v4 moves theme config into CSS, and **10 design-system tests assert on class names**. v4 also needs Safari 16.4, Chrome 111 or Firefox 128 and newer: decide which browsers readers in China need first. It is the only fix for the `braces` advisory that turns CI's audit red (Q22). |
-| **jsdom** | 28 → 30 | Two majors of test-env behaviour. |
-| **@vitejs/plugin-react** | 5.2 → 6.x | Pairs with Vite 8. |
+| **ESLint** | 9.39.5 → 10.12 | **Done** (`d25b0bc`), with @eslint/js 10, react-refresh 0.5 and globals 17. |
+| **Vitest + Vite** | 4.1.11 → 5.0, 7.3.6 → 8.3 | **Done** (`c0cafdc`). Vite 8 (Rolldown) rejects object-form `manualChunks`; the function form also fixed a chunk split that had been silently empty (see P5). Vitest 5 dropped the jest-dom matcher types, restored in `src/test/jest-dom-matchers.d.ts`. |
+| **jsdom** | 28 → 30 | **Done** (`c0cafdc`). |
+| **@vitejs/plugin-react** | 5.2 → 6.1 | **Done** (`c0cafdc`). |
+| **lucide-react** | 0.555 → 1.56 | **Done** (`51c11f9`). Brand icons are gone in 1.x: `Twitter` became `AtSign`. |
+| **TypeScript** | 5.9.3 → 7.x | **Blocked.** typescript-eslint supports TypeScript `>=4.8.4 <6.1.0` (checked 2026-10-13, TypeScript 7.0.2 is `latest`). Wait for typescript-eslint to widen its range, then check `tsgo` against it. |
+| **Tailwind** | 3.4.19 → 4.x | **Waiting on Q22.** Largest. v4 moves theme config into CSS, and **10 design-system tests assert on class names**. v4 also needs Safari 16.4, Chrome 111 or Firefox 128 and newer: decide which browsers readers in China need first. It is the only fix for the `braces` advisory that turns CI's audit red. |
 
 Tailwind 4 is the one worth pairing with a visible improvement rather than
 shipping as bare maintenance — the dashboard work in P6, say.
@@ -107,6 +108,12 @@ The section's own description now says "Needs JavaScript", and so does the
 global `<noscript>` banner, so the page no longer pretends. But the live
 feed is still empty for exactly the readers the pre-rendering work was for.
 
+Looked at again in October 2026 and left. Option 1 is less small than it
+reads: the client must hydrate with the same feed data the build inlined, so
+the snapshot has to be serialised into the page and read back before the
+first render, and the build has to fetch nine external feeds, which makes it
+depend on the network. Option 3 is the current state.
+
 Options, roughly in order of effort:
 
 1. Pre-render a **snapshot** of the feed at build time — the aggregation runs
@@ -122,23 +129,6 @@ block in the component — risks a hydration mismatch, because a browser with
 JavaScript on parses `<noscript>` contents as plain text while React expects
 elements. That would undo the clean hydration §17 just established. Verify
 with the browser check, not by reasoning.
-
----
-
-## P5 — Bundle budget
-
-**Size:** small to start · **Value:** medium · **Risk:** low
-
-The main chunk is **339 KB against a 350 KB budget** — 97%. The next
-dependency bump likely breaches it and the performance-budget test will fail.
-
-Options when it does: route-level splitting for the 16 profile pages
-(~25 KB each, already lazy), or moving the largest JSON datasets behind the
-existing Workers API instead of bundling them.
-`political_prisoners_research.json` alone is 73 KB in the bundle.
-
-Pre-rendering changes this calculus — first paint no longer needs the bundle,
-so deferring more of it costs readers less than it used to.
 
 ---
 
@@ -159,13 +149,12 @@ visitor needs — urgent alerts, the human-cost figures, one clear call to
 action — and move the rest behind the tab and expander patterns already used
 elsewhere in the app.
 
-Also minor: the 7-step onboarding tour overlaps the statistics cards at
-1440 px wide, obscuring the fourth tile. It lands on first visit, which is
-when it is most visible.
-
-And the same critical alert appears **three times** on the Dashboard: once in
-`EmergencyAlerts` and twice in `NotificationCenter`, which lists the same
-alerts independently. Dismissing it in one place leaves the other two.
+The two smaller Dashboard faults that used to be listed here are fixed
+(`3421899`). The same alert no longer appears three times:
+`NotificationCenter` points to the alerts at the top of the page instead of
+listing them again. The quick-start tour no longer opens over the statistics:
+it opens by itself only at 1024 px and wider, and a launcher brings it back.
+The length is what remains, and it is the owner's design call.
 
 ---
 
@@ -173,9 +162,9 @@ alerts independently. Dismissing it in one place leaves the other two.
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 
-**54 of 64** prisoner records, 25 legal cases, sanctions metadata and 8
-statistics are past verification. `npm run test:content` lists exactly what
-is overdue.
+**50 of 64** prisoner records, 24 of 25 legal cases, sanctions metadata and
+8 statistics are past verification (2026-10-13). `npm run test:content` lists
+exactly what is overdue.
 
 Triage by time-sensitivity, not alphabetically. Of the first three records
 picked that way, **three were materially wrong**: Yu Wensheng had been free
@@ -186,10 +175,30 @@ for an already-expired sentence found no others, so the remaining errors will
 be of a different shape — sentences served but not recorded, appeals, deaths
 in custody, health changes.
 
-Ten records have been re-verified so far — see `docs/MODERNIZATION.md` §11
-for the method and the worked examples: two independent Tier 1–2 sources
+Fourteen records have been re-verified so far — see `docs/MODERNIZATION.md`
+§11 for the method and the worked examples: two independent Tier 1–2 sources
 minimum, a third where available, exact string replacement, and any
-discrepancy left unresolved rather than guessed.
+discrepancy left unresolved rather than guessed. The third pass (Hong Kong
+appeals, 2026-10-13) found Cardinal Zen's appeal decided five weeks earlier
+while the site said "case ongoing", and the Hong Kong 47 appellants' records
+eight months behind.
+
+**Waiting on a source** (check these first next time):
+- **Gwyneth Ho, Leung Kwok-hung:** the 10 August 2026 Court of Appeal
+  certificates for a Court of Final Appeal bid. HKFP reports them; a second
+  Tier 1–2 source, or the judgment itself, is still needed.
+- **Sophia Huang Xueqin:** release unconfirmed since her term ended on
+  18 September 2026.
+- **Kwok Yin-sang:** his 8-month term ends by late October 2026 at the latest.
+  Release unconfirmed.
+- **Joshua Wong:** sentencing for foreign collusion pending, no date set.
+- **Cardinal Zen:** the trustees' bid at the Court of Final Appeal.
+- **Tam Tak-chi:** a release projected for March 2027 by a non-Tier tracker.
+
+Other notes from the third pass:
+- **Hada:** no 2026 report from any source.
+- **The 612 Fund case, WKCC 986/2022:** the case number could not be
+  confirmed.
 
 Two cautions from that pass. A status must never be advanced on an
 *expected* event: Huang Xueqin's release was reported as due by five
@@ -215,7 +224,7 @@ long tail.
   for the owner.
 - **The threat map's region totals and its country lists disagree.** Europe
   states 54 stations, but its countries add up to 52; Asia Pacific states 28
-  against 26. Checking which is right is content work (P7, paused).
+  against 26. Checking which is right is content work (P7).
 - **The home page's `recent_updates` feed is six months stale and partly
   internal.** Its newest entry is 10 March 2026, and it lists code changes
   readers cannot use ("Centralized Logging Utility — structured,
@@ -233,7 +242,7 @@ long tail.
   now says so (`363f695`). The page's Charges section still lists three
   charges, one of them "Embezzlement and misuse of public funds", and no
   abuse of power. Writing that charge's card needs its detail sourced:
-  content work (P7, paused).
+  content work (P7).
 - **`main.tsx` storage cleanup is temporary.** `LEFT_BY_EARLIER_VERSIONS`
   tidies keys that versions before September 2026 wrote on every visit.
   Delete it once returning readers have had time to visit again (mid-2027 is
@@ -247,6 +256,7 @@ long tail.
 |---|---|
 | Snapshot pre-rendering via headless Chromium | Rejected — Cloudflare Workers Builds has no browser. Findings in §12; `scripts/prerender-spike.mjs` deleted once the no-JS work finished. |
 | Move deployment to Cloudflare Pages | Rejected — Workers with static assets is Cloudflare's recommendation; the official migration runs Pages → Workers. See §15. |
+| **P5 — Bundle budget** | **Closed by the Vite 8 upgrade** (`c0cafdc`). The main chunk had been 339–341 KB against a 350 KB budget because the object-form `manualChunks` had never split React out: under Vite 7 the `vendor-react` chunk was empty and React sat in the main chunk. With the function form Vite 8 requires, React and the router get their own cacheable chunks: the main chunk is now **147 KB** and `vendor-react` 219 KB. First-load JavaScript is about the same gzipped (127.5 KB, from 125.7 KB), so this restored headroom under the budget; it did not make the site lighter. |
 | Eager page registry alone as the #418 fix | Reverted — made no-JS output strictly worse. The diagnosis behind it was wrong; see §17. |
 | **P1 — make every lazy component eager during pre-render** | **Done differently, and P1's premise was false.** The 41 deferred sections and React #418 had nothing to do with `React.lazy`. React outlines any Suspense boundary whose markup exceeds `progressiveChunkSize` (12,800 bytes by default), suspension or not. One option in `src/entry-server.tsx` fixed both. The full 120-site eager sweep P1 asked for was built and tested first: it changed the output by zero bytes. See §17. |
 | **P9 — Card expanders hide their details without JavaScript** | **Done.** Every card expander is a native `<details>` now, on every route: the 16 profiles, `/security`, `/prisoners`, `/intelligence`, `/education`, `/take-action`, `/`, `/resources`, `/directory` and `/data-sources`. Of the 941 `aria-expanded` elements in the pre-rendered pages, 56 remain, and all are controls, not hidden content: the language picker (twice on each of the 27 routes), the letter generator's prisoner picker and the case-timeline combobox. Five more that used no `aria-expanded` turned up later, in a scan for click handlers on non-controls: the prisoner grid, the memorial wall's modal, the academic experts' cards, the threat map and the quick facts (`d136284`). Eight more, behind real `<button>`s with no `aria-expanded`, turned up in a third scan, for state that a click sets and that gates markup: the timeline's events, the home page's alerts, company responses, ethical alternatives, and the officials and facilities databases (`d7c399c`, `2b63161`). `DisclosureSection.test.tsx` now fails on both shapes. The alerts fix also closed a small item: dismissing every alert no longer removes the button that brings them back. Numbers, and the faults the conversions turned up, are in `docs/MODERNIZATION.md` §18; the rules for new disclosures are in `STYLE_GUIDE.md` §4. |
