@@ -166,7 +166,7 @@ Both quotes are removed, not paraphrased. Her story keeps its narrative and sour
 
 What the sources support, read in full:
 - **The widely cited figure is about a million, at the 2018 peak.** It comes from extrapolations by Adrian Zenz ("just over one million") and CHRD (1.1 million held or previously held), and the UN CERD repeated it in August 2018. MERICS (Jessica Batke, January 2019) stresses there is no precise count.
-- **The higher figures are not in those sources.** Zenz later put the upper bound at up to 1.8 million; 3 million is a minority estimate.
+- **The higher figures are not in those sources.** "Up to 1.8 million" (attributed to Zenz, 2020) and "3 million" also circulate. Neither was checked against a primary source for this question.
 - **The current number is different.** A February 2025 report by Rian Thum for the US Holocaust Memorial Museum's Simon-Skjodt Center (reported by RFA) estimates that Turkic people now in prisons or extrajudicial internment "likely exceeds half a million, though it could be higher". The institutional form changed from camps toward prisons.
 
 **Question:** Keep "1-3 million", or change it? And should the two present-tense sentences describe the peak in the past tense?
