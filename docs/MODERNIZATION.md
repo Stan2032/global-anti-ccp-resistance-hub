@@ -1331,6 +1331,13 @@ The first page every visitor sees (P6) — `3421899`.
   name.
 - **"sec, link".** On phones, the header's link to `/security` read "sec",
   which was also its whole accessible name. It is named "Security".
+- **Three more places ignored the expiry date.** `/education`'s analytics
+  counted "6 active" alerts when four were current. The embed widget on
+  `/data-sources` built its alert banner from any alert flagged active. The
+  API called its alerts dataset "Active emergency alerts" while serving
+  expired ones too. The first two now use `getActiveAlerts(now)`; the API's
+  description now says what it serves. The two alerts that expired in
+  August are flagged inactive — `0961d63`.
 
 The page's length is the owner's design call and stays in P6.
 
