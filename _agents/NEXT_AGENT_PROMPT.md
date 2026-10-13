@@ -73,7 +73,10 @@
 > jsdom 30, lucide-react 1); TypeScript 7 waits on typescript-eslint and
 > Tailwind 4 on Q22 (`docs/MODERNIZATION.md` §19). Never read the clock while
 > rendering: take `now` from `useClock()` in `src/utils/ssr.ts`, because a
-> pre-rendered page is read long after it is built.
+> pre-rendered page is read long after it is built. **Never cite a URL you
+> have not opened**: 161 of 919 cited links led nowhere, most of them
+> plausible slugs that were never published (P11). `npm run check:links`
+> lists them.
 
 **Copy-paste this entire prompt when starting a new agent session.**
 

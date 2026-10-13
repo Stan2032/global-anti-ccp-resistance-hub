@@ -162,7 +162,7 @@ The length is what remains, and it is the owner's design call.
 
 **Size:** large, ongoing · **Value:** high · **Risk:** none technical
 
-**49 of 64** prisoner records, 24 of 25 legal cases, sanctions metadata and
+**48 of 64** prisoner records, 18 of 25 legal cases, sanctions metadata and
 8 statistics are past verification (2026-10-13). `npm run test:content` lists
 exactly what is overdue.
 
@@ -175,7 +175,7 @@ for an already-expired sentence found no others, so the remaining errors will
 be of a different shape — sentences served but not recorded, appeals, deaths
 in custody, health changes.
 
-Fifteen records have been re-verified so far — see `docs/MODERNIZATION.md`
+Sixteen records have been re-verified so far — see `docs/MODERNIZATION.md`
 §11 for the method and the worked examples: two independent Tier 1–2 sources
 minimum, a third where available, exact string replacement, and any
 discrepancy left unresolved rather than guessed. The third pass (Hong Kong
@@ -223,6 +223,49 @@ date.** That fabricates provenance, which this project forbids.
 Sensible batching: the most time-sensitive cases first (anyone with an active
 trial or an approaching sentence or release date), then sanctions, then the
 long tail.
+
+---
+
+## P11 — Citations that lead nowhere
+
+**Size:** large · **Value:** high (integrity) · **Risk:** none technical
+
+`npm run check:links` (with `NODE_USE_ENV_PROXY=1` behind a proxy) checked
+930 cited links in October 2026. 169 return 404, and another 167 could not
+be checked because the sites refuse bots, rate-limit, or did not answer.
+- **Most of the 404s were never real pages.** They are plausible slugs on
+  the right site: HRW's Jimmy Lai page cited as
+  `.../hong-kong-jimmy-lai-sentenced-20-years`, when it is
+  `.../hong-kong-publisher-jimmy-lai-sentenced-to-20-years`, and BBC
+  article IDs that return "Page cannot be found".
+- **Where they are:** `timeline_events.json` (38), the profile pages
+  (Xu Zhiyong 16, Tashi Wangchuk 15, Nathan Law 15, Ren Zhiqiang 14, Benny
+  Tai 13, Agnes Chow 12, Cardinal Zen 11, Joshua Wong 10, Gao Zhisheng 10,
+  Jimmy Lai 8), then `ForcedLabourList` and about 40 other files. The counts
+  are occurrences: a page often cites one link several times.
+
+**How to fix each one:** find the real page for the same claim, read it,
+and replace the link only if it says what the site says. If it doesn't,
+the claim needs re-sourcing like any P7 record.
+
+Never "fix" a link by guessing a slug: that is how these were made. A link
+the checker calls unknown (401, 403, 429) has to be checked by hand before
+it counts as good.
+
+Done so far (`c8d6399`): the seven broken links in the Hong Kong legal
+cases, and Du Bin's. Six legal cases outside Hong Kong still cite missing
+pages (Tong Ying-kit, Ilham Tohti, Gui Minhai, the UK and French
+parliamentary items, Operation Fox Hunt, the WUC judicial review). So does
+Rachung Gendun's prisoner record.
+
+Related: the legal cases' case numbers.
+- Two invented ones were removed; the test that required a number on every
+  case is what invited them.
+- Others may be invented too: "HCCC 428/2022" for the Apple Daily
+  executives, who were co-defendants in Jimmy Lai's case, and the internal
+  IDs given to non-court items ("NL-2021-Motion").
+- The tracker shows these to readers as "Case Number". Check each against
+  a judgment or a news report, or remove it.
 
 ---
 

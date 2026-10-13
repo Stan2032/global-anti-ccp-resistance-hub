@@ -195,6 +195,17 @@ import SourceAttribution from './ui/SourceAttribution';
 <SourceAttribution source={{ name: 'Human Rights Watch', url: '...', verified: true }} />
 ```
 
+**Never cite a URL you have not opened.** A plausible link (the right site,
+the right date, a sensible slug) is not a source until it has loaded and
+said what it is cited for. In October 2026, 161 of 919 cited links led
+nowhere, most of them slugs that were never published. Run
+`npm run check:links` after adding citations; it lists every 404 with the
+file and line citing it.
+
+Likewise, leave a field empty rather than fill it with something
+plausible: case numbers such as "ESCC 2026/Art23-01" were invented to
+satisfy a required field.
+
 ---
 
 ## 5. Accessibility

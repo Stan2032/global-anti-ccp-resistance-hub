@@ -185,7 +185,7 @@ npm run dev             # Start dev server at http://localhost:5173
 
 ### Build
 ```bash
-npm run build           # Produces dist/ (~310KB main bundle, 99KB gzipped)
+npm run build           # Produces dist/ and pre-renders every route (main chunk ~149KB, 44KB gzipped; React and the router in their own chunks)
 npm run preview         # Preview production build locally
 ```
 
@@ -197,6 +197,7 @@ npm run typecheck       # tsc --noEmit
 npm run verify          # lint + typecheck + test + build (what CI runs)
 
 npm run test:content    # Content freshness — is the data still verified?
+npm run check:links     # Cited links that return 404 (needs the network; NODE_USE_ENV_PROXY=1 behind a proxy)
 ```
 
 `npm test` and `npm run test:content` answer different questions. The first asks

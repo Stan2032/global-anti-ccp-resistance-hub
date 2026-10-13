@@ -550,6 +550,37 @@ custody, health, release.
 
 **15 of 64 prisoner records are now current.**
 
+**Then the legal cases, which contradicted the site's own verified
+records** (`c8d6399`). Six of the eight Hong Kong cases were wrong, and the
+corrections come from sources already read for this pass or read for it:
+- **Jimmy Lai** was convicted on "all 3 NSL charges"; one of the three is
+  sedition under the Crimes Ordinance.
+- **Hong Kong 47:** "47 convicted"; 45 were. Its appeals were dismissed on
+  23 February, not 14 February.
+- **Joshua Wong's collusion case** was still pending trial a month after
+  his guilty plea.
+- **Kwok Yin-sang** was tried in the wrong court for the wrong offence
+  ("sedition"), with the sentencing date given as the verdict date.
+- **Stand News:** Patrick Lam's sentence was "suspended". He got 11
+  months and was released for time served.
+- **Apple Daily:** "7 to 13 months". The six executives got between 6
+  years 9 months and 10 years.
+- **Du Bin's** location "unknown" is Beijing's Shunyi Detention Center.
+
+**Many of the sources were never real.** Seven of these records cited
+links that do not exist: BBC article IDs that return "Page cannot be
+found", and HKFP and HRW slugs that were never published. A check of every
+link the site cites found 161 of 919 returning 404, nearly all of the same
+kind. That is P11; `npm run check:links` now lists them.
+
+**Two case numbers were invented** ("HCCC 2025/FC-01", "ESCC 2026/Art23-01").
+They are not Hong Kong court-number formats, and Kwok's sat beside the
+wrong court. A test required a case number on every case, which is what
+invited them. The test now requires only that the numbers given are unique,
+and the two invented ones are gone.
+
+**16 of 64 prisoner records and 7 of 25 legal cases are now current.**
+
 ---
 
 ## 12. The one that matters: the site is unreadable to the readers it is for

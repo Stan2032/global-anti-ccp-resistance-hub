@@ -917,7 +917,8 @@
     ],
     "p7_waiting_on_a_source": "See PARKED_WORK.md P7, 'Waiting on a source': Ho and Leung's August 2026 CFA certificates (HKFP only, plus Tier 3 Dim Sum Daily), Huang Xueqin's release, Kwok Yin-sang's release, Joshua Wong's sentencing, Zen's CFA bid, Tam Tak-chi.",
     "next": [
-      "P7: the 'Waiting on a source' list first, then the remaining 50 prisoner records by time-sensitivity, then the 24 legal cases, sanctions metadata and the uyghurDetention statistic",
+      "P7: the 'Waiting on a source' list first (Tashi Wangchuk's status is in doubt), then the remaining 48 prisoner records by time-sensitivity, then the 18 overdue legal cases and sanctions metadata; the uyghurDetention statistic waits on Q23",
+      "P11: 169 cited links return 404 (npm run check:links); re-source each from a page actually opened, never a guessed slug",
       "P4 stays parked (a build-time feed snapshot means serialising it for hydration and fetching at build time)",
       "P6 length, the /prisoners double listing, the recent_updates feed and the snake_case headings are owner calls"
     ]
