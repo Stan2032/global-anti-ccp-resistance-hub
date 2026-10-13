@@ -1022,15 +1022,15 @@
       "output": {
         "prisoner_name": "Du Bin",
         "status": "DETAINED",
-        "location": "China (exact facility unknown)",
-        "sentence": "Formally charged December 12, 2025 with 'picking quarrels and provoking trouble' \u2014 faces up to 5 years.",
-        "latest_news": "Dec 2025: Formally charged after being held since October 15, 2025. This is his third detention but first formal charge.",
+        "location": "Shunyi Detention Center, Beijing",
+        "sentence": "Not yet tried. Charged with 'picking quarrels and provoking trouble' \u2014 faces up to 5 years, or up to 10 if found to have 'seriously disrupted public order'.",
+        "latest_news": "Held at Beijing's Shunyi Detention Center since October 15, 2025, his third detention on the same accusation. Human Rights Watch reported on December 12, 2025 that he had been formally charged with 'picking quarrels and provoking trouble'; his family says it has received no formal notice of arrest or charge.",
         "health_status": "Unknown",
         "international_response": "Human Rights Watch called for his immediate and unconditional release. UN High Commissioner for Human Rights has previously criticized the 'picking quarrels' charge as incompatible with international human rights obligations.",
-        "source_url": "https://www.hrw.org/news/2025/12/16/china-journalist-du-bin-formally-charged",
+        "source_url": "https://www.hrw.org/news/2025/12/12/china-veteran-journalist-charged-with-picking-quarrels",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Arrested Oct 15, 2025; charged Dec 12, 2025. Third detention, first formal charge. Source: HRW (Tier 1). 'Picking quarrels' is a CCP catch-all charge used systematically against journalists and dissidents."
+        "last_verified": "2026-10-13",
+        "verification_note": "Re-verified 2026-10-13 against HRW, 2025-12-12 (read in full: taken into custody October 15, 2025, held at Shunyi Detention Center, formally charged, up to 5 or 10 years, no formal notice to the family) and CPJ's case page (read in full: Shunyi since October 15, 2025, third detention on the same accusation, no sentence). Corrected: the old source link (hrw.org/news/2025/12/16/...) did not exist, the location was given as unknown, and 'charged December 12' was the date of HRW's report, which gives no charge date. 'First formal charge' removed: no source read confirms it. No trial found reported as of 2026-10-13. 'Picking quarrels' is a CCP catch-all charge used systematically against journalists and dissidents."
       },
       "error": ""
     },
