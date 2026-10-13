@@ -118,7 +118,8 @@ const mapJsonToComponentFormat = (jsonResults: PrisonerJsonItem[]): Prisoner[] =
       })() : 'Unknown',
       verified: output.confidence === 'HIGH',
       description: output.latest_news || '',
-      date: new Date().toISOString().split('T')[0]
+      // When the source was last checked, not today's date.
+      date: output.last_verified ? `Accessed ${output.last_verified}` : ''
     };
     
     return {

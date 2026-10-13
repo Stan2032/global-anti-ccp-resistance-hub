@@ -108,6 +108,12 @@ async function main() {
 
   const { render } = await import(join(SSR_OUT, 'entry-server.js'));
 
+  // One moment for the whole build. Each page renders "now" as of it and
+  // carries it on #root, so the reader's browser hydrates with the same
+  // moment and only then moves to its own clock (useClock in src/utils/ssr,
+  // which reads RENDERED_AT_ATTRIBUTE; a test keeps the two names in step).
+  const renderedAt = new Date().toISOString();
+
   const routes = routesFromSitemap();
   log(`rendering ${routes.length} routes…`);
 
@@ -116,12 +122,15 @@ async function main() {
     const started = Date.now();
     let html;
     try {
-      html = await render(route);
+      html = await render(route, renderedAt);
     } catch (err) {
       console.error(`[prerender] FAILED ${route}: ${err?.message ?? err}`);
       throw err;
     }
-    const page = template.replace('<div id="root"></div>', `<div id="root">${html}</div>`);
+    const page = template.replace(
+      '<div id="root"></div>',
+      `<div id="root" data-rendered-at="${renderedAt}">${html}</div>`,
+    );
     const out = outputPathFor(route);
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, page);

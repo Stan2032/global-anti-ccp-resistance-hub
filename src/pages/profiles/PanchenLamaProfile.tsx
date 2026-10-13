@@ -7,6 +7,8 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -43,9 +45,7 @@ const PROFILE = {
   status: 'DISAPPEARED',
   currentLocation: 'Unknown — not seen since May 17, 1995',
   sentence: 'None — extrajudicial enforced disappearance',
-  ageAtAbduction: 6,
-  currentAge: 36,
-  yearsMissing: 30,
+  disappearedOn: 'May 17, 1995',
   occupation: '11th Panchen Lama (recognized by the 14th Dalai Lama)',
   parents: 'Konchok Phuntsok (father) and Dechen Chodon (mother)',
   significance: 'Second-highest spiritual leader in Tibetan Buddhism. The Panchen Lama and Dalai Lama historically recognize each other\'s reincarnations — control of the Panchen Lama gives the CCP leverage over the Dalai Lama\'s succession.',
@@ -281,6 +281,12 @@ const categoryLabels = {
 };
 
 export default function PanchenLamaProfile() {
+  const { now } = useClock();
+  // These were typed in as 36 and 30, and went stale on his birthday and on
+  // the anniversary of his disappearance.
+  const ageAtAbduction = calculateAge(PROFILE.birthDate, PROFILE.disappearedOn);
+  const currentAge = calculateAge(PROFILE.birthDate, undefined, now);
+  const yearsMissing = calculateAge(PROFILE.disappearedOn, undefined, now);
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -312,11 +318,11 @@ export default function PanchenLamaProfile() {
               <div className="bg-[#111820]/40 border border-[#1c2a35] p-3 mb-3">
                 <div className="flex items-center gap-2 mb-1">
                   <AlertTriangle className="w-5 h-5 text-[#22d3ee] animate-pulse" />
-                  <span className="font-bold text-[#22d3ee]">ENFORCED DISAPPEARANCE — {PROFILE.yearsMissing} YEARS</span>
+                  <span className="font-bold text-[#22d3ee]">ENFORCED DISAPPEARANCE — {yearsMissing} YEARS</span>
                 </div>
                 <p className="text-sm text-slate-300">
-                  Abducted at age {PROFILE.ageAtAbduction} on May 17, 1995. Now {PROFILE.currentAge} years old.
-                  Not seen by any independent observer for <strong>{PROFILE.yearsMissing} years</strong>.
+                  Abducted at age {ageAtAbduction} on {PROFILE.disappearedOn}. Now {currentAge} years old.
+                  Not seen by any independent observer for <strong>{yearsMissing} years</strong>.
                   The world&apos;s longest-running enforced disappearance of a child.
                 </p>
               </div>

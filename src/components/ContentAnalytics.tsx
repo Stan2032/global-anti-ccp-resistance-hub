@@ -8,6 +8,7 @@
  * @module ContentAnalytics
  */
 import React, { useMemo } from 'react';
+import { useClock } from '../utils/ssr';
 import {
   Database, Users, Shield, Clock, Globe, BarChart3,
   AlertTriangle, Building2, Scale, TrendingUp, CheckCircle,
@@ -65,8 +66,9 @@ interface DatasetCardProps {
 }
 
 const ContentAnalytics = () => {
+  const { now } = useClock();
   const analytics = useMemo(() => {
-    const summary = dataApi.getDatasetSummary();
+    const summary = dataApi.getDatasetSummary(now);
     const prisoners = dataApi.getPoliticalPrisoners();
     const sanctions = dataApi.getSanctions();
     const timeline = dataApi.getTimelineEvents();
@@ -153,7 +155,7 @@ const ContentAnalytics = () => {
       updates: updates || [],
       updatesByCategory,
     };
-  }, []);
+  }, [now]);
 
   const COUNTRY_LABELS: Record<string, string> = {
     us: 'United States',

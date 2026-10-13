@@ -7,6 +7,7 @@ import React from 'react';
 vi.mock('../components/IPACMembers', () => ({ default: () => <div data-testid="ipac-members">IPACMembers</div> }));
 
 import ResistanceDirectory from '../pages/ResistanceDirectory';
+import organizationsData from '../../organizations-data.json';
 
 const renderPage = () =>
   render(
@@ -44,7 +45,16 @@ describe('ResistanceDirectory', () => {
     expect(screen.getByText('Categories')).toBeTruthy();
     expect(screen.getByText('Global Reach')).toBeTruthy();
     expect(screen.getByText('Verified')).toBeTruthy();
-    expect(screen.getByText('Years Combined')).toBeTruthy();
+    expect(screen.getByText('Oldest Founded')).toBeTruthy();
+  });
+
+  it('gives the earliest founding year, not a number that changes with the date', () => {
+    // It said "Years Combined" over the current year minus this one.
+    renderPage();
+    const earliest = Math.min(...organizationsData.organizations.map(o => o.established));
+    const tile = screen.getByText('Oldest Founded').parentElement!;
+    expect(tile.textContent).toBe(`${earliest}Oldest Founded`);
+    expect(screen.queryByText('Years Combined')).toBeNull();
   });
 
   // --- Search & Filter ---

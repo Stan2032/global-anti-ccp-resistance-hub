@@ -69,14 +69,22 @@ const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) 
     return 'text-slate-400';
   };
 
+  // A date shown only as precisely as it was written: "2024-03" is March 2024,
+  // not 1 March, and "2020" is 2020. Parsed by `new Date`, those were midnight
+  // UTC, so they also showed as the day before for every reader west of UTC.
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return null;
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch {
-      return dateString;
+    const full = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+    if (full) {
+      return new Date(Number(full[1]), Number(full[2]) - 1, Number(full[3]))
+        .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
+    const month = /^(\d{4})-(\d{2})$/.exec(dateString);
+    if (month) {
+      return new Date(Number(month[1]), Number(month[2]) - 1, 1)
+        .toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+    }
+    return dateString;
   };
 
   if (compact) {

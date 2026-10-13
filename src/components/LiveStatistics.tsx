@@ -15,6 +15,7 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import statisticsData from '../data/live_statistics.json';
 import { getFreshnessInfo } from '../utils/dateUtils';
+import { useClock } from '../utils/ssr';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Link, Building2, ShieldAlert, Landmark, Plane, Newspaper, HeartCrack,
@@ -108,7 +109,8 @@ const LiveStatistics = () => {
     .map(s => s.lastVerified)
     .filter(Boolean)
     .sort()[0];
-  const freshness = oldestVerified ? getFreshnessInfo(oldestVerified) : null;
+  const { now, live } = useClock();
+  const freshness = oldestVerified ? getFreshnessInfo(oldestVerified, now) : null;
 
   const statistics = (statisticsData || []).map(stat => ({
     ...stat,
@@ -141,7 +143,8 @@ const LiveStatistics = () => {
             <div>Data compiled from verified sources</div>
             {freshness && (
               <div className={freshness.level === 'stale' ? 'text-amber-400' : undefined}>
-                {freshness.label} ({oldestVerified})
+                {/* "N days ago" is only true on the day it is computed. */}
+                {live ? `${freshness.label} (${oldestVerified})` : `Verified ${oldestVerified}`}
               </div>
             )}
           </div>

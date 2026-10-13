@@ -34,8 +34,7 @@ vi.mock('../data/researchData', () => {
       totalNewsTopics: news.length,
       highSignificanceNews: 2,
       totalPoliceStations: stations.length,
-      stationsByStatus: { closed: 1, underInvestigation: 1, operating: 1, unknown: 0 },
-      lastUpdated: '2024-12-15T00:00:00.000Z'
+      stationsByStatus: { closed: 1, underInvestigation: 1, operating: 1, unknown: 0 }
     }
   };
 });

@@ -20,6 +20,7 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import { dataApi, type RecentUpdate } from '../services/dataApi';
+import { useClock } from '../utils/ssr';
 
 /**
  * DataChangelog — Research data provenance and verification tracker.
@@ -105,7 +106,7 @@ const DATASET_VERIFICATION = [
     file: 'emergency_alerts.json',
     lastVerified: '2026-03-11',
     verificationNote: 'Active alerts reviewed and expires/eventDate fields validated.',
-    recordCount: () => dataApi.getActiveAlerts().length,
+    recordCount: (now: Date) => dataApi.getActiveAlerts(now).length,
   },
   {
     id: 'live_statistics',
@@ -122,9 +123,8 @@ const DATASET_VERIFICATION = [
  * @param {string} dateStr — ISO date string (YYYY-MM-DD)
  * @returns {{ status: string, label: string, daysAgo: number }}
  */
-function getFreshness(dateStr: string): FreshnessResult {
+function getFreshness(dateStr: string, now: Date): FreshnessResult {
   const verDate = new Date(dateStr);
-  const now = new Date();
   const daysAgo = Math.floor((now.getTime() - verDate.getTime()) / (1000 * 60 * 60 * 24));
 
   if (daysAgo <= 3) return { status: 'fresh', label: 'Verified recently', daysAgo };
@@ -166,12 +166,13 @@ function ChangeItem({ update }: { update: ChangelogUpdate }) {
 }
 
 const DataChangelog = () => {
+  const { now, live } = useClock();
 
   // Nothing here changes after the first render, so nothing needs memoising.
   const datasets = DATASET_VERIFICATION.map((d) => ({
     ...d,
-    records: d.recordCount(),
-    freshness: getFreshness(d.lastVerified),
+    records: d.recordCount(now),
+    freshness: getFreshness(d.lastVerified, now),
   }));
 
   // Recent data-related updates: the newest five, then the rest folded away.
@@ -256,7 +257,8 @@ const DataChangelog = () => {
                   <Calendar className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   <span className="text-slate-400">Last verified:</span>
                   <span className="text-white">{dataset.lastVerified}</span>
-                  <span className="text-slate-400">({dataset.freshness.daysAgo} days ago)</span>
+                  {/* Only true on the day it is computed: wait for the reader's clock. */}
+                  {live && <span className="text-slate-400">({dataset.freshness.daysAgo} days ago)</span>}
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Database className="w-4 h-4 text-slate-400 flex-shrink-0" />

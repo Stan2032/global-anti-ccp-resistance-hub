@@ -7,6 +7,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -281,6 +282,7 @@ const categoryLabels = {
 };
 
 export default function JimmyLaiProfile() {
+  const { now } = useClock();
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -315,7 +317,7 @@ export default function JimmyLaiProfile() {
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
                 <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
-                  Age {calculateAge(PROFILE.birthDate)} · {PROFILE.nationality}
+                  Age {calculateAge(PROFILE.birthDate, undefined, now)} · {PROFILE.nationality}
                 </span>
               </div>
             </div>

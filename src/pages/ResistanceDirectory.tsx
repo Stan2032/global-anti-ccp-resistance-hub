@@ -26,7 +26,9 @@ interface Organisation {
 
 const organizations: Organisation[] = organizationsData.organizations;
 const categories = [...new Set(organizations.map(org => org.category))].sort();
-const combinedYears = new Date().getFullYear() - Math.min(...organizations.map(o => o.established));
+// The earliest founding year. This tile used to say "Years Combined" over the
+// current year minus this one: the age of the oldest organisation, not a sum.
+const oldestFounded = Math.min(...organizations.map(o => o.established));
 
 const ResistanceDirectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -95,8 +97,8 @@ const ResistanceDirectory = () => {
           <div className="text-xs text-slate-400">Verified</div>
         </div>
         <div className="bg-[#111820] border border-[#1c2a35] p-4 text-center">
-          <div className="text-2xl font-bold text-[#22d3ee]">{combinedYears}+</div>
-          <div className="text-xs text-slate-400">Years Combined</div>
+          <div className="text-2xl font-bold text-[#22d3ee]">{oldestFounded}</div>
+          <div className="text-xs text-slate-400">Oldest Founded</div>
         </div>
       </div>
 

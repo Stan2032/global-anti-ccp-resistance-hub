@@ -14,7 +14,7 @@ import { Siren, AlertTriangle, Info, ExternalLink, Copy, Check } from 'lucide-re
 import alertsData from '../data/emergency_alerts.json';
 import EventCountdown from './EventCountdown';
 import { formatAlertForSharing, type AlertForSharing } from '../utils/dateUtils';
-import { useBrowserValue, useStoredJson } from '../utils/ssr';
+import { useBrowserValue, useClock, useStoredJson } from '../utils/ssr';
 
 const INITIAL_DISPLAY_COUNT = 2;
 
@@ -36,7 +36,7 @@ const EmergencyAlerts = () => {
 
   const alerts = alertsData;
 
-  const now = new Date().toISOString().split('T')[0];
+  const now = useClock().now.toISOString().slice(0, 10);
   const severityOrder: Record<string, number> = { critical: 0, warning: 1, info: 2 };
   const liveAlerts = alerts
     .filter(alert => alert.active && !(alert.expires && alert.expires < now))

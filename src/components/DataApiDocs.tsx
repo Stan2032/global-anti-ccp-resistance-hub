@@ -9,6 +9,7 @@
  */
 import React, { useState, useMemo } from 'react';
 import { Code, Database, Search, Filter, Globe, ChevronDown, Copy, CheckCircle, BookOpen } from 'lucide-react';
+import { useClock } from '../utils/ssr';
 import { dataApi } from '../services/dataApi';
 
 /**
@@ -31,8 +32,9 @@ const METHOD_GROUPS = [
         params: [],
         returns: '{ datasets: { [name]: { count, description, fields } }, totalRecords, lastUpdated }',
         example: "dataApi.getDatasetSummary()",
-        live: () => {
-          const s = dataApi.getDatasetSummary();
+        // Evaluated while rendering, so it counts as of the page's clock.
+        live: (now: Date) => {
+          const s = dataApi.getDatasetSummary(now);
           const total = Object.values(s.datasets).reduce((sum, d) => sum + d.count, 0);
           return `${Object.keys(s.datasets).length} datasets, ${total} total records`;
         },
@@ -220,11 +222,12 @@ const METHOD_GROUPS = [
 const DataApiDocs = () => {
   const [copiedMethod, setCopiedMethod] = useState<string | null>(null);
 
+  const { now } = useClock();
   const summary = useMemo(() => {
-    const s = dataApi.getDatasetSummary();
+    const s = dataApi.getDatasetSummary(now);
     const totalRecords = Object.values(s.datasets).reduce((sum, d) => sum + d.count, 0);
     return { ...s, totalRecords };
-  }, []);
+  }, [now]);
   const totalMethods = METHOD_GROUPS.reduce((sum, g) => sum + g.methods.length, 0);
 
   const handleCopy = (text: string) => {
@@ -357,7 +360,7 @@ const DataApiDocs = () => {
                       <span className="text-[#4afa82] font-mono">$</span>
                       <code className="text-slate-300 font-mono break-all">{method.example}</code>
                       <span className="text-slate-400">→</span>
-                      <span className="text-[#22d3ee] font-mono">{method.live()}</span>
+                      <span className="text-[#22d3ee] font-mono">{method.live(now)}</span>
                     </div>
                   </div>
                 ))}

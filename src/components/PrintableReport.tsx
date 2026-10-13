@@ -8,6 +8,7 @@
 import React, { useState, useRef } from 'react';
 import { Printer, Download, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
+import { useClock } from '../utils/ssr';
 
 const KEY_FACTS = [
   { label: 'Political prisoners documented', value: '65+', source: 'CECC, HRW, Amnesty' },
@@ -34,8 +35,8 @@ const PrintableReport = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const { now } = useClock();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
   const activeAlerts = alertsData.filter(a => {
     if (!a.active) return false;

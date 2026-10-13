@@ -316,7 +316,8 @@ function matchesSearch(obj: Record<string, unknown>, query: string): boolean {
  */
 export const dataApi = {
   // ── Metadata ────────────────────────────────────────
-  getDatasetSummary(): DatasetSummary {
+  /** Counts as of `now`: alerts that have expired are not counted. */
+  getDatasetSummary(now: Date = new Date()): DatasetSummary {
     return {
       datasets: {
         political_prisoners: {
@@ -350,7 +351,7 @@ export const dataApi = {
           fields: ['name', 'type', 'region', 'city', 'coordinates', 'estimated_capacity', 'status', 'sources'],
         },
         emergency_alerts: {
-          count: this.getActiveAlerts().length,
+          count: this.getActiveAlerts(now).length,
           description: 'Active emergency alerts and urgent cases',
           fields: ['type', 'title', 'summary', 'date', 'eventDate', 'expires', 'active'],
         },
@@ -511,9 +512,9 @@ export const dataApi = {
     return (emergencyAlertsData || []) as unknown as EmergencyAlert[];
   },
 
-  /** Currently active, non-expired alerts. */
-  getActiveAlerts(): EmergencyAlert[] {
-    const today = new Date().toISOString().split('T')[0];
+  /** Alerts active and not expired as of `now` (by default, this moment). */
+  getActiveAlerts(now: Date = new Date()): EmergencyAlert[] {
+    const today = now.toISOString().slice(0, 10);
     return this.getAlerts().filter(
       (a) => a.active && (!a.expires || a.expires >= today)
     );

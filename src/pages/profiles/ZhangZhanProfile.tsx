@@ -8,6 +8,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -255,8 +256,9 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function ZhangZhanProfile() {
+  const { now } = useClock();
 
-  const daysDetained = Math.floor((new Date().getTime() - new Date('2020-05-14').getTime()) / (1000 * 60 * 60 * 24));
+  const daysDetained = Math.floor((now.getTime() - new Date('2020-05-14').getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -290,7 +292,7 @@ export default function ZhangZhanProfile() {
                 COVID-19 JOURNALIST
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {calculateAge(PROFILE.birthDate)}
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
 

@@ -9,6 +9,7 @@
 import React, { useState, useMemo } from 'react';
 import { ShieldCheck, AlertTriangle, CheckCircle, XCircle, ChevronDown, Copy, Check, Activity, Database, Clock, Link2, Search } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import { useClock } from '../utils/ssr';
 
 // ── Type definitions ───────────────────────────────────
 
@@ -39,6 +40,8 @@ interface DatasetReport {
   checks: DataCheck[];
   freshness: FreshnessStatus;
   freshnessLabel: string;
+  /** The newest date in the dataset, shown until the reader's clock can say how old it is. */
+  freshnessDate: string | null;
   passCount: number;
   failCount: number;
   overallStatus: CheckStatus;
@@ -48,11 +51,11 @@ interface DatasetReport {
 
 const FRESHNESS_THRESHOLDS = { fresh: 7, current: 30 }; // days
 
-function daysSince(dateStr: string | null): number {
+function daysSince(dateStr: string | null, now: Date): number {
   if (!dateStr) return Infinity;
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return Infinity;
-  return Math.floor((Date.now() - d.getTime()) / 86400000);
+  return Math.floor((now.getTime() - d.getTime()) / 86400000);
 }
 
 function freshnessStatus(days: number): FreshnessStatus {
@@ -169,8 +172,8 @@ function runDatasetChecks(name: string, records: Record<string, unknown>[], fiel
 
 // ── Build full integrity report ────────────────────────
 
-function buildIntegrityReport(): DatasetReport[] {
-  const summary = dataApi.getDatasetSummary();
+function buildIntegrityReport(now: Date): DatasetReport[] {
+  const summary = dataApi.getDatasetSummary(now);
   const datasets: DatasetReport[] = [];
 
   const dataFetchers: Record<string, (() => Record<string, unknown>[]) | undefined> = {
@@ -207,7 +210,8 @@ function buildIntegrityReport(): DatasetReport[] {
       });
     });
 
-    const days = daysSince(latestDate || summary.lastUpdated);
+    const freshnessDate: string | null = latestDate || summary.lastUpdated || null;
+    const days = daysSince(freshnessDate, now);
     const freshness = freshnessStatus(days);
 
     const passCount = checks.filter((c) => c.status === 'pass').length;
@@ -223,6 +227,7 @@ function buildIntegrityReport(): DatasetReport[] {
       checks,
       freshness,
       freshnessLabel: `${days === Infinity ? 'Unknown' : days + 'd'}`,
+      freshnessDate,
       passCount,
       failCount,
       overallStatus,
@@ -266,7 +271,8 @@ export default function DataIntegrityMonitor() {
   const [statusFilter, setStatusFilter] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const datasets = useMemo(() => buildIntegrityReport(), []);
+  const { now, live } = useClock();
+  const datasets = useMemo(() => buildIntegrityReport(now), [now]);
 
   const statusCounts = useMemo(() => {
     const counts = { pass: 0, warn: 0, fail: 0 };
@@ -425,7 +431,8 @@ export default function DataIntegrityMonitor() {
                     <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>{cfg.label}</span>
                     <span className={`text-xs font-mono flex items-center gap-1 ${freshnessColor}`}>
                       <FreshnessIcon className="w-3 h-3" aria-hidden="true" />
-                      {ds.freshnessLabel}
+                      {/* An age is only true on the day it is computed. */}
+                      {live ? ds.freshnessLabel : (ds.freshnessDate?.slice(0, 10) ?? 'Unknown')}
                     </span>
                   </span>
                   <span className="block text-xs text-slate-400 mt-1">{ds.description}</span>

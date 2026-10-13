@@ -9,6 +9,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Siren, Phone, Mail, Lock } from 'lucide-react';
+import { useClock } from '../utils/ssr';
 
 /**
  * Footer — Site-wide footer with links, emergency contacts, and legal notice.
@@ -17,7 +18,7 @@ import { Siren, Phone, Mail, Lock } from 'lucide-react';
  * @returns {React.ReactElement} Footer component
  */
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = useClock().now.getUTCFullYear();
 
   const footerLinks = {
     platform: [

@@ -71,7 +71,7 @@ const ResearchDashboard = () => {
           <div>
             <h2 className="text-xl font-bold text-white">Research Database</h2>
             <p className="text-slate-400 text-sm">
-              Verified data from parallel research • Last updated: {new Date(researchStats.lastUpdated).toLocaleDateString()}
+              Verified data from parallel research
             </p>
           </div>
         </div>

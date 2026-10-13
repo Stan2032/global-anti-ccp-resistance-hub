@@ -8,6 +8,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
 import { DisclosureSection } from '../../components/DisclosureSection';
 import { ProfileTimeline } from '../../components/ProfileTimeline';
@@ -46,8 +47,7 @@ const PROFILE = {
   status: 'AT RISK',
   currentLocation: 'Hong Kong',
   sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under the NSL',
-  age: String(new Date().getFullYear() - 1932),
-    occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
+  occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
 };
 
 const TIMELINE = [
@@ -233,6 +233,7 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function CardinalZenProfile() {
+  const { now } = useClock();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -266,7 +267,7 @@ export default function CardinalZenProfile() {
                 AGE 90 AT ARREST
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
 
@@ -358,7 +359,7 @@ export default function CardinalZenProfile() {
               <p className="text-sm text-slate-300">
                 Cardinal Zen was convicted under the Societies Ordinance in November 2022 and fined HK$4,000.
                 The more serious NSL charge of &quot;collusion with foreign forces&quot; has neither been formally dropped
-                nor proceeded to trial. At age {calculateAge(PROFILE.birthDate)}, he remains in Hong Kong under ongoing legal jeopardy.
+                nor proceeded to trial. At age {calculateAge(PROFILE.birthDate, undefined, now)}, he remains in Hong Kong under ongoing legal jeopardy.
                 An appeal against the conviction was heard in December 2025 and the case is ongoing.
               </p>
             </div>

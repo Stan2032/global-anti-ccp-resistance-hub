@@ -177,3 +177,72 @@ function parseOr<T>(text: string, fallbackText: string): T {
     return JSON.parse(fallbackText) as T;
   }
 }
+
+/**
+ * The moment to render with: what "now" means in a pre-rendered page.
+ *
+ * The HTML is built once and read for months. Anything computed from the
+ * current time during render — a day count, "verified N days ago", an age,
+ * the year in the footer — came out differently in the reader's browser on
+ * any day after the build, and React discarded the page and rendered it
+ * again (error #418). Three days after a build that happened on 11 of the 27
+ * routes; after New Year, on all of them. Checks made on the day of the
+ * build could never see it.
+ *
+ * While pre-rendering and while hydrating, `now` is the moment the HTML was
+ * built: the build writes it on #root as `data-rendered-at`, so the first
+ * client render matches the HTML exactly. Straight afterwards it is the
+ * reader's own clock and `live` is true.
+ *
+ * A reader without JavaScript keeps the page as built. Counts written as a
+ * minimum ("2,041+ days") stay true; statements about today do not. Show
+ * those — today's date, "N days ago" — only once `live`, with something that
+ * stays true (the date itself) until then.
+ */
+export interface Clock {
+  now: Date;
+  live: boolean;
+}
+
+/** Attribute on #root holding the build's timestamp. scripts/prerender.mjs writes it. */
+export const RENDERED_AT_ATTRIBUTE = 'data-rendered-at';
+
+let renderedAtOnServer: string | null = null;
+
+/** Called by the pre-render with the build's timestamp before each route. */
+export function setRenderedAt(iso: string | null): void {
+  renderedAtOnServer = iso;
+}
+
+function minuteNow(): number {
+  return Math.floor(Date.now() / 60_000) * 60_000;
+}
+
+// Both snapshots must return the same object until the time they stand for
+// changes, or useSyncExternalStore re-renders forever.
+let renderClockCache: Clock | null = null;
+let liveClockCache: Clock | null = null;
+
+function clockAt(cache: Clock | null, time: number, live: boolean): Clock {
+  return cache && cache.now.getTime() === time ? cache : { now: new Date(time), live };
+}
+
+function renderClock(): Clock {
+  const iso = renderedAtOnServer
+    ?? (isBrowser ? document.getElementById('root')?.getAttribute(RENDERED_AT_ATTRIBUTE) : null);
+  const parsed = iso ? Date.parse(iso) : NaN;
+  renderClockCache = clockAt(renderClockCache, Number.isNaN(parsed) ? minuteNow() : parsed, false);
+  return renderClockCache;
+}
+
+function liveClock(): Clock {
+  // To the minute: nothing on the site needs finer, and it keeps the
+  // snapshot stable between React's reads.
+  liveClockCache = clockAt(liveClockCache, minuteNow(), true);
+  return liveClockCache;
+}
+
+/** See {@link Clock}. */
+export function useClock(): Clock {
+  return useSyncExternalStore(subscribeNever, liveClock, renderClock);
+}

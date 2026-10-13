@@ -21,14 +21,19 @@ import { prerender } from 'react-dom/static';
 // `react-router-dom/server` subpath no longer exists.
 import { StaticRouter } from 'react-router-dom';
 import { AppProviders, AppLayout } from './App';
+import { setRenderedAt } from './utils/ssr';
 
 /**
  * Render one route to an HTML string.
  *
  * @param url - Route path to render, e.g. `/prisoners`.
+ * @param renderedAt - The build's timestamp (ISO 8601). Everything computed
+ *   from "now" renders as of this moment, and the page carries it on #root so
+ *   the browser hydrates with the same moment (see `useClock` in utils/ssr).
  * @returns The markup for `#root`, with all Suspense boundaries resolved.
  */
-export async function render(url: string): Promise<string> {
+export async function render(url: string, renderedAt: string): Promise<string> {
+  setRenderedAt(renderedAt);
   const { prelude } = await prerender(
     <AppProviders>
       <StaticRouter location={url}>

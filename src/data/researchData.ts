@@ -73,7 +73,6 @@ export interface ResearchStats {
     operating: number;
     unknown: number;
   };
-  lastUpdated: string;
 }
 
 /** Processed political prisoner records (mapped from JSON output fields). */
@@ -138,7 +137,6 @@ export const researchStats: ResearchStats = {
     operating: policeStations.filter(s => s.status === 'OPERATING').length,
     unknown: policeStations.filter(s => s.status === 'UNKNOWN').length
   },
-  lastUpdated: new Date().toISOString()
 };
 
 export default {

@@ -20,6 +20,7 @@ import {
   type SanctionedOfficial,
 } from '../services/dataApi';
 import { FileText, Users, Copy, Check, ChevronDown, Globe, Shield, Scale, Search, AlertTriangle, ExternalLink, Landmark, BarChart3 } from 'lucide-react';
+import { useClock } from '../utils/ssr';
 
 // ── Local type definitions ────────────────────────────
 
@@ -281,6 +282,7 @@ function generateBrief(audience: string, topic: string, data: BriefDatasets): Po
 // ── Component ─────────────────────────────────────────
 
 export default function PolicyBriefGenerator() {
+  const { now } = useClock();
   const [selectedAudience, setSelectedAudience] = useState('legislator');
   const [selectedTopic, setSelectedTopic] = useState('political-detention');
   const [searchQuery, setSearchQuery] = useState('');
@@ -470,7 +472,7 @@ export default function PolicyBriefGenerator() {
           <div className="flex items-center gap-2 mt-1 text-xs font-mono text-slate-400">
             <span>Audience: {AUDIENCES.find(a => a.id === selectedAudience)?.label}</span>
             <span aria-hidden="true">•</span>
-            <span>Generated: {new Date().toISOString().slice(0, 10)}</span>
+            <span>Generated: {now.toISOString().slice(0, 10)}</span>
           </div>
         </div>
 
