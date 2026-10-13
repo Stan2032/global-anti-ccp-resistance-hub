@@ -14,6 +14,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "test:content": "vitest run --config vitest.content.config.js",
+    "check:links": "node scripts/check-links.mjs",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
     "build:client": "vite build"
   },
