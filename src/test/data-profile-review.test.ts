@@ -24,7 +24,7 @@ import prisonersData from '../data/political_prisoners_research.json';
 const REVIEWED: Record<string, { page: string; recordVerified: string }> = {
   'Agnes Chow': { page: 'AgnesChowProfile.tsx', recordVerified: '2026-02-20' },
   'Benny Tai': { page: 'BennyTaiProfile.tsx', recordVerified: '2026-02-20' },
-  'Cardinal Joseph Zen': { page: 'CardinalZenProfile.tsx', recordVerified: '2026-02-20' },
+  'Cardinal Joseph Zen': { page: 'CardinalZenProfile.tsx', recordVerified: '2026-10-13' },
   'Chow Hang-Tung': { page: 'ChowHangTungProfile.tsx', recordVerified: '2026-09-19' },
   'Gao Zhisheng': { page: 'GaoZhishengProfile.tsx', recordVerified: '2026-09-19' },
   'Gedhun Choekyi Nyima': { page: 'PanchenLamaProfile.tsx', recordVerified: '2026-02-20' },

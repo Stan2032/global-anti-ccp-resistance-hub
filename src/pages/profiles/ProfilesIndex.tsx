@@ -188,7 +188,7 @@ const PROFILES = [
     sentence: 'Fined HK$4,000 (Nov 2022)',
     birthDate: 'January 13, 1932',
     role: 'Bishop Emeritus of Hong Kong, Cardinal',
-    summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees. Convicted under the Societies Ordinance. NSL charge remains under review.',
+    summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees, but never charged under it. Convicted under the Societies Ordinance; conviction upheld on appeal in September 2026.',
     location: 'Hong Kong',
     region: 'hong-kong',
     themeGradient: 'from-amber-900/30 to-[#0a0e14]',

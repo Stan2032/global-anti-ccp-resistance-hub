@@ -133,15 +133,16 @@
         "status": "CONVICTED",
         "key_dates": {
           "arrest_date": "2022-05-11",
-          "trial_start": "2022-09-19",
-          "verdict_date": "2022-11-25"
+          "trial_start": "2022-09-26",
+          "verdict_date": "2022-11-25",
+          "appeal_dismissed": "2026-09-03"
         },
-        "outcome": "All defendants found guilty of failing to register. Fined HK$4,000 each. Widely seen as a warning shot.",
+        "outcome": "All defendants found guilty of failing to register. The five trustees were fined HK$4,000 each and the fund's secretary, Sze Ching-wee, HK$2,500. Widely seen as a warning shot. On September 3, 2026 the Court of Appeal dismissed the five trustees' appeals and upheld their convictions; they said they would take the case to the Court of Final Appeal.",
         "significance": "90-year-old Catholic Cardinal prosecuted. International religious freedom advocates raised alarm.",
         "related_persons": ["Margaret Ng", "Denise Ho"],
         "international_response": "Vatican expressed concern. US Commission on International Religious Freedom condemned prosecution.",
-        "source_url": "https://www.bbc.com/news/world-asia-china-63766783",
-        "last_verified": "2026-03-06"
+        "source_url": "https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },

@@ -156,7 +156,8 @@
         "international_response": "The UK, US, and Australia condemned the verdict and sentencing. Amnesty International called new charges 'designed to prolong his stay behind bars.'",
         "source_url": "https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/",
         "confidence": "HIGH",
-        "last_verified": "2026-09-19"
+        "last_verified": "2026-09-19",
+        "verification_note": "Re-verified 2026-09-19 against HKFP, 2026-09-02 and Hong Kong Watch, 2026-09-02, corroborated by Al Jazeera, 2026-09-02. Checked again 2026-10-13: no sentence reported yet. HKFP, 2026-09-02 (re-read in full) says Judge William Tam would decide the sentence 'as soon as possible' and set no date. The High Court transfer date is left out: the earlier alert said March 6, 2026 and Hong Kong Watch says May 2026."
       },
       "error": ""
     },
@@ -233,14 +234,14 @@
         "prisoner_name": "Cardinal Joseph Zen",
         "status": "AT RISK",
         "location": "Hong Kong",
-        "sentence": "Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under NSL for collusion with foreign forces \u2014 charges remain under review.",
-        "latest_news": "Dec 2025: Hong Kong's appeals court heard an appeal by trustees of a relief fund, including Cardinal Joseph Zen, against their convictions.",
+        "sentence": "Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund; conviction upheld by the Court of Appeal on September 3, 2026. Arrested May 11, 2022 under NSL on suspicion of collusion with foreign forces \u2014 no national security charge has been laid.",
+        "latest_news": "Sep 3, 2026: the Court of Appeal dismissed the appeals of Cardinal Zen and the four other former trustees of the 612 Humanitarian Relief Fund, upholding their 2022 convictions for failing to register the fund as a society. The five said they would take the case to the Court of Final Appeal.",
         "health_status": "Unknown",
         "international_response": "The Holy See, US, and UK expressed concern over his arrest. Vatican Secretary of State said the arrest should not be read as a disavowal of the Sino-Vatican agreement.",
-        "source_url": "https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen",
+        "source_url": "https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Arrested May 11, 2022 by NSL police. Fined Nov 2022 for fund registration. Verified via Vatican News, CNA, ABC Australia, America Magazine, Independent."
+        "last_verified": "2026-10-13",
+        "verification_note": "Arrested May 11, 2022 by NSL police. Fined Nov 2022 for fund registration. Re-verified 2026-10-13 against HKFP (Hans Tse) and AP (Kanis Leung), both 2026-09-03 and read in full: the Court of Appeal dismissed the five trustees' appeals and upheld the convictions and HK$4,000 fines; Margaret Ng said they would appeal to the top court; the five were arrested in 2022 on suspicion of foreign collusion and have not been charged. Status AT RISK unchanged. Earlier verification: Vatican News, CNA, ABC Australia, America Magazine, Independent."
       },
       "error": ""
     },
@@ -783,13 +784,13 @@
         "status": "DETAINED",
         "location": "Hong Kong",
         "sentence": "7 years for conspiracy to commit subversion",
-        "latest_news": "Nov 2024: Filed an appeal to challenge her conviction and 7-year sentence.",
+        "latest_news": "Feb 23, 2026: the Court of Appeal dismissed her appeal against conviction, along with the appeals of the 11 other Hong Kong 47 defendants who had appealed. She had sought only to overturn her conviction, not her 7-year sentence.",
         "health_status": "Unknown",
         "international_response": "The US condemned the prison sentences and is taking steps to impose visa restrictions on Hong Kong officials.",
-        "source_url": "https://hongkongfp.com/2024/11/29/ex-journalist-gwyneth-ho-seeks-to-challenge-conviction-and-7-year-sentence-in-democrats-nat-security-case/",
+        "source_url": "https://hongkongfp.com/2026/02/23/breaking-court-rejects-appeals-of-all-12-activists-in-landmark-hong-kong-47-national-security-case/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Sentenced Nov 19, 2024 to 7 years for conspiracy to commit subversion. Hong Kong 47 case. Former journalist. Verified via Hong Kong Watch, HKFP, SCMP."
+        "last_verified": "2026-10-13",
+        "verification_note": "Sentenced Nov 19, 2024 to 7 years for conspiracy to commit subversion. Hong Kong 47 case. Former journalist. Re-verified 2026-10-13 against HKFP, 2026-02-23 (all 12 appeals dismissed; Ho sought only to overturn her conviction) and Al Jazeera, 2026-02-23 (appeals dismissed, Ho named), both read in full; Amnesty International, 2026-02-23, confirms the 12 appeals were dismissed. Status DETAINED unchanged. Not yet in latest_news: HKFP, 2026-08-10, reports that the Court of Appeal granted her and 10 co-defendants a certificate to seek leave to appeal to the Court of Final Appeal. The only other report found is Dim Sum Daily (Tier 3), so this waits for a second Tier 1–2 source. Earlier verification: Hong Kong Watch, HKFP, SCMP."
       },
       "error": ""
     },
@@ -817,13 +818,13 @@
         "status": "DETAINED",
         "location": "Hong Kong",
         "sentence": "6 years 9 months for conspiracy to commit subversion",
-        "latest_news": "Dec 2024: Filed an appeal against his conviction and sentence in the Hong Kong 47 case.",
+        "latest_news": "Feb 23, 2026: the Court of Appeal dismissed his appeals against both conviction and sentence, along with the appeals of the 11 other Hong Kong 47 defendants who had appealed.",
         "health_status": "Wife reported his health as 'stable' in May 2022; no recent updates.",
         "international_response": "The sentencing of the Hong Kong 47, including Leung Kwok-hung, was condemned by the US, UK, EU, and other countries, as well as international human rights organizations.",
-        "source_url": "https://hongkongfp.com/2024/12/16/hong-kong-47-activist-long-hair-leung-kwok-hung-seeks-to-overturn-conviction-sentence-in-national-security-case/",
+        "source_url": "https://hongkongfp.com/2026/02/23/breaking-court-rejects-appeals-of-all-12-activists-in-landmark-hong-kong-47-national-security-case/",
         "confidence": "HIGH",
-        "last_verified": "2026-02-20",
-        "verification_note": "Known as \"Long Hair\". Sentenced Nov 19, 2024 to 6 years 9 months. Filed appeal Dec 2024. Verified via DimSum Daily, Asahi, LitCI, The Standard."
+        "last_verified": "2026-10-13",
+        "verification_note": "Known as \"Long Hair\". Sentenced Nov 19, 2024 to 6 years 9 months. Filed appeal Dec 2024. Re-verified 2026-10-13 against HKFP, 2026-02-23 (all 12 appeals dismissed; Leung appealed both conviction and sentence) and Al Jazeera, 2026-02-23 (appeals dismissed, Leung named), both read in full; Amnesty International, 2026-02-23, confirms the 12 appeals were dismissed. Status DETAINED unchanged. Not yet in latest_news: HKFP, 2026-08-10, reports that the Court of Appeal granted him and 10 co-defendants a certificate to seek leave to appeal to the Court of Final Appeal. The only other report found is Dim Sum Daily (Tier 3), so this waits for a second Tier 1–2 source. Earlier verification: DimSum Daily, Asahi, LitCI, The Standard."
       },
       "error": ""
     },

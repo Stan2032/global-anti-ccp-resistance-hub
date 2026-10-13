@@ -38,7 +38,7 @@ const PROFILE = {
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'AT RISK',
   currentLocation: 'Hong Kong',
-  sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under the NSL',
+  sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund; conviction upheld by the Court of Appeal on September 3, 2026. Arrested May 11, 2022 under the NSL; no national security charge has been laid',
   occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
 };
 
@@ -125,7 +125,7 @@ const TIMELINE = [
     date: '2022-11',
     year: '2022',
     title: 'Convicted under Societies Ordinance',
-    detail: 'Convicted of failing to properly register the 612 Fund under the Societies Ordinance. Fined HK$4,000 (approx US$512). The NSL charge of "collusion with foreign forces" remains under review.',
+    detail: 'Convicted of failing to properly register the 612 Fund under the Societies Ordinance. Fined HK$4,000 (approx US$512). No national security charge followed the May 2022 arrest.',
     category: 'persecution',
     sourceUrl: 'https://www.bbc.com/news/world-asia-china-61414162',
   },
@@ -133,9 +133,17 @@ const TIMELINE = [
     date: '2025-12',
     year: '2025',
     title: 'Appeal heard by Hong Kong appeals court',
-    detail: 'Hong Kong appeals court heard appeal against the conviction. Case ongoing.',
+    detail: 'Hong Kong appeals court heard the trustees\' appeal against their convictions.',
     category: 'international',
     sourceUrl: 'https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen',
+  },
+  {
+    date: '2026-09-03',
+    year: '2026',
+    title: 'Court of Appeal upholds the conviction',
+    detail: 'The Court of Appeal dismissed the appeals of Cardinal Zen and the four other former trustees and upheld their convictions and fines. The five said they would take the case to the Court of Final Appeal.',
+    category: 'persecution',
+    sourceUrl: 'https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/',
   },
 ];
 
@@ -144,7 +152,7 @@ const CHARGES = [
     charge: 'Failing to register a society (Societies Ordinance)',
     law: 'Societies Ordinance',
     filed: 'May 2022',
-    verdict: 'GUILTY — November 2022',
+    verdict: 'GUILTY — November 2022; upheld on appeal September 3, 2026',
     sentence: 'Fined HK$4,000 (approx US$512)',
     detail: 'Convicted alongside other trustees of the 612 Humanitarian Relief Fund for not properly registering the fund as a society. The fund had provided legal and medical assistance to protesters arrested during the 2019 anti-extradition bill demonstrations. While the fine was minimal, the conviction established the principle that providing humanitarian assistance to arrested protesters can be criminalized.',
   },
@@ -153,8 +161,8 @@ const CHARGES = [
     law: 'National Security Law',
     filed: 'Arrested May 11, 2022',
     verdict: 'Investigation status unclear',
-    sentence: 'Not yet prosecuted under NSL',
-    detail: 'Cardinal Zen was arrested by National Security police alongside other fund trustees. The arrest of a 90-year-old Cardinal — one of the most senior Catholic figures in Asia — sent shockwaves through the international community. While the immediate prosecution focused on the lesser Societies Ordinance charge, the NSL investigation has neither been formally dropped nor proceeded to trial.',
+    sentence: 'None — not charged',
+    detail: 'Cardinal Zen was arrested by National Security police alongside other fund trustees. The arrest of a 90-year-old Cardinal — one of the most senior Catholic figures in Asia — sent shockwaves through the international community. The prosecution that followed was for the lesser Societies Ordinance offence. As of September 2026, more than four years after the arrest, no national security charge has been laid.',
   },
 ];
 
@@ -207,6 +215,8 @@ const SOURCES = [
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2022/05/hong-kong-arrest-cardinal-zen/', tier: 1 },
   { name: 'The Independent', url: 'https://www.independent.co.uk/news/world/asia/cardinal-zen-hong-kong-arrested-b2075168.html', tier: 2 },
   { name: 'Pillar Catholic', url: 'https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen', tier: 2 },
+  { name: 'Hong Kong Free Press (appeal ruling)', url: 'https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/', tier: 1 },
+  { name: 'Associated Press (appeal ruling)', url: 'https://www.wsls.com/news/world/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-and-others-over-protester-relief-fund/', tier: 2 },
   { name: 'America Magazine', url: 'https://www.americamagazine.org/politics-society/2022/05/11/cardinal-zen-arrested-hong-kong-242953', tier: 2 },
   { name: 'Reuters', url: 'https://www.reuters.com/world/china/hong-kong-cardinal-joseph-zen-arrested-2022-05-11/', tier: 1 },
 ];
@@ -290,7 +300,7 @@ export default function CardinalZenProfile() {
             </div>
 
             <p className="text-xs text-slate-400 mt-3 italic">
-              Convicted under the Societies Ordinance. NSL charge of &quot;collusion with foreign forces&quot; remains under review.
+              Convicted under the Societies Ordinance; conviction upheld on appeal in September 2026. Arrested under the NSL on suspicion of &quot;collusion with foreign forces&quot;, but never charged.
             </p>
           </div>
         </div>
@@ -356,9 +366,9 @@ export default function CardinalZenProfile() {
               <h3 className="text-sm font-semibold text-amber-300 mb-2">Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
                 Cardinal Zen was convicted under the Societies Ordinance in November 2022 and fined HK$4,000.
-                The more serious NSL charge of &quot;collusion with foreign forces&quot; has neither been formally dropped
-                nor proceeded to trial. At age {calculateAge(PROFILE.birthDate, undefined, now)}, he remains in Hong Kong under ongoing legal jeopardy.
-                An appeal against the conviction was heard in December 2025 and the case is ongoing.
+                On September 3, 2026 the Court of Appeal upheld that conviction, and the trustees said they would take the
+                case to the Court of Final Appeal. His May 2022 national security arrest, on suspicion of &quot;collusion with
+                foreign forces&quot;, has led to no charge. At age {calculateAge(PROFILE.birthDate, undefined, now)}, he remains in Hong Kong under ongoing legal jeopardy.
               </p>
             </div>
 
