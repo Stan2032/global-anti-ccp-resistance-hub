@@ -17,7 +17,7 @@ import {
   type LegalCase,
   type Sanction,
 } from '../services/dataApi';
-import { Scale, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Shield, Globe, FileText, Flag } from 'lucide-react';
+import { Scale, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Shield, FileText, Flag } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 
 interface LegalViolation {

@@ -7,7 +7,7 @@
  * @module DetentionFacilities
  */
 import React, { useState } from 'react';
-import { Building2, MapPin, Users, Calendar, ExternalLink, AlertTriangle, Search, Filter, Eye, ChevronDown } from 'lucide-react';
+import { Building2, MapPin, ExternalLink, AlertTriangle, Search, Eye, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import detentionResearchData from '../data/detention_facilities_research.json';
 

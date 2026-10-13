@@ -15,7 +15,6 @@ import {
   Clock,
   Building2,
   ChevronDown,
-  ChevronUp,
   MapPin,
   AlertTriangle,
   BarChart3,

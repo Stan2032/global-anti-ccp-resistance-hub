@@ -26,14 +26,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against Amnesty International, NCHRD, Tom Lantos
 // Human Rights Commission, ChinaAid, HRW, and BBC.

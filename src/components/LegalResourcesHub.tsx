@@ -5,7 +5,7 @@
  * @module LegalResourcesHub
  */
 import React, { useState } from 'react';
-import { Scale, Search, ExternalLink, AlertTriangle, CheckCircle, FileText, Phone, Mail } from 'lucide-react';
+import { Scale, Search, ExternalLink, AlertTriangle, CheckCircle, Phone, Mail } from 'lucide-react';
 
 const LegalResourcesHub = () => {
   const [selectedCountry, setSelectedCountry] = useState('all');

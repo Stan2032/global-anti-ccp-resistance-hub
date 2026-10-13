@@ -8,7 +8,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
-import { Shield, Search, ChevronDown, Copy, Check, Wifi, WifiOff, Lock, Eye, EyeOff, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';
+import { Shield, Search, ChevronDown, Copy, Check, WifiOff, Lock, Eye, Globe, AlertTriangle, Server, MessageSquare } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 // CensorshipCircumventionGuide — Tracks CCP internet censorship methods
 // and provides verified circumvention tools with safety ratings.

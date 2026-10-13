@@ -27,14 +27,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, Vatican News, Amnesty International,
 // Reuters, and other Tier 1/2 sources. Zero CCP state media cited.

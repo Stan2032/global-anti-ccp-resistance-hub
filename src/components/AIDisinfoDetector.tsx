@@ -7,7 +7,7 @@
  * @module AIDisinfoDetector
  */
 import React, { useState } from 'react';
-import { Brain, AlertTriangle, CheckCircle, Search, ExternalLink, TrendingUp, Eye } from 'lucide-react';
+import { Brain, AlertTriangle, Search, ExternalLink, Eye } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 interface DetectedPattern {

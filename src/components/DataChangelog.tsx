@@ -14,7 +14,6 @@ import {
   Clock,
   Database,
   ChevronDown,
-  ChevronUp,
   Calendar,
   Shield,
   RefreshCw,

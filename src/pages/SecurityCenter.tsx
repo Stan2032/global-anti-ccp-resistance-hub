@@ -9,10 +9,8 @@ import { lazy, Suspense } from 'react'
 import useWebRTCLeakCheck from '../hooks/useWebRTCLeakCheck'
 import securityData from '../data/security_center_data.json'
 import { 
-  Shield, 
   AlertTriangle,
   CheckCircle,
-  Eye,
   Download,
   Phone,
   AlertCircle,

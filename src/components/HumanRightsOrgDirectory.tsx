@@ -12,7 +12,6 @@ import {
   Building2,
   Search,
   ChevronDown,
-  ChevronUp,
   Copy,
   Check,
   ExternalLink,

@@ -8,7 +8,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, STATION_STATUS, PoliceStation, InternationalResponse, LegalCase } from '../services/dataApi';
-import { Shield, MapPin, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
+import { Shield, MapPin, Search, ChevronDown, ExternalLink, Copy, Check, Globe, Users, Lock, Eye, Scale } from 'lucide-react';
 // DiasporaSecurityAdvisor — personalized security guidance for diaspora communities
 // by country, cross-referencing police stations, international responses, and legal cases.
 // All data from verified Tier 1-2 sources via dataApi. CC BY 4.0.

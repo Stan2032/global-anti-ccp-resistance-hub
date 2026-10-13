@@ -5,7 +5,7 @@
  * @module MemorialWall
  */
 import React, { useState } from 'react';
-import { Heart, Calendar, MapPin, Search, Filter, Flame, ChevronDown } from 'lucide-react';
+import { Calendar, MapPin, Search, Flame, ChevronDown } from 'lucide-react';
 import { SourcesList } from './ui/SourceAttribution';
 import { useBrowserValue, useStoredJson } from '../utils/ssr';
 

@@ -15,7 +15,7 @@
  * @module NotificationCenter
  */
 import React, { useState, useMemo, useCallback } from 'react';
-import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
+import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 import { useClock, useStoredJson } from '../utils/ssr';
 

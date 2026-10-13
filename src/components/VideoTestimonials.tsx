@@ -6,7 +6,7 @@
  * @module VideoTestimonials
  */
 import React, { useState, useMemo } from 'react';
-import { Video, Play, Shield, AlertTriangle, ExternalLink, ChevronDown, Copy, Check, Search, Clock, MapPin, Globe, Eye, EyeOff, FileText } from 'lucide-react';
+import { Video, Play, Shield, AlertTriangle, ExternalLink, ChevronDown, Copy, Check, Search, Clock, MapPin, Globe, Eye, FileText } from 'lucide-react';
 
 // ── Curated video testimonials ──────────────────────────
 // All videos are publicly available from Tier 1-2 sources (BBC, PBS, Al Jazeera,

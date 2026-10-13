@@ -8,8 +8,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  User, Clock, Scale, AlertTriangle, ExternalLink,
-  ArrowRight, Heart, MapPin, Calendar, Filter
+  User,
+  Clock,
+  Scale,
+  ArrowRight,
+  MapPin,
 } from 'lucide-react';
 
 const PROFILES = [

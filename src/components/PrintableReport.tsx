@@ -6,7 +6,7 @@
  * @module PrintableReport
  */
 import React, { useState, useRef } from 'react';
-import { Printer, Download, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Printer, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
 import { useClock } from '../utils/ssr';
 

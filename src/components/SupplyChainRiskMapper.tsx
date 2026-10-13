@@ -9,7 +9,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type ForcedLabourCompany } from '../services/dataApi';
-import { Factory, Search, ChevronDown, Copy, Check, AlertTriangle, Shield, ExternalLink, BarChart3, Globe, Package, Scale, Layers } from 'lucide-react';
+import { Factory, Search, ChevronDown, Copy, Check, AlertTriangle, Shield, ExternalLink, Globe, Package, Scale, Layers } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 
 type RiskLevel = 'Critical' | 'High' | 'Moderate' | 'Low';
@@ -22,9 +22,6 @@ interface RiskStyle {
   description: string;
 }
 
-interface CompanyWithRisk extends ForcedLabourCompany {
-  riskLevel: RiskLevel;
-}
 
 interface IndustryRiskEntry {
   industry: string;

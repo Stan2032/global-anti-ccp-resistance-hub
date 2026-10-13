@@ -9,7 +9,12 @@
  */
 import React, { useState } from 'react';
 import {
-  Search, FileText, RefreshCw, Calendar, AlertTriangle, ScanEye, Lightbulb,
+  Search,
+  FileText,
+  RefreshCw,
+  Calendar,
+  AlertTriangle,
+  ScanEye,
 } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 

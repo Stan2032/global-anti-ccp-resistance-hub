@@ -5,9 +5,8 @@
  * @module CCPOfficials
  */
 import React, { useState } from 'react';
-import GlobalDisclaimer from './ui/GlobalDisclaimer';
-import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
-import { User, Search, Filter, AlertTriangle, ExternalLink, Shield, MapPin, Calendar, Scale, Globe, ChevronDown } from 'lucide-react';
+import { SourcesList } from './ui/SourceAttribution';
+import { User, Search, AlertTriangle, Shield, Calendar, Scale, Globe, ChevronDown } from 'lucide-react';
 import sanctionedOfficialsData from '../data/sanctioned_officials_research.json';
 
 interface KeyAction {

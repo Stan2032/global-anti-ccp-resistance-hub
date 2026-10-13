@@ -7,7 +7,7 @@
 import React, { useState, useMemo } from 'react';
 import { Building2, Ban, AlertTriangle, TrendingUp, BarChart3, BookOpen, Search, Landmark, Briefcase, Handshake, type LucideIcon } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
-import SourceAttribution, { SourcesList } from './ui/SourceAttribution';
+import SourceAttribution from './ui/SourceAttribution';
 import forcedLaborData from '../data/forced_labor_companies_research.json';
 
 type CompanyStatus = 'avoid' | 'concern' | 'improving' | 'good';

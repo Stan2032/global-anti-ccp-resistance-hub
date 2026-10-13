@@ -7,7 +7,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, STATION_STATUS, type PoliceStation, type LegalCase, type InternationalResponse } from '../services/dataApi';
-import { Globe, Shield, AlertTriangle, Search, ChevronDown, ExternalLink, Copy, Check, MapPin, Scale, Eye, Users, Lock } from 'lucide-react';
+import { Globe, Shield, Search, ChevronDown, ExternalLink, Copy, Check, MapPin, Scale, Lock } from 'lucide-react';
 import { THREAT_LEVELS, OPERATION_TYPES, RESPONSE_STATUSES } from './transnationalRepressionData';
 import { DisclosureSection } from './DisclosureSection';
 // TransnationalRepressionTracker — Cross-references police stations, legal cases,

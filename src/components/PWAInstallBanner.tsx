@@ -7,7 +7,7 @@
  * @module PWAInstallBanner
  */
 import React, { useState, useEffect } from 'react';
-import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
+import { Download, X, Smartphone } from 'lucide-react';
 import { isBrowser, readStoredValue, matchesMediaQuery, writeStoredValue } from '../utils/ssr';
 
 /** Browser event fired when the app is eligible for PWA installation */
@@ -25,12 +25,6 @@ declare global {
   }
   interface Navigator {
     standalone?: boolean;
-  }
-}
-
-declare module 'react' {
-  interface StyleHTMLAttributes<T> {
-    jsx?: boolean | string;
   }
 }
 
@@ -200,21 +194,6 @@ export default function PWAInstallBanner() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes slide-up {
-          from {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
-        }
-      `}</style>
     </div>
   );
 }

@@ -9,9 +9,17 @@
  */
 import React, { useMemo } from 'react';
 import {
-  Network, Users, Shield, MapPin, AlertTriangle,
-  ChevronDown, ExternalLink, Building2, Scale,
-  Target, Globe, Activity, Eye
+  Network,
+  Users,
+  Shield,
+  AlertTriangle,
+  ChevronDown,
+  Building2,
+  Scale,
+  Target,
+  Globe,
+  Activity,
+  Eye,
 } from 'lucide-react';
 import { dataApi, type SanctionedOfficial, type PoliticalPrisoner, type Sanction, type TimelineEvent } from '../services/dataApi';
 
@@ -220,7 +228,6 @@ const InfluenceNetwork = () => {
         facilities.length + companies.length + timeline.length,
     };
   }, []);
-
 
 
   return (

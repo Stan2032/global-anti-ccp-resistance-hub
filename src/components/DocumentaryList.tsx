@@ -5,7 +5,6 @@
  * @module DocumentaryList
  */
 import { useState } from 'react';
-import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { Film } from 'lucide-react';
 
 const DocumentaryList = () => {

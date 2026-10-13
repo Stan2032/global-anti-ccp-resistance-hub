@@ -13,7 +13,6 @@ import {
   MapPin,
   Search,
   ChevronDown,
-  ChevronUp,
   Copy,
   Check,
   ExternalLink,
@@ -23,7 +22,6 @@ import {
   ShieldCheck,
   ShieldQuestion,
   ShieldX,
-  Globe,
 } from 'lucide-react';
 
 /**

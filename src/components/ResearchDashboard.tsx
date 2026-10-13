@@ -6,10 +6,18 @@
  * @module ResearchDashboard
  */
 import React, { useState } from 'react';
-import { 
-  Users, Newspaper, MapPin, AlertTriangle, CheckCircle, 
-  XCircle, Eye, Clock, ExternalLink, Search, Filter,
-  TrendingUp, Globe, Shield, FileText
+import {
+  Users,
+  Newspaper,
+  MapPin,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  ExternalLink,
+  Search,
+  Globe,
+  Shield,
+  FileText,
 } from 'lucide-react';
 
 // Import research data

@@ -31,14 +31,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against Amnesty International, NCHRD, HKFP, UN WGAD,
 // Lawyers for Lawyers, and Hong Kong Labour Rights Monitor.

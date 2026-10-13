@@ -7,7 +7,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, InternationalResponse, Sanction, PoliceStation } from '../services/dataApi';
-import { Globe, Shield, AlertTriangle, Search, ChevronDown, Copy, Check, DollarSign, Scale, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
+import { Globe, Shield, AlertTriangle, Search, ChevronDown, Copy, Check, DollarSign, Users, Ban, Landmark, TrendingDown } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 // DiplomaticCoercionTracker — Maps CCP diplomatic & economic coercion against
 // nations criticizing its human rights record. Cross-references sanctions,

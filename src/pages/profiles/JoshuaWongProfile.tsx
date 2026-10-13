@@ -26,14 +26,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, HKFP, Amnesty International, CFHK, TIME.
 // See _agents/thoughts/SESSION_47_JOSHUA_WONG_PROFILE.md for verification methodology.

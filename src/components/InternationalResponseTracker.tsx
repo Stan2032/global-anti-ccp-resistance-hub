@@ -12,7 +12,6 @@ import {
   Globe,
   Search,
   ChevronDown,
-  ChevronUp,
   Copy,
   Check,
   Shield,

@@ -6,7 +6,7 @@
  * @module CrossDatasetInsightEngine
  */
 import React, { useState, useMemo } from 'react';
-import { Network, Search, Copy, Check, ChevronDown, Zap, Globe, Users, Scale, Factory, Building, Shield, AlertTriangle, TrendingUp, Link2 } from 'lucide-react';
+import { Network, Search, Copy, Check, ChevronDown, Globe, Users, Scale, Factory, Shield, TrendingUp, Link2 } from 'lucide-react';
 import {
   dataApi,
   type PoliticalPrisoner,

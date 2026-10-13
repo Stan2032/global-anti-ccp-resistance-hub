@@ -28,14 +28,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against Amnesty International, Safeguard Defenders, NCHRD,
 // HRW, RSF, Fortify Rights, and Free Gui Minhai campaign.

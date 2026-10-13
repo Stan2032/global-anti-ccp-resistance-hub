@@ -10,7 +10,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi, type PoliticalPrisoner, type DetentionFacility, type ForcedLabourCompany, type InternationalResponse, type PoliceStation, type LegalCase, type Sanction } from '../services/dataApi';
-import { Newspaper, Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';
+import { Search, ChevronDown, ExternalLink, Copy, Check, AlertTriangle, Eye, Shield, Globe, Scale, Megaphone } from 'lucide-react';
 // MediaNarrativeTracker — Tracks CCP state media propaganda narratives,
 // cross-referencing with verified evidence from political prisoners, detention
 // facilities, forced labor, legal cases, and international responses data.

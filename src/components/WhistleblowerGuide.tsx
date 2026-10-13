@@ -9,7 +9,7 @@
  */
 import { useState, useMemo } from 'react';
 import { dataApi } from '../services/dataApi';
-import { ShieldAlert, Search, ChevronDown, Copy, Check, Lock, Eye, FileText, Globe, AlertTriangle, Shield, Key, Users, MessageSquare, Server } from 'lucide-react';
+import { ShieldAlert, Search, ChevronDown, Copy, Check, Lock, Eye, FileText, Globe, AlertTriangle, Shield, Key } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 // WhistleblowerGuide — Operational security guidance for potential whistleblowers
 // exposing CCP human rights abuses. Covers secure submission channels, OpSec

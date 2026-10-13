@@ -7,7 +7,6 @@
  * @module CaseStudies
  */
 import React from 'react';
-import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import { User, Scale, ExternalLink, Heart, BookOpen, Clock, Globe, FileText } from 'lucide-react';
 
 const caseStudies = [

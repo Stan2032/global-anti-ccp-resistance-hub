@@ -10,9 +10,18 @@
 import React, { useMemo } from 'react';
 import { useClock } from '../utils/ssr';
 import {
-  Database, Users, Shield, Clock, Globe, BarChart3,
-  AlertTriangle, Building2, Scale, TrendingUp, CheckCircle,
-  Calendar, FileText, Activity, type LucideIcon
+  Users,
+  Shield,
+  Clock,
+  Globe,
+  BarChart3,
+  AlertTriangle,
+  Building2,
+  Scale,
+  CheckCircle,
+  Calendar,
+  Activity,
+  type LucideIcon,
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 

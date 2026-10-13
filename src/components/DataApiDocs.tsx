@@ -8,7 +8,7 @@
  * @module DataApiDocs
  */
 import React, { useState, useMemo } from 'react';
-import { Code, Database, Search, Filter, Globe, ChevronDown, Copy, CheckCircle, BookOpen } from 'lucide-react';
+import { Code, Database, Filter, Globe, ChevronDown, Copy, CheckCircle, BookOpen } from 'lucide-react';
 import { useClock } from '../utils/ssr';
 import { dataApi } from '../services/dataApi';
 

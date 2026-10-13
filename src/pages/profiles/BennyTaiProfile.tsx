@@ -25,14 +25,6 @@ import {
 } from 'lucide-react';
 
 
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, HKFP, Amnesty International, Human Rights Watch,
 // AP, and Reuters. CCP narrative rebuttals sourced from independent media, not CCP state outlets.

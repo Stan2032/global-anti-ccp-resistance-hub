@@ -5,7 +5,7 @@
  * @module WitnessProtection
  */
 import React, { useState } from 'react';
-import { ClipboardList, AlertTriangle, Siren, Plane, Scale, Handshake, Shield, Square } from 'lucide-react';
+import { ClipboardList, AlertTriangle, Siren, Shield, Square } from 'lucide-react';
 import { DisclosureSection } from './DisclosureSection';
 
 const WitnessProtection = () => {

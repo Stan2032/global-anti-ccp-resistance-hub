@@ -6,10 +6,18 @@
  * @module AcademicExperts
  */
 import React, { useState } from 'react';
-import { 
-  GraduationCap, Search, ExternalLink, ChevronDown,
-  BookOpen, Mic, Twitter, AlertTriangle, Building, Globe,
-  FileText, Shield
+import {
+  GraduationCap,
+  Search,
+  ExternalLink,
+  ChevronDown,
+  BookOpen,
+  Mic,
+  AtSign,
+  AlertTriangle,
+  Building,
+  Globe,
+  Shield,
 } from 'lucide-react';
 
 // Import research data
@@ -182,7 +190,7 @@ const AcademicExperts = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white"
                     >
-                      <Twitter className="w-3 h-3" />
+                      <AtSign className="w-3 h-3" aria-hidden="true" />
                       {expert.twitter}
                     </a>
                   )}
