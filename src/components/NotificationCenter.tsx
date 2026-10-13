@@ -2,16 +2,22 @@
 /**
  * NotificationCenter — Aggregated notification feed from all platform data sources.
  *
- * Pulls from emergency alerts, recent updates, and sanctions tracker to build
- * a unified notification feed. Supports category filtering, search, browser
+ * Pulls from recent updates and the sanctions tracker to build a unified
+ * notification feed. Supports category filtering, search, browser
  * notification permissions, and clipboard export.
+ *
+ * Emergency alerts are not repeated here. The dashboard shows them in its
+ * banner at the top, and this feed used to list them again: every live alert
+ * appeared twice on one page, dismissing one in the banner left it here, and
+ * the feed checked only `active`, so alerts past their expiry date still read
+ * as current. The feed points to the banner instead.
  *
  * @module NotificationCenter
  */
 import React, { useState, useMemo, useCallback } from 'react';
 import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
-import { useStoredJson } from '../utils/ssr';
+import { useClock, useStoredJson } from '../utils/ssr';
 
 // ── Types ───────────────────────────────────────────────
 
@@ -47,22 +53,6 @@ const CATEGORY_ORDER: CategoryKey[] = ['critical', 'sanctions', 'data', 'action'
 
 function buildNotificationFeed(): NotificationItem[] {
   const notifications: NotificationItem[] = [];
-
-  // Pull from emergency alerts (critical)
-  const alerts = dataApi.getAlerts();
-  (alerts || []).forEach((alert) => {
-    if (!alert.active) return;
-    notifications.push({
-      id: `alert-${alert.id}`,
-      category: alert.type === 'critical' ? 'critical' : 'sanctions',
-      title: alert.title,
-      summary: alert.summary,
-      date: alert.date,
-      source: 'Emergency Alerts',
-      url: null,
-      priority: alert.type === 'critical' ? 1 : 2,
-    });
-  });
 
   // Pull from recent updates (data / action)
   const updates = dataApi.getRecentUpdates();
@@ -207,6 +197,8 @@ export default function NotificationCenter() {
   const swSupported = isServiceWorkerSupported();
 
   const notifications = useMemo(() => buildNotificationFeed(), []);
+  const { now } = useClock();
+  const hasLiveAlerts = dataApi.getActiveAlerts(now).length > 0;
 
   const categoryCounts = useMemo(() => {
     const counts = { critical: 0, sanctions: 0, data: 0, action: 0 };
@@ -419,6 +411,14 @@ export default function NotificationCenter() {
           aria-label="Search notifications"
         />
       </div>
+
+      {hasLiveAlerts && (
+        <p className="text-xs font-mono text-slate-400">
+          <AlertTriangle className="w-3 h-3 inline mr-1 text-red-400" aria-hidden="true" />
+          Emergency alerts are at the{' '}
+          <a href="#emergency-alerts" className="text-[#22d3ee] hover:underline">top of this page</a>.
+        </p>
+      )}
 
       {/* Count */}
       <p className="text-xs font-mono text-slate-400">

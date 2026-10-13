@@ -238,3 +238,10 @@ describe('EmergencyAlerts', () => {
     expect(noHeading(/Taiwan Reports Increased PLA Activity/)).toBeFalsy();
   });
 });
+
+describe('EmergencyAlerts anchor', () => {
+  it('carries the id the notification feed links to', () => {
+    const { container } = render(<EmergencyAlerts />);
+    expect(container.querySelector('#emergency-alerts')).not.toBeNull();
+  });
+});

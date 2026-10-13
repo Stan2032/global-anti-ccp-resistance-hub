@@ -342,3 +342,34 @@ describe('NotificationCenter', () => {
     expect(cards(container)).toHaveLength(before);
   });
 });
+
+/**
+ * The dashboard shows emergency alerts in its banner at the top. This feed
+ * listed them again, so each live alert appeared twice on one page, and it
+ * checked only `active`, so alerts past their expiry date read as current.
+ */
+describe('NotificationCenter leaves emergency alerts to the banner', () => {
+  const alerts = dataApi.getAlerts();
+
+  it('lists none of the emergency alerts, live or expired', () => {
+    const { container } = render(<NotificationCenter />);
+    const text = container.textContent!;
+    const listed = alerts.filter(a => text.includes(a.title)).map(a => a.title);
+    expect(alerts.length).toBeGreaterThan(0);
+    expect(listed).toEqual([]);
+  });
+
+  it('points to the banner while any alert is live', () => {
+    const { container } = render(<NotificationCenter />);
+    const link = container.querySelector('a[href="#emergency-alerts"]');
+    expect(dataApi.getActiveAlerts().length).toBeGreaterThan(0);
+    expect(link?.textContent).toBe('top of this page');
+  });
+
+  it('does not point to a banner when no alert is live', () => {
+    vi.spyOn(dataApi, 'getActiveAlerts').mockReturnValue([]);
+    const { container } = render(<NotificationCenter />);
+    expect(container.querySelector('a[href="#emergency-alerts"]')).toBeNull();
+    vi.restoreAllMocks();
+  });
+});

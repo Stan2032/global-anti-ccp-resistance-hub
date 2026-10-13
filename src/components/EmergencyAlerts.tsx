@@ -200,7 +200,7 @@ const EmergencyAlerts = () => {
   };
 
   return (
-    <div className="space-y-3 mb-6">
+    <div id="emergency-alerts" className="space-y-3 mb-6">
       {shownAlerts.map(renderAlert)}
 
       {/* The rest, in the page and folded: this opens without JavaScript */}

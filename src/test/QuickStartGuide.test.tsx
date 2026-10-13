@@ -17,7 +17,21 @@ const mockLocalStorage = (() => {
   };
 })();
 
+// The guide opens by itself only at 1024px and wider. jsdom has no
+// matchMedia, so each test says how wide the screen is; wide by default.
+function screenWidth(px: number) {
+  Object.defineProperty(window, 'matchMedia', {
+    configurable: true,
+    writable: true,
+    value: (query: string) => {
+      const min = /min-width:\s*(\d+)px/.exec(query);
+      return { matches: min ? px >= Number(min[1]) : false, media: query, addEventListener() {}, removeEventListener() {} };
+    },
+  });
+}
+
 beforeEach(() => {
+  screenWidth(1440);
   mockLocalStorage._reset();
   // Restore implementations after clearing (mockClear removes them)
   mockLocalStorage.getItem.mockReset();
@@ -161,5 +175,31 @@ describe('HelpMenu', () => {
     expect(screen.getByText('Report an Issue')).toBeTruthy();
     expect(screen.getByText('Security Tips')).toBeTruthy();
     expect(screen.getByText('FAQ')).toBeTruthy();
+  });
+});
+
+describe('QuickStartGuide on a phone', () => {
+  // At 390px the open guide covered a quarter of the screen, over the first
+  // emergency alert, on every first visit.
+  it('does not open by itself', () => {
+    screenWidth(390);
+    renderGuide();
+    expect(screen.queryByText('Welcome to the Resistance Hub')).toBeNull();
+  });
+
+  it('offers a named button that opens it', () => {
+    screenWidth(390);
+    renderGuide();
+    fireEvent.click(screen.getByRole('button', { name: 'Open the quick start guide' }));
+    expect(screen.getByText('Welcome to the Resistance Hub')).toBeTruthy();
+  });
+});
+
+describe('QuickStartGuide says what the pages hold', () => {
+  it('describes /community as help, not a network of activists and events', () => {
+    renderGuide();
+    for (let i = 0; i < 5; i++) fireEvent.click(screen.getByText('next →'));
+    expect(screen.getByText('Get Help, or Help Others')).toBeTruthy();
+    expect(document.body.textContent).not.toMatch(/Find other activists|events, and support/);
   });
 });

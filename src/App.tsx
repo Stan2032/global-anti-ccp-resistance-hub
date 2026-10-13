@@ -116,7 +116,8 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ onMenuToggle, isMenuOpen })
       
       <div className="flex items-center gap-1.5 flex-shrink-0">
         <LanguageSelector />
-        <Link to="/security" className="px-2 py-1 bg-transparent text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors whitespace-nowrap">
+        {/* "sec" alone was the link's whole name: read aloud as "sec, link". */}
+        <Link to="/security" aria-label="Security" className="inline-flex items-center px-2 py-1 bg-transparent text-[#4afa82] text-xs font-mono font-medium border border-[#1c2a35] hover:border-[#4afa82] transition-colors whitespace-nowrap">
           sec
         </Link>
       </div>
