@@ -2,9 +2,9 @@
  * Live Data Service
  * Fetches real-time data from various sources
  *
- * Implements a dual-strategy RSS fetching approach:
- * 1. RSS2JSON API (primary, most reliable)
- * 2. allorigins.win CORS proxy (fallback)
+ * RSS feeds are fetched through this site's own Cloudflare Worker
+ * (/api/v1/feed?source=KEY), never by the reader's browser from the outlet
+ * or a public CORS proxy. Nothing about the reader reaches a third party.
  *
  * Filters content by relevance to CCP human rights topics using keyword scoring.
  *
@@ -63,17 +63,6 @@ export interface PlatformStatistics {
   sources: Record<string, string>;
 }
 
-/** Shape returned by the RSS2JSON API. */
-interface Rss2JsonResponse {
-  status: string;
-  items?: Array<{
-    title?: string;
-    description?: string;
-    link?: string;
-    pubDate?: string;
-  }>;
-}
-
 /** Shape of a political prisoner record from the research JSON. */
 interface PrisonerResearchRecord {
   input: string;
@@ -103,24 +92,25 @@ export interface NormalisedPrisoner {
   lastUpdated: string;
 }
 
-// RSS Feed URLs (using CORS proxies for client-side fetching)
-const RSS_FEEDS: Record<string, string> = {
-  icij: 'https://www.icij.org/feed/',
-  rfa: 'https://www.rfa.org/english/news/rss2.xml',
-  hkfp: 'https://hongkongfp.com/feed/',
-  aspi: 'https://www.aspistrategist.org.au/feed/',
-  hrw: 'https://www.hrw.org/rss/news',
-  amnesty: 'https://www.amnesty.org/en/feed/',
-  cpj: 'https://cpj.org/feed/',
-  guardian: 'https://www.theguardian.com/world/china/rss',
-  bbc: 'https://feeds.bbci.co.uk/news/world/asia/china/rss.xml',
-};
+/**
+ * The feeds this page reads, by key.
+ *
+ * Only keys. The URLs live in FEED_SOURCES in api/worker.js, which is the
+ * one place they are written down — this file and
+ * src/data/live_data_feeds.json each used to carry their own list, and they
+ * disagreed about the URLs for the same outlets.
+ */
+const RSS_FEEDS: readonly string[] = [
+  'icij', 'rfa', 'hkfp', 'aspi', 'hrw', 'amnesty', 'cpj', 'guardian', 'bbc',
+];
 
-// CORS proxy fallback for fetching RSS feeds from browser
-const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-
-// Primary strategy: RSS2JSON API (purpose-built for RSS, more reliable)
-const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+/**
+ * Feeds are fetched from our own Worker, never from the outlet or a public
+ * proxy, so nothing about the reader reaches a third party. See the comment
+ * on FEED_SOURCES in api/worker.js. The Worker owns the URLs; the browser
+ * only ever sends a key.
+ */
+const FEED_ENDPOINT = '/api/v1/feed?source=';
 
 // Keywords for relevance scoring
 const CCP_KEYWORDS: string[] = [
@@ -198,86 +188,41 @@ function cleanHTML(html: string): string {
 }
 
 /**
- * Fetch RSS feed via RSS2JSON API (returns JSON, no XML parsing needed).
+ * Fetch one RSS feed through our own Worker.
+ *
+ * There used to be two strategies here — RSS2JSON, falling back to the
+ * allorigins.win CORS proxy — because a browser cannot read a news site's
+ * RSS cross-origin. Both were third parties learning the reader's IP and
+ * which anti-CCP feeds they wanted, which is a poor trade on a site whose
+ * own guidance is that being identified is dangerous. The Worker does the
+ * fetch now, so there is one strategy and no third party.
+ *
+ * An empty array on failure, as before: a feed that will not load must not
+ * take the page down with it.
  */
-async function fetchViaRSS2JSON(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
-  const response = await fetch(RSS2JSON_API + encodeURIComponent(feedUrl));
-  if (!response.ok) throw new Error(`RSS2JSON HTTP ${response.status}`);
-  
-  const data: Rss2JsonResponse = await response.json();
-  if (data.status !== 'ok' || !data.items) throw new Error('RSS2JSON invalid response');
-  
-  const items: FeedItem[] = [];
-  data.items.slice(0, 20).forEach((item, index) => {
-    const title = item.title || '';
-    const description = cleanHTML(item.description || '');
-    const link = item.link || '';
-    const pubDate = item.pubDate || '';
-    
-    const text = `${title} ${description}`.toLowerCase();
-    let relevanceScore = 0;
-    CCP_KEYWORDS.forEach(keyword => {
-      if (text.includes(keyword.toLowerCase())) {
-        relevanceScore += 10;
-      }
+async function fetchRSSFeed(sourceName: string): Promise<FeedItem[]> {
+  try {
+    const response = await fetch(FEED_ENDPOINT + encodeURIComponent(sourceName), {
+      headers: { Accept: 'application/xml, text/xml' },
     });
-    
-    if (relevanceScore > 0 || ALWAYS_RELEVANT_SOURCES.includes(sourceName)) {
-      items.push({
-        id: `${sourceName}-${index}-${Date.now()}`,
-        title: title.trim(),
-        link: link.trim(),
-        description: cleanHTML(description).substring(0, 300),
-        pubDate: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
-        source: sourceName,
-        relevanceScore,
-      });
+    if (!response.ok) throw new Error(`feed endpoint HTTP ${response.status}`);
+    // `vite dev` has no Worker, so /api/* returns the SPA's HTML with a 200.
+    // Without this the feed would parse to zero items and look merely empty.
+    const contentType = response.headers.get('content-type') || '';
+    if (!/xml/i.test(contentType)) {
+      throw new Error(`feed endpoint returned ${contentType || 'no content-type'}, not XML`);
     }
-  });
-  
-  return items;
-}
-
-/** Fetch RSS feed with CORS proxy (XML parsing fallback). */
-async function fetchViaCORSProxy(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
-  const response = await fetch(CORS_PROXY + encodeURIComponent(feedUrl), {
-    headers: {
-      'Accept': 'application/xml, text/xml, application/rss+xml',
-    },
-  });
-  if (!response.ok) throw new Error(`CORS proxy HTTP ${response.status}`);
-  
-  const xmlText = await response.text();
-  return parseRSSFeed(xmlText, sourceName);
-}
-
-/**
- * Fetch RSS feed with fallback strategies:
- * 1. RSS2JSON API (most reliable, purpose-built for RSS)
- * 2. allorigins.win CORS proxy (fallback)
- */
-async function fetchRSSFeed(feedUrl: string, sourceName: string): Promise<FeedItem[]> {
-  // Strategy 1: RSS2JSON API
-  try {
-    const items = await fetchViaRSS2JSON(feedUrl, sourceName);
-    return items;
-  } catch (e: unknown) {
-    logger.warn('feed', `RSS2JSON failed for ${sourceName}, trying CORS proxy:`, (e as Error).message);
-  }
-  
-  // Strategy 2: CORS proxy
-  try {
-    return await fetchViaCORSProxy(feedUrl, sourceName);
+    return parseRSSFeed(await response.text(), sourceName);
   } catch (error: unknown) {
-    logger.error('feed', `Error fetching ${sourceName} feed (all strategies failed):`, error);
+    logger.error('feed', `Error fetching ${sourceName} feed:`, error);
     return [];
   }
 }
 
 /** Fetch all RSS feeds and combine results, sorted by relevance then date. */
 export async function fetchAllFeeds(): Promise<FeedItem[]> {
-  const feedPromises = Object.entries(RSS_FEEDS).map(([name, url]) =>
-    fetchRSSFeed(url, name)
+  const feedPromises = RSS_FEEDS.map(name =>
+    fetchRSSFeed(name)
   );
   
   const results = await Promise.allSettled(feedPromises);
@@ -306,8 +251,8 @@ export async function fetchFeedsProgressively(
   onItems: (items: FeedItem[]) => void,
   onSourceDone?: (sourceName: string) => void
 ): Promise<void> {
-  const feedPromises = Object.entries(RSS_FEEDS).map(async ([name, url]) => {
-    const items = await fetchRSSFeed(url, name);
+  const feedPromises = RSS_FEEDS.map(async name => {
+    const items = await fetchRSSFeed(name);
     if (items.length > 0) {
       onItems(items);
     }

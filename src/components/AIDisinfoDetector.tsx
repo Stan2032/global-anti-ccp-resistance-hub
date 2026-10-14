@@ -7,7 +7,7 @@
  * @module AIDisinfoDetector
  */
 import React, { useState } from 'react';
-import { Brain, AlertTriangle, CheckCircle, Search, ExternalLink, TrendingUp, Eye } from 'lucide-react';
+import { Brain, AlertTriangle, Search, ExternalLink, Eye } from 'lucide-react';
 import GlobalDisclaimer from './ui/GlobalDisclaimer';
 
 interface DetectedPattern {
@@ -228,7 +228,7 @@ const AIDisinfoDetector = () => {
                   <h4 className="font-medium text-white text-sm">{example.title}</h4>
                   <span className="text-xs text-slate-400">Expected: {example.expectedRisk}</span>
                 </div>
-                <p className="text-sm text-slate-400 mb-3 line-clamp-3">{example.text}</p>
+                <p className="text-sm text-slate-400 mb-3">{example.text}</p>
                 <button
                   onClick={() => setInputText(example.text)}
                   className="text-sm text-cyan-400 hover:text-cyan-300"

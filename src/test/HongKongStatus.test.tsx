@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import HongKongStatus from '../components/HongKongStatus';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('HongKongStatus', () => {
   // --- Header ---
@@ -28,63 +29,59 @@ describe('HongKongStatus', () => {
     expect(screen.getByText('Charged under NSL')).toBeTruthy();
     expect(screen.getByText('10+')).toBeTruthy();
     expect(screen.getByText('Media outlets closed')).toBeTruthy();
-    expect(screen.getByText('500,000+')).toBeTruthy();
+    expect(screen.getAllByText('500,000+').length).toBeGreaterThan(0);
     expect(screen.getByText('Emigrated since 2020')).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<HongKongStatus />);
-    expect(screen.getByText('Overview')).toBeTruthy();
-    expect(screen.getByText('Repressive Laws')).toBeTruthy();
-    expect(screen.getByText('Arrests & Trials')).toBeTruthy();
-    expect(screen.getByText('Exodus')).toBeTruthy();
+    expectDisclosureSections(['Overview', 'Repressive Laws', 'Arrests & Trials', 'Exodus']);
   });
 
-  it('shows Overview tab content by default (closed orgs)', () => {
+  it('shows the Overview section (closed orgs)', () => {
     render(<HongKongStatus />);
-    expect(screen.getByText('Closed Organizations')).toBeTruthy();
-    expect(screen.getByText('Apple Daily')).toBeTruthy();
-    expect(screen.getByText('Stand News')).toBeTruthy();
-    expect(screen.getByText('HK Alliance')).toBeTruthy();
-    expect(screen.getByText('PTU (95K members)')).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('Closed Organizations')).toBeTruthy();
+    expect(section.getByText('Apple Daily')).toBeTruthy();
+    expect(section.getByText('Stand News')).toBeTruthy();
+    expect(section.getByText('HK Alliance')).toBeTruthy();
+    expect(section.getByText('PTU (95K members)')).toBeTruthy();
   });
 
-  it('switches to Repressive Laws tab', () => {
+  it('shows the Repressive Laws section without interaction', () => {
     render(<HongKongStatus />);
-    fireEvent.click(screen.getByText('Repressive Laws'));
-    expect(screen.getByText('National Security Law (NSL)')).toBeTruthy();
-    expect(screen.getByText('Article 23')).toBeTruthy();
-    expect(screen.getByText('Criminalizes secession, subversion, terrorism, and collusion with foreign forces.')).toBeTruthy();
-    expect(screen.getByText('Retroactive application')).toBeTruthy();
+    const section = inSection('Repressive Laws');
+    expect(section.getByText('National Security Law (NSL)')).toBeTruthy();
+    expect(section.getByText('Article 23')).toBeTruthy();
+    expect(section.getByText('Criminalizes secession, subversion, terrorism, and collusion with foreign forces.')).toBeTruthy();
+    expect(section.getByText('Retroactive application')).toBeTruthy();
   });
 
-  it('switches to Arrests & Trials tab', () => {
+  it('shows the Arrests & Trials section without interaction', () => {
+    render(<HongKongStatus />);
+    const section = inSection('Arrests & Trials');
+    expect(section.getByText('Jimmy Lai')).toBeTruthy();
+    expect(section.getByText('SENTENCED')).toBeTruthy();
+    expect(section.getByText('Hong Kong 47')).toBeTruthy();
+    expect(section.getByText('45 CONVICTED')).toBeTruthy();
+    expect(section.getByText('Chow Hang-tung')).toBeTruthy();
+  });
+
+  it('shows the Exodus section without interaction', () => {
+    render(<HongKongStatus />);
+    const section = inSection('Exodus');
+    // The 500,000+ appears in both the stats and the Exodus section — check specific exodus text
+    expect(section.getByText('Estimated emigrants since 2020')).toBeTruthy();
+    expect(section.getByText('180,000+ (BNO)')).toBeTruthy();
+  });
+
+  it('opening one section hides nothing in the others', () => {
     render(<HongKongStatus />);
     fireEvent.click(screen.getByText('Arrests & Trials'));
-    expect(screen.getByText('Jimmy Lai')).toBeTruthy();
-    expect(screen.getByText('SENTENCED')).toBeTruthy();
-    expect(screen.getByText('Hong Kong 47')).toBeTruthy();
-    expect(screen.getByText('45 CONVICTED')).toBeTruthy();
-    expect(screen.getByText('Chow Hang-tung')).toBeTruthy();
-  });
-
-  it('switches to Exodus tab', () => {
-    render(<HongKongStatus />);
-    fireEvent.click(screen.getByText('Exodus'));
-    // The 500,000+ appears in both stats and exodus tab — check specific exodus text
-    expect(screen.getByText('Estimated emigrants since 2020')).toBeTruthy();
-    expect(screen.getByText('180,000+ (BNO)')).toBeTruthy();
-  });
-
-  it('hides previous tab content when switching tabs', () => {
-    render(<HongKongStatus />);
-    // Default is Overview — closed orgs visible
-    expect(screen.getByText('Closed Organizations')).toBeTruthy();
-    // Switch to Arrests
-    fireEvent.click(screen.getByText('Arrests & Trials'));
-    expect(screen.queryByText('Closed Organizations')).toBeFalsy();
+    expect(inSection('Overview').getByText('Closed Organizations')).toBeTruthy();
+    expect(inSection('Arrests & Trials').getByText('Jimmy Lai')).toBeTruthy();
   });
 
   // --- Resources ---

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import RecentUpdates from '../components/RecentUpdates';
 import updates from '../data/recent_updates.json';
@@ -10,6 +10,13 @@ const renderComponent = () =>
       <RecentUpdates />
     </MemoryRouter>
   );
+
+// Updates after the newest five sit in one native <details>.
+const earlier = () => {
+  const details = screen.getByText(/\$ show --all/).closest('details');
+  expect(details, 'the earlier updates are a <details>').toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('RecentUpdates', () => {
   describe('Rendering', () => {
@@ -33,14 +40,13 @@ describe('RecentUpdates', () => {
       });
     });
 
-    it('does not show updates beyond the initial 5', () => {
+    it('keeps the earlier updates in the page, folded away', () => {
       renderComponent();
       const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      if (sorted.length > 5) {
-        // The 6th update should NOT be visible initially
-        const sixthUpdate = sorted[5];
-        expect(screen.queryByText(sixthUpdate.title)).not.toBeInTheDocument();
-      }
+      expect(sorted.length).toBeGreaterThan(5);
+      const sixth = screen.getByText(sorted[5].title);
+      expect(sixth.closest('details')).toBe(earlier());
+      expect(earlier().open).toBe(false);
     });
 
     it('renders descriptions for displayed updates', () => {
@@ -52,98 +58,58 @@ describe('RecentUpdates', () => {
   });
 
   describe('Category Labels', () => {
-    it('renders ALERT category labels', () => {
+    it('renders an ALERT label for every alert', () => {
       renderComponent();
-      // ALERT entries may be below the initial display threshold (5 items)
-      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
-      const visibleAlertUpdates = sorted.slice(0, 5).filter((u) => u.category === 'alert');
-      if (visibleAlertUpdates.length > 0) {
-        expect(screen.getAllByText('ALERT').length).toBeGreaterThan(0);
-      }
+      expect(updates.filter((u) => u.category === 'alert').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('ALERT')).toHaveLength(updates.filter((u) => u.category === 'alert').length);
     });
 
-    it('renders CASE category labels', () => {
+    it('renders a CASE label for every case update', () => {
       renderComponent();
-      const caseUpdates = updates.filter((u) => u.category === 'case_update');
-      // CASE entries may be below the initial display threshold (5 items)
-      // Only check if there are case_update entries in the top 5
-      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
-      const visibleCaseUpdates = sorted.slice(0, 5).filter((u) => u.category === 'case_update');
-      if (visibleCaseUpdates.length > 0) {
-        expect(screen.getAllByText('CASE').length).toBeGreaterThan(0);
-      } else if (caseUpdates.length > 0) {
-        // Expand to see all entries
-        fireEvent.click(screen.getByRole('button', { expanded: false }));
-        expect(screen.getAllByText('CASE').length).toBeGreaterThan(0);
-      }
+      expect(updates.filter((u) => u.category === 'case_update').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('CASE')).toHaveLength(updates.filter((u) => u.category === 'case_update').length);
     });
 
-    it('renders DATA category labels', () => {
+    it('renders a DATA label for every data update', () => {
       renderComponent();
-      // DATA entries may be below the initial display threshold (5 items)
-      const sorted = [...updates].sort((a, b) => b.date.localeCompare(a.date));
-      const visibleDataUpdates = sorted.slice(0, 5).filter((u) => u.category === 'data');
-      if (visibleDataUpdates.length > 0) {
-        expect(screen.getAllByText('DATA').length).toBeGreaterThan(0);
-      }
+      expect(updates.filter((u) => u.category === 'data').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('DATA').length).toBeGreaterThanOrEqual(updates.filter((u) => u.category === 'data').length);
     });
 
-    it('renders VERIFIED category labels for verification updates', () => {
+    it('renders a VERIFIED label for every verification update', () => {
       renderComponent();
-      const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      const visibleVerificationUpdates = sorted.slice(0, 5).filter((u) => u.category === 'verification');
-      if (visibleVerificationUpdates.length > 0) {
-        expect(screen.getAllByText('VERIFIED').length).toBeGreaterThan(0);
-      }
+      expect(screen.queryAllByText('VERIFIED')).toHaveLength(updates.filter((u) => u.category === 'verification').length);
     });
   });
 
   describe('Show More / Collapse', () => {
-    it('shows the "show more" button when there are more than 5 updates', () => {
+    it('says how many earlier updates are folded away', () => {
       renderComponent();
-      if (updates.length > 5) {
-        const moreCount = updates.length - 5;
-        expect(screen.getByText(`$ show --all (${moreCount} more)`)).toBeInTheDocument();
-      }
+      expect(updates.length).toBeGreaterThan(5);
+      expect(within(earlier().querySelector('summary')!).getByText(`$ show --all (${updates.length - 5} more)`)).toBeInTheDocument();
     });
 
-    it('reveals all updates when "show more" is clicked', () => {
+    it('has every update in the page without a click', () => {
       renderComponent();
-      if (updates.length > 5) {
-        const showMoreBtn = screen.getByRole('button', { expanded: false });
-        fireEvent.click(showMoreBtn);
-
-        // All updates should now be visible
-        updates.forEach((update) => {
-          expect(screen.getByText(update.title)).toBeInTheDocument();
-        });
-      }
+      updates.forEach((update) => {
+        expect(screen.getByText(update.title)).toBeInTheDocument();
+      });
     });
 
-    it('collapses back to 5 updates when collapse is clicked', () => {
+    it('opens and folds the earlier updates natively', () => {
       renderComponent();
-      if (updates.length > 5) {
-        // Expand
-        const showMoreBtn = screen.getByRole('button', { expanded: false });
-        fireEvent.click(showMoreBtn);
-
-        // Collapse
-        const collapseBtn = screen.getByRole('button', { expanded: true });
-        fireEvent.click(collapseBtn);
-
-        // 6th update should be hidden again
-        const sorted = [...updates].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        expect(screen.queryByText(sorted[5].title)).not.toBeInTheDocument();
-      }
+      fireEvent.click(earlier().querySelector('summary')!);
+      expect(earlier().open).toBe(true);
+      fireEvent.click(earlier().querySelector('summary')!);
+      expect(earlier().open).toBe(false);
     });
 
-    it('shows collapse text after expanding', () => {
+    it('offers "$ collapse --updates" once open', () => {
+      // The two labels swap with CSS (summary-open:), which jsdom does not apply.
       renderComponent();
-      if (updates.length > 5) {
-        const showMoreBtn = screen.getByRole('button', { expanded: false });
-        fireEvent.click(showMoreBtn);
-        expect(screen.getByText('$ collapse --updates')).toBeInTheDocument();
-      }
+      const collapse = within(earlier().querySelector('summary')!).getByText('$ collapse --updates');
+      expect(collapse.className).toMatch(/(^|\s)hidden(\s|$)/);
+      expect(collapse.className).toContain('summary-open:inline');
     });
   });
 
@@ -231,22 +197,10 @@ describe('RecentUpdates', () => {
   });
 
   describe('Accessibility', () => {
-    it('show more button has aria-expanded attribute', () => {
-      renderComponent();
-      if (updates.length > 5) {
-        const btn = screen.getByRole('button', { expanded: false });
-        expect(btn).toHaveAttribute('aria-expanded', 'false');
-      }
-    });
-
-    it('aria-expanded updates when expanded', () => {
-      renderComponent();
-      if (updates.length > 5) {
-        const btn = screen.getByRole('button', { expanded: false });
-        fireEvent.click(btn);
-        const expandedBtn = screen.getByRole('button', { expanded: true });
-        expect(expandedBtn).toHaveAttribute('aria-expanded', 'true');
-      }
+    it('uses a native disclosure, not a JavaScript-only toggle', () => {
+      const { container } = renderComponent();
+      expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+      expect(earlier().firstElementChild?.tagName).toBe('SUMMARY');
     });
 
     it('category icons have aria-hidden', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -25,6 +25,13 @@ const renderTakeAction = () =>
       <TakeAction />
     </MemoryRouter>
   );
+
+// Each of the five actions is a native <details> whose summary holds its title.
+const action = (title: string) => {
+  const details = screen.getByText(title).closest('details');
+  expect(details, `"${title}" is a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
 
 describe('TakeAction', () => {
   beforeEach(() => {
@@ -74,99 +81,76 @@ describe('TakeAction', () => {
     expect(screen.getByText('Five Things You Can Do')).toBeTruthy();
   });
 
-  it('renders first 3 action titles by default', () => {
+  it('shows all five actions, each a native disclosure closed to start', () => {
+    // Three used to show until "$ show --all" was clicked, so a reader
+    // without JavaScript got three of the five things.
     renderTakeAction();
-    expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
-    expect(screen.getByText('CONTACT YOUR REPRESENTATIVES')).toBeTruthy();
-    expect(screen.getByText('SIGN PETITIONS & BOYCOTT')).toBeTruthy();
-    // Actions 4-5 hidden behind "Show more"
-    expect(screen.queryByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeNull();
+    for (const title of ['DONATE TO VERIFIED ORGANIZATIONS', 'CONTACT YOUR REPRESENTATIVES', 'SIGN PETITIONS & BOYCOTT', 'SPREAD AWARENESS & SHOW SOLIDARITY', 'STAY INFORMED & STAY SECURE']) {
+      const card = action(title);
+      expect(card.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(card.open).toBe(false);
+    }
+    expect(screen.queryByText(/show --all/)).toBeNull();
   });
 
-  it('shows all 5 actions after clicking "show all"', () => {
+
+  // --- Native disclosure ---
+
+  it('an action carries its links without a click', () => {
     renderTakeAction();
-    const showAllBtn = screen.getByText(/show --all 5 actions/);
-    fireEvent.click(showAllBtn);
-    expect(screen.getByText('DONATE TO VERIFIED ORGANIZATIONS')).toBeTruthy();
-    expect(screen.getByText('SIGN PETITIONS & BOYCOTT')).toBeTruthy();
-    expect(screen.getByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeTruthy();
-    expect(screen.getByText('STAY INFORMED & STAY SECURE')).toBeTruthy();
+    const donate = within(action('DONATE TO VERIFIED ORGANIZATIONS'));
+    expect(donate.getByText('Uyghur Human Rights Project')).toBeTruthy();
+    expect(donate.getByText('Hong Kong Watch')).toBeTruthy();
+    expect(donate.getByText('International Campaign for Tibet')).toBeTruthy();
+    expect(donate.getAllByText('Safeguard Defenders').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('collapses back to 3 actions after clicking "show less"', () => {
+  it('an action opens and closes natively', () => {
     renderTakeAction();
-    fireEvent.click(screen.getByText(/show --all 5 actions/));
-    expect(screen.getByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeTruthy();
-    fireEvent.click(screen.getByText('$ show --less'));
-    expect(screen.queryByText('SPREAD AWARENESS & SHOW SOLIDARITY')).toBeNull();
+    const donate = action('DONATE TO VERIFIED ORGANIZATIONS');
+    fireEvent.click(donate.querySelector('summary')!);
+    expect(donate.open).toBe(true);
+    fireEvent.click(donate.querySelector('summary')!);
+    expect(donate.open).toBe(false);
   });
 
-  // --- Expandable Actions ---
-
-  it('expands action when clicked', () => {
+  it('shows stats in an action without a click', () => {
     renderTakeAction();
-    const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton!);
-    // Should show the action links
-    expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
-    expect(screen.getByText('Hong Kong Watch')).toBeTruthy();
-    expect(screen.getByText('International Campaign for Tibet')).toBeTruthy();
-    expect(screen.getAllByText('Safeguard Defenders').length).toBeGreaterThanOrEqual(1);
-  });
-
-  it('collapses action when clicked again', () => {
-    renderTakeAction();
-    const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton!);
-    expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
-    fireEvent.click(donateButton!);
-    expect(screen.queryByText('Uyghur Human Rights Project')).toBeNull();
-  });
-
-  it('shows stats in expanded action', () => {
-    renderTakeAction();
-    const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    fireEvent.click(donateButton!);
-    expect(screen.getByText(/29 in-depth reports/)).toBeTruthy();
+    expect(within(action('DONATE TO VERIFIED ORGANIZATIONS')).getByText(/29 in-depth reports/)).toBeTruthy();
   });
 
   it('shows sample message template for contact representatives', () => {
     renderTakeAction();
-    const contactButton = screen.getByText('CONTACT YOUR REPRESENTATIVES').closest('button');
-    fireEvent.click(contactButton!);
-    expect(screen.getByText('Sample Message:')).toBeTruthy();
-    expect(screen.getByText(/I am writing to urge you/)).toBeTruthy();
+    const contact = within(action('CONTACT YOUR REPRESENTATIVES'));
+    expect(contact.getByText('Sample Message:')).toBeTruthy();
+    expect(contact.getByText(/I am writing to urge you/)).toBeTruthy();
   });
 
   it('shows companies to boycott list', () => {
     renderTakeAction();
-    const petitionButton = screen.getByText('SIGN PETITIONS & BOYCOTT').closest('button');
-    fireEvent.click(petitionButton!);
-    expect(screen.getByText('Companies to Avoid:')).toBeTruthy();
-    expect(screen.getByText('Shein')).toBeTruthy();
-    expect(screen.getByText('Temu')).toBeTruthy();
-    expect(screen.getByText('Hikvision')).toBeTruthy();
-    expect(screen.getByText('Huawei')).toBeTruthy();
+    const petitions = within(action('SIGN PETITIONS & BOYCOTT'));
+    expect(petitions.getByText('Companies to Avoid:')).toBeTruthy();
+    expect(petitions.getByText('Shein')).toBeTruthy();
+    expect(petitions.getByText('Temu')).toBeTruthy();
+    expect(petitions.getByText('Hikvision')).toBeTruthy();
+    expect(petitions.getByText('Huawei')).toBeTruthy();
   });
 
   it('shows recommended security tools', () => {
     renderTakeAction();
-    fireEvent.click(screen.getByText(/show --all 5 actions/));
-    const secureButton = screen.getByText('STAY INFORMED & STAY SECURE').closest('button');
-    fireEvent.click(secureButton!);
-    expect(screen.getByText('Recommended Tools:')).toBeTruthy();
+    const secure = within(action('STAY INFORMED & STAY SECURE'));
+    expect(secure.getByText('Recommended Tools:')).toBeTruthy();
     // 'Signal' appears in both tools and action links, so check for at least one
-    expect(screen.getAllByText('Signal').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Tor Browser')).toBeTruthy();
-    expect(screen.getByText('ProtonMail')).toBeTruthy();
+    expect(secure.getAllByText('Signal').length).toBeGreaterThanOrEqual(1);
+    expect(secure.getByText('Tor Browser')).toBeTruthy();
+    expect(secure.getByText('ProtonMail')).toBeTruthy();
   });
 
-  it('has aria-expanded attributes on action buttons', () => {
+  it('uses native disclosures, not JavaScript-only expanders', () => {
     renderTakeAction();
-    const donateButton = screen.getByText('DONATE TO VERIFIED ORGANIZATIONS').closest('button');
-    expect(donateButton!.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(donateButton!);
-    expect(donateButton!.getAttribute('aria-expanded')).toBe('true');
+    const grid = document.getElementById('actions')!;
+    expect(grid.querySelectorAll('details')).toHaveLength(5);
+    expect(grid.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
   // --- Emergency Contacts ---

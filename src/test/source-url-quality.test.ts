@@ -50,7 +50,7 @@ const TRUSTED_HR_DOMAINS = [
   'ohchr.org', 'house.gov', 'duihua.org', 'pillarcatholic.com',
   'savetibet.org', 'thestandard.com.hk', 'chinaaid.org',
   'article19.org', 'hongkongwatch.org', 'southmongolia.org',
-  'rsf.org', 'nchrd.org', 'cecc.gov',
+  'rsf.org', 'nchrd.org', 'cecc.gov', 'cpj.org',
   // Legal and professional organizations
   'ibanet.org',
   // Regional news and research
@@ -115,8 +115,17 @@ describe('Political Prisoners source URL quality', () => {
   it('no two prisoners share the exact same source URL (unless co-defendants)', () => {
     // Co-defendants in the same trial may legitimately share a source URL
     const KNOWN_CO_DEFENDANT_URLS = new Set([
-      // HK Alliance subversion trial: Chow Hang-tung, Albert Ho
+      // HK Alliance subversion trial: Chow Hang-tung, Lee Cheuk-yan, Albert Ho.
+      // All three were convicted 2026-08-21 and sentenced 2026-09-11 in the
+      // same case, so they legitimately cite the same Amnesty report.
+      'https://www.amnesty.org/en/latest/news/2026/09/hong-kong-sentencing-of-tiananmen-activists-a-triple-tragedy-and-affront-to-history/',
+      // Superseded, kept in case an entry still references the trial-opening report.
       'https://www.amnesty.org/en/latest/news/2026/01/hong-kong-trial-of-tiananmen-activists-a-cynical-attempt-to-erase-historical-memory/',
+      // Hong Kong 47 appeal: Gwyneth Ho and Leung Kwok-hung were among the 12
+      // whose appeals the Court of Appeal dismissed in one judgment on
+      // 2026-02-23, and this report gives each one's appeal (conviction only,
+      // or conviction and sentence).
+      'https://hongkongfp.com/2026/02/23/breaking-court-rejects-appeals-of-all-12-activists-in-landmark-hong-kong-47-national-security-case/',
     ]);
     const urlMap = new Map<string, string[]>();
     for (const entry of data.results) {

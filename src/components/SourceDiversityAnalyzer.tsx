@@ -409,7 +409,7 @@ export default function SourceDiversityAnalyzer() {
             const widthPct = Math.max(5, Math.round((count / maxCount) * 100));
             return (
               <div key={domain} className="flex items-center space-x-3">
-                <div className="w-40 md:w-48 flex-shrink-0 text-sm text-slate-300 truncate" title={getSourceName(domain)}>
+                <div className="w-40 md:w-48 flex-shrink-0 text-sm text-slate-300 break-all" title={getSourceName(domain)}>
                   {getSourceName(domain)}
                 </div>
                 <div className="flex-1 h-5 bg-[#0a0e14] overflow-hidden">

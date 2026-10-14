@@ -1,5 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* No webfont imports, and none should be added.
+ *
+ * Inter and JetBrains Mono used to be pulled from fonts.googleapis.com here.
+ * They never arrived: the Content-Security-Policy is `style-src 'self'` and
+ * `font-src 'self'`, so the browser refused both stylesheets on every page
+ * load ("Refused to load the stylesheet ... because it violates the
+ * following Content Security Policy directive"). Every reader has been
+ * seeing the system-font fallback since the CSP was introduced.
+ *
+ * So the imports bought nothing and cost a DNS lookup and connection attempt
+ * to Google on every page view — telling Google the IP address of everyone
+ * reading an anti-CCP site, which is the one thing this project should not
+ * leak.
+ *
+ * The family names stay in the stacks below: if a reader happens to have
+ * Inter installed locally it will be used, and otherwise the system font
+ * takes over, exactly as it does today. To genuinely ship these faces,
+ * self-host the files and keep `font-src 'self'` — do not re-add a
+ * third-party import.
+ */
 
 @tailwind base;
 @tailwind components;

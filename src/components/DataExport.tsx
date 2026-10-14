@@ -8,7 +8,7 @@
  * @module DataExport
  */
 import React, { useState, useCallback, useMemo } from 'react';
-import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList, type LucideIcon } from 'lucide-react';
+import { Link2, ShieldAlert, Users, Ban, Factory, Calendar, UserX, BarChart3, FileText, Upload, ClipboardList } from 'lucide-react';
 import { extractRecords, recordsToCsv, recordsToMarkdown } from '../utils/exportUtils';
 import prisonersData from '../data/political_prisoners_research.json';
 import policeStationsData from '../data/police_stations_research.json';
@@ -36,15 +36,6 @@ interface ExportEntry {
   data: Record<string, unknown>[];
 }
 
-interface Dataset {
-  id: string;
-  name: string;
-  description: string;
-  records: number;
-  lastUpdated: string;
-  fields: string[];
-  Icon: LucideIcon;
-}
 
 const DATA_MAP = {
   prisoners: { raw: prisonersData, label: 'Political Prisoners Database' },

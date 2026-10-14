@@ -9,6 +9,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Clock, MapPin, Cake, Calendar } from 'lucide-react';
 import { calculateAge } from '../utils/dateUtils';
 import { logger } from '../utils/logger';
+import { useClock } from '../utils/ssr';
 
 const formatDetentionDate = (dateStr: string) => {
   const date = new Date(dateStr + 'T00:00:00');
@@ -16,6 +17,7 @@ const formatDetentionDate = (dateStr: string) => {
 };
 
 const UrgentCaseTimer = ({ compact = false }) => {
+  const { now } = useClock();
   const [timers, setTimers] = useState<Record<string, { years: number; days: number; hours: number; minutes: number; seconds: number; totalDays: number }>>({});
 
   const urgentCases = useMemo(() => [
@@ -218,7 +220,7 @@ const UrgentCaseTimer = ({ compact = false }) => {
                 </div>
                 <div className="flex items-center gap-2 text-slate-400">
                   <Cake className="w-4 h-4" />
-                  <span>Age: {calculateAge(prisoner.birthDate)}</span>
+                  <span>Age: {calculateAge(prisoner.birthDate, undefined, now)}</span>
                 </div>
               </div>
 

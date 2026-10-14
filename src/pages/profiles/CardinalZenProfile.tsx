@@ -5,30 +5,27 @@
  *
  * @module CardinalZenProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Book
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Newspaper,
+  Flag,
+  Heart,
 } from 'lucide-react';
 
-
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
-}
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, Vatican News, Amnesty International,
@@ -38,13 +35,11 @@ const PROFILE = {
   name: 'Cardinal Joseph Zen',
   chineseName: '陳日君',
   birthDate: 'January 13, 1932',
-  birthPlace: 'Shanghai, China',
   nationality: 'Chinese (Hong Kong permanent resident)',
   status: 'AT RISK',
   currentLocation: 'Hong Kong',
-  sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund. Arrested May 11, 2022 under the NSL',
-  age: String(new Date().getFullYear() - 1932),
-    occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
+  sentence: 'Fined HK$4,000 (approx US$512) in November 2022 for failing to register the 612 Humanitarian Relief Fund; conviction upheld by the Court of Appeal on September 3, 2026. Arrested May 11, 2022 under the NSL; no national security charge has been laid',
+  occupation: 'Bishop Emeritus of Hong Kong, Cardinal of the Catholic Church',
 };
 
 const TIMELINE = [
@@ -130,7 +125,7 @@ const TIMELINE = [
     date: '2022-11',
     year: '2022',
     title: 'Convicted under Societies Ordinance',
-    detail: 'Convicted of failing to properly register the 612 Fund under the Societies Ordinance. Fined HK$4,000 (approx US$512). The NSL charge of "collusion with foreign forces" remains under review.',
+    detail: 'Convicted of failing to properly register the 612 Fund under the Societies Ordinance. Fined HK$4,000 (approx US$512). No national security charge followed the May 2022 arrest.',
     category: 'persecution',
     sourceUrl: 'https://www.bbc.com/news/world-asia-china-61414162',
   },
@@ -138,9 +133,17 @@ const TIMELINE = [
     date: '2025-12',
     year: '2025',
     title: 'Appeal heard by Hong Kong appeals court',
-    detail: 'Hong Kong appeals court heard appeal against the conviction. Case ongoing.',
+    detail: 'Hong Kong appeals court heard the trustees\' appeal against their convictions.',
     category: 'international',
     sourceUrl: 'https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen',
+  },
+  {
+    date: '2026-09-03',
+    year: '2026',
+    title: 'Court of Appeal upholds the conviction',
+    detail: 'The Court of Appeal dismissed the appeals of Cardinal Zen and the four other former trustees and upheld their convictions and fines. The five said they would take the case to the Court of Final Appeal.',
+    category: 'persecution',
+    sourceUrl: 'https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/',
   },
 ];
 
@@ -149,7 +152,7 @@ const CHARGES = [
     charge: 'Failing to register a society (Societies Ordinance)',
     law: 'Societies Ordinance',
     filed: 'May 2022',
-    verdict: 'GUILTY — November 2022',
+    verdict: 'GUILTY — November 2022; upheld on appeal September 3, 2026',
     sentence: 'Fined HK$4,000 (approx US$512)',
     detail: 'Convicted alongside other trustees of the 612 Humanitarian Relief Fund for not properly registering the fund as a society. The fund had provided legal and medical assistance to protesters arrested during the 2019 anti-extradition bill demonstrations. While the fine was minimal, the conviction established the principle that providing humanitarian assistance to arrested protesters can be criminalized.',
   },
@@ -158,8 +161,8 @@ const CHARGES = [
     law: 'National Security Law',
     filed: 'Arrested May 11, 2022',
     verdict: 'Investigation status unclear',
-    sentence: 'Not yet prosecuted under NSL',
-    detail: 'Cardinal Zen was arrested by National Security police alongside other fund trustees. The arrest of a 90-year-old Cardinal — one of the most senior Catholic figures in Asia — sent shockwaves through the international community. While the immediate prosecution focused on the lesser Societies Ordinance charge, the NSL investigation has neither been formally dropped nor proceeded to trial.',
+    sentence: 'None — not charged',
+    detail: 'Cardinal Zen was arrested by National Security police alongside other fund trustees. The arrest of a 90-year-old Cardinal — one of the most senior Catholic figures in Asia — sent shockwaves through the international community. The prosecution that followed was for the lesser Societies Ordinance offence. As of September 2026, more than four years after the arrest, no national security charge has been laid.',
   },
 ];
 
@@ -212,6 +215,8 @@ const SOURCES = [
   { name: 'Amnesty International', url: 'https://www.amnesty.org/en/latest/news/2022/05/hong-kong-arrest-cardinal-zen/', tier: 1 },
   { name: 'The Independent', url: 'https://www.independent.co.uk/news/world/asia/cardinal-zen-hong-kong-arrested-b2075168.html', tier: 2 },
   { name: 'Pillar Catholic', url: 'https://www.pillarcatholic.com/p/hong-kong-court-hears-cardinal-zen', tier: 2 },
+  { name: 'Hong Kong Free Press (appeal ruling)', url: 'https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/', tier: 1 },
+  { name: 'Associated Press (appeal ruling)', url: 'https://www.wsls.com/news/world/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-and-others-over-protester-relief-fund/', tier: 2 },
   { name: 'America Magazine', url: 'https://www.americamagazine.org/politics-society/2022/05/11/cardinal-zen-arrested-hong-kong-242953', tier: 2 },
   { name: 'Reuters', url: 'https://www.reuters.com/world/china/hong-kong-cardinal-joseph-zen-arrested-2022-05-11/', tier: 1 },
 ];
@@ -226,60 +231,11 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="text-xs font-mono text-slate-400 whitespace-nowrap">{event.year}</span>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} border border-white/10`}>{cat.label}</span>
-          <span className="text-sm font-medium text-white truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-3 border-t border-white/5">
-          <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 mt-2">
-              <ExternalLink className="w-3 h-3" /> Source
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function CardinalZenProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
-
-  const toggleEvent = (idx: number) => {
-    setExpandedEvents((prev) => {
-      const next = new Set(prev);
-      next.has(idx) ? next.delete(idx) : next.add(idx);
-      return next;
-    });
-  };
-
-  const expandAll = () => setExpandedEvents(new Set(TIMELINE.map((_, i) => i)));
-  const collapseAll = () => setExpandedEvents(new Set());
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Legal Status', icon: Scale },
-    { id: 'narratives', label: 'CCP Narratives', icon: AlertTriangle },
-    { id: 'response', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
+  const { now } = useClock();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -305,7 +261,7 @@ export default function CardinalZenProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">AT RISK</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#111820]/60 text-[#22d3ee] border border-[#1c2a35]">
                 CARDINAL OF THE CATHOLIC CHURCH
               </span>
@@ -313,9 +269,15 @@ export default function CardinalZenProfile() {
                 AGE 90 AT ARREST
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {PROFILE.age}
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
@@ -338,7 +300,7 @@ export default function CardinalZenProfile() {
             </div>
 
             <p className="text-xs text-slate-400 mt-3 italic">
-              Convicted under the Societies Ordinance. NSL charge of &quot;collusion with foreign forces&quot; remains under review.
+              Convicted under the Societies Ordinance; conviction upheld on appeal in September 2026. Arrested under the NSL on suspicion of &quot;collusion with foreign forces&quot;, but never charged.
             </p>
           </div>
         </div>
@@ -371,36 +333,14 @@ export default function CardinalZenProfile() {
         </div>
       </div>
 
-      {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
-        {tabs.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`panel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-            }`}
-          >
-            <Icon className="w-4 h-4" /> {label}
-          </button>
-        ))}
-      </div>
 
       {/* ─── TAB PANELS ─────────────────────────────────────── */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab}>
+      <div className="space-y-3">
         {/* TIMELINE */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-amber-400" /> Timeline — {TIMELINE.length} Events</h2>
-              <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-amber-400 hover:text-amber-300">Expand all</button>
-                <span className="text-slate-600">|</span>
-                <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
-              </div>
             </div>
             {/* Category legend */}
             <div className="flex flex-wrap gap-2">
@@ -409,15 +349,16 @@ export default function CardinalZenProfile() {
               ))}
             </div>
             <div className="space-y-2">
-              {TIMELINE.map((event, idx) => (
-                <TimelineEvent key={idx} event={event} isExpanded={expandedEvents.has(idx)} onToggle={() => toggleEvent(idx)} />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CHARGES & LEGAL STATUS */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges & Legal Status">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-amber-400" /> Charges &amp; Legal Status</h2>
 
@@ -425,9 +366,9 @@ export default function CardinalZenProfile() {
               <h3 className="text-sm font-semibold text-amber-300 mb-2">Current Legal Situation</h3>
               <p className="text-sm text-slate-300">
                 Cardinal Zen was convicted under the Societies Ordinance in November 2022 and fined HK$4,000.
-                The more serious NSL charge of &quot;collusion with foreign forces&quot; has neither been formally dropped
-                nor proceeded to trial. At age {calculateAge(PROFILE.birthDate)}, he remains in Hong Kong under ongoing legal jeopardy.
-                An appeal against the conviction was heard in December 2025 and the case is ongoing.
+                On September 3, 2026 the Court of Appeal upheld that conviction, and the trustees said they would take the
+                case to the Court of Final Appeal. His May 2022 national security arrest, on suspicion of &quot;collusion with
+                foreign forces&quot;, has led to no charge. At age {calculateAge(PROFILE.birthDate, undefined, now)}, he remains in Hong Kong under ongoing legal jeopardy.
               </p>
             </div>
 
@@ -448,10 +389,10 @@ export default function CardinalZenProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP NARRATIVE ANALYSIS */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-amber-400" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
@@ -479,10 +420,10 @@ export default function CardinalZenProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* INTERNATIONAL RESPONSE */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International Response">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-amber-400" /> International Response</h2>
 
@@ -501,10 +442,10 @@ export default function CardinalZenProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* SOURCES */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-amber-400" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
@@ -534,7 +475,7 @@ export default function CardinalZenProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

@@ -8,6 +8,13 @@ Object.assign(navigator, {
   clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
 });
 
+// The brief's three parts are native <details>: the heading is the summary.
+const section = (heading: RegExp) => {
+  const details = screen.getByText(heading).closest('details');
+  expect(details, `${heading} heads a <details>`).toBeTruthy();
+  return details as HTMLDetailsElement;
+};
+
 describe('PolicyBriefGenerator', () => {
   // ── Rendering ──────────────────────────────────────────
 
@@ -190,17 +197,15 @@ describe('PolicyBriefGenerator', () => {
     expect(screen.getByText(/Key Findings/)).toBeTruthy();
   });
 
-  it('key findings are expanded by default', () => {
+  it('key findings are open by default, as a native disclosure', () => {
     render(<PolicyBriefGenerator />);
-    const findingsBtn = screen.getByText(/Key Findings/).closest('button');
-    expect(findingsBtn!.getAttribute('aria-expanded')).toBe('true');
+    expect(section(/Key Findings/).open).toBe(true);
   });
 
-  it('clicking Key Findings collapses section', () => {
+  it('clicking Key Findings folds the section natively', () => {
     render(<PolicyBriefGenerator />);
-    const findingsBtn = screen.getByText(/Key Findings/).closest('button');
-    fireEvent.click(findingsBtn!);
-    expect(findingsBtn!.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(screen.getByText(/Key Findings/));
+    expect(section(/Key Findings/).open).toBe(false);
   });
 
   // ── Recommendations section ────────────────────────────
@@ -210,10 +215,9 @@ describe('PolicyBriefGenerator', () => {
     expect(screen.getByText(/Recommendations/)).toBeTruthy();
   });
 
-  it('recommendations are expanded by default', () => {
+  it('recommendations are open by default', () => {
     render(<PolicyBriefGenerator />);
-    const recBtn = screen.getByText(/Recommendations/).closest('button');
-    expect(recBtn!.getAttribute('aria-expanded')).toBe('true');
+    expect(section(/Recommendations/).open).toBe(true);
   });
 
   it('shows legislator-specific recommendations by default', () => {
@@ -246,17 +250,18 @@ describe('PolicyBriefGenerator', () => {
     expect(screen.getByText(/Evidence Citations/)).toBeTruthy();
   });
 
-  it('citations are collapsed by default', () => {
-    render(<PolicyBriefGenerator />);
-    const citBtn = screen.getByText(/Evidence Citations/).closest('button');
-    expect(citBtn!.getAttribute('aria-expanded')).toBe('false');
+  it('citations are folded by default, but in the page', () => {
+    const { container } = render(<PolicyBriefGenerator />);
+    const citations = section(/Evidence Citations/);
+    expect(citations.open).toBe(false);
+    expect(citations.querySelectorAll('a[href^="http"]').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 
-  it('clicking citations expands section', () => {
+  it('clicking citations opens the section natively', () => {
     render(<PolicyBriefGenerator />);
-    const citBtn = screen.getByText(/Evidence Citations/).closest('button');
-    fireEvent.click(citBtn!);
-    expect(citBtn!.getAttribute('aria-expanded')).toBe('true');
+    fireEvent.click(screen.getByText(/Evidence Citations/));
+    expect(section(/Evidence Citations/).open).toBe(true);
   });
 
   // ── Copy to clipboard ─────────────────────────────────

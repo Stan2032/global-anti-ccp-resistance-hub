@@ -1,7 +1,7 @@
 /**
- * ActivistToolkit — Downloadable resources, templates, and toolkits
- * for activists. Includes social media graphics, protest materials,
- * and advocacy frameworks.
+ * ActivistToolkit — Graphics, letter templates, fact sheets and guides for
+ * activists. None of the files has been produced yet (Q20), so each card
+ * says "Not available yet" until its downloadUrl is real.
  *
  * @module ActivistToolkit
  */
@@ -252,6 +252,8 @@ const ActivistToolkit = () => {
 
   const getCategoryInfo = (categoryId: string) => categories.find(c => c.id === categoryId);
 
+  const ready = resources.filter(r => r.downloadUrl !== '#').length;
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -260,23 +262,27 @@ const ActivistToolkit = () => {
           <Wrench className="w-8 h-8 text-green-400 mr-3" />
           <div>
             <h2 className="text-2xl font-bold text-white">Activist Toolkit</h2>
-            <p className="text-slate-400">Downloadable resources for advocacy and awareness</p>
+            <p className="text-slate-400">
+              {ready === 0
+                ? 'Resources for advocacy and awareness, none of them ready to download yet'
+                : `Resources for advocacy and awareness: ${ready} of ${resources.length} ready to download`}
+            </p>
           </div>
         </div>
         <p className="text-sm text-slate-300">
-          Free resources to support your activism. All materials are licensed for non-commercial use 
-          in human rights advocacy.
+          Free resources to support your activism. When they are ready, all materials will be licensed
+          for non-commercial use in human rights advocacy.
         </p>
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Resource categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter resources by category">
         {categories.map(cat => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            role="tab"
-            aria-selected={activeCategory === cat.id}
+            aria-pressed={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-green-600 text-white'
@@ -296,6 +302,10 @@ const ActivistToolkit = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredResources.map(resource => {
           const categoryInfo = getCategoryInfo(resource.category);
+          // Every entry's downloadUrl is still '#': none of these files has
+          // been produced (Q20). Say so, rather than offer a download button
+          // that does nothing.
+          const available = resource.downloadUrl !== '#';
           
           return (
             <div 
@@ -314,15 +324,23 @@ const ActivistToolkit = () => {
               
               <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
                 <span className="flex items-center gap-1">{categoryInfo && <categoryInfo.Icon className="w-3 h-3" />} {categoryInfo?.name}</span>
-                <span>{resource.size}</span>
+                {available && <span>{resource.size}</span>}
               </div>
-              
-              <button
-                className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center space-x-2"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download</span>
-              </button>
+
+              {available ? (
+                <a
+                  href={resource.downloadUrl}
+                  download
+                  className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Download className="w-4 h-4" aria-hidden="true" />
+                  <span>Download</span>
+                </a>
+              ) : (
+                <p className="w-full py-2 border border-[#1c2a35] text-slate-400 text-sm text-center">
+                  Not available yet
+                </p>
+              )}
             </div>
           );
         })}
@@ -334,9 +352,14 @@ const ActivistToolkit = () => {
         <p className="text-sm text-slate-400 mb-4">
           Can't find what you're looking for? Let us know what resources would help your advocacy.
         </p>
-        <button className="px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
-          Request a Resource
-        </button>
+        <a
+          href="https://github.com/Stan2032/global-anti-ccp-resistance-hub/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors"
+        >
+          Request a Resource on GitHub
+        </a>
       </div>
 
       {/* Usage Guidelines */}

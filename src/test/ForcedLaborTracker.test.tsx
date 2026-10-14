@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import ForcedLaborTracker from '../components/ForcedLaborTracker';
+import companiesData from '../data/forced_labor_companies_research.json';
 
 describe('ForcedLaborTracker', () => {
   // --- Structure ---
@@ -29,10 +30,16 @@ describe('ForcedLaborTracker', () => {
 
   // --- Company Cards ---
 
-  it('renders company names from data', () => {
-    render(<ForcedLaborTracker />);
-    const companyElements = screen.getAllByRole('heading', { level: 4 });
-    expect(companyElements.length).toBeGreaterThanOrEqual(1);
+  it('renders every company as a native disclosure, closed to start', () => {
+    const { container } = render(<ForcedLaborTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const cards = [...container.querySelectorAll('details')];
+    expect(cards).toHaveLength(companiesData.results.length);
+    cards.forEach((c, i) => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
+      expect(c.querySelector('summary')!.textContent).toContain(companiesData.results[i].output.company);
+    });
   });
 
   it('renders status badges', () => {
@@ -53,14 +60,23 @@ describe('ForcedLaborTracker', () => {
 
   // --- Expand Details ---
 
-  it('expands company details on click', () => {
-    render(<ForcedLaborTracker />);
-    const companyHeaders = screen.getAllByRole('heading', { level: 4 });
-    const companyButton = companyHeaders[0].closest('button') || companyHeaders[0].parentElement!.closest('button');
-    if (companyButton) {
-      fireEvent.click(companyButton);
-      expect(screen.getAllByText(/Evidence|Company Response|View Source/i).length).toBeGreaterThanOrEqual(1);
-    }
+  it('every company carries its evidence and source without a click', () => {
+    const { container } = render(<ForcedLaborTracker />);
+    const cards = [...container.querySelectorAll('details')];
+    const withEvidence = companiesData.results.filter(r => r.output.evidence).length;
+    const withSource = companiesData.results.filter(r => r.output.source_url).length;
+    expect(withEvidence).toBeGreaterThan(0);
+    expect(cards.filter(c => within(c).queryByText('Evidence'))).toHaveLength(withEvidence);
+    expect(cards.filter(c => within(c).queryByText('View Source'))).toHaveLength(withSource);
+  });
+
+  it('a company card opens and closes natively', () => {
+    const { container } = render(<ForcedLaborTracker />);
+    const card = container.querySelector('details')!;
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
   // --- Footer ---

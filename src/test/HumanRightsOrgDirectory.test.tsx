@@ -1,7 +1,15 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import HumanRightsOrgDirectory from '../components/HumanRightsOrgDirectory';
 import { dataApi } from '../services/dataApi';
+
+// Every card is a native <details>. Fails on none, so a check over each card
+// cannot pass on an empty list.
+const cards = (container: HTMLElement) => {
+  const all = [...container.querySelectorAll('details')];
+  expect(all.length, 'cards render as <details>').toBeGreaterThan(0);
+  return all;
+};
 
 describe('HumanRightsOrgDirectory', () => {
   // --- Rendering ---
@@ -23,14 +31,12 @@ describe('HumanRightsOrgDirectory', () => {
   });
 
   it('renders organization list', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const orgs = dataApi.getHumanRightsOrgs();
     // Should show at least one known org
     expect(screen.getByText('Uyghur Human Rights Project')).toBeTruthy();
     // All orgs rendered as expandable buttons
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBe(orgs.length);
   });
 
@@ -99,7 +105,7 @@ describe('HumanRightsOrgDirectory', () => {
   });
 
   it('clicking focus filter shows only that focus area', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
@@ -107,9 +113,7 @@ describe('HumanRightsOrgDirectory', () => {
     expect(uyghurBtn!.getAttribute('aria-pressed')).toBe('true');
     // Should only show Uyghur orgs now
     const uyghurOrgs = dataApi.getHumanRightsOrgsByFocus('Uyghur');
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBe(uyghurOrgs.length);
   });
 
@@ -137,16 +141,14 @@ describe('HumanRightsOrgDirectory', () => {
   });
 
   it('clicking type filter filters the list', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const legalBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent === 'Legal'
     );
     fireEvent.click(legalBtn!);
     expect(legalBtn!.getAttribute('aria-pressed')).toBe('true');
     const legalOrgs = dataApi.getHumanRightsOrgsByType('Legal');
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBe(legalOrgs.length);
   });
 
@@ -163,23 +165,19 @@ describe('HumanRightsOrgDirectory', () => {
   });
 
   it('search filters results by organization name', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const input = screen.getByPlaceholderText('Search organizations...');
     fireEvent.change(input, { target: { value: 'Amnesty' } });
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBeGreaterThan(0);
     expect(expandable.length).toBeLessThan(dataApi.getHumanRightsOrgs().length);
   });
 
   it('search is case-insensitive', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const input = screen.getByPlaceholderText('Search organizations...');
     fireEvent.change(input, { target: { value: 'amnesty' } });
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBeGreaterThan(0);
   });
 
@@ -202,106 +200,68 @@ describe('HumanRightsOrgDirectory', () => {
   });
 
   it('Clear button resets all filters', () => {
-    render(<HumanRightsOrgDirectory />);
+    const { container } = render(<HumanRightsOrgDirectory />);
     const uyghurBtn = screen.getAllByRole('button').find(
       (b) => b.getAttribute('aria-pressed') !== null && b.textContent.includes('Uyghur')
     );
     fireEvent.click(uyghurBtn!);
     fireEvent.click(screen.getByText('Clear'));
     // All orgs should be shown again
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
+    const expandable = cards(container);
     expect(expandable.length).toBe(dataApi.getHumanRightsOrgs().length);
   });
 
-  // --- Expand/Collapse ---
+  // --- Native disclosure ---
 
-  it('all orgs collapsed by default', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
+  it('every org is a native disclosure, closed to start', () => {
+    const { container } = render(<HumanRightsOrgDirectory />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
+    const all = cards(container);
+    expect(all.length).toBe(dataApi.getHumanRightsOrgs().length);
+    all.forEach((c) => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
     });
   });
 
-  it('clicking an org expands its details', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
+  it('an org opens and closes natively', () => {
+    const { container } = render(<HumanRightsOrgDirectory />);
+    const [first] = cards(container);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    fireEvent.click(first.querySelector('summary')!);
+    expect(first.open).toBe(false);
   });
 
-  it('expanded org shows key work', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Key Work')).toBeTruthy();
+  it('an org shows its key work, website and donate links without a click', () => {
+    const { container } = render(<HumanRightsOrgDirectory />);
+    const first = within(cards(container)[0]);
+    expect(first.getByText('Key Work')).toBeTruthy();
+    expect(first.getByText('Website')).toBeTruthy();
+    expect(first.getByText('Donate')).toBeTruthy();
   });
 
-  it('expanded org shows website link', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Website')).toBeTruthy();
-  });
 
-  it('expanded org shows donate link', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(screen.getByText('Donate')).toBeTruthy();
-  });
 
-  it('clicking expanded org collapses it', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandable[0]);
-    expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-  });
-
-  it('expanding different org collapses previous one', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    if (expandable.length >= 2) {
-      fireEvent.click(expandable[0]);
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('true');
-      fireEvent.click(expandable[1]);
-      expect(expandable[0].getAttribute('aria-expanded')).toBe('false');
-      expect(expandable[1].getAttribute('aria-expanded')).toBe('true');
-    }
+  it('opening one org leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<HumanRightsOrgDirectory />);
+    const [first, second] = cards(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // --- External Links ---
 
   it('external links open in new tab with noopener', () => {
     render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandable[0]);
-    const links = screen.getAllByRole('link');
-    links.forEach((link) => {
-      if (link.getAttribute('target') === '_blank') {
-        expect(link.getAttribute('rel')).toContain('noopener');
-        expect(link.getAttribute('rel')).toContain('noreferrer');
-      }
+    const external = screen.getAllByRole('link').filter(l => l.getAttribute('target') === '_blank');
+    expect(external.length).toBeGreaterThan(0);
+    external.forEach((link) => {
+      expect(link.getAttribute('rel')).toContain('noopener');
+      expect(link.getAttribute('rel')).toContain('noreferrer');
     });
   });
 
@@ -393,14 +353,10 @@ describe('HumanRightsOrgDirectory', () => {
 
   // --- Accessibility ---
 
-  it('org rows have aria-expanded and aria-controls', () => {
-    render(<HumanRightsOrgDirectory />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-controls')).toBeTruthy();
-    });
+  it('uses native disclosures, not JavaScript-only expanders', () => {
+    const { container } = render(<HumanRightsOrgDirectory />);
+    expect(cards(container).length).toBe(dataApi.getHumanRightsOrgs().length);
+    expect(container.querySelectorAll('[aria-expanded], [aria-controls]')).toHaveLength(0);
   });
 
   it('search input is accessible', () => {

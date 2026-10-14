@@ -5,30 +5,26 @@
  *
  * @module NathanLawProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileFacts from '../../components/ProfileFacts';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Book
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Newspaper,
+  Flag,
 } from 'lucide-react';
 
-
-interface TimelineEventType {
-  year: string;
-  title: string;
-  detail: string;
-  category: string;
-  sourceUrl?: string;
-}
-
-interface TimelineEventProps {
-  event: TimelineEventType;
-  isExpanded: boolean;
-  onToggle: () => void;
-}
 
 // ─── DATA ──────────────────────────────────────────────────────────
 // All dates verified against BBC, Reuters, HKFP, Amnesty International,
@@ -38,7 +34,6 @@ const PROFILE = {
   name: 'Nathan Law',
   chineseName: '羅冠聰',
   birthDate: 'July 13, 1993',
-  birthPlace: 'Shenzhen, China (raised in Hong Kong)',
   nationality: 'Chinese (Hong Kong permanent resident) — passport cancelled by Hong Kong authorities',
   status: 'EXILED',
   currentLocation: 'London, UK (exile since July 2020)',
@@ -228,62 +223,13 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; label: string 
 
 // ─── SUB-COMPONENTS ─────────────────────────────────────────────────
 
-const TimelineEvent = ({ event, isExpanded, onToggle }: TimelineEventProps) => {
-  const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
-  return (
-    <div className={`border border-[#1c2a35] overflow-hidden ${cat.bg}`} aria-label={`Timeline event: ${event.title}`}>
-      <button
-        onClick={onToggle}
-        className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="text-xs font-mono text-slate-400 whitespace-nowrap">{event.year}</span>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} border border-white/10`}>{cat.label}</span>
-          <span className="text-sm font-medium text-white truncate">{event.title}</span>
-        </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-      </button>
-      {isExpanded && (
-        <div className="px-4 pb-3 border-t border-white/5">
-          <p className="text-sm text-slate-300 mt-2 leading-relaxed">{event.detail}</p>
-          {event.sourceUrl && (
-            <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-yellow-400 hover:text-yellow-300 mt-2">
-              <ExternalLink className="w-3 h-3" /> Source
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 
 export default function NathanLawProfile() {
-  const [activeTab, setActiveTab] = useState('timeline');
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
+  const { now } = useClock();
 
-  const toggleEvent = (idx: number) => {
-    setExpandedEvents((prev) => {
-      const next = new Set(prev);
-      next.has(idx) ? next.delete(idx) : next.add(idx);
-      return next;
-    });
-  };
-
-  const expandAll = () => setExpandedEvents(new Set(TIMELINE.map((_, i) => i)));
-  const collapseAll = () => setExpandedEvents(new Set());
-
-  const tabs = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Legal Status', icon: Scale },
-    { id: 'narratives', label: 'CCP Narratives', icon: AlertTriangle },
-    { id: 'response', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: BookOpen },
-  ];
-
-  const daysInExile = Math.floor((new Date().getTime() - new Date('2020-07-02').getTime()) / (1000 * 60 * 60 * 24));
+  const daysInExile = Math.floor((now.getTime() - new Date('2020-07-02').getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -309,7 +255,7 @@ export default function NathanLawProfile() {
 
             {/* Status badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-white animate-pulse">EXILED</span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-white animate-pulse">{PROFILE.status}</span>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-red-900/60 text-red-300 border border-red-700">
                 HK$1M BOUNTY
               </span>
@@ -317,9 +263,15 @@ export default function NathanLawProfile() {
                 YOUNGEST LEGISLATOR
               </span>
               <span className="px-3 py-1 rounded-full text-xs bg-[#111820] text-slate-300">
-                Age {calculateAge(PROFILE.birthDate)}
+                Age {calculateAge(PROFILE.birthDate, undefined, now)}
               </span>
             </div>
+
+            <ProfileFacts
+              location={PROFILE.currentLocation}
+              sentence={PROFILE.sentence}
+              nationality={PROFILE.nationality}
+            />
 
             {/* Key stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
@@ -363,36 +315,14 @@ export default function NathanLawProfile() {
         </p>
       </div>
 
-      {/* ─── TABS ───────────────────────────────────────────── */}
-      <div className="flex overflow-x-auto gap-1 bg-[#111820]/50 p-1 border border-[#1c2a35]" role="tablist" aria-label="Profile sections">
-        {tabs.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`panel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-              activeTab === id ? 'bg-yellow-600 text-white' : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-            }`}
-          >
-            <Icon className="w-4 h-4" /> {label}
-          </button>
-        ))}
-      </div>
 
       {/* ─── TAB PANELS ─────────────────────────────────────── */}
-      <div id={`panel-${activeTab}`} role="tabpanel" aria-labelledby={activeTab}>
+      <div className="space-y-3">
         {/* TIMELINE */}
-        {activeTab === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-yellow-400" /> Timeline — {TIMELINE.length} Events</h2>
-              <div className="flex gap-2">
-                <button onClick={expandAll} className="text-xs text-yellow-400 hover:text-yellow-300">Expand all</button>
-                <span className="text-slate-600">|</span>
-                <button onClick={collapseAll} className="text-xs text-slate-400 hover:text-white">Collapse all</button>
-              </div>
             </div>
             {/* Category legend */}
             <div className="flex flex-wrap gap-2">
@@ -401,15 +331,16 @@ export default function NathanLawProfile() {
               ))}
             </div>
             <div className="space-y-2">
-              {TIMELINE.map((event, idx) => (
-                <TimelineEvent key={idx} event={event} isExpanded={expandedEvents.has(idx)} onToggle={() => toggleEvent(idx)} />
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => {
+                const cat = CATEGORY_COLORS[event.category] || CATEGORY_COLORS.life;
+                return { year: event.year, title: event.title, detail: event.detail, sourceUrl: event.sourceUrl, label: cat.label, tone: `border-[#1c2a35] ${cat.bg}`, labelTone: cat.text };
+              })} />
             </div>
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CHARGES & LEGAL STATUS */}
-        {activeTab === 'charges' && (
+        <DisclosureSection title="Charges & Legal Status">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Scale className="w-5 h-5 text-yellow-400" /> Charges & Legal Status</h2>
 
@@ -440,10 +371,10 @@ export default function NathanLawProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* CCP NARRATIVE ANALYSIS */}
-        {activeTab === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-yellow-400" /> CCP Narrative Analysis</h2>
             <p className="text-sm text-slate-400">
@@ -471,10 +402,10 @@ export default function NathanLawProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* INTERNATIONAL RESPONSE */}
-        {activeTab === 'response' && (
+        <DisclosureSection title="International Response">
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><Globe className="w-5 h-5 text-yellow-400" /> International Response</h2>
 
@@ -493,10 +424,10 @@ export default function NathanLawProfile() {
               </div>
             ))}
           </div>
-        )}
+        </DisclosureSection>
 
         {/* SOURCES */}
-        {activeTab === 'sources' && (
+        <DisclosureSection title="Sources">
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2"><BookOpen className="w-5 h-5 text-yellow-400" /> Sources</h2>
             <p className="text-sm text-slate-400 mb-2">
@@ -526,7 +457,7 @@ export default function NathanLawProfile() {
               </p>
             </div>
           </div>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

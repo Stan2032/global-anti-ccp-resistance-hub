@@ -2,6 +2,15 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ContentAnalytics from '../components/ContentAnalytics';
 
+// One alert is still flagged active but expired in 2020: the page must not
+// count it, as the alerts banner does not show it.
+const ALERTS = [
+  { id: 'a1', title: 'Joshua Wong Hearing', type: 'critical', active: true, summary: 'Hearing March 6' },
+  { id: 'a2', title: 'Jimmy Lai', type: 'critical', active: true, summary: 'Sentenced 20 years' },
+  { id: 'a3', title: 'Inactive', type: 'info', active: false, summary: 'Old alert' },
+  { id: 'a4', title: 'Expired', type: 'critical', active: true, expires: '2020-01-01', summary: 'Long over' },
+];
+
 // Mock dataApi to avoid importing all JSON data in tests
 vi.mock('../services/dataApi', () => ({
   dataApi: {
@@ -39,11 +48,11 @@ vi.mock('../services/dataApi', () => ({
       { date: '2025-12-15', title: 'Lai Verdict', category: 'hongkong', significance: 'high' },
       { date: '2026-02-26', title: 'Art 23', category: 'hongkong', significance: 'high' },
     ],
-    getAlerts: () => [
-      { id: 'a1', title: 'Joshua Wong Hearing', type: 'critical', active: true, summary: 'Hearing March 6' },
-      { id: 'a2', title: 'Jimmy Lai', type: 'critical', active: true, summary: 'Sentenced 20 years' },
-      { id: 'a3', title: 'Inactive', type: 'info', active: false, summary: 'Old alert' },
-    ],
+    getAlerts: () => ALERTS,
+    // The real filter: active, and not past its expiry date.
+    getActiveAlerts: (now: Date) => ALERTS.filter(
+      a => a.active && (!a.expires || a.expires >= now.toISOString().slice(0, 10)),
+    ),
     getDetentionFacilities: () => [
       { name: 'Facility 1', location: 'Xinjiang' },
       { name: 'Facility 2', location: 'Xinjiang' },
@@ -124,6 +133,12 @@ describe('ContentAnalytics', () => {
   it('shows Emergency Alerts card', () => {
     render(<ContentAnalytics />);
     expect(screen.getByText('Emergency Alerts')).toBeTruthy();
+  });
+
+  it('counts as active only alerts that have not expired', () => {
+    render(<ContentAnalytics />);
+    expect(screen.getByText('2 active')).toBeTruthy();
+    expect(screen.queryByText('3 active')).toBeNull();
   });
 
   it('shows Detention Facilities card', () => {

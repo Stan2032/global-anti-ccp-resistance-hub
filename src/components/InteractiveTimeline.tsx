@@ -1,15 +1,19 @@
 
 /**
- * InteractiveTimeline — Zoomable, filterable timeline of CCP human
- * rights events. Supports autoplay, keyboard navigation, and source
- * attribution for each event.
+ * InteractiveTimeline — Filterable timeline of CCP human rights events,
+ * with source attribution for each event.
+ *
+ * Every event is in the page as a native <details>, so all of them can be
+ * read, opened and found without JavaScript. The strip of dots above is a
+ * map of the same list: each dot links to its event.
  *
  * @module InteractiveTimeline
  */
-import React, { useState, useRef, useEffect } from 'react';
-import { Calendar, ChevronLeft, ChevronRight, Play, Pause, ZoomIn, ZoomOut, Filter, Info, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, ChevronDown, ZoomIn, ZoomOut } from 'lucide-react';
 import SourceAttribution from './ui/SourceAttribution';
 import { resolveSource } from '../utils/sourceLinks';
+import { useBrowserValue } from '../utils/ssr';
 import timelineEvents from '../data/timeline_events.json';
 
 /** Derived from the JSON import so the type stays in sync with the data. */
@@ -27,111 +31,105 @@ const categories = [
   { id: 'global', name: 'Global', color: 'bg-green-500' }
 ];
 
+/** The id each event's <details> carries, and each dot links to. */
+const eventAnchor = (event: { id: number }) => `timeline-event-${event.id}`;
+
+/** A source's own URL, where the event maps its sources to URLs by name. */
+const sourceUrlFor = (event: TimelineEvent, source: string): string | undefined => {
+  const urls: unknown = event.source_urls;
+  return urls && !Array.isArray(urls) ? (urls as Record<string, string | undefined>)[source] : undefined;
+};
+
+const getCategoryColor = (category: string): string =>
+  categories.find(c => c.id === category)?.color || 'bg-[#1c2a35]';
+
+const getCategoryName = (category: string): string =>
+  categories.find(c => c.id === category)?.name ?? category;
+
+const getSignificanceStyle = (significance: string): string => {
+  switch (significance) {
+    case 'critical': return 'ring-2 ring-red-500';
+    case 'high': return 'ring-2 ring-orange-500';
+    default: return '';
+  }
+};
+
+// UTC, so the pre-rendered date and the reader's are the same day: a
+// reader west of UTC would otherwise see the day before, and React would
+// throw the page away over the mismatch.
+const formatDate = (dateStr: string): string =>
+  new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+  });
+
+const yearOf = (event: TimelineEvent) => Number(event.date.slice(0, 4));
+
+/** Open an event's <details> when its dot is followed; the link scrolls to it. */
+const openEvent = (event: TimelineEvent) => {
+  const details = document.getElementById(eventAnchor(event));
+  if (details instanceof HTMLDetailsElement) details.open = true;
+};
+
+const STATS: { key: 'casualties' | 'detained' | 'participants' | 'sentence' | 'stations'; label: string; tone: string }[] = [
+  { key: 'casualties', label: 'Casualties', tone: 'bg-red-900/30 text-red-400' },
+  { key: 'detained', label: 'Detained', tone: 'bg-orange-900/30 text-orange-400' },
+  { key: 'participants', label: 'Participants', tone: 'bg-[#111820] text-[#22d3ee]' },
+  { key: 'sentence', label: 'Sentence', tone: 'bg-[#111820] text-[#22d3ee]' },
+  { key: 'stations', label: 'Police Stations', tone: 'bg-green-900/30 text-green-400' },
+];
+
 export default function InteractiveTimeline() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const scripted = useBrowserValue(() => true, false);
 
-  const filteredEvents = selectedCategory === 'all' 
-    ? timelineEvents 
+  const filteredEvents = selectedCategory === 'all'
+    ? timelineEvents
     : timelineEvents.filter(e => e.category === selectedCategory);
 
-  // Auto-play functionality
-  useEffect(() => {
-    if (isPlaying && filteredEvents.length > 0) {
-      playIntervalRef.current = setInterval(() => {
-        setCurrentIndex(prev => {
-          const next = (prev + 1) % filteredEvents.length;
-          setSelectedEvent(filteredEvents[next]);
-          return next;
-        });
-      }, 3000);
-    }
-    return () => {
-      if (playIntervalRef.current) {
-        clearInterval(playIntervalRef.current);
-      }
-    };
-  }, [isPlaying, filteredEvents]);
-
-  const handlePrevious = () => {
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : filteredEvents.length - 1;
-    setCurrentIndex(newIndex);
-    setSelectedEvent(filteredEvents[newIndex]);
-  };
-
-  const handleNext = () => {
-    const newIndex = (currentIndex + 1) % filteredEvents.length;
-    setCurrentIndex(newIndex);
-    setSelectedEvent(filteredEvents[newIndex]);
-  };
-
-  const getCategoryColor = (category: string): string => {
-    return categories.find(c => c.id === category)?.color || 'bg-[#1c2a35]';
-  };
-
-  const getSignificanceStyle = (significance: string): string => {
-    switch (significance) {
-      case 'critical': return 'ring-2 ring-red-500';
-      case 'high': return 'ring-2 ring-orange-500';
-      default: return '';
-    }
-  };
-
-  const formatDate = (dateStr: string): string => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  };
-
-  const getYearRange = () => {
-    const years = filteredEvents.map(e => new Date(e.date).getFullYear());
-    return { min: Math.min(...years), max: Math.max(...years) };
-  };
-
-  const yearRange = getYearRange();
+  const years = filteredEvents.map(yearOf);
+  const yearRange = { min: Math.min(...years), max: Math.max(...years) };
 
   return (
     <div className="bg-[#111820]/50 p-6 border border-[#1c2a35]">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3">
-          <Calendar className="w-6 h-6 text-red-400" />
+          <Calendar className="w-6 h-6 text-red-400 flex-shrink-0" />
           <div>
             <h2 className="text-xl font-bold text-white">Interactive Timeline</h2>
             <p className="text-sm text-slate-400">Key events in the struggle against CCP authoritarianism</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.25))}
-            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
-            title="Zoom out"
-          >
-            <ZoomOut className="w-4 h-4 text-slate-300" />
-          </button>
-          <button
-            onClick={() => setZoomLevel(Math.min(2, zoomLevel + 0.25))}
-            className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
-            title="Zoom in"
-          >
-            <ZoomIn className="w-4 h-4 text-slate-300" />
-          </button>
-        </div>
+        {scripted && (
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.25))}
+              className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
+              aria-label="Zoom out"
+            >
+              <ZoomOut className="w-4 h-4 text-slate-300" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setZoomLevel(Math.min(2, zoomLevel + 0.25))}
+              className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
+              aria-label="Zoom in"
+            >
+              <ZoomIn className="w-4 h-4 text-slate-300" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter timeline events by region">
         {categories.map(category => (
           <button
             key={category.id}
-            onClick={() => {
-              setSelectedCategory(category.id);
-              setSelectedEvent(null);
-              setCurrentIndex(0);
-            }}
+            type="button"
+            onClick={() => setSelectedCategory(category.id)}
+            aria-pressed={selectedCategory === category.id}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
               selectedCategory === category.id
                 ? `${category.color} text-white`
@@ -143,54 +141,24 @@ export default function InteractiveTimeline() {
         ))}
       </div>
 
-      {/* Timeline Controls */}
-      <div className="flex items-center justify-center gap-4 mb-6">
-        <button
-          onClick={handlePrevious}
-          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
-          aria-label="Previous event"
-        >
-          <ChevronLeft className="w-5 h-5 text-slate-300" />
-        </button>
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className={`p-3 transition-colors ${
-            isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
-          }`}
-          aria-label={isPlaying ? 'Pause timeline' : 'Play timeline'}
-        >
-          {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white" />}
-        </button>
-        <button
-          onClick={handleNext}
-          className="p-2 bg-[#111820] hover:bg-[#1c2a35] transition-colors"
-          aria-label="Next event"
-        >
-          <ChevronRight className="w-5 h-5 text-slate-300" />
-        </button>
-        <span className="text-slate-400 text-sm ml-4">
-          {currentIndex + 1} / {filteredEvents.length} events
-        </span>
-      </div>
-
-      {/* Timeline Visualization */}
-      <div className="relative mb-6 overflow-x-auto" ref={timelineRef}>
+      {/* The same events, placed by year. Each dot links to its event below. */}
+      <div className="relative mb-6 overflow-x-auto">
         <div className="min-w-[540px] py-8" style={{ transform: `scaleX(${zoomLevel})`, transformOrigin: 'left' }}>
           {/* Year markers — adaptive interval to prevent overlap */}
-          <div className="relative h-6 mb-2 mx-4">
+          <div className="relative h-6 mb-2 mx-4" aria-hidden="true">
             {(() => {
               const span = yearRange.max - yearRange.min;
               const step = span > 25 ? 5 : span > 15 ? 3 : span > 8 ? 2 : 1;
               const minGap = Math.max(2, Math.floor(step / 2));
-              const years = [];
+              const marks = [];
               for (let y = yearRange.min; y <= yearRange.max; y++) {
                 const isFirst = y === yearRange.min;
                 const isLast = y === yearRange.max;
                 const isStep = y % step === 0;
-                if (isFirst || isLast) { years.push(y); continue; }
-                if (isStep && (y - yearRange.min) >= minGap && (yearRange.max - y) >= minGap) years.push(y);
+                if (isFirst || isLast) { marks.push(y); continue; }
+                if (isStep && (y - yearRange.min) >= minGap && (yearRange.max - y) >= minGap) marks.push(y);
               }
-              return years.map(year => {
+              return marks.map(year => {
                 const pct = span === 0 ? 50 : ((year - yearRange.min) / span) * 100;
                 return (
                   <span
@@ -204,24 +172,21 @@ export default function InteractiveTimeline() {
               });
             })()}
           </div>
-          
+
           {/* Timeline line */}
           <div className="relative h-2 bg-[#111820] rounded-full mx-4">
-            {filteredEvents.map((event, index) => {
-              const year = new Date(event.date).getFullYear();
-              const position = ((year - yearRange.min) / (yearRange.max - yearRange.min)) * 100;
+            {filteredEvents.map(event => {
+              const span = yearRange.max - yearRange.min;
+              const position = span === 0 ? 50 : ((yearOf(event) - yearRange.min) / span) * 100;
               return (
-                <button
+                <a
                   key={event.id}
-                  onClick={() => {
-                    setSelectedEvent(event);
-                    setCurrentIndex(index);
-                  }}
-                  className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${getCategoryColor(event.category)} ${getSignificanceStyle(event.significance)} hover:scale-150 transition-transform cursor-pointer ${
-                    selectedEvent?.id === event.id ? 'scale-150 ring-4 ring-white' : ''
-                  }`}
+                  href={`#${eventAnchor(event)}`}
+                  onClick={() => openEvent(event)}
+                  className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${getCategoryColor(event.category)} ${getSignificanceStyle(event.significance)} hover:scale-150 focus-visible:scale-150 transition-transform`}
                   style={{ left: `${position}%` }}
                   title={event.title}
+                  aria-label={`${yearOf(event)}: ${event.title}`}
                 />
               );
             })}
@@ -229,102 +194,92 @@ export default function InteractiveTimeline() {
         </div>
       </div>
 
-      {/* Event Details */}
-      {selectedEvent ? (
-        <div className="bg-[#0a0e14]/50 p-6 border border-[#1c2a35]">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className={`px-2 py-0.5 rounded text-xs font-medium text-white ${getCategoryColor(selectedEvent.category)}`}>
-                  {categories.find(c => c.id === selectedEvent.category)?.name}
-                </span>
-                {selectedEvent.significance === 'critical' && (
-                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-600 text-white">
-                    Critical Event
+      <p className="text-sm text-slate-400 mb-3" role="status">
+        {filteredEvents.length === timelineEvents.length
+          ? `${timelineEvents.length} events, oldest first`
+          : `${filteredEvents.length} of ${timelineEvents.length} events, oldest first`}
+      </p>
+
+      {/* Every event, in the page before any click */}
+      <ol className="space-y-2">
+        {filteredEvents.map(event => (
+          <li key={event.id}>
+            <details id={eventAnchor(event)} className="border border-[#1c2a35] bg-[#0a0e14]/50 scroll-mt-4">
+              <summary
+                className="flex items-start gap-3 p-4 cursor-pointer list-none hover:bg-white/5
+                           focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4afa82]
+                           [&::-webkit-details-marker]:hidden"
+              >
+                <span
+                  className={`mt-1.5 w-3 h-3 rounded-full flex-shrink-0 ${getCategoryColor(event.category)} ${getSignificanceStyle(event.significance)}`}
+                  aria-hidden="true"
+                />
+                <span className="flex-1 min-w-0">
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-mono text-slate-400">
+                    <span className="whitespace-nowrap">{formatDate(event.date)}</span>
+                    <span className="text-slate-300">{getCategoryName(event.category)}</span>
+                    {event.significance === 'critical' && (
+                      <span className="px-1.5 py-0.5 bg-red-600 text-white">Critical</span>
+                    )}
                   </span>
+                  <span className="block font-semibold text-white mt-1">{event.title}</span>
+                </span>
+                <ChevronDown
+                  className="w-4 h-4 mt-1 flex-shrink-0 text-slate-400 transition-transform summary-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+
+              <div className="px-4 pb-4 pt-3 border-t border-[#1c2a35] space-y-4">
+                <p className="text-slate-300">{event.description}</p>
+                {event.details && (
+                  <p className="text-sm text-slate-300 whitespace-pre-line bg-[#111820]/50 p-4">{event.details}</p>
+                )}
+
+                {STATS.some(s => event[s.key as keyof TimelineEvent]) && (
+                  <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {STATS.filter(s => event[s.key as keyof TimelineEvent]).map(s => (
+                      <div key={s.key} className={`p-3 ${s.tone.split(' ')[0]}`}>
+                        <dt className={`text-xs mb-1 ${s.tone.split(' ')[1]}`}>{s.label}</dt>
+                        <dd className="text-white font-semibold break-words">{String(event[s.key as keyof TimelineEvent])}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                {event.impact && (
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-400 mb-2">Impact</h3>
+                    <p className="text-slate-300">{event.impact}</p>
+                  </div>
+                )}
+
+                {event.sources?.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-400 mb-2">Sources</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {event.sources.map((source: string, i: number) => {
+                        const resolved = resolveSource(source, sourceUrlFor(event, source));
+                        return resolved.url ? (
+                          <SourceAttribution key={i} source={resolved} compact />
+                        ) : (
+                          <span key={i} className="px-2 py-1 bg-[#111820] text-xs text-slate-300">
+                            {source}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
                 )}
               </div>
-              <h3 className="text-xl font-bold text-white">{selectedEvent.title}</h3>
-              <p className="text-slate-400">{formatDate(selectedEvent.date)}</p>
-            </div>
-          </div>
-          
-          <p className="text-slate-300 mb-4">{selectedEvent.description}</p>
-          
-          <div className="bg-[#111820]/50 p-4 mb-4">
-            <p className="text-slate-300 text-sm">{selectedEvent.details}</p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            {selectedEvent.casualties && (
-              <div className="bg-red-900/30 p-3">
-                <p className="text-xs text-red-400 mb-1">Casualties</p>
-                <p className="text-white font-semibold">{selectedEvent.casualties}</p>
-              </div>
-            )}
-            {selectedEvent.detained && (
-              <div className="bg-orange-900/30 p-3">
-                <p className="text-xs text-orange-400 mb-1">Detained</p>
-                <p className="text-white font-semibold">{selectedEvent.detained}</p>
-              </div>
-            )}
-            {selectedEvent.participants && (
-              <div className="bg-[#111820] p-3">
-                <p className="text-xs text-[#22d3ee] mb-1">Participants</p>
-                <p className="text-white font-semibold">{selectedEvent.participants}</p>
-              </div>
-            )}
-            {selectedEvent.sentence && (
-              <div className="bg-[#111820] p-3">
-                <p className="text-xs text-[#22d3ee] mb-1">Sentence</p>
-                <p className="text-white font-semibold">{selectedEvent.sentence}</p>
-              </div>
-            )}
-            {selectedEvent.stations && (
-              <div className="bg-green-900/30 p-3">
-                <p className="text-xs text-green-400 mb-1">Police Stations</p>
-                <p className="text-white font-semibold">{selectedEvent.stations}</p>
-              </div>
-            )}
-          </div>
-          
-          {selectedEvent.impact && (
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold text-slate-400 mb-2">Impact</h4>
-              <p className="text-slate-300">{selectedEvent.impact}</p>
-            </div>
-          )}
-          
-          {selectedEvent.sources && (
-            <div>
-              <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedEvent.sources.map((source: string, i: number) => {
-                  const directUrl = ('source_urls' in selectedEvent) ? (selectedEvent as TimelineEvent & { source_urls?: Record<string, string> }).source_urls?.[source] : undefined;
-                  const resolved = resolveSource(source, directUrl);
-                  return resolved.url ? (
-                    <SourceAttribution key={i} source={resolved} compact />
-                  ) : (
-                    <span key={i} className="px-2 py-1 bg-[#111820] rounded text-xs text-slate-300">
-                      {source}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="bg-[#0a0e14]/50 p-8 border border-[#1c2a35] text-center">
-          <Info className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-          <p className="text-slate-400">Click on a timeline marker to view event details</p>
-          <p className="text-slate-400 text-sm mt-2">Or press Play to auto-advance through events</p>
-        </div>
-      )}
+            </details>
+          </li>
+        ))}
+      </ol>
 
       {/* Legend */}
       <div className="mt-6 pt-4 border-t border-[#1c2a35]">
-        <h4 className="text-sm font-semibold text-slate-400 mb-3">Legend</h4>
+        <h3 className="text-sm font-semibold text-slate-400 mb-3">Legend</h3>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#1c2a35] ring-2 ring-red-500"></div>

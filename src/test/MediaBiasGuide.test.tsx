@@ -56,12 +56,12 @@ describe('MediaBiasGuide', () => {
 
   it('renders the search input', () => {
     render(<MediaBiasGuide />);
-    expect(screen.getByLabelText('Search')).toBeTruthy();
+    expect(screen.getByLabelText('Search news sources')).toBeTruthy();
   });
 
   it('filters sources by search term', () => {
     render(<MediaBiasGuide />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search news sources');
     fireEvent.change(searchInput, { target: { value: 'Reuters' } });
     expect(screen.getByText('Reuters - China Coverage')).toBeTruthy();
     expect(screen.queryByText('Global Times')).toBeFalsy();

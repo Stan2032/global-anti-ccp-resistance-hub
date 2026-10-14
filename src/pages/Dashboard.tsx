@@ -7,11 +7,12 @@
  *
  * @module Dashboard
  */
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Building2, Target, Link2, AlertTriangle, Zap, Radio, Megaphone, Lock, BookOpen, MessageSquare, Mail, Monitor, Shield } from 'lucide-react';
 import { useStatistics } from '../hooks/useLiveData';
 import { FEED_SOURCES } from '../services/liveDataService';
+import { useClock } from '../utils/ssr';
 
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-8" role="status" aria-label="Loading section">
@@ -30,13 +31,9 @@ const NotificationCenter = lazy(() => import('../components/NotificationCenter')
 
 const Dashboard = () => {
   const { stats, loading: statsLoading } = useStatistics();
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  // Update time every minute
-  useEffect(() => {
-    const interval = setInterval(() => setCurrentTime(new Date()), 60000);
-    return () => clearInterval(interval);
-  }, []);
+  // Today's date, once the page is live in the reader's browser. In the
+  // pre-rendered page it would be the day of the build, shown as today.
+  const { now, live } = useClock();
 
   const statCards = [
     {
@@ -94,11 +91,11 @@ const Dashboard = () => {
           </div>
           <div className="text-right font-mono">
             <div className="text-sm text-slate-400">
-              {currentTime.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+              {live && now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
               })}
             </div>
             <div className="flex items-center justify-end gap-2 mt-1">
@@ -143,7 +140,7 @@ const Dashboard = () => {
           >
             <div className="flex items-center justify-between mb-3 gap-2">
               <stat.icon className="w-5 h-5 text-slate-400 flex-shrink-0" />
-              <span className={`text-xs font-mono px-2 py-0.5 truncate ${
+              <span className={`text-xs font-mono px-2 py-0.5 ${
                 stat.color === 'blue' ? 'bg-cyan-900/30 text-[#22d3ee]' :
                 stat.color === 'red' ? 'bg-red-900/30 text-red-400' :
                 stat.color === 'green' ? 'bg-[#4afa82]/10 text-[#4afa82]' :

@@ -1,7 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 import CaseStudies from '../components/CaseStudies';
+
+// Each case is a native <details>: the card is the summary, the full case
+// file is the body, present without a click.
+const caseFor = (name: string) => {
+  const card = [...document.querySelectorAll('details')]
+    .find(d => [...d.querySelectorAll('summary span')].some(s => s.textContent === name));
+  expect(card, `a case for ${name}`).toBeTruthy();
+  return card!;
+};
 
 describe('CaseStudies', () => {
   it('renders the main heading', () => {
@@ -27,9 +36,9 @@ describe('CaseStudies', () => {
     expect(screen.getByText('Jimmy Lai')).toBeTruthy();
   });
 
-  it('shows case summaries', () => {
+  it('shows case summaries on the cards', () => {
     render(<CaseStudies />);
-    expect(screen.getByText(/Hong Kong media mogul/)).toBeTruthy();
+    expect(within(caseFor('Jimmy Lai').querySelector('summary')!).getByText(/Hong Kong media mogul/)).toBeTruthy();
   });
 
   it('renders category labels', () => {
@@ -38,15 +47,23 @@ describe('CaseStudies', () => {
     expect(hkLabels.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('can select a case study for details', () => {
+  it('every case carries its full case file without a click', () => {
     render(<CaseStudies />);
-    // Click on the first case (Jimmy Lai)
-    const jimmyButton = screen.getByText('Jimmy Lai').closest('button');
-    if (jimmyButton) {
-      fireEvent.click(jimmyButton);
-      // After selecting, should show Timeline section
-      expect(screen.getByText('Timeline')).toBeTruthy();
-    }
+    const jimmy = within(caseFor('Jimmy Lai'));
+    expect(jimmy.getByText('Timeline')).toBeTruthy();
+    expect(jimmy.getByText('Charges & Verdict')).toBeTruthy();
+    expect(jimmy.getByText('International Response')).toBeTruthy();
+    expect(jimmy.getByText('Sources')).toBeTruthy();
+  });
+
+  it('a case opens and closes natively', () => {
+    render(<CaseStudies />);
+    const jimmy = caseFor('Jimmy Lai');
+    expect(jimmy.open).toBe(false);
+    fireEvent.click(jimmy.querySelector('summary')!);
+    expect(jimmy.open).toBe(true);
+    fireEvent.click(jimmy.querySelector('summary')!);
+    expect(jimmy.open).toBe(false);
   });
 
   it('renders multiple case studies', () => {

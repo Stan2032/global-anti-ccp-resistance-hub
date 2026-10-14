@@ -8,19 +8,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Hand, BarChart3, BookOpen, Megaphone, Lock, Handshake, PartyPopper, HelpCircle, Rocket, Keyboard, Bug } from 'lucide-react';
+import { isBrowser, matchesMediaQuery, readStoredValue, useBrowserValue, writeStoredValue } from '../utils/ssr';
 
 const QuickStartGuide = () => {
+  // The tour must never appear in pre-rendered HTML: a reader with
+  // JavaScript disabled would get an overlay they cannot dismiss. This
+  // renders nothing during the build and mounts on hydration, routed through
+  // useBrowserValue so React treats the change as intended rather than as a
+  // hydration mismatch.
+  const hydrated = useBrowserValue(() => true, false);
+
+  // Opens by itself only on wide screens. On a phone the panel covered a
+  // quarter of the screen, over the first emergency alert, on every first
+  // visit; there it waits behind the small button instead.
   const [isOpen, setIsOpen] = useState(() => {
-    const hasSeenGuide = localStorage.getItem('quickStartDismissed');
-    return hasSeenGuide !== 'true';
+    if (!isBrowser) return false;
+    return readStoredValue('quickStartDismissed') !== 'true' && matchesMediaQuery('(min-width: 1024px)');
   });
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState(() => {
-    const savedSteps = localStorage.getItem('quickStartCompleted');
-    return savedSteps ? JSON.parse(savedSteps) : [];
-  });
-  const [dismissed, setDismissed] = useState(() => {
-    return localStorage.getItem('quickStartDismissed') === 'true';
+    const savedSteps = readStoredValue('quickStartCompleted');
+    try {
+      return savedSteps ? JSON.parse(savedSteps) : [];
+    } catch {
+      return [];
+    }
   });
 
   const steps = [
@@ -61,8 +73,8 @@ const QuickStartGuide = () => {
     },
     {
       id: 6,
-      title: 'Connect with Others',
-      description: 'Find other activists, events, and support on the Community page.',
+      title: 'Get Help, or Help Others',
+      description: 'Where to find emergency, mental-health and legal help, and ways to support people at risk.',
       Icon: Handshake,
       action: { label: 'Community', path: '/community' },
     },
@@ -79,23 +91,21 @@ const QuickStartGuide = () => {
     if (!completedSteps.includes(stepId)) {
       const newCompleted = [...completedSteps, stepId];
       setCompletedSteps(newCompleted);
-      localStorage.setItem('quickStartCompleted', JSON.stringify(newCompleted));
+      writeStoredValue('quickStartCompleted', JSON.stringify(newCompleted));
     }
   };
 
   const dismissGuide = () => {
-    setDismissed(true);
     setIsOpen(false);
-    localStorage.setItem('quickStartDismissed', 'true');
+    writeStoredValue('quickStartDismissed', 'true');
   };
 
   const _resetGuide = () => {
-    setDismissed(false);
     setIsOpen(true);
     setCurrentStep(0);
     setCompletedSteps([]);
-    localStorage.removeItem('quickStartDismissed');
-    localStorage.removeItem('quickStartCompleted');
+    writeStoredValue('quickStartDismissed', null);
+    writeStoredValue('quickStartCompleted', null);
   };
 
   const nextStep = () => {
@@ -113,20 +123,23 @@ const QuickStartGuide = () => {
     }
   };
 
-  // Floating button to reopen guide
-  if (dismissed && !isOpen) {
+  // Nothing in the pre-rendered HTML — this is a client-only overlay.
+  if (!hydrated) return null;
+
+  // Floating button to open the guide
+  if (!isOpen) {
     return (
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
+        aria-label="Open the quick start guide"
         className="fixed bottom-4 right-4 z-40 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] p-3 rounded-full shadow-lg transition-colors"
         title="Quick Start Guide"
       >
-        <HelpCircle className="w-5 h-5" />
+        <HelpCircle className="w-5 h-5" aria-hidden="true" />
       </button>
     );
   }
-
-  if (!isOpen) return null;
 
   const step = steps[currentStep];
   const progress = ((currentStep + 1) / steps.length) * 100;
@@ -236,7 +249,7 @@ export const HelpMenu = () => {
       description: 'New here? Take a quick tour',
       Icon: Rocket,
       action: () => {
-        localStorage.removeItem('quickStartDismissed');
+        writeStoredValue('quickStartDismissed', null);
         window.location.reload();
       },
     },

@@ -8,8 +8,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  User, Clock, Scale, AlertTriangle, ExternalLink,
-  ArrowRight, Heart, MapPin, Calendar, Filter
+  User,
+  Clock,
+  Scale,
+  ArrowRight,
+  MapPin,
 } from 'lucide-react';
 
 const PROFILES = [
@@ -185,7 +188,7 @@ const PROFILES = [
     sentence: 'Fined HK$4,000 (Nov 2022)',
     birthDate: 'January 13, 1932',
     role: 'Bishop Emeritus of Hong Kong, Cardinal',
-    summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees. Convicted under the Societies Ordinance. NSL charge remains under review.',
+    summary: 'Arrested at age 90 under the NSL alongside 612 Fund trustees, but never charged under it. Convicted under the Societies Ordinance; conviction upheld on appeal in September 2026.',
     location: 'Hong Kong',
     region: 'hong-kong',
     themeGradient: 'from-amber-900/30 to-[#0a0e14]',
@@ -416,13 +419,13 @@ const ProfilesIndex = () => {
           </span>
           <Link to="/prisoners" className="flex items-center gap-1.5 hover:text-[#4afa82] transition-colors">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            65 total cases in database →
+            64 total cases in database →
           </Link>
         </div>
       </div>
 
-      {/* Region Filter Tabs */}
-      <div className="mb-6" role="tablist" aria-label="Filter profiles by region">
+      {/* Region Filter */}
+      <div className="mb-6" role="group" aria-label="Filter profiles by region">
         <div className="flex flex-wrap gap-2">
           {REGION_FILTERS.map((filter) => {
             const count = filter.id === 'all'
@@ -432,8 +435,8 @@ const ProfilesIndex = () => {
             return (
               <button
                 key={filter.id}
-                role="tab"
-                aria-selected={isActive}
+                type="button"
+                aria-pressed={isActive}
                 aria-controls="profiles-grid"
                 onClick={() => setActiveRegion(filter.id)}
                 className={`px-3 py-1.5 text-sm font-mono transition-colors ${
@@ -450,7 +453,7 @@ const ProfilesIndex = () => {
       </div>
 
       {/* Built Profiles */}
-      <section className="mb-10" aria-label="Available profiles" id="profiles-grid" role="tabpanel">
+      <section className="mb-10" aria-label="Available profiles" id="profiles-grid">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredProfiles.map((profile) => (
             <ProfileCard key={profile.name} profile={profile} />

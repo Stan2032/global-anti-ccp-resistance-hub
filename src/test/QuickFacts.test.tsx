@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import QuickFacts from '../components/QuickFacts';
 
 // Mock clipboard API
@@ -24,7 +25,7 @@ describe('QuickFacts', () => {
 
   it('renders instructions text', () => {
     render(<QuickFacts />);
-    expect(screen.getByText(/Click any fact card to copy it/)).toBeTruthy();
+    expect(screen.getByText(/Share a fact from its card/)).toBeTruthy();
   });
 
   // --- All 8 Fact Cards ---
@@ -89,12 +90,13 @@ describe('QuickFacts', () => {
 
   // --- Copy to Clipboard ---
 
-  it('copies fact to clipboard when card is clicked', async () => {
+  // Copying was a click on the card itself: a <div> no keyboard could reach.
+  // Each card has a real Copy button now, rendered once JavaScript runs.
+  const copyButtonFor = (stat: string) => screen.getByRole('button', { name: new RegExp(`^Copy fact: .*, ${stat.replace('+', '\\+')}$`) });
+
+  it('copies fact to clipboard with its Copy button', async () => {
     render(<QuickFacts />);
-    // Click the first fact card (Political Prisoners)
-    const statElement = screen.getByText('1,000+');
-    const card = statElement.closest('div[class*="cursor-pointer"]');
-    fireEvent.click(card!);
+    fireEvent.click(copyButtonFor('1,000+'));
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
     const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
@@ -104,25 +106,32 @@ describe('QuickFacts', () => {
     expect(clipboardText).not.toContain('#');
   });
 
-  it('shows "Copied!" indicator after clicking a card', async () => {
+  it('the Copy button says "Copied!" and keeps focus where it was', async () => {
     render(<QuickFacts />);
-    expect(screen.queryByText('Copied!')).toBeFalsy();
-
-    const statElement = screen.getByText('1,000+');
-    const card = statElement.closest('div[class*="cursor-pointer"]');
-    fireEvent.click(card!);
-
-    // Wait for the async clipboard promise to resolve
+    const button = copyButtonFor('1,000+');
+    expect(button.textContent).toBe('Copy');
+    button.focus();
+    fireEvent.click(button);
     await vi.waitFor(() => {
-      expect(screen.getByText('Copied!')).toBeTruthy();
+      expect(button.textContent).toBe('✓ Copied!');
     });
+    expect(document.activeElement).toBe(button);
+  });
+
+  it('leaves the Copy buttons out of the pre-rendered page, where they could do nothing', () => {
+    const html = renderToString(<QuickFacts />);
+    expect(html).not.toMatch(/Copy fact:/);
+    expect(html).toContain('twitter.com/intent/tweet');
+  });
+
+  it('no card is itself clickable', () => {
+    const { container } = render(<QuickFacts />);
+    expect(container.querySelectorAll('div[class*="cursor-pointer"], div[aria-label]')).toHaveLength(0);
   });
 
   it('clipboard text does not include hashtags', async () => {
     render(<QuickFacts />);
-    const statElement = screen.getByText('102+');
-    const card = statElement.closest('div[class*="cursor-pointer"]');
-    fireEvent.click(card!);
+    fireEvent.click(copyButtonFor('102+'));
 
     const clipboardText = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
     expect(clipboardText).toContain('CCP police stations');
@@ -131,24 +140,22 @@ describe('QuickFacts', () => {
 
   // --- Twitter Share ---
 
-  it('renders Twitter share buttons for all facts', () => {
+  it('renders Twitter share links for all facts', () => {
     render(<QuickFacts />);
-    const shareButtons = screen.getAllByTitle('Share on Twitter');
-    expect(shareButtons.length).toBe(8);
+    const shareLinks = screen.getAllByTitle('Share on Twitter');
+    expect(shareLinks.length).toBe(8);
+    for (const link of shareLinks) expect(link.tagName).toBe('A');
   });
 
-  it('Twitter share opens a new window', () => {
-    const mockOpen = vi.fn();
-    window.open = mockOpen;
-
+  // Sharing was a button that called window.open, so it did nothing
+  // without JavaScript. It is a plain link now.
+  it('Twitter share is a link to the intent URL, opening in a new tab', () => {
     render(<QuickFacts />);
-    const shareButtons = screen.getAllByTitle('Share on Twitter');
-    fireEvent.click(shareButtons[0]);
-
-    expect(mockOpen).toHaveBeenCalledTimes(1);
-    const url = mockOpen.mock.calls[0][0];
-    expect(url).toContain('twitter.com/intent/tweet');
-    expect(url).toContain('Political%20Prisoners');
+    const link = screen.getByRole('link', { name: 'Share on Twitter: Political Prisoners' });
+    expect(link.getAttribute('href')).toContain('twitter.com/intent/tweet');
+    expect(link.getAttribute('href')).toContain('Political%20Prisoners');
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toContain('noopener');
   });
 
   // --- Usage Tips ---

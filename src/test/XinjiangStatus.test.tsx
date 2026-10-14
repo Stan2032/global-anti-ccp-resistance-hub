@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import XinjiangStatus from '../components/XinjiangStatus';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('XinjiangStatus', () => {
   // --- Header ---
@@ -26,95 +27,92 @@ describe('XinjiangStatus', () => {
     expect(screen.getByText('Detained (est.)')).toBeTruthy();
     expect(screen.getByText('380+')).toBeTruthy();
     expect(screen.getByText('Camps identified')).toBeTruthy();
-    expect(screen.getByText('16,000+')).toBeTruthy();
+    expect(screen.getAllByText('16,000+').length).toBeGreaterThan(0);
     expect(screen.getByText('Mosques destroyed')).toBeTruthy();
     expect(screen.getByText('570,000+')).toBeTruthy();
     expect(screen.getByText('Forced labor victims')).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<XinjiangStatus />);
-    expect(screen.getByText('Overview')).toBeTruthy();
-    expect(screen.getByText('Detention Camps')).toBeTruthy();
-    expect(screen.getByText('Forced Labor')).toBeTruthy();
-    expect(screen.getByText('Cultural Genocide')).toBeTruthy();
+    expectDisclosureSections(['Overview', 'Detention Camps', 'Forced Labor', 'Cultural Genocide']);
   });
 
-  it('shows Overview tab content by default (international response)', () => {
+  it('shows the Overview section (international response)', () => {
     render(<XinjiangStatus />);
-    expect(screen.getByText('International Response')).toBeTruthy();
-    expect(screen.getByText('🇺🇸 USA')).toBeTruthy();
-    expect(screen.getByText('Genocide declaration, UFLPA, sanctions')).toBeTruthy();
-    expect(screen.getByText('🇺🇳 UN')).toBeTruthy();
+    const section = inSection('Overview');
+    expect(section.getByText('International Response')).toBeTruthy();
+    expect(section.getByText('🇺🇸 USA')).toBeTruthy();
+    expect(section.getByText('Genocide declaration, UFLPA, sanctions')).toBeTruthy();
+    expect(section.getByText('🇺🇳 UN')).toBeTruthy();
   });
 
-  // --- Detention Camps Tab ---
+  // --- Detention Camps ---
 
-  it('switches to Detention Camps tab', () => {
+  it('shows the Detention Camps section without interaction', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Detention Camps'));
-    expect(screen.getByText('Major Detention Facilities')).toBeTruthy();
-    expect(screen.getByText('Dabancheng')).toBeTruthy();
-    expect(screen.getByText('Kashgar')).toBeTruthy();
-    expect(screen.getByText('Hotan')).toBeTruthy();
-    expect(screen.getByText('Aksu')).toBeTruthy();
+    const section = inSection('Detention Camps');
+    expect(section.getByText('Major Detention Facilities')).toBeTruthy();
+    expect(section.getByText('Dabancheng')).toBeTruthy();
+    expect(section.getByText('Kashgar')).toBeTruthy();
+    expect(section.getByText('Hotan')).toBeTruthy();
+    expect(section.getByText('Aksu')).toBeTruthy();
   });
 
   it('shows ASPI satellite imagery link', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Detention Camps'));
-    const aspiLink = screen.getByText('ASPI Xinjiang Data Project').closest('a');
+    const section = inSection('Detention Camps');
+    const aspiLink = section.getByText('ASPI Xinjiang Data Project').closest('a');
     expect(aspiLink!.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
     expect(aspiLink!.getAttribute('target')).toBe('_blank');
   });
 
-  // --- Forced Labor Tab ---
+  // --- Forced Labor ---
 
-  it('switches to Forced Labor tab', () => {
+  it('shows the Forced Labor section without interaction', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Forced Labor'));
-    expect(screen.getByText('Forced Labor by Sector')).toBeTruthy();
-    expect(screen.getByText('Cotton')).toBeTruthy();
-    expect(screen.getByText('85%')).toBeTruthy();
-    expect(screen.getByText('Polysilicon')).toBeTruthy();
-    expect(screen.getByText('35%')).toBeTruthy();
+    const section = inSection('Forced Labor');
+    expect(section.getByText('Forced Labor by Sector')).toBeTruthy();
+    expect(section.getByText('Cotton')).toBeTruthy();
+    expect(section.getByText('85%')).toBeTruthy();
+    expect(section.getByText('Polysilicon')).toBeTruthy();
+    expect(section.getByText('35%')).toBeTruthy();
   });
 
   it('shows UFLPA legislation info', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Forced Labor'));
-    expect(screen.getByText('Key Legislation')).toBeTruthy();
-    expect(screen.getByText(/UFLPA/)).toBeTruthy();
+    const section = inSection('Forced Labor');
+    expect(section.getByText('Key Legislation')).toBeTruthy();
+    expect(section.getAllByText(/UFLPA/).length).toBeGreaterThan(0);
   });
 
-  // --- Cultural Genocide Tab ---
+  // --- Cultural Genocide ---
 
-  it('switches to Cultural Genocide tab', () => {
+  it('shows the Cultural Genocide section without interaction', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Cultural Genocide'));
-    expect(screen.getByText('Cultural Destruction')).toBeTruthy();
-    expect(screen.getByText('Mosques')).toBeTruthy();
-    expect(screen.getByText('Cemeteries')).toBeTruthy();
-    expect(screen.getByText('100+')).toBeTruthy();
+    const section = inSection('Cultural Genocide');
+    expect(section.getByText('Cultural Destruction')).toBeTruthy();
+    expect(section.getByText('Mosques')).toBeTruthy();
+    expect(section.getByText('Cemeteries')).toBeTruthy();
+    expect(section.getByText('100+')).toBeTruthy();
   });
 
   it('shows additional measures list', () => {
     render(<XinjiangStatus />);
-    fireEvent.click(screen.getByText('Cultural Genocide'));
-    expect(screen.getByText('Additional Measures')).toBeTruthy();
-    expect(screen.getByText(/Forced sterilization/)).toBeTruthy();
-    expect(screen.getByText(/Biometric data collection/)).toBeTruthy();
+    const section = inSection('Cultural Genocide');
+    expect(section.getByText('Additional Measures')).toBeTruthy();
+    expect(section.getByText(/Forced sterilization/)).toBeTruthy();
+    expect(section.getByText(/Biometric data collection/)).toBeTruthy();
   });
 
-  // --- Tab Isolation ---
+  // --- Sections stay mounted ---
 
-  it('hides overview content when switching tabs', () => {
+  it('opening one section hides nothing in the others', () => {
     render(<XinjiangStatus />);
-    expect(screen.getByText('International Response')).toBeTruthy();
     fireEvent.click(screen.getByText('Forced Labor'));
-    expect(screen.queryByText('International Response')).toBeFalsy();
+    expect(inSection('Overview').getByText('International Response')).toBeTruthy();
   });
 
   // --- Resources ---

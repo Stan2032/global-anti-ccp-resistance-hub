@@ -25,7 +25,7 @@ describe('ForcedLabourList', () => {
 
   it('renders search input', () => {
     render(<ForcedLabourList />);
-    expect(screen.getByPlaceholderText('Search companies...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search implicated companies...')).toBeTruthy();
   });
 
   it('renders company cards', () => {
@@ -52,7 +52,7 @@ describe('ForcedLabourList', () => {
 
   it('filters companies by search query', () => {
     render(<ForcedLabourList />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search implicated companies...');
     fireEvent.change(searchInput, { target: { value: 'Nike' } });
     expect(screen.getByText('Nike')).toBeTruthy();
     expect(screen.queryByText('Apple')).toBeFalsy();
@@ -60,30 +60,32 @@ describe('ForcedLabourList', () => {
 
   it('shows no results for non-matching search', () => {
     render(<ForcedLabourList />);
-    const searchInput = screen.getByPlaceholderText('Search companies...');
+    const searchInput = screen.getByPlaceholderText('Search implicated companies...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No companies found matching your search.')).toBeTruthy();
   });
 
-  it('toggles ethical alternatives', () => {
+  // Each company's ethical alternatives appeared only after a click that
+  // needed JavaScript. They are in the page now, in a closed native
+  // disclosure named after the company.
+  it("puts each company's ethical alternatives in the page, in a closed native disclosure", () => {
     render(<ForcedLabourList />);
-    // Click to show alternatives for Nike
-    const altButtons = screen.getAllByText(/Ethical Alternatives/);
-    fireEvent.click(altButtons[0]);
-    // Should show alternatives
-    expect(screen.getByText(/New Balance/)).toBeTruthy();
+    const disclosures = screen.getAllByText(/Ethical Alternatives/).map(s => s.closest('details')!);
+    expect(disclosures.length).toBeGreaterThan(0);
+    expect(disclosures.every(d => d && !d.open)).toBe(true);
+    // Before any click, Nike's alternatives are in its disclosure.
+    expect(disclosures[0].textContent).toMatch(/New Balance/);
+    expect(disclosures[0].querySelector('summary')!.textContent).toMatch(/to Nike/);
   });
 
-  it('hides alternatives when toggled off', () => {
+  it('opens and closes the alternatives natively', () => {
     render(<ForcedLabourList />);
-    const altButtons = screen.getAllByText(/Ethical Alternatives/);
-    fireEvent.click(altButtons[0]);
-    expect(screen.getByText(/New Balance/)).toBeTruthy();
-
-    // Click again to hide
-    const hideButton = screen.getAllByText(/Hide/)[0];
-    fireEvent.click(hideButton);
-    expect(screen.queryByText(/New Balance \(USA-made 990 series\)/)).toBeFalsy();
+    const summary = screen.getAllByText(/Ethical Alternatives/)[0];
+    const disclosure = summary.closest('details')!;
+    fireEvent.click(summary);
+    expect(disclosure.open).toBe(true);
+    fireEvent.click(summary);
+    expect(disclosure.open).toBe(false);
   });
 
   it('renders data sources section', () => {

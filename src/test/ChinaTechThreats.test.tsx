@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import ChinaTechThreats from '../components/ChinaTechThreats';
+import { expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('ChinaTechThreats', () => {
   // --- Header ---
@@ -22,25 +23,23 @@ describe('ChinaTechThreats', () => {
     expect(screen.getByText('App Users at Risk')).toBeTruthy();
   });
 
-  // --- Tab Navigation ---
+  // --- Sections ---
 
-  it('renders all 4 tab buttons', () => {
+  it('renders all 4 sections as native disclosures', () => {
     render(<ChinaTechThreats />);
-    expect(screen.getByText('Surveillance Tech')).toBeTruthy();
-    expect(screen.getByText('Critical Infrastructure')).toBeTruthy();
-    expect(screen.getByText('Data Collection')).toBeTruthy();
-    expect(screen.getByText('Global Response')).toBeTruthy();
+    expectDisclosureSections(['Surveillance Tech', 'Critical Infrastructure', 'Data Collection', 'Global Response']);
   });
 
-  // --- Surveillance Tech Tab (Default) ---
+  // --- Surveillance Tech ---
 
-  it('shows surveillance companies on default tab', () => {
+  it('shows surveillance companies in the Surveillance Tech section', () => {
     render(<ChinaTechThreats />);
-    expect(screen.getByText('Sanctioned Surveillance Companies')).toBeTruthy();
-    expect(screen.getByText('Huawei')).toBeTruthy();
-    expect(screen.getByText('Hikvision')).toBeTruthy();
-    expect(screen.getByText('SenseTime')).toBeTruthy();
-    expect(screen.getByText('DJI')).toBeTruthy();
+    const section = inSection('Surveillance Tech');
+    expect(section.getByText('Sanctioned Surveillance Companies')).toBeTruthy();
+    expect(section.getByText('Huawei')).toBeTruthy();
+    expect(section.getByText('Hikvision')).toBeTruthy();
+    expect(section.getByText('SenseTime')).toBeTruthy();
+    expect(section.getByText('DJI')).toBeTruthy();
   });
 
   it('shows threat levels for surveillance companies', () => {
@@ -48,72 +47,71 @@ describe('ChinaTechThreats', () => {
     // CRITICAL, HIGH, MEDIUM appear as badges
     expect(screen.getAllByText('CRITICAL').length).toBeGreaterThanOrEqual(3);
     expect(screen.getAllByText('HIGH').length).toBeGreaterThanOrEqual(3);
-    expect(screen.getByText('MEDIUM')).toBeTruthy();
+    expect(screen.getAllByText('MEDIUM').length).toBeGreaterThan(0);
   });
 
-  // --- Critical Infrastructure Tab ---
+  // --- Critical Infrastructure ---
 
-  it('switches to Critical Infrastructure tab', () => {
+  it('shows the Critical Infrastructure section without interaction', () => {
     render(<ChinaTechThreats />);
-    fireEvent.click(screen.getByText('Critical Infrastructure'));
-    expect(screen.getByText('Critical Infrastructure Risks')).toBeTruthy();
-    expect(screen.getByText('5G Networks')).toBeTruthy();
-    expect(screen.getByText('Ports & Shipping')).toBeTruthy();
-    expect(screen.getByText('Smart Cities')).toBeTruthy();
+    const section = inSection('Critical Infrastructure');
+    expect(section.getByText('Critical Infrastructure Risks')).toBeTruthy();
+    expect(section.getByText('5G Networks')).toBeTruthy();
+    expect(section.getByText('Ports & Shipping')).toBeTruthy();
+    expect(section.getByText('Smart Cities')).toBeTruthy();
   });
 
-  it('shows risk levels on infrastructure tab', () => {
+  it('shows risk levels in the Critical Infrastructure section', () => {
     render(<ChinaTechThreats />);
-    fireEvent.click(screen.getByText('Critical Infrastructure'));
-    expect(screen.getAllByText(/CRITICAL RISK/).length).toBeGreaterThanOrEqual(2);
-    expect(screen.getAllByText(/HIGH RISK/).length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Critical Infrastructure');
+    expect(section.getAllByText(/CRITICAL RISK/).length).toBeGreaterThanOrEqual(2);
+    expect(section.getAllByText(/HIGH RISK/).length).toBeGreaterThanOrEqual(1);
   });
 
-  // --- Data Collection Tab ---
+  // --- Data Collection ---
 
-  it('switches to Data Collection tab', () => {
+  it('shows the Data Collection section without interaction', () => {
     render(<ChinaTechThreats />);
-    fireEvent.click(screen.getByText('Data Collection'));
-    expect(screen.getByText('Data Collection Risks')).toBeTruthy();
-    expect(screen.getByText('TikTok')).toBeTruthy();
-    expect(screen.getByText('WeChat')).toBeTruthy();
-    expect(screen.getByText('BGI Genomics')).toBeTruthy();
-    expect(screen.getByText('Temu/Pinduoduo')).toBeTruthy();
-    expect(screen.getByText('Shein')).toBeTruthy();
+    const section = inSection('Data Collection');
+    expect(section.getByText('Data Collection Risks')).toBeTruthy();
+    expect(section.getByText('TikTok')).toBeTruthy();
+    expect(section.getByText('WeChat')).toBeTruthy();
+    expect(section.getByText('BGI Genomics')).toBeTruthy();
+    expect(section.getByText('Temu/Pinduoduo')).toBeTruthy();
+    expect(section.getByText('Shein')).toBeTruthy();
   });
 
   it('shows BGI genomics warning', () => {
     render(<ChinaTechThreats />);
+    const section = inSection('Data Collection');
+    expect(section.getByText(/BGI Genomics Warning/)).toBeTruthy();
+    expect(section.getByText(/genetic data from millions/)).toBeTruthy();
+  });
+
+  // --- Global Response ---
+
+  it('shows the Global Response section without interaction', () => {
+    render(<ChinaTechThreats />);
+    const section = inSection('Global Response');
+    expect(section.getByText('Global Response to China Tech')).toBeTruthy();
+    expect(section.getByText('USA')).toBeTruthy();
+    expect(section.getByText('UK')).toBeTruthy();
+    expect(section.getByText('India')).toBeTruthy();
+  });
+
+  it('shows actionable advice in the Global Response section', () => {
+    render(<ChinaTechThreats />);
+    const section = inSection('Global Response');
+    expect(section.getByText('✅ What You Can Do')).toBeTruthy();
+    expect(section.getByText(/Avoid Chinese-made surveillance cameras/)).toBeTruthy();
+  });
+
+  // --- Sections stay mounted ---
+
+  it('opening one section hides nothing in the others', () => {
+    render(<ChinaTechThreats />);
     fireEvent.click(screen.getByText('Data Collection'));
-    expect(screen.getByText(/BGI Genomics Warning/)).toBeTruthy();
-    expect(screen.getByText(/genetic data from millions/)).toBeTruthy();
-  });
-
-  // --- Global Response Tab ---
-
-  it('switches to Global Response tab', () => {
-    render(<ChinaTechThreats />);
-    fireEvent.click(screen.getByText('Global Response'));
-    expect(screen.getByText('Global Response to China Tech')).toBeTruthy();
-    expect(screen.getByText('USA')).toBeTruthy();
-    expect(screen.getByText('UK')).toBeTruthy();
-    expect(screen.getByText('India')).toBeTruthy();
-  });
-
-  it('shows actionable advice on Global Response tab', () => {
-    render(<ChinaTechThreats />);
-    fireEvent.click(screen.getByText('Global Response'));
-    expect(screen.getByText('✅ What You Can Do')).toBeTruthy();
-    expect(screen.getByText(/Avoid Chinese-made surveillance cameras/)).toBeTruthy();
-  });
-
-  // --- Tab Isolation ---
-
-  it('hides surveillance content when switching tabs', () => {
-    render(<ChinaTechThreats />);
-    expect(screen.getByText('Sanctioned Surveillance Companies')).toBeTruthy();
-    fireEvent.click(screen.getByText('Data Collection'));
-    expect(screen.queryByText('Sanctioned Surveillance Companies')).toBeFalsy();
+    expect(inSection('Surveillance Tech').getByText('Sanctioned Surveillance Companies')).toBeTruthy();
   });
 
   // --- Resources ---

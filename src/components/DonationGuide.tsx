@@ -344,14 +344,14 @@ const DonationGuide = () => {
       {/* Filters */}
       <div className="space-y-3">
         <div>
-          <label className="block text-xs text-slate-400 mb-1">Category</label>
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Organization categories">
+          <p className="text-xs text-slate-400 mb-1">Category</p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter organizations by category">
             {categories.map(cat => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                role="tab"
-                aria-selected={activeCategory === cat.id}
+                aria-pressed={activeCategory === cat.id}
                 className={`flex items-center space-x-1 px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCategory === cat.id
                     ? 'bg-green-600 text-white'
@@ -365,14 +365,14 @@ const DonationGuide = () => {
           </div>
         </div>
         <div>
-          <label className="block text-xs text-slate-400 mb-1">Cause</label>
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Cause filter">
+          <p className="text-xs text-slate-400 mb-1">Cause</p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter organizations by cause">
             {causes.map(cause => (
               <button
                 key={cause.id}
+                type="button"
                 onClick={() => setActiveCause(cause.id)}
-                role="tab"
-                aria-selected={activeCause === cause.id}
+                aria-pressed={activeCause === cause.id}
                 className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   activeCause === cause.id
                     ? 'bg-[#22d3ee] text-[#0a0e14]'

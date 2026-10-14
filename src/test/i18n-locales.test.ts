@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest'
+import { readdirSync, readFileSync } from 'fs'
+import path from 'path'
+import { translations } from '../contexts/languageUtils'
 import enLocale from '../locales/en.json'
 import zhCNLocale from '../locales/zh-CN.json'
 import zhTWLocale from '../locales/zh-TW.json'
@@ -79,5 +82,26 @@ describe('i18n locale files', () => {
         expect(locale.nav.dashboard).not.toBe(enLocale.nav.dashboard)
       })
     })
+  })
+})
+
+describe('every t() key the app uses', () => {
+  // t() returns the key itself when nothing matches, so a wrong key never
+  // fails loudly: the skip links showed "skipToMain" and "skipToNav" to
+  // every keyboard and screen-reader user.
+  it('resolves to English text, the way t() looks it up', () => {
+    const src = path.resolve(__dirname, '..')
+    const keys = new Set<string>()
+    for (const f of readdirSync(src, { recursive: true }) as string[]) {
+      if (!/\.tsx?$/.test(f) || f.startsWith(`test${path.sep}`)) continue
+      for (const m of readFileSync(path.join(src, f), 'utf-8').matchAll(/\bt\(\s*['"]([^'"]+)['"]/g)) keys.add(m[1])
+    }
+    expect(keys, 'the scan sees the calls it checks').toContain('accessibility.skipToMain')
+    const lookup = (obj: unknown, key: string) =>
+      key.split('.').reduce<unknown>((o, k) => (o as Record<string, unknown> | undefined)?.[k], obj)
+    const unresolved = [...keys].filter(
+      (k) => typeof lookup(translations.en, k) !== 'string' && typeof lookup(enLocale, k) !== 'string'
+    )
+    expect(unresolved).toEqual([])
   })
 })

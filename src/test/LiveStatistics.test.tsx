@@ -19,7 +19,7 @@ describe('LiveStatistics', () => {
   it('renders the header with title', () => {
     render(<LiveStatistics />);
     expect(screen.getByText('The Human Cost')).toBeTruthy();
-    expect(screen.getByText(/Real-time statistics on CCP repression/)).toBeTruthy();
+    expect(screen.getByText(/Periodically verified statistics on CCP repression/)).toBeTruthy();
   });
 
   it('renders the emotional context paragraph', () => {
@@ -32,9 +32,26 @@ describe('LiveStatistics', () => {
     expect(screen.getByText(/Data compiled from verified sources/)).toBeTruthy();
   });
 
-  it('displays last updated date', () => {
+  it('reports the data\'s real verification date, not the render date', async () => {
+    const statistics = (await import('../data/live_statistics.json')).default as
+      { lastVerified?: string }[];
+    const oldestVerified = statistics
+      .map(s => s.lastVerified)
+      .filter(Boolean)
+      .sort()[0] as string;
+
     render(<LiveStatistics />);
-    expect(screen.getByText(/Last updated:/)).toBeTruthy();
+
+    // The component must surface the date the data was actually verified.
+    // It previously rendered `new Date()`, which told every visitor the
+    // human-rights figures had been checked today no matter how old they were.
+    expect(screen.getByText(new RegExp(oldestVerified))).toBeTruthy();
+    expect(screen.getByText(/Verified/)).toBeTruthy();
+
+    const today = new Date().toISOString().slice(0, 10);
+    if (oldestVerified !== today) {
+      expect(screen.queryByText(new RegExp(`\\(${today}\\)`))).toBeNull();
+    }
   });
 
   // --- All 8 Statistics Rendered ---
