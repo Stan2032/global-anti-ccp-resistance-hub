@@ -560,7 +560,9 @@ corrections come from sources already read for this pass or read for it:
 - **Joshua Wong's collusion case** was still pending trial a month after
   his guilty plea.
 - **Kwok Yin-sang** was tried in the wrong court for the wrong offence
-  ("sedition"), with the sentencing date given as the verdict date.
+  ("sedition"), with the sentencing date given as the verdict date. His
+  arrest was dated December 2025; it was 30 April 2025 (HRW, and RFA,
+  2 May 2025).
 - **Stand News:** Patrick Lam's sentence was "suspended". He got 11
   months and was released for time served.
 - **Apple Daily:** "7 to 13 months". The six executives got between 6

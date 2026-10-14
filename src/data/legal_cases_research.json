@@ -85,6 +85,7 @@
         "charges": "Attempting to deal with funds or other financial assets belonging to an 'absconder', under the Safeguarding National Security Ordinance (Article 23)",
         "status": "CONVICTED",
         "key_dates": {
+          "arrest_date": "2025-04-30",
           "verdict_date": "2026-02-11",
           "sentencing_date": "2026-02-26"
         },
