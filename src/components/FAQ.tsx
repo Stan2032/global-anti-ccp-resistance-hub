@@ -114,7 +114,7 @@ const FAQ = () => {
       id: 15,
       category: 'understanding',
       question: 'What is happening to the Uyghurs?',
-      answer: 'The Uyghurs, a Turkic Muslim minority in Xinjiang, face what multiple governments have declared genocide. Since 2017, 1-3 million have been detained in "re-education" camps. They face forced labor, forced sterilization, family separation, cultural erasure, and religious persecution.'
+      answer: 'The Uyghurs, a Turkic Muslim minority in Xinjiang, face what multiple governments have declared genocide. Since 2017, more than a million, and possibly up to 1.8 million, have been detained in "re-education" camps. They face forced labor, forced sterilization, family separation, cultural erasure, and religious persecution.'
     },
     {
       id: 16,

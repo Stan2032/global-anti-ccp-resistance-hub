@@ -86,7 +86,7 @@ const GlossaryTerms = () => {
       chinese: '职业技能教育培训中心',
       pinyin: 'Zhíyè Jìnéng Jiàoyù Péixùn Zhōngxīn',
       category: 'xinjiang',
-      definition: `CCP euphemism for concentration camps in Xinjiang where an estimated ${STATISTICS.uyghurDetention.value} Uyghurs and other minorities are detained for "re-education."`,
+      definition: `CCP euphemism for concentration camps in Xinjiang where ${STATISTICS.uyghurDetention.value} Uyghurs and other minorities have been detained for "re-education" since 2017.`,
       related: ['Uyghurs', 'Xinjiang', 'Genocide', 'Detention']
     },
     {

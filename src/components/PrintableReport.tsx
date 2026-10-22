@@ -12,7 +12,7 @@ import { useClock } from '../utils/ssr';
 
 const KEY_FACTS = [
   { label: 'Political prisoners documented', value: '65+', source: 'CECC, HRW, Amnesty' },
-  { label: 'Uyghurs in detention camps', value: '1–3 million', source: 'ASPI, OHCHR' },
+  { label: 'Uyghurs detained in camps since 2017', value: 'More than 1 million (up to 1.8 million)', source: 'Zenz 2019, CHRD, UN CERD' },
   { label: 'Overseas CCP police stations', value: '102+', source: 'Safeguard Defenders' },
   { label: 'HK political prisoners (NSL)', value: '260+', source: 'Hong Kong Watch' },
   { label: 'Forced labor companies flagged', value: '144+', source: 'US UFLPA Entity List' },

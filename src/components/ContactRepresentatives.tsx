@@ -83,7 +83,7 @@ const ContactRepresentatives = () => {
 I am writing to urge you to take action on the ongoing human rights abuses perpetrated by the Chinese Communist Party (CCP).
 
 The CCP continues to commit serious violations including:
-• The detention of an estimated ${STATISTICS.uyghurDetention.value} Uyghurs in concentration camps
+• The detention of ${STATISTICS.uyghurDetention.value} Uyghurs in internment camps since 2017
 • The systematic destruction of Hong Kong's autonomy and freedoms
 • The persecution of Tibetans, Falun Gong practitioners, and Christians
 • Transnational repression targeting diaspora communities worldwide
@@ -109,7 +109,7 @@ Sincerely,
 I am writing to urge immediate action on the genocide being committed against the Uyghur people in the Xinjiang Uyghur Autonomous Region of China.
 
 The evidence is overwhelming:
-• An estimated ${STATISTICS.uyghurDetention.value} Uyghurs detained in concentration camps
+• The detention of ${STATISTICS.uyghurDetention.value} Uyghurs in internment camps since 2017, more than half a million of whom are estimated to be held still
 • Forced sterilization and birth prevention
 • Systematic cultural and religious destruction
 • Forced labor in factories supplying global brands

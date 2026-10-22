@@ -28,7 +28,7 @@ const DisinfoTracker = () => {
     {
       id: 1,
       claim: '"Vocational training centers" in Xinjiang are voluntary education programs',
-      reality: `These are forced detention camps holding ${STATISTICS.uyghurDetention.value} Uyghurs. Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.`,
+      reality: `These are forced detention camps, which have held ${STATISTICS.uyghurDetention.value} Uyghurs since 2017; more than half a million are estimated to be held in prisons and internment today (US Holocaust Memorial Museum, 2025). Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.`,
       category: 'uyghur',
       source: 'CCP State Media',
       debunkedBy: ['Xinjiang Police Files', 'China Cables', 'Uyghur Tribunal'],
