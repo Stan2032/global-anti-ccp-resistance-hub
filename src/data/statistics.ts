@@ -21,11 +21,16 @@ export interface StatisticEntry {
 }
 
 export const STATISTICS: Record<string, StatisticEntry> = {
+  // The camp system at its height. Adrian Zenz's 2019 estimate runs from a
+  // minimum of 900,000 to a "speculative upper limit" of 1.8 million; CHRD
+  // estimated 1.1 million and the UN CERD cited about a million in 2018. No
+  // precise count exists. For today, a 2025 USHMM report (Rian Thum) puts the
+  // number in prisons and extrajudicial internment at more than half a million.
   uyghurDetention: {
-    value: '1-3 million',
-    context: 'Uyghurs and other Turkic Muslims detained in internment camps since 2017',
-    sources: ['ASPI', 'CECC', 'Xinjiang Police Files', 'Adrian Zenz research', 'UHRP'],
-    lastVerified: '2026-03-08',
+    value: 'more than a million',
+    context: 'Uyghurs and other Turkic Muslims detained in internment camps since 2017 (estimates run up to 1.8 million)',
+    sources: ['Adrian Zenz, Journal of Political Risk (2019)', 'Chinese Human Rights Defenders', 'UN CERD (2018)', 'US Holocaust Memorial Museum (2025)'],
+    lastVerified: '2026-10-22',
   },
 
   surveillanceCameras: {
@@ -106,7 +111,7 @@ export const STATISTICS: Record<string, StatisticEntry> = {
   },
 };
 
-// Formats a statistic for display, e.g. "1-3 million Uyghurs detained".
+// Formats a statistic for display, e.g. "more than a million Uyghurs … detained".
 export function formatStat(key: string): string {
   const stat = STATISTICS[key];
   if (!stat) return '';

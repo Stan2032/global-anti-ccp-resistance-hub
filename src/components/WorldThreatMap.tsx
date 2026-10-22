@@ -7,8 +7,7 @@
  *
  * @module WorldThreatMap
  */
-import { useState } from 'react';
-import { Globe, MapPin } from 'lucide-react';
+import { ChevronDown, Globe, MapPin } from 'lucide-react';
 
 type RegionName = 'Europe' | 'North America' | 'South America' | 'Asia Pacific' | 'Africa' | 'Middle East';
 
@@ -25,19 +24,18 @@ interface RegionData {
   riskLevel: string;
 }
 
-interface Hotspot {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-  type: string;
-  description: string;
-  severity: string;
+
+const regionId = (region: RegionName) => `threat-region-${region.toLowerCase().replace(/\s+/g, '-')}`;
+
+/** Clicking a region on the map opens its entry in the list below it. */
+function openRegion(region: RegionName) {
+  const entry = document.getElementById(regionId(region)) as HTMLDetailsElement | null;
+  if (!entry) return;
+  entry.open = true;
+  entry.scrollIntoView({ block: 'nearest' });
 }
 
 const WorldThreatMap = () => {
-  const [selectedRegion, setSelectedRegion] = useState<RegionName | null>(null);
-  const [hoveredCountry, setHoveredCountry] = useState<Hotspot | null>(null);
 
   // Accurate data for CCP overseas police stations from Safeguard Defenders (synchronized with PoliceStationsMap)
   const threatData: Record<RegionName, RegionData> = {
@@ -162,10 +160,6 @@ const WorldThreatMap = () => {
             </h2>
             <p className="text-sm text-slate-400">{totalStations} overseas police stations in {totalCountries} countries</p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-            <span className="text-xs text-red-400">LIVE THREAT DATA</span>
-          </div>
         </div>
       </div>
 
@@ -192,7 +186,7 @@ const WorldThreatMap = () => {
       {/* Map Container */}
       <div className="relative aspect-[2/1] bg-[#0a0e14] overflow-hidden">
         {/* Simplified World Map SVG */}
-        <svg viewBox="0 0 100 50" className="w-full h-full" role="img" aria-label="World threat map — click regions to view details">
+        <svg viewBox="0 0 100 50" className="w-full h-full" role="img" aria-label="World map of CCP overseas police stations and hotspots; the regions and hotspots are listed below">
           {/* Background grid */}
           <defs>
             <pattern id="grid" width="5" height="5" patternUnits="userSpaceOnUse">
@@ -205,72 +199,86 @@ const WorldThreatMap = () => {
           {/* North America */}
           <path 
             d="M 5 10 Q 15 8 25 12 L 28 20 Q 22 25 18 22 L 10 18 Z" 
-            fill={selectedRegion === 'North America' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'North America' ? null : 'North America')}
-          />
+            onClick={() => openRegion('North America')}
+          >
+            <title>North America</title>
+          </path>
           
           {/* South America */}
           <path 
             d="M 20 28 Q 25 26 28 30 L 26 42 Q 22 45 20 40 L 18 32 Z" 
-            fill={selectedRegion === 'South America' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'South America' ? null : 'South America')}
-          />
+            onClick={() => openRegion('South America')}
+          >
+            <title>South America</title>
+          </path>
           
           {/* Europe */}
           <path 
             d="M 42 12 Q 50 10 55 14 L 54 20 Q 48 22 44 18 L 42 14 Z" 
-            fill={selectedRegion === 'Europe' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'Europe' ? null : 'Europe')}
-          />
+            onClick={() => openRegion('Europe')}
+          >
+            <title>Europe</title>
+          </path>
           
           {/* Africa */}
           <path 
             d="M 45 24 Q 55 22 58 28 L 55 42 Q 48 44 46 38 L 44 30 Z" 
-            fill={selectedRegion === 'Africa' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'Africa' ? null : 'Africa')}
-          />
+            onClick={() => openRegion('Africa')}
+          >
+            <title>Africa</title>
+          </path>
           
           {/* Middle East */}
           <path 
             d="M 56 22 Q 62 20 65 24 L 63 30 Q 58 32 56 28 Z" 
-            fill={selectedRegion === 'Middle East' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'Middle East' ? null : 'Middle East')}
-          />
+            onClick={() => openRegion('Middle East')}
+          >
+            <title>Middle East</title>
+          </path>
           
           {/* Asia */}
           <path 
             d="M 55 12 Q 75 8 85 18 L 82 35 Q 70 38 62 30 L 56 20 Z" 
-            fill={selectedRegion === 'Asia Pacific' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'Asia Pacific' ? null : 'Asia Pacific')}
-          />
+            onClick={() => openRegion('Asia Pacific')}
+          >
+            <title>Asia Pacific</title>
+          </path>
           
           {/* Australia */}
           <path 
             d="M 80 38 Q 88 36 92 40 L 90 46 Q 84 48 82 44 L 80 40 Z" 
-            fill={selectedRegion === 'Asia Pacific' ? 'rgba(239,68,68,0.3)' : 'rgba(71,85,105,0.5)'}
+            fill="rgba(71,85,105,0.5)"
             stroke="rgba(148,163,184,0.5)"
             strokeWidth="0.2"
             className="cursor-pointer transition-colors"
-            onClick={() => setSelectedRegion(selectedRegion === 'Asia Pacific' ? null : 'Asia Pacific')}
-          />
+            onClick={() => openRegion('Asia Pacific')}
+          >
+            <title>Asia Pacific</title>
+          </path>
           
           {/* China highlighted in red */}
           <path 
@@ -289,9 +297,7 @@ const WorldThreatMap = () => {
                 cy={spot.y}
                 r={spot.severity === 'CRITICAL' ? 1.5 : 1}
                 fill={spot.severity === 'CRITICAL' ? 'rgba(239,68,68,0.8)' : 'rgba(251,146,60,0.8)'}
-                className="animate-pulse cursor-pointer"
-                onMouseEnter={() => setHoveredCountry(spot)}
-                onMouseLeave={() => setHoveredCountry(null)}
+                className="animate-pulse"
               />
               <circle
                 cx={spot.x}
@@ -305,94 +311,63 @@ const WorldThreatMap = () => {
             </g>
           ))}
         </svg>
-
-        {/* Hover tooltip */}
-        {hoveredCountry && (
-          <div 
-            className="absolute bg-[#111820] border border-[#1c2a35] p-3 shadow-xl z-10 pointer-events-none"
-            style={{ 
-              left: `${hoveredCountry.x}%`, 
-              top: `${hoveredCountry.y}%`,
-              transform: 'translate(-50%, -120%)'
-            }}
-          >
-            <div className="font-bold text-white text-sm">{hoveredCountry.name}</div>
-            <div className={`text-xs px-2 py-0.5 rounded inline-block mt-1 ${getRiskColor(hoveredCountry.severity)}`}>
-              {hoveredCountry.severity}
-            </div>
-            <div className="text-xs text-slate-400 mt-1">{hoveredCountry.description}</div>
-          </div>
-        )}
       </div>
 
-      {/* Region Details Panel */}
+      {/* Regions: native disclosures, in the page for everyone. A region's
+          countries used to appear only after a click, never without
+          JavaScript, and each country showed two of its threats. */}
+      <div className="p-4 border-t border-[#1c2a35] space-y-2">
+        {(Object.keys(threatData) as RegionName[]).map((region) => {
+          const data = threatData[region];
+          return (
+            <details key={region} id={regionId(region)} className="bg-[#0a0e14]/50 border border-[#1c2a35]">
+              <summary className="flex flex-wrap items-center gap-2 p-3 cursor-pointer list-none hover:bg-[#1c2a35]/30 [&::-webkit-details-marker]:hidden">
+                <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                <span className="font-bold text-white">{region}</span>
+                <span className="text-xs text-red-400">{data.totalStations} stations · {data.countries.length} countries</span>
+                <span className={`ml-auto px-2 py-0.5 rounded text-xs border ${getRiskColor(data.riskLevel)}`}>{data.riskLevel} RISK</span>
+              </summary>
+              <div className="px-3 pb-3 space-y-2">
+                {data.countries.map((country) => (
+                  <div key={country.name} className="bg-[#111820] p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-x-2 mb-2">
+                      <span className="font-medium text-white">{country.name}</span>
+                      <span className="text-xs text-red-400 font-bold">{country.policeStations} station{country.policeStations > 1 ? 's' : ''}</span>
+                    </div>
+                    <div className="text-xs text-slate-400 mb-2 flex items-start gap-1">
+                      <MapPin className="w-3 h-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>{country.cities.join(', ')}</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {country.threats.map((threat) => (
+                        <span key={threat} className="px-2 py-0.5 bg-[#0a0e14] text-slate-300 rounded text-xs">
+                          {threat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+
+      {/* Hotspots, listed. On the map they were a tooltip that appeared on
+          mouse hover, out of reach of a keyboard or a touch screen. */}
       <div className="p-4 border-t border-[#1c2a35]">
-        {selectedRegion && threatData[selectedRegion] ? (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="font-bold text-white">{selectedRegion}</h3>
-              <div className="flex items-center gap-2">
-                <span className={`px-2 py-1 rounded text-xs border ${getRiskColor(threatData[selectedRegion].riskLevel)}`}>
-                  {threatData[selectedRegion].riskLevel} RISK
-                </span>
-                <button 
-                  onClick={() => setSelectedRegion(null)}
-                  aria-label="Close region details"
-                  className="text-slate-400 hover:text-white"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4 text-center">
-              <div className="bg-[#0a0e14]/50 p-3">
-                <div className="text-2xl font-bold text-red-400">{threatData[selectedRegion].totalStations}</div>
-                <div className="text-xs text-slate-400">Police Stations</div>
-              </div>
-              <div className="bg-[#0a0e14]/50 p-3">
-                <div className="text-2xl font-bold text-orange-400">{threatData[selectedRegion].countries.length}</div>
-                <div className="text-xs text-slate-400">Countries Affected</div>
-              </div>
-            </div>
-            <div className="space-y-2 max-h-48 overflow-y-auto">
-              {threatData[selectedRegion].countries.map((country) => (
-                <div key={country.name} className="bg-[#0a0e14]/50 p-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-white">{country.name}</span>
-                    <span className="text-xs text-red-400 font-bold">{country.policeStations} station{country.policeStations > 1 ? 's' : ''}</span>
-                  </div>
-                  <div className="text-xs text-slate-400 mb-2">
-                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {country.cities.join(', ')}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {country.threats.slice(0, 2).map((threat, i) => (
-                      <span key={i} className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded text-xs">
-                        {threat}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="text-center py-4">
-            <p className="text-slate-400 mb-4">Click on a region to see detailed threat information</p>
-            <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Select region">
-              {(Object.keys(threatData) as RegionName[]).map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setSelectedRegion(region)}
-                  aria-label={`View threats in ${region} (${threatData[region].totalStations} stations)`}
-                  className="px-3 py-1.5 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm transition-colors flex items-center gap-1"
-                >
-                  {region}
-                  <span className="text-xs text-red-400">({threatData[region].totalStations})</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <h3 className="text-sm font-bold text-white mb-2">Hotspots</h3>
+        <ul className="grid sm:grid-cols-2 gap-2">
+          {hotspots.map((spot) => (
+            <li key={spot.id} className="bg-[#0a0e14]/50 p-3 text-sm">
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="font-medium text-white">{spot.name}</span>
+                <span className={`px-2 py-0.5 rounded text-xs border ${getRiskColor(spot.severity)}`}>{spot.severity}</span>
+              </span>
+              <span className="block text-xs text-slate-400 mt-1">{spot.description}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Legend & Source */}

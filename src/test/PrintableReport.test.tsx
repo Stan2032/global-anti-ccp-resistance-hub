@@ -55,8 +55,8 @@ describe('PrintableReport', () => {
     fireEvent.click(screen.getByText('Generate Report'));
     expect(screen.getByText('Political prisoners documented')).toBeTruthy();
     expect(screen.getByText('65+')).toBeTruthy();
-    expect(screen.getByText('Uyghurs in detention camps')).toBeTruthy();
-    expect(screen.getByText('1–3 million')).toBeTruthy();
+    expect(screen.getByText('Uyghurs detained in camps since 2017')).toBeTruthy();
+    expect(screen.getByText('More than 1 million (up to 1.8 million)')).toBeTruthy();
     expect(screen.getByText('Overseas CCP police stations')).toBeTruthy();
     expect(screen.getByText('102+')).toBeTruthy();
   });
@@ -65,7 +65,7 @@ describe('PrintableReport', () => {
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
     expect(screen.getByText('CECC, HRW, Amnesty')).toBeTruthy();
-    expect(screen.getByText('ASPI, OHCHR')).toBeTruthy();
+    expect(screen.getByText('Zenz 2019, CHRD, UN CERD')).toBeTruthy();
     expect(screen.getByText('Safeguard Defenders')).toBeTruthy();
   });
 
@@ -201,7 +201,7 @@ describe('PrintableReport', () => {
     render(<PrintableReport />);
     fireEvent.click(screen.getByText('Generate Report'));
     expect(screen.getByText('Political prisoners documented')).toBeTruthy();
-    expect(screen.getByText('Uyghurs in detention camps')).toBeTruthy();
+    expect(screen.getByText('Uyghurs detained in camps since 2017')).toBeTruthy();
     expect(screen.getByText('Overseas CCP police stations')).toBeTruthy();
     expect(screen.getByText('HK political prisoners (NSL)')).toBeTruthy();
     expect(screen.getByText('Forced labor companies flagged')).toBeTruthy();

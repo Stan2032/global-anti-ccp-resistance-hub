@@ -66,7 +66,7 @@ I am writing to urge you to take immediate action regarding the case of ${prison
 ${sentenceInfo} ${locationInfo}${healthInfo}${responseInfo}
 
 This case represents part of a broader pattern of systematic human rights violations by the CCP, including:
-• The detention of an estimated 1-3 million Uyghurs in internment camps
+• The detention of more than a million Uyghurs in internment camps since 2017
 • The dismantling of Hong Kong's autonomy under the National Security Law
 • The persecution of Tibetans, Falun Gong practitioners, and political dissidents
 • Transnational repression targeting activists and their families worldwide

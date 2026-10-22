@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -7,6 +7,7 @@ import React from 'react';
 vi.mock('../components/IPACMembers', () => ({ default: () => <div data-testid="ipac-members">IPACMembers</div> }));
 
 import ResistanceDirectory from '../pages/ResistanceDirectory';
+import organizationsData from '../../organizations-data.json';
 
 const renderPage = () =>
   render(
@@ -44,7 +45,16 @@ describe('ResistanceDirectory', () => {
     expect(screen.getByText('Categories')).toBeTruthy();
     expect(screen.getByText('Global Reach')).toBeTruthy();
     expect(screen.getByText('Verified')).toBeTruthy();
-    expect(screen.getByText('Years Combined')).toBeTruthy();
+    expect(screen.getByText('Oldest Founded')).toBeTruthy();
+  });
+
+  it('gives the earliest founding year, not a number that changes with the date', () => {
+    // It said "Years Combined" over the current year minus this one.
+    renderPage();
+    const earliest = Math.min(...organizationsData.organizations.map(o => o.established));
+    const tile = screen.getByText('Oldest Founded').parentElement!;
+    expect(tile.textContent).toBe(`${earliest}Oldest Founded`);
+    expect(screen.queryByText('Years Combined')).toBeNull();
   });
 
   // --- Search & Filter ---
@@ -107,31 +117,33 @@ describe('ResistanceDirectory', () => {
     expect(verifiedIcons.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('expands organization details on click', () => {
-    renderPage();
-    // Click first organization card
-    const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    fireEvent.click(orgCard!);
-    // Should show expanded details with focus areas and visit link
-    expect(screen.getByText('Focus Areas')).toBeTruthy();
-    expect(screen.getByText('Visit Website')).toBeTruthy();
+  it('every organisation carries its focus areas and website without a click', () => {
+    const { container } = renderPage();
+    const cards = [...container.querySelectorAll('details')];
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => {
+      expect(card.open).toBe(false);
+      expect(within(card).getByText('Focus Areas')).toBeTruthy();
+      const site = within(card).getByText(/Visit Website/).closest('a')!;
+      expect(site.getAttribute('href')).toMatch(/^https?:\/\//);
+      // The link sits in the body, not inside the summary.
+      expect(site.closest('summary')).toBeNull();
+    });
   });
 
-  it('collapses organization details on second click', () => {
+  it('an organisation opens and closes natively', () => {
     renderPage();
-    const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    fireEvent.click(orgCard!);
-    expect(screen.getByText('Visit Website')).toBeTruthy();
-    fireEvent.click(orgCard!);
-    expect(screen.queryByText('Visit Website')).toBeNull();
+    const card = screen.getByText('Uyghur Human Rights Project').closest('details')!;
+    fireEvent.click(screen.getByText('Uyghur Human Rights Project'));
+    expect(card.open).toBe(true);
+    fireEvent.click(screen.getByText('Uyghur Human Rights Project'));
+    expect(card.open).toBe(false);
   });
 
-  it('shows aria-expanded on org cards', () => {
-    renderPage();
-    const orgCard = screen.getByText('Uyghur Human Rights Project').closest('button');
-    expect(orgCard!.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(orgCard!);
-    expect(orgCard!.getAttribute('aria-expanded')).toBe('true');
+  it('puts no link inside a button, and no JavaScript-only expanders', () => {
+    // Each card used to be one <button> with the website link inside it.
+    const { container } = renderPage();
+    expect(container.querySelectorAll('button a, [aria-expanded]')).toHaveLength(0);
   });
 
   // --- No Results ---

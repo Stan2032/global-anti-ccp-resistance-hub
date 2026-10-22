@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -10,6 +10,13 @@ vi.mock('../components/MemorialWall', () => ({ default: () => <div>MemorialWall<
 vi.mock('../components/ui/SourceAttribution', () => ({ default: ({ source }: { source?: { name?: string } }) => <div>Source: {source?.name}</div> }));
 
 import PoliticalPrisoners from '../pages/PoliticalPrisoners';
+import prisonersData from '../data/political_prisoners_research.json';
+
+const records = prisonersData.results.map(r => r.output).filter(Boolean);
+/** Every prisoner card on the page, folded or not. */
+const cards = () => [...document.querySelectorAll('article')];
+/** The disclosure holding the cases past the first 15. */
+const folded = () => screen.getByText(/show --all \d+ cases/).closest('details') as HTMLDetailsElement;
 
 const renderPage = () =>
   render(
@@ -77,13 +84,17 @@ describe('PoliticalPrisoners', () => {
     expect(screen.getByText('$ view_all_profiles →')).toBeTruthy();
   });
 
-  // --- Truncation (Show All / Show Less) ---
+  // --- Every case in the page (Show All / Show Less) ---
+  // "Show all" was a button only JavaScript could work, and each card opened
+  // a modal only JavaScript could render. Every case is in the page now: the
+  // first 15, then the rest in a native disclosure.
 
-  it('shows only 15 prisoners initially', () => {
+  it('puts every case in the page: the first 15, the rest folded', () => {
     renderPage();
-    // With 62 total prisoners, should show only 15 cards initially
-    const cards = screen.getAllByRole('button', { name: /View details for/ });
-    expect(cards.length).toBe(15);
+    expect(records.length).toBeGreaterThan(15);
+    expect(cards()).toHaveLength(records.length);
+    expect(folded().open).toBe(false);
+    expect(folded().querySelectorAll('article')).toHaveLength(records.length - 15);
   });
 
   it('shows "show all" button when more than 15 prisoners', () => {
@@ -91,65 +102,55 @@ describe('PoliticalPrisoners', () => {
     expect(screen.getByText(/show --all \d+ cases/)).toBeTruthy();
   });
 
-  it('shows all prisoners when "show all" is clicked', () => {
+  it('show all and show less open and close the rest natively', () => {
     renderPage();
-    const showAllBtn = screen.getByText(/show --all \d+ cases/);
-    fireEvent.click(showAllBtn);
-    const cards = screen.getAllByRole('button', { name: /View details for/ });
-    expect(cards.length).toBeGreaterThan(15);
+    const summary = folded().querySelector(':scope > summary')!;
+    expect(within(summary as HTMLElement).getByText('$ show --less')).toBeTruthy();
+    fireEvent.click(summary);
+    expect(folded().open).toBe(true);
+    fireEvent.click(summary);
+    expect(folded().open).toBe(false);
   });
 
-  it('shows "show less" button after expanding', () => {
+  it('a filter keeps every matching case in the page', () => {
     renderPage();
-    const showAllBtn = screen.getByText(/show --all \d+ cases/);
-    fireEvent.click(showAllBtn);
-    expect(screen.getByText('$ show --less')).toBeTruthy();
+    const filterBtn = screen.getAllByText('IMPRISONED').find(el => el.tagName === 'BUTTON')!;
+    fireEvent.click(filterBtn);
+    expect(filterBtn.getAttribute('aria-pressed')).toBe('true');
+    const detained = records.filter(r => r.status === 'DETAINED').length;
+    expect(detained).toBeGreaterThan(0);
+    expect(cards()).toHaveLength(detained);
   });
 
-  it('collapses back to 15 when "show less" is clicked', () => {
+  // --- Each card: native disclosure, no modal ---
+
+  it("puts each card's latest developments in the page before any click", () => {
     renderPage();
-    // Expand
-    fireEvent.click(screen.getByText(/show --all \d+ cases/));
-    // Collapse
-    fireEvent.click(screen.getByText('$ show --less'));
-    const cards = screen.getAllByRole('button', { name: /View details for/ });
-    expect(cards.length).toBe(15);
+    const withNews = records.filter(r => r.latest_news);
+    expect(withNews.length).toBeGreaterThan(0);
+    for (const r of withNews) {
+      const card = cards().find(c => c.querySelector('h3')?.textContent === r.prisoner_name);
+      expect(card, r.prisoner_name).toBeTruthy();
+      const disclosure = card!.querySelector('details')!;
+      expect(disclosure.open).toBe(false);
+      expect(disclosure.querySelector('summary')!.textContent).toContain(`for ${r.prisoner_name}`);
+      expect(disclosure.textContent).toContain(r.latest_news);
+    }
   });
 
-  it('resets to truncated view when filter changes', () => {
-    renderPage();
-    // Expand all
-    fireEvent.click(screen.getByText(/show --all \d+ cases/));
-    const allCards = screen.getAllByRole('button', { name: /View details for/ });
-    expect(allCards.length).toBeGreaterThan(15);
-    // Change filter — target the filter button specifically
-    const imprisonedButtons = screen.getAllByText('IMPRISONED');
-    const filterBtn = imprisonedButtons.find(el => el.tagName === 'BUTTON');
-    fireEvent.click(filterBtn!);
-    // Should reset to truncated (or show all if <15 match)
-    const filteredCards = screen.getAllByRole('button', { name: /View details for/ });
-    expect(filteredCards.length).toBeLessThanOrEqual(27); // 27 imprisoned, all fit within truncation or total
-  });
-
-  // --- Modal ---
-
-  it('opens modal when prisoner card is clicked', () => {
-    renderPage();
-    const cards = screen.getAllByRole('button', { name: /View details for/ });
-    fireEvent.click(cards[0]);
-    // Modal should appear with dialog role
-    expect(screen.getByRole('dialog')).toBeTruthy();
-  });
-
-  it('closes modal when close button is clicked', () => {
-    renderPage();
-    const cards = screen.getAllByRole('button', { name: /View details for/ });
-    fireEvent.click(cards[0]);
-    // Find the close button (X icon)
-    const dialog = screen.getByRole('dialog');
-    const closeBtn = dialog.querySelector('button');
-    fireEvent.click(closeBtn!);
+  it('no card is a button, and no link sits inside a button', () => {
+    const { container } = renderPage();
+    expect(screen.queryAllByRole('button', { name: /View details for/ })).toHaveLength(0);
     expect(screen.queryByRole('dialog')).toBeNull();
+    expect(container.querySelectorAll('button a')).toHaveLength(0);
+  });
+
+  it('encodes the text it shares, so a # or & in a case cannot cut the tweet short', () => {
+    renderPage();
+    const share = screen.getAllByText('Share on Twitter')[0].closest('a')!;
+    const text = new URL(share.href).searchParams.get('text')!;
+    expect(text).toMatch(/^Free .+! /);
+    expect(share.getAttribute('href')).not.toMatch(/ /);
   });
 
   // --- Sub-components ---
@@ -165,9 +166,9 @@ describe('PoliticalPrisoners', () => {
 
   it('renders additional resources section', () => {
     renderPage();
-    expect(screen.getByText('Additional Resources')).toBeTruthy();
-    expect(screen.getByText('CECC Database')).toBeTruthy();
-    expect(screen.getByText('Dui Hua Foundation')).toBeTruthy();
-    expect(screen.getByText('Xinjiang Victims Database')).toBeTruthy();
+    const resources = within(screen.getByText('Additional Resources').parentElement!);
+    expect(resources.getByText('CECC Database')).toBeTruthy();
+    expect(resources.getByText('Dui Hua Foundation')).toBeTruthy();
+    expect(resources.getByText('Xinjiang Victims Database')).toBeTruthy();
   });
 });

@@ -28,7 +28,7 @@ const DisinfoTracker = () => {
     {
       id: 1,
       claim: '"Vocational training centers" in Xinjiang are voluntary education programs',
-      reality: `These are forced detention camps holding ${STATISTICS.uyghurDetention.value} Uyghurs. Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.`,
+      reality: `These are forced detention camps, which have held ${STATISTICS.uyghurDetention.value} Uyghurs since 2017; more than half a million are estimated to be held in prisons and internment today (US Holocaust Memorial Museum, 2025). Leaked documents (China Cables, Xinjiang Police Files) prove forced detention, torture, and political indoctrination.`,
       category: 'uyghur',
       source: 'CCP State Media',
       debunkedBy: ['Xinjiang Police Files', 'China Cables', 'Uyghur Tribunal'],
@@ -191,13 +191,13 @@ const DisinfoTracker = () => {
       </div>
 
       {/* Category Filters */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Disinformation categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter disinformation by topic">
         {categories.map(cat => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            role="tab"
-            aria-selected={activeCategory === cat.id}
+            aria-pressed={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-red-600 text-white'

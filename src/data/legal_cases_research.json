@@ -16,12 +16,12 @@
           "verdict_date": "2025-12-15",
           "sentencing_date": "2026-02-09"
         },
-        "outcome": "Found guilty on all 3 NSL charges. Sentenced to 20 years — harshest NSL sentence to date.",
+        "outcome": "Found guilty on all three charges: two of conspiracy to collude with foreign forces under the NSL and one of conspiracy to publish seditious publications under the Crimes Ordinance. Sentenced to 20 years — the harshest NSL sentence to date. His legal team said on March 6, 2026 that he would not appeal the conviction or the sentence.",
         "significance": "First major media figure prosecuted under NSL. International outcry from UK, US, EU, and press freedom organizations.",
         "related_persons": ["Mark Simon", "Andy Li"],
         "international_response": "UN Human Rights Office called for his release. UK, US, EU issued statements of condemnation. Press freedom organizations designated him a political prisoner.",
-        "source_url": "https://www.bbc.com/news/articles/cd62xrg1x03o",
-        "last_verified": "2026-03-06"
+        "source_url": "https://www.hrw.org/news/2026/02/09/hong-kong-publisher-jimmy-lai-sentenced-to-20-years",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -39,14 +39,15 @@
           "arrest_date": "2021-01-06",
           "trial_start": "2023-02-06",
           "verdict_date": "2024-05-30",
-          "sentencing_date": "2024-11-19"
+          "sentencing_date": "2024-11-19",
+          "appeal_dismissed": "2026-02-23"
         },
-        "outcome": "47 pro-democracy activists convicted. Wong sentenced to 4 years 8 months. Appeals dismissed Feb 14, 2026.",
+        "outcome": "Of the 47 charged, 45 were convicted and two acquitted. Wong sentenced to 4 years 8 months. On February 23, 2026 the Court of Appeal dismissed the appeals of all 12 defendants who had appealed.",
         "significance": "Largest NSL prosecution. Effectively criminalized the democratic primary election process.",
         "related_persons": ["Benny Tai", "Claudia Mo", "Au Nok-hin"],
         "international_response": "Widespread international condemnation. US, UK, EU, Australia issued joint statements. Multiple defendants designated political prisoners by international organizations.",
-        "source_url": "https://www.bbc.com/news/world-asia-china-68456937",
-        "last_verified": "2026-03-06"
+        "source_url": "https://hongkongfp.com/2026/02/23/breaking-court-rejects-appeals-of-all-12-activists-in-landmark-hong-kong-47-national-security-case/",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -54,22 +55,22 @@
       "input": "Joshua Wong — Foreign collusion charge, Hong Kong",
       "output": {
         "case_name": "HKSAR v. Wong Chi-fung (Foreign Collusion)",
-        "case_number": "HCCC 2025/FC-01",
+        "case_number": "",
         "jurisdiction": "Hong Kong",
         "court": "Court of First Instance, High Court",
         "defendant": "Joshua Wong Chi-fung",
-        "charges": "Collusion with foreign forces under NSL Art. 29",
-        "status": "PENDING_TRIAL",
+        "charges": "Conspiracy to collude with foreign forces under NSL Art. 29",
+        "status": "CONVICTED",
         "key_dates": {
           "charge_date": "2025-06-06",
-          "next_hearing": "2026-03-06"
+          "guilty_plea": "2026-09-02"
         },
-        "outcome": "Pending — carries maximum sentence of life imprisonment.",
+        "outcome": "Pleaded guilty on September 2, 2026 at the High Court, his second National Security Law conviction. Sentencing pending with no date set; the offence carries a maximum of life imprisonment.",
         "significance": "Second NSL prosecution of Wong while still serving HK47 sentence. Maximum penalty: life imprisonment.",
         "related_persons": [],
         "international_response": "UK Foreign Secretary condemned the charge. US State Department called for all political prisoners to be released.",
-        "source_url": "https://hongkongfp.com/2025/06/06/hong-kong-activist-joshua-wong-faces-new-national-security-charge/",
-        "last_verified": "2026-03-06"
+        "source_url": "https://hongkongfp.com/2026/09/02/breaking-jailed-hong-kong-pro-democracy-campaigner-joshua-wong-pleads-guilty-to-foreign-collusion-charge/",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -77,23 +78,23 @@
       "input": "Kwok Yin-sang — Article 23 sedition case, Hong Kong",
       "output": {
         "case_name": "HKSAR v. Kwok Yin-sang",
-        "case_number": "ESCC 2026/Art23-01",
+        "case_number": "",
         "jurisdiction": "Hong Kong",
-        "court": "Eastern Magistrates' Court",
+        "court": "West Kowloon Magistrates' Court",
         "defendant": "Kwok Yin-sang",
-        "charges": "Sedition under Article 23 Safeguarding National Security Ordinance",
+        "charges": "Attempting to deal with funds or other financial assets belonging to an 'absconder', under the Safeguarding National Security Ordinance (Article 23)",
         "status": "CONVICTED",
         "key_dates": {
-          "arrest_date": "2025-12-15",
-          "verdict_date": "2026-02-26",
+          "arrest_date": "2025-04-30",
+          "verdict_date": "2026-02-11",
           "sentencing_date": "2026-02-26"
         },
         "outcome": "Sentenced to 8 months imprisonment. First family member prosecuted under Article 23.",
         "significance": "Father of US-based activist Anna Kwok. First prosecution targeting family members of overseas activists under Article 23.",
         "related_persons": ["Anna Kwok"],
         "international_response": "Human Rights Watch condemned the prosecution as transnational repression by proxy.",
-        "source_url": "https://hongkongfp.com/2026/02/26/kwok-yin-sang-sentenced-article-23/",
-        "last_verified": "2026-03-06"
+        "source_url": "https://www.hrw.org/news/2026/02/11/hong-kong-conviction-of-activists-father-a-grim-milestone",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -110,14 +111,15 @@
         "key_dates": {
           "arrest_date": "2021-12-29",
           "trial_start": "2022-10-31",
-          "verdict_date": "2024-08-29"
+          "verdict_date": "2024-08-29",
+          "sentencing_date": "2024-09-26"
         },
-        "outcome": "Chung Pui-kuen found guilty, sentenced to 21 months. Patrick Lam found guilty, sentence suspended. Best Pencil (HK) Ltd convicted.",
+        "outcome": "Chung Pui-kuen sentenced to 21 months. Patrick Lam sentenced to 11 months and released immediately, on medical grounds and for time already served. Best Pencil (HK) Ltd, Stand News' holding company, fined HK$5,000.",
         "significance": "Closure of major independent news outlet. Chilling effect on press freedom in Hong Kong.",
         "related_persons": ["Denise Ho", "Margaret Ng"],
         "international_response": "Committee to Protect Journalists condemned the verdict. Press freedom index for HK dropped further.",
-        "source_url": "https://www.bbc.com/news/articles/c3e8g35g8l0o",
-        "last_verified": "2026-03-06"
+        "source_url": "https://rsf.org/en/hong-kong-two-stand-news-editors-sentenced-sedition-0",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -133,15 +135,16 @@
         "status": "CONVICTED",
         "key_dates": {
           "arrest_date": "2022-05-11",
-          "trial_start": "2022-09-19",
-          "verdict_date": "2022-11-25"
+          "trial_start": "2022-09-26",
+          "verdict_date": "2022-11-25",
+          "appeal_dismissed": "2026-09-03"
         },
-        "outcome": "All defendants found guilty of failing to register. Fined HK$4,000 each. Widely seen as a warning shot.",
+        "outcome": "All defendants found guilty of failing to register. The five trustees were fined HK$4,000 each and the fund's secretary, Sze Ching-wee, HK$2,500. Widely seen as a warning shot. On September 3, 2026 the Court of Appeal dismissed the five trustees' appeals and upheld their convictions; they said they would take the case to the Court of Final Appeal.",
         "significance": "90-year-old Catholic Cardinal prosecuted. International religious freedom advocates raised alarm.",
         "related_persons": ["Margaret Ng", "Denise Ho"],
         "international_response": "Vatican expressed concern. US Commission on International Religious Freedom condemned prosecution.",
-        "source_url": "https://www.bbc.com/news/world-asia-china-63766783",
-        "last_verified": "2026-03-06"
+        "source_url": "https://hongkongfp.com/2026/09/03/hong-kong-court-upholds-convictions-of-cardinal-joseph-zen-trustees-of-2019-protester-relief-fund/",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },
@@ -339,20 +342,19 @@
         "case_number": "HCCC 428/2022",
         "jurisdiction": "Hong Kong",
         "court": "Court of First Instance, High Court",
-        "defendant": "Cheung Kim-hung (CEO), Ryan Law (editor-in-chief), and 4 editorial staff",
+        "defendant": "Six former Apple Daily executives and editors: Cheung Kim-hung, Chan Pui-man, Ryan Law, Lam Man-chung, Fung Wai-kong and Yeung Ching-kee",
         "charges": "Conspiracy to collude with foreign forces under NSL",
         "status": "CONVICTED",
         "key_dates": {
           "arrest_date": "2021-06-17",
-          "trial_start": "2023-12-20",
-          "verdict_date": "2025-09-12"
+          "sentencing_date": "2026-02-09"
         },
-        "outcome": "All defendants found guilty. Sentences range from 7 to 13 months (with time served considered). Apple Daily forced to close June 24, 2021.",
+        "outcome": "All six pleaded guilty to collusion and were sentenced on February 9, 2026, alongside Jimmy Lai, to between 6 years 9 months and 10 years. Three of them testified against Lai in exchange for reduced sentences. Apple Daily was forced to close on June 24, 2021.",
         "significance": "Destruction of Hong Kong's largest pro-democracy newspaper. 26-year publication history ended by NSL prosecution.",
         "related_persons": ["Jimmy Lai"],
         "international_response": "RSF, CPJ, and IFJ condemned the trial. US, UK, and EU called for press freedom protections.",
-        "source_url": "https://hongkongfp.com/apple-daily-trial/",
-        "last_verified": "2026-03-06"
+        "source_url": "https://hongkongfp.com/2026/02/09/breaking-jimmy-lai-jailed-for-20-years-in-hong-kong-after-nat-security-conviction/",
+        "last_verified": "2026-10-13"
       },
       "error": ""
     },

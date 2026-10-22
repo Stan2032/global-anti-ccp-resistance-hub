@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import SafetyChecklist from '../components/SafetyChecklist';
+import { disclosureFor, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 describe('SafetyChecklist', () => {
   beforeEach(() => {
@@ -37,42 +38,56 @@ describe('SafetyChecklist', () => {
 
   // --- Toggle/check functionality ---
 
+  it('each item is a named checkbox, unchecked to start', () => {
+    render(<SafetyChecklist />);
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    expect(vpn.getAttribute('aria-checked')).toBe('false');
+  });
+
   it('toggles a checklist item when clicked', () => {
     render(<SafetyChecklist />);
-    const vpnText = screen.getByText('Use a VPN');
-    // Find the toggle button closest to this item
-    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('✓');
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    fireEvent.click(vpn);
+    expect(vpn.getAttribute('aria-checked')).toBe('true');
+    expect(vpn.textContent).toBe('✓');
   });
 
   it('untoggling a checked item removes the checkmark', () => {
     render(<SafetyChecklist />);
-    const vpnText = screen.getByText('Use a VPN');
-    const toggleBtn = vpnText!.closest('.flex-1')!.parentElement!.querySelector('button');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('✓');
-    fireEvent.click(toggleBtn!);
-    expect(toggleBtn!.textContent).toBe('');
+    const vpn = screen.getByRole('checkbox', { name: 'Use a VPN' });
+    fireEvent.click(vpn);
+    expect(vpn.textContent).toBe('✓');
+    fireEvent.click(vpn);
+    expect(vpn.getAttribute('aria-checked')).toBe('false');
+    expect(vpn.textContent).toBe('');
   });
 
-  // --- Category tabs ---
+  // --- Categories ---
 
-  it('renders category tab buttons', () => {
+  it('renders every category as a native disclosure section', () => {
     render(<SafetyChecklist />);
-    expect(screen.getByText('Digital Security')).toBeTruthy();
-    expect(screen.getByText('Physical Safety')).toBeTruthy();
-    expect(screen.getByText('Communication')).toBeTruthy();
-    expect(screen.getByText('Travel Safety')).toBeTruthy();
+    expectDisclosureSections([
+      'Digital Security', 'Physical Safety', 'Communication',
+      'Travel Safety', 'Legal Preparation', 'Emergency Plan',
+    ]);
   });
 
-  it('switches to communication items when tab is clicked', () => {
+  it('opens Digital Security first, and keeps the others in the page', () => {
     render(<SafetyChecklist />);
-    fireEvent.click(screen.getByText('Communication'));
-    expect(screen.getByText('Use Signal for messaging')).toBeTruthy();
-    expect(screen.getByText('Enable disappearing messages')).toBeTruthy();
-    // Digital item should be hidden
-    expect(screen.queryByText('Install Tor Browser')).toBeNull();
+    expect(disclosureFor('Digital Security').open).toBe(true);
+    expect(disclosureFor('Communication').open).toBe(false);
+    // Closed, but present: a reader without JavaScript can open it.
+    const communication = inSection('Communication');
+    expect(communication.getByText('Use Signal for messaging')).toBeTruthy();
+    expect(communication.getByText('Enable disappearing messages')).toBeTruthy();
+    expect(inSection('Digital Security').getByText('Install Tor Browser')).toBeTruthy();
+  });
+
+  it('counts progress per category', () => {
+    render(<SafetyChecklist />);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Use Signal for messaging' }));
+    expect(disclosureFor('Communication').querySelector('summary')!.textContent).toMatch(/1 of \d+ done/);
+    expect(disclosureFor('Digital Security').querySelector('summary')!.textContent).toMatch(/0 of \d+ done/);
   });
 
   // --- Progress ---

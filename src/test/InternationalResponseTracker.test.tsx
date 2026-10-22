@@ -1,7 +1,17 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import InternationalResponseTracker from '../components/InternationalResponseTracker';
 import { dataApi } from '../services/dataApi';
+
+// Every card is a native <details>. Fails on none, so a check over each card
+// cannot pass on an empty list.
+const cards = (container: HTMLElement) => {
+  const all = [...container.querySelectorAll('details')];
+  expect(all.length, 'cards render as <details>').toBeGreaterThan(0);
+  return all;
+};
+const usCard = (container: HTMLElement) =>
+  cards(container).find(c => c.querySelector('summary')!.textContent!.includes('United States'))!;
 
 describe('InternationalResponseTracker', () => {
   // --- Rendering ---
@@ -169,14 +179,13 @@ describe('InternationalResponseTracker', () => {
     expect(names).toEqual(sorted);
   });
 
-  it('each country row has aria-expanded attribute', () => {
-    render(<InternationalResponseTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandable.length).toBeGreaterThan(0);
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
+  it('every country is a native disclosure, closed to start', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    const all = cards(container);
+    expect(all.length).toBe(dataApi.getInternationalResponses().length);
+    all.forEach((c) => {
+      expect(c.firstElementChild?.tagName).toBe('SUMMARY');
+      expect(c.open).toBe(false);
     });
   });
 
@@ -192,75 +201,46 @@ describe('InternationalResponseTracker', () => {
     expect(allBadges.length).toBeGreaterThanOrEqual(responses.length);
   });
 
-  // --- Expand/Collapse ---
+  // --- Native disclosure ---
 
-  it('clicking a country expands its details', () => {
-    render(<InternationalResponseTracker />);
-    const usButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(usButton!);
-    expect(usButton!.getAttribute('aria-expanded')).toBe('true');
+  it('a country opens and closes natively', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    const card = usCard(container);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('expanded country shows dimension labels', () => {
-    render(<InternationalResponseTracker />);
-    const usButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(usButton!);
-    expect(screen.getByText('Genocide Recognition')).toBeTruthy();
-    expect(screen.getByText('Sanctions Imposed')).toBeTruthy();
-    expect(screen.getByText('Legislative Actions')).toBeTruthy();
-    expect(screen.getByText('Diplomatic Actions')).toBeTruthy();
+  it('a country shows each dimension without a click', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    const us = within(usCard(container));
+    expect(us.getByText('Genocide Recognition')).toBeTruthy();
+    expect(us.getByText('Sanctions Imposed')).toBeTruthy();
+    expect(us.getByText('Legislative Actions')).toBeTruthy();
+    expect(us.getByText('Diplomatic Actions')).toBeTruthy();
   });
 
-  it('expanded country shows Overall Assessment', () => {
-    render(<InternationalResponseTracker />);
-    const usButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(usButton!);
-    expect(screen.getByText('Overall Assessment')).toBeTruthy();
+  it('every country shows its overall assessment without a click', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    cards(container).forEach(c => expect(within(c).getByText('Overall Assessment')).toBeTruthy());
   });
 
-  it('expanded country shows Source link', () => {
-    render(<InternationalResponseTracker />);
-    const usButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(usButton!);
-    const sourceLink = screen.getByText('Source');
-    expect(sourceLink.closest('a')).toBeTruthy();
-    expect(sourceLink!.closest('a')!.getAttribute('target')).toBe('_blank');
-    expect(sourceLink!.closest('a')!.getAttribute('rel')).toBe('noopener noreferrer');
+  it('a country links its source safely, without a click', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    const link = within(usCard(container)).getByText('Source').closest('a')!;
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toBe('noopener noreferrer');
   });
 
-  it('clicking expanded country collapses it', () => {
-    render(<InternationalResponseTracker />);
-    const usButton = screen.getAllByRole('button').find(
-      (b) => b.textContent.includes('United States') && b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(usButton!);
-    expect(usButton!.getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(usButton!);
-    expect(usButton!.getAttribute('aria-expanded')).toBe('false');
-  });
-
-  it('expanding a different country collapses the previous one', () => {
-    render(<InternationalResponseTracker />);
-    const buttons = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    const first = buttons[0];
-    const second = buttons[1];
-
-    fireEvent.click(first);
-    expect(first.getAttribute('aria-expanded')).toBe('true');
-
-    fireEvent.click(second);
-    expect(second.getAttribute('aria-expanded')).toBe('true');
-    expect(first.getAttribute('aria-expanded')).toBe('false');
+  it('opening one country leaves the others as they were', () => {
+    // One-at-a-time was a JavaScript nicety; native disclosures open independently.
+    const { container } = render(<InternationalResponseTracker />);
+    const [first, second] = cards(container);
+    fireEvent.click(first.querySelector('summary')!);
+    fireEvent.click(second.querySelector('summary')!);
+    expect(first.open).toBe(true);
+    expect(second.open).toBe(true);
   });
 
   // --- Copy Functionality ---
@@ -387,13 +367,9 @@ describe('InternationalResponseTracker', () => {
     expect(stanceButtons.length).toBe(4);
   });
 
-  it('country rows have aria-expanded and aria-controls', () => {
-    render(<InternationalResponseTracker />);
-    const expandable = screen.getAllByRole('button').filter(
-      (b) => b.getAttribute('aria-expanded') !== null
-    );
-    expandable.forEach((btn) => {
-      expect(btn.getAttribute('aria-controls')).toBeTruthy();
-    });
+  it('uses native disclosures, not JavaScript-only expanders', () => {
+    const { container } = render(<InternationalResponseTracker />);
+    expect(cards(container).length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('[aria-expanded], [aria-controls]')).toHaveLength(0);
   });
 });

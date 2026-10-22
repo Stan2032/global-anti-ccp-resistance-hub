@@ -7,9 +7,10 @@
  *
  * @module VictimStories
  */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BookOpen, Landmark, Building2, Mountain, Globe, AlertTriangle, MapPin, type LucideIcon } from 'lucide-react';
 import { logger } from '../utils/logger';
+import { useBrowserValue } from '../utils/ssr';
 
 interface Story {
   id: number;
@@ -33,14 +34,9 @@ interface Category {
 }
 
 const VictimStories = () => {
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedStory(null); };
-    if (selectedStory) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedStory]);
+  // Copying needs JavaScript, so that button appears only once it runs.
+  const scripted = useBrowserValue(() => true, false);
 
   const stories: Story[] = [
     {
@@ -234,13 +230,14 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
+            aria-pressed={selectedCategory === cat.id}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
               selectedCategory === cat.id
                 ? 'bg-red-600 text-white'
                 : 'bg-[#111820] text-slate-300 hover:bg-[#1c2a35]'
             }`}
           >
-            {cat.Icon ? <cat.Icon className="w-4 h-4" /> : <span>{cat.icon}</span>}
+            {cat.Icon ? <cat.Icon className="w-4 h-4" aria-hidden="true" /> : <span aria-hidden="true">{cat.icon}</span>}
             {cat.name}
           </button>
         ))}
@@ -251,8 +248,7 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
         {filteredStories.map((story) => (
           <div
             key={story.id}
-            className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-red-500/50 transition-colors cursor-pointer"
-            onClick={() => setSelectedStory(story)}
+            className="bg-[#111820] border border-[#1c2a35] p-6 hover:border-red-500/50 transition-colors"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -274,102 +270,67 @@ He has taught at universities in Taiwan and continues to advocate for democracy 
               {story.quote}
             </blockquote>
 
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400 flex items-center gap-1"><MapPin className="w-3 h-3" /> {story.location}</span>
-              <button className="text-red-400 hover:text-red-300 text-sm font-medium">
-                Read full story →
-              </button>
-            </div>
+            <span className="text-xs text-slate-400 flex items-center gap-1"><MapPin className="w-3 h-3" /> {story.location}</span>
+
+            {/* The full story, in the page for everyone: it used to open in a
+                modal that only JavaScript could render. */}
+            <details className="mt-4">
+              <summary className="inline-block text-red-400 hover:text-red-300 text-sm font-medium cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="summary-open:hidden">
+                  Read full story<span className="sr-only"> of {story.name}</span> →
+                </span>
+                <span className="hidden summary-open:inline">
+                  Show less<span className="sr-only"> of {story.name}'s story</span> ↑
+                </span>
+              </summary>
+              <div className="mt-4">
+                <div className="prose prose-invert max-w-none mb-6">
+                  {story.fullStory.split('\n\n').map((paragraph: string, i: number) => (
+                    <p key={i} className="text-slate-300 mb-4">{paragraph}</p>
+                  ))}
+                </div>
+
+                <div className="bg-[#0a0e14]/50 p-4">
+                  <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {story.sources.map((source: string, i: number) => (
+                      <span key={i} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
+                        {source}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center gap-4">
+                  {scripted && (
+                    <button
+                      onClick={async () => {
+                        const text = `${story.name}: "${story.quote}" - Read their story of surviving CCP persecution.`;
+                        try {
+                          await navigator.clipboard.writeText(text);
+                        } catch (err) {
+                          logger.warn('clipboard', 'Failed to copy:', err);
+                        }
+                      }}
+                      className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
+                    >
+                      Copy to Share
+                    </button>
+                  )}
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${story.name}: "${story.quote.substring(0, 100)}..."`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 rounded text-sm transition-colors"
+                  >
+                    Share on Twitter
+                  </a>
+                </div>
+              </div>
+            </details>
           </div>
         ))}
       </div>
-
-      {/* Story Modal */}
-      {selectedStory && (
-        <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Story of ${selectedStory.name}`}
-          onClick={() => setSelectedStory(null)}
-        >
-          <div
-            className="bg-[#111820] border border-[#1c2a35] max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    {(() => { const catInfo = getCategoryInfo(selectedStory.category); return catInfo.Icon ? <catInfo.Icon className="w-6 h-6" /> : <span className="text-2xl">{catInfo.icon}</span>; })()}
-                    {selectedStory.verified && (
-                      <span className="text-xs bg-green-600 text-white px-2 py-0.5 rounded">VERIFIED</span>
-                    )}
-                  </div>
-                  <h2 className="text-2xl font-bold text-white">{selectedStory.name}</h2>
-                  <p className="text-red-400">{selectedStory.title}</p>
-                </div>
-                <button
-                  onClick={() => setSelectedStory(null)}
-                  className="text-slate-400 hover:text-white"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Quote */}
-              <blockquote className="bg-[#0a0e14] border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
-                <p className="italic text-slate-300">{selectedStory.quote}</p>
-              </blockquote>
-
-              {/* Full Story */}
-              <div className="prose prose-invert max-w-none mb-6">
-                {selectedStory.fullStory.split('\n\n').map((paragraph: string, i: number) => (
-                  <p key={i} className="text-slate-300 mb-4">{paragraph}</p>
-                ))}
-              </div>
-
-              {/* Sources */}
-              <div className="bg-[#0a0e14]/50 p-4">
-                <h4 className="text-sm font-semibold text-slate-400 mb-2">Sources</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedStory.sources.map((source: string, i: number) => (
-                    <span key={i} className="bg-[#111820] text-slate-300 text-xs px-2 py-1 rounded">
-                      {source}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Share */}
-              <div className="mt-6 flex items-center gap-4">
-                <button
-                  onClick={async () => {
-                    const text = `${selectedStory.name}: "${selectedStory.quote}" - Read their story of surviving CCP persecution.`;
-                    try {
-                      await navigator.clipboard.writeText(text);
-                    } catch (err) {
-                      logger.warn('clipboard', 'Failed to copy:', err);
-                    }
-                  }}
-                  className="bg-[#111820] hover:bg-[#1c2a35] text-white px-4 py-2 rounded text-sm transition-colors"
-                >
-                  Copy to Share
-                </button>
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${selectedStory.name}: "${selectedStory.quote.substring(0, 100)}..."`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] px-4 py-2 rounded text-sm transition-colors"
-                >
-                  Share on Twitter
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

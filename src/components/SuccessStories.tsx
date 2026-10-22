@@ -293,13 +293,13 @@ const SuccessStories = () => {
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Victory categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter victories by type">
         {categories.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            role="tab"
-            aria-selected={selectedCategory === cat.id}
+            aria-pressed={selectedCategory === cat.id}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? 'bg-green-600 text-white'

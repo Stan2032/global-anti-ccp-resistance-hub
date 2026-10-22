@@ -7,7 +7,8 @@
  * @module PWAInstallBanner
  */
 import React, { useState, useEffect } from 'react';
-import { Download, X, Smartphone, Monitor, Apple, Chrome } from 'lucide-react';
+import { Download, X, Smartphone } from 'lucide-react';
+import { isBrowser, readStoredValue, matchesMediaQuery, writeStoredValue } from '../utils/ssr';
 
 /** Browser event fired when the app is eligible for PWA installation */
 interface BeforeInstallPromptEvent extends Event {
@@ -27,12 +28,6 @@ declare global {
   }
 }
 
-declare module 'react' {
-  interface StyleHTMLAttributes<T> {
-    jsx?: boolean | string;
-  }
-}
-
 /**
  * PWAInstallBanner — Prompts users to install the app as a PWA.
  * Handles both Chrome/Edge (beforeinstallprompt) and iOS (manual instructions).
@@ -43,14 +38,19 @@ declare module 'react' {
 export default function PWAInstallBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [isIOS] = useState(() => /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
+  // An install prompt is meaningless in pre-rendered HTML — it depends
+  // entirely on the visitor's device and browser — so it stays hidden during
+  // the build and decides for itself on hydration.
+  const [isIOS] = useState(() =>
+    isBrowser && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
   const [isStandalone] = useState(() => {
-    return window.matchMedia('(display-mode: standalone)').matches 
-      || window.navigator.standalone 
+    if (!isBrowser) return true; // hidden during pre-render
+    return matchesMediaQuery('(display-mode: standalone)')
+      || window.navigator.standalone
       || document.referrer.includes('android-app://');
   });
   const [dismissed, setDismissed] = useState(() => {
-    const wasDismissed = localStorage.getItem('pwa-banner-dismissed');
+    const wasDismissed = readStoredValue('pwa-banner-dismissed');
     if (wasDismissed) {
       const dismissedTime = parseInt(wasDismissed);
       if (Date.now() - dismissedTime < 7 * 24 * 60 * 60 * 1000) {
@@ -100,7 +100,7 @@ export default function PWAInstallBanner() {
   const handleDismiss = () => {
     setShowBanner(false);
     setDismissed(true);
-    localStorage.setItem('pwa-banner-dismissed', Date.now().toString());
+    writeStoredValue('pwa-banner-dismissed', Date.now().toString());
   };
 
   // Don't show if already installed, dismissed, or no prompt available (except iOS)
@@ -194,21 +194,6 @@ export default function PWAInstallBanner() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes slide-up {
-          from {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
-        }
-      `}</style>
     </div>
   );
 }

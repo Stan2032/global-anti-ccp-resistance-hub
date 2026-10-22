@@ -2,6 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import GlobalSearch from '../components/GlobalSearch';
 import useGlobalSearch from '../hooks/useGlobalSearch';
 
@@ -525,5 +527,31 @@ describe('useGlobalSearch hook', () => {
     render(<TestComponent />);
     fireEvent.keyDown(document, { key: 'k', metaKey: true });
     expect(screen.getByTestId('state').textContent).toBe('true');
+  });
+});
+
+// The search index is typed in by hand. It missed Chow Hang-Tung's profile,
+// sent two results through redirects left by old routes, and offered
+// "Contact Us" to a form that has never been connected.
+describe('GlobalSearch index', () => {
+  const source = readFileSync(resolve(__dirname, '../components/GlobalSearch.tsx'), 'utf-8');
+  const paths = [...source.matchAll(/path: '([^']+)'/g)].map(m => m[1]);
+  const sitemap = readFileSync(resolve(__dirname, '../../public/sitemap.xml'), 'utf-8');
+  const routes = new Set([...sitemap.matchAll(/<loc>https?:\/\/[^/<]+([^<]*)<\/loc>/g)].map(m => m[1] || '/'));
+
+  it('sends every result to a page that exists, not through a redirect', () => {
+    expect(paths.length).toBeGreaterThan(20);
+    expect(routes.size).toBeGreaterThan(20);
+    expect(paths.filter(p => !routes.has(p))).toEqual([]);
+  });
+
+  it('lists every profile page', () => {
+    const profiles = [...routes].filter(r => r.startsWith('/profiles/'));
+    expect(profiles.length).toBeGreaterThan(0);
+    expect(profiles.filter(r => !paths.includes(r))).toEqual([]);
+  });
+
+  it('offers no way to message a team the site cannot reach', () => {
+    expect(source).not.toMatch(/Send a message to the Resistance Hub team/);
   });
 });

@@ -8,6 +8,7 @@
  * @returns {React.ReactElement} Freshness badge
  */
 import { getFreshnessInfo, type FreshnessInfo } from '../utils/dateUtils';
+import { useClock } from '../utils/ssr';
 import { CheckCircle2, Clock, AlertTriangle, type LucideIcon } from 'lucide-react';
 
 interface LevelConfigEntry {
@@ -28,9 +29,14 @@ interface DataFreshnessIndicatorProps {
 }
 
 const DataFreshnessIndicator: React.FC<DataFreshnessIndicatorProps> = ({ lastVerified, compact = false }) => {
+  const { now, live } = useClock();
   if (!lastVerified) return null;
-  
-  const { label, level } = getFreshnessInfo(lastVerified);
+
+  const freshness = getFreshnessInfo(lastVerified, now);
+  // "Verified N days ago" is only true on the day it is computed, and a
+  // reader without JavaScript keeps the page as it was built.
+  const label = live ? freshness.label : `Verified ${lastVerified}`;
+  const { level } = freshness;
   const { Icon, color, bg } = levelConfig[level];
 
   if (compact) {

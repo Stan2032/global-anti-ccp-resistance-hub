@@ -269,3 +269,39 @@ describe('calculateTimeLeft', () => {
     expect(result.days).toBe(0);
   });
 });
+
+/**
+ * The pre-render runs in UTC and readers' browsers run in their own
+ * timezones. Anything shown on the page must come out the same in both for
+ * the same moment, or React discards the pre-rendered page (error #418).
+ */
+describe('the same answer in every timezone', () => {
+  const timezoneAtStart = process.env.TZ;
+  afterEach(() => { process.env.TZ = timezoneAtStart; });
+
+  const inTimezones = <T,>(fn: () => T): T[] =>
+    ['UTC', 'America/Los_Angeles', 'Pacific/Pago_Pago', 'Asia/Shanghai', 'Pacific/Kiritimati'].map(tz => {
+      process.env.TZ = tz;
+      return fn();
+    });
+
+  it('calculateAge, at the moment a birthday begins in UTC', () => {
+    // 03:00 UTC on 8 December is still 7 December in the Americas, where
+    // reading local dates gave Jimmy Lai a different age than the build did.
+    const now = new Date('2026-12-08T03:00:00Z');
+    expect(new Set(inTimezones(() => calculateAge('December 8, 1947', undefined, now)))).toEqual(new Set([79]));
+    expect(new Set(inTimezones(() => calculateAge('1964', undefined, now)))).toEqual(new Set([62]));
+  });
+
+  it('calculateAge reads an ISO birth date as the date written', () => {
+    // "1989-04-25" is midnight UTC, still 24 April west of UTC, so reading
+    // it locally made the birthday arrive a day early there.
+    const dayBefore = new Date('2026-04-24T20:00:00Z');
+    expect(new Set(inTimezones(() => calculateAge('1989-04-25', undefined, dayBefore)))).toEqual(new Set([36]));
+  });
+
+  it('daysSince, a few hours after midnight UTC', () => {
+    const now = new Date('2026-10-01T03:00:00Z');
+    expect(new Set(inTimezones(() => daysSince('2026-03-08', now)))).toEqual(new Set([207]));
+  });
+});

@@ -270,13 +270,13 @@ const EventCalendar = () => {
       </div>
 
       {/* Month Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Event calendar month filter">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter events by month">
         {months.map((month) => (
           <button
             key={month.id}
+            type="button"
             onClick={() => setSelectedMonth(month.id)}
-            role="tab"
-            aria-selected={selectedMonth === month.id}
+            aria-pressed={selectedMonth === month.id}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
               selectedMonth === month.id
                 ? 'bg-red-600 text-white'

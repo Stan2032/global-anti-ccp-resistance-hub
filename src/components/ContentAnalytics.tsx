@@ -8,10 +8,20 @@
  * @module ContentAnalytics
  */
 import React, { useMemo } from 'react';
+import { useClock } from '../utils/ssr';
 import {
-  Database, Users, Shield, Clock, Globe, BarChart3,
-  AlertTriangle, Building2, Scale, TrendingUp, CheckCircle,
-  Calendar, FileText, Activity, type LucideIcon
+  Users,
+  Shield,
+  Clock,
+  Globe,
+  BarChart3,
+  AlertTriangle,
+  Building2,
+  Scale,
+  CheckCircle,
+  Calendar,
+  Activity,
+  type LucideIcon,
 } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
 
@@ -65,8 +75,9 @@ interface DatasetCardProps {
 }
 
 const ContentAnalytics = () => {
+  const { now } = useClock();
   const analytics = useMemo(() => {
-    const summary = dataApi.getDatasetSummary();
+    const summary = dataApi.getDatasetSummary(now);
     const prisoners = dataApi.getPoliticalPrisoners();
     const sanctions = dataApi.getSanctions();
     const timeline = dataApi.getTimelineEvents();
@@ -110,7 +121,7 @@ const ContentAnalytics = () => {
     });
 
     // Active vs inactive alerts
-    const activeAlerts = alerts.filter(a => a.active).length;
+    const activeAlerts = dataApi.getActiveAlerts(now).length;
     const criticalAlerts = alerts.filter(a => a.type === 'critical').length;
 
     // Geographic coverage
@@ -153,7 +164,7 @@ const ContentAnalytics = () => {
       updates: updates || [],
       updatesByCategory,
     };
-  }, []);
+  }, [now]);
 
   const COUNTRY_LABELS: Record<string, string> = {
     us: 'United States',
@@ -275,7 +286,7 @@ const ContentAnalytics = () => {
                 const percentage = Math.round((count / maxCount) * 100);
                 return (
                   <div key={country} className="flex items-center gap-3">
-                    <span className="text-sm text-slate-300 w-28 truncate font-mono">
+                    <span className="text-sm text-slate-300 w-28 break-words font-mono">
                       {COUNTRY_LABELS[country] || country}
                     </span>
                     <div className="flex-1 bg-[#0a0e14] h-5 overflow-hidden">
@@ -365,7 +376,7 @@ const ContentAnalytics = () => {
                       {update.category?.replace('_', ' ').toUpperCase()}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-300 mt-0.5 truncate">{update.title}</p>
+                  <p className="text-sm text-slate-300 mt-0.5">{update.title}</p>
                 </div>
               </div>
             );
@@ -402,7 +413,7 @@ const DatasetCard = ({ icon: Icon, label, count, detail, color }: DatasetCardPro
     <div className={`bg-[#111820] border border-[#1c2a35] p-3 border-l-2 ${borderColors[color] || 'border-l-slate-400'}`}>
       <div className="flex items-center gap-2 mb-1">
         <Icon className="w-4 h-4 text-slate-400" />
-        <span className="text-xs text-slate-400 font-mono truncate">{label}</span>
+        <span className="text-xs text-slate-400 font-mono">{label}</span>
       </div>
       <div className="text-xl font-bold font-mono text-white">{count}</div>
       <div className="text-xs text-slate-400">{detail}</div>

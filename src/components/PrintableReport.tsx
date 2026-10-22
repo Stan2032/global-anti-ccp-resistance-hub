@@ -6,12 +6,13 @@
  * @module PrintableReport
  */
 import React, { useState, useRef } from 'react';
-import { Printer, Download, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Printer, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
 import alertsData from '../data/emergency_alerts.json';
+import { useClock } from '../utils/ssr';
 
 const KEY_FACTS = [
   { label: 'Political prisoners documented', value: '65+', source: 'CECC, HRW, Amnesty' },
-  { label: 'Uyghurs in detention camps', value: '1–3 million', source: 'ASPI, OHCHR' },
+  { label: 'Uyghurs detained in camps since 2017', value: 'More than 1 million (up to 1.8 million)', source: 'Zenz 2019, CHRD, UN CERD' },
   { label: 'Overseas CCP police stations', value: '102+', source: 'Safeguard Defenders' },
   { label: 'HK political prisoners (NSL)', value: '260+', source: 'Hong Kong Watch' },
   { label: 'Forced labor companies flagged', value: '144+', source: 'US UFLPA Entity List' },
@@ -34,8 +35,8 @@ const PrintableReport = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const { now } = useClock();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
   const activeAlerts = alertsData.filter(a => {
     if (!a.active) return false;

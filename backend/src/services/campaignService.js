@@ -61,7 +61,7 @@ export const createCampaign = async (campaignData, userId) => {
     return result.rows[0];
   } catch (error) {
     if (error.code === '23505') { // Unique violation
-      throw new Error('Campaign with this title already exists');
+      throw new Error('Campaign with this title already exists', { cause: error });
     }
     logger.error('Error creating campaign', { error: error.message });
     throw error;

@@ -1,9 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import ProfilesIndex from '../pages/profiles/ProfilesIndex';
+import prisonersData from '../data/political_prisoners_research.json';
 
 const renderWithRouter = (ui: React.ReactElement) => render(<MemoryRouter>{ui}</MemoryRouter>);
+
+/** A button in the region filter above the profile grid. */
+const regionFilter = (name: RegExp) =>
+  within(screen.getByRole('group', { name: 'Filter profiles by region' })).getByRole('button', { name });
 
 describe('ProfilesIndex', () => {
   it('should render the page title', () => {
@@ -76,38 +81,41 @@ describe('ProfilesIndex', () => {
   it('should link back to political prisoners database', () => {
     renderWithRouter(<ProfilesIndex />);
     expect(screen.getByText('Political Prisoners Database')).toBeTruthy();
-    expect(screen.getByText(/65 total cases in database/)).toBeTruthy();
+    // Hardcoded on the page, so tie it to the data: it said 65 for six months
+    // after a duplicate record was removed and the database held 64.
+    const cases = prisonersData.results.length;
+    expect(cases).toBeGreaterThan(0);
+    expect(screen.getByText(new RegExp(`^${cases} total cases in database`))).toBeTruthy();
   });
 
   // === Region Filter Tests (Session 167) ===
 
-  it('should render region filter tabs', () => {
+  it('should render the region filters', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByRole('tab', { name: /All Profiles/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Hong Kong/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Mainland China/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Uyghur & Tibet/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Cross-Border/i })).toBeTruthy();
+    expect(regionFilter(/All Profiles/i)).toBeTruthy();
+    expect(regionFilter(/Hong Kong/i)).toBeTruthy();
+    expect(regionFilter(/Mainland China/i)).toBeTruthy();
+    expect(regionFilter(/Uyghur & Tibet/i)).toBeTruthy();
+    expect(regionFilter(/Cross-Border/i)).toBeTruthy();
   });
 
-  it('should have All Profiles tab active by default', () => {
+  it('should have the All Profiles filter on by default', () => {
     renderWithRouter(<ProfilesIndex />);
-    const allTab = screen.getByRole('tab', { name: /All Profiles/i });
-    expect(allTab.getAttribute('aria-selected')).toBe('true');
+    expect(regionFilter(/All Profiles/i).getAttribute('aria-pressed')).toBe('true');
   });
 
-  it('should show counts on each filter tab', () => {
+  it('should show counts on each filter', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByRole('tab', { name: /All Profiles \(16\)/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Hong Kong \(7\)/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Mainland China \(5\)/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Uyghur & Tibet \(3\)/i })).toBeTruthy();
-    expect(screen.getByRole('tab', { name: /Cross-Border \(1\)/i })).toBeTruthy();
+    expect(regionFilter(/All Profiles \(16\)/i)).toBeTruthy();
+    expect(regionFilter(/Hong Kong \(7\)/i)).toBeTruthy();
+    expect(regionFilter(/Mainland China \(5\)/i)).toBeTruthy();
+    expect(regionFilter(/Uyghur & Tibet \(3\)/i)).toBeTruthy();
+    expect(regionFilter(/Cross-Border \(1\)/i)).toBeTruthy();
   });
 
-  it('should filter to Hong Kong profiles when tab clicked', () => {
+  it('should filter to Hong Kong profiles when its filter is clicked', () => {
     renderWithRouter(<ProfilesIndex />);
-    fireEvent.click(screen.getByRole('tab', { name: /Hong Kong/i }));
+    fireEvent.click(regionFilter(/Hong Kong/i));
     // Hong Kong profiles should be visible
     expect(screen.getByText('Jimmy Lai')).toBeTruthy();
     expect(screen.getByText('Joshua Wong')).toBeTruthy();
@@ -121,9 +129,9 @@ describe('ProfilesIndex', () => {
     expect(screen.queryByText('Gui Minhai')).toBeNull();
   });
 
-  it('should filter to Mainland China profiles when tab clicked', () => {
+  it('should filter to Mainland China profiles when its filter is clicked', () => {
     renderWithRouter(<ProfilesIndex />);
-    fireEvent.click(screen.getByRole('tab', { name: /Mainland China/i }));
+    fireEvent.click(regionFilter(/Mainland China/i));
     expect(screen.getByText('Liu Xiaobo')).toBeTruthy();
     expect(screen.getByText('Gao Zhisheng')).toBeTruthy();
     expect(screen.getByText('Zhang Zhan')).toBeTruthy();
@@ -134,51 +142,50 @@ describe('ProfilesIndex', () => {
     expect(screen.queryByText('Joshua Wong')).toBeNull();
   });
 
-  it('should filter to Uyghur & Tibet profiles when tab clicked', () => {
+  it('should filter to Uyghur & Tibet profiles when its filter is clicked', () => {
     renderWithRouter(<ProfilesIndex />);
-    fireEvent.click(screen.getByRole('tab', { name: /Uyghur & Tibet/i }));
+    fireEvent.click(regionFilter(/Uyghur & Tibet/i));
     expect(screen.getByText('Ilham Tohti')).toBeTruthy();
     expect(screen.getByText('Gedhun Choekyi Nyima')).toBeTruthy();
     expect(screen.getByText('Tashi Wangchuk')).toBeTruthy();
     expect(screen.queryByText('Jimmy Lai')).toBeNull();
   });
 
-  it('should filter to Cross-Border profiles when tab clicked', () => {
+  it('should filter to Cross-Border profiles when its filter is clicked', () => {
     renderWithRouter(<ProfilesIndex />);
-    fireEvent.click(screen.getByRole('tab', { name: /Cross-Border/i }));
+    fireEvent.click(regionFilter(/Cross-Border/i));
     expect(screen.getByText('Gui Minhai')).toBeTruthy();
     expect(screen.queryByText('Jimmy Lai')).toBeNull();
     expect(screen.queryByText('Ilham Tohti')).toBeNull();
   });
 
-  it('should return to all profiles when All tab clicked after filtering', () => {
+  it('should return to all profiles when All is clicked after filtering', () => {
     renderWithRouter(<ProfilesIndex />);
     // Filter to HK
-    fireEvent.click(screen.getByRole('tab', { name: /Hong Kong/i }));
+    fireEvent.click(regionFilter(/Hong Kong/i));
     expect(screen.queryByText('Ilham Tohti')).toBeNull();
     // Go back to All
-    fireEvent.click(screen.getByRole('tab', { name: /All Profiles/i }));
+    fireEvent.click(regionFilter(/All Profiles/i));
     expect(screen.getByText('Ilham Tohti')).toBeTruthy();
     expect(screen.getByText('Jimmy Lai')).toBeTruthy();
     expect(screen.getByText('Gui Minhai')).toBeTruthy();
   });
 
-  it('should update aria-selected when switching tabs', () => {
+  it('should move aria-pressed to the filter that was clicked', () => {
     renderWithRouter(<ProfilesIndex />);
-    const hkTab = screen.getByRole('tab', { name: /Hong Kong/i });
-    const allTab = screen.getByRole('tab', { name: /All Profiles/i });
-    fireEvent.click(hkTab);
-    expect(hkTab.getAttribute('aria-selected')).toBe('true');
-    expect(allTab.getAttribute('aria-selected')).toBe('false');
+    const hk = regionFilter(/Hong Kong/i);
+    const all = regionFilter(/All Profiles/i);
+    fireEvent.click(hk);
+    expect(hk.getAttribute('aria-pressed')).toBe('true');
+    expect(all.getAttribute('aria-pressed')).toBe('false');
   });
 
-  it('should have tablist role on filter container', () => {
+  // The filters narrow one grid, so they are not announced as tabs.
+  it('should present the filters as buttons, not tabs', () => {
     renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByRole('tablist', { name: /Filter profiles by region/i })).toBeTruthy();
-  });
-
-  it('should have tabpanel role on profiles grid', () => {
-    renderWithRouter(<ProfilesIndex />);
-    expect(screen.getByRole('tabpanel')).toBeTruthy();
+    expect(screen.queryAllByRole('tablist')).toHaveLength(0);
+    expect(screen.queryAllByRole('tab')).toHaveLength(0);
+    expect(screen.queryAllByRole('tabpanel')).toHaveLength(0);
+    expect(screen.getByRole('region', { name: 'Available profiles' })).toBeTruthy();
   });
 });

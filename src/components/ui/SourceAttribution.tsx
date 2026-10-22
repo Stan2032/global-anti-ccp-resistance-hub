@@ -69,14 +69,22 @@ const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) 
     return 'text-slate-400';
   };
 
+  // A date shown only as precisely as it was written: "2024-03" is March 2024,
+  // not 1 March, and "2020" is 2020. Parsed by `new Date`, those were midnight
+  // UTC, so they also showed as the day before for every reader west of UTC.
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return null;
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch {
-      return dateString;
+    const full = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+    if (full) {
+      return new Date(Number(full[1]), Number(full[2]) - 1, Number(full[3]))
+        .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
+    const month = /^(\d{4})-(\d{2})$/.exec(dateString);
+    if (month) {
+      return new Date(Number(month[1]), Number(month[2]) - 1, 1)
+        .toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+    }
+    return dateString;
   };
 
   if (compact) {
@@ -98,7 +106,9 @@ const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) 
   return (
     <div className="bg-[#111820]/50 border border-[#1c2a35]/50 p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex items-start space-x-3 flex-1 min-w-0">
+        {/* A floor on this column's width, so on a narrow card the button
+            wraps below the name instead of squeezing it into a sliver. */}
+        <div className="flex items-start space-x-3 flex-1 min-w-[min(12rem,100%)]">
           {/* Source Icon */}
           <div className={`flex-shrink-0 mt-1 ${getCredibilityColor(source.type)}`}>
             {getSourceIcon(source.type)}
@@ -107,7 +117,7 @@ const SourceAttribution = ({ source, compact = false }: SourceAttributionProps) 
           {/* Source Information */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-1">
-              <h4 className="text-white font-medium text-sm truncate">
+              <h4 className="text-white font-medium text-sm break-words">
                 {source.name}
               </h4>
               

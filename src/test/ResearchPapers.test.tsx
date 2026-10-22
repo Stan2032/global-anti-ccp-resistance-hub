@@ -71,7 +71,7 @@ describe('ResearchPapers', () => {
 
   it('filters papers by search query', () => {
     render(<ResearchPapers />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search papers by title, author, or topic');
     fireEvent.change(searchInput, { target: { value: 'organ harvesting' } });
     expect(screen.getByText(/Involuntary Organ Harvesting/)).toBeTruthy();
     // Unrelated paper should disappear
@@ -80,7 +80,7 @@ describe('ResearchPapers', () => {
 
   it('shows no results message when search has no matches', () => {
     render(<ResearchPapers />);
-    const searchInput = screen.getByLabelText('Search');
+    const searchInput = screen.getByLabelText('Search papers by title, author, or topic');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No papers found matching your criteria')).toBeTruthy();
   });

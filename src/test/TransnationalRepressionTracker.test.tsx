@@ -2,6 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import TransnationalRepressionTracker from '../components/TransnationalRepressionTracker';
+import { dataApi, STATION_STATUS } from '../services/dataApi';
+import { cardsIn, expectDisclosureSections, inSection } from './helpers/disclosure';
 
 // Mock clipboard
 Object.assign(navigator, {
@@ -33,9 +35,31 @@ describe('TransnationalRepressionTracker', () => {
     expect(screen.getAllByText(/countries affected/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it('displays active stations stat', () => {
+  // The data calls a station that is still running OPERATING. The tracker
+  // checked for 'ACTIVE', which the data never uses, so no operating station
+  // counted towards a country's threat level, and this stat read 0.
+  const operatingStations = () =>
+    dataApi.getPoliceStations().filter(s => s.status === STATION_STATUS.OPERATING);
+
+  it('counts the operating police stations in the data', () => {
     render(<TransnationalRepressionTracker />);
-    expect(screen.getAllByText(/active station/).length).toBeGreaterThanOrEqual(1);
+    const count = operatingStations().length;
+    expect(count).toBeGreaterThan(0);
+    expect(screen.getByText(`${count} operating stations`)).toBeTruthy();
+  });
+
+  it('rates every country with an operating station high or critical, and lists the station', () => {
+    vi.mocked(navigator.clipboard.writeText).mockClear();
+    render(<TransnationalRepressionTracker />);
+    fireEvent.click(screen.getByLabelText('Copy intelligence report to clipboard'));
+    const report = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0] as string;
+    const stations = operatingStations();
+    expect(stations.length).toBeGreaterThan(0);
+    expect(report).toContain(`Operating police stations: ${stations.length}`);
+    for (const s of stations) {
+      expect(report, s.country).toMatch(new RegExp(`^\\[(CRITICAL|HIGH)\\] ${s.country}:`, 'm'));
+      expect(report, s.country).toMatch(new RegExp(`^${s.country}: .*${s.city}`, 'm'));
+    }
   });
 
   it('displays stations closed stat', () => {
@@ -68,32 +92,10 @@ describe('TransnationalRepressionTracker', () => {
     expect(countryLabels.length).toBeGreaterThanOrEqual(4);
   });
 
-  // ── View Toggle ────────────────────────────────────────
-  it('renders all view toggle buttons', () => {
+  // ── Sections ──────────────────────────────────────────
+  it('renders every view as a native disclosure section', () => {
     render(<TransnationalRepressionTracker />);
-    expect(screen.getByText('Threat Overview')).toBeTruthy();
-    expect(screen.getByText('Operations Map')).toBeTruthy();
-    expect(screen.getByText('Government Responses')).toBeTruthy();
-  });
-
-  it('Threat Overview is active by default', () => {
-    render(<TransnationalRepressionTracker />);
-    const btn = screen.getByText('Threat Overview').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Operations Map switches view', () => {
-    render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
-    const btn = screen.getByText('Operations Map').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
-  });
-
-  it('clicking Government Responses switches view', () => {
-    render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
-    const btn = screen.getByText('Government Responses').closest('button');
-    expect(btn!.getAttribute('aria-pressed')).toBe('true');
+    expectDisclosureSections(['Threat Overview', 'Operations Map', 'Government Responses']);
   });
 
   // ── Search & Filters ──────────────────────────────────
@@ -127,71 +129,57 @@ describe('TransnationalRepressionTracker', () => {
   });
 
   // ── Country Cards ──────────────────────────────────────
-  it('renders country cards in overview', () => {
+  it('renders country cards as native disclosures', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expect(expandBtns.length).toBeGreaterThan(0);
+    const cards = cardsIn('Threat Overview');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach(card => expect(card.firstElementChild?.tagName).toBe('SUMMARY'));
   });
 
-  it('clicking a country card expands it', () => {
+  it('a country card opens and closes natively', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
+    const [card] = cardsIn('Threat Overview');
+    expect(card.open).toBe(false);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
-  it('clicking expanded country card collapses it', () => {
-    render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('true');
-    fireEvent.click(expandBtns[0]);
-    expect(expandBtns[0].getAttribute('aria-expanded')).toBe('false');
-  });
 
-  it('expanded card shows police station details', () => {
+  it('shows police station details without a click, wherever a country has them', () => {
     render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    fireEvent.click(expandBtns[0]);
-    // Should show Police Stations section header
-    expect(screen.getAllByText(/Police Stations/).length).toBeGreaterThanOrEqual(1);
+    const withStations = cardsIn('Threat Overview').filter(card => /Police Stations \(\d+\)/.test(card.textContent ?? ''));
+    expect(withStations.length).toBeGreaterThan(0);
   });
 
   // ── Operations Map View ────────────────────────────────
   it('operations view shows operation type headers', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
-    expect(screen.getByText('Overseas Police Stations')).toBeTruthy();
+    const section = inSection('Operations Map');
+    expect(section.getByText('Overseas Police Stations')).toBeTruthy();
   });
 
   it('operations view groups countries by operation type', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Operations Map'));
+    const section = inSection('Operations Map');
     // Should show country counts for operation types
-    const countLabels = screen.getAllByText(/\d+ countr/);
+    const countLabels = section.getAllByText(/\d+ countr/);
     expect(countLabels.length).toBeGreaterThan(0);
   });
 
   // ── Government Responses View ──────────────────────────
   it('responses view shows response categories', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
-    expect(screen.getAllByText('Enforcement Action').length).toBeGreaterThanOrEqual(1);
+    const section = inSection('Government Responses');
+    expect(section.getAllByText('Enforcement Action').length).toBeGreaterThanOrEqual(1);
   });
 
   it('responses view shows country response details', () => {
     render(<TransnationalRepressionTracker />);
-    fireEvent.click(screen.getByText('Government Responses'));
+    const section = inSection('Government Responses');
     // Should show station/case counts for countries
-    const stationLabels = screen.getAllByText(/\d+ station/);
+    const stationLabels = section.getAllByText(/\d+ station/);
     expect(stationLabels.length).toBeGreaterThan(0);
   });
 
@@ -257,26 +245,8 @@ describe('TransnationalRepressionTracker', () => {
     expect(screen.getByLabelText('Search transnational repression data')).toBeTruthy();
   });
 
-  it('view toggle group has aria-label', () => {
-    render(<TransnationalRepressionTracker />);
-    expect(screen.getByRole('group', { name: 'View options' })).toBeTruthy();
-  });
-
-  it('view buttons have aria-pressed attribute', () => {
-    render(<TransnationalRepressionTracker />);
-    const viewBtns = screen.getByRole('group', { name: 'View options' }).querySelectorAll('button');
-    viewBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-pressed')).toBeTruthy();
-    });
-  });
-
-  it('country cards have aria-expanded attribute', () => {
-    render(<TransnationalRepressionTracker />);
-    const expandBtns = screen.getAllByRole('button').filter(
-      b => b.getAttribute('aria-expanded') !== null
-    );
-    expandBtns.forEach(btn => {
-      expect(btn.getAttribute('aria-expanded')).toBe('false');
-    });
+  it('uses native disclosure cards, not JavaScript-only expanders', () => {
+    const { container } = render(<TransnationalRepressionTracker />);
+    expect(container.querySelectorAll('[aria-expanded]')).toHaveLength(0);
   });
 });

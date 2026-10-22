@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import React from 'react';
 
 // Mock SourceAttribution to simplify rendering
@@ -14,6 +14,11 @@ vi.mock('../components/ui/SourceAttribution', () => ({
 }));
 
 import DetentionFacilities from '../components/DetentionFacilities';
+import detentionData from '../data/detention_facilities_research.json';
+
+const FACILITIES = detentionData.facilities;
+/** Every facility's card: a native <details> named by its heading. */
+const cards = () => [...document.querySelectorAll('details')].filter(d => d.querySelector(':scope > summary > h3'));
 
 describe('DetentionFacilities', () => {
   // --- Rendering ---
@@ -66,12 +71,12 @@ describe('DetentionFacilities', () => {
 
   it('renders search input', () => {
     render(<DetentionFacilities />);
-    expect(screen.getByPlaceholderText('Search facilities...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Search detention facilities...')).toBeTruthy();
   });
 
   it('filters facilities by search query', () => {
     render(<DetentionFacilities />);
-    const searchInput = screen.getByPlaceholderText('Search facilities...');
+    const searchInput = screen.getByPlaceholderText('Search detention facilities...');
     fireEvent.change(searchInput, { target: { value: 'Dabancheng' } });
     expect(screen.getByText('Dabancheng Internment Camp')).toBeTruthy();
     // Other facilities should be filtered out
@@ -80,16 +85,14 @@ describe('DetentionFacilities', () => {
 
   it('shows empty state when no facilities match search', () => {
     render(<DetentionFacilities />);
-    const searchInput = screen.getByPlaceholderText('Search facilities...');
+    const searchInput = screen.getByPlaceholderText('Search detention facilities...');
     fireEvent.change(searchInput, { target: { value: 'zzzznonexistent' } });
     expect(screen.getByText('No facilities match your search')).toBeTruthy();
   });
 
   it('filters by region dropdown', () => {
     render(<DetentionFacilities />);
-    const regionSelects = screen.getAllByLabelText('Region filter');
-    // First dropdown is region filter
-    fireEvent.change(regionSelects[0], { target: { value: 'Tibet' } });
+    fireEvent.change(screen.getByLabelText('Filter facilities by region'), { target: { value: 'Tibet' } });
     expect(screen.getByText('Drapchi Prison')).toBeTruthy();
     // Xinjiang facilities should be hidden
     expect(screen.queryByText('Dabancheng Internment Camp')).toBeFalsy();
@@ -97,71 +100,63 @@ describe('DetentionFacilities', () => {
 
   it('filters by type dropdown', () => {
     render(<DetentionFacilities />);
-    const regionSelects = screen.getAllByLabelText('Region filter');
-    // Second dropdown is type filter (both have same aria-label)
-    fireEvent.change(regionSelects[1], { target: { value: 'Internment Camp' } });
+    fireEvent.change(screen.getByLabelText('Filter facilities by type'), { target: { value: 'Internment Camp' } });
     expect(screen.getByText('Dabancheng Internment Camp')).toBeTruthy();
     // Non-camp facilities should be hidden
     expect(screen.queryByText('Drapchi Prison')).toBeFalsy();
   });
 
-  // --- Detail View ---
+  // --- Every facility, without JavaScript ---
+  // Each facility's description, evidence and sources were in a view that
+  // replaced the list when a card was clicked, so none of it reached a
+  // reader without JavaScript. Each card is a native <details> now.
 
-  it('shows detail view when facility card is clicked', () => {
+  it('puts every facility in the page as a closed native disclosure', () => {
     render(<DetentionFacilities />);
-    fireEvent.click(screen.getByText('Dabancheng Internment Camp'));
-    // Detail view should show back button
-    expect(screen.getByText('← Back to all facilities')).toBeTruthy();
-    // Should show facility name as heading
-    expect(screen.getByText('Estimated Capacity')).toBeTruthy();
-    expect(screen.getByText('First Documented')).toBeTruthy();
-    expect(screen.getByText('Description')).toBeTruthy();
+    expect(FACILITIES.length).toBeGreaterThan(0);
+    expect(cards()).toHaveLength(FACILITIES.length);
+    expect(cards().every(d => !d.open)).toBe(true);
+    expect(screen.queryByText(/Back to all facilities/)).toBeNull();
   });
 
-  it('detail view shows evidence section', () => {
+  it("puts each facility's description and evidence in the page before any click", () => {
     render(<DetentionFacilities />);
-    fireEvent.click(screen.getByText('Dabancheng Internment Camp'));
-    expect(screen.getByText('Documented Evidence')).toBeTruthy();
+    let evidence = 0;
+    for (const facility of FACILITIES) {
+      const card = cards().find(d => d.querySelector('summary h3')!.textContent === facility.name)!;
+      expect(card, facility.name).toBeTruthy();
+      expect(card.textContent).toContain(facility.description);
+      for (const item of facility.evidence) expect(card.textContent).toContain(item);
+      evidence += facility.evidence.length;
+    }
+    expect(evidence).toBeGreaterThan(FACILITIES.length);
   });
 
-  it('back button returns to facility list', () => {
+  it('opens and closes a facility natively', () => {
     render(<DetentionFacilities />);
-    fireEvent.click(screen.getByText('Dabancheng Internment Camp'));
-    expect(screen.getByText('← Back to all facilities')).toBeTruthy();
-    fireEvent.click(screen.getByText('← Back to all facilities'));
-    // Should be back in list view
-    expect(screen.getByText('Detention Facility Database')).toBeTruthy();
-    expect(screen.getByText('Facilities Documented')).toBeTruthy();
-  });
-
-  // --- Evidence Toggle ---
-
-  it('toggles evidence section collapse', () => {
-    render(<DetentionFacilities />);
-    fireEvent.click(screen.getByText('Dabancheng Internment Camp'));
-    // Evidence starts expanded (evidence: true in setExpandedSections)
-    const toggleButton = screen.getByText('Documented Evidence').closest('button');
-    expect(toggleButton).toBeTruthy();
-    // Click to collapse
-    fireEvent.click(toggleButton!);
-    // Click again to expand
-    fireEvent.click(toggleButton!);
-    // Should still show evidence header
-    expect(screen.getByText('Documented Evidence')).toBeTruthy();
+    const card = cards().find(d => d.querySelector('summary h3')!.textContent === 'Dabancheng Internment Camp')!;
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(true);
+    expect(within(card).getByText('Documented Evidence')).toBeTruthy();
+    fireEvent.click(card.querySelector('summary')!);
+    expect(card.open).toBe(false);
   });
 
   // --- Research Resources ---
 
+  // Facilities' own source lists name some of these too, so look in the block.
+  const resources = () => within(screen.getByText('Research Resources').parentElement!);
+
   it('renders research resource links', () => {
     render(<DetentionFacilities />);
-    expect(screen.getByText('ASPI Xinjiang Data Project')).toBeTruthy();
-    expect(screen.getByText('Xinjiang Police Files')).toBeTruthy();
-    expect(screen.getByText('Xinjiang Victims Database')).toBeTruthy();
+    expect(resources().getByText('ASPI Xinjiang Data Project')).toBeTruthy();
+    expect(resources().getByText('Xinjiang Police Files')).toBeTruthy();
+    expect(resources().getByText('Xinjiang Victims Database')).toBeTruthy();
   });
 
   it('resource links use HTTPS and open in new tab', () => {
     render(<DetentionFacilities />);
-    const aspiLink = screen.getByText('ASPI Xinjiang Data Project').closest('a');
+    const aspiLink = resources().getByText('ASPI Xinjiang Data Project').closest('a');
     expect(aspiLink!.getAttribute('href')).toBe('https://xjdp.aspi.org.au/');
     expect(aspiLink!.getAttribute('target')).toBe('_blank');
     expect(aspiLink!.getAttribute('rel')).toContain('noopener');

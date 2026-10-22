@@ -5,13 +5,28 @@
  *
  * @module PanchenLamaProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Newspaper, Flag, Heart, Eye
+  User,
+  MapPin,
+  AlertTriangle,
+  ExternalLink,
+  Globe,
+  FileText,
+  BookOpen,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Newspaper,
+  Flag,
+  Heart,
+  Eye,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -26,14 +41,8 @@ const PROFILE = {
   title: '11th Panchen Lama',
   birthDate: 'April 25, 1989',
   birthPlace: 'Lhari County, Nagqu Prefecture, Tibet',
-  nationality: 'Tibetan',
-  status: 'DISAPPEARED',
   currentLocation: 'Unknown — not seen since May 17, 1995',
-  sentence: 'None — extrajudicial enforced disappearance',
-  ageAtAbduction: 6,
-  currentAge: 36,
-  yearsMissing: 30,
-  occupation: '11th Panchen Lama (recognized by the 14th Dalai Lama)',
+  disappearedOn: 'May 17, 1995',
   parents: 'Konchok Phuntsok (father) and Dechen Chodon (mother)',
   significance: 'Second-highest spiritual leader in Tibetan Buddhism. The Panchen Lama and Dalai Lama historically recognize each other\'s reincarnations — control of the Panchen Lama gives the CCP leverage over the Dalai Lama\'s succession.',
 };
@@ -268,16 +277,12 @@ const categoryLabels = {
 };
 
 export default function PanchenLamaProfile() {
-  const [activeSection, setActiveSection] = useState('timeline');
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
-
-  const sections = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'significance', label: 'Why It Matters', icon: Eye },
-    { id: 'narratives', label: 'CCP Narratives', icon: Shield },
-    { id: 'response', label: 'International', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: FileText },
-  ];
+  const { now } = useClock();
+  // These were typed in as 36 and 30, and went stale on his birthday and on
+  // the anniversary of his disappearance.
+  const ageAtAbduction = calculateAge(PROFILE.birthDate, PROFILE.disappearedOn);
+  const currentAge = calculateAge(PROFILE.birthDate, undefined, now);
+  const yearsMissing = calculateAge(PROFILE.disappearedOn, undefined, now);
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -309,11 +314,11 @@ export default function PanchenLamaProfile() {
               <div className="bg-[#111820]/40 border border-[#1c2a35] p-3 mb-3">
                 <div className="flex items-center gap-2 mb-1">
                   <AlertTriangle className="w-5 h-5 text-[#22d3ee] animate-pulse" />
-                  <span className="font-bold text-[#22d3ee]">ENFORCED DISAPPEARANCE — {PROFILE.yearsMissing} YEARS</span>
+                  <span className="font-bold text-[#22d3ee]">ENFORCED DISAPPEARANCE — {yearsMissing} YEARS</span>
                 </div>
                 <p className="text-sm text-slate-300">
-                  Abducted at age {PROFILE.ageAtAbduction} on May 17, 1995. Now {PROFILE.currentAge} years old.
-                  Not seen by any independent observer for <strong>{PROFILE.yearsMissing} years</strong>.
+                  Abducted at age {ageAtAbduction} on {PROFILE.disappearedOn}. Now {currentAge} years old.
+                  Not seen by any independent observer for <strong>{yearsMissing} years</strong>.
                   The world&apos;s longest-running enforced disappearance of a child.
                 </p>
               </div>
@@ -334,35 +339,12 @@ export default function PanchenLamaProfile() {
         </div>
       </div>
 
-      {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveSection(id)}
-                role="tab"
-                aria-selected={activeSection === id}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
-                  activeSection === id
-                    ? 'bg-[#22d3ee] text-[#0a0e14]'
-                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-4 py-6">
 
         {/* Timeline Section */}
-        {activeSection === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#22d3ee]" />
@@ -379,53 +361,17 @@ export default function PanchenLamaProfile() {
             </div>
 
             <div className="space-y-3">
-              {TIMELINE.map((event, i) => (
-                <button
-                  type="button"
-                  key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r text-left w-full ${categoryColors[event.category]} hover:bg-[#111820]/50`}
-                  onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                  aria-expanded={expandedEvent === i}
-                  aria-label={`${event.year}: ${event.title}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-400 font-mono min-w-[60px]">{event.year}</span>
-                        <h3 className="font-medium text-sm">{event.title}</h3>
-                      </div>
-                      {expandedEvent === i && (
-                        <div className="mt-2 text-sm text-slate-300 leading-relaxed">
-                          <p>{event.detail}</p>
-                          {event.source && (
-                            <a
-                              href={event.source}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Source
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    {expandedEvent === i ? (
-                      <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    )}
-                  </div>
-                </button>
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => ({
+                year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+                label: categoryLabels[event.category as keyof typeof categoryLabels],
+                tone: categoryColors[event.category],
+              }))} />
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Why It Matters Section (replaces Charges — no formal charges exist) */}
-        {activeSection === 'significance' && (
+        <DisclosureSection title="Why It Matters">
           <section aria-label="Why this case matters">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Eye className="w-5 h-5 text-[#22d3ee]" />
@@ -517,10 +463,10 @@ export default function PanchenLamaProfile() {
               </ul>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Analysis */}
-        {activeSection === 'narratives' && (
+        <DisclosureSection title="CCP Narratives">
           <section aria-label="CCP narrative analysis">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-amber-400" />
@@ -572,10 +518,10 @@ export default function PanchenLamaProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* International Response */}
-        {activeSection === 'response' && (
+        <DisclosureSection title="International">
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Globe className="w-5 h-5 text-[#22d3ee]" />
@@ -627,10 +573,10 @@ export default function PanchenLamaProfile() {
               </div>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Sources */}
-        {activeSection === 'sources' && (
+        <DisclosureSection title="Sources">
           <section aria-label="Sources">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <FileText className="w-5 h-5 text-slate-400" />
@@ -662,7 +608,7 @@ export default function PanchenLamaProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

@@ -1,33 +1,39 @@
 /**
  * ShareButtons — Social media sharing buttons with copy-to-clipboard.
  *
- * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp, Signal,
- * and Email. Offers both full and compact layouts.
+ * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp and Email, and
+ * copying the link. Offers both full and compact layouts. Signal has no web
+ * share link, so it is not offered; copying the link covers it.
  *
  * @module ShareButtons
  */
 import { useState } from 'react';
 import { logger } from '../utils/logger';
+import { SITE_URL } from '../utils/site';
+import { useBrowserValue } from '../utils/ssr';
 
 /**
  * ShareButtons — Social sharing buttons with copy-to-clipboard.
- * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp, Signal, and Email.
+ * Supports Twitter/X, Facebook, LinkedIn, Telegram, WhatsApp and Email.
  *
  * @param {Object} props
  * @param {string} [props.title='Global Anti-CCP Resistance Hub'] - Share title
  * @param {string} [props.text='Join the global movement against CCP authoritarianism'] - Share text
- * @param {string} [props.url=window.location.href] - URL to share
+ * @param {string} [props.url=SITE_URL] - URL to share; pass the page's own canonical URL
  * @param {boolean} [props.compact=false] - Show compact layout (fewer buttons, no labels)
  * @returns {React.ReactElement} Share buttons row
  */
 const ShareButtons = ({ 
   title = "Global Anti-CCP Resistance Hub", 
   text = "Join the global movement against CCP authoritarianism",
-  url = typeof window !== 'undefined' ? window.location.href : '',
+  // Not window.location: pre-rendered pages have no window, so the shared
+  // link came out empty for every reader without JavaScript.
+  url = SITE_URL,
   compact = false
 }) => {
   const [copied, setCopied] = useState(false);
-  const [showMore, setShowMore] = useState(false);
+  // Copying needs JavaScript, so the button appears only once it runs.
+  const scripted = useBrowserValue(() => true, false);
 
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
@@ -85,17 +91,6 @@ const ShareButtons = ({
       color: 'bg-green-500 hover:bg-green-600'
     },
     {
-      name: 'Signal',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
-        </svg>
-      ),
-      url: `https://signal.me/#p/+1234567890`, // Placeholder - Signal doesn't have web sharing
-      color: 'bg-[#22d3ee] hover:bg-[#22d3ee]/80',
-      disabled: true
-    },
-    {
       name: 'Email',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +112,7 @@ const ShareButtons = ({
     }
   };
 
-  const visibleLinks = compact ? shareLinks.slice(0, 4) : (showMore ? shareLinks : shareLinks.slice(0, 5));
+  const visibleLinks = compact ? shareLinks.slice(0, 4) : shareLinks;
 
   return (
     <div className="flex flex-col gap-3">
@@ -125,12 +120,12 @@ const ShareButtons = ({
         {visibleLinks.map((link) => (
           <a
             key={link.name}
-            href={link.disabled ? '#' : link.url}
+            href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => link.disabled && e.preventDefault()}
-            className={`${link.color} ${link.disabled ? 'opacity-50 cursor-not-allowed' : ''} text-white p-2 transition-colors flex items-center gap-2`}
-            title={link.disabled ? `${link.name} (not available for web sharing)` : `Share on ${link.name}`}
+            className={`${link.color} text-white p-2 transition-colors flex items-center gap-2`}
+            aria-label={`Share on ${link.name}`}
+            title={`Share on ${link.name}`}
           >
             {link.icon}
             {!compact && <span className="text-sm hidden sm:inline">{link.name}</span>}
@@ -138,9 +133,11 @@ const ShareButtons = ({
         ))}
         
         {/* Copy Link Button */}
+        {scripted && (
         <button
           onClick={copyToClipboard}
           className={`${copied ? 'bg-green-600' : 'bg-[#1c2a35] hover:bg-[#1c2a35]'} text-white p-2 transition-colors flex items-center gap-2`}
+          aria-label={copied ? 'Link copied' : 'Copy link'}
           title="Copy link"
         >
           {copied ? (
@@ -154,21 +151,8 @@ const ShareButtons = ({
           )}
           {!compact && <span className="text-sm hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>}
         </button>
-
-        {/* Show More Button */}
-        {!compact && shareLinks.length > 5 && (
-          <button
-            onClick={() => setShowMore(!showMore)}
-            aria-expanded={showMore}
-            aria-label={showMore ? 'Show fewer sharing options' : 'Show more sharing options'}
-            className="bg-[#111820] hover:bg-[#1c2a35] text-white p-2 transition-colors"
-            title={showMore ? 'Show less' : 'More options'}
-          >
-            <svg className={`w-5 h-5 transition-transform ${showMore ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
         )}
+
       </div>
     </div>
   );

@@ -100,6 +100,85 @@
 </div>
 ```
 
+### Disclosures — native `<details>`
+
+Anything that shows and hides content is a `<details>` with a `<summary>`;
+for a titled page section, use `DisclosureSection`. Never a React-state
+button with `{open && (…)}`: without JavaScript, which is how this site tells
+readers in China to browse, the button does nothing and the content is not in
+the page. A native disclosure opens with no script, and find-in-page opens
+the one holding a match.
+
+```jsx
+<details className="bg-[#111820] border border-[#1c2a35]">
+  <summary className="flex items-center gap-3 p-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+    <span className="flex-1 min-w-0 font-mono text-white">Title</span>
+    <ChevronDown className="w-4 h-4 flex-shrink-0 transition-transform summary-open:rotate-180" aria-hidden="true" />
+  </summary>
+  <div className="p-4 border-t border-[#1c2a35]">Body.</div>
+</details>
+```
+
+- **A summary holds only phrasing content**, plus a heading as its direct
+  child. Where you would reach for a `<div>`, use `<span className="block">`.
+  The build fails otherwise (`scripts/prerender.mjs`).
+- **Style the open state with `summary-open:`**, never `group-open:`, and
+  don't put `group` on a `<details>`. `group-open:` matches any open
+  ancestor, so every card inside an open section looked open. A test fails
+  on `group-open:` anywhere in `src/`.
+- **Don't cap a list inside a disclosure.** It is closed until opened, so a
+  cap saves no room, and a title that says "(29)" must show 29.
+- **A preview cut short in a summary lifts when opened**
+  (`truncate summary-open:whitespace-normal summary-open:overflow-visible`,
+  or `line-clamp-2 summary-open:line-clamp-none`), unless the body repeats
+  the text. A test fails otherwise.
+- **No click handler on an element that is not a control** (a `<div>`, an
+  `<li>`, an SVG shape). A keyboard cannot reach it. If it reveals content,
+  use a `<details>`. If it does something, use a `<button>` or a link.
+- **A control that only works with JavaScript** (copy a link, "Expand all")
+  renders only once JavaScript runs:
+  `const scripted = useBrowserValue(() => true, false)` from
+  `src/utils/ssr.ts`, then `{scripted && …}`. Search boxes and filters are
+  the exception (see Filters below).
+- **Never read the clock while rendering.** The page is built once and read
+  for months. Take "now" from `const { now, live } = useClock()` in
+  `src/utils/ssr.ts`, never `new Date()` or `Date.now()`, and do date maths
+  with the helpers in `src/utils/dateUtils.ts`, which work in UTC. Show
+  today's date, "N days ago" or a countdown only when `live`; until then
+  show the date itself. A count written as a minimum ("2,041+ days") can
+  render as built. `ssr-later-visit.test.tsx` hydrates pages days later.
+- **Show a date as precisely as it is written.** "2024-03" is March 2024,
+  not 1 March. A date-only string passed to `new Date()` is midnight UTC,
+  which is the day before west of UTC: parse `YYYY-MM-DD` as local midnight
+  (`` `${date}T00:00:00` ``) before formatting it.
+- **At 390px wide:** a row of badges gets `flex-wrap`, an icon beside text
+  gets `flex-shrink-0`, and no `truncate` or `line-clamp` on text the reader
+  cannot read in full some other way.
+
+### Filters — toggle buttons in a named group
+
+A row of buttons that narrows one list is a filter, not tabs. Tab markup
+promises a panel per tab and arrow keys between them, and a screen reader
+announces "tab, 1 of 6".
+
+```jsx
+<div className="flex flex-wrap gap-2" role="group" aria-label="Filter stories by category">
+  {categories.map(cat => (
+    <button key={cat.id} type="button" onClick={() => setActive(cat.id)} aria-pressed={active === cat.id}>
+      {cat.name}
+    </button>
+  ))}
+</div>
+```
+
+- **The group's `aria-label` says what it filters, and by what.**
+- **Start on "All".** Without JavaScript the buttons do nothing, so the list
+  must be complete before any click. They stay in the page anyway: the
+  `<noscript>` banner names search boxes and filters, and hiding them until
+  JavaScript runs would shift the page when it does.
+- **No `role="tab"`, `tablist` or `tabpanel`** anywhere in `src`: to show and
+  hide, use a `<details>`. A test fails on them.
+
 ### Disclaimers
 
 Use the `<GlobalDisclaimer>` component:
@@ -115,6 +194,17 @@ import GlobalDisclaimer from './ui/GlobalDisclaimer';
 import SourceAttribution from './ui/SourceAttribution';
 <SourceAttribution source={{ name: 'Human Rights Watch', url: '...', verified: true }} />
 ```
+
+**Never cite a URL you have not opened.** A plausible link (the right site,
+the right date, a sensible slug) is not a source until it has loaded and
+said what it is cited for. In October 2026, 161 of 919 cited links led
+nowhere, most of them slugs that were never published. Run
+`npm run check:links` after adding citations; it lists every 404 with the
+file and line citing it.
+
+Likewise, leave a field empty rather than fill it with something
+plausible: case numbers such as "ESCC 2026/Art23-01" were invented to
+satisfy a required field.
 
 ---
 
@@ -161,4 +251,4 @@ Terminal-specific animations:
 
 ---
 
-*Last updated: February 20, 2026 (Session 55)*
+*Last updated: September 25, 2026 (Session 281)*

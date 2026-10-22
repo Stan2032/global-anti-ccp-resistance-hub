@@ -65,7 +65,6 @@ describe('Legal Cases Data', () => {
       if (c.error) continue;
       const o = c.output;
       if (!o.case_name?.trim()) violations.push(`Missing case_name in "${c.input}"`);
-      if (!o.case_number?.trim()) violations.push(`Missing case_number in "${c.input}"`);
       if (!o.jurisdiction?.trim()) violations.push(`Missing jurisdiction in "${c.input}"`);
       if (!o.court?.trim()) violations.push(`Missing court in "${c.input}"`);
       if (!o.charges?.trim()) violations.push(`Missing charges in "${c.input}"`);
@@ -78,8 +77,11 @@ describe('Legal Cases Data', () => {
     expect(violations, `Field violations:\n${violations.join('\n')}`).toEqual([]);
   });
 
+  // A case number is optional. Requiring one for every case led to invented
+  // ones ("ESCC 2026/Art23-01", "HCCC 2025/FC-01") where no source gives the
+  // court's reference; the tracker shows nothing when there is none.
   it('all case numbers are unique', () => {
-    const numbers = cases.filter(c => !c.error).map(c => c.output.case_number);
+    const numbers = cases.filter(c => !c.error && c.output.case_number?.trim()).map(c => c.output.case_number);
     const duplicates = numbers.filter((n, i) => numbers.indexOf(n) !== i);
     expect(duplicates, `Duplicate case numbers: ${duplicates.join(', ')}`).toEqual([]);
   });

@@ -77,7 +77,6 @@ src/data/
 ├── emergency_alerts.json                 # Active emergency alerts
 ├── live_data_feeds.json                  # Live data source configurations
 ├── live_statistics.json                  # Live statistics data
-├── educational_modules.json              # Educational content modules
 ├── legal_cases_research.json             # Legal cases data
 └── take_action_steps.json                # Action step guides
 ```

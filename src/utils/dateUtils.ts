@@ -24,29 +24,49 @@ export interface FreshnessInfo {
 }
 
 /**
+ * The year, month (1–12) and day a date string names, in any timezone.
+ *
+ * `new Date('2021-02-28')` is midnight UTC, which is still 27 February in the
+ * Americas; `new Date('February 28, 2021')` is local midnight. Reading the
+ * matching fields of each gives back the date as written, so the result is
+ * the same on the build server and in every reader's browser.
+ */
+function writtenDate(dateStr: string): [number, number, number] | null {
+  const iso = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr.trim());
+  if (iso) return [Number(iso[1]), Number(iso[2]), Number(iso[3])];
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return null;
+  return [d.getFullYear(), d.getMonth() + 1, d.getDate()];
+}
+
+/** Today's date in UTC, the same for every reader at a given moment. */
+function utcDate(now: Date): [number, number, number] {
+  return [now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate()];
+}
+
+/**
  * Calculates age from a birth date string, optionally at a given death date.
  *
  * @param birthDate - Birth date in natural language (e.g. "December 8, 1947")
  *                    or year-only (e.g. "1964").
- * @param deathDate - Optional death date. If omitted, age is calculated as of today.
+ * @param deathDate - Optional death date. If omitted, age is calculated as of `now`.
+ * @param now - The moment to measure to. Components pass `useClock().now`, so
+ *              the pre-rendered page and the browser agree (see utils/ssr).
  * @returns Age in years. For year-only inputs, uses simple year subtraction.
  */
-export function calculateAge(birthDate: string, deathDate?: string): number {
-  const endDate = deathDate ? new Date(deathDate) : new Date();
-  const birth = new Date(birthDate);
+export function calculateAge(birthDate: string, deathDate?: string, now: Date = new Date()): number {
+  const end = (deathDate && writtenDate(deathDate)) || utcDate(now);
 
-  // If only a year was provided (e.g. "1964"), Date parses it as Jan 1.
   // With year-only births, exact month/day is unknown, so simple year
   // subtraction is the best available approximation (could be off by 1).
   if (/^\d{4}$/.test(birthDate.trim())) {
-    return endDate.getFullYear() - parseInt(birthDate, 10);
+    return end[0] - parseInt(birthDate, 10);
   }
 
-  let age = endDate.getFullYear() - birth.getFullYear();
-  const monthDiff = endDate.getMonth() - birth.getMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && endDate.getDate() < birth.getDate())) {
-    age--;
-  }
+  const birth = writtenDate(birthDate);
+  if (!birth) return NaN;
+  let age = end[0] - birth[0];
+  if (end[1] < birth[1] || (end[1] === birth[1] && end[2] < birth[2])) age--;
   return age;
 }
 
@@ -58,7 +78,7 @@ export function calculateAge(birthDate: string, deathDate?: string): number {
  *          plus `isPast` and `isToday` flags. Returns zero-values with
  *          `isPast: true` for invalid or past dates.
  */
-export function calculateTimeLeft(eventDate: string | null | undefined): TimeLeft {
+export function calculateTimeLeft(eventDate: string | null | undefined, now: Date = new Date()): TimeLeft {
   const fallback: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true, isToday: false };
   if (!eventDate || typeof eventDate !== 'string') return fallback;
   
@@ -67,7 +87,6 @@ export function calculateTimeLeft(eventDate: string | null | undefined): TimeLef
   const [year, month, day] = parts.map(Number);
   if (isNaN(year) || isNaN(month) || isNaN(day)) return fallback;
   
-  const now = new Date();
   const target = new Date(year, month - 1, day);
   if (isNaN(target.getTime())) return fallback;
   
@@ -117,13 +136,11 @@ export function formatAlertForSharing(alert: AlertForSharing | null): string {
  * @returns Number of days elapsed. Returns 0 for today, negative for future
  *          dates, and `Infinity` for empty/falsy input.
  */
-export function daysSince(dateStr: string): number {
+export function daysSince(dateStr: string, now: Date = new Date()): number {
   if (!dateStr) return Infinity;
-  const now = new Date();
   const [y, m, d] = dateStr.split('-').map(Number);
-  const target = new Date(y, m - 1, d);
-  const diffMs = now.getTime() - target.getTime();
-  return Math.floor(diffMs / 86400000);
+  // Counted from midnight UTC, so the build server and every reader agree.
+  return Math.floor((now.getTime() - Date.UTC(y, m - 1, d)) / 86400000);
 }
 
 /**
@@ -133,8 +150,8 @@ export function daysSince(dateStr: string): number {
  * @returns A {@link FreshnessInfo} with a human-readable `label` and a `level`
  *          of `'fresh'` (≤7 days), `'recent'` (≤30 days), or `'stale'` (>30 days).
  */
-export function getFreshnessInfo(dateStr: string): FreshnessInfo {
-  const days = daysSince(dateStr);
+export function getFreshnessInfo(dateStr: string, now: Date = new Date()): FreshnessInfo {
+  const days = daysSince(dateStr, now);
   if (days <= 0) return { label: 'Verified today', level: 'fresh' };
   if (days === 1) return { label: 'Verified yesterday', level: 'fresh' };
   if (days <= 7) return { label: `Verified ${days} days ago`, level: 'fresh' };

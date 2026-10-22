@@ -37,7 +37,6 @@ interface AnalysisResult {
 }
 
 export default function TimelineGapAnalyzer() {
-  const [selectedDecade, setSelectedDecade] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
 
   const events = dataApi.getTimelineEvents();
@@ -274,43 +273,35 @@ License: CC BY 4.0`;
             const data = analysis.decades[decade];
             const maxEvents = Math.max(...Object.values(analysis.decades).map((d) => d.total));
             const barWidth = (data.total / maxEvents) * 100;
-            const isSelected = selectedDecade === decade;
 
             return (
-              <div key={decade}>
-                <button
-                  onClick={() => setSelectedDecade(isSelected ? null : decade)}
-                  className="w-full text-left"
-                  aria-expanded={isSelected}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="font-mono text-white">{decade}s</div>
-                    <div className="text-sm text-slate-400">
+              <details key={decade}>
+                <summary className="block w-full text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-center justify-between mb-2">
+                    <span className="block font-mono text-white">{decade}s</span>
+                    <span className="block text-sm text-slate-400">
                       {data.total} events ({data.critical} critical, {data.high} high)
-                    </div>
-                  </div>
-                  <div className="h-8 bg-[#0a0e14] border border-[#1c2a35] relative overflow-hidden">
-                    <div
-                      className="h-full bg-[#4afa82]/20 border-r-2 border-r-[#4afa82] transition-all"
+                    </span>
+                  </span>
+                  <span className="block h-8 bg-[#0a0e14] border border-[#1c2a35] relative overflow-hidden">
+                    <span
+                      className="block h-full bg-[#4afa82]/20 border-r-2 border-r-[#4afa82] transition-all"
                       style={{ width: `${barWidth}%` }}
                     />
-                  </div>
-                </button>
-
-                {isSelected && (
-                  <div className="mt-3 p-4 bg-[#0a0e14] border border-[#1c2a35] space-y-2">
-                    <div className="text-sm text-slate-300 font-semibold">Category Breakdown:</div>
-                    {Object.entries(data.categories)
-                      .sort(([, a], [, b]) => b - a)
-                      .map(([cat, count]) => (
-                        <div key={cat} className="flex items-center justify-between text-sm">
-                          <span className="text-slate-400 capitalize">{cat}</span>
-                          <span className="text-white font-mono">{count}</span>
-                        </div>
-                      ))}
-                  </div>
-                )}
-              </div>
+                  </span>
+                </summary>
+                <div className="mt-3 p-4 bg-[#0a0e14] border border-[#1c2a35] space-y-2">
+                  <div className="text-sm text-slate-300 font-semibold">Category Breakdown:</div>
+                  {Object.entries(data.categories)
+                    .sort(([, a], [, b]) => b - a)
+                    .map(([cat, count]) => (
+                      <div key={cat} className="flex items-center justify-between text-sm">
+                        <span className="text-slate-400 capitalize">{cat}</span>
+                        <span className="text-white font-mono">{count}</span>
+                      </div>
+                    ))}
+                </div>
+              </details>
             );
           })}
         </div>

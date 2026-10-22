@@ -2,15 +2,22 @@
 /**
  * NotificationCenter — Aggregated notification feed from all platform data sources.
  *
- * Pulls from emergency alerts, recent updates, and sanctions tracker to build
- * a unified notification feed. Supports category filtering, search, browser
+ * Pulls from recent updates and the sanctions tracker to build a unified
+ * notification feed. Supports category filtering, search, browser
  * notification permissions, and clipboard export.
+ *
+ * Emergency alerts are not repeated here. The dashboard shows them in its
+ * banner at the top, and this feed used to list them again: every live alert
+ * appeared twice on one page, dismissing one in the banner left it here, and
+ * the feed checked only `active`, so alerts past their expiry date still read
+ * as current. The feed points to the banner instead.
  *
  * @module NotificationCenter
  */
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, ChevronUp, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink, Filter } from 'lucide-react';
+import React, { useState, useMemo, useCallback } from 'react';
+import { Bell, BellOff, BellRing, Check, Copy, ChevronDown, Search, Settings, Shield, AlertTriangle, Info, CheckCircle, Clock, ExternalLink } from 'lucide-react';
 import { dataApi } from '../services/dataApi';
+import { useClock, useStoredJson } from '../utils/ssr';
 
 // ── Types ───────────────────────────────────────────────
 
@@ -29,6 +36,8 @@ interface NotificationItem {
 
 type NotificationPrefs = Record<CategoryKey, boolean>;
 
+const DEFAULT_PREFS: NotificationPrefs = { critical: true, sanctions: true, data: true, action: true };
+
 // ── Notification categories ─────────────────────────────
 
 const CATEGORIES: Record<CategoryKey, { label: string; color: string; bg: string; border: string; icon: React.ComponentType<{ className?: string }>; description: string }> = {
@@ -44,22 +53,6 @@ const CATEGORY_ORDER: CategoryKey[] = ['critical', 'sanctions', 'data', 'action'
 
 function buildNotificationFeed(): NotificationItem[] {
   const notifications: NotificationItem[] = [];
-
-  // Pull from emergency alerts (critical)
-  const alerts = dataApi.getAlerts();
-  (alerts || []).forEach((alert) => {
-    if (!alert.active) return;
-    notifications.push({
-      id: `alert-${alert.id}`,
-      category: alert.type === 'critical' ? 'critical' : 'sanctions',
-      title: alert.title,
-      summary: alert.summary,
-      date: alert.date,
-      source: 'Emergency Alerts',
-      url: null,
-      priority: alert.type === 'critical' ? 1 : 2,
-    });
-  });
 
   // Pull from recent updates (data / action)
   const updates = dataApi.getRecentUpdates();
@@ -151,33 +144,61 @@ function buildClipboardText(notifications: NotificationItem[], prefs: Notificati
  *
  * @returns {React.ReactElement} Notification center with filters and settings
  */
+/** One notification: its title and category are the summary, the rest folds away. */
+function NotificationCard({ n }: { n: NotificationItem }) {
+  const cfg = CATEGORIES[n.category] || CATEGORIES.data;
+  const Icon = cfg.icon;
+  return (
+    <details className="border border-[#1c2a35] bg-[#111820] transition-colors">
+      <summary className="w-full flex items-start gap-3 p-3 sm:p-4 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+        <Icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
+        <span className="block flex-1 min-w-0">
+          <span className="flex items-center gap-2 flex-wrap">
+            <span className="block text-sm font-mono text-slate-200 leading-snug">{n.title}</span>
+            <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>{cfg.label}</span>
+          </span>
+          <span className="flex items-center gap-2 mt-1 text-xs font-mono text-slate-400">
+            <Clock className="w-3 h-3" aria-hidden="true" />
+            <span>{n.date}</span>
+            <span aria-hidden="true">|</span>
+            <span>{n.source}</span>
+          </span>
+        </span>
+        <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform summary-open:rotate-180" aria-hidden="true" />
+      </summary>
+        <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
+          {n.summary && (
+            <p className="text-sm text-slate-300 font-mono leading-relaxed">{n.summary}</p>
+          )}
+          {n.url && (
+            <a
+              href={n.url}
+              className="inline-flex items-center gap-1 text-xs font-mono text-[#22d3ee] hover:underline"
+            >
+              <ExternalLink className="w-3 h-3" aria-hidden="true" />
+              View related page
+            </a>
+          )}
+        </div>
+    </details>
+  );
+}
+
 export default function NotificationCenter() {
   const [activeCategory, setActiveCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [showSettings, setShowSettings] = useState(false);
-  const [showAll, setShowAll] = useState(false);
-  const [expandedId, setExpandedId] = useState('');
   const [copied, setCopied] = useState(false);
 
-  // Notification preferences (stored in localStorage)
-  const [prefs, setPrefs] = useState<NotificationPrefs>(() => {
-    try {
-      const saved = localStorage.getItem('notification-prefs');
-      return saved ? JSON.parse(saved) : { critical: true, sanctions: true, data: true, action: true };
-    } catch {
-      return { critical: true, sanctions: true, data: true, action: true };
-    }
-  });
+  // Notification preferences, saved only once the reader changes one.
+  const [prefs, setPrefs] = useStoredJson<NotificationPrefs>('notification-prefs', DEFAULT_PREFS);
 
   const [permissionStatus, setPermissionStatus] = useState(getNotificationPermission);
   const swSupported = isServiceWorkerSupported();
 
-  // Persist prefs
-  useEffect(() => {
-    try { localStorage.setItem('notification-prefs', JSON.stringify(prefs)); } catch { /* noop */ }
-  }, [prefs]);
-
   const notifications = useMemo(() => buildNotificationFeed(), []);
+  const { now } = useClock();
+  const hasLiveAlerts = dataApi.getActiveAlerts(now).length > 0;
 
   const categoryCounts = useMemo(() => {
     const counts = { critical: 0, sanctions: 0, data: 0, action: 0 };
@@ -199,7 +220,8 @@ export default function NotificationCenter() {
     return result;
   }, [notifications, activeCategory, searchQuery]);
 
-  const visibleNotifications = showAll ? filteredNotifications : filteredNotifications.slice(0, 10);
+  const firstTen = filteredNotifications.slice(0, 10);
+  const theRest = filteredNotifications.slice(10);
 
   const toggleCategory = useCallback((cat: CategoryKey) => {
     setActiveCategory((prev) => (prev === cat ? '' : cat));
@@ -207,7 +229,7 @@ export default function NotificationCenter() {
 
   const togglePref = useCallback((cat: CategoryKey) => {
     setPrefs((prev: NotificationPrefs) => ({ ...prev, [cat]: !prev[cat] }));
-  }, []);
+  }, [setPrefs]);
 
   const requestPermission = useCallback(async () => {
     if (!('Notification' in window)) return;
@@ -390,91 +412,40 @@ export default function NotificationCenter() {
         />
       </div>
 
+      {hasLiveAlerts && (
+        <p className="text-xs font-mono text-slate-400">
+          <AlertTriangle className="w-3 h-3 inline mr-1 text-red-400" aria-hidden="true" />
+          Emergency alerts are at the{' '}
+          <a href="#emergency-alerts" className="text-[#22d3ee] hover:underline">top of this page</a>.
+        </p>
+      )}
+
       {/* Count */}
       <p className="text-xs font-mono text-slate-400">
-        Showing {visibleNotifications.length} of {filteredNotifications.length} notifications
+        {filteredNotifications.length} notifications
       </p>
 
-      {/* Notification feed */}
+      {/* Notification feed: native disclosures, in the page for everyone */}
       <div className="space-y-2">
-        {visibleNotifications.map((n) => {
-          const cfg = CATEGORIES[n.category] || CATEGORIES.data;
-          const Icon = cfg.icon;
-          const expanded = expandedId === n.id;
-
-          return (
-            <div
-              key={n.id}
-              className={`border ${expanded ? cfg.border : 'border-[#1c2a35]'} bg-[#111820] transition-colors`}
-            >
-              <button
-                onClick={() => setExpandedId(expanded ? '' : n.id)}
-                className="w-full flex items-start gap-3 p-3 sm:p-4 text-left"
-                aria-expanded={expanded}
-                aria-label={`${n.title} — ${cfg.label}`}
-              >
-                <Icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-mono text-slate-200 leading-snug">{n.title}</h3>
-                    <span className={`text-xs font-mono px-1.5 py-0.5 ${cfg.bg} ${cfg.color} ${cfg.border} border`}>{cfg.label}</span>
-                  </div>
-                  <div className="flex items-center gap-2 mt-1 text-xs font-mono text-slate-400">
-                    <Clock className="w-3 h-3" aria-hidden="true" />
-                    <span>{n.date}</span>
-                    <span aria-hidden="true">|</span>
-                    <span>{n.source}</span>
-                  </div>
-                </div>
-                <div className="flex-shrink-0 text-slate-400">
-                  {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </div>
-              </button>
-
-              {expanded && (
-                <div className="border-t border-[#1c2a35] px-3 sm:px-4 py-3 space-y-2">
-                  {n.summary && (
-                    <p className="text-sm text-slate-300 font-mono leading-relaxed">{n.summary}</p>
-                  )}
-                  {n.url && (
-                    <a
-                      href={n.url}
-                      className="inline-flex items-center gap-1 text-xs font-mono text-[#22d3ee] hover:underline"
-                    >
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                      View related page
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
+        {firstTen.map((n) => <NotificationCard key={n.id} n={n} />)}
       </div>
 
-      {/* Show more / no results */}
       {filteredNotifications.length === 0 && (
         <div className="text-center py-8 text-slate-400 text-sm font-mono">
           {searchQuery ? 'No notifications match your search.' : 'No notifications in this category.'}
         </div>
       )}
 
-      {!showAll && filteredNotifications.length > 10 && (
-        <button
-          onClick={() => setShowAll(true)}
-          className="w-full py-2 text-sm font-mono text-[#22d3ee] border border-[#1c2a35] hover:border-[#22d3ee]/50 transition-colors"
-        >
-          Show all {filteredNotifications.length} notifications
-        </button>
-      )}
-
-      {showAll && filteredNotifications.length > 10 && (
-        <button
-          onClick={() => setShowAll(false)}
-          className="w-full py-2 text-sm font-mono text-[#22d3ee] border border-[#1c2a35] hover:border-[#22d3ee]/50 transition-colors"
-        >
-          Show less
-        </button>
+      {theRest.length > 0 && (
+        <details>
+          <summary className="w-full py-2 text-sm font-mono text-center text-[#22d3ee] border border-[#1c2a35] hover:border-[#22d3ee]/50 transition-colors cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+            <span className="summary-open:hidden">Show all {filteredNotifications.length} notifications</span>
+            <span className="hidden summary-open:inline">Show less</span>
+          </summary>
+          <div className="space-y-2 mt-2">
+            {theRest.map((n) => <NotificationCard key={n.id} n={n} />)}
+          </div>
+        </details>
       )}
 
       {/* Footer */}

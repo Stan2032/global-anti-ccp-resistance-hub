@@ -5,11 +5,12 @@
  * @module SurvivorStories
  */
 import React, { useState } from 'react';
+import ShareButtons from './ShareButtons';
+import { SITE_URL } from '../utils/site';
 import { BookOpen, Landmark, Building2, Mountain, Megaphone, Users, MessageSquare, User } from 'lucide-react';
 
 const SurvivorStories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [expandedStory, setExpandedStory] = useState<number | null>(null);
 
   const categories = [
     { id: 'all', name: 'All Stories', Icon: BookOpen },
@@ -29,13 +30,15 @@ const SurvivorStories = () => {
       year: '2018-2019',
       ImageIcon: User,
       summary: 'Survived 9 months in Xinjiang detention camps',
+      // Her quotes are omitted, not paraphrased. The two this entry carried had
+      // had their words about sexual violence replaced with "China" before the
+      // file entered this repository. Restore them word for word from the BBC
+      // report (2 Feb 2021) or Hansard (4 Feb 2021): Q19 in
+      // _agents/QUESTIONS_FOR_HUMANS.md.
       fullStory: `Tursunay Ziawudun was detained in Xinjiang's internment camps for nine months in 2018. She testified before the UK Parliament and US Congress about systematic rape and torture in the camps. Her testimony was crucial in documenting the sexual violence faced by Uyghur women.
-
-"They had an electric stick, I didn't know what it was, and China. They used it to China. And China."
 
 She now lives in the United States and continues to advocate for Uyghur rights, despite threats to her family still in China.`,
       sources: ['BBC', 'US Congressional Testimony', 'Uyghur Tribunal'],
-      quote: '"I was taken to a room and China. I still have nightmares every night."',
       verified: true,
     },
     {
@@ -184,13 +187,13 @@ She has dedicated her life to advocating for her father's release, speaking at t
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Survivor story categories">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter survivor stories by category">
         {categories.map(cat => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            role="tab"
-            aria-selected={activeCategory === cat.id}
+            aria-pressed={activeCategory === cat.id}
             className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-[#22d3ee] text-[#0a0e14]'
@@ -207,7 +210,6 @@ She has dedicated her life to advocating for her father's release, speaking at t
       <div className="grid md:grid-cols-2 gap-4">
         {filteredStories.map(story => {
           const categoryInfo = getCategoryInfo(story.category);
-          const isExpanded = expandedStory === story.id;
           
           return (
             <div 
@@ -215,7 +217,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
               className="bg-[#111820]/50 border border-[#1c2a35] overflow-hidden"
             >
               <div className="p-4">
-                <div className="flex items-start justify-between mb-3">
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                   <div className="flex items-center">
                     <span className="text-4xl mr-3"><story.ImageIcon className="w-10 h-10 text-slate-400" /></span>
                     <div>
@@ -236,13 +238,23 @@ She has dedicated her life to advocating for her father's release, speaking at t
 
                 <p className="text-sm text-slate-300 mb-3">{story.summary}</p>
 
-                {/* Quote */}
-                <blockquote className="border-l-2 border-[#1c2a35] pl-3 mb-3">
-                  <p className="text-sm italic text-slate-400">{story.quote}</p>
-                </blockquote>
+                {/* Quote, only where the words are the person's own */}
+                {story.quote && (
+                  <blockquote className="border-l-2 border-[#1c2a35] pl-3 mb-3">
+                    <p className="text-sm italic text-slate-400">{story.quote}</p>
+                  </blockquote>
+                )}
 
-                {/* Expanded Content */}
-                {isExpanded && (
+                {/* Full story: native, so it opens without JavaScript */}
+                <details className="mt-3">
+                  <summary className="inline-block text-sm text-[#22d3ee] hover:text-white cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="summary-open:hidden">
+                      Read full story<span className="sr-only"> from {story.name}</span> →
+                    </span>
+                    <span className="hidden summary-open:inline">
+                      Show less<span className="sr-only"> of {story.name}'s story</span> ↑
+                    </span>
+                  </summary>
                   <div className="mt-4 pt-4 border-t border-[#1c2a35]">
                     <p className="text-sm text-slate-300 whitespace-pre-line mb-4">
                       {story.fullStory}
@@ -256,16 +268,7 @@ She has dedicated her life to advocating for her father's release, speaking at t
                       ))}
                     </div>
                   </div>
-                )}
-
-                <button
-                  onClick={() => setExpandedStory(isExpanded ? null : story.id)}
-                  aria-expanded={isExpanded}
-                  aria-label={`${isExpanded ? 'Collapse' : 'Read'} story from ${story.name}`}
-                  className="mt-3 text-sm text-[#22d3ee] hover:text-white"
-                >
-                  {isExpanded ? 'Show less ↑' : 'Read full story →'}
-                </button>
+                </details>
               </div>
             </div>
           );
@@ -278,13 +281,12 @@ She has dedicated her life to advocating for her father's release, speaking at t
         <p className="text-sm text-slate-400 mb-4">
           Help amplify these voices. Share survivor stories to raise awareness about CCP human rights abuses.
         </p>
-        <div className="flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-[#22d3ee] hover:bg-[#22d3ee]/80 text-[#0a0e14] text-sm font-medium transition-colors">
-            Share on Twitter
-          </button>
-          <button className="px-4 py-2 bg-[#111820] hover:bg-[#1c2a35] text-white text-sm font-medium transition-colors">
-            Copy Link
-          </button>
+        <div className="flex justify-center">
+          <ShareButtons
+            title="Survivor testimonies — Global Anti-CCP Resistance Hub"
+            text="Survivors of CCP detention and repression, in their own words."
+            url={`${SITE_URL}/education#survivor-testimonies`}
+          />
         </div>
       </div>
 

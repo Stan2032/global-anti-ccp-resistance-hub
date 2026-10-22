@@ -4,14 +4,27 @@
  *
  * @module IlhamTohtiProfile
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { calculateAge } from '../../utils/dateUtils';
+import { useClock } from '../../utils/ssr';
 import GlobalDisclaimer from '../../components/ui/GlobalDisclaimer';
+import { DisclosureSection } from '../../components/DisclosureSection';
+import { ProfileTimeline } from '../../components/ProfileTimeline';
 import {
-  User, Calendar, MapPin, Scale, AlertTriangle, ExternalLink,
-  ChevronDown, ChevronUp, Globe, FileText, BookOpen, Clock,
-  ArrowLeft, Shield, Award, Heart, GraduationCap
+  MapPin,
+  Scale,
+  AlertTriangle,
+  ExternalLink,
+  ChevronDown,
+  Globe,
+  FileText,
+  Clock,
+  ArrowLeft,
+  Shield,
+  Award,
+  Heart,
+  GraduationCap,
 } from 'lucide-react';
 
 // ─── DATA ──────────────────────────────────────────────────────────
@@ -24,7 +37,6 @@ const PROFILE = {
   name: 'Ilham Tohti',
   chineseName: '伊力哈木·土赫提',
   birthDate: 'October 25, 1969',
-  birthPlace: 'Artush, Xinjiang, China',
   nationality: 'Chinese (Uyghur)',
   status: 'IMPRISONED',
   currentLocation: 'Urumqi No. 1 Prison, Xinjiang (reported)',
@@ -282,17 +294,7 @@ const categoryLabels = {
 };
 
 export default function IlhamTohtiProfile() {
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
-  const [showAllNarratives, setShowAllNarratives] = useState(false);
-  const [activeSection, setActiveSection] = useState('timeline');
-
-  const sections = [
-    { id: 'timeline', label: 'Timeline', icon: Clock },
-    { id: 'charges', label: 'Charges & Verdict', icon: Scale },
-    { id: 'narratives', label: 'CCP Narrative Analysis', icon: Shield },
-    { id: 'international', label: 'International Response', icon: Globe },
-    { id: 'sources', label: 'Sources', icon: FileText },
-  ];
+  const { now } = useClock();
 
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
@@ -327,7 +329,7 @@ export default function IlhamTohtiProfile() {
                   <MapPin className="w-3 h-3 inline mr-1" />{PROFILE.currentLocation}
                 </span>
                 <span className="px-2 py-0.5 bg-[#111820] text-slate-300 rounded">
-                  Age {calculateAge(PROFILE.birthDate)} · {PROFILE.nationality}
+                  Age {calculateAge(PROFILE.birthDate, undefined, now)} · {PROFILE.nationality}
                 </span>
                 <span className="px-2 py-0.5 bg-amber-600/30 text-amber-300 rounded border border-amber-500/30">
                   <Award className="w-3 h-3 inline mr-1" />Sakharov Prize Laureate 2019
@@ -338,35 +340,12 @@ export default function IlhamTohtiProfile() {
         </div>
       </div>
 
-      {/* Section Navigation */}
-      <div className="sticky top-14 z-40 bg-[#111820]/95 backdrop-blur border-b border-[#1c2a35]">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex overflow-x-auto gap-1 py-1" role="tablist" aria-label="Profile sections">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveSection(id)}
-                role="tab"
-                aria-selected={activeSection === id}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm whitespace-nowrap transition-colors ${
-                  activeSection === id
-                    ? 'bg-[#22d3ee] text-[#0a0e14]'
-                    : 'text-slate-400 hover:text-white hover:bg-[#111820]'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-4 py-6">
 
         {/* Timeline Section */}
-        {activeSection === 'timeline' && (
+        <DisclosureSection title="Timeline" defaultOpen>
           <section aria-label="Timeline">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#22d3ee]" />
@@ -383,53 +362,17 @@ export default function IlhamTohtiProfile() {
             </div>
 
             <div className="space-y-3">
-              {TIMELINE.map((event, i) => (
-                <button
-                  type="button"
-                  key={i}
-                  className={`border-l-2 pl-4 py-2 cursor-pointer transition-colors rounded-r text-left w-full ${categoryColors[event.category]} hover:bg-[#111820]/50`}
-                  onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
-                  aria-expanded={expandedEvent === i}
-                  aria-label={`${event.year}: ${event.title}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-400 font-mono min-w-[60px]">{event.year}</span>
-                        <h3 className="font-medium text-sm">{event.title}</h3>
-                      </div>
-                      {expandedEvent === i && (
-                        <div className="mt-2 text-sm text-slate-300 leading-relaxed">
-                          <p>{event.detail}</p>
-                          {event.source && (
-                            <a
-                              href={event.source}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 mt-1 text-[#22d3ee] hover:text-white text-xs"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Source
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    {expandedEvent === i ? (
-                      <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                    )}
-                  </div>
-                </button>
-              ))}
+              <ProfileTimeline events={TIMELINE.map(event => ({
+                year: event.year, title: event.title, detail: event.detail, sourceUrl: event.source,
+                label: categoryLabels[event.category as keyof typeof categoryLabels],
+                tone: categoryColors[event.category],
+              }))} />
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Charges & Verdict Section */}
-        {activeSection === 'charges' && (
+        <DisclosureSection title="Charges & Verdict">
           <section aria-label="Charges and verdict">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Scale className="w-5 h-5 text-red-400" />
@@ -498,10 +441,10 @@ export default function IlhamTohtiProfile() {
               </p>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* CCP Narrative Analysis Section */}
-        {activeSection === 'narratives' && (
+        <DisclosureSection title="CCP Narrative Analysis">
           <section aria-label="CCP narrative analysis">
             <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
               <Shield className="w-5 h-5 text-amber-400" />
@@ -513,7 +456,7 @@ export default function IlhamTohtiProfile() {
             </p>
 
             <div className="space-y-4">
-              {(showAllNarratives ? CCP_NARRATIVES : CCP_NARRATIVES.slice(0, 2)).map((item, i) => (
+              {CCP_NARRATIVES.slice(0, 2).map((item, i) => (
                 <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
                   <div className="bg-red-900/20 px-4 py-2 border-b border-[#1c2a35]">
                     <span className="text-xs text-red-400 font-bold uppercase">CCP Claim</span>
@@ -535,22 +478,43 @@ export default function IlhamTohtiProfile() {
             </div>
 
             {CCP_NARRATIVES.length > 2 && (
-              <button
-                onClick={() => setShowAllNarratives(!showAllNarratives)}
-                className="mt-3 text-sm text-[#22d3ee] hover:text-white flex items-center gap-1"
-              >
-                {showAllNarratives ? (
-                  <>Show less <ChevronUp className="w-4 h-4" /></>
-                ) : (
-                  <>Show {CCP_NARRATIVES.length - 2} more narratives <ChevronDown className="w-4 h-4" /></>
-                )}
-              </button>
+              <details className="mt-3">
+                <summary
+                  className="inline-flex items-center gap-1 text-sm text-[#22d3ee] hover:text-white cursor-pointer
+                             list-none [&::-webkit-details-marker]:hidden"
+                >
+                  <span className="summary-open:hidden">Show {CCP_NARRATIVES.length - 2} more narratives</span>
+                  <span className="hidden summary-open:inline">Show fewer</span>
+                  <ChevronDown className="w-4 h-4 transition-transform summary-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="space-y-4 mt-3">
+                  {CCP_NARRATIVES.slice(2).map((item, i) => (
+                    <div key={i} className="bg-[#111820] border border-[#1c2a35] overflow-hidden">
+                      <div className="bg-red-900/20 px-4 py-2 border-b border-[#1c2a35]">
+                        <span className="text-xs text-red-400 font-bold uppercase">CCP Claim</span>
+                        <p className="text-sm text-red-300 mt-1">{item.claim}</p>
+                      </div>
+                      <div className="px-4 py-3">
+                        <span className="text-xs text-emerald-400 font-bold uppercase">Reality</span>
+                        <p className="text-sm text-slate-300 mt-1">{item.reality}</p>
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {item.sources.map((src) => (
+                            <span key={src} className="text-xs px-2 py-0.5 bg-[#111820] text-slate-400 rounded">
+                              {src}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </details>
             )}
           </section>
-        )}
+        </DisclosureSection>
 
         {/* International Response Section */}
-        {activeSection === 'international' && (
+        <DisclosureSection title="International Response">
           <section aria-label="International response">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Globe className="w-5 h-5 text-[#22d3ee]" />
@@ -630,10 +594,10 @@ export default function IlhamTohtiProfile() {
               </div>
             </div>
           </section>
-        )}
+        </DisclosureSection>
 
         {/* Sources Section */}
-        {activeSection === 'sources' && (
+        <DisclosureSection title="Sources">
           <section aria-label="Sources">
             <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-emerald-400" />
@@ -662,7 +626,7 @@ export default function IlhamTohtiProfile() {
               ))}
             </div>
           </section>
-        )}
+        </DisclosureSection>
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ export const createOrganization = async (organizationData, userId) => {
     return result.rows[0];
   } catch (error) {
     if (error.code === '23505') { // Unique violation
-      throw new Error('Organization with this name already exists');
+      throw new Error('Organization with this name already exists', { cause: error });
     }
     logger.error('Error creating organization', { error: error.message });
     throw error;
