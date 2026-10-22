@@ -3,7 +3,6 @@ import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import type { ReactElement } from 'react';
 
-import ActivistToolkit from '../components/ActivistToolkit';
 import ConfuciusInstitutes from '../components/ConfuciusInstitutes';
 import DiasporaSupport from '../components/DiasporaSupport';
 import DisinfoTracker from '../components/DisinfoTracker';
@@ -26,7 +25,6 @@ import ProfilesIndex from '../pages/profiles/ProfilesIndex';
  * is now a named group of toggle buttons that say whether they are on.
  */
 const FILTER_BARS: { component: string; ui: ReactElement; groups: string[] }[] = [
-  { component: 'ActivistToolkit', ui: <ActivistToolkit />, groups: ['Filter resources by category'] },
   { component: 'ConfuciusInstitutes', ui: <ConfuciusInstitutes />, groups: ['Filter institutes by region'] },
   { component: 'DiasporaSupport', ui: <DiasporaSupport />, groups: ['Filter diaspora support by category'] },
   { component: 'DisinfoTracker', ui: <DisinfoTracker />, groups: ['Filter disinformation by topic'] },

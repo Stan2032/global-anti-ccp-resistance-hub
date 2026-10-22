@@ -359,7 +359,7 @@ const TakeAction = () => {
         <DisclosureSection
           id="toolkit"
           title="Activist toolkit"
-          description="Practical guidance for organising safely."
+          description="Letter templates to download as plain text."
         >
           <Suspense fallback={<SectionLoader />}><ActivistToolkit /></Suspense>
         </DisclosureSection>
