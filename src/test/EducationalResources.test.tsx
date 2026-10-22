@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import educationalData from '../data/educational_modules.json';
 
 // Mock lazy-loaded components
 vi.mock('../components/DocumentaryList', () => ({ default: () => <div>DocumentaryList</div> }));
@@ -27,8 +26,6 @@ vi.mock('../components/SurvivorStories', () => ({ default: () => <div>SurvivorSt
 import EducationalResources from '../pages/EducationalResources';
 
 const renderEducation = () => render(<MemoryRouter><EducationalResources /></MemoryRouter>);
-/** The closed section listing the courses and downloads nobody wrote. */
-const outlines = () => document.getElementById('course-outlines') as HTMLDetailsElement;
 
 describe('EducationalResources', () => {
   beforeEach(() => {
@@ -49,7 +46,8 @@ describe('EducationalResources', () => {
     expect(screen.getByText('── media ──')).toBeTruthy();
     expect(screen.getByText('── research ──')).toBeTruthy();
     expect(screen.getByText('── tools ──')).toBeTruthy();
-    expect(screen.getByText('── not_yet_written ──')).toBeTruthy();
+    // The not_yet_written group went with the course outlines (Q21).
+    expect(screen.queryByText('── not_yet_written ──')).toBeNull();
   });
 
   it('does not render removed tabs (FAQ, History, Progress)', () => {
@@ -66,6 +64,8 @@ describe('EducationalResources', () => {
   // lists 19), then five course cards with durations and lesson counts. Every
   // course ended "Course content coming soon", and every download was a
   // disabled icon with an invented file size.
+  // The outlines were kept in a closed section until the owner decided
+  // (Q21, October 2026): dropped, with their data, until a course is written.
 
   it('claims no courses, downloads or counts that do not exist', () => {
     const { container } = renderEducation();
@@ -80,36 +80,9 @@ describe('EducationalResources', () => {
     expect(text).not.toMatch(/\b\d+(\.\d+)? MB\b/);
   });
 
-  it('lists every course outline in the page, labelled as never written', () => {
-    renderEducation();
-    const section = outlines();
-    expect(section.tagName).toBe('DETAILS');
-    expect(section.open).toBe(false);
-    expect(section.querySelector('summary')!.textContent).toMatch(/never written/);
-    const { modules } = educationalData;
-    expect(modules.length).toBeGreaterThan(0);
-    for (const module of modules) {
-      const card = [...section.querySelectorAll('article')]
-        .find(a => a.querySelector('h3')?.textContent === module.title);
-      expect(card, module.title).toBeTruthy();
-      expect(card!.textContent).toContain(module.description);
-      for (const topic of module.topics) expect(card!.textContent).toContain(topic);
-    }
-  });
-
-  it('lists the downloads as not existing, with nothing to click', () => {
-    renderEducation();
-    const section = outlines();
-    const { resources } = educationalData;
-    expect(resources.length).toBeGreaterThan(0);
-    for (const resource of resources) expect(section.textContent).toContain(resource.title);
-    expect(section.textContent).toMatch(/none of the downloads exists/);
-    expect(section.querySelectorAll('button, a[download]')).toHaveLength(0);
-  });
-
   // Each course card was a button that showed its topics in a panel below
   // the grid, so without JavaScript no topic could be read.
-  it('shows each outline without a click: no module is a button, no search over them', () => {
+  it('has no course grid: no module button, no search over courses', () => {
     const { container } = renderEducation();
     expect(container.querySelectorAll('button[aria-pressed]')).toHaveLength(0);
     expect(screen.queryByLabelText('Search courses')).toBeNull();
@@ -153,8 +126,6 @@ describe('EducationalResources', () => {
       // tools
       'Language phrases', 'Disinformation tracker', 'AI disinformation detector',
       'Confucius Institutes', 'FAQ',
-      // not_yet_written
-      'Course outlines',
     ]) {
       // queryAllByText, not getByText: a few titles also match the mocked
       // component's own output (the FAQ mock renders the text "FAQ").
@@ -167,10 +138,10 @@ describe('EducationalResources', () => {
 
   it('uses native <details> so the sections open without JavaScript', () => {
     const { container } = renderEducation();
-    // The 22 sections and the course outlines; cards inside them (FAQ
+    // The 22 sections; cards inside them (FAQ
     // answers, directory entries) are <details> too, and are not counted here.
     const sections = [...container.querySelectorAll('details')].filter(d => !d.parentElement!.closest('details'));
-    expect(sections.length).toBe(23);
+    expect(sections.length).toBe(22);
     // Collapsed, but in the document — folded, not withheld.
     expect(sections.filter(d => d.hasAttribute('open')).length).toBe(0);
     sections.forEach(d => expect(d.firstElementChild?.tagName).toBe('SUMMARY'));

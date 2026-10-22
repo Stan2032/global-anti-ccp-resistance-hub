@@ -99,7 +99,6 @@ describe('URL validation across all JSON data files', () => {
     // Data files should contain source URLs for verification
     // Exceptions: files that are purely structural config
     const configOnlyFiles = [
-      'educational_modules.json',
       'take_action_steps.json',
       'recent_updates.json',
       'timeline_events.json'

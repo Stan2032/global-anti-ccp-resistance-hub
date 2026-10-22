@@ -1,14 +1,11 @@
 /**
  * EducationalResources — History, testimony, reading lists, documentaries,
  * research papers, a glossary and language guides covering CCP human rights
- * issues across all affected regions, and the outlines of courses that have
- * not been written yet.
+ * issues across all affected regions.
  *
  * @module EducationalResources
  */
 import { lazy, Suspense } from 'react'
-import { Link } from 'react-router-dom'
-import educationalData from '../data/educational_modules.json'
 import { DisclosureSection } from '../components/DisclosureSection'
 
 const SectionLoader = () => (
@@ -41,8 +38,6 @@ const SurvivorStories = lazy(() => import('../components/SurvivorStories'));
 const VideoTestimonials = lazy(() => import('../components/VideoTestimonials'));
 
 const EducationalResources = () => {
-  const { modules, resources } = educationalData
-
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -152,53 +147,6 @@ const EducationalResources = () => {
         </DisclosureSection>
         <DisclosureSection title="FAQ" description="Common questions, answered with sources.">
           <Suspense fallback={<SectionLoader />}><FAQ /></Suspense>
-        </DisclosureSection>
-      </div>
-
-      {/*
-        This page used to open with five "courses" and five "downloadable
-        materials", with durations, lesson counts and file sizes. None of
-        them was ever written: each course ended "Course content coming
-        soon", and each download was a disabled icon. They are listed here
-        for what they are until the owner decides what to do with them.
-      */}
-      <div className="space-y-3">
-        <h2 className="text-xl font-bold text-white font-mono">── not_yet_written ──</h2>
-        <p className="text-sm text-slate-400">Listed for this page, but none of it exists yet.</p>
-        <DisclosureSection
-          id="course-outlines"
-          title="Course outlines"
-          description={`${modules.length} courses and ${resources.length} downloads, outlined but never written.`}
-        >
-          <p className="text-sm text-slate-300 mb-4">
-            None of these courses has been written, and none of the downloads exists. For digital
-            security now, see the <Link to="/security" className="text-[#4afa82] hover:underline">Security
-            Center</Link>; for advocacy, <Link to="/take-action" className="text-[#4afa82] hover:underline">Take
-            Action</Link>.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {modules.map((module) => (
-              <article key={module.id} className="border border-[#1c2a35] p-4">
-                <h3 className="text-white font-semibold">{module.title}</h3>
-                <p className="text-slate-400 text-sm mt-1">{module.description}</p>
-                <ul className="flex flex-wrap gap-2 mt-3" aria-label={`Planned topics: ${module.title}`}>
-                  {module.topics.map((topic) => (
-                    <li key={topic} className="px-2 py-0.5 bg-[#4afa82]/10 text-[#4afa82] text-xs font-mono">
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-          <h3 className="text-white font-semibold mt-6 mb-2">Downloads listed with them</h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-slate-300">
-            {resources.map((resource) => (
-              <li key={resource.id}>
-                {resource.title} <span className="text-slate-400">({resource.type})</span>
-              </li>
-            ))}
-          </ul>
         </DisclosureSection>
       </div>
     </div>
